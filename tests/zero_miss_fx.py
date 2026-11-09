@@ -8,7 +8,9 @@ WITHOUT it (the `drop` choices removed or replaced). Two checks per case:
   1. the values in `expect` (JS expressions over C, the sheet of the build with the feature) equal the expected value;
   2. every flattened path of C that differs between the two builds matches one of the `allow` regexes. Nothing else may change.
   3. with --base DIR (a checkout of origin/main): the same build on the old code may differ only in `base_allow` (or `allow`) paths.
-Cases without `drop` (magic items) are checked by 1 and 3 only. Exit 1 on any failure. One browser page for all cases (about 30 s)."""
+Cases with `tog` (a map of fx toggle ids that are ON, zero miss 2) are compared with the same build with every toggle off.
+`window.__zmB` holds the builder state of the case, so an expression may call window.__bldChoiceList(window.__zmB).
+Cases without `drop` and `tog` (magic items) are checked by 1 and 3 only. Exit 1 on any failure. One browser page for all cases (about 30 s)."""
 import json, os, re, sys, socket, threading, functools, http.server
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
@@ -98,6 +100,86 @@ CASES = [
          base_allow=[r"^attacks\.\d+\.(note|xdice\.)"]),
 ]
 
+# ---------------- zero miss 2 (reports/zero-miss-2.md): SPEED toggles, RESOURCE rows, Divine Strike, duplicate skill picks
+SPD = [r"^features\.0\.items\.1\.d$", r"^speedSrc$", r"^speed$", r"^moves\.", r"^fxToggles\.\d+\.on$", r"^defenses"]  # what turning a speed toggle on may change
+SP_BASE = [r"^features\.0\.items\.1\.d$", r"^speedSrc$", r"^speed$", r"^moves\.", r"^fxToggles", r"^defenses"]  # vs origin/main: the toggle does not exist there, so the list of toggles differs too
+MV = "JSON.stringify((C.moves||[]).map(x=>x.m+':'+x.v))"
+SRCS = {"core": True, "dmg": True}
+
+
+def spd(name, b, tog, expect, **kw):
+    return dict(name=name, b=b, tog=tog, expect=expect, allow=SPD, base_allow=kw.pop("base_allow", SP_BASE), **kw)
+
+
+NOSP = {"unset": {}}  # species effects are off in the test builder (B.unset.species), turn them on
+CASES += [
+    # ---------------- SPEED (forms that give a movement mode or more Speed)
+    spd("Z2 Wild Heart 14, Power of the Wilds (Falcon): Fly Speed equal to Speed while raging, no armor", dict(cls="Barbarian", level=14, sub="Path of the Wild Heart", base=WL), {"wild-falcon": True},
+        [(MV, '["fly:40"]')], base_allow=SP_BASE + [r"^res\."]),
+    spd("NEG Z2 Falcon flight needs no armor: Plate Armor worn, no Fly Speed", dict(cls="Barbarian", level=14, sub="Path of the Wild Heart", base=WL, inv=[{"n": "Plate Armor", "q": 1, "eq": True}]), {"wild-falcon": True},
+        [(MV, "[]")], base_allow=SP_BASE + [r"^res\."]),
+    spd("Z2 Draconic Sorcery 14, Dragon Wings: Fly Speed 60 ft", dict(cls="Sorcerer", level=14, sub="Draconic Sorcery", base=WL), {"dragon-wings": True}, [(MV, '["fly:60"]')]),
+    spd("Z2 Aberrant Sorcery 6, Revelation in Flesh aquatic: Swim Speed twice your Speed", dict(cls="Sorcerer", level=6, sub="Aberrant Sorcery", base=WL), {"flesh-aquatic": True}, [(MV, '["swim:60"]')]),
+    spd("Z2 Aberrant Sorcery 6, Revelation in Flesh flight: Fly Speed equals Speed", dict(cls="Sorcerer", level=6, sub="Aberrant Sorcery", base=WL), {"flesh-flight": True}, [(MV, '["fly:30"]')]),
+    spd("Z2 Oath of Vengeance 20 (2024), Avenging Angel: Fly Speed 60 ft", dict(cls="Paladin", level=20, sub="Oath of Vengeance", base=WL), {"avenging-angel": True}, [(MV, '["fly:60"]')]),
+    spd("Z2 Oath of Vengeance 20 (2014), Avenging Angel: Fly Speed 60 ft", dict(rs="2014", cls="Paladin", level=20, sub="Oath of Vengeance (2014)", base=WL), {"avenging-angel": True}, [(MV, '["fly:60"]')]),
+    spd("Z2 Psi Warrior 11, Telekinetic Adept: Fly Speed twice your Speed", dict(cls="Fighter", level=11, sub="Psi Warrior", base=WL), {"psi-leap": True}, [(MV, '["fly:60"]')]),
+    spd("Z2 Gloom Stalker 3, Dread Ambusher: Speed 10 ft higher on the first turn", dict(cls="Ranger", level=3, sub="Gloom Stalker", base=WL), {"dread-ambusher": True},
+        [("C.speed", 40), ("/\\+10 Dread Ambusher/.test(C.speedSrc)", True)]),
+    spd("Z2 Warrior of the Elements 17, Elemental Epitome: Step of the Wind adds 20 ft", dict(cls="Monk", level=17, sub="Warrior of the Elements", base=WL), {"epitome-step": True},
+        [("/\\+20 Elemental Epitome/.test(C.speedSrc)", True)]),
+    spd("Z2 Circle of the Stars 10, Dragon constellation: Fly Speed 20 ft", dict(cls="Druid", level=10, sub="Circle of the Stars", base=WL), {"stars-dragon": True}, [(MV, '["fly:20"]')]),
+    spd("Z2 Charger feat: Dash adds 10 ft Speed", dict(cls="Fighter", level=4, ch={"feat4": {"feat": "Charger", "a1": "STR"}}, base=WL), {"charger-dash": True},
+        [("C.speed", 40), ("/\\+10 Charger/.test(C.speedSrc)", True)]),
+    spd("Z2 Dragonborn 5, Draconic Flight: Fly Speed equals Speed", dict(cls="Fighter", level=5, extra=dict({"species": "Dragonborn"}, **NOSP), base=WL), {"draconic-flight": True},
+        [(MV, '["fly:30"]'), ("C.res.filter(r=>r.n==='Draconic Flight').length>=1", True)]),
+    spd("Z2 Goliath 5, Large Form: Speed +10 ft", dict(cls="Fighter", level=5, extra=dict({"species": "Goliath"}, **NOSP), base=WL), {"large-form": True},
+        [("C.speed", 45), ("/\\+10 Large Form/.test(C.speedSrc)", True)]),
+    spd("NEG Z2 Goliath 4 has no Large Form yet", dict(cls="Fighter", level=4, extra=dict({"species": "Goliath"}, **NOSP), base=WL), {"large-form": True},
+        [("C.speed", 35), ("(C.fxToggles||[]).some(t=>t.id==='large-form')", False)]),
+    spd("Z2 Divine Soul 14 (2014), Otherworldly Wings: Fly Speed 30 ft", dict(rs="2014", cls="Sorcerer", level=14, sub="Divine Soul", base=WL), {"otherworldly-wings": True}, [(MV, '["fly:30"]')]),
+    spd("Z2 Draconic Bloodline 14 (2014), Dragon Wings: Fly Speed equals Speed", dict(rs="2014", cls="Sorcerer", level=14, sub="Draconic Bloodline", base=WL), {"dragon-wings": True}, [(MV, '["fly:30"]')]),
+    # ---------------- RESOURCE
+    dict(name="Z2 Relentless Rage: the DC rises by 5 for each use (one pip per use)", b=dict(cls="Barbarian", level=11, base=WL),
+         expect=[("C.res.filter(r=>r.n==='Relentless Rage').map(r=>r.max)", [4]), ("/\\+5 for each use/.test(C.res.find(r=>r.n==='Relentless Rage').tag)", True)],
+         base_allow=[r"^res\.\d+\.", r"^res\.\d+$"]),
+    dict(name="Z2 Relentless Rage: the DC goes back to 10 after a Short or Long Rest", b=dict(cls="Barbarian", level=11, base=WL),
+         expect=[("C.res.find(r=>r.n==='Relentless Rage').reset", "short"), ("/DC 10/.test(C.res.find(r=>r.n==='Relentless Rage').tag)", True)],
+         base_allow=[r"^res\.\d+\.", r"^res\.\d+$"]),
+    dict(name="NEG Z2 no Relentless Rage row before Barbarian 11", b=dict(cls="Barbarian", level=10, base=WL), expect=[("C.res.some(r=>r.n==='Relentless Rage')", False)], base_allow=[]),
+]
+
+DS_ROWS = [("Life Domain (2014)", "2014", "Radiant"), ("Nature Domain", None, "Cold, Fire, or Lightning \\(your choice\\)"), ("Tempest Domain", None, "Thunder"),
+           ("Trickery Domain (2014)", "2014", "Poison"), ("War Domain (2014)", "2014", "of the weapon's type"), ("Death Domain", None, "Necrotic"), ("Order Domain", None, "Psychic"),
+           ("Twilight Domain", None, "Radiant"), ("Forge Domain", None, "Fire")]
+for sub, rs, typ in DS_ROWS:
+    bb = dict(cls="Cleric", level=8, sub=sub, inv=LS, base=WL, src=dict(SRCS, tce=True, xge=True, dmg14=True))
+    if rs: bb["rs"] = rs
+    CASES.append(dict(name="Z2 %s Divine Strike: +1d8 once per turn on a weapon hit" % sub, b=bb,
+                      expect=[("/Extra damage: \\+1d8 %s/.test(C.attacks.find(a=>a.n==='Longsword').note)" % typ, True), ("C.attacks.find(a=>a.n==='Longsword').xdice.length", 1)],
+                      base_allow=[ATK + r"(note|xdice\.)"]))
+CASES.append(dict(name="Z2 Life Domain 14 (2014) Divine Strike: a second 1d8 (2d8 in all)", b=dict(rs="2014", cls="Cleric", level=14, sub="Life Domain (2014)", inv=LS, base=WL),
+                  expect=[("C.attacks.find(a=>a.n==='Longsword').xdice.map(x=>x.d).join()", "1d8,1d8")], base_allow=[ATK + r"(note|xdice\.)"]))
+CASES.append(dict(name="Z2 Blood Domain 14 Divine Strike: the second 1d8 was missing", b=dict(cls="Cleric", level=14, sub="Blood Domain", inv=LS, base=WL, src=dict(SRCS, tdcsr=True)),
+                  expect=[("C.attacks.find(a=>a.n==='Longsword').xdice.map(x=>x.d).join()", "1d8,1d8")], base_allow=[ATK + r"(note|xdice\.)"]))
+CASES.append(dict(name="NEG Z2 Divine Strike is not there before level 8", b=dict(cls="Cleric", level=7, sub="Tempest Domain", inv=LS, base=WL),
+                  expect=[("(C.attacks.find(a=>a.n==='Longsword').xdice||[]).length", 0)], base_allow=[]))
+
+# a skill the book gives once was granted twice: a builder pick and a second fx pick (fx-N1.js) for the same sentence. One skill pick must remain.
+SKP = "window.__bldChoiceList(window.__zmB).filter(c=>/^(p3skil|gx-skill-|sq-|skill-|ic-)/.test(c.key)).length"
+GXSK = "window.__bldChoiceList(window.__zmB).filter(c=>/^gx-sk-/.test(c.key)).length"
+SRC_ALL = dict(SRCS, tce=True, xge=True, tkdm=True, tghp=True, tsgs=True, tvss=True, egw=True, efa=True, tee24=True, tdcsr=True)
+for sub, cls, lvl, ch2 in [("Nature Domain", "Cleric", 3, "p3skilnaturedo"), ("Order Domain", "Cleric", 3, "p3skilorderdom"), ("Peace Domain", "Cleric", 3, "p3skilpeacedom"), ("Cavalier", "Fighter", 3, "p3skilcavalier"),
+                           ("Samurai", "Fighter", 3, "p3skilsamurai"), ("Apocalypse Domain", "Cleric", 3, "gx-skill-sub-Apocalypse Domain"), ("Darkness Domain", "Cleric", 3, "gx-skill-sub-Darkness Domain"),
+                           ("Mountain Domain", "Cleric", 3, "gx-skill-sub-Mountain Domain"), ("Travel Domain", "Cleric", 3, "gx-skill-sub-Travel Domain")]:
+    CASES.append(dict(name="Z2 %s: one skill pick, not two" % sub, b=dict(cls=cls, level=lvl, sub=sub, base=WL, src=SRC_ALL),
+                      expect=[(SKP, 1), (GXSK, 0)], base_allow=[]))
+for feat, key in [("Squat Nimbleness", "sq-feat4"), ("Inspirational Caster", "ic-feat4")]:
+    CASES.append(dict(name="Z2 %s feat: one skill pick, not two" % feat, b=dict(cls="Fighter", level=4, base=WL, src=SRC_ALL, ch={"feat4": {"feat": feat, "a1": "STR"}}),
+                      expect=[(SKP, 1), (GXSK, 0)], base_allow=[]))
+CASES.append(dict(name="Z2 an old save with both Samurai picks keeps one skill from Samurai", b=dict(cls="Fighter", level=3, sub="Samurai", base=WL, src=SRC_ALL, ch={"p3skilsamurai": ["History"], "gx-sk-sub-Samurai": ["Insight"]}),
+                  expect=[("C.skills.filter(s=>s.p&&/Samurai/.test(s.src||'')).map(s=>s.n).join()", "History")], base_allow=[r"^skills\.\d+\."]))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }
@@ -105,9 +187,9 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
    b.inv=JSON.parse(JSON.stringify(s.inv||[])); b.weps=(s.inv||[]).map(x=>x.n); b.base=Object.assign({},b.base||{},s.base||{}); if(s.extra) Object.assign(b,s.extra); return b };
  const res=[];
  for(const c of cases){ const r={name:c.name,fail:[]};
-  try{ const C=window.__bldSheetFor(mk(c.b)), C0=c.drop?window.__bldSheetFor(mk(c.b,c.drop)):null;
+  try{ const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined), C0=c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.tog?window.__bldSheetFor(mk(c.b)):null);
    for(const [ex,want] of c.expect){ let got; try{ got=(new Function('C','return ('+ex+')'))(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
-   r.flat=flat(C,'',{}); if(!c.drop){ res.push(r); continue }
+   r.flat=flat(C,'',{}); if(!c.drop&&!c.tog){ res.push(r); continue }
    const A=r.flat, Z=flat(C0,'',{}), rx=c.allow.map(s=>new RegExp(s)); const ch=[...new Set([...Object.keys(A),...Object.keys(Z)])].filter(k=>A[k]!==Z[k]);
    r.changed=ch.length; ch.filter(k=>!rx.some(x=>x.test(k))).slice(0,8).forEach(k=>r.fail.push('path changed outside allow: '+k+' '+JSON.stringify(Z[k])+' -> '+JSON.stringify(A[k])));
   }catch(e){ r.fail.push('ERR '+String(e.stack||e).slice(0,300)) }

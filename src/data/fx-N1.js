@@ -13,13 +13,12 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  function C(n,e){put("cls",n,e)}
  function I(n,e){e.n=e.n||n;put("item",n,e)}
 
+ /* zero-miss-2: the skill picks of Squat Nimbleness, Inspirational Caster, Apocalypse, Darkness, Mountain, Nature, Order, Peace and Travel Domains, Cavalier and Samurai were removed here: the same grant already exists (builder pick or fx-L10), two picks gave two proficiencies for a one-skill rule (reports/zero-miss-2.md) */
  /* ---- feats ---- */
+ F("Woodwise",{n:"Skill",pick:[{k:"sk",t:"skills",n:1,title:"Skill (Survival or Nature)",from:["Survival","Nature"]}]});/* zero-miss-2: kept. The pick of the feat data (tp15-thhw.js, key woodwise_sk) grants nothing, this one is the working one */
  F("Hacker",{n:"Data Expert",skillPE:["Data"]});
  F("Mark of Storm",{n:"Storm's Boon",res:["Lightning"]});
  F("Squat Nimbleness",{n:"Slippery",advOn:["Strength (Athletics) and Dexterity (Acrobatics) checks made to escape a grapple"]});
- F("Squat Nimbleness",{n:"Skill",pick:[{k:"sk",t:"skills",n:1,title:"Skill (Acrobatics or Athletics)",from:["Acrobatics","Athletics"]}]});
- F("Woodwise",{n:"Skill",pick:[{k:"sk",t:"skills",n:1,title:"Skill (Survival or Nature)",from:["Survival","Nature"]}]});
- F("Inspirational Caster",{n:"Skill Training",pick:[{k:"sk",t:"skills",n:1,title:"Skill (Intimidation or Persuasion)",from:["Intimidation","Persuasion"]}]});
  F("Boon of the Furious Storm",{n:"Eye of the Storm (Bloodied)",toggle:{id:"bloodied",label:"Bloodied"},imm:["Lightning","Thunder"]});
  /* ---- species ---- */
  SP("Corvum",{n:"Talons",advOn:["Strength (Athletics) checks to climb any surface your talons can grip"]});
@@ -52,16 +51,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  S("Path of the Dad",{n:"Paternal Proficiencies",l:3,advOn:["checks to grill food, make minor repairs, or assert authority over something unimportant"]});
  S("Path of the Muscle Wizard",{n:"Unarguable Wizardry",l:3,advOn:["Intimidation checks to convince others you are a wizard"]});
  S("Blood Domain",{n:"Divine Strike",l:8,atkDice:[{when:"weapon",d:"1d8",t:"Necrotic",note:"Divine Strike, once per turn"}]});
- S("Apocalypse Domain",{n:"Ranting Ruin",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Arcana, Survival)",from:["Arcana","Survival"]}]});
- S("Darkness Domain",{n:"Creature of Darkness",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Deception, Stealth)",from:["Deception","Stealth"]}]});
- S("Mountain Domain",{n:"Bonus Proficiency",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Athletics, Nature, Survival)",from:["Athletics","Nature","Survival"]}]});
- S("Nature Domain",{n:"Acolyte of Nature",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Animal Handling, Nature, Survival)",from:["Animal Handling","Nature","Survival"]}]});
- S("Order Domain",{n:"Bonus Proficiencies",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Intimidation, Persuasion)",from:["Intimidation","Persuasion"]}]});
- S("Peace Domain",{n:"Implement of Peace",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Insight, Performance, Persuasion)",from:["Insight","Performance","Persuasion"]}]});
- S("Travel Domain",{n:"Born to the Road",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Insight, Nature, Survival)",from:["Insight","Nature","Survival"]}]});
  S("Mime",{n:"Silent Routine",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Stealth, Sleight of Hand)",from:["Stealth","Sleight of Hand"]}]});
- S("Cavalier",{n:"Bonus Proficiency",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Animal Handling, History, Insight, Performance, Persuasion)",from:["Animal Handling","History","Insight","Performance","Persuasion"],opt:1}]});
- S("Samurai",{n:"Bonus Proficiency",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (History, Insight, Performance, Persuasion)",from:["History","Insight","Performance","Persuasion"],opt:1}]});
  S("Knight Errant",{n:"Chivalrous Oath",l:3,pick:[{k:"sk",t:"skills",n:2,title:"Skill (Animal Handling, History, Insight, Persuasion)",from:["Animal Handling","History","Insight","Persuasion"]}]});
  /* ---- classes ---- */
  C("Ranger",{n:"Roving (Climb and Swim)",l:6,mv:{climb:"speed",swim:"speed"}});

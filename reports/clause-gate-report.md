@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 73237 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 36781 (50.2%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 7055 |
-| Info (tag terdokumentasi) | 23598 (SPELL_TEXT 6470, FORM:ACTIVATE 2576, NUMONLY:GEOMETRY 2232, FORM:ROLL 1885, FXO_NULL 1384, NUMONLY:TEXT 1348, ACTIVATE 1309, NUMONLY:ROLL 1006, FORM:TABLE 916, NUMONLY:TABLE 866, ACTIVE:TRIGGER 805, ACTIVE:OTHERS 672, REST:NONUM 645, NUMONLY:FLAVOR 305, COND:PLAY_STATE 202, STD:ASI 195, NUMONLY:ZERO 162, OBJECT:STATS 106, BY_DESIGN 87, ITEM:SENSES 82, COND:ATTACK_ROLL_ADV 80, DC:REFERENCE 73, TABLE:CLASS 70, ACTIVE:REACTION 56, ACTIVE:TIMED_IMM 43, STD:SUBCLASS_PICK 16, STD:AC10 7) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 7037 |
+| Info (tag terdokumentasi) | 23624 (SPELL_TEXT 6470, FORM:ACTIVATE 2576, NUMONLY:GEOMETRY 2237, FORM:ROLL 1885, FXO_NULL 1384, NUMONLY:TEXT 1354, ACTIVATE 1309, NUMONLY:ROLL 1008, FORM:TABLE 916, NUMONLY:TABLE 871, ACTIVE:TRIGGER 806, ACTIVE:OTHERS 671, REST:NONUM 650, NUMONLY:FLAVOR 305, COND:PLAY_STATE 201, STD:ASI 195, NUMONLY:ZERO 162, OBJECT:STATS 106, BY_DESIGN 87, ITEM:SENSES 82, COND:ATTACK_ROLL_ADV 80, DC:REFERENCE 77, TABLE:CLASS 70, ACTIVE:REACTION 56, ACTIVE:TIMED_IMM 43, STD:SUBCLASS_PICK 16, STD:AC10 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 6128 |
-| Uncovered dengan angka | 3684 |
-| Uncovered dengan kelas kata kunci mekanik | 5765 |
+| Uncovered | 6120 |
+| Uncovered dengan angka | 3676 |
+| Uncovered dengan kelas kata kunci mekanik | 5757 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 363 |
-| Angka yang tidak dijelaskan record mana pun | 3479 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5205 kalimat |
-| Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 330 |
-| Waktu | muat data 12 s, analisis 9 s |
+| Angka yang tidak dijelaskan record mana pun | 3465 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5194 kalimat |
+| Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 327 |
+| Waktu | muat data 6 s, analisis 8 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 173 ditangkap (57.7%). Hapus semua atom kelas yang dibutuhkan: 173 ditangkap (57.7%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 169 ditangkap (56.7%). Hapus semua atom kelas yang dibutuhkan: 167 ditangkap (56.0%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 296 ditangkap (98.7%), semua atom kelas dihapus: 298 ditangkap (99.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 295 ditangkap (98.3%), semua atom kelas dihapus: 298 ditangkap (99.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -39,37 +39,36 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 2833 |
-| GX | 1543 |
-| wxs | 658 |
+| GX | 1567 |
+| wxs | 660 |
 | LU_X | 535 |
-| species | 355 |
+| species | 352 |
 | ITEM_SPELLS | 343 |
 | AUTO | 315 |
 | SPELL_FX | 241 |
 | feat | 179 |
-| cls | 133 |
+| cls | 132 |
 | SAVE_NOTES | 74 |
 | FXO | 48 |
 | SPELLS | 37 |
 | FDMG | 15 |
-| calcNote | 15 |
 | SUB_GRANT | 9 |
 | SP_AUTO | 6 |
 | CLS_AUTO | 4 |
 | sub | 1 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.js 208, fx-L4.js 166, fx-L12.js 138, fx-L2.js 130, fx-L3.js 129, fx-L10.js 117, fx-L1.js 113, fx-N1.js 97, fx-L9.js 94, fx-L11.js 86, fx-L6.js 86, fx-L8.js 64.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.js 208, fx-L4.js 166, fx-L12.js 142, fx-L2.js 130, fx-L3.js 129, fx-L10.js 121, fx-L1.js 113, fx-N1.js 95, fx-L9.js 94, fx-L11.js 86, fx-L6.js 86, fx-L8.js 64.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
-| RESOURCE | 6659 | 1305 | 19.6% |
+| RESOURCE | 6659 | 1307 | 19.6% |
 | SPELL | 2882 | 838 | 29.1% |
-| DMG | 3912 | 770 | 19.7% |
+| DMG | 3912 | 771 | 19.7% |
 | PROF | 883 | 562 | 63.6% |
-| SPEED | 1137 | 518 | 45.6% |
-| ADV | 1516 | 426 | 28.1% |
+| SPEED | 1137 | 506 | 44.5% |
+| ADV | 1516 | 425 | 28.0% |
 | RES | 1123 | 408 | 36.3% |
 | CHOICE | 1344 | 401 | 29.8% |
 | NUM | 7110 | 324 | 4.6% |
@@ -92,33 +91,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Jenis | Mekanik | Covered | Info | Allow | Uncovered |
 |---|---|---|---|---|---|
-| class | 1027 | 237 | 533 | 0 | 257 |
-| feat | 2101 | 430 | 1037 | 0 | 634 |
+| class | 1027 | 217 | 551 | 0 | 259 |
+| feat | 2101 | 431 | 1037 | 0 | 633 |
 | item | 18391 | 3890 | 11031 | 0 | 3470 |
-| species | 1037 | 572 | 291 | 0 | 174 |
+| species | 1037 | 570 | 294 | 0 | 173 |
 | spell | 6748 | 278 | 6470 | 0 | 0 |
-| sub | 7477 | 1648 | 4236 | 0 | 1593 |
+| sub | 7477 | 1651 | 4241 | 0 | 1585 |
 
 ## Per buku
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
 | dmg | 10151 | 2148 | 6095 | 1908 | 18.8% |
-| tvss | 2815 | 618 | 1650 | 547 | 19.4% |
-| core | 1502 | 332 | 760 | 410 | 27.3% |
+| tvss | 2815 | 616 | 1651 | 548 | 19.5% |
+| core | 1502 | 313 | 785 | 404 | 26.9% |
 | tsgs | 1483 | 362 | 837 | 284 | 19.2% |
 | tsdm | 1222 | 286 | 671 | 265 | 21.7% |
-| tkdm | 919 | 179 | 493 | 247 | 26.9% |
+| tkdm | 919 | 176 | 495 | 248 | 27.0% |
 | tghp | 1117 | 349 | 557 | 211 | 18.9% |
-| tce | 736 | 113 | 461 | 162 | 22.0% |
-| au | 536 | 94 | 286 | 156 | 29.1% |
-| egw | 566 | 131 | 295 | 140 | 24.7% |
-| phb14 | 516 | 125 | 272 | 119 | 23.1% |
+| tce | 736 | 114 | 460 | 162 | 22.0% |
+| au | 536 | 92 | 288 | 156 | 29.1% |
+| egw | 566 | 129 | 297 | 140 | 24.7% |
 | tee24 | 464 | 130 | 217 | 117 | 25.2% |
-| dmg14 | 540 | 143 | 287 | 110 | 20.4% |
-| tdcsr | 416 | 121 | 190 | 105 | 25.2% |
+| phb14 | 516 | 130 | 269 | 117 | 22.7% |
+| dmg14 | 540 | 144 | 286 | 110 | 20.4% |
+| tdcsr | 416 | 121 | 191 | 104 | 25.0% |
 | thhw | 395 | 76 | 234 | 85 | 21.5% |
-| xge | 375 | 86 | 210 | 79 | 21.1% |
+| xge | 375 | 89 | 208 | 78 | 20.8% |
 | hof | 253 | 31 | 147 | 75 | 29.6% |
 | rhw | 232 | 49 | 116 | 67 | 28.9% |
 | tssm | 275 | 66 | 147 | 62 | 22.5% |
@@ -185,12 +184,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Kelas utama | Uncovered | Dengan angka |
 |---|---|---|
-| RESOURCE | 1040 | 923 |
+| RESOURCE | 1043 | 924 |
 | SPELL | 589 | 80 |
-| DMG | 568 | 530 |
+| DMG | 569 | 530 |
 | PROF | 526 | 141 |
-| SPEED | 452 | 344 |
-| ADV | 419 | 136 |
+| SPEED | 441 | 336 |
+| ADV | 418 | 135 |
 | RES | 347 | 113 |
 | NUM | 324 | 324 |
 | SLOT | 305 | 94 |
@@ -212,48 +211,48 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 ## Contoh 40 kalimat per kelas teratas (seed tetap)
 
 
-### RESOURCE (1040 uncovered)
+### RESOURCE (1043 uncovered)
 
-- `feat|Hulking Figure|Hulking Figure#3` Once per turn, you can deal an extra 1d4 Bludgeoning damage to a target you hit with an Unarmed Strike. | no record for DMG,RESOURCE; number 1d4 unexplained
-- `feat|Spell Resistant|Spell Resistant#7` You can do this a number of times equal to your Proficiency Bonus and regain all uses when you finish a Long Rest. | number pb no record explains
+- `class|Martyr|Divine Respite~3#3` The number of dice you regain becomes 6 at level 13 and 10 at level 17. | no record for RESOURCE; number 6 unexplained
+- `feat|Pyromaniac|Pyromaniac#4` You can cast each of those two spells once without a slot, and need a Long Rest to do so again. | no record for SPELL; number 2 unexplained
 - `feat|Superior Shifting|Superior Shifting#7` You regain 1 expended use on a Short Rest and all expended uses on a Long Rest. | no record for RESOURCE; number 1 unexplained
-- `item|ai|Occultant Abacus#24` Also at rank 2, you regain the use of your Read the Kill feature after you finish a short or long rest. | no record for RESOURCE; number 2 unexplained
-- `item|ai|Portfolio Keeper#1` At rank 2, you gain the use of a weathered leather pouch that is an uncommon magic item. | number 2 no record explains
-- `item|au|Wand of Slumber#9` Catnap (Charge Cost 3). | no record for RESOURCE; number 3 unexplained
-- `item|bmt|Spindle of Fate#12` The wand regains 1d6 expended charges daily at dawn. | no record for RESOURCE; number 1d6 unexplained
-- `item|crcotn|Jewel of Three Prayers (Exalted)#22` - You can expend 1 of the jewel's charges (no action required) to end one of the following conditions on yourself: grappled, paralyzed, or restrained. | no record for RESOURCE; number 1 unexplained
-- `item|dmg|Alchemical Compendium#12` You can spend additional charges to increase the maximum dimensions by 2 feet per charge. | no record for RESOURCE; number 2 unexplained
-- `item|dmg|Blackstaff#7` The staff has 20 charges for the following properties. | number 20 no record explains
-- `item|dmg|Blasted Goggles#4` The goggles regain 1d3 expended charges daily at dawn. | no record for RESOURCE; number 1d3 unexplained
-- `item|dmg|Cabal's Ruin (Exalted)#3` 4 charges, regains 1d4 at dawn. | no record for RESOURCE; number 1d4,4 unexplained
-- `item|dmg|Calimemnon Crystal#25` The target regains 2d6 + 2 Hit Points. | no record for RESOURCE; number 2d6,2 unexplained
-- `item|dmg|Diamond Staff#13` Detect Magic (Charge Cost 0). | no record for RESOURCE; number 0 unexplained
-- `item|dmg|Enspelled Armor#5` Each day at dawn, it regains 1d6 of its expended charges. | no record for RESOURCE; number 1d6 unexplained
-- `item|dmg|Enspelled Staff#6` When you use up its final charge, roll 1d20. | no record for RESOURCE; number 1d20 unexplained
-- `item|dmg|Holy Symbol of Ravenkind#7` The holy symbol has 10 charges for the following properties. | number 10 no record explains
-- `item|dmg|Impulse Unit#3` Once per turn, after you move at least 15 ft in a straight line, you can move up to 10 ft more in that direction without spending movement. | no record for RESOURCE; number 10 unexplained
-- `item|dmg|Making Channeling Wand#6` If you spend the last charge, roll 1d20 and on a 1 the wand turns to ash. | no record for RESOURCE; number 1d20 unexplained
-- `item|dmg|Observatory Charm~2#1` After a Long Rest in your Observatory, you gain a magical Charm that lasts 7 days or until you use it. | number 7 no record explains
-- `item|dmg|Passage Channeling Wand#2` The wand has 7 charges. | number 7 no record explains
-- `item|dmg|Sentinel Channeling Wand#2` The wand has 7 charges. | number 7 no record explains
-- `item|dmg|Shrieking Greaves#5` The greaves regain 1d3 expended charges daily at dawn. | no record for RESOURCE; number 1d3 unexplained
-- `item|misc14|Wand of Winter#7` If you expend the wand's last charge, roll a d20. | no record for RESOURCE; number 1d20 unexplained
-- `item|tce|Alchemical Compendium#12` You can spend additional charges to increase the maximum dimensions by 2 feet per charge. | no record for RESOURCE; number 2 unexplained
-- `item|tee24|Bane Weapon#6` It regains 1d4 charges at dawn. | no record for RESOURCE; number 1d4 unexplained
+- `feat|Tireless Reveler|Tireless Reveler#3` You can do this a number of times equal to your Proficiency Bonus, and regain all expended uses after a Short or Long Rest. | number pb no record explains
+- `item|ai|Obviator's Lenses#1` Also at rank 2, you gain the use of an uncommon magic item taking the form of a pair of spectacles, a spyglass, a monocle, or any other device with one or two lenses. | no record for RESOURCE; number 2 unexplained
+- `item|ai|Orrery of the Wanderer#36` While all six components of the Orrery of the Wanderer are installed, the artifact has 7 charges. | no record for RESOURCE; number 7,6 unexplained
+- `item|au|Wand of Slumber#6` If you expend the wand's last charge, roll 1d20. | no record for RESOURCE; number 1d20 unexplained
+- `item|bmt|Spindle of Fate#8` Additionally, once per turn when you deal damage to the doomed creature, you can roll 1d6 and add the number rolled to the damage roll. | no record for DMG,RESOURCE; number 1d6 unexplained
+- `item|crcotn|Jewel of Three Prayers (Exalted)#20` - Its number of charges increases to 5. | no record for RESOURCE; number 5 unexplained
+- `item|dmg|+3 Bloodwell Vial#5` In addition, when you roll any Hit Dice to recover hit points while you are carrying the vial, you can regain 5 sorcery points. | number 5 no record explains
+- `item|dmg|+3 Fate Dealer's Deck#4` One creature you can see within 30 feet of you either takes radiant damage or regains hit points (your choice) equal to the total. | number 30 no record explains
+- `item|dmg|Cabal's Ruin (Awakened)#4` When you hit with an attack, spend any number of charges for an extra 1d6 lightning damage per charge. | no record for DMG,RESOURCE; number 1d6 unexplained
+- `item|dmg|Diamond Staff#2` This staff has 20 charges and can be wielded as a magic Quarterstaff that grants a +3 bonus to attack rolls and damage rolls made with it. | number 20 no record explains
+- `item|dmg|Dust of Sneezing and Choking#3` The container holds enough for one use. | no record for RESOURCE; number 1 unexplained
+- `item|dmg|Enspelled Staff#4` Each day at dawn, it regains 1d6 of its expended charges. | number 1d6 no record explains
+- `item|dmg|Fate Cutter Shears#8` Until the target finishes a long rest, attack rolls against it score a critical hit on a roll of 19 or 20 on the d20. | number 1d20,20 no record explains
+- `item|dmg|Gulthias Staff#8` On a hit, it deals damage as a normal quarterstaff, and you can expend 1 charge to regain a number of hit points equal to the damage dealt by the weapon. | no record for RESOURCE; number 1 unexplained
+- `item|dmg|Making Channeling Wand#2` The wand has 7 charges. | number 7 no record explains
+- `item|dmg|Making Dragonmark Reservoir#2` A dragonshard amulet or bracelet with 7 charges. | number 7 no record explains
+- `item|dmg|Scribing Dragonmark Reservoir#2` A dragonshard amulet or bracelet with 7 charges. | number 7 no record explains
+- `item|dmg|Staff of Defense#8` If you expend the staff's last charge, roll a d20. | no record for RESOURCE; number 1d20 unexplained
+- `item|dmg|Wrought-Iron Tower#15` When you make an attack, you may spend 1 or more charges. | no record for RESOURCE; number 1 unexplained
+- `item|dmg|Zafu of the Wandering Mind#5` Within 100 ft of a pillow, use a Bonus Action and command word to send them into a pocket dimension, and repeat to return them to an open space within 5 ft. The set has 3 charges and regains 1d3 at dawn. | number 100,5 no record explains
+- `item|misc14|Wand of Winter#3` The wand has 7 charges, which are used to fuel the spells within it. | no record for RESOURCE; number 7 unexplained
+- `item|tce|+3 Bloodwell Vial#5` In addition, when you roll any Hit Dice to recover hit points while you are carrying the vial, you can regain 5 sorcery points. | number 5 no record explains
+- `item|tee24|Cannith's Marvelous Miniatures#1` A feather-like token with one use. | no record for RESOURCE; number 1 unexplained
+- `item|tee24|Handling Dragonmark Reservoir#2` A dragonshard amulet or bracelet with 7 charges. | number 7 no record explains
 - `item|tee24|Healing Channeling Wand#2` The wand has 7 charges. | number 7 no record explains
-- `item|tee24|Healing Channeling Wand#6` If you spend the last charge, roll 1d20 and on a 1 the wand turns to ash. | no record for RESOURCE; number 1d20 unexplained
-- `item|tee24|Scribing Channeling Wand#2` The wand has 7 charges. | number 7 no record explains
-- `item|tsgs|Fire Fire!#2` While it has a charge it sheds Bright Light 20 ft and Dim Light 20 ft more, and nonmagical Bolts it fires deal an extra 1d6 Fire. | no record for RESOURCE; number 1d6,20 unexplained
-- `item|tsgs|Staff of Favorable Winds#5` If you spend the last charge, roll 1d20. | number 1d20 no record explains
-- `item|tsgs|Staff of the Mirage#3` If you spend the last charge, roll 1d20. | number 1d20 no record explains
-- `item|tsgs|Tome of Dreams#3` After your next Long Rest, roll 1d20. | no record for RESOURCE; number 1d20 unexplained
-- `item|wdh|Charred Wand of Magic Missiles#2` While holding it, you can use an action to expend 1 or more of its charges to cast the magic missile spell from it. | no record for RESOURCE
-- `species|Geppettin|Construct Nature#3` You finish a Long Rest in 4 hours of motionless rest while awake. | no record for RESOURCE; number 4 unexplained
-- `species|Reborn|Everlasting#3` A Long Rest takes 4 hours if you spend them motionless and inactive but conscious. | no record for RESOURCE; number 4 unexplained
-- `sub|Cleric/Grave Domain|Divine Reaper#5` When an enemy dies within 60 feet of you, you or one creature you can see within 60 feet regains Hit Points equal to twice your Cleric level. | number 60,double no record explains
-- `sub|Druid/Circle of Blood|Exsanguinate#1` When you use Blood Boon, regain spent Hit Point Dice equal to half your Druid level and give Temporary HP equal to twice your Druid level to up to your Wisdom modifier (minimum 1) creatures you see within 60 ft. Long Res | number 60,half,double no record explains
-- `sub|Martyr/Burden of Awakening|Prescient Strike#1` Once per turn, when you roll an 18 or 19 on the d20 for an attack, treat it as a 20. | number 1d20,19,20 no record explains
-- `sub|Sorcerer/Serophage|Blood Fuel#1` Instead of moving, you can deal 1d4 Slashing damage to yourself and regain Sorcery Points equal to that damage. | no record for DMG,RESOURCE; number 1d4 unexplained
+- `item|tee24|Passage Dragonmark Reservoir#2` A dragonshard amulet or bracelet with 7 charges. | number 7 no record explains
+- `item|thhw|Ring of the Sky Hunter#4` While you wear it, you can use an action and spend any number of charges to attack one creature you can see within 60 ft. A pair of spectral talons dives from the sky and makes an attack roll with a +7 bonus. | no record for ATK,RESOURCE; number 60,7 unexplained
+- `item|tsgs|Fire Dervish Cloak#4` On a failure they take 1d8 Fire per charge spent and cannot make Opportunity Attacks against you this turn. | no record for RESOURCE; number 1d8 unexplained
+- `item|tsgs|Spire Seed#9` The tree regains 1d6 HP at dawn, and lost parts regrow in 7 days. | no record for RESOURCE; number 1d6,7 unexplained
+- `item|tsgs|Staff of the Magpie#5` If you spend the last charge, roll 1d20. | number 1d20 no record explains
+- `item|tsgs|Timber#5` You can also push a target up to one size larger than you 10 ft. Charges last up to 1 minute and are lost if you miss, attack a different target, or attack with another weapon. | no record for RESOURCE; number 10,1 unexplained
+- `item|wdh|Charred Wand of Magic Missiles#1` This wand has 7 charges. | no record for RESOURCE; number 7 unexplained
+- `species|Lorwyn Elf|Trance#2` A Long Rest takes 4 hours of meditation, during which you stay conscious. | no record for RESOURCE; number 4 unexplained
+- `species|Reborn (VRGR)|Deathless Nature#4` You can finish a Long Rest in 4 hours if you spend them motionless and inactive but conscious. | no record for RESOURCE; number 4 unexplained
+- `sub|Cleric/Grave Domain|Circle of Mortality#3` Once per turn, when you hit a creature that is missing any Hit Points with a spell or an attack roll, it takes an extra 1d4 Necrotic damage. | no record for DMG,RESOURCE; number 1d4 unexplained
+- `sub|Druid/Circle of Dreams|Hearth of Moonlight and Shadow#1` During a Short or Long Rest you touch a point and an invisible 30-foot-radius sphere appears there, blocked by Cover. | no record for RESOURCE; number 30 unexplained
+- `sub|Sorcerer/Elemental Essence|Infuse Elements#2` When you damage a creature with a spell, spend 1 Sorcery Point to add an effect by heritage. | number 1 no record explains
 
 ### SPELL (589 uncovered)
 
@@ -298,9 +297,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Rogue/Arcane Trickster (2014)|Spellcasting#7` You know three 1st-level Wizard spells, two of which must be Enchantment or Illusion. | number 2 no record explains
 - `sub|Sorcerer/Wild Magic|Wild Magic Surge#1` Right after you cast a Sorcerer spell of level 1 or higher, the Dungeon Master can have you roll a d20. | no record for SPELL; number 1d20 unexplained
 
-### DMG (568 uncovered)
+### DMG (569 uncovered)
 
-- `class|Necromancer|Critical Spellcasting#5` The extra damage applies only to the creature that rolled the 1. | no record for DMG; number 1 unexplained
 - `feat|Arcane Charger|Arcane Charger#4` If you moved at least 10 feet in a straight line and the cantrip hits, you can either add +5 to its damage roll or push the target 10 feet away from you. | no record for DMG,SPELL; number 10,5 unexplained
 - `item|dmg|Agony (Exalted)#4` +2 to attack and damage rolls. | number 2 no record explains
 - `item|dmg|Bag of Beans#12` A failure means it takes 5d6 Poison damage and gains the Poisoned condition, which lasts 1 hour. | no record for DMG; number 5d6,1 unexplained
@@ -332,10 +330,11 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Artificer/Forceforger|Forceful Shove#4` The damage is 2d6 from Artificer level 15. | no record for DMG; number 2d6 unexplained
 - `sub|Artificer/Magneticist|Metal Slinger#10` When you hit a creature, you can deal an extra 1d6 damage of the weapon's type and move a Medium or smaller target 10 ft directly toward or away from you. | no record for DMG; number 1d6,10 unexplained
 - `sub|Barbarian/Path of the Drifter|Relentless Aggression#1` Your Brutal Strike extra damage rises by 1d10 while you Rage and no ally is within 5 ft. | no record for DMG; number 1d10,5 unexplained
-- `sub|Cleric/Moon Domain (Deep Magic)|Divine Strike#1` Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. | no record for DMG; number 1d8 unexplained
 - `sub|Cleric/Mountain Domain|Divine Strike#1` Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. | no record for DMG; number 1d8 unexplained
 - `sub|Cleric/Ocean Domain|Divine Strike#1` Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. | no record for DMG; number 1d8 unexplained
-- `sub|Investigator/Inquisitor|Divine Strike#1` Once on each of your turns, when you take the Attack action and hit a creature with a weapon, it takes an extra 1d8 Necrotic or Radiant damage (your choice). | no record for DMG; number 1d8 unexplained
+- `sub|Cleric/Prophecy Domain|Divine Strike#1` Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 damage of the weapon's type. | no record for DMG; number 1d8 unexplained
+- `sub|Martyr/Burden of Tyranny|Totalitarian Control#7` When the spell ends, you can deal 6d8 Psychic damage to the target. | no record for DMG; number 6d8 unexplained
+- `sub|Paladin/Oath of the Annihilator|Channel Divinity#4` A nonmagical weapon becomes magical with a +1 bonus to attack and damage rolls for that time. | no record for DMG; number 1 unexplained
 - `sub|Paladin/Oath of the Sun|Incandescent Strikes#1` The extra damage of your Radiant Strikes becomes 1d10 Radiant damage. | no record for DMG; number 1d10 unexplained
 - `sub|Ranger/Fey Wanderer|Dreadful Strikes#4` Once you reach Ranger level 11, the extra damage becomes 1d6. | no record for DMG; number 1d6 unexplained
 - `sub|Ranger/Griffon Scout|Skirmisher's Step#1` If you move at least 20 ft straight toward a creature and hit it with a melee weapon attack on the same turn, the attack deals an extra 1d8 damage of the weapon's type. | no record for DMG; number 1d8 unexplained
@@ -384,81 +383,81 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Investigator/Kid Sleuth|Animal Sidekick#8` The familiar gains proficiency in any two skills or tools of your choice. | no record for CHOICE,PROF; number 2 unexplained
 - `sub|Vagabond/Knight Errant|Chivalrous Oath#2` You gain proficiency in two of these skills: Animal Handling, History, Insight, or Persuasion. | number 2 no record explains
 
-### SPEED (452 uncovered)
+### SPEED (441 uncovered)
 
-- `class|Ranger|Roving#1` Your Speed goes up by 10 feet as long as you aren't wearing Heavy armor. | number 10 no record explains
 - `feat|Cannoneer|Cannoneer#4` You can do this only if you have not moved this turn, and your Speed is 0 until the end of the turn afterward. | no record for SPEED; number 0 unexplained
-- `feat|Cloying Mists|Cloying Mists#10` Creatures other than you and your allies have their Speed reduced by 5 feet while in the area. | no record for SPEED; number 5 unexplained
-- `feat|Lordly Resolve|Lordly Resolve#5` Each target can immediately use a Reaction to right itself and end the Prone condition, provided its Speed isn't 0. | no record for SPEED; number 0 unexplained
+- `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#17` It has AC 18, Hit Points equal to 10 times your character level and Speed 0. | no record for SPEED; number 18,10,0 unexplained
 - `feat|Shock Trooper|Shock Trooper#5` In the first round of each combat, your Speed is doubled. | no record for SPEED; number double unexplained
-- `feat|Transmutation Adept|Transmutation Adept#7` On your turn, when you cast a Transmutation spell using a spell slot, your Speed rises by 5 feet for each level of the slot spent. | no record for SLOT,SPEED,SPELL; number 5 unexplained
-- `item|dmg14|Carpet of Flying, 4 ft. × 6 ft.#4` A carpet can carry up to twice this weight, but it flies at half speed if it carries more than its normal capacity. | no record for SPEED; number half,double unexplained
 - `item|dmg|Boots of Striding and Springing#1` Wearing these boots raises your Speed to 30 feet if it was lower than that. | no record for SPEED; number 30 unexplained
 - `item|dmg|Broom of Flying#4` It can bear a load of up to 400 pounds, though while it carries more than 200 pounds its Fly Speed falls to 30 feet. | no record for SPEED; number 30 unexplained
-- `item|dmg|Carpet of Flying#9` A carpet can bear as much as double its listed capacity, but while its load exceeds the normal capacity, its Fly Speed is halved. | no record for SPEED; number double unexplained
+- `item|dmg|Burrowing Adaptation#1` Graft (donor: a creature with a Burrow Speed of 10+ ft). | no record for SPEED; number 10 unexplained
+- `item|dmg|Carpet of Flying, 4 ft. × 6 ft.#4` A carpet can carry up to twice this weight, but it flies at half speed if it carries more than its normal capacity. | no record for SPEED; number half,double unexplained
 - `item|dmg|Carpet of Flying, 5 ft. × 7 ft.#4` A carpet can carry up to twice this weight, but it flies at half speed if it carries more than its normal capacity. | no record for SPEED; number half,double unexplained
-- `item|dmg|Greaves of Dendallen#9` Once removed, your Speed is 0 and rises by 5 ft every 24 hours until normal. | no record for SPEED; number 5,24,0 unexplained
-- `item|dmg|Helm of the Scavenger#13` - You can use the helm to propel the vessel through air or space at a maximum speed in miles per hour equal to your highest-level unexpended spell slot × 10. | no record for SLOT,SPEED; number 10 unexplained
-- `item|dmg|Mechanical Wonder (Gyrocopter)#11` The gyrocopter wonder is a Huge object that weighs 500 pounds and has the following statistics: AC 14, HP 50, Speed 5 ft., and Fly Speed 20 ft. The gyrocopter can bear up to 2,000 pounds of cargo; if it bears any more th | no record for SPEED; number 5,20,14,50 unexplained
-- `item|dmg|Navigation Orb#5` The castle moves at a speed of 1 mph in a straight line, in a direction of your choice, until the castle stops or is made to stop, or until another action is used to change its direction. | no record for CHOICE,SPEED; number 1 unexplained
-- `item|dmg|Rocborne Rod#3` You can move as if you had a 40 ft Fly Speed but not upward, and you take no fall damage. | no record for SPEED; number 40 unexplained
-- `item|dmg|Soarsled#1` A crystal disk 5 ft across that carries up to 400 lb. In Sharn or another Syranian manifest zone, stand on it and use a Magic action to make it hover. | no record for SPEED; number 5 unexplained
-- `item|dmg|Wave#14` While you carry the trident, you can spend 1 charge to target a Beast that has a Swim Speed with the Dominate Beast spell cast from the trident (save DC 20). | no record for RESOURCE,SPEED; number 1 unexplained
-- `item|dmg|Wings of Flying#2` These wings give you a Fly Speed of 60 feet. | no record for SPEED; number 60 unexplained
-- `item|llk|Powered Armor#12` - Activate boosters to gain a flying speed of 15 feet for 1 minute (1 charge or 5 hit points). | no record for RESOURCE,SPEED; number 15,1,5 unexplained
-- `item|tsdm|Hoverboard#3` While riding it, your Speed rises by 10 ft, you ignore Difficult Terrain, and you can cross liquids without sinking. | no record for SPEED; number 10 unexplained
-- `item|tsgeh|Sanctified Cannon#5` You can do this only if you have not moved this turn, and your Speed is 0 until the end of the turn after you do. | no record for SPEED; number 0 unexplained
-- `item|tsgs|Couatl Herald's Guard#5` While you are attuned to three items with this property, you gain a Fly Speed of 30 ft, or 30 ft more if you already have one. | number 3 no record explains
-- `item|tsgs|Festerwood Vizard#2` You have Blindsight 10 ft. As a Magic action, beetles pour out as a Swarm of Insects (Fly Speed) that you command, moving and attacking on summoning and then as a Bonus Action each turn. | no record for SPEED
-- `item|wbtw|Pixie Dust#2` The recipient gains a flying speed of 30 feet and the ability to hover for 1 minute. | no record for SPEED; number 30,1 unexplained
-- `species|Aasimar (Protector)|Radiant Soul#1` From level 3, Action, once per Long Rest: for 1 minute you gain a Fly Speed of 30 ft. Once on each of your turns you deal extra Radiant damage equal to your level to one target you damage with an attack or a spell. | no record for DMG
-- `species|Dhampir (Grim Hollow)|Heritage Traits#6` If you are Small, you can lower your Speed by 5 feet to gain one extra trait. | no record for SPEED
+- `item|dmg|Couatl Herald's Scales#8` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
+- `item|dmg|Doublet of Dramatic Demise#3` You are incapacitated and your speed is 0, but you can speak and communicate. | no record for SPEED; number 0 unexplained
+- `item|dmg|Figurine of Wondrous Power (ebony fly)#18` Speed 30 feet, Fly 60 feet. | no record for SPEED; number 30,60 unexplained
+- `item|dmg|Mechanical Wonder (Mobility)#10` While active, the mobility wonder increases your Speed to 30 feet. | no record for SPEED; number 30 unexplained
+- `item|dmg|Paper Bird#5` If the bird's hit points or speed is reduced to 0 or if it is otherwise immobilized, it turns into ash. | no record for SPEED; number 0 unexplained
+- `item|dmg|Potion of Climbing#1` Drinking this potion gives you a Climb Speed equal to your Speed for 1 hour. | no record for SPEED; number 1 unexplained
+- `item|dmg|Potion of Flying#1` Drinking this potion gives you a Fly Speed equal to your Speed for 1 hour, and you can hover. | no record for SPEED; number 1 unexplained
+- `item|dmg|Solar Wings of Ra#3` You gain a Fly Speed of 60 ft, which you lose if you leave Bright Light. | no record for SPEED; number 60 unexplained
+- `item|dmg|Tectonic Gauntlets#12` You gain a 30 ft Burrow Speed through nonmagical, unworked earth and stone without disturbing it. | no record for SPEED; number 30 unexplained
+- `item|idrotf|Ythryn Mythallar#14` - While you're on the same plane of existence as the Ythryn mythallar, you can use an action to cause it to fly in any direction you choose at a speed of 30 feet. | no record for SPEED; number 30 unexplained
+- `item|tdcsr|Stormrider Boots#3` Until the end of your turn: you have a flying speed of 90 feet, opportunity attacks against you have an adjusted roll (garbled in the source, see the book), and whenever you move within 5 feet of a hostile creature it mu | no record for DC,DMG,SPEED; number 3d8,90,5,15 unexplained
+- `item|tee24|Thuranni Cloak#3` The effect pauses until your next turn starts when you take damage, and while your Speed is 0. | no record for SPEED; number 0 unexplained
+- `item|tsgs|Couatl Herald's Fang#4` On a failure it is Incapacitated with Speed 0 until it takes damage or another creature uses an action to shake it out of the stupor. | no record for SPEED; number 0 unexplained
+- `item|tsgs|Festerwood Claymore#3` On a natural 20, beetles swarm the target for 1d4 turns, dealing 1d6 Piercing at the start of each of its turns and halving its Speed. | no record for SPEED; number 1d4,1d6,20 unexplained
+- `item|tsgs|Rocborne Rod#3` You can move as if you had a 40 ft Fly Speed but not upward, and you take no fall damage. | no record for SPEED; number 40 unexplained
+- `species|Accursed|Heritage Traits#4` If you are Small, you can lower your Speed by 5 feet to gain one extra trait. | no record for SPEED
+- `species|Amoeboid|Biomimicry#3` If the target has a Burrow, Climb or Swim Speed, you gain that Speed, up to 40 feet. | no record for SPEED; number 40 unexplained
+- `species|Child of Seth|Flight#1` You have a Fly Speed of 30 ft. It drops to 20 ft while you wear Medium or Heavy armor. | number 20 no record explains
 - `species|Disembodied|Heritage Traits#6` If you are Small, you can lower your Speed by 5 feet to gain one extra trait. | no record for SPEED
-- `species|Tabaxi (2014)|Cat's Claws#1` Climb Speed of 20 ft. Your claws are unarmed strikes that deal 1d4 + Strength modifier Slashing damage. | no record for DMG,SPEED; number 1d4,20 unexplained
-- `species|Wechselkind|Heritage Traits#6` You can lower your Speed by 5 feet to gain one extra trait. | no record for SPEED
+- `species|Kalamer Landwalker (Merfolk)|Blessing of the Sea#1` You have a merfolk form (Speed 10 ft, Swim Speed 40 ft) and a landwalker form, where your tail splits into legs. | number 40 no record explains
+- `species|Luma|Wing Flap#1` As a Bonus Action you launch yourself upward a distance equal to half your Speed. | no record for SPEED; number half unexplained
 - `sub|Alchemist/Mutagenist|Mutagens#8` Your Dexterity increases by 3, to a maximum of 23, and your Speed increases by 10 feet. | no record for SPEED; number 10,3 unexplained
 - `sub|Captain/Gourmand|Monster Meal#14` Speed increases by 10 feet. | no record for SPEED; number 10 unexplained
 - `sub|Captain/Siegeball Jersey|Game-Winning Play#2` You immediately move up to twice your Speed without provoking Opportunity Attacks and take an action and a Bonus Action. | no record for SPEED; number double unexplained
 - `sub|Cleric/Speed Domain|Quickness of the Gods#1` Your Speed rises by another 5 ft. As a reaction or bonus action, you can raise your Dexterity score by 10 until the end of the current turn. | no record for ABIL; number 10 unexplained
-- `sub|Investigator/Kid Sleuth|Split Up, Gang#1` When you use Exploit Weakness, you can move up to half your Speed without provoking Opportunity Attacks. | no record for SPEED; number half unexplained
-- `sub|Necromancer/Reanimator|Spell-Stitching#8` The thrall's Speed is doubled. | no record for SPEED; number double unexplained
-- `sub|Vagabond/Siegeball Jersey|Game Plan#3` Go Long: move up to twice its Speed. | no record for SPEED; number double unexplained
-- `sub|Vagabond/Siegeball Jersey|Game-Winning Play#2` You immediately move up to twice your Speed without provoking Opportunity Attacks and take an action and a Bonus Action. | no record for SPEED; number double unexplained
-- `sub|Warlock/The Parasite Patron|Physical Specimen#6` Triple jump distance and a Climb Speed equal to your Speed. | no record for SPEED; number 3 unexplained
-- `sub|Warmage/House of Rooks|Arcane Assassin#2` While you have the Invisible condition, your Speed is doubled. | no record for SPEED; number double unexplained
+- `sub|Investigator/Medium|Trinkets#8` You have a Fly Speed of 10 feet and can move through occupied spaces as Difficult Terrain. | no record for SPEED; number 10 unexplained
+- `sub|Paladin/Oath of Vengeance|Relentless Avenger#2` When your Opportunity Attack hits a creature, you can reduce that creature's Speed to 0 until the current turn ends. | no record for SPEED; number 0 unexplained
+- `sub|Ranger/Bounty Hunter|Takedown Tactics#7` Its Speed is 0 until the start of your next turn. | no record for SPEED; number 0 unexplained
+- `sub|Warlock/The Genie|Elemental Gift#2` As a Bonus Action you gain a Fly Speed of 30 feet with hover for 10 minutes. | no record for SPEED; number 30,10 unexplained
+- `sub|Warlock/The Undead|Spirit Projection#8` You have a Fly Speed equal to your Speed and can hover, and you move through creatures and objects as difficult terrain, taking 1d10 Force damage if you end a turn inside one. | no record for DMG,SPEED; number 1d10 unexplained
+- `sub|Wizard/Fumaturge|Smoke Animals#3` The smoke familiar has 1 HP and a Fly Speed of 60 ft whatever the Beast form. | no record for SPEED; number 60,1 unexplained
+- `sub|Wizard/School of Enchantment|Hypnotic Gaze#3` Its Speed drops to 0 and it is Incapacitated and visibly dazed. | no record for SPEED; number 0 unexplained
 
-### ADV (419 uncovered)
+### ADV (418 uncovered)
 
-- `feat|Order's Resilience|Order's Resilience#6` If you are within 5 feet of an ally who isn't Incapacitated, you and that ally have Advantage on Strength saving throws. | no record for ADV; number 5 unexplained
-- `feat|Witch Hunter|Witch Hunter#10` You have Advantage on saving throws against all Shadowsteel curses and against spells with a duration longer than 10 minutes. | no record for ADV; number 10 unexplained
-- `item|au|Ominous Staff of Skulls#4` Additionally, you have Advantage on Charisma (Intimidation) checks made while holding the staff, and the staff's eye sockets glow a disquieting green, shedding Dim Light in a 5-foot radius. | number 5 no record explains
+- `feat|Cohort of Chaos|Cohort of Chaos#9` 1, Battle Fury: a creature you can see has Advantage on attack rolls and Disadvantage on ability checks. | no record for ADV,DIS; number 1 unexplained
 - `item|au|Pulverizing Staff of Skulls#4` Additionally, you have Advantage on Charisma (Intimidation) checks made while holding the staff, and the staff's eye sockets glow a disquieting green, shedding Dim Light in a 5-foot radius. | number 5 no record explains
-- `item|crcotn|Medal of Wit#2` Doing so gives you advantage on Intelligence checks and Intelligence saving throws for 1 hour. | no record for ADV
-- `item|dmg|+2 Dragon Edge Weapon#2` The first time each turn you hit with an attack roll you had Advantage on, it deals an extra 1d6 damage of the type of the dragon's breath weapon. | no record for ADV
-- `item|dmg|Chattering Staff of Skulls#4` Additionally, you have Advantage on Charisma (Intimidation) checks made while holding the staff, and the staff's eye sockets glow a disquieting green, shedding Dim Light in a 5-foot radius. | number 5 no record explains
+- `item|bmt|Shrieking Greaves#3` While wearing these greaves, you can use a bonus action to expend 1 charge to increase your walking speed by 30 feet, and you have advantage on Dexterity saving throws. | no record for ADV,RESOURCE,SPEED; number 30,1 unexplained
+- `item|crcotn|Medal of Muscle#2` Doing so gives you advantage on Strength checks and Strength saving throws for 1 hour. | no record for ADV
+- `item|dmg|+1 Dragon Edge Weapon#2` The first time each turn you hit with an attack roll you had Advantage on, it deals an extra 1d6 damage of the type of the dragon's breath weapon. | no record for ADV
+- `item|dmg|Candle of Invocation#5` While you are inside that light, you have Advantage on D20 Tests. | no record for ADV; number 1d20 unexplained
 - `item|dmg|Dragon Edge Weapon#2` The first time each turn you hit with an attack roll you had Advantage on, it deals an extra 1d6 damage of the type of the dragon's breath weapon. | no record for ADV
-- `item|dmg|Draught of Feather Shine#2` When you drink it, you have Advantage on Charisma ability checks and saving throws for 24 hours. | no record for ADV; number 24 unexplained
+- `item|dmg|Dragon Tamer Lance#9` Moving 20 ft in a line toward a Medium or smaller target within 5 ft gives Advantage on the melee attack, and a hit allows an extra attack against a different target directly behind it within 5 ft and not behind Cover. | no record for ADV; number 20,5 unexplained
 - `item|dmg|Draught of Slime Curse Cure#2` Drinking it gives you the benefit of remove curse as if cast on you, and Advantage on saves against being cursed for 1 hour afterward. | no record for ADV; number 1 unexplained
-- `item|dmg|Ectoplasmic Whip#2` You gain a +1 bonus to attack and damage rolls with it, and attack rolls with it against non-Undead creatures have Advantage. | no record for ADV
-- `item|dmg|Frefil's Jolly Oozebean Sugarbombs#9` 7 Green: Resistance to Poison and Advantage on checks to end Grappled or Restrained. | no record for ADV,RES; number 7 unexplained
-- `item|dmg|Ghost Suit#3` If you moved 15 ft or less on your turn, you have Advantage on Dexterity (Stealth) checks made for the Hide action. | no record for ADV; number 15 unexplained
-- `item|dmg|Medal of Muscle#2` Doing so gives you advantage on Strength checks and Strength saving throws for 1 hour. | no record for ADV
-- `item|dmg|Potion of Psionic Fortitude#1` When you drink this potion, you have advantage for 1 hour on saving throws you make to avoid or end the charmed or stunned condition on yourself. | no record for ADV; number 1 unexplained
-- `item|dmg|Pulverizing Staff of Skulls#4` Additionally, you have Advantage on Charisma (Intimidation) checks made while holding the staff, and the staff's eye sockets glow a disquieting green, shedding Dim Light in a 5-foot radius. | number 5 no record explains
-- `item|dmg|Scourge of Shadow#23` While in 2 or darkness you gain blindsight out to 60 feet and Dexterity (Stealth) checks are made with advantage. | no record for ADV,SENSE; number 60,2 unexplained
+- `item|dmg|Galea of the Soulfire Phoenix#5` You and allies in its Bright Light have Advantage on saves against Charmed and Frightened, and a 19 or 20 on a Death Saving Throw restores 1 Hit Point. | no record for ADV; number 19,20,1 unexplained
+- `item|dmg|Humble Frock#2` If you have reached at least Stage 2 of the Seraph, you also have Advantage on saving throws to avoid revealing your true nature. | no record for ADV; number 2 unexplained
+- `item|dmg|Medal of Wit#2` Doing so gives you advantage on Intelligence checks and Intelligence saving throws for 1 hour. | no record for ADV
+- `item|dmg|Murgaxor's Elixir of Life#1` Whoever drinks this concoction gains advantage on death saving throws for 24 hours. | no record for ADV; number 24 unexplained
+- `item|dmg|Ominous Staff of Skulls#4` Additionally, you have Advantage on Charisma (Intimidation) checks made while holding the staff, and the staff's eye sockets glow a disquieting green, shedding Dim Light in a 5-foot radius. | number 5 no record explains
+- `item|dmg|Pearl Elixir#8` The vessel gains a damage threshold of 20 against all environmental effects, and whoever pilots it has Advantage on ability checks tied to piloting. | no record for ADV; number 20 unexplained
+- `item|dmg|Shrieking Greaves#3` While wearing these greaves, you can use a bonus action to expend 1 charge to increase your walking speed by 30 feet, and you have advantage on Dexterity saving throws. | no record for ADV,RESOURCE,SPEED; number 30,1 unexplained
+- `item|dmg|Talon Tincture#2` Apply it to your talons, claws, or other limbs and you have Advantage on Dexterity ability checks and saving throws for 24 hours. | no record for ADV; number 24 unexplained
 - `item|egw|Luxon Beacon#10` If the original d20 roll has advantage or disadvantage, the creature rolls its d20 after advantage or disadvantage has been applied to the original roll. | no record for ADV,DIS; number 1d20 unexplained
 - `item|egw|Potion of Possibility#5` If the original d20 roll has advantage or disadvantage, you roll your d20 after advantage or disadvantage has been applied to the original roll. | no record for ADV,DIS; number 1d20 unexplained
 - `item|pabtso|Potion of Psionic Fortitude#1` When you drink this potion, you have advantage for 1 hour on saving throws you make to avoid or end the charmed or stunned condition on yourself. | no record for ADV; number 1 unexplained
+- `item|tee24|Ghallanda Cauldron#3` Cooking in it takes 90 percent less time, and you have Advantage on ability checks with Cook's Utensils. | number 90 no record explains
 - `item|tghg|Ectoplasmic Whip#2` You gain a +1 bonus to attack and damage rolls with it, and attack rolls with it against non-Undead creatures have Advantage. | no record for ADV
-- `item|tghg|Full Moon Extract#2` For 1 hour your Strength score becomes 19 (if lower), and you have Advantage on Strength checks and saves. | no record for ABIL; number 1,19 unexplained
 - `item|tghg|Hunter's Zeal#2` For 1 hour you have Immunity to Poison damage and the Poisoned condition and Advantage on saves to avoid being cursed. | no record for ADV; number 1 unexplained
-- `item|thhw|Draught of Slime Curse Cure#2` Drinking it gives you the benefit of remove curse as if cast on you, and Advantage on saves against being cursed for 1 hour afterward. | no record for ADV; number 1 unexplained
 - `item|thhw|Talon Tincture#2` Apply it to your talons, claws, or other limbs and you have Advantage on Dexterity ability checks and saving throws for 24 hours. | no record for ADV; number 24 unexplained
-- `item|toa|Bob#1` This +1 battleaxe floats on water and other liquids, and grants its bearer advantage on Strength (Athletics) checks made to swim. | no record for ADV; number 1 unexplained
-- `item|tsgs|+2 Dragon Edge Weapon#2` The first time each turn you hit with an attack roll you had Advantage on, it deals an extra 1d6 damage of the type of the dragon's breath weapon. | no record for ADV
-- `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#9` 7 Green: Resistance to Poison and Advantage on checks to end Grappled or Restrained. | no record for ADV,RES; number 7 unexplained
-- `item|tsgs|Merry Berry#2` When cooked properly, the eater has Advantage on Intelligence and Wisdom checks that rely on smell or taste, and on checks with Cook's Utensils, for 24 hours. | no record for ADV; number 24 unexplained
-- `item|tsgs|Septum Ring of the Great Minotaur#2` Your Strength rises by 2 (maximum 22) and you have Advantage on Strength checks. | number 2,22 no record explains
+- `item|thhw|Whistle of Freedom#2` When blown, every creature within 100 ft that can hear it has Advantage on its next saving throw against a spell or effect currently affecting it. | no record for ADV; number 100 unexplained
+- `item|tsgs|Dragon Edge Weapon#2` The first time each turn you hit with an attack roll you had Advantage on, it deals an extra 1d6 damage of the type of the dragon's breath weapon. | no record for ADV
+- `item|tsgs|Dragon Tamer Lance#9` Moving 20 ft in a line toward a Medium or smaller target within 5 ft gives Advantage on the melee attack, and a hit allows an extra attack against a different target directly behind it within 5 ft and not behind Cover. | no record for ADV; number 20,5 unexplained
+- `item|tsgs|Forgemaster's Might#8` You know Mending while attuned, and it can repair a break or tear of up to 5 ft. You have Advantage on Smith's Tools checks to craft or repair an object using the hammer head as the anvil. | no record for ADV; number 5 unexplained
+- `item|tsgs|Galea of the Soulfire Phoenix#5` You and allies in its Bright Light have Advantage on saves against Charmed and Frightened, and a 19 or 20 on a Death Saving Throw restores 1 Hit Point. | no record for ADV; number 19,20,1 unexplained
+- `item|tsgs|Red Claw's Regalia#2` You tolerate temperatures of 0 degrees F or lower, your Constitution rises by 2 (maximum 22), you have Advantage on Constitution saves and Resistance to Fire damage, and you can walk on molten rock as if solid. | number 0,2,22 no record explains
 - `sub|Paladin/Oath of Glory (2014)|Channel Divinity: Peerless Athlete#2` For 10 minutes you have Advantage on Strength (Athletics) and Dexterity (Acrobatics) checks, carry and lift twice the normal weight, and jump 10 feet farther. | no record for ADV; number 10,10,double unexplained
 - `sub|Paladin/Oath of Radiance|Aura of Resolve#1` You and allies within 10 ft have Advantage on saves against spells and effects from undead and from creatures native to the Shadow Realm or with levels of shadow corruption. | no record for ADV; number 10 unexplained
 - `sub|Paladin/Oath of the Crown|Exalted Champion#3` Allies within 30 feet have Advantage on death saving throws. | number 30 no record explains
@@ -481,20 +480,20 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `item|dmg|Flammable Tincture#3` For 1 minute the creature loses any Immunity or Resistance to Fire damage and has Vulnerability to Fire damage instead. | no record for IMM,RES; number 1 unexplained
 - `item|dmg|Frefil's Jolly Oozebean Sugarbombs#10` 8 Yellow: Resistance to Lightning and Immunity to Magic Missile damage. | no record for IMM,RES; number 8 unexplained
 - `item|dmg|Glowing Ember#2` Speak its command word within 60 ft and the ember glows, shedding bright light and heat in a 20 ft radius and dim light for another 20 ft. Creatures within 20 ft feel the heat and have Resistance to cold damage while it  | no record for RES; number 60,20 unexplained
-- `item|dmg|Kindle Egg Sugarbomb#2` For 1 hour you have Resistance to Fire and can endure temperatures down to -50 degrees Fahrenheit without protection. | no record for RES; number 1,50 unexplained
 - `item|dmg|Mask of the Dragon Queen#6` Additionally, you gain the Damage Absorption from each of the five dragon masks, and you gain five uses of the Legendary Resistance property. | no record for DMG
 - `item|dmg|Puzzle Ring of Vitality, Life, and Power#5` Band two is DC 10 and gives you and allies Resistance to Necrotic, protects HP maximums, and brings an ally at 0 HP to 1 HP at the start of its turn. | no record for DC,RES; number 10,1,2 unexplained
 - `item|dmg|Sundersludge Net#7` The Net (AC 10, 5 HP, Immunity to Bludgeoning, Poison and Psychic, Resistance to all other damage) frees the target if destroyed and is then harmless. | no record for IMM,RES; number 10,5 unexplained
 - `item|egw|Stormgirdle (Dormant)#4` While wearing the Stormgirdle in its dormant state, you have resistance to lightning damage and thunder damage, and your Strength score becomes 21 if it isn't already 21 or higher. | no record for ABIL; number 21 unexplained
 - `item|misc14|Mask of the Dragon Queen#6` Additionally, you gain the Damage Absorption from each of the five dragon masks, and you gain five uses of the Legendary Resistance property. | no record for DMG
 - `item|tghg|Crown of the Keppmir King#2` While you wear it, you have Resistance to Cold damage, can breathe underwater, and your Constitution is 20 unless it is already higher. | number 20 no record explains
+- `item|thhw|Glowing Ember#2` Speak its command word within 60 ft and the ember glows, shedding bright light and heat in a 20 ft radius and dim light for another 20 ft. Creatures within 20 ft feel the heat and have Resistance to cold damage while it  | no record for RES; number 60,20 unexplained
 - `item|tkdm|Warden's Link#4` For example, a link with the effects of Armor of Resistance or a +2 weapon is Very Rare. | no record for RES; number 2 unexplained
-- `item|tsdm|Scout Scanner#2` As a Bonus Action, spend 1 charge to analyze a creature you see within 60 ft. You learn two of these: its AC, current Hit Points, Immunities, Resistances, Vulnerabilities, or the spells currently affecting it. | no record for RES,RESOURCE; number 60,1,2 unexplained
 - `item|tsgs|Band of Mirrored Essence#7` Gain one skill or save proficiency, Damage Resistance, Condition Immunity, special sense, language, or water breathing it had, for 8 hours. | no record for IMM,PROF,RES; number 8 unexplained
 - `item|tsgs|Bloodmage Dagger#7` When you cast a level 1 to 3 spell on yourself or one creature, spend charges to raise the slot level by 1 each (max 5), and spend and roll that many Hit Point Dice, taking the total as Necrotic damage that ignores Resis | no record for IMM,RES,SLOT; number 1 unexplained
+- `item|tsgs|Forgemaster's Might#3` As a Bonus Action, speak "light the forge" to wreathe the head in flames: Bright Light in 20 ft and Dim Light for 20 ft more, an extra 1d8 Fire damage on a hit, and it ignores Fire Resistance. | no record for DMG,RES; number 1d8,20 unexplained
 - `item|tsgs|Galea of the Soulfire Phoenix#2` You have Resistance to Fire, and in combat harmless flames shed Bright Light 20 ft and Dim Light 20 ft more. | number 20 no record explains
 - `item|tsgs|Galvanic Steelsnare#6` Destroying the Net (AC 12, 15 HP, Resistance to Slashing, Immunity to other damage) also frees it. | no record for IMM,RES; number 12,15 unexplained
-- `item|tsgs|Signet Rings of the Fey Court#6` As a Reaction when you take the matching damage, spend 1 charge for Resistance to it until your next turn starts, including against the triggering hit. | number 1 no record explains
+- `item|tsgs|Kindle Egg Sugarbomb#2` For 1 hour you have Resistance to Fire and can endure temperatures down to -50 degrees Fahrenheit without protection. | no record for RES; number 1,50 unexplained
 - `item|tsgs|Sundersludge Net#7` The Net (AC 10, 5 HP, Immunity to Bludgeoning, Poison and Psychic, Resistance to all other damage) frees the target if destroyed and is then harmless. | no record for IMM,RES; number 10,5 unexplained
 - `sub|Cleric/Nature Domain|Dampen Elements#1` When you or a creature within 30 feet takes acid, cold, fire, lightning, or thunder damage, you can use your Reaction to give that creature Resistance against that instance of damage. | no record for RES; number 30 unexplained
 - `sub|Cleric/War Domain|Avatar of Battle#1` You gain Resistance against three damage types: Bludgeoning, Piercing, and Slashing. | no record for RES; number 3 unexplained
@@ -645,7 +644,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 ## Kalimat dengan angka yang tidak dijelaskan record mana pun (30 contoh per jenis, daftar penuh ada di baseline)
 
 
-### class (114)
+### class (115)
 
 - `class|Healer|Spellcasting#3` You know two cantrips from the Healer spell list. | angka: 2
 - `class|Bard|Expertise~2#1` Pick two of your skill proficiencies and gain Expertise in them, which doubles your Proficiency Bonus for ability checks that use those skills. | angka: pb
@@ -673,47 +672,46 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `class|Witch|Familiar#16` It adds your Proficiency Bonus to its AC, saving throws, and damage rolls. | angka: pb
 - `class|Barbarian|Fast Movement#1` As long as you aren't wearing Heavy armor, your Speed is 10 feet higher. | angka: 10
 - `class|Cleric|Spellcasting#14` To begin, your list holds four level 1 Cleric spells of your choice. | angka: 4
-- `class|Summoner|Spellcasting#3` You know 2 cantrips, such as Fire Bolt and Mage Hand. | angka: 2
+- `class|Summoner|Conjuration Expert#1` You have two extra spell slots, one of level 1 and one of level 2, separate from your Spellcasting slots, and usable only for Conjuration spells. | angka: 2
 - `class|Bard|Expertise#1` Pick two of your skill proficiencies and gain Expertise in them, which doubles your Proficiency Bonus for ability checks that use those skills. | angka: pb
 - `class|Jaeger|Hunter's Pursuit#1` At the start of your turn, you can spend 1 Adrenaline Point to move up to half your Speed without using any of your movement and without provoking Opportunity Attacks. | angka: 1,half
 - `class|Druid|Archdruid#6` Pick some of your unexpended Wild Shape uses and convert them into one spell slot, where each use counts for 2 spell levels. | angka: 2
 
-### feat (226)
+### feat (225)
 
-- `feat|Linguist|Linguist#6` You can write codes that others can't read unless you teach them, they beat a DC (your Intelligence score + Proficiency Bonus) on an Intelligence check, or they use magic. | angka: pb
-- `feat|Shadowsteel Ghoul Transformation: Stage 3|Shadowsteel Ghoul Transformation: Stage 3#8` The DC is 8 plus your Constitution modifier plus your Proficiency Bonus. | angka: 8,pb
-- `feat|Primordial Transformation: Stage 2|Primordial Transformation: Stage 2#10` On a failure your Primordial nature shows, and you have Disadvantage on every D20 Test for 1 minute while you fight for control. | angka: 1d20
-- `feat|Aberrant Anatomy|Aberrant Anatomy#7` Right after you make a D20 Test and roll a 1 on the d20, you make a Constitution saving throw against DC 13 plus your Proficiency Bonus. | angka: 1d20,13,pb
-- `feat|Medium Armor Master|Medium Armor Master#2` Pick Strength or Dexterity and raise it by 1 (maximum 20). | angka: 1,20
-- `feat|Resolution of the Syndicate|Resolution of the Syndicate#2` On your first turn after an Initiative roll, add 1d4 to the first damage roll you make. | angka: 1d4
-- `feat|Metabolistic Magic|Metabolistic Magic#4` The bonus is 2 plus the level of the slot. | angka: 2
-- `feat|Magic Initiate (Wizard)|Magic Initiate (Wizard)#2` Pick two cantrips on the Wizard spell list, and you learn them. | angka: 2
-- `feat|Keenness of the Stone Giant|Keenness of the Stone Giant#7` If you already have Darkvision, its range increases by 60 feet. | angka: 60
-- `feat|Hulking Figure|Hulking Figure#3` Once per turn, you can deal an extra 1d4 Bludgeoning damage to a target you hit with an Unarmed Strike. | angka: 1d4
-- `feat|Vampire Transformation: Stage 2|Vampire Transformation: Stage 2#4` You have Disadvantage on all D20 Tests while in sunlight. | angka: 1d20
-- `feat|Fey Transformation: Stage 2|Fey Transformation: Stage 2#7` Until you do, you have Disadvantage on D20 Tests. | angka: 1d20
+- `feat|Magic Initiate (2014)|Magic Initiate (2014)#2` You learn two cantrips of your choice from that class's spell list. | angka: 2
+- `feat|Shadowsteel Ghoul Transformation: Stage 4|Shadowsteel Ghoul Transformation: Stage 4#5` The first time you are Bloodied or drop to 0 Hit Points after finishing a Short Rest or Long Rest, the Shadowsteel in your flesh lashes out. | angka: 0
+- `feat|Primordial Transformation: Stage 3|Primordial Transformation: Stage 3#9` You gain Vulnerability to that instance of damage, even if you had Resistance or Immunity, and creatures within 5 feet of you take the same amount of damage as you took. | angka: 5
+- `feat|Echoing Soul|Echoing Soul#8` Immediately after you make a D20 Test and roll a 1 on the d20, you make a Constitution saving throw against DC 13 plus your Proficiency Bonus. | angka: 1d20,13,pb
+- `feat|Medium Armor Master|Medium Armor Master#4` If your Dexterity score is 16 or higher, you can add 3 instead of 2 to your Armor Class while you wear Medium armor. | angka: 3,2
 - `feat|Resolution of the Syndicate|Resolution of the Syndicate#3` The extra damage becomes 2d4 at character level 9 and 4d4 at character level 16. | angka: 2d4,1d4
-- `feat|Order's Resilience|Order's Resilience#6` If you are within 5 feet of an ally who isn't Incapacitated, you and that ally have Advantage on Strength saving throws. | angka: 5
-- `feat|Marksman's Luck|Marksman's Luck#7` When you score a Critical Hit with a Ranged weapon, the target's Speed is 0 until the end of its next turn. | angka: 0
-- `feat|Fury of the Frost Giant|Fury of the Frost Giant#9` It makes a Constitution saving throw (DC 8 + your Proficiency Bonus + the modifier of the ability you raised). | angka: 8,pb
-- `feat|Shadowsteel Master|Shadowsteel Master#7` Also, once on each of your turns when you hit with a weapon attack using your Focus, you can deal an extra 2d8 Necrotic damage to the target. | angka: 2d8
-- `feat|Watchers|Watchers#10` Immediately after you make a D20 Test and roll a 1 on the d20, you make a Wisdom saving throw against DC 13 plus your Proficiency Bonus. | angka: 1d20,13,pb
-- `feat|Charger|Charger#4` Whenever you take the Dash action, your Speed rises by 10 feet for that action. | angka: 10
-- `feat|Telekinetic|Telekinetic#9` It makes a Strength saving throw against a DC of 8 + your Proficiency Bonus + the modifier of the ability this feat raised. | angka: 8,pb
-- `feat|Cannoneer|Cannoneer#4` You can do this only if you have not moved this turn, and your Speed is 0 until the end of the turn afterward. | angka: 0
-- `feat|Observant (2014)|Observant (2014)#6` You get a +5 bonus to passive Wisdom (Perception) and passive Intelligence (Investigation). | angka: 5
-- `feat|Crusher|Crusher#2` Either your Strength or your Constitution score rises by 1, but not above 20. | angka: 1,20
-- `feat|Latent Psionics|Latent Psionics#4` Your Psionic Blast deals an extra 1d10 Psychic damage. | angka: 1d10
-- `feat|Superior Shifting|Superior Shifting#7` You regain 1 expended use on a Short Rest and all expended uses on a Long Rest. | angka: 1
+- `feat|Metabolistic Magic|Metabolistic Magic#6` When you finish a Short Rest, you can spend Hit Point Dice up to your Proficiency Bonus to regain spell slots. | angka: pb
+- `feat|Magic Initiate (Wizard)|Magic Initiate (Wizard)#2` Pick two cantrips on the Wizard spell list, and you learn them. | angka: 2
+- `feat|Keenness of the Stone Giant|Keenness of the Stone Giant#10` On a hit it deals 1d10 Force damage, and the target must succeed on a Strength saving throw (DC 8 + your Proficiency Bonus + that ability modifier) or be knocked Prone. | angka: 1d10,8,pb
+- `feat|Resolution of the Syndicate|Resolution of the Syndicate#2` On your first turn after an Initiative roll, add 1d4 to the first damage roll you make. | angka: 1d4
+- `feat|Vampire Transformation: Stage 3|Vampire Transformation: Stage 3#5` If you start your turn in sunlight you take 1d10 Radiant damage, and nothing can give you Resistance or Immunity to it. | angka: 1d10
 - `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#17` It has AC 18, Hit Points equal to 10 times your character level and Speed 0. | angka: 18,10,0
-- `feat|Great Weapon Master|Great Weapon Master#2` Your Strength score rises by 1, but not above 20. | angka: 1,20
-- `feat|Pack Fighting|Pack Fighting#3` If an ally within 5 feet of the creature also has this feat and is not Incapacitated, the bonus becomes +2. | angka: 5,2
+- `feat|Shadowsteel Adept|Shadowsteel Adept#7` If your Shadowsteel Focus is also a weapon, it has a +1 bonus to attack rolls and damage rolls. | angka: 1
+- `feat|Street Justice|Street Justice#6` When you bind a creature with Chain, Manacles, or Rope, add your Proficiency Bonus to the DC for the creature to escape or burst the restraint. | angka: pb
+- `feat|Mechanic|Mechanic#4` When you use it through this feat, the extra damage equals twice your Proficiency Bonus and the weapon stays Overheated until you finish a Short Rest or Long Rest. | angka: double,pb
+- `feat|Keenness of the Stone Giant|Keenness of the Stone Giant#6` You gain Darkvision with a range of 60 feet. | angka: 60
+- `feat|Survivor (Grim Hollow)|Survivor (Grim Hollow)#2` You need only half the food per day that your size normally requires. | angka: half
+- `feat|Watchers|Watchers#11` On a failure, you have Disadvantage on D20 Tests for 1 minute. | angka: 1d20
+- `feat|Charger|Charger#6` When a melee attack roll you make during the Attack action hits a target immediately after you move at least 10 feet straight toward it, pick one effect: the attack's damage roll gets a 1d8 bonus, or  | angka: 1d8
+- `feat|Unarmed Fighting|Unarmed Fighting#3` When each of your turns begins, you can choose one creature you have Grappled and deal 1d4 Bludgeoning damage to it. | angka: 1d4
+- `feat|Marksman|Marksman#6` A hostile creature within 5 feet does not give you Disadvantage on ranged attack rolls, and neither does a Prone creature within 30 feet. | angka: 5,30
+- `feat|Sentinel (2014)|Sentinel (2014)#2` When you hit a creature with an opportunity attack, its Speed becomes 0 for the rest of the turn. | angka: 0
+- `feat|Crusher|Crusher#4` Once per turn, when an attack of yours hits a creature and deals Bludgeoning damage, you can move that creature 5 feet into an unoccupied space, as long as its size is at most one size above yours. | angka: 5
+- `feat|Convincing Inquisitor|Convincing Inquisitor#6` When you succeed on a Wisdom (Insight) check made with the Search action to detect lies or evasion, you have Advantage on Initiative rolls for combat against that creature for 1 hour. | angka: 1
+- `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#26` If the vessel drops to 0 Hit Points, you must make a new one, which takes a Long Rest. | angka: 0
+- `feat|Heavily Armored|Heavily Armored#2` Pick Constitution or Strength and raise it by 1 (maximum 20). | angka: 1,20
+- `feat|Fairy Trickster|Fairy Trickster#9` You can use this a number of times equal to your Proficiency Bonus and regain all uses when you finish a Long Rest. | angka: pb
 - `feat|Void Channeler|Void Channeler#3` One creature of your choice within 10 feet that can hear you must succeed on a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or be frightened of you for 1 minute. | angka: 10,1,8,pb
-- `feat|Symbiotic Being|Symbiotic Being#12` You make a Charisma saving throw against DC 13 plus your Proficiency Bonus. | angka: 13,pb
+- `feat|Watchers|Watchers#10` Immediately after you make a D20 Test and roll a 1 on the d20, you make a Wisdom saving throw against DC 13 plus your Proficiency Bonus. | angka: 1d20,13,pb
+- `feat|Linguist|Linguist#6` You can write codes that others can't read unless you teach them, they beat a DC (your Intelligence score + Proficiency Bonus) on an Intelligence check, or they use magic. | angka: pb
 
 ### item (2344)
 
-- `item|tdcsr|Spire of Conflux (Exalted)#4` 8 charges, regains 1d4 + 2 at dawn. | angka: 1d4,8,2
 - `item|dmg|Deck of Many Things#84` Initiative +3 (13). | angka: 3,13
 - `item|dmg|Staff of Healing#5` When its final charge is used, roll 1d20. | angka: 1d20
 - `item|crcotn|Ruidium Shield#14` If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and a ruidium shield becomes a +2 shield. | angka: 2
@@ -743,10 +741,10 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `item|dmg|Horn of Blasting#6` Glass or crystal objects in the Cone take 10d8 Thunder damage if no one is wearing or carrying them. | angka: 10d8
 - `item|dmg|Gamma Pendant#8` With 3 or more Gamma Fragments unified with it, it gains the benefits of all of them, 20 charges, and regains 1d10 + 10 at dawn. | angka: 1d10,3,20,10
 - `item|dmg|Dust of Deliciousness#2` The dust also dulls the eater's senses: anyone eating food treated with this dust has disadvantage on Wisdom ability checks and Wisdom saving throws for 1 hour. | angka: 1
+- `item|dmg|Septum Ring of the Great Minotaur#2` Your Strength rises by 2 (maximum 22) and you have Advantage on Strength checks. | angka: 2,22
 
 ### species (95)
 
-- `species|Eladrin (2014)|Trance#2` You meditate for 4 hours instead, and finish a Long Rest after that time. | angka: 4
 - `species|Simic Hybrid|Animal Enhancement#1` Choose one enhancement from the first three at level 1. | angka: 3
 - `species|Feathren|Talons#1` When your Unarmed Strike uses your talons to deal damage, it deals 1d6 Piercing damage instead of Bludgeoning. | angka: 1d6
 - `species|Mapach|Scroungecraft#3` Tools and anything that would break on first use, such as caltrops or arrows, are useless after one use. | angka: 1
@@ -755,7 +753,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `species|Avia-Ra|Blessings of the Sun#3` You can cast each of those two once per Long Rest without a spell slot, or with a slot of the right level. | angka: 2
 - `species|Dwarf (Mark of Warding)|Stonecunning#1` When you make an Intelligence (History) check about the origin of stonework, you count as proficient and add double your Proficiency Bonus. | angka: double
 - `species|Skathári|Gliding Wings#2` While falling you can move 10 feet sideways for every 5 feet you fall, up to your Speed. | angka: 10,5
-- `species|Strig|Talons#1` Your claws make Unarmed Strikes that deal 1d4 Piercing damage. | angka: 1d4
+- `species|Vulpin|Bite#1` Your fangs make Unarmed Strikes that deal 1d6 Piercing damage. | angka: 1d6
 - `species|Gnoll|Bite#2` Your unarmed strikes with it deal 1d4 + Strength modifier Piercing damage. | angka: 1d4
 - `species|Lizardfolk (2014)|Bite#1` Your unarmed strikes with your bite deal 1d6 + Strength modifier Piercing damage. | angka: 1d6
 - `species|Aarakocra (2014)|Talons#1` Your unarmed strikes with talons deal 1d4 + Strength modifier Slashing damage. | angka: 1d4
@@ -775,70 +773,71 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `species|Dragonborn|Draconic Flight#1` From level 5, Bonus Action once per Long Rest: fly Speed equal to walking Speed for 10 minutes. | angka: 10
 - `species|Autognome|Built for Success#1` Add a d4 to one attack roll, ability check, or saving throw after you see the d20 roll. | angka: 1d4,1d20
 - `species|Reborn|Everlasting#3` A Long Rest takes 4 hours if you spend them motionless and inactive but conscious. | angka: 4
-- `species|Gnoll (Eberron)|Rampage#1` When you use your Bite or reduce a creature to 0 Hit Points with an attack, take a Bonus Action to move up to half your Speed and make one attack with a weapon or an Unarmed Strike using your Bite. | angka: 0,half
+- `species|Elf (Fey)|Trance#2` You finish a Long Rest in 4 hours of meditation, staying semiconscious. | angka: 4
+- `species|Gallus|Communal#1` On an Intelligence (History) check about the history of your people, culture or community, you count as proficient and add double your Proficiency Bonus. | angka: double,pb
 
-### sub (700)
+### sub (686)
 
-- `sub|Rogue/Phantom (2014)|Ghost Walk#2` You have a Fly Speed of 10 feet with hover, attack rolls against you have Disadvantage, and you can move through creatures and objects as Difficult Terrain, taking 1d10 Force damage if you end your tu | angka: 1d10,10
-- `sub|Monk/Warrior of the Living Weapon|Reflexive Adaptation#2` After a Short Rest you can remove 1 Exhaustion level. | angka: 1
-- `sub|Sorcerer/Lunar Sorcery|Lunar Boons#8` When you use Metamagic on a spell of a school linked to your current phase, you can reduce the sorcery points spent by 1 (minimum 0). | angka: 1
-- `sub|Craftsman/Mechanauts' Guild|Mechanaut's Apparatus#5` Doing so costs movement equal to half its Speed, rounded down. | angka: half
-- `sub|Warmage/House of Bishops|Siege Casting#2` You have Advantage on spell attack rolls against targets 100 feet or more away. | angka: 100
-- `sub|Necromancer/Toymaker|Miniature Minions#2` A Tiny thrall has a +3 bonus to AC. | angka: 3
-- `sub|Rogue/Inquisitive|Steady Eye#1` You have Advantage on Wisdom (Perception) and Intelligence (Investigation) checks if you move no more than half your Speed on the same turn. | angka: half
-- `sub|Monster Hunter/Carver Guild|Terrorize the Terrors#3` The DC is 8 plus your Intelligence modifier plus your Proficiency Bonus. | angka: 8,pb
-- `sub|Barbarian/Path of Heavy Metal|Solo Shredding#1` When you damage an enemy with an Instrument Weapon while Raging, raise your Rage Damage bonus by 1 until the Rage ends, to a maximum of double the table value. | angka: 1,double
-- `sub|Monk/Way of Shadow|Shadow Arts#1` As an action you can spend 2 ki points to cast Darkness, Darkvision, Pass without Trace, or Silence, with no Material components. | angka: 2
+- `sub|Monster Hunter/Devourer Guild|Transmuting Metabolism#21` Telepathy (Aberration, Fiend, Plant): 1 hour, speak telepathically to a creature you see within 60 feet in a language you know, and Resistance to Psychic damage. | angka: 60
+- `sub|Sorcerer/Frost Sorcery|Frozen Body#2` Your Hit Point maximum rises by 3, and by 1 more for every Sorcerer level you gain after this. | angka: 3
+- `sub|Dancer/Harlequin|Backflip#5` A Short Rest returns one use and a Long Rest returns all of them. | angka: 1
+- `sub|Witch/Gingerbread Magic|Gingerbread Familiar#8` It adds only your Witch level, not twice, to its Hit Points maximum. | angka: double
+- `sub|Paladin/Oath of Devotion (2014)|Channel Divinity: Sacred Weapon#2` For 1 minute you add your Charisma modifier (minimum +1) to attack rolls with it. | angka: 1
+- `sub|Sorcerer/Draconic Sorcery|Draconic Resilience#2` Your Hit Point maximum goes up by 3, and it goes up by 1 more each time you gain another Sorcerer level. | angka: 3,1
+- `sub|Monster Hunter/Trapper Guild|Monster-Hide Armor#7` Elemental Charge: pick one of those six types, and your hits can deal it and deal an extra 1d6 of it. | angka: 1d6,6
+- `sub|Barbarian/Path of Heavy Metal|Rocker#1` You gain proficiency with three Musical Instruments. | angka: 3
+- `sub|Monk/Warrior of the Celestial|Stabilizing Focus#2` It regains 5 Hit Points per point spent, up to half its Hit Point maximum. | angka: 5,half
 - `sub|Barbarian/Path of the Beast|Call the Hunt#3` Until the Rage ends, each chosen creature can, once per turn when it hits a target and deals damage, roll 1d6 and add it to the damage. | angka: 1d6
-- `sub|Necromancer/Necrodancer|Backup Dancers#2` While at least one thrall dances, you gain a bonus to AC, damage rolls and D20 Tests that use Dexterity or Charisma, plus the benefits below. | angka: 1d20
-- `sub|Martyr/Burden of Discord|Coin of Chaos#3` It is +4 on heads and +1 on tails. | angka: 4
-- `sub|Summoner/Bond of the Shambling Plant|Plant Eidolon#9` Its Speed becomes 0 and the ground in a 10-foot Emanation around it becomes Difficult Terrain for everyone except you and your allies. | angka: 10,0
+- `sub|Necromancer/Reanimator|Spell-Stitching#12` The thrall's Hit Point maximum and current Hit Points increase by twice your Necromancer level. | angka: double
+- `sub|Monk/Warrior of the Mystic Arts|Spellcasting#3` You know two cantrips from the Sorcerer spell list. | angka: 2
+- `sub|Vagabond/Knight Errant|Chivalrous Oath#2` You gain proficiency in two of these skills: Animal Handling, History, Insight, or Persuasion. | angka: 2
 - `sub|Alchemist/Ooze Rancher|Bottled Oozes#3` The Ooze uses your Intelligence modifier plus your Proficiency Bonus for attack rolls, and your Alchemist save DC for any save it forces. | angka: pb
-- `sub|Craftsman/Thunderlords' Guild|Power Cell#2` If it is lost or damaged, you can repair or replace it during a Long Rest with materials worth 100+ GP. | angka: 100
-- `sub|Sorcerer/Nanite Magic|Nano Touch#3` Nano-Degradation (1 or 2 points): a creature within 5 ft takes a -2 AC penalty per point until the start of your next turn. | angka: 5,1,2
-- `sub|Captain/Star Wolf|Target Designation#2` It gains no benefit from Half or Three-Quarters Cover and has a -2 penalty to AC. | angka: 2,3,half
-- `sub|Captain/Gourmand|Monster Meal#14` Speed increases by 10 feet. | angka: 10
+- `sub|Druid/Circle of the Moon|Circle Forms#5` Until you leave the form, your Armor Class is 13 + your Wisdom modifier whenever that total beats the Beast's Armor Class. | angka: 13
+- `sub|Sorcerer/Shadow Bloodline|Taint of Shadow#2` You gain Darkvision out to 60 ft, and within that range you see through magical darkness as if it were dim light. | angka: 60
+- `sub|Captain/Star Wolf|Squadron Leader#2` They stay in it while within 10,000 ft. Barrel Roll: each gains +2 AC. | angka: 10000,2
+- `sub|Captain/Gourmand|Monster Meal#12` +2 bonus to AC. | angka: 2
+- `sub|Sorcerer/Frost Sorcery|Cold-Hearted#4` If this brings its Speed to 0, it takes 2d6 Cold damage. | angka: 2d6,0
+- `sub|Warlock/The Sibyl|Touched by the Sybil#4` You are also proficient in Performance and double your proficiency bonus on Performance checks. | angka: double,pb
+- `sub|Warlock/Star Patron|Nova#1` Once per turn when you hit with a ranged attack roll, you can take 5 Radiant damage to deal an extra 1d8 Radiant damage to the target. | angka: 1d8,5
+- `sub|Gadgeteer/Drone Jockey|Drone Commander#10` If you lose a drone, you can build a free replacement and link it to the controller over 1 hour, during a Short Rest or Long Rest. | angka: 1
+- `sub|Wizard/White Necromancer|White Necromancy#2` When you cast it, an undead with Intelligence 5 or lower gets Intelligence 6 and understands and speaks one language you speak. | angka: 5,6
+- `sub|Rogue/Sanguine Thief|Bloody Blades#1` After a Long Rest, spend up to 2 Hit Point Dice or Sangromancy Dice to create that many Daggers. | angka: 2
+- `sub|Cleric/Twilight Domain|Eyes of Night#1` You have Darkvision with a range of 300 feet. | angka: 300
+- `sub|Vagabond/Yellow Sign|Nightmarish Glow#1` While your Pallid Aura is active, you and your allies in its Emanation deal an extra 1d6 Psychic damage when hitting an enemy with a weapon or an Unarmed Strike. | angka: 1d6
+- `sub|Cleric/Justice Domain|Divine Strike#1` Once on each of your turns when you hit a creature with a weapon attack, you can deal an extra 1d8 Radiant damage. | angka: 1d8
 - `sub|Sorcerer/Draconic Bloodline|Draconic Resilience#1` Your Hit Point maximum increases by 1 and again by 1 whenever you gain a Sorcerer level. | angka: 1
-- `sub|Warlock/The Coven|Hag's Craft#1` Expend a spell slot to turn a vessel into a Hag's Cauldron for 10 minutes. | angka: 10
-- `sub|Warlock/The Undead|Necrotic Husk#3` Each creature of your choice within 30 feet takes Necrotic damage equal to 2d10 plus your Warlock level, and you gain one level of Exhaustion. | angka: 2d10,30
-- `sub|Fighter/Living Crucible|Student of Alchemy#1` You gain Alchemist's Supplies with proficiency, and your Proficiency Bonus is doubled on ability checks made with them. | angka: double,pb
-- `sub|Wizard/Dragon Mage|Invoke Dragon Wings#2` They last 2 rounds per slot level and end early if you are Incapacitated or dismiss or replace them with a Bonus Action. | angka: 2
-- `sub|Rogue/Arcane Trickster|Spellcasting#2` You know three cantrips: Mage Hand and two more of your choice taken from the Wizard spell list (suggested picks are Mind Sliver and Minor Illusion). | angka: 2
-- `sub|Cleric/Solidarity Domain (PSA)|Channel Divinity: Preserve Life#3` A creature cannot be raised above half its Hit Point maximum this way. | angka: half
-- `sub|Summoner/Bond of the Wrathful Giant|Giant Eidolon#5` Its base Speed is 40 feet. | angka: 40
-- `sub|Cleric/Darkness Domain|Divine Strike#1` Once on each of your turns when you hit a creature with a weapon attack, you can deal an extra 1d8 Necrotic damage. | angka: 1d8
-- `sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge#42` Each of them takes 1d10 Necrotic damage. | angka: 1d10
-- `sub|Bard/College of Swords|Fighting Style#3` +2 damage with a one-handed melee weapon when no other weapon is wielded. | angka: 2
+- `sub|Bard/College of Glamour (2014)|Mantle of Inspiration#2` Each gains 5 Temporary Hit Points and can use its Reaction to move up to its Speed without provoking Opportunity Attacks. | angka: 5
+- `sub|Rogue/Sanguine Thief|Spellcasting#2` You know three cantrips from the Wizard list and the Sangromancy school. | angka: 3
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Rogue/Infiltrator|Cyberattack#1` Cast Technical Difficulties with no slot a number of times equal to your Intelligence modifier (minimum 1), regained on  -> covered
-- class `sub|Rogue/Infiltrator|Cyberattack#1` Cast Technical Difficulties with no slot a number of times equal to your Intelligence modifier (minimum 1), regained on  -> info:REST:NONUM
-- record `item|bmt|Donjon Card#3` After 1 minute, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. -> info:NUMONLY:GEOMETRY
-- class `item|bmt|Donjon Card#3` After 1 minute, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. -> info:NUMONLY:GEOMETRY
-- record `sub|Rogue/Phantom|Ghost Walk#2` After you use this, you must finish a Long Rest before using it again, unless you destroy one soul trinket (no action re -> covered
-- class `sub|Rogue/Phantom|Ghost Walk#2` After you use this, you must finish a Long Rest before using it again, unless you destroy one soul trinket (no action re -> info:REST:NONUM
-- record `item|misc14|Rod of Seven Parts#24` Once all seven pieces are reassembled, a creature can attune to the Rod of Seven Parts. -> info:NUMONLY:TEXT
-- class `item|misc14|Rod of Seven Parts#24` Once all seven pieces are reassembled, a creature can attune to the Rod of Seven Parts. -> info:NUMONLY:TEXT
-- record `feat|Lich Transformation: Stage 2|Lich Transformation: Stage 2#1` Stage 2. -> info:NUMONLY:TABLE
-- class `feat|Lich Transformation: Stage 2|Lich Transformation: Stage 2#1` Stage 2. -> info:NUMONLY:TABLE
-- record `item|dmg|Rod of Wild Dominion#4` Cast Dominate Beast from it with a duration of up to 1 hour. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Rod of Wild Dominion#4` Cast Dominate Beast from it with a duration of up to 1 hour. -> info:NUMONLY:GEOMETRY
-- record `item|cm|Gloves of Soul Catching#2` This property of the gloves has no effect on you if your Constitution is already 20 or higher. -> info:NUMONLY:TEXT
-- class `item|cm|Gloves of Soul Catching#2` This property of the gloves has no effect on you if your Constitution is already 20 or higher. -> info:NUMONLY:TEXT
-- record `sub|Warlock/The Predator|Fearsome Presence#3` On a failure it is frightened of you for 1 minute and restrained until the end of your next turn. -> info:NUMONLY:GEOMETRY
-- class `sub|Warlock/The Predator|Fearsome Presence#3` On a failure it is frightened of you for 1 minute and restrained until the end of your next turn. -> info:NUMONLY:GEOMETRY
-- record `item|dmg14|Instrument of the Bards, Cli Lyre#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
-- class `item|dmg14|Instrument of the Bards, Cli Lyre#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
-- record `item|dmg|Stonemaker War Pick#10` When the war pick has no charges remaining, it loses this property. -> covered
-- class `item|dmg|Stonemaker War Pick#10` When the war pick has no charges remaining, it loses this property. -> info:REST:NONUM
-- record `item|dmg|Couatl Herald's Scales#6` Usable once per dawn. -> info:REST:NONUM
-- class `item|dmg|Couatl Herald's Scales#6` Usable once per dawn. -> info:REST:NONUM
-- record `class|Druid|Archdruid#3` When you roll Initiative while you have no Wild Shape uses left, you regain one expended use of it. -> info:REST:NONUM
-- class `class|Druid|Archdruid#3` When you roll Initiative while you have no Wild Shape uses left, you regain one expended use of it. -> info:REST:NONUM
-- record `class|Witch|Spellcasting#3` You know two Witch cantrips, and you learn more at the levels in the Cantrips column. -> info:TABLE:CLASS
-- class `class|Witch|Spellcasting#3` You know two Witch cantrips, and you learn more at the levels in the Cantrips column. -> info:TABLE:CLASS
-- record `item|tftyp|Junky +1 Dagger#3` If you get a natural 1 on an attack roll while wielding this weapon, it breaks and becomes nonmagical. -> info:NUMONLY:ROLL
-- class `item|tftyp|Junky +1 Dagger#3` If you get a natural 1 on an attack roll while wielding this weapon, it breaks and becomes nonmagical. -> info:NUMONLY:ROLL
-- record `sub|Fighter/Samurai|Strength before Death#4` You regain use after a Long Rest. -> covered
-- class `sub|Fighter/Samurai|Strength before Death#4` You regain use after a Long Rest. -> info:REST:NONUM
+- record `item|mot|Iroas's Devotee#2` You can cast compelled duel a number of times equal to your Charisma modifier (minimum once) and regain all uses after a -> info:REST:NONUM
+- class `item|mot|Iroas's Devotee#2` You can cast compelled duel a number of times equal to your Charisma modifier (minimum once) and regain all uses after a -> info:REST:NONUM
+- record `item|dmg|Lazarus Unit#5` After it works, it cannot work again until you finish a Long Rest. -> info:REST:NONUM
+- class `item|dmg|Lazarus Unit#5` After it works, it cannot work again until you finish a Long Rest. -> info:REST:NONUM
+- record `sub|Captain/Tower Banner|Armored Redirection#4` After you use this, you cannot use it again until you finish a Short or Long Rest, unless you expend one Battle Die (no  -> covered
+- class `sub|Captain/Tower Banner|Armored Redirection#4` After you use this, you cannot use it again until you finish a Short or Long Rest, unless you expend one Battle Die (no  -> info:REST:NONUM
+- record `sub|Rogue/Soulknife (2014)|Psionic Power#3` You regain all expended dice after a Long Rest. -> covered
+- class `sub|Rogue/Soulknife (2014)|Psionic Power#3` You regain all expended dice after a Long Rest. -> info:REST:NONUM
+- record `item|dmg|Belt of Giant Strength (storm)#1` While you wear this belt, your Strength score changes to 29, the score granted by a belt tied to storm giants. -> info:NUMONLY:TABLE
+- class `item|dmg|Belt of Giant Strength (storm)#1` While you wear this belt, your Strength score changes to 29, the score granted by a belt tied to storm giants. -> info:NUMONLY:TABLE
+- record `sub|Captain/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> covered
+- class `sub|Captain/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
+- record `item|tce|Duplicitous Manuscript#8` You can use the charges in the following ways while holding it: -> info:REST:NONUM
+- class `item|tce|Duplicitous Manuscript#8` You can use the charges in the following ways while holding it: -> info:REST:NONUM
+- record `item|tghg|Blessed Reliquary#3` Once, when you use Turn Undead, you can give the targets Disadvantage on their saves, and you regain that use after a Lo -> info:ACTIVE:TRIGGER
+- class `item|tghg|Blessed Reliquary#3` Once, when you use Turn Undead, you can give the targets Disadvantage on their saves, and you regain that use after a Lo -> info:ACTIVE:TRIGGER
+- record `feat|Light Bringer|Light Bringer#12` You can do this once and regain the use after a Short or Long Rest. -> info:REST:NONUM
+- class `feat|Light Bringer|Light Bringer#12` You can do this once and regain the use after a Short or Long Rest. -> info:REST:NONUM
+- record `sub|Witch/Fragrant Magic|Fragrant Spells#2` 3 Calm Emotions, Color Spray, Enhance Ability, Fog Cloud, Prestidigitation. -> covered
+- class `sub|Witch/Fragrant Magic|Fragrant Spells#2` 3 Calm Emotions, Color Spray, Enhance Ability, Fog Cloud, Prestidigitation. -> covered
+- record `item|tsgs|Ring of Eldritch Ire#1` A warped ring with three swiveling gems. -> info:NUMONLY:TABLE
+- class `item|tsgs|Ring of Eldritch Ire#1` A warped ring with three swiveling gems. -> info:NUMONLY:TABLE
+- record `sub|Ranger/Vermin Lord|Vermin Lord Spells#5` 17 Contagion. -> info:NUMONLY:TABLE
+- class `sub|Ranger/Vermin Lord|Vermin Lord Spells#5` 17 Contagion. -> info:NUMONLY:TABLE
+- record `sub|Warden/Witchbane Hunter|Arcane Rebuke#4` After you use this, you cannot use it again until you finish a Short or Long Rest. -> covered
+- class `sub|Warden/Witchbane Hunter|Arcane Rebuke#4` After you use this, you cannot use it again until you finish a Short or Long Rest. -> info:REST:NONUM
+- record `species|Dhakaani Ghaal'dar (Hobgoblin)|Strength in Unity#2` After you use this, finish a Short or Long Rest to do so again. -> info:REST:NONUM
+- class `species|Dhakaani Ghaal'dar (Hobgoblin)|Strength in Unity#2` After you use this, finish a Short or Long Rest to do so again. -> info:REST:NONUM
+- record `feat|Warzone Nomad|Warzone Nomad#7` After you use this, finish a Long Rest to do so again. -> info:REST:NONUM
+- class `feat|Warzone Nomad|Warzone Nomad#7` After you use this, finish a Long Rest to do so again. -> info:REST:NONUM
