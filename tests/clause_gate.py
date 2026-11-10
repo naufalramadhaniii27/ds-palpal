@@ -246,7 +246,7 @@ CAT_MAP = {"ac": "AC", "hp": "HP", "save": "SAVE", "speed": "SPEED", "init": "IN
 ATOM_CLASSES = {"AC", "HP", "SAVE", "ADV", "DIS", "RES", "IMM", "SPEED", "SENSE", "PROF", "SLOT", "RESOURCE", "ATK", "DMG", "DC", "INIT", "SPELL", "ABIL", "CHOICE"}
 STAT = {"AC", "HP", "SAVE", "SPEED", "SENSE", "PROF", "SLOT", "INIT", "ABIL", "RES", "IMM"}
 ACT_OK = {"DMG", "DC", "RESOURCE", "ADV", "DIS", "ATK", "SAVE_ROLL"}
-ACT_FORM = R(r"\b(?:as an action|as a bonus action|as a reaction|as a magic action|bonus action|magic action|reaction|use your action|command word|activate[sd]?|spend(?:s|ing)? (?:\d+|one|two|three|a|an|up to \w+)? ?(?:charges?|uses?|points?)|expend(?:s|ing)? (?:\d+|one|two|three|a|an|up to \w+)? ?(?:charges?|uses?)|\d+ charges?)\b")
+ACT_FORM = R(r"\b(?:as an action|as a bonus action|as a reaction|as a magic action|bonus action|magic action|reaction|use your action|command word|activate[sd]?|spend(?:s|ing)? (?:\d+|one|two|three|a|an|up to \w+)? ?(?:charges?|uses?|points?)|expend(?:s|ing)? (?:\d+|one|two|three|a|an|up to \w+)? ?(?:charges?|uses?)|(?:spend|expend)(?:s|ing)? (?:\d+|one|two|three|up to \d+)(?: or more)? of (?:its|the|your|their) charges?|charge cost \d+|\d+ charges?)\b")
 TABLE_FORM = R(r"^(?:table\b|\(?\d+(?:[-\u2013]\d+)?\)?\s*[:.]\s|\d+(?:[-\u2013]\d+)? [A-Z])|\b(?:column|table)\b[^.]{0,60}\b(?:shows?|lists?|gives?|details?)\b|\b(?:shows?|lists?)\b[^.]{0,60}\b(?:column|table)\b|\(slot level|\broll an? d\d+ for\b")
 POOL_RX = R(r"\b(?:has|have|holds?|contains?|with) (?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve) (?:\w+ )?(?:charges?|uses)\b|\bregains? [^.]{0,40}(?:charges?|uses)\b|\bcharges?\b[^.]{0,40}\b(?:dawn|regain|recharge)\b|\bnumber of times equal to\b|\bpool\b[^.]{0,60}\b(?:dice|die|points?)\b")
 ROLL_FORM = R(r"\b(?:saving throw|save|saves)\b[^.]{0,160}\b(?:fail|succeed|success|take|takes|half)\b|\b(?:fail|succeed|success|make|makes|must make)\b[^.]{0,160}\b(?:saving throw|save|check)\b|\bdc \d+|\bon a (?:failed|successful|hit|miss)\b|\bhalf as much\b")
@@ -617,6 +617,7 @@ REASONS = collections.OrderedDict([
     ("MOVE:SPEED_REF", "A one-off movement measured in Speed ('move up to half your Speed', 'as far as its Speed', 'teleport up to your Speed'): it spends movement, it does not change a Speed value of the character."),
     ("TARGET:SPEED", "Speed of another creature ('that creature's Speed becomes 0', 'its Speed is halved'): the effect sits on the target, the sheet tracks the character."),
     ("KNOW:TARGET_DEFENSES", "'You learn whether it has Immunities, Resistances or Vulnerabilities': information about another creature, not a Resistance or Immunity of the character."),
+    ("FOCUS:SPELLCASTING", "Says which item can serve as a Spellcasting Focus ('a weapon you are proficient with works as your Spellcasting Focus'): the sheet keeps no focus, and 'proficient with' is the condition of the sentence, not a grant."),
     ("STD:SUBCLASS_PICK", "'Choose a X subclass': the subclass picker of the builder; no fx record."),
     ("STD:AC10", "'10 + Dex + ability' style base AC: the 10 is the standard base AC constant; the feature has an AC atom that names the ability."),
     ("TABLE:CLASS", "Class tables for spell slots, cantrips and spells known / prepared and the invocation list: read by the slot code and the builder tables from the class row, not by fx records."),
@@ -660,10 +661,11 @@ RX_FLAVOR = R(r"\bin the world of\b|\bknown to exist\b|\blots of\b|\bgallons?\b|
 RX_SIGNED = R(r"(?<![\w])[+-]\s?\d|\b(?:increases?|decreases?|rises?|reduced|raises?|lowers?|bonus|penalty)\b[^.]{0,30}\b(?:by )?\d")
 
 
-RX_LAST_CHARGE = R(r"\b(?:last|final) charge\b[^.]{0,80}\broll (?:a |an |1)?d?20\b|\broll (?:a |an |1)?d?20\b[^.]{0,80}\b(?:last|final) charge\b")
+RX_LAST_CHARGE = R(r"\b(?:last|final) (?:charge|one)\b[^.]{0,80}\broll (?:a |an |1)?d?20\b|\broll (?:a |an |1)?d?20\b[^.]{0,80}\b(?:last|final) charge\b")
 RX_MOVE_SPEED = R(r"\b(?:move|moves|moving|teleport|teleports|travel)\b[^.]{0,60}\b(?:up to|as far as|a distance (?:of |equal to |up to )+)[^.]{0,25}\b(?:your|its|their) (?:walking )?speed\b|\b(?:move|moves|moving)\b[^.]{0,30}\b(?:half|twice|double) (?:your|its|their) (?:walking )?speed\b")
 RX_SPEED_GAIN = R(r"\b(?:fly|flying|swim|swimming|climb|climbing|burrow|burrowing) speed\b|\bspeed (?:increases|rises|goes up|is increased|doubles|is doubled|is \d+|of \d+|equals?)|\+\d+ ?(?:ft|feet)\b|\b(?:gain|gains|have|has|get|gets)\b[^.]{0,25}\bspeed\b|\bspeed\b[^.]{0,20}\b(?:higher|greater|bonus)\b")
 RX_TARGET_SPEED = R(r"\b(?:that|the|a|each) (?:creature|target|enemy|foe|attacker|monster|opponent)(?:'s| has)? speed\b|\b(?:reduce|lower|halve|cut|drop|set)s?\b[^.]{0,30}\b(?:its|their|that creature's|the target's) speed\b|\b(?:its|their) speed (?:drops?|is (?:reduced|halved|lowered|0)|becomes? (?:0|half))")
+RX_FOCUS = R(r"\b(?:works?|serves?|counts?|used?|using|use|work|serve|count)\b[^.]{0,60}\bas (?:your |an? |the )?(?:spellcasting|arcane|druidic) focus\b|\b(?:spellcasting|arcane|druidic) focus\b[^.]{0,40}\b(?:is|are|can be)\b")
 RX_KNOW_DEF = R(r"\b(?:you |the (?:dm|dungeon master) )?(?:learn|know|knows|tells you|find out|discover)\b[^.]{0,80}\b(?:immunities|resistances|vulnerabilit)")
 
 
@@ -689,6 +691,8 @@ def excuse(r, ctx, atoms):
         return "MOVE:SPEED_REF"
     if need == {"SPEED"} and RX_TARGET_SPEED.search(t) and not re.search(r"\byour speed\b|\byours\b|\byou (?:gain|have)\b", t):
         return "TARGET:SPEED"
+    if need and need <= {"PROF", "SPELL"} and RX_FOCUS.search(t) and not re.search(r"\b(?:you|they) (?:gain|become|get|obtain)\b[^.]{0,40}\bproficien|\bgain proficiency\b|\bcast\b[^.]{0,60}\bwithout\b|\bwithout (?:a |expending )?(?:spell )?slot|\bcantrips?\b|\bonce\b", t):
+        return "FOCUS:SPELLCASTING"
     if need <= {"RES", "IMM"} and need and RX_KNOW_DEF.search(t) and not re.search(r"\byou (?:have|gain) (?:resistance|immunity)", t):
         return "KNOW:TARGET_DEFENSES"
     if need and need <= {"PROF", "CHOICE"} and has("PICK_PROF") and kind in ("class", "sub") and re.search(r"\bexpertise\b|\bproficien|\bskills?\b|\btools?\b|\blanguages?\b", t):
@@ -1051,6 +1055,19 @@ def selftest():
     check("10j NEG the same text without a pick record stays flagged", r["status"] == "uncovered", r["why"])
     r = one("You gain Expertise in them and a +5 bonus to those checks.", pk, "class")
     check("10k NEG an Expertise sentence with another number (+5) stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("A weapon you are proficient with can serve as a Spellcasting Focus for your Artificer spells.")
+    check("10o FOCUS:SPELLCASTING: a weapon as the focus", r["status"] == "info" and r["why"] == "FOCUS:SPELLCASTING", r["why"])
+    r = one("You gain proficiency with Martial weapons, and you can use a weapon you are proficient with as a Spellcasting Focus.")
+    check("10p NEG a sentence that also grants proficiency stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("You can cast Raise Dead once without a spell slot if you use Tinker's Tools as your Spellcasting Focus.")
+    check("10q NEG a spell cast without a slot stays flagged", r["status"] == "uncovered", r["why"])
+    # 10l activation cost written "expend 1 of its charges" / "(Charge Cost 3)" is an activation (FORM:ACTIVATE), a stat gain is not excused by it
+    r = analyze(synth("item", "dmg", "Wand", "While holding it, you can expend 1 of its charges and target a humanoid you can see within 30 feet of you.", pool))[0]
+    check("10l FORM:ACTIVATE: expend 1 of its charges", r["status"] == "info" and r["why"] == "FORM:ACTIVATE", r["why"])
+    r = analyze(synth("item", "dmg", "Wand", "Catnap (Charge Cost 3).", pool))[0]
+    check("10m FORM:ACTIVATE: a spell line with a charge cost", r["status"] == "info" and r["why"] == "FORM:ACTIVATE", r["why"])
+    r = analyze(synth("item", "dmg", "Wand", "You can expend 1 of its charges to gain a +2 bonus to AC.", pool))[0]
+    check("10n NEG a charge spent for an AC bonus is not excused as an activation", r["status"] == "uncovered", r["why"])
     # 11 code atoms (tests/clause_gate_code.json): an entry with a live anchor covers its own sentence only; a vanished anchor drops the atom
     ent = dict(id="t", kind="class", owner="Barbarian", name="Fast Movement", lvl=5, cls=["SPEED"], vals=["10"], rx="speed is 10 feet higher", anchor=["src/builder/12f-logic-sheet-handlers-movement.js", 'id:"barbarian-5-fast-movement"'])
     CODE_NOTES.clear()
@@ -1104,7 +1121,7 @@ def selftest():
     check("9n equip-state AC bonus without a record -> flagged", r["status"] == "uncovered", r["why"])
     r = st("sub", "Resilience", "While you wear no armor, your base Armor Class equals 10 + your Dexterity modifier + your Charisma modifier.", [Atom("AC", {"CHA"}, "sub.ua")])
     check("9o STD:AC10 with an AC atom -> info", r["status"] == "info" and r["why"] == "STD:AC10", r["why"])
-    check("9p every reason code is documented", all(REASONS.get(c) for c in ("ROLL:LAST_CHARGE", "MOVE:SPEED_REF", "TARGET:SPEED", "KNOW:TARGET_DEFENSES", "STD:PICK_TEXT", "STD:ASI", "STD:AC10", "TABLE:CLASS", "REST:NONUM", "DC:REFERENCE", "OBJECT:STATS", "ITEM:SENSES", "ACTIVE:OTHERS", "ACTIVE:TIMED_IMM", "ACTIVE:TRIGGER", "ACTIVE:REACTION", "COND:PLAY_STATE", "COND:ATTACK_ROLL_ADV", "NUMONLY:ROLL", "NUMONLY:GEOMETRY", "NUMONLY:TABLE", "NUMONLY:FLAVOR", "NUMONLY:ZERO", "NUMONLY:TEXT")))
+    check("9p every reason code is documented", all(REASONS.get(c) for c in ("FOCUS:SPELLCASTING", "ROLL:LAST_CHARGE", "MOVE:SPEED_REF", "TARGET:SPEED", "KNOW:TARGET_DEFENSES", "STD:PICK_TEXT", "STD:ASI", "STD:AC10", "TABLE:CLASS", "REST:NONUM", "DC:REFERENCE", "OBJECT:STATS", "ITEM:SENSES", "ACTIVE:OTHERS", "ACTIVE:TIMED_IMM", "ACTIVE:TRIGGER", "ACTIVE:REACTION", "COND:PLAY_STATE", "COND:ATTACK_ROLL_ADV", "NUMONLY:ROLL", "NUMONLY:GEOMETRY", "NUMONLY:TABLE", "NUMONLY:FLAVOR", "NUMONLY:ZERO", "NUMONLY:TEXT")))
     # mutation on the synthetic cases
     print("mutation test (synthetic): remove the record, the gate must flag")
     for lab, c in (("Tower Shield sentence 1", c1), ("both records", c1b), ("dice item", c7b)):
