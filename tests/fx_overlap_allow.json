@@ -674,12 +674,13 @@
  "GX.sub|Occultist Guild": {
   "files": [
    "fx-L11.js",
-   "fx-M2.js"
+   "fx-M2.js",
+   "fx-Z5.js"
   ],
-  "reason": "fx-M2 adds the Occult Knowledge pick at level 10; fx-L11 has Magical Aegis (level 15) and the third caster table. spCls is a source key per entry, not additive.",
   "shared": [
    "spCls"
-  ]
+  ],
+  "reason": "fx-M2 adds the Occult Knowledge pick at level 10; fx-L11 has Magical Aegis (level 15) and the third caster table. spCls is a source key per entry, not additive. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
  },
  "GX.sub|Path of the Dad": {
   "files": [
@@ -747,12 +748,13 @@
  "GX.sub|Storm Sentinel": {
   "files": [
    "fx-H-audit.js",
-   "fx-L12.js"
+   "fx-L12.js",
+   "fx-Z5.js"
   ],
-  "reason": "fx-H-audit Storm Wings (level 6, fly) and fx-L12 Seafarer (level 3, swim and resistance pick) are different features.",
   "shared": [
    "mv"
-  ]
+  ],
+  "reason": "fx-H-audit Storm Wings (level 6, fly) and fx-L12 Seafarer (level 3, swim and resistance pick) are different features. Z5 adds the level 17 Stormlord switch (Fly 60). Existing mv entries are the separate Storm Wings and Seafarer features. A total/max test proves the Fly 60 row occurs once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
  },
  "GX.sub|Toymaker": {
   "files": [
@@ -1189,5 +1191,95 @@
   ],
   "reason": "Different features of the same sub are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
   "shared": []
+ },
+ "GX.sub|Diabolist": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "Z5 adds the level 6 Soul Broker Speed boon switch. L12 adds level 3 Infernal Command spell uses, with no shared numeric field. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Infernum": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "Z5 adds level 6 Infernal Bargain Blindsight switch. L11 only grants the familiar and Geas spells. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Oath of Thunder": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Justice Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Circle of Configuration": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Siegeball Jersey": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|The Predator": {
+  "files": [
+   "fx-L12.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Doomsayer": {
+  "files": [
+   "fx-L13.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Dragon Mage": {
+  "files": [
+   "fx-L13.js",
+   "fx-Z5.js"
+  ],
+  "shared": [
+   "advOn"
+  ],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Mime": {
+  "files": [
+   "fx-N1.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.sub|Mutagenist": {
+  "files": [
+   "fx-Z3.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
  }
 }

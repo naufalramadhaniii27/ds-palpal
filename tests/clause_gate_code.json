@@ -955,6 +955,394 @@
    ],
    "test": "U3 Battle Master 7 and 15 Combat Superiority",
    "note": ""
+  },
+  {
+   "id": "u6-echoing-soul-2",
+   "kind": "feat",
+   "owner": "Echoing Soul",
+   "name": "Echoing Soul",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [
+    "2"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ two\\ skills\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Echoing Soul",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-symbiotic-being-5",
+   "kind": "feat",
+   "owner": "Symbiotic Being",
+   "name": "Symbiotic Being",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ one\\ skill\\ of\\ your\\ choice\\ from\\ arcana,\\ deception,\\ history,\\ intimidation,\\ insight,\\ investigation,\\ nature,\\ religion,\\ perception,\\ or\\ persuasion\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Symbiotic Being",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-actor-2014-4",
+   "kind": "feat",
+   "owner": "Actor (2014)",
+   "name": "Actor (2014)",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ charisma\\ \\(deception\\)\\ and\\ charisma\\ \\(performance\\)\\ checks\\ when\\ you\\ try\\ to\\ pass\\ yourself\\ off\\ as\\ a\\ different\\ person\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Actor (2014)",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-dungeon-delver-4",
+   "kind": "feat",
+   "owner": "Dungeon Delver",
+   "name": "Dungeon Delver",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ made\\ to\\ avoid\\ or\\ resist\\ traps\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Dungeon Delver",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-skill-expert-2014-4",
+   "kind": "feat",
+   "owner": "Skill Expert (2014)",
+   "name": "Skill Expert (2014)",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ one\\ skill\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Skill Expert (2014)",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-squat-nimbleness-8",
+   "kind": "feat",
+   "owner": "Squat Nimbleness",
+   "name": "Squat Nimbleness",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ acrobatics\\ or\\ athletics\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Squat Nimbleness",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-quicksmithing-8",
+   "kind": "feat",
+   "owner": "Quicksmithing",
+   "name": "Quicksmithing",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ one\\ type\\ of\\ artisan's\\ tools\\ \\(quicksmith's\\ tools\\)\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Quicksmithing",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-gambler-2",
+   "kind": "feat",
+   "owner": "Gambler",
+   "name": "Gambler",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [
+    "2"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ two\\ gaming\\ sets\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Gambler",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-aereni-expertise-2",
+   "kind": "feat",
+   "owner": "Aereni Expertise",
+   "name": "Aereni Expertise",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ one\\ skill\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Aereni Expertise",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-aereni-half-life-3",
+   "kind": "feat",
+   "owner": "Aereni Half-Life",
+   "name": "Aereni Half-Life",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ death\\ saving\\ throws\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Aereni Half-Life",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-envoy-specialist-2",
+   "kind": "feat",
+   "owner": "Envoy Specialist",
+   "name": "Envoy Specialist",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ one\\ tool\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Envoy Specialist",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-blood-hound-4",
+   "kind": "feat",
+   "owner": "Blood Hound",
+   "name": "Blood Hound",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ wisdom\\ \\(perception\\)\\ checks\\ that\\ rely\\ on\\ sound\\ or\\ smell\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Blood Hound",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-free-sword-mercenary-s-will-4",
+   "kind": "feat",
+   "owner": "Free Sword Mercenary's Will",
+   "name": "Free Sword Mercenary's Will",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ that\\ would\\ apply\\ a\\ condition\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Free Sword Mercenary's Will",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-iron-gut-3",
+   "kind": "feat",
+   "owner": "Iron Gut",
+   "name": "Iron Gut",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ to\\ avoid\\ or\\ end\\ the\\ poisoned\\ condition\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Iron Gut",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-iron-gut-5",
+   "kind": "feat",
+   "owner": "Iron Gut",
+   "name": "Iron Gut",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ wisdom\\ \\(survival\\)\\ checks\\ made\\ to\\ forage\\ for\\ food\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Iron Gut",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-aberrant-spawn-2",
+   "kind": "feat",
+   "owner": "Aberrant Spawn",
+   "name": "Aberrant Spawn",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ to\\ avoid\\ or\\ end\\ the\\ charmed\\ condition\\ and\\ against\\ any\\ effect\\ that\\ would\\ read\\ your\\ thoughts\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Aberrant Spawn",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-beastperson-3",
+   "kind": "feat",
+   "owner": "Beastperson",
+   "name": "Beastperson",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ dexterity\\ saving\\ throws\\ while\\ you\\ are\\ bloodied\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Beastperson",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-green-skin-6",
+   "kind": "feat",
+   "owner": "Green-Skin",
+   "name": "Green-Skin",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ to\\ avoid\\ or\\ end\\ the\\ poisoned\\ condition\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Green-Skin",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-industrious-7",
+   "kind": "feat",
+   "owner": "Industrious",
+   "name": "Industrious",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ to\\ avoid\\ the\\ exhaustion\\ condition\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Industrious",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-proto-man-4",
+   "kind": "feat",
+   "owner": "Proto-Man",
+   "name": "Proto-Man",
+   "lvl": null,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ to\\ avoid\\ or\\ end\\ the\\ frightened\\ condition\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],f.n)})"
+   ],
+   "test": "Z3 U6 computed Proto-Man",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u6-inspirational-caster-2",
+   "kind": "feat",
+   "owner": "Inspirational Caster",
+   "name": "Inspirational Caster",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ intimidation\\ or\\ persuasion\\ \\(your\\ choice\\)\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "export function featPicks()"
+   ],
+   "test": "Z3 U6 computed Inspirational Caster",
+   "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
   }
  ]
 }

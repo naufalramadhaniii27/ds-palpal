@@ -1,3 +1,19 @@
+# Uncovered 3: implementation checkpoint
+
+Phase 2 now implements existing-model benefits in `src/data/fx-Z5.js`. The Phase 1 ledger below is historical triage, not a claim that unplaced G3 rows need a new model.
+
+Implemented: six subclass state switches, nineteen missing Advantage entries, five feat entries, Piloting in the existing extra-skill registry, and three item power entries. Native WXS effects and feat picks already computed by the sheet are recognized without duplicate application effects. WXS recognition matches the exact source feature and level and only complete literal statements, not unrelated sentences or free-form notes. Twenty-one native feat code atoms have paired difference tests.
+
+Mythallar Cloak keeps the item row's charge pool and attunement rules. Its active switch grants Fly 30, hover instructions, and a once-per-turn 1d4 Radiant rider. Ring of Spacewalking and Spacewalkers grant flight only with the zero-gravity switch. A fourth attuned item does not leak a cloak switch or flight. Consumed potion effects are deferred because their lifetime must outlive removal of the inventory row.
+
+Validation completed so far: 499 effect cases, 0 failed, plus 10 item cases, 0 failed. Zero-miss remains 0 for both editions. The six browser scenarios passed 24 checks, with no page errors or native dialogs, and captured storage and screenshots. SOLID UI contract passed 308 checks. Full final iteration, expensive contracts, goldens and comparisons are still running at this checkpoint. Their final results will be recorded before completion. No test still running is claimed as passed.
+
+The small new-model candidate for Phase 3 is restricted weapon-group proficiency. Gun-Mage Adept currently has only a descriptive label for ranged martial weapons. A generic `Martial` grant would incorrectly grant melee proficiency. Phase 3 will use a narrow weapon-group field and test a Longbow against Longsword and thrown Trident rows.
+
+No info labels, allowlist entries or baselines were changed. The four owner-reserved issues remain unchanged. The code and tests, not this historical classification, determine what is implemented.
+
+---
+
 # Uncovered 3: Phase 1, conservative classification
 
 Branch `codex/uncovered-3`, base `f6d77cb1b52289f21ae33775a532effdae764d18`. `git fetch origin` completed. The remote fetch refspec initially exposed only main, so the required branch was fetched explicitly. `git branch -r --contains f6d77cb1` lists only `origin/claude/uncovered-1`. Worktree: `/workspace/work/uncovered-3`. No PR and no main push.

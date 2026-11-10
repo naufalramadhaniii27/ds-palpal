@@ -496,6 +496,7 @@ def features(D):
                         for part in mentions(c[k][sn], name):
                             at += atoms_from({k: part}, "sub." + sn)
                 if w:
+                    at += wx_fx_atoms(w, name, lvl)
                     for k, v in w.items():
                         if k in ("cls", "name", "src", "alt") or v in ([], {}, "", None):
                             continue
@@ -957,6 +958,33 @@ def load_code_atoms(ents=None):
     return out
 
 
+def wx_fx_atoms(w, name, lvl):
+    """WXS.fx [level, feature, payload] fields actually consumed by sbFx/XFX.
+
+    The outer `fx` key is not an effect field. Do not treat arbitrary payload
+    keys (or free-form notes) as GX fields: Only supported fields with a whole-sentence semantic match count.
+    """
+    out = []
+    for row in (w or {}).get("fx", []):
+        if not isinstance(row, list) or len(row) != 3 or row[:2] != [lvl, name] or not isinstance(row[2], dict):
+            continue
+        for field, cls, noun in (("res", "RES", "resistance"), ("imm", "IMM", "immunity"), ("skills", "PROF", "proficiency")):
+            values = row[2].get(field) or []
+            if not values or not all(isinstance(v, str) for v in values):
+                continue
+            alternatives = "(?:" + "|".join(re.escape(v.lower()) for v in values) + ")"
+            listing = alternatives + r"(?:(?:, | and |, and )" + alternatives + ")*"
+            phrase = (r"(?:the )?" + listing + r"(?: skill)?") if field == "skills" else listing + " damage"
+            rx = re.compile(r"^you (?:have|gain) " + noun + (" in " if field == "skills" else " to ") + phrase + r"\.?$", re.I)
+            out.append(Atom(cls, nums_in(values), "wxs.fx|" + w["name"] + "." + field, rx=rx))
+        for sense in row[2].get("senses", []):
+            if not isinstance(sense, list) or len(sense) < 2:
+                continue
+            rx = re.compile(r"^you (?:have|gain) " + re.escape(str(sense[0])) + r" (?:(?:out to|to|with a range of|out to a range of) )?" + re.escape(str(sense[1])) + r" (?:ft|feet)\.?$", re.I)
+            out.append(Atom("SENSE", nums_in(sense[1:2]), "wxs.fx|" + w["name"] + ".senses", rx=rx))
+    return out
+
+
 def load_by_design():
     try:
         return json.load(open(MBASE, encoding="utf-8")).get("by_design", {})
@@ -990,6 +1018,14 @@ def selftest():
         print("  %s %s %s" % ("ok  " if cond else "FAIL", label, extra))
         if not cond: fails.append(label)
     print("selftest (synthetic):")
+    wx = {"name": "Example", "fx": [[6, "Winter", {"res": ["Cold"], "acAdd": 2}]]}
+    wa = wx_fx_atoms(wx, "Winter", 6)
+    check("U5 WXS nested resistance is a record", analyze(synth("sub", "Wizard/Example", "Winter", "You have Resistance to Cold damage.", wa))[0]["status"] == "covered")
+    check("U5 NEG WXS ignores unsupported GX fields", not any(a.cls == "AC" for a in wa))
+    check("U5 NEG WXS feature name must match", not wx_fx_atoms(wx, "Summer", 6))
+    check("U5 NEG WXS feature level must match", not wx_fx_atoms(wx, "Winter", 5))
+    check("U5 NEG WXS removed payload stays uncovered", analyze(synth("sub", "Wizard/Example", "Winter", "You have Resistance to Cold damage.", wx_fx_atoms({"name": "Example", "fx": []}, "Winter", 6)))[0]["status"] == "uncovered")
+    check("U5 NEG WXS notes are not computed stat fields", not wx_fx_atoms({"name": "Example", "fx": [[6, "Winter", {"notes": [["Resistance", "Cold"]]}]]}, "Winter", 6))
     S1 = "While you hold a Shield, it gives you +3 AC instead of +2."
     S2 = "While you hold a Shield, you also gain a +1 bonus to saving throws against spells."
     ts_atoms = lambda: [Atom("AC", {"3", "2", "1"}, "GX.sub|Armigers' Guild.shAc")]
