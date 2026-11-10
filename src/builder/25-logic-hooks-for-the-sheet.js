@@ -139,3 +139,12 @@ genv.__bldQuickFor=function(cls,lv){const Q=QUICK[cls];if(!Q)return null;let kee
  catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};
 /* SOLID stage 1 test hook (tests/solid_contract.py): the handler registries, the sources, the phase names and the effect list of the build set with __bldTestSet. Read only, no stored data */
 genv.__fxRegistry=function(){return {handlers:{entry:allFxHandlers("entry"),ability:allFxHandlers("ability"),"sheet":allFxHandlers("sheet")},phases:{entry:fxPhases("entry"),ability:fxPhases("ability"),"sheet":fxPhases("sheet")},sources:fxSources(),rules:fxRuleTables(),register:registerFxHandler,gfx:function(noItem){return noItem?fxListBase():fxList()},"sheet":{groups:allSheetHandlers("group"),rules:allSheetHandlers("rule"),phases:SHEET_PHASES.slice(),registerGroup:registerSheetGroup,registerRule:registerSheetRule,makeCtx:makeCtx,applyPatch:applyPatch,schema:{C:SHEET_C,l:SHEET_L},patchProblems:patchProblems},entrySchema:{fields:FX_FIELDS,problems:fxEntryProblems},pack:{steps:allPackSteps(),phases:PACK_PHASES.slice(),tables:PACK_TABLES,register:registerPackStep},queries:queryNames()}};
+
+/* Drink one available item. The sheet commits the same boolean switch after this
+   succeeds. Rebuilding with the override keeps the effect after the last bottle. */
+genv.__bldConsume=function(id){const st=genv.__sheetState&&genv.__sheetState();
+ if(!st||!st.C||!own(st.C.name)||(st.fxT||{})[id])return false;
+ const e=fxList().find((x) =>x.consume&&x.toggle&&x.toggle.id===id);if(!e)return false;
+ const it=(B.inv||[]).find((x) =>x.n===e.owner&&+x.q>0);if(!it)return false;
+ it.q=Math.max(0,Math.floor(+it.q)-1);save();
+ fxtSet(Object.assign({},st.fxT||{},{[id]:true}));try{if(genv.__sheetSoft)genv.__sheetSoft(toSheet())}finally{fxtSet(null)}return true};

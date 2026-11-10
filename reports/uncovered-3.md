@@ -1,4 +1,226 @@
-# Uncovered 3: validated implementation checkpoint
+# Uncovered 3: consumed-effect model and validated checkpoints
+
+The owner explicitly requested a new mechanical model on 2026-11-10. That instruction expands the original stop-before-G3 scope. The consumed-effect model is implemented for ten potions. This remains a partial reduction of the original 5,460 sentences, not completion of every remaining mechanic. There are 48 open candidates from the original G1 ledger. No candidate is treated as G3 merely because its initial classification was conservative.
+
+## Current result
+
+| Kind | Initial uncovered | Current uncovered | Closed |
+|---|---:|---:|---:|
+| item | 3060 | 3047 | 13 |
+| sub | 1436 | 1345 | 91 |
+| feat | 555 | 525 | 30 |
+| class | 240 | 239 | 1 |
+| species | 169 | 169 | 0 |
+| spell | 0 | 0 | 0 |
+| Total | 5460 | 5325 | 135 |
+
+Phase 1 closed 0. Existing-model implementation and tested native grants closed 129. The small weapon-group extension closed 1. The owner-authorized consumed-effect model closed 5 additional initially uncovered sentences. It also turns 12 previously info sentences into genuinely computed effects. No new info label, allowlist or raised baseline was used. The cumulative gate has 73,254 sentences, 36,782 mechanical, 7,833 covered, 23,624 info and 5,325 uncovered. Comparison against the preserved original baseline finds 0 newly uncovered sentence IDs.
+
+## New mechanical model
+
+`consume:{duration}` separates an activated item's lifetime from its inventory row. Drinking spends one bottle. The effect persists at quantity zero, after removing the inventory row, after Apply and after reload. End removes the benefit without restoring stock. Two bottles do not double it. The same switch cannot consume again while active. The player may End and Drink again to refresh the effect. Durations are displayed and ended manually, with no wall-clock expiry claim.
+
+The speed panel now renders GX `C.moves` alongside legacy `C.speeds`, retaining the greatest displayed speed per mode after conditions and Exhaustion. It does not sum duplicate flight grants or mutate the sheet data. The missing live display was found during visual review and corrected, with dedicated UI comparisons.
+
+The model reuses `S.fxT` booleans and existing inventory quantities. No storage key or builder/play-state input format changes. Optional computed metadata inside the existing `C.fxToggles` list describes Drink and End controls. The item source deliberately excludes `consume` entries, preventing duplicate effects when the bottle is equipped. The new independent source discovers available or active effects. The schema requires an inactive default and a duration label. The gate uses that duration only to explain numbers attached to a real typed benefit. Duration alone cannot create a movement atom, covered by positive and negative selftests.
+
+| Potion | Computed active benefit | Duration |
+|---|---|---|
+| Climbing | Climb equals current Speed, qualified Athletics Advantage | 1 hour |
+| Flying | Fly equals current Speed, hover and end-of-flight falling instructions | 1 hour |
+| Invulnerability | Resistance to all thirteen standard damage types | 1 minute |
+| Giant Strength, cloud | STR becomes 27 only if lower | 1 hour |
+| Giant Strength, fire | STR becomes 25 only if lower | 1 hour |
+| Giant Strength, frost | STR becomes 23 only if lower | 1 hour |
+| Giant Strength, hill | STR becomes 21 only if lower | 1 hour |
+| Giant Strength, stone | STR becomes 23 only if lower | 1 hour |
+| Giant Strength, storm | STR becomes 29 only if lower | 1 hour |
+| Pugilism | Every Unarmed Strike hit adds 1d6 Force, other weapons do not | 10 minutes |
+
+The amounts and durations were reread from the app's own DMGI item sentences. No book verification is claimed. Independent-lifetime behavior does not interpret arbitrary spell names or implement the remaining target, transformation and action-economy models.
+
+Twenty-seven additional native clauses receive code atoms with paired record/selection-removal tests. These include eight legacy cleric grants, eight subclass advantage notes, five fixed skill grants, Warden's selected save, Battlecaster's selected weapon, Woodwise's selected skill, Syndicate Spy's Forgery Kit and the two spell-attack Advantage sentences. Native benefits receive no duplicate data effect. White Necromancer's difference removes both existing skill sources, preserving unrelated spells and advantage rules. Eight additional legacy level-1 cases independently verify the source level instead of inheriting the merged feature-row level.
+
+## Current verification
+
+| Check | Result |
+|---|---|
+| Build and syntax | PASS, build.py generated index.html and sw.js, edited JS passed node --check |
+| clause_gate --no-write, then gate-written baseline | PASS, 5,325 uncovered, 0 newly uncovered IDs against the original 5,460 |
+| zero_miss_fx | PASS, 598 cases, 0 failed |
+| zero_miss_measure | PASS, 752 units, miss 0 in both 2024 and 2014, 0 new miss and 0 new card-or-miss |
+| consumable_lifecycle | PASS, 52 checks at 390x844 and 1250x850, real Drink/End controls, inventory depletion/removal, Apply, reload and maximum-speed rendering |
+| solid_contract | PASS, 4,829 checks, 175,672 handler runs, 6,420 patches, 2,587 entries, 180 sheet groups, 53 class rules, 8,706 sheet calls, 233 handlers reached, 4,430 sheet entries checked against schema |
+| golden_builds | PASS, 1,479 checks |
+| solid_ui_contract | PASS, 308 checks, 0 failed |
+| scenarios | PASS, 24 checks, all three scenarios at both required viewports, 0 page errors and 0 native dialogs |
+| solid_snapshot | PASS, 2,997 builds, 0 page errors and 0 build errors, hash e61e4f8bc717e4f0, identical to the prior audited checkpoint |
+| Main snapshot comparison | Same 198 reviewed difference keys as the prior checkpoint. Main reference has 2,997 builds, hash 60dc8e67e7772446, 0 page/build errors |
+| solid_builder_diff --base /workspace/ds-palpal | PASS, 3,890 inputs on each side, IDENTICAL c47961d793b8c15b |
+| tsc_gate | PASS, SCORE 200, no WORSE |
+| html_gate | PASS, SCORE 250 |
+| fx_overlap | PASS, 1,362 names in 30 files, 151 documented overlaps, no new exception |
+| guard_all --enforce | PASS, 0 new violations, exit 0 |
+
+No required test was skipped. The immutable main snapshot was already run in this session and reused as the reference. The final model-data/engine snapshot is identical to the prior checkpoint because its existing matrix does not carry these potions. Dedicated effect and lifecycle cases exercise the ten new potions instead. The subsequent speed-panel-only change reads derived movement without mutating C or D and passes its dedicated UI checks. Main's 198 differences remain the previously reviewed feature changes and inherited f6d77cb1 Extra Attack changes. The snapshot difference tool exits 1 for those expected differences.
+
+The three required scenarios saved six storage captures and ten screenshots. The dedicated lifecycle run saved both viewport states and screenshots. Additional captures waited for the character-opening animation and were visually inspected. A temporary development run exposed a UI branch-budget violation, fixed by separating movement resolution from defense rendering. Another test run compared whitespace in a speed label, corrected to check one rendered mode and its numerical maximum. Neither failed run is counted as a pass.
+
+The only observed first-render item-link issue is recorded in requests.md. The Giant Strength paired tests warm their lazy cross-reference index before the measured builds. Their allowed paths remain restricted to the actual ability, attacks and effect-state changes. They do not permit arbitrary inventory HTML changes.
+
+## Cumulative audit, seed 11
+
+The closed pool has 135 unique sentences. A unique 150-sentence sample is impossible, so every available sentence is included in seed-11 shuffled order below. The 103 earlier reviews are retained and the 32 new closures were reviewed against their source text, source level, edition, compound clauses and paired proof. The earlier Alchemist/Artificer scope error remains the single corrected rule error in the cumulative audit. No additional rule error was found in the new closures. Test-development issues (a score-output fixture expression, a missing published hook bridge and a lazy cross-reference comparison) were fixed before this validated checkpoint and are not presented as passing runs.
+
+| # | Sentence ID | Source review |
+|---:|---|---|
+| 1 | sub&#124;Rogue/Scout&#124;Ambush Master#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 2 | feat&#124;Dungeon Delver&#124;Dungeon Delver#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 3 | sub&#124;Warlock/The Predator&#124;Form of the Beast#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 4 | feat&#124;Ace Pilot&#124;Ace Pilot#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 5 | feat&#124;Ley-Bound&#124;Ley-Bound#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 6 | feat&#124;Syndicate Spy&#124;Syndicate Spy#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 7 | sub&#124;Druid/Circle of Configuration&#124;Mecha Configuration#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 8 | sub&#124;Monster Hunter/Occultist Guild&#124;Arcane Interference#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 9 | feat&#124;Iron Gut&#124;Iron Gut#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 10 | item&#124;dmg&#124;Potion of Flying#1 | Explicit DMGI self benefit and duration checked, active/off and empty-inventory tests. |
+| 11 | item&#124;dmg&#124;Potion of Climbing#2 | Explicit DMGI self benefit and duration checked, active/off and empty-inventory tests. |
+| 12 | feat&#124;Beastperson&#124;Beastperson#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 13 | item&#124;nf&#124;Mythallar Cloak#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 14 | item&#124;dmg&#124;Mythallar Cloak#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 15 | sub&#124;Sorcerer/Haunted Sorcery&#124;Deathly Pallor#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 16 | sub&#124;Captain/Siegeball Jersey&#124;Sports Fanatic#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 17 | sub&#124;Fighter/Couatl Herald&#124;One of the People#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 18 | sub&#124;Wizard/Blood Magic (Deep Magic)&#124;Blood Savant#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 19 | sub&#124;Cleric/Void Domain&#124;Messenger of the Void#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 20 | feat&#124;Skill Expert (2014)&#124;Skill Expert (2014)#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 21 | sub&#124;Cleric/Beer Domain&#124;Fire in the Belly#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 22 | sub&#124;Wizard/Necromancer&#124;Necromancy Spellbook#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 23 | sub&#124;Druid/Circle of the Land (2014)&#124;Land's Stride#3 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 24 | feat&#124;Syndicate Spy&#124;Syndicate Spy#10 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 25 | sub&#124;Sorcerer/Boreal Bloodline&#124;Gelid Form#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 26 | sub&#124;Ranger/Bounty Hunter&#124;Threat Assessment#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 27 | item&#124;tsdm&#124;Ring of Spacewalking#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 28 | sub&#124;Cleric/Dragon Domain&#124;Bonus Proficiency#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 29 | item&#124;dmg&#124;Mythallar Cloak#6 | Previous 103-sentence audit retained, no source behavior changed. |
+| 30 | sub&#124;Cleric/Strength Domain (PSA)&#124;Bonus Proficiency#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 31 | sub&#124;Cleric/Death Domain&#124;Bonus Proficiency#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 32 | feat&#124;Gun-Mage Adept&#124;Gun-Mage Adept#3 | Prior G2 category/kind, level and edition checks retained, thrown melee excluded. |
+| 33 | item&#124;dmg&#124;Potion of Climbing#1 | Explicit DMGI self benefit and duration checked, active/off and empty-inventory tests. |
+| 34 | sub&#124;Dancer/Fire Dancer&#124;Flame Twirling#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 35 | feat&#124;Gambler&#124;Gambler#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 36 | sub&#124;Sorcerer/Frost Sorcery&#124;Cold-Hearted#11 | Previous 103-sentence audit retained, no source behavior changed. |
+| 37 | sub&#124;Monk/Warrior of Gravity&#124;Plunging Strike#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 38 | sub&#124;Barbarian/Path of the Glacier&#124;Permafrost#7 | Previous 103-sentence audit retained, no source behavior changed. |
+| 39 | sub&#124;Cleric/Solidarity Domain (PSA)&#124;Bonus Proficiency#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 40 | feat&#124;Echoing Soul&#124;Echoing Soul#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 41 | feat&#124;Inspirational Caster&#124;Inspirational Caster#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 42 | sub&#124;Rogue/Scout&#124;Survivalist#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 43 | sub&#124;Vagabond/Feylost&#124;Fey Moods#14 | Previous 103-sentence audit retained, no source behavior changed. |
+| 44 | sub&#124;Paladin/Oath of Glory (2014)&#124;Living Legend#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 45 | sub&#124;Cleric/Forge Domain&#124;Soul of the Forge#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 46 | feat&#124;Lakshay: Oni&#124;Lakshay: Oni#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 47 | sub&#124;Cleric/Apocalypse Domain&#124;Herald of the Apocalypse#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 48 | sub&#124;Cleric/Zeal Domain (PSA)&#124;Bonus Proficiencies#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 49 | sub&#124;Monster Hunter/Occultist Guild&#124;Acolyte of the Occult#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 50 | feat&#124;Iron Gut&#124;Iron Gut#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 51 | item&#124;dmg&#124;Potion of Pugilism#1 | Explicit DMGI self benefit and duration checked, active/off and empty-inventory tests. |
+| 52 | sub&#124;Warlock/The Fathomless&#124;Oceanic Soul#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 53 | sub&#124;Warden/Storm Sentinel&#124;Stormlord#9 | Previous 103-sentence audit retained, no source behavior changed. |
+| 54 | feat&#124;Envoy Specialist&#124;Envoy Specialist#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 55 | sub&#124;Cleric/Prophecy Domain&#124;It Was Foretold#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 56 | feat&#124;Symbiotic Being&#124;Symbiotic Being#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 57 | sub&#124;Paladin/Oath of the Crown&#124;Unyielding Spirit#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 58 | feat&#124;Aereni Half-Life&#124;Aereni Half-Life#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 59 | feat&#124;Aereni Expertise&#124;Aereni Expertise#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 60 | sub&#124;Warden/Rimekeeper&#124;Hoarfrost Herald#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 61 | sub&#124;Wizard/Blood Mage&#124;Bonus Proficiency#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 62 | feat&#124;Squat Nimbleness&#124;Squat Nimbleness#8 | Previous 103-sentence audit retained, no source behavior changed. |
+| 63 | sub&#124;Warden/Diabolist&#124;Soul Broker#13 | Previous 103-sentence audit retained, no source behavior changed. |
+| 64 | sub&#124;Cleric/Time Domain&#124;Prescient Glimpses#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 65 | sub&#124;Wizard/Doomsayer&#124;Merciless Onslaught#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 66 | sub&#124;Alchemist/Mutagenist&#124;Advanced Mutation#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 67 | sub&#124;Warden/Rimekeeper&#124;Polar Acclimation#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 68 | sub&#124;Ranger/Winter Walker&#124;Frozen Haunt#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 69 | sub&#124;Wizard/White Necromancer&#124;Lore of Life and Death#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 70 | sub&#124;Warden/Nightgaunt&#124;Grave Keeper#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 71 | sub&#124;Ranger/Fey Wanderer (2014)&#124;Beguiling Twist#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 72 | sub&#124;Cleric/War Domain (2014)&#124;Bonus Proficiencies#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 73 | feat&#124;Free Sword Mercenary's Will&#124;Free Sword Mercenary's Will#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 74 | feat&#124;Quicksmithing&#124;Quicksmithing#8 | Previous 103-sentence audit retained, no source behavior changed. |
+| 75 | sub&#124;Fighter/Purple Dragon Knight (Banneret)&#124;Royal Envoy#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 76 | sub&#124;Vagabond/Feylost&#124;Fey Moods#16 | Previous 103-sentence audit retained, no source behavior changed. |
+| 77 | sub&#124;Wizard/Blood Magic (Deep Magic)&#124;Bonus Proficiency#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 78 | sub&#124;Investigator/Infernum&#124;Infernal Bargain#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 79 | sub&#124;Dancer/Mime&#124;Pantomime [Dance Style]#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 80 | sub&#124;Wizard/Blood Mage&#124;Blood Savant#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 81 | sub&#124;Warden/Godsworn&#124;Divine Mandate#7 | Previous 103-sentence audit retained, no source behavior changed. |
+| 82 | sub&#124;Ranger/Gloom Stalker (2014)&#124;Umbral Sight#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 83 | sub&#124;Druid/Circle of Configuration&#124;Mecha Configuration#7 | Previous 103-sentence audit retained, no source behavior changed. |
+| 84 | feat&#124;Aberrant Spawn&#124;Aberrant Spawn#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 85 | sub&#124;Sorcerer/Shadow Magic&#124;Eyes of the Dark#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 86 | sub&#124;Cleric/Life Domain (2014)&#124;Bonus Proficiency#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 87 | sub&#124;Wizard/School of Abjuration&#124;Spell Resistance#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 88 | sub&#124;Alchemist/Mutagenist&#124;Bonus Proficiencies#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 89 | sub&#124;Sorcerer/Farseer&#124;Blood of the Seer#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 90 | sub&#124;Fighter/Rune Knight&#124;Giant's Might#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 91 | feat&#124;Proto-Man&#124;Proto-Man#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 92 | sub&#124;Craftsman/Trappers' Guild&#124;Danger Sense#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 93 | sub&#124;Vagabond/Siegeball Jersey&#124;Sports Fanatic#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 94 | sub&#124;Cleric/Moon Domain (Deep Magic)&#124;Moon's Grace#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 95 | sub&#124;Warlock/Undead Patron&#124;Necrotic Husk#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 96 | sub&#124;Sorcerer/Pyromancer (PSK)&#124;Fire in the Veins#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 97 | sub&#124;Monk/Way of the Ascendant Dragon&#124;Ascendant Aspect#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 98 | sub&#124;Sorcerer/Storm Sorcery&#124;Heart of the Storm#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 99 | sub&#124;Alchemist/Ooze Rancher&#124;Ooze Resilience#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 100 | item&#124;nf&#124;Mythallar Cloak#6 | Previous 103-sentence audit retained, no source behavior changed. |
+| 101 | sub&#124;Dancer/Danseur Macabre&#124;Ghoulish Calling#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 102 | sub&#124;Cleric/Justice Domain&#124;Holy Denunciation#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 103 | sub&#124;Alchemist/Ionizer&#124;Bonus Proficiencies#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 104 | sub&#124;Captain/Feylost&#124;Fey Moods#14 | Previous 103-sentence audit retained, no source behavior changed. |
+| 105 | sub&#124;Captain/Feylost&#124;Fey Moods#16 | Previous 103-sentence audit retained, no source behavior changed. |
+| 106 | class&#124;Warden&#124;Sentinel's Stand#4 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 107 | sub&#124;Alchemist/Mutagenist&#124;Advanced Mutation#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 108 | sub&#124;Warlock/Astral Griffon Patron&#124;Extradimensional Mastery#6 | Previous 103-sentence audit retained, no source behavior changed. |
+| 109 | sub&#124;Cleric/Forge Domain&#124;Saint of Forge and Fire#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 110 | feat&#124;Gambler (Dark Matter)&#124;Gambler (Dark Matter)#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 111 | sub&#124;Warlock/The Celestial&#124;Radiant Soul#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 112 | feat&#124;Actor (2014)&#124;Actor (2014)#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 113 | sub&#124;Wizard/Transmuter&#124;Wondrous Alteration#7 | Previous 103-sentence audit retained, no source behavior changed. |
+| 114 | item&#124;dmg&#124;Potion of Invulnerability#1 | Explicit DMGI self benefit and duration checked, active/off and empty-inventory tests. |
+| 115 | sub&#124;Ranger/Winter Walker&#124;Frozen Haunt#8 | Previous 103-sentence audit retained, no source behavior changed. |
+| 116 | sub&#124;Warlock/The Undying&#124;Among the Dead#2 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 117 | sub&#124;Barbarian/Path of the Frostrager&#124;Cold Resistance#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 118 | sub&#124;Wizard/Diviner&#124;The Third Eye#6 | Previous 103-sentence audit retained, no source behavior changed. |
+| 119 | sub&#124;Wizard/Dragon Mage&#124;Invoke Dragon Wings#5 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 120 | feat&#124;Green-Skin&#124;Green-Skin#6 | Previous 103-sentence audit retained, no source behavior changed. |
+| 121 | feat&#124;Blood Hound&#124;Blood Hound#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 122 | sub&#124;Warden/Diabolist&#124;Devil's Advocate#5 | Previous 103-sentence audit retained, no source behavior changed. |
+| 123 | sub&#124;Cleric/Nature Domain&#124;Bonus Proficiency#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 124 | sub&#124;Cleric/Twilight Domain&#124;Eyes of Night#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 125 | sub&#124;Fighter/Living Crucible&#124;Toxin Transmutation#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 126 | sub&#124;Sorcerer/Pyromancer (PSK)&#124;Fiery Soul#1 | Previous 103-sentence audit retained, no source behavior changed. |
+| 127 | sub&#124;Cleric/Tempest Domain&#124;Bonus Proficiencies#1 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 128 | item&#124;dmg&#124;Ring of Spacewalking#2 | Previous 103-sentence audit retained, no source behavior changed. |
+| 129 | feat&#124;Woodwise&#124;Woodwise#2 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 130 | sub&#124;Paladin/Oath of Thunder&#124;Child of the Storm#3 | Previous 103-sentence audit retained, no source behavior changed. |
+| 131 | sub&#124;Ranger/Winter Walker&#124;Frigid Explorer#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 132 | item&#124;dmg&#124;Spacewalkers#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 133 | item&#124;tsdm&#124;Spacewalkers#4 | Previous 103-sentence audit retained, no source behavior changed. |
+| 134 | feat&#124;Battlecaster&#124;Battlecaster#6 | Native source and level checked, paired record/selection removal proves the benefit. |
+| 135 | feat&#124;Industrious&#124;Industrious#7 | Previous 103-sentence audit retained, no source behavior changed. |
+
+
+## Work still open
+
+The 5,325 remaining uncovered clauses remain open, including 48 initial G1 candidates. New target conditions, ally auras, spell transformations, per-target actions, instant healing and resource spending still need their own models. The potion-lifetime question is resolved for the ten explicit self benefits above. Readings that invoke additional spell behavior remain undecided in rules-notes.md. No claim is made that the remaining work is all G3. The original triage and prior validated checkpoint follow as history.
+
+The four owner-reserved sheet issues remain unchanged: Gloom Stalker 2014 Iron Mind, Ranger 6 Roving in 2014, Draconic Bloodline 2014 level and Attack action text "per Extra Attack".
+
+---
+
+# Historical checkpoint at ed1559a2
+
 
 This is a validated partial implementation, not completion of all 5,460 initial sentences. Phase 1's conservative ledger remains below. Seventy-five initial G1 candidates still need implementation or a tested code-record mapping. No unresolved candidate is claimed to require a new model merely because it was placed in G3.
 

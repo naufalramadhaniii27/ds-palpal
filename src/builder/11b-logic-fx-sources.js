@@ -19,4 +19,11 @@ registerFxSource({id:"feats",items:false,collect:function(ctx){const G=ctx.G,out
  out.push({list:((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),kind:"feat",owner:f.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+f.n+" feat)"},okey:f.key||f.s,alias:{"@asi":"@sub:"+fab,"@abpick":"@sub:"+fpa}})});return out}});
 /* equipped (and attuned when needed) magic items: row gx and GX.item[name] */
 registerFxSource({id:"items",items:true,collect:function(ctx){const G=ctx.G;return activeFx().map((q) =>{
- return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
+ return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]).filter((e) =>!e.consume),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
+
+/* Consumable effects have a lifetime independent of their inventory row. Available
+   while stock remains, active until explicitly ended. S.fxT remains a boolean map.
+   Multiple bottles never multiply an effect. Expiry is tracked by the player. */
+registerFxSource({id:"consumables",items:true,collect:function(ctx){const out=[];
+ Object.keys(ctx.G.item||{}).forEach((n) =>{const list=ctx.G.item[n].filter((e) =>e.consume&&e.toggle&&((ctx.fxT||{})[e.toggle.id]===true||(B.inv||[]).some((it) =>it.n===n&&+it.q>0)));
+  if(list.length)out.push({list:list,kind:"item",owner:n,lv:ctx.TL,pre:"",lblOf:(name) =>name+" (consumed item)"})});return out}});

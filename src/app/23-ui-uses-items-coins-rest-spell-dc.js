@@ -72,9 +72,15 @@ export function spSlotsH(l,rows){ if(!l) return ""; let o="", r=(D.res||[]).filt
   if(pr&&rows.some((p) =>{return spPact(p[0])})) o+='<span class="spsl"><small>PACT</small>'+boxes(used(pr.k,pr.max),pr.max,pr.k,pr.n)+'</span>';
   return o?'<span class="spslw">'+o+'</span>':""; }
 /* RU35 no. 7: Speed and Defenses, always shown */
-function renderSpeedDef(){ const e=document.getElementById("speeds"); if(e){ const sp=Object.assign({},C.speeds||{}); if(D.cf&&D.cf.fly&&!sp.fly) sp.fly=D.cf.fly;/* v22 */
+/* Resolve and merge movement sources separately from rendering defenses. */
+function modeSpeed(x){return x.v==="walk"?D.speed:(D.cf&&D.cf.speed0.length?0:exSpd(num(x.v,0)))}
+function speedModes(){const sp=Object.assign({},C.speeds||{});
+ const merge=(k,x) =>{if(!sp[k]||modeSpeed(x)>modeSpeed(sp[k]))sp[k]=x};
+ (C.moves||[]).forEach((m) =>{if(m&&["fly","swim","climb","burrow"].includes(m.m)&&Number.isFinite(+m.v))merge(m.m,{v:+m.v,s:m.s||""})});
+ if(D.cf&&D.cf.fly)merge("fly",D.cf.fly);return sp}
+function renderSpeedDef(){ const e=document.getElementById("speeds"); if(e){ const sp=speedModes();
     const KS=["fly","swim","climb","burrow"], NM={fly:"Fly",swim:"Swim",climb:"Climb",burrow:"Burrow"};
-    render(html`<div class="sense"><span class="bonus">${D.speed}</span><span>Walking, ft</span></div>${KS.filter((k) => sp[k]).map((k) =>{ const x=sp[k], v=x.v==="walk"?D.speed:(D.cf&&D.cf.speed0.length?0:exSpd(num(x.v,0))); return html`<div class="sense"><span class="bonus">${v}</span><span>${NM[k]}, ft<small class="muted"> ${x.s||""}</small></span></div>`; })}${KS.some((k) => sp[k])?null:html`<p class="muted dnone">No other speeds</p>`}`,e); }
+    render(html`<div class="sense"><span class="bonus">${D.speed}</span><span>Walking, ft</span></div>${KS.filter((k) => sp[k]).map((k) =>{ const x=sp[k], v=modeSpeed(x); return html`<div class="sense"><span class="bonus">${v}</span><span>${NM[k]}, ft<small class="muted"> ${x.s||""}</small></span></div>`; })}${KS.some((k) => sp[k])?null:html`<p class="muted dnone">No other speeds</p>`}`,e); }
   const f=document.getElementById("defs"); if(f){ const L=(C.defenses||[]).concat(D.cf?D.cf.res:[]),/* v22 */ g=function(t){ return L.filter((d) =>{return d.t===t}); };
     const sec=function(t,lbl,none){ const x=g(t); return html`<h3 class="defh">${lbl}</h3>${x.length?x.map((d) => html`<div class="defl"><b>${d.v}</b><small>${d.s}</small></div>`):html`<p class="muted dnone">${none}</p>`}`; };
     const oth=L.filter((d) =>{return ["Resistance","Immunity","Vulnerability"].indexOf(d.t)<0});

@@ -47,4 +47,17 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  I("Ring of Spacewalking",{"n":"Zero-gravity flight","toggle":{"id":"zero-gravity","label":"In zero gravity","default":false},"mv":{"fly":"speed"}});
  I("Spacewalkers",{"n":"Zero-gravity flight","toggle":{"id":"zero-gravity","label":"In zero gravity","default":false},"mv":{"fly":"speed"}});
  (GX.feat["Gun-Mage Adept"]=GX.feat["Gun-Mage Adept"]||[]).push({n:"Ranged Weapon Proficiency",l:4,ed:"2024",weaponGroups:[{cat:"M",k:"R"}]});
+ /* Consumables use an independent active lifetime, including after quantity zero.
+    Source durations and benefits are checked against DMGI's own item text. */
+ I("Potion of Climbing",{n:"Potion of Climbing",consume:{duration:"1 hour"},toggle:{id:"consumed-climbing",label:"Climbing potion effect (1 hour)",default:false},mv:{climb:"speed"},advOn:["Strength (Athletics) checks to climb"]});
+ I("Potion of Flying",{n:"Potion of Flying",consume:{duration:"1 hour"},toggle:{id:"consumed-flying",label:"Flying potion effect (1 hour)",default:false},mv:{fly:"speed"},defs:[["Note","This flight allows hovering. If it ends in the air, you fall unless another effect keeps you aloft."]]});
+ I("Potion of Invulnerability",{n:"Potion of Invulnerability",consume:{duration:"1 minute"},toggle:{id:"consumed-invulnerability",label:"Invulnerability potion effect (1 minute)",default:false},res:["Acid","Bludgeoning","Cold","Fire","Force","Lightning","Necrotic","Piercing","Poison","Psychic","Radiant","Slashing","Thunder"]});
+ I("Potion of Giant Strength (cloud)",{"n":"Potion of Giant Strength (cloud)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-cloud","label":"Cloud giant strength effect (1 hour)","default":false},"abSet":[["STR",27]]});
+ I("Potion of Giant Strength (fire)",{"n":"Potion of Giant Strength (fire)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-fire","label":"Fire giant strength effect (1 hour)","default":false},"abSet":[["STR",25]]});
+ I("Potion of Giant Strength (frost)",{"n":"Potion of Giant Strength (frost)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-frost","label":"Frost giant strength effect (1 hour)","default":false},"abSet":[["STR",23]]});
+ I("Potion of Giant Strength (hill)",{"n":"Potion of Giant Strength (hill)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-hill","label":"Hill giant strength effect (1 hour)","default":false},"abSet":[["STR",21]]});
+ I("Potion of Giant Strength (stone)",{"n":"Potion of Giant Strength (stone)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-stone","label":"Stone giant strength effect (1 hour)","default":false},"abSet":[["STR",23]]});
+ I("Potion of Giant Strength (storm)",{"n":"Potion of Giant Strength (storm)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-storm","label":"Storm giant strength effect (1 hour)","default":false},"abSet":[["STR",29]]});
+ I("Potion of Pugilism",{"n":"Potion of Pugilism","consume":{"duration":"10 minutes"},"toggle":{"id":"consumed-pugilism","label":"Pugilism potion effect (10 minutes)","default":false},"atkDice":[{"when":"unarmed","d":"1d6","t":"Force","note":"On each hit while the potion is active"}]});
+
 })();

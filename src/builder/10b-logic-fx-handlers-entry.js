@@ -16,6 +16,6 @@ registerFxHandler("entry",{id:"spcls-alias",group:"spellcasting",phase:"prepare"
 registerFxHandler("entry",{id:"abpick-pick",group:"abilityScores",phase:"prepare",fields:["abPick","pick"],uses:[],run:function(e,ctx){const ap=e.abPick;if(!(ap&&ap.from&&!(e.pick||[]).some((q) =>{return q.k===ap.k})))return null;
  return {set:{pick:(e.pick||[]).concat([{k:ap.k,t:"multi",n:ap.n||1,title:ap.title||"Ability score",list:ap.from.map((k) =>{return [ABFULL[k]||k,""]})}])}}}});
 /* toggle {id,label,default}: the effect counts only while the state is on. Off: only the keys in TGKEEP stay (so picks and the toggle list still work) */
-export const TGKEEP=["n","l","when","pick","pickLv","toggle","abPick","kind","owner","lv","pre","okey","idx","lbl","ocls"];
+export const TGKEEP=["n","l","when","pick","pickLv","toggle","consume","abPick","kind","owner","lv","pre","okey","idx","lbl","ocls"];
 registerFxHandler("entry",{id:"toggle",group:"toggle",phase:"post",fields:["toggle"],uses:["fxT"],eKeys:["*"],run:function(o,ctx){if(!o.toggle)return null;const st=ctx.fxT[o.toggle.id],on=st==null?!!o.toggle.default:!!st;
  if(on)return {replace:Object.assign({},o,{tgOn:on})};const k={off:1,tgOn:false};TGKEEP.forEach((f) =>{if(o[f]!==undefined)k[f]=o[f]});return {replace:k}}});

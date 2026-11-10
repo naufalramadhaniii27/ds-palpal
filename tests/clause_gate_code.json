@@ -1343,6 +1343,507 @@
    ],
    "test": "Z3 U6 computed Inspirational Caster",
    "note": "Existing native feat pick or defense-note handler. Paired tests prove the represented benefit without adding a duplicate GX effect."
+  },
+  {
+   "id": "u11-sub-cleric-life-domain-2014-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Cleric/Life Domain (2014)",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ heavy\\ armor\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-subclass-grant\""
+   ],
+   "test": "Z3 U11 native sub|Cleric/Life Domain (2014)|Bonus Proficiency#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-nature-domain-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Cleric/Nature Domain",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ heavy\\ armor\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-subclass-grant\""
+   ],
+   "test": "Z3 U11 native sub|Cleric/Nature Domain|Bonus Proficiency#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-tempest-domain-bonus-proficiencies-1",
+   "kind": "sub",
+   "owner": "Cleric/Tempest Domain",
+   "name": "Bonus Proficiencies",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ martial\\ weapons\\ and\\ heavy\\ armor\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-subclass-grant\""
+   ],
+   "test": "Z3 U11 native sub|Cleric/Tempest Domain|Bonus Proficiencies#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-war-domain-2014-bonus-proficiencies-1",
+   "kind": "sub",
+   "owner": "Cleric/War Domain (2014)",
+   "name": "Bonus Proficiencies",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ martial\\ weapons\\ and\\ heavy\\ armor\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-subclass-grant\""
+   ],
+   "test": "Z3 U11 native sub|Cleric/War Domain (2014)|Bonus Proficiencies#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-death-domain-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Cleric/Death Domain",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ martial\\ weapons\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-subclass-grant\""
+   ],
+   "test": "Z3 U11 native sub|Cleric/Death Domain|Bonus Proficiency#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-solidarity-domain-psa-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Cleric/Solidarity Domain (PSA)",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ heavy\\ armor\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-subclass-grant\""
+   ],
+   "test": "Z3 U11 native sub|Cleric/Solidarity Domain (PSA)|Bonus Proficiency#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-strength-domain-psa-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Cleric/Strength Domain (PSA)",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ heavy\\ armor\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-subclass-grant\""
+   ],
+   "test": "Z3 U11 native sub|Cleric/Strength Domain (PSA)|Bonus Proficiency#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-zeal-domain-psa-bonus-proficiencies-1",
+   "kind": "sub",
+   "owner": "Cleric/Zeal Domain (PSA)",
+   "name": "Bonus Proficiencies",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ martial\\ weapons\\ and\\ heavy\\ armor\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-subclass-grant\""
+   ],
+   "test": "Z3 U11 native sub|Cleric/Zeal Domain (PSA)|Bonus Proficiencies#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-dragon-domain-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Cleric/Dragon Domain",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "double",
+    "pb"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ arcana,\\ and\\ your\\ proficiency\\ bonus\\ is\\ doubled\\ on\\ its\\ checks\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "XFX.skills=function(feats,p,prof,exp)"
+   ],
+   "test": "Z3 U11 native sub|Cleric/Dragon Domain|Bonus Proficiency#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-prophecy-domain-it-was-foretold-1",
+   "kind": "sub",
+   "owner": "Cleric/Prophecy Domain",
+   "name": "It Was Foretold",
+   "lvl": 17,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ dexterity\\ saves,\\ wisdom\\ \\(perception\\)\\ checks,\\ and\\ wisdom\\ \\(insight\\)\\ checks\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],n)})"
+   ],
+   "test": "Z3 U11 native sub|Cleric/Prophecy Domain|It Was Foretold#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-cleric-time-domain-prescient-glimpses-1",
+   "kind": "sub",
+   "owner": "Cleric/Time Domain",
+   "name": "Prescient Glimpses",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "double",
+    "pb"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ insight\\ and\\ perception,\\ and\\ your\\ proficiency\\ bonus\\ is\\ doubled\\ for\\ any\\ ability\\ check\\ that\\ uses\\ either\\ skill\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "XFX.skills=function(feats,p,prof,exp)"
+   ],
+   "test": "Z3 U11 native sub|Cleric/Time Domain|Prescient Glimpses#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-craftsman-trappers-guild-danger-sense-1",
+   "kind": "sub",
+   "owner": "Craftsman/Trappers' Guild",
+   "name": "Danger Sense",
+   "lvl": 3,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ dexterity\\ saving\\ throws\\ unless\\ you\\ have\\ the\\ incapacitated\\ condition\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],n)})"
+   ],
+   "test": "Z3 U11 native sub|Craftsman/Trappers' Guild|Danger Sense#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-druid-circle-of-the-land-2014-land-s-stride-3",
+   "kind": "sub",
+   "owner": "Druid/Circle of the Land (2014)",
+   "name": "Land's Stride",
+   "lvl": 6,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ against\\ plants\\ that\\ are\\ magically\\ created\\ or\\ shaped\\ to\\ hinder\\ movement,\\ such\\ as\\ the\\ entangle\\ spell\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],n)})"
+   ],
+   "test": "Z3 U11 native sub|Druid/Circle of the Land (2014)|Land's Stride#3",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-paladin-oath-of-the-crown-unyielding-spirit-1",
+   "kind": "sub",
+   "owner": "Paladin/Oath of the Crown",
+   "name": "Unyielding Spirit",
+   "lvl": 15,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ to\\ avoid\\ being\\ paralyzed\\ or\\ stunned\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],n)})"
+   ],
+   "test": "Z3 U11 native sub|Paladin/Oath of the Crown|Unyielding Spirit#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-ranger-fey-wanderer-2014-beguiling-twist-1",
+   "kind": "sub",
+   "owner": "Ranger/Fey Wanderer (2014)",
+   "name": "Beguiling Twist",
+   "lvl": 7,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saves\\ against\\ being\\ charmed\\ or\\ frightened\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],n)})"
+   ],
+   "test": "Z3 U11 native sub|Ranger/Fey Wanderer (2014)|Beguiling Twist#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-rogue-scout-ambush-master-1",
+   "kind": "sub",
+   "owner": "Rogue/Scout",
+   "name": "Ambush Master",
+   "lvl": 13,
+   "cls": [
+    "ADV",
+    "INIT"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ initiative\\ rolls\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],n)})"
+   ],
+   "test": "Z3 U11 native sub|Rogue/Scout|Ambush Master#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-warlock-the-undying-among-the-dead-2",
+   "kind": "sub",
+   "owner": "Warlock/The Undying",
+   "name": "Among the Dead",
+   "lvl": 3,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saves\\ against\\ disease\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],n)})"
+   ],
+   "test": "Z3 U11 native sub|Warlock/The Undying|Among the Dead#2",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-wizard-school-of-abjuration-spell-resistance-1",
+   "kind": "sub",
+   "owner": "Wizard/School of Abjuration",
+   "name": "Spell Resistance",
+   "lvl": 14,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ saving\\ throws\\ against\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "(x.notes||[]).forEach((r) =>{add(r[0],r[1],n)})"
+   ],
+   "test": "Z3 U11 native sub|Wizard/School of Abjuration|Spell Resistance#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-wizard-blood-mage-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Wizard/Blood Mage",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ medicine\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "XFX.skills=function(feats,p,prof,exp)"
+   ],
+   "test": "Z3 U11 native sub|Wizard/Blood Mage|Bonus Proficiency#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-wizard-white-necromancer-lore-of-life-and-death-1",
+   "kind": "sub",
+   "owner": "Wizard/White Necromancer",
+   "name": "Lore of Life and Death",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "double",
+    "pb"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ medicine\\ and\\ religion,\\ and\\ your\\ proficiency\\ bonus\\ is\\ doubled\\ on\\ wisdom\\ \\(medicine\\)\\ checks\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "XFX.skills=function(feats,p,prof,exp)"
+   ],
+   "test": "Z3 U11 native sub|Wizard/White Necromancer|Lore of Life and Death#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u11-sub-wizard-blood-magic-deep-magic-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Wizard/Blood Magic (Deep Magic)",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ medicine\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "XFX.skills=function(feats,p,prof,exp)"
+   ],
+   "test": "Z3 U11 native sub|Wizard/Blood Magic (Deep Magic)|Bonus Proficiency#1",
+   "note": "Existing native grant. Its paired test removes just the underlying table field and asserts the benefit disappears. No additive effect is introduced. SUB_GRANT minimum level 1 is tested independently from the merged 2024 feature-row level."
+  },
+  {
+   "id": "u12-class-warden-sentinel-s-stand-4",
+   "kind": "class",
+   "owner": "Warden",
+   "name": "Sentinel's Stand",
+   "lvl": 1,
+   "cls": [
+    "CHOICE",
+    "PROF",
+    "SAVE"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ one\\ saving\\ throw\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/12c-logic-sheet-handlers-core.js",
+    "id:\"fx-save-from\""
+   ],
+   "test": "Z3 U12 computed class|Warden|Sentinel's Stand#4",
+   "note": "Existing selected proficiency or save grant, tested with and without the selection."
+  },
+  {
+   "id": "u12-attack-advantage-doomsayer",
+   "kind": "sub",
+   "owner": "Wizard/Doomsayer",
+   "name": "Merciless Onslaught",
+   "lvl": 10,
+   "cls": [
+    "ADV",
+    "ATK"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ spell\\ attack\\ rolls\\ against\\ frightened\\ or\\ poisoned\\ creatures\\.$",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "(e.advOn||[]).forEach((t) =>{add(\"Note\",\"Advantage on \"+t,e.lbl)})"
+   ],
+   "test": "Z3 U5 advantage Doomsayer Merciless Onslaught",
+   "note": "Attack-roll Advantage changes attack behavior. The existing state-difference case proves the qualified advantage line appears once, not an attack bonus or a spell grant."
+  },
+  {
+   "id": "u12-attack-advantage-dragon-mage",
+   "kind": "sub",
+   "owner": "Wizard/Dragon Mage",
+   "name": "Invoke Dragon Wings",
+   "lvl": 10,
+   "cls": [
+    "ADV",
+    "ATK"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ spell\\ attack\\ rolls\\.$",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "(e.advOn||[]).forEach((t) =>{add(\"Note\",\"Advantage on \"+t,e.lbl)})"
+   ],
+   "test": "Z3 U5 advantage Dragon Mage Invoke Dragon Wings",
+   "note": "Attack-roll Advantage changes attack behavior. The existing state-difference case proves the qualified advantage line appears once, not an attack bonus or a spell grant."
+  },
+  {
+   "id": "u12-forgery-kit",
+   "kind": "feat",
+   "owner": "Syndicate Spy",
+   "name": "Syndicate Spy",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ proficiency\\ with\\ the\\ forgery\\ kit\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"fx-profs\""
+   ],
+   "test": "Z3 U7 feat Syndicate Spy",
+   "note": "The U7 test independently checks all three granted kits. The gate consumes the shared tools atom on the earlier sentence."
+  },
+  {
+   "id": "u12-feat-battlecaster-battlecaster-6",
+   "kind": "feat",
+   "owner": "Battlecaster",
+   "name": "Battlecaster",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ one\\ simple\\ or\\ martial\\ weapon\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-gx-weapon-picks\""
+   ],
+   "test": "Z3 U12 computed feat|Battlecaster|Battlecaster#6",
+   "note": "Existing selected proficiency or save grant, tested with and without the selection."
+  },
+  {
+   "id": "u12-feat-woodwise-woodwise-2",
+   "kind": "feat",
+   "owner": "Woodwise",
+   "name": "Woodwise",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ survival\\ or\\ nature,\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "id:\"skill-choices\""
+   ],
+   "test": "Z3 U12 computed feat|Woodwise|Woodwise#2",
+   "note": "Existing selected proficiency or save grant, tested with and without the selection."
   }
  ]
 }

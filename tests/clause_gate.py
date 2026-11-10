@@ -322,6 +322,11 @@ def atoms_from(e, src, weak=False, extra=()):
     out = []
     if not isinstance(e, dict):
         return out
+    # A consumed effect carries an explicit duration and an independent toggle
+    # lifetime. Duration explains numbers on its actual benefit, never grants a
+    # mechanical class by itself.
+    if isinstance(e.get("consume"), dict) and isinstance(e.get("toggle"), dict) and e["toggle"].get("default") is False:
+        extra = set(extra) | nums_in(e["consume"].get("duration"))
     for k, v in e.items():
         cl = FIELD_CLS.get(k)
         if not cl or v in (None, False, [], {}, "", 0) and k not in ("ac",):
@@ -1065,6 +1070,14 @@ def selftest():
     c6 = synth("species", "S", "T", "You feel at home in the forest. At level 5 you are stronger in spirit.", [])
     r = analyze(c6)
     check("6 inert sentence and a level gate are not mechanical", all(x["status"] == "inert" for x in r), str([x["status"] for x in r]))
+    cp = {"consume": {"duration": "1 hour"}, "toggle": {"id": "test-potion", "default": False}, "mv": {"fly": "speed"}}
+    ca = atoms_from(cp, "GX.item|Test Potion")
+    cr = analyze(synth("item", "dmg", "Test Potion", "You gain a Fly Speed equal to your Speed for 1 hour.", ca))[0]
+    check("consumed duration explains the typed speed benefit", cr["status"] == "covered", cr["why"])
+    cp.pop("mv")
+    cr = analyze(synth("item", "dmg", "Test Potion", "You gain a Fly Speed equal to your Speed for 1 hour.", atoms_from(cp, "GX.item|Test Potion")))[0]
+    check("consumed duration alone cannot grant speed", cr["status"] == "uncovered", cr["why"])
+
     # 7 dice / DC / distance / duration conservation
     c7 = synth("item", "dmg", "Wand", "It deals 3d6 fire damage in a 20-foot radius for 10 minutes. DC 15 Dexterity save.", [Atom("DMG", {"3d6", "20", "10", "15"}, "d")])
     r = analyze(c7)

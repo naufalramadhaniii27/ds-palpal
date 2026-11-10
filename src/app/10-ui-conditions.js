@@ -41,8 +41,9 @@ export function condHTML(){
 export function fxList(){ const L=(C&&C.fxToggles)||(lateGet("D")&&lateGet("D").fxToggles)||[]; const T=(S&&S.fxT)||{}; return Array.isArray(L)?L.filter((t) =>t&&t.id).map((t) =>Object.assign({},t,{on:T[t.id]!=null?!!T[t.id]:!!t.on})):[]; }
 export function renderFxT(){ const el=$("#fxT"); if(!el) return; const L=fxList();
   if(!L.length){ el.hidden=true; el.innerHTML=""; return; } el.hidden=false;
-  el.innerHTML='<span class="cond-l" id="fxTl">Active effects</span><div class="fxt-g" role="group" aria-labelledby="fxTl">'+L.map((t) =>'<button type="button" role="switch" class="fxchip press'+(t.on?' on':'')+'" aria-checked="'+(!!t.on)+'" data-fxt="'+esc(t.id)+'"><i class="fxchip-k" aria-hidden="true"></i><span class="fxchip-t"><b>'+esc(t.label)+'</b>'+(t.src?'<small>'+esc(t.src)+'</small>':'')+'</span></button>').join("")+'</div>'; }
+  el.innerHTML='<span class="cond-l" id="fxTl">Active effects</span><div class="fxt-g" role="group" aria-labelledby="fxTl">'+L.map((t) =>'<button type="button" role="switch" class="fxchip press'+(t.on?' on':'')+'" aria-checked="'+(!!t.on)+'" data-fxt="'+esc(t.id)+'"><i class="fxchip-k" aria-hidden="true"></i><span class="fxchip-t"><b>'+esc(t.consume?(t.on?'End: ':'Drink: ')+t.label:t.label)+'</b>'+(t.src?'<small>'+esc(t.src)+'</small>':'')+'</span></button>').join("")+'</div>'; }
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-fxt]"); if(!b) return; e.preventDefault(); e.stopPropagation();
   const id=b.getAttribute("data-fxt"), t=fxList().filter((x) =>x.id===id)[0]; if(!t) return; const nv=!t.on;
+  if(t.consume&&nv){undoMark("Drink "+t.consume.item);if(!env.__bldConsume||!env.__bldConsume(id))return;S.fxT=S.fxT||{};S.fxT[id]=true;save();renderAll();return;}
   undoMark((nv?"Turn on ":"Turn off ")+t.label); S.fxT=S.fxT&&typeof S.fxT==="object"?S.fxT:{}; S.fxT[id]=nv; save(); try{ if(env.__bldFxToggle) env.__bldFxToggle(id,nv); }catch(_){ } renderAll();
   const nb=document.querySelector('[data-fxt="'+id.replace(/"/g,'\\"')+'"]'); if(nb) nb.focus({preventScroll:true}); },true);

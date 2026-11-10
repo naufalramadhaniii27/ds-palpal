@@ -128,3 +128,9 @@ Seen in the builder at Rules edition 2014 with Retromistika on (Sorcerer 7, Mist
 | Uncovered | Logic | Ranger 6 pada build 2014 mendapat Climb dan Swim Speed dari "Roving". Aturan `ranger-6-roving-speeds` berlabel "2024 only" | Probe: `C.moves` berisi climb:30 dan swim:30 di Ranger 6 2014 |
 | Uncovered | Data | Draconic Bloodline (2014): baris data Draconic Resilience bertulis level 3, kode memberi HP +1 per level mulai level 1 dan AC dasar 13 + Dex | Perlu salah satu diluruskan |
 | Uncovered | Logic | Fighter, Barbarian, Monk, Paladin, Ranger: aksi Attack menulis "Make one attack per Extra Attack" tanpa jumlah serangan | Kandidat: isi `extraAttack` 2/3/4 per level. Mengubah teks karakter resmi, perlu keputusan |
+
+## 2026-11-10, consumed effects: existing first-render item links
+
+The first render of Potion of Giant Strength (cloud) can show the generic words "Potion of Giant Strength" as plain text before the lazy item-reference index is warm. A subsequent render links the same words to the storm variant. The description, STR amount and potion mechanics are identical. This was observed by the paired effect test, not inferred from a book. The new U15 cases warm that item's reference index before comparing sheets, keeping their strict allowed-path checks rather than permitting arbitrary inventory HTML changes. Reference-index behavior was not changed in this task.
+
+Resolved in the consumed-effect work: the live speed panel read `C.speeds` but omitted GX `C.moves`, even though the engine calculated the latter and mentioned it in the Speed source. The panel now merges both representations by maximum displayed speed and preserves condition/Exhaustion adjustments. Dedicated UI checks cover potion flight appearing and ending, a stronger legacy source winning, and several GX sources producing one maximum. The four reserved sheet issues were not changed.

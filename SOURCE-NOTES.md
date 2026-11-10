@@ -657,3 +657,13 @@ Analisis dan angka: `reports/solid-s9-analysis.md`. Ringkas:
 | `classOnly:"Class"` | Gate an effect to its actual class/subclass source part. This uses the source class, including a multiclass part, rather than the primary class of the character. It is not a feat class prerequisite. | Alchemist / Mutagenist Advanced Mutation, l 10 |
 
 `fx-Z5.js` declares Piloting in the existing XSK registry (Dexterity, as named by the Battleframe feat text). The extra-skills handler creates that row only when an effect or proficiency calls for it. Existing storage keys and data shapes do not change.
+
+### Consumed-effect lifetime (2026-11-10)
+
+`consume:{duration:"1 hour"}` on a `GX.item[name]` entry marks a consumable effect. It requires a `toggle` with a unique id and `default:false`. The duration is a player-tracked label, not a wall-clock timer. The dedicated `consumables` source discovers it while any exact-name inventory row has positive quantity or its existing `S.fxT[id]` boolean is true. Ordinary equipped-item discovery excludes these entries, so two bottles or an equipped bottle never duplicate the benefit. Once activated, the effect survives zero stock, deleting its inventory row, Apply and reload. Ending it clears the same switch. Reacquiring stock makes an inactive control available again.
+
+`__bldConsume(id)` checks ownership, inactive state and stock, subtracts one from one matching row, saves the builder and rebuilds with an active-state override. The sheet's Drink control then saves `S.fxT[id]=true`. End uses the existing toggle path. `C.fxToggles` carries optional derived `consume:{item,duration}` metadata for the control label. The existing inventory quantity and boolean play-state map are reused, with no new storage key or input-state format. Old states with no `fxT` remain valid.
+
+This model intentionally needs player input for elapsed game time and early ending. It does not apply self-buff spell rules by interpreting spell names, spend target resources, or track a turn clock. Active copies of the same potion do not stack. End the current effect before drinking another bottle to refresh it. The first ten entries cover Climbing, Flying, Invulnerability, the six named Giant Strength potions and Pugilism. Their other spell-based or instantaneous potion counterparts are not silently treated as implemented.
+
+The speed panel now reads both legacy `C.speeds` and GX `C.moves`. It compares their displayed values after Exhaustion and movement conditions, merges by movement mode, and keeps the greatest value without summing duplicate sources. Existing conditional flight participates in the same comparison. This rendering change does not mutate either stored movement list or the computed sheet output.

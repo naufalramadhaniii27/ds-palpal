@@ -70,7 +70,7 @@ function fxCh(key,pre,kind,okey,any){return chPick(B.ch,key,pre,kind,okey,any)}
 /* fx engine v5: gfx() settles pbAdd first. The full list (items too) sums the numeric pbAdd of its entries and, when that differs from the value pbOf() uses, builds the list again once so "pb" values inside the entries are right */
 function gfx(noItem){const r=gfx0(noItem);if(noItem)return r;let n=0;r.forEach((e) =>{if(typeof e.pbAdd==="number")n+=e.pbAdd});if(n===getPbAdd())return r;setPbAdd(n);return gfx0(noItem)}
 /*ORCH-BEGIN gfx0: sources (11b-logic-fx-sources.js) say where entries come from, "entry" handlers (10b-logic-fx-handlers-entry.js) gate, prepare and finish each one. This loop knows no source kind and no field */
-function gfx0(noItem){const out=[],ctx0={ch:B.ch,fxT:fxtMap()},sctx={TL:TL(),G:gx(),noItem:!!noItem};
+function gfx0(noItem){const out=[],ctx0={ch:B.ch,fxT:fxtMap()},sctx={TL:TL(),G:gx(),noItem:!!noItem,fxT:ctx0.fxT};
  fxSources().forEach((s) =>{if(s.items&&noItem)return;
   s.collect(sctx).forEach((d) =>{const okey=d.okey||d.owner,ctx={src:{kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,alias:d.alias,ocls:d.ocls},ch:ctx0.ch,fxT:ctx0.fxT,rs:B.rs||""};
    (d.list||[]).forEach((e,i) =>{if(!e)return;e=foldFxPhase("entry","gate",e,ctx);if(e===null)return;e=foldFxPhase("entry","prepare",e,ctx);const en=e.n||d.owner;
@@ -91,7 +91,7 @@ function fxtMap(){if(FXTO)return FXTO;try{const st=sheetState();if(st&&st.fxT&&s
 /* gx pick key of pick k of an entry (same rule as gxPicks) */
 export function gxKey(e,k){const m=e.pre?/^m(\d+):/.exec(e.pre):null;return "gx-"+k+"-"+e.kind+"-"+e.okey+(m?"-m"+m[1]:"")}
 /* C.fxToggles: every toggle available to the character */
-export function fxToggles(){const seen={},out=[];gfx().forEach((e) =>{if(!e.toggle||seen[e.toggle.id])return;seen[e.toggle.id]=1;out.push({id:e.toggle.id,label:e.toggle.label||e.n,on:!!e.tgOn,src:e.lbl})});return out}
+export function fxToggles(){const seen={},out=[];gfx().forEach((e) =>{if(!e.toggle||seen[e.toggle.id])return;seen[e.toggle.id]=1;out.push({id:e.toggle.id,label:e.toggle.label||e.n,on:!!e.tgOn,src:e.lbl,...(e.consume?{consume:{item:e.owner,duration:e.consume.duration}}:{})})});return out}
 export {fxv,fxVal,fxOk,fxCh};
 
 export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
