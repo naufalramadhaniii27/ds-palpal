@@ -305,10 +305,10 @@ reg("CHOICE", "pick", "pickLv", "fsPick", "opts", "lin", "featPick", "fs", "wm",
 
 
 class Atom:
-    __slots__ = ("cls", "vals", "src", "weak", "i")
+    __slots__ = ("cls", "vals", "src", "weak", "i", "pool")
 
-    def __init__(self, cls, vals, src, weak=False):
-        self.cls, self.vals, self.src, self.weak, self.i = cls, set(vals), src, weak, 0
+    def __init__(self, cls, vals, src, weak=False, pool=False):
+        self.cls, self.vals, self.src, self.weak, self.i, self.pool = cls, set(vals), src, weak, 0, pool
 
 
 def atoms_from(e, src, weak=False, extra=()):
@@ -321,6 +321,17 @@ def atoms_from(e, src, weak=False, extra=()):
         if not cl or v in (None, False, [], {}, "", 0) and k not in ("ac",):
             continue
         vals = nums_in(v) | nums_in(e.get("min")) | set(extra)
+        if k == "ch" and isinstance(v, list) and len(v) >= 2 and all(not isinstance(x, (list, dict)) for x in v):
+            # a charges pool [max, regain, reset] states two amounts a text names in separate sentences ("has 10 charges", "regains 1d6 + 4 at dawn"): one atom each
+            # (uncovered-1, reports/uncovered-1.md). The reset word is no amount. A sentence still needs its own number to match its own part.
+            # A pool amount may be restated by a later sentence ("up to 6"): its numbers explain other sentences of the feature too (pool=True), but only the sentence that
+            # holds the atom is covered for the class. The notes after the reset word keep their numbers in a third atom.
+            for part in (v[0], v[1], v[2:]):
+                pv = nums_in(part)
+                if pv:
+                    for c in cl:
+                        out.append(Atom(c, pv | nums_in(e.get("min")) | set(extra), "%s.%s" % (src, k), weak, pool=True))
+            continue
         for c in cl:
             out.append(Atom(c, vals, "%s.%s" % (src, k), weak))
     return out
@@ -784,12 +795,20 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
                 cand.append((-score, res.index(r), c, j, a.weak))
     cand.sort()
     used_atoms, got = set(), set()
+    matched = collections.defaultdict(set)  # (sentence, class) -> numbers the atoms already given to it explain
     for ns, ri, c, j, weak in cand:
+        sv = {t for t, k in res[ri]["toks"]}
         if (ri, c) in got:
+            # a second atom of the same class for the same sentence only when it explains numbers no atom of that sentence explains yet
+            # (uncovered-1: "has 10 charges and regains 1d6 + 4 at dawn" needs the max atom and the regain atom of one pool). Every atom still serves one sentence.
+            if weak or not atoms[j].pool or ns >= 0 or j in used_atoms or not ((sv & atoms[j].vals) - matched[(ri, c)]):
+                continue
+            used_atoms.add(j); res[ri]["used"].append(j); matched[(ri, c)] |= sv & atoms[j].vals
             continue
         if j in used_atoms and not atoms[j].weak:
             continue
         got.add((ri, c))
+        matched[(ri, c)] |= sv & atoms[j].vals
         if not atoms[j].weak: used_atoms.add(j)
         res[ri]["used"].append(j)
     for ri, r in enumerate(res):
@@ -802,8 +821,8 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         assigned = set()
         for j in r["used"]:
             assigned |= atoms[j].vals
-        for j, a in enumerate(atoms):  # other atoms of the classes this sentence needs that no other sentence has claimed
-            if a.cls in r["need"] and (a.weak or j not in used_atoms):
+        for j, a in enumerate(atoms):  # other atoms of the classes this sentence needs that no other sentence has claimed (pool amounts may be restated)
+            if a.cls in r["need"] and (a.weak or a.pool or j not in used_atoms):
                 assigned |= a.vals
         wild = "*" in all_vals
         # dist and dur numbers: any atom of the feature explains them (records rarely keep units). dice, plain numbers, percents: the atoms assigned to this sentence,
@@ -914,6 +933,21 @@ def selftest():
     c7b = synth("item", "dmg", "Wand", "It deals 3d6 fire damage in a 20-foot radius for 10 minutes.", [Atom("DMG", {"2d6", "20", "10"}, "d")])
     r = analyze(c7b)
     check("7b dice 3d6 vs record 2d6 -> flagged", r[0]["status"] == "uncovered" and "3d6" in r[0]["unexplained"], r[0]["why"])
+    # 7d charges pool [max, regain, reset] (uncovered-1): the max and the regain are two amounts, a sentence that names both uses both atoms, each atom serves ONE sentence
+    pool = atoms_from({"ch": [10, "1d6+4", "dawn"]}, "item.ex|Staff")
+    c7d = synth("item", "dmg", "Staff", "The staff has 10 charges and regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20.", pool)
+    r = analyze(c7d)
+    check("7d pool: one sentence names the max and the regain -> covered", r[0]["status"] == "covered", r[0]["why"])
+    check("7d pool: the last-charge d20 roll is not explained by the pool", r[1]["status"] == "uncovered" and "1d20" in r[1]["unexplained"], r[1]["why"])
+    c7e = synth("item", "dmg", "Staff", "The staff has 10 charges. It regains 1d6 + 4 charges at dawn. Another property says the staff has 12 charges.", pool)
+    r = analyze(c7e)
+    check("7e pool: max and regain in separate sentences -> both covered, a third amount (12) flagged", [x["status"] for x in r] == ["covered", "covered", "uncovered"], str([x["status"] for x in r]))
+    c7f = synth("item", "dmg", "Staff", "The staff has 10 charges. The staff has 10 charges and uses 1 charge for each spell.", pool)
+    r = analyze(c7f)
+    check("7f pool: the max restated in a later sentence explains the number 10, the unrelated 1 stays flagged", r[0]["status"] == "covered" and r[1]["status"] == "uncovered" and r[1]["unexplained"] == ["1"], str([(x["status"], x["why"]) for x in r]))
+    c7g = synth("item", "dmg", "Staff", "The staff has 8 charges.", pool)
+    r = analyze(c7g)
+    check("7g pool: 8 charges against a record of 10 -> flagged", r[0]["status"] == "uncovered" and r[0]["unexplained"] == ["8"], r[0]["why"])
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)
