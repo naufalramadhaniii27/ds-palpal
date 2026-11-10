@@ -455,6 +455,13 @@ CASES += [
          expect=[("(C.senses||[]).length", 0)], base_allow=[r".*"]),
     dict(name="U2 Dungeon Delver (2014) feat: Resistance to trap damage", b=dict(rs="2014", cls="Fighter", level=4, ch={"feat4": {"feat": "Dungeon Delver", "a1": "DEX"}}, base=WL), drop={"feat4": None},
          expect=[(RESU("Dungeon Delver", "Damage dealt by traps"), True)], allow=FTA + [r"^abilities", r"^skills"], base_allow=[r".*"]),
+    dict(name="U2 Chef feat: proficiency with Cook's Utensils", b=dict(cls="Fighter", level=4, ch={"feat4": {"feat": "Chef", "a1": "CON"}}, base=WL), drop={"feat4": None},
+         expect=[("C.profs.tools", "Cook's Utensils")], allow=FTA + [r"^profs\.tools$", r"^res\."], base_allow=[r".*"]),
+    dict(name="U2 Martial Weapon Training feat: Martial weapons for a Wizard", b=dict(cls="Wizard", level=4, ch={"feat4": {"feat": "Martial Weapon Training", "a1": "STR"}}, base=WL), drop={"feat4": None},
+         expect=[("C.profs.weapons", "Simple, Martial")], allow=FTA + [r"^profs\.weapons$"], base_allow=[r".*"]),
+    dict(name="U2 Tavern Brawler feat: proficiency with improvised weapons", b=dict(cls="Wizard", level=4, ch={"feat4": {"feat": "Tavern Brawler", "a1": "STR"}}, base=WL), drop={"feat4": None},
+         expect=[("/Improvised/.test(C.profs.weapons)", True)], allow=FTA + [r"^profs\.weapons$", r"^attacks\.0\.(die|dieSrc)$"], base_allow=[r".*"]),
+    dict(name="NEG U2 a Wizard without Martial Weapon Training has Simple weapons only", b=dict(cls="Wizard", level=4, base=WL), expect=[("C.profs.weapons", "Simple")], base_allow=[r".*"]),
     dict(name="NEG U2 Dungeon Delver (2014) not taken: no trap Resistance", b=dict(rs="2014", cls="Fighter", level=4, base=WL),
          expect=[(RESU("Dungeon Delver", "Damage dealt by traps"), False)], base_allow=[r".*"]),
 ]

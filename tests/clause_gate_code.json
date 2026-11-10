@@ -454,6 +454,24 @@
    ],
    "test": "U1 Monk 14 Disciplined Survivor",
    "note": "the sheet prints the reroll as a note under Saving Throws, the Focus Point pool is its own record"
+  },
+  {
+   "id": "feat-tavern-improvised",
+   "kind": "feat",
+   "owner": "Tavern Brawler",
+   "name": "Tavern Brawler",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "proficient with improvised weapons",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "/^Tavern Brawler/.test(f.n)"
+   ],
+   "test": "U2 Tavern Brawler feat",
+   "note": ""
   }
  ]
 }

@@ -543,6 +543,9 @@ def features(D):
         at = []
         for k, v in keys.items():
             at += atoms_from({k: v}, "feat." + fn)
+        for k in ("armor", "weapons", "tools"):  # mech_scan skips these structural fields, but the sheet reads them for feats (12g-logic-sheet-handlers-profs.js, prof-feats); uncovered-1
+            if f.get(k) not in (None, "", [], {}):
+                at += atoms_from({k: f[k]}, "feat." + fn)
         if isinstance(f.get("fx"), dict):  # FEATS[n].fx: res, imm, cimm, senses, skills, langs, exp are read by the sheet (09-logic-feats-and-choices.js); uncovered-1
             at += atoms_from(f["fx"], "feat.fx|" + fn)
         for e in (gx.get("feat") or {}).get(fn, []):
@@ -681,7 +684,7 @@ def excuse(r, ctx, atoms):
     has = lambda c: any(a.cls == c for a in atoms)
     own_rider = bool(RX_RIDER.search(t) and RX_RIDER_HIT.search(t) and not re.search(r"\bsaving throw\b|\bsave\b|\b(?:target|creature) (?:takes|must)\b", t))
     # standard constants explained by an atom of the same class (the class atom must exist, only the standard number is missing)
-    if "ABIL" in need and not r.get("missing") and unexpl and unexpl <= {"1"} and RX_ASI.search(t) and has("ABIL"):
+    if "ABIL" in need and not r.get("missing") and unexpl and unexpl <= {"1", "2", "20", "30"} and RX_ASI.search(t) and has("ABIL"):
         return "STD:ASI"
     if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^(?:choose|pick) an? [a-z' -]+ (?:subclass|patron|circle|college|domain|oath|path)\b", t):
         return "STD:SUBCLASS_PICK"
@@ -1063,6 +1066,10 @@ def selftest():
     check("10p NEG a sentence that also grants proficiency stays flagged", r["status"] == "uncovered", r["why"])
     r = one("You can cast Raise Dead once without a spell slot if you use Tinker's Tools as your Spellcasting Focus.")
     check("10q NEG a spell cast without a slot stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("Raise your Intelligence by 1 (maximum 20).", [Atom("ABIL", set(), "feat.asi")], "feat")
+    check("10u STD:ASI: the standard +1 and the cap 20", r["status"] == "info" and r["why"] == "STD:ASI", r["why"])
+    r = one("Raise your Intelligence by 1 (maximum 25).", [Atom("ABIL", set(), "feat.asi")], "feat")
+    check("10v NEG a cap of 25 is not the standard ASI rule", r["status"] == "uncovered", r["why"])
     # 10r a feat's own fx dict (senses, res, cimm, exp ...) is a record (FEATS[n].fx, read by 09-logic-feats-and-choices.js)
     fa = atoms_from({"senses": [["Blindsight", 10, "Skulker"]]}, "feat.fx|Skulker")
     r = one("You gain Blindsight out to 10 feet.", fa, "feat")
