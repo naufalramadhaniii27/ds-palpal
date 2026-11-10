@@ -52,6 +52,9 @@ const SIT=[
  {k:"grappler",f:["Grappler","Grappler (2014)"],n:"Grappler",g:"s",t:"on",rs:"",s:"Target is grappled by you: Advantage on attacks against it.",e:{atk:[{t:"ADV",m:"all"}]}},
  {k:"mounted",f:["Mounted Combatant","Mounted Combatant (2014)"],n:"Mounted Combatant",g:"s",t:"on",rs:"",s:"Mounted, target smaller and unmounted: Advantage on attacks.",e:{atk:[{t:"ADV",m:"all"}]}},
  {k:"orders",f:["Order's Resilience"],n:"Order's Resilience",g:"s",t:"on",rs:"",s:"An ally within 5 ft: you both have Advantage on Strength saves.",e:{save:{STR:"ADV"}}},
+ {k:"grasp14",f:["Warden's Grasp"],n:"Warden's Grasp",g:"c",t:"on",rs:"turn",s:function(){ return hasFeat("Roots of Rock")?"Bonus Action. You cannot move. Roots of Rock: +2 AC, no one can shove you, Advantage on Strength saves against being knocked Prone. Ends at the start of your next turn.":"Bonus Action. You cannot move. Large or smaller creatures you choose within "+(lvOf("Warden (2014)")>=14?10:5)+" feet cannot willingly move away unless they Disengage. Ends at the start of your next turn."; },ef:function(){ return hasFeat("Roots of Rock")?{ac:2,save:{STR:"ADV"}}:{}; }},
+ {k:"mark14",f:["Warden's Mark"],n:"Warden's Mark",g:"c",t:"on",rs:"short",s:"Bonus Action. One creature you can see within 30 feet. While it is within 5 feet of you, it has Disadvantage on attacks that do not target you. Lasts 1 minute."},
+ {k:"resolve14",f:["Warden's Resolve"],n:"Warden's Resolve",g:"c",t:"auto",rs:"",when:function(){ return S.hp>0&&D.hpmax&&S.hp<D.hpmax/2; },s:function(){ return lvOf("Warden (2014)")>=17?"Active below half your Hit Points: Resistance to all damage except Psychic.":"Active below half your Hit Points: Resistance to Bludgeoning, Piercing and Slashing damage."; },ef:function(){ return {res:lvOf("Warden (2014)")>=17?["Acid","Bludgeoning","Cold","Fire","Force","Lightning","Necrotic","Piercing","Poison","Radiant","Slashing","Thunder"]:["Bludgeoning","Piercing","Slashing"]}; }},
  {k:"protect",f:["Protection"],n:"Protection",g:"s",t:"used",rs:"turn",s:"Reaction with a Shield: Disadvantage on an attack against a nearby ally."},
  {k:"crusher",f:["Crusher","Crusher (2014)"],n:"Crusher Push",g:"s",t:"used",rs:"turn",s:"Bludgeoning hit: move the target 5 ft, once per turn."},
  {k:"slasher",f:["Slasher","Slasher (2014)"],n:"Slasher Hamstring",g:"s",t:"used",rs:"turn",s:"Slashing hit: cut the target's Speed by 10 ft, once per turn."},
@@ -90,12 +93,13 @@ function sitPick(n){ let o=null; (C.features||[]).forEach((g) =>{ (g.items||[]).
 function sitOpts(r){ if(!r.o) return null; if(r.pick){ const p=sitPick(r.pick); if(p){ const m=r.o.filter((x) =>{ return p.toLowerCase().indexOf(x.toLowerCase())===0||x.toLowerCase().indexOf(p.toLowerCase())===0; }); if(m.length) return m; } } return r.o; }
 function sitOpt(r,st){ const L=sitOpts(r); if(!L) return null; const v=(st||sitRead()).v[r.k]; return L.indexOf(v)>=0?v:L[0]; }
 function sitOn(k,st){ const r=sitRow(k); if(!r||!sitHave(r)) return false; st=st||sitRead(); if(!st.on[k]) return false; return !(r.rage&&!modeOn("rage")); }
-function sitEff(r,st){ let e=Object.assign({},r.e||{}); const o=sitOpt(r,st); if(o&&r.oe&&r.oe[o]) e=Object.assign(e,r.oe[o]); if(e.bare&&e.fly&&sitArmored()) delete e.fly; return e; }
+function sitEff(r,st){ let e=Object.assign({},r.e||{}); if(r.ef) e=Object.assign(e,r.ef()); const o=sitOpt(r,st); if(o&&r.oe&&r.oe[o]) e=Object.assign(e,r.oe[o]); if(e.bare&&e.fly&&sitArmored()) delete e.fly; return e; }
 function sitArmored(){ return /, (Light|Medium|Heavy) armor \(/.test((C.ac&&C.ac.baseSrc)||""); }/* v102: body armor worn, read from the AC source */
 function sitSum(r,st){ const o=sitOpt(r,st); if(o&&r.so&&r.so[o]){ let t=r.so[o]; if(r.oe&&r.oe[o]&&r.oe[o].bare&&sitArmored()) t+=" You wear armor now, so there is no Fly Speed."; return t; } const s=typeof r.s==="function"?r.s(st):r.s; if(s) return s; let T=""; (C.features||[]).forEach((g) =>{ (g.items||[]).forEach((f) =>{ if(!T&&r.f.indexOf(f.n)>=0) T=String(f.d||f.full||"").replace(/[*_]/g,"").replace(/\s+/g," ").trim(); }); }); return T.length>110?T.slice(0,107)+"...":T||"See the feature text."; }
 /* numbers that change AC or Speed. kind = "ac" | "spd" */
 function sitNum(kind){ const st=sitRead(), out=[]; SIT.forEach((r) =>{ if(r.t!=="on"||!sitOn(r.k,st)) return; const e=sitEff(r,st); if(e[kind]) out.push({v:e[kind],s:r.n}); }); return out; }
 /* turned-on rows add their tags to the numbers. Called at the end of cfx() */
+function sitAutoRes(o,r,st){ if(r.t!=="auto"||!r.when()) return; (sitEff(r,st).res||[]).forEach((t) =>{ o.res.push({t:"Resistance",v:t,s:r.n}); }); }
 export function sitFx(o){ const st=sitRead(); o.atkS=[]; o.dice=[]; SIT.forEach((r) =>{ if(!sitHave(r)) return;
     if(r.t==="on"&&sitOn(r.k,st)){ const e=sitEff(r,st);
       (e.atk||[]).forEach((x) =>{ o.atkS.push({t:x.t,s:r.n,m:x.m}); });
@@ -106,6 +110,7 @@ export function sitFx(o){ const st=sitRead(); o.atkS=[]; o.dice=[]; SIT.forEach(
       if(e.ds) o.ds.push({t:e.ds,s:r.n}); if(e.init) o.init.push({t:e.init,s:r.n});
       (e.res||[]).forEach((t) =>{ o.res.push({t:"Resistance",v:t,s:r.n}); });
       if(e.fly&&!o.fly) o.fly={v:"walk",s:r.n}; }
+    sitAutoRes(o,r,st);
     if(r.dice){ const d=r.dice(); if(d) o.dice.push({k:r.k,n:r.n+" damage",dmg:d.dmg,type:d.type,used:!!st.used[r.k]}); } }); }
 /* the tags on one attack row: the common ones, plus the situation tags that fit this weapon */
 export function sitAtk(a){ const f=D.cf||{}, base=(f.atk||[]).slice(), k=atkKind(a); (f.atkS||[]).forEach((x) =>{ const ok=x.m==="all"||(x.m==="str"&&a.ab==="STR"&&k!=="spell")||(x.m==="melee"&&(k==="melee"||k==="unarmed"))||(x.m==="ranged"&&k==="ranged"); if(ok) base.push(x); }); return base; }
@@ -115,10 +120,14 @@ export function sitReset(kind){ const s=S.sit; if(!s) return false; let ch=false
 function sitFind(r){ let fa=featAll(), x=null; r.f.forEach((n) =>{ if(!x) x=fa.filter((q) =>{ return q.f.n===n; })[0]; }); return x; }
 function sitOpenG(g){ const st=sitRead(); return SIT_OPEN[g]!=null?SIT_OPEN[g]:(g==="c"||SIT.some((r) =>{ return r.g===g&&r.t==="on"&&st.on[r.k]&&sitHave(r); })); }
 var SIT_OPEN={};
-function sitRowH(r,st){ let on=r.t==="on"&&sitOn(r.k,st), used=r.t==="used"&&!!st.used[r.k], fx=sitFind(r), nm=fx?'<button type="button" class="tx sit-n" data-info="f:'+fx.gi+'.'+fx.fi+'">'+esc(r.n)+'</button>':'<b class="sit-n">'+esc(r.n)+'</b>', ctl="";
+function sitCtl(r,on,used){ let ctl="";
   if(r.t==="on") ctl='<button type="button" class="sit-sw press'+(on?' on':'')+'" role="switch" aria-checked="'+on+'" aria-label="'+esc(r.n)+'" data-sit="on:'+r.k+'"><i></i></button>';
   else if(r.t==="used") ctl='<button type="button" class="sit-ck press'+(used?' on':'')+'" aria-pressed="'+used+'" data-sit="used:'+r.k+'">'+(used?"Used":"Ready")+'</button>';
   else if(r.t==="act") ctl='<button type="button" class="btn sm sit-ac press" data-sit="act:'+r.k+'">'+esc(r.lab)+'</button>';
+  else if(r.t==="auto") ctl='<span class="sit-ck'+(r.when()?' on':'')+'">'+(r.when()?"Active":"Off")+'</span>';
+  return ctl; }
+function sitRowH(r,st){ let on=(r.t==="on"&&sitOn(r.k,st))||(r.t==="auto"&&!!r.when()), used=r.t==="used"&&!!st.used[r.k], fx=sitFind(r), nm=fx?'<button type="button" class="tx sit-n" data-info="f:'+fx.gi+'.'+fx.fi+'">'+esc(r.n)+'</button>':'<b class="sit-n">'+esc(r.n)+'</b>', ctl="";
+  ctl=sitCtl(r,on,used);
   const oo=r.t==="on"&&on&&sitOpts(r), ov=oo?sitOpt(r,st):null;
   const opts=oo&&oo.length>1?'<div class="sit-o" role="group" aria-label="'+esc(r.n)+' option">'+oo.map((x) =>{ return '<button type="button" class="chip press'+(x===ov?' on':'')+'" aria-pressed="'+(x===ov)+'" data-sit="opt:'+r.k+':'+esc(x)+'">'+esc(x)+'</button>'; }).join("")+'</div>':'';
   const need=r.rage&&!modeOn("rage")?'<small class="sit-need">Needs Rage</small>':'';
@@ -129,7 +138,7 @@ function sitCardH(){ const st=sitRead(), rows=SIT.filter(sitHave); if(!rows.leng
   G.forEach((g) =>{ const L=rows.filter((r) =>{ return r.g===g[0]; }); if(!L.length) return; const op=sitOpenG(g[0]), n=L.filter((r) =>{ return (r.t==="on"&&sitOn(r.k,st))||(r.t==="used"&&st.used[r.k]); }).length;
     h+='<button type="button" class="sit-gh press" aria-expanded="'+op+'" data-sit="grp:'+g[0]+'"><span>'+g[1]+'</span><small>'+L.length+(n?' • '+n+' active':'')+'</small><i aria-hidden="true"></i></button>'+(op?'<div class="sit-l">'+L.map((r) =>{ return sitRowH(r,st); }).join("")+'</div>':''); });
   return h+'</div>'; }
-export function sitCombatH(){ const st=sitRead(), rows=SIT.filter((r) =>{ return sitHave(r)&&r.g==="c"&&r.t!=="rem"; }).filter((r) =>{ return r.t!=="on"||!r.rage||modeOn("rage"); }); if(!rows.length) return "";
+export function sitCombatH(){ const st=sitRead(), rows=SIT.filter((r) =>{ return sitHave(r)&&r.g==="c"&&r.t!=="rem"&&r.t!=="auto"; }).filter((r) =>{ return r.t!=="on"||!r.rage||modeOn("rage"); }); if(!rows.length) return "";
   return '<div class="conds cbc sit-q">'+rows.map((r) =>{ const on=r.t==="on"?sitOn(r.k,st):r.t==="used"?!!st.used[r.k]:false;
     return '<button type="button" class="chip mode'+(on?' on':'')+' press" '+(r.t==="act"?'':'aria-pressed="'+on+'" ')+'data-sit="'+(r.t==="on"?'on':r.t==="used"?'used':'act')+':'+r.k+'">'+esc(r.n)+(r.t==="used"&&on?' (used)':'')+'</button>'; }).join("")+'<button type="button" class="chip add press" data-sit="turn">New turn</button></div>'; }
 function sitDiceRows(){ return ((D.cf||{}).dice||[]).map((x) =>{ return '<div class="arow xd sit-d"><div class="an">'+akIcon("feature")+'<b class="tx">'+esc(x.n)+'</b><small>ONCE PER TURN</small><span class="arng">--</span></div><span class="abox"><button type="button" class="sit-ck press'+(x.used?' on':'')+'" aria-pressed="'+x.used+'" data-sit="used:'+x.k+'">'+(x.used?"Used":"Ready")+'</button></span><span class="abox wide">'+esc(x.dmg)+tyIcon(x.type)+'<small>'+esc(x.type)+'</small></span></div>'; }).join(""); }

@@ -40,8 +40,12 @@ const HBLOADED={};function wxHbLoad(){const L=genv.HBIDX;if(!L||!genv.fetch)retu
  W.src.forEach((s) =>{wgSrc(s,js)});(genv.WXE||[]).forEach((e) =>{wgExt(e)});/* P5: a book adds upgrade picks to a subclass of the app (EXT) while it is on */
  (genv.WXS||[]).forEach((x) =>{wgSub(x)});Object.keys(CLASSES).forEach((cn) =>{const S=CLASSES[cn].subs;if(S)Object.keys(S).forEach((n) =>{S[n]=subDedup(S[n])})})}
 /* P4: classes of third party books (window.WXC) are in CLASSES only while the book is on or the build uses the class. Sorted like the other classes */
+function wxEdOff(n,e,used,tw,rs14){return !used[n]&&((e.ed==="2014"&&!rs14)||(rs14&&tw[n]))}
+function wxBookOn(n,e,used){return !!(B.src&&B.src[e.book])||!!used[n]||(genv.WXS||[]).some((x) =>{return B.src&&B.src[x.src]&&([x.cls].concat(x.alt||[]).indexOf(n)>=0)})}
 function wxClasses(){const W=genv.WXC;if(!W)return;const used={};used[B.cls]=1;(B.mc||[]).forEach((m) =>{used[m.cls]=1});
- Object.keys(W).forEach((n) =>{const e=W[n],on=!!(B.src&&B.src[e.book])||!!used[n]||(genv.WXS||[]).some((x) =>{return B.src&&B.src[x.src]&&([x.cls].concat(x.alt||[]).indexOf(n)>=0)});/* P5: a book that adds subclasses to a class of another third party book brings that class along */if(used[n]&&B.src)B.src[e.book]=true;
+ /* a class of a 2014 book (name "Warden (2014)") is offered only under the 2014 rules. Its 2024 twin ("Warden") leaves the list under the 2014 rules, unless the build already uses it. A build that uses a class keeps it either way */
+ const twin14={};Object.keys(W).forEach((n) =>{if(W[n].ed==="2014"&&W[n].tw)twin14[W[n].tw]=1});const rs14=R14();
+ Object.keys(W).forEach((n) =>{const e=W[n],on=!wxEdOff(n,e,used,twin14,rs14)&&wxBookOn(n,e,used);/* P5: a book that adds subclasses to a class of another third party book brings that class along */if(used[n]&&B.src)B.src[e.book]=true;
   if(on&&!CLASSES[n]){const o=structuredClone(e.rec);cls14Inject(n,o)}else if(!on&&CLASSES[n]&&CLASSES[n].tp===e.book)delete CLASSES[n]})}
 /* tests/invariants.py: a subclass table that lists a feature twice (same level and name) gets one card, the longer text wins */
 function subDedup(arr){const at={},out=[];(arr||[]).forEach((f) =>{const k=f[0]+"|"+f[1];if(k in at){const o=out[at[k]];if(String(f[2]||"").length>String(o[2]||"").length)out[at[k]]=f;return}at[k]=out.length;out.push(f)});return out.length===(arr||[]).length?arr:out}

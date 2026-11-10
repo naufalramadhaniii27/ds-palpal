@@ -14,4 +14,4 @@ export function rsLoad(to){const K=(B.rsKeep||{})[to],old=clone(B.mc||[]);RSK.fo
 /* v85: 2014 classes. Subclass level, subclass list and feature levels of the 2014 books. Levels come from 5e.tools (data/class). */
 export var SUBLV14={Barbarian:3,Bard:3,Cleric:1,Druid:2,Fighter:3,Monk:3,Paladin:3,Ranger:3,Rogue:3,Sorcerer:1,Warlock:1,Wizard:2,Artificer:3};
 export var SUBLBL14={Barbarian:"Primal Path",Bard:"Bard College",Cleric:"Divine Domain",Druid:"Druid Circle",Fighter:"Martial Archetype",Monk:"Monastic Tradition",Paladin:"Sacred Oath",Ranger:"Ranger Archetype",Rogue:"Roguish Archetype",Sorcerer:"Sorcerous Origin",Warlock:"Otherworldly Patron",Wizard:"Arcane Tradition",Artificer:"Artificer Specialist"};
-export var SRC14=["phb14","dmg14","scag","xge","tce","vrgr","egw","ftd","psa","psk","dsotdq","bgg","mtf","erlw","ggr","mot","toa","ai","oga","lr","ttp","eepc"];
+export var SRC14=["phb14","dmg14","scag","xge","tce","vrgr","egw","ftd","psa","psk","dsotdq","bgg","mtf","erlw","ggr","mot","toa","ai","oga","lr","ttp","eepc","tvss14"];
