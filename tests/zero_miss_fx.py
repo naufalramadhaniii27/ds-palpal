@@ -466,6 +466,107 @@ CASES += [
          expect=[(RESU("Dungeon Delver", "Damage dealt by traps"), False)], base_allow=[r".*"]),
 ]
 
+# uncovered-2 box 1: feats and subclass features the sheet computes in code, and SUB_GRANT rows; each with the build without the feature
+MED_ARM = [{"n": "Scale Mail", "q": 1, "eq": True}]
+D16 = dict(WL, DEX=16)
+SK = lambda n, f: "(C.skills.find(s=>s.n===%r)||{}).%s" % (n, f)
+F4 = lambda feat, a1, **kw: dict(kw, ch=dict(kw.pop("ch", {}), feat4={"feat": feat, "a1": a1}))
+HPB = "C.hpBonus.map(x=>x.v).join()"
+CASES += [
+    dict(name="U3 Tough feat: Hit Point maximum 2 per character level (level 4)", b=dict(cls="Fighter", level=4, base=WL, **F4("Tough", "CON")), drop={"feat4": None},
+         expect=[(HPB, "8")], allow=FTA, base_allow=[r".*"]),
+    dict(name="U3 Tough feat: and 2 more with each level (level 8)", b=dict(cls="Fighter", level=8, base=WL, **F4("Tough", "CON")), drop={"feat4": None},
+         expect=[(HPB, "16")], allow=FTA + [r"^spellcasting", r"^hitDice"], base_allow=[r".*"]),
+    dict(name="NEG U3 Alert feat gives no Hit Point bonus", b=dict(cls="Fighter", level=4, base=WL, **F4("Alert", "DEX")), expect=[("C.hpBonus.length", 0)], base_allow=[r".*"]),
+    dict(name="U3 Medium Armor Master feat: Dexterity limit 3 in Medium armor with Dexterity 16", b=dict(cls="Fighter", level=4, base=D16, inv=MED_ARM, **F4("Medium Armor Master", "DEX")), drop={"feat4": None},
+         expect=[("C.ac.dex", "max3")], allow=FTA + [r"^ac\.dex$", r"^abilities", r"^skills\.\d+\.dis$", r"^attacks\.", r"^pasBon"], base_allow=[r".*"]),
+    dict(name="NEG U3 Medium Armor Master feat with Dexterity 15 keeps the limit 2", b=dict(cls="Fighter", level=4, base=dict(WL, DEX=14), inv=MED_ARM, **F4("Medium Armor Master", "DEX")), expect=[("C.ac.dex", "max2")], base_allow=[r".*"]),
+    dict(name="U3 Medium Armor Master (2014) feat: Dexterity limit 3 and no Stealth Disadvantage", b=dict(rs="2014", cls="Fighter", level=4, base=WL, inv=MED_ARM, **F4("Medium Armor Master (2014)", "DEX")), drop={"feat4": None},
+         expect=[("C.ac.dex", "max3"), (SK("Stealth", "dis") + "||false", False)], allow=FTA + [r"^ac\.dex$", r"^abilities", r"^skills\.\d+\.dis$", r"^attacks\.", r"^pasBon"], base_allow=[r".*"]),
+    dict(name="U3 Observant feat: proficiency in the picked skill", b=dict(cls="Fighter", level=4, base=WL, **F4("Observant", "WIS", ch={"ob-feat4": ["Perception"]})), drop={"feat4": None, "ob-feat4": None},
+         expect=[(SK("Perception", "p"), 1)], allow=FTA + [r"^skills\.\d+\.(p|src)$", r"^pasBon", r"^abilities"], base_allow=[r".*"]),
+    dict(name="U3 Observant feat: Expertise when the skill is already proficient", b=dict(cls="Fighter", level=4, base=WL, extra={"bg": "Acolyte"}, **F4("Observant", "WIS", ch={"ob-feat4": ["Insight"]})), drop={"feat4": None, "ob-feat4": None},
+         expect=[(SK("Insight", "p"), 2)], allow=FTA + [r"^skills\.\d+\.(p|src)$", r"^pasBon", r"^abilities"], base_allow=[r".*"]),
+    dict(name="U3 Keen Mind feat: proficiency in the picked skill", b=dict(cls="Wizard", level=4, base=WL, **F4("Keen Mind", "INT", ch={"kn-feat4": ["Nature"]})), drop={"feat4": None, "kn-feat4": None},
+         expect=[(SK("Nature", "p") + ">=1", True)], allow=FTA + [r"^skills\.\d+\.(p|src)$", r"^pasBon", r"^abilities", r"^spellcasting", r"^dcSrc"], base_allow=[r".*"]),
+    dict(name="U3 Resilient feat: proficiency in the saving throws of the chosen ability", b=dict(cls="Fighter", level=4, base=WL, **F4("Resilient", "WIS")), drop={"feat4": None},
+         expect=[(SV, "CON,STR,WIS")], allow=FTA + [r"^saves\.WIS$"], base_allow=[r".*"]),
+    dict(name="NEG U3 a Fighter without Resilient has Strength and Constitution saves only", b=dict(cls="Fighter", level=4, base=WL), expect=[(SV, "CON,STR")], base_allow=[r".*"]),
+    dict(name="U3 Resilient (2014) feat: proficiency in the saving throws of the chosen ability", b=dict(rs="2014", cls="Fighter", level=4, base=WL, **F4("Resilient (2014)", "WIS")), drop={"feat4": None},
+         expect=[(SV, "CON,STR,WIS")], allow=FTA + [r"^saves\.WIS$"], base_allow=[r".*"]),
+    dict(name="U3 Tavern Brawler (2014) feat: proficiency with improvised weapons", b=dict(rs="2014", cls="Wizard", level=4, base=WL, **F4("Tavern Brawler (2014)", "STR")), drop={"feat4": None},
+         expect=[("/Improvised/.test(C.profs.weapons)", True)], allow=FTA + [r"^profs\.weapons$", r"^attacks\.0\.(die|dieSrc)$"], base_allow=[r".*"]),
+]
+UFA = "C.attacks.find(a=>a.n==='Unarmed Strike')"
+CASES += [
+    dict(name="U3 Unarmed Fighting feat: Unarmed Strike 1d8 with nothing held", b=dict(cls="Fighter", level=1, base=WL, ch={"fs1": "Unarmed Fighting"}), drop={"fs1": None},
+         expect=[(UFA + ".die", "1d8")], allow=FTA + [r"^attacks\.0\.(die|dieSrc)$", r"^features\.", r"^res\."], base_allow=[r".*"]),
+    dict(name="U3 Unarmed Fighting feat: 1d6 while holding a weapon", b=dict(cls="Fighter", level=1, base=WL, ch={"fs1": "Unarmed Fighting"}, inv=[{"n": "Longsword", "q": 1, "eq": True}]), drop={"fs1": None},
+         expect=[(UFA + ".die", "1d6")], allow=FTA + [r"^attacks\.0\.(die|dieSrc)$", r"^features\.", r"^res\."], base_allow=[r".*"]),
+    dict(name="NEG U3 Fighter without Unarmed Fighting: Unarmed Strike deals 1", b=dict(cls="Fighter", level=1, base=WL), expect=[(UFA + ".die", "1")], base_allow=[r".*"]),
+]
+SDM = "(C.res.find(r=>r.n==='Superiority Dice')||{}).max"
+BM = lambda L: dict(cls="Fighter", level=L, sub="Battle Master", base=WL)
+CASES += [
+    u1("U3 Battle Master 3 Combat Superiority: four Superiority Dice, d8", BM(3), [(SDM, 4), ("JSON.stringify(C).includes('4 Superiority Dice (d8)')", True)], lo=dict(cls="Fighter", level=3, sub="Champion", base=WL), allow=U1_LV + [r"^sub$", r"^res\.", r"^attacks\.", r"^dc"]),
+    u1("U3 Battle Master 7 and 15 Combat Superiority: one more die at 7, another at 15", BM(7), [(SDM, 5)], lo=BM(6), allow=U1_LV + [r"^res\."]),
+    u1("U3 Battle Master 7 and 15 Combat Superiority: six dice at 15", BM(15), [(SDM, 6), ("JSON.stringify(C).includes('6 Superiority Dice (d10)')", True)], lo=BM(14), allow=U1_LV + [r"^res\."]),
+    u1("U3 Battle Master 18 Combat Superiority: the die becomes d12", BM(18), [("JSON.stringify(C).includes('6 Superiority Dice (d12)')", True)], lo=BM(17), allow=U1_LV + [r"^res\."]),
+    u1("NEG U3 Battle Master 6 still has four Superiority Dice", BM(6), [(SDM, 4)]),
+]
+U3_INIT = U1_LV + [r"^initBonus", r"^sub$", r"^darkvision", r"^darkSrc", r"^speed", r"^moves", r"^saveBonus"]
+for (nm, b, rx) in [
+    ("Gloom Stalker (2014) 3 Dread Ambusher", dict(rs="2014", cls="Ranger", level=3, sub="Gloom Stalker (2014)", base=WL), "Dread Ambusher"),
+    ("Swashbuckler 3 Rakish Audacity", dict(cls="Rogue", level=3, sub="Swashbuckler", base=WL), "Rakish Audacity"),
+    ("War Magic 3 Tactical Wit", dict(cls="Wizard", level=3, sub="War Magic", base=WL), "Tactical Wit"),
+    ("Chronurgy 3 Temporal Awareness", dict(cls="Wizard", level=3, sub="Chronurgy Magic", base=WL), "Temporal Awareness"),
+    ("Watchers 7 Aura of the Sentinel", dict(cls="Paladin", level=7, sub="Oath of the Watchers", base=WL), "Aura of the Sentinel"),
+]:
+    L = b["level"]
+    CASES += [u1("U3 " + nm + ": a line in the Initiative bonuses", b, [("C.initBonus.some(x=>/^%s/.test(x.s))" % rx, True)], lo=lv(b, L - 1), allow=U3_INIT),
+              u1("NEG U3 " + nm + " one level earlier has no such line", lv(b, L - 1), [("C.initBonus.some(x=>/^%s/.test(x.s))" % rx, False)])]
+GL14 = dict(rs="2014", cls="Paladin", level=7, sub="Oath of Glory (2014)", base=WL)
+CASES += [
+    u1("U3 Glory (2014) 7 Aura of Alacrity: Speed 10 ft higher", GL14, [("C.speed", 40), ("/\\+10 Aura of Alacrity/.test(C.speedSrc)", True)], lo=lv(GL14, 6), allow=U1_LV + [r"^speed", r"^saveBonus"]),
+    u1("NEG U3 Glory (2014) 6 has Speed 30", lv(GL14, 6), [("C.speed", 30)]),
+]
+# SUB_GRANT rows (armor, weapons, tools, skills of a subclass feature): the sheet adds them at the row's level
+GR = [("Hexblade 3 Hex Warrior (2014): Medium armor, Shields, Martial weapons", dict(rs="2014", cls="Warlock", level=3, sub="The Hexblade", base=WL), [("/Medium armor/.test(C.profs.armor)&&/Shields/.test(C.profs.armor)", True), ("/Martial/.test(C.profs.weapons)", True)]),
+      ("Assassin 3 Assassin's Tools: Disguise Kit and Poisoner's Kit", dict(cls="Rogue", level=3, sub="Assassin", base=WL), [("/Disguise Kit/.test(C.profs.tools)&&/Poisoner's Kit/.test(C.profs.tools)", True)]),
+      ("Mercy 3 Implements of Mercy: Insight, Medicine and the Herbalism Kit", dict(cls="Monk", level=3, sub="Way of Mercy", base=WL), [(SK("Insight", "p"), 1), (SK("Medicine", "p"), 1), ("/Herbalism Kit/.test(C.profs.tools)", True)])]
+for nm, b, ex in GR:
+    L = b["level"]
+    CASES += [u1("U3 " + nm, b, ex, lo=lv(b, L - 1), allow=U1_LV + [r"^profs", r"^profSrc", r"^skills\.\d+\.(p|src)$", r"^sub$", r"^subSrc", r"^saves\.", r"^attacks\.", r"^ac\.", r"^unarmed"]),
+              u1("NEG U3 " + nm.split(":")[0] + " one level earlier has no grant", lv(b, L - 1), [(e, not w) if isinstance(w, bool) else (e, 0 if w == 1 else w) for e, w in ex if isinstance(w, bool)] or [("1", 1)])]
+for (nm, cl, sb, L, src, rx, kind, extra) in [
+    ("Psi Warrior (2014) 10 Guarded Mind", "Fighter", "Psi Warrior (2014)", 10, "Guarded Mind", "^Psychic$", "R", {}),
+    ("Great Old One (2014) 10 Thought Shield", "Warlock", "The Great Old One (2014)", 10, "Thought Shield", "^Psychic$", "R", {}),
+    ("Archfey (2014) 10 Beguiling Defenses", "Warlock", "The Archfey (2014)", 10, "Beguiling Defenses", "^Charmed$", "I", {}),
+    ("Fiend (2014) 10 Fiendish Resilience", "Warlock", "The Fiend (2014)", 10, "Fiendish Resilience", "^Cold$", "R", {"p10opt": "Cold"}),
+    ("Land (2014) 10 Nature's Ward", "Druid", "Circle of the Land (2014)", 10, "Nature's Ward", "^Poison$", "I", {"land": "Arid"}),
+]:
+    bh = dict(rs="2014", cls=cl, level=L, sub=sb, base=WL, ch=extra)
+    chk = (IMMU if kind == "I" else RESU)(src, rx)
+    CASES += [u1("U3 " + nm + ": " + ("Immunity" if kind == "I" else "Resistance"), bh, [(chk, True)], lo=lv(bh, L - 1), allow=U1_LV),
+              u1("NEG U3 " + nm + " one level earlier has no such line", lv(bh, L - 1), [(chk, False)])]
+
+# uncovered-2 box 3: Extra Attack of third party classes and subclasses (src/data/fx-Z3.js): the Attack action says "Make two attacks" from the row level, one level lower it says "Make one attack"
+EA_AT = "C.actions[0].d.replace(/\\. With an.*/,'')"
+EA_LV = U1_LV + [r"^actions\.0\.d$", r"^sub$", r"^saves\.", r"^unarmed", r"^profs", r"^speed", r"^moves", r"^initBonus", r"^dc", r"^attacks\.", r"^res\.", r"^pasBon", r"^profSrc", r"^ac\."]
+for (nm, b, L) in [
+    ("Warden", dict(cls="Warden", base=WL), 5), ("Dancer", dict(cls="Dancer", base=WL), 5), ("Gadgeteer", dict(cls="Gadgeteer", base=WL), 5), ("Craftsman", dict(cls="Craftsman", base=WL), 5),
+    ("Jaeger", dict(cls="Jaeger", base=WL), 5), ("Martyr", dict(cls="Martyr", base=WL), 5), ("Monster Hunter", dict(cls="Monster Hunter", base=WL), 11), ("Vagabond", dict(cls="Vagabond", base=WL), 5),
+    ("Mutagenist", dict(cls="Artificer", sub="Mutagenist", base=WL), 5), ("College of Valor", dict(cls="Bard", sub="College of Valor", base=WL), 6),
+    ("College of Valor (2014)", dict(rs="2014", cls="Bard", sub="College of Valor (2014)", base=WL), 6), ("College of Swords", dict(cls="Bard", sub="College of Swords", base=WL), 6),
+    ("Star-Spangled Banner", dict(cls="Captain", sub="Star-Spangled Banner", base=WL), 6), ("Black Rider", dict(cls="Necromancer", sub="Black Rider", base=WL), 6),
+    ("Death Knight", dict(cls="Necromancer", sub="Death Knight", base=WL), 6), ("Lumimancer", dict(cls="Wizard", sub="Lumimancer", base=WL), 6),
+]:
+    bh = dict(b, level=L)
+    CASES += [u1("U4 %s %d Extra Attack: the Attack action makes two attacks" % (nm, L), bh, [("/^Make two attacks \\(Extra Attack \\(%s %d\\)\\)/.test(C.actions[0].d)" % (re.escape(nm), L), True)], lo=lv(bh, L - 1), allow=EA_LV),
+              u1("NEG U4 %s %d is one level before Extra Attack: one attack" % (nm, L - 1), lv(bh, L - 1), [(EA_AT, "Make one attack")])]
+CASES += [u1("NEG U4 Fighter 5 keeps the old text rule per Extra Attack", dict(cls="Fighter", level=5, base=WL), [(EA_AT, "Make one attack per Extra Attack")]),
+          u1("NEG U4 Fighter 5 and Bard (Valor) 6 multiclass: the attack count is not summed", dict(cls="Fighter", level=5, base=WL, extra={"mcl": [{"cls": "Bard", "sub": "College of Valor", "lv": 6}]}), [("/Make (two|three) attacks.*Make/.test(C.actions[0].d)", False)])]
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

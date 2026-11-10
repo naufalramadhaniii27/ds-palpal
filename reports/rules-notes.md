@@ -221,3 +221,16 @@ Tidak ada folder `books/`. Semua angka dan level di bawah dicocokkan ke teks fit
 | Teks pilihan Expertise, skill, tool, language (`STD:PICK_TEXT`) | Pick di class (`pick` dengan `k` expertise, skills, tools, languages) adalah recordnya. Kalimat lain di fitur yang sama hanya menjelaskan siapa yang boleh memilih atau apa yang disarankan. Kalimat dengan angka lain (+5) tetap uncovered | Diputuskan |
 | Pool charges `[max, regain, reset]` | Tiap bagian menjelaskan satu kalimat. Jumlah yang diulang di kalimat lain ("up to 6") dijelaskan angkanya, bukan kelasnya | Diputuskan |
 | Biaya aktivasi "expend 1 of its charges", "(Charge Cost 3)" | Info `FORM:ACTIVATE`. Bonus stat dengan biaya charge tetap uncovered | Diputuskan |
+
+## Uncovered 2: bacaan yang dipakai
+
+| Hal | Bacaan | Status |
+|---|---|---|
+| Dancer: Three-, Four- dan Five-Target Extra Attack | Serangan ketiga dan seterusnya hanya bila setiap serangan memilih target berbeda. Engine `extraAttack` tidak punya syarat target, jadi hanya "Extra Attack" (2 serangan) yang diisi. Tiga baris target tidak diisi | Belum diputuskan |
+| Monster Hunter, Extra Attack di level 11 | Level baris di data aplikasi adalah 11, bukan 5. Fx memakai 11 persis seperti baris data | Dipakai apa adanya, perlu dicek oleh Data |
+| Fighter, Barbarian, Monk, Paladin, Ranger | Sheet menulis "Make one attack per Extra Attack" tanpa jumlah. Mengisi `extraAttack` untuk lima kelas ini mengubah teks aksi Attack semua karakter resmi, jadi tidak dilakukan | Belum diputuskan |
+| Draconic Bloodline (2014) | Kode memberi HP +1 per level Sorcerer mulai level 1 dan baris data bertulis level 3. Dua-duanya tidak dicocokkan, atom tidak dibuat | Belum diputuskan |
+| Aura of Warding (2014) | Sheet hanya menulis Note, bukan baris Resistance. Tidak dianggap dihitung | Dipakai apa adanya |
+| FXO_NULL dengan entri pengganti | Entri pengganti (addI, GX) dibandingkan dengan teks. Kalimat yang tak dijelaskan entri tetap info FXO_NULL dan dihitung terpisah (`fxo_repl`) supaya baseline tidak naik | Diputuskan |
+| BY_DESIGN | Record yang menjelaskan kalimat menang atas tag BY_DESIGN. Tag hanya berlaku bila tak ada record | Diputuskan |
+| SUB_GRANT | Baris `armor`, `weapons`, `tools`, `skills` dihitung sheet pada level baris dan nama fitur `f`. Kalimat yang juga memuat modifier, focus, bahasa, pilihan, atau "if you lack it" tidak ditutup | Diputuskan |

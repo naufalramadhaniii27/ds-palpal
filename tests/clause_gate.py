@@ -251,6 +251,8 @@ TABLE_FORM = R(r"^(?:table\b|\(?\d+(?:[-\u2013]\d+)?\)?\s*[:.]\s|\d+(?:[-\u2013]
 POOL_RX = R(r"\b(?:has|have|holds?|contains?|with) (?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve) (?:\w+ )?(?:charges?|uses)\b|\bregains? [^.]{0,40}(?:charges?|uses)\b|\bcharges?\b[^.]{0,40}\b(?:dawn|regain|recharge)\b|\bnumber of times equal to\b|\bpool\b[^.]{0,60}\b(?:dice|die|points?)\b")
 ROLL_FORM = R(r"\b(?:saving throw|save|saves)\b[^.]{0,160}\b(?:fail|succeed|success|take|takes|half)\b|\b(?:fail|succeed|success|make|makes|must make)\b[^.]{0,160}\b(?:saving throw|save|check)\b|\bdc \d+|\bon a (?:failed|successful|hit|miss)\b|\bhalf as much\b")
 ACTION_RX = R(r"\b(?:as an action|as a bonus action|as a reaction|as a magic action|bonus action|reaction|magic action|use your action|take the [a-z ]+ action)\b")
+# a sentence that only hands out the proficiency (or training) of a SUB_GRANT row; a sentence with a modifier, a focus, a language, a choice or an "if you lack it" clause carries more than the row does
+RX_GRANT_SENT = re.compile(r"^(?!.*(?:modifier|focus|speak|already|lack\b|another|your choice|usable|you obtain|you gain a )).*(?:proficien|training with)", re.S)
 CLASS_ORDER = ["AC", "HP", "SAVE", "ADV", "DIS", "RES", "IMM", "SPEED", "SENSE", "PROF", "SLOT", "RESOURCE", "ATK", "DMG", "DC", "INIT", "SPELL", "ABIL", "CHOICE"]
 
 
@@ -506,6 +508,12 @@ def features(D):
                     elif isinstance(tbl, dict):
                         for rows in tbl.values():
                             at += spell_atoms([rows], text, src_name)
+                sg = D["subGrant"].get(sn)
+                if isinstance(sg, dict) and sg.get("f") == name:  # SUB_GRANT[sub] {f: feature name, armor|weapons|tools|skills: [[level, text]]} is read by the sheet (13-logic-sources-and-packs.js subGrant, 12g prof rows); uncovered-2
+                    for k in ("armor", "weapons", "tools", "skills"):
+                        rows = [r for r in (sg.get(k) or []) if isinstance(r, list) and len(r) > 1 and r[0] == lvl]
+                        if rows:
+                            at.append(Atom("PROF", nums_in([r[1] for r in rows]), "sub.SUB_GRANT." + k, True, rx=RX_GRANT_SENT))
                 for r in D["fdmg_by"].get((sn, name), []):
                     at += [Atom("DMG", nums_in(r[3:]), "FDMG"), Atom("RESOURCE", nums_in(r[3:]), "FDMG")]
                 yield mk("sub", "%s/%s" % (cn, sn), name, sbook, text, lvl, at, ("sub|%s|%s" % (sn, name)) in D["acts_set"])
@@ -593,7 +601,7 @@ def features(D):
         if isinstance(extra, str) and extra and extra not in text:
             text = text + " " + extra
         if fxo_null:  # documented override: FXO[name]={fx:null} drops the fx of the row on purpose (SOURCE-NOTES, "Override item")
-            at.append(Atom("*", {"*"}, "FXO_NULL"))
+            at.append(Atom("*", {"*"}, "FXO_NULL_REPL" if any(a.cls != "*" for a in at) else "FXO_NULL"))  # _REPL: the item also has a replacement entry (addI, GX), which is compared with the text (uncovered-2)
         yield mk("item", src, name, src, text, None, at, False)
     # spells
     sfx = D.get("spellFx") or {}
@@ -632,6 +640,7 @@ REASONS = collections.OrderedDict([
     ("ITEM:SENSES", "Senses of a sentient item ('It has hearing and darkvision out to 120 feet'): belong to the item, not to the wearer."),
     ("ACTIVE:OTHERS", "Effect placed on another creature (target, enemy, ally, 'its next turn') or a timed effect that ends by itself: the sheet tracks the character, not the target or a combat clock."),
     ("ACTIVE:TIMED_IMM", "'A creature that succeeds is immune to this power for 24 hours': immunity of the target to the power, not of the character."),
+    ("POOL:SHARED", "Charges of several copies of an item form one shared pool: the sheet keeps one pool per item entry and cannot know how many copies the character carries."),
     ("ACTIVE:TRIGGER", "Triggered or optional effect with no stat of the character: save-or-suffer, reroll, replace-a-roll, spend-a-resource riders and spell options, decided at play. Rider dice on your own weapon hit stay flagged (atkDice exists)."),
     ("ACTIVE:REACTION", "Reaction or action that gives a temporary resistance, speed or similar for one attack or one turn: a combat action, not a standing stat."),
     ("COND:PLAY_STATE", "Bonus that exists only in a play state the sheet does not track (Bloodied is a toggle only where a record exists; flanking, cover, allies near, first round, mounted, underwater, next attack): the sheet does not compute it on purpose (SOURCE-NOTES, fx batch H)."),
@@ -656,6 +665,7 @@ RX_24H = R(r"\bimmune to\b[^.]{0,60}\b(?:for|the next) (?:the next )?(?:24 hours
 RX_TRIG = R(r"\bwhen you (?:hit|take|use|cast|roll|make|reduce|score|drop|fail|succeed|miss|are hit|are targeted|see|finish)\b|\bwhenever\b|\beach time\b|\bon an? (?:hit|miss|failed|successful|critical|natural)\b|\bif the target\b|\bthe next (?:attack|time|d20|saving|roll|spell|damage)\b|\buntil (?:the (?:start|end)|your next|the beginning)\b|\bat the (?:start|end) of\b|\byou can (?:add|roll|reroll|re-roll|replace|expend|spend|force|cause|impose|give|swap|push|redirect|reduce|halve|prevent|negate|extend|spread|divide)\b|\bas part of\b|\b(?:fails?|succeeds?) (?:on )?(?:its|the|a|their|that)\b|\b(?:target|creature|enemy) (?:takes?|must|can't|cannot|is|has|becomes|gains?|suffers?|regains?)\b|\bsaving throw against (?:your|the|this)\b|\bregains? hit points\b|\bwithin the next\b|\bcritical hit\b|\bspend (?:one|a|\\d+)\b")
 RX_RIDER = R(r"\b(?:extra|additional)\b[^.]{0,40}\d+d\d+[^.]{0,40}\bdamage\b|\bdeals? \d+d\d+[^.]{0,30}\b(?:extra|additional|more)\b|\b\d+d\d+[^.]{0,30}\bextra damage\b")
 RX_RIDER_HIT = R(r"\byou hit\b|\bhit(?:s|ting)? (?:a creature |it |the target )?with (?:an? |this |the )?(?:weapon |melee |ranged )?(?:attack|weapon)|\bwhen (?:it|the weapon) hits\b|\bon a hit\b|\bweapon attack\b|\bwhen you hit\b")
+RX_POOL_SHARED = R(r"\b(?:charges|uses) (?:of (?:all|each|every) [a-z ]+ )?form (?:one|a single|a shared) pool\b|\bshare (?:a|one|the same) (?:single )?pool\b")
 RX_PLAY = R(r"\bbloodied\b|\braging\b|\bwhile (?:you are )?(?:prone|mounted|flying|hidden|surprised|concentrating|underwater|transformed|in (?:bright|dim) light|in darkness|flanking|wearing no|incapacitated|unconscious|frightened|charmed)\b|\bwithin \d+ (?:feet|ft)\b[^.]{0,30}\b(?:of|from) (?:you|an ally|a|the|one|another)\b|\bfirst round\b|\bagainst (?:a |an |any )?(?:creature|creatures|undead|fiends?|aberrations?|dragons?|giants?|constructs?|beasts?|humanoids?|monstrosities|oozes|plants?|celestials?|fey|elementals?|aligned|evil|good|spellcasters?|the (?:target|creature|attacker))\b|\bwhile you have cover\b|\bhalf cover\b|\bthree-quarters cover\b|\bnext (?:attack|turn)\b|\bduring that time\b|\bduring this time\b|\bfor the duration\b|\bthat turn\b|\bthis turn\b|\buntil the end\b|\bwhen you are (?:hit|bloodied|targeted|reduced|attacked)\b|\bwhile (?:an? )?(?:ally|creature|enemy|enemies|allies)\b|\bfor the next\b|\bwhen you (?:roll|expend|spend)\b")
 RX_ATKROLL = R(r"\battack rolls?\b[^.]{0,60}\b(?:against|made|by)\b|\bnext attack\b|\bon (?:that|its|the|this|your next) attack\b|\bthe attack\b|\bon the attack\b|\bagainst you\b|\bagainst the\b")
 RX_DCREF = R(r"\b(?:spell )?save dc\b|\bsaving throw dc\b|\buse your\b[^.]{0,20}\bdc\b|\bthe dc\b|\bdifficulty class\b|\bdc is\b")
@@ -726,6 +736,8 @@ def excuse(r, ctx, atoms):
             return "ACTIVE:TIMED_IMM"
         if need & {"RES", "IMM"} and re.search(r"\bignores? resistance|\bresistance to [a-z]+ damage doesn't apply|\bdoesn't apply to this damage|\bbypass|\bovercom", t):
             return "ACTIVE:OTHERS"
+        if need <= {"RESOURCE", "CHOICE"} and RX_POOL_SHARED.search(t):
+            return "POOL:SHARED"
         # effects on others
         subj_ok = RX_OTHER_SUBJ.search(t) and (not (need & STAT) or (not re.match(r"^(?:it|its|their|they|those)\b", t) and not re.search(r"\battuned|\bpossession\b|\bwearer\b|\bbearer\b|\bgrants?\b|\bwhile you (?:wear|hold|wield)", t)))
         if need <= (NONSTAT | {"RES", "IMM", "SPEED", "AC", "SENSE"}) and not own_rider and subj_ok and not RX_OWN_STAT.search(t) and not RX_STATUS.search(t):
@@ -737,6 +749,8 @@ def excuse(r, ctx, atoms):
         # reactions and actions that give a temporary stat
         if need & {"RES", "IMM", "SPEED", "AC"} and need <= (NONSTAT | {"RES", "IMM", "SPEED", "AC"}) and re.search(r"\b(?:use your reaction|as a reaction|reaction to|bonus action|as an action|as a magic action|magic action)\b", t) and re.search(r"\b(?:this turn|until the (?:start|end)|that attack|the next|for 1 minute|for the next|until you|for the duration)\b", t):
             return "ACTIVE:REACTION"
+        if need <= {"RESOURCE", "HP"} and re.search(r"\bwhile (?:you are |you're )?bloodied\b", t) and re.search(r"\bregain", t):  # regeneration in the Bloodied state: a play state, not a trigger (uncovered-2)
+            return "COND:PLAY_STATE"
         # triggered / optional effects without a stat of the character (rider dice on your own weapon hit stay flagged)
         if need <= NONSTAT and RX_TRIG.search(t) and not own_rider:
             return "ACTIVE:TRIGGER"
@@ -782,7 +796,8 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
     res = []
     all_vals = set()
     for a in atoms:
-        all_vals |= a.vals
+        if a.src != "FXO_NULL_REPL":  # the marker of an FXO_NULL item with a replacement entry is not a record: its wildcard value must not explain numbers
+            all_vals |= a.vals
     if ctx.get("lvl") is not None:
         all_vals |= {str(ctx["lvl"])}
     for i, s in enumerate(sents):
@@ -796,7 +811,11 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         res.append({"nk": nk, "sid": "%s#%d" % (key, i + 1), "h": shash(s), "text": s, "K": sorted(ks), "toks": toks, "mech": mech, "need": need, "status": None, "why": "", "unexplained": [], "used": []})
     # info and allow first
     bd = (by_design or {}).get(key)
-    fxo_null = any(a.src == "FXO_NULL" for a in atoms)
+    fxo_keep = any(a.src in ("FXO_NULL", "FXO_NULL_REPL") for a in atoms)
+    fxo_repl = any(a.src == "FXO_NULL_REPL" for a in atoms)  # uncovered-2: FXO[name]={fx:null} drops the OLD fx; an addI/GX entry of the same item replaces it and must be compared with the text
+    fxo_null = fxo_keep and not fxo_repl
+    if fxo_repl:
+        atoms = [a for a in atoms if a.src != "FXO_NULL_REPL"]
     for r in res:
         if not r["mech"]:
             r["status"] = "inert"; continue
@@ -810,8 +829,6 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
                 r["note"] = "allow entry expired"
             elif al.get("reason"):
                 r["status"] = "allow"; r["why"] = al["reason"]; continue
-        if bd:
-            r["status"] = "info"; r["why"] = "BY_DESIGN"; continue
         if ctx["acts"] and r["need"] <= ACT_OK and r["toks"] and not (r["need"] & STAT) \
                 and (ACTION_RX.search(r["text"].lower()) or r["need"] & {"DMG", "DC", "RESOURCE"}):
             r["status"] = "info"; r["why"] = "ACTIVATE"; continue
@@ -889,10 +906,14 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
                 continue
             unexpl.append(t)
         r["unexplained"] = unexpl
-        if not missing and not unexpl:
+        if not missing and not unexpl and not (fxo_repl and not r["need"]):  # a sentence of an FXO_NULL item with no stat class of its own is not covered by a numbers-only match
             r["status"] = "covered"
         elif spell_txt:  # spell text is reference text: the sheet reads only SPELL_FX; what has no record stays SPELL_TEXT info and is counted apart
             r["status"] = "info"; r["why"] = "SPELL_TEXT"
+        elif bd:  # a by-design sentence stays info only when no record explains it (uncovered-2: a record that explains it wins, so a stale entry cannot hide a later change)
+            r["status"] = "info"; r["why"] = "BY_DESIGN"; continue
+        elif fxo_repl:  # the item has a replacement entry that does not explain this sentence: kept as info FXO_NULL so the baseline does not rise, counted apart in the report
+            r["status"] = "info"; r["why"] = "FXO_NULL"; r["fxo_repl"] = True; continue
         else:
             r["status"] = "uncovered"
             if missing and unexpl: r["why"] = "no record for %s; number %s unexplained" % (",".join(missing), ",".join(unexpl))
@@ -1070,6 +1091,35 @@ def selftest():
     check("10u STD:ASI: the standard +1 and the cap 20", r["status"] == "info" and r["why"] == "STD:ASI", r["why"])
     r = one("Raise your Intelligence by 1 (maximum 25).", [Atom("ABIL", set(), "feat.asi")], "feat")
     check("10v NEG a cap of 25 is not the standard ASI rule", r["status"] == "uncovered", r["why"])
+    r = one("Their charges form one pool that regains 1d6 per fragment at dawn.", [], "item")
+    check("12d POOL:SHARED: charges of several copies form one pool", r["status"] == "info" and r["why"] == "POOL:SHARED", r["why"])
+    r = one("Their charges form one pool that grants you a +2 bonus to AC.", [], "item")
+    check("12e NEG a shared pool sentence that also gives AC stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("While Bloodied you regain 1d4 + Constitution modifier (minimum 1) Hit Points at the start of each turn.", [], "item")
+    check("12f Bloodied regeneration is COND:PLAY_STATE, not a trigger", r["why"] == "COND:PLAY_STATE", r["why"])
+    r = one("When you roll a 1 you regain 1d4 + Constitution modifier (minimum 1) Hit Points at the start of each turn.", [], "item")
+    check("12g NEG regeneration without the Bloodied state keeps its old code", r["why"] != "COND:PLAY_STATE", r["why"])
+    # 13 an FXO_NULL item (uncovered-2): with a replacement entry the entry is compared with the text; without one the whole item is info
+    rp = Atom("*", {"*"}, "FXO_NULL_REPL")
+    r = analyze(synth("item", "dmg", "Badge", "While wearing the badge, you gain a +2 bonus to AC.", [Atom("AC", {"2"}, "GX.item|Badge.acAdd"), rp]))[0]
+    check("13a FXO_NULL item with a replacement entry that explains the sentence -> covered", r["status"] == "covered", r["why"])
+    r = analyze(synth("item", "dmg", "Badge", "While wearing the badge, you gain a +3 bonus to AC.", [Atom("AC", {"2"}, "GX.item|Badge.acAdd"), rp]))[0]
+    check("13b NEG replacement entry with another amount: info FXO_NULL, counted apart (fxo_repl)", r["status"] == "info" and r["why"] == "FXO_NULL" and r.get("fxo_repl") is True, r["why"])
+    r = analyze(synth("item", "dmg", "Badge", "While wearing the badge, you gain a +3 bonus to AC.", [Atom("*", {"*"}, "FXO_NULL")]))[0]
+    check("13c FXO_NULL item without a replacement: info FXO_NULL", r["status"] == "info" and r["why"] == "FXO_NULL" and not r.get("fxo_repl"), r["why"])
+    ctxb = synth("item", "dmg", "Gem", "You gain a +2 bonus to AC.", [Atom("AC", {"2"}, "item.fx")])
+    r = analyze(ctxb, {"item|dmg|Gem": True})[0]
+    check("13d BY_DESIGN does not hide a sentence that a record explains", r["status"] == "covered", r["why"])
+    r = analyze(dict(ctxb, atoms=[]), {"item|dmg|Gem": True})[0]
+    check("13e BY_DESIGN keeps a sentence no record explains as info", r["status"] == "info" and r["why"] == "BY_DESIGN", r["why"])
+    # 12 a SUB_GRANT row (uncovered-2) covers a plain "you gain proficiency with ..." sentence, nothing more
+    ga = [Atom("PROF", set(), "sub.SUB_GRANT.weapons", True, rx=RX_GRANT_SENT)]
+    r = one("You gain proficiency with Martial weapons and Medium armor.", ga, "sub")
+    check("12a SUB_GRANT row covers a plain proficiency sentence", r["status"] == "covered", r["why"])
+    r = one("You gain proficiency with Martial weapons and add your Dexterity modifier to their damage.", ga, "sub")
+    check("12b NEG a proficiency sentence that also adds a modifier stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("You gain proficiency with Martial weapons if you lack it.", ga, "sub")
+    check("12c NEG an 'if you lack it' clause stays flagged", r["status"] == "uncovered", r["why"])
     # 10r a feat's own fx dict (senses, res, cimm, exp ...) is a record (FEATS[n].fx, read by 09-logic-feats-and-choices.js)
     fa = atoms_from({"senses": [["Blindsight", 10, "Skulker"]]}, "feat.fx|Skulker")
     r = one("You gain Blindsight out to 10 feet.", fa, "feat")
@@ -1213,7 +1263,7 @@ def mutation_real(feats, results, by_design, allow, today, n=300, seed=7, stat_o
         for rm, label in ((rm_rec, "record"), (rm_cls, "class")):
             rs = analyze(ctx, by_design, allow, today=today, atoms=[a for j, a in enumerate(at) if j not in rm])
             y = next(z for z in rs if z["sid"] == r["sid"])
-            if y["status"] == "uncovered":
+            if y["status"] == "uncovered" or y.get("fxo_repl"):  # an FXO_NULL item with a replacement entry keeps info FXO_NULL for a sentence the entry does not explain, but the gate counts it apart (fxo_repl)
                 if label == "record": kr += 1
                 else: kc += 1
             else:

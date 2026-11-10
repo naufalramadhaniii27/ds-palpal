@@ -2,9 +2,10 @@
  "GX.cls|Craftsman": {
   "files": [
    "fx-A-class-species.js",
-   "fx-L1.js"
+   "fx-L1.js",
+   "fx-Z3.js"
   ],
-  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice.",
+  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice. Fx-Z3.js adds Extra Attack (extraAttack), no other file sets it for this name.",
   "shared": []
  },
  "GX.cls|Druid": {
@@ -27,9 +28,10 @@
   "files": [
    "fx-A-class-species.js",
    "fx-L1.js",
-   "fx-N1.js"
+   "fx-N1.js",
+   "fx-Z3.js"
   ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice). Fx-Z3.js adds Extra Attack (extraAttack), no other file sets it for this name.",
   "shared": []
  },
  "GX.cls|Ranger": {
@@ -191,7 +193,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|D\u00e4mglesvir (Adept)": {
+ "GX.item|Dämglesvir (Adept)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -199,7 +201,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|D\u00e4mglesvir (Master)": {
+ "GX.item|Dämglesvir (Master)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -466,7 +468,7 @@
   "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
- "GX.species|Skath\u00e1ri": {
+ "GX.species|Skathári": {
   "files": [
    "fx-A-class-species.js",
    "fx-L9.js"
@@ -559,9 +561,10 @@
  "GX.sub|Death Knight": {
   "files": [
    "fx-B2-subclass.js",
-   "fx-L11.js"
+   "fx-L11.js",
+   "fx-Z3.js"
   ],
-  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice. Fx-Z3.js adds Extra Attack (extraAttack), no other file sets it for this name.",
   "shared": []
  },
  "GX.sub|Drake-Blooded": {
@@ -735,9 +738,10 @@
  "GX.sub|Star-Spangled Banner": {
   "files": [
    "fx-L10.js",
-   "fx-M2.js"
+   "fx-M2.js",
+   "fx-Z3.js"
   ],
-  "reason": "fx-M2 adds wmAdd for Patriotism; fx-L10 has Freedom of Movement.",
+  "reason": "fx-M2 adds wmAdd for Patriotism; fx-L10 has Freedom of Movement. Fx-Z3.js adds Extra Attack (extraAttack), no other file sets it for this name.",
   "shared": []
  },
  "GX.sub|Storm Sentinel": {
@@ -1120,6 +1124,70 @@
    "fx-Z4.js"
   ],
   "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.cls|Dancer": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same cls are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Jaeger": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same cls are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Monster Hunter": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same cls are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Vagabond": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same cls are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
+  "shared": []
+ },
+ "GX.cls|Warden": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same cls are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Black Rider": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same sub are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|College of Valor": {
+  "files": [
+   "fx-Z3.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Different features of the same sub are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|College of Valor (2014)": {
+  "files": [
+   "fx-Z3.js",
+   "fx-Z4.js"
+  ],
+  "reason": "Different features of the same sub are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
   "shared": []
  }
 }

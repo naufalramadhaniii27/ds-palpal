@@ -46,4 +46,9 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  F("Crusher",{n:"Crusher (Enhanced Critical)",defs:[["Note","A Critical Hit that deals Bludgeoning damage: attack rolls against that creature have Advantage until the start of your next turn"]]});
  F("Boon of Spell Recall",{n:"Boon of Spell Recall (Free Casting)",defs:[["Note","Casting with a level 1 to 4 slot: roll 1d4. If it equals the slot's level, the slot is not expended"]]});
  F("Boon of the Night Spirit",{n:"Boon of the Night Spirit (Shadowy Form)",toggle:{id:"shadowy-form",label:"In Dim Light or Darkness"},res:except(["Psychic","Radiant"])});
+ /* ---- uncovered 2 (reports/uncovered-2.md): Extra Attack of the classes and subclasses whose text says "attack twice". The level is the row level of the app data.
+    Fighter, Barbarian, Monk, Paladin and Ranger keep the old text rule "per Extra Attack" (12i), and the largest value wins in 12l, so a multiclass character is not counted twice.
+    The Dancer rows "Three-, Four- and Five-Target Extra Attack" are conditional on every attack hitting another creature and are not set here (reports/rules-notes.md). */
+ [["Craftsman",5],["Dancer",5],["Gadgeteer",5],["Jaeger",5],["Martyr",5],["Monster Hunter",11],["Vagabond",5],["Warden",5]].forEach(function(a){C(a[0],{n:"Extra Attack",l:a[1],extraAttack:2})});
+ [["Mutagenist",5],["College of Valor",6],["College of Valor (2014)",6],["College of Swords",6],["Star-Spangled Banner",6],["Black Rider",6],["Death Knight",6],["Lumimancer",6]].forEach(function(a){S(a[0],{n:"Extra Attack",l:a[1],extraAttack:2})});
 })();

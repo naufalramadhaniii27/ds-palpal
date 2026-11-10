@@ -472,6 +472,489 @@
    ],
    "test": "U2 Tavern Brawler feat",
    "note": ""
+  },
+  {
+   "id": "feat-tough-per-level",
+   "kind": "feat",
+   "owner": "Tough",
+   "name": "Tough",
+   "lvl": null,
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "2"
+   ],
+   "rx": "rises by 2 more",
+   "anchor": [
+    "src/builder/14-logic-multiclass-hp-shop.js",
+    "F.hp*L"
+   ],
+   "test": "U3 Tough feat",
+   "note": ""
+  },
+  {
+   "id": "feat-mam-3",
+   "kind": "feat",
+   "owner": "Medium Armor Master",
+   "name": "Medium Armor Master",
+   "lvl": null,
+   "cls": [
+    "AC"
+   ],
+   "vals": [
+    "3",
+    "2",
+    "16"
+   ],
+   "rx": "add 3 instead of 2",
+   "anchor": [
+    "src/builder/12e-logic-sheet-handlers-defense.js",
+    "mam.med3===1||I.a.sc.DEX>=mam.med3"
+   ],
+   "test": "U3 Medium Armor Master feat",
+   "note": ""
+  },
+  {
+   "id": "feat-mam14-3",
+   "kind": "feat",
+   "owner": "Medium Armor Master (2014)",
+   "name": "Medium Armor Master (2014)",
+   "lvl": null,
+   "cls": [
+    "AC"
+   ],
+   "vals": [
+    "3",
+    "2"
+   ],
+   "rx": "add up to 3, rather than 2",
+   "anchor": [
+    "src/builder/12e-logic-sheet-handlers-defense.js",
+    "mam.med3===1||I.a.sc.DEX>=mam.med3"
+   ],
+   "test": "U3 Medium Armor Master (2014) feat",
+   "note": ""
+  },
+  {
+   "id": "feat-mam14-stealth",
+   "kind": "feat",
+   "owner": "Medium Armor Master (2014)",
+   "name": "Medium Armor Master (2014)",
+   "lvl": null,
+   "cls": [
+    "DIS"
+   ],
+   "vals": [],
+   "rx": "doesn't impose disadvantage on your dexterity",
+   "anchor": [
+    "src/builder/12e-logic-sheet-handlers-defense.js",
+    "mam&&mam.medStealth"
+   ],
+   "test": "U3 Medium Armor Master (2014) feat",
+   "note": ""
+  },
+  {
+   "id": "feat-observant-skill",
+   "kind": "feat",
+   "owner": "Observant",
+   "name": "Observant",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "proficiency in that skill, or expertise",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "ch.t===\"pe\"&&Array.isArray(v)"
+   ],
+   "test": "U3 Observant feat",
+   "note": ""
+  },
+  {
+   "id": "feat-keenmind-skill",
+   "kind": "feat",
+   "owner": "Keen Mind",
+   "name": "Keen Mind",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "proficiency in that skill, or expertise",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "ch.t===\"pe\"&&Array.isArray(v)"
+   ],
+   "test": "U3 Keen Mind feat",
+   "note": ""
+  },
+  {
+   "id": "feat-resilient-pick",
+   "kind": "feat",
+   "owner": "Resilient",
+   "name": "Resilient",
+   "lvl": null,
+   "cls": [
+    "PROF",
+    "SAVE"
+   ],
+   "vals": [],
+   "rx": "saving throw you aren't proficient in",
+   "anchor": [
+    "src/builder/12c-logic-sheet-handlers-core.js",
+    "F.saveFromAsi&&f.asi&&f.asi.a1"
+   ],
+   "test": "U3 Resilient feat",
+   "note": ""
+  },
+  {
+   "id": "feat-resilient-prof",
+   "kind": "feat",
+   "owner": "Resilient",
+   "name": "Resilient",
+   "lvl": null,
+   "cls": [
+    "PROF",
+    "SAVE"
+   ],
+   "vals": [],
+   "rx": "proficient in saving throws of that ability",
+   "anchor": [
+    "src/builder/12c-logic-sheet-handlers-core.js",
+    "F.saveFromAsi&&f.asi&&f.asi.a1"
+   ],
+   "test": "U3 Resilient feat",
+   "note": ""
+  },
+  {
+   "id": "feat-resilient14-prof",
+   "kind": "feat",
+   "owner": "Resilient (2014)",
+   "name": "Resilient (2014)",
+   "lvl": null,
+   "cls": [
+    "PROF",
+    "SAVE"
+   ],
+   "vals": [],
+   "rx": "proficiency in saving throws using that ability",
+   "anchor": [
+    "src/builder/12c-logic-sheet-handlers-core.js",
+    "F.saveFromAsi&&f.asi&&f.asi.a1"
+   ],
+   "test": "U3 Resilient (2014) feat",
+   "note": ""
+  },
+  {
+   "id": "feat-tavern14-improvised",
+   "kind": "feat",
+   "owner": "Tavern Brawler (2014)",
+   "name": "Tavern Brawler (2014)",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "proficient with improvised weapons",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "/^Tavern Brawler/.test(f.n)"
+   ],
+   "test": "U3 Tavern Brawler (2014) feat",
+   "note": ""
+  },
+  {
+   "id": "gloom14-dread-ambusher",
+   "kind": "sub",
+   "owner": "Ranger/Gloom Stalker (2014)",
+   "name": "Dread Ambusher",
+   "lvl": 3,
+   "cls": [
+    "INIT"
+   ],
+   "vals": [],
+   "rx": "add your wisdom modifier to initiative",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "q.sub===\"Gloom Stalker (2014)\""
+   ],
+   "test": "U3 Gloom Stalker (2014) 3 Dread Ambusher",
+   "note": ""
+  },
+  {
+   "id": "swash-rakish-audacity",
+   "kind": "sub",
+   "owner": "Rogue/Swashbuckler",
+   "name": "Rakish Audacity",
+   "lvl": 3,
+   "cls": [
+    "INIT"
+   ],
+   "vals": [],
+   "rx": "add your charisma modifier to initiative",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"swashbuckler-3-audacity\""
+   ],
+   "test": "U3 Swashbuckler 3 Rakish Audacity",
+   "note": ""
+  },
+  {
+   "id": "warmagic-tactical-wit",
+   "kind": "sub",
+   "owner": "Wizard/War Magic",
+   "name": "Tactical Wit",
+   "lvl": null,
+   "cls": [
+    "INIT"
+   ],
+   "vals": [],
+   "rx": "add your intelligence modifier to your initiative",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"war-magic-3-tactical-wit\""
+   ],
+   "test": "U3 War Magic 3 Tactical Wit",
+   "note": ""
+  },
+  {
+   "id": "chronurgy-temporal-awareness",
+   "kind": "sub",
+   "owner": "Wizard/Chronurgy Magic",
+   "name": "Temporal Awareness",
+   "lvl": null,
+   "cls": [
+    "INIT"
+   ],
+   "vals": [],
+   "rx": "add your intelligence modifier to your initiative",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"chronurgy-3-temporal-awareness\""
+   ],
+   "test": "U3 Chronurgy 3 Temporal Awareness",
+   "note": ""
+  },
+  {
+   "id": "watchers-aura-sentinel",
+   "kind": "sub",
+   "owner": "Paladin/Oath of the Watchers",
+   "name": "Aura of the Sentinel",
+   "lvl": null,
+   "cls": [
+    "INIT",
+    "CHOICE"
+   ],
+   "vals": [
+    "10",
+    "pb"
+   ],
+   "rx": "add your proficiency bonus to initiative",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"watchers-7-sentinel\""
+   ],
+   "test": "U3 Watchers 7 Aura of the Sentinel",
+   "note": "allies are not tracked, same reading as Aura of Protection (rules-notes)"
+  },
+  {
+   "id": "glory14-alacrity",
+   "kind": "sub",
+   "owner": "Paladin/Oath of Glory (2014)",
+   "name": "Aura of Alacrity",
+   "lvl": 7,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "10"
+   ],
+   "rx": "your speed increases by 10 feet",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"oath-of-glory-2014-7-alacrity\""
+   ],
+   "test": "U3 Glory (2014) 7 Aura of Alacrity",
+   "note": ""
+  },
+  {
+   "id": "psi14-guarded-mind",
+   "kind": "sub",
+   "owner": "Fighter/Psi Warrior (2014)",
+   "name": "Guarded Mind",
+   "lvl": 10,
+   "cls": [
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance to psychic damage",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Guarded Mind\""
+   ],
+   "test": "U3 Psi Warrior (2014) 10 Guarded Mind: Resistance",
+   "note": ""
+  },
+  {
+   "id": "archfey14-beguiling",
+   "kind": "sub",
+   "owner": "Warlock/The Archfey (2014)",
+   "name": "Beguiling Defenses",
+   "lvl": 10,
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "rx": "immune to being charmed",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Beguiling Defenses\""
+   ],
+   "test": "U3 Archfey (2014) 10 Beguiling Defenses: Immunity",
+   "note": ""
+  },
+  {
+   "id": "land14-ward",
+   "kind": "sub",
+   "owner": "Druid/Circle of the Land (2014)",
+   "name": "Nature's Ward",
+   "lvl": 10,
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "rx": "immune to poison damage, the poisoned condition",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Nature's Ward\""
+   ],
+   "test": "U3 Land (2014) 10 Nature's Ward: Immunity",
+   "note": ""
+  },
+  {
+   "id": "goo14-thought-shield",
+   "kind": "sub",
+   "owner": "Warlock/The Great Old One (2014)",
+   "name": "Thought Shield",
+   "lvl": 10,
+   "cls": [
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance to psychic damage",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Thought Shield\""
+   ],
+   "test": "U3 Great Old One (2014) 10 Thought Shield: Resistance",
+   "note": ""
+  },
+  {
+   "id": "fiend14-resilience",
+   "kind": "sub",
+   "owner": "Warlock/The Fiend (2014)",
+   "name": "Fiendish Resilience",
+   "lvl": 10,
+   "cls": [
+    "CHOICE",
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance to it until you choose a different one",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Fiendish Resilience\""
+   ],
+   "test": "U3 Fiend (2014) 10 Fiendish Resilience: Resistance",
+   "note": ""
+  },
+  {
+   "id": "feat-unarmed-fighting-d6",
+   "kind": "feat",
+   "owner": "Unarmed Fighting",
+   "name": "Unarmed Fighting",
+   "lvl": null,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "1d6"
+   ],
+   "rx": "replace its normal damage with bludgeoning damage of 1d6",
+   "anchor": [
+    "src/builder/12h-logic-sheet-handlers-attacks.js",
+    "f.n===\"Unarmed Fighting\""
+   ],
+   "test": "U3 Unarmed Fighting feat",
+   "note": ""
+  },
+  {
+   "id": "feat-unarmed-fighting-d8",
+   "kind": "feat",
+   "owner": "Unarmed Fighting",
+   "name": "Unarmed Fighting",
+   "lvl": null,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "d8",
+    "d6"
+   ],
+   "rx": "roll a d8 instead of the d6",
+   "anchor": [
+    "src/builder/12h-logic-sheet-handlers-attacks.js",
+    "f.n===\"Unarmed Fighting\""
+   ],
+   "test": "U3 Unarmed Fighting feat",
+   "note": ""
+  },
+  {
+   "id": "bm-superiority-dice-start",
+   "kind": "sub",
+   "owner": "Fighter/Battle Master",
+   "name": "Combat Superiority",
+   "lvl": 3,
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "4",
+    "1d8"
+   ],
+   "rx": "start with four superiority dice",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "rv(\"Superiority Dice\",\"Battle Master\")"
+   ],
+   "test": "U3 Battle Master 3 Combat Superiority",
+   "note": "the die size grows to d10 at 10 and d12 at 18 (same code)"
+  },
+  {
+   "id": "bm-superiority-dice-more",
+   "kind": "sub",
+   "owner": "Fighter/Battle Master",
+   "name": "Combat Superiority",
+   "lvl": 3,
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "7",
+    "15",
+    "5",
+    "6",
+    "1"
+   ],
+   "rx": "one more superiority die at fighter level 7",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "rv(\"Superiority Dice\",\"Battle Master\")"
+   ],
+   "test": "U3 Battle Master 7 and 15 Combat Superiority",
+   "note": ""
   }
  ]
 }
