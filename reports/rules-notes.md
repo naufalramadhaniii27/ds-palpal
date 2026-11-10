@@ -201,3 +201,23 @@ Semua entri kelas 2014 memakai `ed:"2014"` karena tabel kelas 2024 punya fitur b
 ### 2014: design (tidak dimodelkan, alasan di baseline)
 
 Wild Shape dan Wild Shape Improvement (stat block Beast), Magical Secrets baris kedua (pilihan spell yang sama, **belum dicek ke buku**), Pact Boon (Pact of the Talisman bukan pilihan builder, perlu keputusan Data), Nature's Sanctuary (efek pada penyerang), Extra Elemental Discipline (pilihan builder), Ranger's Companion tiga ukuran (stat block pendamping), Command Undead dan Undead Thralls (makhluk lain), Master Transmuter dan Transmuter's Stone (efek sekali pakai dan batu).
+
+
+## Uncovered 1: kalimat tanpa status (`reports/uncovered-1.md`)
+
+Tidak ada folder `books/`. Semua angka dan level di bawah dicocokkan ke teks fitur di app (`src/data`) dan ke hasil sheet lewat tes. Tidak ada yang diklaim cocok ke buku.
+
+### Bacaan yang dipakai
+
+| Soal | Bacaan harfiah yang dipakai | Status |
+|---|---|---|
+| Aura of Protection, Aura of Courage, Aura of Warding (kalimat "you and your allies") | Sheet menghitung bagian "you". Sekutu tidak dilacak. Kalimat dianggap tertutup untuk bagian diri sendiri | Belum diputuskan: apakah sheet perlu catatan untuk sekutu |
+| Thought Shield (Great Old One 2024) | Resistance Psychic dihitung. Damage Psychic yang dipantulkan ke penyerang adalah pemicu dan tidak dihitung | Belum diputuskan |
+| Iron Mind (Gloom Stalker), cabang "sudah proficient di Wisdom, pilih Intelligence atau Charisma" | Tidak dites (Ranger tidak punya save Wisdom dari kelas, cabang ini hanya muncul lewat multiclass). Kalimat dibiarkan uncovered | Belum diputuskan, perlu tes multiclass |
+| "Roll d20 saat charge terakhir dipakai, hasil 1 menghancurkan item" | Info `ROLL:LAST_CHARGE`. Sheet menghitung charge, bukan hancurnya item. Syarat: item punya record charges | Belum diputuskan: apakah sheet perlu mengingatkan lemparan ini |
+| Speed makhluk lain (`TARGET:SPEED`) memuat Horseshoes of Speed ("that creature's Speed increases by 30 feet") | Dibaca sebagai Speed hewan tunggangan, bukan Speed karakter | Belum diputuskan |
+| Gerak sekali pakai yang diukur dalam Speed ("move up to half your Speed", `MOVE:SPEED_REF`) | Menghabiskan gerak, tidak mengubah nilai Speed | Diputuskan (bacaan harfiah) |
+| Spellcasting Focus (`FOCUS:SPELLCASTING`) | Sheet tidak menyimpan focus. "Proficient with" di kalimat itu adalah syarat, bukan pemberian | Diputuskan |
+| Teks pilihan Expertise, skill, tool, language (`STD:PICK_TEXT`) | Pick di class (`pick` dengan `k` expertise, skills, tools, languages) adalah recordnya. Kalimat lain di fitur yang sama hanya menjelaskan siapa yang boleh memilih atau apa yang disarankan. Kalimat dengan angka lain (+5) tetap uncovered | Diputuskan |
+| Pool charges `[max, regain, reset]` | Tiap bagian menjelaskan satu kalimat. Jumlah yang diulang di kalimat lain ("up to 6") dijelaskan angkanya, bukan kelasnya | Diputuskan |
+| Biaya aktivasi "expend 1 of its charges", "(Charge Cost 3)" | Info `FORM:ACTIVATE`. Bonus stat dengan biaya charge tetap uncovered | Diputuskan |
