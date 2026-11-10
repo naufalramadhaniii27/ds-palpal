@@ -647,3 +647,13 @@ Analisis dan angka: `reports/solid-s9-analysis.md`. Ringkas:
 - `fromSheet`: pilihan subclass jadi `fsSubPicks` (satu fungsi per tipe pilihan: `fsGotTool`, `fsGotSkills`, `fsGotNamed`, `fsGotDefense`). `__bldNorm`: blok `byName` jadi `normByName` dengan langkah `bnCands`, `bnPut`, `bnMiPicks`, `bnMatch`, `bnDeal`, `bnPass`. `pk` dan `choiceBody` memakai tabel per tipe (`PK_KINDS`, `CB_TYPES`). `luRows`, `defenses`, `renderEquip` dibagi per sumber atau bagian.
 - `fx/02` TIDAK dipecah (ditunda): perekam efek baru baru 93 persen stabil, belum cukup sebagai bukti identik.
 - Tes: `python3 tests/solid_builder_diff.py --base DIR` (keluaran `__bldNorm` dan `__bldRound` pada 3890 masukan, build ini lawan pohon pembanding). `python3 tests/solid_fx_snapshot.py OUT.json [--root DIR]` dan `--diff A B [--ignore-ord]` (perekam efek: pendengar, animasi, pengamat, simpul DOM, DOM akhir, hook `__mi*`, tiga skenario, 390 dan 1250). Perekam tidak masuk CI.
+
+
+## Uncovered 3: narrow field extensions
+
+| Field | Meaning | Example |
+|---|---|---|
+| `weaponGroups:[{cat,k}]` | Grant proficiency only for a weapon whose category and kind match. `cat` is `S` or `M`, and `k` is `M` (melee) or `R` (ranged). A thrown melee weapon keeps kind M. Invalid groups are ignored. The standard proficiency panel names the group, and attack rows use the structured test. | Gun-Mage Adept: `weaponGroups:[{cat:"M",k:"R"}]`, at character level 4, ed 2024 |
+| `classOnly:"Class"` | Gate an effect to its actual class/subclass source part. This uses the source class, including a multiclass part, rather than the primary class of the character. It is not a feat class prerequisite. | Alchemist / Mutagenist Advanced Mutation, l 10 |
+
+`fx-Z5.js` declares Piloting in the existing XSK registry (Dexterity, as named by the Battleframe feat text). The extra-skills handler creates that row only when an effect or proficiency calls for it. Existing storage keys and data shapes do not change.

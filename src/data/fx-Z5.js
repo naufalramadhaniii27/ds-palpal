@@ -15,7 +15,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  S("Diabolist",{n:"Soul Broker (Speed)",l:6,toggle:{id:"soul-broker-speed",label:"Soul Broker: Speed boon active (10 minutes)",default:false},speedAdd:15});
  S("Diviner",{n:"The Third Eye (Darkvision)",l:10,toggle:{id:"third-eye-darkvision",label:"The Third Eye: Darkvision selected until a rest",default:false},darkTo:120});
  /* Advantage: passive knowledge or save rules, and explicit active states. */
- S("Mutagenist",{"n":"Advanced Mutation","l":10,"advOn":["checks and saves to avoid or end the Grappled and Restrained conditions"],"toggle":{"id":"mutation-hyperelastic","label":"Hyperelastic mutation active","default":false},"reach":[{"when":["melee","unarmed"],"add":5}]});
+ S("Mutagenist",{"n":"Advanced Mutation","l":10,"classOnly":"Alchemist","advOn":["checks and saves to avoid or end the Grappled and Restrained conditions"],"toggle":{"id":"mutation-hyperelastic","label":"Hyperelastic mutation active","default":false},"reach":[{"when":["melee","unarmed"],"add":5}]});
  S("Feylost",{"n":"Fey Moods","l":3,"advOn":["Dexterity checks and saving throws"],"toggle":{"id":"fey-mood-paranoid","label":"Fey Mood active while Bloodied: Paranoid result","default":false}});
  S("Feylost",{"n":"Fey Moods","l":3,"advOn":["Intelligence, Wisdom, and Charisma saving throws"],"toggle":{"id":"fey-mood-serene","label":"Fey Mood active while Bloodied: Serene result","default":false}});
  S("Siegeball Jersey",{"n":"Sports Fanatic","l":3,"advOn":["ability checks to recall information about a sport, its teams, and its players"]});
@@ -46,4 +46,5 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  I("Mythallar Cloak",{"n":"Mythallar Cloak","toggle":{"id":"mythallar-cloak","label":"Mythallar Cloak active (1 minute, 1 charge)","default":false},"mv":{"fly":30},"atkDice":[{"when":"any","d":"1d4","t":"Radiant","note":"One damaging hit on each of your turns while the cloak is active"}],"defs":[["Note","Flight from the cloak allows hovering. Ending the power in the air can cause a fall."]]});
  I("Ring of Spacewalking",{"n":"Zero-gravity flight","toggle":{"id":"zero-gravity","label":"In zero gravity","default":false},"mv":{"fly":"speed"}});
  I("Spacewalkers",{"n":"Zero-gravity flight","toggle":{"id":"zero-gravity","label":"In zero gravity","default":false},"mv":{"fly":"speed"}});
+ (GX.feat["Gun-Mage Adept"]=GX.feat["Gun-Mage Adept"]||[]).push({n:"Ranged Weapon Proficiency",l:4,ed:"2024",weaponGroups:[{cat:"M",k:"R"}]});
 })();

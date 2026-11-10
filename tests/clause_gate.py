@@ -295,7 +295,7 @@ reg("IMM", "imm", "condImm", "resToImm", "def", "defs", "cimm")
 reg("SPEED", "speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv", "fly", "swim", "climb", "burrow", "movesNote", "linFx")
 reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "darkHave", "noSurprise", "senses")
 reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "chkBonusNp", "skillPE", "skillAb", "langs", "tools", "weapons", "armor", "toolExpert", "toolPE",
-    "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf", "exp")
+    "weaponGroups", "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf", "exp")
 reg("SLOT", "slotAdd", "nslot", "smax", "arcRec")
 reg("RESOURCE", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
 reg("ATK", "atk", "atkBonus", "atkDice", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
@@ -358,11 +358,13 @@ def mentions(obj, name):
     return [obj] if nm in M.blob(obj) else []
 
 
-def gx_match(entries, name, text):
+def gx_match(entries, name, text, source_cls=None):
     """mech_scan.gxcov rule: an entry counts for the feature when it is named like it or named in its text."""
     out, t, f = [], (text or "").lower(), name.lower()
     for e in entries or []:
         if not isinstance(e, dict):
+            continue
+        if e.get("classOnly") and e["classOnly"] != source_cls:
             continue
         en = (e.get("n") or "").lower()
         base = re.sub(r"\s*\(.*\)\s*$", "", en).split(":")[0].strip()
@@ -462,7 +464,7 @@ def features(D):
             lvl, name = row[0], row[1]
             text = D["cf"].get("%s|%s" % (cn, name)) or row[2]
             at = []
-            for e in gx_match((gx.get("cls") or {}).get(cn), name, text):
+            for e in gx_match((gx.get("cls") or {}).get(cn), name, text, cn):
                 at += atoms_from(e, "GX.cls|" + cn)
             for k, v in st.items():
                 for part in mentions(v, name):
@@ -489,7 +491,7 @@ def features(D):
                 lvl, name = row[0], row[1]
                 text = D["sub"].get("%s|%s" % (sn, name)) or row[2]
                 at = []
-                for e in gx_match((gx.get("sub") or {}).get(sn), name, text):
+                for e in gx_match((gx.get("sub") or {}).get(sn), name, text, cn):
                     at += atoms_from(e, "GX.sub|" + sn)
                 for k in ("pickSub", "resSub", "acSub", "hpSub"):
                     if isinstance(c.get(k), dict) and sn in c[k]:

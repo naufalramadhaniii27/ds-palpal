@@ -234,3 +234,14 @@ Tidak ada folder `books/`. Semua angka dan level di bawah dicocokkan ke teks fit
 | FXO_NULL dengan entri pengganti | Entri pengganti (addI, GX) dibandingkan dengan teks. Kalimat yang tak dijelaskan entri tetap info FXO_NULL dan dihitung terpisah (`fxo_repl`) supaya baseline tidak naik | Diputuskan |
 | BY_DESIGN | Record yang menjelaskan kalimat menang atas tag BY_DESIGN. Tag hanya berlaku bila tak ada record | Diputuskan |
 | SUB_GRANT | Baris `armor`, `weapons`, `tools`, `skills` dihitung sheet pada level baris dan nama fitur `f`. Kalimat yang juga memuat modifier, focus, bahasa, pilihan, atau "if you lack it" tidak ditutup | Diputuskan |
+
+
+## Uncovered 3: source scope and manual state limits
+
+- Hyperelastic is read from Alchemist / Mutagenist, Advanced Mutation, level 10. Artificer has an unrelated subclass with the same name. The new `classOnly` gate scopes this entry to the Alchemist source part, including multiclass builds. The audit found and corrected the unscoped entry.
+- Infernal Bargain uses a manual switch for the selected Blindsight bargain. Blindsight is 30 ft and its description preserves blindness beyond that range. Other negotiated bargains remain outside this entry.
+- Soul Broker's Speed boon is +15 ft at Warden level 6. Its switch means the Speed boon is the current traded-soul benefit. It expires after 10 minutes or when replaced. The sheet does not run a combat clock.
+- Fey Moods switches represent the actual Paranoid or Serene table result while the character is Bloodied. The player sets the result and turns it off when the state ends. The app does not choose or roll a result.
+- Potion of Flying and Potion of Climbing: implementation deferred. The rule duration survives consumption, while GX item effects depend on an equipped inventory row. Treating them as carried-item bonuses would be wrong. A consumed-effect lifecycle needs a model decision. Reading not decided: how consumption, inventory removal and expiration should share saved state.
+
+- Validation fixture correction: the actual multiclass build key is `B.mc`, not `B.mcl`. The existing U4 multiclass negative used the latter and did not construct the second class. U4 and the new source-scope controls now use the actual key. No application storage key or shape changed.

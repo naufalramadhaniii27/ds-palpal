@@ -47,9 +47,9 @@ registerSheetRule(Object.assign({},EACH,{id:"monk-weapon-ability",group:"weaponR
 /* zero-miss-1: 2014 Pact of the Blade has no Charisma rule; the Hexblade's Hex Warrior (XGE 2014) extends Charisma to every pact weapon */
 registerSheetRule(Object.assign({},EACH,{id:"pact-blade-ability",group:"weaponRows",about:"Warlock, Pact of the Blade: the bonded weapon may use Charisma (2014: only with Hex Warrior)",phase:"attacks",order:120,reads:["i.a","i.r14","i.B","l.pactW"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const pactW=ctx.l.pactW,a=ctx.i.a;r.isPact=!!pactW&&ctx.p===pactW;const chaOk=!ctx.i.r14||/Hexblade/.test(ctx.i.B.sub||"");if(r.isPact&&chaOk&&a.sc.CHA>=a.sc[r.ab])r.ab="CHA";return ctx.patch()}}));
-registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-proficiency",group:"weaponRows",phase:"attacks",order:130,reads:["l.weapons","q.wpNamed"],writes:["l.wrow"],
+registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-proficiency",group:"weaponRows",phase:"attacks",order:130,reads:["l.weapons","l.weaponGroups","q.wpNamed"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const weapons=ctx.l.weapons,w=r.w,BO=r.BO;
-  r.pr=!!(r.isPact||weapons.indexOf(BO.b+" (Masterful)")>=0||ctx.q.wpNamed(weapons,BO.b)||/Simple/.test(weapons)&&w.cat==="S"||/Martial(?! with)/.test(weapons)&&w.cat==="M"||(/Finesse or Light/.test(weapons)&&w.cat==="M"&&/Finesse|Light/.test(w.p))||(/Light property/.test(weapons)&&/Light/.test(w.p)));return ctx.patch()}}));
+  r.pr=!!(r.isPact||weapons.indexOf(BO.b+" (Masterful)")>=0||ctx.q.wpNamed(weapons,BO.b)||/Simple/.test(weapons)&&w.cat==="S"||/Martial(?! with)/.test(weapons)&&w.cat==="M"||(/Finesse or Light/.test(weapons)&&w.cat==="M"&&/Finesse|Light/.test(w.p))||(/Light property/.test(weapons)&&/Light/.test(w.p))||ctx.l.weaponGroups.some((g) =>{return g.cat===w.cat&&g.k===w.k}));return ctx.patch()}}));
 registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-mastery",group:"weaponRows",phase:"attacks",order:140,reads:["i.wmSet"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;r.m=ctx.i.wmSet.indexOf(r.BO.b)>=0?r.w.m:"";return ctx.patch()}}));
 /* a subclass whose weapons use the Unarmed Strike die (SUB_GRANT flowing) */

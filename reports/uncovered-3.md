@@ -1,16 +1,176 @@
-# Uncovered 3: implementation checkpoint
+# Uncovered 3: validated implementation checkpoint
 
-Phase 2 now implements existing-model benefits in `src/data/fx-Z5.js`. The Phase 1 ledger below is historical triage, not a claim that unplaced G3 rows need a new model.
+This is a validated partial implementation, not completion of all 5,460 initial sentences. Phase 1's conservative ledger remains below. Seventy-five initial G1 candidates still need implementation or a tested code-record mapping. No unresolved candidate is claimed to require a new model merely because it was placed in G3.
 
-Implemented: six subclass state switches, nineteen missing Advantage entries, five feat entries, Piloting in the existing extra-skill registry, and three item power entries. Native WXS effects and feat picks already computed by the sheet are recognized without duplicate application effects. WXS recognition matches the exact source feature and level and only complete literal statements, not unrelated sentences or free-form notes. Twenty-one native feat code atoms have paired difference tests.
+## Measured result
 
-Mythallar Cloak keeps the item row's charge pool and attunement rules. Its active switch grants Fly 30, hover instructions, and a once-per-turn 1d4 Radiant rider. Ring of Spacewalking and Spacewalkers grant flight only with the zero-gravity switch. A fourth attuned item does not leak a cloak switch or flight. Consumed potion effects are deferred because their lifetime must outlive removal of the inventory row.
+| Kind | Before uncovered | Current uncovered | Closed |
+|---|---:|---:|---:|
+| item | 3060 | 3052 | 8 |
+| sub | 1436 | 1368 | 68 |
+| feat | 555 | 528 | 27 |
+| class | 240 | 240 | 0 |
+| species | 169 | 169 | 0 |
+| spell | 0 | 0 | 0 |
+| Total | 5460 | 5357 | 103 |
 
-Validation completed so far: 499 effect cases, 0 failed, plus 10 item cases, 0 failed. Zero-miss remains 0 for both editions. The six browser scenarios passed 24 checks, with no page errors or native dialogs, and captured storage and screenshots. SOLID UI contract passed 308 checks. Full final iteration, expensive contracts, goldens and comparisons are still running at this checkpoint. Their final results will be recorded before completion. No test still running is claimed as passed.
+Phase 1 closed 0. The G1 implementation checkpoint closed 102. The G2 weapon-group implementation closed 1. The audit corrected one source-scope error and caused no regression. No previous sentence became uncovered. The gate wrote the lowered baseline itself. No info rule, allowlist, zero-miss baseline or TypeScript baseline was changed.
 
-The small new-model candidate for Phase 3 is restricted weapon-group proficiency. Gun-Mage Adept currently has only a descriptive label for ranged martial weapons. A generic `Martial` grant would incorrectly grant melee proficiency. Phase 3 will use a narrow weapon-group field and test a Longbow against Longsword and thrown Trident rows.
+## Implemented behavior
 
-No info labels, allowlist entries or baselines were changed. The four owner-reserved issues remain unchanged. The code and tests, not this historical classification, determine what is implemented.
+`fx-Z5.js` adds six initial subclass state entries, nineteen advantage entries, five feat entries, three item entries and the ranged-weapon feat entry. Piloting uses the existing extra-skill registry. The new `weaponGroups` field grants only matching weapon categories/kinds. Thrown melee weapons do not accidentally become ranged weapons. `classOnly` prevents Alchemist Hyperelastic from leaking to the unrelated Artificer Mutagenist subclass, including in multiclass builds. Each field's implementation is under 60 added lines.
+
+WXS resistance, immunity, skill and sense records are recognized only for the matching source feature and level and complete literal rule sentences. Twenty-one native feat code atoms have paired tests. Existing computed benefits do not receive duplicate effects.
+
+Mythallar Cloak retains the existing 10-charge pool and attunement requirement, and grants Fly 30, hover instructions and one 1d4 Radiant rider while active. Ring of Spacewalking and Spacewalkers grant flight only in zero gravity. Source item rows enforce attunement. The schema field `attune` increases the attunement limit and is not a flag meaning an item requires attunement, so these entries must not set it to 1.
+
+## Completed validation
+
+| Check | Result |
+|---|---|
+| Build | PASS, generated index.html and sw.js |
+| Gate | PASS, 73,254 sentences, 36,782 mechanical, covered 7,789, info 23,636, uncovered 5,357, 0 newly uncovered IDs |
+| zero_miss_fx | PASS, 516 cases, 0 failed |
+| zero_miss_measure | PASS, 752 units, miss 0 in 2024 and 2014, 0 new miss, 0 new card-or-miss |
+| tsc_gate | PASS, SCORE 200, no WORSE |
+| html_gate | PASS, SCORE 250 |
+| fx_overlap | PASS, 1,351 names, 30 files, 151 documented overlaps |
+| guard_all --enforce | PASS, 0 new violations, exit 0 |
+| solid_contract after audit | PASS, 4,829 checks, 174,872 handler runs, 6,356 patches, 2,577 entries, 4,410 sheet entries checked against schema |
+| golden_builds | PASS, 1,479 checks |
+| solid_ui_contract | PASS, 308 checks, 0 failed |
+| scenarios | PASS, 24 checks, all three scenarios at 390x844 and 1250x850, no page errors or native dialogs |
+| solid_snapshot, branch and origin/main | 2,997 builds each, 0 page errors, 0 build errors. 198 expected differences |
+| solid_snapshot, audit correction | Only I:Artificer/Mutagenist L20 differs from the pre-audit branch snapshot, as required by the fixed scope |
+| solid_builder_diff --base origin/main checkout | PASS, 3,890 inputs, IDENTICAL, total c47961d793b8c15b |
+
+The main snapshot comparison exits 1 because it is a difference detector. Its 198 changed keys were reviewed. They use the changed features or the 16 Extra Attack entries inherited from the required f6d77cb1 base, which origin/main does not contain. The required base is intentionally ahead of main in those features. An identical main sheet snapshot is therefore not the expected result. The builder normalization/round-trip comparison is identical.
+
+Both viewport runs saved all six localStorage captures and ten screenshots in the external scenario artifact directory. The mobile applied sheet and desktop new-character sheet were visually inspected. Yudhi remains in the roster. Builder Apply preserves the expected AC 17 and HP 40 in the scenario. No tests required at this implementation checkpoint were skipped. Runs interrupted by the user were restarted and are not counted as passes.
+
+## Remaining work and readings
+
+The 5,357 remaining uncovered sentences are still open. The Phase 1 ledger is initial triage and does not establish that all remaining work is G3. Seventy-five initial G1 candidates remain open. Continue with native subclass grants and picks, descriptive item advantages, and scoped proficiency groups before treating G1 as exhausted. No G3 model was started.
+
+Potions need an effect lifetime that survives consumption and inventory removal. Their model decision remains reading not decided in rules-notes.md. State switches represent the player's current state and do not run a combat clock or automatically spend charge counters. The four owner-reserved sheet issues remain unchanged. No new unresolved sheet bug was established.
+
+The audit below re-reads all 103 available closures in seed-11 order, because a unique 150-sentence sample cannot be drawn from a pool of 103. One implementation error was found and corrected. The separate multiclass fixture correction uses the actual B.mc key and changes no application storage shape.
+
+---
+
+## Audit checkpoint, seed 11
+
+The closure pool has 103 unique sentences, fewer than the requested 150. Every closed sentence was re-read, in seed-11 shuffled order. The audit therefore covers the entire available pool, not 150 distinct sentences. No duplicate draws are presented as extra coverage.
+
+One rule implementation error was found and fixed: Alchemist Hyperelastic was attached to the shared Mutagenist subclass key without class scope. The classOnly entry gate now uses the actual source part. Artificer 10 does not receive it. Alchemist 10 in a multiclass build receives exactly +5 ft reach, and Alchemist 9 cannot borrow Artificer levels. Three source-scope controls pass.
+
+A separate test-fixture error was corrected: the old U4 multiclass control used mcl, but MCL reads B.mc. This is a test correction, not a storage migration. No owner-reserved sheet behavior changed.
+
+| # | Sentence ID | Re-read source level | Rule text | Review |
+|---:|---|---:|---|---|
+| 1 | feat&#124;Aberrant Spawn&#124;Aberrant Spawn#2 | feat selection | You have Advantage on saving throws to avoid or end the Charmed condition and against any effect that would read your thoughts. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 2 | feat&#124;Squat Nimbleness&#124;Squat Nimbleness#8 | feat selection | You gain proficiency in Acrobatics or Athletics. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 3 | sub&#124;Warden/Diabolist&#124;Soul Broker#13 | 6 | Your Speed rises by 15 feet. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 4 | feat&#124;Proto-Man&#124;Proto-Man#4 | feat selection | You have Advantage on saving throws to avoid or end the Frightened condition. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 5 | sub&#124;Wizard/Blood Mage&#124;Blood Savant#2 | 3 | You gain proficiency in Medicine. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 6 | sub&#124;Sorcerer/Farseer&#124;Blood of the Seer#1 | 3 | You gain proficiency in Insight and History. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 7 | feat&#124;Blood Hound&#124;Blood Hound#4 | feat selection | You have Advantage on Wisdom (Perception) checks that rely on sound or smell. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 8 | feat&#124;Gun-Mage Adept&#124;Gun-Mage Adept#3 | feat selection | You gain proficiency with Ranged Martial weapons. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 9 | feat&#124;Actor (2014)&#124;Actor (2014)#4 | feat selection | You have Advantage on Charisma (Deception) and Charisma (Performance) checks when you try to pass yourself off as a different person. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 10 | sub&#124;Warden/Rimekeeper&#124;Polar Acclimation#2 | 3 | You have Resistance to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 11 | sub&#124;Warlock/The Predator&#124;Form of the Beast#3 | 3 | You have Advantage on Stealth, Perception and Survival checks to stalk or track prey. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 12 | sub&#124;Wizard/Diviner&#124;The Third Eye#6 | 10 | You gain Darkvision out to 120 feet. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 13 | sub&#124;Warden/Nightgaunt&#124;Grave Keeper#5 | 3 | You have Resistance to Necrotic damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 14 | sub&#124;Investigator/Infernum&#124;Infernal Bargain#5 | 6 | You have Blindsight with a range of 30 feet. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 15 | sub&#124;Monk/Way of the Ascendant Dragon&#124;Ascendant Aspect#4 | 17 | You have Blindsight out to 10 feet. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 16 | sub&#124;Ranger/Winter Walker&#124;Frigid Explorer#4 | 3 | You have Resistance to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 17 | sub&#124;Dancer/Fire Dancer&#124;Flame Twirling#2 | 3 | You have Resistance to Fire damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 18 | sub&#124;Captain/Siegeball Jersey&#124;Sports Fanatic#4 | 3 | You have Advantage on ability checks to recall information about a sport, its teams, and its players. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 19 | sub&#124;Sorcerer/Pyromancer (PSK)&#124;Fire in the Veins#1 | 6 | You have Resistance to Fire damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 20 | sub&#124;Cleric/Twilight Domain&#124;Eyes of Night#1 | 3 | You have Darkvision with a range of 300 feet. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 21 | feat&#124;Quicksmithing&#124;Quicksmithing#8 | feat selection | You gain proficiency with one type of artisan's tools (quicksmith's tools). | Checked against the existing typed WXS record or code handler and the paired test. |
+| 22 | sub&#124;Druid/Circle of Configuration&#124;Mecha Configuration#5 | 14 | You have Advantage on Strength checks and saves. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 23 | sub&#124;Rogue/Scout&#124;Survivalist#1 | 3 | You gain proficiency in Nature and Survival. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 24 | sub&#124;Vagabond/Feylost&#124;Fey Moods#16 | 3 | You have Advantage on Intelligence, Wisdom, and Charisma saving throws. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 25 | feat&#124;Beastperson&#124;Beastperson#3 | feat selection | You have Advantage on Dexterity saving throws while you are Bloodied. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 26 | sub&#124;Alchemist/Mutagenist&#124;Advanced Mutation#4 | 10 | You have Advantage on checks and saves to avoid or end the Grappled and Restrained conditions. | Class scope corrected to Alchemist. Hyperelastic grants +5 ft reach and its stated check/save advantage only while selected and active. |
+| 27 | sub&#124;Sorcerer/Boreal Bloodline&#124;Gelid Form#1 | 6 | You have Resistance to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 28 | sub&#124;Warlock/Undead Patron&#124;Necrotic Husk#2 | 10 | You have Resistance to Necrotic damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 29 | sub&#124;Druid/Circle of Configuration&#124;Mecha Configuration#7 | 14 | Your melee hits deal an extra 1d6 Force damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 30 | feat&#124;Green-Skin&#124;Green-Skin#6 | feat selection | You have Advantage on saving throws to avoid or end the Poisoned condition. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 31 | sub&#124;Cleric/Justice Domain&#124;Holy Denunciation#3 | 17 | You have advantage on Wisdom and Charisma checks about justice, judgment, and law, up to and including execution for crimes. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 32 | feat&#124;Symbiotic Being&#124;Symbiotic Being#5 | feat selection | You gain proficiency in one skill of your choice from Arcana, Deception, History, Intimidation, Insight, Investigation, Nature, Religion, Perception, or Persuasion. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 33 | sub&#124;Paladin/Oath of Thunder&#124;Child of the Storm#3 | 20 | You have Advantage on Dexterity (Stealth) checks and Initiative rolls. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 34 | sub&#124;Cleric/Apocalypse Domain&#124;Herald of the Apocalypse#1 | 17 | You have resistance to Acid, Fire, and Poison damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 35 | sub&#124;Warlock/Astral Griffon Patron&#124;Extradimensional Mastery#6 | 10 | You have Resistance to Force damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 36 | sub&#124;Sorcerer/Haunted Sorcery&#124;Deathly Pallor#1 | 6 | You have Resistance to Necrotic damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 37 | sub&#124;Sorcerer/Storm Sorcery&#124;Heart of the Storm#1 | 6 | You have Resistance to Lightning and Thunder damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 38 | item&#124;tsdm&#124;Ring of Spacewalking#2 | item state | In zero gravity you have a Fly Speed equal to your Speed. | Checked the exact item key, active/zero-gravity state, amount/type and the existing item-row attunement/charge gates. |
+| 39 | sub&#124;Warden/Diabolist&#124;Devil's Advocate#5 | 3 | You have Resistance to Fire damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 40 | feat&#124;Industrious&#124;Industrious#7 | feat selection | You have Advantage on saving throws to avoid the Exhaustion condition. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 41 | feat&#124;Ley-Bound&#124;Ley-Bound#3 | feat selection | You have Advantage on Wisdom (Survival) checks to track a creature overland or to forage for food and water. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 42 | sub&#124;Barbarian/Path of the Glacier&#124;Permafrost#7 | 3 | You have Resistance to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 43 | sub&#124;Ranger/Winter Walker&#124;Frozen Haunt#8 | 15 | You have Immunity to the Grappled, Prone, and Restrained conditions. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 44 | feat&#124;Skill Expert (2014)&#124;Skill Expert (2014)#4 | feat selection | You gain proficiency in one skill of your choice. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 45 | feat&#124;Lakshay: Oni&#124;Lakshay: Oni#4 | feat selection | You have Advantage on Dexterity (Piloting) checks made while piloting a Battleframe. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 46 | feat&#124;Ace Pilot&#124;Ace Pilot#2 | feat selection | You gain proficiency in the Piloting skill. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 47 | sub&#124;Paladin/Oath of Glory (2014)&#124;Living Legend#2 | 20 | You have Advantage on all Charisma checks. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 48 | sub&#124;Cleric/Beer Domain&#124;Fire in the Belly#1 | 17 | You have resistance to Cold, Poison, and Psychic damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 49 | sub&#124;Vagabond/Feylost&#124;Fey Moods#14 | 3 | You have Advantage on Dexterity checks and saving throws. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 50 | feat&#124;Aereni Half-Life&#124;Aereni Half-Life#3 | feat selection | You have Advantage on Death Saving Throws. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 51 | sub&#124;Cleric/Moon Domain (Deep Magic)&#124;Moon's Grace#1 | 3 | You gain proficiency in Perception and Stealth. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 52 | sub&#124;Sorcerer/Frost Sorcery&#124;Cold-Hearted#11 | 6 | You have Resistance to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 53 | feat&#124;Syndicate Spy&#124;Syndicate Spy#5 | feat selection | You have proficiency with the Disguise Kit. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 54 | sub&#124;Warden/Godsworn&#124;Divine Mandate#7 | 3 | You have Resistance to Radiant damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 55 | sub&#124;Ranger/Winter Walker&#124;Frozen Haunt#5 | 15 | You have Immunity to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 56 | sub&#124;Fighter/Couatl Herald&#124;One of the People#1 | 3 | You gain proficiency in Insight and Persuasion. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 57 | sub&#124;Cleric/Void Domain&#124;Messenger of the Void#1 | 3 | You gain proficiency in Arcana and Intimidation. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 58 | item&#124;dmg&#124;Mythallar Cloak#6 | item state | Additionally, once on each of your turns when you hit a creature with an attack roll and deal damage, you can cause the target to take an extra 1d4 Radiant damage. | Checked the exact item key, active/zero-gravity state, amount/type and the existing item-row attunement/charge gates. |
+| 59 | sub&#124;Wizard/Necromancer&#124;Necromancy Spellbook#3 | 3 | You have Resistance to Necrotic damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 60 | feat&#124;Iron Gut&#124;Iron Gut#5 | feat selection | You have Advantage on Wisdom (Survival) checks made to forage for food. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 61 | sub&#124;Sorcerer/Shadow Magic&#124;Eyes of the Dark#1 | 3 | You have Darkvision to 120 feet. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 62 | sub&#124;Alchemist/Mutagenist&#124;Bonus Proficiencies#1 | 3 | You gain proficiency in Acrobatics and Athletics. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 63 | sub&#124;Monster Hunter/Occultist Guild&#124;Arcane Interference#1 | 3 | You have Advantage on saving throws against spells cast by creature types in your Monster Grimoire. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 64 | sub&#124;Ranger/Gloom Stalker (2014)&#124;Umbral Sight#1 | 3 | You gain Darkvision to 60 feet. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 65 | sub&#124;Monk/Warrior of Gravity&#124;Plunging Strike#1 | 6 | You have Advantage on any Unarmed Strike you make while falling. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 66 | sub&#124;Fighter/Living Crucible&#124;Toxin Transmutation#1 | 15 | You have Resistance to Poison damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 67 | sub&#124;Warden/Rimekeeper&#124;Hoarfrost Herald#5 | 17 | You have Immunity to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 68 | sub&#124;Sorcerer/Pyromancer (PSK)&#124;Fiery Soul#1 | 18 | You have Immunity to Fire damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 69 | item&#124;nf&#124;Mythallar Cloak#6 | item state | Additionally, once on each of your turns when you hit a creature with an attack roll and deal damage, you can cause the target to take an extra 1d4 Radiant damage. | Checked the exact item key, active/zero-gravity state, amount/type and the existing item-row attunement/charge gates. |
+| 70 | sub&#124;Alchemist/Ooze Rancher&#124;Ooze Resilience#1 | 3 | You have Resistance to Acid damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 71 | sub&#124;Monster Hunter/Occultist Guild&#124;Acolyte of the Occult#1 | 3 | You gain proficiency in the Arcana skill. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 72 | item&#124;dmg&#124;Mythallar Cloak#5 | item state | While the cloak's magic is active, you gain a Fly Speed of 30 feet and can hover. | Checked the exact item key, active/zero-gravity state, amount/type and the existing item-row attunement/charge gates. |
+| 73 | sub&#124;Alchemist/Ionizer&#124;Bonus Proficiencies#1 | 3 | You gain proficiency in the Technology skill. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 74 | sub&#124;Captain/Feylost&#124;Fey Moods#14 | 3 | You have Advantage on Dexterity checks and saving throws. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 75 | sub&#124;Captain/Feylost&#124;Fey Moods#16 | 3 | You have Advantage on Intelligence, Wisdom, and Charisma saving throws. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 76 | sub&#124;Wizard/Blood Magic (Deep Magic)&#124;Blood Savant#2 | 3 | You gain proficiency in Medicine. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 77 | sub&#124;Alchemist/Mutagenist&#124;Advanced Mutation#3 | 10 | Your reach increases by 5 feet. | Class scope corrected to Alchemist. Hyperelastic grants +5 ft reach and its stated check/save advantage only while selected and active. |
+| 78 | sub&#124;Dancer/Mime&#124;Pantomime [Dance Style]#2 | 3 | You have Advantage on the first melee attack roll you make on each of your turns. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 79 | feat&#124;Gambler (Dark Matter)&#124;Gambler (Dark Matter)#2 | feat selection | You gain proficiency with all Gaming Sets and have Advantage on ability checks for games of chance. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 80 | sub&#124;Vagabond/Siegeball Jersey&#124;Sports Fanatic#4 | 3 | You have Advantage on ability checks to recall information about a sport, its teams, and its players. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 81 | feat&#124;Aereni Expertise&#124;Aereni Expertise#2 | feat selection | You gain proficiency in one skill of your choice. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 82 | sub&#124;Barbarian/Path of the Frostrager&#124;Cold Resistance#1 | 3 | You have Resistance to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 83 | feat&#124;Iron Gut&#124;Iron Gut#3 | feat selection | You have Advantage on saving throws to avoid or end the Poisoned condition. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 84 | feat&#124;Echoing Soul&#124;Echoing Soul#2 | feat selection | You gain proficiency in two skills of your choice. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 85 | sub&#124;Cleric/Forge Domain&#124;Soul of the Forge#1 | 6 | You have Resistance to Fire damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 86 | sub&#124;Dancer/Danseur Macabre&#124;Ghoulish Calling#5 | 3 | You have Resistance to Necrotic damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 87 | sub&#124;Ranger/Bounty Hunter&#124;Threat Assessment#1 | 7 | You have Advantage on saving throws against effects caused by the creature marked by your Hunter's Mark. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 88 | item&#124;dmg&#124;Spacewalkers#4 | item state | In zero gravity you have a Fly Speed equal to your Speed. | Checked the exact item key, active/zero-gravity state, amount/type and the existing item-row attunement/charge gates. |
+| 89 | sub&#124;Cleric/Forge Domain&#124;Saint of Forge and Fire#1 | 17 | You have Immunity to Fire damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 90 | feat&#124;Inspirational Caster&#124;Inspirational Caster#2 | feat selection | You gain proficiency in Intimidation or Persuasion (your choice). | Checked against the existing typed WXS record or code handler and the paired test. |
+| 91 | feat&#124;Envoy Specialist&#124;Envoy Specialist#2 | feat selection | You gain proficiency with one tool of your choice. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 92 | feat&#124;Free Sword Mercenary's Will&#124;Free Sword Mercenary's Will#4 | feat selection | You have Advantage on saving throws that would apply a condition. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 93 | sub&#124;Warlock/The Celestial&#124;Radiant Soul#1 | 6 | You have Resistance to Radiant damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 94 | item&#124;dmg&#124;Ring of Spacewalking#2 | item state | In zero gravity you have a Fly Speed equal to your Speed. | Checked the exact item key, active/zero-gravity state, amount/type and the existing item-row attunement/charge gates. |
+| 95 | sub&#124;Fighter/Purple Dragon Knight (Banneret)&#124;Royal Envoy#1 | 7 | You gain proficiency in Persuasion. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 96 | sub&#124;Fighter/Rune Knight&#124;Giant's Might#3 | 3 | You have Advantage on Strength checks and Strength saving throws. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 97 | feat&#124;Gambler&#124;Gambler#2 | feat selection | You gain proficiency with two gaming sets of your choice. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 98 | sub&#124;Wizard/Transmuter&#124;Wondrous Alteration#7 | 3 | You have Advantage on Charisma (Deception) checks. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 99 | item&#124;tsdm&#124;Spacewalkers#4 | item state | In zero gravity you have a Fly Speed equal to your Speed. | Checked the exact item key, active/zero-gravity state, amount/type and the existing item-row attunement/charge gates. |
+| 100 | sub&#124;Warlock/The Fathomless&#124;Oceanic Soul#1 | 6 | You have Resistance to Cold damage. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 101 | item&#124;nf&#124;Mythallar Cloak#5 | item state | While the cloak's magic is active, you gain a Fly Speed of 30 feet and can hover. | Checked the exact item key, active/zero-gravity state, amount/type and the existing item-row attunement/charge gates. |
+| 102 | feat&#124;Dungeon Delver&#124;Dungeon Delver#4 | feat selection | You have Advantage on saving throws made to avoid or resist traps. | Checked against the existing typed WXS record or code handler and the paired test. |
+| 103 | sub&#124;Warden/Storm Sentinel&#124;Stormlord#9 | 17 | You have a Fly Speed of 60 feet. | Checked against the existing typed WXS record or code handler and the paired test. |
 
 ---
 

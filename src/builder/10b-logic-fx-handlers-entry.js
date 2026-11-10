@@ -3,6 +3,9 @@ import {registerFxHandler,chPick,ABFULL} from "./10a-logic-fx-registry.js";
    gate and prepare handlers get the raw source entry e, post handlers get the built entry o. One handler per field group. */
 /* l: the entry counts from this level (class level for cls and sub entries, character level for the rest) */
 registerFxHandler("entry",{id:"gate-level",group:"gate",phase:"gate",fields:["l"],uses:["src"],run:function(e,ctx){return e.l&&ctx.src.lv<e.l?{skip:true}:null}});
+/* Subclass names can belong to different classes. Use the actual source part,
+   including a multiclass part, rather than the character's primary class. */
+registerFxHandler("entry",{id:"gate-source-class",group:"gate",phase:"gate",fields:["classOnly"],uses:["src"],run:function(e,ctx){return e.classOnly&&e.classOnly!==ctx.src.ocls?{skip:true}:null}});
 /* ed:"2024": the entry is for a 2024 build only (a feature the 2014 class table does not have, or reads differently). A 2014 build drops it, toggle row included (zero miss 3) */
 registerFxHandler("entry",{id:"gate-edition",group:"gate",phase:"gate",fields:["ed"],uses:["rs"],run:function(e,ctx){return (e.ed==="2024"&&ctx.rs==="2014")||(e.ed==="2014"&&ctx.rs!=="2014")?{skip:true}:null}});
 /* when {key,val,any}: only while the pick named in key holds val */

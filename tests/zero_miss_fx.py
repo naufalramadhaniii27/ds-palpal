@@ -565,7 +565,7 @@ for (nm, b, L) in [
     CASES += [u1("U4 %s %d Extra Attack: the Attack action makes two attacks" % (nm, L), bh, [("/^Make two attacks \\(Extra Attack \\(%s %d\\)\\)/.test(C.actions[0].d)" % (re.escape(nm), L), True)], lo=lv(bh, L - 1), allow=EA_LV),
               u1("NEG U4 %s %d is one level before Extra Attack: one attack" % (nm, L - 1), lv(bh, L - 1), [(EA_AT, "Make one attack")])]
 CASES += [u1("NEG U4 Fighter 5 keeps the old text rule per Extra Attack", dict(cls="Fighter", level=5, base=WL), [(EA_AT, "Make one attack per Extra Attack")]),
-          u1("NEG U4 Fighter 5 and Bard (Valor) 6 multiclass: the attack count is not summed", dict(cls="Fighter", level=5, base=WL, extra={"mcl": [{"cls": "Bard", "sub": "College of Valor", "lv": 6}]}), [("/Make (two|three) attacks.*Make/.test(C.actions[0].d)", False)])]
+          u1("NEG U4 Fighter 5 and Bard (Valor) 6 multiclass: the attack count is not summed", dict(cls="Fighter", level=5, base=WL, extra={"mc": [{"cls": "Bard", "sub": "College of Valor", "lv": 6}]}), [("/Make (two|three) attacks.*Make/.test(C.actions[0].d)", False)])]
 
 # U5: WXS.fx payloads already consumed by XFX. Removing only that payload
 # keeps the build identical except for its defense rows. Rule values above the
@@ -1188,6 +1188,24 @@ for name, tid, fly in [("Mythallar Cloak","mythallar-cloak",30),("Ring of Spacew
 # Three earlier attuned items exhaust the slots. The cloak must not leak a switch or flight.
 CASES.append(dict(name="NEG U8 Mythallar Cloak beyond attunement limit",b=dict(cls="Wizard",level=4,base=WL,inv=[{"n":n,"q":1,"eq":True} for n in ["Ring of Protection","Cloak of Protection","Amulet of Health","Mythallar Cloak"]]),tog={"mythallar-cloak":True},expect=[("(C.moves||[]).some(x=>x.m==='fly')",False)],allow=[],base_allow=[]))
 
+# Phase 3 weaponGroups: an actual ranged group, not every weapon with a range.
+GM_B=dict(cls="Wizard",level=4,base=WL,ch={"feat4":{"feat":"Gun-Mage Adept","a1":"DEX"}},inv=[{"n":n,"q":1,"eq":True} for n in ["Longbow","Longsword","Trident"]])
+GM_FIELDS=[r"^profs\.weapons$",r"^profSrc\.weapons(?:\.|$)",r"^attacks\.\d+\.prof$"]
+CASES += [
+    dict(name="Z3 U9 ranged martial proficiency",b=GM_B,withoutGx=["Gun-Mage Adept","Ranged Weapon Proficiency",None,"feat"],expect=[("C.attacks.find(x=>x.n==='Longbow').prof",True),("C.attacks.find(x=>x.n==='Longsword').prof",False),("C.attacks.filter(x=>/Trident/.test(x.n)).every(x=>!x.prof)",True),("C.profs.weapons.includes('Ranged weapons (martial)')",True)],allow=GM_FIELDS,base_allow=GM_FIELDS),
+    dict(name="NEG U9 no feat no ranged martial proficiency",b=dict(GM_B,ch={}),expect=[("C.attacks.find(x=>x.n==='Longbow').prof",False)],base_allow=[]),
+    dict(name="NEG U9 below feat level",b=dict(GM_B,level=3),expect=[("C.attacks.find(x=>x.n==='Longbow').prof",False)],base_allow=[]),
+    dict(name="NEG U9 2014 does not get 2024-only grant",b=dict(GM_B,rs="2014"),expect=[("C.attacks.find(x=>x.n==='Longbow').prof",False)],base_allow=[]),
+]
+
+# Audit correction: the same subclass name on another class must not acquire the effect.
+CASES.append(dict(name="NEG U10 Artificer Mutagenist has no Alchemist Hyperelastic mutation",b=dict(cls="Artificer",sub="Mutagenist",level=10,base=WL),tog={"mutation-hyperelastic":True},expect=[("(C.fxToggles||[]).some(x=>x.id==='mutation-hyperelastic')",False),("C.attacks[0].range","5 ft")],allow=[],base_allow=[]))
+
+CASES += [
+    dict(name="Z3 U10 Alchemist mutation uses its own multiclass source level",b=dict(cls="Artificer",sub="Mutagenist",level=10,base=WL,extra={"src":{"core":True,"dmg":True,"efa":True,"tvss":True},"mc":[{"cls":"Alchemist","sub":"Mutagenist","lv":10}]}),tog={"mutation-hyperelastic":True},expect=[("C.attacks[0].range","10 ft")],allow=[r"^attacks\.0\.(range|note)$",r"^defenses(?:\.|$)",r"^saveNotes(?:\.|$)",r"^fxToggles\.\d+\.on$"],base_allow=[]),
+    dict(name="NEG U10 Alchemist 9 does not borrow Artificer 10 for the mutation",b=dict(cls="Artificer",sub="Mutagenist",level=10,base=WL,extra={"src":{"core":True,"dmg":True,"efa":True,"tvss":True},"mc":[{"cls":"Alchemist","sub":"Mutagenist","lv":9}]}),tog={"mutation-hyperelastic":True},expect=[("(C.fxToggles||[]).some(x=>x.id==='mutation-hyperelastic')",False)],allow=[],base_allow=[]),
+]
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }
@@ -1199,9 +1217,9 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
    const rows=w.fx.filter(r=>r[1]===feature), old=rows.map(r=>r[2]);
    try{ rows.forEach(r=>{r[2]=Object.fromEntries(Object.entries(r[2]).filter(([k])=>!keys.includes(k)))}); return window.__bldSheetFor(mk(c.b)) }
    finally{rows.forEach((r,i)=>{r[2]=old[i]})} };
- const withoutGx=c=>{const [sub,name,line]=c.withoutGx, old=window.GX.sub[sub];
-   try{window.GX.sub[sub]=old.filter(e=>!(e.n===name&&(e.advOn||[]).includes(line)));return window.__bldSheetFor(mk(c.b))}
-   finally{window.GX.sub[sub]=old} };
+ const withoutGx=c=>{const [sub,name,line,kind='sub']=c.withoutGx, table=window.GX[kind], old=table[sub];
+   try{table[sub]=old.filter(e=>!(e.n===name&&(!line||(e.advOn||[]).includes(line))));return window.__bldSheetFor(mk(c.b))}
+   finally{table[sub]=old} };
  const res=[];
  for(const c of cases){ const r={name:c.name,fail:[]};
   try{ const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined), C0=c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));

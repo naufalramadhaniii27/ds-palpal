@@ -7,7 +7,7 @@ import {defineLocals} from "./12b-logic-sheet-schema.js";
    comma list), s: the source shown in C.profSrc, a: place in the text, b: place in the source list, nn: 1 = a text of "None" is dropped from C.profs}.
    The old two passes did not list the sources in the same order (a pact weapon and Masterful weapons last in the source list, species before
    multiclass there), so a and b keep both orders. l.weapons is the weapon text before the picks of "prof-gx-weapon-picks". */
-defineLocals({profList:"array",weapons:"string"});
+defineLocals({profList:"array",weapons:"string",weaponGroups:"array"});
 /* v32 RL49: a tool "of your choice" in the data (toolPick) is replaced by the tools chosen in the builder (none chosen: nothing) */
 function tp(B,txt,pick,key){if(!pick)return txt;const v=B.ch[key];return Array.isArray(v)?v.join(", "):""}
 /* names of a text into a source list, each name once (the first source wins), without "None" and without the Masterful and Pact Weapon notes */
@@ -51,6 +51,15 @@ registerSheetGroup({id:"prof-tool-choices",group:"proficiencies",phase:"profs",o
 registerSheetGroup({id:"fx-profs",group:"proficiencies",phase:"profs",order:90,reads:["i.G"],writes:["l.profList"],
  run:function(ctx){const rows=ctx.l.profList;ctx.i.G.forEach((e) =>{["armor","weapons","tools"].forEach((k) =>{(e[k]||[]).forEach((n) =>{rows.push(row(k,n,e.lbl,90,71))})})});return ctx.patch()}});
 /* C.profs (text, each name once) and C.profSrc (name and where it comes from, v23 RU36 no. 7), both from the rows */
+/* Restricted groups are kept out of the legacy "Martial" text matcher. The
+   attack-row handler compares the actual weapon category and attack kind. */
+registerSheetGroup({id:"fx-weapon-groups",group:"proficiencies",phase:"profs",order:91,reads:["i.G","i.ar","i.ESH","i.EA","q.fxOk"],writes:["l.profList","l.weaponGroups"],
+ run:function(ctx){const I=ctx.i;ctx.l.weaponGroups=[];I.G.forEach((e) =>{
+  if(!ctx.q.fxOk(e,I.ar,I.ESH,I.EA))return;
+  (e.weaponGroups||[]).forEach((g) =>{if(!/^[SM]$/.test(g.cat)||!/^[MR]$/.test(g.k))return;
+   ctx.l.weaponGroups.push({cat:g.cat,k:g.k});
+   const label=(g.k==="R"?"Ranged":"Melee")+" weapons ("+(g.cat==="M"?"martial":"simple")+")";
+   ctx.l.profList.push(row("weapons",label,e.lbl,91,72))})});return ctx.patch()}});
 registerSheetGroup({id:"prof-finish",group:"proficiencies",phase:"profs",order:100,reads:["l.profList"],writes:["C.profs","C.profSrc","l.weapons"],
  run:function(ctx){const rows=ctx.l.profList,C=ctx.C,KS=["armor","weapons","tools"],txt={},PS={armor:[],weapons:[],tools:[]};
   KS.forEach((k) =>{const mine=rows.filter((r) =>{return r.k===k});

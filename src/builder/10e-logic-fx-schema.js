@@ -36,6 +36,8 @@ export const FX_FIELDS={
  atkAb:"object",
  saveBonus:"number|string",
  weapons:"array",
+ weaponGroups:"array",
+ classOnly:"string",
  acBase:"array|number",
  unarmed:"object",
  speed:"array",
