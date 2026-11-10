@@ -376,6 +376,7 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 | tools/build/ | esbuild, BabylonJS, Havok (versi dikunci, `npm ci --prefix tools/build`) |
 | tools/learn_lint.js | Cek teks Learn: panjang kalimat EN 14 dan ID 12 kata, 2 kalimat per teks, kata kaku Indonesia, angka sama di dua bahasa, kunci kamus |
 | src/fx/25-dice3d.js | Dadu 3D sendiri (N27): WebGL 1, lintasan dihitung, tanpa mesin fisika. dice-box, Babylon, Havok dihapus 2026-10-30 |
+| src/fx/25a-dice3d-bridge.js, src/fx/25-dice3d-head.js | Jembatan ke mesin dadu 3D. Mesin (`25-dice3d.js`) kini bagian defer sendiri `dice3d` (bagian pertama, jalan tepat setelah frame pertama) supaya `index.html` bentuk dist tetap di bawah 2 MiB. Bridge (di blok fx) menaruh `FXENV` dan `FXH` di `__fxBridge`, head memakainya |
 | tools/important_trim.py | Analisis dan pembuangan !important yang tidak berpengaruh |
 | src/boot/trusted-types.js | Policy Trusted Types `default` dan `cs-loader` |
 | src/app/45-learn-bridge.js | `window.__app`: fungsi app yang dipakai Learn (app berjalan di satu closure) |
