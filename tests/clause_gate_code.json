@@ -1,0 +1,459 @@
+{
+ "doc": "Features the sheet computes in code, not from an fx record (reports/uncovered-1.md). Each entry gives the sentence (rx on the lower-cased text), the class the code carries, the anchor that must stay in the source, the data row level and the zero_miss_fx case that shows the sheet change.",
+ "entries": [
+  {
+   "id": "barb-fast-movement",
+   "kind": "class",
+   "owner": "Barbarian",
+   "name": "Fast Movement",
+   "lvl": 5,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "10"
+   ],
+   "rx": "speed is 10 feet higher",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"barbarian-5-fast-movement\""
+   ],
+   "test": "U1 Barbarian 5 Fast Movement",
+   "note": ""
+  },
+  {
+   "id": "monk-unarmored-movement",
+   "kind": "class",
+   "owner": "Monk",
+   "name": "Unarmored Movement",
+   "lvl": 2,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "10"
+   ],
+   "rx": "speed rises by 10 feet",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"monk-2-unarmored-movement\""
+   ],
+   "test": "U1 Monk 2 Unarmored Movement",
+   "note": ""
+  },
+  {
+   "id": "ranger-roving-speed",
+   "kind": "class",
+   "owner": "Ranger",
+   "name": "Roving",
+   "lvl": 6,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "10"
+   ],
+   "rx": "goes up by 10 feet",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"ranger-6-roving\""
+   ],
+   "test": "U1 Ranger 6 Roving",
+   "note": ""
+  },
+  {
+   "id": "ranger-roving-modes",
+   "kind": "class",
+   "owner": "Ranger",
+   "name": "Roving",
+   "lvl": 6,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "climb speed and a swim speed",
+   "anchor": [
+    "src/builder/12j-logic-sheet-handlers-features.js",
+    "id:\"ranger-6-roving-speeds\""
+   ],
+   "test": "U1 Ranger 6 Roving",
+   "note": ""
+  },
+  {
+   "id": "paladin-aura-protection",
+   "kind": "class",
+   "owner": "Paladin",
+   "name": "Aura of Protection",
+   "lvl": 6,
+   "cls": [
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "rx": "bonus equal to your charisma modifier",
+   "anchor": [
+    "src/builder/12e-logic-sheet-handlers-defense.js",
+    "id:\"paladin-6-aura\""
+   ],
+   "test": "U1 Paladin 6 Aura of Protection",
+   "note": "the sheet adds the bonus to your own saves, allies are not tracked"
+  },
+  {
+   "id": "paladin-aura-courage",
+   "kind": "class",
+   "owner": "Paladin",
+   "name": "Aura of Courage",
+   "lvl": 10,
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "rx": "immunity to the frightened condition",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "Frightened (Aura of Courage)"
+   ],
+   "test": "U1 Paladin 10 Aura of Courage",
+   "note": "your own Immunity only, allies are not tracked"
+  },
+  {
+   "id": "monk-disciplined-survivor",
+   "kind": "class",
+   "owner": "Monk",
+   "name": "Disciplined Survivor",
+   "lvl": 14,
+   "cls": [
+    "PROF",
+    "SAVE"
+   ],
+   "vals": [],
+   "rx": "proficient in every saving throw",
+   "anchor": [
+    "src/builder/12c-logic-sheet-handlers-core.js",
+    "id:\"monk-14-saves\""
+   ],
+   "test": "U1 Monk 14 Disciplined Survivor",
+   "note": ""
+  },
+  {
+   "id": "rogue-slippery-mind",
+   "kind": "class",
+   "owner": "Rogue",
+   "name": "Slippery Mind",
+   "lvl": 15,
+   "cls": [
+    "PROF",
+    "SAVE"
+   ],
+   "vals": [],
+   "rx": "proficient in wisdom and charisma saving throws",
+   "anchor": [
+    "src/builder/12c-logic-sheet-handlers-core.js",
+    "id:\"rogue-15-saves\""
+   ],
+   "test": "U1 Rogue 15 Slippery Mind",
+   "note": ""
+  },
+  {
+   "id": "bard-jack-rule",
+   "kind": "class",
+   "owner": "Bard",
+   "name": "Jack of All Trades",
+   "lvl": 2,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "half",
+    "pb"
+   ],
+   "rx": "half your proficiency bonus",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "id:\"bard-2-jack\""
+   ],
+   "test": "U1 Bard 2 Jack of All Trades",
+   "note": ""
+  },
+  {
+   "id": "bard-jack-example",
+   "kind": "class",
+   "owner": "Bard",
+   "name": "Jack of All Trades",
+   "lvl": 2,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "half",
+    "pb"
+   ],
+   "rx": "for instance",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "id:\"bard-2-jack\""
+   ],
+   "test": "U1 Bard 2 Jack of All Trades",
+   "note": "the worked example of the same rule"
+  },
+  {
+   "id": "valor-martial-training",
+   "kind": "sub",
+   "owner": "Bard/College of Valor",
+   "name": "Martial Training",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "martial weapons",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"bard-valor-3-profs\""
+   ],
+   "test": "U1 Valor 3 Martial Training",
+   "note": ""
+  },
+  {
+   "id": "gloom-iron-mind",
+   "kind": "sub",
+   "owner": "Ranger/Gloom Stalker",
+   "name": "Iron Mind",
+   "lvl": 7,
+   "cls": [
+    "PROF",
+    "SAVE"
+   ],
+   "vals": [],
+   "rx": "become proficient in wisdom saving throws",
+   "anchor": [
+    "src/builder/12c-logic-sheet-handlers-core.js",
+    "id:\"gloom-stalker-7-saves\""
+   ],
+   "test": "U1 Gloom Stalker 7 Iron Mind",
+   "note": "only the first branch is tested (Ranger has no Wisdom save); the fallback branch (Intelligence or Charisma) stays uncovered"
+  },
+  {
+   "id": "gloom-dread-ambusher",
+   "kind": "sub",
+   "owner": "Ranger/Gloom Stalker",
+   "name": "Dread Ambusher",
+   "lvl": 3,
+   "cls": [
+    "INIT"
+   ],
+   "vals": [],
+   "rx": "wisdom modifier to each initiative",
+   "anchor": [
+    "src/builder/12f-logic-sheet-handlers-movement.js",
+    "id:\"gloom-stalker-3-ambusher\""
+   ],
+   "test": "U1 Gloom Stalker 3 Dread Ambusher",
+   "note": ""
+  },
+  {
+   "id": "zerk-mindless-rage",
+   "kind": "sub",
+   "owner": "Barbarian/Path of the Berserker",
+   "name": "Mindless Rage",
+   "lvl": 6,
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "rx": "immunity to both the charmed and frightened",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Mindless Rage\""
+   ],
+   "test": "U1 Berserker 6 Mindless Rage",
+   "note": ""
+  },
+  {
+   "id": "goo-thought-shield",
+   "kind": "sub",
+   "owner": "Warlock/Great Old One Patron",
+   "name": "Thought Shield",
+   "lvl": 10,
+   "cls": [
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Thought Shield\""
+   ],
+   "test": "U1 Great Old One 10 Thought Shield",
+   "note": "the sheet carries the Resistance; the Psychic damage reflected at the attacker is a trigger and is not computed"
+  },
+  {
+   "id": "psi-guarded-mind",
+   "kind": "sub",
+   "owner": "Fighter/Psi Warrior",
+   "name": "Guarded Mind",
+   "lvl": 10,
+   "cls": [
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance to psychic damage",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Guarded Mind\""
+   ],
+   "test": "U1 Psi Warrior 10 Guarded Mind",
+   "note": ""
+  },
+  {
+   "id": "ancients-warding",
+   "kind": "sub",
+   "owner": "Paladin/Oath of the Ancients",
+   "name": "Aura of Warding",
+   "lvl": 7,
+   "cls": [
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance to necrotic, psychic, and radiant",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Aura of Warding\""
+   ],
+   "test": "U1 Ancients 7 Aura of Warding",
+   "note": "your own Resistance only, allies are not tracked"
+  },
+  {
+   "id": "war-avatar",
+   "kind": "sub",
+   "owner": "Cleric/War Domain",
+   "name": "Avatar of Battle",
+   "lvl": 17,
+   "cls": [
+    "RES"
+   ],
+   "vals": [
+    "3"
+   ],
+   "rx": "resistance against three damage types",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Avatar of Battle\""
+   ],
+   "test": "U1 War 17 Avatar of Battle",
+   "note": ""
+  },
+  {
+   "id": "celestial-radiant-soul",
+   "kind": "sub",
+   "owner": "Warlock/Celestial Patron",
+   "name": "Radiant Soul",
+   "lvl": 6,
+   "cls": [
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance to radiant damage",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Radiant Soul\""
+   ],
+   "test": "U1 Celestial 6 Radiant Soul",
+   "note": ""
+  },
+  {
+   "id": "archfey-beguiling",
+   "kind": "sub",
+   "owner": "Warlock/Archfey Patron",
+   "name": "Beguiling Defenses",
+   "lvl": 10,
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "rx": "immunity to the charmed condition",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Beguiling Defenses\""
+   ],
+   "test": "U1 Archfey 10 Beguiling Defenses",
+   "note": ""
+  },
+  {
+   "id": "land-ward-poison",
+   "kind": "sub",
+   "owner": "Druid/Circle of the Land",
+   "name": "Nature's Ward",
+   "lvl": 10,
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "rx": "immune to the poisoned condition",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Nature's Ward\""
+   ],
+   "test": "U1 Land 10 Nature's Ward",
+   "note": ""
+  },
+  {
+   "id": "land-ward-type",
+   "kind": "sub",
+   "owner": "Druid/Circle of the Land",
+   "name": "Nature's Ward",
+   "lvl": 10,
+   "cls": [
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance to the damage type tied to the land",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Nature's Ward (\""
+   ],
+   "test": "U1 Land 10 Nature's Ward",
+   "note": ""
+  },
+  {
+   "id": "fiend-resilience",
+   "kind": "sub",
+   "owner": "Warlock/Fiend Patron",
+   "name": "Fiendish Resilience",
+   "lvl": 10,
+   "cls": [
+    "RES"
+   ],
+   "vals": [],
+   "rx": "resistance to the chosen type",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "\"Fiendish Resilience\""
+   ],
+   "test": "U1 Fiend 10 Fiendish Resilience",
+   "note": ""
+  },
+  {
+   "id": "monk-survivor-reroll",
+   "kind": "class",
+   "owner": "Monk",
+   "name": "Disciplined Survivor",
+   "lvl": 14,
+   "cls": [
+    "SAVE",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "rx": "roll the save again",
+   "anchor": [
+    "src/builder/12c-logic-sheet-handlers-core.js",
+    "id:\"monk-14-saves\""
+   ],
+   "test": "U1 Monk 14 Disciplined Survivor",
+   "note": "the sheet prints the reroll as a note under Saving Throws, the Focus Point pool is its own record"
+  }
+ ]
+}

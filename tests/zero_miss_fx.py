@@ -372,6 +372,80 @@ CASES += [
     z3("NEG Z4 14 Dual Wielder feat: no AC bonus while the toggle is off", dict(FT14("Dual Wielder (2014)")), [("C.ac.bonus.some(b=>/Dual Wielder/.test(b.s))", False)]),
 ]
 
+# ---------------- uncovered-1 (reports/uncovered-1.md): features the SHEET computes in code (tests/clause_gate_code.json). Each name starts with the "test" field of the entry.
+# `lo` is the same character without the feature (one level lower, or the heavy armor that switches it off): only the paths in `allow` may differ between the two.
+# what a level-up (or a subclass pick) may change besides the declared path: the feature texts, resource rows, Hit Points, spell lists and DCs, other defense lines and notes of the same class
+U1_LV = [r"^features\.", r"^actions\.", r"^acts", r"^res\.", r"^hp", r"^hitDice", r"^level", r"^xdmg", r"^spellcasting", r"^slots", r"^spells", r"^dcSrc", r"^dcAb", r"^fxToggles", r"^defenses", r"^saveNotes", r"^saveBonus", r"^darkSrc"]
+U1_ARM = [r"^features\.", r"^acts", r"^actions\.", r"^ac\.", r"^inv\b", r"^attacks\.", r"^abilities\.STR\.base$", r"^skills\.\d+\.dis$", r"^dcSrc", r"^dcAb", r"^profs?\b"]  # heavy armor on or off
+HEAVY = [{"n": "Chain Mail", "q": 1, "eq": True}]
+STR16 = dict(WL, STR=16)
+
+
+def u1(name, b, expect, lo=None, allow=None, **kw):
+    c = dict(name=name, b=b, expect=expect, base_allow=[r".*"], **kw)
+    if lo is not None:
+        c["lo"] = lo; c["allow"] = allow or U1_LV
+    return c
+
+
+def lv(b, n, **kw):  # the same build with another level (and other fields)
+    return dict(b, level=n, **kw)
+
+
+MV2 = "JSON.stringify((C.moves||[]).map(x=>x.m+':'+x.v))"
+SV = "Object.keys(C.saves).sort().join()"
+IMMU = lambda src, rx: "C.defenses.some(d=>d.s===%r&&d.t==='Immunity'&&/%s/.test(d.v))" % (src, rx)
+RESU = lambda src, rx: "C.defenses.some(d=>d.s===%r&&d.t==='Resistance'&&/%s/.test(d.v))" % (src, rx)
+B5 = dict(cls="Barbarian", level=5, base=WL)
+M2 = dict(cls="Monk", level=2, base=WL)
+R6 = dict(cls="Ranger", level=6, base=WL)
+CASES += [
+    u1("U1 Barbarian 5 Fast Movement: Speed 10 ft higher, not in Heavy armor", B5, [("C.speed", 40), ("/\\+10 Fast Movement/.test(C.speedSrc)", True)], lo=dict(B5, base=STR16, inv=HEAVY), allow=U1_ARM + [r"^speed"]),
+    u1("NEG U1 Barbarian 4 has no Fast Movement yet", lv(B5, 4), [("C.speed", 30), ("/Fast Movement/.test(C.speedSrc)", False)]),
+    u1("U1 Monk 2 Unarmored Movement: +10 ft, +15 at level 6", M2, [("C.speed", 40), ("/\\+10 ft Unarmored Movement/.test(C.speedSrc)", True)], lo=dict(M2, inv=[{"n": "Leather Armor", "q": 1, "eq": True}]), allow=U1_ARM + [r"^speed"]),
+    u1("U1 Monk 6 Unarmored Movement: +15 ft", lv(M2, 6), [("C.speed", 45)]),
+    u1("NEG U1 Monk 1 has no Unarmored Movement", lv(M2, 1), [("C.speed", 30)]),
+    u1("U1 Ranger 6 Roving: Speed +10 ft, Climb and Swim equal to Speed", R6, [("C.speed", 40), (MV2, '["climb:40","swim:40"]')], lo=dict(R6, base=STR16, inv=HEAVY), allow=U1_ARM + [r"^speed", r"^moves\."]),
+    u1("NEG U1 Ranger 5 has no Roving", lv(R6, 5), [("C.speed", 30), (MV2, "[]")]),
+    u1("U1 Paladin 6 Aura of Protection: Charisma modifier to saves", dict(cls="Paladin", level=6, base=WL), [("C.saveBonus.map(x=>x.v).join()", "4"), ("/Aura of Protection/.test(C.saveBonus[0].s)", True)], lo=dict(cls="Paladin", level=5, base=WL), allow=U1_LV),
+    u1("U1 Paladin 6 Aura of Protection: at least +1 with Charisma 8", dict(cls="Paladin", level=6, base=dict(WL, CHA=8)), [("C.saveBonus.map(x=>x.v).join()", "1")]),
+    u1("NEG U1 Paladin 5 has no Aura of Protection", dict(cls="Paladin", level=5, base=WL), [("(C.saveBonus||[]).length", 0)]),
+    u1("U1 Paladin 10 Aura of Courage: Immunity to Frightened", dict(cls="Paladin", level=10, base=WL), [(IMMU("Paladin 10", "Frightened"), True)], lo=dict(cls="Paladin", level=9, base=WL)),
+    u1("NEG U1 Paladin 9 has no Aura of Courage", dict(cls="Paladin", level=9, base=WL), [(IMMU("Paladin 10", "Frightened"), False)]),
+    u1("U1 Monk 14 Disciplined Survivor: proficiency in every saving throw, a reroll note", dict(cls="Monk", level=14, base=WL), [(SV, "CHA,CON,DEX,INT,STR,WIS"), ("C.saveNotes.some(n=>n.s==='Disciplined Survivor'&&/Spend 1 Focus Point to reroll/.test(n.t))", True)], lo=dict(cls="Monk", level=13, base=WL), allow=U1_LV + [r"^saves\.(CHA|CON|INT|WIS)$", r"^speed"]),
+    u1("NEG U1 Monk 13 has only the two class saves", dict(cls="Monk", level=13, base=WL), [(SV, "DEX,STR")]),
+    u1("U1 Rogue 15 Slippery Mind: Wisdom and Charisma saves", dict(cls="Rogue", level=15, base=WL), [(SV, "CHA,DEX,INT,WIS")], lo=dict(cls="Rogue", level=14, base=WL), allow=U1_LV + [r"^saves\.(CHA|WIS)$"]),
+    u1("NEG U1 Rogue 14 has only Dexterity and Intelligence saves", dict(cls="Rogue", level=14, base=WL), [(SV, "DEX,INT")]),
+    u1("U1 Bard 2 Jack of All Trades: half the Proficiency Bonus (1) on skills without proficiency", dict(cls="Bard", level=2, base=WL), [("C.skills.filter(s=>!s.p&&s.misc===1&&/Jack of All Trades/.test(s.miscSrc)).length>10", True), ("C.skills.filter(s=>s.p&&/Jack of All Trades/.test(s.miscSrc||'')).length", 0)], lo=dict(cls="Bard", level=1, base=WL), allow=U1_LV + [r"^skills\.\d+\.misc"]),
+    u1("NEG U1 Bard 1 has no Jack of All Trades", dict(cls="Bard", level=1, base=WL), [("C.skills.filter(s=>/Jack of All Trades/.test(s.miscSrc||'')).length", 0)]),
+    u1("U1 Valor 3 Martial Training: Medium armor, Shields, Martial weapons", dict(cls="Bard", level=3, sub="College of Valor", base=WL), [("C.profs.armor", "Light, Medium, Shields"), ("C.profs.weapons", "Simple, Martial")], lo=dict(cls="Bard", level=3, sub="College of Lore", base=WL), allow=U1_LV + [r"^sub$", r"^profs\.(armor|weapons)$", r"^profSrc\.(armor|weapons)"]),
+    u1("NEG U1 Lore 3 keeps Light armor and Simple weapons", dict(cls="Bard", level=3, sub="College of Lore", base=WL), [("C.profs.armor", "Light"), ("C.profs.weapons", "Simple")]),
+    u1("U1 Gloom Stalker 7 Iron Mind: Wisdom saving throws", dict(cls="Ranger", level=7, sub="Gloom Stalker", base=WL), [(SV, "DEX,STR,WIS")], lo=dict(cls="Ranger", level=6, sub="Gloom Stalker", base=WL), allow=U1_LV + [r"^saves\.WIS$", r"^moves\.", r"^speedSrc$"]),
+    u1("NEG U1 Gloom Stalker 6 has no Wisdom save", dict(cls="Ranger", level=6, sub="Gloom Stalker", base=WL), [(SV, "DEX,STR")]),
+    u1("U1 Gloom Stalker 3 Dread Ambusher: Wisdom modifier to Initiative", dict(cls="Ranger", level=3, sub="Gloom Stalker", base=WL), [("C.initBonus.some(x=>/Dread Ambusher: Wisdom modifier/.test(x.s))", True)], lo=dict(cls="Ranger", level=3, sub="Hunter", base=WL), allow=U1_LV + [r"^sub$", r"^initBonus", r"^darkvision"]),
+    u1("NEG U1 Hunter 3 has no Dread Ambusher Initiative", dict(cls="Ranger", level=3, sub="Hunter", base=WL), [("(C.initBonus||[]).length", 0)]),
+]
+for (nm, cl, sb, L, src, rx, kind, extra) in [
+    ("Berserker 6 Mindless Rage", "Barbarian", "Path of the Berserker", 6, "Mindless Rage", "Charmed, Frightened", "I", {}),
+    ("Great Old One 10 Thought Shield", "Warlock", "Great Old One Patron", 10, "Thought Shield", "^Psychic$", "R", {}),
+    ("Psi Warrior 10 Guarded Mind", "Fighter", "Psi Warrior", 10, "Guarded Mind", "^Psychic$", "R", {}),
+    ("Ancients 7 Aura of Warding", "Paladin", "Oath of the Ancients", 7, "Aura of Warding", "^Necrotic, Psychic, Radiant$", "R", {}),
+    ("War 17 Avatar of Battle", "Cleric", "War Domain", 17, "Avatar of Battle", "^Bludgeoning, Piercing, Slashing$", "R", {}),
+    ("Celestial 6 Radiant Soul", "Warlock", "Celestial Patron", 6, "Radiant Soul", "^Radiant$", "R", {}),
+    ("Archfey 10 Beguiling Defenses", "Warlock", "Archfey Patron", 10, "Beguiling Defenses", "^Charmed$", "I", {}),
+    ("Fiend 10 Fiendish Resilience", "Warlock", "Fiend Patron", 10, "Fiendish Resilience", "^Cold$", "R", {"p10opt": "Cold"}),
+]:
+    bh = dict(cls=cl, level=L, sub=sb, base=WL, ch=extra)
+    chk = (IMMU if kind == "I" else RESU)(src, rx)
+    CASES += [u1("U1 " + nm + ": " + ("Immunity" if kind == "I" else "Resistance"), bh, [(chk, True)], lo=lv(bh, L - 1), allow=U1_LV),
+              u1("NEG U1 " + nm + " one level earlier has no such line", lv(bh, L - 1), [(chk, False)])]
+LAND = dict(cls="Druid", level=10, sub="Circle of the Land", base=WL, ch={"land": "Arid"})
+CASES += [
+    u1("U1 Land 10 Nature's Ward: Immunity to Poisoned and Resistance to the land type (Arid: Fire)", LAND, [(IMMU("Nature's Ward", "Poisoned"), True), (RESU("Nature's Ward (Arid)", "^Fire$"), True)], lo=lv(LAND, 9), allow=U1_LV),
+    u1("U1 Land 10 Nature's Ward: Polar land gives Cold", dict(LAND, ch={"land": "Polar"}), [(RESU("Nature's Ward (Polar)", "^Cold$"), True)]),
+    u1("NEG U1 Land 9 has no Nature's Ward", lv(LAND, 9), [(IMMU("Nature's Ward", "Poisoned"), False)]),
+]
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }
@@ -379,9 +453,9 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
    b.inv=JSON.parse(JSON.stringify(s.inv||[])); b.weps=(s.inv||[]).map(x=>x.n); b.base=Object.assign({},b.base||{},s.base||{}); if(s.extra) Object.assign(b,s.extra); return b };
  const res=[];
  for(const c of cases){ const r={name:c.name,fail:[]};
-  try{ const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined), C0=c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.tog?window.__bldSheetFor(mk(c.b)):null);
+  try{ const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined), C0=c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=(new Function('C','return ('+ex+')'))(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
-   r.flat=flat(C,'',{}); if(!c.drop&&!c.tog){ res.push(r); continue }
+   r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo){ res.push(r); continue }
    const A=r.flat, Z=flat(C0,'',{}), rx=c.allow.map(s=>new RegExp(s)); const ch=[...new Set([...Object.keys(A),...Object.keys(Z)])].filter(k=>A[k]!==Z[k]);
    r.changed=ch.length; ch.filter(k=>!rx.some(x=>x.test(k))).slice(0,8).forEach(k=>r.fail.push('path changed outside allow: '+k+' '+JSON.stringify(Z[k])+' -> '+JSON.stringify(A[k])));
   }catch(e){ r.fail.push('ERR '+String(e.stack||e).slice(0,300)) }
@@ -406,9 +480,22 @@ def run(root, cases, errs):
     return res
 
 
+def code_entries_have_cases():
+    """Every entry of tests/clause_gate_code.json names a case here (the sheet change that makes the gate trust the code)."""
+    try:
+        ents = json.load(open(os.path.join(HERE, "clause_gate_code.json"), encoding="utf-8"))["entries"]
+    except Exception as e:
+        return ["cannot read clause_gate_code.json: %s" % e]
+    names = [c["name"] for c in CASES]
+    return ["clause_gate_code.json entry %s names the case %r, no case starts with it" % (e["id"], e["test"]) for e in ents if not any(n.startswith(e["test"]) for n in names)]
+
+
 def main():
     cases = [c for c in CASES if not ONLY or ONLY in c["name"]]
     errs = []
+    missing = code_entries_have_cases()
+    for m in missing:
+        print("FAIL", m)
     res = run(ROOT, cases, errs)
     if BASE:  # same build on the base checkout: only the paths in base_allow (or allow) may differ
         old = run(BASE, cases, [])
@@ -430,7 +517,7 @@ def main():
     if errs:
         print("page errors:", errs[:3])
     print("%d cases, %d failed" % (len(res), bad))
-    return 1 if bad or errs else 0
+    return 1 if bad or errs or missing else 0
 
 
 if __name__ == "__main__":

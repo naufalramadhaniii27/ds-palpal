@@ -54,6 +54,7 @@ sys.argv = _save_argv
 OUT_MD = os.path.join(ROOT, "reports", "clause-gate-report.md")
 OUT_BASE = os.path.join(HERE, "clause_gate_baseline.json")
 ALLOW = os.path.join(HERE, "clause_gate_allow.json")
+CODE = os.path.join(HERE, "clause_gate_code.json")
 MBASE = os.path.join(HERE, "mech_baseline.json")
 
 # ---------------------------------------------------------------------------------------------------------------- loading
@@ -308,10 +309,10 @@ PROF_PICKS = {"expertise", "skills", "skill", "tools", "tool", "lang", "langs", 
 
 
 class Atom:
-    __slots__ = ("cls", "vals", "src", "weak", "i", "pool")
+    __slots__ = ("cls", "vals", "src", "weak", "i", "pool", "rx")
 
-    def __init__(self, cls, vals, src, weak=False, pool=False):
-        self.cls, self.vals, self.src, self.weak, self.i, self.pool = cls, set(vals), src, weak, 0, pool
+    def __init__(self, cls, vals, src, weak=False, pool=False, rx=None):
+        self.cls, self.vals, self.src, self.weak, self.i, self.pool, self.rx = cls, set(vals), src, weak, 0, pool, rx
 
 
 def atoms_from(e, src, weak=False, extra=()):
@@ -424,7 +425,13 @@ def build_index(D):
 
 
 # ---------------------------------------------------------------------------------------------------------------- universe
+CODE_ATOMS = {}
+
+
 def features(D):
+    global CODE_ATOMS
+    CODE_NOTES.clear()
+    CODE_ATOMS = load_code_atoms()
     """Yield feature contexts: dict(kind, owner, name, book, text, lvl, atoms, acts) for the universe mech_scan reads, plus spells. Atoms are built here (data side)."""
     gx = D.get("gx") or {}
     fxo = D.get("fxo") or {}
@@ -432,6 +439,11 @@ def features(D):
 
     def mk(kind, owner, name, book, text, lvl, atoms, acts):
         key = "%s|%s|%s" % (kind, owner, name)
+        for e, a in CODE_ATOMS.get(key, []):
+            if e.get("lvl") is None or lvl == e["lvl"]:  # the level of the data row must be the level the entry was checked at
+                atoms = atoms + [a]
+            else:
+                CODE_NOTES.append("code atom %s dropped: data row level %s, entry level %s" % (e["id"], lvl, e["lvl"]))
         if name in D["calc_names"] and kind in ("class", "sub", "species", "feat"):
             atoms = atoms + [Atom(c, {"*"}, "calcNote") for c in ("RESOURCE", "DC", "DMG", "HP", "ATK")]
         seen[key] += 1
@@ -824,6 +836,8 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
                 score = len(sv & a.vals)
                 if a.weak and sv and score == 0:
                     continue
+                if a.rx and not a.rx.search(r["text"].lower()):
+                    continue  # a code atom (tests/clause_gate_code.json) names the sentence it is for
                 cand.append((-score, res.index(r), c, j, a.weak))
     cand.sort()
     used_atoms, got = set(), set()
@@ -883,6 +897,34 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         if r.get("note"):
             r["why"] = r["note"] + "; " + r["why"]
     return res
+
+
+CODE_NOTES = []
+
+
+def load_code_atoms(ents=None):
+    """Features the SHEET computes in code (a registered sheet rule, defenses() in 16-logic-feature-numbers.js) and not from an fx record (uncovered-1).
+    tests/clause_gate_code.json lists, per feature and sentence, the class the code carries, the numbers it handles, an anchor (file + text that must still be in the
+    source, so deleting the code makes the sentence uncovered again) and the zero_miss_fx case that shows the sheet change (the selftest checks that the case exists).
+    Returns {kind|owner|name: [(entry, Atom)]}. An entry whose anchor is gone is dropped and noted in CODE_NOTES."""
+    out = collections.defaultdict(list)
+    if ents is None:
+        try:
+            ents = json.load(open(CODE, encoding="utf-8")).get("entries", [])
+        except Exception:
+            return out
+    cache = {}
+    for e in ents:
+        f, needle = e["anchor"]
+        if f not in cache:
+            try: cache[f] = open(os.path.join(ROOT, f), encoding="utf-8").read()
+            except Exception: cache[f] = ""
+        if needle not in cache[f]:
+            CODE_NOTES.append("code atom %s dropped: anchor %r not found in %s" % (e["id"], needle, f))
+            continue
+        for c in e["cls"]:
+            out["%s|%s|%s" % (e["kind"], e["owner"], e["name"])].append((e, Atom(c, set(e.get("vals", [])), "CODE|" + e["id"] + "." + c, rx=re.compile(e["rx"]))))
+    return out
 
 
 def load_by_design():
@@ -1009,6 +1051,19 @@ def selftest():
     check("10j NEG the same text without a pick record stays flagged", r["status"] == "uncovered", r["why"])
     r = one("You gain Expertise in them and a +5 bonus to those checks.", pk, "class")
     check("10k NEG an Expertise sentence with another number (+5) stays flagged", r["status"] == "uncovered", r["why"])
+    # 11 code atoms (tests/clause_gate_code.json): an entry with a live anchor covers its own sentence only; a vanished anchor drops the atom
+    ent = dict(id="t", kind="class", owner="Barbarian", name="Fast Movement", lvl=5, cls=["SPEED"], vals=["10"], rx="speed is 10 feet higher", anchor=["src/builder/12f-logic-sheet-handlers-movement.js", 'id:"barbarian-5-fast-movement"'])
+    CODE_NOTES.clear()
+    ca = load_code_atoms([ent])["class|Barbarian|Fast Movement"][0][1]
+    txt = "As long as you aren't wearing Heavy armor, your Speed is 10 feet higher. Your Speed is 10 feet higher again while you rage."
+    r = analyze(synth("class", "Barbarian", "Fast Movement", txt, [ca]))
+    check("11a code atom: covers the sentence its rx names", r[0]["status"] == "covered", r[0]["why"])
+    check("11b code atom: the second Speed sentence is not covered by the same atom", r[1]["status"] == "uncovered", r[1]["why"])
+    ent2 = dict(ent, anchor=ent["anchor"][:1] + ["id:\"this-rule-was-deleted\""])
+    CODE_NOTES.clear()
+    gone = load_code_atoms([ent2])
+    check("11c code atom: an anchor that is no longer in the source drops the atom and says so", not gone and len(CODE_NOTES) == 1, str(CODE_NOTES))
+    CODE_NOTES.clear()
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)
@@ -1301,6 +1356,8 @@ def main():
     by_design, allow = load_by_design(), load_allow()
     today = time.strftime("%Y-%m-%d")
     feats, results, ctxs = scan(D, by_design, allow, today)
+    for note in CODE_NOTES:
+        print("WARNING", note)
     S = summarize(results, load_known_gaps())
     S["fam"], S["files"] = sources_of(results, ctxs, owners)
     mut = mutation_real(feats, results, by_design, allow, today)
