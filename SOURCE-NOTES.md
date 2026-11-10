@@ -14,6 +14,8 @@ Peta source untuk `index.html`. Hasil build `index.html` dan `sw.js`. Source ada
 | `python3 tests/measure.py [OUT.json] [--runs N] [--only "1250x850 cpu4x"]` | Waktu siap, data Builder selesai, Builder pertama dan kedua, Search pertama, di 390 dan 1250, CPU 1x dan 4x |
 | `python3 tests/flow_home_sheet.py [OUT]` | Alur Home ke sheet ke Home dan ganti karakter, dengan video. Cek perpindahan tersambung jalan dan tidak ada yang tertinggal tersembunyi |
 | `python3 tests/companion_2014.py [OUT]` | Pemilih Ranger's Companion 2014 di Extras: daftar semua beast yang memenuhi syarat, tombol di kartu beast, pilihan tersimpan di `S.comp14` dan bertahan setelah Apply, PDF hanya melampirkan beast pilihan, Change mengembalikan daftar. 390x844 dan 1250x850 |
+| `python3 tests/dice_roller.py [OUT]` | Pelempar dadu bebas (`src/fx/16c-z-pack-dice-roller.js`, tombol Dice di menu More dan di drawer Rolls): NdX plus modifier ketik, dadu 3D atau angka datar, "I rolled myself" (ketik nilai dadu fisik), riwayat dan journal. 390x844 dan 1250x850, Motion off dan default |
+| `python3 tests/dice_skin.py [OUT]` | Warna dadu 3D (Galaxy, Ocean, Ember, Custom): pilihan tersimpan di `mi-dsk`, kontras angka untuk 400 warna, piksel angka dan cincin pada dadu d20 di tiap set. 390x844 dan 1250x850 |
 | `python3 tests/long14_sheet.py [OUT]` | Teks panjang species dan background PHB 2014 (`src/builder/06b-data-2014-long-text.js`): sheet menyimpan `full` dan kartu fitur menampilkannya, 390x844 dan 1250x850 |
 | `python3 tests/long24_sheet.py [OUT]` | Teks panjang species resmi 2024 (`src/builder/06a2-data-2024-species-long-text.js`): Orc Fighter 2024 menyimpan `full` untuk Relentless Endurance dan kartu fitur menampilkannya, 390x844 dan 1250x850 |
 | `python3 tests/pdfx_legacy24.py` | Sheet 2024 lama tanpa `full`: model PDF tetap memuat teks panjang species (Orc Fighter, Relentless Endurance). Jalur cadangan: `pxFull` di `src/app/37a-ui-pdf-model.js` memanggil `__bldLong14(g,n,"2024")`. |
@@ -374,6 +376,7 @@ Tes: `tests/api_social.py` (37 cek aturan API, tiga orang lewat header `x-dev-us
 | tools/build/ | esbuild, BabylonJS, Havok (versi dikunci, `npm ci --prefix tools/build`) |
 | tools/learn_lint.js | Cek teks Learn: panjang kalimat EN 14 dan ID 12 kata, 2 kalimat per teks, kata kaku Indonesia, angka sama di dua bahasa, kunci kamus |
 | src/fx/25-dice3d.js | Dadu 3D sendiri (N27): WebGL 1, lintasan dihitung, tanpa mesin fisika. dice-box, Babylon, Havok dihapus 2026-10-30 |
+| src/fx/25a-dice3d-bridge.js, src/fx/25-dice3d-head.js | Jembatan ke mesin dadu 3D. Mesin (`25-dice3d.js`) kini bagian defer sendiri `dice3d` (bagian pertama, jalan tepat setelah frame pertama) supaya `index.html` bentuk dist tetap di bawah 2 MiB. Bridge (di blok fx) menaruh `FXENV` dan `FXH` di `__fxBridge`, head memakainya |
 | tools/important_trim.py | Analisis dan pembuangan !important yang tidak berpengaruh |
 | src/boot/trusted-types.js | Policy Trusted Types `default` dan `cs-loader` |
 | src/app/45-learn-bridge.js | `window.__app`: fungsi app yang dipakai Learn (app berjalan di satu closure) |
