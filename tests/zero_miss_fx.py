@@ -446,6 +446,19 @@ CASES += [
     u1("NEG U1 Land 9 has no Nature's Ward", lv(LAND, 9), [(IMMU("Nature's Ward", "Poisoned"), False)]),
 ]
 
+# the feat fx dict (FEATS[n].fx: senses, res, ...) is read by the sheet; the build with the feat against the same build without it
+FTA = [r"^abilities\.\w+\.bonus", r"^features\.", r"^feats", r"^acts", r"^actions\.", r"^hp", r"^profSrc", r"^defenses", r"^saveNotes", r"^asi", r"^picks", r"^level"]
+CASES += [
+    dict(name="U2 Skulker feat: Blindsight 10 ft", b=dict(cls="Fighter", level=4, ch={"feat4": {"feat": "Skulker", "a1": "DEX"}}, base=WL), drop={"feat4": None},
+         expect=[("C.senses.map(x=>x.n+':'+x.v).join()", "Blindsight:10")], allow=FTA + [r"^senses\."], base_allow=[r".*"]),
+    dict(name="NEG U2 Alert feat has no Blindsight", b=dict(cls="Fighter", level=4, ch={"feat4": {"feat": "Alert", "a1": "DEX"}}, base=WL),
+         expect=[("(C.senses||[]).length", 0)], base_allow=[r".*"]),
+    dict(name="U2 Dungeon Delver (2014) feat: Resistance to trap damage", b=dict(rs="2014", cls="Fighter", level=4, ch={"feat4": {"feat": "Dungeon Delver", "a1": "DEX"}}, base=WL), drop={"feat4": None},
+         expect=[(RESU("Dungeon Delver", "Damage dealt by traps"), True)], allow=FTA + [r"^abilities", r"^skills"], base_allow=[r".*"]),
+    dict(name="NEG U2 Dungeon Delver (2014) not taken: no trap Resistance", b=dict(rs="2014", cls="Fighter", level=4, base=WL),
+         expect=[(RESU("Dungeon Delver", "Damage dealt by traps"), False)], base_allow=[r".*"]),
+]
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

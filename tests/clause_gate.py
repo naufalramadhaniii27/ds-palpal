@@ -289,11 +289,11 @@ reg("SAVE", "saveBonus", "saveBonusNp", "saveBonusAb", "saveFrom", "saveProf", "
 reg("ADV", "advOn", "initAdv", "saveNote", "noSurprise", "def", "defs", "adv")
 reg("DIS", "saveNote", "def", "defs")
 reg("RES", "res", "imm", "vul", "resToImm", "def", "defs", "condImm", "linRes", "saveNote", "resBy")
-reg("IMM", "imm", "condImm", "resToImm", "def", "defs")
+reg("IMM", "imm", "condImm", "resToImm", "def", "defs", "cimm")
 reg("SPEED", "speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv", "fly", "swim", "climb", "burrow", "movesNote", "linFx")
-reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "darkHave", "noSurprise")
+reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "darkHave", "noSurprise", "senses")
 reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "chkBonusNp", "skillPE", "skillAb", "langs", "tools", "weapons", "armor", "toolExpert", "toolPE",
-    "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf")
+    "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf", "exp")
 reg("SLOT", "slotAdd", "nslot", "smax", "arcRec")
 reg("RESOURCE", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
 reg("ATK", "atk", "atkBonus", "atkDice", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
@@ -543,6 +543,8 @@ def features(D):
         at = []
         for k, v in keys.items():
             at += atoms_from({k: v}, "feat." + fn)
+        if isinstance(f.get("fx"), dict):  # FEATS[n].fx: res, imm, cimm, senses, skills, langs, exp are read by the sheet (09-logic-feats-and-choices.js); uncovered-1
+            at += atoms_from(f["fx"], "feat.fx|" + fn)
         for e in (gx.get("feat") or {}).get(fn, []):
             at += atoms_from(e, "GX.feat|" + fn)
         at += lu_atoms(D, fn, fn) + sn_atoms(D, fn, fn)
@@ -1061,6 +1063,14 @@ def selftest():
     check("10p NEG a sentence that also grants proficiency stays flagged", r["status"] == "uncovered", r["why"])
     r = one("You can cast Raise Dead once without a spell slot if you use Tinker's Tools as your Spellcasting Focus.")
     check("10q NEG a spell cast without a slot stays flagged", r["status"] == "uncovered", r["why"])
+    # 10r a feat's own fx dict (senses, res, cimm, exp ...) is a record (FEATS[n].fx, read by 09-logic-feats-and-choices.js)
+    fa = atoms_from({"senses": [["Blindsight", 10, "Skulker"]]}, "feat.fx|Skulker")
+    r = one("You gain Blindsight out to 10 feet.", fa, "feat")
+    check("10r feat fx senses covers its sentence", r["status"] == "covered", r["why"])
+    r = one("You gain Blindsight out to 30 feet.", fa, "feat")
+    check("10s NEG the same sentence with 30 feet against a record of 10 stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("You gain Blindsight out to 10 feet.", [], "feat")
+    check("10t NEG no fx record: flagged", r["status"] == "uncovered", r["why"])
     # 10l activation cost written "expend 1 of its charges" / "(Charge Cost 3)" is an activation (FORM:ACTIVATE), a stat gain is not excused by it
     r = analyze(synth("item", "dmg", "Wand", "While holding it, you can expend 1 of its charges and target a humanoid you can see within 30 feet of you.", pool))[0]
     check("10l FORM:ACTIVATE: expend 1 of its charges", r["status"] == "info" and r["why"] == "FORM:ACTIVATE", r["why"])
