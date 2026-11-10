@@ -304,6 +304,9 @@ reg("ABIL", "abUp", "abDown", "abSet", "abCut", "abPick", "abUpPick", "abil", "a
 reg("CHOICE", "pick", "pickLv", "fsPick", "opts", "lin", "featPick", "fs", "wm", "needs")
 
 
+PROF_PICKS = {"expertise", "skills", "skill", "tools", "tool", "lang", "langs", "languages"}
+
+
 class Atom:
     __slots__ = ("cls", "vals", "src", "weak", "i", "pool")
 
@@ -321,6 +324,11 @@ def atoms_from(e, src, weak=False, extra=()):
         if not cl or v in (None, False, [], {}, "", 0) and k not in ("ac",):
             continue
         vals = nums_in(v) | nums_in(e.get("min")) | set(extra)
+        if k == "pick" and isinstance(v, (list, dict)):
+            # a class pick of kind expertise / skills / tools / languages is what grants the proficiency (uncovered-1): a marker atom for STD:PICK_TEXT
+            for pk in (v if isinstance(v, list) else [v]):
+                if isinstance(pk, dict) and pk.get("k") in PROF_PICKS:
+                    out.append(Atom("PICK_PROF", nums_in(pk.get("n")) | {"pb", "double"}, "%s.pick.%s" % (src, pk.get("k")), weak))  # marker class: no sentence needs it, STD:PICK_TEXT reads it
         if k == "ch" and isinstance(v, list) and len(v) >= 2 and all(not isinstance(x, (list, dict)) for x in v):
             # a charges pool [max, regain, reset] states two amounts a text names in separate sentences ("has 10 charges", "regains 1d6 + 4 at dawn"): one atom each
             # (uncovered-1, reports/uncovered-1.md). The reset word is no amount. A sentence still needs its own number to match its own part.
@@ -592,6 +600,11 @@ def features(D):
 # pass only after the atoms and the numbers were compared and failed. A rule may use an atom of the feature (STD:*), never invents one. Each code has a reason.
 REASONS = collections.OrderedDict([
     ("STD:ASI", "Feat ability score line 'raise X by 1, to a maximum of 20 (30)': the +1 and the cap are the standard ASI rule of the builder; the feat has an ability atom (asi / asiPick) that names the abilities."),
+    ("STD:PICK_TEXT", "Sentence of a feature whose skill, Expertise, tool or language pick is a builder pick (class pick of kind expertise, skills, tools or languages): the pick is the record, the sentence says who qualifies, what is suggested or what Expertise does for that pick."),
+    ("ROLL:LAST_CHARGE", "'When you use the last charge, roll a d20, on a 1 the item is destroyed': a roll made at the table when the pool reaches 0. The item has a charges pool record (the counter); the d20 is the only number the record does not name."),
+    ("MOVE:SPEED_REF", "A one-off movement measured in Speed ('move up to half your Speed', 'as far as its Speed', 'teleport up to your Speed'): it spends movement, it does not change a Speed value of the character."),
+    ("TARGET:SPEED", "Speed of another creature ('that creature's Speed becomes 0', 'its Speed is halved'): the effect sits on the target, the sheet tracks the character."),
+    ("KNOW:TARGET_DEFENSES", "'You learn whether it has Immunities, Resistances or Vulnerabilities': information about another creature, not a Resistance or Immunity of the character."),
     ("STD:SUBCLASS_PICK", "'Choose a X subclass': the subclass picker of the builder; no fx record."),
     ("STD:AC10", "'10 + Dex + ability' style base AC: the 10 is the standard base AC constant; the feature has an AC atom that names the ability."),
     ("TABLE:CLASS", "Class tables for spell slots, cantrips and spells known / prepared and the invocation list: read by the slot code and the builder tables from the class row, not by fx records."),
@@ -635,6 +648,13 @@ RX_FLAVOR = R(r"\bin the world of\b|\bknown to exist\b|\blots of\b|\bgallons?\b|
 RX_SIGNED = R(r"(?<![\w])[+-]\s?\d|\b(?:increases?|decreases?|rises?|reduced|raises?|lowers?|bonus|penalty)\b[^.]{0,30}\b(?:by )?\d")
 
 
+RX_LAST_CHARGE = R(r"\b(?:last|final) charge\b[^.]{0,80}\broll (?:a |an |1)?d?20\b|\broll (?:a |an |1)?d?20\b[^.]{0,80}\b(?:last|final) charge\b")
+RX_MOVE_SPEED = R(r"\b(?:move|moves|moving|teleport|teleports|travel)\b[^.]{0,60}\b(?:up to|as far as|a distance (?:of |equal to |up to )+)[^.]{0,25}\b(?:your|its|their) (?:walking )?speed\b|\b(?:move|moves|moving)\b[^.]{0,30}\b(?:half|twice|double) (?:your|its|their) (?:walking )?speed\b")
+RX_SPEED_GAIN = R(r"\b(?:fly|flying|swim|swimming|climb|climbing|burrow|burrowing) speed\b|\bspeed (?:increases|rises|goes up|is increased|doubles|is doubled|is \d+|of \d+|equals?)|\+\d+ ?(?:ft|feet)\b|\b(?:gain|gains|have|has|get|gets)\b[^.]{0,25}\bspeed\b|\bspeed\b[^.]{0,20}\b(?:higher|greater|bonus)\b")
+RX_TARGET_SPEED = R(r"\b(?:that|the|a|each) (?:creature|target|enemy|foe|attacker|monster|opponent)(?:'s| has)? speed\b|\b(?:reduce|lower|halve|cut|drop|set)s?\b[^.]{0,30}\b(?:its|their|that creature's|the target's) speed\b|\b(?:its|their) speed (?:drops?|is (?:reduced|halved|lowered|0)|becomes? (?:0|half))")
+RX_KNOW_DEF = R(r"\b(?:you |the (?:dm|dungeon master) )?(?:learn|know|knows|tells you|find out|discover)\b[^.]{0,80}\b(?:immunities|resistances|vulnerabilit)")
+
+
 def excuse(r, ctx, atoms):
     """Return (code, why) when an uncovered sentence is informational by an explicit rule, else None. Called only for sentences that failed the atom and number comparison."""
     t = r["text"].lower()
@@ -651,6 +671,18 @@ def excuse(r, ctx, atoms):
         return "STD:SUBCLASS_PICK"
     if "AC" in need and not r.get("missing") and unexpl and unexpl <= {"10"} and RX_AC10.search(t) and has("AC"):
         return "STD:AC10"
+    if need <= {"RESOURCE"} and need and unexpl and unexpl <= {"1d20", "20"} and has("RESOURCE") and RX_LAST_CHARGE.search(t):
+        return "ROLL:LAST_CHARGE"
+    if need == {"SPEED"} and RX_MOVE_SPEED.search(t) and not RX_SPEED_GAIN.search(t):
+        return "MOVE:SPEED_REF"
+    if need == {"SPEED"} and RX_TARGET_SPEED.search(t) and not re.search(r"\byour speed\b|\byours\b|\byou (?:gain|have)\b", t):
+        return "TARGET:SPEED"
+    if need <= {"RES", "IMM"} and need and RX_KNOW_DEF.search(t) and not re.search(r"\byou (?:have|gain) (?:resistance|immunity)", t):
+        return "KNOW:TARGET_DEFENSES"
+    if need and need <= {"PROF", "CHOICE"} and has("PICK_PROF") and kind in ("class", "sub") and re.search(r"\bexpertise\b|\bproficien|\bskills?\b|\btools?\b|\blanguages?\b", t):
+        pv = set().union(*[a.vals for a in atoms if a.cls == "PICK_PROF"])
+        if not (unexpl - pv):
+            return "STD:PICK_TEXT"
     if need:
         # number conservation is not loosened: a feature that HAS an atom of a needed class but whose numbers disagree with the text stays flagged
         if unexpl and any(a.cls in need for a in atoms):
@@ -938,7 +970,11 @@ def selftest():
     c7d = synth("item", "dmg", "Staff", "The staff has 10 charges and regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20.", pool)
     r = analyze(c7d)
     check("7d pool: one sentence names the max and the regain -> covered", r[0]["status"] == "covered", r[0]["why"])
-    check("7d pool: the last-charge d20 roll is not explained by the pool", r[1]["status"] == "uncovered" and "1d20" in r[1]["unexplained"], r[1]["why"])
+    check("7d pool: the last-charge d20 roll is a table roll -> info ROLL:LAST_CHARGE", r[1]["status"] == "info" and r[1]["why"] == "ROLL:LAST_CHARGE", r[1]["why"])
+    r = analyze(synth("item", "dmg", "Staff", "If you expend the last charge, roll a d20.", []))
+    check("7d NEG no charges record: the last-charge roll stays flagged", r[0]["status"] == "uncovered", r[0]["why"])
+    r = analyze(synth("item", "dmg", "Staff", "Add a d20 to the damage per charge the staff holds.", pool))
+    check("7d NEG a d20 roll that is not about the last charge stays flagged", r[0]["status"] == "uncovered", r[0]["why"])
     c7e = synth("item", "dmg", "Staff", "The staff has 10 charges. It regains 1d6 + 4 charges at dawn. Another property says the staff has 12 charges.", pool)
     r = analyze(c7e)
     check("7e pool: max and regain in separate sentences -> both covered, a third amount (12) flagged", [x["status"] for x in r] == ["covered", "covered", "uncovered"], str([x["status"] for x in r]))
@@ -948,6 +984,31 @@ def selftest():
     c7g = synth("item", "dmg", "Staff", "The staff has 8 charges.", pool)
     r = analyze(c7g)
     check("7g pool: 8 charges against a record of 10 -> flagged", r[0]["status"] == "uncovered" and r[0]["unexplained"] == ["8"], r[0]["why"])
+    # uncovered-1 reason codes: each has a positive sentence and a similar sentence with another meaning that must stay flagged
+    one = lambda text, atoms=(), kind="sub": analyze(synth(kind, "Owner", "Feature", text, list(atoms)))[0]
+    r = one("When you hit with an Opportunity Attack, you can move up to half your Speed without provoking Opportunity Attacks.")
+    check("10a MOVE:SPEED_REF: a move measured in Speed", r["status"] == "info" and r["why"] == "MOVE:SPEED_REF", r["why"])
+    r = one("Your Speed increases by 10 feet while you move up to your Speed.")
+    check("10b NEG a Speed increase is not a move", r["status"] == "uncovered", r["why"])
+    r = one("You gain a Fly Speed equal to your Speed and can move up to half your Speed.")
+    check("10c NEG a granted Fly Speed stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("If the attack hits, that creature's Speed becomes 0 until the end of the turn.")
+    check("10d TARGET:SPEED: Speed of the target", r["status"] == "info" and r["why"] == "TARGET:SPEED", r["why"])
+    r = one("Using it also drops your Speed to 0 for the rest of the current turn.")
+    check("10e NEG own Speed drop stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("That creature's Speed drops by 10 ft and yours rises by 10 ft.")
+    check("10f NEG a sentence that also raises your own Speed is not excused by TARGET:SPEED", r["why"] != "TARGET:SPEED", r["why"])
+    r = one("You learn whether it has any Immunities, Resistances, or Vulnerabilities.")
+    check("10g KNOW:TARGET_DEFENSES", r["status"] == "info" and r["why"] == "KNOW:TARGET_DEFENSES", r["why"])
+    r = one("You have Resistance to the damage types you learn about.")
+    check("10h NEG own Resistance stays flagged", r["status"] == "uncovered", r["why"])
+    pk = atoms_from({"pick": [{"l": 1, "k": "expertise", "n": 2}]}, "cls.Rogue")
+    r = one("You gain Expertise in them. If you have Stealth, it is recommended.", pk, "class")
+    check("10i STD:PICK_TEXT: Expertise text of a feature with an expertise pick", r["status"] == "info" and r["why"] == "STD:PICK_TEXT", r["why"])
+    r = one("You gain Expertise in them. If you have Stealth, it is recommended.", [], "class")
+    check("10j NEG the same text without a pick record stays flagged", r["status"] == "uncovered", r["why"])
+    r = one("You gain Expertise in them and a +5 bonus to those checks.", pk, "class")
+    check("10k NEG an Expertise sentence with another number (+5) stays flagged", r["status"] == "uncovered", r["why"])
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)
@@ -988,7 +1049,7 @@ def selftest():
     check("9n equip-state AC bonus without a record -> flagged", r["status"] == "uncovered", r["why"])
     r = st("sub", "Resilience", "While you wear no armor, your base Armor Class equals 10 + your Dexterity modifier + your Charisma modifier.", [Atom("AC", {"CHA"}, "sub.ua")])
     check("9o STD:AC10 with an AC atom -> info", r["status"] == "info" and r["why"] == "STD:AC10", r["why"])
-    check("9p every reason code is documented", all(REASONS.get(c) for c in ("STD:ASI", "STD:AC10", "TABLE:CLASS", "REST:NONUM", "DC:REFERENCE", "OBJECT:STATS", "ITEM:SENSES", "ACTIVE:OTHERS", "ACTIVE:TIMED_IMM", "ACTIVE:TRIGGER", "ACTIVE:REACTION", "COND:PLAY_STATE", "COND:ATTACK_ROLL_ADV", "NUMONLY:ROLL", "NUMONLY:GEOMETRY", "NUMONLY:TABLE", "NUMONLY:FLAVOR", "NUMONLY:ZERO", "NUMONLY:TEXT")))
+    check("9p every reason code is documented", all(REASONS.get(c) for c in ("ROLL:LAST_CHARGE", "MOVE:SPEED_REF", "TARGET:SPEED", "KNOW:TARGET_DEFENSES", "STD:PICK_TEXT", "STD:ASI", "STD:AC10", "TABLE:CLASS", "REST:NONUM", "DC:REFERENCE", "OBJECT:STATS", "ITEM:SENSES", "ACTIVE:OTHERS", "ACTIVE:TIMED_IMM", "ACTIVE:TRIGGER", "ACTIVE:REACTION", "COND:PLAY_STATE", "COND:ATTACK_ROLL_ADV", "NUMONLY:ROLL", "NUMONLY:GEOMETRY", "NUMONLY:TABLE", "NUMONLY:FLAVOR", "NUMONLY:ZERO", "NUMONLY:TEXT")))
     # mutation on the synthetic cases
     print("mutation test (synthetic): remove the record, the gate must flag")
     for lab, c in (("Tower Shield sentence 1", c1), ("both records", c1b), ("dice item", c7b)):
