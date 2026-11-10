@@ -41,12 +41,28 @@
 .mi-dch{display:flex;flex-wrap:wrap;gap:5px;max-height:96px;overflow:auto}
 .mi-dch i{font:800 14px/1 var(--f-nar,system-ui);font-style:normal;min-width:30px;padding:7px 6px;text-align:center;border-radius:9px;background:rgba(255,255,255,.08);color:#fff}
 .mi-dch i.mx{background:rgba(226,170,76,.25);color:#ffd36b}.mi-dch i.mn{background:rgba(239,106,98,.22);color:#ef6a62}
+.mi-dcr{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;padding-top:2px}
+.mi-dcl{flex:1 1 100%;font:700 11px/1.2 var(--f-nar,system-ui);letter-spacing:.12em;text-transform:uppercase;color:#a7b1b9}
+.mi-dsw{position:relative;flex:1 1 0;min-width:70px;min-height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;border-radius:14px;border:2px solid rgba(255,255,255,.16);background:linear-gradient(135deg,var(--c1,#2f5fe0),var(--c2,#b23fb8));color:var(--ink,#ffd45e);cursor:pointer;overflow:hidden;-webkit-tap-highlight-color:transparent;transition:transform .12s}
+.mi-dsw:active{transform:scale(.95)}
+.mi-dsw b{font:800 24px/1 var(--f-nar,system-ui);text-shadow:1px 0 var(--hal,#000),-1px 0 var(--hal,#000),0 1px var(--hal,#000),0 -1px var(--hal,#000),0 0 6px var(--hal,#000)}
+.mi-dsw small{font:700 10px/1 var(--f-nar,system-ui);letter-spacing:.08em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+.mi-dsw.on{border-color:#fff;box-shadow:0 0 0 2px rgb(var(--pl-rgb,214,69,59)),0 8px 18px -8px rgba(0,0,0,.8)}
+.mi-dsw:focus-visible,.mi-dswc:focus-within{outline:2px solid #fff;outline-offset:2px}
+.mi-dswc input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0}
 .mi-dres.pop strong{animation:mi-dpop .36s var(--ease-out,cubic-bezier(.2,.8,.2,1))}
 @keyframes mi-dpop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
 :root[data-motion="off"] .mi-dpp,:root[data-motion="off"] .mi-dpx,:root[data-motion="off"] .mi-dres.pop strong{transition:none;animation:none}
 :root[data-skin="ddb"][data-theme="light"] .mi-dpp{background:#fbf3df;color:#2b2117}
 :root[data-skin="ddb"][data-theme="light"] :is(.mi-dph b,.mi-dsp,.mi-dres strong,.mi-st button,.mi-st input,.mi-dk button,.mi-dl input,.mi-dbx input,.mi-dch i){color:#2b2117}
-:root[data-skin="ddb"][data-theme="light"] :is(.mi-dfd>span,.mi-dl,.mi-dres small){color:#5a4a36}
+:root[data-skin="ddb"][data-theme="light"] :is(.mi-dfd>span,.mi-dl,.mi-dcl,.mi-dres small){color:#5a4a36}
 :root[data-skin="ddb"][data-theme="light"] :is(.mi-dk button,.mi-st,.mi-dman,.mi-dl input,.mi-dbx input){background:rgba(90,60,20,.06);border-color:rgba(90,60,20,.2)}
 :root[data-skin="ddb"][data-theme="light"] :is(.mi-dk button.on,.mi-dbtn.pri){color:#fff}
+/* light skin: the specific states above must win over the generic light fills */
+:root[data-skin="ddb"][data-theme="light"] .mi-dpp .mi-rhc{color:#2b2117;background:rgba(90,60,20,.06);border-color:rgba(90,60,20,.2)}
+:root[data-skin="ddb"][data-theme="light"] .mi-dpp .mi-dk button.on{color:#fff;border-color:transparent;background:linear-gradient(180deg,rgb(var(--pl-rgb,214,69,59)),color-mix(in srgb,rgb(var(--pl-rgb,214,69,59)) 60%,#000))}
+:root[data-skin="ddb"][data-theme="light"] .mi-dbtn:not(.pri){color:#2b2117;background:rgba(90,60,20,.06);border-color:rgba(90,60,20,.2)}
+:root[data-skin="ddb"][data-theme="light"] .mi-dch i{background:rgba(90,60,20,.1)}
+:root[data-skin="ddb"][data-theme="light"] .mi-dch i.mx{background:rgba(190,130,20,.22);color:#7a5200}
+:root[data-skin="ddb"][data-theme="light"] .mi-dch i.mn{background:rgba(179,38,30,.16);color:#a3201a}
 @media print{.mi-dp{display:none!important}}

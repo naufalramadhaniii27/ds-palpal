@@ -62,6 +62,7 @@ const FXS25A={};
 (function(){
   ;
   /* ---------- the number atlas: red = number, green = near an edge (the bevel catches the light) ---------- */
+  function halo(x,fs,s,ox,oy){ x.lineJoin="round"; x.strokeStyle="rgba(0,0,255,0.32)"; x.lineWidth=fs*0.2; x.strokeText(s,ox,oy); x.strokeStyle="rgba(0,0,255,0.75)"; x.lineWidth=fs*0.1; x.strokeText(s,ox,oy); }/* blue = the ring around a number, so it reads on any colour */
   FXS25A.atlas=function atlas(S,labels){ const F=S.F, cols=Math.ceil(Math.sqrt(F.length)), px=Math.max(96,Math.min(192,Math.floor(1024/cols))), W=cols*px;
     /* one canvas, added light: numbers in red, edges in green, so no pixel read back is needed (getImageData took seconds on a first use) */
     const a=FXS25A.D.createElement("canvas"); a.width=a.height=W; const x=a.getContext("2d"), y=x; x.fillStyle="#000"; x.fillRect(0,0,W,W); x.globalCompositeOperation="lighter";
@@ -72,17 +73,28 @@ const FXS25A={};
       let inr=1e9; for(let e=0;e<P2.length;e++){ const p=P2[e], q=P2[(e+1)%P2.length], ex=q[0]-p[0], ey=q[1]-p[1], l=Math.hypot(ex,ey); inr=Math.min(inr,Math.abs((cx-p[0])*ey-(cy-p[1])*ex)/l); }
       y.save(); y.beginPath(); P2.forEach((p,e) =>{ if(e) y.lineTo(p[0],p[1]); else y.moveTo(p[0],p[1]); }); y.closePath(); y.clip(); for(let g=4;g>=1;g--){ y.strokeStyle="rgba(0,255,0,"+(0.22*(5-g)/4).toFixed(3)+")"; y.lineWidth=px/40*g*1.6; y.stroke(); } y.restore();/* soft bevel from four strokes (a canvas blur filter took seconds on slow phones) */
       x.fillStyle="#f00"; x.textAlign="center"; x.textBaseline="middle";
-      if(S.t===4){ f.v.forEach((q,e) =>{ const p=P2[e], dx=p[0]-cx, dy=p[1]-cy, l=Math.hypot(dx,dy); x.save(); x.translate(cx+dx*0.5,cy+dy*0.5); x.rotate(Math.atan2(dx,-dy)); x.font="700 "+Math.round(inr*0.95)+"px Archivo, 'Helvetica Neue', Arial, sans-serif"; x.fillText(String(S.vv[q]),0,0); x.restore(); }); return; }
-      const s=String(labels?labels[f.val]:f.val), fs=inr*(s.length>1?(S.t===10?0.82:1.0):1.25)*(S.t===10?0.9:1); x.save(); x.translate(cx,cy+(S.t===10?inr*0.18:0)); x.font="700 "+Math.round(fs)+"px Archivo, 'Helvetica Neue', Arial, sans-serif"; x.fillText(s,0,fs*0.04);
-      if(s==="6"||s==="9"){ x.fillRect(-fs*0.22,fs*0.42,fs*0.44,Math.max(2,fs*0.07)); } x.restore(); });
+      if(S.t===4){ f.v.forEach((q,e) =>{ const p=P2[e], dx=p[0]-cx, dy=p[1]-cy, l=Math.hypot(dx,dy); x.save(); x.translate(cx+dx*0.5,cy+dy*0.5); x.rotate(Math.atan2(dx,-dy)); x.font="700 "+Math.round(inr*1.0)+"px Cinzel, Georgia, 'Times New Roman', serif"; halo(x,inr*0.95,String(S.vv[q]),0,0); x.fillText(String(S.vv[q]),0,0); x.restore(); }); return; }
+      const s=String(labels?labels[f.val]:f.val), fs=inr*(s.length>1?(S.t===10?0.82:1.0):1.25)*(S.t===10?0.9:1); x.save(); x.translate(cx,cy+(S.t===10?inr*0.18:0)); x.font="700 "+Math.round(fs*1.13)+"px Cinzel, Georgia, 'Times New Roman', serif"; halo(x,fs,s,0,fs*0.04); x.fillText(s,0,fs*0.04);
+      if(s==="6"||s==="9"){ x.fillStyle="#00f"; x.fillRect(-fs*0.27,fs*0.38,fs*0.54,Math.max(2,fs*0.07)+fs*0.08); x.fillStyle="#f00"; x.fillRect(-fs*0.22,fs*0.42,fs*0.44,Math.max(2,fs*0.07)); } x.restore(); });
     return a; };;
   /* ---------- WebGL ---------- */
-  FXS25A.VS="attribute vec3 p;attribute vec3 n;attribute vec2 t;uniform mat4 M;uniform mat4 VP;varying vec3 vn;varying vec3 vw;varying vec2 vt;void main(){vec4 w=M*vec4(p,1.);vw=w.xyz;vn=(M*vec4(n,0.)).xyz;vt=t;gl_Position=VP*w;}";
-  FXS25A.FS="precision mediump float;uniform sampler2D tx;uniform vec3 col;uniform vec3 ink;uniform vec3 eye;varying vec3 vn;varying vec3 vw;varying vec2 vt;"+
-    "void main(){vec4 s=texture2D(tx,vt);vec3 N=normalize(vn);vec3 V=normalize(eye-vw);vec3 L1=normalize(vec3(-.75,.62,-.55));vec3 L2=normalize(vec3(.6,.5,.7));"+
-    "float d1=max(dot(N,L1),0.);float d2=max(dot(N,L2),0.);vec3 base=mix(col,ink,s.r);"+
-    "float sp=pow(max(dot(N,normalize(L1+V)),0.),70.)*.9+pow(max(dot(N,normalize(L2+V)),0.),30.)*.18;float fr=pow(1.-max(dot(N,V),0.),3.);"+
-    "vec3 c=base*(.34+.72*d1+.22*d2)+vec3(1.)*sp*(1.-s.r*.5)+col*fr*.35+vec3(.85,.9,1.)*fr*.16+vec3(1.,.95,.9)*s.g*.16*(.4+d1);gl_FragColor=vec4(c,1.);}";
+  FXS25A.VS="attribute vec3 p;attribute vec3 n;attribute vec2 t;attribute vec3 g;uniform mat4 M;uniform mat4 VP;varying vec3 vn;varying vec3 vw;varying vec3 vl;varying vec3 vg;varying vec2 vt;void main(){vec4 w=M*vec4(p,1.);vg=(M*vec4(g,0.)).xyz;vw=w.xyz;vn=(M*vec4(n,0.)).xyz;vl=p;vt=t;gl_Position=VP*w;}";
+  /* glass resin: swirls through the body, a bright core, glitter inside, a sky reflection and bevel glints. Two passes per die: the back faces first
+     (the numbers of the far side show through, dimmer), then the front faces, see through. A number is solid with its ring, so it reads on any colour. */
+  FXS25A.FS="precision mediump float;uniform sampler2D tx;uniform vec3 col;uniform vec3 col2;uniform vec3 hal;uniform float gl;uniform float bk;uniform vec3 ink;uniform vec3 eye;uniform float tm;varying vec3 vn;varying vec3 vw;varying vec3 vl;varying vec3 vg;varying vec2 vt;"+
+    "void main(){vec4 s=texture2D(tx,vt);vec3 N=normalize(vn);if(bk>.5)N=-N;vec3 V=normalize(eye-vw);vec3 L1=normalize(vec3(-.75,.62,-.55));vec3 L2=normalize(vec3(.6,.5,.7));"+
+    "float d1=max(dot(N,L1),0.);float d2=max(dot(N,L2),0.);float fr=pow(1.-max(dot(N,V),0.),3.);"+
+    "float a1=.5+.5*sin(vl.x*3.1+vl.y*2.3+sin(vl.z*2.7+tm*.9)*1.7+tm*.5);float a2=.5+.5*sin(vl.y*4.3-vl.z*3.1+sin(vl.x*3.7-tm*.8)*1.3-tm*.4);vec3 body=mix(col,col2,smoothstep(.15,.85,a1));body=mix(body,body*1.45+.08,a2*.4);"+
+    "float core=smoothstep(1.1,.05,length(vl));float rib=smoothstep(.44,.5,a1)-smoothstep(.5,.6,a1);vec3 cl=floor(vl*17.+vec3(0.,tm*.4,0.));vec3 hh=fract(sin(vec3(dot(cl,vec3(12.9,78.2,45.1)),dot(cl,vec3(39.3,11.1,83.7)),dot(cl,vec3(73.1,19.7,31.3))))*43758.5)*2.-1.;vec3 fn=normalize(hh+N*.8);float dens=step(.35,hh.z*.5+.5);float tw=.55+.45*sin(tm*5.+hh.x*30.);float fl=(pow(max(dot(fn,normalize(L1+V)),0.),24.)+.7*pow(max(dot(fn,normalize(L2+V)),0.),24.))*dens*tw;"+
+    "vec3 inner=body*(.5+.5*core)+mix(col2,vec3(1.),.35)*core*.4+mix(col2,vec3(1.),.55)*rib*.3*(.4+core);"+
+    "float num=s.r;float ring=s.b*(1.-s.r);float nr=min(1.,num+ring);float e=.0024;float mx=texture2D(tx,vt+vec2(e,0.)).r-texture2D(tx,vt-vec2(e,0.)).r;float my=texture2D(tx,vt+vec2(0.,e)).r-texture2D(tx,vt-vec2(0.,e)).r;"+
+    "vec3 N0=normalize(vn);vec3 Tg=normalize(vg-N0*dot(vg,N0));vec3 Up=cross(N0,Tg);vec3 Nb=normalize(N+(Tg*mx-Up*my)*1.5*(bk>.5?-1.:1.));float bev=dot(Nb,L1)-dot(N,L1);float bev2=dot(Nb,L2)-dot(N,L2);"+
+    "float grain=.5+.5*sin(vl.x*90.+vl.y*70.)*sin(vl.z*80.-vl.x*50.);vec3 cut=ink*(.8+.2*d1)*(.94+.06*grain);vec3 base=mix(mix(inner,hal*.7,ring*.5),cut,num);float lit=.5+.6*d1+.2*d2;lit=mix(lit,max(lit,.9),num);vec3 c=base*lit;c*=1.+min(0.,bev+bev2*.5)*1.6;"+
+    "vec3 glint=vec3(1.,.97,.9)*(max(bev,0.)*1.7+max(bev2,0.)*.7);vec3 R=reflect(-V,N);vec3 sky=mix(vec3(.04,.06,.12),vec3(.95,.97,1.),smoothstep(-.3,.9,R.y));"+
+    "float sp=pow(max(dot(N,normalize(L1+V)),0.),90.)*1.1+pow(max(dot(N,normalize(L2+V)),0.),40.)*.35;float gt=step(.985,fract(sin(dot(floor(vl*11.),vec3(12.9898,78.233,45.164)))*43758.5453));"+
+    "vec3 spec=vec3(sp)*(1.-num*.7)+sky*(.06+.55*fr)*(1.-num*.6)+glint+vec3(1.,.97,.92)*s.g*.5*(.4+d1)+vec3(1.)*gt*.55*gl*(1.-nr)+mix(vec3(1.),col2*1.4,.4)*fl*(.9+gl)*(1.-nr)*(.45+.55*core);"+
+    "float al=mix(mix(.46,.9,fr),.97,nr);if(bk>.5){c*=.62;al=.95;spec*=.35;}"+
+    "float sa=max(spec.r,max(spec.g,spec.b));gl_FragColor=vec4(min(c*al+spec,vec3(1.)),min(1.,al+sa));}";
   FXS25A.VSS="attribute vec2 q;uniform mat4 VP;uniform vec3 c;uniform float r;varying vec2 vq;void main(){vq=q;gl_Position=VP*vec4(c.x+q.x*r,.002,c.z+q.y*r,1.);}";
   FXS25A.FSS="precision mediump float;uniform float a;varying vec2 vq;void main(){float d=length(vq);gl_FragColor=vec4(0.,0.,0.,a*(1.-smoothstep(.2,1.,d)));}";
   function sh(type,src){ const s=FXS25A.gl.createShader(type); FXS25A.gl.shaderSource(s,src); FXS25A.gl.compileShader(s); if(!FXS25A.gl.getShaderParameter(s,FXS25A.gl.COMPILE_STATUS)) throw new Error(FXS25A.gl.getShaderInfoLog(s)); return s; }
@@ -93,13 +105,13 @@ const FXS25A={};
   FXS25A.init=function init(){ if(FXS25A.gl&&!FXS25A.lost) return true; if(!FXS25A.tray){ FXS25A.tray=FXS25A.D.createElement("div"); FXS25A.tray.id="diceTray"; FXS25A.tray.setAttribute("aria-hidden","true"); FXS25A.D.body.appendChild(FXS25A.tray); }
     if(!FXS25A.cv){ FXS25A.cv=FXS25A.D.createElement("canvas"); FXS25A.tray.appendChild(FXS25A.cv); FXS25A.cv.addEventListener("webglcontextlost",(e) =>{ e.preventDefault(); FXS25A.lost=true; }); FXS25A.cv.addEventListener("webglcontextrestored",() =>{ FXS25A.lost=false; FXS25A.gl=null; FXS25A.GEO={}; FXS25A.init(); }); }
     try{ FXS25A.gl=FXS25A.cv.getContext("webgl",{alpha:true,antialias:true,premultipliedAlpha:true,preserveDrawingBuffer:true})||FXS25A.cv.getContext("experimental-webgl"); }catch(e){ FXS25A.gl=null; } if(!FXS25A.gl) return false;
-    try{ FXS25A.P=FXS25A.prog(FXS25A.VS,FXS25A.FS,["p","n","t"]); FXS25A.PS=FXS25A.prog(FXS25A.VSS,FXS25A.FSS,["q"]); }catch(e){ FXS25A.gl=null; return false; }
+    try{ FXS25A.P=FXS25A.prog(FXS25A.VS,FXS25A.FS,["p","n","t","g"]); FXS25A.PS=FXS25A.prog(FXS25A.VSS,FXS25A.FSS,["q"]); }catch(e){ FXS25A.gl=null; return false; }
     FXS25A.BUF=FXS25A.gl.createBuffer(); FXS25A.gl.bindBuffer(FXS25A.gl.ARRAY_BUFFER,FXS25A.BUF); FXS25A.gl.bufferData(FXS25A.gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),FXS25A.gl.STATIC_DRAW); FXS25A.GEO={}; FXS25A.lost=false; return true; };;
   /* one mesh and atlas per kind: "4", "6" ... "10", and "10t" for the tens die of a d100 (00 to 90) */
   FXS25A.geo=function geo(kind){ if(FXS25A.GEO[kind]) return FXS25A.GEO[kind]; let T1=performance.now(), t=kind==="10t"?10:+kind, S=FXS25A.solid(t), lab=null, T2=performance.now();
     if(t===4){ S.vv=S.V.map((v,i) =>{ return i+1; }); }/* the number at a corner is the value of that corner on every face */
     if(t===10){ lab={}; for(let i=1;i<=10;i++) lab[i]=kind==="10t"?(i===10?"00":String(i*10)):(i===10?"0":String(i)); }
-    const A=FXS25A.atlas(S,lab), T3=performance.now(), data=[]; S.F.forEach((f) =>{ for(let e=1;e+1<f.v.length;e++){ [0,e,e+1].forEach((k) =>{ const p=S.V[f.v[k]], uv=f.uv[k]; data.push(p[0],p[1],p[2],f.n[0],f.n[1],f.n[2],uv[0],uv[1]); }); } });
+    const A=FXS25A.atlas(S,lab), T3=performance.now(), data=[]; S.F.forEach((f) =>{ for(let e=1;e+1<f.v.length;e++){ [0,e,e+1].forEach((k) =>{ const p=S.V[f.v[k]], uv=f.uv[k]; data.push(p[0],p[1],p[2],f.n[0],f.n[1],f.n[2],uv[0],uv[1],f.rt[0],f.rt[1],f.rt[2]); }); } });
     const b=FXS25A.gl.createBuffer(); FXS25A.gl.bindBuffer(FXS25A.gl.ARRAY_BUFFER,b); FXS25A.gl.bufferData(FXS25A.gl.ARRAY_BUFFER,new Float32Array(data),FXS25A.gl.STATIC_DRAW);
     const tx=FXS25A.gl.createTexture(); FXS25A.gl.bindTexture(FXS25A.gl.TEXTURE_2D,tx); FXS25A.gl.pixelStorei(FXS25A.gl.UNPACK_FLIP_Y_WEBGL,false); FXS25A.gl.texImage2D(FXS25A.gl.TEXTURE_2D,0,FXS25A.gl.RGBA,FXS25A.gl.RGBA,FXS25A.gl.UNSIGNED_BYTE,A);
     FXS25A.gl.texParameteri(FXS25A.gl.TEXTURE_2D,FXS25A.gl.TEXTURE_MIN_FILTER,FXS25A.gl.LINEAR); FXS25A.gl.texParameteri(FXS25A.gl.TEXTURE_2D,FXS25A.gl.TEXTURE_MAG_FILTER,FXS25A.gl.LINEAR); FXS25A.gl.texParameteri(FXS25A.gl.TEXTURE_2D,FXS25A.gl.TEXTURE_WRAP_S,FXS25A.gl.CLAMP_TO_EDGE); FXS25A.gl.texParameteri(FXS25A.gl.TEXTURE_2D,FXS25A.gl.TEXTURE_WRAP_T,FXS25A.gl.CLAMP_TO_EDGE);
@@ -208,22 +220,41 @@ const FXS25A={};
     const box={x0:-Ww/2+0.3,x1:Ww/2-0.3,z0:-Hw/2+Math.min(240,H*0.3)/pxu,z1:Hw/2-80/pxu};
     items.forEach((it,i) =>{ it.G=FXS25A.geo(it.k); it.S=it.G.S; it.s=sc; FXS25A.start(it,i,n,box,R); });
     FXS25A.simulate(items,box); FXS25A.stats.sim=Math.round(performance.now()-tSet);
-    let col=FXS25A.hex(FXS25A.acc()), ink=[0.98,0.94,0.86], T0=0, last=0; items.forEach((it) =>{ last=Math.max(last,it.P.length+it.delN); });
+    const pl=FXS25A.pal(); let col=pl.c1, ink=pl.ink, T0=0, last=0; items.forEach((it) =>{ last=Math.max(last,it.P.length+it.delN); });
     function frame(now){ const t0=performance.now(), f=Math.floor((now-T0)*0.12), done=f>=last; FXS25A.gl.viewport(0,0,FXS25A.cv.width,FXS25A.cv.height); FXS25A.gl.clearColor(0,0,0,0); FXS25A.gl.clear(FXS25A.gl.COLOR_BUFFER_BIT|FXS25A.gl.DEPTH_BUFFER_BIT);
       const poses=items.map((it) =>{ return FXS25A.dicePose(it,f); });
       /* shadows first, without depth writes */
-      FXS25A.gl.disable(FXS25A.gl.DEPTH_TEST); FXS25A.gl.enable(FXS25A.gl.BLEND); FXS25A.gl.blendFunc(FXS25A.gl.ONE,FXS25A.gl.ONE_MINUS_SRC_ALPHA); FXS25A.gl.useProgram(FXS25A.PS.p); FXS25A.gl.bindBuffer(FXS25A.gl.ARRAY_BUFFER,FXS25A.BUF); FXS25A.gl.enableVertexAttribArray(0); FXS25A.gl.vertexAttribPointer(0,2,FXS25A.gl.FLOAT,false,8,0); FXS25A.gl.disableVertexAttribArray(1); FXS25A.gl.disableVertexAttribArray(2);
+      FXS25A.gl.disable(FXS25A.gl.DEPTH_TEST); FXS25A.gl.enable(FXS25A.gl.BLEND); FXS25A.gl.blendFunc(FXS25A.gl.ONE,FXS25A.gl.ONE_MINUS_SRC_ALPHA); FXS25A.gl.useProgram(FXS25A.PS.p); FXS25A.gl.bindBuffer(FXS25A.gl.ARRAY_BUFFER,FXS25A.BUF); FXS25A.gl.enableVertexAttribArray(0); FXS25A.gl.vertexAttribPointer(0,2,FXS25A.gl.FLOAT,false,8,0); FXS25A.gl.disableVertexAttribArray(1); FXS25A.gl.disableVertexAttribArray(2); FXS25A.gl.disableVertexAttribArray(3);
       FXS25A.gl.uniformMatrix4fv(FXS25A.PS.u.VP,false,VP); poses.forEach((o,i) =>{ if(!o) return; const it=items[i]; FXS25A.gl.uniform3f(FXS25A.PS.u.c,o.p[0]+o.y*0.18,0,o.p[2]+o.y*0.12); FXS25A.gl.uniform1f(FXS25A.PS.u.r,1.25*it.s*(1+o.y*0.12)); FXS25A.gl.uniform1f(FXS25A.PS.u.a,0.42/(1+o.y*0.35)); FXS25A.gl.drawArrays(FXS25A.gl.TRIANGLE_STRIP,0,4); });
-      FXS25A.gl.disable(FXS25A.gl.BLEND); FXS25A.gl.enable(FXS25A.gl.DEPTH_TEST); FXS25A.gl.enable(FXS25A.gl.CULL_FACE); FXS25A.gl.cullFace(FXS25A.gl.BACK); FXS25A.gl.frontFace(FXS25A.gl.CCW); FXS25A.gl.useProgram(FXS25A.P.p); FXS25A.gl.uniformMatrix4fv(FXS25A.P.u.VP,false,VP); FXS25A.gl.uniform3fv(FXS25A.P.u.col,col); FXS25A.gl.uniform3fv(FXS25A.P.u.ink,ink); FXS25A.gl.uniform3fv(FXS25A.P.u.eye,eye); FXS25A.gl.uniform1i(FXS25A.P.u.tx,0);
-      poses.forEach((o,i) =>{ if(!o) return; const it=items[i]; FXS25A.gl.bindBuffer(FXS25A.gl.ARRAY_BUFFER,it.G.b); FXS25A.gl.enableVertexAttribArray(0); FXS25A.gl.enableVertexAttribArray(1); FXS25A.gl.enableVertexAttribArray(2); FXS25A.gl.vertexAttribPointer(0,3,FXS25A.gl.FLOAT,false,32,0); FXS25A.gl.vertexAttribPointer(1,3,FXS25A.gl.FLOAT,false,32,12); FXS25A.gl.vertexAttribPointer(2,2,FXS25A.gl.FLOAT,false,32,24);
-        FXS25A.gl.activeTexture(FXS25A.gl.TEXTURE0); FXS25A.gl.bindTexture(FXS25A.gl.TEXTURE_2D,it.G.tx); FXS25A.gl.uniformMatrix4fv(FXS25A.P.u.M,false,FXS25A.model(o.p,o.q,it.s)); FXS25A.gl.drawArrays(FXS25A.gl.TRIANGLES,0,it.G.n); });
+      FXS25A.gl.enable(FXS25A.gl.DEPTH_TEST); FXS25A.gl.enable(FXS25A.gl.CULL_FACE); FXS25A.gl.cullFace(FXS25A.gl.BACK); FXS25A.gl.frontFace(FXS25A.gl.CCW); FXS25A.gl.useProgram(FXS25A.P.p); FXS25A.gl.uniformMatrix4fv(FXS25A.P.u.VP,false,VP); FXS25A.gl.uniform3fv(FXS25A.P.u.col,col); FXS25A.gl.uniform3fv(FXS25A.P.u.ink,ink); FXS25A.skinU(pl); FXS25A.gl.uniform3fv(FXS25A.P.u.eye,eye); FXS25A.gl.uniform1i(FXS25A.P.u.tx,0);
+      poses.forEach((o,i) =>{ if(!o) return; const it=items[i]; FXS25A.gl.bindBuffer(FXS25A.gl.ARRAY_BUFFER,it.G.b); FXS25A.gl.enableVertexAttribArray(0); FXS25A.gl.enableVertexAttribArray(1); FXS25A.gl.enableVertexAttribArray(2); FXS25A.gl.enableVertexAttribArray(3); FXS25A.gl.vertexAttribPointer(0,3,FXS25A.gl.FLOAT,false,44,0); FXS25A.gl.vertexAttribPointer(1,3,FXS25A.gl.FLOAT,false,44,12); FXS25A.gl.vertexAttribPointer(2,2,FXS25A.gl.FLOAT,false,44,24); FXS25A.gl.vertexAttribPointer(3,3,FXS25A.gl.FLOAT,false,44,32);
+        FXS25A.gl.activeTexture(FXS25A.gl.TEXTURE0); FXS25A.gl.bindTexture(FXS25A.gl.TEXTURE_2D,it.G.tx); FXS25A.gl.uniformMatrix4fv(FXS25A.P.u.M,false,FXS25A.model(o.p,o.q,it.s)); FXS25A.pass(it); });
       FXS25A.stats.frames++; FXS25A.stats.ms+=performance.now()-t0; return done; }
     FXS25A.stats.setup=Math.round(performance.now()-tSet); T0=performance.now();/* the clock starts after the meshes and atlases are ready */
     return new Promise((ok) =>{ (function loop(now){ if(FXS25A.lost){ ok(null); return; } const d=frame(now||performance.now()); if(d){ ok(vals); return; } requestAnimationFrame(loop); })(performance.now()); }); }
   /* the numbers use the app's own Archivo (embedded): wait for it once, at most 600 ms, so the atlas never draws with a fallback */
-  let FONT=null; FXS25A.font=function font(){ if(FONT) return FONT; const f=FXS25A.D.fonts&&FXS25A.D.fonts.load?FXS25A.D.fonts.load("700 64px Archivo").catch(() =>{}):null; FONT=f?Promise.race([f,new Promise((r) =>{ setTimeout(r,600); })]):Promise.resolve(); return FONT; };;
+  let FONT=null; FXS25A.font=function font(){ if(FONT) return FONT; const f=FXS25A.D.fonts&&FXS25A.D.fonts.load?Promise.all([FXS25A.D.fonts.load("700 64px Cinzel"),FXS25A.D.fonts.load("700 64px Archivo")]).catch(() =>{}):null; FONT=f?Promise.race([f,new Promise((r) =>{ setTimeout(r,600); })]):Promise.resolve(); return FONT; };;
   FXS25A.run=function run(list,given){ if(!FXS25A.init()) return Promise.resolve(null); clearTimeout(FXS25A.hideT); FXS25A.tray.classList.add("on"); FXS25A.stats.rolls++;
     return FXS25A.font().then(() =>{ return throwDice(list,given); }).then((v) =>{ FXS25A.hideT=setTimeout(() =>{ FXS25A.tray.classList.remove("on"); },1800); return v; },() =>{ FXS25A.tray.classList.remove("on"); return null; }); };
+})();
+FXS25A.F=FXH;
+(function(){
+  /* Dice colours. Three sets after real resin dice (default Galaxy) and a custom colour. The number colour is always chosen against the body:
+     a ring of the opposite shade is drawn round every number (the atlas, blue channel), so a number reads on any colour. */
+  const SK={ galaxy:{n:"Galaxy",c1:"#2f5fe0",c2:"#b23fb8",ink:"#ffd45e",hal:"#0c0a1a",gl:1}, ocean:{n:"Ocean",c1:"#1597d8",c2:"#0b5aa8",ink:"#f2b27c",hal:"#08121f",gl:1}, ember:{n:"Ember",c1:"#d4180e",c2:"#1b0606",ink:"#ffd45e",hal:"#1a0404",gl:1} };
+  FXS25A.SK=SK;
+  FXS25A.lum=function lum(rgb){ const f=(v) =>{ return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4); }; return 0.2126*f(rgb[0])+0.7152*f(rgb[1])+0.0722*f(rgb[2]); };
+  FXS25A.ratio=function ratio(a,b){ const la=FXS25A.lum(FXS25A.hex(a)), lb=FXS25A.lum(FXS25A.hex(b)); return (Math.max(la,lb)+0.05)/(Math.min(la,lb)+0.05); };
+  FXS25A.skinId=function skinId(){ const v=FXS25A.F.ls("mi-dsk")||"galaxy"; return (SK[v]||/^custom:#[0-9a-f]{6}$/i.test(v))?v:"galaxy"; };
+  function custom(c){ const L=FXS25A.lum(FXS25A.hex(c)), dark=(L+0.05)/0.05>1.05/(L+0.05), d=FXS25A.hex(c).map((v) =>{ return Math.round(v*140).toString(16).padStart(2,"0"); }).join("");
+    return {c1:c,c2:"#"+d,ink:dark?"#000000":"#ffffff",hal:dark?"#ffffff":"#000000",gl:0.35}; }
+  /* the colours of one skin as css strings: also what the colour buttons of the dice panel show */
+  FXS25A.res=function res(id){ id=id||FXS25A.skinId(); return SK[id]||custom(id.slice(7)); };
+  FXS25A.pal=function pal(){ const r=FXS25A.res(), h=FXS25A.hex; return {c1:h(r.c1),c2:h(r.c2),ink:h(r.ink),hal:h(r.hal),gl:r.gl}; };
+  FXS25A.skinU=function skinU(pl){ const g=FXS25A.gl, u=FXS25A.P.u; g.uniform3fv(u.col2,pl.c2); g.uniform3fv(u.hal,pl.hal); g.uniform1f(u.gl,pl.gl); g.uniform1f(u.tm,performance.now()/1000%1000); };
+  /* the back faces first (seen through the body), then the front faces */
+  FXS25A.pass=function pass(it){ const g=FXS25A.gl, u=FXS25A.P.u; g.cullFace(g.FRONT); g.uniform1f(u.bk,1); g.drawArrays(g.TRIANGLES,0,it.G.n); g.cullFace(g.BACK); g.uniform1f(u.bk,0); g.drawArrays(g.TRIANGLES,0,it.G.n); };
+  FXS25A.setSkin=function setSkin(v){ FXS25A.F.ls("mi-dsk",v); return FXS25A.skinId(); };
 })();
 (function(){
   ;
@@ -234,5 +265,7 @@ const FXS25A={};
     simTop:function(kind,val){ const S=FXS25A.solid(+kind), it={S:S,s:1,v:val}, box={x0:-6,x1:6,z0:-10,z1:10}; FXS25A.start(it,0,1,box,Math.random); FXS25A.simulate([it],box);
       let q=FXS25A.qmul(it.q,it.g), lo=9; S.F.forEach((f) =>{ const y=FXS25A.qrot(q,f.n)[1]; if(y<lo) lo=y; }); return {v:FXS25A.shown(S,q),flat:Math.round(Math.acos(Math.min(1,-lo))*1800/Math.PI)/10,steps:it.P.length}; },
     simPath:function(kinds){ const box={x0:-7,x1:7,z0:-9,z1:12}, L=kinds.map((k,i) =>{ const it={S:FXS25A.solid(+k),s:kinds.length>6?0.86:1,v:1}; FXS25A.start(it,i,kinds.length,box,Math.random); return it; }); FXS25A.simulate(L,box); return L.map((it) =>{ return {d:it.delN,P:it.P,Q:it.Q}; }); },
-    faces:function(kind){ const S=FXS25A.solid(+kind); return S.F.map((f) =>{ return f.val; }); } };
+    faces:function(kind){ const S=FXS25A.solid(+kind); return S.F.map((f) =>{ return f.val; }); },
+    skins:function(){ return Object.keys(FXS25A.SK).map((k) =>{ const r=FXS25A.res(k); return {id:k,n:FXS25A.SK[k].n,c1:r.c1,c2:r.c2,ink:r.ink,hal:r.hal}; }); },
+    skin:function(v){ return v===undefined?FXS25A.skinId():FXS25A.setSkin(v); }, res:function(id){ return FXS25A.res(id); }, ratio:function(a,b){ return FXS25A.ratio(a,b); } };
 })();
