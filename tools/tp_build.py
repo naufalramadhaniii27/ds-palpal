@@ -433,11 +433,16 @@ def species_records(bk, data, M):
     out = {}
     for n, r in M.SPECIES.items():
         rec = dict(r); rec["hb"] = bk["tag"]; out[alias(bk, n)] = rec
-    for l in getattr(M, "LU", []): SPLU.append(l)
-    for k, v in getattr(M, "ACTS", {}).items(): SPACTS[k] = v
-    for k, v in getattr(M, "SP_AUTO", {}).items(): SPAUTO[k] = v
-    for k, v in getattr(M, "GXSP", {}).items(): GXSP[k] = v          # fx rows of a species: registry GX.species
-    return out, M.DEF
+    ren = {n: alias(bk, n) for n in M.SPECIES}          # a species renamed by the alias keeps its trackers, actions, free spells and fx: the overlay may write the plain name
+    def _sk(k):
+        p = k.split("|")
+        if len(p) == 3 and p[1] in ren: p[1] = ren[p[1]]
+        return "|".join(p)
+    for l in getattr(M, "LU", []): SPLU.append(dict(l, owner=ren.get(l["owner"], l["owner"])) if l.get("owner") in ren else l)
+    for k, v in getattr(M, "ACTS", {}).items(): SPACTS[_sk(k)] = v
+    for k, v in getattr(M, "SP_AUTO", {}).items(): SPAUTO[ren.get(k, k)] = v
+    for k, v in getattr(M, "GXSP", {}).items(): GXSP[ren.get(k, k)] = v          # fx rows of a species: registry GX.species
+    return out, {ren.get(k, k): v for k, v in M.DEF.items()}
 
 SPLU = []; SPACTS = {}; SPAUTO = {}; GXSP = {}
 FDM = {}
