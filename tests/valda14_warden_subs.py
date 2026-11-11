@@ -20,7 +20,7 @@ BUILD = """([nm,CLS])=>{const b=window.__bldTestB(); const sub=Object.keys(windo
  let c; try{ c=window.__bldSheetFor(b) }catch(e){ return {err:String(e).slice(0,200)} }
  if(!c) return {err:"no sheet"};
  const names=[]; (c.features||[]).forEach(g=>(g.items||[]).forEach(f=>names.push(f.n)));
- return {sub:sub,names:names,lu:(c.limited||c.lu||[]).map(x=>x.n||x.feature||x.k),acts:Object.keys(c.acts||{}),third:!!(window.THIRD_SUBS&&window.THIRD_SUBS[sub]),sk:Object.values(c.skills||{}).filter(s=>s.p||s.e).map(s=>s.n),slots:JSON.stringify((c.spellcasting||{}).slots||null),fly:JSON.stringify(c.speeds||c.moves||null)}; }"""
+ return {sub:sub,names:names,lu:(c.limited||c.lu||[]).map(x=>x.n||x.feature||x.k),acts:Object.keys(c.acts||{}),third:!!(window.THIRD_SUBS&&window.THIRD_SUBS[sub]),sk:Object.values(c.skills||{}).filter(s=>s.p||s.e).map(s=>s.n),res:JSON.stringify(c.res||[]),slots:JSON.stringify((c.spellcasting||{}).slots||null),fly:JSON.stringify(c.speeds||c.moves||null)}; }"""
 async def main():
     srv, url = serve(); bad = []; errs = []
     async with async_playwright() as p:
@@ -33,6 +33,11 @@ async def main():
             if r.get("err"): bad.append(nm + ": " + r["err"]); continue
             miss = [f for f in feats if f not in r["names"]]
             if miss: bad.append("%s missing on the sheet: %s" % (nm, miss))
+            sk14 = {"Containment Specialist": "Persuasion", "Inquisitor": "Religion", "Spy": "Deception"}.get(nm)
+            if sk14 and sk14 not in r["sk"]: bad.append("%s lacks %s" % (nm, sk14))
+            if CLS == "Investigator":
+                for need_lu in ("Rushed Incantation", "Trinkets"):
+                    if need_lu not in r["res"]: bad.append("%s has no %s tracker" % (nm, need_lu))
             if nm in ("Loreseeker", "Soulblood Shaman") and not r["third"]: bad.append(nm + " is not a third caster")
             need = {"Godsworn": ("sk", "Medicine"), "Hellkeeper": ("sk", "Intimidation"), "Verdant Protector": ("sk", "Stealth")}.get(nm)
             if need and need[1] not in r[need[0]]: bad.append("%s lacks %s" % (nm, need[1]))
