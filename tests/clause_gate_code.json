@@ -2161,6 +2161,96 @@
    ],
    "test": "Z3 U20 computed Dragontooth Dagger potency",
    "note": "Typed target-qualified attack results: the fixed critical threshold is computed, or the verified base and rider increments are combined. U20 checks the matching target and the negative target path; attack_target_lifecycle also checks real rolls and critical dice."
+  },
+  {
+   "id": "u29-item-dmg-sun-blade-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Sun Blade",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^if you have proficiency with longswords or shortswords, you have proficiency with the sun blade\\.$",
+   "anchor": [
+    "src/builder/12h-logic-sheet-handlers-attacks.js",
+    "(r.formMeta&&r.formMeta.proficiencyAny||[]).some"
+   ],
+   "test": "Z3 U29 Shortsword-only proficiency Sun Blade",
+   "note": "Active-form weapon accepts Longsword or Shortsword training; no other proficiencies or languages granted."
+  },
+  {
+   "id": "u29-item-cos-sunsword-12",
+   "kind": "item",
+   "owner": "cos",
+   "name": "Sunsword",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^if you are proficient with shortswords or longswords, you are proficient with the sunsword\\.$",
+   "anchor": [
+    "src/builder/12h-logic-sheet-handlers-attacks.js",
+    "(r.formMeta&&r.formMeta.proficiencyAny||[]).some"
+   ],
+   "test": "Z3 U29 Shortsword-only proficiency Sunsword",
+   "note": "Active-form weapon accepts Longsword or Shortsword training; no other proficiencies or languages granted."
+  },
+  {
+   "id": "u29-item-dmg-sunsword-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Sunsword",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^if you are proficient with shortswords or longswords, you are proficient with the sunsword\\.$",
+   "anchor": [
+    "src/builder/12h-logic-sheet-handlers-attacks.js",
+    "(r.formMeta&&r.formMeta.proficiencyAny||[]).some"
+   ],
+   "test": "Z3 U29 Shortsword-only proficiency Sunsword",
+   "note": "Active-form weapon accepts Longsword or Shortsword training; no other proficiencies or languages granted."
+  },
+  {
+   "id": "u29-item-oota-dawnbringer-4",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Dawnbringer",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^if you are proficient with shortswords or longswords, you are proficient with dawnbringer\\.$",
+   "anchor": [
+    "src/builder/12h-logic-sheet-handlers-attacks.js",
+    "(r.formMeta&&r.formMeta.proficiencyAny||[]).some"
+   ],
+   "test": "Z3 U29 Shortsword-only proficiency Dawnbringer",
+   "note": "Active-form weapon accepts Longsword or Shortsword training; no other proficiencies or languages granted."
+  },
+  {
+   "id": "u29-item-dmg-dawnbringer-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Dawnbringer",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^if you are proficient with shortswords or longswords, you are proficient with dawnbringer\\.$",
+   "anchor": [
+    "src/builder/12h-logic-sheet-handlers-attacks.js",
+    "(r.formMeta&&r.formMeta.proficiencyAny||[]).some"
+   ],
+   "test": "Z3 U29 Shortsword-only proficiency Dawnbringer",
+   "note": "Active-form weapon accepts Longsword or Shortsword training; no other proficiencies or languages granted."
   }
  ]
 }

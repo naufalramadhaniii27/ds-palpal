@@ -1,3 +1,4 @@
+import {weaponFormControl} from "./21b-ui-weapon-forms.js";
 import {attunementControl} from "./21a-ui-attunement.js";
 /* Detail cards, part b: spell targets, info card renderers, close and sheet width (split from 13, SOLID stage 12) */
 import {ammoFor,ammoH,ammoPickH,bindLive,clsOfG,crBlock,crOf,ctH,dockOff,fch,featNums,featSpL,hpSpellNote,ico,itemRes,lateGet,libDetail,morphStop,moveCtl,occOf,ordL,packH,pgGuess,pinSpBtn,renderAll,resOf,scOf,shClosed,shDragEnd,spCastH,spFx,spFxBlock,spRowLv,spnHTML,spxBody,srcPg,svgI,tmpFeatH,tmpSpellH,tyIcon,undoMark,useH} from "./00a-reg-late-ports.js";import {ABK,ABN,HB_CONDS,STD_CONDS} from "./02-data-default-character.js";import {GLOSS,gName} from "./03-data-glossary.js";import {C,S,saveC} from "./04-logic-storage.js";import {$,atkOn,eqOn,esc,fmtW,invAt,itemHtml,num,qtyCtl,rich,sg,toast} from "./05-logic-helpers.js";import {B,D,fill,richB,richP} from "./06-logic-derivation.js";import {aylH,aylSplit,spSum} from "./08b-ui-render-summaries-actions.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";import {__set_SWP,__set_navStack,__set_sheetMode,lastFocus,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";import {env} from "./00-env.js";import {DETAIL} from "./06a-logic-ui-registry.js";import {NUM_MAP,XL_SELF,__set_XL_SELF,dcFoot,dcHead,dcItem,dcStrip,fKind,fKindIco,kwChips,linkify,meta,miHTML,tileBd,tileH,tileS,wCell,xlink} from "./13-ui-detail-cards.js";
@@ -171,7 +172,7 @@ DETAIL.add("w", {
 DETAIL.add("it", {
   render:function(key){ let h="";
   const it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
-    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+attunementControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?"Unequip":"Equip")+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
+    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+attunementControl(it,+key)+weaponFormControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?"Unequip":"Equip")+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
     ({h}=renderStep1(it, h, key));
     return {t:it.n, h:h};
   },
@@ -184,7 +185,7 @@ function renderStep1(it, h, key){
     if(it.d) h+='<div class="info-h">Your note</div><p class="info-d">'+esc(it.d)+'</p>';
     const wl2=[]; (C.attacks||[]).forEach((a,ix) =>{ if((a.n===it.n||a.n===it.n+" (thrown)")&&atkOn(a)) wl2.push(ix); }); /* RU15 */
     if(wl2.length) h+='<div class="info-l">'+wl2.map((ix) =>{ return '<button type="button" data-info="w:'+ix+'">Attack with '+esc(C.attacks[ix].n)+'<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
-    h+=packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+attunementControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key);
+    h+=packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+attunementControl(it,+key)+weaponFormControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key);
   return /** @type {any} */ ({h});
 }
 /* solid:orchestrator renderDetail */

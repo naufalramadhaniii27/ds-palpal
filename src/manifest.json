@@ -160,6 +160,7 @@
     "app/19-ui-global-click-delegation.js",
     "app/20-ui-portrait.js",
     "app/21-ui-tabs-pager.js",
+    "app/21b-ui-weapon-forms.js",
     "app/21a-ui-attunement.js",
     "app/22-ui-spell-data-and-slots.js",
     "app/23-ui-uses-items-coins-rest-spell-dc.js",
@@ -749,7 +750,8 @@
     "data/fx-Z8.js",
     "data/fx-Z9.js",
     "data/fx-Z10.js",
-    "data/fx-Z11.js"
+    "data/fx-Z11.js",
+    "data/fx-Z12.js"
    ]
   },
   {
@@ -789,6 +791,7 @@
     "data/lib/attack-target.js",
     "data/lib/attack-resources.js",
     "data/lib/attack-kind.js",
+    "data/lib/weapon-form.js",
     "data/lib/attunement.js",
     "builder/11-logic-derivation.js",
     "builder/11b-logic-fx-sources.js",

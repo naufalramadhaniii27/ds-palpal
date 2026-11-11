@@ -306,6 +306,14 @@
   "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice.",
   "shared": []
  },
+ "GX.item|Sunsword": {
+  "files": [
+   "fx-M1.js",
+   "fx-Z12.js"
+  ],
+  "reason": "fx-M1 defines the Radiant damage type and Finesse property. fx-Z12 adds one rolled 1d8 Radiant rider against Undead. The fields are separate and the rider is tested to occur once.",
+  "shared": []
+ },
  "GX.item|Sword of Kas": {
   "files": [
    "fx-L5.js",

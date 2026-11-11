@@ -2,7 +2,7 @@ import {attunementMessage} from "../app/lib/attunement-message.js";
 import {attN,bDeco,bindLive,bldMine,toSheetApply,unList} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {copyText} from "../app/lib/clipboard.js";
 import {$,ABK,esc,toast} from "./01-logic-core-helpers.js";
-import {DMAP,NEWB,attMax,un,unDone,setItemAttuned} from "./03-logic-magic-item-effects.js";
+import {DMAP,NEWB,attMax,un,unDone,setItemAttuned,setItemForm} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save} from "./04-logic-storage.js";
 import {R14,rsLoad,rsStash} from "./05-logic-choice-model-ruleset.js";
 import {choices} from "./09-logic-feats-and-choices.js";
@@ -105,6 +105,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.tog2){openCards[d.tog2]=openCards[d.tog2]===false?true:false;render();return}
  if(d.skip){B.eqC="none";B.eqB="none";unDone("eqC");unDone("eqB");rebuildKit();commit();return}
  if(d.clearinv){ask("Clear your starting equipment choices and remove every item from your inventory?","Clear All",() =>{B.inv=[];B.eqC="none";B.eqB="none";B.gpOverride=null;commit();toast("Inventory cleared")});return}
+ if(d.iform!=null){formEdit(+d.iform,d.formAction);return}
  if(d.iatt!=null){ensureInv();const i=+d.iatt,it=B.inv[i];if(!it)return;const result=setItemAttuned(i,!it.attuned);if(!result.ok){toast(attunementMessage(result));return}commit();return}
  if(d.ieq!=null){const it=B.inv[+d.ieq];it.eq=!it.eq;if(it.eq&&ARMOR[it.n])B.inv.forEach((y,k) =>{if(k!==+d.ieq&&ARMOR[y.n])y.eq=false});commit();return}
  if(d.iq!=null){const iq=B.inv[+d.iq];iq.q=Math.max(0,qOf(iq)+(+d.d));commit();return}
@@ -222,3 +223,5 @@ function bpKey(e,pal,q,close){ const bs=[].slice.call(pal.querySelectorAll(".bpa
     pal.addEventListener("keydown",(e) =>{ bpKey(e,pal,q,close); }); }
   document.addEventListener("keydown",(e) =>{ if(!(e.ctrlKey||e.metaKey)||e.altKey||e.shiftKey||String(e.key).toLowerCase()!=="k") return; const bl=document.getElementById("bld"); if(!bl||bl.hidden||document.querySelector(".ask")) return; e.preventDefault(); if(pal){ pal.querySelector(".bpal-q").focus(); return; } open(); },true);
 })();
+
+function formEdit(index,action){const changes={activate:{active:true},dismiss:{active:false},increase:{radiusDelta:1},decrease:{radiusDelta:-1}},change=changes[action];if(!change)return;const result=setItemForm(index,change);if(!result.ok){toast(result.reason==='version'?'This saved form cannot be changed here. Its existing state is preserved.':'This form is unavailable. Check equipment, quantity, and attunement.');return}commit()}

@@ -76,12 +76,14 @@ registerSheetGroup({id:"cantrip-attack-rows",group:"spells",phase:"spells",order
 registerSheetGroup({id:"spell-strip-ability",group:"spells",phase:"spells",order:80,reads:[],writes:["C.spells"],
  run:function(ctx){(ctx.C.spells||[]).forEach((s) =>{delete s._ab});return ctx.patch()}});
 /* v58: spells that magic items let you cast (ITEM_SPELLS). use is "At will" when free, else "Item" and itc says what it costs */
+/* Dawnbringer's native blade-touch action overrides the spell's edition timing. */
+function itemSpellCastingTime(itemName,spellName,spellTime){return itemName==="Dawnbringer"&&spellName==="Lesser Restoration"?"Action":spellTime}
 registerSheetGroup({id:"item-spells",group:"spells",phase:"spells",order:90,reads:["i.a","i.SM","i.ATT","q.ensureInv","q.dmapRow","q.spFxTo","q.itemInUse","q.qOf"],writes:["C.spells"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,SM=I.SM,a=I.a,ISL=[];
   Q.ensureInv().forEach((x,ix) =>{const it=itemSpellRow(x.n);if(!it||!itemSpellAvailable(I,Q,x,ix))return;
    it.sp.forEach((q) =>{const sp=SM[q[0]];if(!sp)return;const cost=q[1],pl=q[3],src=x.n+(pl?" ("+pl+")":"");if(ISL.some((y) =>{return y.n===q[0]&&y.src===src}))return;
     const lv=typeof q[2]==="number"&&q[2]?q[2]:sp[1];
-    const o={n:q[0],l:sp[1],sch:sp[2],ct:sp[4],r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:spellFullText(q[0])||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:cost===0?"At will":"Item",src:src,itc:{it:x.n,c:cost,lv:lv}};
+    const o={n:q[0],l:sp[1],sch:sp[2],ct:itemSpellCastingTime(x.n,q[0],sp[4]),r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:spellFullText(q[0])||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:cost===0?"At will":"Item",src:src,itc:{it:x.n,c:cost,lv:lv}};
     if(it.dc!=null)o.itc.dc=it.dc;if(it.atk!=null)o.itc.atk=it.atk;Q.spFxTo(o,"",a);ISL.push(o)})});
   if(ISL.length){C.spells=(C.spells||[]).concat(ISL);C.spells.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:p.n>q.n?1:0)})}return ctx.patch()}});
 /* v21 M2: Mystic Arcanum and Contact Patron, once per Long Rest without a slot. v23 m1-r3: the shared "Mystic Arcanum" row only counts the arcana that have no own row yet */

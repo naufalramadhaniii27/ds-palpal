@@ -2,6 +2,7 @@ import {bindLive,featSpec,ico,lateGet,toastKind,xlink} from "./00a-reg-late-port
 import {GLOSS} from "./03-data-glossary.js";
 import {C} from "./04-logic-storage.js";
 import {env} from "./00-env.js";
+import {weaponFormMetadata,weaponFormUsable} from "../data/lib/weapon-form.js";
 bindLive("ask",{get:function(){return ask;}});
 bindLive("esc",{get:function(){return esc;}});
 bindLive("num",{get:function(){return num;}});
@@ -44,7 +45,11 @@ export function eqLinked(i){ const ks=[i.key||i.n,i.n]; return (C.attacks||[]).s
 export function eqOn(i){ return i.eq==null?eqLinked(i):!!i.eq; }
 /* Qty control in the item popup, like D&D Beyond: - and + change the box, Apply saves. 0 keeps the item. */
 export function qtyCtl(it,ix){ const q=num(it.q,1); return '<div class="iqty"><small>Qty</small><div class="iqty-r"><button type="button" class="iqb btn press" data-iqd="-1" aria-label="Decrease quantity">\u2212</button><input class="iqi" type="number" inputmode="numeric" min="0" step="1" value="'+q+'" data-iqv="'+q+'" aria-label="Quantity"><button type="button" class="iqb btn press" data-iqd="1" aria-label="Increase quantity">+</button><button type="button" class="iqa btn press" data-iqa="'+esc(it.key||it.n)+'"'+(ix!=null?' data-iix="'+ix+'"':'')+' disabled>Apply</button></div></div>'; }
-export function atkOn(a){ if(a&&a.of){ const o=eqInvOf(a.of); if(o&&!eqOn(o)) return false; } const i=eqInvOf(a.n); return !i||eqOn(i); }/* v32 RL51: a row a weapon carries (Pole Strike) follows that weapon */
+/* Cached attacks can predate the builder's next rebuild. Read raw forms here;
+   a deduplicated weapon row remains usable while any matching copy is usable. */
+function formAttackOn(name){const key=String(name||"").replace(/ \(thrown\)$/,"");const items=(C.inv||[]).filter(it=>((it.key||it.n)===key||it.n===key)&&weaponFormMetadata(it.key||it.n,C.rs==="2014"?"2014":"2024"));if(!items.length)return null;return items.some(it=>weaponFormUsable(it,weaponFormMetadata(it.key||it.n,C.rs==="2014"?"2014":"2024"),{equipped:eqOn(it),quantity:num(it.q,1),attuned:attActive(it)},C.inventoryFormV))}
+function carriedAttackOn(name){const form=formAttackOn(name);if(form!==null)return form;const it=eqInvOf(name);return !it||eqOn(it)}
+export function atkOn(a){if(a&&a.of&&!carriedAttackOn(a.of))return false;return carriedAttackOn(a.n)}/* v32 RL51: a row a weapon carries (Pole Strike) follows that weapon */
 /* RU22: index of the attack row named like the item ("Dagger", "Celurit (Sickle)", "Longsword, +1"), or -1. The "(thrown)" row is not used */
 /* RU17/RU18: an inventory action goes through the builder hooks only for items the builder made (toSheet() writes "key" on every item; the sheet never does).
    A hand-filled sheet whose character also has a builder save keeps its own C: the hooks would replace the whole sheet with toSheet() and drop
@@ -85,7 +90,8 @@ export function invAt(nm,ix){ const L=C.inv||[], it=(ix!=null&&ix!==""&&L[+ix]&&
 function itemAtkIx(it){ const ks=[it.key||it.n,it.n], L=C.attacks||[]; for(let i=0;i<L.length;i++){ if(ks.indexOf(L[i].n)>=0) return i; } return -1; }
 /* RU22: item detail html with Damage and Proficient taken from the sheet attack row, so the popup matches the Actions tab.
    Hand-filled sheets get this html from the builder (__itemMeta), which knows nothing about the sheet. Display only, C.inv is not changed */
-export function itemHtml(it){ const h=String(it.html||""), ix=itemAtkIx(it), d=ix>=0?lateGet("D").atk[ix]:null; if(!d||h.indexOf("<dt>Damage</dt>")<0) return h;
+function formItemTypeHtml(it,h,ix){const row=(C.attacks||[])[ix];if(!row||!row.type||!weaponFormMetadata(it.key||it.n,C.rs==="2014"?"2014":"2024"))return h;return h.replace(/(<dt>Damage Type<\/dt><dd>)[^<]*(<\/dd>)/,(m,a,b)=>a+esc(row.type)+b)}
+export function itemHtml(it){ const ix=itemAtkIx(it),h=formItemTypeHtml(it,String(it.html||""),ix),d=ix>=0?lateGet("D").atk[ix]:null; if(!d||h.indexOf("<dt>Damage</dt>")<0) return h;
   return h.replace(/(<dt>Damage<\/dt><dd>)[^<]*(<\/dd>)/, (m,a,b) =>{ return a+esc(d.dmg)+b; }).replace(/(<dt>Proficient<\/dt><dd>)[^<]*(<\/dd>)/, (m,a,b) =>{ return a+(C.attacks[ix].prof?"Yes":"No")+b; })
     /* N5: chosen mastery follows the sheet attack row (m is set only for a chosen mastery) */
     .replace(/<p class="mst">(?:\u2605 )?(<b>Mastery: [^<]*<\/b>)(?: <small>\(not one of your chosen masteries\)<\/small>)?/, (m,b) =>{ const on=!!C.attacks[ix].m; return '<p class="mst">'+(on?"\u2605 ":"")+b+(on?"":' <small>(not one of your chosen masteries)</small>'); }); }

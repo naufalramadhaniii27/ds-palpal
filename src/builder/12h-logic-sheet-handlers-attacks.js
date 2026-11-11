@@ -1,4 +1,4 @@
-import {dieAvg} from "./01-logic-core-helpers.js";
+import {dieAvg,weaponFormMetadata} from "./01-logic-core-helpers.js";
 import {featDef,masteryText,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
@@ -36,10 +36,10 @@ registerSheetGroup({id:"fighting-style-state",group:"fightingStyles",phase:"atta
   l.hasGWF=I.feats.some((f) =>{return f.n==="Great Weapon Fighting"});l.hasTWF=I.feats.some((f) =>{return f.n==="Two-Weapon Fighting"});return ctx.patch()}});
 /* ---------- one row per active weapon: the loop "weapon-rows" ---------- */
 const EACH={scope:"each",over:"l.EW",loop:"weapon-rows"};
-registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-base",group:"weaponRows",phase:"attacks",order:100,reads:["i.a","i.SRC","i.AFX","q.baseOf","q.itemMagicBonus"],writes:["l.wrow"],
- run:function(ctx){const n=ctx.p,a=ctx.i.a,declared=ctx.q.baseOf(n),BO=Object.assign({},declared,{p:ctx.q.itemMagicBonus(n,declared,ctx.i.AFX)}),w=weaponDef(BO.b);if(!w){ctx.l.wrow=undefined;return ctx.patch()}
+registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-base",group:"weaponRows",phase:"attacks",order:100,reads:["i.a","i.SRC","i.AFX","i.B","q.baseOf","q.itemMagicBonus"],writes:["l.wrow"],
+ run:function(ctx){const n=ctx.p,a=ctx.i.a,declared=ctx.q.baseOf(n),BO=Object.assign({},declared,{p:ctx.q.itemMagicBonus(n,declared,ctx.i.AFX)}),native=weaponDef(BO.b),formMeta=weaponFormMetadata(BO.mi||n,ctx.i.B.rs==="2014"?"2014":"2024"),w=native&&formMeta?Object.assign({},native,{t:formMeta.damageType,p:formMeta.finesse?(native.p?native.p+", ":"")+"Finesse":native.p}):native;if(!w){ctx.l.wrow=undefined;return ctx.patch()}
   let ab="STR";if(w.k==="R")ab="DEX";else if(/Finesse/.test(w.p))ab=a.sc.DEX>a.sc.STR?"DEX":"STR";
-  ctx.l.wrow={n:n,BO:BO,w:w,ab:ab,isPact:false,pr:false,m:"",flow:false,die:w.d,dieSrc:BO.b+" ("+ctx.i.SRC+")",hit:0,dmg:0,srcs:[],note:"",thrown:false,oneH:false};return ctx.patch()}}));
+  ctx.l.wrow={n:n,BO:BO,w:w,formMeta:formMeta,ab:ab,isPact:false,pr:false,m:"",flow:false,die:w.d,dieSrc:BO.b+" ("+ctx.i.SRC+")",hit:0,dmg:0,srcs:[],note:"",thrown:false,oneH:false};return ctx.patch()}}));
 /* M7: a Monk weapon (Simple, or Martial with Light) may use Dexterity */
 registerSheetRule(Object.assign({},EACH,{id:"monk-weapon-ability",group:"weaponRows",about:"Monk: Martial Arts lets a Monk weapon use Dexterity",phase:"attacks",order:110,reads:["i.a","l.maOn"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const w=r.w,a=ctx.i.a;if(ctx.l.maOn&&w.k!=="R"&&(w.cat==="S"||/Light/.test(w.p)))r.ab=a.sc.DEX>a.sc.STR?"DEX":"STR";return ctx.patch()}}));
@@ -47,9 +47,10 @@ registerSheetRule(Object.assign({},EACH,{id:"monk-weapon-ability",group:"weaponR
 /* zero-miss-1: 2014 Pact of the Blade has no Charisma rule; the Hexblade's Hex Warrior (XGE 2014) extends Charisma to every pact weapon */
 registerSheetRule(Object.assign({},EACH,{id:"pact-blade-ability",group:"weaponRows",about:"Warlock, Pact of the Blade: the bonded weapon may use Charisma (2014: only with Hex Warrior)",phase:"attacks",order:120,reads:["i.a","i.r14","i.B","l.pactW"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const pactW=ctx.l.pactW,a=ctx.i.a;r.isPact=!!pactW&&ctx.p===pactW;const chaOk=!ctx.i.r14||/Hexblade/.test(ctx.i.B.sub||"");if(r.isPact&&chaOk&&a.sc.CHA>=a.sc[r.ab])r.ab="CHA";return ctx.patch()}}));
+function formWeaponProficient(Q,weapons,groups,name,w){return !!w&&(weapons.indexOf(name+" (Masterful)")>=0||Q.wpNamed(weapons,name)||/Simple/.test(weapons)&&w.cat==="S"||/Martial(?! with)/.test(weapons)&&w.cat==="M"||(/Finesse or Light/.test(weapons)&&w.cat==="M"&&/Finesse|Light/.test(w.p))||(/Light property/.test(weapons)&&/Light/.test(w.p))||groups.some((g) =>{return g.cat===w.cat&&g.k===w.k&&!(g.not||[]).some((p) =>String(w.p||"").split(/,\s*/).some((x) =>x.replace(/\s*\(.*\)$/,"")===p))}))}
 registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-proficiency",group:"weaponRows",phase:"attacks",order:130,reads:["l.weapons","l.weaponGroups","q.wpNamed"],writes:["l.wrow"],
- run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const weapons=ctx.l.weapons,w=r.w,BO=r.BO;
-  r.pr=!!(r.isPact||weapons.indexOf(BO.b+" (Masterful)")>=0||ctx.q.wpNamed(weapons,BO.b)||/Simple/.test(weapons)&&w.cat==="S"||/Martial(?! with)/.test(weapons)&&w.cat==="M"||(/Finesse or Light/.test(weapons)&&w.cat==="M"&&/Finesse|Light/.test(w.p))||(/Light property/.test(weapons)&&/Light/.test(w.p))||ctx.l.weaponGroups.some((g) =>{return g.cat===w.cat&&g.k===w.k&&!(g.not||[]).some((p) =>String(w.p||"").split(/,\s*/).some((x) =>x.replace(/\s*\(.*\)$/,"")===p))}));return ctx.patch()}}));
+ run:function(ctx){const r=ctx.l.wrow;if(!r)return null;const weapons=ctx.l.weapons,groups=ctx.l.weaponGroups,Q=ctx.q;
+  r.pr=!!(r.isPact||formWeaponProficient(Q,weapons,groups,r.BO.b,r.w)||(r.formMeta&&r.formMeta.proficiencyAny||[]).some(name=>formWeaponProficient(Q,weapons,groups,name,weaponDef(name))));return ctx.patch()}}));
 registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-mastery",group:"weaponRows",phase:"attacks",order:140,reads:["i.wmSet"],writes:["l.wrow"],
  run:function(ctx){const r=ctx.l.wrow;if(!r)return null;r.m=ctx.i.wmSet.indexOf(r.BO.b)>=0?r.w.m:"";return ctx.patch()}}));
 /* a subclass whose weapons use the Unarmed Strike die (SUB_GRANT flowing) */

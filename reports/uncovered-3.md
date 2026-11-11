@@ -1,4 +1,48 @@
-# Uncovered 3: per-hit attack delivery and conditional charged damage
+# Uncovered 3: independent radiant weapon forms
+
+## U29 implementation: independent radiant weapon forms
+
+Eleven more original sentences are now computed: 247 closed from the initial 5,460, 5,213 uncovered and zero regressed IDs. Covered is 7,952, info 23,617 and allow remains zero. Every new closure is covered through an executable effect or code path.
+
+Sun Blade, Sunsword, Dawnbringer and Duskcrusher have per-inventory-instance saved physical form. Activating and dismissing use the actions in the existing source rows: Bonus Action for the three blades, Bonus Action to create Duskcrusher's head and Action to dismiss it. Equipment, allocated attunement, quantity and physical form remain independent. Losing eligibility removes the usable weapon profile without inventing automatic dismissal or erasing form state.
+
+The explicit input migration uses `inventoryFormV:1` and `inv[].form={v:1,active,radius}`. Legacy equipped positive-quantity items with remembered attunement intent retain their former active weapon profile once. New acquisitions in the migrated model begin inactive. Existing explicit inactive state, opaque future versions and unknown form attributes survive normalization, import, export and reload. No storage key is renamed. Radius remains saved across reignition as application policy; the source does not settle resetting it.
+
+Active blades gain Finesse before ability selection and accept either Longsword or Shortsword proficiency for their own attack row, including the existing category/property proficiency rules. These grants do not change ordinary Longsword proficiency. Duskcrusher keeps its Warhammer ability profile. Active weapons use Radiant damage, their native +2, and exactly one additional rolled 1d8 Radiant against a declared Undead target. Inactive weapons create no attack row and their own rider does not leak into an advisory bonus. Independent item properties and daily pools remain available to their existing handlers.
+
+Each active item reports its own sunlight: 15 feet bright plus 15 feet dim beyond initially. The three swords adjust both radii by 5 feet within 10–30 using the source action; Duskcrusher remains fixed. This does not grant a vision sense. Dawnbringer's Lesser Restoration and Duskcrusher's Sunbeam require the matching eligible active instance at option rendering and cast commit; duplicate copies retain independent pools. Dismissing a form preserves the daily counter. Actual blade contact, target eligibility and spell targeting remain player responsibilities. Dawnbringer’s non-evil alignment attunement prerequisite remains a player check: the existing generic attunement allocator does not model alignment. No new atom claims that prerequisite.
+
+A scoped interaction fix preserves an explicit 2024 Pact of the Blade damage choice over these weapons’ native Radiant type; 2014, other weapons and unrelated effect sources keep their existing behavior. The item-specific Dawnbringer spell uses Action in both editions, while ordinary 2024 Lesser Restoration retains Bonus Action timing. Detail previews for the four weapons now show their native Radiant/Finesse profile and prefer an actual Pact damage choice. Cached sheet details overlay the actual damage type; ordinary weapon definitions remain unchanged. Old positive rider fixtures now explicitly activate the blade rather than relying on equipment to imply physical form. Cached sheet attacks also check raw form eligibility before display or rolling, including active second copies. Form controls preserve hand-filled sheets: items without builder provenance show status with disabled controls, and bound edits use the existing divergence guard with a fresh stale-state check before mutation. Manual item spell eligibility does not consult an unrelated builder copy.
+
+The gate receives only five exact proficiency code atoms, each backed by Shortsword-only, Longsword-only and neither-proficiency fixtures. Sentient weapon language, vision and personality clauses are not claimed by these atoms. Form and light behavior are implemented despite the gate having no dedicated FORM or LIGHT class. Damage riders use actual GX data; no informational relabel closes these rules.
+
+
+## U29 migration comparison
+
+The complete comparison covers 2,997 sheet/derived snapshots and 3,890 builder normalization/round-trip cases. Removing only the newly introduced form/version metadata leaves every builder hash identical to U28. One sheet fixture, `fx_M1_sun_blade_finesse`, changes: its final hit +9, damage 1d8+6, Radiant type and DEX ability remain identical; early Finesse also corrects the inventory preview, with corresponding source/property annotations. The final detail display additionally reports Radiant and Finesse consistently with that profile. All other normalized snapshots are identical. No old input field is stripped for this proof. Compared with the verified immutable main baseline, the normalized outputs retain U28's 576 snapshot and 665 builder differences. Full current raw hashes are recorded separately because the explicit new input migration intentionally adds saved state.
+
+## U29 validation
+
+| Check | Result |
+|---|---|
+| Effect cases | PASS; 1,242 complete cases and 145 U29 cases, including twenty Pact interactions and four item casting-time cases |
+| Coverage measurement | PASS; 752 units, both editions miss0, no new miss or card-or-miss |
+| Gate and source audit | PASS; 247 original closures, 5,213 remaining, zero regressions; all eleven new closures covered; 55 unique actual-source rows independently reviewed |
+| Strict contracts | PASS; 4,936 engine checks, 1,479 golden checks, 308 UI checks and 607 data checks |
+| Production form controls | PASS; 44 real click/undo/persistence/reload checks across both widths, with zero page errors |
+| Exact viewport / actual pool | PASS; 18 checks at 390×844 and 1250×850, native Duskcrusher daily pool spent and retained through form changes, Radiant details, no overflow; screenshots reviewed |
+| Full snapshot / builder | PASS; 2,997 snapshots, hash `8906b051a96bebd8`, zero page/build errors; 3,890 builder cases, hash `396b20d955f87d6e`; intentional raw metadata differences explained above |
+| Scenarios | PASS; 24 checks at both required viewports, screenshots and storage retained, zero page errors or native dialogs |
+| Build / gates | PASS; cache `3f75b568ec20ea46`, 343 JS pieces / 45 blocks, lint clean; type score 200 without WORSE, HTML 250, overlap 1,397 names / 37 files / 156 documented, all guards zero |
+| Model / eligibility / provenance | PASS; 171 pure form checks, 64 cached-attack checks, per-copy casting, explicit item timing, and manual/divergent-sheet safeguards |
+
+A remaining detail-label edge is queued for the immediately following batch: a Shortsword-only trained actor gets the correct active Sun Blade/Sunsword/Dawnbringer attack proficiency, and the sheet detail overlay correctly shows it, but the standalone builder/base inventory preview can still say “Proficient: No” because it reads Longsword training. This is a display limitation; the verified attack roll uses the correct proficiency. The next batch will prefer the actual row and apply the same alternative training to a potential preview.
+
+## U29 source audit
+
+The seed11 sample contains 150 original closures, with 50 newly selected rows since U28. Those and all eleven new closures produce 55 unique rows reviewed directly against their native `src/data` records. All sources were found; the independent review found no material U29 issue. Exact proficiency matchers reject appended language clauses, and no sentient-language clause was promoted.
+
+## Previous checkpoint: U28 attack delivery
 
 Two more original Cinder Coat clauses are computed: 236 closed from the initial 5,460, 5,224 uncovered and 0 regressed IDs. Covered is 7,941, info 23,617 and allow remains 0. Both new rows are covered, not informational. Work continues after this checkpoint.
 

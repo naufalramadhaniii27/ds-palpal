@@ -1,5 +1,5 @@
 import {bindLive,own} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
-import {DMAP,attMax,attunementState,setItemAttuned} from "./03-logic-magic-item-effects.js";
+import {DMAP,attMax,attunementState,setItemAttuned,getItemFormInfo,setItemForm} from "./03-logic-magic-item-effects.js";
 import {B,save} from "./04-logic-storage.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {baseOf,ensureInv} from "./14-logic-multiclass-hp-shop.js";
@@ -43,5 +43,8 @@ genv.__bldToggleEq=function(name,occ){ensureInv();const i=invFind(name,occ);if(i
 genv.__bldSetQty=function(name,q,occ){ensureInv();const i=invFind(name,occ);if(i<0)return;B.inv[i].q=Math.max(0,Math.floor(+q)||0);save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())};
 genv.__bldRemove=function(name,occ){ensureInv();const i=invFind(name,occ);if(i<0)return;ctFree(B.inv[i]);B.inv.splice(i,1);save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())};
 
+function formIndex(name,occ){if(typeof name!=="string"||!name||occ!=null&&(!Number.isInteger(occ)||occ<0))return -1;let left=occ==null?0:occ;for(let i=0;i<(B.inv||[]).length;i++){const it=B.inv[i];if((it.n===name||it.alias===name)&&left--===0)return i}return -1}
+genv.__bldFormInfo=function(name,owner,occ){if(!own(owner))return {available:false,reason:"owner"};ensureInv();return getItemFormInfo(formIndex(name,occ))};
+genv.__bldSetForm=function(name,owner,change,occ){if(!own(owner))return {ok:false,reason:"owner"};ensureInv();const result=setItemForm(formIndex(name,occ),change);if(result.ok){save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())}return result};
 genv.__bldSetAttuned=function(name,owner,on,occ){if(!own(owner))return {ok:false,reason:"owner"};ensureInv();const index=invFind(name,occ),result=setItemAttuned(index,on);
  if(result.ok){save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())}return result};

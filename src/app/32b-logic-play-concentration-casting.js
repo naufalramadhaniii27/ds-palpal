@@ -1,5 +1,9 @@
 import {bindLive,cmbCast,cmbRe,lateGet,featAll,syncLU,used,renderConds,refreshEntry,showEntry,spPactLv,spRowLv,renderSpells} from "./00a-reg-late-ports.js";/* Responsibility: class levels, concentration and casting a spell (slots, upcast, quick cast). Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
 import {C,S,save} from "./04-logic-storage.js";import {ask,esc,num,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {UNDO,toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";
+import {attActive,eqOn} from "./05-logic-helpers.js";
+import {occOf} from "./00a-reg-late-ports.js";
+import {env} from "./00-env.js";
+import {weaponFormMetadata,weaponFormUsable} from "../data/lib/weapon-form.js";
 bindLive("clsLvls",{get:function(){return clsLvls;}});
 bindLive("concAuto",{get:function(){return concAuto;}});
 bindLive("concCheck",{get:function(){return concCheck;}});
@@ -58,7 +62,11 @@ const src=String(x.src||""), rw=reWord(x.n);
   return /** @type {any} */ ({rows, ex});
 }
 export function spAtWill(x){ return !x.l||/At will/i.test(x.use||""); }
-function spItemOpts(x){ const c=x.itc, r=(D.res||[]).filter((q) =>{ return q.item&&q.f===c.it; })[0], o=[]; if(!r) return o; const left=r.max-used(r.k,r.max), lv0=c.lv;
+function spFormRequired(x){return !!x.itc&&((x.itc.it==="Dawnbringer"&&x.n==="Lesser Restoration")||(x.itc.it==="Duskcrusher"&&x.n==="Sunbeam"))}
+function spFormItem(x,r){const items=(C.inv||[]).filter(it=>(it.key||it.n)===x.itc.it),bound=items.find(it=>it.chargeKey===r.k);if(bound)return bound;if(Number.isInteger(r.invIndex)){const it=(C.inv||[])[r.invIndex];return it&&(it.key||it.n)===x.itc.it&&(!it.chargeKey||it.chargeKey===r.k)?it:null}return items.length===1&&!items[0].chargeKey?items[0]:null}
+function spFormReady(x,r){if(!spFormRequired(x))return true;const it=spFormItem(x,r);if(!it)return false;const formDefinition=weaponFormMetadata(x.itc.it,C.rs==="2014"?"2014":"2024");if(!weaponFormUsable(it,formDefinition,{equipped:eqOn(it),quantity:num(it.q,1),attuned:attActive(it)},C.inventoryFormV))return false;if(!it.key||typeof env.__bldFormInfo!=="function")return true;const info=env.__bldFormInfo(x.itc.it,C.name,occOf(it));return !!info&&info.formUsable===true}
+function spItemOpts(x){const pools=(D.res||[]).filter(q=>q.item&&q.f===x.itc.it),form=spFormRequired(x);return (form?pools:pools.slice(0,1)).flatMap(r=>{const opts=spItemPoolOpts(x,r);if(form&&pools.length>1){const it=spFormItem(x,r);opts.forEach(q=>{q.lab+=' (copy '+(occOf(it)+1)+')'})}return opts})}
+function spItemPoolOpts(x,r){ const c=x.itc, o=[]; if(!spFormReady(x,r)) return o; const left=r.max-used(r.k,r.max), lv0=c.lv;
   if(Array.isArray(c.c)){ for(let n=c.c[0];n<=c.c[1];n++){ const L=lv0+n-c.c[0]; o.push({k:r.k,lv:L,lab:c.it+", "+n+" charge"+(n>1?"s":"")+" (level "+L+")",left:left,free:1,need:n}); } }
   else o.push({k:r.k,lv:lv0,lab:c.it+", "+c.c+" charge"+(c.c===1?"":"s"),left:left,free:1,need:c.c});
   return o; }
@@ -83,7 +91,10 @@ function spCastH(x,i){ let h='<div class="info-h">Cast</div><div class="spcast">
   if(x.rit&&x.l) h+='<button type="button" class="btn press" data-cast="'+i+'" data-ck="rit">Cast as a Ritual <small>no slot, 10 minutes longer</small></button>';
   if(x.conc){ const c=concOf(); h+=(c&&c.n===x.n)?'<button type="button" class="btn press" data-concend="1">End Concentration</button>':'<button type="button" class="btn press" data-concon="'+i+'">Concentrate on this spell</button>'; }
   return h+'</div>'+(x.conc?'<p class="muted spcn">Concentration spell. Casting it ends any other spell you concentrate on.</p>':''); }
-export function castDo(i,k,lv,ok){ const x=(C.spells||[])[i]; if(!x) return; let s=null, nd=1; if(k&&k.indexOf("|")>0){ const kp=k.split("|"); k=kp[0]; nd=+kp[1]||1; }
+function spFormCommitAllowed(x,k,nd){if(!spFormRequired(x)||spItemOpts(x).some(q=>q.k===k&&(q.need||1)===nd))return true;toast("Hold "+x.itc.it+" with its radiant "+(x.itc.it==="Duskcrusher"?"head":"blade")+" active to cast "+x.n+".");return false}
+function spCastPayment(k){if(k&&k.indexOf("|")>0){const parts=k.split("|");return {k:parts[0],nd:+parts[1]||1}}return {k,nd:1}}
+export function castDo(i,k,lv,ok){ const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
+  if(!spFormCommitAllowed(x,k,nd))return;
   if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
   undoMark("Cast "+x.n); let msg="Cast "+x.n;

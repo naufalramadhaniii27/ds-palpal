@@ -1,4 +1,4 @@
-import {ABN,dieAvg,mod,attackKindsForRow} from "./01-logic-core-helpers.js";
+import {ABN,dieAvg,mod,attackKindsForRow,weaponFormMetadata} from "./01-logic-core-helpers.js";
 import {actsTable,bookPages,featDef,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
@@ -115,11 +115,12 @@ registerSheetGroup({id:"fx-atk-ability",group:"late",phase:"late",order:130,scop
      if(q.opt){r.note=(r.note?r.note+" ":"")+(q.note||e.n+": you can use "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for the attack and damage of this attack")+" (attack +"+bt+", damage modifier "+(dm>=0?"+":"")+dm+")."}
      else if(mod(a.sc[q.ab])>mod(a.sc[r.ab])){r.note=(r.note?r.note+" ":"")+e.lbl+": "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for attack and damage.";r.ab=q.ab;r.abSrc=e.lbl}})}
   return ctx.patch()}});
-registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.attacks", "C.defenses", "q.baseOf", "q.fxOk", "l.itemWeaponEffects"],writes:["C.attacks", "C.defenses", "l.itemWeaponEffects"],
+function formWeaponOwnRider(Q,e,x,edition){if(e.kind!=="item")return false;const base=Q.baseOf(e.owner),when=Array.isArray(x.when)?x.when:[x.when];return !!weaponFormMetadata(base.mi||e.owner,edition)&&when.some(name=>name===e.owner||name===base.mi)}
+registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"each",over:"i.G",loop:"late-fx",reads:["i.B", "i.ar", "i.ESH", "i.EA", "C.attacks", "C.defenses", "q.baseOf", "q.fxOk", "l.itemWeaponEffects"],writes:["C.attacks", "C.defenses", "l.itemWeaponEffects"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkDice [{when:"weapon|spell|unarmed|<name>", d:"1d10", t:"type", note}]: extra damage dice on matching attack rows, or a Note under Defenses when no row exists */
    (e.atkDice||[]).forEach(function(x,xi){const rows=rowsPick(x.when);
     if(rows.length)rows.forEach(function(r){if(x.roll!==true||acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"dice"))appendAttackRider(r,x,e.lbl)});
-    else{C.defenses=C.defenses||[];C.defenses.push({t:"Note",v:(x.note||"Extra damage on "+(/^(weapon|spell|unarmed)$/.test(x.when)?x.when+" attacks":x.when))+": +"+x.d+(x.t?" "+x.t:""),s:e.lbl})}});
+    else if(!formWeaponOwnRider(Q,e,x,I.B.rs==="2014"?"2014":"2024")){C.defenses=C.defenses||[];C.defenses.push({t:"Note",v:(x.note||"Extra damage on "+(/^(weapon|spell|unarmed)$/.test(x.when)?x.when+" attacks":x.when))+": +"+x.d+(x.t?" "+x.t:""),s:e.lbl})}});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-attack-self-damage",group:"late",phase:"late",order:145,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar","i.ESH","i.EA","q.fxOk","q.baseOf","C.attacks","l.itemWeaponEffects"],writes:["C.attacks","l.itemWeaponEffects"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,e=ctx.p;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;
@@ -151,14 +152,17 @@ registerSheetGroup({id:"fx-unarmed",group:"late",phase:"late",order:170,scope:"e
      if(d&&(q.force||dieAvg(d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=d}
      if(q.t)r.type=q.t;if(q.magic)r.note=(r.note?r.note+" ":"")+"Counts as magical ("+e.lbl+")."})}
   return ctx.patch()}});
-function drDice(e,x,r){if(x.d&&(!x.up||dieAvg(x.d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=x.d;if(x.critD)r.critDie=x.critD;else delete r.critDie}
-     if(x.t){r.typeSrc=e.lbl+(r.type?" (instead of "+r.type+")":"");r.type=x.t}}
+function drDice(e,x,r,keepFormPactType){if(x.d&&(!x.up||dieAvg(x.d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=x.d;if(x.critD)r.critDie=x.critD;else delete r.critDie}
+     if(x.t&&!keepFormPactType){r.typeSrc=e.lbl+(r.type?" (instead of "+r.type+")":"");r.type=x.t}}
 function drFinesse(a,e,x,r){if(x.finesse&&(r.ab==="STR"||r.ab==="DEX")&&!/Finesse/.test(r.sub||"")){r.sub=(r.sub?r.sub+" \u2022 ":"")+"Finesse";if(a.sc.DEX>a.sc.STR&&r.ab==="STR"){r.ab="DEX";r.abSrc=e.lbl}}}
-function drRow(a,Q,e,x,r){if(x.from&&r.die!==x.from)return;if(x.cat){const w0=weaponDef(Q.baseOf(r.n).b);if(!w0||w0.cat!==x.cat)return}
-  drDice(e,x,r);drFinesse(a,e,x,r);if(x.note)r.note=(r.note?r.note+" ":"")+x.note}
-registerSheetGroup({id:"fx-die-replace",group:"late",phase:"late",order:180,scope:"each",over:"i.G",loop:"late-fx",reads:["i.a", "i.ar", "i.ESH", "i.EA", "q.baseOf", "C.attacks", "q.fxOk"],writes:["C.attacks"],
+/* An explicit 2024 Pact choice overrides this weapon form's native Radiant
+   type. Other sources and generic replacements keep their existing ordering. */
+function retainFormPactType(I,Q,e,x,r,pactW){if(I.r14||I.B.rs==="2014"||e.kind!=="item"||!pactW||r.n!==pactW||r.n!==e.owner)return false;const base=Q.baseOf(e.owner),formDefinition=weaponFormMetadata(base.mi||e.owner,"2024"),when=Array.isArray(x.when)?x.when:[x.when],pick=((I.B.ch||{}).pactDmg||[])[0];return !!formDefinition&&x.t===formDefinition.damageType&&(when.includes(e.owner)||when.includes(base.mi))&&["Necrotic","Psychic","Radiant"].includes(pick)}
+function drRow(a,Q,e,x,r,keepFormPactType){if(x.from&&r.die!==x.from)return;if(x.cat){const w0=weaponDef(Q.baseOf(r.n).b);if(!w0||w0.cat!==x.cat)return}
+  drDice(e,x,r,keepFormPactType);drFinesse(a,e,x,r);if(x.note)r.note=(r.note?r.note+" ":"")+x.note}
+registerSheetGroup({id:"fx-die-replace",group:"late",phase:"late",order:180,scope:"each",over:"i.G",loop:"late-fx",reads:["i.B", "i.r14", "i.a", "i.ar", "i.ESH", "i.EA", "q.baseOf", "C.attacks", "q.fxOk", "l.pactW"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {a,ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* fx engine v5: dieReplace [{when,d,t,from,up,finesse,note}]: the damage dice (d), the damage type (t) or the Finesse property of the matching rows are replaced. from: only rows with exactly this die. up:1 = only when d is larger. when as for atkDice */
-   (e.dieReplace?(Array.isArray(e.dieReplace)?e.dieReplace:[e.dieReplace]):[]).forEach(function(x){rowsPick(x.when||"weapon").forEach(function(r){drRow(a,Q,e,x,r)})});
+   (e.dieReplace?(Array.isArray(e.dieReplace)?e.dieReplace:[e.dieReplace]):[]).forEach(function(x){rowsPick(x.when||"weapon").forEach(function(r){drRow(a,Q,e,x,r,retainFormPactType(I,Q,e,x,r,ctx.l.pactW))})});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-reach-range",group:"late",phase:"late",order:190,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* fx engine v5: reach [{when,add,mul}] changes the melee reach of the matching rows ("5 ft" becomes N*mul+add), rangeMul [{when,mul}] multiplies the normal and long range (80/320) */

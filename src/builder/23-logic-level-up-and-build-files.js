@@ -1,6 +1,6 @@
 import {bindLive,choiceList,lateGet,withB,__set_step,ask,issueText,ruleIssues,spInfoPart,qbBook,qbFill,qbMI,qbSpells,copyOf,own,render,sid,stamp,stepBack} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,ABN,clone,toast} from "./01-logic-core-helpers.js";
-import {migrateItemAttunement,BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
+import {migrateItemAttunement,migrateInventory,BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save,saveBak,savedRaw} from "./04-logic-storage.js";
 import {CL} from "./05-logic-choice-model-ruleset.js";
 import {featViol,toolAll} from "./09-logic-feats-and-choices.js";
@@ -199,7 +199,7 @@ genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  const ch=b.ch;
  normChoiceLists(b,notes,said,FT);
  /* items: names from the app lists, "+1 Longsword", "Plate" for "Plate Armor"; an unknown item stays as plain gear */
- const SN=Object.keys(lateGet("SMAP"));normItems(b,notes,said,SN);
+ const SN=Object.keys(lateGet("SMAP"));normItems(b,notes,said,SN);migrateInventory(b);
  if(!Object.keys(b.unset).length)delete b.unset;
  }finally{__set_B(keep);applyPacks()}
  return {err:err,notes:notes,b:b}};

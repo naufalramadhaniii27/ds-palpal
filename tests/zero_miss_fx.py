@@ -2705,6 +2705,56 @@ u28case("Z3 U28 Cinder Spear Pole Strike refreshes parent mode",dict(cls="Fighte
 u28case("Z3 U28 Cabal includes both generated Psychic Blades",dict(cls="Rogue",sub="Soulknife",level=4,inv=[dict(n="Cabal's Ruin (Dormant)",q=1,eq=True,attuned=True)]),[("C.attacks.some(a=>a.n==='Psychic Blade')",True),("C.attacks.some(a=>a.n==='Psychic Blade (Bonus Action)')",True),("C.attacks.every(a=>a.spendDice.length===1&&a.spendDice[0].item===\"Cabal's Ruin (Dormant)\"&&a.spendDice[0].poolKey===C.inv[0].chargeKey)",True)])
 u28case("Z3 U28 Cabal includes generated ranged Archer",dict(cls="Druid",sub="Circle of the Stars",level=4,inv=[dict(n="Cabal's Ruin (Dormant)",q=1,eq=True,attuned=True)]),[("C.attacks.some(a=>a.n==='Starry Form: Archer')",True),(u28row("Starry Form: Archer")+".spendDice.length",1),(u28row("Starry Form: Archer")+".spendDice[0].poolKey===C.inv[0].chargeKey",True),(u28row("Starry Form: Archer")+".spendDice[0].d","1d6")])
 
+# Older positive rider fixtures require a materialized blade. Make that state
+# explicit; dedicated U29 migration cases separately exercise legacy version0.
+for c in CASES:
+    if c["name"]=="Sun Blade: 1d8 Radiant against an Undead, Radiant and Finesse kept" or c["name"].startswith("Z3 U20 target Sun Blade "):
+        c["b"].setdefault("extra",{})["inventoryFormV"]=1
+        next(it for it in c["b"]["inv"] if it["n"]=="Sun Blade")["form"]={"v":1,"active":True,"radius":15}
+
+# U29: independent physical forms and executable Radiant damage.
+U29_WEAPONS=["Sun Blade","Sunsword","Dawnbringer","Duskcrusher"]
+U29_BASE={"STR":10,"DEX":18,"CON":14,"INT":12,"WIS":10,"CHA":8}
+def u29inv(item,active=True,attuned=True,eq=True,q=1):return dict(n=item,q=q,eq=eq,attuned=attuned,form={"v":1,"active":active,"radius":15})
+def u29row(item):return "C.attacks.find(a=>a.n==="+json.dumps(item)+")"
+for rs in ["2024","2014"]:
+    for item in U29_WEAPONS:
+        for active in [False,True]:
+            for target in [{},{"type":"Object"},{"type":"Humanoid"},{"type":"Undead"}]:
+                rider=active and target.get("type")=="Undead"
+                a=u29row(item)
+                checks=[("C.inv[0].attunedActive",True),("C.inv[0].form.active",active),("C.inv[0].formUsable",active),("C.attacks.some(a=>a.n==="+json.dumps(item)+")",active),("!!C.attacks.find(a=>a.n==='Longsword').xdice",False)]
+                if active:
+                    checks += [(a+".type","Radiant"),(a+".die","1d8"),(a+".misc",2),(a+".dmgBonus",2),(a+".ab","STR" if item=="Duskcrusher" else "DEX"),(a+".prof",True),("!!"+a+".xdice",rider)]
+                    if rider:checks += [(a+".xdice.length",1),(a+".xdice[0].d","1d8"),(a+".xdice[0].t","Radiant"),(a+".xdice[0].roll",True),("__deriveFor(C).atk[1].damageParts.length",1),("__deriveFor(C).atk[1].damageParts[0].type","Radiant"),("__deriveFor(C).atk[1].damageParts[0].expr.split('+').sort()",["1d8","1d8","2" if item=="Duskcrusher" else "6"])]
+                else:checks.append(("(C.defenses||[]).some(d=>String(d.s||'').includes("+json.dumps(item)+")&&/Extra damage|1d8/.test(d.v||''))",False))
+                CASES.append(dict(name=("Z3" if active else "NEG")+" U29 form "+item+" "+rs+" active "+str(active)+str(target),b=dict(rs=rs,cls="Fighter",level=4,base=U29_BASE,extra={"inventoryFormV":1},inv=[u29inv(item,active),dict(n="Longsword",q=1,eq=True)]),target=target,expect=checks))
+        for attuned,eq,q in [(False,True,1),(True,False,1),(True,True,0)]:
+            CASES.append(dict(name="NEG U29 form unavailable "+item+" "+rs+str((attuned,eq,q)),b=dict(rs=rs,cls="Fighter",level=4,base=U29_BASE,extra={"inventoryFormV":1},inv=[u29inv(item,attuned=attuned,eq=eq,q=q),dict(n="Longsword",q=1,eq=True)]),target={"type":"Undead"},expect=[("C.inv[0].formUsable",False),("C.attacks.some(a=>a.n==="+json.dumps(item)+")",False),("!!C.attacks.find(a=>a.n==='Longsword').xdice",False)]))
+        CASES.append(dict(name="Z3 U29 rider differential "+item+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,base=U29_BASE,extra={"inventoryFormV":1},inv=[u29inv(item),dict(n="Longsword",q=1,eq=True)]),target={"type":"Undead"},withoutGxFields=["item",item,item,["atkDice"]],expect=[(u29row(item)+".xdice.length",1),(u29row(item)+".type","Radiant")],expectWithout=[("!!"+u29row(item)+".xdice",False),(u29row(item)+".type","Radiant")],allow=[r"^attacks\.1\.xdice\.0\.(d|t|s|roll)$",r"^attacks\.1\.note$"]))
+        CASES.append(dict(name="Z3 U29 legacy wielded form migration "+item+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,base=U29_BASE,extra={"inventoryFormV":0},inv=[dict(n=item,q=1,eq=True,attuned=True)]),target={"type":"Undead"},expect=[("C.inv[0].form.active",True),("C.inv[0].formUsable",True),(u29row(item)+".xdice.length",1)]))
+        CASES.append(dict(name="NEG U29 modern missing form starts inactive "+item+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,extra={"inventoryFormV":1},inv=[dict(n=item,q=1,eq=True,attuned=True)]),target={"type":"Undead"},expect=[("C.inv[0].form.active",False),("C.attacks.some(a=>a.n==="+json.dumps(item)+")",False)]))
+for item in ["Sun Blade","Sunsword","Dawnbringer"]:
+    for cls,prof in [("Monk",True),("Wizard",False)]:
+        name=("Z3 U29 Shortsword-only proficiency " if prof else "NEG U29 neither weapon proficiency ")+item
+        CASES.append(dict(name=name,b=dict(cls=cls,level=4,base=U29_BASE,extra={"inventoryFormV":1},inv=[u29inv(item),dict(n="Longsword",q=1,eq=True),dict(n="Shortsword",q=1,eq=True)]),target={"type":"Undead"},expect=[(u29row(item)+".prof",prof),(u29row("Shortsword")+".prof",prof),(u29row("Longsword")+".prof",False),(u29row(item)+".ab","DEX"),(u29row(item)+".sub.includes('Finesse')",True),("("+u29row(item)+".sub.match(/Finesse/g)||[]).length",1)]))
+    CASES.append(dict(name="Z3 U29 Longsword-only proficiency "+item,b=dict(rs="2014",cls="Wizard",level=4,base=U29_BASE,ch={"feat4":{"feat":"Weapon Master (2014)","a1":"DEX"},"wp-feat4":["Longsword","Warhammer","Battleaxe","Trident"]},extra={"inventoryFormV":1},inv=[u29inv(item),dict(n="Longsword",q=1,eq=True),dict(n="Shortsword",q=1,eq=True)]),target={"type":"Undead"},expect=[(u29row(item)+".prof",True),(u29row("Longsword")+".prof",True),(u29row("Shortsword")+".prof",False)]))
+
+# Pact damage is chosen after the native Radiant form profile, while each
+# Undead rider retains its own Radiant type. The bystander weapon is independent.
+for item in U29_WEAPONS:
+    for chosen in ["Necrotic","Psychic","Radiant"]:
+        a=u29row(item)
+        CASES.append(dict(name="Z3 U29 Pact final damage "+item+" "+chosen,b=dict(cls="Warlock",level=4,base=WL,ch={"invocation":["Pact of the Blade"],"pactWep":[item],"pactDmg":[chosen]},extra={"inventoryFormV":1},inv=[u29inv(item),dict(n="Longsword",q=1,eq=True)]),target={"type":"Undead"},expect=[(a+".type",chosen),(a+".ab","CHA"),(a+".xdice.length",1),(a+".xdice[0].t","Radiant"),(a+".xdice[0].d","1d8"),(a+".xdice[0].roll",True),("__deriveFor(C).atk[1].damageParts.length",1 if chosen=="Radiant" else 2),("__deriveFor(C).atk[1].damageParts.some(p=>p.type==='Radiant'&&p.expr.includes('1d8'))",True),(u29row("Longsword")+".type","Slashing"),("!!"+u29row("Longsword")+".xdice",False)]))
+    CASES.append(dict(name="Z3 U29 Pact without damage choice retains Radiant "+item,b=dict(cls="Warlock",level=4,base=WL,ch={"invocation":["Pact of the Blade"],"pactWep":[item]},extra={"inventoryFormV":1},inv=[u29inv(item)]),target={"type":"Undead"},expect=[(u29row(item)+".type","Radiant"),(u29row(item)+".xdice[0].t","Radiant")]))
+    CASES.append(dict(name="Z3 U29 2014 Pact ignores damage choice "+item,b=dict(rs="2014",cls="Warlock",level=4,base=WL,ch={"p3invocation":["Pact of the Blade"],"pactWep":[item],"pactDmg":["Necrotic"]},extra={"inventoryFormV":1},inv=[u29inv(item)]),target={"type":"Undead"},expect=[(u29row(item)+".type","Radiant"),(u29row(item)+".xdice[0].t","Radiant")]))
+for rs in ["2024","2014"]:
+    for active in [False,True]:
+        # Keep item spell metadata and counters while the form is off. Casting
+        # availability is checked by the production casting UI, not row deletion.
+        checks=[("C.spells.find(s=>s.n==='Lesser Restoration'&&s.src==='Cleric').ct","Bonus Action" if rs=="2024" else "Action"),("C.spells.find(s=>s.n==='Lesser Restoration'&&s.src==='Dawnbringer').ct","Action"),("C.inv[0].formUsable",active)]
+        CASES.append(dict(name="Z3 U29 Dawnbringer restoration action source "+rs+" active "+str(active),b=dict(rs=rs,cls="Cleric",level=4,extra={"inventoryFormV":1,"sp":["Lesser Restoration"]},inv=[u29inv("Dawnbringer",active)]),expect=checks))
+
 # Refresh the real rule-link index with the case's source packs installed.
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared

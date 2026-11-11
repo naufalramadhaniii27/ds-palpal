@@ -3,6 +3,7 @@ import {casterParts,clsLv,lateGet,subAt} from "./01b-logic-late-ports.js";import
 import {baseOf,fxListBase,miFeats} from "./01b-logic-late-ports.js";
 import {gx,fxo} from "./00-env.js";
 import {allocateAttunement,itemInUse,itemQuantity,migrateItems,migrateAttunement,itemOverrideProblems} from "../data/lib/attunement.js";
+import {weaponFormMetadata,migrateInventoryForms,setWeaponFormActive,adjustWeaponFormRadius,weaponFormUsable,weaponFormLight} from "../data/lib/weapon-form.js";
 export {itemInUse,itemQuantity};
 export var DMAP={};DMGI.forEach((x) =>{DMAP[x[0]]=x});
 /* M18 (v16): constant numbers of a magic item (DMGI[5].fx) while it is used, and attuned when it needs attunement. Only 3 attuned items count
@@ -25,11 +26,29 @@ export function byOk(by,attunedKeys){if(!by)return true;const s=String(by),cls=O
  const sp=Object.keys(SPECIES).filter((n) =>{return new RegExp("\\b"+n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","i").test(s)});if(sp.length)return sp.indexOf(lateGet("B").species)>=0;return true}
 export function attunementMeta(n){const d=DMAP[n];return d?{key:d[0],requires:!!d[3],by:d[5]&&d[5].by}:{requires:false,key:n}}
 export function migrateItemAttunement(x){return migrateAttunement(x,attunementMeta(x.n))}
-export function migrateInventory(b){if(b&&Array.isArray(b.inv))b.inv=migrateItems(b.inv,attunementMeta);return b}
+function formMetadataFor(row,edition){const d=DMAP[row.n];return weaponFormMetadata(d?d[0]:row.n,edition)}
+function canonicalForm(row,formMeta){const f=row.form;if(!f||typeof f!=="object"||Array.isArray(f))return false;if(Object.prototype.hasOwnProperty.call(f,"v")&&f.v!==1)return true;if(f.v!==1||typeof f.active!=="boolean")return false;const l=formMeta.light;return Number.isInteger(f.radius)&&f.radius>=l.min&&f.radius<=l.max&&(l.adjustable?(f.radius-l.min)%l.step===0:f.radius===l.default)}
+/* Normalize only the passed character. A modern inventory keeps its row and array
+   identities on repeated ensureInv calls; legacy form intent is seeded once. */
+export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b.inv))return b;b.inv=migrateItems(b.inv,attunementMeta);
+ const version=b.inventoryFormV;if(version!==undefined&&version!==0&&version!==1)return b;
+ const edition=b.rs==="2014"?"2014":"2024",items=b.inv;
+ if(version===1&&(!Array.isArray(items)||items.every(row=>{if(!row||typeof row!=="object")return true;const formMeta=formMetadataFor(row,edition);return !formMeta||canonicalForm(row,formMeta)})))return b;
+ const result=migrateInventoryForms(items,version,row=>formMetadataFor(row,edition),row=>!!row.eq&&itemQuantity(row)>0&&row.attuned===true);
+ if(Array.isArray(items)&&Array.isArray(result.rows)){const next=result.rows.map((row,i)=>JSON.stringify(row)===JSON.stringify(items[i])?items[i]:row);if(next.some((row,i)=>row!==items[i]))b.inv=next}
+ b.inventoryFormV=result.version;return b}
 export function attunementState(){return allocateAttunement(lateGet("B").inv||[],attMax(),attunementMeta,(m,x,keys)=>byOk(m.by,keys))}
 function beltAttuned(keys){return (keys||new Set(attunementState().keys)).has("Belt of Dwarvenkind")}
 export function itemBases(d){const o=itemOverride(d),b=o&&Object.prototype.hasOwnProperty.call(o,"base")?o.base:d&&d[5]&&d[5].base;return Array.isArray(b)?b:null}
-export function itemWeaponInUse(row,status){const o=itemOverride(DMAP[row.n]);return !!row.eq&&itemQuantity(row)>0&&(!(o&&o.requiresAttunedWeapon)||!!(status&&status.attuned))}
+export function itemWeaponInUse(row,status){const b=lateGet("B"),formMeta=formMetadataFor(row,b.rs==="2014"?"2014":"2024"),o=itemOverride(DMAP[row.n]);if(formMeta)return weaponFormUsable(row,formMeta,{equipped:!!row.eq,quantity:itemQuantity(row),attuned:!!(status&&status.attuned)},b.inventoryFormV);return !!row.eq&&itemQuantity(row)>0&&(!(o&&o.requiresAttunedWeapon)||!!(status&&status.attuned))}
+export function itemFormInfoForRow(row,status,version,edition){if(!row)return {available:false,reason:"missing"};const formMeta=formMetadataFor(row,edition==="2014"?"2014":"2024");if(!formMeta)return {available:false,reason:"not-supported"};const form=Object.prototype.hasOwnProperty.call(row,"form")?clone(row.form):undefined,validVersion=(version===undefined||version===0||version===1)&&!!form&&typeof form==="object"&&!Array.isArray(form)&&form.v===1;
+ const reason=!validVersion?"version":itemQuantity(row)<=0?"no-item":!row.eq?"unequipped":!(status&&status.attuned)?"attunement":"";
+ return {name:row.n,version:clone(version),form:form,formMeta:clone(formMeta),formUsable:weaponFormUsable(row,formMeta,{equipped:!!row.eq,quantity:itemQuantity(row),attuned:!!(status&&status.attuned)},version),formLight:weaponFormLight(form,formMeta,version),available:!reason,reason:reason}}
+export function getItemFormInfo(index){const b=migrateInventory(lateGet("B"));if(!Number.isInteger(index)||index<0||!b.inv||!b.inv[index])return {available:false,reason:"missing"};if(!formMetadataFor(b.inv[index],b.rs==="2014"?"2014":"2024"))return {index:index,available:false,reason:"not-supported"};return Object.assign({index:index},itemFormInfoForRow(b.inv[index],attunementState().rows[index],b.inventoryFormV,b.rs))}
+export function setItemForm(index,change){const info=getItemFormInfo(index);if(!info.available)return {ok:false,reason:info.reason,info:info};if(!change||typeof change!=="object"||Array.isArray(change)||Object.keys(change).length!==1)return {ok:false,reason:"change",info:info};let next;
+ if(Object.prototype.hasOwnProperty.call(change,"active")&&typeof change.active==="boolean")next=setWeaponFormActive(info.form,info.formMeta,change.active,info.version);
+ else if(Object.prototype.hasOwnProperty.call(change,"radiusDelta")&&[-1,1].includes(change.radiusDelta)){if(!info.form.active)return {ok:false,reason:"inactive",info:info};if(!info.formMeta.light.adjustable)return {ok:false,reason:"fixed-light",info:info};next=adjustWeaponFormRadius(info.form,info.formMeta,change.radiusDelta,info.version)}else return {ok:false,reason:"change",info:info};
+ const it=lateGet("B").inv[index],changed=JSON.stringify(it.form)!==JSON.stringify(next);if(changed)it.form=next;return {ok:true,changed:changed,info:getItemFormInfo(index)}}
 export function itemMagicBonus(n,bo,afx){const d=DMAP[n];if(!d||afx.some((q)=>q.n===n))return bo.p;
  const o=itemOverride(d);return o&&o.unattunedBonus||0}
 export function activeFx(state){const out=[],seen=new Set(),st=state||attunementState();(lateGet("B").inv||[]).forEach((x,i)=>{

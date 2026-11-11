@@ -267,3 +267,12 @@ The belt exclusions use canonical Dwarf, Hill Dwarf, Mountain Dwarf, Mark of War
 Gamma Pendant's Complete switch implements spell-save Advantage only. The 20-charge pool, altered recharge, extra spells, weapon bonuses and absorption still need their own support. Promotion's Martial Training switch does not implement Adaptive Magic. Changeling Metamorphosis's Darkvision switch does not implement its other options or automatically end when Shape-Shifter is used. Players track those selections, piety, charm expiry and target qualifiers as stated on the effect notes.
 
 The audit found a gate error: the new Rocker instrument atom freed a generic Performance bonus atom to cover Instrument Weapon transformation. The bonus is now scoped to its real Performance sentence. Tests remove its field and verify Strength 18 gives +4, Strength 8 gives the minimum +1, and the proficiency remains. Instrument Weapon transformation remains uncovered. The gate's new pure-Advantage qualifier checks also keep actual HP/Speed grants flagged, rather than inventing HP or Speed effects for references to those stats.
+
+
+## 2026-11-11: independent radiant weapon form
+
+Sun Blade, Sunsword, Dawnbringer and Duskcrusher now receive independent saved form state, separate from equipment and attunement. The native item text does not say that stowing, dropping or ending attunement dismisses these forms. Eligibility can change without clearing the remembered form. Existing legacy weapon profiles migrate once; newly acquired hilts and rods start inactive. Unsupported future state remains preserved and unavailable to this implementation.
+
+Reading not decided: the native text does not settle whether dismissing and reigniting an adjustable blade resets its sunlight radius. The application retains the selected radius across form changes and starts new state at 15 feet. Retaining this setting is an application state policy, not a claimed explicit rule. Active light is reported per item; it does not grant the actor a vision sense.
+
+Dawnbringer’s source requires a non-evil creature for attunement. The existing allocator has no alignment predicate; U29 does not infer alignment from class or identity and does not claim automatic enforcement of this prerequisite. Actual blade contact for Lesser Restoration and target/range checks remain player responsibilities.

@@ -1,3 +1,4 @@
+export {weaponFormMetadata} from "../data/lib/weapon-form.js";
 export {attackKindsForRow} from "../data/lib/attack-kind.js";
 export {spendDiceProblems} from "../data/lib/attack-resources.js";
 export {targetMatches,targetProblems,damageType,damageExpression,riderProblems,dieReplaceProblems,selfDamageProblems} from "../data/lib/attack-target.js";
