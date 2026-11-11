@@ -2531,6 +2531,24 @@ CASES += [
  dict(name="Z3 U21 duplicate Dragontooth potency does not stack",b=dict(cls="Fighter",level=4,inv=[dict(n="Dragontooth Dagger",q=1,eq=True),dict(n="Dragontooth Dagger",q=1,eq=True)]),target={"tags":["cult-enemy"]},expect=[("C.attacks[1].misc",2),("C.attacks[1].dmgBonus",2),("C.attacks[1].xdice.length",2),("__deriveFor(C).atk[1].damageParts.find(p=>p.type==='Acid').expr","1d6+1d6")]),
 ]
 
+# U22: explicit attunement is independent from equipping; legacy rows migrate.
+for item,bonus,die in [("Hazirawn",2,"2d6"),("Wand of Orcus",3,"2d12"),("Ruby Rod of Asmodeus",2,"2d12")]:
+    for attuned in [False,True,None]:
+        row=dict(n=item,q=1,eq=True)
+        if attuned is not None: row["attuned"]=attuned
+        active=attuned is not False
+        checks=[("C.inv[0].attuned",active),("C.inv[0].attunedActive",active),("C.attacks[1].misc",bonus if active else 1 if item=="Hazirawn" else 0)]
+        if active or item=="Hazirawn":checks.append(("C.attacks[1].xdice[0].d",die if active else "1d6"))
+        else:checks.append(("!!C.attacks[1].xdice",False))
+        CASES.append(dict(name="Z3 U22 "+item+" attuned "+str(attuned),b=dict(cls="Fighter",level=4,inv=[row]),target={"type":"Creature","alignment":"Good"},expect=checks))
+for target in [{}, {"type":"Object","alignment":"Good"}, {"type":"Creature","alignment":"Evil"}]:
+    CASES.append(dict(name="NEG U22 Ruby Rod target "+str(target),b=dict(cls="Fighter",level=4,inv=[dict(n="Ruby Rod of Asmodeus",q=1,eq=True,attuned=True),dict(n="Longsword",q=1,eq=True)]),target=target,expect=[("C.attacks[1].type","Necrotic"),("!!C.attacks[1].xdice",False),("C.attacks[2].type","Slashing"),("!!C.attacks[2].xdice",False)]))
+for cls,active in [("Cleric",False),("Wizard",True)]:
+    CASES.append(dict(name=("Z3" if active else "NEG")+" U22 Magi spell eligibility "+cls,b=dict(cls=cls,level=4,inv=[dict(n="Staff of the Magi",q=1,eq=True,attuned=True)]),expect=[("C.inv[0].attunedActive",active),("C.spells.some(s=>s.src==='Staff of the Magi')",active)]))
+CASES.append(dict(name="Z3 U22 import preserves exhausted stock and explicit states",b=dict(cls="Fighter",level=4),expect=[("JSON.stringify(__bldNorm({cls:'Fighter',level:4,inv:[{n:'Hazirawn',q:0,eq:false,attuned:true}]}).b.inv.map(x=>[x.q,x.eq,x.attuned]))","[[0,false,true]]")]))
+for item in ["Sun Blade","Duskcrusher"]:
+    CASES.append(dict(name="NEG U22 unattuned hilt "+item,b=dict(cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=False)]),expect=[("C.attacks.some(a=>a.n==="+repr(item)+")",False)]))
+
 # The lazy rule-link index must settle before comparing inventory HTML. Keep the
 # HTML comparison strict; wait out the documented 250ms link-index cache.
 # Warming does not permit any additional changed paths.

@@ -1,7 +1,8 @@
+import {attunementMessage} from "../app/lib/attunement-message.js";
 import {attN,bDeco,bindLive,bldMine,toSheetApply,unList} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {copyText} from "../app/lib/clipboard.js";
 import {$,ABK,esc,toast} from "./01-logic-core-helpers.js";
-import {DMAP,NEWB,attMax,un,unDone} from "./03-logic-magic-item-effects.js";
+import {DMAP,NEWB,attMax,un,unDone,setItemAttuned} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save} from "./04-logic-storage.js";
 import {R14,rsLoad,rsStash} from "./05-logic-choice-model-ruleset.js";
 import {choices} from "./09-logic-feats-and-choices.js";
@@ -104,7 +105,8 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.tog2){openCards[d.tog2]=openCards[d.tog2]===false?true:false;render();return}
  if(d.skip){B.eqC="none";B.eqB="none";unDone("eqC");unDone("eqB");rebuildKit();commit();return}
  if(d.clearinv){ask("Clear your starting equipment choices and remove every item from your inventory?","Clear All",() =>{B.inv=[];B.eqC="none";B.eqB="none";B.gpOverride=null;commit();toast("Inventory cleared")});return}
- if(d.ieq!=null){const it=B.inv[+d.ieq];if(!it.eq&&DMAP[it.n]&&DMAP[it.n][3]&&attN()>=attMax()){toast("You can attune to at most "+attMax()+" magic items. Unattune one first.");return}it.eq=!it.eq;if(it.eq&&ARMOR[it.n])B.inv.forEach((y,k) =>{if(k!==+d.ieq&&ARMOR[y.n])y.eq=false});commit();return}
+ if(d.iatt!=null){ensureInv();const i=+d.iatt,it=B.inv[i];if(!it)return;const result=setItemAttuned(i,!it.attuned);if(!result.ok){toast(attunementMessage(result));return}commit();return}
+ if(d.ieq!=null){const it=B.inv[+d.ieq];it.eq=!it.eq;if(it.eq&&ARMOR[it.n])B.inv.forEach((y,k) =>{if(k!==+d.ieq&&ARMOR[y.n])y.eq=false});commit();return}
  if(d.iq!=null){const iq=B.inv[+d.iq];iq.q=Math.max(0,qOf(iq)+(+d.d));commit();return}
  if(d.irm!=null){const rmx=B.inv[+d.irm],rmn=rmx&&bCt(rmx.n)?bInN(rmx):0;ctFree(rmx);B.inv.splice(+d.irm,1);commit();if(rmn)toast("Removed "+rmx.n+". Its "+rmn+" item"+(rmn>1?"s are":" is")+" now outside any container.");return}
  if(d.iunpack!=null){const upx=B.inv[+d.iunpack],upn=upx&&upx.n;if(!upx)return;if(qOf(upx)<1){toast("Qty is 0, so there is nothing to unpack.");return}const upc=unpackAt(+d.iunpack);commit();toast(upc?"Unpacked "+upn+" into a "+PACKS[upx.alias&&PACKS[upx.alias]?upx.alias:upn][0]+" with its items.":"Nothing to unpack.");return}/* v32 RU134 */
@@ -115,7 +117,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
   if(live2&&genv.__coinsPut)genv.__coinsPut(pr.c,"Buy "+d.ibuy);else B.coins=pr.c;
   const pu=genv.__coinList?genv.__coinList(pr.use):"",ch=genv.__coinList?genv.__coinList(pr.chg):"";__set_bMsg("Bought "+(bq>1?bq+" \u00d7 ":"")+d.ibuy+" for "+(genv.__priceTxt?genv.__priceTxt(bp*bq):bp*bq+" gp")+(pu?". Paid "+pu:"")+(ch?", change back: "+ch:"")+".");d.iadd=d.ibuy}
  if(d.iadd&&PACKS[d.iadd]){ensureInv();const pq=+d.qty||1,PK=PACKS[d.iadd];for(let pk3=0;pk3<pq;pk3++)packOut(d.iadd,B.inv).forEach((y) =>{B.inv.push(y)});addQty[d.iadd]=1;commit();toast(bMsg||"Added "+(pq>1?pq+" \u00d7 ":"")+d.iadd+": a "+PK[0]+" with "+PK[1].length+" kinds of items inside");__set_bMsg("");return}/* v32 RU134 */
- if(d.iadd){ensureInv();const ex=B.inv.filter((y) =>{return y.n===d.iadd&&!y.kit})[0],qq=+d.qty||1;if(ex&&!equippable(d.iadd))ex.q+=qq;else{let eq=equippable(d.iadd);if(ARMOR[d.iadd]&&B.inv.some((y) =>{return ARMOR[y.n]&&y.eq}))eq=false;const lib=(B.custLib||[]).filter((c) =>{return c.n===d.iadd})[0];B.inv.push(lib?{n:d.iadd,q:qq,eq:false,rar:lib.rar,desc:lib.desc,type:lib.type}:{n:d.iadd,q:qq,eq:DMAP[d.iadd]?false:eq})}addQty[d.iadd]=1;commit();toast(bMsg||"Added "+(qq>1?qq+" \u00d7 ":"")+d.iadd);__set_bMsg("");return}
+ if(d.iadd){ensureInv();const ex=B.inv.filter((y) =>{return y.n===d.iadd&&!y.kit})[0],qq=+d.qty||1;if(ex&&!equippable(d.iadd))ex.q+=qq;else{let eq=equippable(d.iadd);if(ARMOR[d.iadd]&&B.inv.some((y) =>{return ARMOR[y.n]&&y.eq}))eq=false;const lib=(B.custLib||[]).filter((c) =>{return c.n===d.iadd})[0];B.inv.push(lib?{n:d.iadd,q:qq,eq:false,rar:lib.rar,desc:lib.desc,type:lib.type}:{n:d.iadd,q:qq,eq:DMAP[d.iadd]?false:eq,...(DMAP[d.iadd]&&DMAP[d.iadd][3]?{attuned:false}:{})})}addQty[d.iadd]=1;commit();toast(bMsg||"Added "+(qq>1?qq+" \u00d7 ":"")+d.iadd);__set_bMsg("");return}
  if(d.avar){addVar[d.avar]=+d.k;render();return}
  if(d.custr){cust.r=d.custr;render();return}
  if(d.custadd){const cn=(cust.n||'').trim();if(!cn){toast("Type an item name first");return}ensureInv();const ci={n:cn,q:1,eq:false,rar:cust.r==='Common'?'':cust.r,desc:cust.d,type:cust.t};B.inv.push(ci);B.custLib=(B.custLib||[]).filter((c) =>{return c.n!==cn}).concat([{n:cn,rar:ci.rar,desc:ci.desc,type:ci.type}]);__set_cust({n:'',r:'Uncommon',d:'',t:'Wondrous Item'});commit();toast('Added '+cn);return}

@@ -1,0 +1,3 @@
+export function attunementMessage(result){const reason=result&&result.reason;
+ const labels={requirements:"This character does not meet the item's attunement requirements.",duplicate:"End attunement to the other copy of this item first.","no-item":"An item with quantity 0 cannot be attuned.",missing:"This item is not in the saved build.","not-required":"This item does not require attunement.",owner:"The saved build belongs to another character."};
+ return reason==="limit"?"You can attune to at most "+result.limit+" magic items. End one attunement first.":labels[reason]||"Attunement could not be changed."}

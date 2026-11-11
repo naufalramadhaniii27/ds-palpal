@@ -84,10 +84,10 @@ registerSheetGroup({id:"save-bonus-sheet",group:"saveBonus",phase:"savebonus",or
 registerSheetGroup({id:"attunement-max",group:"attunement",phase:"savebonus",order:70,reads:["i.attMax"],writes:["C.attMax"],
  run:function(ctx){if(ctx.i.attMax!==3)ctx.C.attMax=ctx.i.attMax;return ctx.patch()}});
 /* ---------- more AC (phase "acbonus") ---------- */
-registerSheetGroup({id:"item-bracers",group:"armorClass",phase:"acbonus",order:10,reads:["i.B","i.EA","i.ESH"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i,C=ctx.C;(I.B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Bracers of Defense"&&!I.EA&&!I.ESH)C.ac.bonus.push({s:"Bracers of Defense (no armor or Shield)",v:2})});return ctx.patch()}});
-registerSheetGroup({id:"shield-ac",group:"armorClass",phase:"acbonus",order:20,reads:["i.ESH","i.SRC","q.baseOf"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i;if(I.ESH)ctx.C.ac.bonus.push({s:I.ESH+" ("+I.SRC+")",v:2+ctx.q.baseOf(I.ESH).p});return ctx.patch()}});
+registerSheetGroup({id:"item-bracers",group:"armorClass",phase:"acbonus",order:10,reads:["i.B","i.EA","i.ESH","i.ATT","q.itemInUse"],writes:["C.ac"],
+ run:function(ctx){const I=ctx.i,C=ctx.C;(I.B.inv||[]).forEach((x,ix) =>{if(!ctx.q.itemInUse(x,I.ATT.rows[ix]))return;if(x.n==="Bracers of Defense"&&!I.EA&&!I.ESH)C.ac.bonus.push({s:"Bracers of Defense (no armor or Shield)",v:2})});return ctx.patch()}});
+registerSheetGroup({id:"shield-ac",group:"armorClass",phase:"acbonus",order:20,reads:["i.ESH","i.SRC","i.AFX","q.baseOf","q.itemMagicBonus"],writes:["C.ac"],
+ run:function(ctx){const I=ctx.i;if(I.ESH)ctx.C.ac.bonus.push({s:I.ESH+" ("+I.SRC+")",v:2+ctx.q.itemMagicBonus(I.ESH,ctx.q.baseOf(I.ESH),I.AFX)});return ctx.patch()}});
 /* generic: fx.shAc, extra AC while a Shield is held (Warden Tower Shield) */
 registerSheetGroup({id:"fx-shield-ac",group:"armorClass",phase:"acbonus",order:30,reads:["i.ESH","i.G"],writes:["C.ac"],
  run:function(ctx){const C=ctx.C;if(ctx.i.ESH)ctx.i.G.forEach((e) =>{if(!e.shAc)return;let ex=0;e.shAc.forEach((r) =>{if(e.lv>=r[0])ex=r[1]});if(ex)C.ac.bonus.push({s:e.lbl,v:ex})});return ctx.patch()}});

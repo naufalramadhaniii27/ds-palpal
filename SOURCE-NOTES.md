@@ -465,6 +465,11 @@ Perluasan batch C (feat): `pick` bertipe `weapon` (proficiency satu senjata, `wc
 
 
 Override item (`window.FXO`, file `src/data/fx-D-item.js`): `FXO[nama item]={fx:{...}|null}` mengganti `fx` lama di baris DMGI tanpa mengubah data sumber (`fx:null` membuang efek yang salah hitung). Dibaca oleh `ovFx()` di `03-logic-magic-item-effects.js` (dipakai `activeFx()`, `itemFx()`, `baseOf()`). Entri `window.GX.item[nama]` kini berlaku juga untuk baris item yang tidak punya `fx`. Tes: `tests/fx_engine.py` (kasus FXO) dan `tests/golden/builds/item_*.json`.
+
+Attunement inventory v1: `inv[].attuned` adalah boolean opsional, terpisah dari `eq` (dipakai). Migrasi sekali untuk item yang perlu attunement mengambil nilai `eq` lama jika boolean belum ada; nilai eksplisit dipertahankan. Sheet mengekspor `attunedActive` dan `attuneReason` hasil alokasi, bukan input. Menyimpan item tidak membebaskan slot; jumlah nol, duplikat jenis item, syarat karakter, dan batas slot diperiksa bersama oleh `attunementState()`. Input v3 dan kunci storage tetap; normalizer dan import sheet memakai migrasi yang sama, termasuk mempertahankan jumlah nol dan `eq:false`.
+
+Metadata override item divalidasi melalui `ITEM_OVERRIDE_FIELDS` di `data/lib/attunement.js`: `base:[nama senjata/armor]`, `unattunedBonus:N` (bonus serangan dan damage), `requiresAttunedWeapon:boolean`, serta `fx` yang sudah ada. Metadata tanpa properti `fx` mempertahankan efek baris; hanya `fx:null` menghapusnya. Clause gate mengikuti aturan yang sama. `itemState:"wielded"|"attuned"|"unattuned"` pada entri GX memilih masa berlaku sumber: dipakai dengan stok positif, tetap attuned meski disimpan, atau dipakai tanpa attunement aktif. Entri ini dikeluarkan dari sumber item biasa agar tidak dihitung dua kali. Hazirawn memakai cabang unattuned untuk 1d6 Necrotic; cabang attuned biasa memberi 2d6. Tes: `attunement_model.mjs`, `attunement_lifecycle.py`, dan kasus U22 di `zero_miss_fx.py`.
+
 Perluasan batch E (feat, `src/data/fx-E-feat.js`, dimuat sesudah fx-C-feat.js; entri C yang kurang lengkap diganti menurut nama lewat `rep()`, file C tidak diubah):
 | Field | Arti | Contoh |
 |---|---|---|

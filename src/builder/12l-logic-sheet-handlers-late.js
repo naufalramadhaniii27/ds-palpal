@@ -31,7 +31,7 @@ function actFeat(C,B,T,lin,out){(C.features||[]).forEach((g) =>{const gg=g.g,ak=
    let L=null;actKeys(B,gg,it.n).some((k) =>{if(T[k]){L=T[k];return true}return false});if(!L)return;ak.push(it.n);L.forEach((q) =>{actPut(out,lin,q,it,gg,it.n)})});
   if(ak.length)g.ak=ak;else delete g.ak});}
 function actItems(B,I,Q,out){/* magic items in use (attunement within the limit), from the item text: Magic action, Bonus Action, Reaction */
-let att=0,am=I.attMax;(B.inv||[]).forEach((x) =>{if(!x.eq)return;const d=Q.dmapRow(x.n);if(!d)return;if(d[3]){if(att>=am||!Q.byOk(d[5]&&d[5].by))return;att++}
+(B.inv||[]).forEach((x,ix) =>{if(!Q.itemInUse(x,I.ATT.rows[ix]))return;const d=Q.dmapRow(x.n);if(!d)return;
   const t=String(d[4]||""),ss=t.split(/(?<=[.!?])\s+/);[["action",/\b(Magic|Utilize) action\b/],["bonus",/\bBonus Action\b/],["reaction",/\bReaction\b/]].forEach((p) =>{const mine=ss.filter((z) =>{return p[1].test(z)&&!/\b(A|The) (hag|creature|target|monster)\b(?:(?!\byou\b)[^.])*\b(can take|takes)\b/.test(z)});if(!mine.length)return;/* v32 p39 */
    out.push({k:p[0],n:x.n,it:x.n,d:mine.join(" ")})})});}
 function actsFor(C,I,Q){const B=I.B;const out=[],T=(actsTable()||{}),lin=String((B.ch||{}).lin||"");
@@ -211,7 +211,7 @@ function coreTraits(C,I,Q){const B=I.B,c=I.c;const cg=C.features.filter((g) =>{r
 registerSheetGroup({id:"core-traits",group:"late",phase:"post",order:10,reads:["i.B", "i.c", "i.L", "i.custom", "i.sp", "i.bg", "i.SRC", "i.r14", "q.allFeats", "q.sdn", "q.subLbl", "q.subLv", "C.features", "C.skills", "C.speed"],writes:["C.features"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;coreTraits(C,I,Q);
   return ctx.patch()}});
-registerSheetGroup({id:"acts",group:"late",phase:"post",order:20,reads:["i.B", "i.a", "i.feats", "i.attMax", "i.SRC", "C.acts", "C.attacks", "C.features", "C.xdmg", "q.dmapRow", "q.byOk", "q.subAt", "q.spItemB", "q.spItemSrc", "q.baseOf"],writes:["C.acts", "C.features", "C.attacks", "C.xdmg"],
+registerSheetGroup({id:"acts",group:"late",phase:"post",order:20,reads:["i.B", "i.a", "i.feats", "i.attMax", "i.SRC", "C.acts", "C.attacks", "C.features", "C.xdmg", "q.dmapRow", "q.byOk", "i.ATT", "q.itemInUse", "q.subAt", "q.spItemB", "q.spItemSrc", "q.baseOf"],writes:["C.acts", "C.features", "C.attacks", "C.xdmg"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {B,a,feats,attMax,SRC}=I;C.acts=actsFor(C,I,Q);if(!C.acts.length)delete C.acts;actAtk(C,I,Q);
   return ctx.patch()}});
 function bkClsMin(P,cl){const o=P["class"][cl]||{},v=Object.keys(o).map((k) =>{return o[k]});return v.length?Math.min.apply(null,v):null}
@@ -259,5 +259,5 @@ function acceptItemWeaponEffect(ctx,Q,e,x,xi,row,field){if(e.kind!=="item")retur
  const owner=e.owner,base=Q.baseOf(owner),when=Array.isArray(x.when)?x.when:[x.when];
  if(!weaponDef(base.b)||(!when.includes(owner)&&!when.includes(base.mi)))return true;
  if(row.n!==owner&&row.n!==owner+" (thrown)")return false;
- const keys=ctx.l.itemWeaponEffects||(ctx.l.itemWeaponEffects={}),key=JSON.stringify([owner,e.idx,field,xi,ctx.C.attacks.indexOf(row)]);
+ const keys=ctx.l.itemWeaponEffects||(ctx.l.itemWeaponEffects={}),key=JSON.stringify([owner,e.itemState||"used",e.idx,field,xi,ctx.C.attacks.indexOf(row)]);
  if(keys[key])return false;keys[key]=true;return true}

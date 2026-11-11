@@ -1,5 +1,5 @@
 import {bindLive,clsOfG,coinStrip,coinsNow,ctCap,ctLoad,ctOf,cuNm,fch,featNums,featSpL,foldP,ico,invKey,invWeight,itemW,jrnH,lateGet,noteSec,pgGuess,renderDesc,resBoxes,resOf,setOf,srcPg} from "./00a-reg-late-ports.js";/* Responsibility: the Inventory, Features and Notes pages. Split out of the former single file 08 in SOLID stage 9 (S); runs in the same order as before. */
-import {NOTE_FIELDS,gName} from "./03-data-glossary.js";import {C} from "./04-logic-storage.js";import {$,attMaxC,eqOn,esc,fmtW,num} from "./05-logic-helpers.js";import {D,fill,richP} from "./06-logic-derivation.js";import {env} from "./00-env.js";import {aylH,aylSplit,shortX,sumH,sumParse,sumPill,sumText} from "./08b-ui-render-summaries-actions.js";bindLive("esArt",{get:function(){return esArt;}});bindLive("renderInv",{get:function(){return renderInv;}});
+import {NOTE_FIELDS,gName} from "./03-data-glossary.js";import {C} from "./04-logic-storage.js";import {$,attMaxC,attOn,attActive,eqOn,esc,fmtW,num} from "./05-logic-helpers.js";import {D,fill,richP} from "./06-logic-derivation.js";import {env} from "./00-env.js";import {aylH,aylSplit,shortX,sumH,sumParse,sumPill,sumText} from "./08b-ui-render-summaries-actions.js";bindLive("esArt",{get:function(){return esArt;}});bindLive("renderInv",{get:function(){return renderInv;}});
 bindLive("renderNotes",{get:function(){return renderNotes;}});
 export var invF="all";
 export function renderInv(){
@@ -27,11 +27,11 @@ function renderInvStep2(L){
   return /** @type {any} */ ({row, inCt});
 }
 function renderInvStep3(L, row){
-  const att=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return p[0].att&&eqOn(p[0]); }), need=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return p[0].att&&!eqOn(p[0]); });
+  const att=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return attActive(p[0]); }), need=L.map((i,ix) =>{return [i,ix]}).filter((p) =>{ return p[0].att&&!attActive(p[0]); });
   let attH="";
   if(L.some((i) =>{return i.att})&&(invF==="all"||invF==="att")){
-    const aM=attMaxC(); attH='<div class="ieq"><b>Attuned Items</b><span>'+Math.min(aM,att.length)+'/'+aM+'</span></div><div class="islots">'+[0,1,2,3].slice(0,aM).map((n) =>{ const p=att[n]; return p?'<button type="button" class="islot on" data-info="it:'+p[1]+'"><b>'+esc(p[0].n)+'</b></button>':'<span class="islot">Empty slot</span>'; }).join("")+'</div>'+
-      (att.length>aM?'<div class="caution">\u26a0 You are attuned to more than '+aM+' magic items. Only the first '+aM+' in the list work. Unattune the others.</div>':'');
+    const aM=attMaxC(); attH='<div class="ieq"><b>Attuned Items</b><span>'+Math.min(aM,att.length)+'/'+aM+'</span></div><div class="islots">'+Array.from({length:aM},(_,i)=>i).map((n) =>{ const p=att[n]; return p?'<button type="button" class="islot on" data-info="it:'+p[1]+'"><b>'+esc(p[0].n)+'</b></button>':'<span class="islot">Empty slot</span>'; }).join("")+'</div>'+
+      (L.filter((i)=>attOn(i)&&num(i.q,1)>0).length>aM?'<div class="caution">\u26a0 You are attuned to more than '+aM+' magic items. Only the first '+aM+' in the list work. Unattune the others.</div>':'');
     if(invF==="att") attH+='<div class="ieq"><b>Items Requiring Attunement</b><span>'+need.length+'</span></div>'+(need.length?'<div class="ihead"><span></span><span>Weight</span><span>Qty</span><span>Cost (GP)</span></div>'+need.map((p) =>{return row(p[0],p[1])}).join(""):'<p class="muted dnone">Every item that needs attunement is attuned.</p>');
   }
   let body="";

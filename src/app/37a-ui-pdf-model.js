@@ -5,7 +5,7 @@
 import {ABK,ABN} from "./02-data-default-character.js";
 import {gName} from "./03-data-glossary.js";
 import {C,DEF,S,__set_C,__set_S,clsLv} from "./04-logic-storage.js";
-import {atkOn,eqOn,num,senseList,sg} from "./05-logic-helpers.js";
+import {atkOn,attActive,eqOn,num,senseList,sg} from "./05-logic-helpers.js";
 import {D,__set_D,derive,fill} from "./06-logic-derivation.js";
 import {env} from "./00-env.js";
 import {langText} from "./08-ui-render-sheet-and-actions.js";
@@ -70,7 +70,7 @@ function pxProfs(ed){ const p=C.profs||{}, sv=ABK.filter((k) =>{ return C.saves&
 function pxSenses(){ const L=[]; if(num(C.darkvision,0)) L.push("Darkvision "+num(C.darkvision,0)+" ft");
   senseList().forEach((x) =>{ L.push(pxPlain(x[0].n)+(num(x[0].v,0)?" "+num(x[0].v,0)+" ft":"")); });
   return L.join(", ")||"None"; }
-function pxInvLine(i){ const q=num(i.q,1), on=eqOn(i); return (i.att?"**"+i.n+"**":i.n)+(q>1?" ×"+q:"")+(i.att&&on?" {{attuned}}":on?" {{worn}}":""); }
+function pxInvLine(i){ const q=num(i.q,1), on=eqOn(i); return (i.att?"**"+i.n+"**":i.n)+(q>1?" ×"+q:"")+(attActive(i)?" {{attuned}}":on?" {{worn}}":""); }
 function pxGroupNames(re){ const out=[]; (C.features||[]).filter((g) =>{ return re.test(String(g.g||"")); }).forEach((g) =>{ (g.items||[]).forEach((f) =>{ out.push(cuNm("f:"+f.n,f.n)); }); }); return out; }
 function pxDefenses(){ const L=(C.defenses||[]).concat(D.cf&&D.cf.res?D.cf.res:[]), by={};
   L.forEach((d) =>{ if(d&&d.t) (by[d.t]=by[d.t]||[]).push(String(d.v)); });

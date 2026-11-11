@@ -52,8 +52,10 @@ export function atkOn(a){ if(a&&a.of){ const o=eqInvOf(a.of); if(o&&!eqOn(o)) re
 /* RU29: copy the armor result of the builder to a hand-filled sheet. Only when the build agreed with the sheet before the change (same AC).
    Speed and Stealth disadvantage follow the same rule, each on its own. Returns true if AC was copied */
 /* M18: attuned magic items on this sheet */
-export function attMaxC(){ return +C.attMax||3; }/* v19 RL43 */
-export function attCount(){ return (C.inv||[]).filter((i) =>{ return i.att&&eqOn(i); }).length; }
+export function attMaxC(){const n=+C.attMax;return Number.isFinite(n)&&n>0?Math.floor(n):3}/* v19 RL43 */
+export function attOn(i){return !!i.att&&(typeof i.attuned==="boolean"?i.attuned:eqOn(i))}
+export function attActive(i){return !!i.att&&num(i.q,1)>0&&(typeof i.attunedActive==="boolean"?i.attunedActive:attOn(i))}
+export function attCount(){return (C.inv||[]).filter((i)=>attActive(i)&&num(i.q,1)>0).length}
 export function armorFx(fx,it){ const j=JSON.stringify; if(!fx||j(C.ac)!==j(fx.b0.ac)) return false;
   armorFxStep1(j, fx);
   armorFxStep2(it, fx);

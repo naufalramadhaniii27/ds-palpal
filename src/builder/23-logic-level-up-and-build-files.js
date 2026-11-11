@@ -1,6 +1,6 @@
 import {bindLive,choiceList,lateGet,withB,__set_step,ask,issueText,ruleIssues,spInfoPart,qbBook,qbFill,qbMI,qbSpells,copyOf,own,render,sid,stamp,stepBack} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,ABN,clone,toast} from "./01-logic-core-helpers.js";
-import {BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
+import {migrateItemAttunement,BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save,saveBak,savedRaw} from "./04-logic-storage.js";
 import {CL} from "./05-logic-choice-model-ruleset.js";
 import {featViol,toolAll} from "./09-logic-feats-and-choices.js";
@@ -94,14 +94,14 @@ function itemName(n,IN,SN){const s=String(n).trim().replace(/\s+/g," ");if(IN.in
   let r2=bnPick(s,IN);if(r2)return r2;const ak=bnNk(s+" Armor");r2=Object.keys(ARMOR).filter((x) =>{return bnNk(x)===ak})[0];if(r2)return {v:r2,near:1};
   const pre=GEAR.map((x) =>{return x[0]}).filter((x) =>{return /\)$/.test(x)&&bnNk(x).indexOf(bnNk(s))===0});/* bundles such as "Arrows (20)" */return pre.length===1&&bnNk(s).length>=5?{v:pre[0],near:1}:null}
 function normInvRow(x,IN,SN,said,plain){if(typeof x==="string")x={n:x};if(!x||typeof x!=="object")return null;const n=x.n!=null?x.n:x.name;if(n==null||n==="")return null;
-  let o={n:String(n).trim()},qv=x.q!=null?x.q:x.qty!=null?x.qty:x.quantity!=null?x.quantity:x.count;qv=bnNum(qv);o.q=qv>=1?Math.floor(qv):1;o.eq=!!(x.eq!=null?x.eq:x.equipped);
+  let o={n:String(n).trim()},qv=x.q!=null?x.q:x.qty!=null?x.qty:x.quantity!=null?x.quantity:x.count;qv=bnNum(qv);o.q=qv>=0?Math.floor(qv):1;o.eq=!!(x.eq!=null?x.eq:x.equipped);
   Object.keys(x).forEach((k) =>{if(["n","name","q","qty","quantity","count","eq","equipped"].indexOf(k)<0)o[k]=x[k]});
   const eq0=x.eq!=null||x.equipped!=null,r=itemName(o.n,IN,SN);if(r){const bu=/\((\d+)\)$/.exec(r.v);if(bu&&!/\(\d+\)$/.test(o.n)&&o.q>=+bu[1]&&o.q%+bu[1]===0)o.q=o.q/+bu[1];said(o.n,r);o.n=r.v}else plain.push(o.n);return {o:o,eq0:eq0}}
 function normInvEquip(o,eq0,st){if(!eq0){const bo=baseOf(o.n).b;/* not said: weapons, the first armor, and a Shield are worn */if(WEAPONS[bo]||bo==="Shield")o.eq=true;else if(ARMOR[bo]&&!st.arm){o.eq=true;st.arm=1}}else if(o.eq&&ARMOR[baseOf(o.n).b])st.arm=1;}
 function normItems(b,notes,said,SN){
  const IN=[].concat(Object.keys(WEAPONS),Object.keys(ARMOR),["Shield"],Object.keys(DMAP),GEAR.map((x) =>{return x[0]}),Object.keys(PRICE),POTIONS.map((x) =>{return x[0]})).filter((x,i,a) =>{return a.indexOf(x)===i});
  const plain=[];
- if(b.inv!=null){const st={arm:0};b.inv=bnArr(b.inv).map((x) =>{const row=normInvRow(x,IN,SN,said,plain);if(!row)return null;normInvEquip(row.o,row.eq0,st);return row.o}).filter(Boolean);
+ if(b.inv!=null){const st={arm:0};b.inv=bnArr(b.inv).map((x) =>{const row=normInvRow(x,IN,SN,said,plain);if(!row)return null;normInvEquip(row.o,row.eq0,st);return migrateItemAttunement(row.o)}).filter(Boolean);
   if(plain.length)notes.push("Not in the app item lists, so kept as plain gear with no weight or cost: "+plain.join(", "));
   if(b.eqC==null)b.eqC="none";if(b.eqB==null)b.eqB="none"}}
 /* v34 p07: choices by feature name ({"Eldritch Invocations":[...],"Fighting Style":"Defense"}). Raw builder keys still work. X = {b, notes, said, L, FT, ch0}: the build being read and its notes. One function per step: candidates, put, Magic Initiate, match, deal, pass */

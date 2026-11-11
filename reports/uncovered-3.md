@@ -1,3 +1,39 @@
+# Uncovered 3: independent attunement and weapon definitions
+
+This batch closes 6 more original sentence IDs: 202 closed in total, 5,258 uncovered, and 0 regressed IDs. Covered is 7,902; info remains 23,622 and allow remains 0. Work continues after this checkpoint.
+
+The six closures are Hazirawn's unattuned +1 attack/damage and extra 1d6 Necrotic (DMG and misc14 copies), plus Ruby Rod of Asmodeus's Necrotic conversion and +2d12 against a Good creature (DMG and CoA copies). The source rule prose is unchanged. Unknown alignment, an Object, or a non-Good creature grants no Ruby Rod rider.
+
+- Inventory now stores an optional `attuned` boolean independently from `eq`. Explicit booleans survive normalization, import, save, reload, and putting an item away. Legacy requiring-attunement rows inherit their old use/equip state once. The existing v3 input format and storage keys are retained; this is an explicit optional-field migration, not an undocumented shape change.
+- One allocator supplies effective attunement to item effects, actions, weapon/armor/shield potency, item spells, and exported inventory. It checks stock, eligibility, canonical duplicates, prerequisites, and slot limits, including expanded limits. Stowing an attuned item retains its slot; ending attunement releases it. Quantity zero grants no attack or magic effect, and import preserves zero rather than resurrecting consumed stock.
+- Sheet and builder inventory expose separate use/equip and attunement controls. Failed requests explain the class/prerequisite, duplicate, stock or slot issue. Legacy invalid requests remain visible with their inactive reason. Ownership is checked before changing the saved builder. The sheet's existing manual-edit guard remains in place. PDF labels use effective attunement independently of wearing.
+- `ITEM_OVERRIDE_FIELDS` validates static item metadata separately from FX entries: base definitions, an explicitly retained unattuned flat weapon bonus, and attunement-required energy weapons. Wand of Orcus uses a Mace and Ruby Rod a Morningstar, so normal weapon proficiency and attack derivation apply. An unattuned Sun Blade or Duskcrusher hilt does not create an ordinary weapon attack. Activation timing remains a separate open mechanic.
+- Hazirawn computes +1/1d6 when wielded without active attunement and +2/2d6 while attuned and used. Its two mutually exclusive source lifetimes do not stack. Its dice, and Wand of Orcus's existing 2d12, now participate in typed normal/critical damage rolls. Ruby Rod changes its base damage to Necrotic and adds the target-qualified rolled packet.
+- A Cleric no longer receives Staff of the Magi item spells despite failing its attunement class requirement. A qualified Wizard still receives them. This fixes an existing item-spell path that bypassed the central eligibility check.
+
+The new static metadata exposed a clause-gate mismatch: any FXO object without `fx` was treated as an explicit `fx:null`, incorrectly moving sentences to info. The engine preserves row effects when the property is absent. The gate now mirrors that behavior, with three synthetic checks for metadata-only, explicit null, and replacement overrides. Its atom for `unattunedBonus` describes the actual attack/damage scalar tested by U22. The temporary false info credit was rejected; the final info count is unchanged.
+
+## Validation
+
+| Check | Result |
+|---|---|
+| build / syntax / pure model | PASS; generated index.html/sw.js, migration identity/future fields, slot caps, duplicates, stock, prerequisite ordering, and override schema |
+| zero_miss_fx | PASS; 758 distinct cases (755 full-suite cases plus 2 new eligibility and 1 new import case), including 17 U22 additions |
+| attunement lifecycle | PASS; 82 checks at 390x844 and 1250x850, actual attune/end/equip controls, stowed slot retention, reload and PDF labels |
+| zero_miss_measure | PASS; 752 units, miss 0 in both editions; 0 new miss/card-or-miss |
+| clause_gate | PASS; 5,258 uncovered, 202 closed from the original 5,460, 0 regressed IDs; baseline written only by the gate |
+| audit | Seed 11, 150 sorted closed IDs; 33 newly selected entries reviewed, including the new item mechanics; no false closures found |
+| solid_contract | PASS; 4,885 checks, entry/ability/sheet handlers 10/9/4, 204,112 runs, 6,698 patches, 2,617 entries; 182 sheet groups, 53 class rules, 8,782 calls, 235 handlers, 4,491 schema entries |
+| golden / UI / data | PASS; 1,479 / 308 / 586 checks |
+| full snapshot | 2,997 builds, `c8c46b43ca36dee4`, 0 page/build errors. 231 changed versus 40b08df5; raw C/D comparison (with the snapshot’s existing rule-link markup normalization) explains all changes: 518 attunement metadata fields, 5 inactive reasons, two Hazirawn rolled-damage fixtures, and 19 ineligible Staff of the Magi spells removed from one Cleric fixture. No unexpected computed changes |
+| snapshot versus main | 567 differences, exactly the union of the prior 346 and this batch's 231 (10 overlap); the raw causal audit uses 40b08df5 as its reference |
+| builderdiff versus main | EXPECTED DIFFERENCES; 3,890 inputs. Raw comparison attributes all 665 changed inputs to 740 migrated booleans across 664 normalizations and the one ineligible Staff of the Magi roundtrip. No other changed paths. The immutable main/reference hash is `c47961d793b8c15b`, current `b1c47d6ea6dc914d`; no test baseline was raised to hide the migration |
+| target / consumable / rider lifecycle | PASS; 92 / 68 / 28 checks; final UI contract 308 checks |
+| scenarios | PASS; 24 checks at 390x844 and 1250x850, s1/s2/s3 screenshots and storage artifacts |
+| tsc / HTML / overlap / guards | PASS; SCORE 200 with no WORSE / SCORE 250 / 1,377 names in 32 files, 157 documented overlaps / 0 new violations |
+
+Remaining counts: item 3,000, subclass 1,328, feat 524, class 237, species 169, spells 0. This model does not claim attunement ritual timing, removal/death events, unsupported ability-score prerequisites, Artificer prerequisite bypasses, energy-weapon activation costs, or Scourge of Shadow's critical/backlash behavior as implemented.
+
 # Uncovered 3: rolled riders and weapon ownership
 
 This checkpoint fixes execution gaps in already-counted effect records. Coverage credit is unchanged: 196 closed from the initial baseline, 5,264 uncovered, and 0 regressed sentence IDs. Work continues after this checkpoint.

@@ -455,6 +455,12 @@ def scope_atoms(atoms, bindings):
     return atoms
 
 
+def item_effect_override(row_fx, override):
+    """Mirror ovFx: metadata alone preserves row effects; explicit null removes."""
+    replaces = isinstance(override, dict) and "fx" in override
+    return (override["fx"] if replaces else row_fx), replaces, bool(replaces and override["fx"] is None)
+
+
 def features(D):
     global CODE_ATOMS
     CODE_NOTES.clear()
@@ -599,13 +605,15 @@ def features(D):
             continue
         name = r[0]
         ex = r[5] if len(r) > 5 and isinstance(r[5], dict) else {}
-        fx = ex.get("fx")
-        fxo_null = name in fxo and (fxo[name] or {}).get("fx") is None
-        if name in fxo:  # FXO replaces the fx of the row (ovFx in 03-logic-magic-item-effects.js)
-            fx = (fxo[name] or {}).get("fx")
+        fx, replaces_fx, fxo_null = item_effect_override(ex.get("fx"), fxo.get(name))
         at = []
         if isinstance(fx, dict):
-            at += atoms_from(fx, "FXO|" + name if name in fxo else "item.fx|" + name)
+            at += atoms_from(fx, "FXO|" + name if replaces_fx else "item.fx|" + name)
+        # This declared scalar is computed for both weapon attack and damage
+        # while unattuned; it is distinct from the attuned fx replacement.
+        unattuned_bonus = (fxo.get(name) or {}).get("unattunedBonus")
+        if isinstance(unattuned_bonus, int) and not isinstance(unattuned_bonus, bool) and unattuned_bonus > 0:
+            at += atoms_from({"atk": unattuned_bonus, "dmg": unattuned_bonus}, "FXO.unattunedBonus|" + name)
         for k in ("ch", "by", "xd", "wp"):
             if ex.get(k) not in (None, "", [], {}):
                 at += atoms_from({k: ex[k]}, "item.ex|" + name) or [Atom("RESOURCE", nums_in(ex[k]), "item.ex.%s" % k)]
@@ -1176,6 +1184,9 @@ def selftest():
     check("12f Bloodied regeneration is COND:PLAY_STATE, not a trigger", r["why"] == "COND:PLAY_STATE", r["why"])
     r = one("When you roll a 1 you regain 1d4 + Constitution modifier (minimum 1) Hit Points at the start of each turn.", [], "item")
     check("12g NEG regeneration without the Bloodied state keeps its old code", r["why"] != "COND:PLAY_STATE", r["why"])
+    check("12h metadata-only override retains row fx", item_effect_override({"atk": 3}, {"base": ["Mace"]}) == ({"atk": 3}, False, False), "metadata must not create FXO_NULL")
+    check("12i explicit null override removes row fx", item_effect_override({"atk": 3}, {"fx": None}) == (None, True, True), "explicit null only")
+    check("12j replacement effect overrides row fx", item_effect_override({"atk": 3}, {"fx": {"atk": 1}}) == ({"atk": 1}, True, False), "replacement fx")
     # 13 an FXO_NULL item (uncovered-2): with a replacement entry the entry is compared with the text; without one the whole item is info
     rp = Atom("*", {"*"}, "FXO_NULL_REPL")
     r = analyze(synth("item", "dmg", "Badge", "While wearing the badge, you gain a +2 bonus to AC.", [Atom("AC", {"2"}, "GX.item|Badge.acAdd"), rp]))[0]

@@ -71,7 +71,8 @@
  add("Arcanist's Bowstaff",{n:"Arcanist's Bowstaff",atkAb:{kind:"Arcanist's Bowstaff",ab:"INT"}});
  each([1,2,3],function(n){add("Arcane Carbine +"+n,{n:"Arcane Carbine",spDc:n})});   /* the spell attack bonus is already in the row */
  add("Scourge of Shadow",{n:"Scourge of Shadow",init:"CHA",initAdv:true,res:["Radiant","Necrotic"],atkBonus:[{when:"Scourge of Shadow",crit:18,note:"On a critical hit the whip deals 3d6."}]});
- add("Ruby Rod of Asmodeus",{n:"Ruby Rod of Asmodeus",atkBonus:[{when:"Ruby Rod of Asmodeus",note:"All damage dealt with the rod is converted to Necrotic."}]});
+ add("Ruby Rod of Asmodeus",{n:"Ruby Rod of Asmodeus",dieReplace:[{when:"Ruby Rod of Asmodeus",t:"Necrotic"}]});
+ add("Ruby Rod of Asmodeus",{n:"Ruby Rod of Asmodeus",target:{creature:true,alignment:"Good"},atkDice:[{when:"Ruby Rod of Asmodeus",d:"2d12",t:"Necrotic",roll:true}]});
  add("True-Ice Shards (Rapier)",{n:"True-Ice Shards (Rapier)",atkBonus:[{when:"True-Ice Shards (Rapier)",note:"Damage is 1d8 Cold instead of the rapier's regular damage."}]});
  add("True-Ice Shards (Dagger)",{n:"True-Ice Shards (Dagger)",atkBonus:[{when:"True-Ice Shards (Dagger)",note:"Damage is 1d6 Cold instead of the dagger's regular damage."}]});
 

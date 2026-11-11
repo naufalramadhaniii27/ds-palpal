@@ -1,5 +1,5 @@
 import {B} from "./04-logic-storage.js";
-import {activeFx,bgX,un} from "./03-logic-magic-item-effects.js";
+import {activeFx,bgX,un,attunementState,DMAP,itemQuantity} from "./03-logic-magic-item-effects.js";
 import {allFeats} from "./09-logic-feats-and-choices.js";
 import {clsParts} from "./11-logic-derivation.js";
 import {registerFxSource} from "./10a-logic-fx-registry.js";
@@ -19,7 +19,7 @@ registerFxSource({id:"feats",items:false,collect:function(ctx){const G=ctx.G,out
  out.push({list:((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),kind:"feat",owner:f.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+f.n+" feat)"},okey:f.key||f.s,alias:{"@asi":"@sub:"+fab,"@abpick":"@sub:"+fpa}})});return out}});
 /* equipped (and attuned when needed) magic items: row gx and GX.item[name] */
 registerFxSource({id:"items",items:true,collect:function(ctx){const G=ctx.G;return activeFx().map((q) =>{
- return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]).filter((e) =>!e.consume&&!e.retain),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
+ return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]).filter((e) =>!e.consume&&!e.retain&&!e.itemState),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
 
 /* Consumable effects have a lifetime independent of their inventory row. Available
    while stock remains, active until explicitly ended. S.fxT remains a boolean map.
@@ -33,3 +33,12 @@ registerFxSource({id:"consumables",items:true,collect:function(ctx){const out=[]
 registerFxSource({id:"retained-item-grants",items:true,collect:function(ctx){const out=[];
  Object.keys(ctx.G.item||{}).forEach((n) =>{const list=ctx.G.item[n].filter((e) =>e.retain&&e.toggle&&((ctx.fxT||{})[e.toggle.id]===true||(B.inv||[]).some((it) =>it.n===n&&+it.q>0)));
   if(list.length)out.push({list:list,kind:"item",owner:n,lv:ctx.TL,pre:"",lblOf:(name) =>name+" (learned upgrade)"})});return out}});
+
+/* Source lifetimes independent of using-and-attuning an item. Choose one wielded
+   copy per name, preferring its active attuned copy, to match the attack row. */
+function stateItemEntries(ctx,it){const d=DMAP[it.n];return d?((d[5]&&d[5].gx)||[]).concat((ctx.G.item&&(ctx.G.item[it.n]||ctx.G.item[d[0]]))||[]):[]}
+function stateItemSource(ctx,it,list,label){return {list:list,kind:"item",owner:it.n,lv:ctx.TL,pre:"",lblOf:(n)=>(n===it.n?n:n+" ("+it.n+")")+" ("+label+")",alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+it.n]||[])[0]||"INT")}}}
+registerFxSource({id:"item-states",items:true,collect:function(ctx){const items=B.inv||[],st=attunementState(),chosen=new Map(),out=[];
+ items.forEach((it,i)=>{if(!it.eq||itemQuantity(it)<=0)return;const old=chosen.get(it.n);if(old==null||(!st.rows[old].attuned&&st.rows[i].attuned))chosen.set(it.n,i)});
+ chosen.forEach((i)=>{const it=items[i],list=stateItemEntries(ctx,it).filter((e)=>e.itemState==="wielded"||(e.itemState==="unattuned"&&!st.rows[i].attuned));if(list.length)out.push(stateItemSource(ctx,it,list,"item in use"))});
+ st.rows.forEach((state,i)=>{if(!state.attuned)return;const it=items[i],list=stateItemEntries(ctx,it).filter((e)=>e.itemState==="attuned");if(list.length)out.push(stateItemSource(ctx,it,list,"attuned item"))});return out}});

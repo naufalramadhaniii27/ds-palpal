@@ -5,15 +5,15 @@ import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.j
 /* ---------- inventory ---------- */
 function invDesc(Q,x,it,bn,rr){if(armorDef(bn)){const A=armorDef(bn);it.d="AC "+A.ac+(A.dex==="max2"?" + Dex (max 2)":A.dex==="full"?" + Dex":"")+(A.str?". Requires Str "+A.str:"")+(A.dis?". Disadvantage on Stealth.":".")}else if(bn==="Shield")it.d="+"+(2+Q.baseOf(x.n).p)+" AC.";else if(x.desc)it.d=x.desc;else if(x.src&&!weaponDef(bn))it.d="From "+x.src;if(rr)it.d=rr+" magic item. "+(it.d||"");}
 function invExtra(Q,x,it){try{it.type=Q.typeOfItem(x.n,x);it.cost=priceOf(x.n)!=null?priceOf(x.n):Q.itemCost(Q.baseOf(Q.kitTool(x)||x.n).b);/* v20 M1 */const h=Q.itemHtml(x.n,x);if(h)it.html=h.html;const d2=Q.dmapRow(x.n);it.equippable=Q.equippable(x.n)||!!(d2&&d2[1]!=="Potion")}catch(e){}}
-function invRow(Q,x){const it={n:Q.kitTool(x)||x.n,key:x.n,q:Q.qOf(x),w:Q.itemW(Q.kitTool(x)||x.n)/* v32 p21 */,eq:!!x.eq};if(Q.itemWEst(x.n))it.west=1;/* v27 RD20 */const bn=Q.baseOf(x.n).b,rr=Q.rarityOf(x),dm=Q.dmapRow(x.n);
-   if(dm&&dm[3]){it.att=1}if(x.mw)it.mw=true;/* Masterwork flag of the row (cond mwArmor) */if(rr)it.rar=rr;if(Q.equippable(x.n))it.gear="equip";if(x.in)it.in=x.in;/* RU35 no. 8 */
+function invRow(Q,x,state){const it={n:Q.kitTool(x)||x.n,key:x.n,q:Q.qOf(x),w:Q.itemW(Q.kitTool(x)||x.n)/* v32 p21 */,eq:!!x.eq};if(Q.itemWEst(x.n))it.west=1;/* v27 RD20 */const bn=Q.baseOf(x.n).b,rr=Q.rarityOf(x),dm=Q.dmapRow(x.n);
+   if(typeof x.attuned==="boolean")it.attuned=x.attuned;if(dm&&dm[3]){it.att=1;it.attunedActive=!!(state&&state.attuned);if(state&&state.reason)it.attuneReason=state.reason}if(x.mw)it.mw=true;/* Masterwork flag of the row (cond mwArmor) */if(rr)it.rar=rr;if(Q.equippable(x.n))it.gear="equip";if(x.in)it.in=x.in;/* RU35 no. 8 */
    invDesc(Q,x,it,bn,rr);
    invExtra(Q,x,it);return it}
 /* one row per item. Item texts are built by the service q.withItemContext (it sets the attack rows and the proficiencies that the item text reads and clears
    them afterwards) and q.itemHtml (the detail text, built once, never inside itself) */
-registerSheetGroup({id:"inventory-rows",group:"inventory",phase:"inventory",order:10,reads:["C.attacks","C.profs","q.withItemContext","q.ensureInv","q.kitTool","q.qOf","q.itemW","q.itemWEst","q.baseOf","q.rarityOf","q.dmapRow","q.equippable","q.typeOfItem","q.itemCost","q.itemHtml"],writes:["C.inv"],
+registerSheetGroup({id:"inventory-rows",group:"inventory",phase:"inventory",order:10,reads:["i.ATT","C.attacks","C.profs","q.withItemContext","q.ensureInv","q.kitTool","q.qOf","q.itemW","q.itemWEst","q.baseOf","q.rarityOf","q.dmapRow","q.equippable","q.typeOfItem","q.itemCost","q.itemHtml"],writes:["C.inv"],
  run:function(ctx){const Q=ctx.q,C=ctx.C;
-  C.inv=Q.withItemContext(ctx.C.attacks,ctx.C.profs,function(){return Q.ensureInv().map(function(x){return invRow(Q,x)})});return ctx.patch()}});
+  C.inv=Q.withItemContext(ctx.C.attacks,ctx.C.profs,function(){return Q.ensureInv().map(function(x,i){return invRow(Q,x,ctx.i.ATT.rows[i])})});return ctx.patch()}});
 registerSheetGroup({id:"gold",group:"inventory",phase:"inventory",order:20,reads:["q.gpNow"],writes:["C.gp"],run:function(ctx){ctx.C.gp=ctx.q.gpNow();return ctx.patch()}});
 /* m4 (RL20): "none" = no starting package (items set by hand or imported from the sheet), not option A or 50 GP */
 registerSheetGroup({id:"equipment-note",group:"inventory",phase:"inventory",order:30,reads:["i.B","i.bg","q.eqIdx","q.clsKitText"],writes:["C.equipNote"],

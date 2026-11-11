@@ -1,5 +1,5 @@
-import {bindLive} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
-import {DMAP,attMax} from "./03-logic-magic-item-effects.js";
+import {bindLive,own} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
+import {DMAP,attMax,attunementState,setItemAttuned} from "./03-logic-magic-item-effects.js";
 import {B,save} from "./04-logic-storage.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {baseOf,ensureInv} from "./14-logic-multiclass-hp-shop.js";
@@ -38,7 +38,10 @@ function bdTail(q,put){
 function bDeco(root){const ICO=genv.__ICO;if(!root||!ICO)return;const q=function(s){return bdQ(root,s)},put=bdPut;
  bdChips(q,put);bdData(q,put,ICO);bdTail(q,put)}
 /* M18: attuned items in the build (equipped items that need attunement) */
-function attN(){return (B.inv||[]).filter((y) =>{return y.eq&&DMAP[y.n]&&DMAP[y.n][3]}).length}
-genv.__bldToggleEq=function(name,occ){ensureInv();const i=invFind(name,occ);if(i<0)return;const it=B.inv[i];if(!it.eq&&DMAP[it.n]&&DMAP[it.n][3]&&attN()>=attMax())return;it.eq=!it.eq;if(it.eq&&ARMOR[baseOf(it.n).b])B.inv.forEach((y,k) =>{if(k!==i&&ARMOR[baseOf(y.n).b])y.eq=false});save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())};
+function attN(){ensureInv();return attunementState().used}
+genv.__bldToggleEq=function(name,occ){ensureInv();const i=invFind(name,occ);if(i<0)return;const it=B.inv[i];it.eq=!it.eq;if(it.eq&&ARMOR[baseOf(it.n).b])B.inv.forEach((y,k) =>{if(k!==i&&ARMOR[baseOf(y.n).b])y.eq=false});save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())};
 genv.__bldSetQty=function(name,q,occ){ensureInv();const i=invFind(name,occ);if(i<0)return;B.inv[i].q=Math.max(0,Math.floor(+q)||0);save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())};
 genv.__bldRemove=function(name,occ){ensureInv();const i=invFind(name,occ);if(i<0)return;ctFree(B.inv[i]);B.inv.splice(i,1);save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())};
+
+genv.__bldSetAttuned=function(name,owner,on,occ){if(!own(owner))return {ok:false,reason:"owner"};ensureInv();const index=invFind(name,occ),result=setItemAttuned(index,on);
+ if(result.ok){save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())}return result};

@@ -1,7 +1,8 @@
+import {attunementMessage} from "../app/lib/attunement-message.js";
 import {acModeCard,bCt,bInN,bInvOrder,binIn,bindLive,bldMine,render,unList} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,ABN,clone,esc,mod,pbOf,sg,toast} from "./01-logic-core-helpers.js";
 import {MAGIC_SUM} from "./02-data-magic-item-summaries.js";
-import {BLANK,DMAP,un} from "./03-logic-magic-item-effects.js";
+import {BLANK,DMAP,un,attunementState,itemBases} from "./03-logic-magic-item-effects.js";
 import {B,BAK,__set_B,save,saveBak} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {choices,kitTool} from "./09-logic-feats-and-choices.js";import {EQ14SH} from "./09c-logic-edition-overlays.js";
@@ -48,9 +49,9 @@ export function itemDetail(n,x){const fullN=n,BO=baseOf(n),rr=rarityOf(x||{n:n})
  else if(!DMAP[n]&&!scrollOf(n))h+=idGear(n,c);
  return h+'</div>'}
 /* V16-1: pick the base weapon or armor of a named magic item (renames the item "Name (Base)"). V16-8: attunement limited to some classes */
-function basePick(x,i){const dm=DMAP[x.n],mb=dm&&dm[5]&&dm[5].base;if(!mb||mb.length<2)return "";const cur=baseOf(x.n).b;return '<div class="iact"><span>Base item</span><select class="dd" data-ibase="'+i+'">'+mb.map((o) =>{return '<option'+(o===cur?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select></div>'}
+function basePick(x,i){const dm=DMAP[x.n],mb=itemBases(dm);if(!mb||mb.length<2)return "";const cur=baseOf(x.n).b;return '<div class="iact"><span>Base item</span><select class="dd" data-ibase="'+i+'">'+mb.map((o) =>{return '<option'+(o===cur?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select></div>'}
 function attWarn(x){const dm=DMAP[x.n],by=dm&&dm[3]&&dm[5]&&dm[5].by;if(!by)return "";const cl=[B.cls].concat(MCL().map((m) =>{return m.cls})),need=Object.keys(CLASSES).filter((c) =>{return by.indexOf(c)>=0});if(!need.length||need.some((c) =>{return cl.indexOf(c)>=0}))return "";return '<div class="caution">\u26a0 Only '+esc(by)+' can attune to this item.</div>'}
-function badge(x,i){const bb=baseOf(x.n).b,dm=DMAP[x.n];if(dm&&dm[1]!=="Potion"&&dm[1]!=="Scroll"&&!WEAPONS[bb]&&!ARMOR[bb]&&bb!=="Shield")return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(dm[3]?(x.eq?"Attuned":"Attune"):(x.eq?"In Use":"Use"))+'</button>';if(ARMOR[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wearing":"Wear")+'</button>';
+function badge(x,i){const bb=baseOf(x.n).b,dm=DMAP[x.n];if(dm&&dm[1]!=="Potion"&&dm[1]!=="Scroll"&&!WEAPONS[bb]&&!ARMOR[bb]&&bb!=="Shield")return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"In Use":"Use")+'</button>';if(ARMOR[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wearing":"Wear")+'</button>';
  if(bb==="Shield"||WEAPONS[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wielding":"Wield")+'</button>';
  return '<span class="qty"><small>QTY</small> '+qOf(x)+'</span>'}
 /* v33 p04 (RU125): item type icon. Packs get the pack icon, weapons the icon of their kind, the rest the sheet's type icon (icoItem) */
@@ -73,8 +74,8 @@ function eqStart(bg){const opt=eqOpt;
 function eqCurrent(inv){
  const w=inv.reduce((t,x) =>{return t+itemW(x.n)*qOf(x)},0);
  const cur=inv.length?bInvOrder(inv).map((pp) =>{const x=pp[0],i=pp[1],id="inv"+i+x.n,o=!!openCards[id];return '<div class="icard'+(o?" open":"")+(pp[2]?" isub":"")+'"'+(pp[2]>1?' data-dp="2"':'')+'><div class="ih"><button type="button" class="itn" data-tog="'+esc(id)+'" aria-expanded="'+o+'">'+bI(bItemIco(x.n,x))+'<span><b class="'+rarCls(rarityOf(x))+'">'+esc(x.n)+(kitTool(x)?' ('+esc(kitTool(x))+')':'')+'</b><small>'+itemType(x.n,x)+(rarityOf(x)?', '+rarityOf(x).toLowerCase():'')+(x.src?' \u2022 '+esc(x.src):'')+(bCt(x.n)?' \u2022 '+bInN(x)+' inside':'')+'</small></span></button>'+badge(x,i)+detBtn(id,o,x.n)+'</div>'+
-  (o?itemDetail(x.n,x)+basePick(x,i)+attWarn(x)+'<div class="iact">'+(equippable(x.n)?'<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Unequip":"Equip")+'</button>':'')+'<span class="step2"><button type="button" data-iq="'+i+'" data-d="-1">\u2212</button><output>'+qOf(x)+'</output><button type="button" data-iq="'+i+'" data-d="1">+</button></span>'+(PACKS[x.n]||(x.alias&&PACKS[x.alias])?'<button type="button" class="bdg add" data-iunpack="'+i+'">Unpack</button>':'')+'<button type="button" class="rmv" data-irm="'+i+'">\u2715 Remove Item</button>'+binIn(x,i)+'</div>':'')+'</div>'}).join(""):'<p class="fd bhint">Empty. Pick a starting option or add items below.</p>';
- const att=inv.filter((x) =>{return x.eq&&DMAP[x.n]&&DMAP[x.n][3]}).length;return eqSec("cur","Current Inventory ("+inv.length+")","Attuned "+att+"/3 \u2022 "+Math.round(w*10)/10+" lb",(att>3?'<div class="caution">\u26a0 You are attuned to '+att+' items. A creature can be attuned to at most 3 magic items at once.</div>':'')+cur);
+  (o?itemDetail(x.n,x)+basePick(x,i)+attWarn(x)+attunePick(x,i)+'<div class="iact">'+(equippable(x.n)?'<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Unequip":"Equip")+'</button>':'')+'<span class="step2"><button type="button" data-iq="'+i+'" data-d="-1">\u2212</button><output>'+qOf(x)+'</output><button type="button" data-iq="'+i+'" data-d="1">+</button></span>'+(PACKS[x.n]||(x.alias&&PACKS[x.alias])?'<button type="button" class="bdg add" data-iunpack="'+i+'">Unpack</button>':'')+'<button type="button" class="rmv" data-irm="'+i+'">\u2715 Remove Item</button>'+binIn(x,i)+'</div>':'')+'</div>'}).join(""):'<p class="fd bhint">Empty. Pick a starting option or add items below.</p>';
+ const state=attunementState(),att=state.used;return eqSec("cur","Current Inventory ("+inv.length+")","Attuned "+att+"/"+state.limit+" \u2022 "+Math.round(w*10)/10+" lb",cur);
 }
 function eqCatNames(){
  const cat=[];Object.keys(ARMOR).forEach((n) =>{cat.push(n)});cat.push("Shield");wpKeys().forEach((n) =>{cat.push(n)});GEAR.forEach((g) =>{cat.push(g[0])});POTIONS.forEach((p) =>{if(cat.indexOf(p[0])<0)cat.push(p[0])});DMGI.forEach((x) =>{if(cat.indexOf(x[0])<0)cat.push(x[0])});
@@ -168,3 +169,5 @@ export function __set_invT(v){ return invT=v; }
 export function __set_invR(v){ return invR=v; }
 export function __set_invP(v){ return invP=v; }
 export function __set_cust(v){ return cust=v; }
+
+function attunePick(x,i){const d=DMAP[x.n];if(!d||!d[3])return "";const state=attunementState(),row=state.rows[i],warning=x.attuned&&row&&!row.attuned?'<small class="bwarn">'+esc(attunementMessage({reason:row.reason,limit:state.limit}))+'</small>':"";return warning+ '<div class="iact"><span>Attunement</span><button type="button" class="bdg'+(x.attuned?' on':'')+'" data-iatt="'+i+'" aria-pressed="'+!!x.attuned+'">'+(x.attuned?'End attunement':'Attune')+'</button></div>'}

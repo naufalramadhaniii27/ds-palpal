@@ -77,7 +77,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  add("Calimemnon Crystal",{n:"Calimemnon Crystal",mv:{fly:30}});
 
  /* ---- Extra damage ---- */
- add("Wand of Orcus",{n:"Wand of Orcus",atkDice:[{when:"Wand of Orcus",d:"2d12",t:"necrotic"}]});
+ add("Wand of Orcus",{n:"Wand of Orcus",atkDice:[{when:"Wand of Orcus",d:"2d12",t:"necrotic",roll:true}]});
  /* Vicious Weapon: the base-weapon aliases are separate inventory names */
  ["Vicious Weapon"].concat(["Longsword","Battleaxe","Blowgun","Club","Dagger","Dart","Flail","Glaive","Greataxe","Greatclub","Greatsword","Halberd","Hand Crossbow","Handaxe","Heavy Crossbow","Javelin","Lance","Light Crossbow","Light Hammer","Longbow","Mace","Maul","Morningstar","Musket","Pike","Pistol","Quarterstaff","Rapier","Scimitar","Shortbow","Shortsword","Sickle","Sling","Spear","Trident","War Pick","Warhammer","Whip"].map(function(b){return "Vicious Weapon ("+b+")"})).forEach(function(n){add(n,{n:n,atkDice:[{when:n,d:"2d6",t:"(same type as the weapon)"}]})});
 

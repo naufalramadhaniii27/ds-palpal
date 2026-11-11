@@ -103,7 +103,7 @@ function edHTMLStep2(h){
 export var TPL={
   bonus:function(){return {s:"",v:1}},
   attack:function(){return {n:"New attack",sub:"",ab:"STR",prof:true,die:"1d6",dieSrc:"",type:"",range:"5 ft",m:"",note:""}},
-  item:function(){return {n:"New item",q:1,w:0,eq:false,d:""}},
+  item:function(){return {n:"New item",q:1,w:0,eq:false,attuned:false,d:""}},
   res:function(){return {k:"r"+Date.now().toString(36),n:"New resource",tag:"",max:1,reset:"long"}},
   action:function(){return {c:"Actions",n:"New action",t:"",d:""}},
   feature:function(){return {n:"New feature",s:"",d:""}},

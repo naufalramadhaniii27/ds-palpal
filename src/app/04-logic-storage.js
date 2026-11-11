@@ -1,5 +1,6 @@
 import {applyLook,ask,bcPost,bindLive,bkpKeyOk,bkpName,bkpOpen,esc,fmtT,healHTML,healUse,ico,lateGet,rGet,renderAll,renderNotes,showHome,snGet,snTake,syncPortrait,toast,updUnsaved} from "./00a-reg-late-ports.js";import { fmtAgo } from "./lib/fmt.js";
 import {normalizeTarget} from "../data/lib/attack-target.js";
+import {migrateSheetAttunement} from "../data/lib/attunement.js";
 import {DEFAULT} from "./02-data-default-character.js";
 import {env} from "./00-env.js";
 bindLive("C",{get:function(){return C;},set:function(v){C=v;}});
@@ -11,7 +12,7 @@ export var CKEY = "yudhi-kelapa-build-v3", KEY = "yudhi-kelapa-sheet-v1";
 export var BAD=[];
 export function loadC(sync){ try{ const r=__store.getItem(CKEY); if(r){ const p=JSON.parse(r); if(p && p.v===3 && p.abilities) return p; throw new Error("the saved sheet has a shape this version does not know"); } }
   catch(e){ if(sync) return null; BAD.push("Sheet: "+((e&&e.message)||e)); } return clone(DEFAULT); }
-export var C = loadC();
+export var C = migrateSheetAttunement(loadC());
 export var cSaveT=null;
 export function saveC(){ clearTimeout(cSaveT); cSaveT=setTimeout(() =>{ cSaveT=null; lsSave(CKEY, C); },200); }
 
@@ -106,7 +107,7 @@ export function recover(why,err){ const msg=String((err&&err.message)||err||why)
 env.__recover=recover;
 
 
-export function __set_C(v){ return C=v; }
+export function __set_C(v){ return C=migrateSheetAttunement(v); }
 export function __set_cSaveT(v){ return cSaveT=v; }
 export function __set_S(v){ return S=v; }
 export function __set_saveT(v){ return saveT=v; }

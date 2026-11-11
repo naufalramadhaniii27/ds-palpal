@@ -1,5 +1,5 @@
 import {bindLive} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf} from "./01-logic-core-helpers.js";
-import {DMAP,activeFx,attMax,bgX,byOk,htText,spX} from "./03-logic-magic-item-effects.js";
+import {DMAP,activeFx,attMax,bgX,byOk,htText,spX,attunementState,itemInUse,itemMagicBonus} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
@@ -26,7 +26,7 @@ bindLive("toSheet",{get:function(){return toSheet;}});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
 /* the pure reads a handler may ask for (state.q): the old code reached them through __R. Functions of 09 and 11 are imported; the modules that load later (13, 14, 16, 20) provide theirs with provideQueries (01a-logic-query-registry.js) */
-provideQueries({byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,getPbAdd:getPbAdd,fxToggles:fxToggles,fxTargets:fxTargets,xfxSenses:function(C){XFX.senses(C)},setProfc:function(C){if(C.profs)QRY.profcSet(C.profs)},spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)QRY.profcSet(profs);return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
+provideQueries({itemInUse:itemInUse,itemMagicBonus:itemMagicBonus,byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,getPbAdd:getPbAdd,fxToggles:fxToggles,fxTargets:fxTargets,xfxSenses:function(C){XFX.senses(C)},setProfc:function(C){if(C.profs)QRY.profcSet(C.profs)},spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)QRY.profcSet(profs);return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
  itemHtml:function(n,x){if(inTS())return null;setInTS(1);try{return {html:QRY.itemDetail(n,x)}}finally{setInTS(0)}},
  kitTool:kitTool,
  resMax:resMax,resKey:resKey,luRows:luRows,slugK:slugK,keepResKeys:keepResKeys,featsOf:featsOf,saveNotesOf:function(f){return saveNoteRows(f)},xdmgRows:xdmgRows,
@@ -42,9 +42,9 @@ function sheetInputs(){
  const bg=bgDef(B.bg),feats=allFeats();
  const hpList=hpCalc().list.map((e) =>{return {v:e.v,c:e.c,r:e.r,n:e.n}});
  const G=fxList(),CH=choices(),SG=subGrant(B.sub),parts=clsParts();
- const EA=effArmor(),ESH=effShield(),EW0=effWeps(),BO=baseOf(EA),EAp=BO.p,ar=armorDef(BO.b),mcl=MCL(),AFX=activeFx(),SFX=spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
+ const EA=effArmor(),ESH=effShield(),EW0=effWeps(),BO=baseOf(EA),ar=armorDef(BO.b),mcl=MCL(),ATT=attunementState(),AFX=activeFx(ATT),EAp=itemMagicBonus(EA,BO,AFX),SFX=spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
  const SM={};spellRows().forEach((x) =>{SM[x[0]]=x});
- return {i:{SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
+ return {i:{SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,ATT:ATT,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
 /* solid:orchestrator toSheet */
 export function toSheet(){
  /* every field group and class rule is a handler registered in 12c-12l (contract in 12a-logic-sheet-registry.js); this function only builds the inputs and runs the phases */

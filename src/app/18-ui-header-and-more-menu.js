@@ -102,7 +102,7 @@ function editInput(el){
   const oldNm=C.name;
   /* RU31: Worn ticked in the Edit form on armor or a Shield of a hand-filled sheet: AC as the Inventory checkbox (RU29) */
   let wm=/^inv\.(\d+)\.eq$/.exec(path), wi=wm&&(C.inv||[])[+wm[1]], wfx=null;
-  if(wi&&wi.att&&v&&!eqOn(wi)&&attCount()>=attMaxC()){ toast("You can attune to at most "+attMaxC()+" magic items. Unattune one first."); rerenderEditor(); return; }/* M18 */
+  /* Wearing/use does not start or end attunement. */
   const _editInputStep1=editInputStep1(wi, v, path, wfx);
   const {ri, rOld, ni}=_editInputStep1;
   let {rfx}=_editInputStep1;

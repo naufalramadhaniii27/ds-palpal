@@ -36,8 +36,8 @@ registerSheetGroup({id:"fighting-style-state",group:"fightingStyles",phase:"atta
   l.hasGWF=I.feats.some((f) =>{return f.n==="Great Weapon Fighting"});l.hasTWF=I.feats.some((f) =>{return f.n==="Two-Weapon Fighting"});return ctx.patch()}});
 /* ---------- one row per active weapon: the loop "weapon-rows" ---------- */
 const EACH={scope:"each",over:"l.EW",loop:"weapon-rows"};
-registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-base",group:"weaponRows",phase:"attacks",order:100,reads:["i.a","i.SRC","q.baseOf"],writes:["l.wrow"],
- run:function(ctx){const n=ctx.p,a=ctx.i.a,BO=ctx.q.baseOf(n),w=weaponDef(BO.b);if(!w){ctx.l.wrow=undefined;return ctx.patch()}
+registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-base",group:"weaponRows",phase:"attacks",order:100,reads:["i.a","i.SRC","i.AFX","q.baseOf","q.itemMagicBonus"],writes:["l.wrow"],
+ run:function(ctx){const n=ctx.p,a=ctx.i.a,declared=ctx.q.baseOf(n),BO=Object.assign({},declared,{p:ctx.q.itemMagicBonus(n,declared,ctx.i.AFX)}),w=weaponDef(BO.b);if(!w){ctx.l.wrow=undefined;return ctx.patch()}
   let ab="STR";if(w.k==="R")ab="DEX";else if(/Finesse/.test(w.p))ab=a.sc.DEX>a.sc.STR?"DEX":"STR";
   ctx.l.wrow={n:n,BO:BO,w:w,ab:ab,isPact:false,pr:false,m:"",flow:false,die:w.d,dieSrc:BO.b+" ("+ctx.i.SRC+")",hit:0,dmg:0,srcs:[],note:"",thrown:false,oneH:false};return ctx.patch()}}));
 /* M7: a Monk weapon (Simple, or Martial with Light) may use Dexterity */

@@ -76,9 +76,9 @@ registerSheetGroup({id:"cantrip-attack-rows",group:"spells",phase:"spells",order
 registerSheetGroup({id:"spell-strip-ability",group:"spells",phase:"spells",order:80,reads:[],writes:["C.spells"],
  run:function(ctx){(ctx.C.spells||[]).forEach((s) =>{delete s._ab});return ctx.patch()}});
 /* v58: spells that magic items let you cast (ITEM_SPELLS). use is "At will" when free, else "Item" and itc says what it costs */
-registerSheetGroup({id:"item-spells",group:"spells",phase:"spells",order:90,reads:["i.a","i.SM","q.ensureInv","q.dmapRow","q.spFxTo"],writes:["C.spells"],
+registerSheetGroup({id:"item-spells",group:"spells",phase:"spells",order:90,reads:["i.a","i.SM","i.ATT","q.ensureInv","q.dmapRow","q.spFxTo","q.itemInUse","q.qOf"],writes:["C.spells"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,SM=I.SM,a=I.a,ISL=[];
-  Q.ensureInv().forEach((x) =>{const it=itemSpellRow(x.n),d=Q.dmapRow(x.n);if(!it||!d)return;if(d[3]&&!x.eq)return;
+  Q.ensureInv().forEach((x,ix) =>{const it=itemSpellRow(x.n);if(!it||!itemSpellAvailable(I,Q,x,ix))return;
    it.sp.forEach((q) =>{const sp=SM[q[0]];if(!sp)return;const cost=q[1],pl=q[3],src=x.n+(pl?" ("+pl+")":"");if(ISL.some((y) =>{return y.n===q[0]&&y.src===src}))return;
     const lv=typeof q[2]==="number"&&q[2]?q[2]:sp[1];
     const o={n:q[0],l:sp[1],sch:sp[2],ct:sp[4],r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:spellFullText(q[0])||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:cost===0?"At will":"Item",src:src,itc:{it:x.n,c:cost,lv:lv}};
@@ -100,3 +100,5 @@ registerSheetRule({id:"devils-sight",group:"senses",about:"Warlock invocation De
 /* M13: Pact of the Blade is applied to the chosen weapon only, in the attack rows. Thirsting Blade and Devouring Blade change the Attack action text */
 registerSheetRule({id:"thirsting-devouring-blade",group:"actions",about:"Warlock invocations Thirsting Blade and Devouring Blade: more attacks with the pact weapon",phase:"spells",order:140,reads:["i.invs"],writes:["C.actions"],
  run:function(ctx){const invs=ctx.i.invs,C=ctx.C;if(invs.indexOf("Thirsting Blade")>=0||invs.indexOf("Devouring Blade")>=0)C.actions[0].d="Make "+(invs.indexOf("Devouring Blade")>=0?"three":"two")+" attacks with your pact weapon (Thirsting Blade), or one attack otherwise. "+C.actions[0].d.replace(/^Make one attack\. /,"");/* zero-miss-1: the plain "Make one attack." was said twice */return ctx.patch()}});
+
+function itemSpellAvailable(I,Q,x,ix){const d=Q.dmapRow(x.n);return !!d&&Q.qOf(x)>0&&(!d[3]||Q.itemInUse(x,I.ATT.rows[ix]))}

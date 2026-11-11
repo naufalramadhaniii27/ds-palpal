@@ -1,5 +1,5 @@
 import {bindLive} from "./01b-logic-late-ports.js";import {SRC,esc,mod,pbOf} from "./01-logic-core-helpers.js";
-import {DMAP,bgX,kitGP,un,ovFx} from "./03-logic-magic-item-effects.js";
+import {DMAP,bgX,kitGP,un,ovFx,itemBases,migrateInventory,itemQuantity,attunementState,itemWeaponInUse} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
@@ -120,7 +120,7 @@ export function packOut(p,L){const P=PACKS[p];if(!P)return [];let nm=P[0]+" ("+p
 export function rebuildKit(unpack){B.inv=(B.inv||[]).filter((x) =>{return !x.kit});let hasArmor=B.inv.some((x) =>{return ARMOR[x.n]&&x.eq});
  kitItems().forEach((x) =>{if(unpack&&PACKS[x.n]){for(let pk2=0;pk2<(x.q||1);pk2++)packOut(x.n,B.inv).forEach((y) =>{y.src=x.src;y.kit=1;B.inv.push(y)});return}/* v32 RU134 */let eq=equippable(x.n);if(ARMOR[x.n]){eq=!hasArmor;hasArmor=true}/* D1: a Monk does not start holding a non-Monk weapon */if(eq&&B.cls==="Monk"&&WEAPONS[baseOf(x.n).b]&&!monkWep(x.n))eq=false;B.inv.push({n:x.n,q:x.q,eq:eq,src:x.src,kit:1})})}
 function normInv(){(B.inv||[]).forEach((x) =>{if(x.alias&&/^Spell Scroll \(/.test(x.alias)){x.n=x.alias;delete x.alias;x.eq=false;return}if(x.alias||/^Spell Scroll \(/.test(x.n))return;const bn=baseOf(x.n).b;if(WEAPONS[bn]||ARMOR[bn]||bn==="Shield"||DMAP[x.n]||itemCost(bn)!=null)return;const pm=/\(([^)]+)\)/.exec(x.n);if(pm&&(WEAPONS[pm[1]]||ARMOR[pm[1]]||itemCost(pm[1])!=null)){x.alias=x.n;x.n=pm[1];if(WEAPONS[pm[1]])x.eq=true}})}
-export function ensureInv(){normInv();if(!B.inv){B.inv=[];if(B.armor)B.inv.push({n:B.armor,q:1,eq:true});if(B.shield)B.inv.push({n:"Shield",q:1,eq:true});(B.weps||[]).forEach((n) =>{B.inv.push({n:n,q:1,eq:true})});(B.buy||[]).forEach((x) =>{if(!B.inv.some((y) =>{return y.n===x.n}))B.inv.push({n:x.n,q:x.q||1,eq:equippable(x.n)})});rebuildKit()}return B.inv}
+export function ensureInv(){normInv();if(!B.inv){B.inv=[];if(B.armor)B.inv.push({n:B.armor,q:1,eq:true});if(B.shield)B.inv.push({n:"Shield",q:1,eq:true});(B.weps||[]).forEach((n) =>{B.inv.push({n:n,q:1,eq:true})});(B.buy||[]).forEach((x) =>{if(!B.inv.some((y) =>{return y.n===x.n}))B.inv.push({n:x.n,q:x.q||1,eq:equippable(x.n)})});rebuildKit()}migrateInventory(B);return B.inv}
 /* fx pick t:"item": the chosen items join B.inv (row tag px = pick key) when the pick is made and leave when the pick changes. B.px[key] lists the names already added, so an item the player deleted by hand does not come back. Names without item data stay record-only */
 let pxBusy=false;
 /* syncPickItems steps (SOLID s16): want = the items the picks and grantItem entries ask for, gq their quantities, px the rows the builder put in */
@@ -135,16 +135,16 @@ export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();con
  const px=B.px||(B.px={});spiDrop(px,want);spiAdd(px,want,gq);
  if(!Object.keys(px).length)delete B.px}finally{pxBusy=false}}
 
-function effArmor(){const a=ensureInv().filter((x) =>{return ARMOR[baseOf(x.n).b]&&x.eq})[0];return a?a.n:""}
-function effShield(){const s=ensureInv().filter((x) =>{return baseOf(x.n).b==="Shield"&&x.eq})[0];return s?s.n:""}
-function effWeps(){const w=[];ensureInv().forEach((x) =>{if(WEAPONS[baseOf(x.n).b]&&x.eq&&w.indexOf(x.n)<0)w.push(x.n)});return w}
+function effArmor(){const a=ensureInv().filter((x) =>{return ARMOR[baseOf(x.n).b]&&x.eq&&qOf(x)>0})[0];return a?a.n:""}
+function effShield(){const s=ensureInv().filter((x) =>{return baseOf(x.n).b==="Shield"&&x.eq&&qOf(x)>0})[0];return s?s.n:""}
+function effWeps(){const w=[],inv=ensureInv(),state=attunementState();inv.forEach((x,i) =>{if(WEAPONS[baseOf(x.n).b]&&itemWeaponInUse(x,state.rows[i])&&w.indexOf(x.n)<0)w.push(x.n)});return w}
 export function gpNow(){return B.gpOverride!=null&&B.gpOverride!==""?+B.gpOverride:gpBase()}
 
 /* Item quantity. Missing = 1. 0 is kept (used-up ammunition stays in the inventory). */
-export function qOf(x){const n=parseFloat(x&&x.q);return isNaN(n)?1:Math.max(0,n)}
+export function qOf(x){return itemQuantity(x)}
 /* V16-1: a named magic weapon or armor (DMGI[5].base) resolves to its base item and its bonus (fx.ac for armor and shields, fx.atk for weapons) */
 /* baseOf step (SOLID s16): the base item of a magic item row, or null */
-function baseOfMi(n){const d=typeof DMAP!=="undefined"&&DMAP[n],mb=d&&d[5]&&d[5].base;if(mb){const o=n!==d[0]&&/^(.*) \(([^()]+)\)$/.exec(n),b=o&&mb.indexOf(o[2])>=0?o[2]:mb[0],f=ovFx(d)||{};return {b:b,p:(ARMOR[b]||b==="Shield")?(f.ac||0):(f.atk||0),mi:d[0],mw:!!f.mw}}return null}
+function baseOfMi(n){const d=typeof DMAP!=="undefined"&&DMAP[n],mb=itemBases(d);if(mb){const o=n!==d[0]&&/^(.*) \(([^()]+)\)$/.exec(n),b=o&&mb.indexOf(o[2])>=0?o[2]:mb[0],f=ovFx(d)||{};return {b:b,p:(ARMOR[b]||b==="Shield")?(f.ac||0):(f.atk||0),mi:d[0],mw:!!f.mw}}return null}
 export function baseOf(n){const pq=/^(Backpack|Chest) \(([^()]+'s Pack)(?: \d+)?\)$/.exec(n);if(pq&&typeof PACKS!=="undefined"&&PACKS[pq[2]])return {b:pq[1],p:0};/* v32 RU134 */const m=/^(.+), \+(\d)$/.exec(n);if(m)return {b:m[1],p:+m[2]};const mw=/^(.+), Masterwork(?: \(\d+\))?$/.exec(n);if(mw&&!(typeof DMAP!=="undefined"&&DMAP[n])&&(WEAPONS[mw[1]]||ARMOR[mw[1]]))return {b:mw[1],p:0};/* v20 M6 */const mi=baseOfMi(n);if(mi)return mi;/* v20 RD24: mw = Masterwork, attack only */return {b:n,p:0}}
 export function rarityOf(x){if(x.rar)return x.rar;const dm=DMAP[x.n];if(dm)return dm[2]==="Varies"||dm[2]==="Not magic"?"":dm[2];const o=baseOf(x.n);if(o.p){if(WEAPONS[o.b])return RAR_W[o.p];if(ARMOR[o.b])return RAR_A[o.p];if(o.b==="Shield")return RAR_S[o.p]}const p=POTIONS.filter((q) =>{return q[0]===x.n})[0];if(p)return p[1];const sc=scrollOf(x.n);if(sc)return sc.rar;return ""}
 export function rarCls(r){return r?"r-"+r.toLowerCase().replace(/\s+/g,""):""}

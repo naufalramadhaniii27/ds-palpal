@@ -17,6 +17,7 @@ export const FX_FIELDS={
  retain:"boolean",
  notSpecies:"array",
  savePE:"object",
+ itemState:"string",
  target:"object",
  targetOn:"boolean?",
  acAdd:"array|number|string",
@@ -131,6 +132,7 @@ function extraEntryProblems(e,bad){ if(e.retain&&(!e.toggle||!e.toggle.id||e.tog
   if(!e.toggle||!e.toggle.id||e.toggle.default!==false)bad.push("consume needs a toggle with default false");
   if(typeof e.consume.duration!=="string"||!e.consume.duration.trim())bad.push("consume needs a duration label");
  }
+ if("itemState" in e&&!["wielded","attuned","unattuned"].includes(e.itemState))bad.push("itemState must be wielded, attuned or unattuned");
  if(e.target)bad.push(...targetProblems(e.target));
  (Array.isArray(e.atkDice)?e.atkDice:[]).forEach((x) =>bad.push(...riderProblems(x)));
 }

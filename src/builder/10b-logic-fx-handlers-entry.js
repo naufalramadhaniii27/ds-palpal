@@ -4,6 +4,7 @@ import {registerFxHandler,chPick,ABFULL} from "./10a-logic-fx-registry.js";
    gate and prepare handlers get the raw source entry e, post handlers get the built entry o. One handler per field group. */
 /* l: the entry counts from this level (class level for cls and sub entries, character level for the rest) */
 registerFxHandler("entry",{id:"gate-level",group:"gate",phase:"gate",fields:["l"],uses:["src"],run:function(e,ctx){return e.l&&ctx.src.lv<e.l?{skip:true}:null}});
+registerFxHandler("entry",{id:"gate-item-state-source",group:"gate",phase:"gate",fields:["itemState"],uses:["src"],run:function(e,ctx){return e.itemState&&ctx.src.kind!=="item"?{skip:true}:null}});
 /* Subclass names can belong to different classes. Use the actual source part,
    including a multiclass part, rather than the character's primary class. */
 registerFxHandler("entry",{id:"gate-source-class",group:"gate",phase:"gate",fields:["classOnly"],uses:["src"],run:function(e,ctx){return e.classOnly&&e.classOnly!==ctx.src.ocls?{skip:true}:null}});
@@ -17,7 +18,7 @@ registerFxHandler("entry",{id:"spcls-alias",group:"spellcasting",phase:"prepare"
 registerFxHandler("entry",{id:"abpick-pick",group:"abilityScores",phase:"prepare",fields:["abPick","pick"],uses:[],run:function(e,ctx){const ap=e.abPick;if(!(ap&&ap.from&&!(e.pick||[]).some((q) =>{return q.k===ap.k})))return null;
  return {set:{pick:(e.pick||[]).concat([{k:ap.k,t:"multi",n:ap.n||1,title:ap.title||"Ability score",list:ap.from.map((k) =>{return [ABFULL[k]||k,""]})}])}}}});
 /* toggle {id,label,default}: the effect counts only while the state is on. Off: only the keys in TGKEEP stay (so picks and the toggle list still work) */
-export const TGKEEP=["n","l","when","pick","pickLv","toggle","consume","retain","target","targetOn","abPick","kind","owner","lv","pre","okey","idx","lbl","ocls"];
+export const TGKEEP=["n","l","when","pick","pickLv","toggle","consume","retain","itemState","target","targetOn","abPick","kind","owner","lv","pre","okey","idx","lbl","ocls"];
 registerFxHandler("entry",{id:"toggle",group:"toggle",phase:"post",fields:["toggle"],uses:["fxT"],eKeys:["*"],run:function(o,ctx){if(!o.toggle)return null;const st=ctx.fxT[o.toggle.id],on=st==null?!!o.toggle.default:!!st;
  if(on)return {replace:Object.assign({},o,{tgOn:on})};const k={off:1,tgOn:false};TGKEEP.forEach((f) =>{if(o[f]!==undefined)k[f]=o[f]});return {replace:k}}});
 

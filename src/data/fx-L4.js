@@ -60,8 +60,9 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  rider("Ionbreaker, the Tempest's Reach","1d8","lightning (ranged hit on your turn)");
  add("Festerwood Logger",{n:"Festerwood Logger",atkBonus:[{when:["Festerwood Logger"],note:"The extra acid damage is maximized against plants, Plant creatures and wooden objects."}]});
  add("Hand of Vecna",{n:"Icy Touch",atkDice:[{when:"melee",d:"2d8",t:"cold (weapon held in the hand, and melee spell attacks with the hand)"}]});
- add("Hazirawn",{n:"Hazirawn (attuned)",atkDice:[{when:["Hazirawn"],d:"2d6",t:"necrotic"}]});
- DataEnv.slot.FXO["Hazirawn"]={fx:{atk:2,dmg:2}};
+ add("Hazirawn",{n:"Hazirawn (attuned)",atkDice:[{when:["Hazirawn"],d:"2d6",t:"necrotic",roll:true}]});
+ DataEnv.slot.FXO["Hazirawn"]={fx:{atk:2,dmg:2},unattunedBonus:1};
+ add("Hazirawn",{n:"Hazirawn (unattuned)",itemState:"unattuned",atkDice:[{when:"Hazirawn",d:"1d6",t:"Necrotic",roll:true}]});
  var HA=["Longsword","Battleaxe","Blowgun","Club","Dagger","Dart","Flail","Glaive","Greataxe","Greatclub","Greatsword","Halberd","Hand Crossbow","Handaxe","Heavy Crossbow","Javelin","Lance","Light Crossbow","Light Hammer","Longbow","Mace","Maul","Morningstar","Musket","Pike","Pistol","Quarterstaff","Rapier","Scimitar","Shortbow","Shortsword","Sickle","Sling","Spear","Trident","War Pick","Warhammer","Whip"];
  addV("Holy Avenger",HA,function(v){return {n:v,target:{types:["Fiend","Undead"]},atkDice:[{when:[v],d:"2d10",t:"Radiant",roll:true}]}});
  add("Keranos's Devotee",{n:"Keranos's Devotee",atkBonus:[{when:"weapon",note:"Keranos's Devotee: once per turn on a hit, an extra 1d6 lightning (uses are in Resources)."}]});
