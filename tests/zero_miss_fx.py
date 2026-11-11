@@ -2549,11 +2549,26 @@ CASES.append(dict(name="Z3 U22 import preserves exhausted stock and explicit sta
 for item in ["Sun Blade","Duskcrusher"]:
     CASES.append(dict(name="NEG U22 unattuned hilt "+item,b=dict(cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=False)]),expect=[("C.attacks.some(a=>a.n==="+repr(item)+")",False)]))
 
+# U23: actual target-qualified riders; a light mode is a separate prerequisite.
+for item,types,die,dtype,bonus in [("Mace of Disruption",["Fiend","Undead"],"2d6","Radiant",0),("Azuredge",["Fiend","Undead"],"2d6","Radiant",3),("Flayer Slayer",["Aberration"],"1d12","Slashing",1)]:
+    for type_ in ["","Object","Humanoid","Fiend","Undead","Aberration"]:
+        active=type_ in types
+        checks=[("!!C.attacks[1].xdice",active),("C.attacks[1].misc",bonus),("!!C.attacks[2].xdice",False),("!!__deriveFor(C).atk[1].damageParts",active)]
+        if active:checks += [("C.attacks[1].xdice[0].d",die),("C.attacks[1].xdice[0].t",dtype),("C.attacks[1].xdice[0].roll",True)]
+        CASES.append(dict(name=("Z3" if active else "NEG")+" U23 "+item+" target "+type_,b=dict(cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=True),dict(n="Longsword",q=1,eq=True)]),target={"type":type_},expect=checks))
+    CASES.append(dict(name="NEG U23 unattuned "+item,b=dict(cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=False)]),target={"type":types[0]},expect=[("!!C.attacks[1].xdice",False),("C.attacks[1].misc",0)]))
+    CASES.append(dict(name="NEG U23 exhausted "+item,b=dict(cls="Fighter",level=4,inv=[dict(n=item,q=0,eq=True,attuned=True)]),target={"type":types[0]},expect=[("C.attacks.length",1)]))
+for type_ in ["","Object","Undead","Fiend"]:
+    for on in [False,True]:
+        active=on and type_=="Undead"
+        CASES.append(dict(name=("Z3" if active else "NEG")+" U23 Lightbringer glow "+str(on)+" "+type_,b=dict(cls="Fighter",level=4,inv=[dict(n="Lightbringer",q=1,eq=True),dict(n="Longsword",q=1,eq=True)]),target={"type":type_},tog={"lightbringer-glow":on},expect=[("!!C.attacks[1].xdice",active),("C.attacks[1].misc",1),("!!C.attacks[2].xdice",False)],allow=[r"^attacks\.1\.xdice\.\d+\.(d|t|s|roll)$",r"^attacks\.1\.note$",r"^fxToggles\.0\.on$"]))
+CASES.append(dict(name="NEG U23 Lightbringer stowed while glowing",b=dict(cls="Fighter",level=4,inv=[dict(n="Lightbringer",q=1,eq=False)]),target={"type":"Undead"},tog={"lightbringer-glow":True},expect=[("C.attacks.length",1)],allow=[]))
+
 # The lazy rule-link index must settle before comparing inventory HTML. Keep the
 # HTML comparison strict; wait out the documented 250ms link-index cache.
 # Warming does not permit any additional changed paths.
 for c in CASES:
-    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"]:c["warm"]=True
+    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]):c["warm"]=True
 
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };

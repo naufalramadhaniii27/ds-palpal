@@ -1,3 +1,35 @@
+# Uncovered 3: more target-qualified weapon rolls
+
+This batch closes 4 more original sentence IDs: 206 closed in total, 5,254 uncovered, and 0 regressed IDs. Covered is 7,907, info 23,621, allow 0. Work continues after this checkpoint.
+
+Flayer Slayer now rolls its extra 1d12 Slashing only against an Aberration. Lightbringer rolls its extra 1d6 Radiant only while its glowing mode is on and the target is Undead. Both DMG and Phandelver copies of these sentences are now covered. The source prose and gate classification rules were not edited.
+
+Mace of Disruption now rolls an actual extra 2d6 Radiant against a Fiend or Undead. Its first sentence moves from the existing `ACTIVE:TRIGGER` info status to covered because the app now computes it. This is not counted among the four newly closed uncovered IDs. Azuredge's previously counted advisory rider is now target-gated and included in real typed damage/critical rolls, replacing its unrestricted advisory dice and qualifier note.
+
+All four effects stay on their source weapon. Unknown/wrong creature types and Objects grant no rider. Requiring-attunement weapons grant none while unattuned, and zero stock grants no attack. Lightbringer retains its +1 potency while not glowing; the damage rider also requires the weapon to be in use. Target state and the independent glow switch survive reload after the ordinary state/sheet writes complete. A cold-reload switch-off removes the rider without needing a manual builder warmup.
+
+## Validation
+
+| Check | Result |
+|---|---|
+| build / syntax | PASS; generated index.html/sw.js |
+| zero_miss_fx | PASS; 791 cases, including 33 U23 additions: target matrix, unattuned/exhausted weapons, separate weapon, glow on/off, and stowed state |
+| target lifecycle | PASS; 128 checks at 390x844 and 1250x850, actual normal/critical roll buttons, same/mixed damage types, no separate-weapon leakage, stored-state reload and cold switch-off; screenshot artifacts captured |
+| zero_miss_measure | PASS; 752 units, miss 0 in both editions; 0 new miss/card-or-miss |
+| clause_gate | PASS; 5,254 uncovered, 206 closed from the original 5,460, 0 regressed IDs; baseline written only by the gate |
+| audit | Seed 11, 150 sorted closed IDs; 30 newly selected entries reviewed. Exactly four uncovered-to-covered changes and one real info-to-covered change; no other status changes |
+| solid_contract | PASS; 4,885 checks, entry/ability/sheet handlers 10/9/4, 204,388 runs, 6,718 patches, 2,620 entries; 182 sheet groups, 53 class rules, 8,782 calls, 235 handlers, 4,497 schema entries |
+| golden / UI / data | PASS; 1,479 / 308 / 586 checks |
+| full snapshot | PASS; 2,997 builds, `c8c46b43ca36dee4`, identical to a5d91c7b; 0 page/build errors. The four weapons are additionally exercised by the dedicated U23/real-control tests |
+| snapshot versus main | The same 567 explained differences as a5d91c7b; no newly changed snapshot builds |
+| builderdiff versus main | EXPECTED DIFFERENCES; 3,890 inputs, current `b1c47d6ea6dc914d` unchanged from a5d91c7b, versus immutable main `c47961d793b8c15b`. The same 665 previously audited migration/eligibility changes; no new differences |
+| scenarios | PASS; 24 checks at both viewports, s1/s2/s3 screenshots and storage artifacts |
+| tsc / HTML / overlap / guards | PASS; SCORE 200 with no WORSE / SCORE 250 / 1,380 names in 32 files, 157 documented overlaps / 0 new violations |
+
+The Lightbringer counterfactuals use the existing strict rule-link warmup (260 ms) so lazy link markup is stable; no changed HTML path was allowed or normalized away in the effect test. The reload test waits for both actual saved state and actual saved sheet rather than assuming the debounced writes have already run. One environment restart interrupted pending checks; completed effect/measurement checks were retained and the unfinished contract/UI work resumed.
+
+Remaining counts: item 2,996, subclass 1,328, feat 524, class 237, species 169, spells 0. Mace of Disruption's low-HP destruction save, Flayer Slayer's grapple-release save, Azuredge's Shield-spell bypass, and illumination geometry are not claimed as computed by this batch.
+
 # Uncovered 3: independent attunement and weapon definitions
 
 This batch closes 6 more original sentence IDs: 202 closed in total, 5,258 uncovered, and 0 regressed IDs. Covered is 7,902; info remains 23,622 and allow remains 0. Work continues after this checkpoint.

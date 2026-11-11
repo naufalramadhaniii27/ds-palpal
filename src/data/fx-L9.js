@@ -50,7 +50,7 @@ DataEnv.slot.FXO=DataEnv.slot.FXO||{};
  addI("Nepenthe",{n:"Nepenthe",atkDice:[{when:"Nepenthe",d:"2d10",t:"Radiant"}],atkBonus:[{when:"Nepenthe",note:"The extra Radiant damage is only against a fiend or an undead."}],advOn:["saves against spells and other magical effects (you and friendly creatures in the aura while you hold the drawn sword: 10 ft, 30 ft at Paladin 17)"]});
  addI("Witchlight Vane",{n:"Witchlight Vane",atkDice:[{when:"Witchlight Vane",d:"1d8",t:"Radiant"}],vul:["Lightning"],condImm:["Blinded","Deafened","Petrified","Stunned"]});
  addI("Woodcutter's Axe",{n:"Woodcutter's Axe",atkDice:[{when:"Woodcutter's Axe",d:"2d6",t:"Slashing"}],atkBonus:[{when:"Woodcutter's Axe",note:"The extra Slashing damage is only against a plant or a wooden object that is not worn or carried."}]});
- addI("Azuredge",{n:"Azuredge",atkDice:[{when:"Azuredge",d:"2d6",t:"Radiant"}],atkBonus:[{when:"Azuredge",note:"The extra Radiant damage is only against a fiend or an undead."}]});
+ addI("Azuredge",{n:"Azuredge",target:{types:["Fiend","Undead"]},atkDice:[{when:"Azuredge",d:"2d6",t:"Radiant",roll:true}]});
  W.FXO["Badge of the Watch"]={fx:null};
  addI("Badge of the Watch",{n:"Badge of the Watch",acAdd:2,cond:"noShield"});
  addI("Blast Scepter",{n:"Blast Scepter",res:["Fire","Lightning"]});
