@@ -20,7 +20,7 @@ SUB = {
   "Hit Hard, Hit Fast": "The extra damage of Momentum becomes 2d6.",
   "Nimble Dodge": "When an area effect would make you take a saving throw, use your reaction to move up to half your speed, possibly out of the area."},
  "acts": {"Freerunning": "bonus", "Nimble Dodge": "reaction"},
- "lu": [{"feature": "Freerunning", "lvl": 3, "max": "mod:DEX", "reset": "short", "tag": "Slide, Tumble, Wall Run"}],
+ "lu": [{"feature": "Freerunning", "n": "Freerunner Techniques", "lvl": 3, "max": "mod:DEX", "reset": "short", "tag": "Slide, Tumble, Wall Run"}],
  "fx": [[3, "Freerunning", {"notes": [["Note", "Freerunning: Advantage on Acrobatics to pass obstacles while running. Dexterity may replace Strength for climbing, jumping and swinging Athletics checks"]]}]]},
 
 "Highwayman": {"spab": "Wisdom",
