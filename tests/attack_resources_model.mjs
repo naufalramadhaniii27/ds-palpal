@@ -14,3 +14,8 @@ const huge={...striking,d:'9007199254740991d6'};assert.equal(scaledResourceDice(
 assert.equal(scaledResourceDice({...striking,d:' 2D8 '},2),'4d8');
 assert.deepEqual(striking,{when:'Staff of Striking',d:'1d6',type:'Force',maxCost:3,perCost:true,resource:{kind:'charges'}});
 console.log('Resource damage schema, charge scaling, critical doubling, independent daily use, invalid costs and overflow PASS');
+
+for(const attackKind of ['melee','ranged']){const spec={...striking,attackKind};assert.deepEqual(spendDiceProblems(spec),[]);assert.equal(scaledResourceDice(spec,3),'3d6');assert.equal(scaledResourceDice(spec,3,true),'6d6');}
+for(const attackKind of [null,'','M','R','Melee',true,[],{}]){const spec={...striking,attackKind};assert(spendDiceProblems(spec).length);assert.equal(scaledResourceDice(spec,1),null);}
+assert(spendDiceProblems({...striking,attackKind:'melee',unknown:1}).length);
+console.log('Optional resource attack kind validates strictly without changing charge or critical dice PASS');

@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 73254 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 36782 (50.2%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 7939 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 7941 |
 | Info (tag terdokumentasi) | 23617 (SPELL_TEXT 6470, FORM:ACTIVATE 2723, NUMONLY:GEOMETRY 2232, FORM:ROLL 1938, NUMONLY:TEXT 1341, ACTIVATE 1309, FORM:TABLE 1156, NUMONLY:ROLL 1000, NUMONLY:TABLE 862, FXO_NULL 828, ACTIVE:TRIGGER 784, ACTIVE:OTHERS 642, REST:NONUM 586, NUMONLY:FLAVOR 305, STD:ASI 208, COND:PLAY_STATE 188, NUMONLY:ZERO 162, ROLL:LAST_CHARGE 136, OBJECT:STATS 106, ITEM:SENSES 82, DC:REFERENCE 77, BY_DESIGN 72, TABLE:CLASS 70, COND:ATTACK_ROLL_ADV 68, STD:PICK_TEXT 63, ACTIVE:REACTION 56, MOVE:SPEED_REF 50, ACTIVE:TIMED_IMM 43, TARGET:SPEED 30, FOCUS:SPELLCASTING 14, STD:AC10 7, KNOW:TARGET_DEFENSES 7, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5226 |
-| Uncovered dengan angka | 3103 |
-| Uncovered dengan kelas kata kunci mekanik | 4866 |
+| Uncovered | 5224 |
+| Uncovered dengan angka | 3101 |
+| Uncovered dengan kelas kata kunci mekanik | 4864 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 360 |
-| Angka yang tidak dijelaskan record mana pun | 2893 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4431 kalimat |
+| Angka yang tidak dijelaskan record mana pun | 2891 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4429 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 306 |
-| Waktu | muat data 0 s, analisis 13 s |
+| Waktu | muat data 1 s, analisis 13 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 176 ditangkap (58.9%). Hapus semua atom kelas yang dibutuhkan: 176 ditangkap (58.9%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 176 ditangkap (58.9%). Hapus semua atom kelas yang dibutuhkan: 175 ditangkap (58.5%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 292 ditangkap (97.3%), semua atom kelas dihapus: 295 ditangkap (98.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 289 ditangkap (96.3%), semua atom kelas dihapus: 295 ditangkap (98.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -38,8 +38,8 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 
 | Sumber | Kalimat covered |
 |---|---|
-| item | 3149 |
-| GX | 1903 |
+| item | 3151 |
+| GX | 1905 |
 | wxs | 707 |
 | LU_X | 536 |
 | ITEM_SPELLS | 363 |
@@ -64,9 +64,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
-| RESOURCE | 6659 | 891 | 13.4% |
+| RESOURCE | 6659 | 889 | 13.4% |
 | SPELL | 2882 | 829 | 28.8% |
-| DMG | 3912 | 710 | 18.1% |
+| DMG | 3912 | 708 | 18.1% |
 | SPEED | 1135 | 436 | 38.4% |
 | PROF | 883 | 367 | 41.6% |
 | CHOICE | 1345 | 363 | 27.0% |
@@ -81,7 +81,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | AC | 593 | 165 | 27.8% |
 | SENSE | 515 | 148 | 28.7% |
 | SAVE | 272 | 145 | 53.3% |
-| HP | 142 | 84 | 59.2% |
+| HP | 142 | 82 | 57.7% |
 | NUM-DICE | 1262 | 71 | 5.6% |
 | ABIL | 357 | 62 | 17.4% |
 | INIT | 111 | 49 | 44.1% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1028 | 242 | 549 | 0 | 237 |
 | feat | 2101 | 535 | 1042 | 0 | 524 |
-| item | 18391 | 4445 | 10978 | 0 | 2968 |
+| item | 18391 | 4447 | 10978 | 0 | 2966 |
 | species | 1037 | 571 | 297 | 0 | 169 |
 | spell | 6748 | 278 | 6470 | 0 | 0 |
 | sub | 7477 | 1868 | 4281 | 0 | 1328 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10151 | 2461 | 6071 | 1619 | 15.9% |
+| dmg | 10151 | 2462 | 6071 | 1618 | 15.9% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 391 | 803 | 309 | 20.6% |
 | tsgs | 1483 | 376 | 857 | 250 | 16.9% |
@@ -122,7 +122,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | rhw | 232 | 57 | 115 | 60 | 25.9% |
 | hof | 253 | 40 | 155 | 58 | 22.9% |
 | EFotA | 137 | 35 | 50 | 52 | 38.0% |
-| tghg | 288 | 74 | 165 | 49 | 17.0% |
+| tghg | 288 | 75 | 165 | 48 | 16.7% |
 | misc14 | 327 | 80 | 200 | 47 | 14.4% |
 | xge | 375 | 112 | 217 | 46 | 12.3% |
 | coa | 158 | 49 | 65 | 44 | 27.8% |
@@ -202,7 +202,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | ATK | 138 | 109 |
 | DC | 135 | 133 |
 | SENSE | 131 | 114 |
-| HP | 84 | 61 |
+| HP | 82 | 59 |
 | ABIL | 50 | 47 |
 | NUM-DICE | 19 | 19 |
 | NUM-DIST | 18 | 18 |
@@ -711,38 +711,38 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `feat|Familiar Friend|Familiar Friend#10` You can use this a number of times equal to your Proficiency Bonus, and regain all uses after a Long Rest. | angka: pb
 - `feat|Spelldriver|Spelldriver#2` If you cast two or more spells in one turn, only one of them can be level 3 or higher. | angka: 2
 
-### item (1873)
+### item (1871)
 
-- `item|dmg|Glowing Ember#2` Speak its command word within 60 ft and the ember glows, shedding bright light and heat in a 20 ft radius and dim light for another 20 ft. Creatures within 20 ft feel the heat and have Resistance to c | angka: 60,20
-- `item|tsdm|Psionic Piercing#22` Fail: 6d8 Psychic damage and Stunned for 1 minute. | angka: 6d8,1
-- `item|pota|Devastation Orb of Air#18` The orb is destroyed after one use. | angka: 1
-- `item|thhw|Glowing Ember#2` Speak its command word within 60 ft and the ember glows, shedding bright light and heat in a 20 ft radius and dim light for another 20 ft. Creatures within 20 ft feel the heat and have Resistance to c | angka: 60,20
+- `item|dmg|Glowing Ember#6` If you move more than 20 ft from the hovering crystal, it follows you by the shortest path, avoiding obstacles if it can, until it is within 20 ft. If it is lit and cannot reach the creature it follow | angka: 8d6,20,3
+- `item|tsdm|Psionic Piercing#33` Blindsight with a range of 20 ft. | angka: 20
+- `item|pota|Devastation Orb of Earth#18` The orb is destroyed after one use. | angka: 1
+- `item|thhw|Kwark's Wondrous Kernels, Planter#15` 3, Teardrop Brown: A small tree grows with 1d4 + 1 red fruits. | angka: 1d4,3,1
 - `item|dmg|Staff of Power#17` A creature that fails takes Force damage equal to 4 times the staff's remaining charges, and one that succeeds takes half that damage. | angka: half
-- `item|tsdm|Gamma Pendant#10` Any weapon you wield gets +2 to attack and damage (or its higher bonus) and can deal Force damage or its normal type. | angka: 2
-- `item|tsgs|Visage of Delight and Disaster#9` When it hits with a weapon or Unarmed Strike, it can spend the die to deal extra Psychic damage equal to twice the roll. | angka: double
-- `item|dmg|Blaster Mod (Aimbot)#5` With Advantage or Disadvantage, the 10 replaces only one of the two dice and you roll the other normally. | angka: 10,2
-- `item|tghg|Ulmyr's Eye (Master)#11` While holding it, cast Foresight from it with no Material component and a 1 hour duration, once per Long Rest. | angka: 1
-- `item|dmg|Gamma Pendant#10` Any weapon you wield gets +2 to attack and damage (or its higher bonus) and can deal Force damage or its normal type. | angka: 2
+- `item|tsdm|Gravity Gun#8` With Martial weapon proficiency, the DC rises to 15 at level 5, 17 at level 11, and 18 at level 17. | angka: 15
+- `item|tsgs|War Standard of Battlecries#6` Change the emblem over 1 hour, even during a Short Rest. | angka: 1
+- `item|dmg|Brass Repeater#4` At character level 5 you gain a +1 bonus to attack and damage rolls with it, rising to +2 at level 11 and +3 at level 17. | angka: 1,2,3
+- `item|tssm|Amulet of the Spirit Caller#4` Each charge buys one benefit from this list, and you cannot pick the same benefit twice. | angka: double
+- `item|dmg|Gamma Pendant#13` The spell has no effect, its casting time is wasted, and the pendant regains charges equal to the spell's level, up to 20. | angka: 20
 - `item|dmg|Fenthras (Exalted)#17` You can use bramble shot twice between rests and its save DC is 17. | angka: 17,double
 - `item|dmg|Stormgirdle (Exalted)#15` - Your Storm Avatar's lightning strike deals 4d6 lightning damage (instead of 3d6). | angka: 4d6,3d6
 - `item|dmg|Thief's Thimble#4` If the thimble is reduced to 0 Hit Points, it breaks, and you take any remaining damage. | angka: 0
-- `item|dmg|Warden's Link#5` Attaching it to a nonmagical suit of armor, shield, or weapon of the right type takes 1 hour of work with suitable tools, usually leatherworker's or smith's tools, and can be done during a Short Rest. | angka: 1
+- `item|dmg|Alluring Dye#3` For 24 hours after the first use you have +2 to Charisma saves, and you cannot gain this again unless you use a dye of a different color. | angka: 24,2
 - `item|dmg|Dust of Sneezing and Choking#3` The container holds enough for one use. | angka: 1
 - `item|dmg|Jewel of Three Prayers (Exalted)#9` - You gain a +1 bonus to AC while wearing the jewel. | angka: 1
-- `item|egw|Stormgirdle (Awakened)#15` - Your Storm Avatar's lightning strike deals 4d6 lightning damage (instead of 3d6). | angka: 4d6,3d6
+- `item|egw|Stormgirdle (Awakened)#16` - While transformed into a Storm Avatar, you gain a flying speed of 30 feet and can hover. | angka: 30
 - `item|dmg|Accounting and Valuation of All Things#21` You gain a passive +5 to Charisma (Persuasion) checks made to barter. | angka: 5
 - `item|dmg|Living Loot Satchel#1` As a rank 2 hoardsperson, you are granted the use of a living loot satchel, which is an uncommon magic item. | angka: 2
-- `item|tghg|Gristaline#2` For 1 hour your Strength score becomes 19 (if lower), but you have Disadvantage on Intelligence checks and saves. | angka: 1,19
+- `item|tghg|Hunter's Zeal#2` For 1 hour you have Immunity to Poison damage and the Poisoned condition and Advantage on saves to avoid being cursed. | angka: 1
 - `item|dmg|Potion of Giant Size#3` In addition, the reach of your melee attacks increases by 5 feet. | angka: 5
-- `item|misc14|Winter's Dark Bite#5` While in the Upside Down, it works as a +4 greatsword. | angka: 4
-- `item|tsgs|Tome of Dreams#4` On 10 or lower, you take 2d4 Psychic damage from terrors. | angka: 2d4,10
-- `item|crcotn|Jewel of Three Prayers (Exalted)#22` - You can expend 1 of the jewel's charges (no action required) to end one of the following conditions on yourself: grappled, paralyzed, or restrained. | angka: 1
+- `item|misc14|Charm of Cozmioko's Glory#3` Light: regain 28 (8d6) Hit Points. | angka: 8d6,28
+- `item|tsgs|Tote of Tricky Treat Sugarbombs#1` A canvas bag holding 5d8 + 10 clove and pumpkin candies, with an illusory face on its pumpkin at night. | angka: 5d8,10
+- `item|crcotn|Jewel of Three Prayers (Exalted)#30` - The bonus that the jewel confers to your AC increases to +2. | angka: 2
 - `item|dmg|Mistral Mantle#9` When you use the mantle to cast the spell, the area of the spell isn't 3 for you, and you can see through the storm, ignoring the normal penalties of a 2 area. | angka: 3,2
-- `item|dmg|Fangs of Guile#7` If the necklace has no charges at dusk, roll 1d6. | angka: 1d6
-- `item|egw|Arcane Cannon#9` In addition, a creature that fails its saving throw takes 11 (2d10) acid damage at the start of each of its turns; a creature can end this damage by using its action to wash off the acid with a pint o | angka: 2d10,11
+- `item|dmg|Flame of Ingenuity#10` By meditating on the flame for 1 minute, you regain spell slots totaling up to 5 levels, divided as you like. | angka: 5
+- `item|egw|Blade of Broken Mirrors (Awakened)#14` - You gain a +1 bonus to attack and damage rolls made with this magic weapon. | angka: 1
 - `item|dmg|Grovelthrash (Awakened)#15` If you do, you take 1d6 psychic damage. | angka: 1d6
-- `item|tsgs|Bag of Sundrops#1` A bag holding 1d6 + 4 glowing golden orbs. | angka: 1d6,4
-- `item|tghg|Elixir of Life Protection#2` For 10 minutes after drinking it, your Hit Point maximum cannot be reduced. | angka: 10
+- `item|tsgs|Barricade Shield#3` While holding it expanded your Speed is 0 and you have Disadvantage on Dexterity checks and saves. | angka: 0
+- `item|tghg|Full Moon Extract#2` For 1 hour your Strength score becomes 19 (if lower), and you have Advantage on Strength checks and saves. | angka: 1,19
 
 ### species (91)
 
@@ -812,7 +812,6 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- class `item|mot|Dekella, Bident of Thassa#6` When you hit with an attack using the bident, the target takes an extra 2d10 cold damage. -> info:ACTIVE:TRIGGER
 - record `sub|Fighter/Cavalier|Warding Maneuver#3` You can use this a number of times equal to your Constitution modifier (minimum one) and regain all uses after a Long Re -> covered
 - class `sub|Fighter/Cavalier|Warding Maneuver#3` You can use this a number of times equal to your Constitution modifier (minimum one) and regain all uses after a Long Re -> info:REST:NONUM
 - record `species|Aasimar (Protector)|Healing Hands#1` Action, once per Long Rest: touch a creature and it regains Hit Points equal to your level. -> info:REST:NONUM
@@ -824,21 +823,22 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - class `item|dmg|Figurine of Wondrous Power (ebony fly)#13` After a use, the figurine stays inert until 2 days pass. -> info:NUMONLY:GEOMETRY
 - record `sub|Cleric/Pestilence Domain|Pestilence Domain Spells#1` Always prepared from the listed Cleric levels: 3 Blindness/Deafness, Detect Poison and Disease, Poison Spray, Ray of Enf -> covered
 - class `sub|Cleric/Pestilence Domain|Pestilence Domain Spells#1` Always prepared from the listed Cleric levels: 3 Blindness/Deafness, Detect Poison and Disease, Poison Spray, Ray of Enf -> covered
-- record `item|crcotn|Jewel of Three Prayers (Exalted)#16` Three delicate spires unfurl from the jewel's center, like the buds of flowers opening in the spring. -> info:NUMONLY:TABLE
-- class `item|crcotn|Jewel of Three Prayers (Exalted)#16` Three delicate spires unfurl from the jewel's center, like the buds of flowers opening in the spring. -> info:NUMONLY:TABLE
 - record `item|dmg|Figurine of Wondrous Power (ivory goats)#22` A creature that succeeds on the save can't be affected by this goat's fear again for 24 hours. -> info:NUMONLY:GEOMETRY
 - class `item|dmg|Figurine of Wondrous Power (ivory goats)#22` A creature that succeeds on the save can't be affected by this goat's fear again for 24 hours. -> info:NUMONLY:GEOMETRY
 - record `item|dmg14|+3 Rod of the Pact Keeper#3` You can't use this property again until you finish a long rest. -> info:REST:NONUM
 - class `item|dmg14|+3 Rod of the Pact Keeper#3` You can't use this property again until you finish a long rest. -> info:REST:NONUM
-- record `item|pabtso|Dragonguard#3` Created for a human hero of old Neverwinter named Tergon, it grants its wearer advantage on saving throws against the br -> info:ACTIVE:OTHERS
-- class `item|pabtso|Dragonguard#3` Created for a human hero of old Neverwinter named Tergon, it grants its wearer advantage on saving throws against the br -> info:ACTIVE:OTHERS
 - record `item|dmg|Amulet of Health#1` While you wear this amulet, your Constitution score is 19. -> info:NUMONLY:TEXT
 - class `item|dmg|Amulet of Health#1` While you wear this amulet, your Constitution score is 19. -> info:NUMONLY:TEXT
+- record `item|tftyp|Waythe#13` (It takes only 1 minute for a good-aligned character to gain attunement with the sword.) -> info:NUMONLY:GEOMETRY
+- class `item|tftyp|Waythe#13` (It takes only 1 minute for a good-aligned character to gain attunement with the sword.) -> info:NUMONLY:GEOMETRY
 - record `feat|Ooze Transformation: Stage 2|Ooze Transformation: Stage 2#1` Stage 2. -> info:NUMONLY:TABLE
 - class `feat|Ooze Transformation: Stage 2|Ooze Transformation: Stage 2#1` Stage 2. -> info:NUMONLY:TABLE
+- record `item|misc14|Vial of Thought Capture#8` It regains all its charges daily at dusk. -> info:REST:NONUM
+- class `item|misc14|Vial of Thought Capture#8` It regains all its charges daily at dusk. -> info:REST:NONUM
 - record `class|Druid|Wild Shape#13` Each time you finish a Long Rest, you can swap one known form for another form that qualifies. -> info:REST:NONUM
 - class `class|Druid|Wild Shape#13` Each time you finish a Long Rest, you can swap one known form for another form that qualifies. -> info:REST:NONUM
-- record `item|dmg|Leather Golem Armor#7` You gain resistance to lightning damage. -> covered
+- record `item|dmg|Light Drinker#4` It returns after a Short or Long Rest. -> info:REST:NONUM
+- class `item|dmg|Light Drinker#4` It returns after a Short or Long Rest. -> info:REST:NONUM
 - record `sub|Rogue/Phantom|Tokens of the Departed#2` You gain two soul trinkets. -> info:NUMONLY:TABLE
 - class `sub|Rogue/Phantom|Tokens of the Departed#2` You gain two soul trinkets. -> info:NUMONLY:TABLE
-- record `sub|Barbarian/Path of the Zealot|Warrior of the Gods#2` You have a healing pool of four d12s that you can use on yourself. -> info:NUMONLY:TEXT
+- record `item|cm|Gloves of Soul Catching#2` This property of the gloves has no effect on you if your Constitution is already 20 or higher. -> info:NUMONLY:TEXT

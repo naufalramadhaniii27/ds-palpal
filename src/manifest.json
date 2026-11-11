@@ -748,7 +748,8 @@
     "data/fx-Z7.js",
     "data/fx-Z8.js",
     "data/fx-Z9.js",
-    "data/fx-Z10.js"
+    "data/fx-Z10.js",
+    "data/fx-Z11.js"
    ]
   },
   {
@@ -787,6 +788,7 @@
     "builder/10e-logic-fx-schema.js",
     "data/lib/attack-target.js",
     "data/lib/attack-resources.js",
+    "data/lib/attack-kind.js",
     "data/lib/attunement.js",
     "builder/11-logic-derivation.js",
     "builder/11b-logic-fx-sources.js",

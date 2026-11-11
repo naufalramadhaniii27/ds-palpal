@@ -1,4 +1,4 @@
-import {attackResourceDamageControls} from "./08e-ui-attack-resource-damage.js";
+import {attackResourceDamageControls,syncAttackResourceDamageControls} from "./08e-ui-attack-resource-damage.js";
 import {attackSelfDamageControls} from "./08d-ui-attack-self-damage.js";
 import {env} from "./00-env.js";import {akIcon,ammoBonus,atkKind,bindLive,cfFlags,clsLvls,clsOfG,cuNm,dTxt,dtIcon,fch,featNums,foldP,ico,lateGet,manCost,modeXdRows,noActH,ordL,resBoxes,resOf,resPips,resSpec,resTail,saveCantripRows,scCls,scOf,sitAtk,sitCardH,sitDiceRows,spAreaTxt,spCalc,spFx,spLvRange,spRowLv,tyIcon} from "./00a-reg-late-ports.js";/* Responsibility: short text summaries (number blocks, pills) and the Actions page. Split out of the former single file 08 in SOLID stage 9 (S); runs in the same order as before. */
 import {GLOSS,x14,x14n} from "./03-data-glossary.js";import {C,S} from "./04-logic-storage.js";import {$,$$,actOn,atkOn,clamp,eqInvOf,eqOn,esc,rich,sg} from "./05-logic-helpers.js";import {D,fill,richP} from "./06-logic-derivation.js";import {boxes,used} from "./08-ui-render-sheet-and-actions.js";bindLive("__set_actF",{get:function(){return __set_actF;}});bindLive("actF",{get:function(){return actF;}});bindLive("featAll",{get:function(){return featAll;}});bindLive("renderActions",{get:function(){return renderActions;}});bindLive("syncLU",{get:function(){return syncLU;}});
@@ -229,6 +229,7 @@ export function syncLU(){
     const el=document.getElementById("sub-"+r.k); if(el) el.textContent=luSub(r); $$('.supd[data-k="'+r.k+'"] b').forEach((b) =>{ b.textContent=r.max-used(r.k,r.max); });/* v36 p10 */
     if(r.pool) $$('.pli[data-k="'+r.k+'"]').forEach((x) =>{ if(document.activeElement!==x) x.value=r.max-used(r.k,r.max); });
   });
+  syncAttackResourceDamageControls();
 }
 export function __set_actF(v){ return actF=v; }
 export function __set_renderActions(v){ return renderActions=v; }

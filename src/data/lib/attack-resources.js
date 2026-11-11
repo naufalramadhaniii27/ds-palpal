@@ -1,7 +1,7 @@
 /* Pure specifications for an optional damage roll that consumes a resource.
    Invalid or unaffordable costs never produce a roll expression. */
 import {criticalDice,DAMAGE_TYPES} from "./attack-target.js";
-export function spendDiceProblems(x){if(!x||typeof x!=="object"||Array.isArray(x))return ["resource damage entry must be an object"];const out=[],allowed=["n","when","d","type","maxCost","perCost","resource"];
+export function spendDiceProblems(x){if(!x||typeof x!=="object"||Array.isArray(x))return ["resource damage entry must be an object"];const out=[],allowed=["n","when","d","type","maxCost","perCost","resource","attackKind"];
  Object.keys(x).forEach(k=>{if(!allowed.includes(k))out.push("unknown resource damage field "+k)});
  if("n" in x&&(typeof x.n!=="string"||!x.n.trim()))out.push("resource damage name must be nonempty");
  const rows=Array.isArray(x.when)?x.when:[x.when];if(!rows.length||rows.some(n=>typeof n!=="string"||!n.trim()))out.push("resource damage needs matching attack names");
@@ -9,6 +9,7 @@ export function spendDiceProblems(x){if(!x||typeof x!=="object"||Array.isArray(x
  if(!DAMAGE_TYPES.includes(x.type))out.push("resource damage needs one canonical damage type");
  if(!Number.isSafeInteger(x.maxCost)||x.maxCost<1)out.push("resource damage maximum cost must be a positive safe integer");
  if("perCost" in x&&typeof x.perCost!=="boolean")out.push("resource damage perCost must be boolean");
+ if("attackKind" in x&&!["melee","ranged"].includes(x.attackKind))out.push("resource damage attackKind must be melee or ranged");
  const r=x.resource;if(!r||typeof r!=="object"||Array.isArray(r))out.push("resource damage needs a resource binding");
  else if(r.kind==="charges"){if(Object.keys(r).some(k=>k!=="kind"))out.push("charge binding accepts only its kind");}
  else if(r.kind==="use"){if(typeof r.name!=="string"||!r.name.trim())out.push("use binding needs an exact resource name");if(Object.keys(r).some(k=>k!=="kind"&&k!=="name"))out.push("unknown use binding field");}

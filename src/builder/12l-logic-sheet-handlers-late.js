@@ -1,4 +1,4 @@
-import {ABN,dieAvg,mod} from "./01-logic-core-helpers.js";
+import {ABN,dieAvg,mod,attackKindsForRow} from "./01-logic-core-helpers.js";
 import {actsTable,bookPages,featDef,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
@@ -126,12 +126,15 @@ registerSheetGroup({id:"fx-attack-self-damage",group:"late",phase:"late",order:1
   (e.atkSelfDamage||[]).forEach(function(x,xi){pickRowsOf(C,Q,x.when).forEach(function(r){if(!acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"self"))return;const spec={normal:x.normal,critical:x.critical,type:x.type,bypassDefenses:x.bypassDefenses,s:e.lbl};if(e.kind==="item"){spec.item=e.owner;spec.unattuned=e.itemState==="unattuned"}(r.selfDamage=r.selfDamage||[]).push(spec)})});return ctx.patch()}});
 function resourceWeaponRows(C,Q,when){const rows=pickRowsOf(C,Q,when);return C.attacks.filter(function(r){return rows.indexOf(r)>=0||r.of&&rows.some(function(parent){return parent.n===r.of})})}
 function resourceWeaponPools(C,e,x,inventory){return (C.res||[]).filter(function(p){return p.f===e.owner&&(x.resource.kind==="charges"?p.item&&inventory.some(function(it){return it.chargeKey===p.k}):!p.item&&p.n===x.resource.name)})}
-registerSheetGroup({id:"fx-attack-resource-damage",group:"late",phase:"late",order:146,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar","i.ESH","i.EA","q.fxOk","q.baseOf","C.attacks","C.inv","C.res","l.itemWeaponEffects"],writes:["C.attacks","l.itemWeaponEffects"],
+function resourceDamageSpec(I,Q,e,x,inventory,row,pool){const spec=Object.assign({},x,{poolKey:pool.k,item:e.owner,requiresAttunement:inventory.some(function(it){return !!it.att}),s:e.lbl});if(pool.item)spec.chargeKey=pool.k;
+ if(x.attackKind){const base=Q.baseOf(row.n).b,kinds=attackKindsForRow(row,weaponDef(base),I.B.rs==="2014"?"2014":"2024",base);if(kinds===null||kinds.length&&!kinds.includes(x.attackKind))return null;spec.attackKinds=kinds}return spec}
+/* Resolve paid hit riders after acts creates Pole Strike, Psychic Blades and Archer. */
+registerSheetGroup({id:"fx-attack-resource-damage",group:"late",phase:"post",order:21,scope:"each",over:"i.G",loop:"post-attack-resources",reads:["i.B","i.ar","i.ESH","i.EA","q.fxOk","q.baseOf","C.attacks","C.inv","C.res","l.itemWeaponEffects"],writes:["C.attacks","l.itemWeaponEffects"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,e=ctx.p;if(e.kind!=="item"||e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;
   const inventory=(C.inv||[]).filter(function(it){return (it.key||it.n)===e.owner&&it.eq&&it.q>0&&(!it.att||it.attunedActive)});
   if(!inventory.length)return null;
   (e.atkSpendDice||[]).forEach(function(x,xi){const pools=resourceWeaponPools(C,e,x,inventory);
-   resourceWeaponRows(C,Q,x.when).forEach(function(r){if(!pools.length||!acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"spend"))return;pools.forEach(function(p){const spec=Object.assign({},x,{poolKey:p.k,item:e.owner,requiresAttunement:inventory.some(function(it){return !!it.att}),s:e.lbl});if(p.item)spec.chargeKey=p.k;(r.spendDice=r.spendDice||[]).push(spec)})})});return ctx.patch()}});
+   resourceWeaponRows(C,Q,x.when).forEach(function(r){if(!pools.length||!acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"spend"))return;pools.forEach(function(p){const spec=resourceDamageSpec(I,Q,e,x,inventory,r,p);if(spec)(r.spendDice=r.spendDice||[]).push(spec)})})});return ctx.patch()}});
 registerSheetGroup({id:"fx-save-notes",group:"late",phase:"late",order:150,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.saveNotes", "q.fxOk"],writes:["C.saveNotes"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const pushSN=function(t,s){C.saveNotes=C.saveNotes||[];if(!C.saveNotes.some(function(y){return y.t===t&&y.s===s}))C.saveNotes.push({t:t,s:s})};   /* fx engine v4: saveNote [text] = a line under Saving Throws (death save bonus, "Advantage on saves against being Frightened"); advOn texts that mention saves are copied there too, next to the Defenses note */
    (e.saveNote||[]).forEach(function(t){pushSN(t,e.lbl)});(e.advOn||[]).forEach(function(t){if(/sav(e|ing)/i.test(t))pushSN("Advantage on "+t,e.lbl)});

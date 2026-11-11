@@ -2671,6 +2671,40 @@ for rs in ["2024","2014"]:
         for q,eq in [(0,True),(1,False)]:
             CASES.append(dict(name="NEG U27 material unavailable "+item+" "+rs+str((q,eq)),b=dict(rs=rs,cls="Fighter",level=4,extra={"species":"Dwarf" if item=="Direstone Dwarven Pick" else "Human"},inv=[dict(n=item,q=q,eq=eq,attuned=True),dict(n="Longsword",q=1,eq=True)]),target={"type":"Creature","tags":[tag]},expect=[("C.attacks.length",2),("C.attacks.some(a=>a.xdice)",False),("C.attacks.find(a=>a.n==='Longsword').misc",0)]))
 
+# U28: source-qualified melee attacks; declared modes do not come from range.
+U28_TARGET={"type":"Creature","hp":4,"maxHp":10}
+U28_COAT=dict(n="Cinder Coat",q=1,eq=True,attuned=True)
+U28_AC="C.ac.bonus.filter(x=>String(x.s||'').includes('Cinder Coat')).reduce((n,x)=>n+x.v,0)"
+U28_SPEND_ALLOW=[r"^attacks\.\d+\.spendDice\.0\.(n|when|d|type|maxCost|perCost|poolKey|item|requiresAttunement|s|chargeKey|attackKind)$",r"^attacks\.\d+\.spendDice\.0\.resource\.kind$",r"^attacks\.\d+\.spendDice\.0\.attackKinds(?:\.[01])?$"]
+def u28row(name):return "C.attacks.find(a=>a.n==="+json.dumps(name)+")"
+def u28case(name,b,checks,target=U28_TARGET):CASES.append(dict(name=name,b=b,target=target,expect=checks))
+for rs in ["2024","2014"]:
+    inv=[U28_COAT]+[dict(n=n,q=1,eq=True) for n in ["Longsword","Longbow","Dagger"]]
+    checks=[(U28_AC,2),("C.res.find(r=>r.k===C.inv[0].chargeKey).max",3),("C.res.find(r=>r.k===C.inv[0].chargeKey).rg","1d3"),("C.res.find(r=>r.k===C.inv[0].chargeKey).when","dawn"),("!!"+u28row("Longbow")+".spendDice",False)]
+    for name,kinds in [("Unarmed Strike",["melee"]),("Longsword",["melee"]),("Dagger",["melee","ranged"])]:
+        a=u28row(name);z=a+".spendDice[0]"
+        checks += [(a+".spendDice.length",1),(z+".attackKind","melee"),(z+".attackKinds",kinds),(z+".d","1d10"),(z+".type","Fire"),(z+".maxCost",1),(z+".poolKey===C.inv[0].chargeKey",True),(z+".requiresAttunement",True),("!!"+a+".xdice",False)]
+    u28case("Z3 U28 Cinder native modes "+rs,dict(rs=rs,cls="Fighter",level=4,inv=inv),checks)
+    u28case("Z3 U28 Cinder creature type qualifies "+rs,dict(rs=rs,cls="Fighter",level=4,inv=inv),[("C.attacks[0].spendDice[0].type","Fire"),("!!"+u28row("Longbow")+".spendDice",False)],{"type":"Construct","hp":4,"maxHp":10})
+    u28case("Z3 U28 Cinder second copy uses its own pool "+rs,dict(rs=rs,cls="Fighter",level=4,inv=[dict(n="Cinder Coat",q=1,eq=True,attuned=False),U28_COAT,dict(n="Longsword",q=1,eq=True)]),[("C.inv[0].attunedActive",False),("C.inv[1].attunedActive",True),("C.attacks[0].spendDice.length",1),("C.attacks[0].spendDice[0].poolKey===C.inv[1].chargeKey",True),("C.attacks[0].spendDice[0].poolKey===C.inv[0].chargeKey",False)])
+    CASES.append(dict(name="Z3 U28 Cinder field differential "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=inv),target=U28_TARGET,withoutGxFields=["item","Cinder Coat","Cinder Coat",["atkSpendDice"]],expect=[("C.attacks[0].spendDice[0].d","1d10"),(U28_AC,2)],expectWithout=[("C.attacks.some(a=>a.spendDice)",False),(U28_AC,2)],allow=U28_SPEND_ALLOW))
+    for target in [{},{"type":"Creature"},{"type":"Creature","hp":4},{"type":"Creature","maxHp":10},{"hp":4,"maxHp":10},{"type":"Creature","hp":10,"maxHp":10},{"type":"Object","hp":4,"maxHp":10},{"type":"Structure","hp":4,"maxHp":10}]:
+        u28case("NEG U28 Cinder target "+rs+str(target),dict(rs=rs,cls="Fighter",level=4,inv=inv),[("C.attacks.some(a=>a.spendDice)",False),(U28_AC,2)],target)
+    for q,eq,attuned in [(1,True,False),(1,False,True),(0,True,True)]:
+        u28case("NEG U28 Cinder source unavailable "+rs+str((q,eq,attuned)),dict(rs=rs,cls="Fighter",level=4,inv=[dict(n="Cinder Coat",q=q,eq=eq,attuned=attuned),dict(n="Longsword",q=1,eq=True)]),[("C.attacks.some(a=>a.spendDice)",False),(U28_AC,0)])
+    u28case("Z3 U28 Cinder spell melee modes "+rs,dict(rs=rs,cls="Wizard",level=4,ch={"feat4":{"feat":"Lightly Armored (2014)" if rs=="2014" else "Lightly Armored","a1":"DEX"}},extra={"sp":["Shocking Grasp","Fire Bolt","Chill Touch"]},inv=[U28_COAT]),[("C.profs.armor.includes('Light')",True),(u28row("Shocking Grasp")+".spendDice[0].attackKinds",["melee"]),("!!"+u28row("Fire Bolt")+".spendDice",False),("!!"+u28row("Chill Touch")+".spendDice",rs=="2024")]+([(u28row("Chill Touch")+".spendDice[0].attackKinds",["melee"])] if rs=="2024" else []))
+    u28case("Z3 U28 Cinder Thorn Whip range does not imply ranged "+rs,dict(rs=rs,cls="Druid",level=4,extra={"sp":["Thorn Whip"]},inv=[U28_COAT]),[(u28row("Thorn Whip")+".range","30 ft"),(u28row("Thorn Whip")+".spendDice[0].attackKinds",["melee"])])
+    u28case("Z3 U28 Cinder explicit thrown row excluded "+rs,dict(rs=rs,cls="Fighter",level=4,ch={"fs1":"Thrown Weapon Fighting"},inv=[U28_COAT,dict(n="Spear",q=1,eq=True)]),[("C.attacks.some(a=>a.n==='Spear (thrown)')",True),("!!"+u28row("Spear (thrown)")+".spendDice",False),(u28row("Spear")+".spendDice[0].attackKinds",["melee","ranged"])])
+    u28case("Z3 U28 Cinder unreviewed natural requires declared mode "+rs,dict(rs=rs,cls="Fighter",level=4,extra={"species":"Dhampir"},inv=[U28_COAT]),[(u28row("Vampiric Bite")+".sub","Natural weapon"),(u28row("Vampiric Bite")+".spendDice[0].attackKinds",[]),(u28row("Vampiric Bite")+".spendDice[0].attackKind","melee")])
+u28case("Z3 U28 Cinder Pole Strike is melee",dict(cls="Fighter",level=4,ch={"feat4":{"feat":"Polearm Master","a1":"STR"}},inv=[U28_COAT,dict(n="Quarterstaff",q=1,eq=True)]),[("C.attacks.find(a=>a.of==='Quarterstaff').n","Pole Strike"),("C.attacks.find(a=>a.of==='Quarterstaff').spendDice[0].attackKinds",["melee"])])
+u28case("Z3 U28 Cinder Psychic Blade both modes require choice",dict(cls="Rogue",sub="Soulknife",level=4,inv=[U28_COAT]),[(u28row("Psychic Blade")+".spendDice[0].attackKinds",["melee","ranged"]),(u28row("Psychic Blade (Bonus Action)")+".spendDice[0].attackKinds",["melee","ranged"])])
+u28case("NEG U28 Cinder Archer is ranged",dict(cls="Druid",sub="Circle of the Stars",level=4,inv=[U28_COAT]),[("C.attacks.some(a=>a.n==='Starry Form: Archer')",True),("!!"+u28row("Starry Form: Archer")+".spendDice",False)])
+
+# Resource effects run after feature-generated attacks; each row gets its own mode.
+u28case("Z3 U28 Cinder Spear Pole Strike refreshes parent mode",dict(cls="Fighter",level=4,ch={"feat4":{"feat":"Polearm Master","a1":"STR"}},inv=[U28_COAT,dict(n="Spear",q=1,eq=True)]),[(u28row("Spear")+".spendDice[0].attackKinds",["melee","ranged"]),("C.attacks.find(a=>a.of==='Spear').spendDice[0].attackKinds",["melee"]),("C.attacks.find(a=>a.of==='Spear').spendDice[0].poolKey==="+u28row("Spear")+".spendDice[0].poolKey",True)])
+u28case("Z3 U28 Cabal includes both generated Psychic Blades",dict(cls="Rogue",sub="Soulknife",level=4,inv=[dict(n="Cabal's Ruin (Dormant)",q=1,eq=True,attuned=True)]),[("C.attacks.some(a=>a.n==='Psychic Blade')",True),("C.attacks.some(a=>a.n==='Psychic Blade (Bonus Action)')",True),("C.attacks.every(a=>a.spendDice.length===1&&a.spendDice[0].item===\"Cabal's Ruin (Dormant)\"&&a.spendDice[0].poolKey===C.inv[0].chargeKey)",True)])
+u28case("Z3 U28 Cabal includes generated ranged Archer",dict(cls="Druid",sub="Circle of the Stars",level=4,inv=[dict(n="Cabal's Ruin (Dormant)",q=1,eq=True,attuned=True)]),[("C.attacks.some(a=>a.n==='Starry Form: Archer')",True),(u28row("Starry Form: Archer")+".spendDice.length",1),(u28row("Starry Form: Archer")+".spendDice[0].poolKey===C.inv[0].chargeKey",True),(u28row("Starry Form: Archer")+".spendDice[0].d","1d6")])
+
 # Refresh the real rule-link index with the case's source packs installed.
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared

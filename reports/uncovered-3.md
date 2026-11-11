@@ -1,3 +1,31 @@
+# Uncovered 3: per-hit attack delivery and conditional charged damage
+
+Two more original Cinder Coat clauses are computed: 236 closed from the initial 5,460, 5,224 uncovered and 0 regressed IDs. Covered is 7,941, info 23,617 and allow remains 0. Both new rows are covered, not informational. Work continues after this checkpoint.
+
+The new attack-delivery model distinguishes a melee hit from a ranged hit without inferring from distance. Reviewed standard weapon definitions, explicit thrown-factory markers and native producers supply known choices. Psychic Blades and standard Thrown weapon rows permit both modes; nonstandard/magic or unreviewed rows remain unknown. A single known mode resolves automatically; dual/unknown rows require an explicit declaration for that hit. Malformed metadata fails closed, and a known ranged row cannot be relabeled melee. The edition-aware spell table reflects the app's spell texts and runtime SP14 data: Chill Touch changes from ranged in 2014 to melee in 2024, whereas Thorn Whip remains melee at 30 ft. Choice state is temporary popup state, with no builder/storage shape change.
+
+Cinder Coat now spends one of its three charges for 1d10 Fire only on a melee hit against a declared creature below its known HP maximum. Critical rolls 2d10 at the same one-charge cost. Its existing +2 Leather Armor and 1d3 dawn recovery remain. Wrong/full/unknown HP and Object contexts provide no rider. Stale target changes invalidate an open resolution before spending; reopened dual-mode controls require a new declaration, and a spent last-charge roll may finish. Legal caster fixtures explicitly include Light armor training where needed.
+
+Resource riders now bind at post order21 after generated attack rows exist. Pole Strike gets its actual melee mode instead of inheriting a dual parent mode, and Cabal's unrestricted hit rider also reaches both Psychic Blades and the ranged Archer. No global attack metadata or unrelated weapon numbers changed.
+
+A real recovery bug was corrected: charge pips could recover while the associated damage button remained disabled. The existing `syncLU` operation now refreshes paid damage availability/captions too. Native keyboard rest and direct counter tests prove exhaustion disables and recovery enables the action without a forced sheet redraw. Casting and other callers already use this same synchronization path; the new helper does not recurse or capture old state.
+
+The gate's HP record proves only the implemented target comparison. Its matcher removes the target-below-maximum phrase and refuses any remaining HP reference, so it cannot explain actor healing or maximum-HP benefits. Negative tests also require the real predicate and paid-hit effect; source attribution stays with the actual GX owner. No classification/allowance rule was relaxed.
+
+## Validation of attack delivery
+
+| Check | Result |
+|---|---|
+| Pure model / schema | PASS; 166 attack-kind checks plus resource validation, strict optional attackKind, invalid metadata, declaration rules, explicit factory markers and edition tables |
+| zero_miss_fx | PASS; 1,097 full-suite cases, 44 U28 cases. The affected 44 also pass after making Wizard armor-training fixtures explicitly legal |
+| Lifecycle | PASS; 196 checks across both viewports, plus 42 affected legal caster checks after fixture correction. Actual normal/critical Fire, dual/unknown declarations, last-charge callback, manual/dawn recovery refresh, stale HP, cold reload, spell editions, Thorn Whip, Pole Strike and Psychic Blades; zero page errors; screenshots reviewed |
+| zero_miss_measure | PASS; 752 units, both editions miss0, zero new miss/card-or-miss |
+| Gate / audit | PASS; 236 closed, 5,224 uncovered, zero regressed IDs; actual target comparison and negative HP-benefit cases. Seed11/sample150; 40 newly selected source clauses and both Cinder aliases independently reviewed with no material issue. Existing manual/advisory limits remain |
+| solid_contract / golden / UI / data | PASS; 4,931 / 1,479 / 308 / 602 checks; 2,634 entries, 185 groups, 238 handlers, 4,525 schema entries |
+| Full snapshot / builder | PASS; 2,997 builds `3e65fbfe905c1c8a` and 3,890 inputs `b1c47d6ea6dc914d`, both identical to 2d1b88bb. Unchanged 576 snapshot / 665 builder differences vs immutable main |
+| Scenarios | PASS; 24 checks at 390x844 and 1250x850, screenshots/storage, zero page errors/dialogs |
+| Build / TSC / HTML / overlap / guards | PASS; generated artifacts identical and lint clean / SCORE200 no WORSE / SCORE250 / zero new overlap or guard violations |
+
 # Uncovered 3: wearable charge rolls and target materials
 
 Ten more original sentence IDs are computed: 234 closed from 5,460 initially, 5,226 uncovered and 0 regressions. Covered is 7,939, info 23,617 and allow remains 0. All ten new closures are covered rather than informational. Work continues after this checkpoint.

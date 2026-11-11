@@ -345,11 +345,26 @@ def critical_field_values(key, records):
     return (nums_in(normal_records), critical_values) if critical_values else None
 
 
+TARGET_MISSING_HP = R(r"\b(?:creature|target)\s+(?:that is\s+)?below\s+(?:its|their)\s+(?:hit points? maximum|hp maximum|maximum hit points?)\b")
+class TargetHpComparison:
+    """Match only a target comparison, never an unimplemented HP benefit."""
+    def search(self, text):
+        found = TARGET_MISSING_HP.search(text)
+        if not found:
+            return None
+        rest = TARGET_MISSING_HP.sub("target", text)
+        return found if not re.search(r"\b(?:hit points?|hp)\b", rest, re.I) else None
+
+
 def atoms_from(e, src, weak=False, extra=()):
     """One atom per (class, field) of a record dict (a GX entry, a fx dict, a structured field). Value numbers = numbers inside that field and the entry's `min`."""
     out = []
     if not isinstance(e, dict):
         return out
+    if isinstance(e.get("target"), dict) and e["target"].get("missingHp") is True and isinstance(e.get("atkSpendDice"), list) and e["atkSpendDice"]:
+        # targetMatches computes HP < maximum HP before exposing the paid hit.
+        # This proves the comparison only, not a change to anyone's HP.
+        out.append(Atom("HP", set(), "%s.target.missingHp" % src, weak, rx=TargetHpComparison()))
     # A consumed effect carries an explicit duration and an independent toggle
     # lifetime. Duration explains numbers on its actual benefit, never grants a
     # mechanical class by itself.
@@ -1274,6 +1289,22 @@ def selftest():
     check("12zc damage component retains its real owner", all(atom_key(a.src) == "GX.item|Staff" for a in scalar_bonus))
     for when in ["melee", "any", "Other weapon", ["Staff", "melee"]]:
         check("12zd NEG unrelated/generic attack groups gain no named damage", not any(a.cls == "DMG" for a in atoms_from({"n":"Staff", "atkBonus":[{"when":when,"dmg":2}]}, "GX.item|Staff")))
+    hp_hit = {"n":"Coat", "ch":[3,"1d3","dawn"], "target":{"creature":True,"missingHp":True}, "atkSpendDice":[{"when":"any","d":"1d10","type":"Fire","maxCost":1,"resource":{"kind":"charges"},"attackKind":"melee"}]}
+    hp_hit_text = "It has 3 charges, and when you hit with a melee attack against a creature below its Hit Point maximum you can spend 1 to deal an extra 1d10 Fire damage."
+    hp_hit_atoms = atoms_from(hp_hit,"GX.item|Coat")
+    hp_hit_row = analyze(synth("item","dmg","Coat",hp_hit_text,hp_hit_atoms))[0]
+    check("12ze computed target HP comparison and paid hit cover the clause", hp_hit_row["status"] == "covered", hp_hit_row["why"])
+    hp_missing = dict(hp_hit,target={"creature":True})
+    hp_missing_row = analyze(synth("item","dmg","Coat",hp_hit_text,atoms_from(hp_missing,"GX.item|Coat")))[0]
+    check("12zf NEG no HP predicate means no HP comparison coverage", hp_missing_row["status"] != "covered", hp_missing_row["why"])
+    hp_benefit_text = hp_hit_text[:-1] + " and regain 1 Hit Point."
+    hp_benefit_row = analyze(synth("item","dmg","Coat",hp_benefit_text,hp_hit_atoms))[0]
+    check("12zg NEG comparison cannot claim an HP recovery", hp_benefit_row["status"] != "covered", hp_benefit_row["why"])
+    hp_max_text = hp_hit_text[:-1] + " and increase your Hit Point maximum by 1."
+    hp_max_row = analyze(synth("item","dmg","Coat",hp_max_text,hp_hit_atoms))[0]
+    check("12zh NEG comparison cannot claim maximum HP", hp_max_row["status"] != "covered", hp_max_row["why"])
+    check("12zi comparison retains real source attribution", all(atom_key(a.src)=="GX.item|Coat" for a in hp_hit_atoms if a.cls=="HP"))
+    check("12zj NEG target-only metadata grants no paid-hit HP atom", not any(a.cls=="HP" for a in atoms_from({"target":{"missingHp":True}},"GX.item|Coat")))
     critical_record = {"dieReplace": [{"when": "Scourge", "d": "3d4", "critD": "3d6"}]}
     critical_atoms = atoms_from(critical_record, "GX.item|Scourge")
     critical_text = "The weapon deals 3d4 Slashing damage. On a critical hit, it deals 3d6 Slashing damage instead."
@@ -1424,6 +1455,8 @@ def scan(D, by_design, allow, today):
 
 
 def atom_key(src):
+    if src.endswith(".target.missingHp"):
+        return src[:-len(".target.missingHp")]
     if src.endswith((".atkSpendDice.perCost", ".atkBonus.dmg")):
         src = src.rsplit(".", 1)[0]
     base, _, last = src.rpartition(".")
