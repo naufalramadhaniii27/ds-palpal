@@ -61,7 +61,10 @@ def main():
         pg.wait_for_function("typeof window.__bldSheetFor==='function'", timeout=20000)
 
         def run(b, fxT=None):
-            C = pg.evaluate("([b,t])=>window.__bldSheetFor(b,t)", [b, fxT])
+            try:
+                C = pg.evaluate("([b,t])=>window.__bldSheetFor(b,t)", [b, fxT])
+            except Exception as e:      # name the build that failed, so a CI-only failure can be traced
+                print("golden build failed:", {k: b.get(k) for k in ("cls", "sub", "species", "level", "src", "mc")}, str(e)[:300]); raise
             return C, pg.evaluate("c=>window.__deriveFor(c)", C)
 
         # part 1

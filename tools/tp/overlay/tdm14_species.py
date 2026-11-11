@@ -99,18 +99,18 @@ SPECIES = {
    "hb": "DM14", "asi": {"DEX": 2, "CHA": 1}, "lgf": ["Common", "Halfling"]},
 }
 LU = [
- {"src": "species", "owner": "Avia-Ra", "feature": "Blessings of the Sun", "n": "Blessings of the Sun", "lvl": 1, "max": 1, "reset": "long", "tag": "Cast bless on yourself"},
- {"src": "species", "owner": "Wrothian", "feature": "Neural Lock", "n": "Neural Lock", "lvl": 1, "max": 1, "reset": "long", "tag": "Freeze a humanoid within 60 ft"},
+ {"src": "species", "owner": "Avia-Ra (DM14)", "feature": "Blessings of the Sun", "n": "Blessings of the Sun", "lvl": 1, "max": 1, "reset": "long", "tag": "Cast bless on yourself"},
+ {"src": "species", "owner": "Wrothian (DM14)", "feature": "Neural Lock", "n": "Neural Lock", "lvl": 1, "max": 1, "reset": "long", "tag": "Freeze a humanoid within 60 ft"},
  {"src": "species", "owner": "Drow; Star Elf", "feature": "Covert", "n": "Covert", "lvl": 1, "max": 1, "reset": "short", "tag": "Re-roll Stealth when found"},
  {"src": "species", "owner": "Fey; Star Elf", "feature": "Fey Arcana", "n": "Fey Arcana: Faerie Fire", "lvl": 3, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
  {"src": "species", "owner": "Fey; Star Elf", "feature": "Fey Arcana", "n": "Fey Arcana: Misty Step", "lvl": 5, "max": 1, "reset": "long", "tag": "1/Long Rest spell"},
 ]
-ACTS = {"sp|Wrothian|Neural Lock": [["action", "", "Neural Lock"]], "sp|Amoeboid|Flexible Form": [["action", "", "Flexible Form"]], "sp|Amoeboid|Reform": [["reaction", "", "Reform"]]}
-SP_AUTO = {"Avia-Ra": {"": [[1, "Sacred Flame"], [1, "Thaumaturgy"]]}, "Fey; Star Elf": {"": [[1, "Minor Illusion"], [3, "Faerie Fire"], [5, "Misty Step"]]}}
+ACTS = {"sp|Wrothian (DM14)|Neural Lock": [["action", "", "Neural Lock"]], "sp|Amoeboid (DM14)|Flexible Form": [["action", "", "Flexible Form"]], "sp|Amoeboid (DM14)|Reform": [["reaction", "", "Reform"]]}
+SP_AUTO = {"Avia-Ra (DM14)": {"": [[1, "Sacred Flame"], [1, "Thaumaturgy"]]}, "Fey; Star Elf": {"": [[1, "Minor Illusion"], [3, "Faerie Fire"], [5, "Misty Step"]]}}
 DEF = {}
 GXSP = {
- "Nautilid": [{"n": "Aqua Suit", "res": ["Fire"]}],
- "Skathári": [{"n": "Gliding Wings", "defs": [["Note", "Gliding Wings: Resistance to Bludgeoning, Piercing and Slashing damage from falling"]]}],
+ "Nautilid (DM14)": [{"n": "Aqua Suit", "res": ["Fire"]}],
+ "Skathári (DM14)": [{"n": "Gliding Wings", "defs": [["Note", "Gliding Wings: Resistance to Bludgeoning, Piercing and Slashing damage from falling"]]}],
  "Star Dwarf": [{"n": "Dwarven Resilience", "res": ["Poison"], "advOn": ["saves against being Poisoned"]}],
- "Vect": [{"n": "Inflexible Mind", "advOn": ["saving throws against being charmed"]}],
+ "Vect (DM14)": [{"n": "Inflexible Mind", "advOn": ["saving throws against being charmed"]}],
 }
