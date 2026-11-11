@@ -16,7 +16,7 @@
   },
   "VSS14": {
    "class": 1,
-   "overlay": 38
+   "overlay": 40
   },
   "VSS24": {
    "engine": 6
@@ -85,6 +85,8 @@
    "Trick Shot | Trick Shot",
    "Twice-Damned | Twice-Damned",
    "Warmage (2014) feature Arcane Initiation",
+   "Warmage (2014) option Gauntlet Upgrade",
+   "Warmage (2014) option Technomancer",
    "White Hat | White Hat",
    "White Magic | White Magic"
   ],
