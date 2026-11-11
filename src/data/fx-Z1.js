@@ -16,7 +16,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};
  R("Flame Tongue","2d6","Fire while the weapon is burning (Bonus Action to light it)");
  /* Holy Avenger and all its weapon variants use the typed target entries in fx-L4. */
  R("Mace of Smiting","7","Bludgeoning when the d20 shows a 20 (14 against a Construct)");
- R("Staff of Thunder and Lightning","2d6","Lightning on a melee hit, once per dawn (Lightning property)");
  I("Sun Blade",{target:{types:["Undead"]},atkDice:[{when:"Sun Blade",d:"1d8",t:"Radiant",roll:true}]});
  I("Sword of Kas",{target:{types:["Undead"]},atkDice:[{when:"Sword of Kas",d:"2d10",t:"Slashing",roll:true}]});
  R("Sword of Life Stealing","15","Necrotic when the d20 shows a 20, not against a Construct or an Undead; you gain that many Temporary Hit Points");

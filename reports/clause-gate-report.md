@@ -8,8 +8,8 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 73254 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 36782 (50.2%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 7917 |
-| Info (tag terdokumentasi) | 23621 (SPELL_TEXT 6470, FORM:ACTIVATE 2723, NUMONLY:GEOMETRY 2232, FORM:ROLL 1938, NUMONLY:TEXT 1341, ACTIVATE 1309, FORM:TABLE 1156, NUMONLY:ROLL 1001, NUMONLY:TABLE 862, FXO_NULL 828, ACTIVE:TRIGGER 784, ACTIVE:OTHERS 643, REST:NONUM 588, NUMONLY:FLAVOR 305, STD:ASI 208, COND:PLAY_STATE 188, NUMONLY:ZERO 162, ROLL:LAST_CHARGE 136, OBJECT:STATS 106, ITEM:SENSES 82, DC:REFERENCE 77, BY_DESIGN 72, TABLE:CLASS 70, COND:ATTACK_ROLL_ADV 68, STD:PICK_TEXT 63, ACTIVE:REACTION 56, MOVE:SPEED_REF 50, ACTIVE:TIMED_IMM 43, TARGET:SPEED 30, FOCUS:SPELLCASTING 14, STD:AC10 7, KNOW:TARGET_DEFENSES 7, POOL:SHARED 2) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 7918 |
+| Info (tag terdokumentasi) | 23620 (SPELL_TEXT 6470, FORM:ACTIVATE 2723, NUMONLY:GEOMETRY 2232, FORM:ROLL 1938, NUMONLY:TEXT 1341, ACTIVATE 1309, FORM:TABLE 1156, NUMONLY:ROLL 1001, NUMONLY:TABLE 862, FXO_NULL 828, ACTIVE:TRIGGER 784, ACTIVE:OTHERS 642, REST:NONUM 588, NUMONLY:FLAVOR 305, STD:ASI 208, COND:PLAY_STATE 188, NUMONLY:ZERO 162, ROLL:LAST_CHARGE 136, OBJECT:STATS 106, ITEM:SENSES 82, DC:REFERENCE 77, BY_DESIGN 72, TABLE:CLASS 70, COND:ATTACK_ROLL_ADV 68, STD:PICK_TEXT 63, ACTIVE:REACTION 56, MOVE:SPEED_REF 50, ACTIVE:TIMED_IMM 43, TARGET:SPEED 30, FOCUS:SPELLCASTING 14, STD:AC10 7, KNOW:TARGET_DEFENSES 7, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
 | Uncovered | 5244 |
 | Uncovered dengan angka | 3121 |
@@ -18,9 +18,9 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 | Angka yang tidak dijelaskan record mana pun | 2909 kalimat |
 | Kelas tanpa atom (record tidak ada untuk kelas itu) | 4449 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 306 |
-| Waktu | muat data 0 s, analisis 13 s |
+| Waktu | muat data 1 s, analisis 14 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 180 ditangkap (60.0%). Hapus semua atom kelas yang dibutuhkan: 185 ditangkap (61.7%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 182 ditangkap (60.7%). Hapus semua atom kelas yang dibutuhkan: 183 ditangkap (61.0%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 292 ditangkap (97.3%), semua atom kelas dihapus: 295 ditangkap (98.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -39,7 +39,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3147 |
-| GX | 1883 |
+| GX | 1884 |
 | wxs | 707 |
 | LU_X | 536 |
 | ITEM_SPELLS | 363 |
@@ -58,7 +58,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | SP_AUTO | 6 |
 | CLS_AUTO | 4 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.js 238, fx-L4.js 192, fx-L12.js 152, fx-L2.js 142, fx-L1.js 141, fx-L3.js 135, fx-L10.js 131, fx-Z5.js 123, fx-N1.js 101, fx-L9.js 101, fx-L11.js 97, fx-Z3.js 90.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.js 236, fx-L4.js 192, fx-L12.js 152, fx-L2.js 142, fx-L1.js 141, fx-L3.js 135, fx-L10.js 131, fx-Z5.js 123, fx-N1.js 101, fx-L9.js 101, fx-L11.js 97, fx-Z3.js 90.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1028 | 242 | 549 | 0 | 237 |
 | feat | 2101 | 535 | 1042 | 0 | 524 |
-| item | 18391 | 4423 | 10982 | 0 | 2986 |
+| item | 18391 | 4424 | 10981 | 0 | 2986 |
 | species | 1037 | 571 | 297 | 0 | 169 |
 | spell | 6748 | 278 | 6470 | 0 | 0 |
 | sub | 7477 | 1868 | 4281 | 0 | 1328 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10151 | 2449 | 6074 | 1628 | 16.0% |
+| dmg | 10151 | 2450 | 6073 | 1628 | 16.0% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 391 | 803 | 309 | 20.6% |
 | tsgs | 1483 | 373 | 857 | 253 | 17.1% |
@@ -812,8 +812,6 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|dmg14|Instrument of the Bards, Canaith Mandolin#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
-- class `item|dmg14|Instrument of the Bards, Canaith Mandolin#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
 - record `feat|Mark of Making|Mark of Making#6` Magic Weapon is always prepared and free once per Long Rest. -> info:REST:NONUM
 - class `feat|Mark of Making|Mark of Making#6` Magic Weapon is always prepared and free once per Long Rest. -> info:REST:NONUM
 - record `feat|Focused Fighting|Focused Fighting#1` You learn one additional Adrenaline Art and gain 1 additional Adrenaline Point. -> info:NUMONLY:TEXT
@@ -832,13 +830,15 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - class `sub|Bard/College of Glamour|Mantle of Majesty#5` You can use this feature once per Long Rest. -> info:REST:NONUM
 - record `species|Kuo-Toa|Otherworldly Perception#1` You sense any invisible creature, or one on the Ethereal Plane, within 30 ft. You can pinpoint it while it moves. -> info:NUMONLY:GEOMETRY
 - class `species|Kuo-Toa|Otherworldly Perception#1` You sense any invisible creature, or one on the Ethereal Plane, within 30 ft. You can pinpoint it while it moves. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Finger Gun Glove#2` A fingerless glove that lets you cast the Finger Guns cantrip with your spellcasting ability. -> covered
-- record `item|dmg|Cactus Mace#2` The first target you hit with it each turn takes an extra 1d4 Piercing. -> info:NUMONLY:ROLL
-- class `item|dmg|Cactus Mace#2` The first target you hit with it each turn takes an extra 1d4 Piercing. -> info:NUMONLY:ROLL
+- record `item|egw|Danoth's Visor (Dormant)#3` While wearing the goggles in their dormant state, you can see normally in darkness, both magical and nonmagical, to a di -> info:NUMONLY:GEOMETRY
+- class `item|egw|Danoth's Visor (Dormant)#3` While wearing the goggles in their dormant state, you can see normally in darkness, both magical and nonmagical, to a di -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Brooch of Many Sizes#1` A dial brooch that lets you cast Enlarge/Reduce on yourself once per dawn. -> info:REST:NONUM
+- class `item|dmg|Brooch of Many Sizes#1` A dial brooch that lets you cast Enlarge/Reduce on yourself once per dawn. -> info:REST:NONUM
+- record `item|dmg|Cloak of the Listener#2` Wearing it, you can use an action for one of two effects. -> info:NUMONLY:TEXT
+- class `item|dmg|Cloak of the Listener#2` Wearing it, you can use an action for one of two effects. -> info:NUMONLY:TEXT
 - record `species|Dhampir (Grim Hollow)|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
 - class `species|Dhampir (Grim Hollow)|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- record `item|dmg|Starmetal Solar Axe#1` An axe forged from star iron that is either one Greataxe (fused) or two Battleaxes (fissioned). -> info:NUMONLY:FLAVOR
+- class `item|dmg|Starmetal Solar Axe#1` An axe forged from star iron that is either one Greataxe (fused) or two Battleaxes (fissioned). -> info:NUMONLY:FLAVOR
 - record `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#6` Stage 1. -> info:NUMONLY:TABLE
 - class `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#6` Stage 1. -> info:NUMONLY:TABLE
-- record `sub|Fighter/Psi Warrior|Bulwark of Force#5` After you use this feature, it stays unavailable to you until you finish a Long Rest, though spending a Psionic Energy D -> info:REST:NONUM
-- class `sub|Fighter/Psi Warrior|Bulwark of Force#5` After you use this feature, it stays unavailable to you until you finish a Long Rest, though spending a Psionic Energy D -> info:REST:NONUM
-- record `item|ggr|Dimir Charm#3` You stay Invisible until the start of your next turn or until you attack or cast a spell. -> info:ACTIVE:TRIGGER

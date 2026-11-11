@@ -282,14 +282,6 @@
   "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
   "shared": []
  },
- "GX.item|Staff of Thunder and Lightning": {
-  "files": [
-   "fx-L5.js",
-   "fx-Z1.js"
-  ],
-  "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice.",
-  "shared": []
- },
  "GX.item|Starmetal Shield": {
   "files": [
    "fx-L9.js",

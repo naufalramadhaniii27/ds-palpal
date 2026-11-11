@@ -42,7 +42,7 @@ function atkPole(L,add,I,Q){const feats=I.feats;
  if(feats.some((f) =>{return f.n==="Polearm Master"}))L.forEach((r) =>{if(r.act||/ \(thrown\)$/.test(r.n)||r.n==="Unarmed Strike")return;const b=Q.baseOf(r.n).b,w=weaponDef(b);
   if(!w||w.k!=="M"||!(b==="Quarterstaff"||b==="Spear"||(/Heavy/.test(w.p)&&/Reach/.test(w.p))))return;
   add.push({n:"Pole Strike",sub:r.n+" • Bonus Action",ab:r.ab,prof:r.prof,die:"1d4",dieSrc:"Polearm Master: Pole Strike ("+I.SRC+"), the other end of the "+b,misc:r.misc,miscSrc:r.miscSrc,dmgBonus:r.dmgBonus,
-   type:"Bludgeoning",range:/Reach/.test(w.p)?"10 ft":"5 ft",m:r.m,note:"Bonus Action, right after you take the Attack action and attack with this weapon.",act:"bonus",of:r.n})});
+   type:"Bludgeoning",range:/Reach/.test(w.p)?"10 ft":"5 ft",m:r.m,note:"Bonus Action, right after you take the Attack action and attack with this weapon.",act:"bonus",of:r.n});if(r.spendDice)add[add.length-1].spendDice=r.spendDice.map(function(x){return Object.assign({},x)})});
  const pn=add.filter((r) =>{return r.n==="Pole Strike"});if(pn.length>1)pn.forEach((r) =>{r.n="Pole Strike ("+r.of+")"});/* one name per row when two weapons carry it */}
 function atkSoul(add,I,a,sk){if(sk>=3){const fab=a.sc.DEX>a.sc.STR?"DEX":"STR",src="Psychic Blades ("+I.SRC+", Soulknife 3)";
   add.push({n:"Psychic Blade",sub:"Finesse, Thrown (60/120) • Soulknife",ab:fab,prof:true,die:"1d6",dieSrc:src,type:"Psychic",range:"5 ft, 60/120 ft",m:"Vex",note:"Formed in a free hand when you take the Attack action or make an Opportunity Attack. It vanishes after the attack."});
@@ -124,6 +124,14 @@ registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"
 registerSheetGroup({id:"fx-attack-self-damage",group:"late",phase:"late",order:145,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar","i.ESH","i.EA","q.fxOk","q.baseOf","C.attacks","l.itemWeaponEffects"],writes:["C.attacks","l.itemWeaponEffects"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,e=ctx.p;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;
   (e.atkSelfDamage||[]).forEach(function(x,xi){pickRowsOf(C,Q,x.when).forEach(function(r){if(!acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"self"))return;const spec={normal:x.normal,critical:x.critical,type:x.type,bypassDefenses:x.bypassDefenses,s:e.lbl};if(e.kind==="item"){spec.item=e.owner;spec.unattuned=e.itemState==="unattuned"}(r.selfDamage=r.selfDamage||[]).push(spec)})});return ctx.patch()}});
+function resourceWeaponRows(C,Q,when){const rows=pickRowsOf(C,Q,when);return C.attacks.filter(function(r){return rows.indexOf(r)>=0||r.of&&rows.some(function(parent){return parent.n===r.of})})}
+function resourceWeaponPools(C,e,x,inventory){return (C.res||[]).filter(function(p){return p.f===e.owner&&(x.resource.kind==="charges"?p.item&&inventory.some(function(it){return it.chargeKey===p.k}):!p.item&&p.n===x.resource.name)})}
+registerSheetGroup({id:"fx-attack-resource-damage",group:"late",phase:"late",order:146,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar","i.ESH","i.EA","q.fxOk","q.baseOf","C.attacks","C.inv","C.res","l.itemWeaponEffects"],writes:["C.attacks","l.itemWeaponEffects"],
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,e=ctx.p;if(e.kind!=="item"||e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;
+  const inventory=(C.inv||[]).filter(function(it){return (it.key||it.n)===e.owner&&it.eq&&it.q>0&&(!it.att||it.attunedActive)});
+  if(!inventory.length)return null;
+  (e.atkSpendDice||[]).forEach(function(x,xi){const pools=resourceWeaponPools(C,e,x,inventory);
+   resourceWeaponRows(C,Q,x.when).forEach(function(r){if(!pools.length||!acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"spend"))return;pools.forEach(function(p){const spec=Object.assign({},x,{poolKey:p.k,item:e.owner,requiresAttunement:inventory.some(function(it){return !!it.att}),s:e.lbl});if(p.item)spec.chargeKey=p.k;(r.spendDice=r.spendDice||[]).push(spec)})})});return ctx.patch()}});
 registerSheetGroup({id:"fx-save-notes",group:"late",phase:"late",order:150,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.saveNotes", "q.fxOk"],writes:["C.saveNotes"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const pushSN=function(t,s){C.saveNotes=C.saveNotes||[];if(!C.saveNotes.some(function(y){return y.t===t&&y.s===s}))C.saveNotes.push({t:t,s:s})};   /* fx engine v4: saveNote [text] = a line under Saving Throws (death save bonus, "Advantage on saves against being Frightened"); advOn texts that mention saves are copied there too, next to the Defenses note */
    (e.saveNote||[]).forEach(function(t){pushSN(t,e.lbl)});(e.advOn||[]).forEach(function(t){if(/sav(e|ing)/i.test(t))pushSN("Advantage on "+t,e.lbl)});
@@ -261,6 +269,6 @@ function setAttackCriticalRange(row,value){const n=+value;if(Number.isInteger(n)
 function acceptItemWeaponEffect(ctx,Q,e,x,xi,row,field){if(e.kind!=="item")return true;
  const owner=e.owner,base=Q.baseOf(owner),when=Array.isArray(x.when)?x.when:[x.when];
  if(!weaponDef(base.b)||(!when.includes(owner)&&!when.includes(base.mi)))return true;
- if(row.n!==owner&&row.n!==owner+" (thrown)")return false;
+ if(row.n!==owner&&row.n!==owner+" (thrown)"&&!(field==="spend"&&row.of===owner))return false;
  const keys=ctx.l.itemWeaponEffects||(ctx.l.itemWeaponEffects={}),key=JSON.stringify([owner,e.itemState||"used",e.idx,field,xi,ctx.C.attacks.indexOf(row)]);
  if(keys[key])return false;keys[key]=true;return true}

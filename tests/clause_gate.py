@@ -303,9 +303,9 @@ reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "dark
 reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "chkBonusNp", "skillPE", "skillAb", "langs", "tools", "weapons", "armor", "toolExpert", "toolPE",
     "savePE", "weaponGroups", "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf", "exp")
 reg("SLOT", "slotAdd", "nslot", "smax", "arcRec")
-reg("RESOURCE", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
-reg("ATK", "atk", "atkBonus", "atkDice", "atkSelfDamage", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
-reg("DMG", "dmg", "atkDice", "atkSelfDamage", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")
+reg("RESOURCE", "atkSpendDice", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
+reg("ATK", "atk", "atkBonus", "atkDice", "atkSelfDamage", "atkSpendDice", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
+reg("DMG", "dmg", "atkDice", "atkSelfDamage", "atkSpendDice", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")
 reg("DC", "spDc", "dcAdd", "spellDc", "dc", "setsc")
 reg("INIT", "init", "initAdv", "initDie")
 reg("SPELL", "spells", "spListAdd", "prepAdd", "cantAdd", "spCls", "spellCls", "bookAdd", "sp", "cantrips", "sfree", "xlists", "spAbTrait", "preSp")
@@ -360,6 +360,16 @@ def atoms_from(e, src, weak=False, extra=()):
         if not cl or v in (None, False, [], {}, "", 0) and k not in ("ac",):
             continue
         vals = nums_in(v) | nums_in(e.get("min")) | set(extra)
+        if k == "atkSpendDice" and isinstance(v, list):
+            # Damage dice and their resource price are distinct executed values.
+            # A one-use price must not explain an unrelated one-minute rider.
+            for spec in v:
+                if not isinstance(spec, dict):
+                    continue
+                for spend_class in cl:
+                    spend_values = nums_in(spec.get("maxCost")) if spend_class == "RESOURCE" else nums_in(spec.get("d"))
+                    out.append(Atom(spend_class, spend_values, "%s.atkSpendDice" % src, weak))
+            continue
         critical_parts = critical_field_values(k, v)
         if critical_parts:
             normal_values, critical_values = critical_parts
@@ -1221,6 +1231,11 @@ def selftest():
     check("12f Bloodied regeneration is COND:PLAY_STATE, not a trigger", r["why"] == "COND:PLAY_STATE", r["why"])
     r = one("When you roll a 1 you regain 1d4 + Constitution modifier (minimum 1) Hit Points at the start of each turn.", [], "item")
     check("12g NEG regeneration without the Bloodied state keeps its old code", r["why"] != "COND:PLAY_STATE", r["why"])
+    spend_record = {"atkSpendDice": [{"when": "Staff", "d": "1d6", "type": "Force", "maxCost": 3, "perCost": True, "resource": {"kind": "charges"}}]}
+    spend_atoms = atoms_from(spend_record, "GX.item|Staff")
+    check("12q resource damage exposes its executed dice and charge limit", any(a.cls == "DMG" and "1d6" in a.vals for a in spend_atoms) and any(a.cls == "RESOURCE" and "3" in a.vals for a in spend_atoms))
+    check("12r NEG removing optional resource damage removes its atoms", not atoms_from({}, "GX.item|Staff"))
+    check("12s NEG resource price is not a damage amount", all("3" not in a.vals for a in spend_atoms if a.cls == "DMG") and all("1d6" not in a.vals for a in spend_atoms if a.cls == "RESOURCE"))
     critical_record = {"dieReplace": [{"when": "Scourge", "d": "3d4", "critD": "3d6"}]}
     critical_atoms = atoms_from(critical_record, "GX.item|Scourge")
     critical_text = "The weapon deals 3d4 Slashing damage. On a critical hit, it deals 3d6 Slashing damage instead."

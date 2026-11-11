@@ -36,16 +36,16 @@ function luTableRow(C,e,a,pb,c){const R={mx:e.max},lv=Object.prototype.hasOwnPro
 function luFxRow(C,e,q,a,pb){const lv=e.lv;let mx=q.max;if(typeof mx==="string"&&/^mod:@/.test(mx))mx="mod:"+((e.spCls&&/^@sub:/.test(e.spCls)?e.spCls.slice(5):"")||"CHA");const m=luMax(mx,lv,a,pb);if(!(m>0))return;let rs=q.reset==="dawn"||q.reset==="dusk"?"long":q.reset==="init"?"short":(q.reset||"long");if(q.short6&&lv>=6)rs="short";
   const o={k:resKey("x-",q.n||e.n,C.res),n:q.n||e.n,tag:q.tag||"",max:m,reset:rs,f:q.f||e.n};if(q.pool)o.pool=1;if(e.kind==="species"||e.kind==="feat")o.own=e.owner;luFxTags(o,q);C.res.push(o)}
 function luFxTags(o,q){if(q.reset==="init")o.tag=(o.tag?o.tag+", ":"")+"also regained when you roll Initiative";if(q.reset==="dusk"||q.reset==="dawn")o.tag=(o.tag?o.tag+", ":"")+"back at "+q.reset;if(q.die)o.tag=(o.tag?o.tag+", ":"")+q.die}
-function luItemRow(C,x){const d=DMAP[x.n],ch=d&&d[5]&&d[5].ch;if(!ch)return;if(d[3]&&!x.eq)return;let mx=+ch[0],dm=null;if(!(mx>0)){dm=diceTop(ch[0]);if(!(dm>0))return;mx=dm}/* v21 RU44: a starting number rolled on dice */const nev=ch[2]==="never"||String(ch[1])==="0",full=String(ch[1])==="all"||+ch[1]===mx,dym=/^([\dd]+) (days?|hours?)$/.exec(ch[2]);
-  if(dym){C.res.push({k:resKey("i-",x.n,C.res),n:x.n,tag:"Each use is back after "+dym[1]+" "+dym[2]+". Tick it back when the time has passed."+(ch[3]?" "+ch[3]+".":""),max:mx,reset:"none",f:x.n,item:1});return}/* v56: Figurine of Wondrous Power and other items with a wait in days */
-  luItemCharges(C,x,ch,mx,dm,nev,full)}
-function luItemCharges(C,x,ch,mx,dm,nev,full){const when={dawn:"at dawn",dusk:"at dusk",long:"on a Long Rest",short:"on a Short Rest"}[ch[2]]||ch[2];
-  C.res.push({k:resKey("i-",x.n,C.res),n:x.n,tag:(nev?"Charges, not regained":full?"Charges, all back "+when:"Charges, regains "+ch[1]+" "+when+" (type the roll in the rest dialog)")+(ch[3]?". "+ch[3]:""),max:mx,reset:nev?"none":full?(ch[2]==="short"?"short":"long"):"none",f:x.n,item:1,rg:!nev&&!full?String(ch[1]):undefined,when:!nev&&!full?ch[2]:undefined,dmax:dm?String(ch[0]):undefined})}
+function luItemRow(C,x,invIndex){const d=DMAP[x.n],ch=d&&d[5]&&d[5].ch;if(!ch)return;if(d[3]&&!x.eq)return;let mx=+ch[0],dm=null;if(!(mx>0)){dm=diceTop(ch[0]);if(!(dm>0))return;mx=dm}/* v21 RU44: a starting number rolled on dice */const nev=ch[2]==="never"||String(ch[1])==="0",full=String(ch[1])==="all"||+ch[1]===mx,dym=/^([\dd]+) (days?|hours?)$/.exec(ch[2]);
+  if(dym){C.res.push({k:resKey("i-",x.n,C.res),n:x.n,tag:"Each use is back after "+dym[1]+" "+dym[2]+". Tick it back when the time has passed."+(ch[3]?" "+ch[3]+".":""),max:mx,reset:"none",f:x.n,item:1,invIndex:invIndex});return}/* v56: Figurine of Wondrous Power and other items with a wait in days */
+  luItemCharges(C,x,ch,mx,dm,nev,full,invIndex)}
+function luItemCharges(C,x,ch,mx,dm,nev,full,invIndex){const when={dawn:"at dawn",dusk:"at dusk",long:"on a Long Rest",short:"on a Short Rest"}[ch[2]]||ch[2];
+  C.res.push({k:resKey("i-",x.n,C.res),n:x.n,tag:(nev?"Charges, not regained":full?"Charges, all back "+when:"Charges, regains "+ch[1]+" "+when+" (type the roll in the rest dialog)")+(ch[3]?". "+ch[3]:""),max:mx,reset:nev?"none":full?(ch[2]==="short"?"short":"long"):"none",f:x.n,item:1,invIndex:invIndex,rg:!nev&&!full?String(ch[1]):undefined,when:!nev&&!full?ch[2]:undefined,dmax:dm?String(ch[0]):undefined})}
 export function luRows(C,a,pb,feats){const TLv=TL(),iv=invList(),c={TLv:TLv,iv:iv,feats:feats};
  (typeof LU_X!=="undefined"?LU_X:[]).forEach((e) =>{luTableRow(C,e,a,pb,c)});
  /* fx engine v4: lu on any gfx entry = limited-use rows. lu:{n,max,reset,tag?,pool?,die?,f?,short6?} or an array of them. max: number, array by level (index = source level - 1), "pb", "pb2", "lvl", "half", "mod:WIS" (at least 1), or {f:"formula"} (see luMax); the level is the source level (class level for class and subclass, character level otherwise). reset: long, short, dawn, dusk, none, init */
  fxList().forEach((e) =>{if(!e.lu)return;(Array.isArray(e.lu)?e.lu:[e.lu]).forEach((q) =>{luFxRow(C,e,q,a,pb)})});
- ensureInv().forEach((x) =>{luItemRow(C,x)});
+ ensureInv().forEach((x,i) =>{luItemRow(C,x,i)});
  luArc(C)}
 function luArc(C){
  activeFx().forEach((q) =>{const n=q.fx&&q.fx.arcRec;if(n)C.res.forEach((r) =>{if(r.n==='Arcane Recovery'&&r.max<n){r.max=n;r.tag=(r.tag?r.tag+'. ':'')+q.n+': '+n+' uses between Long Rests'}})})/* v100: Grimoire Infinitus (Exalted) */}

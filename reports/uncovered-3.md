@@ -1,3 +1,36 @@
+# Uncovered 3: resource-paid weapon damage
+
+This batch adds a real resource-spending damage model. The initial-ID total stays at 216 closed, 5,244 uncovered and 0 regressions; it does not claim a new original-ID closure. One formerly informational Staff of Striking sentence now has computed support: covered is 7,918, info 23,620 and allow remains 0. Work continues after this checkpoint.
+
+Staff of Striking, Staff of Thunder and Lightning, Staff of Withering and Staff of Power now use their explicitly stated Quarterstaff profile. Previously these Staff-category inventory rows produced no weapon attack. Their native weapon die is 1d6 Bludgeoning; attuned potency is +3 for Striking and +2 for Thunder/Power, with effective eligibility still required. Withering receives its physical weapon profile only.
+
+Striking's optional hit rider spends 1–3 of its own ten charges and rolls 1d6 Force per charge. Thunder's optional Lightning hit rider spends only its own once-per-dawn Lightning resource and rolls 2d6 Lightning. Thunder, combined Thunder and Lightning, Lightning Strike and Thunderclap retain their independent counters. Their retained LU payload/order is unchanged. The old advisory Lightning rider is replaced by an actual paid roll rather than automatically included in every weapon's damage. Normal weapon damage is unchanged by opening the resource panel or having charges available. Polearm Master's Pole Strike keeps its own 1d4 Bludgeoning die and inherits its actual staff's resource binding, including two different wielded staffs.
+
+The pure `atkSpendDice` schema validates literal dice, a canonical damage type, positive integer costs, per-charge scaling and exact charge/daily-use bindings. The sheet handler scopes output to an eligible source and current pool. The UI rechecks character, source, effective attunement, equip/quantity, resource identity and affordability immediately before spending; it uses the existing undo/save/resource operations. A critical hit doubles dice once while keeping the same cost. Spending is committed once; a second click cannot spend again, closing does not refund, and a last-charge result can still finish. Reload preserves expenditure. Target HP is never changed by this damage roll.
+
+Native resources now carry derived inventory indices and inventory rows carry their finalized charge keys. Binding occurs after `keepResKeys`, which can preserve/rename a key. This changes output metadata only: builder inputs and storage keys remain unchanged. Existing name/occurrence keys are retained, so permanent per-copy identity across removal/reordering of duplicate items remains a separate migration task.
+
+Thunder's retained LU and new paid rider are consolidated in fx-Z8; its obsolete L5/Z1 overlap exception was removed. Explicit base metadata preserves each item's raw effects. Source prose is unchanged. Staff of Power's 2014-only Power Strike is not invented for 2024. Last-charge destruction/conversion, Withering's save/disadvantage consequence, and Thunder's other damage/save consequences remain outside this model and receive no new computed claim.
+
+The clause gate recognizes executed paid dice and resource prices as separate values. A one-use cost cannot explain a one-minute condition. Its strict initial-ID comparison remains 0 regressions. The Lightbringer test warmup now installs the actual case's packs and refreshes the real cross-reference index synchronously, restoring the original builder afterward; strict raw HTML comparison remains enabled. No allowlist/classification rule was relaxed.
+
+## Validation of the resource model
+
+| Check | Result |
+|---|---|
+| Pure resource schema/scaling | PASS; invalid payloads/costs/types, exact bindings, critical scaling, overflow |
+| zero_miss_fx | PASS; 861 full-suite cases, including 47 U25 cases and strict Lightbringer HTML with exact fixture restoration |
+| Resource lifecycle | PASS; 230 checks across 390x844 and 1250x850; normal costs 1/2/3, actual critical dice, exact pool, double click, closing, exhaustion, stale owner/attunement/stow, reload, isolated Thunder resources; final CSS screenshots reviewed |
+| zero_miss_measure | PASS; 752 units, zero misses in both editions, zero new miss/card-or-miss |
+| clause gate | PASS; original 216 closures retained, 5,244 uncovered, zero regressions; entire uncovered ID/hash map identical to the prior checkpoint; baseline written only by the gate |
+| solid_contract | PASS; 4,929 checks, 185 groups, 238 handlers, 4,505 schema entries |
+| Golden builds / UI / data | PASS; 1,479 / 308 / 591 checks; additional random rules oracle: 1,001 characters, zero errors/sanity failures/oracle differences |
+| Full snapshot | PASS; 2,997 builds, `04a34a8a6a982465`, zero errors; 95 changed cases vs the prior checkpoint, 575 vs immutable main |
+| Raw causal review | PASS; 105 native bindings/210 metadata paths have exactly matched owners and finalized keys; existing native resource rows otherwise identical. All 34 other paths belong to Thunder's real weapon profile/paid Lightning/removed advisory note; zero unexplained paths |
+| Builder differential | PASS; 3,890 inputs, `b1c47d6ea6dc914d`, identical to the prior checkpoint; unchanged 665 expected differences vs immutable main |
+| Scenarios / build check | PASS; 24 checks, both viewports, screenshots and storage captured, zero page errors/dialogs; generated artifacts identical, 336 JS pieces and 45 script blocks lint clean |
+| TSC / HTML / overlap / guards | PASS; SCORE 200 with no WORSE / SCORE 250 / 1,386 names, 33 files, 155 documented overlaps / zero new violations |
+
 # Uncovered 3: critical dice and separate attack self damage
 
 This batch closes 10 more original sentence IDs: 216 closed in total, 5,244 uncovered, and 0 regressed IDs. Covered is 7,917, info remains 23,621, allow remains 0. Work continues after this checkpoint.

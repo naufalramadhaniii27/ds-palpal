@@ -140,7 +140,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  add("Spirit Pike",{n:"Spirit Pike",weapons:["Pike"]});
  W("Splitter",{atk:3,dmg:3});add("Splitter",{n:"Split Splitter",toggle:{id:"splitter-split",label:"Split into Handaxe and Quarterstaff (one in each hand)"},acAdd:1});
  GX.cls.Druid=(GX.cls.Druid||[]).filter(function(e){return !e._L5});GX.cls.Druid.push({_L5:1,n:"Squasher",atkAb:{kind:"Squasher",ab:"WIS"}});
- add("Staff of Thunder and Lightning",{n:"Staff of Thunder and Lightning",lu:["Lightning","Thunder","Thunder and Lightning","Lightning Strike","Thunderclap"].map(function(x){return {n:x+" (Staff of Thunder and Lightning)",max:1,reset:"dawn"}})});
  add("Staff of the Forgotten One",{n:"Staff of the Forgotten One",skillExpert:["Arcana","History"],atkDice:[{when:"Staff of the Forgotten One",d:"3d6",t:"Necrotic",note:"Hit with the staff"}]});
  adv("Staff of the Magi",["saving throws against spells"]);
  add("Staff of the Sorcerer King",{n:"Staff of the Sorcerer King",weapons:["Spear"],advOn:["saving throws against spells that target only you"]});

@@ -45,6 +45,10 @@ registerSheetGroup({id:"res-spell-slots",group:"resources",phase:"resources",ord
   if(SA.slots)SA.slots.forEach((n,i) =>{C.res.push({k:"s"+(i+1),n:"Spell Slots, level "+(i+1),tag:"Long Rest",max:n,reset:"long"})});return ctx.patch()}});
 /* a counter keeps the key it had on the open sheet (so used points stay used) */
 registerSheetGroup({id:"res-keep-keys",group:"resources",phase:"resources",order:80,reads:["C.name","q.keepResKeys"],writes:["C.res"],run:function(ctx){ctx.q.keepResKeys(ctx.C);return ctx.patch()}});
+/* Bind native charge counters only after keepResKeys has finalized their keys.
+   This is derived metadata; inventory inputs and persisted counter keys stay unchanged. */
+registerSheetGroup({id:"res-inventory-charge-keys",group:"resources",phase:"resources",order:85,reads:["C.res","C.inv"],writes:["C.inv"],
+ run:function(ctx){const C=ctx.C;(C.res||[]).forEach(function(r){if(!r.item||!Number.isInteger(r.invIndex)||r.invIndex<0)return;const it=(C.inv||[])[r.invIndex];if(it&&(it.key||it.n)===r.f)it.chargeKey=r.k});return ctx.patch()}});
 /* ---------- actions ---------- */
 registerSheetGroup({id:"actions-base",group:"actions",phase:"actions",order:10,reads:["i.parts"],writes:["C.actions"],
  run:function(ctx){ctx.C.actions=[{c:"Actions",n:"Attack",t:"Weapon or Unarmed",d:"Make one attack"+(ctx.i.parts.some((q) =>{return q.lv>=5&&/Fighter|Barbarian|Monk|Paladin|Ranger/.test(q.cls)})?" per Extra Attack":"")+". With an [[Unarmed Strike]], choose Damage, [[Grapple]] (DC {dc}), or [[Shove]] (DC {dc})."},

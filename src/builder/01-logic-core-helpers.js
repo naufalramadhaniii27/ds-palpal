@@ -1,3 +1,4 @@
+export {spendDiceProblems} from "../data/lib/attack-resources.js";
 export {targetMatches,targetProblems,damageType,damageExpression,riderProblems,dieReplaceProblems,selfDamageProblems} from "../data/lib/attack-target.js";
 export var KEY="phb24-builder-v1";
 export function $(s,r){return (r||document).querySelector(s)}

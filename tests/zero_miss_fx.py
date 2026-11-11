@@ -2580,9 +2580,47 @@ CASES.append(dict(name="Z3 U24 stowed attunement retains Fast Reflexes",b=dict(c
 
 for damage_type in ["Necrotic","Psychic","Radiant"]:
     CASES.append(dict(name="Z3 U24 Pact Scourge retains "+damage_type,b=dict(cls="Warlock",level=4,base=WL,ch={"invocation":["Pact of the Blade"],"pactWep":["Scourge of Shadow"],"pactDmg":[damage_type]},inv=[dict(n="Scourge of Shadow",q=1,eq=True,attuned=False)]),target={"type":"Creature","alignment":"Good"},expect=[("C.attacks[1].type",damage_type),("C.attacks[1].ab","CHA"),("C.attacks[1].critDie","3d6"),("C.attacks[1].xdice[0].t","Necrotic"),("C.attacks[1].selfDamage[0].critical","2d6"),("__deriveFor(C).atk[1].damageParts[0].type",damage_type)]))
-# The lazy rule-link index must settle before comparing inventory HTML. Keep the
-# HTML comparison strict; wait out the documented 250ms link-index cache.
-# Warming does not permit any additional changed paths.
+# U25: native staff weapon profiles and damage committed to a source resource.
+U25_STAVES=[("Staff of Striking",3,"Fighter"),("Staff of Thunder and Lightning",2,"Fighter"),("Staff of Withering",0,"Cleric"),("Staff of Power",2,"Wizard")]
+for rs in ["2024","2014"]:
+    for item,bonus,cls in U25_STAVES:
+        for attuned in [False,True]:
+            active=attuned
+            a="C.attacks.find(a=>a.n==="+json.dumps(item)+")"
+            checks=[(a+".die","1d6"),(a+".type","Bludgeoning"),(a+".misc",bonus if active else 0),(a+".dmgBonus",bonus if active else 0),("C.inv[0].attunedActive",active),("!!C.attacks.find(a=>a.n==='Longsword').spendDice",False),("!!"+a+".xdice",False)]
+            spend=active and item in ["Staff of Striking","Staff of Thunder and Lightning"]
+            checks.append(("!!"+a+".spendDice",spend))
+            if spend:
+                z=a+".spendDice[0]"
+                checks += [(a+".spendDice.length",1),(z+".type","Force" if item=="Staff of Striking" else "Lightning"),(z+".d","1d6" if item=="Staff of Striking" else "2d6"),(z+".maxCost",3 if item=="Staff of Striking" else 1),("!!"+z+".perCost",item=="Staff of Striking"),(z+".item",item),(z+".requiresAttunement",True),("C.res.some(r=>r.k==="+z+".poolKey&&r.f==="+json.dumps(item)+")",True)]
+                if item=="Staff of Striking":checks += [(z+".poolKey===C.inv[0].chargeKey",True),("C.res.find(r=>r.k==="+z+".poolKey).max",10)]
+                else:checks += [("C.res.find(r=>r.k==="+z+".poolKey).n","Lightning (Staff of Thunder and Lightning)"),("C.res.find(r=>r.k==="+z+".poolKey).max",1),("C.res.filter(r=>r.f==='Staff of Thunder and Lightning'&&!r.item).length",5)]
+            CASES.append(dict(name="Z3 U25 resource native "+item+" "+rs+" attuned "+str(attuned),b=dict(rs=rs,cls=cls,level=4,inv=[dict(n=item,q=1,eq=True,attuned=attuned),dict(n="Longsword",q=1,eq=True)]),expect=checks))
+        for q,eq in [(0,True),(1,False)]:
+            CASES.append(dict(name="NEG U25 resource unavailable "+item+" "+rs+str((q,eq)),b=dict(rs=rs,cls=cls,level=4,inv=[dict(n=item,q=q,eq=eq,attuned=True),dict(n="Longsword",q=1,eq=True)]),expect=[("C.attacks.some(a=>a.n==="+json.dumps(item)+")",False),("C.attacks.some(a=>a.spendDice)",False),("C.attacks.find(a=>a.n==='Longsword').misc",0)]))
+    for item in ["Staff of Striking","Staff of Thunder and Lightning"]:
+        CASES.append(dict(name="Z3 U25 resource differential "+item+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=True),dict(n="Longsword",q=1,eq=True)]),withoutGxFields=["item",item,item,["atkSpendDice"]],expect=[("C.attacks[1].spendDice.length",1),("!!C.attacks[2].spendDice",False)],expectWithout=[("!!C.attacks[1].spendDice",False)],allow=[r"^attacks\.1\.spendDice\.0\.(n|when|d|type|maxCost|perCost|poolKey|item|requiresAttunement|s|chargeKey)$",r"^attacks\.1\.spendDice\.0\.resource\.(kind|name)$"]))
+    CASES.append(dict(name="NEG U25 resource Power requires eligible caster "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n="Staff of Power",q=1,eq=True,attuned=True)]),expect=[("C.inv[0].attunedActive",False),("C.attacks[1].misc",0),("C.attacks[1].dmgBonus",0),("(C.spells||[]).some(s=>s.src==='Staff of Power')",False),("!!C.attacks[1].spendDice",False)]))
+    for item in ["Staff of Striking","Staff of Thunder and Lightning"]:
+        checks=[("C.attacks[1].spendDice.length",1),("C.inv[0].attunedActive",False),("C.inv[1].attunedActive",True),("C.attacks[1].misc",3 if item=="Staff of Striking" else 2)]
+        if item=="Staff of Striking":checks += [("C.attacks[1].spendDice[0].poolKey===C.inv[1].chargeKey",True),("C.attacks[1].spendDice[0].poolKey===C.inv[0].chargeKey",False)]
+        CASES.append(dict(name="Z3 U25 resource duplicate active second copy "+item+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=False),dict(n=item,q=1,eq=True,attuned=True)]),expect=checks))
+
+# Pole Strike inherits the staff source without granting its optional damage to
+# an unrelated weapon or changing the butt-end weapon dice.
+for item in ["Staff of Striking","Staff of Thunder and Lightning"]:
+    for attuned in [False,True]:
+        a="C.attacks.find(a=>a.of==="+json.dumps(item)+")"
+        checks=[(a+".n","Pole Strike"),(a+".die","1d4"),(a+".type","Bludgeoning"),("!!"+a+".spendDice",attuned),("!!C.attacks.find(a=>a.n==='Longsword').spendDice",False)]
+        if attuned:checks += [(a+".spendDice.length",1),(a+".spendDice[0].item",item),(a+".spendDice[0].poolKey===C.attacks.find(a=>a.n==="+json.dumps(item)+").spendDice[0].poolKey",True)]
+        CASES.append(dict(name=("Z3" if attuned else "NEG")+" U25 resource Pole Strike "+item+" attuned "+str(attuned),b=dict(cls="Fighter",level=4,ch={"feat4":{"feat":"Polearm Master","a1":"STR"}},inv=[dict(n=item,q=1,eq=True,attuned=attuned),dict(n="Longsword",q=1,eq=True)]),expect=checks))
+CASES.append(dict(name="Z3 U25 resource two Pole Strikes retain their own pools",b=dict(cls="Fighter",level=4,ch={"feat4":{"feat":"Polearm Master","a1":"STR"}},inv=[dict(n="Staff of Striking",q=1,eq=True,attuned=True),dict(n="Staff of Thunder and Lightning",q=1,eq=True,attuned=True)]),expect=[("C.attacks.filter(a=>a.of).length",2),("C.attacks.filter(a=>a.of).every(a=>a.spendDice.length===1&&a.spendDice[0].item===a.of)",True),("new Set(C.attacks.filter(a=>a.of).map(a=>a.spendDice[0].poolKey)).size",2)]))
+
+# Refresh the real rule-link index with the case's source packs installed.
+# __bldSheetFor restores its caller's packs, so a timer after a disposable build
+# can warm the wrong index. Keep the case packs installed for both compared
+# builds, then restore the exact previous fixture. HTML comparison stays strict;
+# warming does not permit any additional changed paths.
 for c in CASES:
     if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]):c["warm"]=True
 
@@ -2610,14 +2648,15 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  // Compile before timer waits: CSP permits debugger evaluation, not dynamic code
  // created from a later timer callback. The page policy itself stays unchanged.
  cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
- for(const c of cases){ const r={name:c.name,fail:[]};
-  try{ if(c.warm){window.__bldSheetFor(mk(c.b),c.tog,c.target);await new Promise(resolve=>setTimeout(resolve,260))} const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+ for(const c of cases){ const r={name:c.name,fail:[]},warmBefore=c.warm?window.__bldTestB():null;
+  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');window.__xl.idx()} const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
    for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }
    const A=r.flat, Z=flat(C0,'',{}), rx=c.allow.map(s=>new RegExp(s)); const ch=[...new Set([...Object.keys(A),...Object.keys(Z)])].filter(k=>A[k]!==Z[k]);
    r.changed=ch.length; ch.filter(k=>!rx.some(x=>x.test(k))).slice(0,8).forEach(k=>r.fail.push('path changed outside allow: '+k+' '+JSON.stringify(Z[k])+' -> '+JSON.stringify(A[k])));
   }catch(e){ r.fail.push('ERR '+String(e.stack||e).slice(0,300)) }
+  finally{if(warmBefore){window.__bldTestSet(null);if(JSON.stringify(window.__bldTestB())!==JSON.stringify(warmBefore))r.fail.push('rule-link warmup changed the previous build fixture')}}
   res.push(r) }
  return res }"""
 
