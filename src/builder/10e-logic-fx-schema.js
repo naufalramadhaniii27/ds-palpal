@@ -1,4 +1,4 @@
-import {typeOk} from "./01-logic-core-helpers.js";
+import {typeOk,targetProblems,damageType,damageExpression} from "./01-logic-core-helpers.js";
 /* ==========================================================================================================================================
    fx engine, SOLID stage 2 (L): ONE schema for an effect entry. Every field an entry may carry and the types it may hold. The same schema applies to
    all registries: the GX.<kind> tables, the class, species and background effect lists, the magic item rows (fx object) and the entries gfx() builds.
@@ -17,6 +17,8 @@ export const FX_FIELDS={
  retain:"boolean",
  notSpecies:"array",
  savePE:"object",
+ target:"object",
+ targetOn:"boolean?",
  acAdd:"array|number|string",
  cond:"string",
  res:"array",
@@ -121,9 +123,14 @@ export function fxEntryProblems(e){const bad=[];
  if(!e||typeof e!=="object"||Array.isArray(e)){bad.push("entry is not a plain object");return bad}
  Object.keys(e).forEach((k) =>{if(!Object.prototype.hasOwnProperty.call(FX_FIELDS,k)){bad.push("field "+k+" is not in the entry schema");return}
   if(!typeOk(FX_FIELDS[k],e[k]))bad.push("field "+k+" should be "+FX_FIELDS[k]+", is "+(Array.isArray(e[k])?"array":e[k]===null?"null":typeof e[k]))});
- if(e.retain&&(!e.toggle||!e.toggle.id||e.toggle.default!==false))bad.push("retain needs a toggle with default false");
+ extraEntryProblems(e,bad);
+ return bad}
+
+function extraEntryProblems(e,bad){ if(e.retain&&(!e.toggle||!e.toggle.id||e.toggle.default!==false))bad.push("retain needs a toggle with default false");
  if(e.consume){
   if(!e.toggle||!e.toggle.id||e.toggle.default!==false)bad.push("consume needs a toggle with default false");
   if(typeof e.consume.duration!=="string"||!e.consume.duration.trim())bad.push("consume needs a duration label");
  }
- return bad}
+ if(e.target)bad.push(...targetProblems(e.target));
+ (Array.isArray(e.atkDice)?e.atkDice:[]).forEach((x) =>{if(x&&x.roll&&(!damageType(x.t)||!damageExpression(x.d)))bad.push("rolled extra damage needs literal dice and one damage type")});
+}

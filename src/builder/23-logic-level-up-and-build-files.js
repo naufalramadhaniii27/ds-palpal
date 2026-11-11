@@ -5,7 +5,7 @@ import {B,__set_B,save,saveBak,savedRaw} from "./04-logic-storage.js";
 import {CL} from "./05-logic-choice-model-ruleset.js";
 import {featViol,toolAll} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOwn} from "./10-logic-v17-additions.js";
-import {fxtSet,casterParts,clsLv,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
+import {targetSet,fxtSet,casterParts,clsLv,manualLost,spLists,spToggle} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {BASE,allPacks,applyPacks,autoSpellList,snap} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,baseOf,itemCost} from "./14-logic-multiclass-hp-shop.js";
@@ -219,7 +219,7 @@ function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpe
  cp.slice().sort((a,b) =>{const ka=spInfoPart(a),kb=spInfoPart(b);return qbSpN(ka)-qbSpN(kb)}).forEach((P) =>{qbSpFill(P,auto,DMG)});
  qbSpArc();
  qbSpBook(cp)}/* v35 p05 */
-genv.__bldSheetFor=function(nb,fxT){let keep=B,out=null;try{fxtSet(fxT||null);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{fxtSet(null);__set_B(keep);applyPacks()}return out};
+genv.__bldSheetFor=function(nb,fxT,target){let keep=B,out=null;try{targetSet(target);fxtSet(fxT||null);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet()}finally{targetSet(null);fxtSet(null);__set_B(keep);applyPacks()}return out};
 /* T11 N29: many builds in a row (Find a build). The data tables (applyPacks) are set up again only when something they depend on changes:
    every builder field except the ones Find a build varies (species, background and its ability choice, scores), plus whether the species
    and background are core or come from a source (MoM, EFotA, a pack). Between two tries that differ only in core species, background or

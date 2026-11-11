@@ -41,8 +41,8 @@
 
  /* ---- Extra damage dice on a hit, languages and senses of weapons ---- */
  function dice(n,d,t,note){add(n,{n:n,atkDice:[{when:n,d:d,t:t,note:note}]})}
- dice("Dragontooth Dagger","1d6","acid");
- add("Dragontooth Dagger",{n:"Draconic Potency",atkBonus:[{when:"Dragontooth Dagger",note:"Against enemies of the Cult of the Dragon the bonus to attack and damage is +2 and the extra acid is 2d6."}]});
+ add("Dragontooth Dagger",{n:"Dragontooth Dagger",atkDice:[{when:"Dragontooth Dagger",d:"1d6",t:"Acid",roll:true}]});
+ add("Dragontooth Dagger",{n:"Draconic Potency",target:{tag:"cult-enemy",tagLabel:"Enemy of the Cult of the Dragon"},atkBonus:[{when:"Dragontooth Dagger",atk:1,dmg:1}],atkDice:[{when:"Dragontooth Dagger",d:"1d6",t:"Acid",roll:true}]});
 /* attuned value; equipping an attunement item counts as attuned */
  dice("Dekella, Bident of Thassa","2d10","cold");
  dice("Mastix, Whip of Erebos","2d8","necrotic");

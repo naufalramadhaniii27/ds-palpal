@@ -63,7 +63,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  add("Hazirawn",{n:"Hazirawn (attuned)",atkDice:[{when:["Hazirawn"],d:"2d6",t:"necrotic"}]});
  DataEnv.slot.FXO["Hazirawn"]={fx:{atk:2,dmg:2}};
  var HA=["Longsword","Battleaxe","Blowgun","Club","Dagger","Dart","Flail","Glaive","Greataxe","Greatclub","Greatsword","Halberd","Hand Crossbow","Handaxe","Heavy Crossbow","Javelin","Lance","Light Crossbow","Light Hammer","Longbow","Mace","Maul","Morningstar","Musket","Pike","Pistol","Quarterstaff","Rapier","Scimitar","Shortbow","Shortsword","Sickle","Sling","Spear","Trident","War Pick","Warhammer","Whip"];
- addV("Holy Avenger",HA,function(v){return {n:v,atkBonus:[{when:[v],note:"Against a Fiend or an Undead: extra 2d10 radiant damage on a hit."}]}});
+ addV("Holy Avenger",HA,function(v){return {n:v,target:{types:["Fiend","Undead"]},atkDice:[{when:[v],d:"2d10",t:"Radiant",roll:true}]}});
  add("Keranos's Devotee",{n:"Keranos's Devotee",atkBonus:[{when:"weapon",note:"Keranos's Devotee: once per turn on a hit, an extra 1d6 lightning (uses are in Resources)."}]});
  add("Malleus Macabre",{n:"Malleus Macabre",atkBonus:[{when:["Malleus Macabre"],crit:19}]});
  add("Fife of Dragonsong",{n:"Fife of Dragonsong",weapons:["Blowgun"],tools:["Fife"]});

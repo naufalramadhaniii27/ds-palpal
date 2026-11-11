@@ -1,3 +1,4 @@
+import {attackDamagePackets,combinedDamage,rolledRiders} from "./lib/damage-packets.js";
 import {ammoBonus,atkKind,bindLive,carryOf,cfx,cuApply,cuK,cuNum,cuSpeed,lateGet,lateSet,scAdj,setOf,sitNum} from "./00a-reg-late-ports.js";// @ts-check
 import {ABK,ABN} from "./02-data-default-character.js";
 import {x14} from "./03-data-glossary.js";
@@ -43,14 +44,16 @@ function deriveFn1Step1(a, pb, CF, exhN, exP){
 }
 function deriveFn1Step2(CF, a, m, amN, cuA, i, hit){
     const rgB=(CF.dmgStr&&a.ab==="STR"&&!/^Cantrip/.test(a.sub||""))?CF.dmgStr:0;/* v22 RU56 Rage */ const dm=(a.nomod?0:m)+num(a.dmgBonus,0)+amN+rgB+(cuA?cuNum(cuA.db)||0:0); let dmg=(a.die||"1")+(dm===0?"":(dm>0?"+"+dm:"\u2212"+Math.abs(dm)));
-    const dmC=dm-(cuA?cuNum(cuA.db)||0:0), cDo=cuA&&cuA["do"]?String(cuA["do"]):""; if(cuA) lateGet("CU0")["a:"+a.n+"|do"]=(a.die||"1")+(dmC===0?"":(dmC>0?"+"+dmC:"\u2212"+Math.abs(dmC))); if(cDo) dmg=cDo;/* v34 RU85 */
-    D.atk[i]={hit:hit, dmg:dmg, rg:rgB};
+    const packets=attackDamagePackets(a,dmg);if(packets.length)dmg=packets.map((p) =>p.expr).join("+");
+    const dmC=dm-(cuA?cuNum(cuA.db)||0:0), cDo=cuA&&cuA["do"]?String(cuA["do"]):""; if(cuA) lateGet("CU0")["a:"+a.n+"|do"]=combinedDamage(a,(a.die||"1")+(dmC===0?"":(dmC>0?"+"+dmC:"\u2212"+Math.abs(dmC)))); if(cDo) dmg=cDo;/* explicit damage overrides still replace the calculated total */
+    D.atk[i]={hit:hit, dmg:dmg, rg:rgB};setAttackPacketData(D.atk[i],a,cDo,packets);
   return /** @type {any} */ ({dmg, cDo});
 }
 function deriveFn1Step3(amB, hp, i, a, hit, m, amN, cuA, cDo, dmg){
     if(amB&&!amB.on) hp.push({l:"Magic ammunition", v:"None selected", note:"You carry "+amB.L.map((x) =>{ return x.it.n; }).join(" and ")+". Open this attack to pick one.", raw:true});/* v102 */
     B["ah-"+i]={t:a.n+": attack roll", parts:hp, total:sg(hit), f:""};
     B["ad-"+i]={t:a.n+": damage", parts:[{l:"Damage die", v:a.die||"\u2014", note:a.dieSrc||"", raw:true}, part(ABN[a.ab]+" modifier", a.nomod?0:m, a.nomod?"Not added to this damage":"Added to damage")].concat(num(a.dmgBonus,0)?[part(a.miscSrc||"Magic bonus", num(a.dmgBonus))]:[]).concat(amN?[part(amB.on.it.n, amN, "Magic ammunition fired from this weapon")]:[]).concat(cuA&&cuNum(cuA.db)?[part("Customize: damage bonus", cuNum(cuA.db), cuA.note||"Set with Customize")]:[]).concat(cDo?[{l:"Set by you", v:cDo, note:"Calculated value: "+lateGet("CU0")["a:"+a.n+"|do"]+". Your text replaces it.", raw:true}]:[]), total:dmg, f:a.type?("Damage type: "+esc(a.type)+"."):""};
+    if(!cDo)B["ad-"+i].parts.push(...rolledRiders(a).map((p) =>({l:p.source,v:p.expr+" "+p.type,note:"Applied extra damage",raw:true})));
 }
 function deriveBase(){
   D = {}; B = {}; lateSet("CU0",{});/* v34 RU85 */
@@ -188,3 +191,5 @@ export function fill(t){ return String(t||"").replace(/\{dc\}/g,D.dc).replace(/\
 
 export function __set_D(v){ return D=v; }
 export function __set_B(v){ return B=v; }
+
+function setAttackPacketData(out,a,override,packets){if(!override&&packets.length)out.damageParts=packets;if(a.critRange)out.critAt=a.critRange}

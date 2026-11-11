@@ -740,7 +740,8 @@
     "data/fx-Z2.js",
     "data/fx-Z3.js",
     "data/fx-Z4.js",
-        "data/fx-Z5.js"
+    "data/fx-Z5.js",
+    "data/fx-Z6.js"
    ]
   },
   {
@@ -777,6 +778,7 @@
     "builder/10c-logic-fx-handlers-ability.js",
     "builder/10d-logic-fx-rules-cond-value.js",
     "builder/10e-logic-fx-schema.js",
+    "data/lib/attack-target.js",
     "builder/11-logic-derivation.js",
     "builder/11b-logic-fx-sources.js",
     "builder/11c-logic-fx-handlers-sheet.js",

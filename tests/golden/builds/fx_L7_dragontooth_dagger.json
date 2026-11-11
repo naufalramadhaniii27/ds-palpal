@@ -49,9 +49,5 @@
   ]
  },
  "expect": {},
- "expectC": {
-  "attacks.Dragontooth Dagger.xdice": {
-   "in": "acid"
-  }
- }
+ "expectC": [{"path":"attacks.Dragontooth Dagger.xdice","has":{"d":"1d6","t":"Acid","roll":true}}]
 }

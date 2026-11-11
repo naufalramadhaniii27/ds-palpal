@@ -1,3 +1,4 @@
+import {targetMatches} from "./01-logic-core-helpers.js";
 import {registerFxHandler,chPick,ABFULL} from "./10a-logic-fx-registry.js";
 /* Entry handlers (registry "entry", contract in 10a). ctx = {src:{kind,owner,lv,pre,okey,alias}, ch:(the pick map, read only), fxT:(toggle state map)}.
    gate and prepare handlers get the raw source entry e, post handlers get the built entry o. One handler per field group. */
@@ -16,7 +17,7 @@ registerFxHandler("entry",{id:"spcls-alias",group:"spellcasting",phase:"prepare"
 registerFxHandler("entry",{id:"abpick-pick",group:"abilityScores",phase:"prepare",fields:["abPick","pick"],uses:[],run:function(e,ctx){const ap=e.abPick;if(!(ap&&ap.from&&!(e.pick||[]).some((q) =>{return q.k===ap.k})))return null;
  return {set:{pick:(e.pick||[]).concat([{k:ap.k,t:"multi",n:ap.n||1,title:ap.title||"Ability score",list:ap.from.map((k) =>{return [ABFULL[k]||k,""]})}])}}}});
 /* toggle {id,label,default}: the effect counts only while the state is on. Off: only the keys in TGKEEP stay (so picks and the toggle list still work) */
-export const TGKEEP=["n","l","when","pick","pickLv","toggle","consume","retain","abPick","kind","owner","lv","pre","okey","idx","lbl","ocls"];
+export const TGKEEP=["n","l","when","pick","pickLv","toggle","consume","retain","target","targetOn","abPick","kind","owner","lv","pre","okey","idx","lbl","ocls"];
 registerFxHandler("entry",{id:"toggle",group:"toggle",phase:"post",fields:["toggle"],uses:["fxT"],eKeys:["*"],run:function(o,ctx){if(!o.toggle)return null;const st=ctx.fxT[o.toggle.id],on=st==null?!!o.toggle.default:!!st;
  if(on)return {replace:Object.assign({},o,{tgOn:on})};const k={off:1,tgOn:false};TGKEEP.forEach((f) =>{if(o[f]!==undefined)k[f]=o[f]});return {replace:k}}});
 
@@ -24,3 +25,9 @@ registerFxHandler("entry",{id:"toggle",group:"toggle",phase:"post",fields:["togg
    custom species name, languages or the character's appearance. */
 registerFxHandler("entry",{id:"gate-species-exclusion",group:"gate",phase:"gate",fields:["notSpecies"],uses:["species"],run:function(e,ctx){if(!e.notSpecies)return null;
  const norm=(v) =>String(v||"").replace(/\s*\(2014\)$/i,"").toLowerCase();return e.notSpecies.some((n) =>norm(n)===norm(ctx.species))?{skip:true}:null}});
+
+/* Target qualifiers retain metadata while inactive, so the sheet can expose the
+   context controls without granting conditional bonuses to an unknown target. */
+registerFxHandler("entry",{id:"attack-target",group:"target",phase:"post",fields:["target"],uses:["target"],eKeys:["*"],run:function(o,ctx){if(!o.target)return null;
+ const on=targetMatches(o.target,ctx.target);if(on)return {replace:Object.assign({},o,{targetOn:true})};
+ const out={off:1,targetOn:false};TGKEEP.forEach((k) =>{if(o[k]!==undefined)out[k]=o[k]});return {replace:out}}});

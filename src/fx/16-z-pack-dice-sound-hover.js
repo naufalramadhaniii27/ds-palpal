@@ -20,9 +20,10 @@ const FXS16A={};
   const {nf,rm,vis,esc,fx,ls,st}=FXH;
   ;
   FXS16A.finish=function finish(spec,mode,label,vals){ let r={l:label,t:Date.now()}, vi=0; if(spec.dtype) r.dt=spec.dtype;
+    if(spec.dmg&&spec.damageParts&&FXS16A.packetResult){Object.assign(r,FXS16A.packetResult(spec.damageParts,mode,vals));r.k=mode==="crit"?"crit":"dmg";return r}
     if(spec.dmg){ let terms=FXS16A.parseDmg(spec.dmg), tot=0, parts=[], dice=[]; terms.forEach((q) =>{ if(q.f){ const n=q.n*(mode==="crit"?2:1); for(let i=0;i<n;i++){ const v=vals[vi++]; dice.push(v); tot+=q.s*v; } parts.push((q.s<0?"-":"")+n+"d"+q.f); } else { tot+=q.s*q.k; parts.push((q.s<0?"-":"+")+q.k); } });
       r.v=Math.max(0,tot); r.d="["+dice.join(", ")+"] "+parts.join("").replace(/^\+/,""); r.k=mode==="crit"?"crit":"dmg"; }
-    else { const a=vals[0], b=vals[1]||vals[0], use=mode==="adv"?Math.max(a,b):mode==="dis"?Math.min(a,b):a; r.nat=use; r.v=use+spec.bon; r.d=(mode?("["+a+", "+b+"] "+(mode==="adv"?"advantage":"disadvantage")+" "):"")+use+(spec.bon<0?" − "+(-spec.bon):" + "+spec.bon); r.k=use===20?"nat20":use===1?"nat1":"d20"; }
+    else FXS16A.finishD20(r,spec,mode,vals);
     return r; };
 })();
 (function(){
@@ -167,8 +168,8 @@ const FXS16A={};
   FXS16A.last=null;
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-bd]"); if(b&&!b.closest("#sheet")) FXS16A.last={k:b.getAttribute("data-bd"),el:b,t:Date.now(),txt:(b.textContent||"").replace(/\s+/g," ")}; },true);
   FXS16A.rollSpec=function rollSpec(k,el,txt){ if(!k) return null;
-    if(/^ad-/.test(k)){ const m=/(\d*d\d+(?:\s*[+−-]\s*\d*d?\d+)*)/.exec(txt); return m?{dmg:m[1].replace(/−/g,"-").replace(/\s+/g,""),dtype:(FXENV.__miRoll&&FXENV.__miRoll.dtype)?FXENV.__miRoll.dtype(txt):""}:null; }
-    if(/^(ah-|save-|sk-|ab-|init$|spatk$)/.test(k)){ let src=txt; if(/^ab-/.test(k)){ const mm=el&&el.querySelector(".m"); src=mm?mm.textContent:txt; } const n=/([+−-]\s?\d+)/.exec(src); return n?{bon:parseInt(n[1].replace(/−/,"-").replace(/\s/,""),10)}:null; }
+    if(/^ad-/.test(k)){ const m=/(\d*d\d+(?:\s*[+−-]\s*\d*d?\d+)*)/.exec(txt); const sp=m?{dmg:m[1].replace(/−/g,"-").replace(/\s+/g,""),dtype:(FXENV.__miRoll&&FXENV.__miRoll.dtype)?FXENV.__miRoll.dtype(txt):""}:null;return FXS16A.decorateAttack(el,sp); }
+    if(/^(ah-|save-|sk-|ab-|init$|spatk$)/.test(k)){ let src=txt; if(/^ab-/.test(k)){ const mm=el&&el.querySelector(".m"); src=mm?mm.textContent:txt; } const n=/([+−-]\s?\d+)/.exec(src); const sp=n?{bon:parseInt(n[1].replace(/−/,"-").replace(/\s/,""),10)}:null;return FXS16A.decorateAttack(el,sp); }
     return null; };
 })();
 (function(){

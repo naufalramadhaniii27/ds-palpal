@@ -87,13 +87,13 @@ CASES = [
          base_allow=[ATK + r"(ab|note)$", r"^inv\.0\.html$"]),
     # ---------------- DMG 2024 weapons: on-hit extra damage notes (src/data/fx-Z1.js)
     dict(name="Holy Avenger: 2d10 Radiant against a Fiend or an Undead", b=dict(cls="Paladin", level=5, ch={}, inv=[{"n": "Holy Avenger", "q": 1, "eq": True}], base=WL),
-         expect=[("/Extra damage: \\+2d10 Radiant against a Fiend or an Undead/.test(C.attacks.find(a=>/Holy Avenger/.test(a.n)).note)", True)],
+         expect=[("/Extra damage: \\+2d10 Radiant/.test(C.attacks.find(a=>/Holy Avenger/.test(a.n)).note)", True)],
          base_allow=[r"^attacks\.1\.(note|xdice\.)"]),
     dict(name="Flame Tongue variant row (Rapier) gets the 2d6 Fire note", b=dict(cls="Fighter", level=5, ch={}, inv=[{"n": "Flame Tongue (Rapier)", "q": 1, "eq": True}], base=WL),
          expect=[("/\\+2d6 Fire while the weapon is burning/.test(C.attacks.find(a=>/Flame Tongue/.test(a.n)).note)", True)],
          base_allow=[r"^attacks\.1\.(note|xdice\.)"]),
     dict(name="Sun Blade: 1d8 Radiant against an Undead, Radiant and Finesse kept", b=dict(cls="Fighter", level=5, ch={}, inv=[{"n": "Sun Blade", "q": 1, "eq": True}], base=WL),
-         expect=[("/\\+1d8 Radiant against an Undead/.test(C.attacks[1].note)", True), ("C.attacks[1].type", "Radiant")],
+         expect=[("/\\+1d8 Radiant/.test(C.attacks[1].note)", True), ("C.attacks[1].type", "Radiant")],
          base_allow=[r"^attacks\.1\.(note|xdice\.)"]),
     dict(name="Dwarven Thrower: both rows (melee and thrown) get the ranged note", b=dict(cls="Fighter", level=5, ch={}, extra={"species": "Dwarf"}, inv=[{"n": "Dwarven Thrower", "q": 1, "eq": True}], base=WL),
          expect=[("C.attacks.filter(a=>/Dwarven Thrower/.test(a.n)&&/Force on a ranged hit/.test(a.note)).length>=1", True)],
@@ -2466,6 +2466,51 @@ for c in CASES:
 CASES += [dict(name="Z3 U19 belt social benefit",b=dict(cls="Wizard",level=4,base=WL,inv=[dict(n="Belt of Dwarvenkind",q=1,eq=True)]),withoutGxFields=["item","Belt of Dwarvenkind","Friend of Dwarvenkind",["advOn"]],expect=[(BELT_FRIEND,True)],expectWithout=[(BELT_FRIEND,False)],allow=[r"^defenses(?:\.|$)",r"^saveNotes(?:\.|$)"]),
  dict(name="NEG U19 belt social benefit while unequipped",b=dict(cls="Wizard",level=4,base=WL,inv=[dict(n="Belt of Dwarvenkind",q=1,eq=False)]),expect=[(BELT_FRIEND,False)])]
 
+# Former advisory-note checks now exercise an explicit, matching target.
+for c in CASES:
+    if c["name"].startswith("Holy Avenger: "):c["target"]={"type":"Fiend"}
+    if c["name"].startswith("Sun Blade: "):c["target"]={"type":"Undead"}
+
+# Target context grants only verified riders, scoped to the matching weapon.
+for item, target, dice, dtype in [
+    ("Ebonbane", {"type":"Humanoid"}, "3d6", "Necrotic"),
+    ("Ebonbane", {"type":"Celestial"}, "3d6", "Necrotic"),
+    ("Wrought-Iron Tower", {"type":"Creature","alignment":"Good"}, "3d6", "Fire"),
+    ("Sword of Kas", {"type":"Undead"}, "2d10", "Slashing"),
+    ("Holy Avenger", {"type":"Fiend"}, "2d10", "Radiant"),
+    ("Holy Avenger", {"type":"Undead"}, "2d10", "Radiant"),
+    ("Sun Blade", {"type":"Undead"}, "1d8", "Radiant"),
+]:
+    expr="C.attacks.find(a=>a.n===%s)"%json.dumps(item)
+    CASES.append(dict(name="Z3 U20 target "+item+" "+json.dumps(target),b=dict(cls="Paladin" if item=="Holy Avenger" else "Fighter",level=4,inv=[dict(n=item,q=1,eq=True),dict(n="Longsword",q=1,eq=True)]),target=target,
+        expect=[(expr+".xdice[0].d",dice),(expr+".xdice[0].t",dtype),(expr+".xdice[0].roll",True),(expr+".xdice.length",1),("!!C.attacks.find(a=>a.n==='Longsword').xdice",False)]))
+for item in ["Ebonbane","Wrought-Iron Tower","Sword of Kas"]:
+    for target in [{},{"type":"Object"}]:
+        CASES.append(dict(name="NEG U20 unknown or object "+item+json.dumps(target),b=dict(cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True)]),target=target,
+            expect=[("!!C.attacks.find(a=>a.n===%s).xdice"%json.dumps(item),False)]))
+
+CASES += [
+ dict(name="Z3 U20 computed Sword of Kas critical and Undead",b=dict(cls="Fighter",level=4,inv=[dict(n="Sword of Kas",q=1,eq=True)]),target={"type":"Undead"},
+      withoutGxFields=["item","Sword of Kas","Spirit of Kas",["atkBonus"]],expectWithout=[("C.attacks[1].critRange||20",20)],allow=[r"^attacks\.1\.(note|critRange)$"],
+      expect=[("C.attacks[1].critRange",19),("C.attacks[1].xdice[0].d","2d10"),("__deriveFor(C).atk[1].damageParts[0].expr.includes('2d10')",True)]),
+ dict(name="Z3 U20 computed Dragontooth Dagger potency",b=dict(cls="Fighter",level=4,inv=[dict(n="Dragontooth Dagger",q=1,eq=True)]),target={"tags":["cult-enemy"]},
+      withoutGxFields=["item","Dragontooth Dagger","Draconic Potency",["atkBonus","atkDice"]],expectWithout=[("C.attacks[1].misc",1),("C.attacks[1].xdice.length",1)],allow=[r"^attacks\.1\."],
+      expect=[("C.attacks[1].misc",2),("C.attacks[1].dmgBonus",2),("__deriveFor(C).atk[1].damageParts.find(p=>p.type==='Acid').expr","1d6+1d6")]),
+ dict(name="NEG U20 Dragontooth without enemy tag",b=dict(cls="Fighter",level=4,inv=[dict(n="Dragontooth Dagger",q=1,eq=True)]),target={},
+      expect=[("C.attacks[1].misc",1),("C.attacks[1].dmgBonus",1),("__deriveFor(C).atk[1].damageParts.find(p=>p.type==='Acid').expr","1d6")]),
+]
+
+for variant in ["Holy Avenger (Longsword)","Holy Avenger (Rapier)","Holy Avenger (Greatsword)"]:
+ for target,active in [({"type":"Fiend"},True),({"type":"Humanoid"},False)]:
+    expr="C.attacks.find(a=>a.n===%s)"%json.dumps(variant)
+    CASES.append(dict(name=("Z3" if active else "NEG")+" U20 Holy Avenger variant "+variant+json.dumps(target),b=dict(cls="Paladin",level=4,inv=[dict(n=variant,q=1,eq=True)]),target=target,expect=[("!!"+expr+".xdice",active)]+([(expr+".xdice[0].roll",True)] if active else [])))
+
+# The lazy rule-link index must settle before comparing inventory HTML. Keep the
+# HTML comparison strict; wait out the documented 250ms link-index cache.
+# Warming does not permit any additional changed paths.
+for c in CASES:
+    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"]:c["warm"]=True
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }
@@ -2484,13 +2529,16 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
    try{fields.forEach(k=>{delete row[k]});return c.withoutWx?withoutWx(c):window.__bldSheetFor(mk(c.b))}
    finally{fields.forEach((k,i)=>{row[k]=old[i]})} };
  const withoutGxFields=c=>{const [kind,owner,name,fields]=c.withoutGxFields,table=window.GX[kind],old=table[owner];
-   try{table[owner]=old.map(e=>e.n===name?Object.fromEntries(Object.entries(e).filter(([k])=>!fields.includes(k))):e);return c.withoutWx?withoutWx(c):window.__bldSheetFor(mk(c.b))}
+   try{table[owner]=old.map(e=>e.n===name?Object.fromEntries(Object.entries(e).filter(([k])=>!fields.includes(k))):e);return c.withoutWx?withoutWx(c):window.__bldSheetFor(mk(c.b),undefined,c.target)}
    finally{table[owner]=old} };
- const res=[];
+ const res=[],evaluators=new Map();
+ // Compile before timer waits: CSP permits debugger evaluation, not dynamic code
+ // created from a later timer callback. The page policy itself stays unchanged.
+ cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
  for(const c of cases){ const r={name:c.name,fail:[]};
-  try{ if(c.warm)window.__bldSheetFor(mk(c.b)); const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
-   for(const [ex,want] of c.expect){ let got; try{ got=(new Function('C','return ('+ex+')'))(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
-   for(const [ex,want] of c.expectWithout||[]){let got;try{got=(new Function('C','return ('+ex+')'))(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
+  try{ if(c.warm){window.__bldSheetFor(mk(c.b),c.tog,c.target);await new Promise(resolve=>setTimeout(resolve,260))} const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+   for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
+   for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }
    const A=r.flat, Z=flat(C0,'',{}), rx=c.allow.map(s=>new RegExp(s)); const ch=[...new Set([...Object.keys(A),...Object.keys(Z)])].filter(k=>A[k]!==Z[k]);
    r.changed=ch.length; ch.filter(k=>!rx.some(x=>x.test(k))).slice(0,8).forEach(k=>r.fail.push('path changed outside allow: '+k+' '+JSON.stringify(Z[k])+' -> '+JSON.stringify(A[k])));

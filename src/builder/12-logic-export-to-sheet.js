@@ -5,7 +5,7 @@ import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
 import {XFX,allFeats,gxPicks,bgTl,chOf,choices,dmSpells,featSpells,grantTools,hbPickOk,kitTool,sbWx,spClsJ,spFxTo,spItemB,spItemSrc,spLinTrait,spTraitText,subAt,toolChoices} from "./09-logic-feats-and-choices.js";
 import {agOn,invList,luRows,optAny,pactWeapon,saveNoteRows,wisElse,wmAll,xdmgRows,ycOf} from "./10-logic-v17-additions.js";
-import {fxToggles,ATKC,__set_ATKC,fxCh,fxList,fxOk,fxVal,abilScores,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
+import {fxTargets,fxToggles,ATKC,__set_ATKC,fxCh,fxList,fxOk,fxVal,abilScores,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
 
 import {MCL,TL,baseOf,effArmor,effShield,effWeps,hpCalc,packSkills,spOptFx,subGrant,syncPickItems} from "./01b-logic-late-ports.js";
 import {QRY,provideQueries} from "./01a-logic-query-registry.js";
@@ -26,7 +26,7 @@ bindLive("toSheet",{get:function(){return toSheet;}});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
 /* the pure reads a handler may ask for (state.q): the old code reached them through __R. Functions of 09 and 11 are imported; the modules that load later (13, 14, 16, 20) provide theirs with provideQueries (01a-logic-query-registry.js) */
-provideQueries({byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,getPbAdd:getPbAdd,fxToggles:fxToggles,xfxSenses:function(C){XFX.senses(C)},setProfc:function(C){if(C.profs)QRY.profcSet(C.profs)},spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)QRY.profcSet(profs);return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
+provideQueries({byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,getPbAdd:getPbAdd,fxToggles:fxToggles,fxTargets:fxTargets,xfxSenses:function(C){XFX.senses(C)},setProfc:function(C){if(C.profs)QRY.profcSet(C.profs)},spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)QRY.profcSet(profs);return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
  itemHtml:function(n,x){if(inTS())return null;setInTS(1);try{return {html:QRY.itemDetail(n,x)}}finally{setInTS(0)}},
  kitTool:kitTool,
  resMax:resMax,resKey:resKey,luRows:luRows,slugK:slugK,keepResKeys:keepResKeys,featsOf:featsOf,saveNotesOf:function(f){return saveNoteRows(f)},xdmgRows:xdmgRows,

@@ -1,3 +1,90 @@
+# Uncovered 3: target-qualified weapon damage
+
+The new attack-target model computes conditional weapon bonuses and rolls verified extra damage by type. This batch closes 13 additional rule sentences: 196 closed since the initial 5,460, leaving 5,264. Work continues on the remaining rules; this is a checkpoint, not a completion claim.
+
+## Mechanical behavior
+
+- The sheet stores an optional current target: creature type (or Object/Structure), alignment, current/max HP, and explicit source-qualified tags. Unknown facts do not satisfy a condition. Old saved states migrate to Unknown without renaming a storage key; unrecognized future target properties survive normalization.
+- A typed `target` predicate gates the entry before sheet derivation. An inactive entry retains only source/control metadata, so the controls remain available without granting its effects. A third optional argument to `__bldSheetFor` supplies isolated target context for tests.
+- `atkDice.roll:true` opts a verified rider into actual damage calculation and rolling. Legacy conditional prose is not interpreted as unconditional dice. The calculator groups base damage and riders by damage type, retains their sources, and clamps each type at zero. Critical damage doubles dice, including riders, and leaves flat modifiers unchanged.
+- The real damage buttons, roll history, manual-roll type label, calculation breakdown, and PDF weapon model preserve mixed damage types. Explicit custom damage overrides still replace the calculated total. Long mixed expressions wrap in the mobile damage column.
+- Existing typed critical thresholds now reach attack rolls: a natural 19 can be marked critical without being mislabeled Natural 20.
+
+| Weapon | Computed condition and result |
+|---|---|
+| Ebonbane | Celestial/Humanoid: +3d6 Necrotic |
+| Ranseur of Torture | Good creature: +1d10 Necrotic; creature below full HP: +1d10 Piercing; both stack with its existing 2d10 base |
+| Wrought-Iron Tower | Good creature: +3d6 Fire |
+| Sword of Kas | Undead: +2d10 Slashing; critical threshold 19 |
+| Dragontooth Dagger | Base +1d6 Acid; explicitly marked Cult enemy: total +2 attack/damage and 2d6 Acid |
+| Holy Avenger | Fiend/Undead: +2d10 Radiant, once; the default item and all 38 base choices share the condition |
+| Sun Blade | Undead: +1d8 Radiant; existing Radiant base and Finesse remain |
+
+Holy Avenger's former split records were consolidated rather than stacked. The obsolete overlap exception was removed. The coverage reduction is 10 data-backed sentences (including two copies of Ranseur's already-computed +3/2d10 base clause) and three exact, tested arithmetic/critical clauses. Holy Avenger and Sun Blade improve real calculation without being counted as new closures.
+
+## Current measured result
+
+| Kind | Initial uncovered | Current uncovered | Closed |
+|---|---:|---:|---:|
+| item | 3060 | 3006 | 54 |
+| sub | 1436 | 1328 | 108 |
+| feat | 555 | 524 | 31 |
+| class | 240 | 237 | 3 |
+| species | 169 | 169 | 0 |
+| spell | 0 | 0 | 0 |
+| **Total** | **5460** | **5264** | **196** |
+
+No sentence was relabeled informational. The coverage allowlist remains empty. Three unresolved initial G1 readings and the four reserved bugs are unchanged. A deterministic audit samples 150 sorted closed IDs with seed 11; 29 newly sampled rows were reviewed alongside the prior audit, with no additional error found. Exact new code proofs are limited to Sword of Kas and the two Dragontooth potency copies, with matching/negative targets and effect-removal counterfactuals.
+
+## Validation
+
+| Check | Result |
+|---|---|
+| build / syntax | PASS; built index.html and sw.js; node checks for changed JS modules |
+| zero_miss_measure | PASS; 752 units, miss 0 in both editions, 0 new miss/card-or-miss |
+| zero_miss_fx | PASS; 715 cases, including target gates and record-removal counterfactuals |
+| target lifecycle | PASS; 92 checks at 390x844 and 1250x850, real Roll/Critical/manual buttons, reload, separate-character context, long-expression fit |
+| consumable lifecycle | PASS; 68 checks, existing drink/end/retained-training flows |
+| clause_gate | PASS; 73,254 sentences, 36,782 mechanical, 7,896 covered, 23,622 info, allow 0, uncovered 5,264; 0 regressed IDs against the initial baseline |
+| solid_contract | PASS; 4,871 checks; entry/ability/sheet handlers 9/9/4; 195,256 runs, 6,686 patches, 2,615 entries; 182 sheet groups, 53 class rules, 8,782 handler calls, 235 handlers reached, 4,487 entries checked |
+| golden_builds / solid_ui_contract | PASS; 1,479 / 308 checks |
+| solid_data_contract | PASS; 581 checks |
+| solid_snapshot | PASS; 2,997 builds, 0 page/build errors, hash baeccb8af8f60ca6 |
+| snapshot review | 158 expected changes vs 359bb9ce; direct C/D review of all 158 found 0 unexpected fields. Changes are target metadata, verified riders, seven critical-threshold fields, Dragontooth's rolled damage, and 234 occurrences of existing rider qualifiers that the sheet previously omitted. No unrelated numeric stat changed. |
+| full snapshot vs main | 346 expected changed keys: exact union of the previously reviewed 217 and this batch's 158 (29 overlap). Immutable main reference is the full 2,997-build snapshot at a2ab0bd8, hash 60dc8e67e7772446. |
+| solid_builder_diff --base main | PASS; all 3,890 inputs identical, c47961d793b8c15b on both trees |
+| scenarios | PASS; 24 checks across both viewports, screenshots and storage captured, no page errors/native dialogs |
+| tsc_gate / html_gate | PASS; SCORE 200 (no WORSE) / SCORE 250 |
+| fx_overlap | PASS; 1,373 names, 31 files, 157 documented overlaps |
+| guard_all --enforce | PASS; 0 new violations |
+
+The two existing intermittent inventory-link comparisons now warm the actual 250 ms link-index cache before comparing. Assertions are compiled before timer waits, preserving the app's CSP. No HTML difference was normalized away and no comparison allowlist was widened. The Dragontooth golden expectation now checks the canonical Acid rider and opt-in flag as a structured record.
+
+### Newly closed IDs (13)
+
+- `item|coa|Ranseur of Torture#17` — If a creature with less than its full hit points is hit by this pike, the Ranseur of Torture deals 1d10 additional piercing damage.
+- `item|coa|Ranseur of Torture#5` — You have a +3 bonus to attack and damage rolls made with this weapon, and it does 2d10 piercing damage instead of its regular damage.
+- `item|coa|Ranseur of Torture#6` — When you hit a good aligned creature with it, that creature takes an extra 1d10 necrotic damage.
+- `item|coa|Wrought-Iron Tower#6` — When you hit a good aligned creature with it, that creature takes an extra 3d6 fire damage.
+- `item|dmg|Dragontooth Dagger#6` — Against enemies of the Cult of the Dragon, the dagger's bonus to attack and damage rolls increases to 2, and the extra acid damage increases to 2d6.
+- `item|dmg|Ebonbane#13` — When you hit a Celestial or a Humanoid with it, that attack also deals 3d6 Necrotic damage.
+- `item|dmg|Ranseur of Torture#17` — If a creature with less than its full hit points is hit by this pike, the Ranseur of Torture deals 1d10 additional piercing damage.
+- `item|dmg|Ranseur of Torture#5` — You have a +3 bonus to attack and damage rolls made with this weapon, and it does 2d10 piercing damage instead of its regular damage.
+- `item|dmg|Ranseur of Torture#6` — When you hit a good aligned creature with it, that creature takes an extra 1d10 necrotic damage.
+- `item|dmg|Sword of Kas#11` — Your attacks with it score a Critical Hit when the d20 shows a 19 or a 20, and it deals an extra 2d10 Slashing damage to Undead.
+- `item|dmg|Wrought-Iron Tower#6` — When you hit a good aligned creature with it, that creature takes an extra 3d6 fire damage.
+- `item|misc14|Dragontooth Dagger#6` — Against enemies of the Cult of the Dragon, the dagger's bonus to attack and damage rolls increases to 2, and the extra acid damage increases to 2d6.
+- `item|rhw|Ebonbane#13` — When you hit a Celestial or a Humanoid with it, that attack also deals 3d6 Necrotic damage.
+
+
+## Continuing work
+
+The opt-in roll model intentionally does not add every legacy note-only rider. Next integration work includes the already-verified consumed Potion of Pugilism rider and a typed reference to a weapon's current damage type for Dragon Slayer. Equipment work then separates wielding from attunement, maps items explicitly usable as weapons through real weapon definitions, and models their distinct unattuned/attuned benefits. The existing Necronomicon lifetime issue remains open.
+
+The previous measured checkpoints are preserved below.
+
+---
+
 # Uncovered 3: G1 review and scoped extension checkpoint
 
 The 48 initial G1 candidates left at 3131d887 have all been reviewed. Forty-five close through correct effects or tested native behavior. Three remain uncovered because their rule reading is unresolved: Pluvenn Grappleclaws and two Necronomicon Voidmarked copies. Three adjacent clauses also close: the belt's social and Poisoned-save Advantage, and Rocker's existing Performance grant/bonus. This checkpoint therefore closes 48 more sentences. It does not claim that all remaining 5,277 rules are finished.

@@ -2097,6 +2097,70 @@
    ],
    "test": "Z3 U18 Angelic Wings native movement",
    "note": "Native qualified benefit already computed. A record or worn-state difference proves it without a duplicate data effect."
+  },
+  {
+   "id": "u20-item-dmg-sword-of-kas-11",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Sword of Kas",
+   "lvl": null,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "1d20",
+    "19",
+    "20"
+   ],
+   "rx": "^your\\ attacks\\ with\\ it\\ score\\ a\\ critical\\ hit\\ when\\ the\\ d20\\ shows\\ a\\ 19\\ or\\ a\\ 20,\\ and\\ it\\ deals\\ an\\ extra\\ 2d10\\ slashing\\ damage\\ to\\ undead\\.$",
+   "anchor": [
+    "src/builder/12l-logic-sheet-handlers-late.js",
+    "function setAttackCriticalRange(row,value)"
+   ],
+   "test": "Z3 U20 computed Sword of Kas critical and Undead",
+   "note": "Typed target-qualified attack results: the fixed critical threshold is computed, or the verified base and rider increments are combined. U20 checks the matching target and the negative target path; attack_target_lifecycle also checks real rolls and critical dice."
+  },
+  {
+   "id": "u20-item-dmg-dragontooth-dagger-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Dragontooth Dagger",
+   "lvl": null,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2",
+    "2d6"
+   ],
+   "rx": "^against\\ enemies\\ of\\ the\\ cult\\ of\\ the\\ dragon,\\ the\\ dagger's\\ bonus\\ to\\ attack\\ and\\ damage\\ rolls\\ increases\\ to\\ 2,\\ and\\ the\\ extra\\ acid\\ damage\\ increases\\ to\\ 2d6\\.$",
+   "anchor": [
+    "src/app/lib/damage-packets.js",
+    "export function attackDamagePackets(a,base)"
+   ],
+   "test": "Z3 U20 computed Dragontooth Dagger potency",
+   "note": "Typed target-qualified attack results: the fixed critical threshold is computed, or the verified base and rider increments are combined. U20 checks the matching target and the negative target path; attack_target_lifecycle also checks real rolls and critical dice."
+  },
+  {
+   "id": "u20-item-misc14-dragontooth-dagger-6",
+   "kind": "item",
+   "owner": "misc14",
+   "name": "Dragontooth Dagger",
+   "lvl": null,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2",
+    "2d6"
+   ],
+   "rx": "^against\\ enemies\\ of\\ the\\ cult\\ of\\ the\\ dragon,\\ the\\ dagger's\\ bonus\\ to\\ attack\\ and\\ damage\\ rolls\\ increases\\ to\\ 2,\\ and\\ the\\ extra\\ acid\\ damage\\ increases\\ to\\ 2d6\\.$",
+   "anchor": [
+    "src/app/lib/damage-packets.js",
+    "export function attackDamagePackets(a,base)"
+   ],
+   "test": "Z3 U20 computed Dragontooth Dagger potency",
+   "note": "Typed target-qualified attack results: the fixed critical threshold is computed, or the verified base and rider increments are combined. U20 checks the matching target and the negative target path; attack_target_lifecycle also checks real rolls and critical dice."
   }
  ]
 }

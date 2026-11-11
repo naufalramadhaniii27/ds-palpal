@@ -1,4 +1,5 @@
-import {bindLive,clsLv as clsLv$L,toSheet,xl14} from "./01b-logic-late-ports.js";import {ABK,SRC,mod,pbOf,setPbAdd,getPbAdd} from "./01-logic-core-helpers.js";
+import {normalizeTarget} from "../data/lib/attack-target.js";
+import {bindLive,own,clsLv as clsLv$L,toSheet,xl14} from "./01b-logic-late-ports.js";import {ABK,SRC,mod,pbOf,setPbAdd,getPbAdd} from "./01-logic-core-helpers.js";
 import {activeFx,bgX,un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
@@ -72,7 +73,7 @@ function gfx(noItem){const r=gfx0(noItem);if(noItem)return r;let n=0;r.forEach((
 /*ORCH-BEGIN gfx0: sources (11b-logic-fx-sources.js) say where entries come from, "entry" handlers (10b-logic-fx-handlers-entry.js) gate, prepare and finish each one. This loop knows no source kind and no field */
 function gfx0(noItem){const out=[],ctx0={ch:B.ch,fxT:fxtMap()},sctx={TL:TL(),G:gx(),noItem:!!noItem,fxT:ctx0.fxT};
  fxSources().forEach((s) =>{if(s.items&&noItem)return;
-  s.collect(sctx).forEach((d) =>{const okey=d.okey||d.owner,ctx={src:{kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,alias:d.alias,ocls:d.ocls},ch:ctx0.ch,fxT:ctx0.fxT,rs:B.rs||"",species:B.species};
+  s.collect(sctx).forEach((d) =>{const okey=d.okey||d.owner,ctx={src:{kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,alias:d.alias,ocls:d.ocls},ch:ctx0.ch,fxT:ctx0.fxT,rs:B.rs||"",species:B.species,target:targetMap()};
    (d.list||[]).forEach((e,i) =>{if(!e)return;e=foldFxPhase("entry","gate",e,ctx);if(e===null)return;e=foldFxPhase("entry","prepare",e,ctx);const en=e.n||d.owner;
     let o=Object.assign({},e,{n:en,kind:d.kind,owner:d.owner,lv:d.lv,pre:d.pre,okey:okey,idx:i,lbl:d.lblOf(en),ocls:d.ocls});/* ocls: the class of a cls or sub entry, the default spellcasting class (spCls) */
     out.push(foldFxPhase("entry","post",o,ctx))})})});
@@ -178,3 +179,8 @@ export function atkRowFor(n){let L=ATKC;if(!L){if(inTS())return null;L=toSheet()
 
 export function __set_SPX(v){ return SPX=v; }
 export function __set_ATKC(v){ return ATKC=v; }
+
+let TARGET_OVERRIDE=null;
+export function targetSet(t){TARGET_OVERRIDE=t==null?null:normalizeTarget(t)}
+function targetMap(){if(TARGET_OVERRIDE)return TARGET_OVERRIDE;try{const st=sheetState();if(st&&st.C&&own(st.C.name))return normalizeTarget(st.attackTarget)}catch(e){}return normalizeTarget(null)}
+export function fxTargets(){return gfx().filter((e) =>e.target).map((e) =>({target:e.target,src:e.lbl}))}

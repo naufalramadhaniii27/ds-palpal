@@ -1,4 +1,5 @@
 import {applyLook,ask,bcPost,bindLive,bkpKeyOk,bkpName,bkpOpen,esc,fmtT,healHTML,healUse,ico,lateGet,rGet,renderAll,renderNotes,showHome,snGet,snTake,syncPortrait,toast,updUnsaved} from "./00a-reg-late-ports.js";import { fmtAgo } from "./lib/fmt.js";
+import {normalizeTarget} from "../data/lib/attack-target.js";
 import {DEFAULT} from "./02-data-default-character.js";
 import {env} from "./00-env.js";
 bindLive("C",{get:function(){return C;},set:function(v){C=v;}});
@@ -14,7 +15,7 @@ export var C = loadC();
 export var cSaveT=null;
 export function saveC(){ clearTimeout(cSaveT); cSaveT=setTimeout(() =>{ cSaveT=null; lsSave(CKEY, C); },200); }
 
-export var DEF = {hp:null, tmp:0, used:{}, insp:false, ds:[0,0], cond:{}, exh:0, burn:1, jinx:"", notes:{}, lang:["Common","",""], portrait:"", theme:"", align:"", color:"forest", sym:"star", skin:"ddb", coins:null, coinBase:null, lifestyle:""};/* V17-1: RU37 fields */
+export var DEF = {attackTarget:normalizeTarget(null),hp:null, tmp:0, used:{}, insp:false, ds:[0,0], cond:{}, exh:0, burn:1, jinx:"", notes:{}, lang:["Common","",""], portrait:"", theme:"", align:"", color:"forest", sym:"star", skin:"ddb", coins:null, coinBase:null, lifestyle:""};/* V17-1: RU37 fields */
 export function loadS(sync){
   const {o}=loadSStep1();
   try{ const raw = __store.getItem(KEY); if(raw){ const p = JSON.parse(raw); if(!p||typeof p!=="object"||Array.isArray(p)) throw new Error("the saved play state has a shape this version does not know");
@@ -30,6 +31,8 @@ function loadSStep1(){
   return /** @type {any} */ ({o});
 }
 function loadSStep2(o){
+  /* Optional attack-target v1 migration: old states become Unknown; future keys survive. */
+  o.attackTarget=normalizeTarget(o.attackTarget);
   if(!Array.isArray(o.ds)||o.ds.length!==2) o.ds=[0,0];
   if(!Array.isArray(o.lang)) o.lang=["Common","",""];
   ["cond","notes","used"].forEach((k) =>{ if(typeof o[k]!=="object"||!o[k]) o[k]={}; });

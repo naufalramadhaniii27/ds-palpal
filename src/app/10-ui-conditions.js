@@ -1,3 +1,4 @@
+import {normalizeTarget,TARGET_TYPES,TARGET_ALIGNMENTS} from "../data/lib/attack-target.js";
 import {bindLive,concAuto,concChip,concHead,ico,lateGet,lintChip,modeAuto,modeChips,modeClean,renderAll,undoMark} from "./00a-reg-late-ports.js";import {HB_CONDS,HB_SRC,STD_CONDS} from "./02-data-default-character.js";
 import {GLOSS,exHelp,exTxt,x14} from "./03-data-glossary.js";
 import {C,S,save} from "./04-logic-storage.js";
@@ -39,11 +40,30 @@ export function condHTML(){
 
 /* FX toggles UI: "Active effects" row. C.fxToggles = [{id,label,on,src}] comes from the Logic side, state lives in S.fxT (missing = defaults) */
 export function fxList(){ const L=(C&&C.fxToggles)||(lateGet("D")&&lateGet("D").fxToggles)||[]; const T=(S&&S.fxT)||{}; return Array.isArray(L)?L.filter((t) =>t&&t.id).map((t) =>Object.assign({},t,{on:T[t.id]!=null?!!T[t.id]:!!t.on})):[]; }
-export function renderFxT(){ const el=$("#fxT"); if(!el) return; const L=fxList();
-  if(!L.length){ el.hidden=true; el.innerHTML=""; return; } el.hidden=false;
-  el.innerHTML='<span class="cond-l" id="fxTl">Active effects</span><div class="fxt-g" role="group" aria-labelledby="fxTl">'+L.map((t) =>'<button type="button" role="switch" class="fxchip press'+(t.on?' on':'')+'" aria-checked="'+(!!t.on)+'" data-fxt="'+esc(t.id)+'"><i class="fxchip-k" aria-hidden="true"></i><span class="fxchip-t"><b>'+esc(t.consume?(t.on?'End: ':'Drink: ')+t.label:t.label)+'</b>'+(t.src?'<small>'+esc(t.src)+'</small>':'')+'</span></button>').join("")+'</div>'; }
+function targetOptions(values,value){return '<option value="">Unknown</option>'+values.map((v) =>'<option value="'+esc(v)+'"'+(v===value?' selected':'')+'>'+esc(v==="Creature"?'Creature (type unknown)':v)+'</option>').join("")}
+function attackTargetHTML(rows){const t=normalizeTarget(S.attackTarget),tags=[];
+ rows.forEach((r) =>{const p=r.target;if(p.tag&&!tags.some((x) =>x.id===p.tag))tags.push({id:p.tag,label:p.tagLabel})});
+ return '<fieldset class="fxt-target"><legend>Current attack target</legend><p>Conditional attack bonuses use these details. Leave unknown details blank.</p><div class="fxt-target-grid">'+
+ '<label>Target type<select data-atarget="type" aria-label="Target type">'+targetOptions(TARGET_TYPES,t.type)+'</select></label>'+
+ '<label>Alignment<select data-atarget="alignment" aria-label="Target alignment">'+targetOptions(TARGET_ALIGNMENTS,t.alignment)+'</select></label>'+
+ '<label>Current HP<input type="number" min="0" step="1" data-atarget="hp" aria-label="Target current HP" value="'+(t.hp==null?'':t.hp)+'"></label>'+
+ '<label>Maximum HP<input type="number" min="1" step="1" data-atarget="maxHp" aria-label="Target maximum HP" value="'+(t.maxHp==null?'':t.maxHp)+'"></label></div>'+
+ tags.map((x) =>'<label class="fxt-target-tag"><input type="checkbox" data-atarget="tag" data-atarget-tag="'+esc(x.id)+'"'+(t.tags.includes(x.id)?' checked':'')+'>'+esc(x.label)+'</label>').join("")+'</fieldset>'}
+export function renderFxT(){const el=$("#fxT");if(!el)return;const L=fxList(),targets=(C&&C.fxTargets)||[];
+ if(!L.length&&!targets.length){el.hidden=true;el.innerHTML="";return}el.hidden=false;
+ el.innerHTML=(L.length?'<span class="cond-l" id="fxTl">Active effects</span><div class="fxt-g" role="group" aria-labelledby="fxTl">'+L.map((t) =>'<button type="button" role="switch" class="fxchip press'+(t.on?' on':'')+'" aria-checked="'+(!!t.on)+'" data-fxt="'+esc(t.id)+'"><i class="fxchip-k" aria-hidden="true"></i><span class="fxchip-t"><b>'+esc(t.consume?(t.on?'End: ':'Drink: ')+t.label:t.label)+'</b>'+(t.src?'<small>'+esc(t.src)+'</small>':'')+'</span></button>').join("")+'</div>':'')+(targets.length?attackTargetHTML(targets):"")}
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-fxt]"); if(!b) return; e.preventDefault(); e.stopPropagation();
   const id=b.getAttribute("data-fxt"), t=fxList().filter((x) =>x.id===id)[0]; if(!t) return; const nv=!t.on;
   if(t.consume&&nv){undoMark("Drink "+t.consume.item);if(!env.__bldConsume||!env.__bldConsume(id))return;S.fxT=S.fxT||{};S.fxT[id]=true;save();renderAll();return;}
   undoMark((nv?"Turn on ":"Turn off ")+t.label); S.fxT=S.fxT&&typeof S.fxT==="object"?S.fxT:{}; S.fxT[id]=nv; save(); try{ if(env.__bldFxToggle) env.__bldFxToggle(id,nv); }catch(_){ } renderAll();
   const nb=document.querySelector('[data-fxt="'+id.replace(/"/g,'\\"')+'"]'); if(nb) nb.focus({preventScroll:true}); },true);
+
+document.addEventListener("change",async(e) =>{const el=e.target.closest&&e.target.closest("[data-atarget]");if(!el)return;
+ const key=el.getAttribute("data-atarget"),tag=el.getAttribute("data-atarget-tag"),value=el.value,checked=el.checked,state=S;
+ if(!["type","alignment","hp","maxHp","tag"].includes(key))return;
+ if(!env.__bldFxToggle&&env.__bldNeed)await env.__bldNeed();if(S!==state)return;
+ undoMark("Change attack target");const t=normalizeTarget(S.attackTarget);
+ if(key==="tag"){t.tags=t.tags.filter((x) =>x!==tag);if(checked)t.tags.push(tag)}else t[key]=value;
+ S.attackTarget=normalizeTarget(t);save();if(env.__bldFxToggle)env.__bldFxToggle(null);renderAll();
+ const fresh=Array.from(document.querySelectorAll("[data-atarget]")).find((x) =>x.getAttribute("data-atarget")===key&&x.getAttribute("data-atarget-tag")===tag);if(fresh)fresh.focus({preventScroll:true});
+},true);

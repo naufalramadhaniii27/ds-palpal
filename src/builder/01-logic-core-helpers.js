@@ -1,3 +1,4 @@
+export {targetMatches,targetProblems,damageType,damageExpression} from "../data/lib/attack-target.js";
 export var KEY="phb24-builder-v1";
 export function $(s,r){return (r||document).querySelector(s)}
 function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}

@@ -68,3 +68,22 @@
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest(".mi-share"); if(!b) return; e.preventDefault(); e.stopPropagation(); FXS16A.makeCard(); },true);
 })();
 
+
+/* Structured extra damage: a mixed hit keeps a total for convenience and one
+   result per damage type for resistance/immunity at the table. Old logs stay valid. */
+(function(){
+ if(!FXS16A.parseDmg)return;
+ FXS16A.withAttackData=function(el,spec){if(!el||!el.getAttribute)return spec;
+  const c=+el.getAttribute("data-crit-at");if(Number.isInteger(c)&&c>=2&&c<=20)spec.critAt=c;
+  try{const p=JSON.parse(el.getAttribute("data-damage-parts")||"null");if(Array.isArray(p)&&p.length&&p.every((x) =>x&&typeof x.expr==="string"&&typeof x.type==="string")){spec.damageParts=p;spec.dtype=p.map((x) =>x.type).join(" + ")}}catch(e){}
+  return spec};
+ FXS16A.packetResult=function(groups,mode,vals){let vi=0;const out=[];
+  groups.forEach((g) =>{let total=0;const dice=[];FXS16A.parseDmg(g.expr).forEach((q) =>{
+   if(q.f){const n=q.n*(mode==="crit"?2:1);for(let i=0;i<n;i++){const v=vals[vi++];dice.push(v);total+=q.s*v}}else total+=q.s*q.k});
+   out.push({type:g.type,value:Math.max(0,total),expr:g.expr,dice:dice,sources:g.sources||[]})});
+  return {v:out.reduce((n,p) =>n+p.value,0),damageParts:out,dt:out.map((p) =>p.type).join(" + "),d:out.map((p) =>p.type+": ["+p.dice.join(", ")+"] "+p.expr+" = "+p.value).join("; ")}};
+})();
+
+FXS16A.decorateAttack=function(el,spec){return spec&&FXS16A.withAttackData?FXS16A.withAttackData(el,spec):spec};
+FXS16A.markCritical=function(r,spec,use){if(spec.critAt&&use>=spec.critAt){r.critical=true;r.d+=" (critical hit)";}};
+FXS16A.finishD20=function(r,spec,mode,vals){const a=vals[0], b=vals[1]||vals[0], use=mode==="adv"?Math.max(a,b):mode==="dis"?Math.min(a,b):a; r.nat=use; r.v=use+spec.bon; r.d=(mode?("["+a+", "+b+"] "+(mode==="adv"?"advantage":"disadvantage")+" "):"")+use+(spec.bon<0?" − "+(-spec.bon):" + "+spec.bon); r.k=use===20?"nat20":use===1?"nat1":"d20";FXS16A.markCritical(r,spec,use);};

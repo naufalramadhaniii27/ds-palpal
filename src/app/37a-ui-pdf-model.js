@@ -58,7 +58,7 @@ function pxHitDice(){ const R=(D.res||[]).filter((r) =>{ return r.k==="hd"||/^hd
   const tot=R.map((r) =>{ const d=/d(\d+)/.exec(r.k+" "+(r.n||"")); return r.max+(d?"d"+d[1]:""); }).join(" + ");
   return [tot,String(R.reduce((t,r) =>{ return t+Math.max(0,r.max-num((S.used||{})[r.k],0)); },0))]; }
 function pxWeapons(){ return (C.attacks||[]).map((a,i) =>{ return [a,i]; }).filter((x) =>{ return atkOn(x[0]); }).map((x) =>{
-  const a=x[0], d=D.atk[x[1]]||{}; return {n:cuNm("a:"+a.n,a.n), hit:d.dc!=null?"DC "+d.dc:sg(num(d.hit,0)), dmg:String(d.dmg||"")+(a.type?" "+a.type:""), a:a}; }); }
+  const a=x[0], d=D.atk[x[1]]||{}; return {n:cuNm("a:"+a.n,a.n), hit:d.dc!=null?"DC "+d.dc:sg(num(d.hit,0)), dmg:d.damageParts?d.damageParts.map((p) =>p.expr+" "+p.type).join(" + "):String(d.dmg||"")+(a.type?" "+a.type:""), a:a}; }); }
 function pxAtkNotes(W){ return W.filter((w) =>{ return w.a.m||w.a.note||w.a.range; }).map((w) =>{
   return "**"+w.n+".** "+[w.a.range,w.a.note].filter(Boolean).join(". ")+(w.a.m?" {{Mastery: "+w.a.m+"}}":""); }); }
 function pxCoins(){ const c=coinsNow(), o={}; ["cp","sp","ep","gp","pp"].forEach((k) =>{ if(c[k]) o[k.toUpperCase()]=String(c[k]); }); return o; }

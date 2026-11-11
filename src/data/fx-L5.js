@@ -67,7 +67,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  add("Purity Spear",{n:"Purity Spear",advOn:["Constitution and Wisdom saving throws against spells and other magical effects"]});
  add("Purphoros's Devotee",{n:"Purphoros's Devotee",lu:{n:"Shield of Faith (Purphoros's Devotee)",max:"mod:INT",reset:"long"},spells:[[1,"Mending"]],spCls:"@sub:INT"});
  add("Purphoros's Votary",{n:"Purphoros's Votary",advOn:["saving throws against being knocked prone"]});
- add("Ranseur of Torture",{n:"Ranseur of Torture",atkBonus:[{when:"Ranseur of Torture",note:"A good creature takes an extra 1d10 necrotic. A creature below full Hit Points takes an extra 1d10 piercing."}]});
+ add("Ranseur of Torture",{n:"Ranseur of Torture",target:{creature:true,alignment:"Good"},atkDice:[{when:"Ranseur of Torture",d:"1d10",t:"Necrotic",roll:true}]});
+ add("Ranseur of Torture",{n:"Ranseur of Torture",target:{creature:true,missingHp:true},atkDice:[{when:"Ranseur of Torture",d:"1d10",t:"Piercing",roll:true}]});
  add("Raptor Feather Robe",{n:"Raptor Feather Robe",abPick:{k:"a",from:["INT","CHA"],set:22}});
 
  /* ---------- shard 13 ---------- */

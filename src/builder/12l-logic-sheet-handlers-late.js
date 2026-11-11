@@ -116,7 +116,7 @@ registerSheetGroup({id:"fx-atk-ability",group:"late",phase:"late",order:130,scop
 registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.attacks", "C.defenses", "q.baseOf", "q.fxOk"],writes:["C.attacks", "C.defenses"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkDice [{when:"weapon|spell|unarmed|<name>", d:"1d10", t:"type", note}]: extra damage dice on matching attack rows, or a Note under Defenses when no row exists */
    (e.atkDice||[]).forEach(function(x){const rows=rowsPick(x.when);
-    if(rows.length)rows.forEach(function(r){(r.xdice=r.xdice||[]).push({d:x.d,t:x.t||"",s:e.lbl});r.note=(r.note?r.note+" ":"")+"Extra damage: +"+x.d+(x.t?" "+x.t:"")+" ("+e.lbl+")."});
+    if(rows.length)rows.forEach(function(r){appendAttackRider(r,x,e.lbl)});
     else{C.defenses=C.defenses||[];C.defenses.push({t:"Note",v:(x.note||"Extra damage on "+(/^(weapon|spell|unarmed)$/.test(x.when)?x.when+" attacks":x.when))+": +"+x.d+(x.t?" "+x.t:""),s:e.lbl})}});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-save-notes",group:"late",phase:"late",order:150,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.saveNotes", "q.fxOk"],writes:["C.saveNotes"],
@@ -127,7 +127,7 @@ registerSheetGroup({id:"fx-atk-bonus",group:"late",phase:"late",order:160,scope:
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkBonus [{when,atk,dmg,crit,note}]: a flat bonus to the attack roll and/or damage of the matching attack rows (when as for atkDice: weapon, spell, unarmed, melee, ranged, natural, any, a name, or an array). atk and dmg take a number, "pb", an ability key, or [[level, value]] steps (level = the source level). crit N = note "Critical hit on N-20" */
    (e.atkBonus?(Array.isArray(e.atkBonus)?e.atkBonus:[e.atkBonus]):[]).forEach(function(x){rowsPick(x.when||"weapon").forEach(function(r){const av=x.atk!=null?Q.fxv(x.atk,e):0,dv=x.dmg!=null?Q.fxv(x.dmg,e):0,sg=function(v){return (v>0?"+":"")+v};
      if(av){r.misc=(r.misc||0)+av;r.miscSrc=(r.miscSrc?r.miscSrc+"; ":"")+e.lbl+": "+sg(av)+" to hit"}if(dv){r.dmgBonus=(r.dmgBonus||0)+dv;r.miscSrc=(r.miscSrc?r.miscSrc+"; ":"")+e.lbl+": "+sg(dv)+" damage"}
-     if(x.crit)r.note=(r.note?r.note+" ":"")+"Critical hit on "+x.crit+"-20 ("+e.lbl+").";if(x.note)r.note=(r.note?r.note+" ":"")+x.note})});
+     setAttackCriticalRange(r,x.crit);if(x.crit)r.note=(r.note?r.note+" ":"")+"Critical hit on "+x.crit+"-20 ("+e.lbl+").";if(x.note)r.note=(r.note?r.note+" ":"")+x.note})});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-unarmed",group:"late",phase:"late",order:170,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* unarmed {die, t, magic}: the Unarmed Strike row. die: "1d6" or [[level, "1d6"], ...] steps; used when larger than the current die (die force:1 always). t: damage type. magic: note that it counts as magical */
@@ -242,3 +242,10 @@ registerSheetGroup({id:"pb-add",group:"late",phase:"post",order:60,reads:["q.get
 registerSheetGroup({id:"fx-toggles",group:"late",phase:"post",order:70,reads:["q.fxToggles", "C.fxToggles"],writes:["C.fxToggles"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C; C.fxToggles=Q.fxToggles();/* toggle fx available to this character; state is S.fxT on the sheet */
   return ctx.patch()}});
+
+registerSheetGroup({id:"fx-target-controls",group:"late",phase:"post",order:71,reads:["q.fxTargets"],writes:["C.fxTargets"],
+ run:function(ctx){const rows=ctx.q.fxTargets();if(rows.length)ctx.C.fxTargets=rows;return ctx.patch()}});
+
+function appendAttackRider(r,x,source){const packet={d:x.d,t:x.t||"",s:source};if(x.roll===true)packet.roll=true;(r.xdice=r.xdice||[]).push(packet);r.note=(r.note?r.note+" ":"")+"Extra damage: +"+x.d+(x.t?" "+x.t:"")+" ("+source+")."+(x.note?" "+x.note:"")}
+
+function setAttackCriticalRange(row,value){const n=+value;if(Number.isInteger(n)&&n>=2&&n<=20)row.critRange=Math.min(row.critRange||20,n)}
