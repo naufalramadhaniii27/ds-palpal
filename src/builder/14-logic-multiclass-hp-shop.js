@@ -1,5 +1,5 @@
 import {bindLive} from "./01b-logic-late-ports.js";import {SRC,esc,mod,pbOf} from "./01-logic-core-helpers.js";
-import {DMAP,bgX,kitGP,un,ovFx,itemBases,migrateInventory,itemQuantity,attunementState,itemWeaponInUse,itemFormInfoForRow} from "./03-logic-magic-item-effects.js";
+import {DMAP,bgX,kitGP,un,ovFx,itemBases,migrateInventory,itemQuantity,attunementState,itemWeaponInUse,itemFormInfoForRow,itemWieldInfoForRow} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
@@ -14,7 +14,7 @@ import {provideQueries} from "./01a-logic-query-registry.js";
 
 bindLive("mcChoices",{get:function(){return mcChoices;}});
 bindLate({MCL,TL,baseOf,ensureInv,itemW,slotsAll,syncPickItems,hpCalc,effArmor,effShield,effWeps});/* the late ports of this file (01b-logic-late-ports.js) */
-provideQueries({itemFormInfoForRow,MCL,TL,baseOf,clsKitText,effArmor,effShield,effWeps,ensureInv,eqIdx,equippable,gpNow,hpBonusList,hpCalc,itemCost,itemW,itemWEst,langKeys,mcResMax,monkRule,qOf,rarityOf,slotsAll,syncPickItems,wpNamed});
+provideQueries({itemFormInfoForRow,itemWieldInfoForRow,MCL,TL,baseOf,clsKitText,effArmor,effShield,effWeps,ensureInv,eqIdx,equippable,gpNow,hpBonusList,hpCalc,itemCost,itemW,itemWEst,langKeys,mcResMax,monkRule,qOf,rarityOf,slotsAll,syncPickItems,wpNamed});
 /* ---------- multiclass, HP, shop ---------- */
 export function MCL(){return (B.mc||[]).filter((m) =>{return CLASSES[m.cls]})}
 export function TL(){return B.level+MCL().reduce((t,m) =>{return t+m.lv},0)}
@@ -137,7 +137,7 @@ export function syncPickItems(){if(pxBusy)return;pxBusy=true;try{ensureInv();con
 
 function effArmor(){const a=ensureInv().filter((x) =>{return ARMOR[baseOf(x.n).b]&&x.eq&&qOf(x)>0})[0];return a?a.n:""}
 function effShield(){const s=ensureInv().filter((x) =>{return baseOf(x.n).b==="Shield"&&x.eq&&qOf(x)>0})[0];return s?s.n:""}
-function effWeps(){const w=[],inv=ensureInv(),state=attunementState();inv.forEach((x,i) =>{if(WEAPONS[baseOf(x.n).b]&&itemWeaponInUse(x,state.rows[i])&&w.indexOf(x.n)<0)w.push(x.n)});return w}
+function effWeps(scores){const w=[],inv=ensureInv(),state=attunementState();inv.forEach((x,i) =>{if(WEAPONS[baseOf(x.n).b]&&itemWeaponInUse(x,state.rows[i],scores)&&w.indexOf(x.n)<0)w.push(x.n)});return w}
 export function gpNow(){return B.gpOverride!=null&&B.gpOverride!==""?+B.gpOverride:gpBase()}
 
 /* Item quantity. Missing = 1. 0 is kept (used-up ammunition stays in the inventory). */

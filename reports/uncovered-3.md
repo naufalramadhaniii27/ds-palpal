@@ -1,4 +1,34 @@
-# Uncovered 3: consumed resistance and paid weapon hits
+# Uncovered 3: computed wield requirements and Forge riders
+
+## U31: derived wield minimum and Forge mechanics
+
+Two more original sentences have computed coverage: 273 closed from the initial 5,460, 5,187 uncovered and zero regressed IDs. Covered is 7,978, info remains 23,617 and allow remains zero. Only the two Iron Raze aliases close. The existing informational STR requirement is not counted as a closure, and no artificial stat-grant CODE atom is added.
+
+Forgemaster's Might now checks the current derived Strength against its native minimum 17. The pure reviewed lookup recognizes only its canonical name and the exact Maul/Warhammer variants. It never sets Strength or changes equipment, attunement, quantities or counters. Weapon eligibility is filtered before gear-dependent fighting styles and Monk/Pact processing, with a final attack-row check preventing a Pact/Charisma fallback from waiving the Strength minimum. Ordinary Mauls, Warhammers and unrelated items retain their behavior.
+
+Cached attacks also recompute the minimum from the active character's actual ability base, bonuses and Customize override. They do not borrow a previous actor's derived cache. Native Customize controls now expose the six already-supported ability-score keys. An owned unchanged sheet can safely reproject weapon availability when a score crosses the threshold, including restoring a previously absent row at 17 and removing it on Undo or a drop to 16. Raw Build/sheet ability inputs remain unchanged; the existing play-state customization map supplies the explicit override. Disposable test/build projections ignore another actor's play overrides.
+
+Automatic reprojection requires matching character identity, native inventory provenance and the prior requirement checks. It compares the entire current sheet to the prior generated projection, including exact Species features. Any manual or pending Build difference refuses replacement and directs the user to Build; no manual trait or spell data is silently discarded. The refresh checks actor/state/score/inventory identity again after lazy loading. Builder-only requirement notices stay outside cached item HTML, while the sheet notice always reads current scores.
+
+Iron Raze adds exactly one rolled 2d8 Bludgeoning to this weapon against a declared Construct or Structure. Generic Objects, Dragons and ordinary creatures do not receive it; unrelated weapons remain unchanged. Bludgeoning stays fixed when Pact changes the base weapon damage type. Low Strength blocks the attack profile and its phantom advisory fallback, without disabling the independent existing Mending grant or Creation/Fabricate daily counters. An explicit default-off anvil toggle enables the qualified Smith's Tools advantage for crafting/repair using the hammer head, even below STR17.
+
+The anvil source clause is still uncovered. The scanner keeps its Mending repair-up-to-5-feet sentence and the following advantage sentence together because “ft.” is an abbreviation. Only the advantage portion is implemented; ordinary Mending's size cap has not yet been overridden. No unrelated 5 was inserted into an advantage, note or minimum record to force a closure. The full flame/Fire-resistance-bypass/light/drop-stow lifecycle also remains outside this batch.
+
+## U31 validation and source audit
+
+| Check | Result |
+|---|---|
+| Effect cases | PASS; 102 U31 cases and 1,501 complete cases, both weapon variants and editions, derived bonuses, Pact, target/type scope, independent properties and anvil state |
+| Coverage measurement | PASS; 752 units, both editions miss0, no new miss or card-or-miss |
+| Model / current-score / refresh | PASS; 83 pure checks, 106 current-actor checks, 75 async/projection/manual-preservation checks, 62 native ability-Customize control checks and 11 backend scenarios including real late-port forwarding |
+| Production wield lifecycle | PASS; 86 assertions across eight cases in both required viewports, native score bonus/override/Undo/Redo, missing-row restoration, damage rolls, source conditions and manual Species preservation; zero page errors |
+| Gate and source audit | PASS; only two Iron Raze aliases close; prior 271 closures retained; no info increase. Seed11/sample150 has 45 newly selected actual-source records, including both new closures, all found and independently reviewed |
+| Official contracts | PASS; 4,950 engine checks, 1,479 golden checks, 308 UI checks and 615 data checks |
+| Snapshot / builder / scenarios | PASS; 2,997 snapshot hashes (`8906b051a96bebd8`) and 3,890 builder hashes (`396b20d955f87d6e`) identical to U30; 24 scenarios, screenshots/storage retained, zero errors/dialogs |
+| Build / gates | PASS; cache `8467258da6bf5233`, 348 JS pieces / 45 blocks, lint clean; type score 200 without WORSE, HTML 250, guards zero, overlap 1,408 names / 39 files / 156 documented |
+
+The contract's strict static orchestrator recognizer now accepts the exact optional projection-context signature and call. Its marker, body bounds, handler-field restrictions and no-control-flow checks remain unchanged.
+
 
 ## U30: typed resistance potions and weapon-hit riders
 

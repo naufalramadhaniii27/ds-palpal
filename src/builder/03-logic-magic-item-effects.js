@@ -4,6 +4,7 @@ import {baseOf,fxListBase,miFeats} from "./01b-logic-late-ports.js";
 import {gx,fxo} from "./00-env.js";
 import {allocateAttunement,itemInUse,itemQuantity,migrateItems,migrateAttunement,itemOverrideProblems} from "../data/lib/attunement.js";
 import {weaponFormMetadata,migrateInventoryForms,setWeaponFormActive,adjustWeaponFormRadius,weaponFormUsable,weaponFormLight} from "../data/lib/weapon-form.js";
+import {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum} from "../data/lib/wield-minimum.js";
 export {itemInUse,itemQuantity};
 export var DMAP={};DMGI.forEach((x) =>{DMAP[x[0]]=x});
 /* M18 (v16): constant numbers of a magic item (DMGI[5].fx) while it is used, and attuned when it needs attunement. Only 3 attuned items count
@@ -40,7 +41,11 @@ export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b
 export function attunementState(){return allocateAttunement(lateGet("B").inv||[],attMax(),attunementMeta,(m,x,keys)=>byOk(m.by,keys))}
 function beltAttuned(keys){return (keys||new Set(attunementState().keys)).has("Belt of Dwarvenkind")}
 export function itemBases(d){const o=itemOverride(d),b=o&&Object.prototype.hasOwnProperty.call(o,"base")?o.base:d&&d[5]&&d[5].base;return Array.isArray(b)?b:null}
-export function itemWeaponInUse(row,status){const b=lateGet("B"),formMeta=formMetadataFor(row,b.rs==="2014"?"2014":"2024"),o=itemOverride(DMAP[row.n]);if(formMeta)return weaponFormUsable(row,formMeta,{equipped:!!row.eq,quantity:itemQuantity(row),attuned:!!(status&&status.attuned)},b.inventoryFormV);return !!row.eq&&itemQuantity(row)>0&&(!(o&&o.requiresAttunedWeapon)||!!(status&&status.attuned))}
+/* Scores are supplied by the current actor's completed ability calculation.
+   This boundary never calls abilScores or changes independent item properties. */
+export function itemWieldInfoForRow(row,scores){const name=row&&(row.n||row.key),d=DMAP[name],rule=nativeWieldMinimum(d?d[0]:name),result=evaluateWieldMinimum(rule,scores);return {rule:rule,allowed:result.allowed,unmet:result.unmet,checks:result.checks,text:explainWieldMinimum(result)}}
+export function getItemWieldInfo(index,currentScores){const items=lateGet("B").inv||[];if(!Number.isInteger(index)||index<0||!items[index])return {rule:null,allowed:false,unmet:[],text:"Item unavailable."};return itemWieldInfoForRow(items[index],currentScores)}
+export function itemWeaponInUse(row,status,scores){if(!itemWieldInfoForRow(row,scores).allowed)return false;const b=lateGet("B"),formMeta=formMetadataFor(row,b.rs==="2014"?"2014":"2024"),o=itemOverride(DMAP[row.n]);if(formMeta)return weaponFormUsable(row,formMeta,{equipped:!!row.eq,quantity:itemQuantity(row),attuned:!!(status&&status.attuned)},b.inventoryFormV);return !!row.eq&&itemQuantity(row)>0&&(!(o&&o.requiresAttunedWeapon)||!!(status&&status.attuned))}
 export function itemFormInfoForRow(row,status,version,edition){if(!row)return {available:false,reason:"missing"};const formMeta=formMetadataFor(row,edition==="2014"?"2014":"2024");if(!formMeta)return {available:false,reason:"not-supported"};const form=Object.prototype.hasOwnProperty.call(row,"form")?clone(row.form):undefined,validVersion=(version===undefined||version===0||version===1)&&!!form&&typeof form==="object"&&!Array.isArray(form)&&form.v===1;
  const reason=!validVersion?"version":itemQuantity(row)<=0?"no-item":!row.eq?"unequipped":!(status&&status.attuned)?"attunement":"";
  return {name:row.n,version:clone(version),form:form,formMeta:clone(formMeta),formUsable:weaponFormUsable(row,formMeta,{equipped:!!row.eq,quantity:itemQuantity(row),attuned:!!(status&&status.attuned)},version),formLight:weaponFormLight(form,formMeta,version),available:!reason,reason:reason}}

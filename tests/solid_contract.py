@@ -47,7 +47,7 @@ for f in HFILES:
 d11 = rd('11-logic-derivation.js')
 d12 = rd('12-logic-export-to-sheet.js')
 blocks = re.findall(r'/\*ORCH-BEGIN (\w+).*?\*/(.*?)/\*ORCH-END \1\*/', d11 + d12, re.S)
-m_ts = re.search(r'/\*\s*solid:orchestrator toSheet\s*\*/\s*export function toSheet\(\)\{(.*?)\n return T\.C\}', d12, re.S)
+m_ts = re.search(r'/\*\s*solid:orchestrator toSheet\s*\*/\s*export function toSheet\(options=\{\}\)\{(.*?)\n return T\.C\}', d12, re.S)
 ok(bool(m_ts), 'toSheet() must carry the marker /* solid:orchestrator toSheet */')
 if m_ts: blocks.append(('toSheet', m_ts.group(1)))
 ok(sorted(b[0] for b in blocks) == ['abil', 'gfx0', 'toSheet'], 'orchestrator markers abil and gfx0 not both found in 11-logic-derivation.js: %s' % [b[0] for b in blocks])
@@ -63,7 +63,7 @@ for name, body in blocks:
 ph = []
 for f in SHEET_HFILES: ph += re.findall(r'runFxPhase\("sheet","([\w-]+)"', rd(f))
 ok(sorted(set(ph)) == ['darkvision', 'init', 'speed', 'speed-mul'], 'the sheet handlers run the fx sheet phases %s' % sorted(set(ph)))
-ok('runFxPhase' not in d12 and 'sheetInputs()' in d12 and 'runSheet(T)' in d12, 'toSheet() must only build the inputs and run the phases')
+ok('runFxPhase' not in d12 and 'sheetInputs(options)' in d12 and 'runSheet(T)' in d12, 'toSheet() must only build the inputs and run the phases')
 for nm in ['for(', 'switch', 'forEach', 'if(']:
     tb = [b for b in blocks if b[0] == 'toSheet'][0][1]
     ok(nm not in re.sub(r'/\*.*?\*/', '', tb, flags=re.S).replace(' ', ''), 'the toSheet orchestrator contains %s' % nm)

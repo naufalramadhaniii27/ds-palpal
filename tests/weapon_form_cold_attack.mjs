@@ -2,8 +2,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {weaponFormMetadata,weaponFormUsable,migrateInventoryForms} from '../src/data/lib/weapon-form.js';
+import {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum} from '../src/data/lib/wield-minimum.js';
 const source=fs.readFileSync(new URL('../src/app/05-logic-helpers.js',import.meta.url),'utf8').replace(/^import .*$/gm,'').replace(/export (function|var|const) /g,'$1 ');
-const ctx={C:{rs:'2024'},env:{},bindLive(){},weaponFormMetadata,weaponFormUsable};vm.createContext(ctx);vm.runInContext(source,ctx);
+const ctx={C:{rs:'2024'},env:{},bindLive(){},weaponFormMetadata,weaponFormUsable,nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum};vm.createContext(ctx);vm.runInContext(source,ctx);
 let checks=0;const check=(actual,want)=>{assert.equal(actual,want);checks++};
 for(const name of ['Sun Blade','Sunsword','Dawnbringer','Duskcrusher']){
  const cached={n:name,die:'1d8',type:'Radiant'},dependent={n:'Pole Strike',of:name};

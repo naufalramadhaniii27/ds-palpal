@@ -41,6 +41,20 @@ function bdJ(x){return JSON.stringify(x===undefined?null:x)}
 function bdJf(x){return bdJ((x||[]).filter((g) =>{return !/^Species/.test(g.g)}))}
 function bdField(k,P,N,lost,oth){if(k==="v"||k==="_app"||k==="bv")return;/* v27 RU28: C.bv is the builder version */if((+P._app||0)>(genv.__appVer||0)&&!(k in N))return;/* v18 RL47: fields of a newer version stay on Apply */const l=DIFFL[k]||k;if(oth.indexOf(l)>=0)return;if((k==="attacks"&&lost.attacks.length)||(k==="res"&&lost.res.length))return;if(k==="features"?bdJf(P[k])!==bdJf(N[k]):bdJ(P[k])!==bdJ(N[k]))oth.push(l)}
 genv.__bldDiff=function(P){if(!P||!own(P.name))return [];const N=toSheet(),lost=manualLost(P,N),out=[],oth=[];/* V14-8 */if(lost.attacks.length)out.push("Attacks: "+lost.attacks.join(", "));if(lost.res.length)out.push("Limited Use: "+lost.res.join(", "));Object.keys(P).concat(Object.keys(N)).forEach((k) =>{bdField(k,P,N,lost,oth)});if(oth.length)out.push("Other changes: "+oth.join(", "));return out};
+/* Reproject only a builder-owned, otherwise unchanged sheet after Customize crosses a wield threshold. */
+function wieldRefreshOwner(owner,P){const id=genv.__sheetId&&genv.__sheetId();return !!(P&&owner===P.name&&B.name===owner&&B.cid&&id&&B.cid===id&&own(owner)&&genv.__sheetSoft)}
+function wieldPreviousInfo(P,row,index){const prev=(P.inv||[])[index],info=prev&&prev.wieldInfo;if(!row.key||!prev||prev.key!==row.key||!info||bdJ(info.rule)!==bdJ(row.wieldInfo.rule)||!Array.isArray(info.checks)||!info.checks.length)return null;return info}
+function wieldPreviousChecks(oldScores,row,info){for(const check of row.wieldInfo.checks||[]){const before=info.checks.find(x=>x.ability===check.ability&&x.minimum===check.minimum);if(!before||!Number.isFinite(before.actual)||Object.prototype.hasOwnProperty.call(oldScores,check.ability)&&oldScores[check.ability]!==before.actual)return false;oldScores[check.ability]=before.actual}return true}
+function wieldPreviousScores(P,N){const oldScores={},restricted=(N.inv||[]).map((row,index)=>({row,index})).filter(x=>x.row.wieldInfo&&x.row.wieldInfo.rule);if(!restricted.length)return null;for(const {row,index} of restricted){const info=wieldPreviousInfo(P,row,index);if(!info||!wieldPreviousChecks(oldScores,row,info))return null}return oldScores}
+function wieldProjectionChanged(P,O){if(bdJ(P.features)!==bdJ(O.features))return true;const lost=manualLost(P,O),other=[];Object.keys(P).concat(Object.keys(O)).forEach(k=>{bdField(k,P,O,lost,other);if(k!=="v"&&k!=="_app"&&k!=="bv"&&!(k in O)&&bdJ(P[k])!==bdJ(O[k])&&other.indexOf(k)<0)other.push(k)});return !!(lost.attacks.length||lost.res.length||other.length)}
+genv.__bldRefreshWield=function(owner){
+ const st=genv.__sheetState&&genv.__sheetState(),P=st&&st.C;
+ if(!wieldRefreshOwner(owner,P))return {ok:false,reason:"owner"};
+ const N=toSheet(),oldScores=wieldPreviousScores(P,N);
+ if(!oldScores)return {ok:false,reason:"metadata"};
+ if(wieldProjectionChanged(P,toSheet({wieldScores:oldScores})))return {ok:false,reason:"manual"};
+ genv.__sheetSoft(N);return {ok:true};
+};
 /* v18 RU74: the build was saved in another tab: load it here */
 genv.__bldReload=function(){__set_B(loadB());applyPacks();if(!document.getElementById("bld").hidden)render()};
 /* v25 RU38 no. 3: Manage Spells on the sheet. The caster parts of the build that belongs to the open character (null: no such build) */
@@ -119,7 +133,7 @@ genv.__bldFull14=full14Of;genv.__bldLong14=(g,n,rs)=>rs==="2024"?long24(g,n):lon
 genv.__bldFuzz=function(o){let keep=B,out=null;try{__set_B(NEWB());if(o.rs==="2014"){B.rs="2014";rsLoad("2014");}/* tests/pdfx_sweep.py: the 2014 rules, the way the edition switch sets them */B.name="Fuzz";B.cls=o.cls;B.sub="";B.level=1;B.mc=[];if(o.src)B.src=Object.assign({},B.src,o.src);/* tests/invariants.py: extra sources */applyPacks();B.species=o.sp;B.method="array";B.arr={};ABK.forEach((k,i) =>{B.base[k]=o.arr[i];B.arr[k]=String(o.arr[i])});
   const bg=BACKGROUNDS[o.bg],ab=bg.ab||[];B.bg=o.bg;B.bgMode=o.rs==="2014"?"111":"21";if(o.rs!=="2014"){B.bg2=ab[o.b2%3];B.bg1=ab[(o.b2+1+(o.b1%2))%3];}/* 2014: no background ability scores */B.eqC="A";B.eqB="A";B.ch={};delete B.unset;rebuildKit(1);
   B.level=o.lv;if(o.sub&&(o.lv>=subLv(o.cls)||o.anySub))B.sub=o.sub;/* 2014: some subclasses start at level 1 or 2 */applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();
-  out={b:structuredClone(B),c:toSheet(),ri:ruleIssues().map((x) =>{return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
+  out={b:structuredClone(B),c:toSheet({customization:{}}),ri:ruleIssues().map((x) =>{return typeof x==="string"?x:JSON.stringify(x)}),un:unList()||""}}catch(e){out={err:String(e&&e.stack||e)}}__set_B(keep);return out};
 /* test hook (tests/zero_miss_measure.py): fills the open choices of a given build the Quick Build way (picks, spells, magic item, book) on a copy. Nothing saved, the open build is put back */
 genv.__bldFillFor=function(b){let keep=B,out=null;try{__set_B(structuredClone(b));applyPacks();qbFill();qbSpells();qbMI();qbBook();qbFill();out=structuredClone(B)}catch(e){out=null}finally{__set_B(keep);applyPacks()}return out};
 genv.__bldToast=toast;/* T11 N11: messages from the sheet code while the builder is open */

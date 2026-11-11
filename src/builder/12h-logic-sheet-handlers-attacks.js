@@ -1,4 +1,4 @@
-import {dieAvg,weaponFormMetadata} from "./01-logic-core-helpers.js";
+import {dieAvg,weaponFormMetadata,weaponRowAllowed} from "./01-logic-core-helpers.js";
 import {featDef,masteryText,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
@@ -8,6 +8,10 @@ import {defineLocals} from "./12b-logic-sheet-schema.js";
    l.ud / l.udSrc the Unarmed Strike die and its source, l.maOff active weapons that are not Monk weapons, l.fsb / l.fss Fighting Style bonuses and
    their source text, l.duelOn Dueling applies, l.hasGWF / l.hasTWF the two styles that only add a note. */
 defineLocals({ud:"string",udSrc:"string",maOff:"array",fsb:"object",fss:"object",duelOn:"boolean",hasGWF:"boolean",hasTWF:"boolean",wrow:"object?"});
+/* A conjured Pact fallback must meet the same native wield minimum before
+   Monk, dual-wield and fighting-style state reads the active weapon list. */
+registerSheetGroup({id:"weapon-wield-minimum",group:"gear",phase:"gear",order:15,reads:["i.wieldScores","l.EW","q.baseOf"],writes:["l.EW"],
+ run:function(ctx){ctx.l.EW=ctx.l.EW.filter(name=>weaponRowAllowed(ctx.q.baseOf(name).mi||name,ctx.i.wieldScores));return ctx.patch()}});
 registerSheetGroup({id:"attacks-init",group:"attacks",phase:"attacks",order:5,reads:[],writes:["C.attacks"],run:function(ctx){ctx.C.attacks=[];return ctx.patch()}});
 registerSheetGroup({id:"unarmed-base",group:"unarmed",phase:"attacks",order:10,reads:["i.SRC"],writes:["l.ud","l.udSrc"],run:function(ctx){ctx.l.ud="1";ctx.l.udSrc="Unarmed Strike ("+ctx.i.SRC+")";return ctx.patch()}});
 registerSheetRule({id:"monk-martial-arts-die",group:"unarmed",about:"Monk: the Unarmed Strike uses the Martial Arts die",phase:"attacks",order:11,reads:["i.SRC","l.maOn","l.maDie"],writes:["l.ud","l.udSrc"],
@@ -36,8 +40,8 @@ registerSheetGroup({id:"fighting-style-state",group:"fightingStyles",phase:"atta
   l.hasGWF=I.feats.some((f) =>{return f.n==="Great Weapon Fighting"});l.hasTWF=I.feats.some((f) =>{return f.n==="Two-Weapon Fighting"});return ctx.patch()}});
 /* ---------- one row per active weapon: the loop "weapon-rows" ---------- */
 const EACH={scope:"each",over:"l.EW",loop:"weapon-rows"};
-registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-base",group:"weaponRows",phase:"attacks",order:100,reads:["i.a","i.SRC","i.AFX","i.B","q.baseOf","q.itemMagicBonus"],writes:["l.wrow"],
- run:function(ctx){const n=ctx.p,a=ctx.i.a,declared=ctx.q.baseOf(n),BO=Object.assign({},declared,{p:ctx.q.itemMagicBonus(n,declared,ctx.i.AFX)}),native=weaponDef(BO.b),formMeta=weaponFormMetadata(BO.mi||n,ctx.i.B.rs==="2014"?"2014":"2024"),w=native&&formMeta?Object.assign({},native,{t:formMeta.damageType,p:formMeta.finesse?(native.p?native.p+", ":"")+"Finesse":native.p}):native;if(!w){ctx.l.wrow=undefined;return ctx.patch()}
+registerSheetGroup(Object.assign({},EACH,{id:"weapon-row-base",group:"weaponRows",phase:"attacks",order:100,reads:["i.a","i.wieldScores","i.SRC","i.AFX","i.B","q.baseOf","q.itemMagicBonus"],writes:["l.wrow"],
+ run:function(ctx){const n=ctx.p,a=ctx.i.a,declared=ctx.q.baseOf(n),BO=Object.assign({},declared,{p:ctx.q.itemMagicBonus(n,declared,ctx.i.AFX)}),native=weaponDef(BO.b),formMeta=weaponFormMetadata(BO.mi||n,ctx.i.B.rs==="2014"?"2014":"2024"),w=native&&formMeta?Object.assign({},native,{t:formMeta.damageType,p:formMeta.finesse?(native.p?native.p+", ":"")+"Finesse":native.p}):native;if(!w||!weaponRowAllowed(BO.mi||n,ctx.i.wieldScores)){ctx.l.wrow=undefined;return ctx.patch()}
   let ab="STR";if(w.k==="R")ab="DEX";else if(/Finesse/.test(w.p))ab=a.sc.DEX>a.sc.STR?"DEX":"STR";
   ctx.l.wrow={n:n,BO:BO,w:w,formMeta:formMeta,ab:ab,isPact:false,pr:false,m:"",flow:false,die:w.d,dieSrc:BO.b+" ("+ctx.i.SRC+")",hit:0,dmg:0,srcs:[],note:"",thrown:false,oneH:false};return ctx.patch()}}));
 /* M7: a Monk weapon (Simple, or Martial with Light) may use Dexterity */

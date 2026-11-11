@@ -38,7 +38,7 @@ function cuOf(type,key){ const i=+key;
   if(type==="w"||type==="ah"||type==="ad"){ const a=(C.attacks||[])[i]; return a?{k:"a:"+a.n, n:a.n, kind:"a"}:null; }
   if(type==="sp"){ const x=(C.spells||[])[i]; return x?{k:"s:"+x.n, n:x.n, kind:"s"}:null; }
   if(type==="it"){ const it=(C.inv||[])[i]; return it?{k:"i:"+invKey(it), n:it.n, kind:"i"}:null; }
-  if(type==="bd"){ const m=/^(ac|init|speed|save-[A-Z]{3}|pas-(?:per|ins|inv))$/.exec(key); if(m) return {k:"n:"+key, n:(B[key]||{}).t||key, kind:"n"};
+  if(type==="bd"){ const m=/^(ac|init|speed|ab-(?:STR|DEX|CON|INT|WIS|CHA)|save-[A-Z]{3}|pas-(?:per|ins|inv))$/.exec(key); if(m) return {k:"n:"+key, n:(B[key]||{}).t||key, kind:"n"};
     const s=/^sk-(\d+)$/.exec(key); if(s&&C.skills[+s[1]]) return {k:"n:sk:"+C.skills[+s[1]].n, n:C.skills[+s[1]].n, kind:"n"};
     const a2=/^(ah|ad)-(\d+)$/.exec(key); if(a2) return cuOf("w",a2[2]); }
   return null; }

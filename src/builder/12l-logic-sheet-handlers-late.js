@@ -1,4 +1,4 @@
-import {ABN,dieAvg,mod,attackKindsForRow,weaponFormMetadata} from "./01-logic-core-helpers.js";
+import {ABN,dieAvg,mod,attackKindsForRow,weaponFormMetadata,weaponRowAllowed} from "./01-logic-core-helpers.js";
 import {actsTable,bookPages,featDef,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
@@ -116,11 +116,12 @@ registerSheetGroup({id:"fx-atk-ability",group:"late",phase:"late",order:130,scop
      else if(mod(a.sc[q.ab])>mod(a.sc[r.ab])){r.note=(r.note?r.note+" ":"")+e.lbl+": "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for attack and damage.";r.ab=q.ab;r.abSrc=e.lbl}})}
   return ctx.patch()}});
 function formWeaponOwnRider(Q,e,x,edition){if(e.kind!=="item")return false;const base=Q.baseOf(e.owner),when=Array.isArray(x.when)?x.when:[x.when];return !!weaponFormMetadata(base.mi||e.owner,edition)&&when.some(name=>name===e.owner||name===base.mi)}
-registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"each",over:"i.G",loop:"late-fx",reads:["i.B", "i.ar", "i.ESH", "i.EA", "C.attacks", "C.defenses", "q.baseOf", "q.fxOk", "l.itemWeaponEffects"],writes:["C.attacks", "C.defenses", "l.itemWeaponEffects"],
+function wieldWeaponOwnRider(Q,e,x,scores){if(e.kind!=="item")return false;const base=Q.baseOf(e.owner),when=Array.isArray(x.when)?x.when:[x.when];return !weaponRowAllowed(base.mi||e.owner,scores)&&when.some(name=>name===e.owner||name===base.mi)}
+registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"each",over:"i.G",loop:"late-fx",reads:["i.B", "i.wieldScores", "i.ar", "i.ESH", "i.EA", "C.attacks", "C.defenses", "q.baseOf", "q.fxOk", "l.itemWeaponEffects"],writes:["C.attacks", "C.defenses", "l.itemWeaponEffects"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkDice [{when:"weapon|spell|unarmed|<name>", d:"1d10", t:"type", note}]: extra damage dice on matching attack rows, or a Note under Defenses when no row exists */
    (e.atkDice||[]).forEach(function(x,xi){const rows=rowsPick(x.when);
     if(rows.length)rows.forEach(function(r){if(x.roll!==true||acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"dice"))appendAttackRider(r,x,e.lbl)});
-    else if(!formWeaponOwnRider(Q,e,x,I.B.rs==="2014"?"2014":"2024")){C.defenses=C.defenses||[];C.defenses.push({t:"Note",v:(x.note||"Extra damage on "+(/^(weapon|spell|unarmed)$/.test(x.when)?x.when+" attacks":x.when))+": +"+x.d+(x.t?" "+x.t:""),s:e.lbl})}});
+    else if(!formWeaponOwnRider(Q,e,x,I.B.rs==="2014"?"2014":"2024")&&!wieldWeaponOwnRider(Q,e,x,I.wieldScores)){C.defenses=C.defenses||[];C.defenses.push({t:"Note",v:(x.note||"Extra damage on "+(/^(weapon|spell|unarmed)$/.test(x.when)?x.when+" attacks":x.when))+": +"+x.d+(x.t?" "+x.t:""),s:e.lbl})}});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-attack-self-damage",group:"late",phase:"late",order:145,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar","i.ESH","i.EA","q.fxOk","q.baseOf","C.attacks","l.itemWeaponEffects"],writes:["C.attacks","l.itemWeaponEffects"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,e=ctx.p;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;

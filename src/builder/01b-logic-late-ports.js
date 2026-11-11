@@ -26,7 +26,7 @@ export function syncPickItems(){return P.syncPickItems()}
 export function hpCalc(){return P.hpCalc()}
 export function effArmor(){return P.effArmor()}
 export function effShield(){return P.effShield()}
-export function effWeps(){return P.effWeps()}
+export function effWeps(scores){return P.effWeps(scores)}
 export function enabledPacks(){return P.enabledPacks()}
 export function miFeats(){return P.miFeats()}
 export function spOptFx(){return P.spOptFx()}

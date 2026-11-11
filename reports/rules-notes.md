@@ -283,3 +283,10 @@ Dawnbringer’s source requires a non-evil creature for attunement. The existing
 The ten named resistance potions have explicit resolved `ITEMFIX` text naming the damage type and one-hour duration. The generic potion still requires a type choice at the table. Its type is not inferred from an unrelated bottle or silently selected. Durations use the existing manual End lifecycle.
 
 Reading not decided: Dragon-Kindled Edge’s short “+2d6 damage against Dragons” sentence does not name a separate damage type. The implementation treats this as an increment to the weapon’s current damage, using `typeFrom:"weapon"`, rather than inventing an independent type. Its later breath-triggered 6d6 explicitly has the breath’s type and remains unmodeled by this rider.
+
+
+## 2026-11-11: wield minimum scope
+
+Forgemaster’s Might explicitly requires Strength 17 to wield. This is a predicate over the current score, not a grant of Strength 17. Its anvil usage and existing spell/counter properties remain independent from weapon eligibility. The compound Mending/anvil clause remains uncovered until the actual five-foot repair capability is implemented.
+
+Reading not decided: Cratering Quarterstaff says Strength 17 or higher is needed “to wield well” but gives no specific below-threshold penalty. The hard prohibition is not inferred for that item. Oversized Longbow also needs Medium-or-larger size and a specific 2d6 + Strength profile, and Shield of Yggdrasil requires a separate shield-use boundary; neither is partially mapped to this weapon rule.

@@ -135,7 +135,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  add("Finger Picks",{n:"Finger Picks",toolPE:["Thieves' Tools"]});/* fx engine v5: proficiency, or Expertise when already proficient */
  add("Fireweaver Gloves",{n:"Fireweaver Gloves",spells:[[1,"Produce Flame"]],defs:[["Note","Produce Flame from the gloves: +5 to hit, 1-hour duration"]]});
  add("Flamefriend Lantern",{n:"Flamefriend Lantern",spells:[[1,"Produce Flame"]],spCls:"@sub:WIS"});
- add("Forgemaster's Might",{n:"Forgemaster's Might",spells:[[1,"Mending"]],lu:[{n:"Creation (Forgemaster's Might)",max:1,reset:"dawn"},{n:"Fabricate (Forgemaster's Might)",max:1,reset:"dawn"}]});
  add("Glove of the Grim Fandango",{n:"Glove of the Grim Fandango",tools:["Musical Instruments (all)"]});
  add("Hand of the Master",{n:"Hand of the Master",spells:[[1,"Mage Hand"]]});
  add("Harp of Valor",{n:"Harp of Valor",tools:["Harp"]});

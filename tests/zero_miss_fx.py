@@ -2776,6 +2776,46 @@ for rs in ["2024","2014"]:
     CASES.append(dict(name="NEG U30 Rogue Card Archer spell "+rs,b=dict(rs=rs,cls="Druid",sub="Circle of the Stars",level=4,extra={"sp":["Thorn Whip"]},inv=[dict(n="Rogue Card",q=1,eq=True)]),expect=[("C.attacks.filter(a=>a.n==='Starry Form: Archer').length",1 if rs=="2024" else 0),("C.attacks.filter(a=>a.n==='Starry Form: Archer'||a.n==='Thorn Whip'||a.n==='Unarmed Strike').every(a=>!a.spendDice)",True)]))
     CASES.append(dict(name="Z3 U30 Rogue Card Pole Strike "+rs,b=dict(rs=rs,cls="Fighter",level=4,ch={"feat4":{"feat":"Polearm Master","a1":"STR"}},inv=[dict(n="Rogue Card",q=1,eq=True),dict(n="Quarterstaff",q=1,eq=True)]),expect=[("C.attacks.filter(a=>a.of==='Quarterstaff').length",1),("C.attacks.filter(a=>a.of==='Quarterstaff').every(a=>a.spendDice.length===1&&a.spendDice[0].poolKey===C.inv[0].chargeKey)",True)]))
 
+# U31: final Strength gates wielding only; spells, daily uses and anvil work
+# remain independent. Iron Raze keeps its fixed Bludgeoning damage type.
+U31_ROOT="Forgemaster's Might"
+U31_ANVIL="Advantage on Smith's Tools checks to craft or repair an object using the hammer head as an anvil"
+def u31name(base):return U31_ROOT+" ("+base+")"
+def u31row(item):return "C.attacks.find(a=>a.n==="+json.dumps(item)+")"
+def u31extra(rs):return {"species":"High Elf" if rs=="2014" else "Human"}
+def u31independent():return [("C.spells.filter(s=>s.n==='Mending'&&s.src.includes(\"Forgemaster's Might\")).length",1)]+[("C.res.filter(r=>r.n==="+json.dumps(n+" (Forgemaster's Might)")+").length",1) for n in ["Creation","Fabricate"]]
+for rs in ["2024","2014"]:
+    for base in ["Maul","Warhammer"]:
+        item=u31name(base)
+        for strength in [16,17,18]:
+            for target in ["Construct","Structure","Object","Dragon"]:
+                wield=strength>=17;rider=wield and target in ["Construct","Structure"]
+                a=u31row(item)
+                checks=[("C.abilities.STR.base+C.abilities.STR.bonus.reduce((n,x)=>n+x.v,0)",strength),("C.attacks.some(a=>a.n==="+json.dumps(item)+")",wield),("!!"+u31row("Longsword")+".xdice",False),(u31row("Longsword")+".misc",0)]+u31independent()
+                if wield:
+                    checks += [(a+".misc",2),(a+".dmgBonus",2),(a+".type","Bludgeoning"),("!!"+a+".xdice",rider)]
+                    if rider:checks += [(a+".xdice.length",1),(a+".xdice[0].d","2d8"),(a+".xdice[0].t","Bludgeoning"),(a+".xdice[0].roll",True)]
+                else:checks.append(("(C.defenses||[]).some(d=>String(d.s||'').includes(\"Forgemaster's Might\")&&/Extra damage|2d8/.test(d.v||''))",False))
+                CASES.append(dict(name=("Z3" if wield else "NEG")+" U31 Forge minimum Strength "+base+" "+rs+" STR"+str(strength)+" "+target,b=dict(rs=rs,cls="Fighter",level=4,base={"STR":strength},extra=u31extra(rs),inv=[dict(n=item,q=1,eq=True,attuned=True),dict(n="Longsword",q=1,eq=True)]),target={"type":target},expect=checks))
+        CASES.append(dict(name="Z3 U31 Forge Iron Raze differential "+base+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,base={"STR":17},extra=u31extra(rs),inv=[dict(n=item,q=1,eq=True,attuned=True)]),target={"type":"Construct"},withoutGxFields=["item",U31_ROOT,U31_ROOT,["atkDice"]],expect=[("C.attacks[1].xdice[0].d","2d8")],expectWithout=[("!!C.attacks[1].xdice",False)],allow=[r"^attacks\.1\.xdice\.0\.(d|t|s|roll)$",r"^attacks\.1\.note$"]))
+        for strength in [16,17]:
+            for chosen in ["Necrotic","Psychic","Radiant"]:
+                checks=[("C.attacks.some(a=>a.n==="+json.dumps(item)+")",strength>=17)]+u31independent()
+                if strength>=17:checks += [(u31row(item)+".type",chosen),(u31row(item)+".ab","CHA"),(u31row(item)+".xdice[0].t","Bludgeoning"),("__deriveFor(C).atk[1].damageParts.find(p=>p.type==='Bludgeoning').expr","2d8")]
+                CASES.append(dict(name=("Z3" if strength>=17 else "NEG")+" U31 Forge high Charisma Pact "+base+" "+rs+" STR"+str(strength)+chosen,b=dict(rs=rs,cls="Warlock",level=4,base={"STR":strength,"CHA":20},extra=u31extra(rs),ch={"p3invocation" if rs=="2014" else "invocation":["Pact of the Blade"],"pactWep":[item],"pactDmg":[chosen]},inv=[dict(n=item,q=1,eq=True,attuned=True)]),target={"type":"Construct"},expect=checks if rs=="2024" else checks[:1]+u31independent()+([(u31row(item)+".type","Bludgeoning"),(u31row(item)+".xdice[0].t","Bludgeoning")] if strength>=17 else [])))
+        for mode,base_strength,ch,boost in [("feat",15,{"feat4":{"feat":"Ability Score Improvement","a1":"STR","a2":"STR"}},[]),("gauntlets",8,{},[dict(n="Gauntlets of Ogre Power",q=1,eq=True,attuned=True)])]:
+            final=17 if mode=="feat" else 19
+            CASES.append(dict(name="Z3 U31 Forge final Strength from "+mode+" "+base+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,base={"STR":base_strength},extra=u31extra(rs),ch=ch,inv=[dict(n=item,q=1,eq=True,attuned=True)]+boost),target={"type":"Construct"},expect=[("C.abilities.STR.base+C.abilities.STR.bonus.reduce((n,x)=>n+x.v,0)",final),(u31row(item)+".xdice[0].d","2d8")]))
+        potion=dict(rs=rs,cls="Fighter",level=4,base={"STR":8},extra=u31extra(rs),inv=[dict(n=item,q=1,eq=True,attuned=True),dict(n="Potion of Giant Strength (hill)",q=1,eq=False)])
+        # The nested sheet call tests the consumed-state input without granting
+        # broad diff exceptions for unrelated inventory presentation fields.
+        CASES.append(dict(name="Z3 U31 Forge consumed final Strength "+base+" "+rs,b=potion,expect=[("C.attacks.some(a=>a.n==="+json.dumps(item)+")",False),("(()=>{const c=__bldSheetFor(structuredClone(__zmB),{'consumed-giant-hill':true},{type:'Construct'});return c.abilities.STR.base+c.abilities.STR.bonus.reduce((n,x)=>n+x.v,0)===21&&c.attacks.some(a=>a.n==="+json.dumps(item)+"&&a.xdice[0].d==='2d8')})()",True)]))
+    for strength in [16,17]:
+        for on in [False,True]:
+            CASES.append(dict(name="Z3 U31 Forge anvil state "+rs+" STR"+str(strength)+str(on),b=dict(rs=rs,cls="Fighter",level=4,base={"STR":strength},extra=u31extra(rs),inv=[dict(n=U31_ROOT,q=1,eq=True,attuned=True)]),tog={"forge-anvil":on},expect=[("(C.defenses||[]).filter(d=>d.v==="+json.dumps(U31_ANVIL)+").length",1 if on else 0)]+u31independent(),allow=[r"^defenses(?:\.|$)",r"^fxToggles\.0\.on$"]))
+    for q,eq,attuned in [(0,True,True),(1,True,False),(1,False,True)]:
+        CASES.append(dict(name="NEG U31 Forge anvil source unavailable "+rs+str((q,eq,attuned)),b=dict(rs=rs,cls="Fighter",level=4,base={"STR":16},extra=u31extra(rs),inv=[dict(n=U31_ROOT,q=q,eq=eq,attuned=attuned)]),tog={"forge-anvil":True},expect=[("(C.defenses||[]).some(d=>d.v==="+json.dumps(U31_ANVIL)+")",False)],allow=[]))
+
 # Refresh the real rule-link index with the case's source packs installed.
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
