@@ -15,8 +15,9 @@ SUB = {
 },
 }
 
-# The other thirteen Warden subclasses live in tvss14_sub_warden.py
+# The other Valda 2014 subclasses live in their own files, one per class
 import importlib.util as _u, os as _o
-_p = _o.path.join(_o.path.dirname(_o.path.abspath(__file__)), "tvss14_sub_warden.py")
-_sp = _u.spec_from_file_location("tvss14_sub_warden", _p); _m = _u.module_from_spec(_sp); _sp.loader.exec_module(_m)
-SUB.update(_m.SUB)
+for _f in ("tvss14_sub_warden", "tvss14_sub_alchemist", "tvss14_sub_captain"):
+    _p = _o.path.join(_o.path.dirname(_o.path.abspath(__file__)), _f + ".py")
+    _sp = _u.spec_from_file_location(_f, _p); _m = _u.module_from_spec(_sp); _sp.loader.exec_module(_m)
+    SUB.update(_m.SUB)
