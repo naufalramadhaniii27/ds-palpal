@@ -2,7 +2,7 @@
 Facts only: numbers, names, attack lines. Trait text is not copied. Used by tp_build.py for books with "monsters": True."""
 import re, json
 
-SIZE = {"T": "Tiny", "S": "Small", "M": "Medium", "L": "Large", "H": "Huge", "G": "Gargantuan"}
+SIZE = {"T": "Tiny", "S": "Small", "M": "Medium", "L": "Large", "H": "Huge", "G": "Gargantuan", "C": "Colossal"}
 AL = {"L": "lawful", "N": "neutral", "C": "chaotic", "G": "good", "E": "evil", "U": "unaligned", "A": "any alignment"}
 AB = ["str", "dex", "con", "int", "wis", "cha"]
 
@@ -32,15 +32,29 @@ def typ(m):
 
 def align(m):
     a = m.get("alignment", [])
+    if a and all(isinstance(x, dict) for x in a):       # alternative alignments: join the variants
+        out = []
+        for x in a:
+            t = align({"alignment": x.get("alignment", [])})
+            if t not in out: out.append(t)
+        return " or ".join(out)
+    a = [x for x in a if not isinstance(x, dict)]
     if a == ["A"] or a == ["U"]: return AL[a[0]]
-    w = [AL.get(x, x) for x in a]
+    if set(a) >= {"G", "NY", "E"}:      # good-evil axis open: any alignment on the law axis given
+        lw = set(a) & {"L", "C", "NX"}
+        return {frozenset({"L"}): "any lawful alignment", frozenset({"C"}): "any chaotic alignment", frozenset({"NX", "C"}): "any non-lawful alignment", frozenset({"NX", "L"}): "any non-chaotic alignment"}.get(frozenset(lw), "any alignment")
+    if set(a) >= {"NX", "NY"}:      # both axes open: neutral on both, written as the plain word
+        a = [x for x in a if x not in ("NX", "NY", "N")] + ["N"]
+    w = [AL.get(x, x) for x in a if x not in ("NX", "NY")]
     return " ".join(w)
 
 
 def ac(m):
     out = []
     for a in m.get("ac", []):
-        if isinstance(a, dict):
+        if isinstance(a, dict) and "ac" not in a:
+            out.append(clean(a.get("special", "")))
+        elif isinstance(a, dict):
             fr = clean(", ".join(a.get("from", []))) if a.get("from") else a.get("condition", "")
             out.append("%d%s" % (a["ac"], " (%s)" % fr if fr else ""))
         else: out.append(str(a))
@@ -93,7 +107,7 @@ def row(m, skey):
     tl = [["AC", ac(m)], ["HP", "%d (%s)" % (m["hp"]["average"], m["hp"]["formula"]) if "formula" in m["hp"] else str(m["hp"].get("special", ""))],
           ["Speed", speed(m)], ["Abilities", "  ".join("%s %s" % (a.upper(), mod(m[a])) for a in AB)]]
     if m.get("save"): tl.append(["Saves", ", ".join("%s %s" % (k.upper(), v) for k, v in m["save"].items())])
-    if m.get("skill"): tl.append(["Skills", ", ".join("%s %s" % (k.title(), v) for k, v in m["skill"].items())])
+    if m.get("skill"): tl.append(["Skills", ", ".join("%s %s" % (k.split("|")[0].title(), v) for k, v in m["skill"].items())])
     se = list(m.get("senses", [])) + ["passive Perception %d" % m["passive"]] if m.get("passive") else list(m.get("senses", []))
     tl.append(["Senses", clean(", ".join(se))])
     tl.append(["Languages", ", ".join(m.get("languages", [])) or "-"])

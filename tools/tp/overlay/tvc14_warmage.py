@@ -42,6 +42,8 @@ CLASS = {
    "Survival": "You taught yourself simple spells to survive the wilds. You learn Druidcraft and Shillelagh.",
   },
   "T:WM": {
+   "Gauntlet Upgrade": "Requires Warmage level 10 and Coalition Arcanist. You fit a high-power module to your blaster gauntlet. Choose one modifier to apply to cantrips you cast with your Coalition Blaster Gauntlet ability. Beam: the cantrip makes a 5-ft-wide beam out to the spell's range in a direction you choose, lasting until the start of your next turn. A creature that enters the beam for the first time on a turn, or starts its turn there, makes a Dexterity save against your spell save DC or takes the spell's damage.",
+   "Technomancer": "Requires the Technomancy cantrip. You can cast Technomancy as a bonus action on your turn, without somatic components. You can also use the cantrip to try to hack devices within range.",
    "Bishop's Maneuver": "Requires House of Bishops level 10. You can Disengage as a bonus action, and your walking Speed rises by 10 feet until the end of that turn.",
    "Blackjack": "Requires House of Cards, Darts, Dice or Roulette. When you cast a cantrip with a single spell attack roll and have no Disadvantage, you can roll with Advantage. The attack misses automatically if the two dice add to more than 21, and is a critical hit if they add to exactly 21.",
    "Blasting Cantrip": "Once on each of your turns when you deal Force damage to a creature with a warmage cantrip, you can push it up to 10 feet straight away from you.",
