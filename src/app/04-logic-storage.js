@@ -55,10 +55,18 @@ export function mergeS(s2){ let base={}; try{ base=JSON.parse(S_BASE)||{}; }catc
     else if(k in S) s2[k]=a; else delete s2[k]; }); return s2; }
 /* V18-8: with the Web Locks API, the read, merge, write below runs in one tab at a time, so two tabs saving in the same millisecond keep both changes */
 export var SPEND=false;/* v19 V19-1: a save is waiting (timer or Web Lock) until saveNow() writes */
-export function save(){ SPEND=true; clearTimeout(saveT); saveT=setTimeout(() =>{ saveT=null; if(navigator.locks&&navigator.locks.request){ try{ navigator.locks.request("cs-sheet-state",() =>{ saveNow(); }); return; }catch(er){} } saveNow(); },150); }
+export function save(){ SPEND=true; clearTimeout(saveT); saveT=setTimeout(() =>{ saveT=null; if(navigator.locks&&navigator.locks.request){ try{ navigator.locks.request("cs-sheet-state",() =>{ if(SPEND) saveNow(); }); return; }catch(er){} } saveNow(); },150); }
 export function saveNow(){ const cur=lsGet(KEY);
   if(cur!=null&&cur!==S_RAW&&!FROZEN){ const s2=loadS(true); if(s2){ S=mergeS(s2); setTimeout(() =>{ try{ renderAll(true); }catch(er){} },0); } }
   if(lsSave(KEY, S)) S_RAW=S_BASE=JSON.stringify(S); SPEND=false; snAutoSoon();/* v32 p33 */ }
+// Finish domain debounces before the boot store's pagehide/hidden journal flush.
+export function flushPendingSaves(){
+  if(FROZEN) return;
+  if(saveT!==null||SPEND){ clearTimeout(saveT); saveT=null; saveNow(); }
+  if(cSaveT!==null){ clearTimeout(cSaveT); cSaveT=null; lsSave(CKEY,C); }
+}
+env.addEventListener("pagehide",flushPendingSaves,true);
+document.addEventListener("visibilitychange",() =>{ if(document.visibilityState==="hidden") flushPendingSaves(); },true);
 let SN_AUTO_T=0, SN_HOUR=36e5, SN_T0=Date.now();
 function snAutoSoon(){ const n=Date.now(); if(FROZEN||n-SN_AUTO_T<6e4) return; SN_AUTO_T=n; setTimeout(snAuto,0); }
 function snAuto(){ try{ const r=rGet(), id=r&&r.active; if(!id||(lateGet("MYID")&&id!==lateGet("MYID"))) return; const L=snGet().chars[id]||[]; if(Date.now()-(L.length?Math.max(L[0].t,0):SN_T0)<SN_HOUR) return; snTake(id,"Automatic copy",r);/* the first copy after an hour of play, then one an hour */ }catch(e){} }

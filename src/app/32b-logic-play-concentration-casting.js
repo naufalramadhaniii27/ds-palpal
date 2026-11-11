@@ -1,3 +1,4 @@
+import {endTattooEffect as endTattooBodyEffect} from '../data/lib/spellwrought-tattoo.js';
 import {bindLive,cmbCast,cmbRe,lateGet,featAll,syncLU,used,renderConds,refreshEntry,showEntry,spPactLv,spRowLv,renderSpells} from "./00a-reg-late-ports.js";/* Responsibility: class levels, concentration and casting a spell (slots, upcast, quick cast). Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
 import {C,S,save} from "./04-logic-storage.js";import {ask,esc,num,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {UNDO,toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";
 import {attActive,eqOn} from "./05-logic-helpers.js";
@@ -25,8 +26,10 @@ export function hasFeat(n){ return featAll().some((x) =>{ return x.f.n===n; }); 
 /* ---------- RU50 Concentration ---------- */
 export var INCAP=["Incapacitated","Paralyzed","Petrified","Stunned","Unconscious"];
 export function concOf(){ return S.conc&&S.conc.n?S.conc:null; }
-function concSet(x,lv){ const o=concOf(), m=(o&&o.n!==x.n)?"Concentration on "+o.n+" ended. ":""; S.conc={n:x.n,l:lv||x.l||0}; return m+"Concentrating on "+x.n+"."; }
-export function concEnd(why){ const o=concOf(); if(!o) return ""; delete S.conc; return "Concentration on "+o.n+" ended"+(why?" ("+why+")":"")+"."; }
+function concSet(x,lv){ const o=concOf();if(o)endTaggedTattooConcentration(o);const m=(o&&o.n!==x.n)?"Concentration on "+o.n+" ended. ":""; S.conc={n:x.n,l:lv||x.l||0}; return m+"Concentrating on "+x.n+"."; }
+export function concEnd(why){ const o=concOf(); if(!o) return ""; endTaggedTattooConcentration(o); delete S.conc; return "Concentration on "+o.n+" ended"+(why?" ("+why+")":"")+"."; }
+export function setTattooConcentration(spell,sourceId,castId){S.conc={n:spell.n,l:spell.l,tattoo:{v:1,sourceId,castId}}}
+function endTaggedTattooConcentration(concentration){const tag=concentration&&concentration.tattoo;if(!tag||tag.v!==1)return;const body=S.spellwroughtTattoos;if(!body||!Array.isArray(body.tattoos)||!body.tattoos.some(row=>row.sourceId===tag.sourceId&&row.castId===tag.castId&&row.phase==='active'))return;const ended=endTattooBodyEffect(body,tag.castId,{actualSpellEnded:true});if(ended.ok&&'body' in ended)S.spellwroughtTattoos=ended.body}
 function concNotes(){ const n=[]; if(hasFeat("War Caster")) n.push("War Caster gives Advantage"); if(hasFeat("Eldritch Mind")) n.push("Eldritch Mind gives Advantage"); if(hasFeat("Bladesong")) n.push("while Bladesong is active, add your Intelligence modifier"); return n; }
 function concDC(d){ return Math.min(30,Math.max(10,Math.floor(d/2))); }
 function concCheck(d){ const o=concOf(); if(!o||!(d>0)) return; const dc=concDC(d), nt=concNotes();
@@ -43,7 +46,7 @@ function concHead(){ const o=concOf(); [".band .mini",".band .office > div"].for
   const i=spIx(o.n); if(i>=0) b.setAttribute("data-info","sp:"+i); else b.removeAttribute("data-info"); b.innerHTML='<i aria-hidden="true">C</i>'+esc(o.n); b.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); b.title="Concentrating on "+o.n; }); }
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-concend],[data-concon]"); if(!t) return; e.preventDefault(); e.stopPropagation();
   if(t.hasAttribute("data-concend")){ const m=concEnd(); save(); renderConds(); refreshEntry(); if(m) toast(m); return; }
-  const x=(C.spells||[])[+t.getAttribute("data-concon")]; if(!x) return;if(Object.prototype.hasOwnProperty.call(x,"temporaryCantrip")&&!temporaryCantripStatus(x,S.temporaryCantrips).allowed){toast("This temporary cantrip is no longer available.");return} const m2=concSet(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x)); save(); renderConds(); refreshEntry(); toast(m2); },true);
+  const x=(C.spells||[])[+t.getAttribute("data-concon")]; if(!x) return;if(["fixedSpellSource","tattooSource"].some(key=>Object.prototype.hasOwnProperty.call(x,key))){toast("Use the tattoo body controls to cast this spell.");return}if(Object.prototype.hasOwnProperty.call(x,"temporaryCantrip")&&!temporaryCantripStatus(x,S.temporaryCantrips).allowed){toast("This temporary cantrip is no longer available.");return} const m2=concSet(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x)); save(); renderConds(); refreshEntry(); toast(m2); },true);
 
 /* ---------- RU49 Cast and Use ---------- */
 export function slotLeft(k){ const r=(D.res||[]).filter((q) =>{ return q.k===k; })[0]; return r?{r:r,left:(C.divineIntervention||S.interventionRecovery)&&!interventionPaymentAllowed(k)?0:r.max-used(r.k,r.max)}:null; }
@@ -83,7 +86,7 @@ export function spCastOpts(x){ const o=[], sc=C.spellcasting||{}; if(spAtWill(x)
   return o; }
 const spStepSel={};
 function spStepIx(i,sl){ let v=spStepSel[i]; if(v==null||v<0||v>=sl.length){ v=0; for(let k=0;k<sl.length;k++){ if(sl[k].left>0){ v=k; break; } } spStepSel[i]=v; } return v; }
-function spCastH(x,i){ let h='<div class="info-h">Cast</div><div class="spcast">', o=spCastOpts(x);
+function spCastH(x,i){if(x&&['fixedSpellSource','tattooSource'].some(key=>Object.prototype.hasOwnProperty.call(x,key)))return '<div class="info-d">Use the tattoo body controls for its current casting permission or original cast receipt. This imported source cannot be cast from the ordinary spell card.</div>';let h='<div class="info-h">Cast</div><div class="spcast">', o=spCastOpts(x);
   if(spAtWill(x)) h+='<button type="button" class="btn pri press" data-cast="'+i+'" data-ck="">Cast <small>'+(x.l?'at will':'cantrip, no slot')+'</small></button>';
   else { const qb=function(q){ return '<button type="button" class="btn press'+(qOk(q)?'':' off')+'" data-cast="'+i+'" data-ck="'+esc(ckOf(q))+'" data-cl="'+q.lv+'"'+(qOk(q)?'':' disabled')+'>'+esc(q.free?"Use "+q.lab:"Cast with a "+q.lab)+' <small>'+q.left+' left</small></button>'; };
     /* v49: with two or more slot levels, one stepper picks the level and one Cast button casts */
@@ -108,7 +111,7 @@ const temporalCasts=new WeakSet();
 function temporaryCastContext(index,spell){const status=temporaryCantripStatus(spell,S.temporaryCantrips);if(!status.allowed)return null;const view={character:C,state:S,cid:C.cid,id:C.id,name:C.name,index,spell,root:typeof document.querySelector==="function"?document.querySelector("#sheet.on"):null,signature:JSON.stringify(spell),permission:status.signature};temporalCasts.add(view);return view}
 function temporaryCastCurrent(view,index,spell){return temporalCasts.has(view)&&(!view.root||view.root.isConnected&&view.root.classList.contains("on"))&&view.character===C&&view.state===S&&view.cid===C.cid&&view.id===C.id&&view.name===C.name&&view.index===index&&view.spell===spell&&view.signature===JSON.stringify(spell)&&temporaryCantripStatus(spell,S.temporaryCantrips).allowed&&temporaryCantripStatus(spell,S.temporaryCantrips).signature===view.permission}
 function temporaryCastAllowed(view,index,spell){return !view||temporaryCastCurrent(view,index,spell)}
-export function castDo(i,k,lv,ok,repair,temporal){const spell=(C.spells||[])[i];if(!spell)return;if(temporal||Object.prototype.hasOwnProperty.call(spell,"temporaryCantrip")){temporal=temporal||temporaryCastContext(i,spell);if(!temporal||!temporaryCastCurrent(temporal,i,spell)){toast("This temporary cantrip changed or expired. Open its current spell card.");return}}castCurrentSpell(i,k,lv,ok,repair,temporal)}
+export function castDo(i,k,lv,ok,repair,temporal){const spell=(C.spells||[])[i];if(!spell)return;if(["fixedSpellSource","tattooSource"].some(key=>Object.prototype.hasOwnProperty.call(spell,key))){toast("Use the tattoo body controls to cast this spell.");return}if(temporal||Object.prototype.hasOwnProperty.call(spell,"temporaryCantrip")){temporal=temporal||temporaryCastContext(i,spell);if(!temporal||!temporaryCastCurrent(temporal,i,spell)){toast("This temporary cantrip changed or expired. Open its current spell card.");return}}castCurrentSpell(i,k,lv,ok,repair,temporal)}
 function castCurrentSpell(i,k,lv,ok,repair,temporal){ const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
   if(!spRepairCastAllowed(i,k,lv,x,repair))return;
   if(!spFormCommitAllowed(x,k,nd))return;

@@ -1588,6 +1588,7 @@ def selftest():
         check("U35 native computed spell bonus "+entry["id"], row["status"] == "covered" and entry["cls"] == ["ATK","SAVE"] and entry["vals"] == [str(potency)] and entry.get("scopeValues") is True, row["why"])
         case = tool_cases_by_name.get(entry["test"])
         check("U35 actual computed class-source fixture "+entry["id"], bool(case and case.get("expect")))
+        check("U35 exact class channel and typed exhaustion consumer "+entry["id"], ["src/app/23e-ui-spells-dc.js",'return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK("s:"+x.n),{attackAdjustment:-spellExhaustion()})'] in entry["extraAnchors"])
         for anchor_index in range(1+len(entry["extraAnchors"])):
             damaged = dict(entry,extraAnchors=[list(pair) for pair in entry["extraAnchors"]])
             if anchor_index == 0: damaged["anchor"] = [entry["anchor"][0],"missing-spell-source-producer"]
@@ -1877,6 +1878,87 @@ def selftest():
     for entry in cleric_registered:
         expected=cleric_by_id.get(entry["id"])
         check("U39 registered exact native source and consumers "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
+    # U40 body permissions are exact native item sources, never learned spells.
+    tattoo_text=open(os.path.join(ROOT,"src","data","wotc11-magic-items-2014.js"),encoding="utf-8").read()
+    tattoo_start=re.search(r"\bvar R\s*=",tattoo_text)
+    native_tattoo=json.JSONDecoder().raw_decode(tattoo_text[tattoo_start.end():])[0]
+    tattoo_rows=[row for row in native_tattoo["tce"] if row[0].startswith("Spellwrought Tattoo (")]
+    check("U40 exactly six native physical profiles",len(tattoo_rows)==6)
+    tattoo_groups = {4: {'anchor': ['src/app/32g-logic-spellwrought-tattoo.js', 'export function completeTattooCast(options)'],
+         'extraAnchors': [['src/builder/25a-logic-tattoo-sources.js',
+                           'function commitTattooPlan(owner,current,plan,body,beforeCommit,result)'],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function applySpellwroughtTattoo('],
+                          ['src/data/lib/tattoo-projection.js', 'export function tattooOwnedSpellRow('],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function tattooCastPermission('],
+                          ['src/app/lib/spellwrought-tattoo-runtime.js', 'function complete(token,declarations)'],
+                          ['src/data/lib/spellwrought-tattoo.js', "x&&x!=='M'"]],
+         'cls': ['SPELL'],
+         'test': 'tests/spellwrought_tattoo_model.mjs'},
+     5: {'anchor': ['src/app/08k-ui-spellwrought-body.js', 'function tattooBodyStateText(record)'],
+         'extraAnchors': [['src/builder/25a-logic-tattoo-sources.js',
+                           'function commitTattooPlan(owner,current,plan,body,beforeCommit,result)'],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function applySpellwroughtTattoo('],
+                          ['src/data/lib/tattoo-projection.js', 'export function tattooOwnedSpellRow('],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function beginTattooCasting('],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function completeTattooCasting('],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function endTattooEffect('],
+                          ['src/data/lib/spellwrought-tattoo.js', "glowing:grant.phase==='casting'||grant.phase==='active'"],
+                          ['src/app/lib/spellwrought-tattoo-runtime.js', 'function end(token,declarations)']],
+         'cls': ['SPELL'],
+         'test': 'tests/spellwrought_tattoo_runtime.mjs'},
+     7: {'anchor': ['src/data/lib/spell-source.js',
+                    'const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};'],
+         'extraAnchors': [['src/builder/25a-logic-tattoo-sources.js',
+                           'function commitTattooPlan(owner,current,plan,body,beforeCommit,result)'],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function applySpellwroughtTattoo('],
+                          ['src/data/lib/tattoo-projection.js', 'export function tattooOwnedSpellRow('],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function tattooFixedSourceStats('],
+                          ['src/app/23e-ui-spells-dc.js', 'export function scOf(x){return selectSpellSource('],
+                          ['src/app/22-ui-spell-data-and-slots.js', 'export function tattooSpellCalculation(']],
+         'cls': ['ATK', 'DC'],
+         'test': 'tests/tattoo_spell_source.mjs + tests/tattoo_spell_consumer.mjs'},
+     1: {'anchor': ['src/data/lib/spellwrought-tattoo.js', 'export function projectTattooBody('],
+         'extraAnchors': [['src/builder/25a-logic-tattoo-sources.js',
+                           'function commitTattooPlan(owner,current,plan,body,beforeCommit,result)'],
+                          ['src/data/lib/spellwrought-tattoo.js', 'export function applySpellwroughtTattoo('],
+                          ['src/data/lib/tattoo-projection.js', 'export function tattooOwnedSpellRow(']],
+         'cls': ['SPELL'],
+         'test': 'tests/spellwrought_tattoo_model.mjs'}}
+    tattoo_expected=[]
+    for native in tattoo_rows:
+        for owner in ["dmg","tce"]:
+            for index,text in enumerate(split_sentences(native[4]),1):
+                if index not in (4,5,7) and not(index==1 and native[0]=="Spellwrought Tattoo (Cantrip)"):continue
+                sid="item|%s|%s#%s"%(owner,native[0],index);group=tattoo_groups[index]
+                values=re.findall(r"\b\d+\b",text) if index==7 else []
+                entry=dict(id="u40-"+re.sub("[^a-z0-9]+","-",sid.lower()).strip("-"),kind="item",owner=owner,name=native[0],cls=group["cls"],vals=values,scopeValues=True,rx="^"+re.escape(text.lower())+"$",anchor=group["anchor"],extraAnchors=group["extraAnchors"],test="Z3 U40 native physical needle "+("2014" if owner=="dmg" else "2024")+" "+native[0],consumerTests=group["test"].split(" + "))
+                tattoo_expected.append(entry);loaded=load_code_atoms([entry]);key="item|%s|%s"%(owner,native[0]);atoms=[atom for proof,atom in loaded.get(key,[])]
+                result=analyze(synth("item",owner,native[0],text,atoms))[0]
+                check("U40 exact native physical sentence "+sid,result["status"]=="covered",result["why"])
+                check("U40 source has no attunement prerequisite "+sid,native[3]==0 and native[5] is None)
+                fixture=tool_cases_by_name.get(entry["test"])
+                for testfile in entry["consumerTests"]:
+                    path=os.path.join(ROOT,testfile)
+                    check("U40 retained actual model/runtime/calculator test "+sid+testfile,bool(fixture and fixture.get("expect") and fixture.get("lo")) and os.path.isfile(path) and "spellwrought-tattoo" in open(path,encoding="utf-8").read())
+                for anchor_index in range(1+len(entry["extraAnchors"])):
+                    damaged=dict(entry,extraAnchors=[list(pair) for pair in entry["extraAnchors"]])
+                    if anchor_index==0:damaged["anchor"]=[entry["anchor"][0],"missing-native-tattoo-consumer"]
+                    else:damaged["extraAnchors"][anchor_index-1][1]="missing-native-tattoo-producer-or-lifecycle"
+                    check("U40 NEG missing physical source/consumer "+sid+str(anchor_index),not load_code_atoms([damaged]));CODE_NOTES.clear()
+                changed=text.replace("+3","+6").replace("+4","+6").replace("+5","+6").replace("+7","+6").replace("+9","+6") if index==7 else text[:-1]+" at will."
+                for other in [changed,"You gain a +1 bonus to AC.","You gain a +3 bonus to all spell attacks.","You permanently learn this spell.","The tattoo glows whenever you carry the needle."]:
+                    check("U40 NEG unrelated or broadened permission "+sid+other,all(row["status"]!="covered" for row in analyze(synth("item",owner,native[0],other,atoms))))
+                for wrong_key in ["item|other|"+native[0],"item|"+owner+"|Ordinary Needle"]:
+                    check("U40 NEG wrong alias or item "+sid+wrong_key,not loaded.get(wrong_key))
+    check("U40 exactly38 native initial candidates across both aliases",len(tattoo_expected)==38)
+    for version in [1,2]:
+        check("U40 Disciple selector/version is not numerical evidence "+str(version),not atoms_from({"clericPower":{"v":version,"profile":"disciple-of-life"}},"GX.tattoo-passive"))
+    tattoo_registered=[entry for entry in json.load(open(CODE,encoding="utf-8"))["entries"] if entry.get("id","").startswith("u40-")]
+    check("U40 draft or exactly38 registered native source proofs",len(tattoo_registered) in (0,38))
+    tattoo_by_id={entry["id"]:entry for entry in tattoo_expected}
+    for entry in tattoo_registered:
+        expected=tattoo_by_id.get(entry["id"])
+        check("U40 registered exact native source and lifecycle "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

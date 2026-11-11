@@ -1,3 +1,4 @@
+import {tattooFixedSourceStats} from './spellwrought-tattoo.js';
 // Derived source-key spellcasting channels. Never infers class identity from display text.
 const ABILITIES=['STR','DEX','CON','INT','WIS','CHA'];
 const object=value=>!!value&&typeof value==='object'&&!Array.isArray(value);
@@ -15,7 +16,12 @@ export function spellChannelsDiffer(channels){
  return channels.some(channel=>!channel||!first||channel.ab!==first.ab||channel.atk!==first.atk||channel.dc!==first.dc);
 }
 function spellOverrideNumber(value){return value==null||value===''||!Number.isFinite(+value)?null:+value}
-export function selectSpellSource(spellcasting,spell,overrides){
+export function selectSpellSource(spellcasting,spell,overrides,adjustments=undefined){
+ if(spell&&own(spell,'fixedSpellSource')){
+  const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};
+  if(adjustments!==undefined){if(!object(adjustments)||Reflect.ownKeys(adjustments).length!==1||!own(adjustments,'attackAdjustment')||!Number.isFinite(adjustments.attackAdjustment))return {};tattoo.atk+=adjustments.attackAdjustment;if(!Number.isFinite(tattoo.atk))return {}}
+  return selectSpellSource(tattoo,null,overrides);
+ }
  const main=object(spellcasting)?spellcasting:{};
  let chosen=main;
  const fixed=spell&&object(spell.itc)&&(spell.itc.dc!=null||spell.itc.atk!=null);

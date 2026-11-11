@@ -1,3 +1,4 @@
+import {spellwroughtNeedleControl} from './21h-ui-spellwrought-needle.js';
 import {turnDamageControls} from './08f-ui-turn-damage.js';
 import {supremeHealingControls} from './08g-ui-supreme-healing.js';
 import {divineInterventionControls} from './08h-ui-divine-intervention.js';
@@ -108,8 +109,10 @@ DETAIL.add("xd", {
   const xd=(C.xdmg||[])[+key]; if(!xd) return {t:"Feature", h:""}; return {t:xd.n, h:meta(xd.sub,"")+'<div class="info-k">'+tileH("Damage",esc(xd.dmg)+tyIcon(xd.type))+tileS("Type",xd.type)+(xd.save?tileS("Save",xd.save+" DC "+xd.dc):"")+'</div><p class="info-d">'+esc(xd.note)+'</p>'};
   }
 });
+function typedTattooSpellGuide(key){const row=(C.spells||[])[+key];if(!row||!['fixedSpellSource','tattooSource'].some(field=>Object.prototype.hasOwnProperty.call(row,field)))return null;return {t:row.n||'Tattoo spell',h:'<section class="jform" data-roll-controls="own"><p>Review this character’s body tattoos to use an applied tattoo or resolve its original spell effects. This saved spell entry cannot cast or roll. Its data is preserved.</p><button type="button" class="btn press" data-tattoo-body-open>Review body tattoos</button></section>'}}
 DETAIL.add("sp", {
   render:function(key){
+ const tattooGuide=typedTattooSpellGuide(key);if(tattooGuide)return tattooGuide;
  const _render4Step1=render4Step1(key);
  const {x}=_render4Step1;
  let {h}=_render4Step1; if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
@@ -185,7 +188,7 @@ DETAIL.add("w", {
 DETAIL.add("it", {
   render:function(key){ let h="";
   const it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
-    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+weaponWieldControl(it)+attunementControl(it,+key)+weaponFormControl(it,+key)+toolFormControl(it,+key)+carpetVehicleControl(it,+key)+riddenVehicleControl(it,+key)+temporaryCantripControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?"Unequip":"Equip")+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
+    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+weaponWieldControl(it)+attunementControl(it,+key)+weaponFormControl(it,+key)+toolFormControl(it,+key)+carpetVehicleControl(it,+key)+riddenVehicleControl(it,+key)+temporaryCantripControl(it,+key)+spellwroughtNeedleControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?"Unequip":"Equip")+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
     ({h}=renderStep1(it, h, key));
     return {t:it.n, h:h};
   },
@@ -198,7 +201,7 @@ function renderStep1(it, h, key){
     if(it.d) h+='<div class="info-h">Your note</div><p class="info-d">'+esc(it.d)+'</p>';
     const wl2=[]; (C.attacks||[]).forEach((a,ix) =>{ if((a.n===it.n||a.n===it.n+" (thrown)")&&atkOn(a)) wl2.push(ix); }); /* RU15 */
     if(wl2.length) h+='<div class="info-l">'+wl2.map((ix) =>{ return '<button type="button" data-info="w:'+ix+'">Attack with '+esc(C.attacks[ix].n)+'<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
-    h+=packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+weaponWieldControl(it)+attunementControl(it,+key)+weaponFormControl(it,+key)+toolFormControl(it,+key)+carpetVehicleControl(it,+key)+riddenVehicleControl(it,+key)+temporaryCantripControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key);
+    h+=packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+weaponWieldControl(it)+attunementControl(it,+key)+weaponFormControl(it,+key)+toolFormControl(it,+key)+carpetVehicleControl(it,+key)+riddenVehicleControl(it,+key)+temporaryCantripControl(it,+key)+spellwroughtNeedleControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key);
   return /** @type {any} */ ({h});
 }
 /* solid:orchestrator renderDetail */

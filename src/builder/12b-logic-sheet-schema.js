@@ -7,8 +7,8 @@ import {typeOk} from "./01-logic-core-helpers.js";
    ========================================================================================================================================== */
 export const SHEET_C={v:"number",bv:"number",name:"string",species:"string",cls:"string",sub:"string",bg:"string",size:"string",office:"string",camp:"string",cardNo:"string",level:"number",hitDie:"number",
  hpPerLevel:"array",abilities:"object",rolledNote:"string",saves:"object",skills:"array",initBonus:"array",hpBonus:"array",grappler:"boolean",lang:"array",ac:"object",saveBonus:"array",attMax:"number",
- speed:"number",speedSrc:"string",rs:"string",darkvision:"number",darkSrc:"string",profs:"object",profSrc:"object",attacks:"array",inv:"array",inventoryFormV:"any",allPurposeSources:"any",gp:"number",equipNote:"string",res:"array",actions:"array",
- features:"array",defenses:"array",itemAdv:"array",speeds:"object",senses:"array",moves:"array",xdmg:"array",saveNotes:"array",wsForms:"array",companion:"string",spells:"array",spellcasting:"object",divineStrike:"object",supremeHealing:"object",divineSpark:"object",divineIntervention:"object",ordersWrath:"object",
+ speed:"number",speedSrc:"string",rs:"string",darkvision:"number",darkSrc:"string",profs:"object",profSrc:"object",attacks:"array",inv:"array",inventoryFormV:"any",allPurposeSources:"any",tattooSources:"any",gp:"number",equipNote:"string",res:"array",actions:"array",
+ features:"array",defenses:"array",itemAdv:"array",speeds:"object",senses:"array",moves:"array",xdmg:"array",saveNotes:"array",wsForms:"array",companion:"string",spells:"array",objectRepairSources:"array",spellcasting:"object",divineStrike:"object",discipleOfLife:"object",supremeHealing:"object",divineSpark:"object",divineIntervention:"object",ordersWrath:"object",
  carryBump:"boolean",toolExp:"array",toolCheckRules:"array",exhMin:"number",acts:"array",pasBon:"array",dcAb:"string",dcSrc:"string",clsLabel:"string",pbAdd:"number",fxToggles:"array",fxTargets:"array"};
 export const SHEET_L={};
 /* register the locals of a handler file (called at load by the handler file that owns them) */

@@ -24,6 +24,16 @@ function sp14Cmp(a,b){return a[1]-b[1]||(a[0]<b[0]?-1:a[0]>b[0]?1:0)}
  SPELLS.sort(sp14Cmp)}export function sp14Set(on,tce){if(typeof SP14==="undefined"||typeof lateGet("SMAP")==="undefined")return;
  if(SP14S)sp14Undo();
  if(!on)return;sp14Do(tce)}
+/* Standalone actor-native spell definitions; reconstruct the base without changing the open Build overlay. */
+function spellCatalogBase(){const rows=SPELLS.map(row=>structuredClone(row)),fx=structuredClone(typeof SPELL_FX==='undefined'?{}:SPELL_FX);if(!SP14S)return {rows,fx};
+ SP14S.hid.forEach(row=>{if(!rows.some(value=>value[0]===row[0]))rows.push(structuredClone(row))});SP14S.rows.forEach(saved=>{const row=rows.find(value=>value[0]===saved.o[0]);if(row){for(let index=0;index<12;index++)row[index]=structuredClone(saved.o[index])}else rows.push(structuredClone(saved.o))});
+ Object.keys(SP14S.fx).forEach(name=>{if(SP14S.fx[name]===undefined)delete fx[name];else fx[name]=structuredClone(SP14S.fx[name])});return {rows,fx}}
+function spellCatalogLegacy(base){const hidden=new Set(SP14.hide||[]),rows=base.rows.filter(row=>!hidden.has(row[0])).map(row=>{const override=SP14.ov[row[0]];if(!override)return row;const copy=row.slice();for(let index=1;index<12;index++)copy[index]=structuredClone(override[index]);const effect=SP14.fx[row[0]];if(effect&&Object.keys(effect).length)base.fx[row[0]]=structuredClone(effect);else delete base.fx[row[0]];return copy});return {rows,fx:base.fx}}
+function spellCatalogUnion(base){const books=genv.WX&&genv.WX.src,originals=new Map(SP14S?SP14S.rows.map(saved=>[saved.x,saved.o]):[]);if(Array.isArray(books))books.forEach(book=>{if(Array.isArray(book.rows))book.rows.forEach(row=>{if(Array.isArray(row))base.rows.push(structuredClone(originals.get(row)||row))})});return base}
+function spellCatalogDefinition(row,fx){return {n:row[0],l:row[1],ct:row[4],r:row[5],cmp:row[6],dur:row[7],conc:row[8],sv:row[10],sum:row[11],fx:structuredClone(fx[row[0]]||{})}}
+function spellCatalogUnique(catalog){const byName=new Map();catalog.rows.forEach(row=>{const definition=spellCatalogDefinition(row,catalog.fx),fingerprint=JSON.stringify(definition),prior=byName.get(definition.n);if(!prior)byName.set(definition.n,{definition,fingerprint,ambiguous:false});else if(prior.fingerprint!==fingerprint)prior.ambiguous=true});return Array.from(byName.values()).filter(value=>!value.ambiguous).map(value=>value.definition).sort((a,b)=>a.l-b.l||(a.n<b.n?-1:a.n>b.n?1:0))}
+export function spellCatalogForRuleset(edition){if(!['2014','2024'].includes(edition)||typeof SPELLS==='undefined')return [];const base=spellCatalogUnion(spellCatalogBase()),catalog=edition==='2014'?spellCatalogLegacy(base):base;return spellCatalogUnique(catalog)}
+genv.__spellCatalogForRuleset=spellCatalogForRuleset;
 /* v93: 2014 equipment. eq14Set lays the 2014 weapons (no Weapon Mastery, Lance, Trident, Warhammer, War Pick, Net), equipment packs and armor words over the base tables. dm14Set swaps the 2024 Dungeon Master's Guide items for the 2014 ones (DM14.ov), and leaves out the 2024-only ones (DM14.hide) unless the character owns them. Both put everything back when off */
 function eqGear(n){return GEAR.filter((g) =>{return g[0]===n})[0]||null}
 export var EQ14S=null,EQ14SH=null,DM14ON=false,DM14S=null,DM14M=null;

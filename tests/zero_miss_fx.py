@@ -2835,7 +2835,7 @@ for rs in ["2024","2014"]:
                     if independent:checks += [(rows+".some(s=>s.objectRepair.baseKnown===true)",True)]
                 CASES.append(dict(name=("Z3" if grant else "NEG")+" U32 Forge Mending lifetime "+base+" "+rs+" "+cls+str((q,eq,attuned)),b=dict(rs=rs,cls=cls,level=4,base={"STR":16},extra=extra,inv=[dict(n=item,q=q,eq=eq,attuned=attuned)]),expect=checks))
         for eq in [False,True]:
-            CASES.append(dict(name="Z3 U32 Forge repair cap differential "+base+" "+rs+" equipped "+str(eq),b=dict(rs=rs,cls="Fighter",level=4,base={"STR":16},extra=u31extra(rs),inv=[dict(n=item,q=1,eq=eq,attuned=True)]),withoutGxFields=["item",U31_ROOT,U31_ROOT,["objectRepair"]],expect=[("C.spells.find(s=>s.n==='Mending').objectRepair.maxBreakFeet",5)],expectWithout=[("C.spells.find(s=>s.n==='Mending').objectRepair.maxBreakFeet",1)],allow=[r"^spells\.\d+\.objectRepair\.maxBreakFeet$",r"^spells\.\d+\.objectRepair\.sources\.\d+\.maxBreakFeet$"]))
+            CASES.append(dict(name="Z3 U32 Forge repair cap differential "+base+" "+rs+" equipped "+str(eq),b=dict(rs=rs,cls="Fighter",level=4,base={"STR":16},extra=u31extra(rs),inv=[dict(n=item,q=1,eq=eq,attuned=True)]),withoutGxFields=["item",U31_ROOT,U31_ROOT,["objectRepair"]],expect=[("C.spells.find(s=>s.n==='Mending').objectRepair.maxBreakFeet",5),("C.objectRepairSources",[dict(item=item,maxBreakFeet=5,requiresAttunement=True,itemState="attuned",grantsKnowledge=False)])],expectWithout=[("C.spells.find(s=>s.n==='Mending').objectRepair.maxBreakFeet",1),("C.objectRepairSources===undefined",True)],allow=[r"^spells\.\d+\.objectRepair\.maxBreakFeet$",r"^spells\.\d+\.objectRepair\.sources\.\d+\.maxBreakFeet$",r"^objectRepairSources\.0\.(item|maxBreakFeet|requiresAttunement|itemState|grantsKnowledge)$"]))
 
 # U33: native tool forms expose a scoped item capability, never global training.
 U33_ITEMS=["Manifold Tool","+1 All-Purpose Tool","+2 All-Purpose Tool","+3 All-Purpose Tool"]
@@ -3025,6 +3025,34 @@ for rs in ["2014","2024"]:
 CASES.append(dict(name="Z3 U39 current Potent retains conditional Order source",b=dict(rs="2024",cls="Cleric",sub="Order Domain",level=17,ch={"p7opt":"Potent Spellcasting"},inv=LS),expect=[("!!C.ordersWrath",True),("C.divineStrike===undefined",True)]))
 future_selector="(()=>{const table=window.GX.sub,key='Life Domain (2014)',old=table[key];try{table[key]=old.map(e=>e.clericPower?{...e,clericPower:{v:2,profile:e.clericPower.profile,opaque:'preserve'}}:e);const c=__bldSheetFor(structuredClone(__zmB));return c.supremeHealing===undefined}finally{table[key]=old}})()"
 CASES.append(dict(name="NEG U39 future Cleric selector grants no capability",b=dict(rs="2024",cls="Cleric",sub="Life Domain (2014)",level=20,inv=LS),expect=[(future_selector,True)]))
+
+# U40 exact native Disciple source descriptors and physical needle metadata.
+# Body permissions remain in play state; raw source metadata cannot grant ordinary spells/attacks.
+U40_DISCIPLE_PROFILES=[("Life Domain (2014)","2014",1,False,"2014"),("Life Domain (2014)","2024",3,False,"2014"),("Life Domain","2024",3,True,"2024")]
+for domain,rs,minimum,requires_slot,native_edition in U40_DISCIPLE_PROFILES:
+    for level in [1,2,3,17]:
+        present=level>=minimum;expect=[("!!C.discipleOfLife",present)]
+        if present:expect += [("C.discipleOfLife",dict(rule=dict(v=1,key="disciple-of-life",feature="Disciple of Life",sourceEdition=native_edition,minimumSpellLevel=1,requiresSpellSlot=requires_slot,creatureOnly=True,flat=2,levelFrom="slot" if requires_slot else "spell"),source=dict(kind="sub",owner=domain,classKey="Cleric",level=level,pre="",edition=rs)))]
+        case=dict(name="Z3 U40 native Disciple "+domain+" "+rs+" level "+str(level),b=dict(rs=rs,cls="Cleric",sub=domain,level=level,inv=LS),expect=expect)
+        if present:case.update(withoutGxFields=["sub",domain,"Disciple of Life",["clericPower"]],expectWithout=[("C.discipleOfLife===undefined",True)],allow=[r"^discipleOfLife(?:\.|$)"])
+        CASES.append(case)
+for domain,rs in [("Life Domain","2014"),("Solidarity Domain (PSA)","2014"),("Solidarity Domain (PSA)","2024")]:
+    for level in [1,3,17]:CASES.append(dict(name="NEG U40 no native Disciple "+domain+" "+rs+" level "+str(level),b=dict(rs=rs,cls="Cleric",sub=domain,level=level,inv=LS),expect=[("C.discipleOfLife===undefined",True)]))
+for domain,rs,level,present in [("Life Domain (2014)","2014",1,True),("Life Domain (2014)","2024",2,False),("Life Domain (2014)","2024",3,True),("Life Domain","2024",2,False),("Life Domain","2024",3,True),("Life Domain","2014",17,False)]:
+    CASES.append(dict(name="Z3 U40 multiclass Disciple "+domain+" "+rs+" Cleric "+str(level),b=dict(rs=rs,cls="Fighter",level=20-level,extra={"mc":[dict(cls="Cleric",sub=domain,lv=level)]},inv=LS),expect=[("!!C.discipleOfLife",present),("C.discipleOfLife?.source.level||null",level if present else None),("C.discipleOfLife?.source.pre||null","m0:" if present else None)]))
+for cls,domain in [("Fighter","Life Domain"),("Wizard","Life Domain (2014)"),("Cleric","Not a native Life Domain")]:
+    CASES.append(dict(name="NEG U40 raw subclass name cannot grant Disciple "+cls+" "+domain,b=dict(rs="2024",cls=cls,sub=domain,level=20,inv=LS),expect=[("C.discipleOfLife===undefined",True)]))
+U40_NEEDLES=[("Spellwrought Tattoo (Cantrip)","Fire Bolt"),("Spellwrought Tattoo (1st Level)","Cure Wounds"),("Spellwrought Tattoo (2nd Level)","Scorching Ray"),("Spellwrought Tattoo (3rd Level)","Fireball"),("Spellwrought Tattoo (4th Level)","Polymorph"),("Spellwrought Tattoo (5th Level)","Greater Restoration")]
+for rs in ["2014","2024"]:
+    for item,spell in U40_NEEDLES:
+        raw=dict(v=1,id="tattoo-1",spell=spell,phase="needle");registry=dict(v=1,nextId=2);base=dict(rs=rs,cls="Fighter",level=1,inv=[dict(n=item,q=1,eq=False,attuned=False)]);b=dict(base,inv=[dict(base["inv"][0],tattoo=raw)],extra={"tattooSources":registry})
+        CASES.append(dict(name="Z3 U40 native physical needle "+rs+" "+item,b=b,lo=base,expect=[("C.inv[0].tattoo",raw),("C.tattooSources",registry),("(C.spells||[]).some(s=>Object.prototype.hasOwnProperty.call(s,'fixedSpellSource'))",False),("C.attacks.some(a=>a.n==="+__import__('json').dumps(spell)+")",False)],expectWithout=[("C.inv[0].tattoo===undefined",True),("C.tattooSources===undefined",True)],allow=[r"^inv\.0\.tattoo(?:\.|$)",r"^tattooSources(?:\.|$)"]))
+for phase,quantity in [("applied",0),("needle",0),("needle",2)]:
+    raw=dict(v=1,id="tattoo-1",spell="Cure Wounds",phase=phase);CASES.append(dict(name="NEG U40 raw needle state grants no ordinary spell "+phase+" q"+str(quantity),b=dict(rs="2024",cls="Fighter",level=1,inv=[dict(n="Spellwrought Tattoo (1st Level)",q=quantity,tattoo=raw)],extra={"tattooSources":dict(v=1,nextId=2)}),expect=[("C.inv[0].tattoo",raw),("(C.spells||[]).some(s=>s.n==='Cure Wounds')",False),("C.attacks.some(a=>a.n==='Cure Wounds')",False)]))
+future=dict(v=2,id="future",spell="Cure Wounds",phase="future",opaque={"keep":[1,2]})
+CASES.append(dict(name="NEG U40 future needle metadata preserved without grants",b=dict(rs="2024",cls="Fighter",level=1,inv=[dict(n="Spellwrought Tattoo (1st Level)",q=1,tattoo=future)],extra={"tattooSources":dict(v=2,opaque="keep")}),expect=[("C.inv[0].tattoo",future),("C.tattooSources",dict(v=2,opaque="keep")),("(C.spells||[]).some(s=>s.n==='Cure Wounds')",False),("C.attacks.some(a=>a.n==='Cure Wounds')",False)]))
+future_disciple="(()=>{const table=window.GX.sub,key='Life Domain (2014)',old=table[key];try{table[key]=old.map(e=>e.n==='Disciple of Life'&&e.clericPower?{...e,clericPower:{v:2,profile:'disciple-of-life'}}:e);return __bldSheetFor(structuredClone(__zmB)).discipleOfLife===undefined}finally{table[key]=old}})()"
+CASES.append(dict(name="NEG U40 future Disciple marker does not authorize source",b=dict(rs="2014",cls="Cleric",sub="Life Domain (2014)",level=17,inv=LS),expect=[(future_disciple,True)]))
 
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared

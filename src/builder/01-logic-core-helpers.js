@@ -1,3 +1,4 @@
+export {discipleOfLifeProfile,discipleOfLifeDescriptorProblems,discipleHealingBonus} from "../data/lib/disciple-of-life.js";
 export {clericPowerPart,clericPowerMarkerProblems,clericPowerSourceProblems,clericPowerSource,supremeHealingDescriptorProblems,divineSparkDice,divineSparkDescriptorProblems,divineSparkResourceMatches,divineInterventionDescriptorProblems} from "../data/lib/cleric-capabilities.js";
 export {supremeHealingProfile,supremeHealingProblems,interventionRecoveryProfile,interventionRecoveryProblems,greaterInterventionProfile,interventionProfileProblems} from "../data/lib/cleric-maths.js";
 export {ordersWrathProfile,ordersWrathProfileProblems} from "../data/lib/orders-wrath.js";

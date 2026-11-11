@@ -2982,7 +2982,7 @@
     ],
     [
      "src/app/23e-ui-spells-dc.js",
-     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n),{attackAdjustment:-spellExhaustion()})"
     ]
    ],
    "test": "Z3 U35 All-Purpose class spell channels +1 All-Purpose Tool 2024 Wizard first",
@@ -3014,7 +3014,7 @@
     ],
     [
      "src/app/23e-ui-spells-dc.js",
-     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n),{attackAdjustment:-spellExhaustion()})"
     ]
    ],
    "test": "Z3 U35 All-Purpose class spell channels +2 All-Purpose Tool 2024 Wizard first",
@@ -3046,7 +3046,7 @@
     ],
     [
      "src/app/23e-ui-spells-dc.js",
-     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n),{attackAdjustment:-spellExhaustion()})"
     ]
    ],
    "test": "Z3 U35 All-Purpose class spell channels +3 All-Purpose Tool 2024 Wizard first",
@@ -3078,7 +3078,7 @@
     ],
     [
      "src/app/23e-ui-spells-dc.js",
-     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n),{attackAdjustment:-spellExhaustion()})"
     ]
    ],
    "test": "Z3 U35 All-Purpose class spell channels +1 All-Purpose Tool 2014 Wizard first",
@@ -3110,7 +3110,7 @@
     ],
     [
      "src/app/23e-ui-spells-dc.js",
-     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n),{attackAdjustment:-spellExhaustion()})"
     ]
    ],
    "test": "Z3 U35 All-Purpose class spell channels +2 All-Purpose Tool 2014 Wizard first",
@@ -3142,7 +3142,7 @@
     ],
     [
      "src/app/23e-ui-spells-dc.js",
-     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n),{attackAdjustment:-spellExhaustion()})"
     ]
    ],
    "test": "Z3 U35 All-Purpose class spell channels +3 All-Purpose Tool 2014 Wizard first",
@@ -6905,6 +6905,1936 @@
    ],
    "test": "Z3 U39 native Order curse 2014 level 17",
    "note": "U39 actual native UI verified in both viewports. Exact computed outcome only; no initially uncovered closure, DI free-casting/Material, or whole compound Channel Divinity claim."
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-1st-level-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (1st Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (1st Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-1st-level-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (1st Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (1st Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-1st-level-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (1st Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "3",
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (1st Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-2nd-level-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (2nd Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (2nd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-2nd-level-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (2nd Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (2nd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-2nd-level-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (2nd Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "3",
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (2nd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-3rd-level-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (3rd Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (3rd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-3rd-level-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (3rd Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (3rd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-3rd-level-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (3rd Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "4",
+    "15",
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (3rd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-4th-level-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (4th Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (4th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-4th-level-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (4th Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (4th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-4th-level-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (4th Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "4",
+    "15",
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (4th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-5th-level-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (5th Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (5th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-5th-level-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (5th Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (5th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-5th-level-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (5th Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "5",
+    "17",
+    "9"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+5;\\ the\\ save\\ dc\\ is\\ 17\\ and\\ the\\ attack\\ bonus\\ is\\ \\+9\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (5th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-cantrip-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (Cantrip)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^produced\\ by\\ a\\ special\\ needle,\\ this\\ magic\\ tattoo\\ contains\\ a\\ single\\ cantrip,\\ wrought\\ on\\ your\\ skin\\ by\\ a\\ magic\\ needle\\.$",
+   "anchor": [
+    "src/data/lib/spellwrought-tattoo.js",
+    "export function projectTattooBody("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (Cantrip)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-cantrip-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (Cantrip)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (Cantrip)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-cantrip-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (Cantrip)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (Cantrip)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-dmg-spellwrought-tattoo-cantrip-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spellwrought Tattoo (Cantrip)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "3",
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2014 Spellwrought Tattoo (Cantrip)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-1st-level-4",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (1st Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (1st Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-1st-level-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (1st Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (1st Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-1st-level-7",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (1st Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "3",
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (1st Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-2nd-level-4",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (2nd Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (2nd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-2nd-level-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (2nd Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (2nd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-2nd-level-7",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (2nd Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "3",
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (2nd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-3rd-level-4",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (3rd Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (3rd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-3rd-level-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (3rd Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (3rd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-3rd-level-7",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (3rd Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "4",
+    "15",
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (3rd Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-4th-level-4",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (4th Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (4th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-4th-level-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (4th Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (4th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-4th-level-7",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (4th Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "4",
+    "15",
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (4th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-5th-level-4",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (5th Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (5th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-5th-level-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (5th Level)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (5th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-5th-level-7",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (5th Level)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "5",
+    "17",
+    "9"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+5;\\ the\\ save\\ dc\\ is\\ 17\\ and\\ the\\ attack\\ bonus\\ is\\ \\+9\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (5th Level)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-cantrip-1",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (Cantrip)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^produced\\ by\\ a\\ special\\ needle,\\ this\\ magic\\ tattoo\\ contains\\ a\\ single\\ cantrip,\\ wrought\\ on\\ your\\ skin\\ by\\ a\\ magic\\ needle\\.$",
+   "anchor": [
+    "src/data/lib/spellwrought-tattoo.js",
+    "export function projectTattooBody("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (Cantrip)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-cantrip-4",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (Cantrip)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^once\\ the\\ tattoo\\ is\\ there,\\ you\\ can\\ cast\\ its\\ spell,\\ requiring\\ no\\ material\\ components\\.$",
+   "anchor": [
+    "src/app/32g-logic-spellwrought-tattoo.js",
+    "export function completeTattooCast(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooCastPermission("
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function complete(token,declarations)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "x&&x!=='M'"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (Cantrip)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_model.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-cantrip-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (Cantrip)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ tattoo\\ glows\\ faintly\\ while\\ you\\ cast\\ the\\ spell\\ and\\ for\\ the\\ spell's\\ duration\\.$",
+   "anchor": [
+    "src/app/08k-ui-spellwrought-body.js",
+    "function tattooBodyStateText(record)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function beginTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function completeTattooCasting("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function endTattooEffect("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "glowing:grant.phase==='casting'||grant.phase==='active'"
+    ],
+    [
+     "src/app/lib/spellwrought-tattoo-runtime.js",
+     "function end(token,declarations)"
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (Cantrip)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/spellwrought_tattoo_runtime.mjs"
+   ]
+  },
+  {
+   "id": "u40-item-tce-spellwrought-tattoo-cantrip-7",
+   "kind": "item",
+   "owner": "tce",
+   "name": "Spellwrought Tattoo (Cantrip)",
+   "cls": [
+    "ATK",
+    "DC"
+   ],
+   "vals": [
+    "3",
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
+   "anchor": [
+    "src/data/lib/spell-source.js",
+    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25a-logic-tattoo-sources.js",
+     "function commitTattooPlan(owner,current,plan,body,beforeCommit,result)"
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function applySpellwroughtTattoo("
+    ],
+    [
+     "src/data/lib/tattoo-projection.js",
+     "export function tattooOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spellwrought-tattoo.js",
+     "export function tattooFixedSourceStats("
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "export function scOf(x){return selectSpellSource("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function tattooSpellCalculation("
+    ]
+   ],
+   "test": "Z3 U40 native physical needle 2024 Spellwrought Tattoo (Cantrip)",
+   "note": "U40 exact native physical Tattoo source; actual native cast, fixed-stat and casting/active/end lifecycle consumers verified in both viewports. No permanent learning or actor-wide spell bonus. Specific Material-only component policy is documented as reading not decided against native general item wording.",
+   "consumerTests": [
+    "tests/tattoo_spell_source.mjs",
+    "tests/tattoo_spell_consumer.mjs"
+   ]
   }
  ]
 }

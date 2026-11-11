@@ -1059,13 +1059,16 @@
    "fx-Z2.js",
    "fx-Z4.js",
    "fx-Z16.js",
-   "fx-Z17.js"
+   "fx-Z17.js",
+   "fx-Z18.js"
   ],
   "shared": [
    "classOnly",
-   "defs"
+   "clericPower",
+   "defs",
+   "ed"
   ],
-  "reason": "Fx-Z17 adds the source selector for Supreme Healing at Cleric 17, preserving all earlier distinct Life features and the source-owned Divine Strike selector. Its spell-healing maximum is consumed only by an eligible actual healing packet, never added as dice or a second resource."
+  "reason": "Existing layers retain distinct Life features, source-owned Divine Strike and Supreme Healing. Fx-Z18 adds the separate Disciple of Life selector at actual native compiler levels: class 1 under 2014 RL14, class 3 for this historical subclass under 2024. Its versioned descriptor supplies 2 plus spell level only to eligible actual creature restoration and never duplicates the Supreme maximum or adds an unconditional packet."
  },
  "GX.sub|Nature Domain": {
   "files": [
@@ -1525,5 +1528,16 @@
    "classOnly"
   ],
   "reason": "Fx-Z17 adds the distinct native Supreme Healing source selector at Cleric 17, preserving Divine Strike. Its legacy spell-only healing maximum is separate from the actual weapon-hit damage consumer and adds no unconditional dice."
+ },
+ "GX.sub|Life Domain": {
+  "files": [
+   "fx-Z17.js",
+   "fx-Z18.js"
+  ],
+  "shared": [
+   "classOnly",
+   "clericPower"
+  ],
+  "reason": "Fx-Z17 selects Supreme Healing at Cleric 17. Fx-Z18 selects the distinct native Disciple of Life at Cleric 3; its canonical capability requires an actual spell slot and therefore adds no bonus to slotless Tattoo casts. The shared clericPower container holds separate profile selectors, never duplicate unconditional healing."
  }
 }

@@ -154,3 +154,12 @@ Order Domain's native Order's Wrath second sentence was also falsely credited by
 ## U39 resolution of the false-proxy Cleric mechanics
 
 The current Supreme Healing profiles, current Greater DI/Wish recovery and Order's Wrath target lifecycle now have real source-owned numerical/state consumers. The strict 752-unit measurement baseline passes without a baseline rewrite. The earlier U38 missing-consumer requests above are resolved by this scoped work. Base DI's free-casting/Material clause, arbitrary Wish outcomes, Divine Spark damage/Turn Undead and legacy 2014 DI outcome rules are not claimed by these consumers.
+
+
+## U40 physical spell-source and pending-save resolution
+
+Spellwrought Tattoo now has a physical immutable needle record, actor-owned one-shot body state, fixed source statistics and original successful-cast receipts. It does not become an ordinary learned spell or reusable cantrip. Exact source/cast concentration tags, native Mending/Forge resolution and typed marker denial protect ordinary casting and attack routes. Actual browser tests corrected source-token integration, internal C._app autosave drift, premature owned-panel replacement and a Critical checkbox leaking into a later original-ray attack request.
+
+A separate actual native Inspiration/Undo/Redo reproduction proved that pending sheet saves could be lost on immediate reload. The existing boot journal flush could not see S/C writes still held by domain debounce timers. The narrow storage fix flushes only pending native S/C saves before the journal's pagehide/hidden flush, preserves native merge/FROZEN rules, and avoids a second queued WebLock write. Builder save is already synchronous. Both ordinary Inspiration and actual Tattoo final-Redo/immediate-reload now pass at both viewports without waiting for the debounce.
+
+The specific Tattoo Material-only policy versus the native dmg14 general no-components summary remains an explicitly documented reading not decided. No item grants permanent knowledge merely because its contents were identified. The four reserved class/Attack wording issues remain unchanged.
