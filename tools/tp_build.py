@@ -134,6 +134,8 @@ def sub_records(bk, data, M):
         rec = {"alt": [cm.get(a, a) for a in alt], "cls": cm.get(s["className"], s["className"]), "name": nm, "src": bk["id"], "arr": arr, "full": full, "auto": auto, "lu": lu, "acts": acts,
                "cantrips": [], "pick": O.get("pick", []), "fx": O.get("fx", []), "spab": O.get("spab", "")}
         if O.get("grant"): rec["grant"] = O["grant"]
+        if O.get("third"): rec["third"] = O["third"]
+        if O.get("gx"): rec["gx"] = O["gx"]
         if O.get("acb"): rec["acb"] = O["acb"]
         out.append(rec)
     return out
@@ -146,6 +148,8 @@ D.forEach(function(s){[s.cls].concat(s.alt||[]).forEach(function(cn){var c=CLASS
  Object.keys(s.full).forEach(function(k){SUB_FULL[k]=s.full[k]});
  if(s.auto.length)AUTO[s.name]=s.auto;
  if(s.grant)SUB_GRANT[s.name]=s.grant;
+ if(s.gx){DataEnv.slot.GX=DataEnv.slot.GX||{};DataEnv.slot.GX.sub=DataEnv.slot.GX.sub||{};DataEnv.slot.GX.sub[s.name]=(DataEnv.slot.GX.sub[s.name]||[]).concat(s.gx)}
+ if(s.third){DataEnv.slot.THIRD_SUBS=DataEnv.slot.THIRD_SUBS||{};DataEnv.slot.THIRD_SUBS[s.name]=s.third}
  s.lu.forEach(function(e){LU_X.push(e)});
  Object.keys(s.acts).forEach(function(k){ACTS[k]=s.acts[k]});
  (s.sn||[]).forEach(function(r){SAVE_NOTES.push(r)})});

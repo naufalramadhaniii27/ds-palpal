@@ -14,3 +14,9 @@ SUB = {
         [13, "Mettle", {"notes": [["Note", "Mettle: a successful Constitution save against half-damage effects means no damage"]]}]],
 },
 }
+
+# The other thirteen Warden subclasses live in tvss14_sub_warden.py
+import importlib.util as _u, os as _o
+_p = _o.path.join(_o.path.dirname(_o.path.abspath(__file__)), "tvss14_sub_warden.py")
+_sp = _u.spec_from_file_location("tvss14_sub_warden", _p); _m = _u.module_from_spec(_sp); _sp.loader.exec_module(_m)
+SUB.update(_m.SUB)

@@ -13,3 +13,7 @@ Perubahan lintas bagian
 Temuan terbuka
 - Label sumber di lampiran PDF untuk fitur Warden tertulis "PHB-2014". Seharusnya Valda's Spire. Dikerjakan di rilis berikut.
 - Generator tp_build.py tidak identik dengan file tp lama (sudah dipatch manual). Jangan regenerasi file lama.
+
+## 0.0.19: 14 subkelas Warden (2014)
+Overlay tools/tp/overlay/tvss14_sub_warden.py. Loreseeker dan Soulblood Shaman jadi third caster lewat THIRD_SUBS (slot 4/3/3/1 di level 20). Generator tp_build.py baru mengeluarkan baris GX.sub (advOn, darkTo, mv) dan THIRD_SUBS. Tes: tests/valda14_warden_subs.py (14 subkelas, semua fitur sumber ada di sheet, slot, skill, terbang).
+Catatan: Darkvision Nightgaunt memberi 60 ft, tambahan +30 ft bila sudah punya Darkvision hanya berupa catatan (engine belum mendukung syarat itu).
