@@ -167,7 +167,9 @@ function pxCreature(e){ const c=crOf(e.n); if(!c) return null; const ce=crEnv(e.
 function pxCreatures(){ let L=[]; try{ L=crList(); }catch(e){ return []; } return L.map(pxCreature).filter(Boolean); }
 
 /* ---------- appendix ---------- */
-function pxAppendix(){ const out=(C.features||[]).map((g) =>{ return [gName(g.g),(g.items||[]).map((f) =>{ return Object.assign({name:cuNm("f:"+f.n,f.n), tag:f.s||""},pxTwo(f.d,f.full||pxFull(g,f.n))); })]; }).filter((g) =>{ return g[1].length; });
+/* the whole PDF says "2014 rules", so a tag does not repeat (2014) after every class name */
+function pxTag14(s){ s=String(s||""); return C.rs==="2014" ? s.replace(/ \(2014\)/g,"") : s; }
+function pxAppendix(){ const out=(C.features||[]).map((g) =>{ return [gName(g.g),(g.items||[]).map((f) =>{ return Object.assign({name:cuNm("f:"+f.n,f.n), tag:pxTag14(f.s)},pxTwo(f.d,f.full||pxFull(g,f.n))); })]; }).filter((g) =>{ return g[1].length; });
   const mi=pxMagicItems(); if(mi.length) out.push(["Magic Items",mi.map((i) =>{ return Object.assign({name:i.n, tag:[i.rar,i.att?"Attunement":""].filter(Boolean).join(PX_DOT)},pxTwo(i.d,"")); })]);
   const hb=(C.actions||[]).filter((a) =>{ return a.hb; }); if(hb.length) out.push(["Other Rules",hb.map((a) =>{ return Object.assign({name:a.n, tag:""},pxTwo(a.d,"")); })]);
   return out; }

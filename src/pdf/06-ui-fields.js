@@ -2,7 +2,18 @@
    so nothing is lost: the caller sends them to the continuation page */
 import {PX_INK,PX_GRAY,PX_SIZE} from "./01-data-style.js";
 export class PxFields {
-  constructor(canvas, typeset, map, pages){ this.cv = canvas; this.T = typeset; this.map = map; this.pages = pages; }
+  constructor(canvas, typeset, map, pages, form, lib){ this.cv = canvas; this.T = typeset; this.map = map; this.pages = pages; this.form = form; this.L = lib; }
+  /* a play field the player edits in the PDF: the value goes into the form field (centred, bold), not onto the page.
+     Without the field (old template) it is drawn like any other value */
+  live(name, text, f, s, align, pad, vfrac){ let tf = null;
+    try{ tf = this.form&&this.form.getTextField(name); }catch(e){ tf = null; }
+    if(!tf){ this.one(name, text, f, s, align, pad, vfrac); return; }
+    tf.setText(text==null ? "" : String(text)); try{ tf.setFontSize(Math.min(s,14)); }catch(e){}
+    try{ tf.setAlignment(this.L.TextAlignment.Center); }catch(e){} }
+  /* a play checkbox (death saves): ticked or not, still clickable */
+  liveCheck(name, on){ let cb = null; try{ cb = this.form&&this.form.getCheckBox(name); }catch(e){ cb = null; }
+    if(!cb){ if(on) this.dot(name); return; } if(on) cb.check(); else cb.uncheck(); }
+  liveDone(font){ try{ this.form&&this.form.updateFieldAppearances(font); }catch(e){} }
   rect(name){ const r = this.map[name]; if(!r) throw new Error("PDFX: no field "+name); return {p:this.pages[r[0]], x0:r[1], y0:r[2], x1:r[3], y1:r[4]}; }
   one(name, text, f, s, align, pad, vfrac){
     if(text==null||text==="") return;
