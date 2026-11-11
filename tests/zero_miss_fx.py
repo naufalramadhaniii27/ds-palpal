@@ -2905,12 +2905,35 @@ for rs in ["2014","2024"]:
     for spell in ["Magic Missile","Definitely not a cantrip"]:
         CASES.append(dict(name="NEG U36 invalid native cantrip "+rs+" "+spell,b=dict(rs=rs,cls="Artificer",level=4),temporal=u36_temporal(item,spell=spell),expect=[("C.spells.some(s=>s.temporaryCantrip)",False)]))
 
+# U37 profiles are native vehicle statistics, never actor movement benefits.
+U37_PROFILES={
+    "Broom of Flying":dict(activation="Magic",normalCapacityLb=200,maxCapacityLb=400,flyFeet=50,loadedFlyFeet=30,requiresAttunement=True,spokenDirections=False,endsOnGetOff=True),
+    "Bobbing Lily Pad":dict(activation=None,normalCapacityLb=300,maxCapacityLb=600,walkFeet=20,flyFeet=20,swimFeet=20,loadedFlyFeet=10,requiresAttunement=True,spokenDirections=True,swimSurfaceOnly=True),
+}
+for item,profile in U37_PROFILES.items():
+    for rs in ["2014","2024"]:
+        expected_profile=dict(profile)
+        if item=="Broom of Flying" and rs=="2014":expected_profile.update(activation="Command word",requiresAttunement=False,endsOnGetOff=False)
+        requires_attunement=expected_profile["requiresAttunement"]
+        row=dict(n=item,q=1,eq=False,attuned=True)
+        if item=="Broom of Flying":row["vehicle"]=dict(v=1,active=True,size=None)
+        vector="(()=>{const baseline=structuredClone(__zmB);baseline.inv=[];const base=__bldSheetFor(baseline);const fields=['speed','speedSrc','speeds','moves','hp','res','profs','profSrc'];return [[1,false,true],[1,true,true],[1,false,false],[0,false,true],[2,false,true]].every(([q,eq,attuned])=>{const b=structuredClone(__zmB);Object.assign(b.inv[0],{q,eq,attuned});const c=__bldSheetFor(b);return c.inv[0].riddenVehicleInfo.available===!!(q===1&&("+("attuned" if requires_attunement else "true")+"))&&fields.every(k=>JSON.stringify(c[k])===JSON.stringify(base[k]))"+("&&c.inv[0].vehicle.active===true" if item=="Broom of Flying" else "&&c.inv[0].vehicle===undefined")+"})})()"
+        CASES.append(dict(name="Z3 U37 native ridden vehicle "+item+" "+rs,b=dict(rs=rs,cls="Artificer",level=4,inv=[row]),expect=[("C.inv[0].riddenVehicleInfo.vehicleMeta",expected_profile),("C.inv[0].riddenVehicleInfo.nativeEdition",rs),("C.inv[0].riddenVehicleInfo.available",True),("!!C.inv[0].attunedActive",requires_attunement),(vector,True)]))
+        if item=="Broom of Flying":
+            inactive=dict(row,vehicle=dict(v=1,active=False,size=None))
+            CASES.append(dict(name="Z3 U37 Broom active record difference "+rs,b=dict(rs=rs,cls="Artificer",level=4,inv=[row]),lo=dict(rs=rs,cls="Artificer",level=4,inv=[inactive]),expect=[("C.inv[0].vehicle.active",True),("C.inv[0].riddenVehicleInfo.endAvailable",True)],expectWithout=[("C.inv[0].vehicle.active",False)],allow=[r"^inv\.0\.(vehicle|riddenVehicleInfo)\."]))
+for rs in ["2014","2024"]:
+    future=dict(v=2,opaque={"preserve":True})
+    CASES.append(dict(name="NEG U37 future Broom state preserved "+rs,b=dict(rs=rs,cls="Artificer",level=4,inv=[dict(n="Broom of Flying",q=1,eq=False,attuned=True,vehicle=future)]),expect=[("C.inv[0].vehicle",future),("C.inv[0].riddenVehicleInfo.available",False),("C.inv[0].riddenVehicleInfo.activationAvailable",False),("C.inv[0].riddenVehicleInfo.endAvailable",False)]))
+for item in ["Carpet of Flying","Wings of Flying","Ornithopter of Flying"]:
+    CASES.append(dict(name="NEG U37 unrelated ridden vehicle "+item,b=dict(rs="2024",cls="Artificer",level=4,inv=[dict(n=item,q=1,eq=False,attuned=True)]),expect=[("C.inv[0].riddenVehicleInfo===undefined",True)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
 # warming does not permit any additional changed paths.
 for c in CASES:
-    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]) or c["name"]=="Z3 U29 rider differential Duskcrusher 2024":c["warm"]=True
+    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]) or c["name"] in ["Z3 U29 rider differential Duskcrusher 2024","Z3 U26 target differential Ruinblade 2024"]:c["warm"]=True
 
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
@@ -2937,7 +2960,7 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  // created from a later timer callback. The page policy itself stays unchanged.
  cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
  for(const c of cases){ const r={name:c.name,fail:[]},warmBefore=c.warm?window.__bldTestB():null;
-  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');window.__xl.idx()} const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
    for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }

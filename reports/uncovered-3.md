@@ -1,4 +1,34 @@
-# Uncovered 3: temporary cantrip permissions and declared game time
+# Uncovered 3: native ridden vehicles and isolated movement
+
+## U37: Broom of Flying and Bobbing Lily Pad
+
+Six further original speed/load sentences now have computed coverage: 333 closed from the initial 5,460, 5,127 uncovered and zero regressed IDs. Covered is 8,038; info remains 23,617 and allow remains zero. These are current Broom of Flying #3/#4 and Bobbing Lily Pad #3/#6 in its two native catalogs. The legacy Broom also receives a real consumer, without claiming additional legacy gate closures.
+
+The current Broom requires attunement, standing astride it and a Magic action. Its vehicle Fly Speed is 50 ft through 200 lb and 30 ft above 200 through 400 lb. Thirty is not half fifty. Landing or getting off ends its hovering. The native DM14 override instead requires no attunement, activates through standing astride and speaking its command word without a printed Action cost, and ends hovering on landing only. Getting off alone does not end legacy hovering. Actual native source profiles and actor edition are kept explicit; current requirements do not leak into the legacy item.
+
+The Lily requires attunement and spoken directions while riding, with no invented activation Action, command range or ending event. Its walking, flying and surface-only swimming speeds are all 20 ft through 300 lb, then all 10 ft above 300 through 600 lb. It hovers; it does not grant underwater swimming. Over-capacity input reports unsupported carrying with no speed certificate, invented crash or actor speed zero. Total riders, their equipment and cargo are explicit table declarations. Vehicle speeds do not alter the character’s speed, HP or resources.
+
+Missing Broom input explicitly migrates to the compatible per-row vehicle v1 record with activation unrecorded, not a claim that the broom is grounded. Lily gets no activation state. Raw future/malformed records remain preserved. Splitting conserves quantity and assigns attunement plus any recorded Broom hovering to exactly one explicitly chosen physical copy; the other copy starts unattuned and unconfigured. This records which physical copy already held those facts, without inventing an attunement-transfer ritual. Native landing/getting-off facts can be recorded after deattunement or while incapacitated because the ending is not a new Action.
+
+Load/direction calculations use current physical quantity, effective attunement, riding/speech declarations and the selected native profile. Speech restrictions follow the character’s actual condition edition: current Incapacitated prevents speech, while the native legacy Incapacitated text only prohibits Actions/Reactions. Zero HP alone is not an automatic unconsciousness predicate. Persistent changes retain full owner/CID/row/signature/manual guards and validated Undo. Closing or replacing a card, closing Build, or switching actor while the real lazy builder loads prevents reopening or writing a stale dialog.
+
+A real input bug found in browser testing was fixed: redundant replacement of identical profile text stripped its auto-links during a number-field blur and shifted the checkbox between pointer-down/up. Idempotent text updates preserve the linked DOM and the original native checkbox click now passes. No forced checked state or timer workaround was added. Current Broom dispatch/recall and other vehicle families remain outside this speed/load consumer.
+
+## U37 validation and source audit
+
+| Check | Result |
+|---|---|
+| Effects / measure | 1,652 full effect cases PASS, including 11 new native cases; 752 units, zero new misses in both editions |
+| Focused native tests | Pure model 414; actual backend/cold migration 133; runtime 291; portable UI 115; all 953 PASS; prior tool/carpet/temporary-cantrip regressions also PASS |
+| Production UI | 308 core + 90 focused edge assertions PASS on 390×844 and 1250×850, both native Broom profiles and Lily modes; no JS errors or overflow |
+| Official contracts | Contract 5,035 (rerun on final build); golden 1,479; UI 308; data 634; all PASS |
+| Full snapshot / builder | All 2,997 snapshot and 3,890 builder results strictly identical to U36, including full JSON and totals 8fbdca0fcb4d2f08 / 396b20d955f87d6e; zero errors, no normalization |
+| Scenarios | 24 PASS at both required viewports |
+| Static checks | TypeScript 200/noWORSE; HTML 250; enforced guards zero; overlap 1,411 names / 40 files / 156 documented overlaps |
+| Gate / source audit | Full selftests including 61 strict U37 checks PASS; seed-11 sample 150 with 60 new selections, 65 unique actual-source clauses reviewed, zero missing sources; exactly six new closures |
+
+Actual UI verifies every load boundary, 30-ft rather than 25-ft Broom speed, hover, surface-only swim, source/condition differences, passive ending, deattunement, split keeper isolation, Undo/Redo/reload, q0/future/manual rows, actual lazy-close/replacement/actor cancellation, and unchanged actor values. The standard matrices contain no new ridden-vehicle instance, so targeted native proof establishes behavior while unchanged matrices establish compatibility. Main raw differences remain 2,997 snapshot / 2,263 builder cases. Browser proof uses final build bab0ca585e3c2136; the earlier matrix/effect epochs have identical model/backend calculations. Ruinblade’s strict preexisting HTML comparison uses explicit native rule-link index readiness after its 250-ms cache lifetime, without broadening allowances or normalizing HTML.
+
 
 ## U36: All-Purpose Tool eight-hour casting permission
 

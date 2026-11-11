@@ -7,6 +7,7 @@ import {weaponFormMetadata,migrateInventoryForms,setWeaponFormActive,adjustWeapo
 import {carpetMetadata,normalizeVehicleState,migrateVehicles,chooseCarpetSize,activateCarpet,carpetSourceStatus} from "../data/lib/carpet-vehicle.js";
 import {toolFormMetadata,normalizeToolForm,migrateToolForms,selectToolForm} from "../data/lib/tool-form.js";
 import {allPurposeMetadata,normalizeAllPurposeSource,normalizeAllPurposeRegistry,migrateAllPurposeSources,allPurposeSourceStatus,reviewAllPurposeSource,splitAllPurposeSource} from "../data/lib/all-purpose-source.js";
+import {riddenVehicleMetadata,riddenVehicleProfile,migrateRiddenVehicles,activateRiddenVehicle,endRiddenVehicle,splitRiddenVehicle} from "../data/lib/ridden-vehicle.js";
 import {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum} from "../data/lib/wield-minimum.js";
 export {itemInUse,itemQuantity};
 export var DMAP={};DMGI.forEach((x) =>{DMAP[x[0]]=x});
@@ -35,7 +36,7 @@ function formMetadataFor(row,edition){const d=DMAP[row.n];return weaponFormMetad
 function canonicalForm(row,formMeta){const f=row.form;if(!f||typeof f!=="object"||Array.isArray(f))return false;if(Object.prototype.hasOwnProperty.call(f,"v")&&f.v!==1)return true;if(f.v!==1||typeof f.active!=="boolean")return false;const l=formMeta.light;return Number.isInteger(f.radius)&&f.radius>=l.min&&f.radius<=l.max&&(l.adjustable?(f.radius-l.min)%l.step===0:f.radius===l.default)}
 /* Normalize only the passed character. A modern inventory keeps its row and array
    identities on repeated ensureInv calls; legacy form intent is seeded once. */
-export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b.inv))return b;b.inv=migrateItems(b.inv,attunementMeta);b.inv=migrateToolForms(b.inv).rows;b.inv=migrateVehicles(b.inv);
+export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b.inv))return b;b.inv=migrateItems(b.inv,attunementMeta);b.inv=migrateToolForms(b.inv).rows;b.inv=migrateRiddenVehicles(migrateVehicles(b.inv));
  const version=b.inventoryFormV;if(version!==undefined&&version!==0&&version!==1)return b;
  const edition=b.rs==="2014"?"2014":"2024",items=b.inv;
  if(version===1&&(!Array.isArray(items)||items.every(row=>{if(!row||typeof row!=="object")return true;const formMeta=formMetadataFor(row,edition);return !formMeta||canonicalForm(row,formMeta)})))return b;
@@ -115,3 +116,9 @@ export function reviewBorrowedCantrip(index,declaration){const b=lateGet("B"),in
 export function splitBorrowedCantrip(index,occupiedKeys){const b=lateGet("B");return splitAllPurposeSource(b.inv,index,b.allPurposeSources,occupiedKeys)}
 
 export function allPurposeAllocatedKeys(){const b=lateGet("B");return !ALL_PURPOSE_LEGACY&&allPurposeRegistryValid(b)?b.allPurposeSources.allocatedKeys.slice():[]}
+
+// Vehicle metadata has no raw-row signature, so sheet and builder can share the same cold migration.
+export function itemRiddenVehicleInfoForRow(row,state,edition){const nativeEdition=edition==="2014"?"2014":"2024",profile=riddenVehicleProfile(Object.assign({},row,{attunedActive:!!(state&&state.attuned)}),nativeEdition);return profile||null}
+export function getRiddenVehicleInfo(index){const b=migrateInventory(lateGet("B")),row=(b.inv||[])[index];if(!row||!riddenVehicleMetadata(row.n,b.rs))return {available:false,reason:"unsupported-vehicle",index};const profile=itemRiddenVehicleInfoForRow(row,attunementState().rows[index],b.rs);return Object.assign({},profile,{index,signature:JSON.stringify(row),vehicle:clone(row.vehicle)})}
+export function changeRiddenVehicle(index,change){const b=lateGet("B"),info=getRiddenVehicleInfo(index),row=(b.inv||[])[index];if(!row||!change||typeof change!=="object"||Array.isArray(change))return {ok:false,reason:"invalid-declarations"};const declarations=Object.assign({},change);let next;if(change.activate===true){if(!info.activationAvailable)return {ok:false,reason:info.reason||"already-active"};delete declarations.activate;next=activateRiddenVehicle(Object.assign({},row,{attunedActive:attunementState().rows[index].attuned}),declarations,b.rs)}else if(change.end===true){if(!info.endAvailable)return {ok:false,reason:"inactive"};delete declarations.end;next=endRiddenVehicle(row,declarations,b.rs)}if(!next)return {ok:false,reason:"invalid-declarations"};return {ok:true,row:Object.assign({},row,{vehicle:next})}}
+export function splitRiddenVehicleRow(index,change){const b=lateGet("B");return splitRiddenVehicle(b.inv,index,change,b.rs)}

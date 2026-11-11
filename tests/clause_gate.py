@@ -1662,6 +1662,40 @@ def selftest():
         for entry in temporary_registered:
             expected=expected_by_id.get(entry["id"])
             check("U36 registered exact source and consumers "+entry["id"], bool(expected and all(entry.get(key)==value for key,value in expected.items())))
+    # U37 owns vehicle movement; the same speed numerals cannot prove actor flight.
+    ridden_candidates=[
+        ("dmg","Broom of Flying",3,"Its Fly Speed is 50 feet.",["50"]),
+        ("dmg","Broom of Flying",4,"It can bear a load of up to 400 pounds, though while it carries more than 200 pounds its Fly Speed falls to 30 feet.",["400","200","30"]),
+    ]
+    for owner in ("dmg","wbtw"):
+        ridden_candidates.extend([
+            (owner,"Bobbing Lily Pad",3,"It has a walking, flying, and swimming speed of 20 feet, and it can hover.",["20"]),
+            (owner,"Bobbing Lily Pad",6,"It can carry up to twice this weight, but it moves at half speed if it carries more than its normal capacity.",["half","double"]),
+        ])
+    ridden_expected=[]
+    for owner,name,index,text,values in ridden_candidates:
+        entry=dict(id="u37-"+owner+"-"+("broom" if name=="Broom of Flying" else "lily")+"-"+str(index),kind="item",owner=owner,name=name,lvl=None,cls=["SPEED"],vals=values,scopeValues=True,rx="^"+re.escape(text.lower())+"$",anchor=["src/app/lib/ridden-vehicle-runtime.js","const result=evaluateRiddenVehicle(row,facts,edition);"],extraAnchors=[["src/data/lib/ridden-vehicle.js","export function evaluateRiddenVehicle(row,declarations,edition="]],test="Z3 U37 native ridden vehicle "+name+" 2024")
+        ridden_expected.append(entry);loaded=load_code_atoms([entry]);key="item|%s|%s" % (owner,name);atoms=[atom for proof,atom in loaded.get(key,[])]
+        row=analyze(synth("item",owner,name,text,atoms))[0]
+        check("U37 native vehicle-only clause "+entry["id"],row["status"]=="covered",row["why"])
+        case=tool_cases_by_name.get(entry["test"])
+        check("U37 actual derived native-profile fixture "+entry["id"],bool(case and case.get("expect")))
+        for anchor_index in (0,1):
+            damaged=dict(entry,extraAnchors=[list(pair) for pair in entry["extraAnchors"]])
+            if anchor_index==0:damaged["anchor"]=[entry["anchor"][0],"missing-ridden-vehicle-consumer"]
+            else:damaged["extraAnchors"][0][1]="missing-native-load-evaluator"
+            check("U37 NEG missing actual consumer "+entry["id"]+str(anchor_index),not load_code_atoms([damaged]));CODE_NOTES.clear()
+        for other in ["You gain a Fly Speed of 50 feet.","You can teleport 20 feet.",text.replace("50","60").replace("400","500").replace("20 feet","30 feet").replace("half speed","full speed")]:
+            if other!=text:check("U37 NEG unrelated or wrong native value "+entry["id"]+other,all(result["status"]!="covered" for result in analyze(synth("item",owner,name,other,atoms))))
+        for wrong_key in ("item|unrelated|"+name,"item|"+owner+"|Ornithopter of Flying"):
+            wrong=[atom for proof,atom in loaded.get(wrong_key,[])]
+            check("U37 NEG wrong source "+entry["id"]+wrong_key,analyze(synth("item",owner,name,text,wrong))[0]["status"]=="uncovered")
+    ridden_registered=[entry for entry in json.load(open(CODE,encoding="utf-8"))["entries"] if entry.get("id","").startswith("u37-")]
+    check("U37 draft or exactly six registered clauses",len(ridden_registered) in (0,6))
+    expected_ridden_by_id={entry["id"]:entry for entry in ridden_expected}
+    for entry in ridden_registered:
+        expected=expected_ridden_by_id.get(entry["id"])
+        check("U37 registered exact vehicle source and consumers "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

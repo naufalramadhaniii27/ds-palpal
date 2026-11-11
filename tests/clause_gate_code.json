@@ -3657,6 +3657,172 @@
    ],
    "test": "Z3 U36 temporary cantrip +3 All-Purpose Tool 2014 elapsed 28799",
    "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u37-dmg-broom-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Broom of Flying",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "50"
+   ],
+   "scopeValues": true,
+   "rx": "^its\\ fly\\ speed\\ is\\ 50\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/ridden-vehicle-runtime.js",
+    "const result=evaluateRiddenVehicle(row,facts,edition);"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ridden-vehicle.js",
+     "export function evaluateRiddenVehicle(row,declarations,edition="
+    ]
+   ],
+   "test": "Z3 U37 native ridden vehicle Broom of Flying 2024",
+   "note": "Exact native ridden vehicle speed/load clause, backed by the current source-edition profile and actual declared rider/load consumer. Broom uses 50/30 at 200/400 pounds; Lily uses walking/flying/surface-swimming 20/10 at 300/600 pounds with hover. Vehicle values never grant actor movement. Effective quantity/attunement, source-specific activation/ending, physical-copy split and stale-context checks are verified in actual UI. Legacy Broom has a separate native profile; autonomous dispatch/recall remain unmodeled."
+  },
+  {
+   "id": "u37-dmg-broom-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Broom of Flying",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "400",
+    "200",
+    "30"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ can\\ bear\\ a\\ load\\ of\\ up\\ to\\ 400\\ pounds,\\ though\\ while\\ it\\ carries\\ more\\ than\\ 200\\ pounds\\ its\\ fly\\ speed\\ falls\\ to\\ 30\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/ridden-vehicle-runtime.js",
+    "const result=evaluateRiddenVehicle(row,facts,edition);"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ridden-vehicle.js",
+     "export function evaluateRiddenVehicle(row,declarations,edition="
+    ]
+   ],
+   "test": "Z3 U37 native ridden vehicle Broom of Flying 2024",
+   "note": "Exact native ridden vehicle speed/load clause, backed by the current source-edition profile and actual declared rider/load consumer. Broom uses 50/30 at 200/400 pounds; Lily uses walking/flying/surface-swimming 20/10 at 300/600 pounds with hover. Vehicle values never grant actor movement. Effective quantity/attunement, source-specific activation/ending, physical-copy split and stale-context checks are verified in actual UI. Legacy Broom has a separate native profile; autonomous dispatch/recall remain unmodeled."
+  },
+  {
+   "id": "u37-dmg-lily-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Bobbing Lily Pad",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "20"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ has\\ a\\ walking,\\ flying,\\ and\\ swimming\\ speed\\ of\\ 20\\ feet,\\ and\\ it\\ can\\ hover\\.$",
+   "anchor": [
+    "src/app/lib/ridden-vehicle-runtime.js",
+    "const result=evaluateRiddenVehicle(row,facts,edition);"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ridden-vehicle.js",
+     "export function evaluateRiddenVehicle(row,declarations,edition="
+    ]
+   ],
+   "test": "Z3 U37 native ridden vehicle Bobbing Lily Pad 2024",
+   "note": "Exact native ridden vehicle speed/load clause, backed by the current source-edition profile and actual declared rider/load consumer. Broom uses 50/30 at 200/400 pounds; Lily uses walking/flying/surface-swimming 20/10 at 300/600 pounds with hover. Vehicle values never grant actor movement. Effective quantity/attunement, source-specific activation/ending, physical-copy split and stale-context checks are verified in actual UI. Legacy Broom has a separate native profile; autonomous dispatch/recall remain unmodeled."
+  },
+  {
+   "id": "u37-dmg-lily-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Bobbing Lily Pad",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ moves\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/ridden-vehicle-runtime.js",
+    "const result=evaluateRiddenVehicle(row,facts,edition);"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ridden-vehicle.js",
+     "export function evaluateRiddenVehicle(row,declarations,edition="
+    ]
+   ],
+   "test": "Z3 U37 native ridden vehicle Bobbing Lily Pad 2024",
+   "note": "Exact native ridden vehicle speed/load clause, backed by the current source-edition profile and actual declared rider/load consumer. Broom uses 50/30 at 200/400 pounds; Lily uses walking/flying/surface-swimming 20/10 at 300/600 pounds with hover. Vehicle values never grant actor movement. Effective quantity/attunement, source-specific activation/ending, physical-copy split and stale-context checks are verified in actual UI. Legacy Broom has a separate native profile; autonomous dispatch/recall remain unmodeled."
+  },
+  {
+   "id": "u37-wbtw-lily-3",
+   "kind": "item",
+   "owner": "wbtw",
+   "name": "Bobbing Lily Pad",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "20"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ has\\ a\\ walking,\\ flying,\\ and\\ swimming\\ speed\\ of\\ 20\\ feet,\\ and\\ it\\ can\\ hover\\.$",
+   "anchor": [
+    "src/app/lib/ridden-vehicle-runtime.js",
+    "const result=evaluateRiddenVehicle(row,facts,edition);"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ridden-vehicle.js",
+     "export function evaluateRiddenVehicle(row,declarations,edition="
+    ]
+   ],
+   "test": "Z3 U37 native ridden vehicle Bobbing Lily Pad 2024",
+   "note": "Exact native ridden vehicle speed/load clause, backed by the current source-edition profile and actual declared rider/load consumer. Broom uses 50/30 at 200/400 pounds; Lily uses walking/flying/surface-swimming 20/10 at 300/600 pounds with hover. Vehicle values never grant actor movement. Effective quantity/attunement, source-specific activation/ending, physical-copy split and stale-context checks are verified in actual UI. Legacy Broom has a separate native profile; autonomous dispatch/recall remain unmodeled."
+  },
+  {
+   "id": "u37-wbtw-lily-6",
+   "kind": "item",
+   "owner": "wbtw",
+   "name": "Bobbing Lily Pad",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ moves\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/ridden-vehicle-runtime.js",
+    "const result=evaluateRiddenVehicle(row,facts,edition);"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ridden-vehicle.js",
+     "export function evaluateRiddenVehicle(row,declarations,edition="
+    ]
+   ],
+   "test": "Z3 U37 native ridden vehicle Bobbing Lily Pad 2024",
+   "note": "Exact native ridden vehicle speed/load clause, backed by the current source-edition profile and actual declared rider/load consumer. Broom uses 50/30 at 200/400 pounds; Lily uses walking/flying/surface-swimming 20/10 at 300/600 pounds with hover. Vehicle values never grant actor movement. Effective quantity/attunement, source-specific activation/ending, physical-copy split and stale-context checks are verified in actual UI. Legacy Broom has a separate native profile; autonomous dispatch/recall remain unmodeled."
   }
  ]
 }
