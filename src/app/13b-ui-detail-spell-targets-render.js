@@ -1,3 +1,4 @@
+import {objectRepairSummary} from "./32c-ui-object-repair.js";
 import {weaponWieldControl,weaponWieldAttackControl} from "./21c-ui-wield-minimum.js";
 import {weaponFormControl} from "./21b-ui-weapon-forms.js";
 import {attunementControl} from "./21a-ui-attunement.js";
@@ -104,7 +105,7 @@ DETAIL.add("sp", {
  const {x}=_render4Step1;
  let {h}=_render4Step1; if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
     const {sch, fxb}=render4Step2(x, key);
-    h=renderPart1(x, sch)+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+hpSpellNote(x)+tmpSpellH(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x))+'<div class="dc-use">'+spCastH(x,+key)+pinSpBtn(x)+'</div>'+
+    h=objectRepairSummary(+key)+renderPart1(x, sch)+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+hpSpellNote(x)+tmpSpellH(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x))+'<div class="dc-use">'+spCastH(x,+key)+pinSpBtn(x)+'</div>'+
       dcFoot(esc(x.sch)+' \u2022 '+esc(x.cls||""),esc(x.pg?srcPg("PHB-2024",x.pg):String(x.src||"")))+'</div>';/* v36 p14, was v23 RU36 no. 11 */
     return {t:x.n, h:h};
   },

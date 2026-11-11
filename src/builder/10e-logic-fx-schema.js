@@ -1,4 +1,4 @@
-import {typeOk,targetProblems,riderProblems,dieReplaceProblems,selfDamageProblems,spendDiceProblems} from "./01-logic-core-helpers.js";
+import {typeOk,targetProblems,riderProblems,dieReplaceProblems,selfDamageProblems,spendDiceProblems,repairSpecProblems} from "./01-logic-core-helpers.js";
 /* ==========================================================================================================================================
    fx engine, SOLID stage 2 (L): ONE schema for an effect entry. Every field an entry may carry and the types it may hold. The same schema applies to
    all registries: the GX.<kind> tables, the class, species and background effect lists, the magic item rows (fx object) and the entries gfx() builds.
@@ -33,6 +33,7 @@ export const FX_FIELDS={
  imm:"array",
  hpLvl:"number",
  spells:"array",
+ objectRepair:"array",
  fsPick:"number",
  saveBonusNp:"string",
  min:"number",
@@ -136,6 +137,7 @@ function extraEntryProblems(e,bad){ if(e.retain&&(!e.toggle||!e.toggle.id||e.tog
  }
  if("itemState" in e&&!["wielded","attuned","unattuned"].includes(e.itemState))bad.push("itemState must be wielded, attuned or unattuned");
  if(e.target)bad.push(...targetProblems(e.target));
+ (Array.isArray(e.objectRepair)?e.objectRepair:[]).forEach(x=>bad.push(...repairSpecProblems(x)));
  (Array.isArray(e.atkDice)?e.atkDice:[]).forEach((x) =>bad.push(...riderProblems(x)));
  (Array.isArray(e.dieReplace)?e.dieReplace:[]).forEach((x)=>bad.push(...dieReplaceProblems(x)));
  (Array.isArray(e.atkSpendDice)?e.atkSpendDice:[]).forEach((x)=>bad.push(...spendDiceProblems(x)));

@@ -290,3 +290,12 @@ Reading not decided: Dragon-Kindled Edge’s short “+2d6 damage against Dragon
 Forgemaster’s Might explicitly requires Strength 17 to wield. This is a predicate over the current score, not a grant of Strength 17. Its anvil usage and existing spell/counter properties remain independent from weapon eligibility. The compound Mending/anvil clause remains uncovered until the actual five-foot repair capability is implemented.
 
 Reading not decided: Cratering Quarterstaff says Strength 17 or higher is needed “to wield well” but gives no specific below-threshold penalty. The hard prohibition is not inferred for that item. Oversized Longbow also needs Medium-or-larger size and a specific 2d6 + Strength profile, and Shield of Yggdrasil requires a separate shield-use boundary; neither is partially mapped to this weapon rule.
+
+
+## 2026-11-11: physical object repair
+
+The native Mending text repairs one physical break or tear whose dimensions each fit one foot. Forgemaster’s Might increases that limit to five feet while attuned, independently of wielding Strength or being equipped. Multiple active overrides use their maximum; they do not add. A separately known Mending remains available with its ordinary limit after the item grant ends. Typed source provenance distinguishes that independent knowledge from an item-only spell. Legacy sheets without this provenance must be refreshed through Build before completing a repair.
+
+The repair controls require explicit declarations for a single break, touch, available components and equipment, and completion of the one-minute casting time. These are tabletop declarations, not automatic observations of the world. Every entered dimension is validated against the current capability again before the real cast commits. A successful result records a physical repair declaration only: it does not change HP, restore an item’s magic, or persist a world-object state. This implementation covers objects and magic items. The legacy 2014 text also mentions physically repairing a construct, without specifying an HP restoration amount; that separate creature interaction remains unmodeled. Rejecting a creature in these object controls is a scope boundary, not a claim that the legacy spell forbids it.
+
+Paid item Mending and sources with a different native casting time are outside this one-minute object workflow. These sources receive an explicit unsupported-source message rather than receiving a free cast or silently adopting the ordinary casting time. Forge’s granted cantrip uses the ordinary free Mending channel.

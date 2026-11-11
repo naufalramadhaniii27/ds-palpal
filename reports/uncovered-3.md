@@ -1,4 +1,33 @@
-# Uncovered 3: computed wield requirements and Forge riders
+# Uncovered 3: source-aware physical repair and Forge mechanics
+
+## U32: source-aware physical object repair
+
+Two further original sentences receive computed coverage: 275 closed from the initial 5,460, 5,185 uncovered, and zero regressed IDs. Covered is 7,980; info remains 23,617 and allow remains zero. Only the two Forgemaster’s Might Mending/anvil compound aliases close. The native five-foot repair capability and the independent existing anvil Advantage must both be present; strict negative tests reject either missing proof.
+
+The new object-repair model validates a single physical break or tear against every dimension, with the native one-foot base and a five-foot Forge override. Active limits use their maximum rather than stacking. Typed knowledge and inventory-source provenance distinguish an independently known cantrip from an item-only grant. Forge knowledge and its limit require effective attunement and positive quantity, remain available while stowed or below the wield Strength minimum, and disappear with the source; independently known Mending falls back to one foot. Creation/Fabricate counters retain their original payload and scope.
+
+Native Cast and quick Cast open the actual repair controls. The player declares touch, one break, components, legal armor/equipment and completion of the one-minute casting time. Final submission validates current actor, spell, source, connected view, declarations, dimensions and Rage before the real cast commits; completion appears only after that commit. The result describes physical repair without changing HP, restoring magic, or adding persistent target state. Paid sources and item-specific timing outside this workflow receive explicit unsupported messages. Legacy sheets without typed provenance require Build/Apply. The 2014 source’s separate construct interaction remains unmodeled, rather than being described as forbidden.
+
+A strictly validated GX `objectRepair` field carries the item override. The gate’s numeric proof is restricted to the actual Mending repair phrase and cannot fund unrelated five-foot effects or Advantage. No informational reclassification, bare description change, CODE grant, storage-key rename or input migration is used.
+
+
+## U32 validation and source audit
+
+| Check | Result |
+|---|---|
+| Effects | 1,549 complete cases PASS; includes 48 new Forge lifetime/cap cases across both variants and editions |
+| Measure | 752 units; zero miss in both editions, zero new card-or-miss |
+| Pure/runtime/casting/schema | 344 checks PASS; actual native cast guard and source-aware profile, plus 52 UI checks including capture-event regression |
+| Production UI | 96 actual checks PASS at 390×844 and 1250×850, native Quick Cast/card Cast, physical-only result, stale source/actor, Rage and unsupported paid/timing sources; zero JS errors |
+| Official contracts | Contract 4,964; golden 1,479; UI 308; data 617; all PASS |
+| Full snapshot | 2,997 builds; hash `8fbbc8cd8e3011ff`; zero page/build errors; 43 changed fixtures / 44 raw paths, all precisely the added Mending objectRepair metadata; zero residuals or temporary provenance leaks after removing only that field |
+| Builder / scenarios | 3,890 inputs, hash `396b20d955f87d6e`, identical to U31; 24 scenarios PASS at both required viewports |
+| Static checks | TypeScript 200, HTML sinks 250, enforced guards zero; overlap 1,408 names / 39 files / 156 documented overlaps |
+| Gate and source audit | 275 initial IDs closed, 5,185 uncovered, zero regressed IDs; 22 strict repair selftests; seeded 150 audit has 46 newly selected rows plus the other closure alias, 47 actual-source rows reviewed with no missing/mismatched source |
+
+The actual browser test exposed and fixed a capture-event ordering error: opening repair from Quick Cast was followed by a generic navigation handler clearing the new active view. The retained regression executes both handlers in their real order. The scoped form now uses existing form styles for clear labels and separate declarations.
+
+The full raw comparison against immutable main retains 2,997 snapshot and 2,263 builder differences from the prior migration and implemented mechanics. The exact U31 comparison shows only the 43 proven metadata additions and no builder changes, so no additional main difference requires unexplained normalization. Forge is absent from the standard snapshot universe; its five-foot lifetime behavior is verified by the targeted effect and actual browser tests above. Final presentation build `18f9668ac89fddd4` additionally passes 22 layout/commit/storage checks with six screenshots at the required viewports. All JavaScript build pieces lint successfully (350 pieces / 45 script blocks), and generated output matches source.
 
 ## U31: derived wield minimum and Forge mechanics
 

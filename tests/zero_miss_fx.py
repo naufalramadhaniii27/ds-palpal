@@ -2816,6 +2816,27 @@ for rs in ["2024","2014"]:
     for q,eq,attuned in [(0,True,True),(1,True,False),(1,False,True)]:
         CASES.append(dict(name="NEG U31 Forge anvil source unavailable "+rs+str((q,eq,attuned)),b=dict(rs=rs,cls="Fighter",level=4,base={"STR":16},extra=u31extra(rs),inv=[dict(n=U31_ROOT,q=q,eq=eq,attuned=attuned)]),tog={"forge-anvil":True},expect=[("(C.defenses||[]).some(d=>d.v==="+json.dumps(U31_ANVIL)+")",False)],allow=[]))
 
+# U32: Forge grants Mending while attuned, including when stowed or below the
+# wielding minimum. Its repair capability is separate from a source of knowledge.
+for rs in ["2024","2014"]:
+    for base in ["Maul","Warhammer"]:
+        item=u31name(base)
+        for cls in ["Fighter","Wizard"]:
+            independent=cls=="Wizard"
+            for q,eq,attuned in [(1,True,True),(1,False,True),(0,True,True),(1,True,False),(1,False,False)]:
+                grant=q>0 and attuned;known=grant or independent
+                extra=u31extra(rs)
+                if independent:extra=dict(extra,sp=["Mending"])
+                rows="(C.spells||[]).filter(s=>s.n==='Mending')"
+                checks=[(rows+".length>0",known),("C.attacks.some(a=>a.n==="+json.dumps(item)+")",False),(rows+".every(s=>!s.itc)",True),("C.res.filter(r=>r.n===\"Creation (Forgemaster's Might)\").length",1 if grant and eq else 0),("C.res.filter(r=>r.n===\"Fabricate (Forgemaster's Might)\").length",1 if grant and eq else 0)]
+                if known:
+                    checks += [(rows+".every(s=>s.objectRepair.spell==='Mending'&&s.objectRepair.maxBreakFeet==="+str(5 if grant else 1)+")",True)]
+                    if grant:checks += [(rows+".some(s=>s.objectRepair.sources.some(x=>x.item==="+json.dumps(item)+"&&x.maxBreakFeet===5&&x.requiresAttunement===true&&x.itemState==='attuned'&&x.grantsKnowledge===true))",True)]
+                    if independent:checks += [(rows+".some(s=>s.objectRepair.baseKnown===true)",True)]
+                CASES.append(dict(name=("Z3" if grant else "NEG")+" U32 Forge Mending lifetime "+base+" "+rs+" "+cls+str((q,eq,attuned)),b=dict(rs=rs,cls=cls,level=4,base={"STR":16},extra=extra,inv=[dict(n=item,q=q,eq=eq,attuned=attuned)]),expect=checks))
+        for eq in [False,True]:
+            CASES.append(dict(name="Z3 U32 Forge repair cap differential "+base+" "+rs+" equipped "+str(eq),b=dict(rs=rs,cls="Fighter",level=4,base={"STR":16},extra=u31extra(rs),inv=[dict(n=item,q=1,eq=eq,attuned=True)]),withoutGxFields=["item",U31_ROOT,U31_ROOT,["objectRepair"]],expect=[("C.spells.find(s=>s.n==='Mending').objectRepair.maxBreakFeet",5)],expectWithout=[("C.spells.find(s=>s.n==='Mending').objectRepair.maxBreakFeet",1)],allow=[r"^spells\.\d+\.objectRepair\.maxBreakFeet$",r"^spells\.\d+\.objectRepair\.sources\.\d+\.maxBreakFeet$"]))
+
 # Refresh the real rule-link index with the case's source packs installed.
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared

@@ -361,6 +361,18 @@ def atoms_from(e, src, weak=False, extra=()):
     out = []
     if not isinstance(e, dict):
         return out
+    # A repair override changes Mending's physical limit, not a generic distance
+    # or Advantage amount. Require the matching attuned grant and strict schema.
+    repair = e.get("objectRepair")
+    if src.startswith("GX.item|") and e.get("n") == src.split("|", 1)[1] and e.get("itemState") == "attuned" and [1, "Mending"] in (e.get("spells") if isinstance(e.get("spells"), list) else []):
+        if isinstance(repair, list) and len(repair) == 1 and isinstance(repair[0], dict):
+            spec = repair[0]
+            cap = spec.get("maxBreakFeet")
+            if set(spec) == {"spell", "maxBreakFeet"} and spec.get("spell") == "Mending" and isinstance(cap, (int, float)) and not isinstance(cap, bool) and 0 < cap <= sys.float_info.max:
+                # The runtime keeps Mending's native one-foot minimum.
+                effective_cap = max(1, cap)
+                scope = R(r"^you know mending while attuned, and it can repair a break or tear of up to %s (?:ft|feet)\.(?: you have advantage on smith's tools checks to craft or repair an object using the hammer head as the anvil\.)?$" % re.escape(format(effective_cap, "g")))
+                out.append(Atom("SPELL", nums_in(effective_cap), "%s.objectRepair" % src, weak, rx=scope))
     if isinstance(e.get("target"), dict) and e["target"].get("missingHp") is True and isinstance(e.get("atkSpendDice"), list) and e["atkSpendDice"]:
         # targetMatches computes HP < maximum HP before exposing the paid hit.
         # This proves the comparison only, not a change to anyone's HP.
@@ -930,7 +942,7 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
     res = []
     all_vals = set()
     for a in atoms:
-        if a.src != "FXO_NULL_REPL":  # the marker of an FXO_NULL item with a replacement entry is not a record: its wildcard value must not explain numbers
+        if a.src != "FXO_NULL_REPL" and not a.src.endswith(".objectRepair"):  # repair limits stay local to their literal repair sentence
             all_vals |= a.vals
     if ctx.get("lvl") is not None:
         all_vals |= {str(ctx["lvl"])}
@@ -1025,6 +1037,12 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         if "CHOICE" in missing and any((ri, c) in got for c in ("PROF", "SPELL", "ABIL", "RES", "IMM", "SPEED", "SENSE")):
             missing.remove("CHOICE")  # a pick that the other atom already carries ("two tools of your choice")
         assigned = set()
+        repair_vals = set()
+        for j, a in enumerate(atoms):
+            if a.src.endswith(".objectRepair") and a.rx and a.rx.search(r["text"].lower()):
+                repair_vals |= a.vals
+                if a.vals & {t for t, k in r["toks"]} and j not in r["used"]:
+                    r["used"].append(j)
         for j in r["used"]:
             assigned |= atoms[j].vals
         for j, a in enumerate(atoms):  # other atoms of the classes this sentence needs that no other sentence has claimed (pool amounts may be restated)
@@ -1035,7 +1053,7 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         # or any atom of the feature when the sentence has no atom class of its own (so a lone "1" is not explained by an unrelated record)
         unexpl = []
         for t, k in r["toks"]:
-            pool = all_vals if (k in ("dist", "dur") or not r["need"]) else assigned
+            pool = (all_vals | repair_vals) if (k in ("dist", "dur") or not r["need"]) else assigned
             if "*" in pool or t in pool or wild and r["used"]:
                 continue
             unexpl.append(t)
@@ -1351,6 +1369,37 @@ def selftest():
     check("12zh NEG comparison cannot claim maximum HP", hp_max_row["status"] != "covered", hp_max_row["why"])
     check("12zi comparison retains real source attribution", all(atom_key(a.src)=="GX.item|Coat" for a in hp_hit_atoms if a.cls=="HP"))
     check("12zj NEG target-only metadata grants no paid-hit HP atom", not any(a.cls=="HP" for a in atoms_from({"target":{"missingHp":True}},"GX.item|Coat")))
+    repair_record = {"n":"Forge", "itemState":"attuned", "spells":[[1,"Mending"]], "objectRepair":[{"spell":"Mending", "maxBreakFeet":5}]}
+    anvil_record = {"advOn":["Smith's Tools checks to craft or repair an object using the hammer head as the anvil"]}
+    repair_text = "You know Mending while attuned, and it can repair a break or tear of up to 5 ft. You have Advantage on Smith's Tools checks to craft or repair an object using the hammer head as the anvil."
+    anvil_atoms = atoms_from(anvil_record, "GX.item|Forge")
+    def repair_row(record, text=repair_text, with_anvil=True):
+        return analyze(synth("item", "dmg", "Forge", text, atoms_from(record,"GX.item|Forge") + (anvil_atoms if with_anvil else [])))[0]
+    check("U32 computed repair limit and separate anvil Advantage cover compound", repair_row(repair_record)["status"] == "covered")
+    check("U32 numeric equivalent cap keeps runtime limit", repair_row(dict(repair_record,objectRepair=[{"spell":"Mending","maxBreakFeet":5.0}]))["status"] == "covered")
+    check("U32 native minimum prevents a false fractional repair cap", repair_row(dict(repair_record,objectRepair=[{"spell":"Mending","maxBreakFeet":0.5}]),repair_text.replace("5 ft.","0.5 ft."))["status"] != "covered")
+    check("U32 NEG repair does not grant anvil Advantage", repair_row(repair_record,with_anvil=False)["status"] != "covered")
+    invalid_repairs = [
+        ("missing override", {k:v for k,v in repair_record.items() if k!="objectRepair"}),
+        ("missing grant", {k:v for k,v in repair_record.items() if k!="spells"}),
+        ("wrong grant", dict(repair_record,spells=[[1,"Light"]])),
+        ("wrong spell", dict(repair_record,objectRepair=[{"spell":"Light","maxBreakFeet":5}])),
+        ("wrong cap", dict(repair_record,objectRepair=[{"spell":"Mending","maxBreakFeet":4}])),
+        ("unknown schema field", dict(repair_record,objectRepair=[{"spell":"Mending","maxBreakFeet":5,"other":True}])),
+        ("boolean cap", dict(repair_record,objectRepair=[{"spell":"Mending","maxBreakFeet":True}])),
+        ("string cap", dict(repair_record,objectRepair=[{"spell":"Mending","maxBreakFeet":"5"}])),
+        ("nonfinite cap", dict(repair_record,objectRepair=[{"spell":"Mending","maxBreakFeet":float("inf")}])),
+        ("beyond runtime number range", dict(repair_record,objectRepair=[{"spell":"Mending","maxBreakFeet":10**400}])),
+        ("wrong itemState", dict(repair_record,itemState="wielded")),
+        ("missing itemState", {k:v for k,v in repair_record.items() if k!="itemState"}),
+        ("different owner", dict(repair_record,n="Other item")),
+    ]
+    for label, record in invalid_repairs:
+        check("U32 NEG "+label+" cannot cover repair cap", repair_row(record)["status"] != "covered")
+    for label, text in [("unrelated Advantage distance", "You have Advantage on checks within 5 feet."), ("unrelated distance", "The item reaches 5 feet."), ("other spell",repair_text.replace("Mending","Light")), ("other Advantage",repair_text.replace("Smith's Tools checks to craft or repair an object using the hammer head as the anvil", "all attack rolls"))]:
+        check("U32 NEG repair limit cannot fund "+label, repair_row(repair_record,text)["status"] != "covered")
+    repair_atoms = atoms_from(repair_record,"GX.item|Forge")
+    check("U32 repair numeric atom preserves actual source", all(atom_key(a.src)=="GX.item|Forge" for a in repair_atoms if a.src.endswith(".objectRepair")))
     critical_record = {"dieReplace": [{"when": "Scourge", "d": "3d4", "critD": "3d6"}]}
     critical_atoms = atoms_from(critical_record, "GX.item|Scourge")
     critical_text = "The weapon deals 3d4 Slashing damage. On a critical hit, it deals 3d6 Slashing damage instead."
@@ -1506,7 +1555,7 @@ def atom_key(src):
     if src.endswith((".atkSpendDice.perCost", ".atkBonus.dmg")):
         src = src.rsplit(".", 1)[0]
     base, _, last = src.rpartition(".")
-    return base if last in FIELD_CLS or last in ("ch", "by", "xd", "wp", "pick", "row", "atk", "dc") else src
+    return base if last in FIELD_CLS or last in ("ch", "by", "xd", "wp", "pick", "row", "atk", "dc", "objectRepair") else src
 
 
 def sources_of(results, ctxs, owners):

@@ -1,3 +1,4 @@
+export {repairSpecProblems,mendingRepairSpec,evaluateObjectRepair} from "../data/lib/object-repair.js";
 export {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum,weaponRowAllowed,applyWieldScoreCustomization} from "../data/lib/wield-minimum.js";
 export {weaponFormMetadata} from "../data/lib/weapon-form.js";
 export {attackKindsForRow} from "../data/lib/attack-kind.js";

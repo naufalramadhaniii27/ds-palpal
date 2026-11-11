@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {repairSpecProblems as problems,mendingRepairSpec as resolve,evaluateObjectRepair as evaluate} from '../src/data/lib/object-repair.js';
+let n=0;const eq=(a,b)=>{assert.deepEqual(a,b);n++};
+const base=resolve(),forge=resolve([{spell:'Mending',maxBreakFeet:5}]);
+const context={currentKnownSpell:true,castEligible:true},target={object:true,singleBreak:true,touch:true,dimensionsFeet:[1,1,1]};
+eq(base.maxBreakFeet,1);eq(forge.maxBreakFeet,5);
+for(const [cap,spec] of [[1,base],[5,forge]])for(const size of [0.1,1,1.01,4.99,5,5.01])for(const axis of [0,1,2]){const dimensionsFeet=[0,0,0];dimensionsFeet[axis]=size;eq(evaluate(spec,{...target,dimensionsFeet},context).ok,size<=cap)}
+for(const [key,reason] of [['object','object-required'],['singleBreak','single-break-required'],['touch','touch-required']])eq(evaluate(forge,{...target,[key]:false},context).reason,reason);
+for(const dims of [[],[1],[1,1],[1,1,1,1],[-1,0,0],[0,0,0],[NaN,0,0],[Infinity,0,0],['1',0,0]])eq(evaluate(forge,{...target,dimensionsFeet:dims},context).reason,'invalid-dimensions');
+for(const c of [null,{}, {...context,currentKnownSpell:false},{...context,castEligible:false}])eq(evaluate(forge,target,c).reason,'cast-ineligible');
+for(const s of [null,{}, {spell:'Mending',maxBreakFeet:0},{spell:'Mending',maxBreakFeet:NaN},{spell:'Mending',maxBreakFeet:5,extra:true},{spell:'Healing',maxBreakFeet:5}])eq(problems(s).length>0,true);
+const before=JSON.stringify(target);const result=evaluate(forge,target,context);eq(result.physicalBreakRepaired,true);eq(result.magicRestored,false);eq('hp' in result,false);eq(JSON.stringify(target),before);
+for(const kind of ['Object','MagicItem'])eq(evaluate(forge,{...target,kind},context).ok,true);
+for(const kind of ['Construct','Creature','construct',null,{},true])eq(evaluate(forge,{...target,kind},context).reason,'object-required');
+eq(resolve([{spell:'Mending',maxBreakFeet:5},{spell:'Mending',maxBreakFeet:5}]).maxBreakFeet,5);
+eq(resolve([{spell:'Mending',maxBreakFeet:0.5}]).maxBreakFeet,1);
+eq(resolve([{spell:'Mending',maxBreakFeet:5,unknown:true}]).maxBreakFeet,1);
+eq(resolve(null).maxBreakFeet,1);
+for(const field of ['object','singleBreak','touch'])eq(evaluate(forge,{...target,[field]:'true'},context).ok,false);
+for(const field of ['currentKnownSpell','castEligible'])eq(evaluate(forge,target,{...context,[field]:1}).ok,false);
+eq(evaluate(forge,{...target,extra:true},context).reason,'invalid-target');
+console.log(n+' object repair checks PASS');

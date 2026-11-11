@@ -1,4 +1,4 @@
-import {mod,chJoin} from "./01-logic-core-helpers.js";
+import {mod,chJoin,mendingRepairSpec,repairSpecProblems} from "./01-logic-core-helpers.js";
 import {featDef,invocationRows,invPickRow,invSpellRow,itemSpellRow,metamagicRows,spellFullText} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
@@ -9,9 +9,10 @@ import {defineLocals} from "./12b-logic-sheet-schema.js";
 defineLocals({sp:"object",spList:"array",spSeen:"object",bysrc:"array"});
 const SRCR=["i.a","i.SM","l.sp","l.spList","l.spSeen","l.bysrc","q.spellAb","q.spFxTo","q.spClsJ"],SRCW=["l.spList","l.spSeen","l.bysrc"];
 /* adds one spell row (once for the same spell, use and source key). The ability of the row is the one of its source key */
+function mergeRepairKnowledge(row,origin){if(row.n!=="Mending")return;const info=row._repairKnowledge||(row._repairKnowledge={baseKnown:false,sources:[]});if(!origin){info.baseKnown=true;return}info.baseKnown=info.baseKnown||!!origin.baseKnown;(origin.sources||[]).forEach(source=>{if(!info.sources.some(x=>JSON.stringify(x)===JSON.stringify(source)))info.sources.push(structuredClone(source))})}
 function adder(ctx){const I=ctx.i,Q=ctx.q,l=ctx.l,SM=I.SM,a=I.a;
- return function(n,use,src,k){const x=SM[n],kk=k||"";if(!x||l.spSeen[n+use+"|"+kk])return;l.spSeen[n+use+"|"+kk]=1;const sab=k?Q.spellAb(k,a.sc):l.sp.ab;if(!l.bysrc.some((b) =>{return b.k===kk}))l.bysrc.push({k:kk,n:/^@/.test(kk)?src:kk,ab:sab});
-  const o={n:n,l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6],dur:x[7],conc:x[8],rit:x[9],sv:x[10],sum:x[11]||"",full:spellFullText(n)||"",cls:Q.spClsJ(x),use:use,src:src,_ab:sab};Q.spFxTo(o,kk,a);if(kk==="Warlock"&&x[1]&&!/Long Rest|At will/.test(use))o.pact=1;/* RU35 no. 2: cast with a Pact Magic slot */l.spList.push(o)}}
+ return function(n,use,src,k,origin){const x=SM[n],kk=k||"",seen=n+use+"|"+kk;if(!x)return;if(l.spSeen[seen]){mergeRepairKnowledge(l.spSeen[seen],origin);return}l.spSeen[seen]=1;const sab=k?Q.spellAb(k,a.sc):l.sp.ab;if(!l.bysrc.some((b) =>{return b.k===kk}))l.bysrc.push({k:kk,n:/^@/.test(kk)?src:kk,ab:sab});
+  const o={n:n,l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6],dur:x[7],conc:x[8],rit:x[9],sv:x[10],sum:x[11]||"",full:spellFullText(n)||"",cls:Q.spClsJ(x),use:use,src:src,_ab:sab};Q.spFxTo(o,kk,a);if(kk==="Warlock"&&x[1]&&!/Long Rest|At will/.test(use))o.pact=1;/* RU35 no. 2: cast with a Pact Magic slot */mergeRepairKnowledge(o,origin);l.spSeen[seen]=o;l.spList.push(o)}}
 /* M9: every spell has a source key (class, "@species", "@spcan", "@mi:<key>") and that source's ability (spellAb). C.spellcasting keeps the main
    ability (first caster class, else Magic Initiate, else species). C.spellcasting.by and C.spells[].ab are written only when 2+ abilities differ */
 registerSheetGroup({id:"spell-context",group:"spells",phase:"spells",order:10,reads:["i.B","i.a","i.pb","q.slotsAll","q.casterParts","q.spLists","q.miFeats","q.autoSpells","q.spellAb","q.dmSpells","q.featSpells","q.spItemB"],writes:["l.sp"],
@@ -24,7 +25,7 @@ registerSheetGroup({id:"spell-list-init",group:"spells",phase:"spells",order:20,
  run:function(ctx){const l=ctx.l;l.spList=[];l.spSeen={};l.bysrc=[];l.sp.CPs.forEach((p) =>{if(!l.bysrc.some((b) =>{return b.k===p.cls}))l.bysrc.push({k:p.cls,n:p.cls,ab:p.ab})});return ctx.patch()}});
 /* always prepared spells (class, subclass, species, feats). v21 M1: the level a species spell is gained at */
 registerSheetGroup({id:"spells-always-prepared",group:"spells",phase:"spells",order:30,reads:SRCR,writes:SRCW,
- run:function(ctx){const l=ctx.l,addS=adder(ctx);l.sp.spl.forEach((q) =>{addS(q.n,"Always prepared",q.src,q.k);if(q.k==="@species"&&q.g>1){const o=l.spList.filter((s) =>{return s.n===q.n})[0];if(o)o.gain=q.g}});return ctx.patch()}});
+ run:function(ctx){const l=ctx.l,addS=adder(ctx);l.sp.spl.forEach((q) =>{addS(q.n,"Always prepared",q.src,q.k,q.repairKnowledge);if(q.k==="@species"&&q.g>1){const o=l.spList.filter((s) =>{return s.n===q.n})[0];if(o)o.gain=q.g}});return ctx.patch()}});
 registerSheetGroup({id:"spells-feat",group:"spells",phase:"spells",order:31,reads:SRCR.concat(["q.featSpells"]),writes:SRCW,
  run:function(ctx){const addS=adder(ctx);ctx.q.featSpells().forEach((q) =>{addS(q.n,"1/Long Rest free",q.f,q.k)});return ctx.patch()}});/* v21 i3 */
 registerSheetGroup({id:"spells-dragonmark",group:"spells",phase:"spells",order:32,reads:SRCR.concat(["q.dmSpells"]),writes:SRCW,
@@ -84,9 +85,14 @@ registerSheetGroup({id:"item-spells",group:"spells",phase:"spells",order:90,read
    it.sp.forEach((q) =>{const sp=SM[q[0]];if(!sp)return;const cost=q[1],pl=q[3],src=x.n+(pl?" ("+pl+")":"");if(ISL.some((y) =>{return y.n===q[0]&&y.src===src}))return;
     const lv=typeof q[2]==="number"&&q[2]?q[2]:sp[1];
     const o={n:q[0],l:sp[1],sch:sp[2],ct:itemSpellCastingTime(x.n,q[0],sp[4]),r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:spellFullText(q[0])||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:cost===0?"At will":"Item",src:src,itc:{it:x.n,c:cost,lv:lv}};
-    if(it.dc!=null)o.itc.dc=it.dc;if(it.atk!=null)o.itc.atk=it.atk;Q.spFxTo(o,"",a);ISL.push(o)})});
+    if(it.dc!=null)o.itc.dc=it.dc;if(it.atk!=null)o.itc.atk=it.atk;Q.spFxTo(o,"",a);mergeRepairKnowledge(o,{baseKnown:false,sources:[{item:x.n,maxBreakFeet:1,requiresAttunement:!!(Q.dmapRow(x.n)&&Q.dmapRow(x.n)[3]),itemState:"wielded",grantsKnowledge:true}]});ISL.push(o)})});
   if(ISL.length){C.spells=(C.spells||[]).concat(ISL);C.spells.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:p.n>q.n?1:0)})}return ctx.patch()}});
 /* v21 M2: Mystic Arcanum and Contact Patron, once per Long Rest without a slot. v23 m1-r3: the shared "Mystic Arcanum" row only counts the arcana that have no own row yet */
+/* Repair capability is derived independently of attack eligibility and never grants a spell row. */
+function repairEffectSource(e,spec){return {item:e.owner,maxBreakFeet:spec.maxBreakFeet,requiresAttunement:e.itemState==="attuned",itemState:e.itemState||"wielded",grantsKnowledge:false}}
+function repairSourcesFor(G){const out=[];(G||[]).forEach(e=>{if(e.kind!=="item")return;(e.objectRepair||[]).forEach(spec=>{if(!repairSpecProblems(spec).length)out.push(repairEffectSource(e,spec))})});return out}
+function finishRepairProfile(row,overrides){if(row.n!=="Mending")return;const knowledge=row._repairKnowledge||{baseKnown:true,sources:[]},sources=structuredClone(knowledge.sources);overrides.forEach(source=>{const existing=sources.find(x=>x.item===source.item&&x.itemState===source.itemState);if(existing)existing.maxBreakFeet=Math.max(existing.maxBreakFeet,source.maxBreakFeet);else sources.push(source)});const profile=mendingRepairSpec(sources.map(source=>({spell:"Mending",maxBreakFeet:source.maxBreakFeet})));row.objectRepair=Object.assign(profile,{baseKnown:knowledge.baseKnown,sources});delete row._repairKnowledge}
+registerSheetGroup({id:"spell-object-repair",group:"spells",phase:"spells",order:95,reads:["i.G","C.spells","C.inv"],writes:["C.spells"],run:function(ctx){const sources=repairSourcesFor(ctx.i.G);(ctx.C.spells||[]).forEach(row=>finishRepairProfile(row,sources));return ctx.patch()}});
 registerSheetRule({id:"warlock-arcanum-patron-counters",group:"spells",about:"Warlock: Mystic Arcanum and Contact Patron spells get their own once-per-Long-Rest counters",phase:"spells",order:100,reads:["C.spells","q.resKey"],writes:["C.res"],
  run:function(ctx){const C=ctx.C,Q=ctx.q,spells=ctx.C.spells;const maN=(spells||[]).filter((s) =>{return s.src==="Mystic Arcanum"}).length;if(maN)C.res=C.res.filter((r) =>{if(r.n==="Mystic Arcanum"&&+r.max>=1){r.max=+r.max-maN;return r.max>0}return true});/* m1-r4: the arcana not chosen yet keep a shared row */
   (spells||[]).forEach((s) =>{const one=s.src==="Contact Patron"&&C.res.filter((r) =>{return r.n===s.src&&+r.max===1})[0];if(one){one.n=s.src+": "+s.n;one.f=one.f||s.src;return}/* v23 m3-r2: one counter, named after the spell */if(/^(Mystic Arcanum|Contact Patron)$/.test(s.src)&&!C.res.some((r) =>{return r.f===s.src&&r.n.indexOf(s.n)>=0}))C.res.push({k:Q.resKey("x-",s.src+" "+s.n,C.res),n:s.src+": "+s.n,tag:"1/Long Rest spell",max:1,reset:"long",f:s.src})});return ctx.patch()}});

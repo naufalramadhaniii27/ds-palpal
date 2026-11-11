@@ -4,6 +4,7 @@ import {attActive,eqOn} from "./05-logic-helpers.js";
 import {occOf} from "./00a-reg-late-ports.js";
 import {env} from "./00-env.js";
 import {weaponFormMetadata,weaponFormUsable} from "../data/lib/weapon-form.js";
+import {resolveObjectRepairProfile,evaluateRepairRequest} from "./lib/object-repair-runtime.js";
 bindLive("clsLvls",{get:function(){return clsLvls;}});
 bindLive("concAuto",{get:function(){return concAuto;}});
 bindLive("concCheck",{get:function(){return concCheck;}});
@@ -14,6 +15,7 @@ bindLive("concOf",{get:function(){return concOf;}});
 bindLive("hasFeat",{get:function(){return hasFeat;}});
 bindLive("spCastH",{get:function(){return spCastH;}});
 bindLive("spIx",{get:function(){return spIx;}});
+bindLive("requestObjectRepairCast",{get:function(){return requestObjectRepairCast;}});
 export function clsLvls(){ let o={}, t=String(C.clsLabel||""), m, re=/([A-Z][A-Za-z']+) (\d+)/g; while((m=re.exec(t))) o[m[1]]=+m[2]; if(!Object.keys(o).length&&C.cls) o[C.cls]=D.level; return o; }
 export function lvOf(c){ return clsLvls()[c]||0; }
 export function hasFeat(n){ return featAll().some((x) =>{ return x.f.n===n; }); }
@@ -93,15 +95,23 @@ function spCastH(x,i){ let h='<div class="info-h">Cast</div><div class="spcast">
   return h+'</div>'+(x.conc?'<p class="muted spcn">Concentration spell. Casting it ends any other spell you concentrate on.</p>':''); }
 function spFormCommitAllowed(x,k,nd){if(!spFormRequired(x)||spItemOpts(x).some(q=>q.k===k&&(q.need||1)===nd))return true;toast("Hold "+x.itc.it+" with its radiant "+(x.itc.it==="Duskcrusher"?"head":"blade")+" active to cast "+x.n+".");return false}
 function spCastPayment(k){if(k&&k.indexOf("|")>0){const parts=k.split("|");return {k:parts[0],nd:+parts[1]||1}}return {k,nd:1}}
-export function castDo(i,k,lv,ok){ const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
+const repairSessions=new WeakSet(),repairCasts=new WeakSet();
+export function currentRepairProfile(index){return resolveObjectRepairProfile(C,(C.spells||[])[index])}
+export function createObjectRepairSession(index,root){const spell=(C.spells||[])[index];if(!spell||spell.n!=="Mending"||!root)return null;const session={index,root,character:C,state:S,owner:C.name,spellSignature:JSON.stringify(spell),profileSignature:currentRepairProfile(index).signature,committed:false};repairSessions.add(session);return session}
+function repairRequestCurrent(request){const view=request.session;if(!repairSessions.has(view)||view.committed||view.character!==C||view.state!==S||view.owner!==C.name||!view.root.isConnected)return {ok:false,reason:"stale-cast"};const spell=(C.spells||[])[view.index],profile=currentRepairProfile(view.index);if(JSON.stringify(spell)!==view.spellSignature||profile.signature!==view.profileSignature)return {ok:false,reason:"stale-source"};return evaluateRepairRequest(profile,request.target,request.declarations,modeOn("rage"))}
+export function requestObjectRepairCast(options){if(!options||!options.session)return {ok:false,reason:"stale-cast"};const request={session:options.session,target:structuredClone(options.target),declarations:structuredClone(options.declarations),onCommitted:options.onCommitted};const result=repairRequestCurrent(request);if(!result.ok)return result;repairCasts.add(request);try{castDo(request.session.index,"",0,false,request)}finally{repairCasts.delete(request)}return request.certificate||request.failure||{ok:false,reason:"cast-refused"}}
+function spRepairCastAllowed(index,k,lv,spell,request){if(spell.n!=="Mending")return true;if(!repairCasts.has(request)){const open=lateGet("openObjectRepair");if(typeof open==="function")open(index,k,lv);else toast("Repair controls are still loading. Try again.");return false}const result=repairRequestCurrent(request);request.result=result;if(!result.ok)request.failure=result;return result.ok}
+function spRepairCommitted(request){if(!repairCasts.has(request))return;request.session.committed=true;request.certificate={ok:true,committed:true,result:request.result,owner:C.name,index:request.session.index,character:C,state:S};if(typeof request.onCommitted==="function")request.onCommitted(request.certificate)}
+export function castDo(i,k,lv,ok,repair){ const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
+  if(!spRepairCastAllowed(i,k,lv,x,repair))return;
   if(!spFormCommitAllowed(x,k,nd))return;
-  if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true); }); return; }/* v22 i4 */
+  if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true,repair); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
   undoMark("Cast "+x.n); let msg="Cast "+x.n;
   if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
-  save(); syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} }
+  save(); syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} spRepairCommitted(repair); }
 /* the CAST or USE badge in the Spells list: one way to cast it, cast now. Several (slot levels, Pact, free use): open the spell to choose */
 export function quickCast(i){ const x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; }
   const o=spCastOpts(x), av=o.filter(qOk);

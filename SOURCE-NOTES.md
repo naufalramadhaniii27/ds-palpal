@@ -732,3 +732,8 @@ GX `pick[].n` also accepts `[[sourceLevel,count],...]`, using the entry's own le
 ### Scoped code-atom evidence
 
 A live, level-matched code entry may supply `scopeAtoms:{recordSource:sentenceRegex}` to narrow an existing data atom to the sentence its proof supports. It adds no mechanical atom and intersects any pre-existing restriction. The selftests reject manufacturing an atom or broadening an existing restriction. Rocker's instrument-choice proof narrows its separate Performance `skillBonus` record to the Performance sentence. This prevents that generic PROF atom from falsely covering Instrument Weapon transformation. Paired U19 tests verify the independent Strength modifier and minimum +1.
+
+
+### Physical repair capability
+
+GX `objectRepair:[{spell:"Mending",maxBreakFeet:5}]` declares a strictly validated repair-limit override; it does not grant the spell by itself. The Mending sheet row carries typed independent-knowledge and inventory-source provenance. Cast-time resolution checks live quantity and effective attunement, then applies the greatest active limit over the native one-foot base. The pure repair evaluator validates every dimension of one break or tear and never restores magic or HP. Forgemaster’s Might places its Mending grant and override in an `itemState:"attuned"` entry; its existing Creation/Fabricate limited uses keep their original scope. The casting popup uses temporary declarations and adds no saved input shape or storage key.
