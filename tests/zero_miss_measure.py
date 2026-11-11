@@ -126,9 +126,23 @@ _strike_source = open(_STRIKE_MODEL, encoding="utf-8").read().split("export func
 _strike_validator = re.sub(r"^import[^\n]*\n", "", _strike_source, flags=re.M).replace("export function", "function")
 _STRIKE_VALIDATOR_JS = "const validStrike=(function(){" + _strike_validator + ";return divineStrikeDescriptorProblems})();"
 
+# Canonical Cleric validators and the real healing arithmetic, shared with runtime.
+_CLERIC_MODEL_ROOT = os.path.join(os.path.dirname(HERE), "src", "data", "lib")
+_cleric_maths = open(os.path.join(_CLERIC_MODEL_ROOT,"cleric-maths.js"),encoding="utf-8").read()
+_cleric_caps = open(os.path.join(_CLERIC_MODEL_ROOT,"cleric-capabilities.js"),encoding="utf-8").read()
+_attack_source = open(os.path.join(_CLERIC_MODEL_ROOT,"attack-target.js"),encoding="utf-8").read()
+_damage_expression = next(line for line in _attack_source.splitlines() if line.startswith("export function damageExpression("))
+assert _damage_expression.endswith("}")
+_caps_import = re.findall(r"^import \{([^}]+)\} from './cleric-maths.js';",_cleric_caps,flags=re.M)
+assert len(_caps_import)==1
+_cleric_exports = lambda text:",".join(re.findall(r"export function ([A-Za-z0-9_]+)\(",text))
+_cleric_body = lambda text:re.sub(r"^import[^\n]*\n","",text,flags=re.M).replace("export function","function")
+_CLERIC_VALIDATOR_JS = "const clericMath=(function(){"+_damage_expression.replace("export function","function")+_cleric_body(_cleric_maths)+";return {"+_cleric_exports(_cleric_maths)+"}})();const clericCaps=(function({"+_caps_import[0]+"}){"+_cleric_body(_cleric_caps)+";return {"+_cleric_exports(_cleric_caps)+"}})(clericMath);"
+
 JS_LIB = r"""()=>{
  if(window.__zm) return 1;
  __STRIKE_VALIDATOR__
+ __CLERIC_VALIDATOR__
  const SRC={core:true,dmg:true,efa:true}; const store={};
  const t=x=>x==null?'':String(x);
  const lines=(C)=>{ const o=[]; const add=(sec,kind,label,text)=>o.push([sec,kind,t(label),t(text)]);
@@ -148,6 +162,13 @@ JS_LIB = r"""()=>{
   const descriptor=C.divineStrike;if(descriptor&&validStrike(descriptor).length===0&&descriptor.source.edition===(C.rs===undefined?'2024':C.rs)&&Number.isSafeInteger(C.level)&&C.level>=descriptor.source.level&&(descriptor.source.pre!==''||C.cls==='Cleric')){
    const rule=descriptor.rule,improved=descriptor.source.edition==='2024'&&rule.feature==='Blessed Strikes'&&rule.dice==='2d8'?'Improved Blessed Strikes | ':'';add('strike','c',rule.feature+' | '+improved+descriptor.source.owner,rule.dice+' '+(rule.typeFrom==='weapon'?'weapon damage type':rule.types.join(' or '))+'; '+rule.turn+' turn; '+(rule.creatureOnly?'creature required':'qualifying target'));}
 
+  const powerSource=source=>source&&source.edition===(C.rs===undefined?'2024':C.rs)&&Number.isSafeInteger(C.level)&&C.level>=source.level&&(source.pre!==''||C.cls==='Cleric');
+  const supreme=C.supremeHealing;if(supreme&&clericCaps.supremeHealingDescriptorProblems(supreme).length===0&&powerSource(supreme.source)){
+   const result=clericMath.evaluateSupremeHealing(supreme.rule,{v:1,sourceKind:'spell',owner:'actor',effect:'restore-hp',expression:'2d6'},{targetCreature:true});
+   if(result.ok&&result.applies)add('supreme','c','Supreme Healing | '+supreme.source.owner,result.normalExpression+' healing dice use their maximum: '+result.amount+'; '+supreme.rule.sourceKinds.join(' or '));}
+  const intervention=C.divineIntervention;if(intervention&&clericCaps.divineInterventionDescriptorProblems(intervention).length===0&&powerSource(intervention.source)&&intervention.wish){
+   const resource=key=>{const matches=(C.res||[]).filter(row=>row&&row.k===key);return matches.length===1?matches[0]:null},base=resource(intervention.recovery.baseKey),wish=resource(intervention.recovery.wishKey);
+   if(base&&wish&&base.n==='Divine Intervention'&&base.f==='Divine Intervention'&&base.max===1&&base.reset==='long'&&wish.n==='Greater Divine Intervention: Wish'&&wish.f==='Greater Divine Intervention'&&wish.max===1&&wish.reset==='none')add('intervention','c','Greater Divine Intervention | Cleric',intervention.wish.cooldownDice+' completed Long Rests; shared Divine Intervention availability');}
   (C.hpBonus||[]).forEach(x=>add('num','c',x.s,'hp '+x.v)); (C.initBonus||[]).forEach(x=>add('num','c',x.s,'init '+x.v));
   (C.spells||[]).forEach(s=>add('spell','c',t(s.src)+' '+t(s.mi),s.n)); if(C.spellcasting) add('spellc','c','spellcasting pact magic',JSON.stringify(C.spellcasting));
   (C.itemAdv||[]).forEach(x=>add('def','c','',JSON.stringify(x)));
@@ -168,7 +189,7 @@ JS_LIB = r"""()=>{
  return 1}"""
 
 # ------------------------------------------------------------------------------------------------ the units
-JS_LIB = JS_LIB.replace("__STRIKE_VALIDATOR__", _STRIKE_VALIDATOR_JS)
+JS_LIB = JS_LIB.replace("__STRIKE_VALIDATOR__", _STRIKE_VALIDATOR_JS).replace("__CLERIC_VALIDATOR__", _CLERIC_VALIDATOR_JS)
 
 
 def bk(kind):
@@ -230,7 +251,7 @@ def units(D, D14=None):
 
 
 SEC = {  # section -> classes it is evidence for, plus the keyword rule below for text sections
-    "ac": ["AC"], "speed": ["SPEED"], "skill": ["PROF"], "prof": ["PROF"], "res": ["RESOURCE"], "xdmg": ["DICE"], "att": ["DICE"], "strike": ["DICE"], "num": ["NUM"], "spell": ["SPELL"], "spellc": ["SPELL"], "wm": ["MASTERY"]}
+    "ac": ["AC"], "speed": ["SPEED"], "skill": ["PROF"], "prof": ["PROF"], "res": ["RESOURCE"], "xdmg": ["DICE"], "att": ["DICE"], "strike": ["DICE"], "supreme": ["DICE"], "intervention": ["DICE"], "num": ["NUM"], "spell": ["SPELL"], "spellc": ["SPELL"], "wm": ["MASTERY"]}
 KW = {"RES": re.compile(r"resist|immun"), "ADV": re.compile(r"advantage|disadvantage|\"adv\""), "SPEED": re.compile(r"\bspeed\b|\bfly|swim|climb|burrow"), "PROF": re.compile(r"proficien|expertise"),
       "DICE": RX["DICE"], "RESOURCE": re.compile(r"\buses?\b|\brest\b"), "SPELL": re.compile(r"spell|cast|\bslots?\b|cantrip"), "AC": re.compile(r"\bac\b|armor class"), "NUM": re.compile(r"initiative|hit point"),
       "MASTERY": re.compile(r"mastery|masteries"), "D20": re.compile(r"9 or lower|count[^.]{0,30}as a 10|treat[^.]{0,30}as a 10")}
@@ -257,9 +278,12 @@ def prep(lines):
     return out
 
 
+NAMED_ONLY_SECTIONS = {"strike", "supreme", "intervention"}
+
+
 def delta_eligible(line, category):
     """Source-named conditional dice prove their own feature only."""
-    return category in line[3] and not (category == "DICE" and line[4].startswith("strike|"))
+    return category in line[3] and not (category == "DICE" and line[4].split("|",1)[0] in NAMED_ONLY_SECTIONS)
 
 
 def run_page(root, D=None):
@@ -393,7 +417,7 @@ def main():
         else:
             A = sheet(key, 19, tog, ft); Z = sheet(kind + "|base", 19, ())
         if cat == "DICE":
-            generic_lines=[line for line in A if not line[4].startswith("strike|")]
+            generic_lines=[line for line in A if not line[4].split("|",1)[0] in NAMED_ONLY_SECTIONS]
             named=sum(status.get(unit["id"],("",))[0]=="ok" and match(generic_lines,unit,("c",)) for unit in us)
         zs = {x[4] for x in Z}
         new_c = [x for x in A if x[4] not in zs and delta_eligible(x,cat) and x[0] == "c"]
@@ -467,7 +491,7 @@ def main():
         print("\nMISS (%d)" % len(miss)); [print("  " + x) for x in sorted(miss)]
         print("\nCARD (%d)" % len(card)); [print("  " + x) for x in sorted(card)]
     cur = {"measured": {c: res["2024"][c] for c in CLASSES}, "measured14": {c: res["2014"][c] for c in CLASSES if res["2014"][c]["n"]}, "miss": sorted(miss), "card": sorted(card), "by_design": {k: design[k] for k in sorted(design)}}
-    cur["extractor"] = hashlib.sha256(_MEASURE_SOURCE_BYTES+_STRIKE_VALIDATOR_JS.encode()).hexdigest()
+    cur["extractor"] = hashlib.sha256(_MEASURE_SOURCE_BYTES+_STRIKE_VALIDATOR_JS.encode()+_CLERIC_VALIDATOR_JS.encode()).hexdigest()
     cur["unitIds"] = sorted(u["id"] for u in U)
     cur["deltaEvidence"] = json.loads(json.dumps(delta_evidence,default=lambda value:sorted(value) if isinstance(value,set) else value))
     bad = 0

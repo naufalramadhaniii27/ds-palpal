@@ -6,6 +6,7 @@ import {env} from "./00-env.js";
 import {weaponFormMetadata,weaponFormUsable} from "../data/lib/weapon-form.js";
 import {resolveObjectRepairProfile,evaluateRepairRequest} from "./lib/object-repair-runtime.js";
 import {temporaryCantripStatus} from "./lib/temporary-cantrip-guard.js";
+import {interventionPaymentAllowed} from "./32f-logic-divine-intervention.js";
 bindLive("clsLvls",{get:function(){return clsLvls;}});
 bindLive("concAuto",{get:function(){return concAuto;}});
 bindLive("concCheck",{get:function(){return concCheck;}});
@@ -45,7 +46,7 @@ document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.clo
   const x=(C.spells||[])[+t.getAttribute("data-concon")]; if(!x) return;if(Object.prototype.hasOwnProperty.call(x,"temporaryCantrip")&&!temporaryCantripStatus(x,S.temporaryCantrips).allowed){toast("This temporary cantrip is no longer available.");return} const m2=concSet(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x)); save(); renderConds(); refreshEntry(); toast(m2); },true);
 
 /* ---------- RU49 Cast and Use ---------- */
-export function slotLeft(k){ const r=(D.res||[]).filter((q) =>{ return q.k===k; })[0]; return r?{r:r,left:r.max-used(r.k,r.max)}:null; }
+export function slotLeft(k){ const r=(D.res||[]).filter((q) =>{ return q.k===k; })[0]; return r?{r:r,left:(C.divineIntervention||S.interventionRecovery)&&!interventionPaymentAllowed(k)?0:r.max-used(r.k,r.max)}:null; }
 function reWord(n){ return new RegExp("(^|[^A-Za-z])"+String(n).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"([^A-Za-z]|$)"); }
 /* Limited Use rows that pay for a free cast of x (species, feat, or feature rows: same source, or the spell named in the row) */
 function spUses(x){ if(!x.l) return [];

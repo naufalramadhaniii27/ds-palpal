@@ -1,4 +1,7 @@
 import {turnDamageControls} from './08f-ui-turn-damage.js';
+import {supremeHealingControls} from './08g-ui-supreme-healing.js';
+import {divineInterventionControls} from './08h-ui-divine-intervention.js';
+import {ordersWrathControls} from './08i-ui-orders-wrath.js';
 import {riddenVehicleControl} from './21g-ui-ridden-vehicles.js';
 import {temporaryCantripControl} from './21f-ui-temporary-cantrip.js';
 import {spellSourceRollControls} from "./23f-ui-spell-source-rolls.js";
@@ -144,6 +147,7 @@ DETAIL.add("spx", {
   return {t:"Spells cast on you", h:spxBody()};
   }
 });
+function clericFeatureControlHTML(name){if(name==="Supreme Healing"||name==="Channel Divinity")return supremeHealingControls();if(name==="Divine Intervention"||name==="Greater Divine Intervention")return divineInterventionControls();return name==="Order's Wrath"?ordersWrathControls():""}
 DETAIL.add("f", {
   render:function(key){ let h="";
   const ix=key.split("."), gr=(C.features||[])[+ix[0]], f=gr&&(gr.items||[])[+ix[1]];
@@ -152,7 +156,7 @@ DETAIL.add("f", {
     const fk=fKind(f), rl0=resOf(f.n), r0=rl0[0];
     h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+dcStrip([[fKindIco(fk),"Time",esc(fk)],["ui-uses","Uses",r0?esc((r0.max-used(r0.k,r0.max))+" of "+r0.max):"At will"],[r0&&/short/.test(r0.reset)?"rest-short":r0&&r0.reset==="none"?"ui-reset":"rest-long","Resets",r0?esc({short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r0.reset]||"\u2014"):"\u2014"],["ui-book","Source",esc(srcPg(f.s,pgGuess(gr,f)))]])+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+fch(featNums(richP(fill(sf.t)),cl0))+'</p>'+(sd.t?'<p class="info-sum">'+featNums(richB(fill(sd.t.split(/\s*\*\*Your choice\.\*\*/)[0])),cl0)+'</p>':''):'<p class="info-d">'+fch(featNums(richB(fill(sd.t)),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+featSpL(gr,f);
     if(r0){ const lf0=r0.max-used(r0.k,r0.max); h+='<div class="dc-use"><div class="spcast"><button type="button" class="btn pri press'+(lf0?'':' off')+'" data-usef="'+esc(r0.k)+'|-1"'+(lf0?'':' disabled')+'>Use '+esc(f.n)+' <small>'+lf0+' left</small></button>'+(lf0<r0.max?'<button type="button" class="btn press" data-usef="'+esc(r0.k)+'|1">Give back one use <small>undo</small></button>':'')+'</div>'+(lf0?'':'<p class="muted spcn">No uses left. '+esc({short:"A Short or Long Rest restores them.",short1:"A Short Rest restores one use.",long:"A Long Rest restores them.",none:"They do not come back."}[r0.reset]||"")+'</p>')+'</div>'; }/* v36 p17 */
-    h+=tmpFeatH(f);/* v21 RU55 */
+    h+=tmpFeatH(f)+clericFeatureControlHTML(f.n);/* v21 RU55 */
     h+='<p class="bk-f"><button type="button" class="lk" data-info="grp:'+ix[0]+'">See everything from '+esc(gName(gr.g))+'</button></p></div>';
     return {t:f.n, h:h};
   },

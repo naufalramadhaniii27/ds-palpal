@@ -8,8 +8,8 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 73254 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 36782 (50.2%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 8088 |
-| Info (tag terdokumentasi) | 23605 (SPELL_TEXT 6470, FORM:ACTIVATE 2723, NUMONLY:GEOMETRY 2232, FORM:ROLL 1938, NUMONLY:TEXT 1341, ACTIVATE 1309, FORM:TABLE 1156, NUMONLY:ROLL 987, NUMONLY:TABLE 862, FXO_NULL 828, ACTIVE:TRIGGER 785, ACTIVE:OTHERS 642, REST:NONUM 586, NUMONLY:FLAVOR 305, STD:ASI 208, COND:PLAY_STATE 188, NUMONLY:ZERO 162, ROLL:LAST_CHARGE 136, OBJECT:STATS 106, ITEM:SENSES 82, DC:REFERENCE 77, BY_DESIGN 72, TABLE:CLASS 70, COND:ATTACK_ROLL_ADV 68, STD:PICK_TEXT 63, ACTIVE:REACTION 56, MOVE:SPEED_REF 50, ACTIVE:TIMED_IMM 43, TARGET:SPEED 30, FOCUS:SPELLCASTING 14, STD:AC10 7, KNOW:TARGET_DEFENSES 7, POOL:SHARED 2) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 8092 |
+| Info (tag terdokumentasi) | 23601 (SPELL_TEXT 6470, FORM:ACTIVATE 2723, NUMONLY:GEOMETRY 2232, FORM:ROLL 1938, NUMONLY:TEXT 1341, ACTIVATE 1309, FORM:TABLE 1156, NUMONLY:ROLL 984, NUMONLY:TABLE 862, FXO_NULL 828, ACTIVE:TRIGGER 784, ACTIVE:OTHERS 642, REST:NONUM 586, NUMONLY:FLAVOR 305, STD:ASI 208, COND:PLAY_STATE 188, NUMONLY:ZERO 162, ROLL:LAST_CHARGE 136, OBJECT:STATS 106, ITEM:SENSES 82, DC:REFERENCE 77, BY_DESIGN 72, TABLE:CLASS 70, COND:ATTACK_ROLL_ADV 68, STD:PICK_TEXT 63, ACTIVE:REACTION 56, MOVE:SPEED_REF 50, ACTIVE:TIMED_IMM 43, TARGET:SPEED 30, FOCUS:SPELLCASTING 14, STD:AC10 7, KNOW:TARGET_DEFENSES 7, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
 | Uncovered | 5089 |
 | Uncovered dengan angka | 3014 |
@@ -18,9 +18,9 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 | Angka yang tidak dijelaskan record mana pun | 2820 kalimat |
 | Kelas tanpa atom (record tidak ada untuk kelas itu) | 4298 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 306 |
-| Waktu | muat data 1 s, analisis 14 s |
+| Waktu | muat data 1 s, analisis 13 s |
 
-Uji mutasi pada data nyata (seed 7): 297 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 179 ditangkap (60.3%). Hapus semua atom kelas yang dibutuhkan: 181 ditangkap (60.9%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 180 ditangkap (60.4%). Hapus semua atom kelas yang dibutuhkan: 181 ditangkap (60.7%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 293 ditangkap (97.7%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -46,8 +46,8 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | species | 352 |
 | AUTO | 315 |
 | feat | 246 |
+| CODE | 242 |
 | SPELL_FX | 241 |
-| CODE | 238 |
 | cls | 132 |
 | SAVE_NOTES | 75 |
 | FXO | 56 |
@@ -92,12 +92,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Jenis | Mekanik | Covered | Info | Allow | Uncovered |
 |---|---|---|---|---|---|
-| class | 1028 | 242 | 549 | 0 | 237 |
+| class | 1028 | 243 | 548 | 0 | 237 |
 | feat | 2101 | 535 | 1042 | 0 | 524 |
 | item | 18391 | 4544 | 10978 | 0 | 2869 |
 | species | 1037 | 571 | 297 | 0 | 169 |
 | spell | 6748 | 278 | 6470 | 0 | 0 |
-| sub | 7477 | 1918 | 4269 | 0 | 1290 |
+| sub | 7477 | 1921 | 4266 | 0 | 1290 |
 
 ## Per buku
 
@@ -105,16 +105,16 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | dmg | 10151 | 2513 | 6071 | 1567 | 15.4% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
-| core | 1503 | 391 | 803 | 309 | 20.6% |
+| core | 1503 | 393 | 801 | 309 | 20.6% |
 | tsgs | 1483 | 379 | 857 | 247 | 16.7% |
 | tsdm | 1222 | 326 | 675 | 221 | 18.1% |
 | tkdm | 919 | 238 | 491 | 190 | 20.7% |
 | tghp | 1117 | 374 | 560 | 183 | 16.4% |
 | egw | 566 | 141 | 289 | 136 | 24.0% |
-| tce | 736 | 149 | 460 | 127 | 17.3% |
+| tce | 736 | 150 | 459 | 127 | 17.3% |
 | au | 536 | 104 | 311 | 121 | 22.6% |
 | tdcsr | 416 | 134 | 185 | 97 | 23.3% |
-| phb14 | 516 | 169 | 262 | 85 | 16.5% |
+| phb14 | 516 | 170 | 261 | 85 | 16.5% |
 | dmg14 | 540 | 183 | 273 | 84 | 15.6% |
 | thhw | 395 | 87 | 231 | 77 | 19.5% |
 | tee24 | 464 | 166 | 232 | 66 | 14.2% |
@@ -812,33 +812,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Wizard/Leyline Magic|Leyline Weaving#1` Level 14: meditate 1 hour to create a temporary leyline of any terrain from the Leyline Spells table, with a 1-mile radi -> info:NUMONLY:GEOMETRY
-- class `sub|Wizard/Leyline Magic|Leyline Weaving#1` Level 14: meditate 1 hour to create a temporary leyline of any terrain from the Leyline Spells table, with a 1-mile radi -> info:NUMONLY:GEOMETRY
-- record `sub|Sorcerer/Clockwork Sorcery|Trance of Order#3` During that time, attack rolls made against you can't benefit from Advantage, and each time you make a D20 Test, you can -> info:COND:ATTACK_ROLL_ADV
-- class `sub|Sorcerer/Clockwork Sorcery|Trance of Order#3` During that time, attack rolls made against you can't benefit from Advantage, and each time you make a D20 Test, you can -> info:COND:ATTACK_ROLL_ADV
-- record `item|dmg|Waythe#13` (It takes only 1 minute for a good-aligned character to gain attunement with the sword.) -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Waythe#13` (It takes only 1 minute for a good-aligned character to gain attunement with the sword.) -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Crown of Deep Winter#6` Usable once per Short or Long Rest. -> covered
-- class `item|dmg|Crown of Deep Winter#6` Usable once per Short or Long Rest. -> info:REST:NONUM
-- record `feat|Mark of Sentinel|Mark of Sentinel#5` Shield is always prepared and free once per Long Rest. -> info:REST:NONUM
-- class `feat|Mark of Sentinel|Mark of Sentinel#5` Shield is always prepared and free once per Long Rest. -> info:REST:NONUM
-- record `feat|Merciful Caster|Merciful Caster#4` Finish a long rest before using merciful caster again. -> info:REST:NONUM
-- class `feat|Merciful Caster|Merciful Caster#4` Finish a long rest before using merciful caster again. -> info:REST:NONUM
-- record `sub|Vagabond/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- class `sub|Vagabond/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Cauldron of Rebirth#4` Whenever you finish a Long Rest, you can spend 1 minute using the cauldron to make one Potion of Healing (greater). -> info:ACTIVE:TRIGGER
-- class `item|dmg|Cauldron of Rebirth#4` Whenever you finish a Long Rest, you can spend 1 minute using the cauldron to make one Potion of Healing (greater). -> info:ACTIVE:TRIGGER
+- record `item|dmg|Luxon Beacon#4` A creature that touches the beacon and concentrates for 1 minute receives a Fragment of Possibility, which looks like a  -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Luxon Beacon#4` A creature that touches the beacon and concentrates for 1 minute receives a Fragment of Possibility, which looks like a  -> info:NUMONLY:GEOMETRY
+- record `feat|Baleful Scion|Baleful Scion#7` You can do this a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- class `feat|Baleful Scion|Baleful Scion#7` You can do this a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- record `item|dmg|Staff of the Reverent Warrior#8` It regains 1d6 + 4 at dawn. -> info:ACTIVE:OTHERS
+- class `item|dmg|Staff of the Reverent Warrior#8` It regains 1d6 + 4 at dawn. -> info:ACTIVE:OTHERS
+- record `item|dmg|Mantle of the Pack Lord#2` Enemies do not gain Advantage on attack rolls against you just because an ally of theirs is within 5 ft of you, such as  -> info:ACTIVE:OTHERS
+- class `item|dmg|Mantle of the Pack Lord#2` Enemies do not gain Advantage on attack rolls against you just because an ally of theirs is within 5 ft of you, such as  -> info:ACTIVE:OTHERS
+- record `item|dmg|Soul Coin#20` Casting a spell that removes a curse on a soul coin frees the soul trapped within it, as does expending all of the coin' -> info:REST:NONUM
+- class `item|dmg|Soul Coin#20` Casting a spell that removes a curse on a soul coin frees the soul trapped within it, as does expending all of the coin' -> info:REST:NONUM
 - record `sub|Captain/Knight Errant|Inspiring Battlecry#2` You can do this once, then you must finish a Long Rest to do it again. -> info:REST:NONUM
 - class `sub|Captain/Knight Errant|Inspiring Battlecry#2` You can do this once, then you must finish a Long Rest to do it again. -> info:REST:NONUM
-- record `item|dmg|Eye of Vecna#4` Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world. -> info:NUMONLY:FLAVOR
-- class `item|dmg|Eye of Vecna#4` Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world. -> info:NUMONLY:FLAVOR
-- record `item|dmg|Fabulist Gem#6` After 1 hour, the coins vanish, regardless of where they are. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Fabulist Gem#6` After 1 hour, the coins vanish, regardless of where they are. -> info:NUMONLY:GEOMETRY
-- record `sub|Monk/Way of the Four Elements|Disciple of the Elements#8` The most ki you can spend on one spell is 3 at level 5, 4 at level 9, 5 at level 13, and 6 at level 17, counting the bas -> covered
-- class `sub|Monk/Way of the Four Elements|Disciple of the Elements#8` The most ki you can spend on one spell is 3 at level 5, 4 at level 9, 5 at level 13, and 6 at level 17, counting the bas -> covered
-- record `item|coa|Scourge of Shadow#17` If attacking a good aligned creature, or attacking with the weapon unattuned, the necrotic damage dice are also increase -> covered
-- record `sub|Cleric/Winter Domain|Divine Strike#2` This becomes 2d8 at 14th level. -> info:NUMONLY:ROLL
-- class `sub|Cleric/Winter Domain|Divine Strike#2` This becomes 2d8 at 14th level. -> info:NUMONLY:ROLL
+- record `sub|Monk/Way of Shadow|Shadow Arts#2` You also learn the Minor Illusion cantrip if you do not know it. -> covered
+- record `item|dmg|Boon of Luck#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
+- class `item|dmg|Boon of Luck#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
+- record `sub|Druid/Circle of Owls|Shadow Flight#2` Its duration is Concentration, up to 1 minute. -> info:NUMONLY:GEOMETRY
+- class `sub|Druid/Circle of Owls|Shadow Flight#2` Its duration is Concentration, up to 1 minute. -> info:NUMONLY:GEOMETRY
 - record `sub|Bard/College of Masks|Virtuoso Skill#1` Once per turn when you make a D20 Test, use Charisma instead if it does not already use it. -> covered
 - class `sub|Bard/College of Masks|Virtuoso Skill#1` Once per turn when you make a D20 Test, use Charisma instead if it does not already use it. -> info:ACTIVE:TRIGGER
-- record `sub|Warden/Grey Watchman|Battle Tactics#3` You have two d6 Battle Dice. -> info:NUMONLY:ROLL
+- record `sub|Warden/Storm Sentinel|Stormlord#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> covered
+- class `sub|Warden/Storm Sentinel|Stormlord#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> info:REST:NONUM
+- record `item|dmg|Love's Embrace#8` It casts Fire Shield twice, regaining uses at dawn, and each attuned creature can cast it only once a day. -> info:ACTIVE:OTHERS
+- class `item|dmg|Love's Embrace#8` It casts Fire Shield twice, regaining uses at dawn, and each attuned creature can cast it only once a day. -> info:ACTIVE:OTHERS
+- record `sub|Druid/Circle of the Shepherd|Faithful Summons#5` You regain use after a Long Rest. -> covered
+- class `sub|Druid/Circle of the Shepherd|Faithful Summons#5` You regain use after a Long Rest. -> info:REST:NONUM
+- record `sub|Warlock/The Celestial|Healing Light#1` You have a pool of d6s equal to 1 plus your Warlock level. -> info:NUMONLY:TEXT
+- class `sub|Warlock/The Celestial|Healing Light#1` You have a pool of d6s equal to 1 plus your Warlock level. -> info:NUMONLY:TEXT
+- record `item|tdcsr|Titanstone Knuckles (Exalted)#10` Your Strength becomes 26. -> info:NUMONLY:TABLE
+- class `item|tdcsr|Titanstone Knuckles (Exalted)#10` Your Strength becomes 26. -> info:NUMONLY:TABLE
+- record `item|dmg|Earworm#6` Each time you use the earworm to cast the detect thoughts spell, it sends the information gleaned to the nearest daelkyr -> info:ACTIVE:TRIGGER

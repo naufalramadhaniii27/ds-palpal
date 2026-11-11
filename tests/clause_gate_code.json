@@ -6713,6 +6713,198 @@
    ],
    "test": "Z3 U38 native Divine Strike Community Domain level 14",
    "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u39-class-cleric-divine-intervention-4",
+   "kind": "class",
+   "owner": "Cleric",
+   "name": "Divine Intervention",
+   "lvl": 10,
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^after\\ you\\ use\\ this\\ feature,\\ you\\ must\\ finish\\ a\\ long\\ rest\\ before\\ you\\ can\\ use\\ it\\ again\\.$",
+   "anchor": [
+    "src/app/32f-logic-divine-intervention.js",
+    "export function interventionPaymentAllowed(key)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12o-logic-sheet-handlers-cleric-powers.js",
+     "function interventionCapability(ctx,source,indices)"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "finishDivineInterventionRest(kind,interventionRest)"
+    ]
+   ],
+   "test": "Z3 U39 native Intervention 2024 level 10",
+   "note": "U39 actual native UI verified in both viewports. Exact computed outcome only; no initially uncovered closure, DI free-casting/Material, or whole compound Channel Divinity claim."
+  },
+  {
+   "id": "u39-class-cleric-greater-divine-intervention-3",
+   "kind": "class",
+   "owner": "Cleric",
+   "name": "Greater Divine Intervention",
+   "lvl": 20,
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "2d4"
+   ],
+   "scopeValues": true,
+   "rx": "^if\\ you\\ do,\\ divine\\ intervention\\ becomes\\ unavailable\\ to\\ you\\ until\\ you\\ have\\ finished\\ 2d4\\ long\\ rests\\.$",
+   "anchor": [
+    "src/app/32f-logic-divine-intervention.js",
+    "export function requestWishIntervention(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12o-logic-sheet-handlers-cleric-powers.js",
+     "function interventionCapability(ctx,source,indices)"
+    ],
+    [
+     "src/data/lib/cleric-maths.js",
+     "export function recordWishIntervention("
+    ],
+    [
+     "src/data/lib/cleric-maths.js",
+     "export function completeInterventionLongRest("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "finishDivineInterventionRest(kind,interventionRest)"
+    ],
+    [
+     "src/app/32f-logic-divine-intervention.js",
+     "export function interventionPaymentAllowed(key)"
+    ]
+   ],
+   "test": "Z3 U39 native Intervention 2024 level 20",
+   "note": "U39 actual native UI verified in both viewports. Exact computed outcome only; no initially uncovered closure, DI free-casting/Material, or whole compound Channel Divinity claim."
+  },
+  {
+   "id": "u39-sub-cleric-life-domain-supreme-healing-3",
+   "kind": "sub",
+   "owner": "Cleric/Life Domain",
+   "name": "Supreme Healing",
+   "lvl": 17,
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "2d6",
+    "12"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ example,\\ a\\ spell\\ that\\ would\\ restore\\ 2d6\\ hit\\ points\\ to\\ a\\ creature\\ restores\\ 12\\ instead\\.$",
+   "anchor": [
+    "src/app/lib/supreme-healing-runtime.js",
+    "function request(token,facts,onResult)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12o-logic-sheet-handlers-cleric-powers.js",
+     "function supremeCapability(source)"
+    ],
+    [
+     "src/data/lib/cleric-maths.js",
+     "export function evaluateSupremeHealing(rule,packet,facts)"
+    ],
+    [
+     "src/app/lib/supreme-healing-runtime.js",
+     "evaluateSupremeHealing(value.rule,packet,"
+    ]
+   ],
+   "test": "Z3 U39 Supreme native Life Domain 2024 level 17",
+   "note": "U39 actual native UI verified in both viewports. Exact computed outcome only; no initially uncovered closure, DI free-casting/Material, or whole compound Channel Divinity claim."
+  },
+  {
+   "id": "u39-sub-cleric-life-domain-2014-supreme-healing-2",
+   "kind": "sub",
+   "owner": "Cleric/Life Domain (2014)",
+   "name": "Supreme Healing",
+   "lvl": 17,
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "2d6",
+    "12"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ example,\\ 2d6\\ restores\\ 12\\.$",
+   "anchor": [
+    "src/app/lib/supreme-healing-runtime.js",
+    "function request(token,facts,onResult)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12o-logic-sheet-handlers-cleric-powers.js",
+     "function supremeCapability(source)"
+    ],
+    [
+     "src/data/lib/cleric-maths.js",
+     "export function evaluateSupremeHealing(rule,packet,facts)"
+    ],
+    [
+     "src/app/lib/supreme-healing-runtime.js",
+     "evaluateSupremeHealing(value.rule,packet,"
+    ]
+   ],
+   "test": "Z3 U39 Supreme native Life Domain (2014) 2014 level 17",
+   "note": "U39 actual native UI verified in both viewports. Exact computed outcome only; no initially uncovered closure, DI free-casting/Material, or whole compound Channel Divinity claim."
+  },
+  {
+   "id": "u39-sub-cleric-order-domain-order-s-wrath-2",
+   "kind": "sub",
+   "owner": "Cleric/Order Domain",
+   "name": "Order's Wrath",
+   "lvl": 17,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ next\\ time\\ an\\ ally\\ hits\\ the\\ cursed\\ creature,\\ it\\ takes\\ an\\ extra\\ 2d8\\ psychic\\ damage\\ and\\ the\\ curse\\ ends\\.$",
+   "anchor": [
+    "src/app/lib/orders-wrath-runtime.js",
+    "function resolveDamage(token,eventId,onResult)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12o-logic-sheet-handlers-cleric-powers.js",
+     "const profile=ordersWrathProfile(order);if(profile)ctx.C.ordersWrath=profile"
+    ],
+    [
+     "src/data/lib/orders-wrath.js",
+     "export function createOrdersWrathCurse("
+    ],
+    [
+     "src/data/lib/orders-wrath.js",
+     "export function startOrdersWrathOwnTurn("
+    ],
+    [
+     "src/data/lib/orders-wrath.js",
+     "export function recordOrdersWrathAllyHit("
+    ],
+    [
+     "src/data/lib/orders-wrath.js",
+     "export function resolveOrdersWrathDamage("
+    ],
+    [
+     "src/app/lib/orders-wrath-runtime.js",
+     "function recordAllyHit(token,facts)"
+    ]
+   ],
+   "test": "Z3 U39 native Order curse 2014 level 17",
+   "note": "U39 actual native UI verified in both viewports. Exact computed outcome only; no initially uncovered closure, DI free-casting/Material, or whole compound Channel Divinity claim."
   }
  ]
 }

@@ -142,6 +142,10 @@
     "app/08d-ui-attack-self-damage.js",
     "app/08e-ui-attack-resource-damage.js",
     "app/08f-ui-turn-damage.js",
+    "app/08g-ui-supreme-healing.js",
+    "app/08h-ui-divine-intervention.js",
+    "app/08i-ui-orders-wrath.js",
+    "app/08j-ui-cleric-controls.js",
     "app/09-ui-hit-points-playbar-death-saves.js",
     "app/10-ui-conditions.js",
     "app/11-ui-breakdown.js",
@@ -194,6 +198,7 @@
     "app/32c-ui-object-repair.js",
     "app/32c-logic-play-temp-features-ammo.js",
     "app/32d-logic-play-hp-rest-recovery.js",
+    "app/32f-logic-divine-intervention.js",
     "app/33-logic-play-rage-conditions.js",
     "app/34-ui-situations.js",
     "app/34b-ui-combat-effects-modes.js",
@@ -764,7 +769,8 @@
     "data/fx-Z13.js",
     "data/fx-Z14.js",
     "data/fx-Z15.js",
-    "data/fx-Z16.js"
+    "data/fx-Z16.js",
+    "data/fx-Z17.js"
    ]
   },
   {
@@ -812,6 +818,9 @@
     "data/lib/ridden-vehicle.js",
     "data/lib/spell-source.js",
     "data/lib/turn-damage.js",
+    "data/lib/cleric-maths.js",
+    "data/lib/orders-wrath.js",
+    "data/lib/cleric-capabilities.js",
     "data/lib/temporary-cantrip.js",
     "data/lib/temporary-cantrip-projection.js",
     "data/lib/all-purpose-source.js",
@@ -833,6 +842,7 @@
     "builder/12l-logic-sheet-handlers-late.js",
     "builder/12m-logic-sheet-handlers-tools.js",
     "builder/12n-logic-sheet-handlers-turn-damage.js",
+    "builder/12o-logic-sheet-handlers-cleric-powers.js",
     "builder/12-logic-export-to-sheet.js",
     "builder/13-logic-sources-and-packs.js",
     "builder/13a-logic-pack-registry.js",

@@ -42,6 +42,13 @@ function luItemRow(C,x,invIndex){const source=allPurposeResource(x,invIndex);if(
   luItemCharges(C,x,ch,mx,dm,nev,full,invIndex)}
 function luItemCharges(C,x,ch,mx,dm,nev,full,invIndex){const when={dawn:"at dawn",dusk:"at dusk",long:"on a Long Rest",short:"on a Short Rest"}[ch[2]]||ch[2];
   C.res.push({k:luItemKey(C,x),n:x.n,tag:(nev?"Charges, not regained":full?"Charges, all back "+when:"Charges, regains "+ch[1]+" "+when+" (type the roll in the rest dialog)")+(ch[3]?". "+ch[3]:""),max:mx,reset:nev?"none":full?(ch[2]==="short"?"short":"long"):"none",f:x.n,item:1,invIndex:invIndex,rg:!nev&&!full?String(ch[1]):undefined,when:!nev&&!full?ch[2]:undefined,dmax:dm?String(ch[0]):undefined})}
+/* Historical cooldown evidence only; this never creates a resource or grants Wish. */
+function historicalWishFrame(row,prototype){return row.n===prototype.n&&row.f===prototype.feature&&row.max===1&&row.reset==="none"&&!row.item&&row.own==null}
+export function historicalInterventionWishBinding(rows){
+ const native=(typeof LU_X!=="undefined"?LU_X:[]).filter(row=>row&&row.src==="class"&&row.owner==="Cleric"&&row.feature==="Greater Divine Intervention");
+ if(native.length>1)return {status:"ambiguous",key:null};if(native.length!==1||!Array.isArray(rows))return {status:"unavailable",key:null};const prototype=native[0];if(prototype.n!=="Greater Divine Intervention: Wish"||prototype.lvl!==20||prototype.max!==1||prototype.reset!=="none"||prototype.tag!=="Divine Intervention")return {status:"unavailable",key:null};const key=resKey("x-",prototype.n,[]),collisions=rows.filter(row=>row&&row.k===key);
+ if(collisions.length>1)return {status:"ambiguous",key:null};if(collisions.length===1){const row=collisions[0];if(!historicalWishFrame(row,prototype))return {status:"ambiguous",key:null}}return {status:"verified",key}
+}
 export function luRows(C,a,pb,feats){const TLv=TL(),iv=invList(),c={TLv:TLv,iv:iv,feats:feats};
  (typeof LU_X!=="undefined"?LU_X:[]).forEach((e) =>{luTableRow(C,e,a,pb,c)});
  /* fx engine v4: lu on any gfx entry = limited-use rows. lu:{n,max,reset,tag?,pool?,die?,f?,short6?} or an array of them. max: number, array by level (index = source level - 1), "pb", "pb2", "lvl", "half", "mod:WIS" (at least 1), or {f:"formula"} (see luMax); the level is the source level (class level for class and subclass, character level otherwise). reset: long, short, dawn, dusk, none, init */

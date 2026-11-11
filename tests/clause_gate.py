@@ -1749,6 +1749,134 @@ def selftest():
     for entry in strike_registered:
         expected=strike_by_id.get(entry["id"])
         check("U38 registered exact source and conditional consumers "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
+    # U39 names exact native outcomes, never the separate free-casting sentence.
+    cleric_expected = [{'id': 'u39-class-cleric-divine-intervention-4',
+      'kind': 'class',
+      'owner': 'Cleric',
+      'name': 'Divine Intervention',
+      'lvl': 10,
+      'cls': ['RESOURCE'],
+      'vals': [],
+      'scopeValues': True,
+      'rx': '^after\\ you\\ use\\ this\\ feature,\\ you\\ must\\ finish\\ a\\ long\\ rest\\ before\\ you\\ can\\ use\\ it\\ '
+            'again\\.$',
+      'anchor': ['src/app/32f-logic-divine-intervention.js', 'export function interventionPaymentAllowed(key)'],
+      'extraAnchors': [['src/builder/12o-logic-sheet-handlers-cleric-powers.js',
+                        'function interventionCapability(ctx,source,indices)'],
+                       ['src/app/19-ui-global-click-delegation.js', 'finishDivineInterventionRest(kind,interventionRest)']],
+      'test': 'Z3 U39 native Intervention 2024 level 10'},
+     {'id': 'u39-class-cleric-greater-divine-intervention-3',
+      'kind': 'class',
+      'owner': 'Cleric',
+      'name': 'Greater Divine Intervention',
+      'lvl': 20,
+      'cls': ['RESOURCE'],
+      'vals': ['2d4'],
+      'scopeValues': True,
+      'rx': '^if\\ you\\ do,\\ divine\\ intervention\\ becomes\\ unavailable\\ to\\ you\\ until\\ you\\ have\\ finished\\ 2d4\\ '
+            'long\\ rests\\.$',
+      'anchor': ['src/app/32f-logic-divine-intervention.js', 'export function requestWishIntervention(options)'],
+      'extraAnchors': [['src/builder/12o-logic-sheet-handlers-cleric-powers.js',
+                        'function interventionCapability(ctx,source,indices)'],
+                       ['src/data/lib/cleric-maths.js', 'export function recordWishIntervention('],
+                       ['src/data/lib/cleric-maths.js', 'export function completeInterventionLongRest('],
+                       ['src/app/19-ui-global-click-delegation.js', 'finishDivineInterventionRest(kind,interventionRest)'],
+                       ['src/app/32f-logic-divine-intervention.js', 'export function interventionPaymentAllowed(key)']],
+      'test': 'Z3 U39 native Intervention 2024 level 20'},
+     {'id': 'u39-sub-cleric-life-domain-supreme-healing-3',
+      'kind': 'sub',
+      'owner': 'Cleric/Life Domain',
+      'name': 'Supreme Healing',
+      'lvl': 17,
+      'cls': ['HP'],
+      'vals': ['2d6', '12'],
+      'scopeValues': True,
+      'rx': '^for\\ example,\\ a\\ spell\\ that\\ would\\ restore\\ 2d6\\ hit\\ points\\ to\\ a\\ creature\\ restores\\ 12\\ '
+            'instead\\.$',
+      'anchor': ['src/app/lib/supreme-healing-runtime.js', 'function request(token,facts,onResult)'],
+      'extraAnchors': [['src/builder/12o-logic-sheet-handlers-cleric-powers.js', 'function supremeCapability(source)'],
+                       ['src/data/lib/cleric-maths.js', 'export function evaluateSupremeHealing(rule,packet,facts)'],
+                       ['src/app/lib/supreme-healing-runtime.js', 'evaluateSupremeHealing(value.rule,packet,']],
+      'test': 'Z3 U39 Supreme native Life Domain 2024 level 17'},
+     {'id': 'u39-sub-cleric-life-domain-2014-supreme-healing-2',
+      'kind': 'sub',
+      'owner': 'Cleric/Life Domain (2014)',
+      'name': 'Supreme Healing',
+      'lvl': 17,
+      'cls': ['HP'],
+      'vals': ['2d6', '12'],
+      'scopeValues': True,
+      'rx': '^for\\ example,\\ 2d6\\ restores\\ 12\\.$',
+      'anchor': ['src/app/lib/supreme-healing-runtime.js', 'function request(token,facts,onResult)'],
+      'extraAnchors': [['src/builder/12o-logic-sheet-handlers-cleric-powers.js', 'function supremeCapability(source)'],
+                       ['src/data/lib/cleric-maths.js', 'export function evaluateSupremeHealing(rule,packet,facts)'],
+                       ['src/app/lib/supreme-healing-runtime.js', 'evaluateSupremeHealing(value.rule,packet,']],
+      'test': 'Z3 U39 Supreme native Life Domain (2014) 2014 level 17'},
+     {'id': 'u39-sub-cleric-order-domain-order-s-wrath-2',
+      'kind': 'sub',
+      'owner': 'Cleric/Order Domain',
+      'name': "Order's Wrath",
+      'lvl': 17,
+      'cls': ['DMG', 'RESOURCE'],
+      'vals': ['2d8'],
+      'scopeValues': True,
+      'rx': '^the\\ next\\ time\\ an\\ ally\\ hits\\ the\\ cursed\\ creature,\\ it\\ takes\\ an\\ extra\\ 2d8\\ psychic\\ damage\\ '
+            'and\\ the\\ curse\\ ends\\.$',
+      'anchor': ['src/app/lib/orders-wrath-runtime.js', 'function resolveDamage(token,eventId,onResult)'],
+      'extraAnchors': [['src/builder/12o-logic-sheet-handlers-cleric-powers.js',
+                        'const profile=ordersWrathProfile(order);if(profile)ctx.C.ordersWrath=profile'],
+                       ['src/data/lib/orders-wrath.js', 'export function createOrdersWrathCurse('],
+                       ['src/data/lib/orders-wrath.js', 'export function startOrdersWrathOwnTurn('],
+                       ['src/data/lib/orders-wrath.js', 'export function recordOrdersWrathAllyHit('],
+                       ['src/data/lib/orders-wrath.js', 'export function resolveOrdersWrathDamage('],
+                       ['src/app/lib/orders-wrath-runtime.js', 'function recordAllyHit(token,facts)']],
+      'test': 'Z3 U39 native Order curse 2014 level 17'}]
+    sub_text=open(os.path.join(ROOT,"src","data","subfull-subclass-feature-text.js"),encoding="utf-8").read()
+    sub_start=re.search(r"\bvar SUB_FULL\s*=",sub_text)
+    native_sub=json.JSONDecoder().raw_decode(sub_text[sub_start.end():])[0]
+    old_sub_text=open(os.path.join(ROOT,"src","data","wotc09-subclasses-2014.js"),encoding="utf-8").read()
+    old_cleric={}
+    for match in re.finditer(r'\{"cls":"Cleric","name":"(?:Life Domain \(2014\)|Order Domain)"',old_sub_text):
+        record=json.JSONDecoder().raw_decode(old_sub_text[match.start():])[0]
+        old_cleric.update(record.get("full",{}))
+    cleric_native={
+        "u39-class-cleric-divine-intervention-4":(native_cf["Cleric|Divine Intervention"],4,10),
+        "u39-class-cleric-greater-divine-intervention-3":(native_cf["Cleric|Greater Divine Intervention"],3,20),
+        "u39-sub-cleric-life-domain-supreme-healing-3":(native_sub["Life Domain|Supreme Healing"],3,17),
+        "u39-sub-cleric-life-domain-2014-supreme-healing-2":(old_cleric["Life Domain (2014)|Supreme Healing"],2,17),
+        "u39-sub-cleric-order-domain-order-s-wrath-2":(old_cleric["Order Domain|Order's Wrath"],2,17),
+    }
+    for entry in cleric_expected:
+        full,index,level=cleric_native[entry["id"]];text=split_sentences(full)[index-1]
+        check("U39 exact native full sentence and level "+entry["id"],entry["rx"]=="^"+re.escape(text.lower())+"$" and entry["lvl"]==level)
+        loaded=load_code_atoms([entry]);key="%s|%s|%s"%(entry["kind"],entry["owner"],entry["name"])
+        atoms=[atom for proof,atom in loaded.get(key,[])]
+        row=analyze(synth(entry["kind"],entry["owner"],entry["name"],text,atoms,lvl=level))[0]
+        check("U39 native computed outcome "+entry["id"],row["status"]=="covered",row["why"])
+        fixture=tool_cases_by_name.get(entry["test"])
+        check("U39 actual source-level differential fixture "+entry["id"],bool(fixture and fixture.get("expect")))
+        for anchor_index in range(1+len(entry["extraAnchors"])):
+            damaged=dict(entry,extraAnchors=[list(pair) for pair in entry["extraAnchors"]])
+            if anchor_index==0:damaged["anchor"]=[entry["anchor"][0],"missing-cleric-native-consumer"]
+            else:damaged["extraAnchors"][anchor_index-1][1]="missing-cleric-native-producer-or-transaction"
+            check("U39 NEG missing actual producer/consumer "+entry["id"]+str(anchor_index),not load_code_atoms([damaged]));CODE_NOTES.clear()
+        mutated=re.sub(r"\b2d[468]\b","3d10",text)
+        if mutated==text:mutated=text.replace("a Long Rest","two Long Rests")
+        for other in ["You gain a +1 bonus to AC.","You deal an extra 1d8 damage on every attack.","You restore 99 Hit Points.",mutated]:
+            check("U39 NEG unrelated or changed outcome "+entry["id"]+other,all(result["status"]!="covered" for result in analyze(synth(entry["kind"],entry["owner"],entry["name"],other,atoms,lvl=level))))
+        for wrong_key in [entry["kind"]+"|Unrelated|"+entry["name"],entry["kind"]+"|"+entry["owner"]+"|Unrelated Cleric Power"]:
+            check("U39 NEG wrong native source "+entry["id"]+wrong_key,not loaded.get(wrong_key))
+        freecasting=split_sentences(native_cf["Cleric|Divine Intervention"])[2]
+        check("U39 NEG cooldown/healing/curse cannot prove freecasting "+entry["id"],all(result["status"]!="covered" for result in analyze(synth(entry["kind"],entry["owner"],entry["name"],freecasting,atoms,lvl=level))))
+    for profile in ["supreme-healing","divine-spark-heal","divine-intervention","orders-wrath"]:
+        for version in [1,2]:
+            check("U39 selector/version grants no gate atoms "+profile+str(version),not atoms_from({"clericPower":{"v":version,"profile":profile}},"GX.typed-cleric"))
+    cleric_registered=[entry for entry in json.load(open(CODE,encoding="utf-8"))["entries"] if entry.get("id","").startswith("u39-")]
+    check("U39 draft or exactly5 registered native outcome proofs",len(cleric_registered) in (0,5))
+    cleric_by_id={entry["id"]:entry for entry in cleric_expected}
+    for entry in cleric_registered:
+        expected=cleric_by_id.get(entry["id"])
+        check("U39 registered exact native source and consumers "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

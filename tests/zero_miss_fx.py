@@ -437,7 +437,7 @@ for (nm, cl, sb, L, src, rx, kind, extra) in [
 ]:
     bh = dict(cls=cl, level=L, sub=sb, base=WL, ch=extra)
     chk = (IMMU if kind == "I" else RESU)(src, rx)
-    CASES += [u1("U1 " + nm + ": " + ("Immunity" if kind == "I" else "Resistance"), bh, [(chk, True)], lo=lv(bh, L - 1), allow=U1_LV),
+    CASES += [u1("U1 " + nm + ": " + ("Immunity" if kind == "I" else "Resistance"), bh, [(chk, True)], lo=lv(bh, L - 1), allow=U1_LV+([r"^divineSpark\.source\.level$",r"^divineIntervention\.source\.level$",r"^divineIntervention\.recovery\.level$"] if nm=="War 17 Avatar of Battle" else [])),
               u1("NEG U1 " + nm + " one level earlier has no such line", lv(bh, L - 1), [(chk, False)])]
 LAND = dict(cls="Druid", level=10, sub="Circle of the Land", base=WL, ch={"land": "Arid"})
 CASES += [
@@ -2974,6 +2974,57 @@ for owner in ["Grave Domain (2014)","Peace Domain"]:
         CASES.append(dict(name="Z3 U38 legacy Potent compatibility "+owner+" "+rs,b=dict(rs=rs,cls="Cleric",sub=owner,level=14,ch={"p7opt":"Potent Spellcasting"} if rs=="2024" else {},base=dict(WL,WIS=18),extra={"sp":["Sacred Flame"]},inv=LS),expect=[("C.divineStrike===undefined",True),("(C.spells.find(s=>s.n==='Sacred Flame').db||[]).reduce((n,x)=>n+x.v,0)",4 if rs=="2024" else 0),("(C.spells.find(s=>s.n==='Sacred Flame').db||[]).length",1 if rs=="2024" else 0),(U38_NO_AUTO,True)]))
 for owner in ["Cat Domain","Knowledge Domain (2014)"]:
     CASES.append(dict(name="NEG U38 no native weapon rider "+owner,b=dict(rs="2014",cls="Cleric",sub=owner,level=20,inv=LS),expect=[("C.divineStrike===undefined",True),(U38_NO_AUTO,True)]))
+
+# U39 native source capabilities remain distinct from actor HP and ordinary attack dice.
+U39_SUPREME=[("Life Domain","2024",["spell","channel-divinity"],True),("Life Domain (2014)","2014",["spell"],False),("Solidarity Domain (PSA)","2014",["spell"],False)]
+for owner,source_edition,kinds,creature in U39_SUPREME:
+    for rs in (["2024"] if source_edition=="2024" else ["2014","2024"]):
+        for level in [16,17,20]:
+            present=level>=17;expect=[("!!C.supremeHealing",present)]
+            if present:
+                rule=dict(v=1,key="supreme-healing",source=owner,feature="Supreme Healing",sourceEdition=source_edition,sourceKinds=kinds,creatureOnly=creature)
+                expect += [("C.supremeHealing.rule",rule),("C.supremeHealing.source",dict(kind="sub",owner=owner,classKey="Cleric",level=level,pre="",edition=rs))]
+            case=dict(name="Z3 U39 Supreme native "+owner+" "+rs+" level "+str(level),b=dict(rs=rs,cls="Cleric",sub=owner,level=level,inv=LS),expect=expect)
+            if present:case.update(withoutGxFields=["sub",owner,"Supreme Healing",["clericPower"]],expectWithout=[("C.supremeHealing===undefined",True)],allow=[r"^supremeHealing(?:\.|$)"])
+            CASES.append(case)
+for rs in ["2014","2024"]:
+    for level in [9,10,19,20]:
+        present=rs=="2024" and level>=10
+        expect=[("!!C.divineIntervention",present)]
+        if present:
+            expect += [("C.divineIntervention.source",dict(kind="cls",owner="Cleric",classKey="Cleric",level=level,pre="",edition=rs)),("!!C.divineIntervention.wish",level==20),("C.divineIntervention.recovery.level",level),("C.divineIntervention.recovery.historicalWishStatus","verified"),("typeof C.divineIntervention.recovery.historicalWishKey", "string"),("C.res.filter(r=>r.k===C.divineIntervention.recovery.baseKey&&r.n==='Divine Intervention'&&r.f==='Divine Intervention'&&r.max===1&&r.reset==='long').length",1)]
+            if level==20:expect += [("C.divineIntervention.wish.cooldownDice","2d4"),("C.divineIntervention.wish.baseKey===C.divineIntervention.recovery.baseKey",True),("C.divineIntervention.wish.wishKey===C.divineIntervention.recovery.wishKey",True),("C.res.filter(r=>r.k===C.divineIntervention.recovery.wishKey&&r.n==='Greater Divine Intervention: Wish'&&r.max===1&&r.reset==='none').length",1)]
+            else:expect += [("C.divineIntervention.recovery.wishKey",None)]
+        case=dict(name="Z3 U39 native Intervention "+rs+" level "+str(level),b=dict(rs=rs,cls="Cleric",level=level,inv=LS),expect=expect)
+        if present:case.update(withoutGxFields=["cls","Cleric","Divine Intervention",["clericPower"]],expectWithout=[("C.divineIntervention===undefined",True)],allow=[r"^divineIntervention(?:\.|$)"])
+        CASES.append(case)
+for rs in ["2014","2024"]:
+    for level in [1,2,6,7,13,17,18,20]:
+        present=rs=="2024" and level>=2;maximum=4 if level>=18 else 3 if level>=6 else 2
+        expect=[("!!C.divineSpark",present)]
+        if present:expect += [("C.divineSpark.source",dict(kind="cls",owner="Cleric",classKey="Cleric",level=level,pre="",edition=rs)),("C.divineSpark.resource.max",maximum),("C.res.filter(r=>r.k===C.divineSpark.resource.key&&r.n==='Channel Divinity'&&r.max==="+str(maximum)+"&&r.reset==='short1').length",1)]
+        case=dict(name="Z3 U39 native Divine Spark healing "+rs+" level "+str(level),b=dict(rs=rs,cls="Cleric",level=level,inv=LS),expect=expect)
+        if present:case.update(withoutGxFields=["cls","Cleric","Divine Spark: Healing",["clericPower"]],expectWithout=[("C.divineSpark===undefined",True)],allow=[r"^divineSpark(?:\.|$)"])
+        CASES.append(case)
+for rs in ["2014","2024"]:
+    for level in [9,10,16,17]:
+        CASES.append(dict(name="Z3 U39 multiclass native powers "+rs+" Cleric "+str(level),b=dict(rs=rs,cls="Fighter",level=20-level,extra={"mc":[dict(cls="Cleric",sub="Life Domain (2014)",lv=level)]},inv=LS),expect=[("!!C.supremeHealing",level>=17),("C.supremeHealing?.source.level||null",level if level>=17 else None),("C.supremeHealing?.source.pre||null","m0:" if level>=17 else None),("!!C.divineIntervention",rs=="2024" and level>=10),("C.divineIntervention?.source.level||null",level if rs=="2024" and level>=10 else None),("C.divineIntervention?.source.pre||null","m0:" if rs=="2024" and level>=10 else None),("!!C.divineSpark",rs=="2024")]))
+for cls,sub,rs in [("Fighter","Life Domain","2024"),("Cleric","Life Domain","2014"),("Cleric","Not a native Life Domain","2024"),("Fighter","Solidarity Domain (PSA)","2014")]:
+    CASES.append(dict(name="NEG U39 raw name cannot grant power "+cls+" "+sub+" "+rs,b=dict(rs=rs,cls=cls,sub=sub,level=20,inv=LS),expect=[("C.supremeHealing===undefined",True)]))
+CASES.append(dict(name="NEG U39 idle disabled sources grant no subclass power",b=dict(rs="2014",cls="Cleric",sub="",level=20,extra={"src":{"core":True,"dmg":True,"psa":False,"phb14":False}},inv=LS),expect=[("C.supremeHealing===undefined",True),("C.ordersWrath===undefined",True),("C.divineIntervention===undefined",True),("C.divineSpark===undefined",True)]))
+
+for rs in ["2014","2024"]:
+    for level in [16,17,20]:
+        present=level>=17;expect=[("!!C.ordersWrath",present)]
+        if present:expect += [("C.ordersWrath",dict(v=1,key="orders-wrath",feature="Order's Wrath",dice="2d8",type="Psychic",expiry="start-your-next-turn",source=dict(kind="sub",owner="Order Domain",classKey="Cleric",level=level,pre="",edition=rs)))]
+        case=dict(name="Z3 U39 native Order curse "+rs+" level "+str(level),b=dict(rs=rs,cls="Cleric",sub="Order Domain",level=level,ch={"p7opt":"Divine Strike"} if rs=="2024" else {},inv=LS),expect=expect)
+        if present:case.update(withoutGxFields=["sub","Order Domain","Order's Wrath",["clericPower"]],expectWithout=[("C.ordersWrath===undefined",True)],allow=[r"^ordersWrath(?:\.|$)"])
+        CASES.append(case)
+    for level in [16,17]:
+        CASES.append(dict(name="Z3 U39 multiclass Order source "+rs+" "+str(level),b=dict(rs=rs,cls="Fighter",level=20-level,extra={"mc":[dict(cls="Cleric",sub="Order Domain",lv=level)]},ch={"m0:p7opt":"Divine Strike"},inv=LS),expect=[("!!C.ordersWrath",level>=17),("C.ordersWrath?.source.level||null",level if level>=17 else None),("C.ordersWrath?.source.pre||null","m0:" if level>=17 else None)]))
+CASES.append(dict(name="Z3 U39 current Potent retains conditional Order source",b=dict(rs="2024",cls="Cleric",sub="Order Domain",level=17,ch={"p7opt":"Potent Spellcasting"},inv=LS),expect=[("!!C.ordersWrath",True),("C.divineStrike===undefined",True)]))
+future_selector="(()=>{const table=window.GX.sub,key='Life Domain (2014)',old=table[key];try{table[key]=old.map(e=>e.clericPower?{...e,clericPower:{v:2,profile:e.clericPower.profile,opaque:'preserve'}}:e);const c=__bldSheetFor(structuredClone(__zmB));return c.supremeHealing===undefined}finally{table[key]=old}})()"
+CASES.append(dict(name="NEG U39 future Cleric selector grants no capability",b=dict(rs="2024",cls="Cleric",sub="Life Domain (2014)",level=20,inv=LS),expect=[(future_selector,True)]))
 
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared

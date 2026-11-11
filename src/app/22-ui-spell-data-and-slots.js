@@ -1,4 +1,6 @@
-import {bindLive,lateGet,scOf} from "./00a-reg-late-ports.js";import {C} from "./04-logic-storage.js";
+import {bindLive,lateGet,scOf} from "./00a-reg-late-ports.js";import {C,S} from "./04-logic-storage.js";
+import {evaluateSupremeHealing} from "../data/lib/cleric-maths.js";
+import {supremeHealingRuleForCharacter} from "./lib/supreme-healing-runtime.js";
 import {clamp,esc,sg} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";
@@ -36,7 +38,7 @@ function dMul(a,t){ const m=/^(\d+)d(\d+)([+-]\d+)?$/.exec(a); return m&&t>1?(m[
 function dPlus(a,v){ if(!v) return a; const m=/^(.*?)([+-]\d+)$/.exec(a); if(m&&/d/.test(m[1])) return m[1]+sg(+m[2]+v); return a+sg(v); }
 /* spCalc: numbers of one spell at slot level lv (default: the spell level) and character level cl. fx from C.spells[] (builder) or SPELL_FX by name */
 export function spFx(x){ return x&&(x.fx||(typeof SPELL_FX!=="undefined"&&SPELL_FX[x.n])||null); }
-export function spCalc(x,lv,cl,smod){ const f=spFx(x); if(!f) return null;
+export function spCalc(x,lv,cl,smod,healingFacts=undefined){ const f=spFx(x); if(!f) return null;
  const _spCalcStep1=spCalcStep1(x, lv, f, cl);
  const {L, ex, tier, bon}=_spCalcStep1;
  lv=_spCalcStep1.lv;
@@ -46,7 +48,18 @@ export function spCalc(x,lv,cl,smod){ const f=spFx(x); if(!f) return null;
  const _spCalcStep3=spCalcStep3(f, tier, ex, L, heal, smod, x, lv);
  const {n, unit, up}=_spCalcStep3;
  heal=_spCalcStep3.heal;
-  return {parts:parts,heal:heal,n:n,unit:unit,lv:lv,up:!!up,area:f.area||null,bon:spDb(x).concat((x.hb||[]).map((b) =>{ return {v:(+b.v||0)+(b.lv?lv:0),s:b.s+" (healing)"}; }))}; }
+  const supreme=supremeSpellHealing(x,heal,healingFacts);if(supreme&&supreme.applies)heal=supreme.expression;
+  const result={parts:parts,heal:heal,n:n,unit:unit,lv:lv,up:!!up,area:f.area||null,bon:spDb(x).concat((x.hb||[]).map((b) =>{ return {v:(+b.v||0)+(b.lv?lv:0),s:b.s+" (healing)"}; }))};return {...result,...(supreme?{supremeHealing:supreme}:{})}; }
+function supremeSpellHealing(spell,expression,facts){
+ const rule=supremeHealingRuleForCharacter(C);if(!expression||!rule||!(C.spells||[]).includes(spell))return null;
+ const packet={v:1,sourceKind:"spell",owner:"actor",effect:"restore-hp",expression},candidate=evaluateSupremeHealing(rule,packet,{targetCreature:true});if(!candidate.ok||!("amount" in candidate)||!candidate.applies)return null;
+ const targetCreature=facts&&typeof facts.targetCreature==="boolean"?facts.targetCreature:false,actual=evaluateSupremeHealing(rule,packet,{targetCreature});return {...candidate,applies:actual.ok&&("applies" in actual)&&actual.applies,requiresCreature:rule.creatureOnly};
+}
+export function supremeSpellPacket(index,level=undefined){
+ const spell=Number.isInteger(index)&&(C.spells||[])[index];if(!spell)return {ok:false,reason:"spell-unavailable"};const range=spLvRange(spell),current=clamp(spLvSel[spell.n]!=null?spLvSel[spell.n]:spRowLv(spell),range[0],range[1]),selected=level===undefined?current:level;
+ if(!Number.isInteger(selected)||selected<range[0]||selected>range[1])return {ok:false,reason:"slot-level-unavailable"};const calc=spCalc(spell,selected,D.level,scOf(spell).mod),maximum=calc&&calc.supremeHealing;
+ if(!maximum)return {ok:false,reason:"maximized-healing-unavailable"};const packet={v:1,sourceKind:"spell",owner:"actor",effect:"restore-hp",expression:maximum.normalExpression};return {ok:true,index,level:selected,spell,packet,maximum,signature:JSON.stringify({spell,level:selected,packet,supreme:C.supremeHealing,abilities:C.abilities,customization:S.cust})};
+}
 function spCalcStep1(x, lv, f, cl){
 const L=x.l||0; lv=Math.max(L,lv||L); const ex=L?Math.max(0,lv-(f.upAt||L)):0, tier=cl>=17?4:cl>=11?3:cl>=5?2:1;
   const bon=(spDb(x)).reduce((s,b) =>{ return s+(+b.v||0); },0);
@@ -82,13 +95,17 @@ export function spRowLv(x){ if(x.itc&&x.itc.lv&&!Array.isArray(x.itc.c)) return 
 /* v15 Checker: the Lvl control stays inside the slots the character can use. Pact Magic: the Pact level only. Mystic Arcanum and once-per-rest casts: the spell level */
 function spLvRange(x){ const sc=C.spellcasting||{}; if(!x.l) return [0,0]; if(spPact(x)){ const p=Math.max(x.l,spPactLv()||x.l); return [p,p]; } if(/Long Rest|At will/.test(x.use||"")) return [x.l,x.l]; const mx=(sc.slots||[]).length; return [x.l,Math.max(x.l,mx||9)]; }
 export var spLvSel={};
+function spellHealingBlock(calc,key){
+ let html=calc.heal?'<p class="spfl">'+dtIcon("Healing")+'<b>'+esc(calc.heal)+'</b> Hit Points regained</p>':'';
+ if(calc.supremeHealing)html+='<p class="spfl muted">Supreme Healing: '+esc(calc.supremeHealing.amount)+' Hit Points'+(calc.supremeHealing.requiresCreature?' when this spell restores a creature’s Hit Points':'')+'; dice maximized, fixed bonuses unchanged.</p><button type="button" class="btn press" data-supreme-spell-open="'+esc(key)+'" data-supreme-level="'+calc.lv+'">Record maximized healing</button>';return html;
+}
 function spFxBlock(x,key){ const sc=scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod); if(!c||(!c.parts.length&&!c.heal&&!c.n)) return "";
   let h='<div class="info-h">'+(c.parts.length?"Damage":"Effect")+'</div><div class="spfx">';
   if(c.up&&rg[1]>rg[0]) h+='<div class="splv"><button type="button" class="btn press" data-splv="-1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Lower spell level"'+(c.lv<=rg[0]?' disabled':'')+'>−</button><span>Lvl <b>'+c.lv+'</b></span><button type="button" class="btn press" data-splv="1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Higher spell level"'+(c.lv>=rg[1]?' disabled':'')+'>+</button></div>';
   else if(x.l) h+='<p class="spfl splvs">Slot level <b>'+c.lv+'</b>'+(spPact(x)?' (Pact Magic)':'')+'</p>';
   if(c.n) h+='<p class="spfl"><b>'+c.n+' '+esc(c.unit)+(c.n>1?'s':'')+'</b>'+(x.l?'':' at character level '+D.level)+', each:</p>';
   c.parts.forEach((p) =>{ h+='<p class="spfl">'+dtIcon(p.t)+'<b>'+esc(p.d)+'</b> '+esc(dTxt(p.t))+' damage'+(p.lab?' <span class="muted">('+esc(p.lab)+')</span>':'')+'</p>'; });
-  if(c.heal) h+='<p class="spfl">'+dtIcon("Healing")+'<b>'+esc(c.heal)+'</b> Hit Points regained</p>';
+  h+=spellHealingBlock(c,key);
   if(c.bon.length) h+='<p class="spfl muted">Includes '+c.bon.map((b) =>{ return sg(b.v)+" from "+esc(b.s); }).join(", ")+'.</p>';
   if(!x.l&&spFx(x).cs) h+='<p class="spfl muted">Cantrip dice at character level '+D.level+'.</p>';
   return h+'</div>'; }

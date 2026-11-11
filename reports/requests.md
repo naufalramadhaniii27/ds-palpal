@@ -149,3 +149,8 @@ Resolved in this batch: Steel Magic's `Martial without Heavy` label was excluded
 Removing advisory Divine Strike packets exposed unrelated features previously credited by generic dice deltas. Native Greater Divine Intervention specifies a 2d4-Long-Rest cooldown after Wish, while Supreme Healing in both editions maximizes healing dice. No actual cooldown or healing-die maximization consumer was found in the current app/builder. They need genuine separate models. Their feature text or unrelated changing Divine Strike labels must not serve as computed evidence. The measurement baseline is not raised or rewritten to hide these preexisting gaps.
 
 Order Domain's native Order's Wrath second sentence was also falsely credited by the old Divine Strike 2d8 packet. Its target curse and next allied hit need their own source-owned consumer. Removing that packet restores the existing ACTIVE:TRIGGER classification automatically, rather than adding a new info rule or counting an uncovered closure. The actual target mechanic remains pending and is not claimed by the Divine Strike implementation.
+
+
+## U39 resolution of the false-proxy Cleric mechanics
+
+The current Supreme Healing profiles, current Greater DI/Wish recovery and Order's Wrath target lifecycle now have real source-owned numerical/state consumers. The strict 752-unit measurement baseline passes without a baseline rewrite. The earlier U38 missing-consumer requests above are resolved by this scoped work. Base DI's free-casting/Material clause, arbitrary Wish outcomes, Divine Spark damage/Turn Undead and legacy 2014 DI outcome rules are not claimed by these consumers.
