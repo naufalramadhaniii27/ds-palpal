@@ -17,7 +17,7 @@ SUB = {
 
 # The other Valda 2014 subclasses live in their own files, one per class
 import importlib.util as _u, os as _o
-for _f in ("tvss14_sub_warden", "tvss14_sub_alchemist", "tvss14_sub_captain", "tvss14_sub_craftsman", "tvss14_sub_investigator"):
+for _f in ("tvss14_sub_warden", "tvss14_sub_alchemist", "tvss14_sub_captain", "tvss14_sub_craftsman", "tvss14_sub_investigator", "tvss14_sub_martyr"):
     _p = _o.path.join(_o.path.dirname(_o.path.abspath(__file__)), _f + ".py")
     _sp = _u.spec_from_file_location(_f, _p); _m = _u.module_from_spec(_sp); _sp.loader.exec_module(_m)
     SUB.update(_m.SUB)

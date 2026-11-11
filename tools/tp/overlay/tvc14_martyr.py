@@ -1,0 +1,26 @@
+"""Martyr, Valda's Spire of Secrets (2014 rules, Mage Hand Press). Own wording. Internal name "Martyr (2014)"."""
+CLASS = {
+ "eq": ["A martial weapon and a Shield, or two martial weapons", "Scale Mail, or Chain Mail if proficient", "A Light Crossbow and 20 bolts, or any simple weapon", "A Priest's Pack or an Explorer's Pack", "A Holy Symbol", "3d4 × 10 GP"],
+ "f": {
+  "Mortal Burden": "You are fated to die for a great ideal. Pick a Mortal Burden from the list below the class. It gives features at levels 1, 6, 14 and 18. Burden spells. Each burden has spells you gain at set Martyr levels. They are always prepared and do not count against your prepared spells. A burden spell that is not on the Martyr list still counts as a Martyr spell for you.",
+  "Ordained Death": "When you drop to 0 HP and start death saving throws, you die only after 5 failures. A spell whose sole effect is to restore you to life (not undeath) needs no material components when cast on you.",
+  "Mark of the Herald": "A mark or stigmata of your cause shows on you. You have Advantage on ability checks to persuade others to help your holy cause.",
+  "Sainted Reprisal": "When a creature you see within 5 feet hits you with a melee attack, you can use your reaction to deal it 1d6 Necrotic or Radiant damage (your choice). It rises to 2d6 at level 5, 3d6 at level 11 and 4d6 at level 17.",
+  "Spellcasting": "You pay for divine magic with your own HP. Casting. To cast a Martyr spell of level 1 or higher, you lose HP to create and spend a spell slot of that level or higher. The cost cannot be reduced or avoided: slot level 1 costs 5 HP, level 2 costs 10, level 3 costs 20, level 4 costs 30, level 5 costs 45. You make no Constitution saves to keep concentration because of this loss. The Martyr table gives the highest slot level you can create. The Spell Uses column gives how many spells you can cast, and each cast spends one use. A Long Rest restores all uses. Preparing. Choose Martyr spells equal to your Wisdom modifier plus half your Martyr level, rounded down (minimum 1), of a level up to the table's Max Spell Level. You can change the list after a Long Rest. No healing. You regain no HP from spells you cast. Ability. Wisdom, for save DCs and attack rolls. Spell save DC = 8 + Proficiency Bonus + Wisdom modifier. Spell attack = Proficiency Bonus + Wisdom modifier. Focus. A holy symbol.",
+  "Divine Healing": "As an action, you pray for mercy. You spend up to your Proficiency Bonus in Hit Dice and regain HP as if you had finished a Short Rest.",
+  "Torment": "Once on each of your turns when you hit with a melee weapon attack, you can lose 5 HP to deal an extra 10 Necrotic or Radiant damage (your choice). You make no Constitution saves to keep concentration because of this loss. At level 11 you can instead lose 10 HP to deal an extra 20.",
+  "Extra Attack": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+  "Mortal Burden feature": "Your Mortal Burden gives you a feature at this level.",
+  "Respite": "When you finish a Long Rest, you regain all spent Hit Dice, not just half.",
+  "Undying Conviction": "When you drop to 0 HP and are not killed outright, you can drop to 1 HP instead. Long Rest to use it again.",
+  "Torment improvement": "When you use Torment, you can lose 10 HP to deal an extra 20 damage.",
+  "March Unto Destiny": "You need no food or drink, and you cannot be paralyzed, petrified or stunned.",
+  "Final Martyrdom": "As an action you become immune to all damage for 10 minutes. You cannot be blinded, charmed, deafened, exhausted, frightened, incapacitated, poisoned, restrained or knocked unconscious. You have Advantage on all ability checks, attack rolls and saving throws. You can cast Wish once, with no slot and no HP. If you use it for anything other than copying another spell, you suffer no Strength loss and no Necrotic damage. When it ends, you die. Only divine intervention can stop this, and nothing can return you to life.",
+ },
+ "res": [{"n": "Spell Uses", "tag": "Long Rest", "reset": "long", "max": "col:Spell Uses"},
+         {"n": "Undying Conviction", "tag": "Long Rest", "reset": "long", "max": [0]*9 + [1]*11},
+         {"n": "Final Martyrdom", "tag": "Action. 10 minutes", "reset": "long", "max": [0]*19 + [1]}],
+ "lu": [],
+ "acts": {"Sainted Reprisal": "reaction", "Divine Healing": "action", "Final Martyrdom": "action"},
+ "fx": [{"n": "March Unto Destiny", "l": 15, "defs": [["Note", "March Unto Destiny: cannot be paralyzed, petrified or stunned. Needs no food or drink"]]}],
+}

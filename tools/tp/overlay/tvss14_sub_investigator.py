@@ -71,7 +71,7 @@ SUB = {
  },
  "lu": [{"feature": "Monster Slayer", "lvl": 6, "max": "mod:INT", "reset": "short", "tag": "Bonus Action attack"}],
  "acts": {"Monster Slayer": "bonus"},
- "fx": [[3, "Bonus Proficiencies", {"armor": ["Medium"], "weapons": ["Martial"]}]]},
+ "grant": {"f": "Bonus Proficiencies", "armor": [[3, "Medium"]], "weapons": [[3, "Martial"]]}, "fx": []},
 
 "Infernal Agent": {"spab": "",
  "f": {
@@ -95,8 +95,8 @@ SUB = {
  "lu": [{"feature": "Hallowed Chalice", "n": "Hallowed Chalice", "lvl": 3, "max": 5, "reset": "none", "tag": "Holy Water flasks"},
         {"feature": "Excommunication", "lvl": 14, "max": 1, "reset": "long", "tag": "Action. 1 minute"}],
  "acts": {"Excommunication": "action"},
- "fx": [[3, "Bonus Proficiencies", {"armor": ["Medium"]}],
-        [3, "Exorcist's Doctrines", {"skills": ["Religion"], "skillPE": ["Religion"]}]]},
+ "grant": {"f": "Bonus Proficiencies", "armor": [[3, "Medium"]]},
+ "fx": [[3, "Exorcist's Doctrines", {"skills": ["Religion"], "skillPE": ["Religion"]}]]},
 
 "Kid Sleuth": {"spab": "",
  "f": {
