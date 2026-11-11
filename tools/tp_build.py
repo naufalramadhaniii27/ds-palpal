@@ -41,8 +41,8 @@ BOOKS = [
  {"id": "thhw", "file": ["Hit Point Press; Humblewood Campaign Setting.json", "Hit Point Press; Humblewood Tales.json"],
   "tag": "HWCS", "name": "Humblewood", "pub": "Hit Point Press", "ed": "2014", "sub": "thhw_sub", "bg": "thhw_bg", "feat": "thhw_feat", "spell": "thhw_spell", "item": "thhw_item", "species": "thhw_species", "alias": "Humblewood"},
  {"id": "tvss14", "file": "Mage Hand Press; Valda's Spire of Secrets - 2014.json", "tag": "VSS14", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2014",
-  "sub": "tvss14_sub", "feat": "tvss14_feat", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
-  "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Investigator": "Investigator (2014)", "Martyr": "Martyr (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)"}},
+  "sub": "tvss14_sub", "feat": "tvss14_feat", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger", "channeler"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
+  "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Investigator": "Investigator (2014)", "Martyr": "Martyr (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
