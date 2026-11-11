@@ -43,7 +43,7 @@ BOOKS = [
  {"id": "tvss14", "monsters": True, "subren": ["House of Lancers"], "file": "Mage Hand Press; Valda's Spire of Secrets - 2014.json", "tag": "VSS14", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2014",
   "sub": "tvss14_sub", "feat": "tvss14_feat", "species": "tvss14_species", "spell": "tvss14_spell", "item": "tvss14_item", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger", "channeler"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
   "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Investigator": "Investigator (2014)", "Martyr": "Martyr (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}}, {"id": "tdm14", "file": "Mage Hand Press; Dark Matter - 2014.json", "tag": "DM14", "name": "Dark Matter", "pub": "Mage Hand Press", "ed": "2014",
-  "sub": "tdm14_sub", "feat": "tdm14_feat", "spell": "tdm14_spell", "species": "tdm14_species", "bg": "tdm14_bg", "alias": "DM14", "cls": ["gadgeteer"], "clspre": "tvc14_", "twin": "Mage Hand Press; Dark Matter - 2024.json", "subsfx": " (2014)",
+  "sub": "tdm14_sub", "feat": "tdm14_feat", "spell": "tdm14_spell", "species": "tdm14_species", "bg": "tdm14_bg", "item": "tdm14_item", "alias": "DM14", "cls": ["gadgeteer"], "clspre": "tvc14_", "twin": "Mage Hand Press; Dark Matter - 2024.json", "subsfx": " (2014)",
   "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}},
 ]
 LV = {"1": 1, "2": 2}
@@ -290,7 +290,7 @@ def item_records(bk, data, M):
 
 DMGT = {"B": "Bludgeoning", "P": "Piercing", "S": "Slashing", "N": "Necrotic", "R": "Radiant", "O": "Force", "F": "Fire", "L": "Lightning", "I": "Poison", "Y": "Psychic", "T": "Thunder", "A": "Acid", "C": "Cold"}
 PROP = {"A": "Ammunition", "F": "Finesse", "H": "Heavy", "L": "Light", "LD": "Loading", "R": "Reach", "T": "Thrown", "2H": "Two-Handed", "V": "Versatile", "RLD": "Reload", "Alc:D": "Destructible", "GC:VSS-B": "Blaster", "GC:VSS-C": "Cooldown", "Craft:R": "Reload", "HC": "High Caliber", "AP": "Armor-Piercing", "BP": "Blackpowder", "CS": "Cumbersome", "D": "Double", "Dam": "Damage", "Haft": "Hafted", "Mag": "Magazine", "Mom": "Momentum", "Rep": "Repeater", "SGttEH:Art": "Artillery", "SGttEH:Bar": "Barrel", "SGttEH:Bla": "Blaring", "SGttEH:Boo": "Booming", "SGttEH:FnFr": "Fan Fire", "SGttEH:Sdy": "Steady", "SGttEH:SpFr": "Spread Fire", "SGttEH:TwBar": "Twinned Barrel", "TK": "Trick Weapon", "DM-B": "Blaster", "DM-C": "Cooldown", "DM-D": "Destructible", "DM-F": "Firearm", "DM-R": "Recoil"}
-PROP14 = {"AU": "Automatic", "CO": "Concealable", "DR": "Dry", "DU": "Double", "EL": "Elegant", "EX": "Explosive", "FG": "Foregrip", "FI": "Fist", "HT": "Heat", "LO": "Loading", "MA": "Massive", "MO": "Mounted", "MS": "Misfire", "PA": "Parrying", "RE": "Returning", "RO": "Rocket", "SC": "Scatter", "SH": "Superheavy", "ST": "Sighted", "TE": "Tension", "TR": "Trip", "TW": "Twinshot", "XO": "Exotic", "SW": "Switch"}      # properties of the 2014 Valda book (only read for 2014 books)
+PROP14 = {"AU": "Automatic", "CO": "Concealable", "DR": "Dry", "DU": "Double", "EL": "Elegant", "EX": "Explosive", "FG": "Foregrip", "FI": "Fist", "HT": "Heat", "LO": "Loading", "MA": "Massive", "MO": "Mounted", "MS": "Misfire", "PA": "Parrying", "RE": "Returning", "RO": "Rocket", "SC": "Scatter", "SH": "Superheavy", "ST": "Sighted", "TE": "Tension", "TR": "Trip", "TW": "Twinshot", "XO": "Exotic", "SW": "Switch", "BLSTR": "Blaster", "SCTR": "Scatter", "SGT": "Sighted", "MNT": "Mounted", "OH": "Overheat", "NL": "Nonlethal", "FST": "Fist"}      # properties of the 2014 Valda and Dark Matter books (only read for 2014 books)
 ARMR = {}
 WEAP = {}; MAST = {}
 
@@ -320,7 +320,7 @@ def weapon_records(bk, data, M):
         for c in it.get("property", []) or []:
             k = c.split("|")[0]
             if bk["ed"] == "2014" and (k in PROP14 or k == "RLD"):
-                nm_ = PROP14.get(k) or "Reload"; ex_ = it["dmg2"] if k == "SC" and it.get("dmg2") else it.get("reload") if k == "RLD" and it.get("reload") else None
+                nm_ = PROP14.get(k) or "Reload"; ex_ = it["dmg2"] if k in ("SC", "SCTR") and it.get("dmg2") else it.get("reload") if k == "RLD" and it.get("reload") else None
                 props.append(nm_ + (" (%s)" % ex_ if ex_ else "")); continue
             if k in PROP: props.append(PROP[k] + (" (%s)" % it["dmg2"] if k == "V" and it.get("dmg2") else ""))
         mast = ((it.get("mastery") or [""])[0]).split("|")[0]
