@@ -663,6 +663,7 @@
     "data/q05-cult.js",
     "data/q06-disease.js",
     "data/q06-language.js",
+    "data/q06-tvss14-monster.js",
     "data/q08-deck.js",
     "data/q08-hazard.js",
     "data/q08-object.js",
