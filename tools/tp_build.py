@@ -47,6 +47,8 @@ BOOKS = [
   "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}},
  {"id": "tgh14p", "monsters": True, "file": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2014.json", "tag": "GHPG14", "name": "Grim Hollow Player's Guide", "pub": "Ghostfire Gaming", "ed": "2014",
   "sub": "tgh14p_sub", "spell": "tgh14p_spell", "item": "tgh14p_item", "species": "tgh14p_species", "bg": "tgh14p_bg", "trans": "tgh14p_trans", "alias": "GH14", "twin": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2024.json", "subsfx": " (2014)"},
+ {"id": "tgh14c", "monsters": True, "file": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2014.json", "tag": "GHCG14", "name": "Grim Hollow Campaign Guide", "pub": "Ghostfire Gaming", "ed": "2014",
+  "feat": "tgh14c_feat", "spell": "tgh14c_spell", "item": "tgh14c_item", "bg": "tgh14c_bg", "trans": "tgh14c_trans", "alias": "GH14C", "twin": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2024.json", "subsfx": " (2014)"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -213,7 +215,10 @@ def trans_records(bk, data, M2):
             m14 = re.search(r"(\d+)(?:st|nd|rd|th) Level of ([A-Za-z ]+?) Transformation", txt)
             if m14: m = type("M", (), {"group": lambda self, i, a=m14: {1: a.group(1), 2: a.group(2)}[i]})()
         if not m: GAP.append((bk["tag"], "transformation", o["name"], "no stage in the prerequisite")); continue
-        by.setdefault(m.group(2), {}).setdefault(int(m.group(1)), {"B": [], "F": []})["B" if ft[0].endswith("TB") else "F"].append(o["name"])
+        by.setdefault(m.group(2), {}).setdefault(int(m.group(1)), {"B": [], "F": []})["B" if ft[0].endswith("TB") and o["name"] not in getattr(M2, "AS_FLAW", ()) else "F"].append(o["name"])
+    for nm, sts in getattr(M2, "EXTRA", {}).items():          # boons of another book that share a transformation Level with this book
+        for st, names in sts.items():
+            by.setdefault(nm, {}).setdefault(st, {"B": [], "F": []})["B"].extend(n for n in names if n not in by.get(nm, {}).get(st, {"B": []})["B"])
     for nm in sorted(by):
         t = T.get(nm)
         if not t: GAP.append((bk["tag"], "transformation", nm, "no overlay text, transformation not built")); continue
@@ -224,6 +229,8 @@ def trans_records(bk, data, M2):
                 if n not in t["opt"]: GAP.append((bk["tag"], "transformation", "%s | %s" % (nm, n), "no overlay text"))
             fixed = [n for n in rule.get("fixed", []) if n in sd["B"]]
             rest = [n for n in sd["B"] if n not in fixed]
+            if t.get("lower"):      # the book lets a Level pick a Boon of this or a lower Level
+                rest = [n for s2 in sorted(by[nm]) if s2 < st for n in by[nm][s2]["B"] if n not in (t["stages"].get(s2) or {}).get("fixed", [])] + rest
             full = ""
             if st == 1 and t.get("intro"): full += t["intro"] + "\n"
             full += "**%s %d.** %s" % (SL, st, rule["rule"])
@@ -243,8 +250,9 @@ def trans_records(bk, data, M2):
     for n in gods:
         if n not in G: GAP.append((bk["tag"], "optional feature", "Gift of Dread | " + n, "no overlay text"))
     if gods:
-        out["Gift of Dread"] = {"cat": "G", "hb": bk["tag"], "d": getattr(M2, "GIFT_D", "Pick one Gift of Dread."), "full": getattr(M2, "GIFT_INTRO", "Pick one Gift of Dread."),
-                                "pick": [{"k": "god", "t": "multi", "n": 1, "title": "Gift of Dread", "list": [[n, G.get(n, "")] for n in gods]}]}
+        gn = getattr(M2, "GIFT_NAME", "Gift of Dread")
+        out[gn] = {"cat": "G", "hb": bk["tag"], "d": getattr(M2, "GIFT_D", "Pick one " + gn + "."), "full": getattr(M2, "GIFT_INTRO", "Pick one " + gn + "."),
+                   "pick": [{"k": getattr(M2, "GIFT_KEY", "god"), "t": "multi", "n": 1, "title": gn, "list": [[n, G.get(n, "")] for n in gods]}]}
     return out, acts
 
 def feat_records(bk, data, M):
