@@ -2505,6 +2505,32 @@ for variant in ["Holy Avenger (Longsword)","Holy Avenger (Rapier)","Holy Avenger
     expr="C.attacks.find(a=>a.n===%s)"%json.dumps(variant)
     CASES.append(dict(name=("Z3" if active else "NEG")+" U20 Holy Avenger variant "+variant+json.dumps(target),b=dict(cls="Paladin",level=4,inv=[dict(n=variant,q=1,eq=True)]),target=target,expect=[("!!"+expr+".xdice",active)]+([(expr+".xdice[0].roll",True)] if active else [])))
 
+# U21: actual rolled packets for an independent consumed benefit and a typed
+# reference that follows the weapon's final attack damage type.
+for removed in [False,True]:
+    inv=[] if removed else [dict(n="Potion of Pugilism",q=1,eq=False)]
+    CASES.append(dict(name="Z3 U21 rolled Pugilism "+str(removed),b=dict(cls="Fighter",level=4,inv=inv),tog={"consumed-pugilism":True},
+        expect=[("C.attacks[0].xdice[0].roll",True),("__deriveFor(C).atk[0].damageParts.find(p=>p.type==='Force').expr","1d6")],
+        allow=[r"^attacks\.0\.(note|xdice)",r"^fxToggles(?:\.|$)"]))
+CASES.append(dict(name="NEG U21 Pugilism not consumed",b=dict(cls="Fighter",level=4,inv=[dict(n="Potion of Pugilism",q=1,eq=False)]),tog={"consumed-pugilism":False},expect=[("!!C.attacks[0].xdice",False),("!!__deriveFor(C).atk[0].damageParts",False)],allow=[]))
+for variant,type_ in [("Dragon Slayer","Slashing"),("Dragon Slayer (Rapier)","Piercing"),("Dragon Slayer (Longbow)","Piercing"),("Dragon Slayer (Spear)","Piercing")]:
+    expr="C.attacks.find(a=>a.n===%s)"%repr(variant)
+    for target,active in [({"type":"Dragon"},True),({},False),({"type":"Object"},False),({"type":"Fey"},False)]:
+        checks=[("!!"+expr+".xdice",active),("!!C.attacks.find(a=>a.n==='Longsword').xdice",False)]
+        if active:checks += [(expr+".xdice[0].typeFrom","weapon"),("__deriveFor(C).atk[1].damageParts.length",1),("__deriveFor(C).atk[1].damageParts[0].type",type_),("__deriveFor(C).atk[1].damageParts[0].expr.endsWith('+3d6')",True)]
+        CASES.append(dict(name=("Z3" if active else "NEG")+" U21 weapon damage reference "+variant+str(target),b=dict(cls="Fighter",level=4,inv=[dict(n=variant,q=1,eq=True),dict(n="Longsword",q=1,eq=True)]),target=target,expect=checks))
+for type_ in ["Necrotic","Psychic","Radiant"]:
+    CASES.append(dict(name="Z3 U21 pact Dragon Slayer "+type_,b=dict(cls="Warlock",level=4,ch={"invocation":["Pact of the Blade"],"pactWep":["Dragon Slayer"],"pactDmg":[type_]},inv=[dict(n="Dragon Slayer",q=1,eq=True)]),target={"type":"Dragon"},
+        expect=[("C.attacks[1].type",type_),("__deriveFor(C).atk[1].damageParts.length",1),("__deriveFor(C).atk[1].damageParts[0].type",type_),("__deriveFor(C).atk[1].damageParts[0].expr.endsWith('+3d6')",True)]))
+
+CASES.append(dict(name="Z3 U21 2014 pact preserves normal Dragon Slayer type",b=dict(rs="2014",cls="Warlock",level=4,ch={"p3invocation":["Pact of the Blade"],"pactWep":["Dragon Slayer"],"pactDmg":["Radiant"]},inv=[dict(n="Dragon Slayer",q=1,eq=True)]),target={"type":"Dragon"},expect=[("C.attacks[1].type","Slashing"),("__deriveFor(C).atk[1].damageParts[0].type","Slashing")]))
+
+CASES += [
+ dict(name="Z3 U21 two Dragon Slayer variants stay local",b=dict(cls="Fighter",level=4,inv=[dict(n="Dragon Slayer (Longsword)",q=1,eq=True),dict(n="Dragon Slayer (Rapier)",q=1,eq=True)]),target={"type":"Dragon"},expect=[("C.attacks[1].xdice.length",1),("C.attacks[2].xdice.length",1),("C.attacks[1].xdice[0].s.includes('(Longsword)')",True),("C.attacks[2].xdice[0].s.includes('(Rapier)')",True)]),
+ dict(name="Z3 U21 duplicate Dragon Slayer is one rider",b=dict(cls="Fighter",level=4,inv=[dict(n="Dragon Slayer",q=1,eq=True),dict(n="Dragon Slayer",q=1,eq=True)]),target={"type":"Dragon"},expect=[("C.attacks[1].xdice.length",1),("C.attacks[1].misc",1)]),
+ dict(name="Z3 U21 duplicate Dragontooth potency does not stack",b=dict(cls="Fighter",level=4,inv=[dict(n="Dragontooth Dagger",q=1,eq=True),dict(n="Dragontooth Dagger",q=1,eq=True)]),target={"tags":["cult-enemy"]},expect=[("C.attacks[1].misc",2),("C.attacks[1].dmgBonus",2),("C.attacks[1].xdice.length",2),("__deriveFor(C).atk[1].damageParts.find(p=>p.type==='Acid').expr","1d6+1d6")]),
+]
+
 # The lazy rule-link index must settle before comparing inventory HTML. Keep the
 # HTML comparison strict; wait out the documented 250ms link-index cache.
 # Warming does not permit any additional changed paths.

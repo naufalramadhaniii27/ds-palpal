@@ -75,7 +75,7 @@
  if(!FXS16A.parseDmg)return;
  FXS16A.withAttackData=function(el,spec){if(!el||!el.getAttribute)return spec;
   const c=+el.getAttribute("data-crit-at");if(Number.isInteger(c)&&c>=2&&c<=20)spec.critAt=c;
-  try{const p=JSON.parse(el.getAttribute("data-damage-parts")||"null");if(Array.isArray(p)&&p.length&&p.every((x) =>x&&typeof x.expr==="string"&&typeof x.type==="string")){spec.damageParts=p;spec.dtype=p.map((x) =>x.type).join(" + ")}}catch(e){}
+  try{const p=JSON.parse(el.getAttribute("data-damage-parts")||"null");if(Array.isArray(p)&&p.length&&p.every((x) =>x&&typeof x.expr==="string"&&typeof x.type==="string")){spec.damageParts=p;spec.dmg=p.map((x) =>x.expr).join("+");spec.dtype=p.map((x) =>x.type).join(" + ")}}catch(e){}
   return spec};
  FXS16A.packetResult=function(groups,mode,vals){let vi=0;const out=[];
   groups.forEach((g) =>{let total=0;const dice=[];FXS16A.parseDmg(g.expr).forEach((q) =>{

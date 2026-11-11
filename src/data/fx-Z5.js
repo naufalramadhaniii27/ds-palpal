@@ -58,7 +58,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  I("Potion of Giant Strength (hill)",{"n":"Potion of Giant Strength (hill)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-hill","label":"Hill giant strength effect (1 hour)","default":false},"abSet":[["STR",21]]});
  I("Potion of Giant Strength (stone)",{"n":"Potion of Giant Strength (stone)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-stone","label":"Stone giant strength effect (1 hour)","default":false},"abSet":[["STR",23]]});
  I("Potion of Giant Strength (storm)",{"n":"Potion of Giant Strength (storm)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-storm","label":"Storm giant strength effect (1 hour)","default":false},"abSet":[["STR",29]]});
- I("Potion of Pugilism",{"n":"Potion of Pugilism","consume":{"duration":"10 minutes"},"toggle":{"id":"consumed-pugilism","label":"Pugilism potion effect (10 minutes)","default":false},"atkDice":[{"when":"unarmed","d":"1d6","t":"Force","note":"On each hit while the potion is active"}]});
+ I("Potion of Pugilism",{"n":"Potion of Pugilism","consume":{"duration":"10 minutes"},"toggle":{"id":"consumed-pugilism","label":"Pugilism potion effect (10 minutes)","default":false},"atkDice":[{"when":"unarmed","d":"1d6","t":"Force","roll":true,"note":"On each hit while the potion is active"}]});
 
  /* Remaining native-compatible benefits and narrowly scoped extensions. */
  (GX.cls["Jaeger"]=GX.cls["Jaeger"]||[]).push({"n":"Seasoned Survivor","l":4,"advOn":["checks to locate secret passages, interpret markings or messages on surfaces, and reconstruct events from blood stains or remains"]});

@@ -10354,6 +10354,15 @@
   },
   {
    "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "builder/12b-logic-sheet-schema.js",
+   "import": true,
+   "names": [
+    "defineLocals"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
    "to": "builder/14-logic-multiclass-hp-shop.js",
    "import": false,
    "names": [

@@ -1,4 +1,4 @@
-import {typeOk,targetProblems,damageType,damageExpression} from "./01-logic-core-helpers.js";
+import {typeOk,targetProblems,riderProblems} from "./01-logic-core-helpers.js";
 /* ==========================================================================================================================================
    fx engine, SOLID stage 2 (L): ONE schema for an effect entry. Every field an entry may carry and the types it may hold. The same schema applies to
    all registries: the GX.<kind> tables, the class, species and background effect lists, the magic item rows (fx object) and the entries gfx() builds.
@@ -132,5 +132,5 @@ function extraEntryProblems(e,bad){ if(e.retain&&(!e.toggle||!e.toggle.id||e.tog
   if(typeof e.consume.duration!=="string"||!e.consume.duration.trim())bad.push("consume needs a duration label");
  }
  if(e.target)bad.push(...targetProblems(e.target));
- (Array.isArray(e.atkDice)?e.atkDice:[]).forEach((x) =>{if(x&&x.roll&&(!damageType(x.t)||!damageExpression(x.d)))bad.push("rolled extra damage needs literal dice and one damage type")});
+ (Array.isArray(e.atkDice)?e.atkDice:[]).forEach((x) =>bad.push(...riderProblems(x)));
 }

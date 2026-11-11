@@ -29,3 +29,13 @@ export function targetProblems(p){if(!p||typeof p!=="object"||Array.isArray(p))r
 export function damageType(t){return known(t,DAMAGE_TYPES)}
 
 export function damageExpression(v){const s=String(v==null?"":v).replace(/−/g,"-").replace(/\s+/g,"");return /^\d+(?:d\d+)?(?:[+-]\d+(?:d\d+)?)*$/i.test(s)?s:null}
+
+/* A weapon reference resolves after all attack type replacements, not at the
+   earlier entry-application phase. Free-form type descriptions remain advisory. */
+export function riderDamageType(x,type){if(x.typeFrom!=null)return x.typeFrom==="weapon"?damageType(type):"";return damageType(x.t)}
+export function riderProblems(x){const out=[];if(!x||typeof x!=="object")return out;
+ if("roll" in x&&typeof x.roll!=="boolean")out.push("extra damage roll must be boolean");
+ if("typeFrom" in x&&x.typeFrom!=="weapon")out.push("extra damage typeFrom must reference weapon");
+ if(x.typeFrom&&x.t)out.push("extra damage must choose a type or a type reference");
+ if(x.roll===true&&(!damageExpression(x.d)||!(x.typeFrom==="weapon"||damageType(x.t))))out.push("rolled extra damage needs literal dice and one damage type");
+ return out}

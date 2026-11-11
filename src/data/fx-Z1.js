@@ -10,7 +10,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};
  function R(n,d,t){I(n,{n:n,atkDice:[{when:n,d:d,t:t}]})}
  R("Axe of the Dwarvish Lords","20","Slashing when the d20 shows a 20 (against a creature)");
  R("Axe of the Dwarvish Lords","1d8","Force on a ranged hit (2d8 against a Giant)");
- R("Dragon Slayer","3d6","of the weapon's type, against a Dragon");
+ I("Dragon Slayer",{target:{types:["Dragon"]},atkDice:[{when:"Dragon Slayer",d:"3d6",typeFrom:"weapon",roll:true}]});
  R("Dwarven Thrower","1d8","Force on a ranged hit (2d8 against a Giant)");
  R("Executioner's Axe","2d6","Slashing against a Humanoid, and you gain that many Temporary Hit Points");
  R("Flame Tongue","2d6","Fire while the weapon is burning (Bonus Action to light it)");

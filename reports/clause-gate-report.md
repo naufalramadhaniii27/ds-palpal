@@ -18,7 +18,7 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 | Angka yang tidak dijelaskan record mana pun | 2929 kalimat |
 | Kelas tanpa atom (record tidak ada untuk kelas itu) | 4465 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 306 |
-| Waktu | muat data 0 s, analisis 14 s |
+| Waktu | muat data 1 s, analisis 13 s |
 
 Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 164 ditangkap (55.0%). Hapus semua atom kelas yang dibutuhkan: 166 ditangkap (55.7%). Selftest sintetis: lulus.
 

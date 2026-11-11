@@ -52,8 +52,9 @@ function attackTargetHTML(rows){const t=normalizeTarget(S.attackTarget),tags=[];
 export function renderFxT(){const el=$("#fxT");if(!el)return;const L=fxList(),targets=(C&&C.fxTargets)||[];
  if(!L.length&&!targets.length){el.hidden=true;el.innerHTML="";return}el.hidden=false;
  el.innerHTML=(L.length?'<span class="cond-l" id="fxTl">Active effects</span><div class="fxt-g" role="group" aria-labelledby="fxTl">'+L.map((t) =>'<button type="button" role="switch" class="fxchip press'+(t.on?' on':'')+'" aria-checked="'+(!!t.on)+'" data-fxt="'+esc(t.id)+'"><i class="fxchip-k" aria-hidden="true"></i><span class="fxchip-t"><b>'+esc(t.consume?(t.on?'End: ':'Drink: ')+t.label:t.label)+'</b>'+(t.src?'<small>'+esc(t.src)+'</small>':'')+'</span></button>').join("")+'</div>':'')+(targets.length?attackTargetHTML(targets):"")}
-document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-fxt]"); if(!b) return; e.preventDefault(); e.stopPropagation();
-  const id=b.getAttribute("data-fxt"), t=fxList().filter((x) =>x.id===id)[0]; if(!t) return; const nv=!t.on;
+document.addEventListener("click",async(e) =>{ const b=e.target.closest&&e.target.closest("[data-fxt]"); if(!b) return; e.preventDefault(); e.stopPropagation();
+  const id=b.getAttribute("data-fxt"),state=S;if(!env.__bldFxToggle&&env.__bldNeed)await env.__bldNeed();if(S!==state)return;
+  const t=fxList().filter((x) =>x.id===id)[0]; if(!t) return; const nv=!t.on;
   if(t.consume&&nv){undoMark("Drink "+t.consume.item);if(!env.__bldConsume||!env.__bldConsume(id))return;S.fxT=S.fxT||{};S.fxT[id]=true;save();renderAll();return;}
   undoMark((nv?"Turn on ":"Turn off ")+t.label); S.fxT=S.fxT&&typeof S.fxT==="object"?S.fxT:{}; S.fxT[id]=nv; save(); try{ if(env.__bldFxToggle) env.__bldFxToggle(id,nv); }catch(_){ } renderAll();
   const nb=document.querySelector('[data-fxt="'+id.replace(/"/g,'\\"')+'"]'); if(nb) nb.focus({preventScroll:true}); },true);

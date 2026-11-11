@@ -1,6 +1,8 @@
 import {ABN,dieAvg,mod} from "./01-logic-core-helpers.js";
 import {actsTable,bookPages,featDef,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
+import {defineLocals} from "./12b-logic-sheet-schema.js";
+defineLocals({itemWeaponEffects:"object"});
 /* Sheet handlers, part 10 (contract in 12a-logic-sheet-registry.js): the late pass (phase "late") and the closing steps (phase "post").
    The field groups of the fx engine run in one element loop over the active effect entries (loop "late-fx"), one handler per field group,
    so the groups still interleave entry by entry as in the old single loop. */
@@ -113,19 +115,19 @@ registerSheetGroup({id:"fx-atk-ability",group:"late",phase:"late",order:130,scop
      if(q.opt){r.note=(r.note?r.note+" ":"")+(q.note||e.n+": you can use "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for the attack and damage of this attack")+" (attack +"+bt+", damage modifier "+(dm>=0?"+":"")+dm+")."}
      else if(mod(a.sc[q.ab])>mod(a.sc[r.ab])){r.note=(r.note?r.note+" ":"")+e.lbl+": "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for attack and damage.";r.ab=q.ab;r.abSrc=e.lbl}})}
   return ctx.patch()}});
-registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.attacks", "C.defenses", "q.baseOf", "q.fxOk"],writes:["C.attacks", "C.defenses"],
+registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.attacks", "C.defenses", "q.baseOf", "q.fxOk", "l.itemWeaponEffects"],writes:["C.attacks", "C.defenses", "l.itemWeaponEffects"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkDice [{when:"weapon|spell|unarmed|<name>", d:"1d10", t:"type", note}]: extra damage dice on matching attack rows, or a Note under Defenses when no row exists */
-   (e.atkDice||[]).forEach(function(x){const rows=rowsPick(x.when);
-    if(rows.length)rows.forEach(function(r){appendAttackRider(r,x,e.lbl)});
+   (e.atkDice||[]).forEach(function(x,xi){const rows=rowsPick(x.when);
+    if(rows.length)rows.forEach(function(r){if(x.roll!==true||acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"dice"))appendAttackRider(r,x,e.lbl)});
     else{C.defenses=C.defenses||[];C.defenses.push({t:"Note",v:(x.note||"Extra damage on "+(/^(weapon|spell|unarmed)$/.test(x.when)?x.when+" attacks":x.when))+": +"+x.d+(x.t?" "+x.t:""),s:e.lbl})}});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-save-notes",group:"late",phase:"late",order:150,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.saveNotes", "q.fxOk"],writes:["C.saveNotes"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const pushSN=function(t,s){C.saveNotes=C.saveNotes||[];if(!C.saveNotes.some(function(y){return y.t===t&&y.s===s}))C.saveNotes.push({t:t,s:s})};   /* fx engine v4: saveNote [text] = a line under Saving Throws (death save bonus, "Advantage on saves against being Frightened"); advOn texts that mention saves are copied there too, next to the Defenses note */
    (e.saveNote||[]).forEach(function(t){pushSN(t,e.lbl)});(e.advOn||[]).forEach(function(t){if(/sav(e|ing)/i.test(t))pushSN("Advantage on "+t,e.lbl)});
   return ctx.patch()}});
-registerSheetGroup({id:"fx-atk-bonus",group:"late",phase:"late",order:160,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "q.fxv", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
+registerSheetGroup({id:"fx-atk-bonus",group:"late",phase:"late",order:160,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "q.fxv", "C.attacks", "q.baseOf", "q.fxOk", "l.itemWeaponEffects"],writes:["C.attacks", "l.itemWeaponEffects"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkBonus [{when,atk,dmg,crit,note}]: a flat bonus to the attack roll and/or damage of the matching attack rows (when as for atkDice: weapon, spell, unarmed, melee, ranged, natural, any, a name, or an array). atk and dmg take a number, "pb", an ability key, or [[level, value]] steps (level = the source level). crit N = note "Critical hit on N-20" */
-   (e.atkBonus?(Array.isArray(e.atkBonus)?e.atkBonus:[e.atkBonus]):[]).forEach(function(x){rowsPick(x.when||"weapon").forEach(function(r){const av=x.atk!=null?Q.fxv(x.atk,e):0,dv=x.dmg!=null?Q.fxv(x.dmg,e):0,sg=function(v){return (v>0?"+":"")+v};
+   (e.atkBonus?(Array.isArray(e.atkBonus)?e.atkBonus:[e.atkBonus]):[]).forEach(function(x,xi){rowsPick(x.when||"weapon").forEach(function(r){if(!acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"bonus"))return;const av=x.atk!=null?Q.fxv(x.atk,e):0,dv=x.dmg!=null?Q.fxv(x.dmg,e):0,sg=function(v){return (v>0?"+":"")+v};
      if(av){r.misc=(r.misc||0)+av;r.miscSrc=(r.miscSrc?r.miscSrc+"; ":"")+e.lbl+": "+sg(av)+" to hit"}if(dv){r.dmgBonus=(r.dmgBonus||0)+dv;r.miscSrc=(r.miscSrc?r.miscSrc+"; ":"")+e.lbl+": "+sg(dv)+" damage"}
      setAttackCriticalRange(r,x.crit);if(x.crit)r.note=(r.note?r.note+" ":"")+"Critical hit on "+x.crit+"-20 ("+e.lbl+").";if(x.note)r.note=(r.note?r.note+" ":"")+x.note})});
   return ctx.patch()}});
@@ -246,6 +248,16 @@ registerSheetGroup({id:"fx-toggles",group:"late",phase:"post",order:70,reads:["q
 registerSheetGroup({id:"fx-target-controls",group:"late",phase:"post",order:71,reads:["q.fxTargets"],writes:["C.fxTargets"],
  run:function(ctx){const rows=ctx.q.fxTargets();if(rows.length)ctx.C.fxTargets=rows;return ctx.patch()}});
 
-function appendAttackRider(r,x,source){const packet={d:x.d,t:x.t||"",s:source};if(x.roll===true)packet.roll=true;(r.xdice=r.xdice||[]).push(packet);r.note=(r.note?r.note+" ":"")+"Extra damage: +"+x.d+(x.t?" "+x.t:"")+" ("+source+")."+(x.note?" "+x.note:"")}
+function appendAttackRider(r,x,source){const packet={d:x.d,t:x.t||"",s:source};if(x.roll===true)packet.roll=true;if(x.typeFrom==="weapon")packet.typeFrom="weapon";(r.xdice=r.xdice||[]).push(packet);const typeLabel=x.typeFrom==="weapon"?"of the weapon’s damage type":x.t;r.note=(r.note?r.note+" ":"")+"Extra damage: +"+x.d+(typeLabel?" "+typeLabel:"")+" ("+source+")."+(x.note?" "+x.note:"")}
 
 function setAttackCriticalRange(row,value){const n=+value;if(Number.isInteger(n)&&n>=2&&n<=20)row.critRange=Math.min(row.critRange||20,n)}
+
+/* A named weapon grants its rider to its own rows. Distinct weapon variants do
+   not grant one another a second copy, and duplicate inventory rows do not stack
+   one source entry. Separate entries/dice and thrown rows remain independent. */
+function acceptItemWeaponEffect(ctx,Q,e,x,xi,row,field){if(e.kind!=="item")return true;
+ const owner=e.owner,base=Q.baseOf(owner),when=Array.isArray(x.when)?x.when:[x.when];
+ if(!weaponDef(base.b)||(!when.includes(owner)&&!when.includes(base.mi)))return true;
+ if(row.n!==owner&&row.n!==owner+" (thrown)")return false;
+ const keys=ctx.l.itemWeaponEffects||(ctx.l.itemWeaponEffects={}),key=JSON.stringify([owner,e.idx,field,xi,ctx.C.attacks.indexOf(row)]);
+ if(keys[key])return false;keys[key]=true;return true}

@@ -1,3 +1,39 @@
+# Uncovered 3: rolled riders and weapon ownership
+
+This checkpoint fixes execution gaps in already-counted effect records. Coverage credit is unchanged: 196 closed from the initial baseline, 5,264 uncovered, and 0 regressed sentence IDs. Work continues after this checkpoint.
+
+- Potion of Pugilism now contributes its 1d6 Force to actual Unarmed Strike damage and critical rolls, including after the last bottle is spent and after reload. It ends through the normal effect control without refunding the potion or changing a separate weapon.
+- A literal `typeFrom:"weapon"` rider resolves against the final attack damage type. Dragon Slayer uses it for +3d6 against a Dragon, including its weapon variants and 2024 Pact of the Blade choices. The 2014 Pact keeps its normal damage type. Unknown/wrong target types grant nothing. Fixed-type riders keep their own type.
+- Named weapon effects stay on their source weapon. Two Dragon Slayer variants do not grant one another a second rider. Duplicate inventory rows do not stack the same rolled rider or flat weapon bonus; separate source entries/conditions remain independent. The deduplication keys live only in the declared transient sheet state, with no stored input or storage-key change.
+- The roll popup reads the complete typed expression, so an Unarmed Strike's flat base is retained alongside its extra die. Effect buttons load the builder when needed after reload, and guard against a character-state change during loading.
+- The rider schema rejects invalid type references, simultaneous fixed/reference types, and non-boolean opt-in flags. Legacy advisory riders are unchanged.
+
+## Validation
+
+| Check | Result |
+|---|---|
+| build, syntax, pure model | PASS; generated index.html/sw.js; typed-reference and migration/boundary assertions |
+| zero_miss_fx | PASS; 741 cases, 26 added, including consumed/ended state, targets, weapon categories, Pact editions, separate variants and duplicate rows |
+| rolled rider lifecycle | PASS; 28 checks at both viewports, real normal/critical buttons, full expression, cold reload/end and no refund |
+| target / consumable lifecycle | PASS; 92 / 68 checks |
+| zero_miss_measure | PASS; 752 units, miss 0 both editions, 0 new miss/card-or-miss |
+| clause_gate | PASS; covered 7,896, info 23,622, allow 0, uncovered 5,264; unchanged closed/uncovered IDs and 0 initial-baseline regressions |
+| audit | The same seed-11 150 closed IDs remain valid. The affected weapon and consumed-rider paths were reviewed with the stronger execution/counterfactual tests; no coverage credit was added. |
+| solid_contract | PASS; 4,873 checks, entry/ability/sheet 9/9/4, 195,256 runs, 6,690 patches, 2,615 entries; 182 sheet groups, 53 class rules, 8,782 handler calls, 235 handlers reached, 4,487 entries checked |
+| golden / UI / data contracts | PASS; 1,479 / 308 / 581 checks |
+| full solid_snapshot | PASS; 2,997 builds, 0 page/build errors, baeccb8af8f60ca6, identical to a8cc75a4. The positive target/consumption cases are covered by U21 and the real-control lifecycle tests. |
+| snapshot vs main | Same reviewed 346 changes vs the immutable full main reference; no additional changed key |
+| builder diff --base main | PASS; 3,890 inputs identical, c47961d793b8c15b on both trees. Final scoping leaves every golden C/D snapshot unchanged and does not change normalization/import code. |
+| scenarios | PASS; 24 checks, both viewports, storage/screenshots, no page errors/native dialogs |
+| tsc / HTML | PASS; SCORE 200 (no WORSE) / SCORE 250 |
+| overlap / guards | PASS; 1,373 names, 31 files, 157 documented overlaps; 0 new SOLID violations |
+
+The four reserved bugs and the three unresolved initial G1 readings are unchanged. No sentence was relabeled informational. Next work separates wielding/use from attunement, models explicit unattuned weapon benefits, and uses real weapon definitions for items such as Wand of Orcus and Ruby Rod of Asmodeus.
+
+Earlier checkpoints and their measured closures follow.
+
+---
+
 # Uncovered 3: target-qualified weapon damage
 
 The new attack-target model computes conditional weapon bonuses and rolls verified extra damage by type. This batch closes 13 additional rule sentences: 196 closed since the initial 5,460, leaving 5,264. Work continues on the remaining rules; this is a checkpoint, not a completion claim.
