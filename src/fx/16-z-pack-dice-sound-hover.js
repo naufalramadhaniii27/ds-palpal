@@ -168,7 +168,7 @@ const FXS16A={};
   FXS16A.last=null;
   addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-bd]"); if(b&&!b.closest("#sheet")) FXS16A.last={k:b.getAttribute("data-bd"),el:b,t:Date.now(),txt:(b.textContent||"").replace(/\s+/g," ")}; },true);
   FXS16A.rollSpec=function rollSpec(k,el,txt){ if(!k) return null;
-    if(/^ad-/.test(k)){ const m=/(\d*d\d+(?:\s*[+−-]\s*\d*d?\d+)*)/.exec(txt); const sp=m?{dmg:m[1].replace(/−/g,"-").replace(/\s+/g,""),dtype:(FXENV.__miRoll&&FXENV.__miRoll.dtype)?FXENV.__miRoll.dtype(txt):""}:null;return FXS16A.decorateAttack(el,sp); }
+    if(/^ad-/.test(k)){ const m=/(\d*d\d+(?:\s*[+−-]\s*\d*d?\d+)*)/.exec(txt); const sp=m?{dmg:m[1].replace(/−/g,"-").replace(/\s+/g,""),dtype:(FXENV.__miRoll&&FXENV.__miRoll.dtype)?FXENV.__miRoll.dtype(txt):""}:null;return FXS16A.sourceSpec(k,FXS16A.decorateAttack(el,sp)); }
     if(/^(ah-|save-|sk-|ab-|init$|spatk(?:$|-[A-Z]{3}$|-source-))/.test(k)){ let src=txt; if(/^ab-/.test(k)){ const mm=el&&el.querySelector(".m"); src=mm?mm.textContent:txt; } const n=/([+−-]\s?\d+)/.exec(src); const sp=n?{bon:parseInt(n[1].replace(/−/,"-").replace(/\s/,""),10)}:null;return FXS16A.sourceSpec(k,FXS16A.decorateAttack(el,sp)); }
     return null; };
 })();

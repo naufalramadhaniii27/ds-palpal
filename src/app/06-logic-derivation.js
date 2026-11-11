@@ -174,7 +174,7 @@ function deriveRageDamage(){
   (C.attacks||[]).forEach((a,i) =>{ if(D.atk[i]&&D.atk[i].rg&&B["ad-"+i]){ B["ad-"+i].parts.push(part("Rage damage", D.atk[i].rg, "Rage is active, attack with Strength")); B["ad-"+i].total=D.atk[i].dmg; } });
 }
 function deriveResources(lvl, hd, cm){
-  D.res=(C.res||[]).map((r) =>{ let mx = r.auto==="level" ? lvl : Math.max(0,Math.round(num(r.max,0))), mx0=mx; if(r.dmax&&S.chMax&&S.chMax[r.k]!=null) mx=clamp(Math.round(num(S.chMax[r.k],mx)),0,mx);/* v21 RU44 */ return {k:r.k, n:r.n, tag:r.auto==="level" ? ("d"+hd+sg(cm)+" each") : r.die ? ("d"+num(r.die,hd)+sg(cm)+" each") /* N4 */ : (r.tag||""), max:mx, reset:r.reset||"none", pool:!!r.pool, f:r.f||"", die:r.auto==="level"?hd:(r.die?num(r.die,hd):null), own:r.own||"", item:!!r.item, rg:r.rg||"", when:r.when||"", dmax:r.dmax||"", max0:mx0}; });
+  D.res=(C.res||[]).map((r) =>{ let mx = r.auto==="level" ? lvl : Math.max(0,Math.round(num(r.max,0))), mx0=mx; if(r.dmax&&S.chMax&&S.chMax[r.k]!=null) mx=clamp(Math.round(num(S.chMax[r.k],mx)),0,mx);/* v21 RU44 */ return {...(r.borrowedCantrip?{borrowedCantrip:1}:{}),k:r.k, n:r.n, tag:r.auto==="level" ? ("d"+hd+sg(cm)+" each") : r.die ? ("d"+num(r.die,hd)+sg(cm)+" each") /* N4 */ : (r.tag||""), max:mx, reset:r.reset||"none", pool:!!r.pool, f:r.f||"", die:r.auto==="level"?hd:(r.die?num(r.die,hd):null), own:r.own||"", item:!!r.item, rg:r.rg||"", when:r.when||"", dmax:r.dmax||"", max0:mx0}; });
   if(S.hp==null || S.hp>D.hpmax) S.hp=Math.min(S.hp==null?D.hpmax:S.hp, D.hpmax);
 }
 function deriveSpellAdjust(){

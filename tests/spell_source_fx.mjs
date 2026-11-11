@@ -31,4 +31,12 @@ for(const enter of [false,true]){const w=bar(()=>true);w.closest=()=>({classList
 for(const reject of [false,true]){let resolve,fail;c.FXENV.__dice3d={roll:()=>new Promise((yes,no)=>{resolve=yes;fail=no})};const w=bar(()=>true),old=logged;c.FXS16A.rollGo(click(w));w.closest=()=>({classList:{contains:()=>false}});reject?fail(Error('3D')):resolve([10]);await Promise.resolve();eq(logged,old);eq(w.result.__r,undefined);eq(w.__busy,0);delete c.FXENV.__dice3d}
 // Manual path revalidates immediately before logging, even after result finalization.
 {const w=bar(()=>true),input={value:'10'};w.result.querySelector=()=>input;const original=c.FXS16A.finish;c.FXS16A.finish=(...args)=>{w.isConnected=false;return original(...args)};const old=logged;handler({target:{closest:()=>({closest:()=>w,hasAttribute:()=>false})},preventDefault(){},stopPropagation(){}});eq(logged,old);eq(w.result.__r,undefined);c.FXS16A.finish=original}
+// Temporary attack hit and damage bars share the native pre-history guard.
+for(const key of ['ah-0','ad-0']){
+ c.FXENV.__temporaryAttackGuard=()=>undefined;let spec=c.FXS16A.rollSpec(key,null,key.startsWith('ah')?'+7':'1d6');eq(spec.sourceGuard,undefined);
+ c.FXENV.__temporaryAttackGuard=()=>false;spec=c.FXS16A.rollSpec(key,null,key.startsWith('ah')?'+7':'1d6');eq(spec.sourceGuard(),false);
+ c.FXENV.__temporaryAttackGuard=()=>()=>valid;valid=true;spec=c.FXS16A.rollSpec(key,null,key.startsWith('ah')?'+7':'1d6');eq(spec.sourceGuard(),true);valid=false;eq(spec.sourceGuard(),false);
+ c.FXENV.__temporaryAttackGuard=()=>{throw Error('unavailable')};spec=c.FXS16A.rollSpec(key,null,key.startsWith('ah')?'+7':'1d6');eq(spec.sourceGuard(),false);
+}
+delete c.FXENV.__temporaryAttackGuard;
 console.log(count+' actual source-specific FX checks PASS');

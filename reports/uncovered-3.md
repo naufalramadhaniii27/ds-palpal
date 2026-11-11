@@ -1,4 +1,33 @@
-# Uncovered 3: class-aware spellcasting sources
+# Uncovered 3: temporary cantrip permissions and declared game time
+
+## U36: All-Purpose Tool eight-hour casting permission
+
+Twelve further original choice/duration sentences now have computed coverage: 327 closed from the initial 5,460, 5,133 uncovered and zero regressed IDs. Covered is 8,032; info remains 23,617 and allow remains zero. These are exactly #5/#6 of the three All-Purpose Tool variants in both native catalogs. Manifold Tool receives no borrowed-cantrip property. All prior 315 closures remain covered; no INFO or inert sentence was reclassified.
+
+A native Action focuses the eligible, attuned Artificer tool and selects a cantrip from an actual class list. Definite known class/Magic Initiate selections are rejected; uncertain knowledge requires an explicit player declaration. Holding is required for the separate spell bonus, not this activation. The operation spends the actual native one-charge dawn pool once and records an actor-owned eight-hour permission. Casting the cantrip spends no further activation use or spell slot. Permission is distinct from learning: independent permanent origins remain separate, and typed temporary rows cannot become permanent Build choices even when display labels are edited during import.
+
+Actor play state stores versioned independent windows and a monotonically advanced declared game-time counter. Exactly 28,800 seconds ends each window. Dawn restores uses without advancing that clock or replacing older windows; overlapping same-spell selections keep their own identities. Wall time, reload and Long Rest do not silently advance game time. Managed daily pools use reset:none and explicit dawn recovery; Long Rest still heals HP and restores ordinary slots without refreshing these uses. This is a declared-time model, not automatic observation of adventure time.
+
+Each physical source has a stable versioned ID/key. Guarded adoption inherits an old native counter only with a proven unique binding; ambiguous history requires an explicit used/available declaration. The registry reserves both historical keys and the subset allocated to these tools, preventing collisions with later ordinary item counters without renaming unrelated pools. Splitting conserves quantity, retains the original record on the original copy, and creates an unattuned basic copy requiring use review. Review updates metadata and the actual S.used entry atomically. Raw versions and unknown data remain preserved; no storage key or GX effect-input field is renamed or introduced.
+
+Projected spells and attacks use typed Artificer/Intelligence channels, including otherwise identical abilities. Cast, concentration shortcuts, owned spell rolls and attack hit/damage validate current actor, exact row and live window before Undo/history and again after Rage confirmation or asynchronous dice. Expired cached spell/attack entries disappear from Actions, Spells and character Search while permanent entries retain their original indices. Mending uses temporary knowledge rather than baseKnown:true; actual repairs retain the ordinary one-foot limit or an independently active Forge five-foot override. An independent Forge Mending survives temporary expiry.
+
+Reading not decided: the native item gives no early termination on stow, deattunement, removal or class editing. The implementation retains the committed actor window until its own expiry and requires current source eligibility for activation. This is the documented application interpretation, not a universal attunement-survival claim; the specific Sever Attunement and magical suppression interactions remain unmodeled. Activation uses current incapacitating conditions rather than assuming that zero HP always means unconscious, respecting the native 2014 Zealot level-14 exception without changing the existing Rage subsystem.
+
+## U36 validation and source audit
+
+| Check | Result |
+|---|---|
+| Effects / measure | 1,641 full effect cases PASS, including 28 temporal cases; 752 units, zero new misses in either edition |
+| Focused native tests | 1,383 checks PASS across duration, physical identity/backend, projection, typed import, owned inputs, transactions, cast/repair/dice guards, live visibility and rest boundaries; weapon/wield/repair/spell regressions also PASS |
+| Production UI | 382 PASS at 390×844 and 1250×850: 214 lifecycle, 84 edge, 44 extra guard and 40 final-build cases; no JS errors or horizontal overflow |
+| Official contracts | Contract 5,033 (also rerun on final build); golden 1,479; UI 308; data 632; all PASS |
+| Full snapshot / builder | All 2,997 snapshot and 3,890 builder hashes strictly identical to U35 without normalization; totals 8fbdca0fcb4d2f08 / 396b20d955f87d6e; zero errors |
+| Scenarios | 24 PASS at both required viewports |
+| Gate / source audit | Full selftests including 169 strict U36 checks PASS; seed-11 sample 150 with 57 new selections, 66 unique actual-source clauses reviewed, zero missing sources; exactly twelve new closures |
+
+The standard fixture matrices do not contain a live temporary permission, so their unchanged hashes establish compatibility while the native targeted tests and actual UI establish the new feature. Main raw comparisons remain 2,997 snapshot / 2,263 builder differences with no new unexplained change. Production evidence records its verified epochs: lifecycle on 74198d8c780e2c24, edge/guard checks on bf581930fb9cbf1c, and final native roll/import/Search/Mending checks on b758bba25439339c. Subsequent changes tightened typed import, callback rejection, current-condition activation and live display filtering; all source checks and the official contract were rerun on that final build.
+
 
 ## U35: class-specific spell attack and save DC
 

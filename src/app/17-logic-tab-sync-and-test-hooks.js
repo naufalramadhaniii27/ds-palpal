@@ -92,7 +92,8 @@ env.__sheetApply=function(p,note){ if(!p||!p.abilities) return; if(lsGet(CKEY)!=
 env.__sheetName=function(){ return C&&C.name; };env.__ask=ask;/* T10: test hook, opens the confirm dialog with any text */
 env.__sheetRerender=function(){ renderAll(); };
 env.__sheetSoft=function(p){ if(!p||!p.abilities) return; __set_C(keepNewer(p)); saveC(); renderAll(); };
-env.__sheetState=function(){ return {C:C, lang:S.lang, camp:campName(), fxT:S.fxT||{}, cust:S.cust||{}, attackTarget:S.attackTarget, exh:S.exh||0, exhLk:S.exhLk||null}; };/* fx engine v6: exh and exhLk for the Exhaustion lock tests */
+env.__temporaryCantripSave=function(state){if(FROZEN||state!==S)return false;save();return true};
+env.__sheetState=function(){ return {C:C, state:S, temporaryCantrips:S.temporaryCantrips, lang:S.lang, camp:campName(), fxT:S.fxT||{}, cust:S.cust||{}, attackTarget:S.attackTarget, exh:S.exh||0, exhLk:S.exhLk||null}; };/* fx engine v6: exh and exhLk for the Exhaustion lock tests */
 env.__D=function(){ return D; };/* T11 N6: derive a sheet object without saving. The open character and its state come back afterwards */
 env.__deriveFor=function(c){ let C0=C, S0=S, D0=D, out=null; try{ __set_C(structuredClone(c)); __set_S(structuredClone(DEF)); derive(); out=structuredClone({level:D.level,pb:D.pb,ac:D.ac,hpmax:D.hpmax,init:D.init,dc:D.dc,speed:D.speed,score:D.score,mod:D.mod,save:D.save,skill:D.skill,atk:D.atk,res:D.res,carry:D.carry,exh:D.exh,exhMin:D.exhMin}); }catch(e){ out={err:String(e&&e.stack||e)}; } __set_C(C0); __set_S(S0); __set_D(D0); try{ derive(); }catch(e){} return out; };/* v35 p05 */
 /* v32 RL51 test hook: the Actions tab of another C (from __bldSheetFor) without saving it: entries per category and attack rows. The sheet is restored */

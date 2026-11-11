@@ -5,6 +5,7 @@ import {occOf} from "./00a-reg-late-ports.js";
 import {env} from "./00-env.js";
 import {weaponFormMetadata,weaponFormUsable} from "../data/lib/weapon-form.js";
 import {resolveObjectRepairProfile,evaluateRepairRequest} from "./lib/object-repair-runtime.js";
+import {temporaryCantripStatus} from "./lib/temporary-cantrip-guard.js";
 bindLive("clsLvls",{get:function(){return clsLvls;}});
 bindLive("concAuto",{get:function(){return concAuto;}});
 bindLive("concCheck",{get:function(){return concCheck;}});
@@ -41,7 +42,7 @@ function concHead(){ const o=concOf(); [".band .mini",".band .office > div"].for
   const i=spIx(o.n); if(i>=0) b.setAttribute("data-info","sp:"+i); else b.removeAttribute("data-info"); b.innerHTML='<i aria-hidden="true">C</i>'+esc(o.n); b.setAttribute("aria-label","Concentrating on "+o.n+". Open the spell"); b.title="Concentrating on "+o.n; }); }
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-concend],[data-concon]"); if(!t) return; e.preventDefault(); e.stopPropagation();
   if(t.hasAttribute("data-concend")){ const m=concEnd(); save(); renderConds(); refreshEntry(); if(m) toast(m); return; }
-  const x=(C.spells||[])[+t.getAttribute("data-concon")]; if(!x) return; const m2=concSet(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x)); save(); renderConds(); refreshEntry(); toast(m2); },true);
+  const x=(C.spells||[])[+t.getAttribute("data-concon")]; if(!x) return;if(Object.prototype.hasOwnProperty.call(x,"temporaryCantrip")&&!temporaryCantripStatus(x,S.temporaryCantrips).allowed){toast("This temporary cantrip is no longer available.");return} const m2=concSet(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x)); save(); renderConds(); refreshEntry(); toast(m2); },true);
 
 /* ---------- RU49 Cast and Use ---------- */
 export function slotLeft(k){ const r=(D.res||[]).filter((q) =>{ return q.k===k; })[0]; return r?{r:r,left:r.max-used(r.k,r.max)}:null; }
@@ -96,18 +97,23 @@ function spCastH(x,i){ let h='<div class="info-h">Cast</div><div class="spcast">
 function spFormCommitAllowed(x,k,nd){if(!spFormRequired(x)||spItemOpts(x).some(q=>q.k===k&&(q.need||1)===nd))return true;toast("Hold "+x.itc.it+" with its radiant "+(x.itc.it==="Duskcrusher"?"head":"blade")+" active to cast "+x.n+".");return false}
 function spCastPayment(k){if(k&&k.indexOf("|")>0){const parts=k.split("|");return {k:parts[0],nd:+parts[1]||1}}return {k,nd:1}}
 const repairSessions=new WeakSet(),repairCasts=new WeakSet();
-export function currentRepairProfile(index){return resolveObjectRepairProfile(C,(C.spells||[])[index])}
+export function currentRepairProfile(index){return resolveObjectRepairProfile(C,(C.spells||[])[index],S)}
 export function createObjectRepairSession(index,root){const spell=(C.spells||[])[index];if(!spell||spell.n!=="Mending"||!root)return null;const session={index,root,character:C,state:S,owner:C.name,spellSignature:JSON.stringify(spell),profileSignature:currentRepairProfile(index).signature,committed:false};repairSessions.add(session);return session}
 function repairRequestCurrent(request){const view=request.session;if(!repairSessions.has(view)||view.committed||view.character!==C||view.state!==S||view.owner!==C.name||!view.root.isConnected)return {ok:false,reason:"stale-cast"};const spell=(C.spells||[])[view.index],profile=currentRepairProfile(view.index);if(JSON.stringify(spell)!==view.spellSignature||profile.signature!==view.profileSignature)return {ok:false,reason:"stale-source"};return evaluateRepairRequest(profile,request.target,request.declarations,modeOn("rage"))}
 export function requestObjectRepairCast(options){if(!options||!options.session)return {ok:false,reason:"stale-cast"};const request={session:options.session,target:structuredClone(options.target),declarations:structuredClone(options.declarations),onCommitted:options.onCommitted};const result=repairRequestCurrent(request);if(!result.ok)return result;repairCasts.add(request);try{castDo(request.session.index,"",0,false,request)}finally{repairCasts.delete(request)}return request.certificate||request.failure||{ok:false,reason:"cast-refused"}}
 function spRepairCastAllowed(index,k,lv,spell,request){if(spell.n!=="Mending")return true;if(!repairCasts.has(request)){const open=lateGet("openObjectRepair");if(typeof open==="function")open(index,k,lv);else toast("Repair controls are still loading. Try again.");return false}const result=repairRequestCurrent(request);request.result=result;if(!result.ok)request.failure=result;return result.ok}
 function spRepairCommitted(request){if(!repairCasts.has(request))return;request.session.committed=true;request.certificate={ok:true,committed:true,result:request.result,owner:C.name,index:request.session.index,character:C,state:S};if(typeof request.onCommitted==="function")request.onCommitted(request.certificate)}
-export function castDo(i,k,lv,ok,repair){ const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
+const temporalCasts=new WeakSet();
+function temporaryCastContext(index,spell){const status=temporaryCantripStatus(spell,S.temporaryCantrips);if(!status.allowed)return null;const view={character:C,state:S,cid:C.cid,id:C.id,name:C.name,index,spell,root:typeof document.querySelector==="function"?document.querySelector("#sheet.on"):null,signature:JSON.stringify(spell),permission:status.signature};temporalCasts.add(view);return view}
+function temporaryCastCurrent(view,index,spell){return temporalCasts.has(view)&&(!view.root||view.root.isConnected&&view.root.classList.contains("on"))&&view.character===C&&view.state===S&&view.cid===C.cid&&view.id===C.id&&view.name===C.name&&view.index===index&&view.spell===spell&&view.signature===JSON.stringify(spell)&&temporaryCantripStatus(spell,S.temporaryCantrips).allowed&&temporaryCantripStatus(spell,S.temporaryCantrips).signature===view.permission}
+function temporaryCastAllowed(view,index,spell){return !view||temporaryCastCurrent(view,index,spell)}
+export function castDo(i,k,lv,ok,repair,temporal){const spell=(C.spells||[])[i];if(!spell)return;if(temporal||Object.prototype.hasOwnProperty.call(spell,"temporaryCantrip")){temporal=temporal||temporaryCastContext(i,spell);if(!temporal||!temporaryCastCurrent(temporal,i,spell)){toast("This temporary cantrip changed or expired. Open its current spell card.");return}}castCurrentSpell(i,k,lv,ok,repair,temporal)}
+function castCurrentSpell(i,k,lv,ok,repair,temporal){ const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
   if(!spRepairCastAllowed(i,k,lv,x,repair))return;
   if(!spFormCommitAllowed(x,k,nd))return;
-  if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true,repair); }); return; }/* v22 i4 */
+  if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true,repair,temporal); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
-  undoMark("Cast "+x.n); let msg="Cast "+x.n;
+  if(!temporaryCastAllowed(temporal,i,x))return;undoMark("Cast "+x.n); let msg="Cast "+x.n;
   if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);

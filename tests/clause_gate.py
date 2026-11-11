@@ -1618,6 +1618,50 @@ def selftest():
                 check("U35 NEG filter cannot grant spell or choice "+owner+name+str(filter_record), all(a.cls not in {"SPELL","CHOICE"} for a in extracted))
     genuine = atoms_from({"spellCls":"Artificer","spells":[[1,"Light"]]},"GX.item|Native Spell Item")
     check("U35 genuine typed spell grant retained", any(a.cls == "SPELL" and a.src.endswith(".spells") for a in genuine) and all(not a.src.endswith(".spellCls") for a in genuine))
+    # U36 proofs are exercised before registration as well: a draft atom must
+    # already require each real producer/consumer, never an INFO exception.
+    temporary_anchors = [
+        ["src/app/lib/temporary-cantrip-runtime.js", "function activate(token,declarations)"],
+        ["src/app/lib/temporary-cantrip-runtime.js", "function advance(token,seconds)"],
+        ["src/app/lib/temporary-cantrip-runtime.js", "function dawn(token,declaration)"],
+        ["src/app/lib/temporary-cantrip-guard.js", "export function temporaryCantripStatus(row,state)"],
+        ["src/app/32b-logic-play-concentration-casting.js", "function temporaryCastCurrent(view,index,spell)"],
+    ]
+    temporary_registered = [e for e in json.load(open(CODE, encoding="utf-8"))["entries"] if e.get("id", "").startswith("u36-")]
+    temporary_expected = []
+    for owner in ("dmg", "tce"):
+        for potency in (1,2,3):
+            for sentence_index,text,proof_classes,values in [
+                (5,"Choose a cantrip that you don't know from any class list.",["CHOICE","SPELL"],[]),
+                (6,"For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you.",["SPELL"],["8"]),
+            ]:
+                name = "+%s All-Purpose Tool" % potency
+                entry = dict(id="u36-%s-%s-temporary-cantrip-%s" % (owner,potency,sentence_index),kind="item",owner=owner,name=name,lvl=None,cls=proof_classes,vals=values,scopeValues=True,rx="^"+re.escape(text.lower())+"$",anchor=["src/builder/12k-logic-sheet-handlers-spells.js",'id:"spells-temporary-cantrips"'],extraAnchors=temporary_anchors,test="Z3 U36 temporary cantrip "+name+" 2014 elapsed 28799")
+                temporary_expected.append(entry)
+                loaded = load_code_atoms([entry]); key="item|%s|%s" % (owner,name)
+                atoms = [atom for proof,atom in loaded.get(key,[])]
+                row = analyze(synth("item",owner,name,text,atoms))[0]
+                check("U36 exact native temporal proof "+entry["id"], row["status"] == "covered", row["why"])
+                case = tool_cases_by_name.get(entry["test"])
+                check("U36 computed eight-hour fixture "+entry["id"], bool(case and case.get("temporal",{}).get("elapsedSeconds")==28799 and case.get("expect")))
+                for index in range(1+len(temporary_anchors)):
+                    damaged=dict(entry,extraAnchors=[list(pair) for pair in temporary_anchors])
+                    if index==0: damaged["anchor"]=[entry["anchor"][0],"missing-temporary-cantrip-producer"]
+                    else: damaged["extraAnchors"][index-1][1]="missing-temporary-cantrip-consumer"
+                    check("U36 NEG missing required anchor "+entry["id"]+str(index), not load_code_atoms([damaged]))
+                    CODE_NOTES.clear()
+                for label,other in [("wrong duration",text.replace("8 hours","9 hours")),("permanent knowledge",text.replace("can cast","know")),("known choice",text.replace("don't know","already know")),("wrong class",text.replace("artificer cantrip","wizard cantrip")),("unrelated distance","You can teleport 8 feet.")]:
+                    if other != text:
+                        check("U36 NEG "+label+entry["id"], all(result["status"] != "covered" for result in analyze(synth("item",owner,name,other,atoms))))
+                for other_key in ("item|unrelated|"+name,"item|"+owner+"|Manifold Tool"):
+                    wrong=[atom for proof,atom in loaded.get(other_key,[])]
+                    check("U36 NEG wrong owner or item "+entry["id"]+other_key, analyze(synth("item",owner,name,text,wrong))[0]["status"]=="uncovered")
+    check("U36 draft or exactly twelve registered clauses", len(temporary_registered) in (0,12))
+    if temporary_registered:
+        expected_by_id={entry["id"]:entry for entry in temporary_expected}
+        for entry in temporary_registered:
+            expected=expected_by_id.get(entry["id"])
+            check("U36 registered exact source and consumers "+entry["id"], bool(expected and all(entry.get(key)==value for key,value in expected.items())))
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

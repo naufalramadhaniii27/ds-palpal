@@ -1,3 +1,4 @@
+import {temporaryCantripStatus} from '../src/app/lib/temporary-cantrip-guard.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -5,7 +6,7 @@ import {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum} from '../sr
 import {weaponFormMetadata,weaponFormUsable} from '../src/data/lib/weapon-form.js';
 const read=p=>fs.readFileSync(new URL('../src/app/'+p,import.meta.url),'utf8').replace(/^import .*$/gm,'').replace(/export (function|var|const) /g,'$1 ');
 const ABK=['STR','DEX','CON','INT','WIS','CHA'];let scratch={};
-const ctx={C:{},S:{},ABK,ABN:Object.fromEntries(ABK.map(k=>[k,k])),env:{},nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum,weaponFormMetadata,weaponFormUsable,bindLive(){},document:{addEventListener(){}},x14:()=>false,lateGet:key=>scratch[key],lateSet:(key,value)=>{scratch[key]=value}};
+const ctx={temporaryCantripStatus,C:{},S:{},ABK,ABN:Object.fromEntries(ABK.map(k=>[k,k])),env:{},nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum,weaponFormMetadata,weaponFormUsable,bindLive(){},document:{addEventListener(){}},x14:()=>false,lateGet:key=>scratch[key],lateSet:(key,value)=>{scratch[key]=value}};
 vm.createContext(ctx);for(const file of ['05-logic-helpers.js','06-logic-derivation.js','26-ui-customize.js'])vm.runInContext(read(file),ctx);
 let checks=0;const eq=(got,want)=>{assert.deepEqual(got,want);checks++};const clone=x=>JSON.parse(JSON.stringify(x));
 function actor(str=16){return {name:'Current actor',abilities:Object.fromEntries(ABK.map(k=>[k,{base:k==='STR'?str:10,bonus:[]}])),inv:[{n:"Forgemaster's Might",key:"Forgemaster's Might",eq:true,q:1,att:true,attuned:true,attunedActive:true,wieldInfo:{allowed:true}}],attacks:[{n:"Forgemaster's Might"},{n:'Pole Strike',of:"Forgemaster's Might"},{n:"Forgemaster's Might (thrown)"},{n:'Longsword'},{n:'Custom spell attack'}],spells:[{n:'Creation'},{n:'Fabricate'},{n:'Mending'}]}}

@@ -3147,6 +3147,516 @@
    ],
    "test": "Z3 U35 All-Purpose class spell channels +3 All-Purpose Tool 2014 Wizard first",
    "note": "Exact native Artificer spell-attack and spell save-DC bonus while held and effectively attuned. SAVE is only the existing sentence scanner class for caster DC; this grants no actor saving-throw bonus. Real typed source channels distinguish Wizard and Artificer even with the same INT; fixture and runtime tests verify owned source selection and no actor-save/global benefit."
+  },
+  {
+   "id": "u36-dmg-1-temporary-cantrip-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^choose\\ a\\ cantrip\\ that\\ you\\ don't\\ know\\ from\\ any\\ class\\ list\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +1 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-dmg-1-temporary-cantrip-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [
+    "8"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ 8\\ hours,\\ you\\ can\\ cast\\ that\\ cantrip,\\ and\\ it\\ counts\\ as\\ an\\ artificer\\ cantrip\\ for\\ you\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +1 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-dmg-2-temporary-cantrip-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^choose\\ a\\ cantrip\\ that\\ you\\ don't\\ know\\ from\\ any\\ class\\ list\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +2 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-dmg-2-temporary-cantrip-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [
+    "8"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ 8\\ hours,\\ you\\ can\\ cast\\ that\\ cantrip,\\ and\\ it\\ counts\\ as\\ an\\ artificer\\ cantrip\\ for\\ you\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +2 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-dmg-3-temporary-cantrip-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^choose\\ a\\ cantrip\\ that\\ you\\ don't\\ know\\ from\\ any\\ class\\ list\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +3 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-dmg-3-temporary-cantrip-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [
+    "8"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ 8\\ hours,\\ you\\ can\\ cast\\ that\\ cantrip,\\ and\\ it\\ counts\\ as\\ an\\ artificer\\ cantrip\\ for\\ you\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +3 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-tce-1-temporary-cantrip-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+1 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^choose\\ a\\ cantrip\\ that\\ you\\ don't\\ know\\ from\\ any\\ class\\ list\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +1 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-tce-1-temporary-cantrip-6",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+1 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [
+    "8"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ 8\\ hours,\\ you\\ can\\ cast\\ that\\ cantrip,\\ and\\ it\\ counts\\ as\\ an\\ artificer\\ cantrip\\ for\\ you\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +1 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-tce-2-temporary-cantrip-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+2 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^choose\\ a\\ cantrip\\ that\\ you\\ don't\\ know\\ from\\ any\\ class\\ list\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +2 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-tce-2-temporary-cantrip-6",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+2 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [
+    "8"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ 8\\ hours,\\ you\\ can\\ cast\\ that\\ cantrip,\\ and\\ it\\ counts\\ as\\ an\\ artificer\\ cantrip\\ for\\ you\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +2 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-tce-3-temporary-cantrip-5",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+3 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "CHOICE",
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^choose\\ a\\ cantrip\\ that\\ you\\ don't\\ know\\ from\\ any\\ class\\ list\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +3 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
+  },
+  {
+   "id": "u36-tce-3-temporary-cantrip-6",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+3 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [
+    "8"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ 8\\ hours,\\ you\\ can\\ cast\\ that\\ cantrip,\\ and\\ it\\ counts\\ as\\ an\\ artificer\\ cantrip\\ for\\ you\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "id:\"spells-temporary-cantrips\""
+   ],
+   "extraAnchors": [
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function activate(token,declarations)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function advance(token,seconds)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-runtime.js",
+     "function dawn(token,declaration)"
+    ],
+    [
+     "src/app/lib/temporary-cantrip-guard.js",
+     "export function temporaryCantripStatus(row,state)"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "function temporaryCastCurrent(view,index,spell)"
+    ]
+   ],
+   "test": "Z3 U36 temporary cantrip +3 All-Purpose Tool 2014 elapsed 28799",
+   "note": "Native unknown-cantrip choice and eight-hour Artificer casting permission, backed by actual activation, atomic native charge spend, declared game-clock and dawn, source-key projection and current cast/attack guards. Temporary permission remains separate from permanent knowledge. Retaining committed permission after attunement or inventory loss is a documented application interpretation; specific suppression interactions remain unmodeled."
   }
  ]
 }

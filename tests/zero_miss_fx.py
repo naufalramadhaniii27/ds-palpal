@@ -2885,6 +2885,26 @@ for rs in ["2024","2014"]:
         CASES.append(dict(name="NEG U35 All-Purpose no non-Artificer bonus "+item+" "+rs,b=dict(rs=rs,cls="Wizard",level=4,base=dict(WL,INT=18),extra={"sp":["Fire Bolt","Burning Hands"]},inv=[dict(n=item,q=1,eq=True,attuned=True)]),expect=[(unchanged,True),("!!C.attacks.find(x=>x.n==='Fire Bolt').misc",False)]))
 
 # Refresh the real rule-link index with the case's source packs installed.
+# U36: explicit actor game-time snapshots exercise the actual spell handlers.
+def u36_temporal(item, elapsed=0, spell="Eldritch Blast", starts=(0,)):
+    return dict(v=1,elapsedSeconds=elapsed,nextGrantId=len(starts)+1,grants=[dict(id="tc-"+str(i+1),sourceId="ap-1",item=item,spell=spell,startedAt=start,expiresAt=start+28800) for i,start in enumerate(starts)])
+
+for rs in ["2014","2024"]:
+    for potency in [1,2,3]:
+        item="+"+str(potency)+" All-Purpose Tool"
+        build=dict(rs=rs,cls="Artificer",level=4,base=dict(WL,INT=18),extra={"sp":["Ray of Frost"]},inv=[dict(n=item,q=1,eq=True,attuned=True)])
+        for elapsed in [0,28799,28800]:
+            live=elapsed<28800
+            expect=[("C.spells.filter(s=>s.n==='Eldritch Blast').length",int(live)),("C.attacks.filter(a=>a.n==='Eldritch Blast').length",int(live)),("C.spells.some(s=>s.n==='Ray of Frost')",True)]
+            if live:
+                expect += [("C.spells.find(s=>s.n==='Eldritch Blast').sourceKey","Artificer"),("C.spells.find(s=>s.n==='Eldritch Blast').ab","INT"),("C.spells.find(s=>s.n==='Eldritch Blast').use","Temporary cantrip"),("C.spells.find(s=>s.n==='Eldritch Blast').temporaryCantrip.grantIds",["tc-1"]),("C.attacks.find(s=>s.n==='Eldritch Blast').misc",potency)]
+            CASES.append(dict(name="Z3 U36 temporary cantrip "+item+" "+rs+" elapsed "+str(elapsed),b=build,temporal=u36_temporal(item,elapsed),expect=expect))
+    item="+1 All-Purpose Tool"
+    for elapsed,ids in [(3600,["tc-1","tc-2"]),(28800,["tc-2"]),(32400,[])]:
+        CASES.append(dict(name="Z3 U36 overlapping permission "+rs+" elapsed "+str(elapsed),b=dict(rs=rs,cls="Wizard",level=4,base=dict(WL,INT=18),extra={"sp":["Fire Bolt"]}),temporal=u36_temporal(item,elapsed,starts=(0,3600)),expect=[("C.spells.filter(s=>s.n==='Eldritch Blast').length",int(bool(ids))),("(C.spells.find(s=>s.n==='Eldritch Blast')?.temporaryCantrip.grantIds)||[]",ids),("C.spells.some(s=>s.n==='Fire Bolt')",True)]))
+    for spell in ["Magic Missile","Definitely not a cantrip"]:
+        CASES.append(dict(name="NEG U36 invalid native cantrip "+rs+" "+spell,b=dict(rs=rs,cls="Artificer",level=4),temporal=u36_temporal(item,spell=spell),expect=[("C.spells.some(s=>s.temporaryCantrip)",False)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
@@ -2917,7 +2937,7 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  // created from a later timer callback. The page policy itself stays unchanged.
  cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
  for(const c of cases){ const r={name:c.name,fail:[]},warmBefore=c.warm?window.__bldTestB():null;
-  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');window.__xl.idx()} const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');window.__xl.idx()} const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
    for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }

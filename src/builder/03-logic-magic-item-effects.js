@@ -6,6 +6,7 @@ import {allocateAttunement,itemInUse,itemQuantity,migrateItems,migrateAttunement
 import {weaponFormMetadata,migrateInventoryForms,setWeaponFormActive,adjustWeaponFormRadius,weaponFormUsable,weaponFormLight} from "../data/lib/weapon-form.js";
 import {carpetMetadata,normalizeVehicleState,migrateVehicles,chooseCarpetSize,activateCarpet,carpetSourceStatus} from "../data/lib/carpet-vehicle.js";
 import {toolFormMetadata,normalizeToolForm,migrateToolForms,selectToolForm} from "../data/lib/tool-form.js";
+import {allPurposeMetadata,normalizeAllPurposeSource,normalizeAllPurposeRegistry,migrateAllPurposeSources,allPurposeSourceStatus,reviewAllPurposeSource,splitAllPurposeSource} from "../data/lib/all-purpose-source.js";
 import {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum} from "../data/lib/wield-minimum.js";
 export {itemInUse,itemQuantity};
 export var DMAP={};DMGI.forEach((x) =>{DMAP[x[0]]=x});
@@ -98,3 +99,19 @@ export function cleanCh(b){try{const ch=b&&b.ch;if(ch)Object.keys(ch).forEach((k
 export function setItemAttuned(index,on){const b=migrateInventory(lateGet("B")),it=(b.inv||[])[index];if(!it)return {ok:false,reason:"missing"};
  if(!attunementMeta(it.n).requires)return {ok:false,reason:"not-required"};const was=it.attuned;it.attuned=!!on;
  if(on){const st=attunementState(),row=st.rows[index];if(!row||!row.attuned){it.attuned=was;return {ok:false,reason:row&&row.reason||"requirements",limit:st.limit}}}return {ok:true}}
+
+// Legacy projection is scoped to one synchronous derivation and always restored.
+let ALL_PURPOSE_LEGACY=false;
+export function withAllPurposeLegacy(fn){const previous=ALL_PURPOSE_LEGACY;ALL_PURPOSE_LEGACY=true;try{return fn()}finally{ALL_PURPOSE_LEGACY=previous}}
+export function allPurposeLegacy(){return ALL_PURPOSE_LEGACY}
+export function allPurposeRegistryValid(b){return !!normalizeAllPurposeRegistry(b&&b.allPurposeSources)&&!migrateAllPurposeSources(b.inv,b.allPurposeSources).problems.length}
+export function allPurposeResource(row,index){const b=lateGet("B");if(ALL_PURPOSE_LEGACY||!Object.prototype.hasOwnProperty.call(b,"allPurposeSources"))return null;if(!allPurposeMetadata(row&&row.n))return null;const source=normalizeAllPurposeSource(row.borrowedCantripSource),state=attunementState().rows[index];return {managed:true,active:allPurposeRegistryValid(b)&&!!source&&Number.isSafeInteger(row.q==null?1:row.q)&&(row.q==null?1:row.q)===1&&!!(state&&state.attuned),source}}
+function borrowedSourceReason(valid,source,q,attuned,status){if(!valid)return "registry";if(!source)return "uninitialized";if(!Number.isSafeInteger(q)||q<1)return "quantity";if(q!==1)return "split-required";if(!attuned)return "attunement";return status.ok?"":status.reason}
+export function itemBorrowedCantripInfoForRow(row,state){const b=lateGet("B"),definition=allPurposeMetadata(row&&(row.key||row.n));if(!definition||ALL_PURPOSE_LEGACY||!Object.prototype.hasOwnProperty.call(b,"allPurposeSources"))return {};const source=row&&normalizeAllPurposeSource(row.borrowedCantripSource),status=allPurposeSourceStatus(row,b.allPurposeSources),valid=allPurposeRegistryValid(b),q=row.q==null?1:row.q,attuned=!!(state&&state.attuned),reason=borrowedSourceReason(valid,source,q,attuned,status);return {borrowedCantripMeta:definition,available:!reason,reason,signature:JSON.stringify(row),sourceId:source&&source.id,chargeKey:source&&source.chargeKey,reviewRequired:!!(source&&source.reviewRequired),initializationAvailable:valid&&!Object.prototype.hasOwnProperty.call(row,"borrowedCantripSource"),splitAvailable:valid&&!!source&&Number.isSafeInteger(q)&&q>1}}
+
+export function getBorrowedCantripInfo(index){const b=lateGet("B"),row=(b.inv||[])[index];if(!row||!allPurposeMetadata(row.n))return {available:false,reason:"not-supported"};if(!Object.prototype.hasOwnProperty.call(b,"allPurposeSources"))return {available:false,reason:"uninitialized",initializationAvailable:true,signature:JSON.stringify(row)};return itemBorrowedCantripInfoForRow(row,attunementState().rows[index])}
+export function prepareAllPurposeSources(legacyProof,occupiedKeys){const b=lateGet("B"),result=migrateAllPurposeSources(b.inv,b.allPurposeSources,legacyProof,occupiedKeys);return result.problems.length?{ok:false,reason:result.problems[0].reason}:!result.registry?{ok:false,reason:"not-supported"}:{ok:true,rows:result.rows,registry:result.registry}}
+export function reviewBorrowedCantrip(index,declaration){const b=lateGet("B"),info=getBorrowedCantripInfo(index);if(!allPurposeRegistryValid(b))return {ok:false,reason:"registry"};if(!info.reviewRequired)return {ok:false,reason:info.reason||"review-not-required"};return reviewAllPurposeSource(b.inv[index],b.allPurposeSources,declaration)}
+export function splitBorrowedCantrip(index,occupiedKeys){const b=lateGet("B");return splitAllPurposeSource(b.inv,index,b.allPurposeSources,occupiedKeys)}
+
+export function allPurposeAllocatedKeys(){const b=lateGet("B");return !ALL_PURPOSE_LEGACY&&allPurposeRegistryValid(b)?b.allPurposeSources.allocatedKeys.slice():[]}

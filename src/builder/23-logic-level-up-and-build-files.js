@@ -219,7 +219,7 @@ function qbSpMC(){const cp=casterParts();if(!cp.length)return;const auto=autoSpe
  cp.slice().sort((a,b) =>{const ka=spInfoPart(a),kb=spInfoPart(b);return qbSpN(ka)-qbSpN(kb)}).forEach((P) =>{qbSpFill(P,auto,DMG)});
  qbSpArc();
  qbSpBook(cp)}/* v35 p05 */
-genv.__bldSheetFor=function(nb,fxT,target){let keep=B,out=null;try{targetSet(target);fxtSet(fxT||null);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet({customization:{}})}finally{targetSet(null);fxtSet(null);__set_B(keep);applyPacks()}return out};
+genv.__bldSheetFor=function(nb,fxT,target,options){let keep=B,out=null;try{targetSet(target);fxtSet(fxT||null);const b=structuredClone(nb);for(const k in BLANK)if(b[k]==null)b[k]=clone(BLANK)[k];__set_B(cleanCh(b));applyPacks();out=toSheet({...options,customization:{},temporaryCantrips:options&&options.temporaryCantrips})}finally{targetSet(null);fxtSet(null);__set_B(keep);applyPacks()}return out};
 /* T11 N29: many builds in a row (Find a build). The data tables (applyPacks) are set up again only when something they depend on changes:
    every builder field except the ones Find a build varies (species, background and its ability choice, scores), plus whether the species
    and background are core or come from a source (MoM, EFotA, a pack). Between two tries that differ only in core species, background or
@@ -233,12 +233,12 @@ genv.__bldSheetBatch=function(){let keep=B,last=null,srcAfter=null,bs=null,bb=nu
  return {one:function(nb){if(done)return null;if(!bs){snap();bs=JSON.parse(BASE.sp);bb=JSON.parse(BASE.bg)}let out=null;try{const b=structuredClone(nb),z=clone(BLANK);for(const k in BLANK)if(b[k]==null)b[k]=z[k];__set_B(cleanCh(b));
    const key=sbKey(VARY,bs,bb);
    if(key!==last){applyPacks();last=key;srcAfter=JSON.stringify(B.src||{})}else sbReuse(srcAfter);
-   out=toSheet({customization:{}})}catch(e){out=null;last=null}finally{__set_B(keep)}return out},
+   out=toSheet({customization:{},temporaryCantrips:undefined})}catch(e){out=null;last=null}finally{__set_B(keep)}return out},
   /* between slices the open character's tables come back, so nothing else ever sees a try's tables. Skipped when they are the same */
   pause:function(){if(last===null)return;__set_B(keep);const key=sbKey(VARY,bs,bb);if(key!==last)applyPacks();last=null},
   end:function(){if(done)return;done=true;__set_B(keep);applyPacks()}}};
 /* v74 test hook: reads a sheet back without saving. Returns the species, lineage and sources the builder would hold */
-genv.__bldRound=function(C){let keep=B,out=null;try{fromSheet({C:C});out={species:B.species,lin:B.ch.lin||"",ch:clone(B.ch),sub:B.sub,src:clone(B.src),sp:(B.sp||[]).slice(),spm:clone(B.spm||{}),spells:(toSheet({customization:{}}).spells||[]).map((x) =>{return x.n+"|"+x.use+"|"+x.src})}}finally{__set_B(keep);applyPacks()}return out};
+genv.__bldRound=function(C){let keep=B,out=null;try{fromSheet({C:C});out={species:B.species,lin:B.ch.lin||"",ch:clone(B.ch),sub:B.sub,src:clone(B.src),sp:(B.sp||[]).slice(),spm:clone(B.spm||{}),spells:(toSheet({customization:{},temporaryCantrips:undefined}).spells||[]).map((x) =>{return x.n+"|"+x.use+"|"+x.src})}}finally{__set_B(keep);applyPacks()}return out};
 genv.__bldLevelUp=function(){const st0=genv.__sheetState&&genv.__sheetState();if(st0&&st0.C&&!st0.C.cls){toast("Build this character first.");if(genv.__bldOpen)genv.__bldOpen();return}/* v22 i3 */genv.__bldOpen();if(document.querySelector("#bld > .exp:not(#exp)")){toast("Answer the question first, then raise the level in the Class step.");return}
  if(!B.cls){toast("Choose a class first.");return}/* v22 i3 */
  const st=genv.__sheetState&&genv.__sheetState(),sl=st&&st.C?(+st.C.level||1):0;if(sl&&TL()>sl){__set_step("class");render();toast("This build is already at level "+TL()+" and not applied yet. Finish it, then Apply.");return}/* v22 M4 */

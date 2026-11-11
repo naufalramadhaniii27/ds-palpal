@@ -1,5 +1,5 @@
 import {bindLive} from "./01b-logic-late-ports.js";import {SRC,esc,mod,pbOf} from "./01-logic-core-helpers.js";
-import {DMAP,bgX,kitGP,un,ovFx,itemBases,migrateInventory,itemQuantity,attunementState,itemWeaponInUse,itemFormInfoForRow,itemWieldInfoForRow,itemToolFormInfoForRow,itemVehicleInfoForRow} from "./03-logic-magic-item-effects.js";
+import {DMAP,bgX,kitGP,un,ovFx,itemBases,migrateInventory,itemQuantity,attunementState,itemWeaponInUse,itemFormInfoForRow,itemWieldInfoForRow,itemToolFormInfoForRow,itemVehicleInfoForRow,itemBorrowedCantripInfoForRow,allPurposeLegacy} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {pEff,subLbl,subLv} from "./08-logic-2014-rules.js";
@@ -14,7 +14,7 @@ import {provideQueries} from "./01a-logic-query-registry.js";
 
 bindLive("mcChoices",{get:function(){return mcChoices;}});
 bindLate({MCL,TL,baseOf,ensureInv,itemW,slotsAll,syncPickItems,hpCalc,effArmor,effShield,effWeps});/* the late ports of this file (01b-logic-late-ports.js) */
-provideQueries({itemVehicleInfoForRow,itemToolFormInfoForRow,itemFormInfoForRow,itemWieldInfoForRow,MCL,TL,baseOf,clsKitText,effArmor,effShield,effWeps,ensureInv,eqIdx,equippable,gpNow,hpBonusList,hpCalc,itemCost,itemW,itemWEst,langKeys,mcResMax,monkRule,qOf,rarityOf,slotsAll,syncPickItems,wpNamed});
+provideQueries({itemBorrowedCantripInfoForRow,allPurposeLegacy,itemVehicleInfoForRow,itemToolFormInfoForRow,itemFormInfoForRow,itemWieldInfoForRow,MCL,TL,baseOf,clsKitText,effArmor,effShield,effWeps,ensureInv,eqIdx,equippable,gpNow,hpBonusList,hpCalc,itemCost,itemW,itemWEst,langKeys,mcResMax,monkRule,qOf,rarityOf,slotsAll,syncPickItems,wpNamed});
 /* ---------- multiclass, HP, shop ---------- */
 export function MCL(){return (B.mc||[]).filter((m) =>{return CLASSES[m.cls]})}
 export function TL(){return B.level+MCL().reduce((t,m) =>{return t+m.lv},0)}

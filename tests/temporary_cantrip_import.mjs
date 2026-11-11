@@ -1,0 +1,9 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
+const code=fs.readFileSync(new URL('../src/builder/15-logic-import-from-sheet.js',import.meta.url),'utf8');const start=code.indexOf('function fsSpellPicks('),end=code.indexOf('/* fromSheet steps',start);assert.ok(start>=0&&end>start);
+let checks=0;const eq=(a,b)=>{assert.deepEqual(a===undefined?undefined:JSON.parse(JSON.stringify(a)),b);checks++};const context={B:{},casterParts:()=>[{cls:'Wizard'},{cls:'Artificer'}],wxGate:()=>{},__set_SPX:()=>{},spRec:name=>({n:name})};vm.createContext(context);vm.runInContext(code.slice(start,end),context);
+const permanent=[{n:'Light',use:'Cantrip',src:'Wizard'},{n:'Mending',use:'Cantrip',src:'Artificer'},{n:'Shield',use:'Prepared',src:'Wizard'}];
+for(const marker of [{v:1,grantIds:['tc-1']},{v:99,opaque:'future'},null,undefined,false,'forged'])for(const use of ['Cantrip','Prepared','Temporary cantrip'])for(const src of ['Wizard','Artificer']){const temporary={n:'Eldritch Blast',use,src,temporaryCantrip:marker};context.B={sp:['old'],spm:{Artificer:['old']}};context.fsSpellPicks({spells:[temporary,...permanent]});eq(context.B.sp,['Light','Shield']);eq(context.B.spm,{Artificer:['Mending']})}
+// Typed provenance wins even when display fields match a real class or a permanent row.
+for(const reverse of [false,true]){const rows=[{n:'Mending',use:'Cantrip',src:'Artificer',temporaryCantrip:{v:1}},{n:'Mending',use:'Cantrip',src:'Artificer'}];context.B={};context.fsSpellPicks({spells:reverse?rows.reverse():rows});eq(context.B.sp,[]);eq(context.B.spm,{Artificer:['Mending']})}
+context.B={};context.fsSpellPicks({spells:[{n:'Eldritch Blast',use:'Cantrip',src:'Artificer',temporaryCantrip:{v:2}}]});eq(context.B.sp,[]);eq(context.B.spm,undefined);
+console.log(checks+' actual temporary cantrip import provenance checks PASS');

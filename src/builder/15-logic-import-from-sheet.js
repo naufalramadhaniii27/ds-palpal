@@ -26,7 +26,7 @@ function fsSpAsiPick(sp,C){if(C.rs==="2014"&&SPECIES[sp].asiPick&&C.abilities){c
 function fsBgPicks(C){const bx=BACKGROUNDS[B.bg];if(!bx)return;if(bx.skPick){const bs=[];(C.skills||[]).forEach((q) =>{if(q.p&&String(q.src||"").indexOf(B.bg+" skill")===0)bs.push(q.n)});if(bs.length)B.ch.bgsk=bs.slice(0,bx.skPick.n)}
   if(bx.toolPick){let all=[];bx.toolPick.cats.forEach((k) =>{all=all.concat(TOOLS[k]||[])});const fx=(bx.toolFix||"").split(/,\s*/),bt=[];((C.profSrc||{}).tools||[]).forEach((q) =>{if(q[1]===B.bg&&all.indexOf(q[0])>=0&&fx.indexOf(q[0])<0)bt.push(q[0])});if(bt.length)B.ch.bgTool=bt.slice(0,bx.toolPick.n)}}
 function fsClassTool(C){const tp=CL().toolPick;if(!tp)return;let all=[];tp.cats.forEach((k) =>{all=all.concat(TOOLS[k]||[])});const ct=[];((C.profSrc||{}).tools||[]).forEach((q) =>{if(q[1]===B.cls&&all.indexOf(q[0])>=0&&ct.indexOf(q[0])<0)ct.push(q[0])});if(ct.length)B.ch.clsTool=ct.slice(0,tp.n)}
-function fsInvRow(x){let n=x.n,al=null;if(!(WEAPONS[baseOf(n).b]||ARMOR[baseOf(n).b]||n==="Shield"||DMAP[n]||itemCost(n)!=null||itemCost(baseOf(n).b)!=null)){/* v32 RU134 */const pm=/\(([^)]+)\)/.exec(n);if(pm&&(WEAPONS[pm[1]]||ARMOR[pm[1]]||itemCost(pm[1])!=null)){al=n;n=pm[1]}}const o={n:n,q:qOf(x),eq:x.eq==null?!!WEAPONS[baseOf(n).b]:!!x.eq};if(al)o.alias=al;if(x.in)o.in=x.in;/* v32 RU134 */if(x.mw)o.mw=1;if(x.px)o.px=x.px;if(typeof x.attuned==="boolean")o.attuned=x.attuned;if(Object.prototype.hasOwnProperty.call(x,"form"))o.form=clone(x.form);if(Object.prototype.hasOwnProperty.call(x,"toolForm"))o.toolForm=clone(x.toolForm);if(Object.prototype.hasOwnProperty.call(x,"vehicle"))o.vehicle=clone(x.vehicle);return migrateItemAttunement(o)}
+function fsInvRow(x){let n=x.n,al=null;if(!(WEAPONS[baseOf(n).b]||ARMOR[baseOf(n).b]||n==="Shield"||DMAP[n]||itemCost(n)!=null||itemCost(baseOf(n).b)!=null)){/* v32 RU134 */const pm=/\(([^)]+)\)/.exec(n);if(pm&&(WEAPONS[pm[1]]||ARMOR[pm[1]]||itemCost(pm[1])!=null)){al=n;n=pm[1]}}const o={n:n,q:qOf(x),eq:x.eq==null?!!WEAPONS[baseOf(n).b]:!!x.eq};if(al)o.alias=al;if(x.in)o.in=x.in;/* v32 RU134 */if(x.mw)o.mw=1;if(x.px)o.px=x.px;if(typeof x.attuned==="boolean")o.attuned=x.attuned;if(Object.prototype.hasOwnProperty.call(x,"form"))o.form=clone(x.form);if(Object.prototype.hasOwnProperty.call(x,"toolForm"))o.toolForm=clone(x.toolForm);if(Object.prototype.hasOwnProperty.call(x,"vehicle"))o.vehicle=clone(x.vehicle);if(Object.prototype.hasOwnProperty.call(x,"borrowedCantripSource"))o.borrowedCantripSource=clone(x.borrowedCantripSource);return migrateItemAttunement(o)}
 /* v79: the choices of the subclass (Hunter's Prey, Land Type, maneuvers, War Bond, Evocation Savant and so on) come back from the sheet. The feature text holds them after "Your choice." One function per pick type (tool, skills, named list, resistance) and one per step */
 function fsRd(f){const d=f.d||"",m=/\*\*Your choice\.\*\*\s*([^\n]*?)\.(?:\s|$)/.exec(d);/* the names end at the first full stop. Text such as "At your level" may follow */return m?m[1].split(/,\s*/).map((x) =>{return x.replace(/\.$/,"").trim()}).filter(Boolean):[]}
 /* Eldritch Invocations: the names of the group "Eldritch Invocations" fill the invocation picks in order */
@@ -60,7 +60,7 @@ function fsSubPicks(C){let cs=[];try{cs=choices()}catch(e){return}
  fsInvPicks(C,cs);
  cs.forEach((c) =>{fsSubPick(C,c,fs,by)})}
 function fsSpellPicks(C){let cp=[];try{cp=casterParts()}catch(e){}if(!cp.length)return;const first=cp[0].cls,have={};B.sp=[];delete B.spm;
-  (C.spells||[]).forEach((x) =>{if(!/^(Prepared|Cantrip)$/.test(x.use||""))return;const cl=x.src;if(!cp.some((p) =>{return p.cls===cl}))return;const k=cl+"|"+x.n;if(have[k])return;have[k]=1;
+  (C.spells||[]).forEach((x) =>{if(Object.prototype.hasOwnProperty.call(x,"temporaryCantrip"))return;if(!/^(Prepared|Cantrip)$/.test(x.use||""))return;const cl=x.src;if(!cp.some((p) =>{return p.cls===cl}))return;const k=cl+"|"+x.n;if(have[k])return;have[k]=1;
    if(cl===first)B.sp.push(x.n);else{B.spm=B.spm||{};(B.spm[cl]=B.spm[cl]||[]).push(x.n)}});
   /* the source of a picked spell must be on before its row can be found */
   try{wxGate()}catch(e){}__set_SPX(null);
@@ -124,7 +124,7 @@ export function fromSheet(st){const C=st.C,nb=fsHead(st,C),miss=[];
  fsBgPicks(C);
  /* v81: the tool pick of the class (Bard instruments, Monk tool) comes back from the proficiency sources of the sheet */
   fsClassTool(C);
-  B.inv=(C.inv||[]).map((x) =>{return fsInvRow(x)});if(Object.prototype.hasOwnProperty.call(C,"inventoryFormV"))B.inventoryFormV=clone(C.inventoryFormV);else delete B.inventoryFormV;migrateInventory(B);B.eqC="none";B.eqB="none";B.gpOverride=C.gp!=null?C.gp:null;
+  B.inv=(C.inv||[]).map((x) =>{return fsInvRow(x)});if(Object.prototype.hasOwnProperty.call(C,"inventoryFormV"))B.inventoryFormV=clone(C.inventoryFormV);else delete B.inventoryFormV;if(Object.prototype.hasOwnProperty.call(C,"allPurposeSources"))B.allPurposeSources=clone(C.allPurposeSources);else delete B.allPurposeSources;migrateInventory(B);B.eqC="none";B.eqB="none";B.gpOverride=C.gp!=null?C.gp:null;
  fsLang(st,C);
  applyPacks();fsLang14(C);
  /* v79: the choices of the subclass (Hunter's Prey, Land Type, maneuvers, War Bond, Evocation Savant and so on) come back from the sheet. The feature text holds them after "Your choice." */

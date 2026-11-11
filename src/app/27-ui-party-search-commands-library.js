@@ -1,7 +1,7 @@
 import {bindLive,cheatOpen,exhTo,futureOpen,goTab,lateGet,levelUp,rbOpen,rcptShow,recapOpen,redoNow,renderAll,statusCopy,statusText,tmOpen,toastU,undoLbl,undoMark,undoNow,wdOpen} from "./00a-reg-late-ports.js";import {HB_CONDS,STD_CONDS} from "./02-data-default-character.js";
 import {GLOSS,exTxt} from "./03-data-glossary.js";
 import {C,CKEY,DEF,FROZEN,KEY,S,__set_C,__set_S,clone,clsLv,save} from "./04-logic-storage.js";
-import {$,$$,ask,atkOn,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
+import {$,$$,ask,atkOn,temporarySpellOn,clamp,esc,num,sg,toast} from "./05-logic-helpers.js";
 import {D,derive} from "./06-logic-derivation.js";
 import {featAll} from "./08b-ui-render-summaries-actions.js";
 import {__set_navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
@@ -84,12 +84,12 @@ export function fzScore(q,s){ s=String(s||"").toLowerCase(); if(!s||!q) return -
   return best<=m?3+best:-1; }
 export var gsSel=0, PAL=[], gsShown=null;
 /* Search result groups (SOLID stage 9, O): one entry per group in SEARCHGRP, in the order the groups show. gsHTML only asks each entry for its rows. */
-SEARCHGRP.add("spells",{build:function(x){ const pick=x.pick, sc=x.sc; const sp=pick((C.spells||[]).map((x,i) =>{ return [x,i]; }),(p) =>{ return sc([p[0].n,cuNm("s:"+p[0].n,"")],[p[0].sum]); }); return sp.length?["Your Spells",sp.slice(0,30).map((p) =>{ return ['sp:'+p[1],cuNm("s:"+p[0].n,p[0].n),(p[0].l?ordL(p[0].l):"Cantrip")+" • "+(p[0].use||""),"school-"+String(p[0].sch||"").toLowerCase()]; })]:null; }});
+SEARCHGRP.add("spells",{build:function(x){ const pick=x.pick, sc=x.sc; const sp=pick((C.spells||[]).map((x,i) =>{ return [x,i]; }).filter(p=>temporarySpellOn(p[0])),(p) =>{ return sc([p[0].n,cuNm("s:"+p[0].n,"")],[p[0].sum]); }); return sp.length?["Your Spells",sp.slice(0,30).map((p) =>{ return ['sp:'+p[1],cuNm("s:"+p[0].n,p[0].n),(p[0].l?ordL(p[0].l):"Cantrip")+" • "+(p[0].use||""),"school-"+String(p[0].sch||"").toLowerCase()]; })]:null; }});
 SEARCHGRP.add("attacks",{build:function(x){ const pick=x.pick, sc=x.sc; const at=pick((C.attacks||[]).map((a,i) =>{ return [a,i]; }).filter((p) =>{ return atkOn(p[0]); }),(p) =>{ return sc([p[0].n,cuNm("a:"+p[0].n,"")]); }); return at.length?["Attacks",at.map((p) =>{ return ['w:'+p[1],cuNm("a:"+p[0].n,p[0].n),sg(D.atk[p[1]].hit)+" to hit, "+D.atk[p[1]].dmg,"act-attack"]; })]:null; }});
 SEARCHGRP.add("inventory",{build:function(x){ const pick=x.pick, sc=x.sc; const iv=pick((C.inv||[]).map((x,i) =>{ return [x,i]; }),(p) =>{ return sc([p[0].n,cuNm("i:"+invKey(p[0]),"")]); }); return iv.length?["Inventory",iv.slice(0,30).map((p) =>{ return ['it:'+p[1],cuNm("i:"+invKey(p[0]),p[0].n),(p[0].type||"Item")+(num(p[0].q,1)>1?" ×"+num(p[0].q,1):""),typeof icoItem==="function"?icoItem(p[0]):"tab-inventory"]; })]:null; }});
 SEARCHGRP.add("features",{build:function(x){ const pick=x.pick, sc=x.sc; const ft=pick(featAll(),(x) =>{ return sc([x.f.n],[x.t]); }); return ft.length?["Features and Traits",ft.slice(0,30).map((x) =>{ return ['f:'+x.gi+'.'+x.fi,x.f.n,x.g,"ui-feature"]; })]:null; }});
 SEARCHGRP.add("rules",{build:function(x){ const pick=x.pick, sc=x.sc; const gl=pick(Object.keys(GLOSS).sort(),(k) =>{ return sc([k]); }); return gl.length?["Rules and Conditions",gl.slice(0,30).map((k) =>{ return ['g:'+k,k,GLOSS[k].c||"Rule",lateGet("ICO")["cond-"+k.toLowerCase()]?"cond-"+k.toLowerCase():"ui-book"]; })]:null; }});
-SEARCHGRP.add("other-spells",{build:function(x){ const pick=x.pick, sc=x.sc; const mine=(C.spells||[]).map((x) =>{ return x.n; }), al=typeof SPELLS==="undefined"?[]:pick(SPELLS.filter((x) =>{ return mine.indexOf(x[0])<0; }),(x) =>{ return sc([x[0]]); }); return al.length?["Other Spells",al.slice(0,30).map((x) =>{ return ['spn:'+x[0],x[0],(x[1]?ordL(x[1]):"Cantrip")+" • "+spClsJ(x),"tab-spells"]; })]:null; }});
+SEARCHGRP.add("other-spells",{build:function(x){ const pick=x.pick, sc=x.sc; const mine=(C.spells||[]).filter(temporarySpellOn).map((x) =>{ return x.n; }), al=typeof SPELLS==="undefined"?[]:pick(SPELLS.filter((x) =>{ return mine.indexOf(x[0])<0; }),(x) =>{ return sc([x[0]]); }); return al.length?["Other Spells",al.slice(0,30).map((x) =>{ return ['spn:'+x[0],x[0],(x[1]?ordL(x[1]):"Cantrip")+" • "+spClsJ(x),"tab-spells"]; })]:null; }});
 /* solid:orchestrator gsHTML */
 function gsHTML(){ const q=gsQ.trim().toLowerCase().replace(/\s+/g," "), h='<input class="sp-q" id="gsQ" type="search" placeholder="Search, or type: dmg 7, heal 5" aria-label="Search the sheet or type a command" autocomplete="off" enterkeyhint="go" spellcheck="false" value="'+esc(gsQ)+'">';
   gsShown=gsQ; PAL=palCmds(q); gsSel=0; const cm=PAL.length?'<div class="gs-cl" aria-label="Commands">'+PAL.map(palRow).join("")+'</div>':'';

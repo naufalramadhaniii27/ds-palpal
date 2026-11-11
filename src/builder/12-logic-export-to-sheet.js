@@ -1,5 +1,5 @@
-import {bindLive} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf,applyWieldScoreCustomization} from "./01-logic-core-helpers.js";
-import {DMAP,activeFx,attMax,bgX,byOk,htText,spX,attunementState,itemInUse,itemMagicBonus} from "./03-logic-magic-item-effects.js";
+import {bindLive} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf,applyWieldScoreCustomization,projectTemporaryCantrips} from "./01-logic-core-helpers.js";
+import {withAllPurposeLegacy,DMAP,activeFx,attMax,bgX,byOk,htText,spX,attunementState,itemInUse,itemMagicBonus} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
@@ -22,7 +22,7 @@ import "./12k-logic-sheet-handlers-spells.js";
 import "./12l-logic-sheet-handlers-late.js";
 import "./12m-logic-sheet-handlers-tools.js";
 import "./11c-logic-fx-handlers-sheet.js";
-import {spellRows,appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef,sheetState,genv} from "./00-env.js";
+import {spellRows,classDef,appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef,sheetState,genv} from "./00-env.js";
 bindLive("toSheet",{get:function(){return toSheet;}});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
@@ -36,6 +36,7 @@ provideQueries({itemInUse:itemInUse,itemMagicBonus:itemMagicBonus,byOk:byOk,subL
  pactWeapon:pactWeapon,fxOk:fxOk,casterParts:casterParts,dmapRow:function(n){return DMAP[n]},sbWx:function(sub,cls){return typeof sbWx==="function"?sbWx(sub,cls):null}});
 /* the inputs of a build: read once, in the order the old code read them (abilScores() settles pbAdd before pb is taken) */
 function ownedWieldCustomization(){const st=sheetState();if(!st||!st.C||st.C.name!==B.name)return {};const id=genv.__sheetId&&genv.__sheetId();if(!B.cid||!id||B.cid!==id)return {};return st.cust||{}}
+function ownedTemporaryCantrips(){const st=sheetState(),id=genv.__sheetId&&genv.__sheetId();return st&&st.C&&st.C.name===B.name&&B.cid&&id===B.cid?st.temporaryCantrips:undefined}
 function sheetInputs(options){
  syncPickItems();/* fx pick t:"item": chosen items join the inventory before anything reads it */
  const c=CL(),L=B.level,TLv=TL(),a=abilScores(),pb=pbOf(TLv),sp=speciesDef(B.species),custom=B.species==="Custom";
@@ -47,12 +48,13 @@ function sheetInputs(options){
  const wieldScores=options&&Object.prototype.hasOwnProperty.call(options,"wieldScores")?options.wieldScores:applyWieldScoreCustomization(a.sc,options&&Object.prototype.hasOwnProperty.call(options,"customization")?options.customization:ownedWieldCustomization());
  const EA=effArmor(),ESH=effShield(),EW0=effWeps(wieldScores),BO=baseOf(EA),ar=armorDef(BO.b),mcl=MCL(),ATT=attunementState(),AFX=activeFx(ATT),EAp=itemMagicBonus(EA,BO,AFX),SFX=spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
  const SM={};spellRows().forEach((x) =>{SM[x[0]]=x});
- return {i:{SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,wieldScores:wieldScores,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,ATT:ATT,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
+ const temporalState=options&&Object.prototype.hasOwnProperty.call(options,"temporaryCantrips")?options.temporaryCantrips:ownedTemporaryCantrips(),nativeClasses=[...new Set(spellRows().flatMap(x=>x[3]||[]).filter(k=>classDef(k)))],temporaryCantrips=projectTemporaryCantrips(temporalState,spellRows(),nativeClasses,"Artificer");
+ return {i:{temporaryCantrips:temporaryCantrips,SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,wieldScores:wieldScores,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,ATT:ATT,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
 /* solid:orchestrator toSheet */
 export function toSheet(options={}){
  /* every field group and class rule is a handler registered in 12c-12l (contract in 12a-logic-sheet-registry.js); this function only builds the inputs and runs the phases */
- const T=sheetInputs(options);
+ const render=function(){const T=sheetInputs(options);
  runSheet(T);
  ACM=T.l.acm;/* v27 i2 */
  QRY.setProfc(T.C);/* the profs object of the finished sheet (item texts read it) */
- return T.C}
+ return T.C};return options&&options.allPurposeLegacy?withAllPurposeLegacy(render):render()}

@@ -1,6 +1,7 @@
 import {bindLive,cuK,cuNum,featSpec,ico,lateGet,toastKind,xlink} from "./00a-reg-late-ports.js";import {ABK} from "./02-data-default-character.js";
 import {GLOSS} from "./03-data-glossary.js";
-import {C} from "./04-logic-storage.js";
+import {C,S} from "./04-logic-storage.js";
+import {temporaryCantripStatus} from "./lib/temporary-cantrip-guard.js";
 import {env} from "./00-env.js";
 import {weaponFormMetadata,weaponFormUsable} from "../data/lib/weapon-form.js";
 import {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum} from "../data/lib/wield-minimum.js";
@@ -55,7 +56,8 @@ export function currentAbilityScores(){const scores={};ABK.forEach(k=>{const abi
 export function weaponWieldInfo(it){const rule=nativeWieldMinimum(it&&(it.key||it.n));if(!rule)return {rule:null,allowed:true,unmet:[],text:""};const currentScores=currentAbilityScores(),result=evaluateWieldMinimum(rule,currentScores);return Object.assign({rule,currentScores,text:explainWieldMinimum(result)},result)}
 function wieldAttackOn(name){const key=String(name||"").replace(/ \(thrown\)$/,"");const items=(C.inv||[]).filter(it=>((it.key||it.n)===key||it.n===key)&&nativeWieldMinimum(it.key||it.n));if(!items.length)return null;return items.some(it=>eqOn(it)&&num(it.q,1)>0&&weaponWieldInfo(it).allowed)}
 function carriedAttackOn(name){const wield=wieldAttackOn(name);if(wield!==null)return wield;const form=formAttackOn(name);if(form!==null)return form;const it=eqInvOf(name);return !it||eqOn(it)}
-export function atkOn(a){if(a&&a.of&&!carriedAttackOn(a.of))return false;return carriedAttackOn(a.n)}/* v32 RL51: a row a weapon carries (Pole Strike) follows that weapon */
+export function temporarySpellOn(row){return temporaryCantripStatus(row,S.temporaryCantrips).allowed}
+export function atkOn(a){if(!temporarySpellOn(a))return false;if(a&&a.of&&!carriedAttackOn(a.of))return false;return carriedAttackOn(a.n)}/* v32 RL51: a row a weapon carries (Pole Strike) follows that weapon */
 /* RU22: index of the attack row named like the item ("Dagger", "Celurit (Sickle)", "Longsword, +1"), or -1. The "(thrown)" row is not used */
 /* RU17/RU18: an inventory action goes through the builder hooks only for items the builder made (toSheet() writes "key" on every item; the sheet never does).
    A hand-filled sheet whose character also has a builder save keeps its own C: the hooks would replace the whole sheet with toSheet() and drop

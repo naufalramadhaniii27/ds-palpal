@@ -2,12 +2,12 @@
 (function(){
   const MI=FXENV.__MI;
   if(!MI||!document.body.animate) return;
-  FXS16A.sourceSpec=function sourceSpec(key,spec){if(!spec||!/^spatk-source-/.test(key))return spec;let guard=null;try{guard=FXENV.__spellSourceGuard&&FXENV.__spellSourceGuard(key,spec.bon)}catch(error){}spec.sourceGuard=typeof guard==="function"?guard:function(){return false};return spec};
+  FXS16A.sourceSpec=function sourceSpec(key,spec){if(!spec)return spec;let guard;if(/^(ah-|ad-)/.test(key)){try{guard=FXENV.__temporaryAttackGuard&&FXENV.__temporaryAttackGuard(key)}catch(error){guard=false}if(guard===undefined)return spec}else if(/^spatk-source-/.test(key)){try{guard=FXENV.__spellSourceGuard&&FXENV.__spellSourceGuard(key,spec.bon)}catch(error){guard=false}}else return spec;spec.sourceGuard=typeof guard==="function"?guard:function(){return false};return spec};
 })();
 (function(){
   const MI=FXENV.__MI;
   if(!MI||!document.body.animate) return;
-  FXS16A.barAllowed=function barAllowed(w){const spec=w&&w.__spec;if(!spec||typeof spec.sourceGuard!=="function")return true;let allowed=false;try{const sh=w.closest&&w.closest("#sheet");allowed=!!(w.isConnected&&sh&&sh.classList.contains("on")&&spec.sourceGuard()===true)}catch(error){}if(!allowed){w.__busy=0;const result=w.querySelector(".mi-rres");if(result)result.textContent="The spell source changed. Open its numbers again."}return allowed};
+  FXS16A.barAllowed=function barAllowed(w){const spec=w&&w.__spec;if(!spec||typeof spec.sourceGuard!=="function")return true;let allowed=false;try{const sh=w.closest&&w.closest("#sheet");allowed=!!(w.isConnected&&sh&&sh.classList.contains("on")&&spec.sourceGuard()===true)}catch(error){}if(!allowed){w.__busy=0;const result=w.querySelector(".mi-rres");if(result)result.textContent="This source changed. Open its numbers again."}return allowed};
 })();
 (function(){
   const MI=FXENV.__MI;
