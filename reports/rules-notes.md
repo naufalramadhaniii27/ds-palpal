@@ -310,3 +310,12 @@ The basic form and the seventeen canonical artisan forms receive their proficien
 Frightened checks require an explicit answer about whether the source is in sight. Current Exhaustion, Poisoned, Rage and declared Advantage/Disadvantage participate in the displayed roll calculation. Player declarations establish touch and use of this item; the application does not observe physical hands or resolve arbitrary fictional constraints.
 
 Form changes require an owned, bound Build and reject real sheet edits before writing. The comparison first restores Build’s actual source/edition context: the app’s 2014 spell overlay otherwise changes extension spell class lists and can falsely mark an unchanged sheet as manual. Current-sheet checks remain available for a supported manually entered item and its declared current attunement/form, without writing Build. They do not borrow a different saved item merely because its name matches.
+
+
+## 2026-11-11: carpet vehicle flight
+
+The generic Carpet of Flying has a native Magic activation; each fixed-size legacy item has an Action activation even when placed on a current-edition character. Speaking the command word records activation. The thirty-foot inclusive condition governs later direction, not activation. Fixed items require spoken directions; the generic text requires directions without specifying that they must be spoken. The source gives no separate Action cost for each direction.
+
+The four capacity/speed pairs are 200 lb/80 ft, 400 lb/60 ft, 600 lb/40 ft and 800 lb/30 ft. Exactly normal load retains full Fly Speed; positive excess through twice capacity halves it. Above twice capacity is unsupported load, not an invented crash, destruction, automatic ending or zero-speed rule. Total rider/cargo load and controller distance are explicit tabletop facts. Carpet own mass is not supplied by these sources and is not inferred from capacity.
+
+Activation persists independently of current stock visibility or the equipment checkbox. The native text supplies no dismissal action or end-on-stow rule. `active:false` on a legacy migration means activation has not been recorded here, not that the application knows the carpet is physically grounded. Generic size must be the DM-selected configuration before a load/speed calculation; setting it is application configuration, not a new resizing power.

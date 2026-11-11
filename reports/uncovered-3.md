@@ -1,4 +1,33 @@
-# Uncovered 3: source-owned tool forms and checks
+# Uncovered 3: carpet vehicle load and directed flight
+
+## U34: physical carpet profiles and owned controls
+
+Twenty-six further original sentences now have computed coverage: 309 closed from the initial 5,460, 5,151 uncovered and zero regressed IDs. Covered is 8,014; info remains 23,617 and allow remains zero. These are exactly the generic Carpet of Flying activation/overload clauses and the four fixed-size activation/load/overload clauses in both source catalogs. Existing table and range INFO sentences are unchanged and are not counted again.
+
+The five exact native keys carry independent per-row `vehicle:{v:1,active:boolean,size:null|sizeId}` state. Missing legacy state explicitly migrates to activation-unrecorded, with the fixed native size or an unset generic DM selection. Future/malformed state and unknown attributes are preserved. Activation records the native command-word Magic action for the generic item or Action for each fixed item; it does not require a declared load, distance, selected generic size, equipment or attunement. The thirty-foot inclusive condition governs later directions. Fixed items require spoken directions; the generic wording does not add that speech requirement. No new Action cost, dismissal, crash or end-on-stow rule is invented.
+
+The actual vehicle consumer takes explicit current rider/cargo load and controller distance. The native capacity/Fly Speed pairs are 200 lb/80 ft, 400 lb/60 ft, 600 lb/40 ft and 800 lb/30 ft. Exactly normal capacity retains full speed; any positive excess through double capacity halves it. Excess above double capacity is unsupported load with no prescribed crash or zero-speed simulation. The output belongs to the carpet, preserves actor movement/HP/resources, and never substitutes capacity for the carpet’s unspecified own weight.
+
+Stacks require a quantity-conserving Split-one operation before per-copy control. Remembered vehicle state moves only to the chosen row, while the other physical copy receives an unconfigured record; unknown/future state is never silently duplicated or discarded. Raw state survives stow, zero quantity, import and reload. Persistent configuration/activation/split writes retain strict owner/CID/index/signature/manual guards and validated Undo. Current-sheet vehicle calculations can use their own manual row without writing or borrowing another Build.
+
+Strict projection now restores the source context and neutralizes the dialog’s self-link context within a scoped try/finally, then compares complete fields. This fixes a fresh item falsely marked manual because its own link was suppressed during rendering; real manual HTML and spell edits remain protected. A shared active-sheet predicate also cancels closed-but-connected lazy weapon/tool/carpet writes and pending owned rolls before journal/history output.
+
+The 26 exact CODE proofs anchor the actual activation and vehicle evaluator. Their native numeric values use explicit `scopeValues:true`, admitted only to their matching sentence; malformed explicit flag types fail closed. This prevents a carpet dimension proving an unrelated distance statement while retaining legacy behavior and all prior coverage.
+
+## U34 validation and source audit
+
+| Check | Result |
+|---|---|
+| Effects / measure | 1,595 complete effect cases PASS, including 18 new native target cases; 752 units, zero new misses in either edition |
+| Focused native tests | Carpet pure 139; backend/integration 14; runtime 224; portable UI 58; shared lifetime 18; tool runtime 299 and UI 42; all PASS; actual projection-context regression also PASS |
+| Production UI | 146 lifecycle assertions + 16 final result-clearing checks PASS at 390×844 and 1250×850; actual native counters/HP preserved, Magic/Action, unknown-size activation, load/range boundaries, split, Undo/Redo/reload/stow, stale/closed/manual views; zero JS errors |
+| Official contracts | Contract 5,018; golden 1,479; UI 308; data 621; all PASS |
+| Full snapshot / builder | All 2,997 snapshot hashes and 3,890 builder hashes identical to U33, without normalization; totals `8fbbc8cd8e3011ff` / `396b20d955f87d6e`; zero page/build errors |
+| Scenarios | 24 PASS at both required viewports |
+| Static checks | TypeScript 200/noWORSE; HTML 250; enforced guards 0; overlap 1,408 names / 39 files / 156 documented overlaps |
+| Gate / source audit | 227 strict U34 selfchecks; seeded 150 audit with 68 new selections and all 26 closures included, 83 actual-source rows reviewed, zero missing sources; prior 283 closures retained |
+
+The standard snapshot outputs do not exercise a new carpet instance, so the targeted source/model and actual UI evidence above prove the added vehicle behavior. Main raw comparisons retain the prior 2,997 snapshot / 2,263 builder differences with no additional unexplained change. Final input edits clear an earlier direction certificate; an out-of-range declaration no longer displays stale confirmation and never clears activation.
 
 ## U33: per-item tool forms and actual checks
 

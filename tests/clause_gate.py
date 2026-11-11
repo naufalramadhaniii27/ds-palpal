@@ -317,10 +317,11 @@ PROF_PICKS = {"expertise", "skills", "skill", "tools", "tool", "lang", "langs", 
 
 
 class Atom:
-    __slots__ = ("cls", "vals", "src", "weak", "i", "pool", "rx")
+    __slots__ = ("cls", "vals", "src", "weak", "i", "pool", "rx", "scope_values")
 
-    def __init__(self, cls, vals, src, weak=False, pool=False, rx=None):
+    def __init__(self, cls, vals, src, weak=False, pool=False, rx=None, scope_values=False):
         self.cls, self.vals, self.src, self.weak, self.i, self.pool, self.rx = cls, set(vals), src, weak, 0, pool, rx
+        self.scope_values = scope_values is True
 
 
 def critical_field_values(key, records):
@@ -942,7 +943,7 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
     res = []
     all_vals = set()
     for a in atoms:
-        if a.src != "FXO_NULL_REPL" and not a.src.endswith(".objectRepair"):  # repair limits stay local to their literal repair sentence
+        if a.src != "FXO_NULL_REPL" and not a.src.endswith(".objectRepair") and not a.scope_values:  # repair limits and opted-in CODE literals stay local to their matching sentences
             all_vals |= a.vals
     if ctx.get("lvl") is not None:
         all_vals |= {str(ctx["lvl"])}
@@ -1037,10 +1038,10 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         if "CHOICE" in missing and any((ri, c) in got for c in ("PROF", "SPELL", "ABIL", "RES", "IMM", "SPEED", "SENSE")):
             missing.remove("CHOICE")  # a pick that the other atom already carries ("two tools of your choice")
         assigned = set()
-        repair_vals = set()
+        scoped_vals = set()
         for j, a in enumerate(atoms):
-            if a.src.endswith(".objectRepair") and a.rx and a.rx.search(r["text"].lower()):
-                repair_vals |= a.vals
+            if (a.src.endswith(".objectRepair") or a.scope_values) and a.rx and a.rx.search(r["text"].lower()):
+                scoped_vals |= a.vals
                 if a.vals & {t for t, k in r["toks"]} and j not in r["used"]:
                     r["used"].append(j)
         for j in r["used"]:
@@ -1053,7 +1054,7 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         # or any atom of the feature when the sentence has no atom class of its own (so a lone "1" is not explained by an unrelated record)
         unexpl = []
         for t, k in r["toks"]:
-            pool = (all_vals | repair_vals) if (k in ("dist", "dur") or not r["need"]) else assigned
+            pool = (all_vals | scoped_vals) if (k in ("dist", "dur") or not r["need"]) else assigned
             if "*" in pool or t in pool or wild and r["used"]:
                 continue
             unexpl.append(t)
@@ -1097,6 +1098,9 @@ def load_code_atoms(ents=None):
             return out
     cache = {}
     for e in ents:
+        if "scopeValues" in e and type(e["scopeValues"]) is not bool:
+            CODE_NOTES.append("code atom %s dropped: scopeValues must be a boolean" % e["id"])
+            continue
         f, needle = e["anchor"]
         if f not in cache:
             try: cache[f] = open(os.path.join(ROOT, f), encoding="utf-8").read()
@@ -1105,7 +1109,7 @@ def load_code_atoms(ents=None):
             CODE_NOTES.append("code atom %s dropped: anchor %r not found in %s" % (e["id"], needle, f))
             continue
         for c in e["cls"]:
-            out["%s|%s|%s" % (e["kind"], e["owner"], e["name"])].append((e, Atom(c, set(e.get("vals", [])), "CODE|" + e["id"] + "." + c, rx=re.compile(e["rx"]))))
+            out["%s|%s|%s" % (e["kind"], e["owner"], e["name"])].append((e, Atom(c, set(e.get("vals", [])), "CODE|" + e["id"] + "." + c, rx=re.compile(e["rx"]), scope_values=e.get("scopeValues") is True)))
     return out
 
 
@@ -1510,6 +1514,59 @@ def selftest():
         for label,other in [("global tools", "You gain proficiency with all Artisan's Tools."),("ordinary tool", "You gain proficiency with Smith's Tools."),("language", "Additional languages you know include Draconic."),("ability", "Your Strength score increases by 2."),("touch alone", "As a Magic action, you can touch the item and transform it into a type of Artisan's Tools of your choice.")]:
             rows = analyze(synth("item",entry["owner"],entry["name"],other,owned_atoms))
             check("U33 NEG "+label+" "+entry["id"], all(r["status"] != "covered" if label == "touch alone" else r["status"] == "uncovered" for r in rows))
+    # Vehicle-only carpet clauses require an executable owned consumer and exact
+    # native owner/sentence/literals; no actor flight or generic numeric grant.
+    carpet_entries = [e for e in json.load(open(CODE, encoding="utf-8"))["entries"] if e.get("id", "").startswith("u34-")]
+    check("U34 exact 26 native carpet clauses", len(carpet_entries) == 26)
+    for entry in carpet_entries:
+        key = "item|%s|%s" % (entry["owner"],entry["name"])
+        loaded = load_code_atoms([entry])
+        owned_atoms = [a for e,a in loaded.get(key,[])]
+        generic = entry["name"] == "Carpet of Flying"
+        sentence_index = int(entry["id"].rsplit("-",1)[1])
+        profile = next((p for p in [(3,5,200,80),(4,6,400,60),(5,7,600,40),(6,9,800,30)] if entry["name"] == "Carpet of Flying, %s ft. × %s ft." % p[:2]), None)
+        if sentence_index == 1:
+            text = "By taking a Magic action and speaking the carpet's command word, you make the carpet hover and fly." if generic else "You can speak the carpet's command word as an action to make the carpet hover and fly."
+            expected_vals = set()
+        elif sentence_index == 3:
+            text = "A %s ft. × %s ft. carpet can carry up to %s lb. at a fly speed of %s feet." % profile
+            expected_vals = set(map(str,profile))
+        else:
+            text = "A carpet can bear as much as double its listed capacity, but while its load exceeds the normal capacity, its Fly Speed is halved." if generic else "A carpet can carry up to twice this weight, but it flies at half speed if it carries more than its normal capacity."
+            expected_vals = {"double"} if generic else {"double","half"}
+        check("U34 native literal values "+entry["id"], set(entry["vals"]) == expected_vals and entry.get("scopeValues") is True)
+        row = analyze(synth("item",entry["owner"],entry["name"],text,owned_atoms))[0]
+        check("U34 exact native vehicle "+entry["id"], row["status"] == "covered" and entry["cls"] == ["SPEED"], row["why"])
+        case = tool_cases_by_name.get(entry["test"])
+        check("U34 actual native fixture "+entry["id"], bool(case and case.get("expect")))
+        gone = load_code_atoms([dict(entry,anchor=entry["anchor"][:1]+["missing-owned-carpet-consumer"])])
+        check("U34 NEG missing consumer "+entry["id"], not gone and analyze(synth("item",entry["owner"],entry["name"],text,[]))[0]["status"] != "covered")
+        CODE_NOTES.clear()
+        wrong_owner = [a for e,a in loaded.get("item|unrelated|"+entry["name"],[])]
+        check("U34 NEG wrong owner "+entry["id"], analyze(synth("item","unrelated",entry["name"],text,wrong_owner))[0]["status"] == "uncovered")
+        for label,other in [("actor flight","You have a Fly Speed of 80 feet."),("unrelated distance","You can teleport 5 feet."),("wrong native action",text.replace("Magic action","Bonus Action").replace("as an action","as a Bonus Action")),("wrong size or literal",re.sub(r"\d+",lambda m:str(int(m.group())+1),text)),("wrong load fraction",text.replace("half speed","full speed").replace("halved","doubled"))]:
+            if other == text: continue
+            check("U34 NEG "+label+" "+entry["id"], all(r["status"] != "covered" for r in analyze(synth("item",entry["owner"],entry["name"],other,owned_atoms))))
+    # Missing and explicit false preserve legacy behavior; malformed opt-ins
+    # must fail closed rather than accidentally restoring global numeric lending.
+    legacy_scope_entry = dict(carpet_entries[3], id="scope-values-compat", scopeValues=False)
+    for scope_flag in (False, True):
+        configured = dict(legacy_scope_entry, scopeValues=scope_flag)
+        atom = next(a for pairs in load_code_atoms([configured]).values() for e,a in pairs)
+        check("U34 scopeValues strict boolean "+repr(scope_flag), atom.scope_values is scope_flag)
+    absent_flag = dict(legacy_scope_entry)
+    absent_flag.pop("scopeValues")
+    legacy_atom = next(a for pairs in load_code_atoms([absent_flag]).values() for e,a in pairs)
+    check("U34 absent scopeValues preserves legacy default", legacy_atom.scope_values is False)
+    for scope_flag in (None, "true", 1, [], {}):
+        configured = dict(legacy_scope_entry, scopeValues=scope_flag)
+        CODE_NOTES.clear()
+        malformed = load_code_atoms([configured])
+        check("U34 NEG malformed scopeValues drops with diagnostic "+repr(scope_flag), not malformed and any("scopeValues must be a boolean" in note for note in CODE_NOTES))
+        for text in ("A 3 ft. × 5 ft. carpet can carry up to 200 lb. at a fly speed of 80 feet.","You can teleport 5 feet."):
+            malformed_row = analyze(synth("item",configured["owner"],configured["name"],text,[]))[0]
+            check("U34 NEG malformed scopeValues cannot explain "+repr(scope_flag)+text, malformed_row["status"] != "covered" if text.startswith("You can teleport") else malformed_row["status"] == "uncovered")
+        CODE_NOTES.clear()
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

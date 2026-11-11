@@ -2395,6 +2395,566 @@
    ],
    "test": "Z3 U33 native tool capability +3 All-Purpose Tool",
    "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^by\\ taking\\ a\\ magic\\ action\\ and\\ speaking\\ the\\ carpet's\\ command\\ word,\\ you\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-9",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ bear\\ as\\ much\\ as\\ double\\ its\\ listed\\ capacity,\\ but\\ while\\ its\\ load\\ exceeds\\ the\\ normal\\ capacity,\\ its\\ fly\\ speed\\ is\\ halved\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-3-ft-5-ft-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ can\\ speak\\ the\\ carpet's\\ command\\ word\\ as\\ an\\ action\\ to\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-3-ft-5-ft-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "3",
+    "5",
+    "80",
+    "200"
+   ],
+   "rx": "^a\\ 3\\ ft\\.\\ ×\\ 5\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 200\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 80\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-3-ft-5-ft-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ flies\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-4-ft-6-ft-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ can\\ speak\\ the\\ carpet's\\ command\\ word\\ as\\ an\\ action\\ to\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-4-ft-6-ft-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "4",
+    "6",
+    "60",
+    "400"
+   ],
+   "rx": "^a\\ 4\\ ft\\.\\ ×\\ 6\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 400\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 60\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-4-ft-6-ft-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ flies\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-5-ft-7-ft-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ can\\ speak\\ the\\ carpet's\\ command\\ word\\ as\\ an\\ action\\ to\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-5-ft-7-ft-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "5",
+    "7",
+    "40",
+    "600"
+   ],
+   "rx": "^a\\ 5\\ ft\\.\\ ×\\ 7\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 600\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 40\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-5-ft-7-ft-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ flies\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-6-ft-9-ft-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ can\\ speak\\ the\\ carpet's\\ command\\ word\\ as\\ an\\ action\\ to\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-6-ft-9-ft-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "6",
+    "9",
+    "30",
+    "800"
+   ],
+   "rx": "^a\\ 6\\ ft\\.\\ ×\\ 9\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 800\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 30\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg-carpet-of-flying-6-ft-9-ft-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ flies\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2024",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-3-ft-5-ft-1",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ can\\ speak\\ the\\ carpet's\\ command\\ word\\ as\\ an\\ action\\ to\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-3-ft-5-ft-3",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "3",
+    "5",
+    "80",
+    "200"
+   ],
+   "rx": "^a\\ 3\\ ft\\.\\ ×\\ 5\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 200\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 80\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-3-ft-5-ft-4",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ flies\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-4-ft-6-ft-1",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ can\\ speak\\ the\\ carpet's\\ command\\ word\\ as\\ an\\ action\\ to\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-4-ft-6-ft-3",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "4",
+    "6",
+    "60",
+    "400"
+   ],
+   "rx": "^a\\ 4\\ ft\\.\\ ×\\ 6\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 400\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 60\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-4-ft-6-ft-4",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ flies\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-5-ft-7-ft-1",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ can\\ speak\\ the\\ carpet's\\ command\\ word\\ as\\ an\\ action\\ to\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-5-ft-7-ft-3",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "5",
+    "7",
+    "40",
+    "600"
+   ],
+   "rx": "^a\\ 5\\ ft\\.\\ ×\\ 7\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 600\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 40\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-5-ft-7-ft-4",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ flies\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-6-ft-9-ft-1",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ can\\ speak\\ the\\ carpet's\\ command\\ word\\ as\\ an\\ action\\ to\\ make\\ the\\ carpet\\ hover\\ and\\ fly\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "const result=activateCarpet(row,declarations);return result?"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-6-ft-9-ft-3",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "6",
+    "9",
+    "30",
+    "800"
+   ],
+   "rx": "^a\\ 6\\ ft\\.\\ ×\\ 9\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 800\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 30\\ feet\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
+  },
+  {
+   "id": "u34-dmg14-carpet-of-flying-6-ft-9-ft-4",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [
+    "half",
+    "double"
+   ],
+   "rx": "^a\\ carpet\\ can\\ carry\\ up\\ to\\ twice\\ this\\ weight,\\ but\\ it\\ flies\\ at\\ half\\ speed\\ if\\ it\\ carries\\ more\\ than\\ its\\ normal\\ capacity\\.$",
+   "anchor": [
+    "src/app/lib/carpet-vehicle-runtime.js",
+    "result=evaluateCarpet(row,facts);"
+   ],
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2014",
+   "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
+   "scopeValues": true
   }
  ]
 }

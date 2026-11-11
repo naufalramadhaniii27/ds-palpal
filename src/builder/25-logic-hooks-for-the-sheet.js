@@ -55,8 +55,9 @@ genv.__bldRefreshWield=function(owner){
  if(wieldProjectionChanged(P,toSheet({wieldScores:oldScores})))return {ok:false,reason:"manual"};
  genv.__sheetSoft(N);return {ok:true};
 };
-function toolFormWriteGuard(owner){const st=genv.__sheetState&&genv.__sheetState(),P=st&&st.C;if(!wieldRefreshOwner(owner,P))return {ok:false,reason:"owner"};applyPacks();if(wieldProjectionChanged(P,toSheet()))return {ok:false,reason:"manual"};return {ok:true}}
+function toolFormWriteGuard(owner){const st=genv.__sheetState&&genv.__sheetState(),P=st&&st.C;if(!wieldRefreshOwner(owner,P))return {ok:false,reason:"owner"};applyPacks();const project=()=>toSheet(),candidate=genv.__xl&&typeof genv.__xl.withSelf==="function"?genv.__xl.withSelf("",project):project();if(wieldProjectionChanged(P,candidate))return {ok:false,reason:"manual"};return {ok:true}}
 bindLive("toolFormWriteGuard",{get:function(){return toolFormWriteGuard;}});
+bindLive("inventoryWriteGuard",{get:function(){return toolFormWriteGuard;}});
 /* v18 RU74: the build was saved in another tab: load it here */
 genv.__bldReload=function(){__set_B(loadB());applyPacks();if(!document.getElementById("bld").hidden)render()};
 /* v25 RU38 no. 3: Manage Spells on the sheet. The caster parts of the build that belongs to the open character (null: no such build) */

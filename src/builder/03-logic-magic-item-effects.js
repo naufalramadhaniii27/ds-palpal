@@ -4,6 +4,7 @@ import {baseOf,fxListBase,miFeats} from "./01b-logic-late-ports.js";
 import {gx,fxo} from "./00-env.js";
 import {allocateAttunement,itemInUse,itemQuantity,migrateItems,migrateAttunement,itemOverrideProblems} from "../data/lib/attunement.js";
 import {weaponFormMetadata,migrateInventoryForms,setWeaponFormActive,adjustWeaponFormRadius,weaponFormUsable,weaponFormLight} from "../data/lib/weapon-form.js";
+import {carpetMetadata,normalizeVehicleState,migrateVehicles,chooseCarpetSize,activateCarpet,carpetSourceStatus} from "../data/lib/carpet-vehicle.js";
 import {toolFormMetadata,normalizeToolForm,migrateToolForms,selectToolForm} from "../data/lib/tool-form.js";
 import {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum} from "../data/lib/wield-minimum.js";
 export {itemInUse,itemQuantity};
@@ -33,7 +34,7 @@ function formMetadataFor(row,edition){const d=DMAP[row.n];return weaponFormMetad
 function canonicalForm(row,formMeta){const f=row.form;if(!f||typeof f!=="object"||Array.isArray(f))return false;if(Object.prototype.hasOwnProperty.call(f,"v")&&f.v!==1)return true;if(f.v!==1||typeof f.active!=="boolean")return false;const l=formMeta.light;return Number.isInteger(f.radius)&&f.radius>=l.min&&f.radius<=l.max&&(l.adjustable?(f.radius-l.min)%l.step===0:f.radius===l.default)}
 /* Normalize only the passed character. A modern inventory keeps its row and array
    identities on repeated ensureInv calls; legacy form intent is seeded once. */
-export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b.inv))return b;b.inv=migrateItems(b.inv,attunementMeta);b.inv=migrateToolForms(b.inv).rows;
+export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b.inv))return b;b.inv=migrateItems(b.inv,attunementMeta);b.inv=migrateToolForms(b.inv).rows;b.inv=migrateVehicles(b.inv);
  const version=b.inventoryFormV;if(version!==undefined&&version!==0&&version!==1)return b;
  const edition=b.rs==="2014"?"2014":"2024",items=b.inv;
  if(version===1&&(!Array.isArray(items)||items.every(row=>{if(!row||typeof row!=="object")return true;const formMeta=formMetadataFor(row,edition);return !formMeta||canonicalForm(row,formMeta)})))return b;
@@ -45,6 +46,16 @@ function beltAttuned(keys){return (keys||new Set(attunementState().keys)).has("B
 export function itemBases(d){const o=itemOverride(d),b=o&&Object.prototype.hasOwnProperty.call(o,"base")?o.base:d&&d[5]&&d[5].base;return Array.isArray(b)?b:null}
 /* Scores are supplied by the current actor's completed ability calculation.
    This boundary never calls abilScores or changes independent item properties. */
+/* Carpet records belong to one physical inventory item, independently of worn gear. */
+function vehicleDefault(definition){return {v:1,active:false,size:definition.size}}
+function vehicleKeepChoice(raw,definition){return Object.keys(raw).length!==3||raw.v!==1||raw.active!==false||raw.size!==definition.size}
+export function itemVehicleInfoForRow(row){const name=row&&(row.n||row.key),d=DMAP[name],definition=carpetMetadata(d?d[0]:name);if(!definition)return {available:false,reason:"not-supported"};const state=normalizeVehicleState(row.vehicle),q=row.q==null?1:Number(row.q),valid=!!state&&(!definition.size||definition.size===state.size),split=valid&&Number.isSafeInteger(q)&&q>1,source=carpetSourceStatus(row);return {available:source.ok,reason:source.reason||"",vehicle:clone(row.vehicle),vehicleMeta:definition,action:definition.activation,signature:JSON.stringify(row),splitAvailable:split,requiresKeepChoice:!!state&&vehicleKeepChoice(row.vehicle,definition)}}
+export function getVehicleInfo(index){const b=migrateInventory(lateGet("B"));if(!Number.isInteger(index)||index<0||!b.inv||!b.inv[index])return {available:false,reason:"missing"};return Object.assign({index:index},itemVehicleInfoForRow(b.inv[index]))}
+function commitVehicle(index,next,beforeCommit){if(typeof beforeCommit==="function"&&beforeCommit()===false)return {ok:false,reason:"stale"};lateGet("B").inv[index].vehicle=next;return {ok:true,info:getVehicleInfo(index)}}
+export function setDMsize(index,size,beforeCommit=undefined){const info=getVehicleInfo(index);if(!info.available)return {ok:false,reason:info.reason,info};if(info.vehicleMeta.size)return {ok:false,reason:"fixed-size",info};const next=chooseCarpetSize(info.vehicle,size);return next?commitVehicle(index,next,beforeCommit):{ok:false,reason:"size",info}}
+export function activateVehicle(index,declarations,beforeCommit=undefined){const info=getVehicleInfo(index);if(!info.available)return {ok:false,reason:info.reason,info};const next=activateCarpet(lateGet("B").inv[index],declarations);return next?commitVehicle(index,next,beforeCommit):{ok:false,reason:"declaration",info}}
+function splitVehicleChoice(info,change){if(!change||typeof change!=="object"||Array.isArray(change)||Object.keys(change).some(k=>k!=="keepRecordedWith"))return null;const choice=change.keepRecordedWith;if(choice!==undefined&&choice!=="original"&&choice!=="split")return null;if(info.requiresKeepChoice&&!choice)return null;return choice||"original"}
+export function splitVehicleOne(index,change={},beforeCommit=undefined){const info=getVehicleInfo(index);if(!info.splitAvailable)return {ok:false,reason:info.reason||"split-required",info};const choice=splitVehicleChoice(info,change);if(!choice)return {ok:false,reason:"keep-choice",info};const b=lateGet("B"),row=b.inv[index],original=clone(row),split=clone(row);original.q=Number(row.q)-1;split.q=1;if(choice==="split")original.vehicle=vehicleDefault(info.vehicleMeta);else split.vehicle=vehicleDefault(info.vehicleMeta);if(typeof beforeCommit==="function"&&beforeCommit()===false)return {ok:false,reason:"stale",info};b.inv.splice(index,1,original,split);return {ok:true,index:index,splitIndex:index+1,info:getVehicleInfo(index)}}
 /* Tool shape is independent of weapon form, equip state and other item properties. */
 export function itemToolFormInfoForRow(row,state){const name=row&&(row.n||row.key),d=DMAP[name],definition=toolFormMetadata(d?d[0]:name);if(!definition)return {available:false,reason:"not-supported"};const raw=row.toolForm,form=normalizeToolForm(raw),reason=!form?"version":itemQuantity(row)<=0?"no-item":!(state&&state.attuned)?"attunement":"";return {available:!reason,reason:reason,toolForm:clone(raw),toolFormMeta:definition,toolFormUsable:!reason,action:definition.action,signature:JSON.stringify(row)}}
 export function getItemToolFormInfo(index){const b=migrateInventory(lateGet("B"));if(!Number.isInteger(index)||index<0||!b.inv||!b.inv[index])return {available:false,reason:"missing"};return Object.assign({index:index},itemToolFormInfoForRow(b.inv[index],attunementState().rows[index]))}

@@ -746,3 +746,12 @@ Manifold Tool and the three All-Purpose Tools use reviewed native metadata and a
 The actual tool-check consumer grants proficiency only for a check declared to use that exact item and current form. It never adds the chosen tool to global `C.profs.tools`. It recomputes ability, PB, proficiency/expertise and conditions, and requires source eligibility at roll commit and asynchronous completion. The native 2014 Artificer6 Tool Expertise supplies a typed optional `C.toolCheckRules` row; the 2024 class does not inherit it. Typed/display proficiency mismatches require review instead of silently selecting a bonus.
 
 An optional fifth predicate on the existing dice-engine roll entry point prevents canceled owned rolls from reaching result display, history or journal after an actor/source/stat change. Existing callers keep their default behavior. The tool consumer also clears its own pending state when a still-owned roll becomes stale. No new GX input field or storage key is introduced.
+
+
+### Carpet vehicle profiles and sentence-scoped numeric proof
+
+The five native carpet keys use per-row `vehicle:{v:1,active:boolean,size:null|sizeId}` input. Missing state explicitly migrates to an unrecorded activation and either the fixed native size or an unset generic DM selection. Future/malformed values remain preserved and inactive. Activation records only the native command-word action; directing movement separately validates current load, range and the source’s direction declaration. The evaluated speed belongs to the vehicle; actor movement, carried item weight, HP and counters are unchanged.
+
+Quantity stacks must be split into physical copies before control. The scoped split conserves total quantity and moves remembered vehicle state to the explicitly chosen row, leaving the other copy unconfigured. Unknown/future state is never silently duplicated or discarded. Persistent changes use the owned inventory projection guard and validated Undo callback; current-row vehicle calculations do not borrow another saved source.
+
+CODE evidence can declare `scopeValues:true` so its numeric values are usable only by the exact sentence matching its own regex. The loader rejects malformed explicit flag types. Missing/false flags retain legacy behavior; existing repair-local values keep their scope. This prevents a size dimension from proving an unrelated same-feature distance clause without changing informational classifications.

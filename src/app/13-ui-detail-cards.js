@@ -268,7 +268,7 @@ function xlStart(){
 if(document.body) xlStart(); else document.addEventListener("DOMContentLoaded",xlStart);
 document.addEventListener("bldready",() =>{ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); });/* the data is in: link what was drawn while the index was empty */
 env.__xlDom=xlDom;env.__xlQ=function(){ return [XL_Q.size,XL_T,!!XL_OBS]; };env.__xlFlush=function(){ if(XL_T){ clearTimeout(XL_T); } XL_FORCE=1; xlFlush(); };/* test hook: link now */
-env.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:function(){ XL_KT=0; return xlIdx(); },rules:xlRules};/* test hook */
+env.__xl={xlink:xlink,info:function(k){return infoHTML(k)},idx:function(){ XL_KT=0; return xlIdx(); },rules:xlRules,withSelf:function(self,fn){const previous=XL_SELF;__set_XL_SELF(self);try{return fn()}finally{__set_XL_SELF(previous)}}};/* test hook */
 export function miHTML(n){
   const r=(typeof DMGI!=="undefined"?DMGI:[]).filter((x) =>{ return x[0]===n; })[0];
   if(!r) return {t:n, h:'<p class="info-d">Not found.</p>'};

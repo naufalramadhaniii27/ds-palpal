@@ -1,6 +1,6 @@
 /* Source-owned tool checks. Nothing here grants a global tool proficiency. */
 import {C,S} from "../04-logic-storage.js";
-import {currentAbilityScores,clamp,num} from "../05-logic-helpers.js";
+import {currentAbilityScores,clamp,num,sheetRootActive} from "../05-logic-helpers.js";
 import {env} from "../00-env.js";
 import {modeOn} from "../33-logic-play-rage-conditions.js";
 import {toolFormMetadata,normalizeToolForm,toolFormCheck} from "../../data/lib/tool-form.js";
@@ -28,7 +28,7 @@ export function currentToolCheck(index,options={}){
 function toolInventorySignature(){return JSON.stringify((C.inv||[]).map(item=>item&&({n:item.n,key:item.key,q:item.q,attuned:item.attuned,attunedActive:item.attunedActive,toolForm:item.toolForm})))}
 function toolOccurrence(index,key){return (C.inv||[]).slice(0,index).filter(item=>item&&(item.key||item.n)===key).length}
 export function createToolCheckSession(index,root){const item=Number.isInteger(index)&&(C.inv||[])[index];if(!item||!root||!toolFormMetadata(item.key||item.n))return null;const key=item.key||item.n,session={index,root,item,key,occurrence:toolOccurrence(index,key),character:C,state:S,owner:C.name,inventorySignature:toolInventorySignature(),rolling:false};sessions.add(session);return session}
-function toolSessionCurrent(view){return sessions.has(view)&&view.character===C&&view.state===S&&view.owner===C.name&&view.root.isConnected&&(C.inv||[])[view.index]===view.item&&(view.item.key||view.item.n)===view.key&&toolOccurrence(view.index,view.key)===view.occurrence&&toolInventorySignature()===view.inventorySignature}
+function toolSessionCurrent(view){return sessions.has(view)&&view.character===C&&view.state===S&&view.owner===C.name&&sheetRootActive(view.root)&&(C.inv||[])[view.index]===view.item&&(view.item.key||view.item.n)===view.key&&toolOccurrence(view.index,view.key)===view.occurrence&&toolInventorySignature()===view.inventorySignature}
 function toolRollSignature(check,options){return JSON.stringify({check,options})}
 function toolRollReply(view,onResult,response){if(typeof onResult==='function')onResult({...response,owner:view.owner,index:view.index,character:view.character,state:view.state})}
 function toolRollGuard(roll){if(roll.cancelled||roll.completed)return false;const {view,options,check,onResult}=roll;if(!toolSessionCurrent(view)){view.rolling=false;roll.cancelled=true;return false}const fresh=currentToolCheck(view.index,options);if(!fresh.allowed||toolRollSignature(fresh,options)!==toolRollSignature(check,options)){view.rolling=false;roll.cancelled=true;toolRollReply(view,onResult,{ok:false,reason:'stale-tool-check',check:fresh});return false}return true}

@@ -11,6 +11,7 @@ bindLive("toast",{get:function(){return toast;}});
 /* ================= HELPERS ================= */
 export function $(s,r){return (r||document).querySelector(s)}
 export function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+export function sheetRootActive(root){if(!root||!root.isConnected)return false;const container=typeof root.closest==="function"?root.closest("#sheet"):null;return !container||!!(container.classList&&container.classList.contains("on"))}
 export function esc(t){return String(t==null?"":t).replace(/[&<>"']/g,(c) =>{return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 export function rich(t){ return xl_(esc(t).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,k,l) =>{ const key=k.replace(/&#39;/g,"'").replace(/&amp;/g,"&"); if(GLOSS[key]||(lateGet("LIBR")&&lateGet("LIB_RULES")[key])) return '<button type="button" class="lk" data-info="g:'+esc(key)+'">'+(l||k)+'</button>'; const fsp=featSpec(key); return fsp?'<button type="button" class="lk" data-info="'+fsp+'">'+(l||k)+'</button>':(l||k); })); }
 function xl_(h){ return typeof lateGet("xlink")==="function"?xlink(h):h; }
