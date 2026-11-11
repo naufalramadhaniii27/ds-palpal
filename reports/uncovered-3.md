@@ -1,4 +1,33 @@
-# Uncovered 3: source-aware physical repair and Forge mechanics
+# Uncovered 3: source-owned tool forms and checks
+
+## U33: per-item tool forms and actual checks
+
+Eight further original proficiency clauses now have computed coverage: 283 closed from the initial 5,460, 5,177 uncovered and zero regressed IDs. Covered is 7,988; info remains 23,617 and allow remains zero. The closures are exactly Manifold Tool in its two catalogs and the three All-Purpose Tool variants in their two catalogs. No neighboring transformation sentence is newly relabeled.
+
+The four native item keys retain independent per-row `toolForm:{v:1,tool:null|canonicalArtisanName}` state. Missing legacy state explicitly migrates to basic/unselected, without guessing an artisan choice. Future versions, malformed values and unknown attributes remain preserved; future state stays inactive. The migration is independent of weapon-form versions and changes no storage key. Imported and cold-loaded rows retain their raw state. A selected form survives stow, deattunement and quantity changes independently of current magical eligibility.
+
+Magic/Action transformation uses the item’s actual native timing and a touch declaration, with positive quantity and the existing effective attunement allocator. It does not require equipment. All-Purpose Tool’s Artificer prerequisite now remains enforced when its source class is disabled. The existing allocator still prevents attuning duplicate copies of one item; their remembered forms remain independent. No return-to-basic transformation is invented.
+
+The new native dice controls calculate a check using that exact basic or artisan tool instance. They never grant global proficiency in its chosen form. Current ability scores, PB, independent proficiency and Expertise determine the greatest applicable multiplier, at most 2PB. The repository’s Artificer 2014 level 6 Tool Expertise is a typed derived rule and applies to the item-granted proficiency; the 2024 class does not inherit it. Display/typed proficiency mismatches require review. Current Exhaustion, Poisoned, Rage, explicit fear visibility and declared Advantage/Disadvantage determine the displayed roll.
+
+Transforms require a strict owned Build, raw-row/index signature and unchanged projected sheet, with Undo recorded only after validation. The comparison restores Build’s source context before projecting: app rendering otherwise removes a TCE class from a 2014 spell list and falsely marks an unchanged sheet as manual. Actual manual spell or Species edits remain protected. Current-sheet checks can use their own supported manual/unbound item row without changing Build or borrowing another saved item.
+
+An optional fifth predicate in the actual dice engine validates owned rolls before display, history and journal, including asynchronous 3D success/fallback. Character, source or current-stat changes cancel stale output. A still-owned canceled check releases its pending UI state once. Existing four-argument rollers keep their behavior. The eight exact PROF CODE proofs have empty numeric values and anchor the actual owned dice call including its precommit guard, not the dropdown or descriptive metadata.
+
+## U33 validation and source audit
+
+| Check | Result |
+|---|---|
+| Effects / measure | 1,577 complete effect cases PASS, including 28 new target cases and all 17 artisan forms; 752 units, zero new misses in either edition |
+| Focused native source/model tests | Pure 123; backend/integration 21; runtime/connected actual engine 290; actual engine 21; portable UI 42; all PASS |
+| Production UI | 66 core + 80 final extra checks PASS at 390×844 and 1250×850; actual Magic/Action/touch, basic/artisan rolls, 2PB/1PB editions, explicit fear, Undo/Redo, reload, manual checks, stale native 3D history/journal; zero JS errors |
+| Official contracts | Contract 5,017; golden 1,479; UI 308; data 619; all PASS |
+| Full snapshot / builder | All 2,997 snapshot hashes and 3,890 builder hashes identical to U32, without normalization; totals `8fbbc8cd8e3011ff` / `396b20d955f87d6e`; zero build/page errors |
+| Scenarios | 24 PASS at both required viewports |
+| Static checks | TypeScript 200/noWORSE; HTML 250; enforced guards 0; overlap 1,408 names / 39 files / 156 documented overlaps |
+| Gate / audit | 73 strict U33 gate checks; seeded 150 audit with 53 new selections and 5 other new aliases, 58 actual-source rows reviewed, zero missing/mismatched sources; prior 275 closures retained |
+
+The standard snapshot universe contains no new native tool instance or 2014 Artificer 6 case; targeted effects and actual UI tests above prove those behaviors. Raw main comparisons remain the prior 2,997 snapshot / 2,263 builder differences, with no additional unexplained difference. The retained Duskcrusher differential now uses the existing 260ms warm protocol for its 250ms link-index cache after a reproduced full-sequence self-link fluctuation; exact HTML comparison remains enforced and no HTML exception or normalization was added.
 
 ## U32: source-aware physical object repair
 

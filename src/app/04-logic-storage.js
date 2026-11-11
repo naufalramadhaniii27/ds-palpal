@@ -2,6 +2,7 @@ import {applyLook,ask,bcPost,bindLive,bkpKeyOk,bkpName,bkpOpen,esc,fmtT,healHTML
 import {normalizeTarget} from "../data/lib/attack-target.js";
 import {migrateSheetAttunement,itemQuantity} from "../data/lib/attunement.js";
 import {migrateInventoryForms,normalizeWeaponForm,weaponFormMetadata} from "../data/lib/weapon-form.js";
+import {migrateToolForms} from "../data/lib/tool-form.js";
 import {DEFAULT} from "./02-data-default-character.js";
 import {env} from "./00-env.js";
 bindLive("C",{get:function(){return C;},set:function(v){C=v;}});
@@ -13,7 +14,8 @@ export var CKEY = "yudhi-kelapa-build-v3", KEY = "yudhi-kelapa-sheet-v1";
 export var BAD=[];
 export function loadC(sync){ try{ const r=__store.getItem(CKEY); if(r){ const p=JSON.parse(r); if(p && p.v===3 && p.abilities) return p; throw new Error("the saved sheet has a shape this version does not know"); } }
   catch(e){ if(sync) return null; BAD.push("Sheet: "+((e&&e.message)||e)); } return clone(DEFAULT); }
-function migrateLoadedForms(c){const att=migrateSheetAttunement(c);if(!att||!Array.isArray(att.inv))return att;const version=att.inventoryFormV;if(version!==undefined&&version!==0&&version!==1)return att;if(version===1&&att.inv.every(row=>{if(!row||typeof row!=="object"||Array.isArray(row))return true;const definition=weaponFormMetadata(row.key||row.n,att.rs==="2014"?"2014":"2024");return !definition||Object.prototype.hasOwnProperty.call(row,"form")&&JSON.stringify(normalizeWeaponForm(row.form,definition))===JSON.stringify(row.form)}))return att;const result=migrateInventoryForms(att.inv,att.inventoryFormV,row=>weaponFormMetadata(row.key||row.n,att.rs==="2014"?"2014":"2024"),row=>!!row.eq&&itemQuantity(row)>0&&row.attuned===true);if(result.version===att.inventoryFormV&&JSON.stringify(result.rows)===JSON.stringify(att.inv))return att;return Object.assign({},att,{inv:result.rows,inventoryFormV:result.version})}
+function migrateLoadedWeaponForms(c){const att=migrateSheetAttunement(c);if(!att||!Array.isArray(att.inv))return att;const version=att.inventoryFormV;if(version!==undefined&&version!==0&&version!==1)return att;if(version===1&&att.inv.every(row=>{if(!row||typeof row!=="object"||Array.isArray(row))return true;const definition=weaponFormMetadata(row.key||row.n,att.rs==="2014"?"2014":"2024");return !definition||Object.prototype.hasOwnProperty.call(row,"form")&&JSON.stringify(normalizeWeaponForm(row.form,definition))===JSON.stringify(row.form)}))return att;const result=migrateInventoryForms(att.inv,att.inventoryFormV,row=>weaponFormMetadata(row.key||row.n,att.rs==="2014"?"2014":"2024"),row=>!!row.eq&&itemQuantity(row)>0&&row.attuned===true);if(result.version===att.inventoryFormV&&JSON.stringify(result.rows)===JSON.stringify(att.inv))return att;return Object.assign({},att,{inv:result.rows,inventoryFormV:result.version})}
+function migrateLoadedForms(c){const weapon=migrateLoadedWeaponForms(c);if(!weapon||!Array.isArray(weapon.inv))return weapon;const result=migrateToolForms(weapon.inv);return result.rows===weapon.inv?weapon:Object.assign({},weapon,{inv:result.rows})}
 export var C = migrateLoadedForms(loadC());
 export var cSaveT=null;
 export function saveC(){ clearTimeout(cSaveT); cSaveT=setTimeout(() =>{ cSaveT=null; lsSave(CKEY, C); },200); }

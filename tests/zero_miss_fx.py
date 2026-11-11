@@ -2837,13 +2837,32 @@ for rs in ["2024","2014"]:
         for eq in [False,True]:
             CASES.append(dict(name="Z3 U32 Forge repair cap differential "+base+" "+rs+" equipped "+str(eq),b=dict(rs=rs,cls="Fighter",level=4,base={"STR":16},extra=u31extra(rs),inv=[dict(n=item,q=1,eq=eq,attuned=True)]),withoutGxFields=["item",U31_ROOT,U31_ROOT,["objectRepair"]],expect=[("C.spells.find(s=>s.n==='Mending').objectRepair.maxBreakFeet",5)],expectWithout=[("C.spells.find(s=>s.n==='Mending').objectRepair.maxBreakFeet",1)],allow=[r"^spells\.\d+\.objectRepair\.maxBreakFeet$",r"^spells\.\d+\.objectRepair\.sources\.\d+\.maxBreakFeet$"]))
 
+# U33: native tool forms expose a scoped item capability, never global training.
+U33_ITEMS=["Manifold Tool","+1 All-Purpose Tool","+2 All-Purpose Tool","+3 All-Purpose Tool"]
+U33_TOOLS=["Alchemist's Supplies","Brewer's Supplies","Calligrapher's Supplies","Carpenter's Tools","Cartographer's Tools","Cobbler's Tools","Cook's Utensils","Glassblower's Tools","Jeweler's Tools","Leatherworker's Tools","Mason's Tools","Painter's Supplies","Potter's Tools","Smith's Tools","Tinker's Tools","Weaver's Tools","Woodcarver's Tools"]
+for item in U33_ITEMS:
+    cls="Fighter" if item=="Manifold Tool" else "Artificer"
+    vector="(()=>{const names="+json.dumps(U33_TOOLS)+";return names.every(tool=>{const b=structuredClone(__zmB);b.inv[0].toolForm={v:1,tool,opaque:'keep'};const c=__bldSheetFor(b);return c.inv[0].toolForm.tool===tool&&c.inv[0].toolForm.opaque==='keep'&&c.inv[0].toolFormInfo.available===true&&c.inv[0].toolFormInfo.toolFormUsable===true&&JSON.stringify(c.profs.tools)===JSON.stringify(C.profs.tools)&&JSON.stringify(c.profSrc.tools)===JSON.stringify(C.profSrc.tools)&&JSON.stringify(c.res)===JSON.stringify(C.res)&&JSON.stringify(c.spellcasting)===JSON.stringify(C.spellcasting)})})()"
+    CASES.append(dict(name="Z3 U33 native tool capability "+item,b=dict(cls=cls,level=4,inv=[dict(n=item,q=1,eq=False,attuned=True,toolForm={"v":1,"tool":None,"opaque":"keep"})]),expect=[("C.inv[0].toolForm.tool",None),("C.inv[0].toolForm.opaque","keep"),("C.inv[0].attunedActive",True),("C.inv[0].toolFormInfo.available",True),("C.inv[0].toolFormInfo.toolFormUsable",True),("C.inv[0].toolFormInfo.action","Magic" if item=="Manifold Tool" else "Action"),(vector,True)]))
+for rs in ["2024","2014"]:
+    for item,cls,q,eq,attuned,active in [("Manifold Tool","Wizard",1,False,True,True),("Manifold Tool","Fighter",0,True,True,False),("Manifold Tool","Fighter",1,True,False,False),("+1 All-Purpose Tool","Wizard",1,True,True,False),("+2 All-Purpose Tool","Artificer",1,False,True,True),("+3 All-Purpose Tool","Artificer",0,True,True,False),("+3 All-Purpose Tool","Artificer",1,True,False,False)]:
+        CASES.append(dict(name=("Z3" if active else "NEG")+" U33 tool eligibility "+item+" "+rs+str((cls,q,eq,attuned)),b=dict(rs=rs,cls=cls,level=4,inv=[dict(n=item,q=q,eq=eq,attuned=attuned,toolForm={"v":1,"tool":"Smith's Tools"})]),expect=[("C.inv[0].toolForm.tool","Smith's Tools"),("C.inv[0].toolFormInfo.available",active),("C.inv[0].toolFormInfo.toolFormUsable",active),("C.profs.tools.includes(\"Smith's Tools\")",False)]))
+    CASES.append(dict(name="NEG U33 tool capacity "+rs,b=dict(rs=rs,cls="Wizard",level=4,inv=[dict(n=n,q=1,eq=True,attuned=True) for n in ["Ring of Protection","Cloak of Protection","Amulet of Health"]]+[dict(n="Manifold Tool",q=1,eq=False,attuned=True,toolForm={"v":1,"tool":"Smith's Tools"})]),expect=[("C.inv[3].attunedActive",False),("C.inv[3].toolFormInfo.available",False),("C.inv[3].toolForm.tool","Smith's Tools")]))
+    for level in [5,6]:
+        expected=rs=="2014" and level==6
+        CASES.append(dict(name=("Z3" if expected else "NEG")+" U33 typed tool expertise "+rs+" level"+str(level),b=dict(rs=rs,cls="Artificer",level=level,inv=[dict(n="Manifold Tool",q=1,eq=False,attuned=True,toolForm={"v":1,"tool":None})]),expect=[("(C.toolCheckRules||[]).filter(r=>r.kind==='proficient-tool-expertise').length",1 if expected else 0)]+([("C.toolCheckRules.find(r=>r.kind==='proficient-tool-expertise').source","Artificer: Tool Expertise"),("C.toolCheckRules.find(r=>r.kind==='proficient-tool-expertise').edition","2014")] if expected else [])))
+CASES.append(dict(name="Z3 U33 missing tool state migrates to Basic",b=dict(cls="Fighter",level=4,inv=[dict(n="Manifold Tool",q=1,eq=False,attuned=True)]),expect=[("C.inv[0].toolForm.v",1),("C.inv[0].toolForm.tool",None),("C.inv[0].toolFormInfo.available",True),("C.profs.tools.includes(\"Smith's Tools\")",False)]))
+for state in [{"v":9,"tool":"Smith's Tools","opaque":{"keep":True}},{"v":1,"tool":"Thieves' Tools","opaque":"keep"}]:
+    CASES.append(dict(name="NEG U33 unsupported tool state "+str(state),b=dict(cls="Fighter",level=4,inv=[dict(n="Manifold Tool",q=1,eq=False,attuned=True,toolForm=state)]),expect=[("C.inv[0].toolForm",state),("C.inv[0].toolFormInfo.available",False),("C.inv[0].toolFormInfo.toolFormUsable",False)]))
+CASES.append(dict(name="Z3 U33 two tool copies preserve independent forms",b=dict(cls="Fighter",level=4,inv=[dict(n="Manifold Tool",q=1,eq=False,attuned=True,toolForm={"v":1,"tool":"Smith's Tools"}),dict(n="Manifold Tool",q=1,eq=False,attuned=False,toolForm={"v":1,"tool":"Carpenter's Tools"})]),expect=[("C.inv[0].toolForm.tool","Smith's Tools"),("C.inv[1].toolForm.tool","Carpenter's Tools"),("C.inv[0].toolFormInfo.available",True),("C.inv[1].toolFormInfo.available",False),("C.profs.tools.includes(\"Smith's Tools\")",False),("C.profs.tools.includes(\"Carpenter's Tools\")",False)]))
+
 # Refresh the real rule-link index with the case's source packs installed.
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
 # warming does not permit any additional changed paths.
 for c in CASES:
-    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]):c["warm"]=True
+    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]) or c["name"]=="Z3 U29 rider differential Duskcrusher 2024":c["warm"]=True
 
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };

@@ -173,6 +173,12 @@ const FXS16A={};
     return null; };
 })();
 (function(){
+  FXS16A.rollDice=function rollDice(spec,mode){ if(spec.dmg){ const L=[]; FXS16A.parseDmg(FXS16A.damageExpressionFor(spec,mode)).forEach((q) =>{ if(q.f){ const n=q.n*(mode==="crit"?2:1); for(let i=0;i<n;i++) L.push(q.f); } }); return L; } return mode?[20,20]:[20]; };
+})();
+(function(){
+  FXS16A.rollAllowed=function rollAllowed(guard){try{return typeof guard!=="function"||guard()===true}catch(error){return false}};
+})();
+(function(){
   const MI=FXENV.__MI;
   if(!MI||!document.body.animate) return;
   const {nf,rm,vis,esc,fx,ls,st}=FXH;
@@ -184,10 +190,10 @@ const FXS16A={};
   FXENV.__miRollKey=function(){ return FXS16A.HK||FXS16A.rk(); };
   /* T11 D2: the dice a roll needs, in order. With 3D dice (25-dice3d) the values are decided first and the dice on screen
      land on them. Without them (Motion off, Calm, no WebGL, the bundle failed) they come from crypto.getRandomValues as before */
-  function diceOf(spec,mode){ if(spec.dmg){ const L=[]; FXS16A.parseDmg(FXS16A.damageExpressionFor(spec,mode)).forEach((q) =>{ if(q.f){ const n=q.n*(mode==="crit"?2:1); for(let i=0;i<n;i++) L.push(q.f); } }); return L; } return mode?[20,20]:[20]; }
-  FXS16A.doRoll=function doRoll(spec,mode,label,cb){ const need=diceOf(spec,mode), go=function(vals,three){ const r=FXS16A.finish(spec,mode,label,vals); r.three=!!three; FXS16A.after(r); if(cb) cb(r); };
+
+  FXS16A.doRoll=function doRoll(spec,mode,label,cb,guard){if(!FXS16A.rollAllowed(guard))return null;const need=FXS16A.rollDice(spec,mode), go=function(vals,three){ if(!FXS16A.rollAllowed(guard))return null;const r=FXS16A.finish(spec,mode,label,vals); r.three=!!three;if(!FXS16A.rollAllowed(guard))return null; FXS16A.after(r); if(cb) cb(r); };
     if(FXENV.__dice3d&&!FXS16A.calm()&&need.length&&need.length<=12){ FXENV.__dice3d.roll(need).then((v) =>{ go(v&&v.length===need.length?v:need.map((f) =>{ return d(f); }),!!v); },() =>{ go(need.map((f) =>{ return d(f); }),false); }); return null; }
-    const r=FXS16A.finish(spec,mode,label,need.map((f) =>{ return d(f); })); FXS16A.after(r); if(cb) cb(r); return r; };;
+    if(!FXS16A.rollAllowed(guard))return null;const r=FXS16A.finish(spec,mode,label,need.map((f) =>{ return d(f); }));if(!FXS16A.rollAllowed(guard))return null; FXS16A.after(r); if(cb) cb(r); return r; };;
   (FXENV.__miRoll=FXENV.__miRoll||{}).roll=FXS16A.doRoll;
   FXS16A.D20='<svg viewBox="0 0 100 100"><path d="M50 4l42 24v44L50 96 8 72V28z" class="o"/><path d="M50 4L29 40h42zM29 40L8 72M71 40l21 32M29 40l21 38 21-38M50 78L8 72M50 78l42-6M50 78v18" class="i"/></svg>';;
   FXS16A.barHtml=function barHtml(spec){ return spec.dmg?'<button type="button" class="mi-rb pri" data-mr="">'+FXS16A.DI+'Roll '+esc(spec.dmg)+'</button><button type="button" class="mi-rb" data-mr="crit">Critical</button>':'<button type="button" class="mi-rb pri" data-mr="">'+FXS16A.DI+'Roll d20 '+(spec.bon<0?"−"+(-spec.bon):"+"+spec.bon)+'</button><button type="button" class="mi-rb" data-mr="adv">Advantage</button><button type="button" class="mi-rb" data-mr="dis">Disadvantage</button>'; };

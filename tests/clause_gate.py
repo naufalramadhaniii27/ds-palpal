@@ -1482,6 +1482,34 @@ def selftest():
     narrow = scope_atoms([Atom("PROF", set(), "bonus", rx=re.compile("^you gain proficiency in arcana\\.$"))], {"bonus":".*"})
     br = analyze(synth("sub", "X", "Y", "You gain proficiency in Performance.", narrow))[0]
     check("11f a new scope cannot broaden an existing restriction", br["status"] == "uncovered", br["why"])
+    # Native tool forms grant source-owned checks, never a character-wide tool
+    # proficiency. These CODE atoms require the actual guarded dice consumer.
+    tool_entries = [e for e in json.load(open(CODE, encoding="utf-8"))["entries"] if e.get("id", "").startswith("u33-")]
+    check("U33 eight exact native tool proficiency clauses", len(tool_entries) == 8)
+    import importlib.util
+    tool_case_spec = importlib.util.spec_from_file_location("clause_gate_tool_cases", os.path.join(ROOT,"tests","zero_miss_fx.py"))
+    tool_cases = importlib.util.module_from_spec(tool_case_spec)
+    tool_case_spec.loader.exec_module(tool_cases)
+    tool_cases_by_name = {case["name"]:case for case in tool_cases.CASES}
+    for entry in tool_entries:
+        key = "item|%s|%s" % (entry["owner"],entry["name"])
+        text = "Whatever form the tool takes, you have proficiency with it when you use it." if entry["name"] == "Manifold Tool" else "Whatever form the tool takes, you are proficient with it."
+        loaded = load_code_atoms([entry])
+        owned_atoms = [a for e,a in loaded.get(key,[])]
+        row = analyze(synth("item",entry["owner"],entry["name"],text,owned_atoms))[0]
+        check("U33 own exact proficiency "+entry["id"], row["status"] == "covered" and entry["cls"] == ["PROF"] and entry["vals"] == [], row["why"])
+        case = tool_cases_by_name.get(entry["test"])
+        check("U33 actual named capability fixture "+entry["id"], bool(case and case.get("expect")))
+        gone = load_code_atoms([dict(entry,anchor=entry["anchor"][:1]+["missing-owned-tool-roll-consumer"])])
+        missing_row = analyze(synth("item",entry["owner"],entry["name"],text,[]))[0]
+        check("U33 NEG missing owned roll anchor "+entry["id"], not gone and missing_row["status"] == "uncovered")
+        CODE_NOTES.clear()
+        wrong_owner = [a for e,a in loaded.get("item|unrelated|"+entry["name"],[])]
+        row = analyze(synth("item","unrelated",entry["name"],text,wrong_owner))[0]
+        check("U33 NEG wrong native owner "+entry["id"], row["status"] == "uncovered")
+        for label,other in [("global tools", "You gain proficiency with all Artisan's Tools."),("ordinary tool", "You gain proficiency with Smith's Tools."),("language", "Additional languages you know include Draconic."),("ability", "Your Strength score increases by 2."),("touch alone", "As a Magic action, you can touch the item and transform it into a type of Artisan's Tools of your choice.")]:
+            rows = analyze(synth("item",entry["owner"],entry["name"],other,owned_atoms))
+            check("U33 NEG "+label+" "+entry["id"], all(r["status"] != "covered" if label == "touch alone" else r["status"] == "uncovered" for r in rows))
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {toolFormMetadata,normalizeToolForm,toolFormCheck,ARTISAN_TOOLS} from '../src/data/lib/tool-form.js';
+const read=p=>fs.readFileSync(new URL('../src/app/'+p,import.meta.url),'utf8').replace(/^import .*$/gm,'').replace(/export (function|var|const) /g,'$1 ');
+const ctx={C:{},S:{},D:{pb:999},ABK:['STR','DEX','CON','INT','WIS','CHA'],env:{},toolFormMetadata,normalizeToolForm,toolFormCheck,bindLive(){},modeOn:k=>!!(ctx.S.mode||{})[k]};
+vm.createContext(ctx);vm.runInContext(read('05-logic-helpers.js'),ctx);vm.runInContext(read('26-ui-customize.js'),ctx);vm.runInContext(read('lib/tool-check-runtime.js'),ctx);
+let checks=0;const eq=(a,b)=>{assert.deepEqual(a,b);checks++};
+const baseOptions={ability:'INT',usingThisItem:true,mode:'normal',fearSourceInSight:false};
+function reset(tool=null){ctx.C={name:'Actor',rs:'2024',level:5,pbAdd:0,abilities:Object.fromEntries(ctx.ABK.map(k=>[k,{base:k==='INT'?16:14,bonus:[]}])),profs:{tools:'None'},profSrc:{tools:[]},inv:[{n:'Manifold Tool',key:'Manifold Tool',q:1,eq:false,attuned:true,attunedActive:true,toolForm:{v:1,tool}}]};ctx.S={hp:20,cond:{},used:{daily:1},cust:{}};ctx.env.__miRoll=undefined}
+reset();eq(ctx.currentToolCheck(0,baseOptions).total,6);eq(ctx.currentToolCheck(0,baseOptions).multiplier,1);eq(ctx.currentToolCheck(0,baseOptions).tool,null);eq(ctx.currentToolCheck(0,baseOptions).label,'Using this Manifold Tool as Basic tool');eq(ctx.currentToolCheck(0,{...baseOptions,usingThisItem:false}).allowed,false);
+for(const tool of ARTISAN_TOOLS){reset(tool);const before=JSON.stringify({C:ctx.C,S:ctx.S});let info=ctx.currentToolCheck(0,baseOptions);eq(info.allowed,true);eq(info.total,6);eq(info.multiplier,1);eq(info.tool,tool);eq(JSON.stringify({C:ctx.C,S:ctx.S}),before);
+ ctx.C.profSrc.tools=[[tool,'Native training']];ctx.C.profs.tools=tool;eq(ctx.currentToolCheck(0,baseOptions).total,6);
+ ctx.C.toolExp=[{n:tool,v:999,s:'Native Expertise'}];eq(ctx.currentToolCheck(0,baseOptions).total,9);eq(ctx.currentToolCheck(0,baseOptions).multiplier,2);
+ ctx.C.inv[0].attuned=false;eq(ctx.currentToolCheck(0,baseOptions).allowed,false);
+}
+reset("Smith's Tools");ctx.C.profs.tools="Smith's Tools";eq(ctx.currentToolCheck(0,baseOptions).reason,'proficiency-review-required');
+reset();ctx.C.rs='2014';ctx.C.toolCheckRules=[{kind:'proficient-tool-expertise',source:'Artificer: Tool Expertise',edition:'2014'}];eq(ctx.currentToolCheck(0,baseOptions).total,9);ctx.C.rs='2024';eq(ctx.currentToolCheck(0,baseOptions).total,6);ctx.C.rs='2014';ctx.C.toolCheckRules[0].extra=true;eq(ctx.currentToolCheck(0,baseOptions).total,6);
+reset();ctx.C.rs='2014';ctx.C.toolCheckRules={future:true};eq(ctx.currentToolCheck(0,baseOptions).total,6);
+reset();ctx.C.level=9;ctx.C.pbAdd=2;ctx.S.cust={'n:ab-INT':{b:10,o:19}};eq(ctx.currentToolCheck(0,baseOptions).pb,6);eq(ctx.currentToolCheck(0,baseOptions).abilityModifier,4);eq(ctx.currentToolCheck(0,baseOptions).total,10);
+reset();ctx.S.exh=2;eq(ctx.currentToolCheck(0,baseOptions).total,2);eq(ctx.currentToolCheck(0,baseOptions).mode,'');ctx.C.rs='2014';eq(ctx.currentToolCheck(0,baseOptions).total,6);eq(ctx.currentToolCheck(0,baseOptions).mode,'dis');eq(ctx.currentToolCheck(0,{...baseOptions,mode:'adv'}).mode,'');
+reset();ctx.C.exhMin=2;eq(ctx.currentToolCheck(0,baseOptions).total,2);ctx.C.exhMin=0;ctx.S.exh=2;ctx.S.exhLk={min:2,add:2};eq(ctx.currentToolCheck(0,baseOptions).total,6);
+reset();ctx.S.cond.Poisoned=true;eq(ctx.currentToolCheck(0,baseOptions).mode,'dis');eq(ctx.currentToolCheck(0,{...baseOptions,mode:'adv'}).mode,'');ctx.S.cond={Frightened:true};eq(ctx.currentToolCheck(0,{...baseOptions,fearSourceInSight:true}).mode,'dis');eq(ctx.currentToolCheck(0,baseOptions).mode,'');eq(ctx.currentToolCheck(0,{...baseOptions,fearSourceInSight:undefined}).reason,'fear-declaration-required');
+reset();ctx.S.mode={rage:true};eq(ctx.currentToolCheck(0,{...baseOptions,ability:'STR'}).mode,'adv');ctx.S.cond.Poisoned=true;eq(ctx.currentToolCheck(0,{...baseOptions,ability:'STR'}).mode,'');
+for(const status of ['Incapacitated','Paralyzed','Petrified','Stunned','Unconscious']){reset();ctx.S.cond[status]=true;eq(ctx.currentToolCheck(0,baseOptions).reason,'cannot-use-tool')}
+for(const patch of [{q:0},{attuned:false},{attunedActive:false},{toolForm:{v:2,tool:null}}]){reset();Object.assign(ctx.C.inv[0],patch);eq(ctx.currentToolCheck(0,baseOptions).allowed,false)}
+reset();delete ctx.C.inv[0].key;eq(ctx.currentToolCheck(0,baseOptions).allowed,true);ctx.env.__bldToolFormInfo=()=>{throw Error('manual C must not borrow B')};eq(ctx.currentToolCheck(0,baseOptions).allowed,true);
+// Actual owned dice call, no resource/equipment/proficiency writes; callback belongs to this actor/view only.
+reset();let calls=[],callback,received=[];ctx.env.__miRoll={roll:(spec,mode,label,cb)=>{calls.push({spec,mode,label});callback=cb}};let root={isConnected:true},session=ctx.createToolCheckSession(0,root),unchanged=JSON.stringify({C:ctx.C,S:ctx.S});
+let request={session,...baseOptions,onResult:r=>received.push(r)};eq(ctx.requestToolCheckRoll(request).ok,true);eq(calls.length,1);eq(calls[0].spec.bon,6);eq(ctx.requestToolCheckRoll(request).reason,'roll-pending');callback({v:17});eq(received.length,1);eq(received[0].result.v,17);eq(received[0].check.total,6);eq(JSON.stringify({C:ctx.C,S:ctx.S}),unchanged);
+function hypotheticalOwned(view){return view.character===ctx.C&&view.state===ctx.S&&view.owner===ctx.C.name&&view.root.isConnected&&ctx.C.inv[view.index]===view.item&&view.item.q===1&&view.item.toolForm.tool===null}
+for(const invalidate of [()=>{ctx.C={...ctx.C}},()=>{ctx.S={...ctx.S}},()=>{ctx.C.name='Other'},()=>{root.isConnected=false},()=>{ctx.C.inv[0].q=0},()=>{ctx.C.inv[0].toolForm.tool="Smith's Tools"},()=>{ctx.C.abilities.INT.base=18},()=>{ctx.S.cond.Poisoned=true},()=>{ctx.C.level=9},()=>{ctx.C.pbAdd=1}]){
+ reset();calls=[];received=[];root={isConnected:true};ctx.env.__miRoll={roll:(spec,mode,label,cb)=>{calls.push(spec);callback=cb}};session=ctx.createToolCheckSession(0,root);eq(ctx.requestToolCheckRoll({session,...baseOptions,onResult:r=>received.push(r)}).ok,true);invalidate();const ownedStill=hypotheticalOwned(session);callback({v:20});eq(received.length,ownedStill?1:0);if(ownedStill){eq(received[0].ok,false);eq(received[0].reason,'stale-tool-check');eq('result' in received[0],false)}
+}
+reset();ctx.C.inv.push({...ctx.C.inv[0],toolForm:{v:1,tool:"Smith's Tools"}});root={isConnected:true};session=ctx.createToolCheckSession(1,root);eq(ctx.currentToolCheck(0,baseOptions).tool,null);eq(ctx.currentToolCheck(1,baseOptions).tool,"Smith's Tools");ctx.C.inv.reverse();eq(ctx.requestToolCheckRoll({session,...baseOptions}).reason,'stale-tool-check');
+// Connect the actual runtime predicate to the actual shared dice engine ownership boundary.
+const diceSource=fs.readFileSync(new URL('../src/fx/16-z-pack-dice-sound-hover.js',import.meta.url),'utf8'),diceStart=diceSource.indexOf('  FXS16A.doRoll=function'),diceEnd=diceSource.indexOf('  (FXENV.__miRoll=',diceStart);
+let pendingDice,engineLogs=[],engineFinishes=0,engineReplies=[],ownedGuard;
+ctx.FXS16A={calm:()=>false,finish:()=>{engineFinishes++;return {v:17}},after:result=>engineLogs.push({owner:ctx.C.name,value:result.v})};ctx.FXENV={};ctx.d=()=>7;for(const name of ['rollDice','rollAllowed']){const start=diceSource.indexOf('  FXS16A.'+name+'=function'),end=diceSource.indexOf('\n})();',start);assert.ok(start>0&&end>start);vm.runInContext(diceSource.slice(start,end),ctx)}vm.runInContext(diceSource.slice(diceStart,diceEnd),ctx);
+function ownedEngine(){ctx.FXENV.__dice3d={roll:()=>new Promise((resolve,reject)=>pendingDice={resolve,reject})};ctx.env.__miRoll={roll:(...args)=>{ownedGuard=args[4];return ctx.FXS16A.doRoll(...args)}};engineLogs=[];engineReplies=[];engineFinishes=0;root={isConnected:true};session=ctx.createToolCheckSession(0,root);return ctx.requestToolCheckRoll({session,...baseOptions,onResult:r=>engineReplies.push(r)})}
+for(const [change,ownedFailure] of [[()=>{ctx.C={...ctx.C,name:'Other actor'}},false],[()=>{ctx.C.inv[0].q=0},false],[()=>{root.isConnected=false},false],[()=>{ctx.C.abilities.INT.base=18},true],[()=>{ctx.S.cond.Poisoned=true},true],[()=>{ctx.C.level=9},true]]){
+ reset();eq(ownedEngine().ok,true);change();pendingDice.resolve([17]);await Promise.resolve();await Promise.resolve();eq(engineLogs.length,0);eq(engineFinishes,0);eq(engineReplies.length,ownedFailure?1:0);eq(session.rolling,false);eq(ownedGuard(),false);eq(engineReplies.length,ownedFailure?1:0);if(ownedFailure){eq(engineReplies[0].ok,false);eq(engineReplies[0].reason,'stale-tool-check')}
+}
+reset();ownedEngine();pendingDice.resolve([17]);await Promise.resolve();await Promise.resolve();eq(engineLogs.length,1);eq(engineLogs[0].owner,'Actor');eq(engineReplies.length,1);eq(engineReplies[0].ok,true);eq(session.rolling,false);
+reset();ownedEngine();ctx.C={...ctx.C,name:'Other actor'};pendingDice.reject(Error('3D failed'));await Promise.resolve();await Promise.resolve();eq(engineLogs.length,0);eq(engineReplies.length,0);eq(session.rolling,false);
+console.log(checks+' actual source-owned tool runtime / all forms / current scores / expertise / conditions / guarded dice checks passed');

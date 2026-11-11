@@ -1,5 +1,5 @@
-import {bindLive,own} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
-import {DMAP,attMax,attunementState,setItemAttuned,getItemFormInfo,setItemForm} from "./03-logic-magic-item-effects.js";
+import {bindLive,own,lateGet} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
+import {DMAP,attMax,attunementState,setItemAttuned,getItemFormInfo,setItemForm,getItemToolFormInfo,setItemToolForm} from "./03-logic-magic-item-effects.js";
 import {B,save} from "./04-logic-storage.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {baseOf,ensureInv} from "./14-logic-multiclass-hp-shop.js";
@@ -44,6 +44,9 @@ genv.__bldSetQty=function(name,q,occ){ensureInv();const i=invFind(name,occ);if(i
 genv.__bldRemove=function(name,occ){ensureInv();const i=invFind(name,occ);if(i<0)return;ctFree(B.inv[i]);B.inv.splice(i,1);save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())};
 
 function formIndex(name,occ){if(typeof name!=="string"||!name||occ!=null&&(!Number.isInteger(occ)||occ<0))return -1;let left=occ==null?0:occ;for(let i=0;i<(B.inv||[]).length;i++){const it=B.inv[i];if((it.n===name||it.alias===name)&&left--===0)return i}return -1}
+genv.__bldToolFormInfo=function(name,owner,occ){if(owner!==B.name||!own(owner))return {available:false,bound:false,reason:"owner"};ensureInv();const info=getItemToolFormInfo(formIndex(name,occ)),guard=lateGet("toolFormWriteGuard")(owner);return Object.assign({},info,{bound:guard.ok},guard.ok?{}:{available:false,reason:guard.reason})};
+function toolFormBeforeWrite(owner,name,occ,expected,beforeCommit){if(typeof beforeCommit==="function"){const result=beforeCommit();if(result&&typeof result.then==="function")return false}const guard=lateGet("toolFormWriteGuard")(owner),index=formIndex(name,occ),info=getItemToolFormInfo(index);return guard.ok&&index===expected.index&&info.signature===expected.signature}
+genv.__bldSetToolForm=function(name,owner,change,occ,expected,beforeCommit=undefined){const guard=lateGet("toolFormWriteGuard")(owner);if(!guard.ok)return guard;ensureInv();const index=formIndex(name,occ),info=getItemToolFormInfo(index);if(!expected||expected.index!==index||expected.signature!==info.signature)return {ok:false,reason:"stale"};const result=setItemToolForm(index,change,()=>toolFormBeforeWrite(owner,name,occ,expected,beforeCommit));if(result.ok){save();genv.__sheetSoft(toSheet())}return result};
 genv.__bldFormInfo=function(name,owner,occ){if(!own(owner))return {available:false,reason:"owner"};ensureInv();return getItemFormInfo(formIndex(name,occ))};
 genv.__bldSetForm=function(name,owner,change,occ){if(!own(owner))return {ok:false,reason:"owner"};ensureInv();const result=setItemForm(formIndex(name,occ),change);if(result.ok){save();if(genv.__sheetSoft)genv.__sheetSoft(toSheet())}return result};
 genv.__bldSetAttuned=function(name,owner,on,occ){if(!own(owner))return {ok:false,reason:"owner"};ensureInv();const index=invFind(name,occ),result=setItemAttuned(index,on);

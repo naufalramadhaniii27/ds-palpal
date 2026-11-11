@@ -737,3 +737,12 @@ A live, level-matched code entry may supply `scopeAtoms:{recordSource:sentenceRe
 ### Physical repair capability
 
 GX `objectRepair:[{spell:"Mending",maxBreakFeet:5}]` declares a strictly validated repair-limit override; it does not grant the spell by itself. The Mending sheet row carries typed independent-knowledge and inventory-source provenance. Cast-time resolution checks live quantity and effective attunement, then applies the greatest active limit over the native one-foot base. The pure repair evaluator validates every dimension of one break or tear and never restores magic or HP. Forgemaster’s Might places its Mending grant and override in an `itemState:"attuned"` entry; its existing Creation/Fabricate limited uses keep their original scope. The casting popup uses temporary declarations and adds no saved input shape or storage key.
+
+
+### Source-owned tool forms and checks
+
+Manifold Tool and the three All-Purpose Tools use reviewed native metadata and a per-inventory-row `toolForm:{v:1,tool:null|canonicalArtisanName}` state. Missing legacy state migrates explicitly to the basic/unselected form without guessing an artisan tool. Unknown future versions and malformed known state remain preserved and inactive; weapon-form versions remain independent. Shape persists through stow, quantity and attunement changes. Transformation requires declared touch and the item’s native Magic/Action timing, with effective native attunement; it does not require the equipped flag.
+
+The actual tool-check consumer grants proficiency only for a check declared to use that exact item and current form. It never adds the chosen tool to global `C.profs.tools`. It recomputes ability, PB, proficiency/expertise and conditions, and requires source eligibility at roll commit and asynchronous completion. The native 2014 Artificer6 Tool Expertise supplies a typed optional `C.toolCheckRules` row; the 2024 class does not inherit it. Typed/display proficiency mismatches require review instead of silently selecting a bonus.
+
+An optional fifth predicate on the existing dice-engine roll entry point prevents canceled owned rolls from reaching result display, history or journal after an actor/source/stat change. Existing callers keep their default behavior. The tool consumer also clears its own pending state when a still-owned roll becomes stale. No new GX input field or storage key is introduced.

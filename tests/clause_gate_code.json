@@ -2251,6 +2251,150 @@
    ],
    "test": "Z3 U29 Shortsword-only proficiency Dawnbringer",
    "note": "Active-form weapon accepts Longsword or Shortsword training; no other proficiencies or languages granted."
+  },
+  {
+   "id": "u33-item-dmg-manifold-tool-proficiency",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Manifold Tool",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^whatever\\ form\\ the\\ tool\\ takes,\\ you\\ have\\ proficiency\\ with\\ it\\ when\\ you\\ use\\ it\\.$",
+   "anchor": [
+    "src/app/lib/tool-check-runtime.js",
+    "env.__miRoll.roll({bon:check.total},check.mode,check.label,result=>toolRollCallback(roll,result),()=>toolRollGuard(roll))"
+   ],
+   "test": "Z3 U33 native tool capability Manifold Tool",
+   "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
+  },
+  {
+   "id": "u33-item-efa-manifold-tool-proficiency",
+   "kind": "item",
+   "owner": "efa",
+   "name": "Manifold Tool",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^whatever\\ form\\ the\\ tool\\ takes,\\ you\\ have\\ proficiency\\ with\\ it\\ when\\ you\\ use\\ it\\.$",
+   "anchor": [
+    "src/app/lib/tool-check-runtime.js",
+    "env.__miRoll.roll({bon:check.total},check.mode,check.label,result=>toolRollCallback(roll,result),()=>toolRollGuard(roll))"
+   ],
+   "test": "Z3 U33 native tool capability Manifold Tool",
+   "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
+  },
+  {
+   "id": "u33-item-dmg-1-all-purpose-tool-proficiency",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^whatever\\ form\\ the\\ tool\\ takes,\\ you\\ are\\ proficient\\ with\\ it\\.$",
+   "anchor": [
+    "src/app/lib/tool-check-runtime.js",
+    "env.__miRoll.roll({bon:check.total},check.mode,check.label,result=>toolRollCallback(roll,result),()=>toolRollGuard(roll))"
+   ],
+   "test": "Z3 U33 native tool capability +1 All-Purpose Tool",
+   "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
+  },
+  {
+   "id": "u33-item-tce-1-all-purpose-tool-proficiency",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+1 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^whatever\\ form\\ the\\ tool\\ takes,\\ you\\ are\\ proficient\\ with\\ it\\.$",
+   "anchor": [
+    "src/app/lib/tool-check-runtime.js",
+    "env.__miRoll.roll({bon:check.total},check.mode,check.label,result=>toolRollCallback(roll,result),()=>toolRollGuard(roll))"
+   ],
+   "test": "Z3 U33 native tool capability +1 All-Purpose Tool",
+   "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
+  },
+  {
+   "id": "u33-item-dmg-2-all-purpose-tool-proficiency",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^whatever\\ form\\ the\\ tool\\ takes,\\ you\\ are\\ proficient\\ with\\ it\\.$",
+   "anchor": [
+    "src/app/lib/tool-check-runtime.js",
+    "env.__miRoll.roll({bon:check.total},check.mode,check.label,result=>toolRollCallback(roll,result),()=>toolRollGuard(roll))"
+   ],
+   "test": "Z3 U33 native tool capability +2 All-Purpose Tool",
+   "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
+  },
+  {
+   "id": "u33-item-tce-2-all-purpose-tool-proficiency",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+2 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^whatever\\ form\\ the\\ tool\\ takes,\\ you\\ are\\ proficient\\ with\\ it\\.$",
+   "anchor": [
+    "src/app/lib/tool-check-runtime.js",
+    "env.__miRoll.roll({bon:check.total},check.mode,check.label,result=>toolRollCallback(roll,result),()=>toolRollGuard(roll))"
+   ],
+   "test": "Z3 U33 native tool capability +2 All-Purpose Tool",
+   "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
+  },
+  {
+   "id": "u33-item-dmg-3-all-purpose-tool-proficiency",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^whatever\\ form\\ the\\ tool\\ takes,\\ you\\ are\\ proficient\\ with\\ it\\.$",
+   "anchor": [
+    "src/app/lib/tool-check-runtime.js",
+    "env.__miRoll.roll({bon:check.total},check.mode,check.label,result=>toolRollCallback(roll,result),()=>toolRollGuard(roll))"
+   ],
+   "test": "Z3 U33 native tool capability +3 All-Purpose Tool",
+   "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
+  },
+  {
+   "id": "u33-item-tce-3-all-purpose-tool-proficiency",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+3 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^whatever\\ form\\ the\\ tool\\ takes,\\ you\\ are\\ proficient\\ with\\ it\\.$",
+   "anchor": [
+    "src/app/lib/tool-check-runtime.js",
+    "env.__miRoll.roll({bon:check.total},check.mode,check.label,result=>toolRollCallback(roll,result),()=>toolRollGuard(roll))"
+   ],
+   "test": "Z3 U33 native tool capability +3 All-Purpose Tool",
+   "note": "Source-owned Basic and all 17 artisan forms use current ability and PB in the guarded tool-check consumer; no global tool proficiency is granted. Named capability fixture and tool_check_runtime.mjs verify the independent producer and actual roll path."
   }
  ]
 }

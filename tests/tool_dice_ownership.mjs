@@ -1,0 +1,13 @@
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
+const actual=fs.readFileSync(new URL('../src/fx/16-z-pack-dice-sound-hover.js',import.meta.url),'utf8');const start=actual.indexOf('  FXS16A.doRoll=function'),end=actual.indexOf('  (FXENV.__miRoll=',start);assert.ok(start>0&&end>start);const helperStart=actual.indexOf('  FXS16A.rollAllowed=function'),helperEnd=actual.indexOf('\n})();',helperStart);assert.ok(helperStart>0&&helperEnd>helperStart);const diceStart=actual.indexOf('  FXS16A.rollDice=function'),diceEnd=actual.indexOf('\n})();',diceStart);const proposed=actual.slice(diceStart,diceEnd)+'\n'+actual.slice(helperStart,helperEnd)+'\n'+actual.slice(start,end);let checks=0;const eq=(a,b)=>{assert.deepEqual(a,b);checks++};
+function fixture(three=true){let pending,actor='A',valid=true;const logs=[],callbacks=[];const c={FXS16A:{calm:()=>false,finish:()=>({v:7}),after:r=>logs.push({actor,value:r.v})},FXENV:{},diceOf:()=>[20],d:()=>7};if(three)c.FXENV.__dice3d={roll:()=>new Promise((yes,no)=>pending={yes,no})};vm.createContext(c);vm.runInContext(proposed,c);return {c,logs,callbacks,guard:()=>valid,setActor:v=>actor=v,invalidate:()=>valid=false,resolve:()=>pending.yes([7]),reject:()=>pending.no(Error('3d')),run(guard=()=>valid){return c.FXS16A.doRoll({},'','Tool',r=>callbacks.push(r),guard)}}}
+for(const fail of [false,true]){const f=fixture();f.run();f.setActor('B');f.invalidate();fail?f.reject():f.resolve();await Promise.resolve();eq(f.logs.length,0);eq(f.callbacks.length,0)}
+for(const three of [false,true]){const f=fixture(three);f.run();if(three){f.resolve();await Promise.resolve()}eq(f.logs.length,1);eq(f.callbacks.length,1);eq(f.logs[0].actor,'A')}
+{const f=fixture();f.run(()=>{throw Error('guard')});eq(f.logs.length,0);eq(f.callbacks.length,0)}
+{const f=fixture(false);f.run(undefined);eq(f.logs.length,1)}
+{const f=fixture();f.c.FXS16A.doRoll({},'','Legacy',r=>f.callbacks.push(r));f.setActor('B');f.resolve();await Promise.resolve();eq(f.logs[0].actor,'B');eq(f.callbacks.length,1)}
+// Check again immediately before side effects, even if result finalization invalidates context.
+for(const three of [false,true]){const f=fixture(three);f.c.FXS16A.finish=()=>{f.invalidate();return {v:7}};f.run();if(three){f.resolve();await Promise.resolve()}eq(f.logs.length,0);eq(f.callbacks.length,0)}
+// Rejected 3D safely falls back to crypto-style values while a current guard remains valid.
+{const f=fixture();f.run();f.reject();await Promise.resolve();eq(f.logs.length,1);eq(f.callbacks.length,1)}
+console.log(checks+' actual dice ownership guard checks PASS');

@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 73254 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 36782 (50.2%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 7980 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 7988 |
 | Info (tag terdokumentasi) | 23617 (SPELL_TEXT 6470, FORM:ACTIVATE 2723, NUMONLY:GEOMETRY 2232, FORM:ROLL 1938, NUMONLY:TEXT 1341, ACTIVATE 1309, FORM:TABLE 1156, NUMONLY:ROLL 1000, NUMONLY:TABLE 862, FXO_NULL 828, ACTIVE:TRIGGER 784, ACTIVE:OTHERS 642, REST:NONUM 586, NUMONLY:FLAVOR 305, STD:ASI 208, COND:PLAY_STATE 188, NUMONLY:ZERO 162, ROLL:LAST_CHARGE 136, OBJECT:STATS 106, ITEM:SENSES 82, DC:REFERENCE 77, BY_DESIGN 72, TABLE:CLASS 70, COND:ATTACK_ROLL_ADV 68, STD:PICK_TEXT 63, ACTIVE:REACTION 56, MOVE:SPEED_REF 50, ACTIVE:TIMED_IMM 43, TARGET:SPEED 30, FOCUS:SPELLCASTING 14, STD:AC10 7, KNOW:TARGET_DEFENSES 7, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5185 |
+| Uncovered | 5177 |
 | Uncovered dengan angka | 3087 |
-| Uncovered dengan kelas kata kunci mekanik | 4825 |
+| Uncovered dengan kelas kata kunci mekanik | 4817 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 360 |
 | Angka yang tidak dijelaskan record mana pun | 2877 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4394 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4386 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 306 |
-| Waktu | muat data 1 s, analisis 13 s |
+| Waktu | muat data 1 s, analisis 14 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 185 ditangkap (61.7%). Hapus semua atom kelas yang dibutuhkan: 183 ditangkap (61.0%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 176 ditangkap (58.9%). Hapus semua atom kelas yang dibutuhkan: 175 ditangkap (58.5%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 293 ditangkap (97.7%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 292 ditangkap (97.3%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -48,7 +48,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | feat | 246 |
 | SPELL_FX | 241 |
 | cls | 132 |
-| CODE | 117 |
+| CODE | 125 |
 | SAVE_NOTES | 75 |
 | FXO | 50 |
 | SPELLS | 37 |
@@ -69,7 +69,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | DMG | 3912 | 696 | 17.8% |
 | SPEED | 1135 | 436 | 38.4% |
 | CHOICE | 1345 | 363 | 27.0% |
-| PROF | 883 | 362 | 41.0% |
+| PROF | 883 | 354 | 40.1% |
 | ADV | 1516 | 353 | 23.3% |
 | RES | 1123 | 329 | 29.3% |
 | NUM | 7110 | 322 | 4.5% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1028 | 242 | 549 | 0 | 237 |
 | feat | 2101 | 535 | 1042 | 0 | 524 |
-| item | 18391 | 4486 | 10978 | 0 | 2927 |
+| item | 18391 | 4494 | 10978 | 0 | 2919 |
 | species | 1037 | 571 | 297 | 0 | 169 |
 | spell | 6748 | 278 | 6470 | 0 | 0 |
 | sub | 7477 | 1868 | 4281 | 0 | 1328 |
@@ -103,14 +103,14 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10151 | 2482 | 6071 | 1598 | 15.7% |
+| dmg | 10151 | 2486 | 6071 | 1594 | 15.7% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 391 | 803 | 309 | 20.6% |
 | tsgs | 1483 | 379 | 857 | 247 | 16.7% |
 | tsdm | 1222 | 326 | 675 | 221 | 18.1% |
 | tkdm | 919 | 204 | 501 | 214 | 23.3% |
 | tghp | 1117 | 374 | 560 | 183 | 16.4% |
-| tce | 736 | 136 | 459 | 141 | 19.2% |
+| tce | 736 | 139 | 459 | 138 | 18.8% |
 | egw | 566 | 141 | 289 | 136 | 24.0% |
 | au | 536 | 104 | 311 | 121 | 22.6% |
 | tdcsr | 416 | 133 | 185 | 98 | 23.6% |
@@ -168,8 +168,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | tftyp | 71 | 24 | 41 | 6 | 8.5% |
 | psx | 18 | 8 | 5 | 5 | 27.8% |
 | psz | 38 | 31 | 2 | 5 | 13.2% |
-| efa | 28 | 9 | 15 | 4 | 14.3% |
 | tdcg | 12 | 4 | 5 | 3 | 25.0% |
+| efa | 28 | 10 | 15 | 3 | 10.7% |
 | eepc | 9 | 7 | 0 | 2 | 22.2% |
 | psd | 5 | 3 | 0 | 2 | 40.0% |
 | nf | 25 | 9 | 14 | 2 | 8.0% |
@@ -190,7 +190,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | DMG | 513 | 474 |
 | SPEED | 373 | 288 |
 | ADV | 347 | 136 |
-| PROF | 335 | 109 |
+| PROF | 327 | 109 |
 | NUM | 322 | 322 |
 | SLOT | 303 | 92 |
 | RES | 268 | 110 |
@@ -427,7 +427,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Wizard/School of Necromancy|Command Undead#5` An undead with Intelligence 8 or higher has Advantage on the save. | no record for ADV; number 8 unexplained
 - `sub|Wizard/Timekeeper|Temporal Points#6` Option three: Advantage on your next Dexterity check. | no record for ADV; number 3 unexplained
 
-### PROF (335 uncovered)
+### PROF (327 uncovered)
 
 - `class|Monster Hunter|Monster Grimoire#8` If you are already proficient in the skill, add double your Proficiency Bonus. | number double,pb no record explains
 - `class|Rogue|Reliable Talent#1` If you make an ability check that draws on a skill or tool you're proficient with, any d20 roll of 9 or lower can count as a 10 for you. | no record for PROF; number 1d20,10 unexplained
@@ -812,33 +812,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Martyr/Burden of Ascension|Demigod Ascendant#3` You regain your use of Herculean Surge whenever you roll Initiative. -> covered
-- class `sub|Martyr/Burden of Ascension|Demigod Ascendant#3` You regain your use of Herculean Surge whenever you roll Initiative. -> info:REST:NONUM
-- record `sub|Ranger/Primordial Archer|Primordial Archer Spells#5` 17 Wall of Stone. -> info:NUMONLY:TABLE
-- class `sub|Ranger/Primordial Archer|Primordial Archer Spells#5` 17 Wall of Stone. -> info:NUMONLY:TABLE
-- record `item|tsgs|Starmetal Shield#9` A hit deals 2d8 Slashing damage. -> info:ACTIVE:OTHERS
-- class `item|tsgs|Starmetal Shield#9` A hit deals 2d8 Slashing damage. -> info:ACTIVE:OTHERS
-- record `feat|Exomorph|Exomorph#8` After you use this, finish a Long Rest to do so again. -> info:REST:NONUM
-- class `feat|Exomorph|Exomorph#8` After you use this, finish a Long Rest to do so again. -> info:REST:NONUM
+- record `item|mot|Phenax's Devotee#3` Uses equal your Charisma modifier (minimum 1) per long rest. -> info:REST:NONUM
+- class `item|mot|Phenax's Devotee#3` Uses equal your Charisma modifier (minimum 1) per long rest. -> info:REST:NONUM
 - record `sub|Bard/College of Masks|Virtuoso Skill#1` Once per turn when you make a D20 Test, use Charisma instead if it does not already use it. -> covered
 - class `sub|Bard/College of Masks|Virtuoso Skill#1` Once per turn when you make a D20 Test, use Charisma instead if it does not already use it. -> info:ACTIVE:TRIGGER
-- record `item|dmg|Inescapable Lash#1` A bronze braided whip with three barbs. -> info:NUMONLY:TABLE
-- class `item|dmg|Inescapable Lash#1` A bronze braided whip with three barbs. -> info:NUMONLY:TABLE
-- record `sub|Witch/Lunar Magic|Blessing of the Moon#1` After a Long Rest, you gain a blessing of a moon phase you pick, and it is empowered if it matches the current phase. -> covered
-- class `sub|Witch/Lunar Magic|Blessing of the Moon#1` After a Long Rest, you gain a blessing of a moon phase you pick, and it is empowered if it matches the current phase. -> info:REST:NONUM
-- record `feat|Eldritch Lifesaver|Eldritch Lifesaver#3` The target regains hit points equal to the level of the slot and gains temporary hit points equal to your spellcasting a -> info:REST:NONUM
-- class `feat|Eldritch Lifesaver|Eldritch Lifesaver#3` The target regains hit points equal to the level of the slot and gains temporary hit points equal to your spellcasting a -> info:REST:NONUM
-- record `sub|Warmage/House of Darts|Dart Burst#4` Once you use this, you cannot use it again until you finish a Long Rest. -> covered
-- class `sub|Warmage/House of Darts|Dart Burst#4` Once you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `feat|Specter Transformation: Stage 3|Specter Transformation: Stage 3#6` On a failure you act as if under the Confusion spell for 1 minute. -> info:NUMONLY:GEOMETRY
-- class `feat|Specter Transformation: Stage 3|Specter Transformation: Stage 3#6` On a failure you act as if under the Confusion spell for 1 minute. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Boon of Planar Travel#3` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
-- class `item|dmg|Boon of Planar Travel#3` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
-- record `feat|Mark of Hospitality|Mark of Hospitality#9` Each free cast returns after a Long Rest. -> info:REST:NONUM
-- class `feat|Mark of Hospitality|Mark of Hospitality#9` Each free cast returns after a Long Rest. -> info:REST:NONUM
-- record `sub|Warlock/The Great Old One (2014)|Entropic Ward#2` If the attack misses, you have Advantage on your next attack roll against that creature if you make it before the end of -> info:ACTIVE:OTHERS
-- class `sub|Warlock/The Great Old One (2014)|Entropic Ward#2` If the attack misses, you have Advantage on your next attack roll against that creature if you make it before the end of -> info:ACTIVE:OTHERS
-- record `sub|Sorcerer/Frost Sorcery|Frozen Soul#5` Long Rest to cast it this way again. -> covered
-- class `sub|Sorcerer/Frost Sorcery|Frozen Soul#5` Long Rest to cast it this way again. -> info:REST:NONUM
-- record `sub|Summoner/Bond of the Fiendish Chain|Protection of the Lower Planes#10` A Long Rest restores all. -> covered
-- class `sub|Summoner/Bond of the Fiendish Chain|Protection of the Lower Planes#10` A Long Rest restores all. -> info:REST:NONUM
+- record `item|dmg|Figurine of Wondrous Power (marble elephant)#13` After a use, the figurine stays inert until 7 days pass. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Figurine of Wondrous Power (marble elephant)#13` After a use, the figurine stays inert until 7 days pass. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Korolnor Scepter#1` The Korolnor Scepter is one of ten Ruling Scepters of Shanatar, forged by the dwarven gods and given to the ruling house -> info:NUMONLY:FLAVOR
+- class `item|dmg|Korolnor Scepter#1` The Korolnor Scepter is one of ten Ruling Scepters of Shanatar, forged by the dwarven gods and given to the ruling house -> info:NUMONLY:FLAVOR
+- record `item|dmg|Gem of Brightness#5` No charge is spent. -> info:REST:NONUM
+- class `item|dmg|Gem of Brightness#5` No charge is spent. -> info:REST:NONUM
+- record `item|ggr|Dimir Charm#3` You stay Invisible until the start of your next turn or until you attack or cast a spell. -> info:ACTIVE:TRIGGER
+- class `item|ggr|Dimir Charm#3` You stay Invisible until the start of your next turn or until you attack or cast a spell. -> info:ACTIVE:TRIGGER
+- record `sub|Paladin/Oath of the Ancients (2014)|Elder Champion#5` You regain use after a Long Rest. -> covered
+- class `sub|Paladin/Oath of the Ancients (2014)|Elder Champion#5` You regain use after a Long Rest. -> info:REST:NONUM
+- record `sub|Warmage/House of Kings|Battle Tactics#4` A die is expended when you use it. -> covered
+- class `sub|Warmage/House of Kings|Battle Tactics#4` A die is expended when you use it. -> info:REST:NONUM
+- record `item|mot|Karametra's Disciple#4` After using this, you must finish a long rest to use it again. -> info:REST:NONUM
+- class `item|mot|Karametra's Disciple#4` After using this, you must finish a long rest to use it again. -> info:REST:NONUM
+- record `sub|Rogue/Arcane Trickster (2014)|Spell Thief#7` You regain use after a Long Rest. -> covered
+- class `sub|Rogue/Arcane Trickster (2014)|Spell Thief#7` You regain use after a Long Rest. -> info:REST:NONUM
+- record `sub|Martyr/Burden of Odyssey|Burden of Odyssey Spells#2` They do not count against your prepared spells. -> info:ACTIVE:OTHERS
+- class `sub|Martyr/Burden of Odyssey|Burden of Odyssey Spells#2` They do not count against your prepared spells. -> info:ACTIVE:OTHERS
+- record `species|Zombie|Undead Nature#1` Immune to Poison damage, and you cannot be Poisoned. -> covered
+- record `sub|Fighter/Cavalier|Unwavering Mark#5` You can make this attack a number of times equal to your Strength modifier (minimum one) and regain all uses after a Lon -> covered
+- class `sub|Fighter/Cavalier|Unwavering Mark#5` You can make this attack a number of times equal to your Strength modifier (minimum one) and regain all uses after a Lon -> info:REST:NONUM
+- record `item|tsdm|W-REC#2` It has a +2 bonus to attack and damage rolls. -> info:ACTIVE:OTHERS
+- class `item|tsdm|W-REC#2` It has a +2 bonus to attack and damage rolls. -> info:ACTIVE:OTHERS
+- record `feat|Mark of Passage|Mark of Passage#7` Misty Step is always prepared and free once per Long Rest. -> info:REST:NONUM
+- class `feat|Mark of Passage|Mark of Passage#7` Misty Step is always prepared and free once per Long Rest. -> info:REST:NONUM
+- record `item|dmg|Crown of Deep Winter#2` You can cast Fire Shield from it using the chill shield option, once per dawn. -> covered

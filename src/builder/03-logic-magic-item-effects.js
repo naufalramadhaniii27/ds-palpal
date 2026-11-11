@@ -4,6 +4,7 @@ import {baseOf,fxListBase,miFeats} from "./01b-logic-late-ports.js";
 import {gx,fxo} from "./00-env.js";
 import {allocateAttunement,itemInUse,itemQuantity,migrateItems,migrateAttunement,itemOverrideProblems} from "../data/lib/attunement.js";
 import {weaponFormMetadata,migrateInventoryForms,setWeaponFormActive,adjustWeaponFormRadius,weaponFormUsable,weaponFormLight} from "../data/lib/weapon-form.js";
+import {toolFormMetadata,normalizeToolForm,migrateToolForms,selectToolForm} from "../data/lib/tool-form.js";
 import {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum} from "../data/lib/wield-minimum.js";
 export {itemInUse,itemQuantity};
 export var DMAP={};DMGI.forEach((x) =>{DMAP[x[0]]=x});
@@ -22,6 +23,7 @@ export function itemFx(n){const d=DMAP[n];return d?ovFx(d):null}
 let ATT_BUSY=false,ATT_LAST=0;
 export function attMax(){let m=subAt("Rogue","Thief")>=13?4:3,al=clsLv("Artificer");if(al>=18)m=Math.max(m,6);else if(al>=14)m=Math.max(m,5);else if(al>=10)m=Math.max(m,4);/* fx engine v4: attune:N on a class, subclass, species, background or feat entry (gfx without items, so no loop with activeFx), or on an equipped item entry (GX.item) raises the limit to N */if(ATT_BUSY)return Math.max(m,ATT_LAST);/* re-entered through gfx: use the last finished value */ATT_BUSY=true;try{fxListBase().forEach((e) =>{if(e.attune>m)m=e.attune});const GI=gx().item||{};(lateGet("B").inv||[]).forEach((x) =>{if(x.eq&&itemQuantity(x)>0)(GI[x.n]||[]).forEach((e) =>{if(e&&e.attune>m)m=e.attune})});ATT_LAST=m}catch(er){}finally{ATT_BUSY=false}return m}/* v90: Magic Item Adept, Savant and Master */
 export function byOk(by,attunedKeys){if(!by)return true;const s=String(by),cls=Object.keys(CLASSES).filter((c) =>{return s.toLowerCase().indexOf(c.toLowerCase())>=0});/* case does not matter: the data rows write "warlock" and "Warlock" both */
+ if(/^(?:an?\s+)?artificer\.?$/i.test(s.trim()))return clsLv("Artificer")>0;
  if(/Belt of Dwarvenkind/.test(s)&&beltAttuned(attunedKeys))return true;
  if(cls.length)return cls.some((c) =>{return clsLv(c)>0});if(/Spellcaster/i.test(s))return casterParts().length>0||miFeats().length>0;
  const sp=Object.keys(SPECIES).filter((n) =>{return new RegExp("\\b"+n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","i").test(s)});if(sp.length)return sp.indexOf(lateGet("B").species)>=0;return true}
@@ -31,7 +33,7 @@ function formMetadataFor(row,edition){const d=DMAP[row.n];return weaponFormMetad
 function canonicalForm(row,formMeta){const f=row.form;if(!f||typeof f!=="object"||Array.isArray(f))return false;if(Object.prototype.hasOwnProperty.call(f,"v")&&f.v!==1)return true;if(f.v!==1||typeof f.active!=="boolean")return false;const l=formMeta.light;return Number.isInteger(f.radius)&&f.radius>=l.min&&f.radius<=l.max&&(l.adjustable?(f.radius-l.min)%l.step===0:f.radius===l.default)}
 /* Normalize only the passed character. A modern inventory keeps its row and array
    identities on repeated ensureInv calls; legacy form intent is seeded once. */
-export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b.inv))return b;b.inv=migrateItems(b.inv,attunementMeta);
+export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b.inv))return b;b.inv=migrateItems(b.inv,attunementMeta);b.inv=migrateToolForms(b.inv).rows;
  const version=b.inventoryFormV;if(version!==undefined&&version!==0&&version!==1)return b;
  const edition=b.rs==="2014"?"2014":"2024",items=b.inv;
  if(version===1&&(!Array.isArray(items)||items.every(row=>{if(!row||typeof row!=="object")return true;const formMeta=formMetadataFor(row,edition);return !formMeta||canonicalForm(row,formMeta)})))return b;
@@ -43,6 +45,10 @@ function beltAttuned(keys){return (keys||new Set(attunementState().keys)).has("B
 export function itemBases(d){const o=itemOverride(d),b=o&&Object.prototype.hasOwnProperty.call(o,"base")?o.base:d&&d[5]&&d[5].base;return Array.isArray(b)?b:null}
 /* Scores are supplied by the current actor's completed ability calculation.
    This boundary never calls abilScores or changes independent item properties. */
+/* Tool shape is independent of weapon form, equip state and other item properties. */
+export function itemToolFormInfoForRow(row,state){const name=row&&(row.n||row.key),d=DMAP[name],definition=toolFormMetadata(d?d[0]:name);if(!definition)return {available:false,reason:"not-supported"};const raw=row.toolForm,form=normalizeToolForm(raw),reason=!form?"version":itemQuantity(row)<=0?"no-item":!(state&&state.attuned)?"attunement":"";return {available:!reason,reason:reason,toolForm:clone(raw),toolFormMeta:definition,toolFormUsable:!reason,action:definition.action,signature:JSON.stringify(row)}}
+export function getItemToolFormInfo(index){const b=migrateInventory(lateGet("B"));if(!Number.isInteger(index)||index<0||!b.inv||!b.inv[index])return {available:false,reason:"missing"};return Object.assign({index:index},itemToolFormInfoForRow(b.inv[index],attunementState().rows[index]))}
+export function setItemToolForm(index,change,beforeCommit=undefined){const info=getItemToolFormInfo(index);if(!info.available)return {ok:false,reason:info.reason,info:info};if(!change||typeof change!=="object"||Array.isArray(change)||Object.keys(change).length!==2||!Object.prototype.hasOwnProperty.call(change,"tool")||change.touch!==true)return {ok:false,reason:"change",info:info};const next=selectToolForm(info.toolForm,change.tool,{touch:true});if(!next)return {ok:false,reason:"change",info:info};if(typeof beforeCommit==="function"&&beforeCommit()===false)return {ok:false,reason:"stale",info:info};lateGet("B").inv[index].toolForm=next;return {ok:true,info:getItemToolFormInfo(index)}}
 export function itemWieldInfoForRow(row,scores){const name=row&&(row.n||row.key),d=DMAP[name],rule=nativeWieldMinimum(d?d[0]:name),result=evaluateWieldMinimum(rule,scores);return {rule:rule,allowed:result.allowed,unmet:result.unmet,checks:result.checks,text:explainWieldMinimum(result)}}
 export function getItemWieldInfo(index,currentScores){const items=lateGet("B").inv||[];if(!Number.isInteger(index)||index<0||!items[index])return {rule:null,allowed:false,unmet:[],text:"Item unavailable."};return itemWieldInfoForRow(items[index],currentScores)}
 export function itemWeaponInUse(row,status,scores){if(!itemWieldInfoForRow(row,scores).allowed)return false;const b=lateGet("B"),formMeta=formMetadataFor(row,b.rs==="2014"?"2014":"2024"),o=itemOverride(DMAP[row.n]);if(formMeta)return weaponFormUsable(row,formMeta,{equipped:!!row.eq,quantity:itemQuantity(row),attuned:!!(status&&status.attuned)},b.inventoryFormV);return !!row.eq&&itemQuantity(row)>0&&(!(o&&o.requiresAttunedWeapon)||!!(status&&status.attuned))}

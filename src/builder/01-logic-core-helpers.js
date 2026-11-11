@@ -1,3 +1,4 @@
+export {ARTISAN_TOOLS,toolFormMetadata,normalizeToolForm,migrateToolForms,selectToolForm,toolFormCheck,toolBaseMultiplier,toolProficiencyReviewRequired} from "../data/lib/tool-form.js";
 export {repairSpecProblems,mendingRepairSpec,evaluateObjectRepair} from "../data/lib/object-repair.js";
 export {nativeWieldMinimum,evaluateWieldMinimum,explainWieldMinimum,weaponRowAllowed,applyWieldScoreCustomization} from "../data/lib/wield-minimum.js";
 export {weaponFormMetadata} from "../data/lib/weapon-form.js";
