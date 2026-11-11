@@ -1,4 +1,17 @@
-# Uncovered 3: carpet vehicle load and directed flight
+# Uncovered 3: class-aware spellcasting sources
+
+## U35: class-specific spell attack and save DC
+
+Six further original All-Purpose Tool bonus sentences now have computed coverage: 315 closed from the initial 5,460, 5,145 uncovered and zero regressed IDs. Covered is 8,020; info remains 23,617 and allow remains zero. The twelve neighboring temporary-cantrip choice/duration sentences remain uncovered pending the actual activation, daily-use and duration model.
+
+The three native potencies now restrict their held spell-attack/save-DC bonus to Artificer spells. Wizard and Artificer channels remain distinct when they share Intelligence but have different effective numbers. The same applies to native Warlock-only bonuses alongside another Charisma caster. Typed class keys connect channels, spell rows and cantrip attacks; spell source display text is not authorization. Channels are emitted when their actual ability/attack/DC tuples differ, preserving ordinary equal-channel output. A present invalid source key fails closed; absent keys retain legacy ability fallback. Fixed item casting and explicit per-spell overrides retain their existing precedence.
+
+The spell list and detail cards show the selected source’s actual attack/save DC. Source-owned header rolls and card controls validate the actor, row, active view and current source both before rolling and before writing history/journal after asynchronous dice. Manual dice have the same boundary. Per-spell controls cannot inherit the last unrelated header’s roll. No actor saving-throw bonus, permanent cantrip choice, GX input field or storage key is introduced.
+
+The gate now distinguishes the spellCls applicability filter from a spell grant. Six accidental neighboring choice closures found during verification were removed by correcting that evidence registry; no INFO classification was relaxed. The six actual bonus proofs require all producer, class-filter and display-consumer anchors through strict extraAnchors. The seeded source audit reviewed 58 actual rows, including every new closure.
+
+Production UI passed 546 assertions across 390×844 and 1250×850, covering all three potencies, both main-class orders, held/attunement/quantity changes, same-ability channels, overrides, fixed item DC and stale asynchronous dice. The retained portable source suites pass 305 assertions. Full gate selftests and 116 U35-specific evidence checks pass. Official contract/golden/UI/data suites pass 5,018/1,479/308/626 checks. Effects pass 1,613 cases; measure covers 752 units with zero new misses. TypeScript remains 200, HTML 250 and enforced guards zero; overlap is 1,411 names in 40 files with 156 documented overlaps. The 2,997-build snapshot totals `8fbdca0fcb4d2f08`: all 259 changed fixtures were captured before/after, proving only 531 added channel keys, 2,005 spell source keys and 19 attack source keys, with no numeric/other residual or provenance leak. All 3,890 builder inputs remain strictly identical to U34 (`396b20d955f87d6e`). Main raw differences remain 2,997 snapshot and 2,263 builder cases.
+
 
 ## U34: physical carpet profiles and owned controls
 

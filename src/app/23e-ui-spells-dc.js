@@ -1,12 +1,14 @@
 import {bindLive,cuK,cuNm,cuNum,lateGet} from "./00a-reg-late-ports.js";/* Responsibility: spell attack and save DC, spell list and its render. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env: __artIc. Shared names with other modules come from the imports below, late names through __R. */
-import {C} from "./04-logic-storage.js";
-import {esc,num,sg} from "./05-logic-helpers.js";
-import {B,D,part} from "./06-logic-derivation.js";
+import {C,S} from "./04-logic-storage.js";
+import {esc,num,sg,clamp} from "./05-logic-helpers.js";
+import {B,part} from "./06-logic-derivation.js";
 import {esArt} from "./08c-ui-render-inventory-features-notes.js";
 import {spEffH,spGrpLv,spRangeH,spRowLv} from "./22-ui-spell-data-and-slots.js";
 
 import {env} from "./00-env.js";
+import {spellSourceGuard as sourceRollGuard} from "./lib/spell-source-runtime.js";
+import {selectSpellSource} from "../data/lib/spell-source.js";
 import {ico,spSlotsH} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {spUpMax} from "./25-ui-settings-appearance.js";import {spUpOk} from "./25-ui-settings-appearance.js";import {spUpOn} from "./25-ui-settings-appearance.js";
 bindLive("ordL",{get:function(){return ordL;}});
 bindLive("renderSpells",{get:function(){return renderSpells;}});
@@ -17,13 +19,16 @@ bindLive("spQ",{get:function(){return spQ;},set:function(v){spQ=v;}});
 export function ordL(n){return n===0?"Cantrip":n+(n===1?"st":n===2?"nd":n===3?"rd":"th")+" Level"}
 var spQ="",spF="all";
 /* Spells tab header: Modifier, Spell Attack, Save DC, then slots. Numbers come from C.spellcasting (builder).
-   M9: C.spellcasting.by (2+ abilities, multiclass or species): one header per source, and each spell uses the numbers of its ability (C.spells[].ab) */
+   Keyed C.spellcasting.by channels select C.spells[].sourceKey first; legacy rows retain their ability fallback. */
 /* v19 RL44: spell attack shown with Exhaustion */
-export function scAdj(sc){ if(!sc) return sc; const ex=D&&D.exhN?2*D.exhN:0, o={}; for(const k in sc) o[k]=sc[k]; if(ex) o.atk=num(sc.atk,0)-ex;
-  const many=Array.isArray(sc.by)&&sc.by.length>1; if(Array.isArray(sc.by)) o.by=sc.by.map((b) =>{ const c={}; for(const j in b) c[j]=b[j]; if(ex) c.atk=num(b.atk,0)-ex; return many?scCu(c,"-"+b.ab,ex):scCu(c,"",ex,1); });
+function spellExhaustion(){if(C.rs==="2014")return 0;let level=num(S.exh,0);const minimum=clamp(Math.round(num(C.exhMin,0)),0,5),lock=S.exhLk;if(minimum>level)level=minimum;else if(lock&&minimum<lock.min)level=Math.max(minimum,level-Math.min(lock.add||0,Math.max(0,level-minimum)));return 2*clamp(Math.round(level),0,6)}
+function spellPb(){return 2+Math.floor((clamp(Math.round(num(C.level,1)),1,20)-1)/4)+clamp(Math.round(num(C.pbAdd,0)),0,6)}
+function spellBreakdownSuffix(channel){return channel.k?"-source-"+encodeURIComponent(channel.k):"-"+channel.ab}
+export function scAdj(sc){ if(!sc) return sc; const ex=spellExhaustion(), o={}; for(const k in sc) o[k]=sc[k]; if(ex) o.atk=num(sc.atk,0)-ex;
+  const many=Array.isArray(sc.by)&&sc.by.length>1; if(Array.isArray(sc.by)) o.by=sc.by.map((b) =>{ const c={}; for(const j in b) c[j]=b[j]; if(ex) c.atk=num(b.atk,0)-ex; return many?scCu(c,spellBreakdownSuffix(b),ex,0,"-"+b.ab):scCu(c,"",ex,1); });
   return scCu(o,"",ex); }
-/* v34 RU85: Spell Attack and Save DC set by you (S.cust "n:spatk", "n:spdc", one pair per ability when 2+ sources), with a breakdown */
-function scCu(o,sf,ex,quiet){ const ak="n:spatk"+sf, dk="n:spdc"+sf, a=cuK(ak), d=cuK(dk), av=a?cuNum(a.o):null, dv=d?cuNum(d.o):null, m=num(o.mod,0), pb=D&&D.pb||2, oth=num(o.atk,0)+ex-m-pb, odc=num(o.dc,0)-8-m-pb, src=sf&&o.n?" ("+o.n+")":"";
+/* Legacy Customize stays global or per ability; keyed sources get independent breakdowns, not new override scopes. */
+function scCu(o,sf,ex,quiet,customSuffix=sf){ const ak="n:spatk"+customSuffix, dk="n:spdc"+customSuffix, a=cuK(ak), d=cuK(dk), av=a?cuNum(a.o):null, dv=d?cuNum(d.o):null, m=num(o.mod,0), pb=spellPb(), oth=num(o.atk,0)+ex-m-pb, odc=num(o.dc,0)-8-m-pb, src=sf&&o.n?" ("+o.n+")":"";
   const pa=[part("Modifier ("+(o.ab||"")+")",m,"Your spellcasting ability"),part("Proficiency Bonus",pb,"")], pd=[{l:"Base",v:8,note:"",raw:true},part("Modifier ("+(o.ab||"")+")",m,"Your spellcasting ability"),part("Proficiency Bonus",pb,"")];
   if(oth) pa.push(part("Other bonuses",oth,"Items or features")); if(ex) pa.push(part("Exhaustion level "+(ex/2),-ex,"Every D20 Test is 2 lower for each Exhaustion level")); if(odc) pd.push(part("Other bonuses",odc,"Items or features"));
   if(av!=null){ lateGet("CU0")[ak+"|o"]=o.atk; pa.push({l:"Set by you",v:sg(av),note:"Calculated value: "+sg(o.atk)+". Your number replaces it.",raw:true}); o.atk=av; }
@@ -31,9 +36,8 @@ function scCu(o,sf,ex,quiet){ const ak="n:spatk"+sf, dk="n:spdc"+sf, a=cuK(ak), 
   if(B&&!quiet){ B["spatk"+sf]={t:"Spell Attack"+src,parts:pa,total:sg(o.atk),f:""}; B["spdc"+sf]={t:"Spell Save DC"+src,parts:pd,total:String(o.dc),f:"A creature makes its saving throw against this number when your spell asks for one."}; }
   return o; }
 /* v26 RU38 no. 2: a spell with its own save DC or spell attack (Customize) */
-export function scOf(x){ let r=scOf0(x), c=x&&cuK("s:"+x.n); if(c&&(cuNum(c.dc)!=null||cuNum(c.atk)!=null)){ r=Object.assign({},r); if(cuNum(c.dc)!=null) r.dc=cuNum(c.dc); if(cuNum(c.atk)!=null) r.atk=cuNum(c.atk); } return r; }
-function scOf0(x){ let sc=scAdj(C.spellcasting||{}); if(x&&x.itc&&(x.itc.dc!=null||x.itc.atk!=null)){ sc=Object.assign({},sc); if(x.itc.dc!=null) sc.dc=x.itc.dc; if(x.itc.atk!=null) sc.atk=x.itc.atk; return sc; } if(x&&x.ab&&Array.isArray(sc.by)){ const b=sc.by.filter((q) =>{return q.ab===x.ab})[0]; if(b) return b; } return sc; }
-function spHeadBy(sc){ return sc.by.map((b) =>{ const sf="-"+b.ab; return '<p class="sp-src">'+esc(b.n)+'</p><div class="sp-head"><div><b>'+sg(b.mod)+'</b><span>Modifier ('+b.ab+')</span></div><div class="bd" data-bd="spatk'+sf+'" role="button" tabindex="0"><b>'+sg(b.atk)+'</b><span>Spell Attack</span></div><div class="bd" data-bd="spdc'+sf+'" role="button" tabindex="0"><b>'+b.dc+'</b><span>Save DC</span></div></div>'; }).join(""); }
+export function scOf(x){return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK("s:"+x.n))}
+function spHeadBy(sc){ return sc.by.map((b) =>{ const sf=spellBreakdownSuffix(b); return '<p class="sp-src">'+esc(b.n)+'</p><div class="sp-head"><div><b>'+sg(b.mod)+'</b><span>Modifier ('+b.ab+')</span></div><div class="bd" data-bd="spatk'+sf+'" role="button" tabindex="0"><b>'+sg(b.atk)+'</b><span>Spell Attack</span></div><div class="bd" data-bd="spdc'+sf+'" role="button" tabindex="0"><b>'+b.dc+'</b><span>Save DC</span></div></div>'; }).join(""); }
 function spHead(sc){sc=scAdj(sc);let h=Array.isArray(sc.by)&&sc.by.length>1?spHeadBy(sc):'<div class="sp-head"><div><b>'+sg(sc.mod)+'</b><span>Modifier ('+sc.ab+')</span></div><div class="bd" data-bd="spatk" role="button" tabindex="0"><b>'+sg(sc.atk)+'</b><span>Spell Attack</span></div><div class="bd" data-bd="spdc" role="button" tabindex="0"><b>'+sc.dc+'</b><span>Save DC</span></div></div>';
  const sl=[];(sc.slots||[]).forEach((n,i) =>{sl.push(ordL(i+1).replace(" Level","")+" \u00d7"+n)});if(sc.pact)sl.push("Pact \u00d7"+sc.pact.n+" (level "+sc.pact.lvl+")");if(sl.length)h+='<p class="sp-slots">Slots: '+sl.join(", ")+'. Tick the boxes at each spell level, or in Limited Use on the Actions tab.</p>';
  return h}
@@ -73,3 +77,6 @@ function renderSpellsStep4(el, h){
  el.innerHTML=h
 }
 export function __set_renderSpells(v){ return renderSpells=v; }
+
+export function spellSourceGuard(key,bonus){return sourceRollGuard(key,bonus)}
+env.__spellSourceGuard=spellSourceGuard;

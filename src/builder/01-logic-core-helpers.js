@@ -1,3 +1,4 @@
+export {spellChannel,spellChannelsDiffer,selectSpellSource} from "../data/lib/spell-source.js";
 export {CARPET_SIZES,carpetMetadata,normalizeVehicleState,migrateVehicles,chooseCarpetSize,carpetSourceStatus,activateCarpet,evaluateCarpet} from "../data/lib/carpet-vehicle.js";
 export {ARTISAN_TOOLS,toolFormMetadata,normalizeToolForm,migrateToolForms,selectToolForm,toolFormCheck,toolBaseMultiplier,toolProficiencyReviewRequired} from "../data/lib/tool-form.js";
 export {repairSpecProblems,mendingRepairSpec,evaluateObjectRepair} from "../data/lib/object-repair.js";

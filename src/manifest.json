@@ -171,6 +171,7 @@
     "app/23c-ui-coins.js",
     "app/23d-ui-rest.js",
     "app/23e-ui-spells-dc.js",
+    "app/23f-ui-spell-source-rolls.js",
     "app/24-ui-manage-spells.js",
     "app/25-ui-settings-appearance.js",
     "app/26-ui-customize.js",
@@ -758,7 +759,8 @@
     "data/fx-Z11.js",
     "data/fx-Z12.js",
     "data/fx-Z13.js",
-    "data/fx-Z14.js"
+    "data/fx-Z14.js",
+    "data/fx-Z15.js"
    ]
   },
   {
@@ -803,6 +805,7 @@
     "data/lib/object-repair.js",
     "data/lib/tool-form.js",
     "data/lib/carpet-vehicle.js",
+    "data/lib/spell-source.js",
     "data/lib/attunement.js",
     "builder/11-logic-derivation.js",
     "builder/11b-logic-fx-sources.js",

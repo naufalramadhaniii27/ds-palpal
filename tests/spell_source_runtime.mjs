@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {selectSpellSource} from '../src/data/lib/spell-source.js';
+const source=fs.readFileSync(new URL('../src/app/23e-ui-spells-dc.js',import.meta.url),'utf8').replace(/\bimport\s+[^;]+;/g,'').replace(/export (function|var|const) /g,'$1 ');
+const ctx={C:{},S:{},D:{pb:999,exhN:99},B:{},env:{},selectSpellSource,bindLive(){},num:(x,d=0)=>Number.isFinite(parseFloat(x))?parseFloat(x):d,clamp:(n,a,b)=>Math.max(a,Math.min(b,n)),sg:n=>(n<0?'':'+')+n,esc:s=>String(s),part:(l,v,note)=>({l,v,note}),lateGet:()=>ctx.cu0,cuK:k=>ctx.S.cust?.[k],cuNum:v=>v==null||v===''||isNaN(+v)?null:+v,cu0:{}};vm.createContext(ctx);vm.runInContext(source,ctx);
+let checks=0;const eq=(a,b)=>{assert.deepEqual(a,b);checks++};
+function reset(reverse=false){const by=[{k:'Wizard',n:'Wizard',ab:'INT',mod:3,atk:6,dc:14},{k:'Artificer',n:'Artificer',ab:'INT',mod:3,atk:9,dc:17}];if(reverse)by.reverse();ctx.C={level:5,rs:'2024',spellcasting:{...by[0],by},inv:[]};ctx.S={exh:0,cust:{}};ctx.B={};ctx.cu0={}}
+for(const reverse of [false,true]){reset(reverse);for(const [sourceKey,atk,dc] of [['Wizard',6,14],['Artificer',9,17]]){eq(ctx.scOf({n:'Ray',ab:'INT',sourceKey}).atk,atk);eq(ctx.scOf({n:'Ray',ab:'INT',sourceKey}).dc,dc)}const adjusted=ctx.scAdj(ctx.C.spellcasting),header=ctx.spHeadBy(adjusted);for(const key of ['Wizard','Artificer']){eq(header.includes('data-bd="spatk-source-'+key+'"'),true);eq(ctx.B['spatk-source-'+key].t.includes(key),true)}eq(ctx.B['spatk-source-Artificer'].parts.find(p=>p.l==='Other bonuses').v,3);eq(ctx.B['spatk-source-Wizard'].parts.some(p=>p.l==='Other bonuses'),false);
+ ctx.S.cust={'n:spatk-INT':{o:20},'n:spdc-INT':{o:24}};eq(ctx.scOf({n:'Ray',sourceKey:'Wizard'}).atk,20);eq(ctx.scOf({n:'Ray',sourceKey:'Artificer'}).atk,20);eq(ctx.scOf({n:'Ray',sourceKey:'Artificer'}).dc,24);ctx.S.cust['s:Ray']={atk:30,dc:31};eq(ctx.scOf({n:'Ray',sourceKey:'Wizard'}).atk,30);eq(ctx.scOf({n:'Ray',sourceKey:'Artificer'}).dc,31);
+}
+reset();eq(ctx.scOf({n:'Ray',ab:'INT'}).atk,6);eq(ctx.scOf({n:'Ray',ab:'INT',sourceKey:'missing'}).atk,undefined);ctx.C.spellcasting.by.reverse();eq(ctx.scOf({n:'Ray',ab:'INT'}).atk,9);eq(ctx.scOf({n:'Ray',ab:'INT',sourceKey:'Wizard'}).atk,6);
+reset();ctx.S.exh=2;eq(ctx.scOf({n:'Ray',sourceKey:'Artificer'}).atk,5);eq(ctx.scOf({n:'Ray',sourceKey:'Artificer'}).dc,17);ctx.C.rs='2014';eq(ctx.scOf({n:'Ray',sourceKey:'Artificer'}).atk,9);ctx.C.rs='2024';ctx.C.exhMin=3;eq(ctx.scOf({n:'Ray',sourceKey:'Wizard'}).atk,0);ctx.C.exhMin=0;ctx.S.exh=3;ctx.S.exhLk={min:3,add:2};eq(ctx.scOf({n:'Ray',sourceKey:'Wizard'}).atk,4);
+reset();ctx.S.exh=4;for(const itc of [{dc:12,atk:4},{dc:12},{atk:4}]){const r=ctx.scOf({n:'Item spell',sourceKey:'Artificer',itc});eq(r.dc,itc.dc??14);eq(r.atk,itc.atk??-2)}ctx.S.cust['s:Item spell']={dc:25,atk:26};eq(ctx.scOf({n:'Item spell',itc:{dc:12,atk:4}}).atk,26);eq(ctx.scOf({n:'Item spell',itc:{dc:12,atk:4}}).dc,25);
+reset();ctx.S.cust={'n:spatk':{o:22},'n:spdc':{o:23}};eq(ctx.scOf({n:'Ray',sourceKey:'Wizard'}).atk,6);eq(ctx.scOf({n:'Ray',sourceKey:'Artificer'}).dc,17);delete ctx.C.spellcasting.by;eq(ctx.scOf({n:'Ray'}).atk,22);eq(ctx.scOf({n:'Ray'}).dc,23);eq(ctx.B.spatk.parts.find(p=>p.l==='Proficiency Bonus').v,3);
+console.log('Spell source runtime '+checks+' checks PASS');

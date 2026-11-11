@@ -1,4 +1,4 @@
-import {mod,chJoin,mendingRepairSpec,repairSpecProblems} from "./01-logic-core-helpers.js";
+import {mod,chJoin,mendingRepairSpec,repairSpecProblems,spellChannel,spellChannelsDiffer} from "./01-logic-core-helpers.js";
 import {featDef,invocationRows,invPickRow,invSpellRow,itemSpellRow,metamagicRows,spellFullText} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
@@ -12,9 +12,9 @@ const SRCR=["i.a","i.SM","l.sp","l.spList","l.spSeen","l.bysrc","q.spellAb","q.s
 function mergeRepairKnowledge(row,origin){if(row.n!=="Mending")return;const info=row._repairKnowledge||(row._repairKnowledge={baseKnown:false,sources:[]});if(!origin){info.baseKnown=true;return}info.baseKnown=info.baseKnown||!!origin.baseKnown;(origin.sources||[]).forEach(source=>{if(!info.sources.some(x=>JSON.stringify(x)===JSON.stringify(source)))info.sources.push(structuredClone(source))})}
 function adder(ctx){const I=ctx.i,Q=ctx.q,l=ctx.l,SM=I.SM,a=I.a;
  return function(n,use,src,k,origin){const x=SM[n],kk=k||"",seen=n+use+"|"+kk;if(!x)return;if(l.spSeen[seen]){mergeRepairKnowledge(l.spSeen[seen],origin);return}l.spSeen[seen]=1;const sab=k?Q.spellAb(k,a.sc):l.sp.ab;if(!l.bysrc.some((b) =>{return b.k===kk}))l.bysrc.push({k:kk,n:/^@/.test(kk)?src:kk,ab:sab});
-  const o={n:n,l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6],dur:x[7],conc:x[8],rit:x[9],sv:x[10],sum:x[11]||"",full:spellFullText(n)||"",cls:Q.spClsJ(x),use:use,src:src,_ab:sab};Q.spFxTo(o,kk,a);if(kk==="Warlock"&&x[1]&&!/Long Rest|At will/.test(use))o.pact=1;/* RU35 no. 2: cast with a Pact Magic slot */mergeRepairKnowledge(o,origin);l.spSeen[seen]=o;l.spList.push(o)}}
+  const o={n:n,l:x[1],sch:x[2],ct:x[4],r:x[5],cmp:x[6],dur:x[7],conc:x[8],rit:x[9],sv:x[10],sum:x[11]||"",full:spellFullText(n)||"",cls:Q.spClsJ(x),use:use,src:src,_ab:sab,_sourceKey:kk};Q.spFxTo(o,kk,a);if(kk==="Warlock"&&x[1]&&!/Long Rest|At will/.test(use))o.pact=1;/* RU35 no. 2: cast with a Pact Magic slot */mergeRepairKnowledge(o,origin);l.spSeen[seen]=o;l.spList.push(o)}}
 /* M9: every spell has a source key (class, "@species", "@spcan", "@mi:<key>") and that source's ability (spellAb). C.spellcasting keeps the main
-   ability (first caster class, else Magic Initiate, else species). C.spellcasting.by and C.spells[].ab are written only when 2+ abilities differ */
+   ability (first caster class, else Magic Initiate, else species). C.spellcasting.by and C.spells source keys are written when abilities or source-specific attack/DC numbers differ */
 registerSheetGroup({id:"spell-context",group:"spells",phase:"spells",order:10,reads:["i.B","i.a","i.pb","q.slotsAll","q.casterParts","q.spLists","q.miFeats","q.autoSpells","q.spellAb","q.dmSpells","q.featSpells","q.spItemB"],writes:["l.sp"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,B=I.B,a=I.a,pb=I.pb;
   const SA=Q.slotsAll(),CPs=Q.casterParts(),castAb=CPs.length?CPs[0].ab:null,SLs=Q.spLists(),mis=Q.miFeats(),miK=Object.keys(B.pk||{}).filter((k) =>{return /^mi/.test(k)});
@@ -58,9 +58,9 @@ registerSheetGroup({id:"spells-sort",group:"spells",phase:"spells",order:40,read
 registerSheetGroup({id:"spell-sheet",group:"spells",phase:"spells",order:50,reads:["i.a","i.pb","l.sp","l.spList","l.bysrc","q.spItemSrc","q.spItemB"],writes:["C.spells","C.spellcasting"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,sp=I.a&&ctx.l.sp,list=ctx.l.spList,a=I.a,pb=I.pb;if(!(list.length||sp.castAb))return null;
   C.spells=list.map((s) =>{return Object.assign({},s)});C.spellcasting={ab:sp.ab,dc:sp.sdc,atk:sp.satk,mod:sp.scm,slots:sp.SA.slots||[],pact:sp.SA.pact||null};
-  const abs=[];ctx.l.bysrc.forEach((b) =>{if(abs.indexOf(b.ab)<0)abs.push(b.ab)});
+  const channels=ctx.l.bysrc.map(b=>spellChannel(b,a.sc,pb,{atk:Q.spItemB("atk",b.k),dc:Q.spItemB("dc",b.k)})).filter(Boolean);
   const isrc=Q.spItemSrc(sp.mainSc);if(isrc.length)C.spellcasting.items=isrc;/* v19 RL42: names of the items in the numbers */
-  if(abs.length>1){C.spellcasting.by=ctx.l.bysrc.map((b) =>{const m2=mod(a.sc[b.ab]);return {n:b.n,ab:b.ab,mod:m2,dc:8+pb+m2+Q.spItemB("dc",b.k),atk:pb+m2+Q.spItemB("atk",b.k)}});C.spells.forEach((s) =>{s.ab=s._ab})}return ctx.patch()}});
+  if(spellChannelsDiffer(channels)){C.spellcasting.by=channels;C.spells.forEach((s) =>{s.ab=s._ab;s.sourceKey=s._sourceKey})}return ctx.patch()}});
 registerSheetGroup({id:"spell-casting-time-actions",group:"spells",phase:"spells",order:60,reads:["C.spells"],writes:["C.actions"],
  run:function(ctx){const C=ctx.C;if(!ctx.C.spells)return null;const list=C.spells,bonusN=list.filter((s) =>{return /^Bonus Action/.test(s.ct)}).map((s) =>{return s.n}),reN=list.filter((s) =>{return /^Reaction/.test(s.ct)}).map((s) =>{return s.n});
   if(bonusN.length)C.actions.push({c:"Bonus Actions",n:"Spells",t:"Bonus Action casting time",d:bonusN.join(", ")+". See the Spells tab."});
@@ -68,14 +68,14 @@ registerSheetGroup({id:"spell-casting-time-actions",group:"spells",phase:"spells
 function cantripRange(B,Q,s){const sp=(B.ch.invspear||[]).indexOf(s.n)>=0&&/^(\d+) ft$/.exec(s.r||"");return sp?(+sp[1]+30*Q.clsLv("Warlock"))+" ft (Eldritch Spear)":s.r}
 function cantripNote(B,s,ag,ab){return ((B.ch.invrepel||[]).indexOf(s.n)>=0?"Repelling Blast: on a hit, push a Large or smaller target up to 10 ft away. ":"")+(ag?"Agonizing Blast adds your "+(s._ab||ab)+" modifier. ":(s.db||[]).map((b) =>{return b.s+" adds "+(b.v<0?"":"+")+b.v+". "}).join(""))+s.sum}
 function cantripRow(C,Q,B,s,ab,tier){if(s.l||s.sv!=="ATK")return;const P=s.fx&&s.fx.dmg&&s.fx.dmg[0],pm=P&&/^(\d+)d(\d+)$/.exec(P[0]),m=pm?[0,pm[1],pm[2],P[1].split("|").join(" or ")]:/(\d+)d(\d+)\s+([A-Z][a-z]+)/.exec(s.sum);if(!m)return;/* RD19 */const eb=s.n==="Eldritch Blast",cnt=eb?1:(+m[1])*tier,ag=Q.agOn(s.n);
-   C.attacks.push({n:s.n,sub:"Cantrip"+(eb?" \u2022 "+tier+" beam"+(tier>1?"s":""):""),ab:s._ab||ab,prof:true,die:cnt+"d"+m[2],dieSrc:s.n+(eb?"":" (scales with level)"),nomod:!(ag||(s.db&&s.db.length)),/* v15: Potent Spellcasting, Empowered Evocation add the modifier, as Agonizing Blast */type:m[3],range:cantripRange(B,Q,s),m:"",misc:Q.spItemB("atk",s.src)||undefined,miscSrc:Q.spItemB("atk",s.src)?Q.spItemSrc(s.src).join(", "):undefined,note:cantripNote(B,s,ag,ab)})
+   C.attacks.push({n:s.n,sub:"Cantrip"+(eb?" \u2022 "+tier+" beam"+(tier>1?"s":""):""),ab:s._ab||ab,prof:true,die:cnt+"d"+m[2],dieSrc:s.n+(eb?"":" (scales with level)"),nomod:!(ag||(s.db&&s.db.length)),/* v15: Potent Spellcasting, Empowered Evocation add the modifier, as Agonizing Blast */type:m[3],range:cantripRange(B,Q,s),m:"",misc:Q.spItemB("atk",s._sourceKey)||undefined,miscSrc:Q.spItemB("atk",s._sourceKey)?Q.spItemSrc(s._sourceKey).join(", "):undefined,note:cantripNote(B,s,ag,ab)});if(Object.prototype.hasOwnProperty.call(s,"sourceKey"))C.attacks[C.attacks.length-1].sourceKey=s.sourceKey
 }
 /* Eldritch Blast beams, Eldritch Spear range, Repelling Blast and Agonizing Blast are read inside the row (the Warlock invocation choices) */
 registerSheetGroup({id:"cantrip-attack-rows",group:"spells",phase:"spells",order:70,reads:["i.B","i.TLv","l.sp","C.spells","q.agOn","q.clsLv","q.spItemB","q.spItemSrc"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,B=I.B,C=ctx.C,sp=ctx.l.sp,ab=sp.ab;if(!ctx.C.spells)return null;const TLv=I.TLv,tier=TLv>=17?4:TLv>=11?3:TLv>=5?2:1;
   ctx.C.spells.forEach((s) =>{cantripRow(C,Q,B,s,ab,tier)});return ctx.patch()}});
 registerSheetGroup({id:"spell-strip-ability",group:"spells",phase:"spells",order:80,reads:[],writes:["C.spells"],
- run:function(ctx){(ctx.C.spells||[]).forEach((s) =>{delete s._ab});return ctx.patch()}});
+ run:function(ctx){(ctx.C.spells||[]).forEach((s) =>{delete s._ab;delete s._sourceKey});return ctx.patch()}});
 /* v58: spells that magic items let you cast (ITEM_SPELLS). use is "At will" when free, else "Item" and itc says what it costs */
 /* Dawnbringer's native blade-touch action overrides the spell's edition timing. */
 function itemSpellCastingTime(itemName,spellName,spellTime){return itemName==="Dawnbringer"&&spellName==="Lesser Restoration"?"Action":spellTime}

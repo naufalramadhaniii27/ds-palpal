@@ -51,7 +51,7 @@ const FXS18A={};
     if(kind==="chk"){ ["Frightened","Poisoned"].forEach((k) =>{ if(c[k]) dis.push(k); }); }
     if(kind==="save"){ if(c.Restrained) dis.push("Restrained (DEX)"); ["Paralyzed","Petrified","Stunned","Unconscious"].forEach((k) =>{ if(c[k]) fail.push(k); }); }
     return {adv:adv,dis:dis,fail:fail,mode:adv.length&&!dis.length?"adv":dis.length&&!adv.length?"dis":""}; };;
-  FXS18A.kindOf=function kindOf(k){ return /^(ah-|spatk$)/.test(k)?"atk":/^save-/.test(k)?"save":/^(sk-|ab-|init$)/.test(k)?"chk":""; };
+  FXS18A.kindOf=function kindOf(k){ return /^(ah-|spatk(?:$|-[A-Z]{3}$|-source-))/.test(k)?"atk":/^save-/.test(k)?"save":/^(sk-|ab-|init$)/.test(k)?"chk":""; };
 })();
 (function(){
   const MI=FXENV.__MI;

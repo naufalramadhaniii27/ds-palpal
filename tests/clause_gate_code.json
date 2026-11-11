@@ -2955,6 +2955,198 @@
    "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
+  },
+  {
+   "id": "u35-dmg-1-all-purpose-spell-bonus",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ tool,\\ you\\ gain\\ a\\ \\+1\\ bonus\\ to\\ the\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ artificer\\ spells\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "spellChannel(b,a.sc,pb,{atk:Q.spItemB(\"atk\",b.k),dc:Q.spItemB(\"dc\",b.k)})"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "if(!v||(f.spellCls&&f.spellCls!==cls))return t;"
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+    ]
+   ],
+   "test": "Z3 U35 All-Purpose class spell channels +1 All-Purpose Tool 2024 Wizard first",
+   "note": "Exact native Artificer spell-attack and spell save-DC bonus while held and effectively attuned. SAVE is only the existing sentence scanner class for caster DC; this grants no actor saving-throw bonus. Real typed source channels distinguish Wizard and Artificer even with the same INT; fixture and runtime tests verify owned source selection and no actor-save/global benefit."
+  },
+  {
+   "id": "u35-dmg-2-all-purpose-spell-bonus",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ tool,\\ you\\ gain\\ a\\ \\+2\\ bonus\\ to\\ the\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ artificer\\ spells\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "spellChannel(b,a.sc,pb,{atk:Q.spItemB(\"atk\",b.k),dc:Q.spItemB(\"dc\",b.k)})"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "if(!v||(f.spellCls&&f.spellCls!==cls))return t;"
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+    ]
+   ],
+   "test": "Z3 U35 All-Purpose class spell channels +2 All-Purpose Tool 2024 Wizard first",
+   "note": "Exact native Artificer spell-attack and spell save-DC bonus while held and effectively attuned. SAVE is only the existing sentence scanner class for caster DC; this grants no actor saving-throw bonus. Real typed source channels distinguish Wizard and Artificer even with the same INT; fixture and runtime tests verify owned source selection and no actor-save/global benefit."
+  },
+  {
+   "id": "u35-dmg-3-all-purpose-spell-bonus",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ tool,\\ you\\ gain\\ a\\ \\+3\\ bonus\\ to\\ the\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ artificer\\ spells\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "spellChannel(b,a.sc,pb,{atk:Q.spItemB(\"atk\",b.k),dc:Q.spItemB(\"dc\",b.k)})"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "if(!v||(f.spellCls&&f.spellCls!==cls))return t;"
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+    ]
+   ],
+   "test": "Z3 U35 All-Purpose class spell channels +3 All-Purpose Tool 2024 Wizard first",
+   "note": "Exact native Artificer spell-attack and spell save-DC bonus while held and effectively attuned. SAVE is only the existing sentence scanner class for caster DC; this grants no actor saving-throw bonus. Real typed source channels distinguish Wizard and Artificer even with the same INT; fixture and runtime tests verify owned source selection and no actor-save/global benefit."
+  },
+  {
+   "id": "u35-tce-1-all-purpose-spell-bonus",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+1 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ tool,\\ you\\ gain\\ a\\ \\+1\\ bonus\\ to\\ the\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ artificer\\ spells\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "spellChannel(b,a.sc,pb,{atk:Q.spItemB(\"atk\",b.k),dc:Q.spItemB(\"dc\",b.k)})"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "if(!v||(f.spellCls&&f.spellCls!==cls))return t;"
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+    ]
+   ],
+   "test": "Z3 U35 All-Purpose class spell channels +1 All-Purpose Tool 2014 Wizard first",
+   "note": "Exact native Artificer spell-attack and spell save-DC bonus while held and effectively attuned. SAVE is only the existing sentence scanner class for caster DC; this grants no actor saving-throw bonus. Real typed source channels distinguish Wizard and Artificer even with the same INT; fixture and runtime tests verify owned source selection and no actor-save/global benefit."
+  },
+  {
+   "id": "u35-tce-2-all-purpose-spell-bonus",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+2 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ tool,\\ you\\ gain\\ a\\ \\+2\\ bonus\\ to\\ the\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ artificer\\ spells\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "spellChannel(b,a.sc,pb,{atk:Q.spItemB(\"atk\",b.k),dc:Q.spItemB(\"dc\",b.k)})"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "if(!v||(f.spellCls&&f.spellCls!==cls))return t;"
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+    ]
+   ],
+   "test": "Z3 U35 All-Purpose class spell channels +2 All-Purpose Tool 2014 Wizard first",
+   "note": "Exact native Artificer spell-attack and spell save-DC bonus while held and effectively attuned. SAVE is only the existing sentence scanner class for caster DC; this grants no actor saving-throw bonus. Real typed source channels distinguish Wizard and Artificer even with the same INT; fixture and runtime tests verify owned source selection and no actor-save/global benefit."
+  },
+  {
+   "id": "u35-tce-3-all-purpose-spell-bonus",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+3 All-Purpose Tool",
+   "lvl": null,
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ tool,\\ you\\ gain\\ a\\ \\+3\\ bonus\\ to\\ the\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ artificer\\ spells\\.$",
+   "anchor": [
+    "src/builder/12k-logic-sheet-handlers-spells.js",
+    "spellChannel(b,a.sc,pb,{atk:Q.spItemB(\"atk\",b.k),dc:Q.spItemB(\"dc\",b.k)})"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "if(!v||(f.spellCls&&f.spellCls!==cls))return t;"
+    ],
+    [
+     "src/app/23e-ui-spells-dc.js",
+     "return selectSpellSource(scAdj(C.spellcasting||{}),x,x&&cuK(\"s:\"+x.n))"
+    ]
+   ],
+   "test": "Z3 U35 All-Purpose class spell channels +3 All-Purpose Tool 2014 Wizard first",
+   "note": "Exact native Artificer spell-attack and spell save-DC bonus while held and effectively attuned. SAVE is only the existing sentence scanner class for caster DC; this grants no actor saving-throw bonus. Real typed source channels distinguish Wizard and Artificer even with the same INT; fixture and runtime tests verify owned source selection and no actor-save/global benefit."
   }
  ]
 }

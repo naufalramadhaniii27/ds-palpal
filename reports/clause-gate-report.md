@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 73254 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 36782 (50.2%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 8014 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 8020 |
 | Info (tag terdokumentasi) | 23617 (SPELL_TEXT 6470, FORM:ACTIVATE 2723, NUMONLY:GEOMETRY 2232, FORM:ROLL 1938, NUMONLY:TEXT 1341, ACTIVATE 1309, FORM:TABLE 1156, NUMONLY:ROLL 1000, NUMONLY:TABLE 862, FXO_NULL 828, ACTIVE:TRIGGER 784, ACTIVE:OTHERS 642, REST:NONUM 586, NUMONLY:FLAVOR 305, STD:ASI 208, COND:PLAY_STATE 188, NUMONLY:ZERO 162, ROLL:LAST_CHARGE 136, OBJECT:STATS 106, ITEM:SENSES 82, DC:REFERENCE 77, BY_DESIGN 72, TABLE:CLASS 70, COND:ATTACK_ROLL_ADV 68, STD:PICK_TEXT 63, ACTIVE:REACTION 56, MOVE:SPEED_REF 50, ACTIVE:TIMED_IMM 43, TARGET:SPEED 30, FOCUS:SPELLCASTING 14, STD:AC10 7, KNOW:TARGET_DEFENSES 7, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5151 |
-| Uncovered dengan angka | 3070 |
-| Uncovered dengan kelas kata kunci mekanik | 4791 |
+| Uncovered | 5145 |
+| Uncovered dengan angka | 3064 |
+| Uncovered dengan kelas kata kunci mekanik | 4785 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 360 |
 | Angka yang tidak dijelaskan record mana pun | 2860 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4360 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4354 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 306 |
-| Waktu | muat data 1 s, analisis 14 s |
+| Waktu | muat data 0 s, analisis 16 s |
 
-Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 189 ditangkap (63.4%). Hapus semua atom kelas yang dibutuhkan: 188 ditangkap (63.1%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 195 ditangkap (65.4%). Hapus semua atom kelas yang dibutuhkan: 195 ditangkap (65.4%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 293 ditangkap (97.7%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 292 ditangkap (97.3%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -47,10 +47,10 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | AUTO | 315 |
 | feat | 246 |
 | SPELL_FX | 241 |
-| CODE | 151 |
+| CODE | 157 |
 | cls | 132 |
 | SAVE_NOTES | 75 |
-| FXO | 50 |
+| FXO | 56 |
 | SPELLS | 37 |
 | sub | 28 |
 | FDMG | 17 |
@@ -76,11 +76,11 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SLOT | 1121 | 320 | 28.5% |
 | IMM | 852 | 308 | 36.2% |
 | DC | 2624 | 282 | 10.7% |
-| ATK | 860 | 225 | 26.2% |
+| ATK | 860 | 219 | 25.5% |
 | DIS | 932 | 213 | 22.9% |
 | AC | 593 | 165 | 27.8% |
 | SENSE | 515 | 148 | 28.7% |
-| SAVE | 272 | 145 | 53.3% |
+| SAVE | 272 | 139 | 51.1% |
 | HP | 142 | 82 | 57.7% |
 | NUM-DICE | 1262 | 71 | 5.6% |
 | ABIL | 357 | 62 | 17.4% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1028 | 242 | 549 | 0 | 237 |
 | feat | 2101 | 535 | 1042 | 0 | 524 |
-| item | 18391 | 4520 | 10978 | 0 | 2893 |
+| item | 18391 | 4526 | 10978 | 0 | 2887 |
 | species | 1037 | 571 | 297 | 0 | 169 |
 | spell | 6748 | 278 | 6470 | 0 | 0 |
 | sub | 7477 | 1868 | 4281 | 0 | 1328 |
@@ -103,15 +103,15 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10151 | 2500 | 6071 | 1580 | 15.6% |
+| dmg | 10151 | 2503 | 6071 | 1577 | 15.5% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 391 | 803 | 309 | 20.6% |
 | tsgs | 1483 | 379 | 857 | 247 | 16.7% |
 | tsdm | 1222 | 326 | 675 | 221 | 18.1% |
 | tkdm | 919 | 204 | 501 | 214 | 23.3% |
 | tghp | 1117 | 374 | 560 | 183 | 16.4% |
-| tce | 736 | 139 | 459 | 138 | 18.8% |
 | egw | 566 | 141 | 289 | 136 | 24.0% |
+| tce | 736 | 142 | 459 | 135 | 18.3% |
 | au | 536 | 104 | 311 | 121 | 22.6% |
 | tdcsr | 416 | 133 | 185 | 98 | 23.6% |
 | phb14 | 516 | 164 | 262 | 90 | 17.4% |
@@ -198,9 +198,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | IMM | 204 | 64 |
 | DIS | 178 | 65 |
 | AC | 165 | 131 |
-| SAVE | 139 | 123 |
 | ATK | 138 | 109 |
 | DC | 135 | 133 |
+| SAVE | 133 | 117 |
 | SENSE | 131 | 114 |
 | HP | 82 | 59 |
 | ABIL | 50 | 47 |
@@ -812,33 +812,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Barbarian/Path of the Zealot|Warrior of the Gods#2` You have a healing pool of four d12s that you can use on yourself. -> info:NUMONLY:TEXT
-- class `sub|Barbarian/Path of the Zealot|Warrior of the Gods#2` You have a healing pool of four d12s that you can use on yourself. -> info:NUMONLY:TEXT
-- record `sub|Druid/Circle of Dreams|Walker in Dreams#2` Teleportation Circle opens a portal to the last place you finished a Long Rest on your current plane. -> info:REST:NONUM
-- class `sub|Druid/Circle of Dreams|Walker in Dreams#2` Teleportation Circle opens a portal to the last place you finished a Long Rest on your current plane. -> info:REST:NONUM
-- record `item|egw|Danoth's Visor (Awakened)#10` This vision has a radius of 60 feet and lasts for 1 minute. -> info:NUMONLY:GEOMETRY
-- class `item|egw|Danoth's Visor (Awakened)#10` This vision has a radius of 60 feet and lasts for 1 minute. -> info:NUMONLY:GEOMETRY
-- record `item|toa|Devlin's Staff of Striking#8` If you attune to this staff, you transform into a goat-humanoid hybrid over the course of 3 days. -> info:NUMONLY:GEOMETRY
-- class `item|toa|Devlin's Staff of Striking#8` If you attune to this staff, you transform into a goat-humanoid hybrid over the course of 3 days. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|+1 Rod of the Pact Keeper#3` You can't use this property again until you finish a long rest. -> info:REST:NONUM
-- class `item|dmg|+1 Rod of the Pact Keeper#3` You can't use this property again until you finish a long rest. -> info:REST:NONUM
-- record `sub|Witch/Fragrant Magic|Fragrant Spells#4` 7 Compulsion, Hallucinatory Terrain. -> info:NUMONLY:TABLE
-- class `sub|Witch/Fragrant Magic|Fragrant Spells#4` 7 Compulsion, Hallucinatory Terrain. -> info:NUMONLY:TABLE
-- record `feat|Mark of Handling|Mark of Handling#9` Each free cast returns after a Long Rest. -> info:REST:NONUM
-- class `feat|Mark of Handling|Mark of Handling#9` Each free cast returns after a Long Rest. -> info:REST:NONUM
-- record `sub|Artificer/Forge Adept|Ghaal'Shaarat#3` While you wield it, it gains two benefits. -> info:NUMONLY:TEXT
-- class `sub|Artificer/Forge Adept|Ghaal'Shaarat#3` While you wield it, it gains two benefits. -> info:NUMONLY:TEXT
-- record `sub|Bard/College of Glamour|Mantle of Majesty#5` You can use this feature once per Long Rest. -> info:REST:NONUM
-- class `sub|Bard/College of Glamour|Mantle of Majesty#5` You can use this feature once per Long Rest. -> info:REST:NONUM
-- record `species|Duergar (2014)|Duergar Magic#1` At level 3 you can cast Enlarge/Reduce on yourself (enlarge only) and at level 5 Invisibility on yourself, each once per -> info:REST:NONUM
-- class `species|Duergar (2014)|Duergar Magic#1` At level 3 you can cast Enlarge/Reduce on yourself (enlarge only) and at level 5 Invisibility on yourself, each once per -> info:REST:NONUM
-- record `item|thhw|Shroud of Ending#4` For the next hour you have Disadvantage on attack rolls, ability checks, and saving throws. -> info:COND:PLAY_STATE
-- class `item|thhw|Shroud of Ending#4` For the next hour you have Disadvantage on attack rolls, ability checks, and saving throws. -> info:COND:PLAY_STATE
-- record `feat|Ooze Transformation: Stage 3|Ooze Transformation: Stage 3#3` You also gain the Stage 3 Flaw. -> info:NUMONLY:TABLE
-- class `feat|Ooze Transformation: Stage 3|Ooze Transformation: Stage 3#3` You also gain the Stage 3 Flaw. -> info:NUMONLY:TABLE
-- record `species|Wechselkind|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
-- class `species|Wechselkind|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- record `sub|Witch/Lunar Magic|Blessing of the Moon#3` You use the blessing once, regained on a Long Rest or by spending a level 2+ slot (no action). -> info:REST:NONUM
+- class `sub|Witch/Lunar Magic|Blessing of the Moon#3` You use the blessing once, regained on a Long Rest or by spending a level 2+ slot (no action). -> info:REST:NONUM
+- record `item|tsgs|Boreal Pendant#5` On a 1 the pendant melts, then reforms after 1 year. -> info:NUMONLY:GEOMETRY
+- class `item|tsgs|Boreal Pendant#5` On a 1 the pendant melts, then reforms after 1 year. -> info:NUMONLY:GEOMETRY
+- record `item|mot|Purphoros's Devotee#2` You can cast Shield of Faith without material components, a number of times equal to your Intelligence modifier (minimum -> info:REST:NONUM
+- class `item|mot|Purphoros's Devotee#2` You can cast Shield of Faith without material components, a number of times equal to your Intelligence modifier (minimum -> info:REST:NONUM
 - record `sub|Dancer/Steelsinger|Armored Redirection#4` After you use this, you cannot use it again until you finish a Short or Long Rest or begin your Dance. -> covered
 - class `sub|Dancer/Steelsinger|Armored Redirection#4` After you use this, you cannot use it again until you finish a Short or Long Rest or begin your Dance. -> info:REST:NONUM
-- record `feat|Vampire Transformation: Stage 2|Vampire Transformation: Stage 2#1` Stage 2. -> info:NUMONLY:TABLE
-- class `feat|Vampire Transformation: Stage 2|Vampire Transformation: Stage 2#1` Stage 2. -> info:NUMONLY:TABLE
+- record `species|Wechselkind|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- class `species|Wechselkind|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- record `feat|Intrepid Captain|Intrepid Captain#3` After you use this, finish a Short Rest or Long Rest to do so again. -> info:REST:NONUM
+- class `feat|Intrepid Captain|Intrepid Captain#3` After you use this, finish a Short Rest or Long Rest to do so again. -> info:REST:NONUM
+- record `item|dmg|Feather of Diatryma Summoning#4` When the diatryma reverts to feather form, the magic of the feather can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Feather of Diatryma Summoning#4` When the diatryma reverts to feather form, the magic of the feather can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- record `feat|Warzone Nomad|Warzone Nomad#3` When you do, you gain Temporary Hit Points equal to your Proficiency Bonus. -> info:NUMONLY:ROLL
+- class `feat|Warzone Nomad|Warzone Nomad#3` When you do, you gain Temporary Hit Points equal to your Proficiency Bonus. -> info:NUMONLY:ROLL
+- record `species|Hexblood (VRGR)|Eerie Token#5` Once per Long Rest. -> info:REST:NONUM
+- class `species|Hexblood (VRGR)|Eerie Token#5` Once per Long Rest. -> info:REST:NONUM
+- record `sub|Artificer/Forge Adept|Ghaal'Shaarat#3` While you wield it, it gains two benefits. -> info:NUMONLY:TEXT
+- class `sub|Artificer/Forge Adept|Ghaal'Shaarat#3` While you wield it, it gains two benefits. -> info:NUMONLY:TEXT
+- record `item|dmg|Armor of the Valiant Soul (Exalted)#2` It has three states that stack: Dormant, Awakened, Exalted. -> info:NUMONLY:TEXT
+- class `item|dmg|Armor of the Valiant Soul (Exalted)#2` It has three states that stack: Dormant, Awakened, Exalted. -> info:NUMONLY:TEXT
+- record `sub|Paladin/Oath of Conquest|Invincible Conqueror#4` Your melee weapon attacks score a critical hit on a 19 or 20. -> covered
+- class `sub|Paladin/Oath of Conquest|Invincible Conqueror#4` Your melee weapon attacks score a critical hit on a 19 or 20. -> covered
+- record `item|egw|Stormgirdle (Dormant)#5` In addition, you can use an action to become a Storm Avatar for 1 minute, gaining the following benefits for the duratio -> info:NUMONLY:GEOMETRY
+- class `item|egw|Stormgirdle (Dormant)#5` In addition, you can use an action to become a Storm Avatar for 1 minute, gaining the following benefits for the duratio -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Cuddly Strixhaven Mascot#6` If the save succeeds, you can't use the toy in this way until you finish a long rest. -> info:REST:NONUM
+- class `item|dmg|Cuddly Strixhaven Mascot#6` If the save succeeds, you can't use the toy in this way until you finish a long rest. -> info:REST:NONUM
+- record `item|dmg|Monsterbane Lasher#3` On a melee hit, channel one or more runes to add 2d4 of each chosen type. -> info:NUMONLY:ROLL
+- class `item|dmg|Monsterbane Lasher#3` On a melee hit, channel one or more runes to add 2d4 of each chosen type. -> info:NUMONLY:ROLL

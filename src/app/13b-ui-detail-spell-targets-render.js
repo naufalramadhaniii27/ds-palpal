@@ -1,3 +1,4 @@
+import {spellSourceRollControls} from "./23f-ui-spell-source-rolls.js";
 import {carpetVehicleControl} from "./21e-ui-carpet-vehicles.js";
 import {toolFormControl} from "./29c-ui-tool-forms.js";
 import {objectRepairSummary} from "./32c-ui-object-repair.js";
@@ -35,7 +36,7 @@ const TGT_LAB={Sphere:["Area","Sphere"],Cube:["Area","Cube"],Cone:["Area","Cone"
 const TGT_SIZE={Sphere:" ft radius",Cube:" ft cube",Cone:" ft cone",Line:" ft long",Cylinder:" ft radius",Emanation:" ft from you"};
 function spTgtCell(x){ const o=spTgt(x), L=TGT_LAB[o.k]||["Target",o.k], big=/^(Sphere|Cube|Cone|Line|Cylinder|Emanation)$/.test(o.k), ik=big?"tgt-"+o.k.toLowerCase():"tgt-"+(o.k==="Single"?"single":o.k==="Multiple"?"multi":o.k.toLowerCase());
   return [ik,L[0],esc(L[1])+(o.n?'<span class="dc-sz">'+o.n+(TGT_SIZE[o.k]||" ft")+'</span>':'')]; }
-function spEffCell(x){ const sv=x.sv; if(sv==="ATK") return ["fx-attack","Effect","Spell attack"]; if(sv) return ["fx-save","Effect",esc(String(sv).toUpperCase())+" save"]; return ["fx-auto","Effect","No roll"]; }
+function spEffCell(x){ const sv=x.sv,sc=sv?scOf(x):null; if(sv==="ATK") return ["fx-attack","Effect","Spell attack"+(Number.isFinite(sc.atk)?" "+sg(sc.atk):"")]; if(sv) return ["fx-save","Effect",esc(String(sv).toUpperCase())+" save"+(Number.isFinite(sc.dc)?", DC "+esc(sc.dc):"")]; return ["fx-auto","Effect","No roll"]; }
 export function infoHTML(spec){
   let i0=spec.indexOf(":"), t0=spec.slice(0,i0), k0=spec.slice(i0+1), prev=XL_SELF, me="";/* a name in its own dialog is not linked to itself */
   try{ const d0=DETAIL.get(t0); if(d0&&d0.self) me=d0.self(k0); }catch(e){ me=""; }
@@ -107,13 +108,13 @@ DETAIL.add("sp", {
  const {x}=_render4Step1;
  let {h}=_render4Step1; if(!x) return {t:"Spell", h:"<p class=\"info-d\">Not found.</p>"};
     const {sch, fxb}=render4Step2(x, key);
-    h=objectRepairSummary(+key)+renderPart1(x, sch)+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+hpSpellNote(x)+tmpSpellH(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x))+'<div class="dc-use">'+spCastH(x,+key)+pinSpBtn(x)+'</div>'+
+    h=objectRepairSummary(+key)+renderPart1(x, sch)+spellSourceRollControls(x,+key)+(fxb?'<div class="dc-ayl">'+fxb+'</div>':'')+hpSpellNote(x)+tmpSpellH(x,lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x))+'<div class="dc-use">'+spCastH(x,+key)+pinSpBtn(x)+'</div>'+
       dcFoot(esc(x.sch)+' \u2022 '+esc(x.cls||""),esc(x.pg?srcPg("PHB-2024",x.pg):String(x.src||"")))+'</div>';/* v36 p14, was v23 RU36 no. 11 */
     return {t:x.n, h:h};
   },
   self:function(k){ return ((k) =>((C.spells||[])[+k]||{}).n||"")(k); }
 });
-function renderPart1(x, sch){ return ('<div class="dc dc-sp">'+dcHead(x.l?'<b>'+x.l+'</b><small>LVL</small>':ico("school-"+sch,"isch"),ico("school-"+sch,"isch")+'<i>'+(x.l?ordL(x.l)+" ":"")+esc(x.sch)+(x.l?"":" cantrip")+'</i> \u2022 '+esc(x.use)+' ('+esc(x.src||"")+')')+
+function renderPart1(x, sch){ return ('<div class="dc dc-sp" data-roll-controls="own">'+dcHead(x.l?'<b>'+x.l+'</b><small>LVL</small>':ico("school-"+sch,"isch"),ico("school-"+sch,"isch")+'<i>'+(x.l?ordL(x.l)+" ":"")+esc(x.sch)+(x.l?"":" cantrip")+'</i> \u2022 '+esc(x.use)+' ('+esc(x.src||"")+')')+
       dcStrip([[/^Bonus/.test(x.ct)?"time-bonus":/^Reaction/.test(x.ct)?"time-reaction":/^Action/.test(x.ct)?"time-action":"time-long","Time",esc(x.ct)+(x.rit?' <i class="sp-c rit">R</i>':'')],["fx-reach","Range",esc(String(x.r||"").replace(/ ft$/," ft."))],spTgtCell(x),[/^V/.test(x.cmp)?"comp-v":"comp-s","Components",esc(x.cmp)],[x.conc?"tag-concentration":"ui-moon","Duration",esc(x.dur)+(x.conc?' <i class="sp-c">C</i>':'')],spEffCell(x)],"dc-s6")+
       spSum(x)+'<div class="dc-body"><p class="info-d">'+kwChips(richP(x.full||x.sum))+'</p>'+((x.mat||(spFx(x)||{}).mat)&&/M/.test(x.cmp)?'<p class="info-d dc-mat"><b>Material:</b> '+esc(x.mat||spFx(x).mat)+'</p>':'')+'</div>'); }
 function render4Step1(key){

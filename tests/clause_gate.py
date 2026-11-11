@@ -308,7 +308,8 @@ reg("ATK", "atk", "atkBonus", "atkDice", "atkSelfDamage", "atkSpendDice", "atkAb
 reg("DMG", "dmg", "atkDice", "atkSelfDamage", "atkSpendDice", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")
 reg("DC", "spDc", "dcAdd", "spellDc", "dc", "setsc")
 reg("INIT", "init", "initAdv", "initDie")
-reg("SPELL", "spells", "spListAdd", "prepAdd", "cantAdd", "spCls", "spellCls", "bookAdd", "sp", "cantrips", "sfree", "xlists", "spAbTrait", "preSp")
+# spellCls filters numerical item bonuses by class; it grants no spell or choice.
+reg("SPELL", "spells", "spListAdd", "prepAdd", "cantAdd", "spCls", "bookAdd", "sp", "cantrips", "sfree", "xlists", "spAbTrait", "preSp")
 reg("ABIL", "abUp", "abDown", "abSet", "abCut", "abPick", "abUpPick", "abil", "asi", "asi2", "asiPick", "asiFlex", "asiX")
 reg("CHOICE", "pick", "pickLv", "fsPick", "opts", "lin", "featPick", "fs", "wm", "needs")
 
@@ -1101,12 +1102,19 @@ def load_code_atoms(ents=None):
         if "scopeValues" in e and type(e["scopeValues"]) is not bool:
             CODE_NOTES.append("code atom %s dropped: scopeValues must be a boolean" % e["id"])
             continue
-        f, needle = e["anchor"]
-        if f not in cache:
-            try: cache[f] = open(os.path.join(ROOT, f), encoding="utf-8").read()
-            except Exception: cache[f] = ""
-        if needle not in cache[f]:
-            CODE_NOTES.append("code atom %s dropped: anchor %r not found in %s" % (e["id"], needle, f))
+        extra = e.get("extraAnchors", [])
+        if not isinstance(extra, list) or any(not isinstance(pair, list) or len(pair) != 2 or any(not isinstance(value, str) or not value for value in pair) for pair in extra):
+            CODE_NOTES.append("code atom %s dropped: extraAnchors must be a list of nonempty file/text pairs" % e["id"])
+            continue
+        anchors_ok = True
+        for f, needle in [e["anchor"]] + extra:
+            if f not in cache:
+                try: cache[f] = open(os.path.join(ROOT, f), encoding="utf-8").read()
+                except Exception: cache[f] = ""
+            if needle not in cache[f]:
+                CODE_NOTES.append("code atom %s dropped: anchor %r not found in %s" % (e["id"], needle, f))
+                anchors_ok = False
+        if not anchors_ok:
             continue
         for c in e["cls"]:
             out["%s|%s|%s" % (e["kind"], e["owner"], e["name"])].append((e, Atom(c, set(e.get("vals", [])), "CODE|" + e["id"] + "." + c, rx=re.compile(e["rx"]), scope_values=e.get("scopeValues") is True)))
@@ -1567,6 +1575,49 @@ def selftest():
             malformed_row = analyze(synth("item",configured["owner"],configured["name"],text,[]))[0]
             check("U34 NEG malformed scopeValues cannot explain "+repr(scope_flag)+text, malformed_row["status"] != "covered" if text.startswith("You can teleport") else malformed_row["status"] == "uncovered")
         CODE_NOTES.clear()
+    # The native phrase "saving throw DCs" is caster DC, never actor SAVE.
+    spell_bonus_entries = [e for e in json.load(open(CODE, encoding="utf-8"))["entries"] if e.get("id", "").startswith("u35-")]
+    check("U35 six exact native class spell bonuses", len(spell_bonus_entries) == 6)
+    for entry in spell_bonus_entries:
+        potency = int(entry["name"][1])
+        text = "While holding this tool, you gain a +%s bonus to the spell attack rolls and the saving throw DCs of your artificer spells." % potency
+        key = "item|%s|%s" % (entry["owner"],entry["name"])
+        loaded = load_code_atoms([entry])
+        owned_atoms = [a for e,a in loaded.get(key,[])]
+        row = analyze(synth("item",entry["owner"],entry["name"],text,owned_atoms))[0]
+        check("U35 native computed spell bonus "+entry["id"], row["status"] == "covered" and entry["cls"] == ["ATK","SAVE"] and entry["vals"] == [str(potency)] and entry.get("scopeValues") is True, row["why"])
+        case = tool_cases_by_name.get(entry["test"])
+        check("U35 actual computed class-source fixture "+entry["id"], bool(case and case.get("expect")))
+        for anchor_index in range(1+len(entry["extraAnchors"])):
+            damaged = dict(entry,extraAnchors=[list(pair) for pair in entry["extraAnchors"]])
+            if anchor_index == 0: damaged["anchor"] = [entry["anchor"][0],"missing-spell-source-producer"]
+            else: damaged["extraAnchors"][anchor_index-1][1] = "missing-class-scoped-spell-consumer"
+            check("U35 NEG missing required anchor "+entry["id"]+str(anchor_index), not load_code_atoms([damaged]))
+            CODE_NOTES.clear()
+        for label,other in [("same ability wrong class",text.replace("artificer spells","wizard spells")),("wrong potency",text.replace("+"+str(potency),"+"+str(potency+1))),("actor saving throws","You gain a +%s bonus to saving throws." % potency),("weapon attacks","You gain a +%s bonus to attack and damage rolls made with this weapon." % potency),("unrelated distance","You can teleport %s feet." % potency)]:
+            check("U35 NEG "+label+" "+entry["id"], all(r["status"] != "covered" for r in analyze(synth("item",entry["owner"],entry["name"],other,owned_atoms))))
+        for other_key in ("item|unrelated|"+entry["name"],"item|"+entry["owner"]+"|Unrelated Tool"):
+            wrong_atoms = [a for e,a in loaded.get(other_key,[])]
+            check("U35 NEG wrong owner/item "+entry["id"]+other_key, analyze(synth("item",entry["owner"],entry["name"],text,wrong_atoms))[0]["status"] == "uncovered")
+    for malformed in (None,False,"not-pairs",[[]],[["missing"]],[["file",""]]):
+        CODE_NOTES.clear()
+        check("U35 NEG malformed extraAnchors "+repr(malformed), not load_code_atoms([dict(spell_bonus_entries[0],extraAnchors=malformed)]) and any("extraAnchors must" in note for note in CODE_NOTES))
+        CODE_NOTES.clear()
+    # FXO spellCls is a class filter on numerical bonuses, not a grant or
+    # cantrip choice. Genuine typed spells remain grant evidence separately.
+    for owner in ("dmg","tce"):
+        for potency in (1,2,3):
+            name = "+%s All-Purpose Tool" % potency
+            filter_atoms = atoms_from({"spellAtk":potency,"spellDc":potency,"spellCls":"Artificer"},"FXO|"+name)
+            check("U35 spellCls creates no grant atom "+owner+name, {a.cls for a in filter_atoms} == {"ATK","DC"} and all(not a.src.endswith(".spellCls") for a in filter_atoms))
+            for sentence_index,text in [(5,"Choose a cantrip that you don't know from any class list."),(6,"For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you.")]:
+                result = analyze(synth("item",owner,name,text,filter_atoms))[0]
+                check("U35 NEG borrowed native clause #"+str(sentence_index)+owner+name, result["status"] == "uncovered", result["why"])
+            for filter_record in ({"spellCls":"Artificer"},{"spellCls":"Wizard"}, {"spellAtk":potency,"spellDc":potency,"spellCls":"Artificer"}):
+                extracted = atoms_from(filter_record,"FXO|"+name)
+                check("U35 NEG filter cannot grant spell or choice "+owner+name+str(filter_record), all(a.cls not in {"SPELL","CHOICE"} for a in extracted))
+    genuine = atoms_from({"spellCls":"Artificer","spells":[[1,"Light"]]},"GX.item|Native Spell Item")
+    check("U35 genuine typed spell grant retained", any(a.cls == "SPELL" and a.src.endswith(".spells") for a in genuine) and all(not a.src.endswith(".spellCls") for a in genuine))
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)
