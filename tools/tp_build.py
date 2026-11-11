@@ -51,6 +51,10 @@ BOOKS = [
   "feat": "tgh14c_feat", "spell": "tgh14c_spell", "item": "tgh14c_item", "bg": "tgh14c_bg", "trans": "tgh14c_trans", "alias": "GH14C", "twin": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2024.json", "subsfx": " (2014)"},
  {"id": "twow", "file": "5etools; World of Warcraft - 2024.json", "tag": "WoW", "name": "World of Warcraft", "pub": "Blizzard Entertainment", "ed": "2024",
   "sub": "twow_sub", "spell": "twow_spell", "feat": "twow_feat", "species": "twow_species", "opt": "twow_opt", "item": "twow_item", "monsters": True, "cls": ["death knight", "demon hunter", "shaman", "evoker"], "clspre": "twow_", "reskin": True, "alias": "WoW"},
+ {"id": "tua24", "ua": True, "file": ["ua/subclass/Unearthed Arcana 2026 - Villainous Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options.json",
+  "ua/collection/Unearthed Arcana 2026 - Villainous Options Update.json", "ua/collection/Unearthed Arcana 2026 - Villainous Options.json", "ua/subclass/Unearthed Arcana 2026 - Mystic Subclasses.json",
+  "ua/subclass/Unearthed Arcana 2025 - Subclasses Update.json", "ua/subclass/Unearthed Arcana 2025 - Forgotten Realms Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Updates.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Horror Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Apocalyptic Subclasses.json"],
+  "tag": "UA24", "name": "Unearthed Arcana (2024 rules)", "pub": "Wizards of the Coast", "ed": "2024", "sub": "tua24_sub", "feat": "tua24_feat", "species": "tua24_species", "spell": "tua24_spell", "alias": "UA"}
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -481,12 +485,21 @@ SRC.species=Object.keys(SPC);
 if(Object.keys(GXSP).length){DataEnv.slot.GX=DataEnv.slot.GX||{};DataEnv.slot.GX.species=DataEnv.slot.GX.species||{};Object.keys(GXSP).forEach(function(k){DataEnv.slot.GX.species[k]=(DataEnv.slot.GX.species[k]||[]).concat(GXSP[k])})}
 '''
 
+def ua_skip(data):
+    """Unearthed Arcana repeats options the core books already have. Entries whose name is a core name (tools/tp/ua_core_names.json) are left out, so the book only adds new ones."""
+    have = json.load(open(os.path.join(HERE, "tp", "ua_core_names.json")))
+    nz = lambda x: re.sub(r"[^a-z0-9]", "", x.lower())
+    for k, nk in (("subclass", "subclass"), ("feat", "feat"), ("race", "race"), ("subrace", "race"), ("background", "background")):
+        if k in data: data[k] = [x for x in data[k] if nz(x["name"]) not in have[nk]]
+
+
 def build():
     files = {}
     for i, bk in enumerate(BOOKS, 1):
         if ONLY and bk["id"] not in ONLY: continue
         FDM.clear(); del SPLU[:]; SPACTS.clear(); SPAUTO.clear(); GXSP.clear()
         data = load(bk["file"]); M = ovl(bk["sub"]) if bk.get("sub") else None
+        if bk.get("ua"): ua_skip(data)
         recs = sub_records(bk, data, M) if M else []
         if not M:
             for x in data.get("subclass", []): GAP.append((bk["tag"], "subclass", x["name"], ("older version of the Reborn subclass of the same name. Use the TDCSR book" if bk.get("dup") else "not built yet (plan P3b, P4)")))

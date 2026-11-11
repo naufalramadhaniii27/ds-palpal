@@ -1,0 +1,47 @@
+"""Unearthed Arcana 2026 Underdark Options (2024 rules): House Agent, Imaskarcanist, Path of Unlight. Own wording."""
+SUB = {
+"House Agent": {"spab": "CHA",
+ "f": {
+  "Charming Presence": "You can take the Influence action as a Bonus Action. You also gain proficiency in one skill from Deception, Intimidation, Performance, or Persuasion.",
+  "House Insignia": "You gain a magical brooch or coin that marks you as an agent of your sponsor. You cast the spells below through it, with Charisma as your spellcasting ability. You learn the Friends cantrip. You can cast Find Familiar as a Ritual only. Your sponsor supplies the Material component for the first casting, and the familiar must take the Spider form. Insignia spells: level 3 Charm Person, level 5 Suggestion, level 9 Hypnotic Pattern. After casting a spell through the insignia you can't cast it that way again until a Long Rest. If you lose the insignia, your house delivers a new one by the time you finish a Long Rest.",
+  "Loyalty Test": "Roll on or choose from the House Agent Origins table to decide how you proved your loyalty to your sponsor. Your sponsor can be another large group, such as a duergar clan, a religious order, or a faction like the Zhentarim.",
+  "Backstab": "You have Advantage on attack rolls against creatures within 5 feet that are Friendly to you or Charmed. You also gain the Cunning Strike option Stunning Betrayal (cost 4d6): if the target was Friendly to you or Charmed when you hit it, it is Stunned until the start of your next turn.",
+  "Infiltration Partner": "Your Find Familiar familiar gains Darkvision 120 feet and Truesight 30 feet. When you cast Find Familiar, or finish a Short or Long Rest with a familiar, you can give it Temporary Hit Points equal to your Rogue level.",
+  "Silver Tongue": "A creature's Hostile attitude doesn't impose Disadvantage on your Charisma checks to influence it.",
+  "Subtle Manipulator": "You gain the Cunning Strike option Confound (cost 5d6): the target makes a Wisdom save against your spell save DC or is Charmed for 1 minute. It can repeat the save when it takes damage, ending the effect on a success. You can also cast Friends as a Bonus Action. The target no longer automatically succeeds on its save if it isn't a Humanoid or if you are fighting it. When a Charmed condition from a spell you cast ends, the target doesn't know you caused it."},
+ "lu": [{"feature": "House Insignia", "n": "Charm Person (insignia)", "lvl": 3, "max": 1, "reset": "long", "tag": "Level 1 spell"},
+        {"feature": "House Insignia", "n": "Suggestion (insignia)", "lvl": 5, "max": 1, "reset": "long", "tag": "Level 2 spell"},
+        {"feature": "House Insignia", "n": "Hypnotic Pattern (insignia)", "lvl": 9, "max": 1, "reset": "long", "tag": "Level 3 spell"}],
+ "fx": [[3, "Charming Presence", {"notes": [["Note", "Charming Presence: Influence action as a Bonus Action. One skill from Deception, Intimidation, Performance, Persuasion"]]}],
+        [9, "Backstab", {"notes": [["Note", "Backstab: Advantage on attacks within 5 feet against Friendly or Charmed creatures"]]}],
+        [13, "Silver Tongue", {"notes": [["Note", "Silver Tongue: Hostile attitude gives no Disadvantage on your Charisma checks to influence"]]}]],
+ "acts": {"Charming Presence": "bonus"}},
+
+"Imaskarcanist": {"spab": "INT",
+ "f": {
+  "Learning the Secrets of Unlight": "Roll on or choose from the Secrets of Unlight table to decide how you learned this rare magic.",
+  "Unlight Adept": "When you cast a spell that deals Acid, Cold, Fire, Lightning, or Thunder damage, you can change the damage to Radiant. Dim Light created by your spells is Bright Light instead.",
+  "Unlight Invigoration": "Bonus Action: pick a willing creature you see within 30 feet and spend one or two of your Hit Point Dice. It gains Temporary Hit Points equal to the total rolled plus your Intelligence modifier. While it has any of those, it has Advantage on Strength checks and sheds Bright Light in a 10-foot radius.",
+  "Unlight Restoration": "Bonus Action: pick a creature you see within 30 feet and spend one or two of your Hit Point Dice. It regains Hit Points equal to the total rolled and sheds Bright Light in a 10-foot radius until the end of its next turn. If you spent two dice, you can instead end Blinded, Deafened, Paralyzed, or Poisoned on it, and then it regains no Hit Points.",
+  "Secrets of Deep Imaskar": "Imaskarcana Lore: you can attune to a magic item as a Magic action, once per Long Rest. Piercing Unlight: your spells ignore Resistance to Radiant damage. Unlight Resilience: you have Resistance to Radiant damage. Imaskar Seals: you always have Glyph of Warding prepared and can cast it once without a slot. It needs no Material components and is cast at the level of your highest Wizard spell slot. Any earlier glyph you made this way breaks and its spell ends without triggering. You regain this after a Long Rest.",
+  "Doom Of Unlight": "When a creature takes Radiant damage from a spell you cast, you can use your Reaction to curse it with Unlight. It makes a Constitution save against your spell save DC. On a failure it is cursed until the curse ends. It sheds Bright Light in a 20-foot radius. Attack rolls against it have Advantage. At the start of its turns it takes Radiant damage equal to your character level. It has Advantage on Strength checks and melee attack rolls. If it hits a creature with a melee attack roll it can repeat the save to end the curse. If it drops to 0 Hit Points it explodes, and creatures in a 10-foot Emanation centered on it take Radiant damage equal to half your character level in d8. After attempting a curse you can't do so again until a Long Rest or until you spend a level 6+ spell slot (no action)."},
+ "lu": [{"feature": "Secrets of Deep Imaskar", "n": "Imaskarcana Lore (attune as a Magic action)", "lvl": 10, "max": 1, "reset": "long", "tag": "Magic action"},
+        {"feature": "Secrets of Deep Imaskar", "n": "Imaskar Seals (Glyph of Warding)", "lvl": 10, "max": 1, "reset": "long", "tag": "No slot, no components"},
+        {"feature": "Doom Of Unlight", "lvl": 14, "max": 1, "reset": "long", "tag": "Reset by a level 6+ slot"}],
+ "fx": [[10, "Secrets of Deep Imaskar", {"res": ["Radiant"], "notes": [["Note", "Piercing Unlight: your spells ignore Resistance to Radiant damage"]]}]],
+ "acts": {"Unlight Invigoration": "bonus", "Unlight Restoration": "bonus", "Doom Of Unlight": "reaction"}},
+
+"Path of Unlight": {"spab": "",
+ "f": {
+  "Radiant Rage": "While Raging, a creature that hits you with a melee attack roll takes Radiant damage equal to your Rage Damage bonus, and you shed Bright Light in a 20-foot radius.",
+  "Unlight Manifestation": "Roll on or choose from the Unlight Manifestation table to decide what form your Radiant Rage takes.",
+  "Unlight Revelation": "You gain proficiency and Expertise in Perception. While Raging you have Blindsight with a range equal to the Bright Light of your Radiant Rage.",
+  "Harbinger of Unlight": "You have Resistance to Radiant damage.",
+  "Infectious Unlight": "Damage from your Brutal Strike can be Radiant or its usual type. You also gain the Brutal Strike option Radiant Infection: the target is infected for 1 minute, sheds Bright Light in a 10-foot radius, and takes 1d6 Radiant damage at the start of each of its turns. At the end of each of its turns it makes a Constitution save (DC 8 + Strength modifier + Proficiency Bonus), ending the effect on a success.",
+  "Brilliant Rage": "While Raging you shed Bright Light in a 30-foot radius. As a Bonus Action you can unleash blinding brilliance. Each creature of your choice within 30 feet makes a Constitution save (DC 8 + Strength modifier + Proficiency Bonus). A failure takes 1d12 Radiant damage and is Blinded until the end of your next turn. A success takes half damage. After using it you can't do so again until a Long Rest, or until you spend a Rage use (no action)."},
+ "lu": [{"feature": "Brilliant Rage", "lvl": 14, "max": 1, "reset": "long", "tag": "Reset by a Rage use"}],
+ "fx": [[3, "Radiant Rage", {"notes": [["Note", "Radiant Rage: while Raging, melee attackers who hit you take Radiant damage equal to your Rage Damage. Bright Light 20 feet"]]}],
+        [6, "Unlight Revelation", {"skills": ["Perception"], "exp": ["Perception"]}],
+        [10, "Harbinger of Unlight", {"res": ["Radiant"]}]],
+ "acts": {"Brilliant Rage": "bonus"}},
+}
