@@ -372,7 +372,7 @@ if(GR.length){DataEnv.slot.WXG=DataEnv.slot.WXG||{};DataEnv.slot.WXG[SRC.id]=GR}
 if(Object.keys(WPW).length){DataEnv.slot.WXW=DataEnv.slot.WXW||{};DataEnv.slot.WXW[SRC.id]={w:WPW,a:(typeof WPA!=="undefined"?WPA:{})};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
 '''
 
-REGOPT = '''DataEnv.slot.WXO=DataEnv.slot.WXO||{};DataEnv.slot.WXO[SRC.id]=OPT;
+REGOPT = '''DataEnv.declare("WXO");DataEnv.slot.WXO=DataEnv.slot.WXO||{};DataEnv.slot.WXO[SRC.id]=OPT;
 '''
 
 SCH = {"A": "Abjuration", "C": "Conjuration", "D": "Divination", "E": "Enchantment", "V": "Evocation", "I": "Illusion", "N": "Necromancy", "T": "Transmutation", "CLOCK": "Clockwork", "VOID": "Void"}
