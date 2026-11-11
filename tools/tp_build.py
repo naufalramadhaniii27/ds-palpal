@@ -41,7 +41,7 @@ BOOKS = [
  {"id": "thhw", "file": ["Hit Point Press; Humblewood Campaign Setting.json", "Hit Point Press; Humblewood Tales.json"],
   "tag": "HWCS", "name": "Humblewood", "pub": "Hit Point Press", "ed": "2014", "sub": "thhw_sub", "bg": "thhw_bg", "feat": "thhw_feat", "spell": "thhw_spell", "item": "thhw_item", "species": "thhw_species", "alias": "Humblewood"},
  {"id": "tvss14", "file": "Mage Hand Press; Valda's Spire of Secrets - 2014.json", "tag": "VSS14", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2014",
-  "sub": "tvss14_sub", "feat": "tvss14_feat", "species": "tvss14_species", "spell": "tvss14_spell", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger", "channeler"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
+  "sub": "tvss14_sub", "feat": "tvss14_feat", "species": "tvss14_species", "spell": "tvss14_spell", "item": "tvss14_item", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger", "channeler"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
   "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Investigator": "Investigator (2014)", "Martyr": "Martyr (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}},
 ]
 LV = {"1": 1, "2": 2}
@@ -275,6 +275,7 @@ def item_records(bk, data, M):
         if n in M.WPN: op["wp"] = M.WPN[n]; op.setdefault("base", [n]); wpn.append(n)
         rows.append([n, typ, rar, att, text, op])
     have = set(r[0] for r in rows) | set(g[0] for g in M.GEAR) | set(getattr(M, "SUPERSEDED", ()))
+    if bk["ed"] == "2014": have |= set(" ".join(i["name"].split()) for i in data.get("item", []) if i.get("rarity") == "none" and i.get("weaponCategory") and (i.get("type") or "").split("|")[0] in ("M", "R"))     # weapon forms are built by weapon_records
     for n in getattr(M, "SUPERSEDED", ()):
         if n in src_names: GAP.append((bk["tag"], "item", n, "older version of the Reborn entry of the same name. Use the TDCSR book"))
     for n in sorted(src_names - have):
@@ -287,16 +288,23 @@ def item_records(bk, data, M):
 
 DMGT = {"B": "Bludgeoning", "P": "Piercing", "S": "Slashing", "N": "Necrotic", "R": "Radiant", "O": "Force", "F": "Fire", "L": "Lightning", "I": "Poison", "Y": "Psychic", "T": "Thunder", "A": "Acid", "C": "Cold"}
 PROP = {"A": "Ammunition", "F": "Finesse", "H": "Heavy", "L": "Light", "LD": "Loading", "R": "Reach", "T": "Thrown", "2H": "Two-Handed", "V": "Versatile", "RLD": "Reload", "Alc:D": "Destructible", "GC:VSS-B": "Blaster", "GC:VSS-C": "Cooldown", "Craft:R": "Reload", "HC": "High Caliber", "AP": "Armor-Piercing", "BP": "Blackpowder", "CS": "Cumbersome", "D": "Double", "Dam": "Damage", "Haft": "Hafted", "Mag": "Magazine", "Mom": "Momentum", "Rep": "Repeater", "SGttEH:Art": "Artillery", "SGttEH:Bar": "Barrel", "SGttEH:Bla": "Blaring", "SGttEH:Boo": "Booming", "SGttEH:FnFr": "Fan Fire", "SGttEH:Sdy": "Steady", "SGttEH:SpFr": "Spread Fire", "SGttEH:TwBar": "Twinned Barrel", "TK": "Trick Weapon", "DM-B": "Blaster", "DM-C": "Cooldown", "DM-D": "Destructible", "DM-F": "Firearm", "DM-R": "Recoil"}
+PROP14 = {"AU": "Automatic", "CO": "Concealable", "DR": "Dry", "DU": "Double", "EL": "Elegant", "EX": "Explosive", "FG": "Foregrip", "FI": "Fist", "HT": "Heat", "LO": "Loading", "MA": "Massive", "MO": "Mounted", "MS": "Misfire", "PA": "Parrying", "RE": "Returning", "RO": "Rocket", "SC": "Scatter", "SH": "Superheavy", "ST": "Sighted", "TE": "Tension", "TR": "Trip", "TW": "Twinshot", "XO": "Exotic", "SW": "Switch"}      # properties of the 2014 Valda book (only read for 2014 books)
+ARMR = {}
 WEAP = {}; MAST = {}
 
 def weapon_records(bk, data, M):
     """Weapons from the source baseitems (stats from the source, text from the overlay). Switch weapons become one entry per form."""
-    WEAP.clear(); MAST.clear()
+    WEAP.clear(); MAST.clear(); ARMR.clear()
     base = json.load(open(os.path.join(ROOT, "tools", "tp", "base_weapons.json"), encoding="utf-8"))
     desc = getattr(M, "WDESC", {}); MAST.update(getattr(M, "MASTERY", {}))
     seen = set()
-    for it in data.get("baseitem", []):
+    _forms = [i for i in data.get("item", []) if bk["ed"] == "2014" and i.get("rarity") == "none" and i.get("weaponCategory") and (i.get("type") or "").split("|")[0] in ("M", "R")]       # 2014 Valda: switch forms and other weapons that sit in the item list
+    for it in list(data.get("baseitem", [])) + _forms:
         n = it["name"]; ty = (it.get("type") or "").split("|")[0]
+        if bk["ed"] == "2014" and ty in ("LA", "MA", "HA") and n not in seen:       # armor of a 2014 book: base AC, Dexterity cap, Strength need, Stealth Disadvantage
+            seen.add(n); fn = getattr(M, "WDESC_FN", None)
+            ARMR[n] = {"o": dict({"ac": it["ac"], "dex": {"LA": "full", "MA": "max2", "HA": "none"}[ty], "cat": {"LA": "Light", "MA": "Medium", "HA": "Heavy"}[ty], "w": it.get("weight") or 0}, **({"str": int(it["strength"])} if it.get("strength") else {}), **({"dis": 1} if it.get("stealth") else {})), "c": round((it.get("value") or 0) / 100.0, 2), "t": desc.get(n) or (fn(it) if fn else "")}
+            continue
         if ty not in ("M", "R", "SW") or n in seen: continue
         seen.add(n); price = round((it.get("value") or 0) / 100.0, 2)
         if ty == "SW":
@@ -309,12 +317,15 @@ def weapon_records(bk, data, M):
         props = []
         for c in it.get("property", []) or []:
             k = c.split("|")[0]
+            if bk["ed"] == "2014" and (k in PROP14 or k == "RLD"):
+                nm_ = PROP14.get(k) or "Reload"; ex_ = it["dmg2"] if k == "SC" and it.get("dmg2") else it.get("reload") if k == "RLD" and it.get("reload") else None
+                props.append(nm_ + (" (%s)" % ex_ if ex_ else "")); continue
             if k in PROP: props.append(PROP[k] + (" (%s)" % it["dmg2"] if k == "V" and it.get("dmg2") else ""))
         mast = ((it.get("mastery") or [""])[0]).split("|")[0]
-        o = {"d": it.get("dmg1", "1"), "t": DMGT.get(it.get("dmgType"), "Piercing"), "cat": "S" if it.get("weaponCategory") == "simple" else "M", "k": "M" if ty == "M" else "R", "p": ", ".join(props), "m": mast, "w": it.get("weight") or 0, "tp": bk["id"]}
+        o = {"d": it.get("dmg1", "1"), "t": DMGT.get(it.get("dmgType"), "Piercing"), "cat": "S" if it.get("weaponCategory") == "simple" else "M", "k": "M" if ty == "M" else "R", "p": ", ".join(props + (["Exotic"] if it.get("weaponCategory") == "exotic" and "Exotic" not in props else [])), "m": mast, "w": it.get("weight") or 0, "tp": bk["id"]}
         if it.get("range"): o["r"] = it["range"]
         if mast and mast not in base_mastery() and mast not in MAST: GAP.append((bk["tag"], "item", n, "mastery %s has no overlay text" % mast))
-        WEAP[n] = {"o": o, "c": price, "t": desc.get(n, "")}
+        WEAP[n] = {"o": o, "c": price, "t": desc.get(n) or (getattr(M, "WDESC_FN", None) or (lambda _x: ""))(it)}
     return WEAP, MAST
 
 _BM = []
@@ -327,7 +338,7 @@ DataEnv.slot.WXWP=(DataEnv.slot.WXWP||[]).concat(WPN);
 Object.keys(ISP).forEach(function(k){if(typeof ITEM_SPELLS!=="undefined")ITEM_SPELLS[k]=ISP[k]});
 SRC.items=IT.map(function(r){return r[0]});
 if(GR.length){DataEnv.slot.WXG=DataEnv.slot.WXG||{};DataEnv.slot.WXG[SRC.id]=GR}
-if(Object.keys(WPW).length){DataEnv.slot.WXW=DataEnv.slot.WXW||{};DataEnv.slot.WXW[SRC.id]={w:WPW,a:{}};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
+if(Object.keys(WPW).length){DataEnv.slot.WXW=DataEnv.slot.WXW||{};DataEnv.slot.WXW[SRC.id]={w:WPW,a:(typeof WPA!=="undefined"?WPA:{})};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
 '''
 
 SCH = {"A": "Abjuration", "C": "Conjuration", "D": "Divination", "E": "Enchantment", "V": "Evocation", "I": "Illusion", "N": "Necromancy", "T": "Transmutation", "CLOCK": "Clockwork", "VOID": "Void"}
@@ -463,7 +474,7 @@ def build():
                "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else "", "%d items" % (len(it) + len(gr) + len(wpw)) if (it or gr or wpw) else "", "%d spells" % len(spr) if spr else "", "%d species" % len(spc) if spc else "", "%d classes" % len(cl) if cl else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
                "tp": 1, "pub": bk["pub"], "ed": bk["ed"], "classes": list(cl)}
         if bk["ed"] == "2014": src["legacy"] = 0
-        body = HEAD % (bk["file"] if isinstance(bk["file"], str) else " + ".join(bk["file"]), bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar EX=" + json.dumps([dict(e, src=bk["id"]) for e in getattr(M, "EXT", [])], ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar GXSP=" + json.dumps(GXSP, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\nvar MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
+        body = HEAD % (bk["file"] if isinstance(bk["file"], str) else " + ".join(bk["file"]), bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar EX=" + json.dumps([dict(e, src=bk["id"]) for e in getattr(M, "EXT", [])], ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar GXSP=" + json.dumps(GXSP, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var WPA=" + json.dumps(dict(ARMR), ensure_ascii=False, separators=(",", ":")) + ";\n" if ARMR else "") + "var MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
         files["src/data/tp%02d-%s.js" % (i, bk["id"])] = body
     for g in (("AEP24", "assumption", "how many Subclass Upgrades (SU) you gain and when", "the data lists no counts, so one upgrade at each of levels 3, 6 and 17 is assumed. Change _picks in tsae_sub.py if the book says otherwise"),
               ("GHPG24", "engine", "Transformations (12) are four feats each (one per stage). Boon prerequisites, Boon effects on AC, speed, senses, resistance and uses, and Boon choices inside a Boon", "text only. The stage feats list the Boons to pick and the Flaws"),
