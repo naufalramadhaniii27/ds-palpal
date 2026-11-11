@@ -1,3 +1,29 @@
+# Uncovered 3: wearable charge rolls and target materials
+
+Ten more original sentence IDs are computed: 234 closed from 5,460 initially, 5,226 uncovered and 0 regressions. Covered is 7,939, info 23,617 and allow remains 0. All ten new closures are covered rather than informational. Work continues after this checkpoint.
+
+Cabal's Ruin's Dormant/Awakened/Exalted stages now spend their own 4/6/10-charge pools after a hit for 1d6 Lightning per charge, including Unarmed Strike, ranged weapon and spell attacks. Attunement, equip, quantity, owner and the current pool remain required. The player chooses the hit/one target to resolve; the extra damage is not passively added to every attack or target. Critical doubles dice once, never the cost. Dawn recovery remains the existing stage-specific 1d4 / 1d4+2 / 1d6+4 operation. Actual UI tests reach 20d6 Lightning for Exalted's ten-charge critical Fire Bolt and verify stale source blocking.
+
+Direstone Dwarven Pick rolls 1d8 additional Piercing when the player declares the target a stone creature/object, retaining its existing +2 War Pick and Dwarf attunement requirement. Battlechef's Splendid Saucepan rolls 1d4 additional Thunder when the player declares metal armor or a metal/stone target; its existing +1 Mace and +1 AC helmet toggle remain. These are explicit target facts, not inferred materials. Wrong/unknown facts, empty/stowed sources and unrelated weapons receive no rider. Material facts and eligibility survive cold reload. The source duplicates account for two closures per mechanic.
+
+Saucepan's old advisory dice were replaced by a target-qualified typed roll. Its retained +1 attack/damage entry and helmet entry moved from fx-L8 to fx-Z10 with identical payload/order; the base Mace patch remains. Loader proof confirms the retained entries, and no overlap exemption was added. The roll panel now says attack, accommodating wearable effects on spells/unarmed, and the resource button expands to fit its label.
+
+The gate now recognizes a narrowly scoped existing executable field: nonzero literal integer `atkBonus[].dmg` for a named item entry whose selector exactly names that owner. Saucepan already computed +1 damage, but the gate had recorded only the attack component. Scalar and rider now explain the compound sentence independently. Attack-only, critical-only, advisory text, unsupported dice strings, zero/boolean values, generic attack groups and wrong-owner selectors grant no scalar DMG atom. Source attribution follows the actual owner. Status/classification and allowance rules are unchanged, and existing transformation/inherited-stage annotations retain their prior handling.
+
+## Validation of wearable and material effects
+
+| Check | Result |
+|---|---|
+| zero_miss_fx | PASS; 1,053 full-suite cases, 108 U27 cases across both editions, all four attack rows for each Cabal stage, exact source pools, material tags, Dwarf requirement, duplicates/empty/stowed and strict component removal |
+| Wearable/material lifecycle | PASS; 184 checks, 390x844 and 1250x850, actual normal/critical dice, spell/unarmed/ranged charge use, exact shared pool, stale sources, material selection/removal/cold reload, preserved helmet bonus, zero page errors; final CSS screenshots reviewed |
+| zero_miss_measure | PASS; 752 units, both editions miss0, zero new miss/card-or-miss |
+| Gate / audit | PASS; 234 closures, 5,226 uncovered, zero regressed IDs; selftests cover actual scalar components and negative payloads. Seed11/sample150; 44 newly selected plus all ten new clauses (47 unique) reviewed against actual source, zero material mismatches |
+| solid_contract / golden / UI / data | PASS; 4,930 / 1,479 / 308 / 597 checks; 2,633 entries, 185 groups, 238 handlers, 4,523 schema entries |
+| Full snapshot / raw review | PASS; 2,997 builds, `3e65fbfe905c1c8a`, zero errors; only Saucepan's helmet golden changes: four obsolete advisory paths removed and three target metadata paths added. All derived numbers, AC and weapon +1 remain identical; zero unexplained paths. 576 expected differences vs immutable main |
+| Builder differential | PASS; 3,890 inputs, `b1c47d6ea6dc914d`, identical to da3b5529; unchanged 665 expected differences vs immutable main |
+| Scenarios | PASS; 24 checks across both viewports, screenshots/storage captured, zero page errors/dialogs |
+| Build / TSC / HTML / overlap / guards | PASS; generated artifacts identical and lint clean / SCORE200 no WORSE / SCORE250 / 1,394 names, 35 files, 155 documented overlaps / zero new violations |
+
 # Uncovered 3: four more paid and target-qualified item riders
 
 Eight more original sentence IDs now have computed coverage: 224 closed from the initial 5,460, 5,236 uncovered and 0 regressed IDs. Covered is 7,927, info 23,619 and allow remains 0. Every one of the eight new closures is `covered`, not reclassified as informational. Work continues after this checkpoint.

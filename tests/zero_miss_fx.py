@@ -2644,6 +2644,33 @@ for rs in ["2024","2014"]:
     CASES.append(dict(name="Z3 U26 Cinnabar duplicate source pools stay separate "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n="Cinnabar Rapier",q=1,eq=True),dict(n="Cinnabar Rapier",q=1,eq=True)]),expect=[("C.attacks[1].spendDice.length",2),("new Set(C.attacks[1].spendDice.map(r=>r.poolKey)).size",2),("C.attacks[1].spendDice.every(r=>C.inv.some(i=>i.chargeKey===r.poolKey))",True)]))
     CASES.append(dict(name="Z3 U26 Eldritch active second copy uses its pool "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n="Eldritch Staff",q=1,eq=True,attuned=False),dict(n="Eldritch Staff",q=1,eq=True,attuned=True)]),expect=[("C.attacks[1].spendDice.length",1),("C.attacks[1].spendDice[0].poolKey===C.inv[1].chargeKey",True),("C.attacks[1].spendDice[0].poolKey===C.inv[0].chargeKey",False)]))
 
+# U27: wearable charge damage and target-material weapon damage.
+U27_SPEND_ALLOW=[r"^attacks\.[0-3]\.spendDice\.0\.(n|when|d|type|maxCost|perCost|poolKey|item|requiresAttunement|s|chargeKey)$",r"^attacks\.[0-3]\.spendDice\.0\.resource\.kind$"]
+U27_INV_WEAPONS=[dict(n="Longsword",q=1,eq=True),dict(n="Longbow",q=1,eq=True)]
+for rs in ["2024","2014"]:
+    for stage,maximum,regain in [("Dormant",4,"1d4"),("Awakened",6,"1d4+2"),("Exalted",10,"1d6+4")]:
+        item="Cabal's Ruin ("+stage+")"
+        for attuned in [False,True]:
+            checks=[("C.attacks.length",4),("['Unarmed Strike','Longsword','Longbow','Fire Bolt'].every(n=>C.attacks.some(a=>a.n===n))",True),("C.inv[0].attunedActive",attuned),("C.attacks.every(a=>!a.xdice)",True),("C.attacks.every(a=>!a.misc)",True),("C.ac.bonus.some(x=>String(x.s||'').includes("+json.dumps(item)+"))",False),("C.attacks.every(a=>!!a.spendDice==="+str(attuned).lower()+")",True)]
+            if attuned:checks += [("C.attacks.every(a=>a.spendDice.length===1)",True),("C.attacks.every(a=>{let z=a.spendDice[0];return z.item==="+json.dumps(item)+"&&z.d==='1d6'&&z.type==='Lightning'&&z.maxCost==="+str(maximum)+"&&z.perCost===true&&z.requiresAttunement===true&&z.poolKey===C.inv[0].chargeKey&&z.chargeKey===z.poolKey})",True),("C.res.find(r=>r.k===C.inv[0].chargeKey).max",maximum),("C.res.find(r=>r.k===C.inv[0].chargeKey).rg",regain),("C.res.find(r=>r.k===C.inv[0].chargeKey).when","dawn")]
+            CASES.append(dict(name="Z3 U27 Cabal "+stage+" "+rs+" attuned "+str(attuned),b=dict(rs=rs,cls="Wizard",level=4,extra={"species":"Human","sp":["Fire Bolt"]},inv=[dict(n=item,q=1,eq=True,attuned=attuned)]+U27_INV_WEAPONS),expect=checks))
+        CASES.append(dict(name="Z3 U27 Cabal differential "+stage+" "+rs,b=dict(rs=rs,cls="Wizard",level=4,extra={"species":"Human","sp":["Fire Bolt"]},inv=[dict(n=item,q=1,eq=True,attuned=True)]+U27_INV_WEAPONS),withoutGxFields=["item",item,item,["atkSpendDice"]],expect=[("C.attacks.length",4),("C.attacks.every(a=>a.spendDice.length===1)",True)],expectWithout=[("C.attacks.some(a=>a.spendDice)",False)],allow=U27_SPEND_ALLOW))
+        for q,eq in [(0,True),(1,False)]:
+            CASES.append(dict(name="NEG U27 Cabal unavailable "+stage+" "+rs+str((q,eq)),b=dict(rs=rs,cls="Wizard",level=4,extra={"species":"Human","sp":["Fire Bolt"]},inv=[dict(n=item,q=q,eq=eq,attuned=True)]+U27_INV_WEAPONS),expect=[("C.attacks.length",4),("C.attacks.some(a=>a.spendDice||a.xdice)",False)]))
+        CASES.append(dict(name="Z3 U27 Cabal duplicate second copy active "+stage+" "+rs,b=dict(rs=rs,cls="Wizard",level=4,extra={"species":"Human","sp":["Fire Bolt"]},inv=[dict(n=item,q=1,eq=True,attuned=False),dict(n=item,q=1,eq=True,attuned=True)]+U27_INV_WEAPONS),expect=[("C.inv[0].attunedActive",False),("C.inv[1].attunedActive",True),("C.attacks.length",4),("C.attacks.every(a=>a.spendDice.length===1&&a.spendDice[0].poolKey===C.inv[1].chargeKey&&a.spendDice[0].poolKey!==C.inv[0].chargeKey)",True)]))
+    for item,tag,dtype,die,base_die,bonus in [("Direstone Dwarven Pick","stone-creature-or-object","Piercing","1d8","1d8",2),("Battlechef's Splendid Saucepan","metal-armor-or-metal-or-stone","Thunder","1d4","1d6",1)]:
+        for species in (["Dwarf","Human"] if item=="Direstone Dwarven Pick" else ["Human"]):
+            eligible=species=="Dwarf" or item!="Direstone Dwarven Pick"
+            for target in [{}]+[{"type":t,"tags":tags} for t in ["Creature","Object","Structure"] for tags in [[],["unrelated-material"],[tag]]]:
+                active=eligible and tag in target.get("tags",[])
+                checks=[("C.attacks[1].die",base_die),("C.attacks[1].misc",bonus if eligible else 0),("C.attacks[1].dmgBonus",bonus if eligible else 0),("!!C.attacks[1].xdice",active),("!!C.attacks[2].xdice",False)]
+                if item=="Direstone Dwarven Pick":checks.append(("C.inv[0].attunedActive",eligible))
+                if active:checks += [("C.attacks[1].xdice.length",1),("C.attacks[1].xdice[0].d",die),("C.attacks[1].xdice[0].t",dtype),("C.attacks[1].xdice[0].roll",True),("__deriveFor(C).atk[1].damageParts.find(p=>p.type==="+json.dumps(dtype)+").expr"+(".endsWith('+"+die+"')" if dtype=="Piercing" else ""),True if dtype=="Piercing" else die)]
+                CASES.append(dict(name=("Z3" if active else "NEG")+" U27 material "+item+" "+rs+" "+species+str(target),b=dict(rs=rs,cls="Fighter",level=4,extra={"species":species},inv=[dict(n=item,q=1,eq=True,attuned=True),dict(n="Longsword",q=1,eq=True)]),target=target,expect=checks))
+        CASES.append(dict(name="Z3 U27 material differential "+item+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,extra={"species":"Dwarf" if item=="Direstone Dwarven Pick" else "Human"},inv=[dict(n=item,q=1,eq=True,attuned=True),dict(n="Longsword",q=1,eq=True)]),target={"type":"Creature","tags":[tag]},withoutGxFields=["item",item,item,["atkDice"]],expect=[("C.attacks[1].xdice[0].d",die),("C.attacks[1].misc",bonus)],expectWithout=[("!!C.attacks[1].xdice",False),("C.attacks[1].misc",bonus)],allow=[r"^attacks\.1\.xdice\.0\.(d|t|s|roll)$",r"^attacks\.1\.note$"]))
+        for q,eq in [(0,True),(1,False)]:
+            CASES.append(dict(name="NEG U27 material unavailable "+item+" "+rs+str((q,eq)),b=dict(rs=rs,cls="Fighter",level=4,extra={"species":"Dwarf" if item=="Direstone Dwarven Pick" else "Human"},inv=[dict(n=item,q=q,eq=eq,attuned=True),dict(n="Longsword",q=1,eq=True)]),target={"type":"Creature","tags":[tag]},expect=[("C.attacks.length",2),("C.attacks.some(a=>a.xdice)",False),("C.attacks.find(a=>a.n==='Longsword').misc",0)]))
+
 # Refresh the real rule-link index with the case's source packs installed.
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared

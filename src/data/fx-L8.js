@@ -79,8 +79,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  /* ---- tsgeh and tsgs ---- */
  A("Arcane Mirror",{n:"Arcane Mirror",lu:{n:"Arcane Mirror: Shield",max:1,reset:"short",tag:"Short or Long Rest"}});
  patch("Battlechef's Splendid Saucepan",{base:["Mace"]});
- A("Battlechef's Splendid Saucepan",{n:"Battlechef's Splendid Saucepan",atkBonus:[{when:"Battlechef's Splendid Saucepan",atk:1,dmg:1}],atkDice:[{when:"Battlechef's Splendid Saucepan",d:"1d4",t:"thunder to a target in metal armor or made of metal or stone"}]});
- A("Battlechef's Splendid Saucepan",{n:"Worn as a helmet",toggle:{id:"saucepan-helmet",label:"Saucepan worn as a helmet",default:false},acAdd:1,cond:"noHeavy"});
  A("Bloodscryer Oculus",{n:"Bloodscryer Oculus",advOn:["sight-based Wisdom (Perception) checks"],lu:[{n:"Oculus: Hunter's Mark",max:1,reset:"dawn"},{n:"Oculus: Locate Creature",max:1,reset:"dawn"},{n:"Oculus: Scrying",max:1,reset:"dawn"}]});
  A("Brambleheart Quiver",{n:"Brambleheart Quiver",lu:{n:"Brambleheart Quiver: thorned Arrows",max:4,reset:"dawn",tag:"1d3 + 1 regrow at dawn"},atkBonus:[{when:"ranged",note:"Thorned Arrows from the Brambleheart Quiver: +2 to attack and damage rolls."}]});
  /* Couatl Herald items: the Fly Speed needs three of them attuned. It is a sheet switch because the attuned count is not read here */

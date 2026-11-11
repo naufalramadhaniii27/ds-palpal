@@ -374,6 +374,17 @@ def atoms_from(e, src, weak=False, extra=()):
                     # its price. Some source clauses classify only as RESOURCE.
                     out.append(Atom("RESOURCE", nums_in(spec.get("d")) | {"1"}, "%s.atkSpendDice.perCost" % src, weak, rx=R(r"(?=[\s\S]*\b%s\b)[\s\S]*\b(?:for each charge|per charge)\b" % re.escape(str(spec.get("d", ""))))))
             continue
+        if k == "atkBonus" and isinstance(v, list) and src.startswith("GX.item|"):
+            # A named item-weapon's scalar damage is executed independently
+            # of atk. Generic attack groups/transformation stages stay outside
+            # this extraction; their inherited references need their own model.
+            owner = src.split("|", 1)[1]
+            for spec in v:
+                damage = spec.get("dmg") if isinstance(spec, dict) else None
+                if not isinstance(spec, dict) or spec.get("when") != owner or e.get("n") != owner:
+                    continue
+                if isinstance(damage, int) and not isinstance(damage, bool) and damage != 0:
+                    out.append(Atom("DMG", nums_in(damage) | nums_in(e.get("min")) | set(extra), "%s.atkBonus.dmg" % src, weak))
         critical_parts = critical_field_values(k, v)
         if critical_parts:
             normal_values, critical_values = critical_parts
@@ -1253,6 +1264,16 @@ def selftest():
     formula_atoms = [a for a in spend_atoms if a.src.endswith(".perCost")]
     check("12x NEG scaling formula cannot explain a condition duration", formula_atoms and all(not a.rx.search("for each charge, the creature is stunned for 1 minute") for a in formula_atoms))
     check("12y scaling formula retains its real effect owner", all(atom_key(a.src) == "GX.item|Staff" for a in formula_atoms))
+    scalar_bonus = atoms_from({"n":"Staff", "atkBonus": [{"when": "Staff", "atk": 2, "dmg": 1}]}, "GX.item|Staff")
+    check("12z attack bonus damage is its own executed scalar", any(a.cls == "DMG" and a.vals == {"1"} for a in scalar_bonus) and all("2" not in a.vals for a in scalar_bonus if a.cls == "DMG"))
+    for label, payload in [("attack only", {"atk": 2}), ("critical only", {"crit": 18}), ("advisory", {"note": "extra 1d4 Thunder"}), ("unsupported dice value", {"dmg": "1d4"}), ("boolean", {"dmg": True}), ("zero", {"dmg": 0})]:
+        check("12za NEG " + label + " grants no scalar damage", not any(a.cls == "DMG" for a in atoms_from({"n":"Staff", "atkBonus": [dict(payload, when="Staff")]}, "GX.item|Staff")))
+    saucepan_atoms = atoms_from({"n":"Mace", "atkBonus": [{"when": "Mace", "atk": 1, "dmg": 1}], "atkDice": [{"when": "Mace", "d": "1d4", "t": "Thunder", "roll": True}]}, "GX.item|Mace")
+    saucepan_row = analyze(synth("item", "dmg", "Mace", "It works as a Mace with +1 to attack and damage rolls and deals an extra 1d4 Thunder to a target in metal armor or made of metal or stone.", saucepan_atoms))[0]
+    check("12zb executed scalar and dice explain their compound clause", saucepan_row["status"] == "covered", saucepan_row["why"])
+    check("12zc damage component retains its real owner", all(atom_key(a.src) == "GX.item|Staff" for a in scalar_bonus))
+    for when in ["melee", "any", "Other weapon", ["Staff", "melee"]]:
+        check("12zd NEG unrelated/generic attack groups gain no named damage", not any(a.cls == "DMG" for a in atoms_from({"n":"Staff", "atkBonus":[{"when":when,"dmg":2}]}, "GX.item|Staff")))
     critical_record = {"dieReplace": [{"when": "Scourge", "d": "3d4", "critD": "3d6"}]}
     critical_atoms = atoms_from(critical_record, "GX.item|Scourge")
     critical_text = "The weapon deals 3d4 Slashing damage. On a critical hit, it deals 3d6 Slashing damage instead."
@@ -1403,7 +1424,7 @@ def scan(D, by_design, allow, today):
 
 
 def atom_key(src):
-    if src.endswith(".atkSpendDice.perCost"):
+    if src.endswith((".atkSpendDice.perCost", ".atkBonus.dmg")):
         src = src.rsplit(".", 1)[0]
     base, _, last = src.rpartition(".")
     return base if last in FIELD_CLS or last in ("ch", "by", "xd", "wp", "pick", "row", "atk", "dc") else src
