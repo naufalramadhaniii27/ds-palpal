@@ -5,16 +5,17 @@ import asyncio, os, sys, json, socket, threading, functools, http.server
 from playwright.async_api import async_playwright
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 SRC = json.load(open(os.environ.get("VSS14", "/home/claude/src-data/hb/collection/Mage Hand Press; Valda's Spire of Secrets - 2014.json")))
-SUBS = {s["shortName"]: [f["name"] for f in SRC["subclassFeature"] if f["className"] == "Warden" and f["subclassShortName"] == s["shortName"] and f["name"] != s["name"]] for s in SRC["subclass"] if s["className"] == "Warden"}
+CLS = os.environ.get("VCLS", "Warden")
+SUBS = {s["name"]: [f["name"] for f in SRC["subclassFeature"] if f["className"] == CLS and f["subclassShortName"] == s["shortName"] and f["name"] != s["name"]] for s in SRC["subclass"] if s["className"] == CLS}
 def serve():
     s = socket.socket(); s.bind(("127.0.0.1", 0)); port = s.getsockname()[1]; s.close()
     class Q(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *a): pass
     srv = http.server.ThreadingHTTPServer(("127.0.0.1", port), functools.partial(Q, directory=ROOT))
     threading.Thread(target=srv.serve_forever, daemon=True).start(); return srv, "http://127.0.0.1:%d/index.html" % port
-BUILD = """(nm)=>{const b=window.__bldTestB(); const sub=Object.keys(window.WXS?window.WXS.reduce((o,x)=>{if(x.cls==="Warden (2014)")o[x.name]=1;return o},{}):{}).filter(n=>n.replace(/ \\(2014\\)$/,"")===nm)[0];
+BUILD = """([nm,CLS])=>{const b=window.__bldTestB(); const sub=Object.keys(window.WXS?window.WXS.reduce((o,x)=>{if(x.cls===CLS+" (2014)")o[x.name]=1;return o},{}):{}).filter(n=>n.replace(/ \\(2014\\)$/,"")===nm)[0];
  if(!sub) return {err:"no subclass "+nm};
- Object.assign(b,{name:"T",rs:"2014",cls:"Warden (2014)",sub:sub,level:20,species:"Human (2014)",bg:"Soldier (2014)",bgMode:"111",method:"point",base:{STR:15,DEX:10,CON:14,INT:12,WIS:14,CHA:10},arr:{},
+ Object.assign(b,{name:"T",rs:"2014",cls:CLS+" (2014)",sub:sub,level:20,species:"Human (2014)",bg:"Soldier (2014)",bgMode:"111",method:"point",base:{STR:15,DEX:10,CON:14,INT:12,WIS:14,CHA:10},arr:{},
   src:{core:true,dmg:true,phb14:true,dmg14:true,tvss14:true},ch:{clsk:["Perception","Survival"],stand14:["Armor Proficiency"],step14:["Earthstrength"],soul14:["Ageless Guardian"],fs2:"Protection"},inv:[]});
  let c; try{ c=window.__bldSheetFor(b) }catch(e){ return {err:String(e).slice(0,200)} }
  if(!c) return {err:"no sheet"};
@@ -28,7 +29,7 @@ async def main():
         await pg.goto(url); await pg.evaluate("()=>localStorage.clear()"); await pg.reload()
         await pg.wait_for_function("()=>!!window.__bldFuzz&&!!window.__sheetApply", timeout=120000); await pg.evaluate("()=>window.__bldNeed().then(()=>1)")
         for nm, feats in SUBS.items():
-            r = await pg.evaluate(BUILD, nm)
+            r = await pg.evaluate(BUILD, [nm, CLS])
             if r.get("err"): bad.append(nm + ": " + r["err"]); continue
             miss = [f for f in feats if f not in r["names"]]
             if miss: bad.append("%s missing on the sheet: %s" % (nm, miss))
