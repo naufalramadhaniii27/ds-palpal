@@ -1,0 +1,25 @@
+{
+ "counts": {
+  "AEP24": {
+   "assumption": 1
+  },
+  "All": {
+   "engine": 2
+  },
+  "GHPG24": {
+   "engine": 3,
+   "optional feature": 1
+  },
+  "TDCSR": {
+   "assumption": 1,
+   "engine": 2
+  },
+  "VSS14": {
+   "class": 1,
+   "overlay": 38
+  },
+  "VSS24": {
+   "engine": 6
+  }
+ }
+}
