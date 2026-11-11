@@ -28,7 +28,12 @@ export class PxFlow {
     this.titles.push(pxTitle); this.title = pxTitle; this.y -= 4;
     this.cv.text(this.page, this.x0(), this.y-13, pxTitle, "Bold", 13, PX_ACC); this.y -= 19;
     this.cv.text(this.page, this.x0(), this.y-8, strip, "Regular", 7, PX_GRAY); this.y -= 12; }
-  heading(text){ this.y -= 14; this.cv.text(this.page, this.x0(), this.y, text, "Bold", 8.4, PX_ACC);
+  /* a long section title wraps by words so it never runs into the next column */
+  heading(text){ const rows = []; let cur = "";
+    String(text).split(" ").forEach((w) =>{ const nx = cur ? cur+" "+w : w;
+      if(cur&&this.T.width(nx,"Bold",8.4)>this.CW){ rows.push(cur); cur = w; } else cur = nx; });
+    if(cur) rows.push(cur);
+    rows.forEach((r,i) =>{ this.y -= i ? 10 : 14; this.cv.text(this.page, this.x0(), this.y, r, "Bold", 8.4, PX_ACC); });
     this.cv.line(this.page, this.x0(), this.y-3.5, this.x0()+this.CW, this.y-3.5, 0.7, PX_ACC); this.y -= 8; }
   next(){ if(this.col===0){ this.col = 1; this.y = this.TOP; } else this.newPage(); if(this.head) this.heading(this.head+"  (CONTINUED)"); }
   section(head, label){ this.head = null; this.pending = [head, label||head]; }

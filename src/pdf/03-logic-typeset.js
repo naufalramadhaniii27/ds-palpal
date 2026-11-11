@@ -20,11 +20,18 @@ export class PxTypesetter {
       g.forEach((p) =>{ cur.push([x, p[0].split(PX_NB).join(" "), p[1], p[2], p[3]]); x += this.m(p[0],p[1],p[2]); }); });
     if(cur.length) lines.push([lh,cur]);
     return lines; }
-  heading(p, size, first){ const hs = size*1.08, out = first ? [] : [[size*0.45,[]]]; out.push([hs*1.3,[[0,p.slice(2).toUpperCase(),"Bold",hs,PX_ACC]]]); return out; }
+  /* a heading wider than the box wraps by words instead of running past the edge */
+  heading(p, size, first, width){ const hs = size*1.08, out = first ? [] : [[size*0.45,[]]], t = p.slice(2).toUpperCase();
+    if(!(width>0)||this.m(t,"Bold",hs)<=width){ out.push([hs*1.3,[[0,t,"Bold",hs,PX_ACC]]]); return out; }
+    let cur = "";
+    t.split(" ").forEach((w) =>{ const nx = cur ? cur+" "+w : w;
+      if(cur&&this.m(nx,"Bold",hs)>width){ out.push([hs*1.3,[[0,cur,"Bold",hs,PX_ACC]]]); cur = w; } else cur = nx; });
+    if(cur) out.push([hs*1.3,[[0,cur,"Bold",hs,PX_ACC]]]);
+    return out; }
   layout(pars, width, size){ let lines = [];
     (pars||[]).forEach((p) =>{
       if(p===""){ lines.push([size*0.55,[]]); return; }
-      if(pxIsHeading(p)){ lines = lines.concat(this.heading(p,size,!lines.length)); return; }
+      if(pxIsHeading(p)){ lines = lines.concat(this.heading(p,size,!lines.length,width)); return; }
       lines = lines.concat(this.wrap(pxRuns(p,size),width,size*PX_SIZE.line)); });
     return lines; }
   height(lines){ return lines.reduce((t,l) =>{ return t+l[0]; },0); }
