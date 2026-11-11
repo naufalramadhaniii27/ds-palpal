@@ -22,11 +22,13 @@ export function luMax(m,lv,a,pb){if(typeof m==="number")return m;if(Array.isArra
  if(m&&m.f){let f=String(m.f).replace(/mod:([A-Z]{3})/g,(_,k) =>{return "("+mod(a.sc[k])+")"}).replace(/lvl/g,lv).replace(/pb/g,pb),v=0;if(/^[0-9+*\-\/() ]+$/.test(f)){try{v=Function("return ("+f+")")()}catch(e){v=0}}return Math.max(m.min||0,Math.floor(v))}return 0}
 /* RU40: one Limited Use row per LU_X entry the character has, plus magic item charges. f = the feature or item that grants it (boxes show under it too) */
 /* luRows() in parts (SOLID stage 13C): LU_OWNER finds the level of the owner of a table row, then one function per row source (table, fx entry, item) and one for Arcane Recovery */
+/* level that counts for a table row of a class: its own levels, plus the levels of a reskin class that keeps the feature of the parent (WXC inh and cfa) */
+function luOwnLv(owner,feat){let t=0;clsParts().forEach((q) =>{if(q.cls===owner)t+=q.lv;else{const w=genv.WXC&&genv.WXC[q.cls];if(w&&w.inh===owner&&w.cfa&&w.cfa[feat])t+=q.lv}});return t}
 const LU_OWNER={
  feat:function(e,c,R){const ff=c.feats.filter((f) =>{return f.n===e.owner})[0];if(!ff)return 0;if(R.mx==="mod:@asi")R.mx="mod:"+((ff.asi&&ff.asi.a1)||"CHA");else if(R.mx==="mod:@ab")R.mx="mod:"+(((B.ch["gx-ab-feat-"+(ff.key||ff.s)]||[])[0])||"INT");return c.TLv},/* mod:@asi = the ability the feat raised, mod:@ab = the ability picked (pick k "ab") */
  species:function(e,c){const sp=spX();if(!sp||B.species!==e.owner)return 0;if(/Speak with Animals/.test(e.n)&&(B.ch.lin||"").indexOf("Forest")!==0)return 0;if(e.opt&&(B.ch.spopt||[]).indexOf(e.opt)<0)return 0;return c.TLv},/* v74: e.opt, only when that species option is chosen */
  bg:function(e,c){if(B.bg!==e.owner)return 0;return c.TLv},/* tp: a background that tracks a use */
- class:function(e,c){const lv=clsLv(e.owner);if(e.feature==="Eldritch Invocations"){const inv=e.n.split(":")[0];if(c.iv.indexOf(inv)<0)return 0}return lv},
+ class:function(e,c){const lv=luOwnLv(e.owner,e.feature);if(e.feature==="Eldritch Invocations"){const inv=e.n.split(":")[0];if(c.iv.indexOf(inv)<0)return 0}return lv},
  sub:function(e){const sc=subClsOf(e.owner);return sc?subAt(sc,e.owner):0},
  hbcls:function(e){if(!(B.src||{})[e.pack])return 0;return clsLv(e.owner)}/* v20 RD24: a pack's class feature */};
 function luTableRow(C,e,a,pb,c){const R={mx:e.max},lv=Object.prototype.hasOwnProperty.call(LU_OWNER,e.src)?LU_OWNER[e.src](e,c,R):0,mx=R.mx;

@@ -37,15 +37,15 @@ if(GR.length){DataEnv.slot.WXG=DataEnv.slot.WXG||{};DataEnv.slot.WXG[SRC.id]=GR}
 if(Object.keys(WPW).length){DataEnv.slot.WXW=DataEnv.slot.WXW||{};DataEnv.slot.WXW[SRC.id]={w:WPW,a:(typeof WPA!=="undefined"?WPA:{})};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
 SRC.rows=SPR;Object.keys(SPF).forEach(function(k){SPELL_FULL[k]=SPF[k]});
 DataEnv.slot.WXC=DataEnv.slot.WXC||{};
-Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;DataEnv.slot.WXC[n]={book:SRC.id,rec:r,ed:SRC.ed,tw:k.tw,inh:k.inh};
+Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;DataEnv.slot.WXC[n]={book:SRC.id,rec:r,ed:SRC.ed,tw:k.tw,inh:k.inh,cfa:k.cfa};
  SUBLABEL[n]=k.sub||n+" Subclass";if(r.cant)CANT[n]=r.cant;if(r.prep)PREP[n]=r.prep;if(r.mcg)MC_GRANT[n]=r.mcg;MC_REQ[n]=r.mcreq;if(k.auto)CLS_AUTO[n]=k.auto;
  Object.keys(k.cf).forEach(function(x){CF_FULL[n+"|"+x]=k.cf[x]});
  k.lu.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,k.acts);if(k.quick)QUICK[n]=k.quick;
  if(k.inh){var p=k.inh,dn=k.cfa||{};/* a reskin class reads the tables of its parent class under its own name, except what the book replaces */
   [CANT,PREP,MC_GRANT,MC_REQ,CLS_AUTO,QUICK,SUBLABEL].forEach(function(T){if(T&&T[p]!==undefined&&T[n]===undefined)T[n]=T===SUBLABEL?n+" Subclass":T[p]});
   Object.keys(dn).forEach(function(x){if(CF_FULL[p+"|"+x]&&!CF_FULL[n+"|"+x])CF_FULL[n+"|"+x]=CF_FULL[p+"|"+x]});
-  Object.keys(ACTS).forEach(function(a){var m=a.split("|");if(m[0]==="cls"&&m[1]===p&&!ACTS["cls|"+n+"|"+m[2]])ACTS["cls|"+n+"|"+m[2]]=ACTS[a]});
-  LU_X.slice().forEach(function(e){if(e.src==="class"&&e.owner===p&&dn[e.feature]&&!LU_X.some(function(q){return q.src==="class"&&q.owner===n&&q.n===e.n}))LU_X.push(Object.assign({},e,{owner:n}))})}});
+  Object.keys(ACTS).forEach(function(a){var m=a.split("|");if(m[0]==="cls"&&m[1]===p&&dn[m[2]]&&!ACTS["cls|"+n+"|"+m[2]])ACTS["cls|"+n+"|"+m[2]]=ACTS[a]});
+  /* the table rows of the parent class (limited uses) are read for this class by the builder (luOwnLv), not copied */}});
 DataEnv.slot.WXSP=DataEnv.slot.WXSP||{};DataEnv.slot.WXSP[SRC.id]=Object.assign(DataEnv.slot.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
 SRC.species=Object.keys(SPC);
 if(Object.keys(GXSP).length){DataEnv.slot.GX=DataEnv.slot.GX||{};DataEnv.slot.GX.species=DataEnv.slot.GX.species||{};Object.keys(GXSP).forEach(function(k){DataEnv.slot.GX.species[k]=(DataEnv.slot.GX.species[k]||[]).concat(GXSP[k])})}
