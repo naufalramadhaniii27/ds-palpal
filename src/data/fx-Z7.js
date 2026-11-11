@@ -7,4 +7,5 @@ DataEnv.declare("__fxZ7");
  F["Ruby Rod of Asmodeus"]=Object.assign({},F["Ruby Rod of Asmodeus"]||{},{base:["Morningstar"]});
  F["Sun Blade"]=Object.assign({},F["Sun Blade"]||{},{requiresAttunedWeapon:true});
  F["Duskcrusher"]=Object.assign({},F["Duskcrusher"]||{},{requiresAttunedWeapon:true});
+ F["Scourge of Shadow"]=Object.assign({},F["Scourge of Shadow"]||{},{unattunedBonus:3});
 })();

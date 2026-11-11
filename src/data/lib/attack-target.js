@@ -34,8 +34,19 @@ export function damageExpression(v){const s=String(v==null?"":v).replace(/−/g,
    earlier entry-application phase. Free-form type descriptions remain advisory. */
 export function riderDamageType(x,type){if(x.typeFrom!=null)return x.typeFrom==="weapon"?damageType(type):"";return damageType(x.t)}
 export function riderProblems(x){const out=[];if(!x||typeof x!=="object")return out;
+ if("critD" in x&&(!criticalDice(x.d)||!criticalDice(x.critD)||x.roll!==true))out.push("critical rider needs rolled literal normal and critical dice");
  if("roll" in x&&typeof x.roll!=="boolean")out.push("extra damage roll must be boolean");
  if("typeFrom" in x&&x.typeFrom!=="weapon")out.push("extra damage typeFrom must reference weapon");
  if(x.typeFrom&&x.t)out.push("extra damage must choose a type or a type reference");
  if(x.roll===true&&(!damageExpression(x.d)||!(x.typeFrom==="weapon"||damageType(x.t))))out.push("rolled extra damage needs literal dice and one damage type");
  return out}
+
+/* Literal dice overrides for critical damage; flat modifiers remain separate. */
+export function criticalDice(v){const s=damageExpression(v),m=s&&/^(\d+)d(\d+)$/i.exec(s);return m&&Number.isSafeInteger(+m[1])&&Number.isSafeInteger(+m[2])&&+m[1]>0&&+m[2]>1?s.toLowerCase():null}
+export function dieReplaceProblems(x){if(!x||typeof x!=="object"||!("critD" in x))return [];
+ return criticalDice(x.d)&&criticalDice(x.critD)?[]:["critical base damage needs literal normal and critical dice"]}
+
+export function selfDamageProblems(x){if(!x||typeof x!=="object"||Array.isArray(x))return ["self damage entry must be an object"];const out=[],allowed=["when","normal","critical","type","bypassDefenses"];
+ Object.keys(x).forEach(k=>{if(!allowed.includes(k))out.push("unknown self damage field "+k)});
+ const rows=Array.isArray(x.when)?x.when:[x.when];if(!rows.length||rows.some(n=>typeof n!=="string"||!n.trim()))out.push("self damage needs matching attack names");
+ if(!criticalDice(x.normal)||!criticalDice(x.critical))out.push("self damage needs literal normal and critical dice");if(!damageType(x.type))out.push("self damage needs one damage type");if(x.bypassDefenses!==true)out.push("self damage currently requires an explicit defense bypass");return out}

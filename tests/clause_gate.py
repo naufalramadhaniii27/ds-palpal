@@ -304,8 +304,8 @@ reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus
     "savePE", "weaponGroups", "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf", "exp")
 reg("SLOT", "slotAdd", "nslot", "smax", "arcRec")
 reg("RESOURCE", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
-reg("ATK", "atk", "atkBonus", "atkDice", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
-reg("DMG", "dmg", "atkDice", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")
+reg("ATK", "atk", "atkBonus", "atkDice", "atkSelfDamage", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
+reg("DMG", "dmg", "atkDice", "atkSelfDamage", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")
 reg("DC", "spDc", "dcAdd", "spellDc", "dc", "setsc")
 reg("INIT", "init", "initAdv", "initDie")
 reg("SPELL", "spells", "spListAdd", "prepAdd", "cantAdd", "spCls", "spellCls", "bookAdd", "sp", "cantrips", "sfree", "xlists", "spAbTrait", "preSp")
@@ -323,6 +323,28 @@ class Atom:
         self.cls, self.vals, self.src, self.weak, self.i, self.pool, self.rx = cls, set(vals), src, weak, 0, pool, rx
 
 
+def critical_field_values(key, records):
+    """Normal and critical rolls are separately computed nested fields.
+
+    A bare d6 in prose describes the face of e.g. 4d6; preserve that actual face
+    representation only for an explicit, supported critical replacement.
+    """
+    if key not in ("dieReplace", "atkDice", "atkSelfDamage") or not isinstance(records, list):
+        return None
+    normal_key, critical_key = ("normal", "critical") if key == "atkSelfDamage" else ("d", "critD")
+    critical_values, normal_records = set(), []
+    for record in records:
+        if not isinstance(record, dict):
+            normal_records.append(record)
+            continue
+        normal_records.append({k: v for k, v in record.items() if k != critical_key})
+        before = re.fullmatch(r"(\d+)d(\d+)", str(record.get(normal_key, "")), re.I)
+        after = re.fullmatch(r"(\d+)d(\d+)", str(record.get(critical_key, "")), re.I)
+        if before and after and all(int(m[1]) > 0 and int(m[2]) > 1 for m in (before, after)):
+            critical_values |= nums_in(record[critical_key]) | nums_in("1d" + before[2]) | nums_in("1d" + after[2])
+    return (nums_in(normal_records), critical_values) if critical_values else None
+
+
 def atoms_from(e, src, weak=False, extra=()):
     """One atom per (class, field) of a record dict (a GX entry, a fx dict, a structured field). Value numbers = numbers inside that field and the entry's `min`."""
     out = []
@@ -338,6 +360,12 @@ def atoms_from(e, src, weak=False, extra=()):
         if not cl or v in (None, False, [], {}, "", 0) and k not in ("ac",):
             continue
         vals = nums_in(v) | nums_in(e.get("min")) | set(extra)
+        critical_parts = critical_field_values(k, v)
+        if critical_parts:
+            normal_values, critical_values = critical_parts
+            vals = normal_values | nums_in(e.get("min")) | set(extra)
+            for critical_class in cl:
+                out.append(Atom(critical_class, critical_values, "%s.%s.critical" % (src, k), weak))
         if k == "pick" and isinstance(v, (list, dict)):
             # a class pick of kind expertise / skills / tools / languages is what grants the proficiency (uncovered-1): a marker atom for STD:PICK_TEXT
             for pk in (v if isinstance(v, list) else [v]):
@@ -354,6 +382,15 @@ def atoms_from(e, src, weak=False, extra=()):
                     for c in cl:
                         out.append(Atom(c, pv | nums_in(e.get("min")) | set(extra), "%s.%s" % (src, k), weak, pool=True))
             continue
+        if k == "atkSelfDamage" and isinstance(v, list):
+            # The self-damage control applies the literal amount through the HP
+            # operation, without resistance/immunity adjustment, only when the
+            # supported explicit bypass policy is present.
+            for spec in v:
+                if isinstance(spec, dict) and spec.get("bypassDefenses") is True:
+                    policy_values = nums_in(spec.get("normal")) | nums_in(spec.get("critical"))
+                    for policy_class in ("RES", "IMM"):
+                        out.append(Atom(policy_class, policy_values, "%s.atkSelfDamage.bypassDefenses" % src, weak))
         for c in cl:
             out.append(Atom(c, vals, "%s.%s" % (src, k), weak))
     return out
@@ -1184,6 +1221,27 @@ def selftest():
     check("12f Bloodied regeneration is COND:PLAY_STATE, not a trigger", r["why"] == "COND:PLAY_STATE", r["why"])
     r = one("When you roll a 1 you regain 1d4 + Constitution modifier (minimum 1) Hit Points at the start of each turn.", [], "item")
     check("12g NEG regeneration without the Bloodied state keeps its old code", r["why"] != "COND:PLAY_STATE", r["why"])
+    critical_record = {"dieReplace": [{"when": "Scourge", "d": "3d4", "critD": "3d6"}]}
+    critical_atoms = atoms_from(critical_record, "GX.item|Scourge")
+    critical_text = "The weapon deals 3d4 Slashing damage. On a critical hit, it deals 3d6 Slashing damage instead."
+    critical_rows = analyze(synth("item", "dmg", "Scourge", critical_text, critical_atoms))
+    check("12n normal and critical replacement have independent amounts", all(r["status"] == "covered" for r in critical_rows), str([(r["status"], r["why"]) for r in critical_rows]))
+    face_text = "On a critical hit, its necrotic damage dice become a d6 instead of a d4."
+    face_atoms = atoms_from({"atkDice": [{"when": "Scourge", "d": "4d4", "critD": "4d6", "t": "Necrotic", "roll": True}]}, "GX.item|Scourge")
+    face_row = analyze(synth("item", "dmg", "Scourge", face_text, face_atoms))[0]
+    check("12o explicit critical dice explains its literal face", face_row["status"] == "covered", face_row["why"])
+    no_upgrade = atoms_from({"atkDice": [{"when": "Scourge", "d": "4d4", "t": "Necrotic", "roll": True}]}, "GX.item|Scourge")
+    no_face = analyze(synth("item", "dmg", "Scourge", face_text, no_upgrade))[0]
+    check("12p NEG normal dice do not imply an upgrade", no_face["status"] != "covered", no_face["why"])
+    self_spec = {"when": "Scourge", "normal": "2d4", "critical": "2d6", "type": "Necrotic", "bypassDefenses": True}
+    self_text = "Whenever an unattuned creature attacks with the weapon, it deals 2d4 necrotic damage, ignoring resistances and immunities, to them."
+    self_atoms = atoms_from({"atkSelfDamage": [self_spec]}, "GX.item|Scourge")
+    self_result = analyze(synth("item", "dmg", "Scourge", self_text, self_atoms))[0]
+    check("12k attack self damage and explicit defense bypass are computed", self_result["status"] == "covered", self_result["why"])
+    no_bypass = atoms_from({"atkSelfDamage": [dict(self_spec, bypassDefenses=False)]}, "GX.item|Scourge")
+    check("12l NEG self damage without bypass grants no RES/IMM atom", not any(a.cls in ("RES", "IMM") for a in no_bypass))
+    self_missing = analyze(synth("item", "dmg", "Scourge", self_text, []))[0]
+    check("12m NEG removed self damage loses computed coverage", self_missing["status"] == "info" and self_missing["why"] == "ACTIVE:TRIGGER", self_missing["why"])
     check("12h metadata-only override retains row fx", item_effect_override({"atk": 3}, {"base": ["Mace"]}) == ({"atk": 3}, False, False), "metadata must not create FXO_NULL")
     check("12i explicit null override removes row fx", item_effect_override({"atk": 3}, {"fx": None}) == (None, True, True), "explicit null only")
     check("12j replacement effect overrides row fx", item_effect_override({"atk": 3}, {"fx": {"atk": 1}}) == ({"atk": 1}, True, False), "replacement fx")

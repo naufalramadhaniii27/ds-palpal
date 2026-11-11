@@ -184,7 +184,7 @@ const FXS16A={};
   FXENV.__miRollKey=function(){ return FXS16A.HK||FXS16A.rk(); };
   /* T11 D2: the dice a roll needs, in order. With 3D dice (25-dice3d) the values are decided first and the dice on screen
      land on them. Without them (Motion off, Calm, no WebGL, the bundle failed) they come from crypto.getRandomValues as before */
-  function diceOf(spec,mode){ if(spec.dmg){ const L=[]; FXS16A.parseDmg(spec.dmg).forEach((q) =>{ if(q.f){ const n=q.n*(mode==="crit"?2:1); for(let i=0;i<n;i++) L.push(q.f); } }); return L; } return mode?[20,20]:[20]; }
+  function diceOf(spec,mode){ if(spec.dmg){ const L=[]; FXS16A.parseDmg(FXS16A.damageExpressionFor(spec,mode)).forEach((q) =>{ if(q.f){ const n=q.n*(mode==="crit"?2:1); for(let i=0;i<n;i++) L.push(q.f); } }); return L; } return mode?[20,20]:[20]; }
   FXS16A.doRoll=function doRoll(spec,mode,label,cb){ const need=diceOf(spec,mode), go=function(vals,three){ const r=FXS16A.finish(spec,mode,label,vals); r.three=!!three; FXS16A.after(r); if(cb) cb(r); };
     if(FXENV.__dice3d&&!FXS16A.calm()&&need.length&&need.length<=12){ FXENV.__dice3d.roll(need).then((v) =>{ go(v&&v.length===need.length?v:need.map((f) =>{ return d(f); }),!!v); },() =>{ go(need.map((f) =>{ return d(f); }),false); }); return null; }
     const r=FXS16A.finish(spec,mode,label,need.map((f) =>{ return d(f); })); FXS16A.after(r); if(cb) cb(r); return r; };;
@@ -206,7 +206,7 @@ const FXS16A={};
   if(!MI||!document.body.animate) return;
   const {nf,rm,vis,esc,fx,ls,st}=FXH;
   ;
-  function bar(){ const sh=FXS16A.D.getElementById("sheet"), body=FXS16A.D.getElementById("sheetBody"); if(!sh||!body||!sh.classList.contains("on")||!FXS16A.last||Date.now()-FXS16A.last.t>4000) return; if(body.querySelector(".mi-roll")) return;
+  function bar(){ const sh=FXS16A.D.getElementById("sheet"), body=FXS16A.D.getElementById("sheetBody"); if(!sh||!body||!sh.classList.contains("on")||!FXS16A.last||Date.now()-FXS16A.last.t>4000) return; if(body.querySelector('.mi-roll,[data-roll-controls="own"]')) return;
     const spec=FXS16A.rollSpec(FXS16A.last.k,FXS16A.last.el,FXS16A.last.txt); if(!spec) return; const lab=((FXS16A.D.getElementById("sheetTitle")||{}).textContent||"Roll").replace(/\s+/g," ").trim().slice(0,60);
     let h=FXS16A.barHtml(spec);
     const bh=FXS16A.barHint(spec), hint=bh.hint, hh=bh.hh;

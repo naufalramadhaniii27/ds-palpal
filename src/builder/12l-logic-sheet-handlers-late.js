@@ -121,6 +121,9 @@ registerSheetGroup({id:"fx-atk-dice",group:"late",phase:"late",order:140,scope:"
     if(rows.length)rows.forEach(function(r){if(x.roll!==true||acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"dice"))appendAttackRider(r,x,e.lbl)});
     else{C.defenses=C.defenses||[];C.defenses.push({t:"Note",v:(x.note||"Extra damage on "+(/^(weapon|spell|unarmed)$/.test(x.when)?x.when+" attacks":x.when))+": +"+x.d+(x.t?" "+x.t:""),s:e.lbl})}});
   return ctx.patch()}});
+registerSheetGroup({id:"fx-attack-self-damage",group:"late",phase:"late",order:145,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar","i.ESH","i.EA","q.fxOk","q.baseOf","C.attacks","l.itemWeaponEffects"],writes:["C.attacks","l.itemWeaponEffects"],
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,e=ctx.p;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;
+  (e.atkSelfDamage||[]).forEach(function(x,xi){pickRowsOf(C,Q,x.when).forEach(function(r){if(!acceptItemWeaponEffect(ctx,Q,e,x,xi,r,"self"))return;const spec={normal:x.normal,critical:x.critical,type:x.type,bypassDefenses:x.bypassDefenses,s:e.lbl};if(e.kind==="item"){spec.item=e.owner;spec.unattuned=e.itemState==="unattuned"}(r.selfDamage=r.selfDamage||[]).push(spec)})});return ctx.patch()}});
 registerSheetGroup({id:"fx-save-notes",group:"late",phase:"late",order:150,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.saveNotes", "q.fxOk"],writes:["C.saveNotes"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const pushSN=function(t,s){C.saveNotes=C.saveNotes||[];if(!C.saveNotes.some(function(y){return y.t===t&&y.s===s}))C.saveNotes.push({t:t,s:s})};   /* fx engine v4: saveNote [text] = a line under Saving Throws (death save bonus, "Advantage on saves against being Frightened"); advOn texts that mention saves are copied there too, next to the Defenses note */
    (e.saveNote||[]).forEach(function(t){pushSN(t,e.lbl)});(e.advOn||[]).forEach(function(t){if(/sav(e|ing)/i.test(t))pushSN("Advantage on "+t,e.lbl)});
@@ -137,7 +140,7 @@ registerSheetGroup({id:"fx-unarmed",group:"late",phase:"late",order:170,scope:"e
      if(d&&(q.force||dieAvg(d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=d}
      if(q.t)r.type=q.t;if(q.magic)r.note=(r.note?r.note+" ":"")+"Counts as magical ("+e.lbl+")."})}
   return ctx.patch()}});
-function drDice(e,x,r){if(x.d&&(!x.up||dieAvg(x.d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=x.d}
+function drDice(e,x,r){if(x.d&&(!x.up||dieAvg(x.d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=x.d;if(x.critD)r.critDie=x.critD;else delete r.critDie}
      if(x.t){r.typeSrc=e.lbl+(r.type?" (instead of "+r.type+")":"");r.type=x.t}}
 function drFinesse(a,e,x,r){if(x.finesse&&(r.ab==="STR"||r.ab==="DEX")&&!/Finesse/.test(r.sub||"")){r.sub=(r.sub?r.sub+" \u2022 ":"")+"Finesse";if(a.sc.DEX>a.sc.STR&&r.ab==="STR"){r.ab="DEX";r.abSrc=e.lbl}}}
 function drRow(a,Q,e,x,r){if(x.from&&r.die!==x.from)return;if(x.cat){const w0=weaponDef(Q.baseOf(r.n).b);if(!w0||w0.cat!==x.cat)return}
@@ -248,7 +251,7 @@ registerSheetGroup({id:"fx-toggles",group:"late",phase:"post",order:70,reads:["q
 registerSheetGroup({id:"fx-target-controls",group:"late",phase:"post",order:71,reads:["q.fxTargets"],writes:["C.fxTargets"],
  run:function(ctx){const rows=ctx.q.fxTargets();if(rows.length)ctx.C.fxTargets=rows;return ctx.patch()}});
 
-function appendAttackRider(r,x,source){const packet={d:x.d,t:x.t||"",s:source};if(x.roll===true)packet.roll=true;if(x.typeFrom==="weapon")packet.typeFrom="weapon";(r.xdice=r.xdice||[]).push(packet);const typeLabel=x.typeFrom==="weapon"?"of the weapon’s damage type":x.t;r.note=(r.note?r.note+" ":"")+"Extra damage: +"+x.d+(typeLabel?" "+typeLabel:"")+" ("+source+")."+(x.note?" "+x.note:"")}
+function appendAttackRider(r,x,source){const packet={d:x.d,t:x.t||"",s:source};if(x.roll===true)packet.roll=true;if(x.critD)packet.critD=x.critD;if(x.typeFrom==="weapon")packet.typeFrom="weapon";(r.xdice=r.xdice||[]).push(packet);const typeLabel=x.typeFrom==="weapon"?"of the weapon’s damage type":x.t;r.note=(r.note?r.note+" ":"")+"Extra damage: +"+x.d+(typeLabel?" "+typeLabel:"")+" ("+source+")."+(x.note?" "+x.note:"")}
 
 function setAttackCriticalRange(row,value){const n=+value;if(Number.isInteger(n)&&n>=2&&n<=20)row.critRange=Math.min(row.critRange||20,n)}
 

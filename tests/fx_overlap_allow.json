@@ -282,14 +282,6 @@
   "reason": "fx-D-item gives Draconic Majesty (AC from Charisma); fx-L7 gives Damage Absorption, Dragon Sight, Tongue and Legendary Resistance (different features).",
   "shared": []
  },
- "GX.item|Scourge of Shadow": {
-  "files": [
-   "fx-L2.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
  "GX.item|Staff of Thunder and Lightning": {
   "files": [
    "fx-L5.js",

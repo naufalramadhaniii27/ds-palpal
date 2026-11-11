@@ -139,6 +139,7 @@
     "app/08-ui-render-sheet-and-actions.js",
     "app/08b-ui-render-summaries-actions.js",
     "app/08c-ui-render-inventory-features-notes.js",
+    "app/08d-ui-attack-self-damage.js",
     "app/09-ui-hit-points-playbar-death-saves.js",
     "app/10-ui-conditions.js",
     "app/11-ui-breakdown.js",

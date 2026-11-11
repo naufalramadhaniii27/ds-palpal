@@ -45,6 +45,7 @@ try:
    page.evaluate("()=>document.querySelector('[data-info=\"it:0\"]').click()")
    page.locator('[data-iatts="Hazirawn"]').click();page.wait_for_function("()=>__sheetState().C.inv[0].attuned===false")
    ok=page.evaluate("()=>__sheetState().C.attacks.find(a=>a.n==='Hazirawn').misc===1");checks.append(ok);print('UI end attunement bonus',width,ok,flush=True)
+   page.wait_for_function("""()=>{const c=JSON.parse(localStorage.getItem('yudhi-kelapa-build-v3')||'{}'),b=JSON.parse(localStorage.getItem('phb24-builder-v1')||'{}');return c.name==='Attunement controls'&&c.inv[0].attuned===false&&b.name==='Attunement controls'&&b.inv[0].attuned===false}""")
    page.reload();page.wait_for_function('()=>!!window.__deferDone')
    ok=page.evaluate("()=>__sheetState().C.inv[0].attuned===false");checks.append(ok);print('UI reload preserves state',width,ok,flush=True)
    checks.append(not errors);print('page errors',errors,flush=True);page.close()

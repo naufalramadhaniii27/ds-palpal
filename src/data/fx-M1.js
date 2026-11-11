@@ -15,7 +15,12 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  I("Gurt's Greataxe",{dieReplace:[{when:"Gurt's Greataxe",d:"3d12"}],atkDice:[{when:"Gurt's Greataxe",d:"2d12",t:"Slashing",note:"Extra damage if the target is human"}]});
  I("Frozen Dagger",{dieReplace:[{when:"Frozen Dagger",t:"Cold"}]});
  I("Ranseur of Torture",{dieReplace:[{when:"Ranseur of Torture",d:"2d10"}]});
- I("Scourge of Shadow",{n:"Scourge of Shadow: damage",dieReplace:[{when:"Scourge of Shadow",d:"3d4",t:"Slashing"}]});
+ I("Scourge of Shadow",{n:"Fast Reflexes",itemState:"attuned",init:"CHA",initAdv:true});
+ I("Scourge of Shadow",{n:"Veil of Shadow",res:["Radiant","Necrotic"]});
+ I("Scourge of Shadow",{n:"Fast Reflexes",atkAb:{kind:"Scourge of Shadow",ab:"CHA"}});
+ I("Scourge of Shadow",{n:"Scourge of Shadow",itemState:"wielded",target:{creature:true,alignment:"Good"},atkDice:[{when:"Scourge of Shadow",d:"4d4",critD:"4d6",t:"Necrotic",roll:true}]});
+ I("Scourge of Shadow",{n:"Scourge of Shadow: backlash",itemState:"unattuned",atkSelfDamage:[{when:"Scourge of Shadow",normal:"2d4",critical:"2d6",type:"Necrotic",bypassDefenses:true}]});
+ I("Scourge of Shadow",{n:"Scourge of Shadow: damage",itemState:"wielded",dieReplace:[{when:"Scourge of Shadow",d:"3d4",critD:"3d6"}],atkBonus:[{when:"Scourge of Shadow",crit:18}]});
  I("Sun Blade",{dieReplace:[{when:"Sun Blade",t:"Radiant",finesse:true}]});
  I("Sunsword",{dieReplace:[{when:"Sunsword",t:"Radiant",finesse:true}]});
  I("Sword of Resonance",{n:"Sword of Resonance: Finesse",dieReplace:[{when:"Sword of Resonance",finesse:true}]});

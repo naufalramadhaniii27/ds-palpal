@@ -1,3 +1,42 @@
+# Uncovered 3: critical dice and separate attack self damage
+
+This batch closes 10 more original sentence IDs: 216 closed in total, 5,244 uncovered, and 0 regressed IDs. Covered is 7,917, info remains 23,621, allow remains 0. Work continues after this checkpoint.
+
+Scourge of Shadow now computes its +3/3d4 weapon damage while wielded, including without attunement, and its extra 4d4 Necrotic only against a Good creature. Its critical attack upgrades the base to 3d6 and the Good-target rider to 4d6 before ordinary critical doubling: the actual critical roll is 6d6 plus the unchanged flat modifier, with 8d6 Necrotic against a Good creature. A natural 18 is recognized as critical. Unknown alignment, an Object, or a non-Good creature grants no Good-target rider.
+
+An unattuned wielder has a separate self-damage resolve control, including after an attack that missed. It rolls 2d4 normally or 2d6 after a critical attack. This separate self damage is not doubled again and is never mixed into damage to the target. Opening the panel or rolling changes no HP. Apply uses the existing damage operation exactly once, including temporary HP absorption, concentration/death-save handling, undo and save. It applies the full amount despite resistance/immunity, as the explicit source policy requires. A character change, stowing the source or attuning it invalidates an open resolve panel.
+
+The ten closures are the +3/3d4 weapon clause, Good-target 4d4, unattuned self damage/bypass, critical base upgrade, and critical Necrotic die-face upgrade, each in the DMG and CoA copies. Source prose is unchanged. Initiative already added Charisma to Dexterity correctly; no replacement initiative model was introduced. The explicit while-attuned Fast Reflexes benefit now retains its lifetime when stowed, and the existing attack-ability mechanism chooses Charisma when higher than the Whip's Strength/Dexterity options. The existing Veil resistance gate remains used-and-attuned; the malformed lighting clause is still unresolved.
+
+- Nested `dieReplace[].critD` and opt-in `atkDice[].critD` validate literal normal/critical dice. They produce optional critical expressions in typed packets. Die faces are selected consistently before random/3D rolls and result aggregation; flat bonuses are unchanged. Critical result/history expressions show the actual doubled dice. Ordinary packet shape and explicit manual damage overrides remain compatible. A later winning base-die replacement clears a stale critical override.
+- `atkSelfDamage` is a declared FX field with a source-scoped handler and strict normal/critical/type/bypass schema. Output metadata and temporary popup state introduce no builder input change or storage-key rename. The UI rechecks owner, source and effective inventory state; the existing HP operation avoids a second damage/temporary-HP implementation.
+- Scourge keeps the Whip's native Slashing type without redundantly forcing it after class overrides. The 2024 Pact of the Blade's Necrotic/Psychic/Radiant choice therefore survives, including while unattuned; its Good-target rider remains fixed Necrotic.
+- Scourge's six GX entries are consolidated in fx-M1. Loader evidence confirms identical payload and entry order after relocation. The obsolete cross-file overlap exemption was removed rather than expanded. Static unattuned potency stays in the separate FXO metadata table.
+- The custom resolve panel owns its roll controls, preventing the prior attack's generic d20 bar from being inserted. Its input and controls were visually checked at both viewports.
+
+The gate now recognizes the actual self-damage field and its explicit defense-bypass policy. New critical fields provide separate normal/critical amounts, like existing multi-part charge fields, and the literal die-face representation for an explicit upgrade. Six synthetic checks cover independent amounts, bare die faces, missing upgrades, supported bypass and removal of the computed record. No status rule or allowlist was relaxed; unsupported/missing upgrades receive no computed credit.
+
+## Validation
+
+| Check | Result |
+|---|---|
+| build / syntax / pure model | PASS; generated index.html/sw.js; strict dice/schema checks, normal/critical packet grouping, same-type base/rider, negative and unchanged flat modifiers, ordinary packet compatibility |
+| zero_miss_fx | PASS; 814 full-suite cases, 23 U24 additions across both editions, target matrix, attuned/unattuned, duplicate/empty/stowed source, separate weapon, additive initiative and three Pact damage choices. All 23 affected cases also pass after data consolidation |
+| critical lifecycle | PASS; 74 checks at 390x844 and 1250x850, actual normal/critical buttons and die faces, natural18, a missed attack, separate self rolls, full bypass despite test defenses, tempHP, apply-once and stale owner/attunement/stow guards; screenshots reviewed |
+| target / consumable / rider / attunement lifecycle | PASS; 128 / 68 / 28 / 82 checks. Reload assertions wait for actual debounced writes, including builder/sheet attunement state |
+| zero_miss_measure | PASS; 752 units, miss 0 in both editions, 0 new miss/card-or-miss |
+| clause_gate | PASS; 5,244 uncovered, 216 closed from the initial 5,460, 0 regressed IDs; baseline written only by the gate |
+| audit | Seed 11, 150 sorted closed IDs; 39 newly selected entries reviewed. All ten new closures were checked against normal/critical/unattuned behavior and source text |
+| solid_contract | PASS; 4,897 checks, entry/ability/sheet handlers 10/9/4, 204,756 runs, 6,738 patches, 2,624 entries; 183 sheet groups, 53 class rules, 8,837 calls, 236 handlers, 4,505 schema entries |
+| golden / UI / data | PASS; 1,479 / 308 / 586 checks |
+| full snapshot | PASS; 2,997 builds, `21f043c645d5383e`, 0 page/build errors. Only `fx_M1_scourge_3d4` differs from 325dfa70: 15 paths, all critical/target metadata or source labels. Its ordinary damage remains `3d4+6` and initiative remains 1. Strict raw C/D review finds no unexpected changes; identical six-entry data/order and a fresh Scourge hash check verify the final relocation |
+| snapshot versus main | The same 567 changed builds as before this batch; the Scourge fixture was already in that set |
+| builderdiff | PASS; 3,890 inputs, `b1c47d6ea6dc914d`, identical to 325dfa70. Comparison to immutable main `c47961d793b8c15b` retains exactly the same 665 previously audited migration/eligibility differences; the main cache was preserved from the real --base run |
+| scenarios | PASS; 24 checks at both viewports, s1/s2/s3 screenshots and storage artifacts |
+| tsc / HTML / overlap / guards | PASS; SCORE 200 with no WORSE / SCORE 250 / 1,381 names in 32 files, 156 documented overlaps / 0 new violations |
+
+Remaining counts: item 2,986, subclass 1,328, feat 524, class 237, species 169, spells 0. Scourge's random-property rolls and its malformed “in 2 or darkness” lighting condition remain unresolved; no invented meaning was assigned to that text.
+
 # Uncovered 3: more target-qualified weapon rolls
 
 This batch closes 4 more original sentence IDs: 206 closed in total, 5,254 uncovered, and 0 regressed IDs. Covered is 7,907, info 23,621, allow 0. Work continues after this checkpoint.

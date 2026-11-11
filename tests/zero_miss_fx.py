@@ -2564,6 +2564,22 @@ for type_ in ["","Object","Undead","Fiend"]:
         CASES.append(dict(name=("Z3" if active else "NEG")+" U23 Lightbringer glow "+str(on)+" "+type_,b=dict(cls="Fighter",level=4,inv=[dict(n="Lightbringer",q=1,eq=True),dict(n="Longsword",q=1,eq=True)]),target={"type":type_},tog={"lightbringer-glow":on},expect=[("!!C.attacks[1].xdice",active),("C.attacks[1].misc",1),("!!C.attacks[2].xdice",False)],allow=[r"^attacks\.1\.xdice\.\d+\.(d|t|s|roll)$",r"^attacks\.1\.note$",r"^fxToggles\.0\.on$"]))
 CASES.append(dict(name="NEG U23 Lightbringer stowed while glowing",b=dict(cls="Fighter",level=4,inv=[dict(n="Lightbringer",q=1,eq=False)]),target={"type":"Undead"},tog={"lightbringer-glow":True},expect=[("C.attacks.length",1)],allow=[]))
 
+# U24: critical dice upgrade before doubling, with separate attacker damage.
+for rs in ["2024","2014"]:
+    for attuned in [False,True]:
+        for target in [{},{"type":"Creature","alignment":"Good"},{"type":"Object","alignment":"Good"},{"type":"Creature","alignment":"Evil"}]:
+            good=target.get("type")=="Creature" and target.get("alignment")=="Good"
+            checks=[("C.attacks[1].die","3d4"),("C.attacks[1].critDie","3d6"),("C.attacks[1].critRange",18),("C.attacks[1].misc",3),("C.attacks[1].ab","CHA" if attuned else "STR"),("!!C.attacks[1].selfDamage",not attuned),("!!C.attacks[1].xdice",good),("!!C.attacks[2].critDie",False),("!!C.attacks[2].selfDamage",False),("!!C.attacks[2].xdice",False),("__deriveFor(C).init===__deriveFor(C).mod.DEX+"+("__deriveFor(C).mod.CHA" if attuned else "0"),True),("__deriveFor(C).atk[1].damageParts[0].critExpr.startsWith('3d6')",True)]
+            if good:checks += [("C.attacks[1].xdice[0].d","4d4"),("C.attacks[1].xdice[0].critD","4d6"),("__deriveFor(C).atk[1].damageParts[1].critExpr","4d6")]
+            if not attuned:checks += [("C.attacks[1].selfDamage[0].normal","2d4"),("C.attacks[1].selfDamage[0].critical","2d6"),("C.attacks[1].selfDamage[0].bypassDefenses",True)]
+            CASES.append(dict(name="Z3 U24 Scourge "+rs+" attuned "+str(attuned)+str(target),b=dict(rs=rs,cls="Fighter",level=4,base={"STR":15,"DEX":14,"CON":13,"INT":12,"WIS":10,"CHA":18},inv=[dict(n="Scourge of Shadow",q=1,eq=True,attuned=attuned),dict(n="Longsword",q=1,eq=True)]),target=target,expect=checks))
+for q,eq in [(0,True),(1,False)]:
+    CASES.append(dict(name="NEG U24 Scourge unavailable "+str((q,eq)),b=dict(cls="Fighter",level=4,inv=[dict(n="Scourge of Shadow",q=q,eq=eq,attuned=False)]),target={"type":"Creature","alignment":"Good"},expect=[("C.attacks.length",1)]))
+CASES.append(dict(name="Z3 U24 duplicate Scourge one self packet",b=dict(cls="Fighter",level=4,inv=[dict(n="Scourge of Shadow",q=1,eq=True,attuned=False),dict(n="Scourge of Shadow",q=1,eq=True,attuned=False)]),target={"type":"Creature","alignment":"Good"},expect=[("C.attacks[1].selfDamage.length",1),("C.attacks[1].xdice.length",1),("C.attacks[1].misc",3)]))
+CASES.append(dict(name="Z3 U24 stowed attunement retains Fast Reflexes",b=dict(cls="Fighter",level=4,base={"STR":15,"DEX":14,"CON":13,"INT":12,"WIS":10,"CHA":18},inv=[dict(n="Scourge of Shadow",q=1,eq=False,attuned=True)]),expect=[("C.attacks.length",1),("C.inv[0].attunedActive",True),("__deriveFor(C).init===__deriveFor(C).mod.DEX+__deriveFor(C).mod.CHA",True)]))
+
+for damage_type in ["Necrotic","Psychic","Radiant"]:
+    CASES.append(dict(name="Z3 U24 Pact Scourge retains "+damage_type,b=dict(cls="Warlock",level=4,base=WL,ch={"invocation":["Pact of the Blade"],"pactWep":["Scourge of Shadow"],"pactDmg":[damage_type]},inv=[dict(n="Scourge of Shadow",q=1,eq=True,attuned=False)]),target={"type":"Creature","alignment":"Good"},expect=[("C.attacks[1].type",damage_type),("C.attacks[1].ab","CHA"),("C.attacks[1].critDie","3d6"),("C.attacks[1].xdice[0].t","Necrotic"),("C.attacks[1].selfDamage[0].critical","2d6"),("__deriveFor(C).atk[1].damageParts[0].type",damage_type)]))
 # The lazy rule-link index must settle before comparing inventory HTML. Keep the
 # HTML comparison strict; wait out the documented 250ms link-index cache.
 # Warming does not permit any additional changed paths.
