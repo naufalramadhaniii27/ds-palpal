@@ -16105,11 +16105,13 @@
     "AUTO",
     "CANT",
     "CLS_AUTO",
+    "DEF_SP",
     "MC_GRANT",
     "MC_REQ",
-    "PREP"
+    "PREP",
+    "SP_AUTO"
    ],
-   "count": 6
+   "count": 8
   },
   {
    "from": "data/tp16-tvss14.js",
@@ -16145,6 +16147,15 @@
    "import": false,
    "names": [
     "ACTS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp16-tvss14.js",
+   "to": "data/spfull-spell-text.js",
+   "import": false,
+   "names": [
+    "SPELL_FULL"
    ],
    "count": 1
   },

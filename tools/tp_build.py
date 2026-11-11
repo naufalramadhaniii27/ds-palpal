@@ -41,7 +41,7 @@ BOOKS = [
  {"id": "thhw", "file": ["Hit Point Press; Humblewood Campaign Setting.json", "Hit Point Press; Humblewood Tales.json"],
   "tag": "HWCS", "name": "Humblewood", "pub": "Hit Point Press", "ed": "2014", "sub": "thhw_sub", "bg": "thhw_bg", "feat": "thhw_feat", "spell": "thhw_spell", "item": "thhw_item", "species": "thhw_species", "alias": "Humblewood"},
  {"id": "tvss14", "file": "Mage Hand Press; Valda's Spire of Secrets - 2014.json", "tag": "VSS14", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2014",
-  "sub": "tvss14_sub", "feat": "tvss14_feat", "species": "tvss14_species", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger", "channeler"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
+  "sub": "tvss14_sub", "feat": "tvss14_feat", "species": "tvss14_species", "spell": "tvss14_spell", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger", "channeler"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
   "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Investigator": "Investigator (2014)", "Martyr": "Martyr (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}},
 ]
 LV = {"1": 1, "2": 2}
@@ -65,6 +65,14 @@ def alias(bk, n):
         _CORE.append(t)
     r = "%s (%s)" % (n, bk["alias"]) if (('"%s"' % n) in _CORE[0] or _SEEN.get(n, bk["id"]) != bk["id"]) else n
     _SEEN.setdefault(r, bk["id"]); return r
+
+_TWINN = {}
+def twinname(bk, n, kind):
+    """2014 book with a 2024 twin of the same title: an entry whose name the twin also has carries (2014), in every build order."""
+    if not bk.get("twin"): return n
+    k = (bk["id"], kind)
+    if k not in _TWINN: _TWINN[k] = set(x["name"] for x in load(bk["twin"]).get(kind, []))
+    return n + " (2014)" if n in _TWINN[k] else n
 
 def title(s):
     s = s.split("|")[0]
@@ -241,7 +249,7 @@ def feat_records(bk, data, M):
         rec = {"cat": r.get("cat", "G"), "hb": bk["tag"], "d": r["d"], "full": r["full"]}
         for k in ("pre", "asi", "fx", "pick", "needs"):
             if k in r: rec[k] = r[k]
-        n0 = n; n = alias(bk, n); out[n] = rec
+        n0 = n; n = alias(bk, twinname(bk, n, "feat")); out[n] = rec
         if r.get("dm"): FDM[n] = r["dm"]
         if r.get("lu"):
             l = r["lu"]; lus.append({"src": "feat", "owner": n, "feature": n, "n": l["n"], "lvl": 1, "max": l["max"], "reset": l["reset"], "tag": l.get("tag", "")})
@@ -354,8 +362,14 @@ def spell_meta(s):
     return [s["name"], s["level"], SCH[s["school"]], sorted(set(cl)), cast, _dist(s["range"]), comp, dur, conc, rit, AB.get(sv, "")]
 
 def spell_records(bk, data, M):
-    src = {x["name"]: x for x in data.get("spell", [])}
+    from collections import Counter as _C
+    _cnt = _C(x["name"] for x in data.get("spell", []))
+    src = {(x["name"] if _cnt[x["name"]] == 1 else "%s|%s" % (x["name"], x["level"])): x for x in data.get("spell", [])}      # same name twice in a book: key "Name|level", shown as "Name (Level N)"
     rows = []
+    _cs = {}                    # classSpells of the book's classes: spell name (lowercase) -> the app names of the classes that list it
+    for _c in data.get("class", []):
+        for _e in _c.get("classSpells", []):
+            _cs.setdefault(_e.split("|")[0].strip().lower(), set()).add(bk.get("clsmap", {}).get(_c["name"], _c["name"]))
     T = getattr(M, "TEXT", None)
     if T is None:
         names = set(src)
@@ -371,7 +385,7 @@ def spell_records(bk, data, M):
         if isinstance(tx, str):
             import re as _re
             m_ = _re.match(r"(.{40,200}?[.!?])(\s|$)", tx.replace("**", "")); tx = [(m_.group(1) if m_ else tx[:200]).strip(), tx]
-        r = spell_meta(src[n]); r[0] = alias(bk, n); r.append(tx[0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[r[0]] = tx[1]
+        r = spell_meta(src[n]); r[0] = alias(bk, twinname(bk, n if "|" not in n else "%s (Level %s)" % tuple(n.split("|")), "spell")); r[3] = sorted(set(bk.get("clsmap", {}).get(c, c) for c in r[3]) | _cs.get(src[n]["name"].lower(), set())); r.append(tx[0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[r[0]] = tx[1]
     for n in sorted(set(src) - set(T)): GAP.append((bk["tag"], "spell", n, "no overlay text, spell not built"))
     return rows, full
 
