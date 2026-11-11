@@ -45,6 +45,8 @@ BOOKS = [
   "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Investigator": "Investigator (2014)", "Martyr": "Martyr (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}}, {"id": "tdm14", "monsters": True, "vehicles": "tdm14_vehicle", "file": "Mage Hand Press; Dark Matter - 2014.json", "tag": "DM14", "name": "Dark Matter", "pub": "Mage Hand Press", "ed": "2014",
   "sub": "tdm14_sub", "feat": "tdm14_feat", "spell": "tdm14_spell", "species": "tdm14_species", "bg": "tdm14_bg", "item": "tdm14_item", "alias": "DM14", "cls": ["gadgeteer"], "clspre": "tvc14_", "twin": "Mage Hand Press; Dark Matter - 2024.json", "subsfx": " (2014)",
   "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}},
+ {"id": "tgh14p", "monsters": True, "file": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2014.json", "tag": "GHPG14", "name": "Grim Hollow Player's Guide", "pub": "Ghostfire Gaming", "ed": "2014",
+  "sub": "tgh14p_sub", "spell": "tgh14p_spell", "item": "tgh14p_item", "species": "tgh14p_species", "bg": "tgh14p_bg", "trans": "tgh14p_trans", "alias": "GH14", "twin": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2024.json", "subsfx": " (2014)"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -200,12 +202,16 @@ def _featname(bk, n, M=None):
 def trans_records(bk, data, M2):
     """Transformations of Grim Hollow: one feat per stage (pick the stage Boons, the Flaws are listed). T = {name: {intro, stages: {n: {rule, take, fixed}}, opt: {optname: text}}}, GIFTS = {name: text}."""
     T = M2.TRANS; out = {}; acts = {}
+    SL = "Level" if bk["ed"] == "2014" else "Stage"
     by = {}                                   # transformation name -> stage -> {"B": [...], "F": [...]}
     for o in data.get("optionalfeature", []):
         ft = [t for t in o["featureType"] if t.endswith(":TB") or t.endswith(":TF")]
         if not ft: continue
         txt = json.dumps(o.get("prerequisite", ""))
         m = re.search(r"Stage (\d+) of the \{@charoption ([^|}]+)", txt)
+        if not m:
+            m14 = re.search(r"(\d+)(?:st|nd|rd|th) Level of ([A-Za-z ]+?) Transformation", txt)
+            if m14: m = type("M", (), {"group": lambda self, i, a=m14: {1: a.group(1), 2: a.group(2)}[i]})()
         if not m: GAP.append((bk["tag"], "transformation", o["name"], "no stage in the prerequisite")); continue
         by.setdefault(m.group(2), {}).setdefault(int(m.group(1)), {"B": [], "F": []})["B" if ft[0].endswith("TB") else "F"].append(o["name"])
     for nm in sorted(by):
@@ -220,18 +226,18 @@ def trans_records(bk, data, M2):
             rest = [n for n in sd["B"] if n not in fixed]
             full = ""
             if st == 1 and t.get("intro"): full += t["intro"] + "\n"
-            full += "**Stage %d.** %s" % (st, rule["rule"])
+            full += "**%s %d.** %s" % (SL, st, rule["rule"])
             for n in fixed: full += "\n**%s (Boon).** %s" % (n, t["opt"].get(n, ""))
             for n in sd["F"]: full += "\n**%s (Flaw).** %s" % (n, t["opt"].get(n, ""))
-            rec = {"cat": "G", "hb": bk["tag"], "d": rule.get("d") or ("%s Transformation, stage %d. %s" % (nm, st, rule["rule"]))[:170], "full": full}
-            if st > 1: rec["pre"] = "Stage %d of the %s Transformation" % (st - 1, nm)
+            rec = {"cat": "G", "hb": bk["tag"], "d": rule.get("d") or ("%s Transformation, %s %d. %s" % (nm, SL.lower(), st, rule["rule"]))[:170], "full": full}
+            if st > 1: rec["pre"] = "%s %d of the %s Transformation" % (SL, st - 1, nm)
             else: rec["pre"] = "Your GM allows the %s Transformation" % nm
             if rest and rule.get("take", 0) > 0:
-                rec["pick"] = [{"k": "tr%s%d" % (re.sub("[^A-Za-z]", "", nm), st), "t": "multi", "n": rule["take"], "title": "%s stage %d Boons" % (nm, st),
+                rec["pick"] = [{"k": ("t14" if SL == "Level" else "tr") + "%s%d" % (re.sub("[^A-Za-z]", "", nm), st), "t": "multi", "n": rule["take"], "title": "%s %s %d Boons" % (nm, SL.lower(), st),
                                 "list": [[n, t["opt"].get(n, "")] for n in rest]}]
             elif rest: 
                 for n in rest: rec["full"] += "\n**%s (Boon).** %s" % (n, t["opt"].get(n, ""))
-            out["%s Transformation: Stage %d" % (nm, st)] = rec
+            out["%s Transformation: %s %d" % (nm, SL, st)] = rec
     gods = [o["name"] for o in data.get("optionalfeature", []) if "GoD" in o["featureType"]]
     G = getattr(M2, "GIFTS", {})
     for n in gods:
@@ -290,7 +296,7 @@ def item_records(bk, data, M):
 
 DMGT = {"B": "Bludgeoning", "P": "Piercing", "S": "Slashing", "N": "Necrotic", "R": "Radiant", "O": "Force", "F": "Fire", "L": "Lightning", "I": "Poison", "Y": "Psychic", "T": "Thunder", "A": "Acid", "C": "Cold"}
 PROP = {"A": "Ammunition", "F": "Finesse", "H": "Heavy", "L": "Light", "LD": "Loading", "R": "Reach", "T": "Thrown", "2H": "Two-Handed", "V": "Versatile", "RLD": "Reload", "Alc:D": "Destructible", "GC:VSS-B": "Blaster", "GC:VSS-C": "Cooldown", "Craft:R": "Reload", "HC": "High Caliber", "AP": "Armor-Piercing", "BP": "Blackpowder", "CS": "Cumbersome", "D": "Double", "Dam": "Damage", "Haft": "Hafted", "Mag": "Magazine", "Mom": "Momentum", "Rep": "Repeater", "SGttEH:Art": "Artillery", "SGttEH:Bar": "Barrel", "SGttEH:Bla": "Blaring", "SGttEH:Boo": "Booming", "SGttEH:FnFr": "Fan Fire", "SGttEH:Sdy": "Steady", "SGttEH:SpFr": "Spread Fire", "SGttEH:TwBar": "Twinned Barrel", "TK": "Trick Weapon", "DM-B": "Blaster", "DM-C": "Cooldown", "DM-D": "Destructible", "DM-F": "Firearm", "DM-R": "Recoil"}
-PROP14 = {"AU": "Automatic", "CO": "Concealable", "DR": "Dry", "DU": "Double", "EL": "Elegant", "EX": "Explosive", "FG": "Foregrip", "FI": "Fist", "HT": "Heat", "LO": "Loading", "MA": "Massive", "MO": "Mounted", "MS": "Misfire", "PA": "Parrying", "RE": "Returning", "RO": "Rocket", "SC": "Scatter", "SH": "Superheavy", "ST": "Sighted", "TE": "Tension", "TR": "Trip", "TW": "Twinshot", "XO": "Exotic", "SW": "Switch", "BLSTR": "Blaster", "SCTR": "Scatter", "SGT": "Sighted", "MNT": "Mounted", "OH": "Overheat", "NL": "Nonlethal", "FST": "Fist"}      # properties of the 2014 Valda and Dark Matter books (only read for 2014 books)
+PROP14 = {"AU": "Automatic", "CO": "Concealable", "DR": "Dry", "DU": "Double", "EL": "Elegant", "EX": "Explosive", "FG": "Foregrip", "FI": "Fist", "HT": "Heat", "LO": "Loading", "MA": "Massive", "MO": "Mounted", "MS": "Misfire", "PA": "Parrying", "RE": "Returning", "RO": "Rocket", "SC": "Scatter", "SH": "Superheavy", "ST": "Sighted", "TE": "Tension", "TR": "Trip", "TW": "Twinshot", "XO": "Exotic", "SW": "Switch", "BLSTR": "Blaster", "SCTR": "Scatter", "SGT": "Sighted", "MNT": "Mounted", "OH": "Overheat", "NL": "Nonlethal", "FST": "Fist", "ADV_AP": "Armor Piercing", "ADV_B": "Brutal", "ADV_BP": "Blackpowder", "ADV_C": "Cumbersome", "ADV_DBL": "Double", "ADV_DEF": "Defending", "ADV_DIS": "Disarming", "ADV_DMG": "Damage", "ADV_ENT": "Entangling", "ADV_G": "Guard", "ADV_HFT": "Hafted", "ADV_M": "Momentum", "ADV_MAG": "Magazine", "ADV_MON": "Monk", "ADV_PRC": "Precise", "ADV_RES": "Restraining", "ADV_RET": "Returning", "ADV_RPT": "Repeater", "ADV_SC": "Scatter", "ADV_SET": "Set", "ADV_STRD": "Strong-Draw", "ADV_SW": "Swift", "ADV_TRIP": "Tripping"}      # properties of the 2014 Valda and Dark Matter books (only read for 2014 books)
 ARMR = {}
 WEAP = {}; MAST = {}
 

@@ -637,6 +637,8 @@
     "data/tp14-tkdm.js",
     "data/tp15-thhw.js",
     "data/tp16-tvss14.js",
+    "data/tp17-tdm14.js",
+    "data/tp18-tgh14p.js",
     "data/fx-C-feat.js",
     "data/fx-E-feat.js"
    ]
@@ -665,6 +667,7 @@
     "data/q06-language.js",
     "data/q06-tvss14-monster.js",
     "data/q06-tdm14-monster.js",
+    "data/q06-tgh14p-monster.js",
     "data/q08-deck.js",
     "data/q08-hazard.js",
     "data/q08-object.js",
