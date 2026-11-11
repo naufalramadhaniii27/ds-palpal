@@ -1,6 +1,5 @@
 /* PDFX fields: fills one field of the template. A text box that does not fit returns the paragraphs it could not show,
    so nothing is lost: the caller sends them to the continuation page */
-import {pxRuns} from "./02-logic-markup.js";
 import {PX_INK,PX_GRAY,PX_SIZE,PX_LIGHT,PX_TINT} from "./01-data-style.js";
 export class PxFields {
   constructor(canvas, typeset, map, pages, form, lib, editPages){ this.cv = canvas; this.T = typeset; this.map = map; this.pages = pages; this.form = form; this.L = lib; this.used = new Set();
@@ -18,8 +17,6 @@ export class PxFields {
     /* no template fill behind the value: the page looks the same as a drawn one */
     try{ tf.acroField.getWidgets().forEach((w) =>{ const mk = w.dict.lookup(this.L.PDFName.of("MK")); if(mk&&mk.delete) mk.delete(this.L.PDFName.of("BG")); }); }catch(e){}
     try{ tf.updateAppearances(fn); }catch(e){} }
-  /* a box's markup as plain lines a form field can hold: headings in capitals, no bold or italic marks */
-  plain(pars){ return (pars||[]).filter((p) =>{ return p!==""; }).map((p) =>{ return /^# /.test(p) ? p.slice(2).toUpperCase() : pxRuns(p.replace(/\{\{(.+?)\}\}/g,"($1)"),1).map((r) =>{ return r[0]; }).join("").replace(/\u00a0/g," "); }); }
   /* a play field the player edits in the PDF: the value goes into the form field (centred, bold), not onto the page.
      Without the field (old template) it is drawn like any other value */
   live(name, text, f, s, align, pad, vfrac){ let tf = null;
@@ -101,31 +98,26 @@ export class PxFields {
   packed(pars){ const L = pars.filter((p) =>{ return p!==""; });
     if(L.length<3||L.some((p) =>{ return /^# /.test(p)||p.length>140; })) return null;
     return [L.join("  •  ")]; }
-  /* a box on page 1: plain text in a multiline field; what does not fit still goes to the continuation page */
-  editBox(tf, name, pars, s, note){ const pad = 2.5, r = this.rect(name), w = r.x1-r.x0-2*pad, h = (r.y1-r.y0-2*pad)*0.9, P = this.plain(pars);
-    const f = this.fit(P,w,h,s,PX_SIZE.boxMin);
-    if(this.T.height(f.ls)<=h){ this.setField(tf, P.join("\n"), "Regular", f.s, "left", true); return []; }
-    const pk = this.packed(pars);
-    if(pk){ const q = this.plain(pk), g = this.fit(q,w,h,s,PX_SIZE.boxMin); if(this.T.height(g.ls)<=h){ this.setField(tf, q.join("\n"), "Regular", g.s, "left", true); return []; } }
-    const nl = f.s*PX_SIZE.line; let k = P.length;
-    while(k>0&&this.T.height(this.T.layout(P.slice(0,k),w,f.s))>h-nl) k--;
-    while(k>0&&/^# /.test(pars.filter((p) =>{ return p!==""; })[k-1])) k--;
-    const src = pars.filter((p) =>{ return p!==""; });
-    if(!k){ const ls = this.T.layout([P[0]],w,f.s); let acc = 0, n = 0; while(n<ls.length&&acc+ls[n][0]<=h-nl){ acc += ls[n][0]; n++; }
-      const txt = (l) =>{ return l[1].map((g) =>{ return g[1]; }).join(""); }, head = ls.slice(0,n).map(txt).join(" ").trim(), tail = ls.slice(n).map(txt).join(" ").trim();
-      this.setField(tf, head+"\n"+note, "Regular", f.s, "left", true); return (tail?[tail]:[]).concat(src.slice(1)); }
-    this.setField(tf, P.slice(0,k).concat([note]).join("\n"), "Regular", f.s, "left", true);
-    return src.slice(k); }
+  /* a box on page 1 keeps its drawn text (bold and headings); the space left under it becomes an empty notes field the player types in.
+     A full box gives up its field */
+  notesUnder(tf, name, used, s){ const pad = 3, r = this.rect(name), top = r.y1-pad-used-3, h = top-(r.y0+pad);
+    if(h<20){ try{ this.form.removeField(tf); }catch(e){} return; }
+    /* a small gray label and a hairline tell the player the space takes typing */
+    this.cv.line(r.p, r.x0+pad, top, r.x1-pad, top, 0.4, PX_LIGHT);
+    this.cv.text(r.p, r.x0+pad, top-6.5, "Notes", "Italic", 5.8, PX_GRAY);
+    try{ tf.acroField.getWidgets().forEach((w) =>{ w.setRectangle({x:r.x0+pad, y:r.y0+pad, width:r.x1-r.x0-2*pad, height:h-8}); }); }catch(e){}
+    this.setField(tf, "", "Regular", Math.max(PX_SIZE.boxMin, Math.min(s,8)), "left", true); }
   box(name, pars, s, note){
     if(!pars||!pars.length) return [];
-    const tf = this.editable(name); if(tf) return this.editBox(tf, name, pars, s, note);
-    const pad = 3, r = this.rect(name), w = r.x1-r.x0-2*pad, h = r.y1-r.y0-2*pad, f = this.fit(pars,w,h,s,PX_SIZE.boxMin);
-    if(this.T.height(f.ls)<=h){ this.cv.lines(r.p, f.ls, r.x0+pad, r.y1-pad); return []; }
+    const tf = this.editable(name), pad = 3, r = this.rect(name), w = r.x1-r.x0-2*pad, h = r.y1-r.y0-2*pad, f = this.fit(pars,w,h,s,PX_SIZE.boxMin);
+    const done = (ls, sz) =>{ this.cv.lines(r.p, ls, r.x0+pad, r.y1-pad); if(tf) this.notesUnder(tf, name, this.T.height(ls), sz); return []; };
+    if(this.T.height(f.ls)<=h) return done(f.ls, f.s);
     /* a list that does not fit line by line often fits packed; when even that does not fit, the line by line list goes on to the continuation page */
     const pk = this.packed(pars);
-    if(pk){ const g = this.fit(pk,w,h,s,PX_SIZE.boxMin); if(this.T.height(g.ls)<=h){ this.cv.lines(r.p, g.ls, r.x0+pad, r.y1-pad); return []; } }
+    if(pk){ const g = this.fit(pk,w,h,s,PX_SIZE.boxMin); if(this.T.height(g.ls)<=h) return done(g.ls, g.s); }
     const nl = f.s*PX_SIZE.line, sp = this.split(pars,w,h-nl,f.s);
     const out = sp.keep.length ? {lines:this.T.layout(sp.keep,w,f.s), rest:sp.rest} : this.splitLines(pars,w,h-nl,f.s);
     this.cv.lines(r.p, out.lines.concat([[nl,[[0,note,"Italic",f.s*0.9,PX_GRAY]]]]), r.x0+pad, r.y1-pad);
+    if(tf) try{ this.form.removeField(tf); }catch(e){}
     return out.rest; }
 }
