@@ -49,8 +49,6 @@ BOOKS = [
   "sub": "tgh14p_sub", "spell": "tgh14p_spell", "item": "tgh14p_item", "species": "tgh14p_species", "bg": "tgh14p_bg", "trans": "tgh14p_trans", "alias": "GH14", "twin": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2024.json", "subsfx": " (2014)"},
  {"id": "tgh14c", "monsters": True, "file": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2014.json", "tag": "GHCG14", "name": "Grim Hollow Campaign Guide", "pub": "Ghostfire Gaming", "ed": "2014",
   "feat": "tgh14c_feat", "spell": "tgh14c_spell", "item": "tgh14c_item", "bg": "tgh14c_bg", "trans": "tgh14c_trans", "alias": "GH14C", "twin": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2024.json", "subsfx": " (2014)"},
- {"id": "twow", "file": "5etools; World of Warcraft - 2024.json", "tag": "WoW", "name": "World of Warcraft", "pub": "Blizzard Entertainment", "ed": "2024",
-  "sub": "twow_sub", "spell": "twow_spell", "feat": "twow_feat", "species": "twow_species", "opt": "twow_opt", "item": "twow_item", "monsters": True, "cls": ["death knight", "demon hunter", "shaman", "evoker"], "clspre": "twow_", "reskin": True, "alias": "WoW"},
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
@@ -126,21 +124,9 @@ def sub_records(bk, data, M):
             arr.append([lvl, f["name"], t]); full[nm + "|" + f["name"]] = t
         unused = set(O["f"]) - {a[1] for a in arr}
         for u in sorted(unused): GAP.append((bk["tag"], "overlay", name + " | " + u, "overlay text without a source feature"))
-        if O.get("base"):          # a reskin subclass keeps the rows of its Player's Handbook parent, except the ones named in drop or replaced by an overlay row
-            import tp_wow
-            _pr = tp_wow.phb()["CLASSES"][O["base"][0]]["subs"][O["base"][1]]; _have = {a[1] for a in arr}
-            arr = [list(r) for r in _pr if r[1] not in O.get("drop", []) and r[1] not in _have] + arr
         arr.sort(key=lambda a: a[0])
         auto = []
-        _blks = s.get("additionalSpells", [])
-        if len([b for b in _blks if b.get("name") and b.get("prepared")]) > 1:
-            # named blocks are columns the player picks one of (Blood, Frost, Unholy). Only the spells every column has are always prepared. The rest is in the feature text
-            _lv = {}
-            for b in _blks:
-                for lv, sp in (b.get("prepared") or {}).items():
-                    if isinstance(sp, list): _lv.setdefault(lv, []).append(set(title(x) for x in sp if isinstance(x, str)))
-            _blks = [{"prepared": {lv: sorted(set.intersection(*cols)) for lv, cols in _lv.items() if len(cols) == len([b for b in _blks if b.get("prepared")])}}]
-        for blk in _blks:
+        for blk in s.get("additionalSpells", []):
             for key in ("prepared", "known"):
                 for lv, sp in (blk.get(key) or {}).items():
                     if not isinstance(sp, list): continue          # "daily" and similar blocks hold free casts, not always-prepared lists
@@ -148,7 +134,6 @@ def sub_records(bk, data, M):
                     ex = [a for a in auto if a[0] == L]
                     if ex: ex[0][1] = ex[0][1] + "," + ",".join(names)
                     else: auto.append([L, ",".join(names)])
-        if O.get("noauto"): auto = []
         auto.sort(key=lambda a: a[0])
         lu = []
         for l in O.get("lu", []):
@@ -278,7 +263,7 @@ def feat_records(bk, data, M):
         r = M.FEATS.get(n)
         if not r: GAP.append((bk["tag"], "feat", n, "no overlay text, feat not built")); continue
         rec = {"cat": r.get("cat", "G"), "hb": bk["tag"], "d": r["d"], "full": r["full"]}
-        for k in ("pre", "asi", "fx", "pick", "needs", "cls"):
+        for k in ("pre", "asi", "fx", "pick", "needs"):
             if k in r: rec[k] = r[k]
         n0 = n; n = alias(bk, twinname(bk, n, "feat")); out[n] = rec
         if r.get("dm"): FDM[n] = r["dm"]
@@ -372,9 +357,6 @@ if(GR.length){DataEnv.slot.WXG=DataEnv.slot.WXG||{};DataEnv.slot.WXG[SRC.id]=GR}
 if(Object.keys(WPW).length){DataEnv.slot.WXW=DataEnv.slot.WXW||{};DataEnv.slot.WXW[SRC.id]={w:WPW,a:(typeof WPA!=="undefined"?WPA:{})};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
 '''
 
-REGOPT = '''DataEnv.slot.WXO=DataEnv.slot.WXO||{};DataEnv.slot.WXO[SRC.id]=OPT;
-'''
-
 SCH = {"A": "Abjuration", "C": "Conjuration", "D": "Divination", "E": "Enchantment", "V": "Evocation", "I": "Illusion", "N": "Necromancy", "T": "Transmutation", "CLOCK": "Clockwork", "VOID": "Void"}
 UNIT = {"action": "Action", "bonus": "Bonus Action", "reaction": "Reaction"}
 
@@ -465,15 +447,10 @@ def species_records(bk, data, M):
 SPLU = []; SPACTS = {}; SPAUTO = {}; GXSP = {}
 FDM = {}
 REGCLS = '''DataEnv.slot.WXC=DataEnv.slot.WXC||{};
-Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;DataEnv.slot.WXC[n]={book:SRC.id,rec:r,ed:SRC.ed,tw:k.tw,inh:k.inh};
+Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;DataEnv.slot.WXC[n]={book:SRC.id,rec:r,ed:SRC.ed,tw:k.tw};
  SUBLABEL[n]=k.sub||n+" Subclass";if(r.cant)CANT[n]=r.cant;if(r.prep)PREP[n]=r.prep;if(r.mcg)MC_GRANT[n]=r.mcg;MC_REQ[n]=r.mcreq;if(k.auto)CLS_AUTO[n]=k.auto;
  Object.keys(k.cf).forEach(function(x){CF_FULL[n+"|"+x]=k.cf[x]});
- k.lu.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,k.acts);if(k.quick)QUICK[n]=k.quick;
- if(k.inh){var p=k.inh,dn=k.cfa||{};/* a reskin class reads the tables of its parent class under its own name, except what the book replaces */
-  [CANT,PREP,MC_GRANT,MC_REQ,CLS_AUTO,QUICK,SUBLABEL].forEach(function(T){if(T&&T[p]!==undefined&&T[n]===undefined)T[n]=T===SUBLABEL?n+" Subclass":T[p]});
-  Object.keys(dn).forEach(function(x){if(CF_FULL[p+"|"+x]&&!CF_FULL[n+"|"+x])CF_FULL[n+"|"+x]=CF_FULL[p+"|"+x]});
-  Object.keys(ACTS).forEach(function(a){var m=a.split("|");if(m[0]==="cls"&&m[1]===p&&!ACTS["cls|"+n+"|"+m[2]])ACTS["cls|"+n+"|"+m[2]]=ACTS[a]});
-  LU_X.slice().forEach(function(e){if(e.src==="class"&&e.owner===p&&dn[e.feature]&&!LU_X.some(function(q){return q.src==="class"&&q.owner===n&&q.n===e.n}))LU_X.push(Object.assign({},e,{owner:n}))})}});
+ k.lu.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,k.acts);if(k.quick)QUICK[n]=k.quick});
 '''
 
 REGSPC = '''DataEnv.slot.WXSP=DataEnv.slot.WXSP||{};DataEnv.slot.WXSP[SRC.id]=Object.assign(DataEnv.slot.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
@@ -507,11 +484,7 @@ def build():
             if not os.path.exists(mp):
                 GAP.append((bk["tag"], "class", sc[0]["name"], "no overlay yet, class not built")); continue
             kn = bk.get("clsmap", {}).get(sc[0]["name"], sc[0]["name"])
-            if bk.get("reskin"):
-                import tp_wow
-                rc, ex = tp_wow.reskin_record(kn, sc[0], ovl(cmod).CLASS, bk["id"], lambda k, i, nt, _t=bk["tag"]: GAP.append((_t, k, i, nt)))
-            else:
-                rc, ex = tp_class.class_record(sc[0], data, ovl(cmod).CLASS, lambda k, i, nt, _t=bk["tag"]: GAP.append((_t, k, i, nt)), bk["id"], name=kn)
+            rc, ex = tp_class.class_record(sc[0], data, ovl(cmod).CLASS, lambda k, i, nt, _t=bk["tag"]: GAP.append((_t, k, i, nt)), bk["id"], name=kn)
             ex["rec"] = rc
             if kn != sc[0]["name"]: ex["tw"] = sc[0]["name"]
             cl[kn] = ex
@@ -522,7 +495,7 @@ def build():
                "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else "", "%d items" % (len(it) + len(gr) + len(wpw)) if (it or gr or wpw) else "", "%d spells" % len(spr) if spr else "", "%d species" % len(spc) if spc else "", "%d classes" % len(cl) if cl else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
                "tp": 1, "pub": bk["pub"], "ed": bk["ed"], "classes": list(cl)}
         if bk["ed"] == "2014": src["legacy"] = 0
-        body = HEAD % (bk["file"] if isinstance(bk["file"], str) else " + ".join(bk["file"]), bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar EX=" + json.dumps([dict(e, src=bk["id"]) for e in getattr(M, "EXT", [])], ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar GXSP=" + json.dumps(GXSP, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var WPA=" + json.dumps(dict(ARMR), ensure_ascii=False, separators=(",", ":")) + ";\n" if ARMR else "") + "var MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var OPT=" + json.dumps({"inv": [list(x) for x in getattr(ovl(bk["opt"]), "INV", [])], "man": [list(x) for x in getattr(ovl(bk["opt"]), "MAN", [])]}, ensure_ascii=False, separators=(",", ":")) + ";\n" if bk.get("opt") else "") + (REGOPT if bk.get("opt") else "") + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
+        body = HEAD % (bk["file"] if isinstance(bk["file"], str) else " + ".join(bk["file"]), bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar EX=" + json.dumps([dict(e, src=bk["id"]) for e in getattr(M, "EXT", [])], ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar GXSP=" + json.dumps(GXSP, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var WPA=" + json.dumps(dict(ARMR), ensure_ascii=False, separators=(",", ":")) + ";\n" if ARMR else "") + "var MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
         files["src/data/tp%02d-%s.js" % (i, bk["id"])] = body
         if bk.get("vehicles") and (data.get("vehicle") or data.get("vehicleUpgrade")):
             import tp_vehicles
