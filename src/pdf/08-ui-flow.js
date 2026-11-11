@@ -25,7 +25,7 @@ export class PxFlow {
     if(!this.page){ this.newPage(pxTitle, strip); return; }
     if(this.col===0){ this.col = 1; this.y = this.TOP; }
     else if(this.y-this.BOT<260){ this.newPage(pxTitle, strip); return; }
-    this.titles.push(pxTitle); this.title = pxTitle; this.y -= 4;
+    this.titles.push(pxTitle); this.title = pxTitle; this.strip = strip; this.y -= 4;
     this.cv.text(this.page, this.x0(), this.y-13, pxTitle, "Bold", 13, PX_ACC); this.y -= 19;
     this.cv.text(this.page, this.x0(), this.y-8, strip, "Regular", 7, PX_GRAY); this.y -= 12; }
   /* a long section title wraps by words so it never runs into the next column */

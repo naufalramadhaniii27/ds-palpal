@@ -59,8 +59,14 @@ function pxHitDice(){ const R=(D.res||[]).filter((r) =>{ return r.k==="hd"||/^hd
   return [tot,String(R.reduce((t,r) =>{ return t+Math.max(0,r.max-num((S.used||{})[r.k],0)); },0))]; }
 function pxWeapons(){ return (C.attacks||[]).map((a,i) =>{ return [a,i]; }).filter((x) =>{ return atkOn(x[0]); }).map((x) =>{
   const a=x[0], d=D.atk[x[1]]||{}; return {n:cuNm("a:"+a.n,a.n), hit:d.dc!=null?"DC "+d.dc:sg(num(d.hit,0)), dmg:String(d.dmg||"")+(a.type?" "+a.type:""), a:a}; }); }
+/* the attack note as printed: no sheet help ("set ... in the builder"), no bonus of +0, and a sentence said twice is said once */
+function pxNoteClean(t){ const seen={}, out=[];
+  String(t||"").split(/(?<=\.)\s+/).forEach((x) =>{ const k=x.trim(); if(!k) return;
+    if(/\bin the builder\b|\bnot applied\b|\badds \+0\b/i.test(k)) return;
+    if(seen[k]) return; seen[k]=1; out.push(k); });
+  return out.join(" "); }
 function pxAtkNotes(W){ return W.filter((w) =>{ return w.a.m||w.a.note||w.a.range; }).map((w) =>{
-  return "**"+w.n+".** "+[w.a.range,w.a.note].filter(Boolean).join(". ")+(w.a.m?" {{Mastery: "+w.a.m+"}}":""); }); }
+  return "**"+w.n+".** "+[w.a.range,pxNoteClean(w.a.note)].filter(Boolean).join(". ")+(w.a.m?" {{Mastery: "+w.a.m+"}}":""); }); }
 function pxCoins(){ const c=coinsNow(), o={}; ["cp","sp","ep","gp","pp"].forEach((k) =>{ if(c[k]) o[k.toUpperCase()]=String(c[k]); }); return o; }
 function pxProfs(ed){ const p=C.profs||{}, sv=ABK.filter((k) =>{ return C.saves&&C.saves[k]; }).map((k) =>{ return ABN[k]; });
   const sk=(C.skills||[]).filter((s) =>{ return num(s.p,0)>0; }).map((s) =>{ return s.n+(num(s.p,0)>1?" (expertise)":""); });
@@ -74,7 +80,9 @@ function pxInvLine(i){ const q=num(i.q,1), on=eqOn(i); return (i.att?"**"+i.n+"*
 function pxGroupNames(re){ const out=[]; (C.features||[]).filter((g) =>{ return re.test(String(g.g||"")); }).forEach((g) =>{ (g.items||[]).forEach((f) =>{ out.push(cuNm("f:"+f.n,f.n)); }); }); return out; }
 function pxDefenses(){ const L=(C.defenses||[]).concat(D.cf&&D.cf.res?D.cf.res:[]), by={};
   L.forEach((d) =>{ if(d&&d.t) (by[d.t]=by[d.t]||[]).push(String(d.v)); });
-  return Object.keys(by).map((t) =>{ return "**"+t+".** "+by[t].filter((v,i,a) =>{ return a.indexOf(v)===i; }).join(", "); }); }
+  /* notes are sentences, each its own line so whole ones fit the box and the rest goes on; resistances and the like stay one line */
+  const uniq=(a) =>{ return a.filter((v,i) =>{ return a.indexOf(v)===i; }); };
+  return [].concat.apply([],Object.keys(by).map((t) =>{ return t==="Note" ? uniq(by[t]).map((v) =>{ return "**Note.** "+v; }) : ["**"+t+".** "+uniq(by[t]).join(", ")]; })); }
 /* the four boxes top right: 2024 species traits, feats, weapon mastery, defenses. 2014 personality, ideals, bonds, flaws */
 function pxBoxes(ed,W){ const n=S.notes||{}, b=(x) =>{ return "**"+x+"**"; };
   if(ed==="2014") return {topA:pxPars(n.personality||""), topB:pxPars(n.ideal||""), topC:pxPars(n.bond||""), topD:pxPars(n.flaw||"")};
@@ -186,7 +194,15 @@ export function pdfModel(){ const ed=C.rs==="2014"?"2014":"2024", W=pxWeapons(),
     proficiencies:pxProfs(ed), equipment:(C.inv||[]).map(pxInvLine), features:pxFeatureNames(),
     looks:pxLooks(n), portrait:pxPortrait(), factionName:"", allies:pxAllies(n), backstory:pxBackstory(ed),
     moreFeatures:pxMore(ed,lim), treasure:pxTreasure(),
-    spellcasting:pxSpells(ed), appendix:pxAppendix(), creatures:pxCreatures()}); }
+    spellcasting:pxSpells(ed), appendix:pxAppendix(), creatures:pxCreatures(), tracker:pxTracker()}); }
+/* the Play Tracker page part: what changes during a session, as values the player can overwrite in the PDF */
+function pxTracker(){ const used=S.used||{};
+  const uses=(D.res||[]).filter((r) =>{ return !(r.k==="hd"||/^hd-d/.test(r.k)||r.k==="pact"||/^s\d$/.test(r.k)); }).map((r) =>{
+    const back=PX_RESET[r.reset]||(r.reset==="none"&&r.tag?pxLine(r.tag):""), max=num(r.max,0);
+    return {n:pxPlain(r.n), max:max, left:Math.max(0,max-num(used[r.k],0)), unit:r.pool?"points":"uses", back:back}; });
+  const att=(C.inv||[]).filter((i) =>{ return i.att&&eqOn(i); }).map((i) =>{ return i.n; }).slice(0,3);
+  const cond=Object.keys(S.cond||{}).filter((k) =>{ return S.cond[k]; }).join(", ");
+  return {uses:uses, attuned:att, conditions:cond, exhaustion:num(S.exh,0)}; }
 
 /* page 2 box: limited uses, and on the 2014 sheet (no defenses box) the defenses too */
 function pxMore(ed,lim){ const d=ed==="2014"?pxDefenses():[], out=lim.length?["# Limited Use"].concat(lim):[];

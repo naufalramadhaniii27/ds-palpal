@@ -11,9 +11,11 @@ async function pxOpenDoc(lib, fontkit, assets, ed, smap){ const doc = await lib.
   const fonts = {}; for(const k of PX_FONTS) fonts[k] = await doc.embedFont(assets.fonts[k], {subset:false});
   /* the sheet is drawn; only the play fields (HP, hit dice, death saves, coins, spent slots) stay as form fields the player can type in */
   const live = new Set(PX_LIVE); Object.keys((smap&&smap.slots)||{}).forEach((lv) =>{ const r = smap.slots[lv]; if(r&&r[1]) live.add(r[1]); });
+  /* the prepared boxes of the spell rows stay too; the ones no spell uses are removed after painting */
+  const prep = []; Object.keys(smap||{}).forEach((k) =>{ if(/^\d$/.test(k)) (smap[k]||[]).forEach((r) =>{ if(r[1]){ live.add(r[1]); prep.push(r[1]); } }); });
   const form = doc.getForm(); form.getFields().forEach((f) =>{ if(live.has(f.getName())) return; try{ form.removeField(f); }catch(e){} });
   const slotNames = Object.keys((smap&&smap.slots)||{}).map((lv) =>{ return smap.slots[lv]&&smap.slots[lv][1]; }).filter(Boolean);
-  return {doc:doc, fonts:fonts, form:form, slotNames:slotNames}; }
+  return {doc:doc, fonts:fonts, form:form, slotNames:slotNames, prep:prep}; }
 function pxHasSpells(M){ return !!M.spellcasting&&(M.spellcasting.levels||[]).some((l) =>{ return l.spells.length; }); }
 /* solid:orchestrator renderPdf */
 export async function renderPdf(M, assets, libs){
@@ -22,6 +24,7 @@ export async function renderPdf(M, assets, libs){
   const F = new PxFields(cv, T, assets.map[ed], o.doc.getPages(), o.form, libs.PDFLib);
   const ctx = {F:F, M:M, ed:ed, cont:[], over:[], smap:assets.map.spells, note:"Continued after the sheet (Continued from the Sheet)", img:await cv.embed(o.doc, M.portrait)};
   PX_PAINTERS.forEach((p) =>{ p.fn(ctx); });
+  o.prep.forEach((n) =>{ if(F.used.has(n)) return; try{ o.form.removeField(o.form.getField(n)); }catch(e){} });
   F.liveDone(o.fonts.Bold);
   /* no spell page: its slot fields go with it, so the form keeps no field without a page */
   if(!pxHasSpells(M)){ o.slotNames.forEach((n) =>{ try{ o.form.removeField(o.form.getField(n)); }catch(e){} }); o.doc.removePage(2); }

@@ -35,17 +35,32 @@ pxAddPainter("page2", (ctx) =>{ const F = ctx.F, M = ctx.M;
   F.picture("CHARACTER IMAGE", ctx.img);
   PX_BOXES_P2.forEach((b) =>{ pxBoxTo(ctx,b); }); });
 /* one spell row: name, a small gray tag after it when it fits, the prepared dot */
-function pxSpellRow(ctx, fld, cb, sp){ const F = ctx.F, T = F.T, r = F.rect(fld), y = r.y0+2.4, maxW = r.x1-r.x0-4;
-  const tagW = sp.tag ? T.width("  "+sp.tag,"Regular",6.6) : 0; let s = 8.6;
-  while(T.width(sp.name,"Medium",s)+tagW>maxW&&s>6) s -= 0.2;
-  F.cv.text(r.p, r.x0+2, y, sp.name, "Medium", s, PX_INK);
-  if(sp.tag&&T.width(sp.name,"Medium",s)+tagW<=maxW) F.cv.text(r.p, r.x0+2+T.width(sp.name+"  ","Medium",s), y, sp.tag, "Regular", 6.6, PX_GRAY);
-  if(sp.prepared&&cb) F.dot(cb); }
-function pxSpellLevel(ctx, L){ const rows = ctx.smap[String(L.level)]||[], many = L.spells.length>rows.length;
-  L.spells.forEach((sp,i) =>{ if(i>=rows.length) return;
-    if(many&&i===rows.length-1){ const r = ctx.F.rect(rows[i][0]); ctx.F.cv.text(r.p, r.x0+2, r.y0+2.4, "+"+(L.spells.length-i)+" more, see Spell Descriptions", "Italic", 7.6, PX_GRAY); return; }
-    pxSpellRow(ctx, rows[i][0], rows[i][1], sp); });
-  if(many) ctx.over.push(L.level); }
+/* one spell name in a width, a small gray tag after it when it fits */
+function pxSpellName(ctx, p, x, y, maxW, sp, s0){ const F = ctx.F, T = F.T;
+  const tagW = sp.tag ? T.width("  "+sp.tag,"Regular",6.6) : 0; let s = s0||8.6;
+  while(T.width(sp.name,"Medium",s)+tagW>maxW&&s>6.4) s -= 0.2;
+  /* a name that still does not fit is cut with an ellipsis; the full name is in Spell Descriptions */
+  let nm = sp.name; if(T.width(nm,"Medium",s)>maxW){ while(nm.length>3&&T.width(nm+"\u2026","Medium",s)>maxW) nm = nm.slice(0,-1); nm = nm.replace(/\s+$/,"")+"\u2026"; }
+  F.cv.text(p, x, y, nm, "Medium", s, PX_INK);
+  if(sp.tag&&nm===sp.name&&T.width(sp.name,"Medium",s)+tagW<=maxW) F.cv.text(p, x+T.width(sp.name+"  ","Medium",s), y, sp.tag, "Regular", 6.6, PX_GRAY); }
+/* one row: the spell name and its prepared box (a form checkbox the player can tick) */
+function pxSpellRow(ctx, fld, cb, sp){ const r = ctx.F.rect(fld);
+  pxSpellName(ctx, r.p, r.x0+2, r.y0+2.4, r.x1-r.x0-4, sp);
+  if(cb) ctx.F.liveCheck(cb, !!sp.prepared); }
+/* a row shared by two spells when a level has more spells than rows: the second one gets its own small prepared box */
+function pxSpellPair(ctx, fld, cb, a, b, L, i){ const F = ctx.F, r = F.rect(fld), half = (r.x1-r.x0)/2;
+  pxSpellName(ctx, r.p, r.x0+2, r.y0+2.4, half-6, a, 7.6);
+  if(cb) F.liveCheck(cb, !!a.prepared);
+  if(!b) return;
+  const bx = r.x0+half+(L.level>0?9:2);
+  if(L.level>0) F.addCheck(r.p, "Spell Prepared L"+L.level+" R"+i, r.x0+half, r.y0+1.6, 6.4, !!b.prepared);
+  pxSpellName(ctx, r.p, bx, r.y0+2.4, r.x1-bx-2, b, 7.6); }
+function pxSpellLevel(ctx, L){ const rows = ctx.smap[String(L.level)]||[], n = L.spells.length;
+  if(n<=rows.length){ L.spells.forEach((sp,i) =>{ pxSpellRow(ctx, rows[i][0], rows[i][1], sp); }); return; }
+  /* too many for the rows: two per row; only past twice the rows the last row says how many more there are */
+  const cap = 2*rows.length, room = n<=cap ? Math.ceil(n/2) : rows.length-1;
+  for(let i = 0; i<room; i++) pxSpellPair(ctx, rows[i][0], rows[i][1], L.spells[2*i], L.spells[2*i+1], L, i);
+  if(n>cap){ const r = ctx.F.rect(rows[rows.length-1][0]); ctx.F.cv.text(r.p, r.x0+2, r.y0+2.4, "+"+(n-2*room)+" more, see Spell Descriptions", "Italic", 7.6, PX_GRAY); ctx.over.push(L.level); } }
 pxAddPainter("page3", (ctx) =>{ const S = ctx.M.spellcasting; if(!S) return;
   PX_SPELL_HEAD.forEach((h) =>{ ctx.F.one(h[1], S[h[0]], "Bold", h[2], "center", h[3]); });
   Object.keys(S.slots||{}).forEach((lv) =>{ const sl = S.slots[lv], row = ctx.smap.slots[lv]; if(!row) return;

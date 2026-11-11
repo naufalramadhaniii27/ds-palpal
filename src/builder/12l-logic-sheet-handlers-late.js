@@ -195,7 +195,9 @@ function ctCoreCard(C,I,c,cg){const B=I.B;
   const core=ctCoreA(B,c)+ctCoreB(B,c,ck,wp,arm);
   cg.items.unshift({n:"Core "+B.cls+" Traits",s:I.SRC+", "+B.cls+" 1",d:core});}
 function ctSubCard(cg,I,Q){const B=I.B,L=I.L;
-  if(B.sub&&B.sub!=="__custom"&&L>=Q.subLv(B.cls))ctPut(cg,{n:I.r14?Q.subLbl(B.cls):B.cls+" Subclass",s:I.SRC+", "+B.cls+" "+Q.subLv(B.cls),d:"You gain "+(/^[AEIOU]/.test(B.cls)?"an ":"a ")+B.cls+" subclass of your choice. Its features come at the levels it lists. **Your choice.** "+Q.sdn(B.sub)+"."},Q.subLv(B.cls));}
+  if(B.sub&&B.sub!=="__custom"&&L>=Q.subLv(B.cls))ctPut(cg,{n:I.r14?Q.subLbl(B.cls):B.cls+" Subclass",s:I.SRC+", "+B.cls+" "+Q.subLv(B.cls),d:"You gain "+(/^[AEIOU]/.test(B.cls)?"an ":"a ")+B.cls+" subclass of your choice. Its features come at the levels it lists. **Your choice.** "+Q.sdn(B.sub)+".",
+    /* the full text the PDF prints under the short line (2014 names the choice: Primal Path, Sacred Oath, and so on) */
+    full:"At level "+Q.subLv(B.cls)+" you commit to a "+(I.r14?Q.subLbl(B.cls):B.cls+" subclass")+", the path that shapes the rest of your "+B.cls+" training. It gives you features at the levels its description lists, starting now, and it stays with you as you gain levels. **Your choice.** "+Q.sdn(B.sub)+"."},Q.subLv(B.cls));}
 function ctAsiCards(cg,I,Q){const B=I.B;
   Q.allFeats().forEach((f) =>{const m=new RegExp("\\("+B.cls+" (\\d+)\\)$").exec(f.s||"");if(!m)return;const F=featDef(f.n)||{},lv=+m[1],ep=F.cat==="E",v=f.asi||{},ex=v.a1?(F.asi2?(v.a1===v.a2?v.a1+" +2":v.a1+" +1, "+v.a2+" +1"):v.a1+" +1"):"";
    ctPut(cg,{n:ep?"Epic Boon":"Ability Score Improvement",s:I.SRC+", "+B.cls+" "+lv,d:ep?"You gain an Epic Boon feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+".":"You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+"."},lv)});}
