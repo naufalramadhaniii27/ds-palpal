@@ -1,3 +1,33 @@
+# Uncovered 3: four more paid and target-qualified item riders
+
+Eight more original sentence IDs now have computed coverage: 224 closed from the initial 5,460, 5,236 uncovered and 0 regressed IDs. Covered is 7,927, info 23,619 and allow remains 0. Every one of the eight new closures is `covered`, not reclassified as informational. Work continues after this checkpoint.
+
+- Eldritch Staff spends 1–3 of its own ten charges after a hit for 1d8 Lightning per charge, with its existing attunement requirement and +1 Quarterstaff potency preserved.
+- Cinnabar Rapier spends 1–10 available charges after a hit for 1d4 Poison per charge. It requires no attunement and gains no invented flat attack bonus.
+- Ruinblade rolls an extra 1d8 Force only against a known Undead target while used and effectively attuned; its existing +2 Greatsword potency remains.
+- Dragon Thighbone Club rolls an extra 2d8 Bludgeoning only against a known Dragon target. Its Greatclub profile and absence of an attunement requirement remain.
+
+The DMG and original source copies account for two closures per mechanic (WBtW, TSGS, IMR and SKT respectively). Source prose is unchanged. All four effects use the previously delivered models in fx-Z9. Resource riders remain optional paid rolls, and target riders remain excluded for unknown/wrong/Object targets and other weapons. Quantity zero and stowed sources provide no effect. The independent costs/target checks do not implement Eldritch Escape or last-charge destruction, Ruinblade's other properties, or the club's size-changing rule.
+
+Actual UI rolls verify both packet grouping modes: Ruinblade's Force remains separate from its Slashing base, whereas the club's base and rider merge into one Bludgeoning group. Critical doubles their dice once and preserves flat modifiers. Resource UI tests verify Eldritch's 1d8 and three-charge critical 6d8, Cinnabar's one-charge normal roll and ten-charge critical 20d4, exact pool/cost and exhaustion blocking. Target state and rider eligibility survive cold reload at both viewports.
+
+The gate now describes the existing executed price/scaling operation precisely. The minimum cost is one, as enforced by the pure validator and UI. A separate per-charge formula atom carries the actual dice only when `perCost:true`; it matches clauses containing both per-charge wording and those literal dice. Price atoms cannot explain a scaling clause, and scaling atoms cannot explain condition durations. Tests reject the same per-charge claim with fixed dice, unrelated duration and missing formula. Formula atoms retain the real effect owner for source attribution. No classification or allowance rule was relaxed. A causal comparison with c931f58e verifies eight uncovered-to-covered transitions and one additional formerly informational Staff of Striking scaling sentence becoming computed; no new closure is credited to the latter.
+
+## Validation of the four item integrations
+
+| Check | Result |
+|---|---|
+| zero_miss_fx | PASS; 945 full-suite cases, 84 U26 additions across both editions, effective attunement, target matrices, stowed/zero quantity, other weapons, exact native charge bindings, duplicate source copies and strict field-removal counterfactuals |
+| Item lifecycle | PASS; 134 checks at 390x844 and 1250x850, actual normal/critical typed packets, same-type grouping, charge costs/pools, depletion, cold reload and zero page errors; screenshots reviewed |
+| zero_miss_measure | PASS; 752 units, zero misses in both editions, zero new miss/card-or-miss |
+| clause gate / audit | PASS; 224 original closures, 5,236 uncovered, zero regressions. All eight new closures are computed; audit seed11/sample150, 36 newly selected clauses reviewed against actual source; zero material mismatches. Existing advisory/conditional-annotation limits are unchanged |
+| solid_contract | PASS; 4,930 checks, 2,628 entries, 185 groups, 238 handlers, 4,513 schema entries |
+| Golden / UI / data | PASS; 1,479 / 308 / 594 checks |
+| Full snapshot | PASS; 2,997 builds, `04a34a8a6a982465`, zero errors, identical to c931f58e; unchanged 575 expected differences vs immutable main |
+| Builder differential | PASS; 3,890 inputs, `b1c47d6ea6dc914d`, identical to c931f58e; unchanged 665 expected differences vs immutable main |
+| Scenarios / build check | PASS; 24 checks, both viewports, screenshots/storage captured, zero page errors/dialogs; identical generated artifacts, 337 JS pieces/45 script blocks lint clean |
+| TSC / HTML / overlap / guards | PASS; SCORE 200 no WORSE / SCORE 250 / 1,390 names, 34 files, 155 documented overlaps / zero new violations |
+
 # Uncovered 3: resource-paid weapon damage
 
 This batch adds a real resource-spending damage model. The initial-ID total stays at 216 closed, 5,244 uncovered and 0 regressions; it does not claim a new original-ID closure. One formerly informational Staff of Striking sentence now has computed support: covered is 7,918, info 23,620 and allow remains 0. Work continues after this checkpoint.

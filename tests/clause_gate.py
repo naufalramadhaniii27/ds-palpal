@@ -367,8 +367,12 @@ def atoms_from(e, src, weak=False, extra=()):
                 if not isinstance(spec, dict):
                     continue
                 for spend_class in cl:
-                    spend_values = nums_in(spec.get("maxCost")) if spend_class == "RESOURCE" else nums_in(spec.get("d"))
-                    out.append(Atom(spend_class, spend_values, "%s.atkSpendDice" % src, weak))
+                    spend_values = (nums_in(spec.get("maxCost")) | {"1"}) if spend_class == "RESOURCE" else nums_in(spec.get("d"))
+                    out.append(Atom(spend_class, spend_values, "%s.atkSpendDice" % src, weak, rx=R(r"^(?![\s\S]*\b(?:for each charge|per charge)\b)") if spend_class == "RESOURCE" else None))
+                if spec.get("perCost") is True:
+                    # The executed dice-times-charge formula is separate from
+                    # its price. Some source clauses classify only as RESOURCE.
+                    out.append(Atom("RESOURCE", nums_in(spec.get("d")) | {"1"}, "%s.atkSpendDice.perCost" % src, weak, rx=R(r"(?=[\s\S]*\b%s\b)[\s\S]*\b(?:for each charge|per charge)\b" % re.escape(str(spec.get("d", ""))))))
             continue
         critical_parts = critical_field_values(k, v)
         if critical_parts:
@@ -1234,8 +1238,21 @@ def selftest():
     spend_record = {"atkSpendDice": [{"when": "Staff", "d": "1d6", "type": "Force", "maxCost": 3, "perCost": True, "resource": {"kind": "charges"}}]}
     spend_atoms = atoms_from(spend_record, "GX.item|Staff")
     check("12q resource damage exposes its executed dice and charge limit", any(a.cls == "DMG" and "1d6" in a.vals for a in spend_atoms) and any(a.cls == "RESOURCE" and "3" in a.vals for a in spend_atoms))
+    check("12t paid damage has the validated minimum cost of one", any(a.cls == "RESOURCE" and "1" in a.vals for a in spend_atoms))
     check("12r NEG removing optional resource damage removes its atoms", not atoms_from({}, "GX.item|Staff"))
-    check("12s NEG resource price is not a damage amount", all("3" not in a.vals for a in spend_atoms if a.cls == "DMG") and all("1d6" not in a.vals for a in spend_atoms if a.cls == "RESOURCE"))
+    check("12s NEG resource price is not a damage amount", all("3" not in a.vals for a in spend_atoms if a.cls == "DMG") and all("1d6" not in a.vals for a in spend_atoms if a.cls == "RESOURCE" and not a.src.endswith(".perCost")))
+    per_charge_text = "When you hit with a melee attack using the staff, you can expend up to 3 of its charges. For each charge you expend, the target takes an extra 1d6 lightning damage."
+    per_charge_rows = analyze(synth("item", "dmg", "Staff", per_charge_text, spend_atoms))
+    check("12u executed per-charge formula explains its own dice sentence", per_charge_rows[-1]["status"] == "covered", per_charge_rows[-1]["why"])
+    flat_spend = {"atkSpendDice": [dict(spend_record["atkSpendDice"][0], perCost=False)]}
+    flat_rows = analyze(synth("item", "dmg", "Staff", per_charge_text, atoms_from(flat_spend, "GX.item|Staff")))
+    check("12v NEG fixed dice do not declare per-charge scaling", flat_rows[-1]["status"] != "covered", flat_rows[-1]["why"])
+    cinnabar_text = "When you hit, spend 1 or more charges to deal an extra 1d6 Poison per charge."
+    cinnabar_row = analyze(synth("item", "dmg", "Staff", cinnabar_text, spend_atoms))[0]
+    check("12w computed scaling supports a resource-only dice clause", cinnabar_row["status"] == "covered", cinnabar_row["why"])
+    formula_atoms = [a for a in spend_atoms if a.src.endswith(".perCost")]
+    check("12x NEG scaling formula cannot explain a condition duration", formula_atoms and all(not a.rx.search("for each charge, the creature is stunned for 1 minute") for a in formula_atoms))
+    check("12y scaling formula retains its real effect owner", all(atom_key(a.src) == "GX.item|Staff" for a in formula_atoms))
     critical_record = {"dieReplace": [{"when": "Scourge", "d": "3d4", "critD": "3d6"}]}
     critical_atoms = atoms_from(critical_record, "GX.item|Scourge")
     critical_text = "The weapon deals 3d4 Slashing damage. On a critical hit, it deals 3d6 Slashing damage instead."
@@ -1386,6 +1403,8 @@ def scan(D, by_design, allow, today):
 
 
 def atom_key(src):
+    if src.endswith(".atkSpendDice.perCost"):
+        src = src.rsplit(".", 1)[0]
     base, _, last = src.rpartition(".")
     return base if last in FIELD_CLS or last in ("ch", "by", "xd", "wp", "pick", "row", "atk", "dc") else src
 

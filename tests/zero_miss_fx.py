@@ -2616,6 +2616,34 @@ for item in ["Staff of Striking","Staff of Thunder and Lightning"]:
         CASES.append(dict(name=("Z3" if attuned else "NEG")+" U25 resource Pole Strike "+item+" attuned "+str(attuned),b=dict(cls="Fighter",level=4,ch={"feat4":{"feat":"Polearm Master","a1":"STR"}},inv=[dict(n=item,q=1,eq=True,attuned=attuned),dict(n="Longsword",q=1,eq=True)]),expect=checks))
 CASES.append(dict(name="Z3 U25 resource two Pole Strikes retain their own pools",b=dict(cls="Fighter",level=4,ch={"feat4":{"feat":"Polearm Master","a1":"STR"}},inv=[dict(n="Staff of Striking",q=1,eq=True,attuned=True),dict(n="Staff of Thunder and Lightning",q=1,eq=True,attuned=True)]),expect=[("C.attacks.filter(a=>a.of).length",2),("C.attacks.filter(a=>a.of).every(a=>a.spendDice.length===1&&a.spendDice[0].item===a.of)",True),("new Set(C.attacks.filter(a=>a.of).map(a=>a.spendDice[0].poolKey)).size",2)]))
 
+# U26: execute charged weapon damage and typed target-qualified riders.
+for rs in ["2024","2014"]:
+    for item,die,dtype,limit,needs_attune,bonus in [("Eldritch Staff","1d8","Lightning",3,True,1),("Cinnabar Rapier","1d4","Poison",10,False,0)]:
+        for attuned in [False,True]:
+            active=attuned or not needs_attune
+            a="C.attacks.find(a=>a.n==="+json.dumps(item)+")"
+            checks=[(a+".die","1d6" if needs_attune else "1d8"),(a+".type","Bludgeoning" if needs_attune else "Piercing"),(a+".misc",bonus if active else 0),(a+".dmgBonus",bonus if active else 0),("!!"+a+".spendDice",active),("!!"+a+".xdice",False),("!!C.attacks.find(a=>a.n==='Longsword').spendDice",False)]
+            if active:
+                z=a+".spendDice[0]"
+                checks += [(a+".spendDice.length",1),(z+".d",die),(z+".type",dtype),(z+".maxCost",limit),(z+".perCost",True),(z+".requiresAttunement",needs_attune),(z+".item",item),(z+".poolKey===C.inv[0].chargeKey",True),(z+".chargeKey===C.inv[0].chargeKey",True),("C.res.find(r=>r.k==="+z+".poolKey).max",10)]
+            CASES.append(dict(name="Z3 U26 charged "+item+" "+rs+" attuned "+str(attuned),b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=attuned),dict(n="Longsword",q=1,eq=True)]),expect=checks))
+        CASES.append(dict(name="Z3 U26 charged differential "+item+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=True),dict(n="Longsword",q=1,eq=True)]),withoutGxFields=["item",item,item,["atkSpendDice"]],expect=[("C.attacks[1].spendDice.length",1)],expectWithout=[("!!C.attacks[1].spendDice",False)],allow=[r"^attacks\.1\.spendDice\.0\.(n|when|d|type|maxCost|perCost|poolKey|item|requiresAttunement|s|chargeKey)$",r"^attacks\.1\.spendDice\.0\.resource\.kind$"]))
+    for item,target_type,die,dtype,needs_attune,bonus in [("Ruinblade","Undead","1d8","Force",True,2),("Dragon Thighbone Club","Dragon","2d8","Bludgeoning",False,0)]:
+        for attuned in [False,True]:
+            for target in [{},{"type":"Object"},{"type":"Structure"},{"type":"Creature"},{"type":"Humanoid"},{"type":target_type}]:
+                active=(attuned or not needs_attune) and target.get("type")==target_type
+                a="C.attacks.find(a=>a.n==="+json.dumps(item)+")"
+                checks=[("!!"+a+".xdice",active),(a+".misc",bonus if attuned or not needs_attune else 0),("!!C.attacks.find(a=>a.n==='Longsword').xdice",False),("!!C.attacks.find(a=>a.n==='Longsword').spendDice",False),("!!__deriveFor(C).atk[1].damageParts",active)]
+                if active:
+                    checks += [(a+".xdice.length",1),(a+".xdice[0].d",die),(a+".xdice[0].t",dtype),(a+".xdice[0].roll",True),("__deriveFor(C).atk[1].damageParts.find(p=>p.type==="+json.dumps(dtype)+").expr"+(".endsWith('+"+die+"')" if dtype=="Bludgeoning" else ""),True if dtype=="Bludgeoning" else die)]
+                CASES.append(dict(name=("Z3" if active else "NEG")+" U26 target "+item+" "+rs+" attuned "+str(attuned)+str(target),b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=attuned),dict(n="Longsword",q=1,eq=True)]),target=target,expect=checks))
+        CASES.append(dict(name="Z3 U26 target differential "+item+" "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n=item,q=1,eq=True,attuned=True),dict(n="Longsword",q=1,eq=True)]),target={"type":target_type},withoutGxFields=["item",item,item,["atkDice"]],expect=[("C.attacks[1].xdice[0].d",die)],expectWithout=[("!!C.attacks[1].xdice",False)],allow=[r"^attacks\.1\.xdice\.0\.(d|t|s|roll)$",r"^attacks\.1\.note$"]))
+    for item in ["Eldritch Staff","Cinnabar Rapier","Ruinblade","Dragon Thighbone Club"]:
+        for q,eq in [(0,True),(1,False)]:
+            CASES.append(dict(name="NEG U26 unavailable "+item+" "+rs+str((q,eq)),b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n=item,q=q,eq=eq,attuned=True),dict(n="Longsword",q=1,eq=True)]),target={"type":"Undead" if item=="Ruinblade" else "Dragon"},expect=[("C.attacks.some(a=>a.n==="+json.dumps(item)+")",False),("C.attacks.some(a=>a.spendDice||a.xdice)",False),("C.attacks.find(a=>a.n==='Longsword').misc",0)]))
+    CASES.append(dict(name="Z3 U26 Cinnabar duplicate source pools stay separate "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n="Cinnabar Rapier",q=1,eq=True),dict(n="Cinnabar Rapier",q=1,eq=True)]),expect=[("C.attacks[1].spendDice.length",2),("new Set(C.attacks[1].spendDice.map(r=>r.poolKey)).size",2),("C.attacks[1].spendDice.every(r=>C.inv.some(i=>i.chargeKey===r.poolKey))",True)]))
+    CASES.append(dict(name="Z3 U26 Eldritch active second copy uses its pool "+rs,b=dict(rs=rs,cls="Fighter",level=4,inv=[dict(n="Eldritch Staff",q=1,eq=True,attuned=False),dict(n="Eldritch Staff",q=1,eq=True,attuned=True)]),expect=[("C.attacks[1].spendDice.length",1),("C.attacks[1].spendDice[0].poolKey===C.inv[1].chargeKey",True),("C.attacks[1].spendDice[0].poolKey===C.inv[0].chargeKey",False)]))
+
 # Refresh the real rule-link index with the case's source packs installed.
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
