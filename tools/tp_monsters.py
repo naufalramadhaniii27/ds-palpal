@@ -17,6 +17,7 @@ def clean(t):
 
 
 def mod(v):
+    if isinstance(v, dict): return v.get("special", "varies")      # a form that sets the score from another one (Bear Form, Cat Form)
     return "%d (%+d)" % (v, (v - 10) // 2)
 
 
@@ -80,7 +81,9 @@ def dmgl(x):
 def attack(ent):
     if not ent or not isinstance(ent[0], str) or "{@atk" not in ent[0]: return ""
     t = ent[0]
-    kind = re.match(r"\{@atk ([^}]+)\}", t).group(1)
+    mk = re.search(r"\{@atkr? ([^}]+)\}", t)
+    if not mk: return ""
+    kind = mk.group(1)
     ty = "Melee or ranged attack" if "m" in kind and "r" in kind else "Melee attack" if "m" in kind else "Ranged attack"
     hit = re.search(r"\{@hit (-?\d+)\}", t)
     rr = re.search(r"((?:reach \d+ ft\.)(?: or range [\d/]+ ft\.)?|range [\d/]+ ft\.)", t)
