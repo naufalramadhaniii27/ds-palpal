@@ -129,7 +129,15 @@
 "sub|Wizard/Plague Doctor (2014)|Breathe It In": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
 "sub|Wizard/Plague Doctor (2014)|Potion Craft": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
 "sub|Wizard/School of Automata|Construct Upgrade": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
-"sub|Wizard/School of Sangromancy|Sanguine Vigor": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet."
+"sub|Wizard/School of Sangromancy|Sanguine Vigor": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Atoner's Grace|Atoner's Grace": "Unearthed Arcana 2025 dan 2026: efek untuk makhluk lain di dekat Anda, tidak ada pilihan atau angka di sheet.",
+"feat|Lich Initiate|Lich Initiate": "Unearthed Arcana 2025 dan 2026: AC di teks adalah AC wadah roh, bukan AC karakter.",
+"species|Myconid|Skill Meld": "Unearthed Arcana 2025 dan 2026: proficiency skill dibagi ke sekutu sampai istirahat panjang berikutnya, dipilih saat bermain. Teks lengkap ada di trait.",
+"sub|Druid/Circle of the Titan|Primal Havoc": "Unearthed Arcana 2025 dan 2026: bonus AC hanya saat Titan Form dan bergantung pada slot yang dipakai. Teks lengkap ada di fitur.",
+"sub|Fighter/Purple Dragon Knight|Dragon Rider": "Unearthed Arcana 2025 dan 2026: kecepatan di teks adalah milik naga pendamping, bukan karakter.",
+"sub|Fighter/Purple Dragon Knight|Knightly Envoy": "Unearthed Arcana 2025 dan 2026: satu bahasa pilihan. Daftar bahasa di sheet diisi bebas.",
+"sub|Fighter/Purple Dragon Knight|Superior Mount": "Unearthed Arcana 2025 dan 2026: kecepatan di teks adalah milik naga pendamping, bukan karakter.",
+"sub|Rogue/Magic Stealer|Steal Resistance (Cost: 2d6)": "Unearthed Arcana 2025 dan 2026: resistensi sementara ditukar dengan target sampai awal giliran berikutnya, bergantung pada target."
 },
 "gaps": {
 "feat|Ability Score Improvement|Ability Score Improvement": [
