@@ -70,7 +70,7 @@ FEATS = {
    "full": "Injury, illness or birth means you cannot use your arms as others do. The cause might be paralysis, an amputated arm or hand, poor manual dexterity, arthritis or chronic pain. Even without an arm or hand you can fight with two weapons or a weapon and shield through prosthetics or a mechanical or magical aid.\nChoose one trait that fits your disability: Disadvantage on attack rolls with heavy weapons and on Strength checks that need your hands, or Disadvantage on attack rolls with finesse and ranged weapons and on Dexterity checks that need your hands.\nYou also have Advantage on weapon attacks you prepare with the Ready action.\nIf your limb is ever restored, such as by Regenerate, you lose this feat. Talk with your GM about whether that fits your character."},
  "Windswept": {"d": "Lightning resistance, Message, then Feather Fall and Gust of Wind once each per Long Rest.", "pre": NH, "asi": ANY,
    "full": "**Lightning Resistance.** You have Resistance to Lightning damage.\n**Zephyr Magic.** You know the Message cantrip. At level 3 you can cast Feather Fall once with this trait, and at level 5 Gust of Wind once, with no material component. A Long Rest restores each. You can also cast them with slots of the right level." + SPELLSTAT,
-   "fx": {"res": ["Lightning"]}},
+   "fx": {"res": ["Lightning"]}, "lu": {"n": "Zephyr Magic", "max": 2, "reset": "long", "tag": "Feather Fall (lvl 3), Gust of Wind (lvl 5)"}},
  "Winged": {"d": "Flying Speed equal to your walking Speed, unusable in medium or heavy armor.", "pre": NH, "asi": ANY,
    "full": "**Flight.** Your wings give you a flying Speed equal to your walking Speed. You cannot use it while wearing medium or heavy armor.",
    "fx": {"mv": {"fly": "speed"}}},

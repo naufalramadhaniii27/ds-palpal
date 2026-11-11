@@ -40,7 +40,7 @@ BOOKS = [
   "tag": "KPDM", "name": "Deep Magic", "pub": "Kobold Press", "ed": "2014", "sub": "tkdm_sub", "bg": "tkdm_bg", "feat": "tkdm_feat", "spell": "tkdm_spell", "item": "tkdm_item", "alias": "Deep Magic"},
  {"id": "thhw", "file": ["Hit Point Press; Humblewood Campaign Setting.json", "Hit Point Press; Humblewood Tales.json"],
   "tag": "HWCS", "name": "Humblewood", "pub": "Hit Point Press", "ed": "2014", "sub": "thhw_sub", "bg": "thhw_bg", "feat": "thhw_feat", "spell": "thhw_spell", "item": "thhw_item", "species": "thhw_species", "alias": "Humblewood"},
- {"id": "tvss14", "file": "Mage Hand Press; Valda's Spire of Secrets - 2014.json", "tag": "VSS14", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2014",
+ {"id": "tvss14", "subren": ["House of Lancers"], "file": "Mage Hand Press; Valda's Spire of Secrets - 2014.json", "tag": "VSS14", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2014",
   "sub": "tvss14_sub", "feat": "tvss14_feat", "species": "tvss14_species", "spell": "tvss14_spell", "item": "tvss14_item", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger", "channeler"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
   "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Investigator": "Investigator (2014)", "Martyr": "Martyr (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}},
 ]
@@ -104,7 +104,7 @@ def sub_records(bk, data, M):
         if key_ in _SEENSUB and _SEENSUB[key_] != bk["id"] and bk.get("alias"):
             nm = "%s (%s)" % (name, bk["alias"])          # same subclass name as an earlier book: renamed so neither replaces the other
         else: nm = name
-        if bk.get("subsfx") and name in sfxn: nm = name + bk["subsfx"]          # same name as a subclass of the 2024 book: kept apart, so no table is shared
+        if bk.get("subsfx") and (name in sfxn or name in bk.get("subren", ())): nm = name + bk["subsfx"]          # same name as a subclass of the 2024 book: kept apart, so no table is shared
         _SEENSUB.setdefault(key_, bk["id"])
         fl = [f for f in feats if f.get("subclassShortName") == s["shortName"] and f["className"] == s["className"]]
         arr = []; full = {}

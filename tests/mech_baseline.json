@@ -1,5 +1,15 @@
 {
 "by_design": {
+"item|dmg|Boots of the Hare": "Valda 2014 triage: Dash memberi 90 ft gerak ekstra dan kutukan menurunkan Speed jadi 15 ft. Keduanya bersyarat (aksi Dash, kutukan), tidak masuk Speed statis. Teks item yang menjelaskan.",
+"item|tvss14|Boots of the Hare": "Valda 2014 triage: Dash memberi 90 ft gerak ekstra dan kutukan menurunkan Speed jadi 15 ft. Keduanya bersyarat (aksi Dash, kutukan), tidak masuk Speed statis. Teks item yang menjelaskan.",
+"feat|Child|Child": "Valda 2014 triage: syarat pembuatan karakter. Ukuran Small, batas STR dan CON 16, kurang dua skill, dua save pilihan. Pilihan dibuat saat membangun karakter, tidak ada field mesin yang membaca batas ability.",
+"feat|Early Riser|Early Riser": "Valda 2014 triage: aturan istirahat (long rest 4 jam, short rest 30 menit). Tidak ada angka statis di sheet. Hit Dice pulih penuh ada di teks.",
+"feat|Exotic Mastery|Exotic Mastery": "Valda 2014 triage: pilihan senjata eksotis untuk proficiency. Dicatat sebagai teks, tidak ada angka statis.",
+"feat|Hexer|Hexer": "Valda 2014 triage: pilihan dua hex Witch. Picker hex tidak ada di mesin (celah mesin sama dengan Witch Hexes), teks saja.",
+"feat|Secret|Secret": "Valda 2014 triage: pilihan kebohongan karakter. Tidak ada angka statis.",
+"feat|Tauran|Tauran": "Valda 2014 triage: +10 ft Speed hanya pada giliran gerak lurus. Bersyarat, jadi tidak masuk angka Speed statis. Tanduk 1d6 dan navigasi ada di teks.",
+"feat|Upper Limb Disability|Upper Limb Disability": "Valda 2014 triage: pilihan sisi tubuh yang terdampak. Tidak ada angka statis.",
+"species|Marionette Geppettin|Construct Anatomy": "Valda 2014 triage: kebal penyakit nonmagis dan tanpa makan atau napas. Mesin tidak punya field kekebalan penyakit atau kondisi, teks saja.",
 "class|Artificer|Advanced Artifice": "Batch A triage: Batas attunement 5 sudah dihitung (attMax naik di Artificer 14, 03-logic-magic-item-effects.js). Sisanya aturan rest (regain Flash of Genius di Short Rest), tidak ada angka statis.",
 "class|Barbarian|Brutal Strike": "Batch A triage: Efek dipilih per serangan saat bermain, bersyarat Reckless Attack. Tidak ada angka statis di sheet.",
 "class|Captain|Cohort": "Batch A triage: Pilihan stat block cohort dari deskripsi class, tidak mengubah angka sheet.",
