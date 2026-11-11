@@ -30,6 +30,19 @@ INIT = "()=>document.body.innerText.replace(/\\s+/g,' ')"
 async def hp(pg, btn):
     await pg.evaluate("b=>{const i=document.getElementById('hpAmt');i.value='30';i.dispatchEvent(new Event('input',{bubbles:true}));document.querySelector(b).click()}", btn)
 
+# Tigor's identity, as agreed with the player: cheerful, trusts people fast, sent to find out why the world is falling apart
+IDENT = {
+    "personality": "Greets everyone like an old friend. Hums marching songs when it gets quiet.\nTakes people at their word. Usually that works out.",
+    "ideal": "Protection. If somebody has to take the hit, it should be me.",
+    "bond": "My old commander gave me one order: find out why the world is falling apart. I'm not going back without an answer.",
+    "flaw": "I trust people way too fast. A smile and a sad story, and I'm in.",
+    "backstory": "Tigor was built for the war. A shield with legs. Then the war ended, and he didn't know what to do with himself.\n"
+        "So he stayed in uniform anyway. He fixed fences, hauled supplies, and made friends with anyone who would talk to him.\n"
+        "Lately things keep breaking. Towns go quiet, roads vanish, and monsters show up where they never used to. "
+        "His old commander called him in and told him straight: go find out what's going on. He said yes before she finished the sentence.\n"
+        "He's no scout and he's not sneaky about it. He walks in, says hi, and stands between the trouble and whoever's behind him.",
+}
+
 async def run(b, url, W, H, bad, keep):
     vp = "%dx%d" % (W, H)
     ctx = await b.new_context(viewport={"width": W, "height": H}, accept_downloads=True, has_touch=W < 600)
@@ -45,6 +58,7 @@ async def run(b, url, W, H, bad, keep):
     for a in ("bonus:Warden's Grasp", "bonus:Warden's Mark", "action:Font of Life", "reaction:Protection"):
         if a not in c["acts"]: bad.append(vp + " action missing: " + a)
     await pg.evaluate("()=>window.__sheetApply(window.__tig,'')"); await pg.wait_for_timeout(2500)
+    await pg.evaluate("(o)=>Object.keys(o).forEach(k=>window.__sheetIdentSet(k,o[k]))", IDENT)
     await pg.evaluate("()=>{var b=document.querySelector('[data-hview]'); if(b&&document.getElementById('homeV')&&document.getElementById('homeV').offsetParent) b.click()}"); await pg.wait_for_timeout(2500)
     txt = await pg.evaluate(INIT)
     if "/ 54" not in txt: bad.append(vp + " HP max is not 54")
@@ -78,7 +92,7 @@ async def run(b, url, W, H, bad, keep):
         rd = pypdf.PdfReader(path)  # page 1 values live in form fields, so their values count as text too
         fv = " ".join(str(f.get("/V") or "") for f in (rd.get_fields() or {}).values())
         t = re.sub(r"\s+", " ", " ".join((p.extract_text() or "") for p in rd.pages) + " " + fv)
-        for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency"):
+        for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency", "old friend", "A shield with legs", "way too fast"):
             if w not in t: bad.append("PDF lacks " + w)
     if errs: bad.append(vp + " page errors: " + str(errs[:2]))
 
