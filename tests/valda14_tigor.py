@@ -75,7 +75,9 @@ async def run(b, url, W, H, bad, keep):
         async with pg.expect_download(timeout=240000) as dl:
             await pg.evaluate("()=>document.getElementById('pdfBtn').click()")
         d = await dl.value; path = os.path.join(OUT, "tigor.pdf"); await d.save_as(path); keep.append(path)
-        t = re.sub(r"\s+", " ", " ".join((p.extract_text() or "") for p in pypdf.PdfReader(path).pages))
+        rd = pypdf.PdfReader(path)  # page 1 values live in form fields, so their values count as text too
+        fv = " ".join(str(f.get("/V") or "") for f in (rd.get_fields() or {}).values())
+        t = re.sub(r"\s+", " ", " ".join((p.extract_text() or "") for p in rd.pages) + " " + fv)
         for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency"):
             if w not in t: bad.append("PDF lacks " + w)
     if errs: bad.append(vp + " page errors: " + str(errs[:2]))
