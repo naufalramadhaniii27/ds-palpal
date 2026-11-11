@@ -1,4 +1,4 @@
 {
- "bytes": {"bytes_raw": 26500000, "bytes_gzip": 6000000, "bytes_brotli": 4150000, "bytes_split_first_gzip": 1150000, "bytes_split_first_brotli": 1010000},
- "390x844 cpu1x": {"heap_home_mb": 29, "heap_home_raw_mb": 38, "heap_tools_mb": 65}
+ "bytes": {"bytes_raw": 28000000, "bytes_gzip": 6300000, "bytes_brotli": 4350000, "bytes_split_first_gzip": 1150000, "bytes_split_first_brotli": 1010000},
+ "390x844 cpu1x": {"heap_home_mb": 31, "heap_home_raw_mb": 41, "heap_tools_mb": 68}
 }

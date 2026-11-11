@@ -3,7 +3,7 @@ import {un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {XFX,allFeats,eaType} from "./09-logic-feats-and-choices.js";
-import {classFx,clsParts,fxList,fxVal} from "./11-logic-derivation.js";
+import {classFx,clsInh,clsParts,fxList,fxVal} from "./11-logic-derivation.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
 
@@ -78,7 +78,7 @@ function defSub(add,sub,lv){
   if(sub==="Archfey Patron"&&lv>=10)add("Immunity","Charmed","Beguiling Defenses");
   if(sub==="Circle of the Land"&&lv>=10)add("Immunity","Poisoned","Nature's Ward")
 }
-function defClass(add,cls,lv,sub){defClassBase(add,cls,lv);defSub(add,sub,lv)}
+function defClass(add,cls,lv,sub){defClassBase(add,clsInh(cls)||cls,lv);/* a reskin class shows the numbers of the class it copies */defSub(add,sub,lv)}
 function defSubChoices(add){
  /* v32 RL49 no. 38: a homebrew subclass choice with dres (Calon Arang: Immunity) adds each chosen type */
  clsParts().forEach((q,i) =>{if(!q.sub)return;subChoicesFor(q.sub).forEach((c) =>{if(!c.dres||q.lv<c.l)return;const v=B.ch[(q.mc?"m"+(i-1)+":":"")+"sc"+c.k];if(Array.isArray(v))v.forEach((t) =>{add(c.dres,t,c.feature)})})});

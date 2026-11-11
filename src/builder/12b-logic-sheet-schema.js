@@ -9,7 +9,7 @@ export const SHEET_C={v:"number",bv:"number",name:"string",species:"string",cls:
  hpPerLevel:"array",abilities:"object",rolledNote:"string",saves:"object",skills:"array",initBonus:"array",hpBonus:"array",grappler:"boolean",lang:"array",ac:"object",saveBonus:"array",attMax:"number",
  speed:"number",speedSrc:"string",rs:"string",darkvision:"number",darkSrc:"string",profs:"object",profSrc:"object",attacks:"array",inv:"array",gp:"number",equipNote:"string",res:"array",actions:"array",
  features:"array",defenses:"array",itemAdv:"array",speeds:"object",senses:"array",moves:"array",xdmg:"array",saveNotes:"array",wsForms:"array",companion:"string",spells:"array",spellcasting:"object",
- carryBump:"boolean",toolExp:"array",exhMin:"number",acts:"array",pasBon:"array",dcAb:"string",dcSrc:"string",clsLabel:"string",pbAdd:"number",fxToggles:"array"};
+ carryBump:"boolean",toolExp:"array",exhMin:"number",acts:"array",pasBon:"array",dcAb:"string",dcSrc:"string",clsLabel:"string",clsInh:"object?",pbAdd:"number",fxToggles:"array"};
 export const SHEET_L={};
 /* register the locals of a handler file (called at load by the handler file that owns them) */
 export function defineLocals(o){Object.keys(o).forEach((k) =>{if(Object.prototype.hasOwnProperty.call(SHEET_L,k)&&SHEET_L[k]!==o[k])throw new Error("sheet schema: local "+k+" is defined twice");SHEET_L[k]=o[k]})}
