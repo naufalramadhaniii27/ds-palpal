@@ -96,6 +96,26 @@ try:
                 storage = pg.evaluate('()=>Object.fromEntries(Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)]))')
                 (OUT / (prefix.strip()+'-storage.json')).write_text(json.dumps(storage, indent=2))
             check(prefix+'no page errors', errors, [])
+            # A learned upgrade is retained independently, without spending its kit.
+            pg.evaluate("()=>{const b=__bldTestB();b.inv=[{n:'Travel Alchemical Kit',q:1,eq:false}];__bldTestSet(b);__sheetSoft(__bldSheetFor(b))}")
+            learned = "()=>__sheetState().C.profs.tools.includes(\"Poisoner's Kit\")"
+            check(prefix+'kit alone does not grant training', pg.evaluate(learned), False)
+            training = '[data-fxt="travel-kit-training"]'
+            pg.locator(training).click()
+            check(prefix+'training switch grants proficiency', pg.evaluate(learned), True)
+            check(prefix+'learning does not consume kit', pg.evaluate("()=>__bldTestB().inv.find(x=>x.n==='Travel Alchemical Kit').q"), 1)
+            pg.evaluate("()=>{__bldSync('Travel Alchemical Kit',__sheetState().C.name,{del:1});__bldFxToggle(null)}")
+            check(prefix+'training survives kit removal', pg.evaluate(learned), True)
+            pg.wait_for_timeout(700)
+            pg.reload()
+            pg.wait_for_function('()=>!!window.__deferDone')
+            pg.locator('[data-hview]').first.click()
+            pg.evaluate('async()=>{await __bldNeed();__bldFxToggle(null)}')
+            check(prefix+'reload preserves learned training', pg.evaluate(learned), True)
+            pg.locator(training).click()
+            check(prefix+'clearing mistaken training removes proficiency', pg.evaluate(learned), False)
+            check(prefix+'cleared missing-kit control disappears', pg.locator(training).count(), 0)
+            check(prefix+'no page errors after learning', errors, [])
             ctx.close()
         browser.close()
 finally:

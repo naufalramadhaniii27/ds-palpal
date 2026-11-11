@@ -57,8 +57,8 @@ registerSheetGroup({id:"fx-weapon-groups",group:"proficiencies",phase:"profs",or
  run:function(ctx){const I=ctx.i;ctx.l.weaponGroups=[];I.G.forEach((e) =>{
   if(!ctx.q.fxOk(e,I.ar,I.ESH,I.EA))return;
   (e.weaponGroups||[]).forEach((g) =>{if(!/^[SM]$/.test(g.cat)||!/^[MR]$/.test(g.k))return;
-   ctx.l.weaponGroups.push({cat:g.cat,k:g.k});
-   const label=(g.k==="R"?"Ranged":"Melee")+" weapons ("+(g.cat==="M"?"martial":"simple")+")";
+   const excluded=Array.isArray(g.not)?g.not:[];ctx.l.weaponGroups.push({cat:g.cat,k:g.k,not:excluded});
+   const label=(g.k==="R"?"Ranged":"Melee")+" weapons ("+(g.cat==="M"?"martial":"simple")+")"+(excluded.length?" without "+excluded.join(" and "):"");
    ctx.l.profList.push(row("weapons",label,e.lbl,91,72))})});return ctx.patch()}});
 registerSheetGroup({id:"prof-finish",group:"proficiencies",phase:"profs",order:100,reads:["l.profList"],writes:["C.profs","C.profSrc","l.weapons"],
  run:function(ctx){const rows=ctx.l.profList,C=ctx.C,KS=["armor","weapons","tools"],txt={},PS={armor:[],weapons:[],tools:[]};

@@ -60,4 +60,33 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  I("Potion of Giant Strength (storm)",{"n":"Potion of Giant Strength (storm)","consume":{"duration":"1 hour"},"toggle":{"id":"consumed-giant-storm","label":"Storm giant strength effect (1 hour)","default":false},"abSet":[["STR",29]]});
  I("Potion of Pugilism",{"n":"Potion of Pugilism","consume":{"duration":"10 minutes"},"toggle":{"id":"consumed-pugilism","label":"Pugilism potion effect (10 minutes)","default":false},"atkDice":[{"when":"unarmed","d":"1d6","t":"Force","note":"On each hit while the potion is active"}]});
 
+ /* Remaining native-compatible benefits and narrowly scoped extensions. */
+ (GX.cls["Jaeger"]=GX.cls["Jaeger"]||[]).push({"n":"Seasoned Survivor","l":4,"advOn":["checks to locate secret passages, interpret markings or messages on surfaces, and reconstruct events from blood stains or remains"]});
+ (GX.cls["Gadgeteer"]=GX.cls["Gadgeteer"]||[]).push({"n":"AI Companion","l":1,"pick":[{"k":"ai","t":"multi","n":[[1,1],[5,2],[9,3],[12,4],[17,5]],"title":"AI Companion skills (Intelligence checks only)","list":[["Technology",""],["Arcana",""],["Data",""],["History",""],["Investigation",""],["Nature",""],["Religion",""]]}]});
+ (GX.cls["Gadgeteer"]=GX.cls["Gadgeteer"]||[]).push({"n":"AI Companion","l":1,"when":{"key":"gx-ai-cls-Gadgeteer","val":"Technology"},"advOn":["Intelligence (Technology) checks assisted by your AI Companion"]});
+ (GX.cls["Gadgeteer"]=GX.cls["Gadgeteer"]||[]).push({"n":"AI Companion","l":1,"when":{"key":"gx-ai-cls-Gadgeteer","val":"Arcana"},"advOn":["Intelligence (Arcana) checks assisted by your AI Companion"]});
+ (GX.cls["Gadgeteer"]=GX.cls["Gadgeteer"]||[]).push({"n":"AI Companion","l":1,"when":{"key":"gx-ai-cls-Gadgeteer","val":"Data"},"advOn":["Intelligence (Data) checks assisted by your AI Companion"]});
+ (GX.cls["Gadgeteer"]=GX.cls["Gadgeteer"]||[]).push({"n":"AI Companion","l":1,"when":{"key":"gx-ai-cls-Gadgeteer","val":"History"},"advOn":["Intelligence (History) checks assisted by your AI Companion"]});
+ (GX.cls["Gadgeteer"]=GX.cls["Gadgeteer"]||[]).push({"n":"AI Companion","l":1,"when":{"key":"gx-ai-cls-Gadgeteer","val":"Investigation"},"advOn":["Intelligence (Investigation) checks assisted by your AI Companion"]});
+ (GX.cls["Gadgeteer"]=GX.cls["Gadgeteer"]||[]).push({"n":"AI Companion","l":1,"when":{"key":"gx-ai-cls-Gadgeteer","val":"Nature"},"advOn":["Intelligence (Nature) checks assisted by your AI Companion"]});
+ (GX.cls["Gadgeteer"]=GX.cls["Gadgeteer"]||[]).push({"n":"AI Companion","l":1,"when":{"key":"gx-ai-cls-Gadgeteer","val":"Religion"},"advOn":["Intelligence (Religion) checks assisted by your AI Companion"]});
+ S("Samurai",{"n":"Elegant Courtier","l":7,"classOnly":"Fighter","pick":[{"k":"courtier-save","t":"multi","n":1,"opt":1,"title":"Replacement save only if already proficient in Wisdom","list":[["Intelligence",""],["Charisma",""]]}],"savePE":{"ab":"WIS","pick":"courtier-save","from":["INT","CHA"]}});
+ S("House of Pawns",{"n":"Promotion","l":3,"classOnly":"Warmage","toggle":{"id":"pawn-martial-training","label":"Promotion: Martial Training selected after a Long Rest","default":false},"weapons":["Martial"],"armor":["Medium","Shields"]});
+ if(typeof SUB_GRANT!=="undefined"&&SUB_GRANT["Steel Magic"])SUB_GRANT["Steel Magic"].weapons=[];
+ S("Steel Magic",{"n":"Martial Training","l":3,"classOnly":"Witch","weaponGroups":[{"cat":"M","k":"M","not":["Heavy"]},{"cat":"M","k":"R","not":["Heavy"]}]});
+ if(typeof SUB_GRANT!=="undefined"&&SUB_GRANT["Lumimancer"])SUB_GRANT["Lumimancer"].weapons=[];
+ S("Lumimancer",{"n":"Martial Training","l":3,"classOnly":"Wizard","weaponGroups":[{"cat":"M","k":"M","not":["Two-Handed","Heavy"]}]});
+ (GX.feat["Changeling Metamorphosis"]=GX.feat["Changeling Metamorphosis"]||[]).push({"n":"Metamorphosis (Darkvision)","l":4,"toggle":{"id":"metamorph-darkvision","label":"Shape-Shifter: Darkvision option selected until the next change","default":false},"darkTo":60});
+ I("Belt of Dwarvenkind",{"n":"Friend of Dwarvenkind","advOn":["Charisma (Persuasion) checks when interacting with dwarves or duergar"]});
+ I("Belt of Dwarvenkind",{"n":"Non-dwarf benefits","notSpecies":["Dwarf","Hill Dwarf","Mountain Dwarf","Dwarf (Mark of Warding)","Dwarf (Kaladesh)","Dwarf (Grim Hollow)","Deep One Dwarf","Duergar"],"darkTo":60,"res":["Poison"],"advOn":["saving throws to avoid or end the Poisoned condition"]});
+ I("Baba Yaga's Mortar and Pestle",{"n":"Baba Yaga's Mortar and Pestle","advOn":["checks using the artifact as Alchemist's Supplies, Brewer's Supplies, Cook's Utensils, an Herbalism Kit or a Poisoner's Kit"]});
+ I("Ephara's Votary",{"n":"Ephara's Votary","advOn":["Charisma (Persuasion) checks in a city while your Ephara piety is at least 10"]});
+ I("Eyes of the Impossible",{"n":"Eyes of the Impossible","advOn":["Charisma (Persuasion) checks when dealing with evil creatures while the charm lasts"]});
+ I("Habbakuk's Blessing",{"n":"Habbakuk's Blessing","advOn":["Wisdom (Survival) checks to notice the Wash's waters filling chasms while the blessing lasts"]});
+ I("Ring of Veracity",{"n":"Ring of Veracity","advOn":["Wisdom (Insight) checks made with the Search action"]});
+ I("Bolt",{"n":"Bolt","advOn":["ranged attack rolls made with Bolt against a metal target or a creature wearing metal armor"]});
+ I("Catnip Amulet",{"n":"Catnip Amulet","advOn":["ability checks to locate or call Tiny domestic cats, and Wisdom (Animal Handling) checks when dealing with those cats"]});
+ I("Sharkrazor Mantle",{"n":"Sharkrazor Mantle","advOn":["Wisdom (Perception or Survival) checks to locate or track a creature missing Hit Points"]});
+ I("Gamma Pendant",{"n":"Complete pendant: spell saves","toggle":{"id":"gamma-complete","label":"Gamma Pendant complete with at least 3 unified fragments (spell saves)","default":false},"advOn":["saving throws against spells"]});
+ I("Travel Alchemical Kit",{"n":"Travel Alchemical Kit training","retain":true,"toggle":{"id":"travel-kit-training","label":"Travel kit upgrade learned at company rank 3","default":false},"tools":["Poisoner's Kit"]});
 })();

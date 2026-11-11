@@ -634,10 +634,11 @@
  "GX.sub|House of Pawns": {
   "files": [
    "fx-B2-subclass.js",
-   "fx-L13.js"
+   "fx-L13.js",
+   "fx-Z5.js"
   ],
-  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
+  "shared": [],
+  "reason": "B2 and L13 supply Multidiscipline and Pawn Storm. Z5 supplies Promotion Martial Training behind its own state switch. U17 proves proficiencies switch without changing initiative or saves."
  },
  "GX.sub|House of Rooks": {
   "files": [
@@ -1139,10 +1140,11 @@
  "GX.cls|Jaeger": {
   "files": [
    "fx-L1.js",
-   "fx-Z3.js"
+   "fx-Z3.js",
+   "fx-Z5.js"
   ],
-  "reason": "Different features of the same cls are defined in the files (no field shared); the Extra Attack entry of fx-Z3.js (uncovered-2) is the only one with extraAttack for this name, so nothing is counted twice.",
-  "shared": []
+  "shared": [],
+  "reason": "L1 supplies Piercing Gaze, Z3 Extra Attack, Z5 Seasoned Survivor Advantage at level 4. The U17 record-removal test changes only the qualified defense note."
  },
  "GX.cls|Monster Hunter": {
   "files": [
@@ -1281,5 +1283,61 @@
   ],
   "shared": [],
   "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+ },
+ "GX.cls|Gadgeteer": {
+  "files": [
+   "fx-Z3.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "Z3 supplies Extra Attack. Z5 adds the AI Companion picker and conditional Intelligence-check Advantage. The U17 count, selected-skill and multiclass tests prove the new benefit without a proficiency or Extra Attack change."
+ },
+ "GX.feat|Changeling Metamorphosis": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "L1 supplies Hardened Skin AC. Z5 supplies the selected Darkvision state only. U17 toggle tests preserve AC and ability benefits while changing vision."
+ },
+ "GX.item|Belt of Dwarvenkind": {
+  "files": [
+   "fx-L2.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "L2 supplies Dwarvish. Z5 adds qualified social Advantage and explicitly excluded-species vision/Poison benefits. U17 removes only those benefits and tests every known dwarf key, preserving language and the original CON increase."
+ },
+ "GX.item|Gamma Pendant": {
+  "files": [
+   "fx-L4.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "L4 supplies flight. Z5 supplies only Complete-state spell-save Advantage. U17 toggles spell saves without changing flight, charges or weapons."
+ },
+ "GX.sub|Lumimancer": {
+  "files": [
+   "fx-Z3.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "Z3 supplies Extra Attack. Z5 replaces the overbroad SUB_GRANT weapon label with property-filtered melee training. U17 verifies allowed and forbidden weapons, source level and strict proficiency-only differences."
+ },
+ "GX.sub|Samurai": {
+  "files": [
+   "fx-L11.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "L11 supplies the Wisdom-to-Persuasion bonus. Z5 supplies Wisdom save proficiency or one replacement when already trained. U17 removal preserves the Persuasion bonus and existing saves."
+ },
+ "GX.sub|Steel Magic": {
+  "files": [
+   "fx-L13.js",
+   "fx-Z5.js"
+  ],
+  "shared": [],
+  "reason": "L13 supplies Extra Attack and SUB_GRANT armor. Z5 replaces the unusable restricted SUB_GRANT weapon label with typed martial groups excluding Heavy weapons. U17 preserves armor, attacks and unrelated effects while checking allowed and forbidden weapons."
  }
 }

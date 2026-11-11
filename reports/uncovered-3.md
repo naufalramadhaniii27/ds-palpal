@@ -1,4 +1,243 @@
-# Uncovered 3: consumed-effect model and validated checkpoints
+# Uncovered 3: G1 review and scoped extension checkpoint
+
+The 48 initial G1 candidates left at 3131d887 have all been reviewed. Forty-five close through correct effects or tested native behavior. Three remain uncovered because their rule reading is unresolved: Pluvenn Grappleclaws and two Necronomicon Voidmarked copies. Three adjacent clauses also close: the belt's social and Poisoned-save Advantage, and Rocker's existing Performance grant/bonus. This checkpoint therefore closes 48 more sentences. It does not claim that all remaining 5,277 rules are finished.
+
+## Current measured result
+
+| Kind | Initial uncovered | Current uncovered | Closed |
+|---|---:|---:|---:|
+| item | 3060 | 3019 | 41 |
+| sub | 1436 | 1328 | 108 |
+| feat | 555 | 524 | 31 |
+| class | 240 | 237 | 3 |
+| species | 169 | 169 | 0 |
+| spell | 0 | 0 | 0 |
+| Total | 5460 | 5277 | 183 |
+
+The cumulative gate reads 73,254 sentences, 36,782 mechanical, 7,883 covered, 23,622 info and 5,277 uncovered. There are 0 newly uncovered sentence IDs against the preserved original baseline. Compared with 3131d887, uncovered falls by 48 and two previously info sentences become computed. No info reason, blanket allowlist or raised baseline was used. The gate writes its own lowered baseline.
+
+By implementation phase/method: report-only Phase 1 closes 0, existing-model/native work closes 168, small schema/handler extensions close 8, and the explicitly authorized independent-lifetime models close 7. The last group comprises five initially uncovered potion sentences and two Travel Alchemical Kit copies. Initial triage labels and implementation methods differ: of the original 167 G1 candidates, 164 now close and 3 remain undecided. Nineteen closures came from the conservatively placed initial G3 ledger. Remaining initial groups are G1 3, G3 5,264 and G4 10. The G3 ledger still includes unplaced work and is not proof that every remaining sentence needs a new model.
+
+## Implemented and recognized in this checkpoint
+
+- Eight native subclass picks now have precise code atoms and selected/unselected or record-removal proofs. Entropy's compound sentence checks both fixed skills and the gaming set, with a background that cannot mask Athletics and with Jack of All Trades changes explicitly accounted for.
+- Detective's second Advantage note, Charm of Many Tongues' two doubled proficiencies, and Angelic Wings' existing equal-to-Speed flight receive tested code records. They receive no duplicate effect data.
+- Samurai gains Wisdom save proficiency at Fighter 7, or one selected INT/CHA replacement when Wisdom already comes from another source. A selection cannot qualify itself or grant both replacements. Existing source labels stay intact. The generic unused WXS `saves` payload is deliberately not activated, preserving the reserved Gloom Stalker issue.
+- Gadgeteer AI Companion grants qualified Intelligence-check Advantage for selected skills and no skill proficiency. Its 1/2/3/4/5 choice counts come from the source's levels 1/5/9/12/17. A multiclass part uses its own level. The existing GX multiclass suffix is now read correctly, without renaming stored choices.
+- Jaeger Seasoned Survivor applies from source level 4. Promotion's Martial Training is a default-off state. Metamorphosis's Darkvision option is a default-off state at feat level 4, tested on a Changeling (EFotA) that satisfies the species prerequisite.
+- Steel Magic and Lumimancer use actual weapon category, attack kind and excluded properties. Their old weapon strings are replaced, not layered onto the broad matcher. Armor and Extra Attack remain intact. A non-Heavy Two-Handed Double Laser Sword independently proves that Steel Magic allows it and Lumimancer rejects it.
+- Belt of Dwarvenkind retains its CON increase and language. Its social Advantage works for dwarf wearers too. Extra Darkvision and Poison benefits exclude every known dwarf/duergar canonical key. Native species defenses are not mistaken for belt defenses.
+- Eight other item Advantage entries retain their tool, place, target, action and charm qualifiers. Gamma's Complete switch computes spell-save Advantage only. Its other Complete benefits remain open.
+- `retain:true` records a learned company upgrade in the existing boolean effect-state map. The rank-3 Travel Alchemical Kit training grants Poisoner's Kit proficiency without consuming the kit and persists after inventory removal, Apply and reload. No storage key or builder/play-state input format changes.
+
+The new top-level fields are `notSpecies`, `savePE` and `retain`. Existing `weaponGroups` gains property exclusions and GX pick counts gain source-level steps. Each handler extension remains below 60 lines. Seven new overlap records are documented, and two existing records add fx-Z5. Paired tests preserve unrelated benefits. Existing U4 and golden tests continue to prove the relevant Extra Attack totals.
+
+## Gate correctness and audit correction
+
+Pure Advantage clauses that refer to moving no more than half Speed or to effects lowering maximum HP are not themselves Speed/HP grants. Full-sentence classifier restrictions and negative selftests preserve real stat increases. These rules now match their already computed conditional Advantage rather than receiving fake Speed/HP effects.
+
+Review found one new gate error before push: Rocker's new instrument-choice atom freed a generic Performance bonus atom to close Instrument Weapon transformation. `scopeAtoms` now narrows that existing record to the Performance sentence under a live, level-matched code proof. It cannot add atoms or broaden existing restrictions. U19 proves the actual Strength modifier, minimum +1 and retained Performance proficiency. `Rocker#3` remains uncovered, while `Rocker#4` correctly closes. The three additional closures are therefore real adjacent benefits, not the rejected Instrument Weapon claim.
+
+## Verification
+
+| Check | Result |
+|---|---|
+| Build and JS syntax | PASS, build.py generated index.html/sw.js, edited JS passed node --check |
+| clause_gate --no-write and gate-written baseline | PASS, 73,254 sentences, 36,782 mechanical, 7,883 covered, 23,622 info, 5,277 uncovered, 0 new uncovered IDs |
+| zero_miss_fx | PASS, 693 cases, 0 failed |
+| zero_miss_measure | PASS, 752 units, miss 0 in 2024 and 2014, 0 new miss, 0 new card-or-miss |
+| consumable_lifecycle | PASS, 68 checks at 390x844 and 1250x850, including retained training without kit consumption, loss, reload and correction |
+| solid_contract | PASS, 4,848 checks, entry/ability/sheet handlers 8/9/4, 186,416 handler runs, 6,502 patches, 2,613 entries, 181 sheet groups, 53 class rules, 8,752 sheet calls, 234 handlers reached, 4,483 schema-checked sheet entries |
+| golden_builds | PASS, 1,479 checks |
+| solid_ui_contract | PASS, 308 checks, 0 failed |
+| scenarios | PASS, 24 checks, old Yudhi, Apply and new character at both viewports, 0 page errors and 0 native dialogs |
+| solid_snapshot | PASS, 2,997 builds, 0 page errors and 0 build errors, hash cfdcbfa11c271aef |
+| Snapshot vs 3131d887 checkpoint | 41 reviewed changed keys, all in Gadgeteer/AI, Jaeger, Samurai, Pawns, Steel Magic, Lumimancer or the changed feat/golden fixtures |
+| Snapshot vs immutable main reference | 217 changed keys, exactly the 198 prior reviewed keys union the 41 current keys, with 19 new keys and no removed prior key. Main reference hash 60dc8e67e7772446, 2,997 builds, 0 page/build errors |
+| solid_builder_diff --base /workspace/ds-palpal | PASS, 3,890 inputs on each side, IDENTICAL c47961d793b8c15b |
+| tsc_gate | PASS, SCORE 200, no WORSE |
+| html_gate | PASS, SCORE 250 |
+| fx_overlap | PASS, 1,371 names in 30 files, 158 documented overlaps |
+| guard_all --enforce | PASS, 0 new violations, exit 0 |
+
+No required test was skipped. The main snapshot remains the immutable reference run earlier in this same task. Its inherited f6d77cb1 Extra Attack differences are still included explicitly. The snapshot difference command exits 1 for expected differences. Every one of the 41 current changed keys was reviewed. The final label-only adjustment changes exactly six Steel Magic/Lumimancer keys relative to the first candidate snapshot.
+
+The required scenarios saved six storage captures and ten screenshots. The dedicated lifecycle run saved both viewport captures and proved learned training after reload. Earlier failed development runs are not counted as passes: a source expectation overlooked the actual Heavy property on Lance, a string replacement briefly touched the separate native-feat count path and was corrected, two code anchors were corrected to the actual skill handler, and the golden label expectation was restored with the accurate wording "without Heavy". The corrected tests and type gate pass. The formal audit correction is documented separately above.
+
+## Final 150-sentence audit, seed 11
+
+From the final pool of 183 unique closed sentence IDs, `random.Random(11).sample(sorted(pool,key=sid),150)` selects the 150 distinct rows below. Each row was reread against its source text, level, edition and proof. The earlier source-level reviews remain applicable where no implementation changed. All 48 new closures were also inspected before this final sample.
+
+The cumulative audit found two errors during the task and fixed both: the earlier Alchemist/Artificer scope error and this checkpoint's overbroad Rocker gate atom. The corrected final 150-row sample has 0 additional errors. The invalid Instrument Weapon closure is absent from this final pool. Native legacy cleric minimum-level-1 tests are independent of merged feature rows at level 3.
+
+| # | Sentence ID | Source level | Source sentence | Review evidence |
+|---:|---|---|---|---|
+| 1 | sub&#124;Druid/Circle of the Land (2014)&#124;Land's Stride#3 | 6 | You have Advantage on saving throws against plants that are magically created or shaped to hinder movement, such as the Entangle spell. | Prior checked source/edition and paired proof retained. |
+| 2 | sub&#124;Sorcerer/Frost Sorcery&#124;Cold-Hearted#11 | 6 | You have Resistance to Cold damage. | Prior checked source/edition and paired proof retained. |
+| 3 | sub&#124;Fighter/Rune Knight&#124;Giant's Might#3 | 3 | You have Advantage on Strength checks and Strength saving throws. | Prior checked source/edition and paired proof retained. |
+| 4 | sub&#124;Wizard/White Necromancer&#124;Lore of Life and Death#1 | 3 | You gain proficiency in Medicine and Religion, and your Proficiency Bonus is doubled on Wisdom (Medicine) checks. | Prior checked source/edition and paired proof retained. |
+| 5 | sub&#124;Ranger/Bounty Hunter&#124;Threat Assessment#1 | 7 | You have Advantage on saving throws against effects caused by the creature marked by your Hunter's Mark. | Prior checked source/edition and paired proof retained. |
+| 6 | sub&#124;Vagabond/Feylost&#124;Fey Moods#16 | 3 | You have Advantage on Intelligence, Wisdom, and Charisma saving throws. | Prior checked source/edition and paired proof retained. |
+| 7 | item&#124;dmg&#124;Habbakuk's Blessing#2 | item grant | You have advantage on Wisdom (Survival) checks to notice the Wash's waters filling chasms. | U17 source/level and qualified-benefit difference. |
+| 8 | item&#124;dmg&#124;Gamma Pendant#11 | item grant | You have Advantage on saves against spells. | U17 source/level and qualified-benefit difference. |
+| 9 | sub&#124;Ranger/Fey Wanderer (2014)&#124;Beguiling Twist#1 | 7 | You have Advantage on saves against being Charmed or Frightened. | Prior checked source/edition and paired proof retained. |
+| 10 | sub&#124;Investigator/Detective&#124;Interrogator's Instinct#6 | 10 | You have Advantage on ability checks to tell whether you hear a deliberate lie. | Z3 U18 Detective deliberate lies |
+| 11 | sub&#124;Warlock/The Fathomless&#124;Oceanic Soul#1 | 6 | You have Resistance to Cold damage. | Prior checked source/edition and paired proof retained. |
+| 12 | sub&#124;Warden/Rimekeeper&#124;Polar Acclimation#2 | 3 | You have Resistance to Cold damage. | Prior checked source/edition and paired proof retained. |
+| 13 | sub&#124;Wizard/Lumimancer&#124;Martial Training#1 | 3 | You gain proficiency with Martial Melee weapons that lack the Two-Handed and Heavy properties. | U17 source/level and qualified-benefit difference. |
+| 14 | feat&#124;Lakshay: Oni&#124;Lakshay: Oni#4 | feat selection | You have Advantage on Dexterity (Piloting) checks made while piloting a Battleframe. | Prior checked source/edition and paired proof retained. |
+| 15 | sub&#124;Druid/Circle of Configuration&#124;Mecha Configuration#7 | 14 | Your melee hits deal an extra 1d6 Force damage. | Prior checked source/edition and paired proof retained. |
+| 16 | sub&#124;Alchemist/Mutagenist&#124;Advanced Mutation#4 | 10 | You have Advantage on checks and saves to avoid or end the Grappled and Restrained conditions. | Prior checked source/edition and paired proof retained. |
+| 17 | item&#124;dmg&#124;Angelic Wings#2 | item grant | You have a Fly Speed equal to your Speed. | Z3 U18 Angelic Wings native movement |
+| 18 | feat&#124;Iron Gut&#124;Iron Gut#5 | feat selection | You have Advantage on Wisdom (Survival) checks made to forage for food. | Prior checked source/edition and paired proof retained. |
+| 19 | sub&#124;Rogue/Inquisitive&#124;Steady Eye#1 | 9 | You have Advantage on Wisdom (Perception) and Intelligence (Investigation) checks if you move no more than half your Speed on the same turn. | Qualified Advantage only, strict difference and HP/Speed classifier controls. |
+| 20 | sub&#124;Warlock/The Predator&#124;Form of the Beast#3 | 3 | You have Advantage on Stealth, Perception and Survival checks to stalk or track prey. | Prior checked source/edition and paired proof retained. |
+| 21 | feat&#124;Blood Hound&#124;Blood Hound#4 | feat selection | You have Advantage on Wisdom (Perception) checks that rely on sound or smell. | Prior checked source/edition and paired proof retained. |
+| 22 | sub&#124;Warden/Diabolist&#124;Devil's Advocate#5 | 3 | You have Resistance to Fire damage. | Prior checked source/edition and paired proof retained. |
+| 23 | sub&#124;Cleric/Strength Domain (PSA)&#124;Bonus Proficiency#1 | native 1 (2014), merged row 3 | You gain proficiency with Heavy armor. | Prior checked source/edition and paired proof retained. |
+| 24 | sub&#124;Wizard/Ring Warden&#124;Bonus Proficiency#1 | 3 | You gain proficiency with Smith's Tools or Jeweler's Tools, your choice. | Z3 U16 native pick sub&#124;Wizard/Ring Warden&#124;Bonus Proficiency#1 |
+| 25 | sub&#124;Wizard/Blood Magic (Deep Magic)&#124;Bonus Proficiency#1 | 3 | You gain proficiency in Medicine. | Prior checked source/edition and paired proof retained. |
+| 26 | item&#124;dmg&#124;Belt of Dwarvenkind#14 | item grant | Your saving throws to resist or shake off the Poisoned condition also have Advantage. | U17 ancestry exclusions and native-source distinction, U19 social benefit retained for dwarves. |
+| 27 | feat&#124;Aberrant Spawn&#124;Aberrant Spawn#2 | feat selection | You have Advantage on saving throws to avoid or end the Charmed condition and against any effect that would read your thoughts. | Prior checked source/edition and paired proof retained. |
+| 28 | sub&#124;Ranger/Winter Walker&#124;Frozen Haunt#5 | 15 | You have Immunity to Cold damage. | Prior checked source/edition and paired proof retained. |
+| 29 | feat&#124;Gambler (Dark Matter)&#124;Gambler (Dark Matter)#2 | feat selection | You gain proficiency with all Gaming Sets and have Advantage on ability checks for games of chance. | Prior checked source/edition and paired proof retained. |
+| 30 | feat&#124;Free Sword Mercenary's Will&#124;Free Sword Mercenary's Will#4 | feat selection | You have Advantage on saving throws that would apply a condition. | Prior checked source/edition and paired proof retained. |
+| 31 | feat&#124;Beastperson&#124;Beastperson#3 | feat selection | You have Advantage on Dexterity saving throws while you are Bloodied. | Prior checked source/edition and paired proof retained. |
+| 32 | sub&#124;Wizard/Master of Fiends&#124;Fiendish Presence#1 | 3 | You gain proficiency in Deception, Intimidation or Persuasion, your choice. | Z3 U16 native pick sub&#124;Wizard/Master of Fiends&#124;Fiendish Presence#1 |
+| 33 | item&#124;dsotdq&#124;Habbakuk's Blessing#2 | item grant | You have advantage on Wisdom (Survival) checks to notice the Wash's waters filling chasms. | U17 source/level and qualified-benefit difference. |
+| 34 | feat&#124;Aereni Half-Life&#124;Aereni Half-Life#3 | feat selection | You have Advantage on Death Saving Throws. | Prior checked source/edition and paired proof retained. |
+| 35 | sub&#124;Fighter/Purple Dragon Knight (Banneret)&#124;Royal Envoy#1 | 7 | You gain proficiency in Persuasion. | Prior checked source/edition and paired proof retained. |
+| 36 | sub&#124;Barbarian/Path of the Glacier&#124;Permafrost#7 | 3 | You have Resistance to Cold damage. | Prior checked source/edition and paired proof retained. |
+| 37 | sub&#124;Dancer/Mime&#124;Silent Routine#4 | 3 | You gain proficiency in Stealth or Sleight of Hand. | Z3 U16 native pick sub&#124;Dancer/Mime&#124;Silent Routine#4 |
+| 38 | item&#124;dmg&#124;Mythallar Cloak#6 | item grant | Additionally, once on each of your turns when you hit a creature with an attack roll and deal damage, you can cause the target to take an extra 1d4 Radiant damage. | Prior checked source/edition and paired proof retained. |
+| 39 | sub&#124;Ranger/Gloom Stalker (2014)&#124;Umbral Sight#1 | 3 | You gain Darkvision to 60 feet. | Prior checked source/edition and paired proof retained. |
+| 40 | item&#124;dmg&#124;Spacewalkers#4 | item grant | In zero gravity you have a Fly Speed equal to your Speed. | Prior checked source/edition and paired proof retained. |
+| 41 | sub&#124;Alchemist/Ionizer&#124;Bonus Proficiencies#1 | 3 | You gain proficiency in the Technology skill. | Prior checked source/edition and paired proof retained. |
+| 42 | sub&#124;Paladin/Oath of Glory (2014)&#124;Living Legend#2 | 20 | You have Advantage on all Charisma checks. | Prior checked source/edition and paired proof retained. |
+| 43 | class&#124;Jaeger&#124;Seasoned Survivor#1 | 4 | You have Advantage on checks to find secret passages, to read markings or messages other creatures left on walls or surfaces, and to work out what happened to creatures from blood stains and remains. | U17 source/level and qualified-benefit difference. |
+| 44 | feat&#124;Inspirational Caster&#124;Inspirational Caster#2 | feat selection | You gain proficiency in Intimidation or Persuasion (your choice). | Prior checked source/edition and paired proof retained. |
+| 45 | sub&#124;Fighter/Living Crucible&#124;Toxin Transmutation#1 | 15 | You have Resistance to Poison damage. | Prior checked source/edition and paired proof retained. |
+| 46 | item&#124;tsgs&#124;Bolt#3 | item grant | You have Advantage on ranged attacks with it against a metal target or a creature in metal armor. | U17 source/level and qualified-benefit difference. |
+| 47 | sub&#124;Cleric/Twilight Domain&#124;Eyes of Night#1 | 3 | You have Darkvision with a range of 300 feet. | Prior checked source/edition and paired proof retained. |
+| 48 | sub&#124;Rogue/Scout&#124;Survivalist#1 | 3 | You gain proficiency in Nature and Survival. | Prior checked source/edition and paired proof retained. |
+| 49 | item&#124;nf&#124;Mythallar Cloak#6 | item grant | Additionally, once on each of your turns when you hit a creature with an attack roll and deal damage, you can cause the target to take an extra 1d4 Radiant damage. | Prior checked source/edition and paired proof retained. |
+| 50 | sub&#124;Barbarian/Path of Heavy Metal&#124;Rocker#1 | 3 | You gain proficiency with three Musical Instruments. | Z3 U16 native pick sub&#124;Barbarian/Path of Heavy Metal&#124;Rocker#1 |
+| 51 | item&#124;dmg&#124;Sharkrazor Mantle#3 | item grant | You have Advantage on Wisdom (Perception or Survival) checks to find or track a creature missing Hit Points. | Qualified Advantage only, strict difference and HP/Speed classifier controls. |
+| 52 | sub&#124;Wizard/Dragon Mage&#124;Invoke Dragon Wings#5 | 10 | You have Advantage on spell attack rolls. | Prior checked source/edition and paired proof retained. |
+| 53 | item&#124;tsgs&#124;Sharkrazor Mantle#3 | item grant | You have Advantage on Wisdom (Perception or Survival) checks to find or track a creature missing Hit Points. | Qualified Advantage only, strict difference and HP/Speed classifier controls. |
+| 54 | sub&#124;Vagabond/Feylost&#124;Fey Moods#14 | 3 | You have Advantage on Dexterity checks and saving throws. | Prior checked source/edition and paired proof retained. |
+| 55 | feat&#124;Gambler&#124;Gambler#2 | feat selection | You gain proficiency with two gaming sets of your choice. | Prior checked source/edition and paired proof retained. |
+| 56 | feat&#124;Quicksmithing&#124;Quicksmithing#8 | feat selection | You gain proficiency with one type of artisan's tools (quicksmith's tools). | Prior checked source/edition and paired proof retained. |
+| 57 | item&#124;dmg&#124;Potion of Climbing#1 | item grant | Drinking this potion gives you a Climb Speed equal to your Speed for 1 hour. | Prior checked source/edition and paired proof retained. |
+| 58 | feat&#124;Echoing Soul&#124;Echoing Soul#2 | feat selection | You gain proficiency in two skills of your choice. | Prior checked source/edition and paired proof retained. |
+| 59 | sub&#124;Craftsman/Trappers' Guild&#124;Danger Sense#1 | 3 | You have Advantage on Dexterity saving throws unless you have the Incapacitated condition. | Prior checked source/edition and paired proof retained. |
+| 60 | item&#124;dmg&#124;Baba Yaga's Mortar and Pestle#25 | item grant | You have advantage on any check you make using the artifact as one of these tools. | U17 source/level and qualified-benefit difference. |
+| 61 | item&#124;dmg&#124;Mythallar Cloak#5 | item grant | While the cloak's magic is active, you gain a Fly Speed of 30 feet and can hover. | Prior checked source/edition and paired proof retained. |
+| 62 | feat&#124;Battlecaster&#124;Battlecaster#6 | feat selection | You gain proficiency with one simple or martial weapon of your choice. | Prior checked source/edition and paired proof retained. |
+| 63 | class&#124;Warden&#124;Sentinel's Stand#4 | 1 | You gain proficiency in one saving throw of your choice. | Prior checked source/edition and paired proof retained. |
+| 64 | sub&#124;Monk/Way of the Ascendant Dragon&#124;Ascendant Aspect#4 | 17 | You have Blindsight out to 10 feet. | Prior checked source/edition and paired proof retained. |
+| 65 | sub&#124;Captain/Feylost&#124;Fey Moods#16 | 3 | You have Advantage on Intelligence, Wisdom, and Charisma saving throws. | Prior checked source/edition and paired proof retained. |
+| 66 | class&#124;Gadgeteer&#124;AI Companion#4 | 1 | You have Advantage on Intelligence checks with it. | U17 source/level and qualified-benefit difference. |
+| 67 | sub&#124;Sorcerer/Boreal Bloodline&#124;Gelid Form#1 | 6 | You have Resistance to Cold damage. | Prior checked source/edition and paired proof retained. |
+| 68 | feat&#124;Proto-Man&#124;Proto-Man#4 | feat selection | You have Advantage on saving throws to avoid or end the Frightened condition. | Prior checked source/edition and paired proof retained. |
+| 69 | feat&#124;Aereni Expertise&#124;Aereni Expertise#2 | feat selection | You gain proficiency in one skill of your choice. | Prior checked source/edition and paired proof retained. |
+| 70 | item&#124;dmg&#124;Travel Alchemical Kit#2 | item grant | You gain proficiency with a poisoner's kit as part of this upgrade. | U17 retained proficiency, 68-check real UI lifecycle includes loss/reload. |
+| 71 | sub&#124;Vagabond/Siegeball Jersey&#124;Sports Fanatic#4 | 3 | You have Advantage on ability checks to recall information about a sport, its teams, and its players. | Prior checked source/edition and paired proof retained. |
+| 72 | sub&#124;Cleric/Beer Domain&#124;Fire in the Belly#1 | 17 | You have resistance to Cold, Poison, and Psychic damage. | Prior checked source/edition and paired proof retained. |
+| 73 | sub&#124;Sorcerer/Pyromancer (PSK)&#124;Fiery Soul#1 | 18 | You have Immunity to Fire damage. | Prior checked source/edition and paired proof retained. |
+| 74 | item&#124;dmg&#124;Potion of Flying#1 | item grant | Drinking this potion gives you a Fly Speed equal to your Speed for 1 hour, and you can hover. | Prior checked source/edition and paired proof retained. |
+| 75 | sub&#124;Wizard/Diviner&#124;The Third Eye#6 | 10 | You gain Darkvision out to 120 feet. | Prior checked source/edition and paired proof retained. |
+| 76 | item&#124;tsgs&#124;Catnip Amulet#2 | item grant | You have Advantage on ability checks to find or call Tiny domestic cats and on Wisdom (Animal Handling) checks to deal with them. | U17 source/level and qualified-benefit difference. |
+| 77 | sub&#124;Ranger/Vampire Slayer&#124;Defensive Tactics#3 | 7 | You have Advantage on saves against paralysis and effects that lower your Hit Point maximum. | Qualified Advantage only, strict difference and HP/Speed classifier controls. |
+| 78 | feat&#124;Ley-Bound&#124;Ley-Bound#3 | feat selection | You have Advantage on Wisdom (Survival) checks to track a creature overland or to forage for food and water. | Prior checked source/edition and paired proof retained. |
+| 79 | sub&#124;Cleric/Prophecy Domain&#124;It Was Foretold#1 | 17 | You have Advantage on Dexterity saves, Wisdom (Perception) checks, and Wisdom (Insight) checks. | Prior checked source/edition and paired proof retained. |
+| 80 | sub&#124;Captain/Feylost&#124;Fey Moods#14 | 3 | You have Advantage on Dexterity checks and saving throws. | Prior checked source/edition and paired proof retained. |
+| 81 | item&#124;ai&#124;Travel Alchemical Kit#2 | item grant | You gain proficiency with a poisoner's kit as part of this upgrade. | U17 retained proficiency, 68-check real UI lifecycle includes loss/reload. |
+| 82 | item&#124;dmg&#124;Catnip Amulet#2 | item grant | You have Advantage on ability checks to find or call Tiny domestic cats and on Wisdom (Animal Handling) checks to deal with them. | U17 source/level and qualified-benefit difference. |
+| 83 | feat&#124;Changeling Metamorphosis&#124;Changeling Metamorphosis#10 | feat selection | You have Darkvision 60 ft. | U17 source/level and qualified-benefit difference. |
+| 84 | item&#124;dmg&#124;Belt of Dwarvenkind#13 | item grant | You gain Resistance to Poison damage. | U17 ancestry exclusions and native-source distinction, U19 social benefit retained for dwarves. |
+| 85 | item&#124;dmg&#124;Bolt#3 | item grant | You have Advantage on ranged attacks with it against a metal target or a creature in metal armor. | U17 source/level and qualified-benefit difference. |
+| 86 | sub&#124;Rogue/Thief (2014)&#124;Supreme Sneak#1 | 9 | You have Advantage on a Dexterity (Stealth) check if you move no more than half your Speed on the same turn. | Qualified Advantage only, strict difference and HP/Speed classifier controls. |
+| 87 | item&#124;dmg&#124;Potion of Climbing#2 | item grant | For that hour, you also have Advantage on Strength (Athletics) checks you make to climb. | Prior checked source/edition and paired proof retained. |
+| 88 | sub&#124;Warden/Diabolist&#124;Soul Broker#13 | 6 | Your Speed rises by 15 feet. | Prior checked source/edition and paired proof retained. |
+| 89 | sub&#124;Paladin/Oath of Thunder&#124;Child of the Storm#3 | 20 | You have Advantage on Dexterity (Stealth) checks and Initiative rolls. | Prior checked source/edition and paired proof retained. |
+| 90 | feat&#124;Syndicate Spy&#124;Syndicate Spy#10 | feat selection | You have proficiency with the Forgery Kit. | Prior checked source/edition and paired proof retained. |
+| 91 | sub&#124;Dancer/Mime&#124;Pantomime [Dance Style]#2 | 3 | You have Advantage on the first melee attack roll you make on each of your turns. | Prior checked source/edition and paired proof retained. |
+| 92 | feat&#124;Dungeon Delver&#124;Dungeon Delver#4 | feat selection | You have Advantage on saving throws made to avoid or resist traps. | Prior checked source/edition and paired proof retained. |
+| 93 | sub&#124;Cleric/Moon Domain (Deep Magic)&#124;Moon's Grace#1 | 3 | You gain proficiency in Perception and Stealth. | Prior checked source/edition and paired proof retained. |
+| 94 | sub&#124;Paladin/Oath of the Crown&#124;Unyielding Spirit#1 | 15 | You have Advantage on saving throws to avoid being Paralyzed or Stunned. | Prior checked source/edition and paired proof retained. |
+| 95 | sub&#124;Wizard/Transmuter&#124;Wondrous Alteration#7 | 3 | You have Advantage on Charisma (Deception) checks. | Prior checked source/edition and paired proof retained. |
+| 96 | item&#124;misc14&#124;Eyes of the Impossible#3 | item grant | You have Advantage on Charisma (Persuasion) checks made to deal with evil creatures. | U17 source/level and qualified-benefit difference. |
+| 97 | feat&#124;Iron Gut&#124;Iron Gut#3 | feat selection | You have Advantage on saving throws to avoid or end the Poisoned condition. | Prior checked source/edition and paired proof retained. |
+| 98 | sub&#124;Warlock/Undead Patron&#124;Necrotic Husk#2 | 10 | You have Resistance to Necrotic damage. | Prior checked source/edition and paired proof retained. |
+| 99 | sub&#124;Wizard/Blood Mage&#124;Bonus Proficiency#1 | 3 | You gain proficiency in Medicine. | Prior checked source/edition and paired proof retained. |
+| 100 | item&#124;dmg&#124;Ring of Veracity#2 | item grant | You have Advantage on Wisdom (Insight) checks made with the Search action. | U17 source/level and qualified-benefit difference. |
+| 101 | sub&#124;Ranger/Winter Walker&#124;Frigid Explorer#4 | 3 | You have Resistance to Cold damage. | Prior checked source/edition and paired proof retained. |
+| 102 | sub&#124;Bard/College of Entropy&#124;Bonus Proficiencies#1 | 3 | You gain proficiency in Acrobatics, Athletics and one gaming set of your choice. | Z3 U16 native pick sub&#124;Bard/College of Entropy&#124;Bonus Proficiencies#1 |
+| 103 | sub&#124;Warden/Godsworn&#124;Divine Mandate#7 | 3 | You have Resistance to Radiant damage. | Prior checked source/edition and paired proof retained. |
+| 104 | sub&#124;Dancer/Danseur Macabre&#124;Ghoulish Calling#5 | 3 | You have Resistance to Necrotic damage. | Prior checked source/edition and paired proof retained. |
+| 105 | sub&#124;Investigator/Infernum&#124;Infernal Bargain#5 | 6 | You have Blindsight with a range of 30 feet. | Prior checked source/edition and paired proof retained. |
+| 106 | feat&#124;Envoy Specialist&#124;Envoy Specialist#2 | feat selection | You gain proficiency with one tool of your choice. | Prior checked source/edition and paired proof retained. |
+| 107 | sub&#124;Dancer/Fire Dancer&#124;Flame Twirling#2 | 3 | You have Resistance to Fire damage. | Prior checked source/edition and paired proof retained. |
+| 108 | sub&#124;Alchemist/Ooze Rancher&#124;Ooze Resilience#1 | 3 | You have Resistance to Acid damage. | Prior checked source/edition and paired proof retained. |
+| 109 | sub&#124;Fighter/Couatl Herald&#124;One of the People#1 | 3 | You gain proficiency in Insight and Persuasion. | Prior checked source/edition and paired proof retained. |
+| 110 | sub&#124;Rogue/Scout&#124;Ambush Master#1 | 13 | You have Advantage on Initiative rolls. | Prior checked source/edition and paired proof retained. |
+| 111 | sub&#124;Cleric/Tempest Domain&#124;Bonus Proficiencies#1 | native 1 (2014), merged row 3 | You gain proficiency with Martial weapons and Heavy armor. | Prior checked source/edition and paired proof retained. |
+| 112 | item&#124;dmg&#124;Belt of Dwarvenkind#11 | item grant | You gain Darkvision out to 60 feet. | U17 ancestry exclusions and native-source distinction, U19 social benefit retained for dwarves. |
+| 113 | sub&#124;Fighter/Samurai&#124;Elegant Courtier#2 | 7 | You gain proficiency in Wisdom saving throws. | U17 source/level and qualified-benefit difference. |
+| 114 | sub&#124;Warlock/Astral Griffon Patron&#124;Extradimensional Mastery#6 | 10 | You have Resistance to Force damage. | Prior checked source/edition and paired proof retained. |
+| 115 | sub&#124;Warmage/House of Bishops&#124;Arcane Study#1 | 3 | You gain proficiency in two skills of your choice from Arcana, History, Investigation, Medicine, and Religion. | Z3 U16 native pick sub&#124;Warmage/House of Bishops&#124;Arcane Study#1 |
+| 116 | sub&#124;Alchemist/Mutagenist&#124;Advanced Mutation#3 | 10 | Your reach increases by 5 feet. | Prior checked source/edition and paired proof retained. |
+| 117 | sub&#124;Cleric/Death Domain&#124;Bonus Proficiency#1 | native 1 (2014), merged row 3 | You gain proficiency with Martial weapons. | Prior checked source/edition and paired proof retained. |
+| 118 | feat&#124;Actor (2014)&#124;Actor (2014)#4 | feat selection | You have Advantage on Charisma (Deception) and Charisma (Performance) checks when you try to pass yourself off as a different person. | Prior checked source/edition and paired proof retained. |
+| 119 | feat&#124;Green-Skin&#124;Green-Skin#6 | feat selection | You have Advantage on saving throws to avoid or end the Poisoned condition. | Prior checked source/edition and paired proof retained. |
+| 120 | item&#124;tvss&#124;Angelic Wings#2 | item grant | You have a Fly Speed equal to your Speed. | Z3 U18 Angelic Wings native movement |
+| 121 | feat&#124;Skill Expert (2014)&#124;Skill Expert (2014)#4 | feat selection | You gain proficiency in one skill of your choice. | Prior checked source/edition and paired proof retained. |
+| 122 | sub&#124;Cleric/War Domain (2014)&#124;Bonus Proficiencies#1 | native 1 (2014), merged row 3 | You gain proficiency with Martial weapons and Heavy armor. | Prior checked source/edition and paired proof retained. |
+| 123 | sub&#124;Wizard/Necromancer&#124;Necromancy Spellbook#3 | 3 | You have Resistance to Necrotic damage. | Prior checked source/edition and paired proof retained. |
+| 124 | sub&#124;Alchemist/Mutagenist&#124;Bonus Proficiencies#1 | 3 | You gain proficiency in Acrobatics and Athletics. | Prior checked source/edition and paired proof retained. |
+| 125 | sub&#124;Ranger/Winter Walker&#124;Frozen Haunt#8 | 15 | You have Immunity to the Grappled, Prone, and Restrained conditions. | Prior checked source/edition and paired proof retained. |
+| 126 | sub&#124;Warden/Nightgaunt&#124;Grave Keeper#5 | 3 | You have Resistance to Necrotic damage. | Prior checked source/edition and paired proof retained. |
+| 127 | sub&#124;Sorcerer/Farseer&#124;Blood of the Seer#1 | 3 | You gain proficiency in Insight and History. | Prior checked source/edition and paired proof retained. |
+| 128 | item&#124;nf&#124;Mythallar Cloak#5 | item grant | While the cloak's magic is active, you gain a Fly Speed of 30 feet and can hover. | Prior checked source/edition and paired proof retained. |
+| 129 | sub&#124;Barbarian/Path of Heavy Metal&#124;Rocker#4 | 3 | You gain Performance proficiency and add your Strength modifier (minimum +1) to Performance checks. | U19 STR 18 gives +4, STR 8 gives +1, proficiency remains, no Instrument Weapon grant. |
+| 130 | feat&#124;Ace Pilot&#124;Ace Pilot#2 | feat selection | You gain proficiency in the Piloting skill. | Prior checked source/edition and paired proof retained. |
+| 131 | item&#124;dmg&#124;Ring of Spacewalking#2 | item grant | In zero gravity you have a Fly Speed equal to your Speed. | Prior checked source/edition and paired proof retained. |
+| 132 | sub&#124;Barbarian/Path of the Frostrager&#124;Cold Resistance#1 | 3 | You have Resistance to Cold damage. | Prior checked source/edition and paired proof retained. |
+| 133 | sub&#124;Monster Hunter/Occultist Guild&#124;Acolyte of the Occult#1 | 3 | You gain proficiency in the Arcana skill. | Prior checked source/edition and paired proof retained. |
+| 134 | sub&#124;Monk/Warrior of Gravity&#124;Plunging Strike#1 | 6 | You have Advantage on any Unarmed Strike you make while falling. | Prior checked source/edition and paired proof retained. |
+| 135 | sub&#124;Warden/Storm Sentinel&#124;Stormlord#9 | 17 | You have a Fly Speed of 60 feet. | Prior checked source/edition and paired proof retained. |
+| 136 | sub&#124;Cleric/Justice Domain&#124;Holy Denunciation#3 | 17 | You have advantage on Wisdom and Charisma checks about justice, judgment, and law, up to and including execution for crimes. | Prior checked source/edition and paired proof retained. |
+| 137 | sub&#124;Druid/Circle of Configuration&#124;Mecha Configuration#5 | 14 | You have Advantage on Strength checks and saves. | Prior checked source/edition and paired proof retained. |
+| 138 | sub&#124;Bard/Entropy&#124;Bonus Proficiencies#1 | 3 | You gain proficiency in Acrobatics, Athletics and one gaming set of your choice. | Z3 U16 native pick sub&#124;Bard/Entropy&#124;Bonus Proficiencies#1 |
+| 139 | item&#124;tsdm&#124;Gamma Pendant#11 | item grant | You have Advantage on saves against spells. | U17 source/level and qualified-benefit difference. |
+| 140 | item&#124;dmg&#124;Charm of Many Tongues#2 | item grant | You gain proficiency in Deception and Persuasion, and you add double your proficiency bonus to checks with those skills. | Z3 U18 Charm of Many Tongues |
+| 141 | sub&#124;Sorcerer/Haunted Sorcery&#124;Deathly Pallor#1 | 6 | You have Resistance to Necrotic damage. | Prior checked source/edition and paired proof retained. |
+| 142 | feat&#124;Squat Nimbleness&#124;Squat Nimbleness#8 | feat selection | You gain proficiency in Acrobatics or Athletics. | Prior checked source/edition and paired proof retained. |
+| 143 | sub&#124;Wizard/Doomsayer&#124;Merciless Onslaught#1 | 10 | You have Advantage on spell attack rolls against Frightened or Poisoned creatures. | Prior checked source/edition and paired proof retained. |
+| 144 | sub&#124;Captain/Siegeball Jersey&#124;Sports Fanatic#4 | 3 | You have Advantage on ability checks to recall information about a sport, its teams, and its players. | Prior checked source/edition and paired proof retained. |
+| 145 | feat&#124;Symbiotic Being&#124;Symbiotic Being#5 | feat selection | You gain proficiency in one skill of your choice from Arcana, Deception, History, Intimidation, Insight, Investigation, Nature, Religion, Perception, or Persuasion. | Prior checked source/edition and paired proof retained. |
+| 146 | sub&#124;Warmage/House of Pawns&#124;Promotion#8 | 3 | You gain proficiency with Martial weapons and training with Medium armor and Shields. | U17 source/level and qualified-benefit difference. |
+| 147 | sub&#124;Sorcerer/Pyromancer (PSK)&#124;Fire in the Veins#1 | 6 | You have Resistance to Fire damage. | Prior checked source/edition and paired proof retained. |
+| 148 | item&#124;dmg&#124;Potion of Invulnerability#1 | item grant | Drinking this potion gives you Resistance to all damage for 1 minute. | Prior checked source/edition and paired proof retained. |
+| 149 | sub&#124;Cleric/Solidarity Domain (PSA)&#124;Bonus Proficiency#1 | native 1 (2014), merged row 3 | You gain proficiency with Heavy armor. | Prior checked source/edition and paired proof retained. |
+| 150 | sub&#124;Wizard/School of Abjuration&#124;Spell Resistance#1 | 14 | You have Advantage on saving throws against spells. | Prior checked source/edition and paired proof retained. |
+
+
+## Open readings and limitations
+
+Pluvenn Grappleclaws combines Athletics climbing Advantage with Advantage on an Unarmed Strike used to Grapple. The app's 2024 Grapple uses the target's save, leaving no attacker roll for that Advantage. No invented target-save Disadvantage or half-implemented compound closure is added.
+
+Necronomicon's Voidmarked social Advantage has no explicit ending condition after attunement loss or inventory removal. Both copies remain uncovered. Its existing once-only ability-score lifecycle issue is recorded in requests.md and is not silently migrated to the company-training model. These readings are also marked reading not decided in rules-notes.md.
+
+Piety, charm expiry, marked/metal targets, state durations and shape-change selection changes remain player tracked. The Gamma switch supplies only its stated spell-save benefit, Promotion only Martial Training and Metamorphosis only Darkvision. Other clauses of those features remain open. All 5,277 remaining uncovered clauses remain visible, with no claim that the task's full rule universe is complete.
+
+The four reserved sheet bugs remain unchanged: Gloom Stalker 2014 Iron Mind, Ranger 6 Roving in 2014, Draconic Bloodline 2014 level and Attack action text "per Extra Attack".
+
+---
+
+# Historical checkpoint at 3131d887
+
 
 The owner explicitly requested a new mechanical model on 2026-11-10. That instruction expands the original stop-before-G3 scope. The consumed-effect model is implemented for ten potions. This remains a partial reduction of the original 5,460 sentences, not completion of every remaining mechanic. There are 48 open candidates from the original G1 ledger. No candidate is treated as G3 merely because its initial classification was conservative.
 

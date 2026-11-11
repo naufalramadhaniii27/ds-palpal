@@ -37,3 +37,11 @@ registerSheetGroup({id:"fx-save-prof",group:"saves",phase:"saves",order:50,reads
 /* M17: FEATS.saveFromAsi = the feat's chosen ability gives a saving throw proficiency */
 registerSheetGroup({id:"feat-save-asi",group:"saves",phase:"saves",order:60,reads:["i.feats"],writes:["C.saves"],
  run:function(ctx){const C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.saveFromAsi&&f.asi&&f.asi.a1)C.saves[f.asi.a1]=f.n+" feat ("+f.s+")"});return ctx.patch()}});
+
+/* Fixed save, or a selected replacement only when the fixed save already exists.
+   Runs after feat saves so a Resilient choice is a genuine existing source. */
+registerSheetGroup({id:"fx-save-pe",group:"saves",phase:"saves",order:70,reads:["i.G","q.fxCh"],writes:["C.saves"],
+ run:function(ctx){const C=ctx.C;ctx.i.G.forEach((e) =>{const g=e.savePE;if(!g||!ABK.includes(g.ab))return;
+  if(!C.saves[g.ab]){C.saves[g.ab]=e.lbl;return}
+  const key="gx-"+g.pick+"-"+e.kind+"-"+e.okey,v=ctx.q.fxCh(key,e.pre,e.kind,e.okey),a=Array.isArray(v)?v:[];
+  const k=a.map((n) =>ABK.find((x) =>x===n||ABN[x]===n)).find((x) =>(g.from||[]).includes(x));if(k&&!C.saves[k])C.saves[k]=e.lbl});return ctx.patch()}});

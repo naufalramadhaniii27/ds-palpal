@@ -273,6 +273,12 @@ def classes(text, kind=None):
     for k, rx in XCAT.items():
         if rx.search(t_slot if k == "SLOT" else t):
             out.add("AC" if k == "ACB" else k)
+    # In a pure Advantage rule these words qualify the roll, not a change
+    # to Speed or HP. Full-sentence matches keep genuine stat grants flagged.
+    if re.fullmatch(r"you have advantage on (?!.*\b(?:gain|increase|reduce|decrease|becomes|set)\b).+ if you move no more than half your speed on the same turn\.", t):
+        out.discard("SPEED")
+    if re.fullmatch(r"you have advantage on (?:saves|saving throws) against (?:paralysis and )?effects that lower your hit point maximum\.", t) or re.fullmatch(r"you have advantage on wisdom \(perception or survival\) checks to (?:find|locate) or track a creature missing hit points\.", t):
+        out.discard("HP")
     return out
 
 
@@ -287,7 +293,7 @@ def reg(cls, *keys):
 
 reg("AC", "ac", "acAdd", "acBase", "acDexAb", "acMw", "acArmAb", "acOver", "shAc", "acNoDex", "acAb", "acMin", "acCap", "acDexMax", "natAc", "acBonus", "dwAC", "unarmoredAC", "med3", "acSub", "ua", "mw")
 reg("HP", "hp", "hpLvl", "hpFlat", "hpPerLevel", "hpSub")
-reg("SAVE", "saveBonus", "saveBonusNp", "saveBonusAb", "saveFrom", "saveProf", "saveFromAsi", "saveNote", "save", "advOn")
+reg("SAVE", "savePE", "saveBonus", "saveBonusNp", "saveBonusAb", "saveFrom", "saveProf", "saveFromAsi", "saveNote", "save", "advOn")
 reg("ADV", "advOn", "initAdv", "saveNote", "noSurprise", "def", "defs", "adv")
 reg("DIS", "saveNote", "def", "defs")
 reg("RES", "res", "imm", "vul", "resToImm", "def", "defs", "condImm", "linRes", "saveNote", "resBy")
@@ -295,7 +301,7 @@ reg("IMM", "imm", "condImm", "resToImm", "def", "defs", "cimm")
 reg("SPEED", "speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv", "fly", "swim", "climb", "burrow", "movesNote", "linFx")
 reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "darkHave", "noSurprise", "senses")
 reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "chkBonusNp", "skillPE", "skillAb", "langs", "tools", "weapons", "armor", "toolExpert", "toolPE",
-    "weaponGroups", "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf", "exp")
+    "savePE", "weaponGroups", "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf", "exp")
 reg("SLOT", "slotAdd", "nslot", "smax", "arcRec")
 reg("RESOURCE", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
 reg("ATK", "atk", "atkBonus", "atkDice", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
@@ -437,6 +443,18 @@ def build_index(D):
 CODE_ATOMS = {}
 
 
+def scope_atoms(atoms, bindings):
+    """Narrow existing record atoms under a live, tested code entry. No atom is
+    added and an existing sentence restriction can never be broadened."""
+    for a in atoms:
+        if a.src in bindings:
+            rx = bindings[a.src]
+            if a.rx:
+                rx = "(?=" + a.rx.pattern + ")" + rx
+            a.rx = re.compile(rx)
+    return atoms
+
+
 def features(D):
     global CODE_ATOMS
     CODE_NOTES.clear()
@@ -450,7 +468,7 @@ def features(D):
         key = "%s|%s|%s" % (kind, owner, name)
         for e, a in CODE_ATOMS.get(key, []):
             if e.get("lvl") is None or lvl == e["lvl"]:  # the level of the data row must be the level the entry was checked at
-                atoms = atoms + [a]
+                atoms = scope_atoms(atoms, e.get("scopeAtoms", {})) + [a]
             else:
                 CODE_NOTES.append("code atom %s dropped: data row level %s, entry level %s" % (e["id"], lvl, e["lvl"]))
         if name in D["calc_names"] and kind in ("class", "sub", "species", "feat"):
@@ -1078,6 +1096,14 @@ def selftest():
     cr = analyze(synth("item", "dmg", "Test Potion", "You gain a Fly Speed equal to your Speed for 1 hour.", atoms_from(cp, "GX.item|Test Potion")))[0]
     check("consumed duration alone cannot grant speed", cr["status"] == "uncovered", cr["why"])
 
+    for txt, absent in [
+        ("You have Advantage on a Dexterity (Stealth) check if you move no more than half your Speed on the same turn.", "SPEED"),
+        ("You have Advantage on saves against paralysis and effects that lower your Hit Point maximum.", "HP"),
+        ("You have Advantage on Wisdom (Perception or Survival) checks to find or track a creature missing Hit Points.", "HP")]:
+        check("qualified Advantage is not a stat grant: "+absent, absent not in classes(txt,"item"), str(classes(txt,"item")))
+    check("real Speed grant beside Advantage is preserved", "SPEED" in classes("You have Advantage on Stealth checks and your Speed increases by 10 feet."), "SPEED preserved")
+    check("real HP grant beside Advantage is preserved", "HP" in classes("You have Advantage on saves and your Hit Point maximum increases by 10."), "HP preserved")
+
     # 7 dice / DC / distance / duration conservation
     c7 = synth("item", "dmg", "Wand", "It deals 3d6 fire damage in a 20-foot radius for 10 minutes. DC 15 Dexterity save.", [Atom("DMG", {"3d6", "20", "10", "15"}, "d")])
     r = analyze(c7)
@@ -1199,6 +1225,15 @@ def selftest():
     gone = load_code_atoms([ent2])
     check("11c code atom: an anchor that is no longer in the source drops the atom and says so", not gone and len(CODE_NOTES) == 1, str(CODE_NOTES))
     CODE_NOTES.clear()
+    instrument = "It counts as a Musical Instrument you are proficient with and keeps its weapon stats."
+    performance = "You gain Performance proficiency and add your Strength modifier (minimum +1) to Performance checks."
+    bound = scope_atoms([Atom("PROF", {"1"}, "bonus")], {"bonus": "^"+re.escape(performance.lower())+"$"})
+    br = analyze(synth("sub", "X", "Rocker", instrument+" "+performance, bound))
+    check("11d scoped Performance record does not grant an Instrument Weapon", br[0]["status"] == "uncovered" and br[1]["status"] == "covered", str([x["status"] for x in br]))
+    check("11e record scope cannot manufacture an atom", not scope_atoms([], {"bonus":".*"}), "empty remains empty")
+    narrow = scope_atoms([Atom("PROF", set(), "bonus", rx=re.compile("^you gain proficiency in arcana\\.$"))], {"bonus":".*"})
+    br = analyze(synth("sub", "X", "Y", "You gain proficiency in Performance.", narrow))[0]
+    check("11f a new scope cannot broaden an existing restriction", br["status"] == "uncovered", br["why"])
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

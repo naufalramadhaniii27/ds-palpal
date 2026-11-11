@@ -14,6 +14,9 @@ export const FX_FIELDS={
  when:"object",
  toggle:"object",
  consume:"object",
+ retain:"boolean",
+ notSpecies:"array",
+ savePE:"object",
  acAdd:"array|number|string",
  cond:"string",
  res:"array",
@@ -118,6 +121,7 @@ export function fxEntryProblems(e){const bad=[];
  if(!e||typeof e!=="object"||Array.isArray(e)){bad.push("entry is not a plain object");return bad}
  Object.keys(e).forEach((k) =>{if(!Object.prototype.hasOwnProperty.call(FX_FIELDS,k)){bad.push("field "+k+" is not in the entry schema");return}
   if(!typeOk(FX_FIELDS[k],e[k]))bad.push("field "+k+" should be "+FX_FIELDS[k]+", is "+(Array.isArray(e[k])?"array":e[k]===null?"null":typeof e[k]))});
+ if(e.retain&&(!e.toggle||!e.toggle.id||e.toggle.default!==false))bad.push("retain needs a toggle with default false");
  if(e.consume){
   if(!e.toggle||!e.toggle.id||e.toggle.default!==false)bad.push("consume needs a toggle with default false");
   if(typeof e.consume.duration!=="string"||!e.consume.duration.trim())bad.push("consume needs a duration label");

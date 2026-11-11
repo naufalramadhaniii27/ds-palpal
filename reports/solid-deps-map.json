@@ -14108,6 +14108,15 @@
    "count": 1
   },
   {
+   "from": "data/fx-Z5.js",
+   "to": "data/db4/06-tools-proficiencies-packs-kits.js",
+   "import": false,
+   "names": [
+    "SUB_GRANT"
+   ],
+   "count": 1
+  },
+  {
    "from": "data/hbpack-builtin-homebrew.js",
    "to": "data/db4/02-limited-uses-damage-rows-save-notes.js",
    "import": false,

@@ -1844,6 +1844,259 @@
    ],
    "test": "Z3 U12 computed feat|Woodwise|Woodwise#2",
    "note": "Existing selected proficiency or save grant, tested with and without the selection."
+  },
+  {
+   "id": "u16-sub-barbarian-path-of-heavy-metal-rocker-1",
+   "kind": "sub",
+   "owner": "Barbarian/Path of Heavy Metal",
+   "name": "Rocker",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "3"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ three\\ musical\\ instruments\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-tool-choices\""
+   ],
+   "test": "Z3 U16 native pick sub|Barbarian/Path of Heavy Metal|Rocker#1",
+   "note": "Existing selected native grant. The paired test clears the choice. Entropy also removes its fixed skill record, proving all parts of the compound sentence. No additive effect. Scope the independent Performance bonus atom to its actual sentence. U19 removes that bonus and checks the minimum. Instrument Weapon transformation is not implemented.",
+   "scopeAtoms": {
+    "GX.sub|Path of Heavy Metal.skillBonus": "^you\\ gain\\ performance\\ proficiency\\ and\\ add\\ your\\ strength\\ modifier\\ \\(minimum\\ \\+1\\)\\ to\\ performance\\ checks\\.$"
+   }
+  },
+  {
+   "id": "u16-sub-bard-college-of-entropy-bonus-proficiencies-1",
+   "kind": "sub",
+   "owner": "Bard/College of Entropy",
+   "name": "Bonus Proficiencies",
+   "lvl": 3,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ acrobatics,\\ athletics\\ and\\ one\\ gaming\\ set\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-tool-choices\""
+   ],
+   "test": "Z3 U16 native pick sub|Bard/College of Entropy|Bonus Proficiencies#1",
+   "note": "Existing selected native grant. The paired test clears the choice. Entropy also removes its fixed skill record, proving all parts of the compound sentence. No additive effect."
+  },
+  {
+   "id": "u16-sub-bard-entropy-bonus-proficiencies-1",
+   "kind": "sub",
+   "owner": "Bard/Entropy",
+   "name": "Bonus Proficiencies",
+   "lvl": 3,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ acrobatics,\\ athletics\\ and\\ one\\ gaming\\ set\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-tool-choices\""
+   ],
+   "test": "Z3 U16 native pick sub|Bard/Entropy|Bonus Proficiencies#1",
+   "note": "Existing selected native grant. The paired test clears the choice. Entropy also removes its fixed skill record, proving all parts of the compound sentence. No additive effect."
+  },
+  {
+   "id": "u16-sub-dancer-mime-silent-routine-4",
+   "kind": "sub",
+   "owner": "Dancer/Mime",
+   "name": "Silent Routine",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ stealth\\ or\\ sleight\\ of\\ hand\\.$",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "id:\"skill-choices\""
+   ],
+   "test": "Z3 U16 native pick sub|Dancer/Mime|Silent Routine#4",
+   "note": "Existing selected native grant. The paired test clears the choice. Entropy also removes its fixed skill record, proving all parts of the compound sentence. No additive effect."
+  },
+  {
+   "id": "u16-sub-warmage-house-of-bishops-arcane-study-1",
+   "kind": "sub",
+   "owner": "Warmage/House of Bishops",
+   "name": "Arcane Study",
+   "lvl": 3,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [
+    "2"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ two\\ skills\\ of\\ your\\ choice\\ from\\ arcana,\\ history,\\ investigation,\\ medicine,\\ and\\ religion\\.$",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "id:\"skill-choices\""
+   ],
+   "test": "Z3 U16 native pick sub|Warmage/House of Bishops|Arcane Study#1",
+   "note": "Existing selected native grant. The paired test clears the choice. Entropy also removes its fixed skill record, proving all parts of the compound sentence. No additive effect."
+  },
+  {
+   "id": "u16-sub-wizard-materializer-arcane-artisan-5",
+   "kind": "sub",
+   "owner": "Wizard/Materializer",
+   "name": "Arcane Artisan",
+   "lvl": 3,
+   "cls": [
+    "CHOICE",
+    "PROF"
+   ],
+   "vals": [
+    "3"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ three\\ artisan's\\ tools\\ of\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-tool-choices\""
+   ],
+   "test": "Z3 U16 native pick sub|Wizard/Materializer|Arcane Artisan#5",
+   "note": "Existing selected native grant. The paired test clears the choice. Entropy also removes its fixed skill record, proving all parts of the compound sentence. No additive effect."
+  },
+  {
+   "id": "u16-sub-wizard-master-of-fiends-fiendish-presence-1",
+   "kind": "sub",
+   "owner": "Wizard/Master of Fiends",
+   "name": "Fiendish Presence",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ deception,\\ intimidation\\ or\\ persuasion,\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "id:\"skill-choices\""
+   ],
+   "test": "Z3 U16 native pick sub|Wizard/Master of Fiends|Fiendish Presence#1",
+   "note": "Existing selected native grant. The paired test clears the choice. Entropy also removes its fixed skill record, proving all parts of the compound sentence. No additive effect."
+  },
+  {
+   "id": "u16-sub-wizard-ring-warden-bonus-proficiency-1",
+   "kind": "sub",
+   "owner": "Wizard/Ring Warden",
+   "name": "Bonus Proficiency",
+   "lvl": 3,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "rx": "^you\\ gain\\ proficiency\\ with\\ smith's\\ tools\\ or\\ jeweler's\\ tools,\\ your\\ choice\\.$",
+   "anchor": [
+    "src/builder/12g-logic-sheet-handlers-profs.js",
+    "id:\"prof-tool-choices\""
+   ],
+   "test": "Z3 U16 native pick sub|Wizard/Ring Warden|Bonus Proficiency#1",
+   "note": "Existing selected native grant. The paired test clears the choice. Entropy also removes its fixed skill record, proving all parts of the compound sentence. No additive effect."
+  },
+  {
+   "id": "u18-sub-investigator-detective-interrogator-s-instinct-6",
+   "kind": "sub",
+   "owner": "Investigator/Detective",
+   "name": "Interrogator's Instinct",
+   "lvl": 10,
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ advantage\\ on\\ ability\\ checks\\ to\\ tell\\ whether\\ you\\ hear\\ a\\ deliberate\\ lie\\.$",
+   "anchor": [
+    "src/builder/16-logic-feature-numbers.js",
+    "(e.advOn||[]).forEach((t) =>{add(\"Note\",\"Advantage on \"+t,e.lbl)})"
+   ],
+   "test": "Z3 U18 Detective deliberate lies",
+   "note": "Native qualified benefit already computed. A record or worn-state difference proves it without a duplicate data effect."
+  },
+  {
+   "id": "u18-item-dmg-charm-of-many-tongues-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Charm of Many Tongues",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "double",
+    "pb"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ deception\\ and\\ persuasion,\\ and\\ you\\ add\\ double\\ your\\ proficiency\\ bonus\\ to\\ checks\\ with\\ those\\ skills\\.$",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "id:\"fx-skill-expert\""
+   ],
+   "test": "Z3 U18 Charm of Many Tongues",
+   "note": "Native qualified benefit already computed. A record or worn-state difference proves it without a duplicate data effect."
+  },
+  {
+   "id": "u18-item-dmg-angelic-wings-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Angelic Wings",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ a\\ fly\\ speed\\ equal\\ to\\ your\\ speed\\.$",
+   "anchor": [
+    "src/builder/12j-logic-sheet-handlers-features.js",
+    "id:\"item-speeds\""
+   ],
+   "test": "Z3 U18 Angelic Wings native movement",
+   "note": "Native qualified benefit already computed. A record or worn-state difference proves it without a duplicate data effect."
+  },
+  {
+   "id": "u18-item-bgdia-charm-of-many-tongues-2",
+   "kind": "item",
+   "owner": "bgdia",
+   "name": "Charm of Many Tongues",
+   "lvl": null,
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "double",
+    "pb"
+   ],
+   "rx": "^you\\ gain\\ proficiency\\ in\\ deception\\ and\\ persuasion,\\ and\\ you\\ add\\ double\\ your\\ proficiency\\ bonus\\ to\\ checks\\ with\\ those\\ skills\\.$",
+   "anchor": [
+    "src/builder/12d-logic-sheet-handlers-skills.js",
+    "id:\"fx-skill-expert\""
+   ],
+   "test": "Z3 U18 Charm of Many Tongues",
+   "note": "Native qualified benefit already computed. A record or worn-state difference proves it without a duplicate data effect."
+  },
+  {
+   "id": "u18-item-tvss-angelic-wings-2",
+   "kind": "item",
+   "owner": "tvss",
+   "name": "Angelic Wings",
+   "lvl": null,
+   "cls": [
+    "SPEED"
+   ],
+   "vals": [],
+   "rx": "^you\\ have\\ a\\ fly\\ speed\\ equal\\ to\\ your\\ speed\\.$",
+   "anchor": [
+    "src/builder/12j-logic-sheet-handlers-features.js",
+    "id:\"item-speeds\""
+   ],
+   "test": "Z3 U18 Angelic Wings native movement",
+   "note": "Native qualified benefit already computed. A record or worn-state difference proves it without a duplicate data effect."
   }
  ]
 }
