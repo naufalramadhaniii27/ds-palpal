@@ -276,3 +276,10 @@ Sun Blade, Sunsword, Dawnbringer and Duskcrusher now receive independent saved f
 Reading not decided: the native text does not settle whether dismissing and reigniting an adjustable blade resets its sunlight radius. The application retains the selected radius across form changes and starts new state at 15 feet. Retaining this setting is an application state policy, not a claimed explicit rule. Active light is reported per item; it does not grant the actor a vision sense.
 
 Dawnbringer’s source requires a non-evil creature for attunement. The existing allocator has no alignment predicate; U29 does not infer alignment from class or identity and does not claim automatic enforcement of this prerequisite. Actual blade contact for Lesser Restoration and target/range checks remain player responsibilities.
+
+
+## 2026-11-11: named resistance potions and Dragon-Kindled Edge
+
+The ten named resistance potions have explicit resolved `ITEMFIX` text naming the damage type and one-hour duration. The generic potion still requires a type choice at the table. Its type is not inferred from an unrelated bottle or silently selected. Durations use the existing manual End lifecycle.
+
+Reading not decided: Dragon-Kindled Edge’s short “+2d6 damage against Dragons” sentence does not name a separate damage type. The implementation treats this as an increment to the weapon’s current damage, using `typeFrom:"weapon"`, rather than inventing an independent type. Its later breath-triggered 6d6 explicitly has the breath’s type and remains unmodeled by this rider.

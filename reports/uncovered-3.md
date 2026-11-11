@@ -1,4 +1,33 @@
-# Uncovered 3: independent radiant weapon forms
+# Uncovered 3: consumed resistance and paid weapon hits
+
+## U30: typed resistance potions and weapon-hit riders
+
+Twenty-four more original sentences now have computed coverage: 271 closed from the initial 5,460, 5,189 uncovered and zero regressed IDs. Covered is 7,976, info remains 23,617, and allow remains zero. All twenty-four new closures are covered, not reclassified as information.
+
+The ten named Potion of Resistance variants now use the existing consumed-effect model. The actual resolved `ITEMFIX` text gives each canonical damage type and the same one-hour duration. Owning or equipping the bottle grants no resistance. Drink spends exactly one bottle and enables only its named resistance; the effect survives removal of the remaining bottle and reload. End clears the effect without refunding stock. Different types combine independently. Duration is ended by the player because this app has no game-time clock. The generic Potion of Resistance still needs its type adjudicated; it does not silently choose a type.
+
+Rogue Card adds an optional post-hit 6d6 Force rider to weapon attacks while held. It spends its own native one-use/dawn pool, with 12d6 on a critical at the same one-use price. Card stock, other item pools, actor HP and target HP are not spent or changed by that damage roll. The existing weapon selector now includes the two reviewed 2024 Soulknife Psychic Blade producers, which are actual Simple Melee weapons even though they are generated rows. Pole Strike follows its parent; unarmed strikes, spells and Starry Archer do not acquire this card rider. No missing 2014 producer is invented.
+
+Dragon-Kindled Edge adds exactly 2d6 against a declared Dragon, using the final weapon damage type. Native +3 and attunement remain. Its prior Draconic language and daily Lesser Draconic Resistance entry are moved unchanged and retained exactly once. Kindled Cleave's breath interception, light and conditional 6d6 remain outside this new rider; they are not claimed by it.
+
+The gate now binds a named conditional typed-weapon rider to its actual dice and target-qualified damage wording. Only DMG is proved. A different trigger, amount, self damage, spell damage, attack-roll dice, or a grant for every weapon cannot borrow this atom. Unassigned numeric atoms now honor their existing sentence matcher too. The exact native 2014 Dragon Slayer wording remains recognized; there is no wildcard or copied numeric amount. Nineteen independent strict checks pass, including the legacy positive and wrong-dice negative. The full scan preserves every prior original closure and does not increase info.
+
+The U29 preview edge is resolved here: the four known form weapons prefer the actual attack's proficiency; otherwise the three swords accept Longsword or Shortsword training in their potential preview. Other item displays and canonical weapon definitions stay unchanged. Sixty-nine focused checks cover both editions and the alternate proficiency categories. No storage key or saved input shape changes in U30.
+
+## U30 validation and source audit
+
+| Check | Result |
+|---|---|
+| Effect cases | PASS; 157 U30 cases and 1,399 complete cases |
+| Coverage measurement | PASS; 752 units, both editions miss0, no new miss or card-or-miss |
+| Potion production lifecycle | PASS; 412 assertions in both required viewports, all ten real Drink/End paths, B/C stock and flags, removed-bottle persistence, representative cold reloads, independent combined effects; no page errors |
+| Rogue Card production lifecycle | PASS; 168 assertions in eight cases across both required viewports, real normal/critical rolls, own use, recovery, generated weapons, stale-state guards and unchanged HP; no page errors |
+| Gate and audit | PASS; 24 new covered clauses, 271 initial closures, 5,189 remaining, zero regressions and no info increase. Seed11 sample150 has 61 newly selected rows; with all24 new closures, 72 unique actual-source records/models reviewed, none missing or materially wrong |
+| Engine / UI / data contracts | PASS; 4,937 engine checks, 1,479 golden checks, 308 UI checks, 610 data checks |
+| Full snapshot / builder | PASS; all 2,997 snapshot hashes (`8906b051a96bebd8`) and 3,890 builder hashes (`396b20d955f87d6e`) identical to U29; zero snapshot errors. Verified main differences unchanged |
+| Scenarios | PASS; 24 checks at 390×844 and 1250×850, screenshots/storage retained, zero page errors or native dialogs |
+| Build / gates | PASS; cache `96981f53c89ab984`, 344 JS pieces / 45 blocks, lint clean; type score 200 without WORSE, HTML 250, all guards zero, overlap 1,408 names / 38 files / 156 documented |
+
 
 ## U29 implementation: independent radiant weapon forms
 

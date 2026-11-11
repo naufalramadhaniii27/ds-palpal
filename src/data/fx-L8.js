@@ -85,7 +85,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  ["Fang","Guard","Lash","Mantle","Radiance","Reach","Scales"].forEach(function(k){A("Couatl Herald's "+k,{n:"Flight of the Couatls",toggle:{id:"couatl-flight",label:"Attuned to three Couatl Herald items (Fly Speed)",default:false},mv:{fly:30}})});
  A("Crown of Deep Winter",{n:"Crown of Deep Winter",lu:{n:"Crown of Deep Winter: Frozen Burst",max:1,reset:"short",tag:"Short or Long Rest"}});
  A("Dragon Tamer Lance",{n:"Dragon Tamer Lance",langs:["Draconic"],lu:{n:"Dragon Tamer Lance: Find Steed",max:1,reset:"dawn"}});
- A("Dragon-Kindled Edge",{n:"Dragon-Kindled Edge",langs:["Draconic"],lu:{n:"Dragon-Kindled Edge: Lesser Draconic Resistance",max:1,reset:"dawn"}});
  A("Festerwood's Light",{n:"Festerwood's Light",imm:["Magical contagions"],lu:{n:"Festerwood's Light: spore burst",max:1,reset:"dusk"}});
  sp("Festerwood's Light",[["Dancing Lights",0]]);
  A("Galea of the Soulfire Phoenix",{n:"Galea of the Soulfire Phoenix",lu:[{n:"Galea: Ignite",max:1,reset:"dawn"},{n:"Galea: From the Ashes",max:1,reset:"none",tag:"Then wait 2 days"}]});

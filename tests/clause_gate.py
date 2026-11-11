@@ -389,6 +389,29 @@ def atoms_from(e, src, weak=False, extra=()):
                     # its price. Some source clauses classify only as RESOURCE.
                     out.append(Atom("RESOURCE", nums_in(spec.get("d")) | {"1"}, "%s.atkSpendDice.perCost" % src, weak, rx=R(r"(?=[\s\S]*\b%s\b)[\s\S]*\b(?:for each charge|per charge)\b" % re.escape(str(spec.get("d", ""))))))
             continue
+        if k == "atkDice" and src.startswith("GX.item|") and isinstance(v, list) and len(v) == 1 and isinstance(v[0], dict) and "typeFrom" in v[0] and isinstance(e.get("target"), dict) and set(e["target"]) == {"types"}:
+            # A paid or differently triggered sentence must not consume this
+            # named weapon's typed-target rider. Bind its existing literal dice
+            # to the actual predicate; no numeric pooling or new amounts.
+            spec, owner = v[0], src.split("|", 1)[1]
+            target_types = e["target"]["types"]
+            target_words = {"Dragon": r"dragons?", "Undead": r"undead", "Fiend": r"fiends?", "Construct": r"constructs?"}
+            target_word = target_words.get(target_types[0]) if isinstance(target_types, list) and len(target_types) == 1 else None
+            dice = spec.get("d")
+            valid = target_word and spec.get("typeFrom") == "weapon" and spec.get("roll") is True and not spec.get("t") and spec.get("when") == owner and e.get("n") == owner and isinstance(dice, str) and re.fullmatch(r"[1-9]\d*d(?:[2-9]|[1-9]\d+)", dice, re.I)
+            if valid:
+                # Reviewed item-source forms: a short native bonus/rider
+                # summary, or a target-qualified same-weapon damage clause.
+                # Merely mentioning the type and dice proves neither an attack
+                # bonus, self damage, a spell nor damage from every weapon.
+                amount = re.escape(dice.lower())
+                summary = r"(?:\+\d+ to attack and damage rolls,\s*)?\+%s damage against (?:%s)(?:, and you know [a-z ,'-]+)?[.!]?" % (amount, target_word)
+                target_clause = r"when the target is an? (?:%s), add an extra %s damage of the same type the weapon normally deals[.!]?" % (target_word, amount)
+                own_hit = r"when you hit an? (?:%s) with this weapon, you deal an extra %s damage[.!]?" % (target_word, amount)
+                legacy_hit = r"when you hit an? (?:%s) with this weapon, the %s takes an extra %s damage of the weapon's type[.!]?" % (target_word, re.escape(target_types[0].lower()), amount)
+                rider_scope = R(r"^(?:%s|%s|%s|%s)$" % (summary, target_clause, own_hit, legacy_hit))
+                out.append(Atom("DMG", nums_in(dice), "%s.atkDice" % src, weak, rx=rider_scope))
+            continue
         if k == "atkBonus" and isinstance(v, list) and src.startswith("GX.item|"):
             # A named item-weapon's scalar damage is executed independently
             # of atk. Generic attack groups/transformation stages stay outside
@@ -1005,7 +1028,7 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         for j in r["used"]:
             assigned |= atoms[j].vals
         for j, a in enumerate(atoms):  # other atoms of the classes this sentence needs that no other sentence has claimed (pool amounts may be restated)
-            if a.cls in r["need"] and (a.weak or a.pool or j not in used_atoms):
+            if a.cls in r["need"] and (a.weak or a.pool or j not in used_atoms) and (not a.rx or a.rx.search(r["text"].lower())):
                 assigned |= a.vals
         wild = "*" in all_vals
         # dist and dur numbers: any atom of the feature explains them (records rarely keep units). dice, plain numbers, percents: the atoms assigned to this sentence,
@@ -1287,6 +1310,29 @@ def selftest():
     saucepan_row = analyze(synth("item", "dmg", "Mace", "It works as a Mace with +1 to attack and damage rolls and deals an extra 1d4 Thunder to a target in metal armor or made of metal or stone.", saucepan_atoms))[0]
     check("12zb executed scalar and dice explain their compound clause", saucepan_row["status"] == "covered", saucepan_row["why"])
     check("12zc damage component retains its real owner", all(atom_key(a.src) == "GX.item|Staff" for a in scalar_bonus))
+    targeted_text = "+3 to attack and damage rolls, +2d6 damage against Dragons, and you know Draconic. If the breath dealt damage, the first hit you land deals 6d6 of the breath's damage type, ignoring Resistance and Immunity."
+    targeted_record = {"n":"Staff", "target":{"types":["Dragon"]}, "atkDice":[{"when":"Staff","d":"2d6","typeFrom":"weapon","roll":True}]}
+    targeted_base = atoms_from({"dmg":3},"item.fx|Staff")
+    targeted_rows = analyze(synth("item","dmg","Staff",targeted_text,targeted_base+atoms_from(targeted_record,"GX.item|Staff")))
+    check("12zk typed weapon rider stays with its target-and-dice clause", targeted_rows[0]["status"] == "covered", targeted_rows[0]["why"])
+    check("12zl NEG typed rider cannot fund unrelated breath dice", targeted_rows[1]["status"] != "covered", targeted_rows[1]["why"])
+    legacy_targeted = dict(targeted_record,atkDice=[dict(targeted_record["atkDice"][0],d="3d6")])
+    legacy_target_text = "When you hit a dragon with this weapon, the dragon takes an extra 3d6 damage of the weapon's type."
+    legacy_target_row = analyze(synth("item","dmg","Staff",legacy_target_text,atoms_from(legacy_targeted,"GX.item|Staff")))[0]
+    check("12zl1 native legacy Dragon hit retains actual same-weapon damage", legacy_target_row["status"] == "covered", legacy_target_row["why"])
+    legacy_wrong_dice = analyze(synth("item","dmg","Staff",legacy_target_text.replace("3d6","6d6"),atoms_from(legacy_targeted,"GX.item|Staff")))[0]
+    check("12zl2 NEG legacy phrase still requires its actual dice", legacy_wrong_dice["status"] != "covered", legacy_wrong_dice["why"])
+    for label, patch in [("wrong dice",{"d":"3d6"}), ("wrong type reference",{"typeFrom":"invalid"}), ("two type sources",{"t":"Fire"}), ("not rolled",{"roll":False}), ("other weapon",{"when":"Other"})]:
+        altered = dict(targeted_record,atkDice=[dict(targeted_record["atkDice"][0],**patch)])
+        altered_row = analyze(synth("item","dmg","Staff",targeted_text,targeted_base+atoms_from(altered,"GX.item|Staff")))[0]
+        check("12zm NEG targeted rider "+label, altered_row["status"] != "covered", altered_row["why"])
+    other_target = dict(targeted_record,target={"types":["Undead"]})
+    other_row = analyze(synth("item","dmg","Staff",targeted_text,targeted_base+atoms_from(other_target,"GX.item|Staff")))[0]
+    check("12zn NEG typed target must match the rule clause", other_row["status"] != "covered", other_row["why"])
+    check("12zo target rider retains actual source attribution", all(atom_key(a.src)=="GX.item|Staff" for a in atoms_from(targeted_record,"GX.item|Staff")))
+    for text in ["You add 2d6 to attack rolls against Dragons.", "You deal 2d6 damage to yourself when a Dragon attacks you.", "Your spell deals an extra 2d6 damage to Dragons.", "You add 2d6 damage against Dragons with any weapon."]:
+        unrelated = analyze(synth("item","dmg","Staff",text,targeted_base+atoms_from(targeted_record,"GX.item|Staff")))[0]
+        check("12zp NEG target rider does not prove unrelated mechanics", unrelated["status"] != "covered", unrelated["why"])
     for when in ["melee", "any", "Other weapon", ["Staff", "melee"]]:
         check("12zd NEG unrelated/generic attack groups gain no named damage", not any(a.cls == "DMG" for a in atoms_from({"n":"Staff", "atkBonus":[{"when":when,"dmg":2}]}, "GX.item|Staff")))
     hp_hit = {"n":"Coat", "ch":[3,"1d3","dawn"], "target":{"creature":True,"missingHp":True}, "atkSpendDice":[{"when":"any","d":"1d10","type":"Fire","maxCost":1,"resource":{"kind":"charges"},"attackKind":"melee"}]}
