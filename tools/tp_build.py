@@ -507,4 +507,6 @@ if __name__ == "__main__":
         else:
             open(fp, "w", encoding="utf-8").write(t); print("wrote", p, len(t))
     print("GAP rows:", len(GAP))
+    if os.environ.get("TP_GAPDUMP"):
+        for g in GAP: print("GAP", g)
     sys.exit(bad)
