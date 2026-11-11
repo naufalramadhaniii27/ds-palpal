@@ -173,7 +173,7 @@ function pxAppendix(){ const out=(C.features||[]).map((g) =>{ return [gName(g.g)
   return out; }
 
 /* ---------- the whole model ---------- */
-function pxHeader(ed){ return {edition:ed, name:C.name||"Character", classLevel:ed==="2014"&&C.sub?clsLv()+" ("+C.sub+")":clsLv(), background:C.bg||"",
+function pxHeader(ed){ return {edition:ed, name:C.name||"Character", classLevel:(ed==="2014"&&C.sub?clsLv()+" ("+C.sub+")":clsLv()).replace(/ \(2014\)/g,""), background:C.bg||"",
   slot3:ed==="2024"?(C.sub||""):"", species:(C.species||"")+(ed==="2024"&&C.size?" ("+C.size+")":""), alignment:S.align||"", xp:S.xp!=null?String(S.xp):""}; }
 function pxCombat(){ const hd=pxHitDice(); return {abilities:pxAbilities(), prof:sg(D.pb), inspiration:S.insp?"1":"", ac:String(D.ac), initiative:sg(D.init), speed:D.speed+" ft",
   hpMax:String(D.hpmax), hpCurrent:String(S.hp==null?D.hpmax:S.hp), hpTemp:S.tmp?String(S.tmp):"", hitDiceTotal:hd[0], hitDice:hd[1],

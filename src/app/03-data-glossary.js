@@ -172,7 +172,7 @@ on=!!on;
 env.__gl14=gl14;
 export var SL14={Barbarian:"Primal Path",Bard:"Bard College",Cleric:"Divine Domain",Druid:"Druid Circle",Fighter:"Martial Archetype",Monk:"Monastic Tradition",Paladin:"Sacred Oath",Ranger:"Ranger Archetype",Rogue:"Roguish Archetype",Sorcerer:"Sorcerous Origin",Warlock:"Otherworldly Patron",Wizard:"Arcane Tradition",Artificer:"Artificer Specialist"};
 /* the group title: "Fighter Subclass: Champion" reads "Martial Archetype: Champion" in the 2014 rules */
-export function gName(g){ g=String(g==null?"":g); if(!(typeof lateGet("C")!=="undefined"&&lateGet("C")&&lateGet("C").rs==="2014"))return g; const m=/^(\w+) Subclass: (.+)$/.exec(g); return m&&SL14[m[1]]?SL14[m[1]]+": "+m[2]:g; }
+export function gName(g){ g=String(g==null?"":g); if(!(typeof lateGet("C")!=="undefined"&&lateGet("C")&&lateGet("C").rs==="2014"))return g; g=g.replace(/ \(2014\)/g,""); const m=/^(\w+) Subclass: (.+)$/.exec(g); return m&&SL14[m[1]]?SL14[m[1]]+": "+m[2]:g; }
 export function athI(){ const s=lateGet("C").skills||[]; for(let i=0;i<s.length;i++) if(s[i].n==="Athletics") return i; return -1; }
 export function x14n(n){ return n==="Magic"?"Cast a Spell":n==="Utilize"?"Use an Object":n; }
 export function x14(){ return typeof lateGet("C")!=="undefined"&&!!lateGet("C")&&lateGet("C").rs==="2014"; }
