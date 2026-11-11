@@ -1,5 +1,5 @@
 {
- "why": "Cleric, Blood Domain level 8: once per turn a weapon hit deals an extra 1d8 Necrotic (extra dice on the weapon row). Cleric carries a Mace.",
+ "why": "2024 Cleric 8 with Blood Domain has no Blessed Strikes option selected. The current class replacement rule grants neither the legacy domain rider nor a typed Divine Strike consumer until the player chooses an option. The native Blessed Strikes feature remains available and the Mace keeps its ordinary 1d6 damage.",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -122,8 +122,28 @@
  "expect": {},
  "expectC": [
   {
+   "path": "level",
+   "eq": 8
+  },
+  {
+   "path": "sub",
+   "eq": "Blood Domain"
+  },
+  {
+   "path": "features",
+   "in": "use only the option you pick here"
+  },
+  {
+   "path": "divineStrike",
+   "eq": null
+  },
+  {
    "path": "attacks.Mace.xdice",
-   "in": "Necrotic"
+   "eq": null
+  },
+  {
+   "path": "attacks.Mace.die",
+   "eq": "1d6"
   }
  ]
 }

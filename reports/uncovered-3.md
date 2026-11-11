@@ -1,4 +1,47 @@
-# Uncovered 3: native ridden vehicles and isolated movement
+# Uncovered 3: source-owned Divine Strike and native turn transactions
+
+## U38: source-owned Divine Strike and native turn transactions
+
+38 additional original uncovered sentences now have genuine computed coverage. From the initial 5,460, 371 are closed, 5,089 remain uncovered and no initial uncovered ID regressed. Covered is 8,088, info 23,605 and allow zero. All twelve previously covered Divine Strike milestones remain covered. Thirteen formerly INFO-only scaling sentences now have real consumers. One unrelated Order's Wrath sentence loses an old false coverage proxy and returns automatically to the existing ACTIVE:TRIGGER classification. That correction is not counted as a closure and has no fabricated CODE record. The exact full-universe changes are 38 uncovered→covered, 13 info→covered and that one covered→info correction.
+
+| Kind | Initial uncovered | U37 | U38 | Closed from initial |
+|---|---:|---:|---:|---:|
+| Item | 3,060 | 2,869 | 2,869 | 191 |
+| Subclass | 1,436 | 1,328 | 1,290 | 146 |
+| Feat | 555 | 524 | 524 | 31 |
+| Class | 240 | 237 | 237 | 3 |
+| Species | 169 | 169 | 169 | 0 |
+| Spell | 0 | 0 | 0 | 0 |
+| Total | 5,460 | 5,127 | 5,089 | 371 |
+
+A declared successful weapon hit now has a separate computed extra-damage roll. Thirty-one actual legacy Cleric domain profiles preserve their printed damage type, once-per-turn versus own-turn trigger and creature requirement. Each uses 1d8 from Cleric 8 and 2d8 from Cleric 14. Blood Domain’s separately named native level-14 milestone supplies its upgrade. Modern Blessed Strikes instead uses the selected Cleric option from level 7 and 2d8 from 14, with Necrotic/Radiant selection and the class’s explicit replacement of older domain options. Cleric source level, exact option cardinality and native edition prevent multiclass or legacy stacking.
+
+The new FX selector has a strict schema and grants no gate atoms by itself. The actual builder emits a canonical source-owned descriptor, the attack UI obtains hit/target/turn/type declarations, and the native dice engine commits the existing Situations use before history. Normal weapon damage remains separate. Native New turn, rest resets, manual physical-table correction, Undo/Redo and reload retain one shared use. Generation and irreversible invalidation prevent an old asynchronous roll from becoming current after New turn or manual status changes followed by Undo.
+
+The native 2014 source filter previously discarded enabled, explicitly registered third-party Cleric domains. The narrow correction accepts only those sources whose metadata declares 2014 and preserves their actual native feature, resource and domain-spell levels. It adds no inferred level-1 conversion or compatibility for unrelated classes. Reviewed weapon-delivery cantrips route their primary hit to the actual weapon entry. Synthetic spell-damage rows cannot spend Divine Strike, and modern Magic Stone requires the actual sling delivery. Starry Form: Archer remains a spell attack.
+
+Known limitations remain explicit. Legacy unarmed qualification needs the table’s ruling. Independent Community target-death effects, Investigator’s different Attack-action trigger, and Cat Domain’s differently functioning same-name feature are not claimed. Typed descriptor metadata is a saved-sheet capability whose producer proves the actual Build source. A different open global Build cannot revoke or authorize the saved actor’s source.
+
+## U38 validation and measurement discrepancy
+
+| Check | Result |
+|---|---|
+| Build / effects | Final c209b185f7a4525a; build/check/lint PASS, 368 JS pieces and 45 script blocks; 1,874 full effect cases and focused 124 native source cases PASS |
+| Focused portable proof | Model 1,833; FX 1,008; backend 1,822; native source admission 217; native resource/domain-spell tables 8,712; runtime 165; Situations 76; UI 146; native dice commit 65; measurement 30; total 14,074 PASS |
+| Actual UI | 297 assertions on final c209: 210 native profiles, 60 weapon-cantrip routing, 27 committed-reply/turn/Undo lifecycle; plus 80 earlier a18 lifecycle/3D edge assertions. Both viewports, zero JavaScript errors/overflow |
+| Official contracts | Contract 5,090; golden 1,486; UI 308; data 639; all PASS |
+| Full snapshot | 2,997 results, total 38aba93f66431348, zero page/build errors; exactly 63 Cleric fixtures differ from U37 |
+| Full builder | 3,890 inputs, total 396b20d955f87d6e, strictly identical to U37 |
+| Causal comparison | All 63 changed fixtures captured before/after with actual source readiness; exactly 62 added C.divineStrike descriptors, 63 removed Mace advisory notes and 63 removed xdice arrays containing 144 old advisory packets. Zero D, existing numeric or other-path changes; no normalization |
+| Main comparison / scenarios | Same fixture universe; main raw differences 2,997 snapshot / 2,263 builder. All 24 scenarios PASS at 390×844 and 1250×850, including stored state/screenshots |
+| Static checks | TypeScript 200/noWORSE; HTML 250; enforced guards zero; overlap 1,417 names / 41 files / 175 documented overlaps |
+| Clause gate / source audit | All selftests PASS including 1,049 registered U38 checks and 63 exact producer/consumer proofs. Full 73,254-sentence scan, 36,782 mechanical; seed-11 sample 150, 45 new selections and 97 unique actual-native clauses traced, zero missing |
+| Measurement regression comparison | All 752 unit IDs and full extractor/model fingerprints identical on U37 and final build. Zero new misses/card-or-misses; exactly three preexisting uncomputed units in both runs |
+| Raw measurement baseline | FAIL for three previously hidden units: Greater Divine Intervention and Supreme Healing in both editions. This is not reported as PASS, and the measurement baseline remains unchanged |
+
+The old measurement extractor credited cosmetic changing Divine Strike source-level labels as new damage at every Cleric level. That accidentally passed Greater Divine Intervention's 2d4-Long-Rest recovery and both Supreme Healing maximization units without consumers for those rules. The corrected extractor validates the actual typed descriptor, uses source-named damage evidence, excludes that evidence from unrelated generic deltas, and ignores only cosmetic source-level changes in old Divine Strike packets. It retains real die/type changes and every original unit. The same corrected extractor was run against U37 and this build, preserving raw before/after evidence: all three gaps already existed. Strict baseline comparison still reports them, while explicit identical-extractor reference comparison reports zero new regressions. Reference mode cannot rewrite the baseline, including with --force. No exemption, new INFO reason, removed unit or invented effect hides these failures.
+
+This is a real-code-wins discrepancy with the initial claim that the measurement test already proved those features: its former passing result was a false proxy. The missing mechanics are recorded in reports/requests.md and queued for genuine implementation. Order's Wrath's separate target curse/next allied hit also had a false Divine Strike proxy and remains explicitly unclaimed here. Actual unrelated feature coverage is not preserved by copying old advisory text. No mandatory test was skipped. The two old golden expectations were corrected to assert the real typed modern option and the modern unselected Blood negative, without changing their Build inputs or the fixture universe.
 
 ## U37: Broom of Flying and Bobbing Lily Pad
 

@@ -24,15 +24,19 @@ Result: a table per mechanical class (measured, ok, card, miss) and, with --list
 Baseline tests/zero_miss_baseline.json: the miss list and the card list may only get SHORTER. A new miss (or a counted feature that was ok) fails with exit 1.
 The lists are kept in the baseline so a diff shows which feature moved. --update-baseline writes the baseline (only when it is not worse, unless --force).
 About 2 minutes. Needs playwright."""
-import json, os, re, sys, time, functools, http.server, socket, threading, collections
+import json, os, re, sys, time, functools, http.server, socket, threading, collections, hashlib
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
+_MEASURE_SOURCE_BYTES = open(__file__, "rb").read()
 args = sys.argv[1:]
 if "--root" in args:
     ROOT = os.path.abspath(args[args.index("--root") + 1])
 ONLY = args[args.index("--only") + 1] if "--only" in args else None
 BASE = os.path.join(HERE, "zero_miss_baseline.json")
 OUT = args[args.index("--json") + 1] if "--json" in args else None
+REFERENCE = args[args.index("--reference") + 1] if "--reference" in args else None
+if REFERENCE and "--update-baseline" in args:
+    raise SystemExit("--reference cannot be combined with --update-baseline; the strict baseline is independent")
 CLASSES = ["AC", "SPEED", "RES", "ADV", "PROF", "RESOURCE", "DICE", "SPELL", "NUM", "MASTERY", "D20"]
 
 # ------------------------------------------------------------------------------------------------ reading the feature text
@@ -116,8 +120,15 @@ JS_DATA = r"""()=>{
  const G=window.GX||{}; for(const t of ['cls','sub','species','feat']){ const T=G[t]||{}; for(const n in T){ const ids=[]; (T[n]||[]).forEach(e=>{ if(e&&e.toggle&&e.toggle.id) ids.push(e.toggle.id) }); if(ids.length) out.tog[t][n]=ids } }
  return out}"""
 
+# Use the actual canonical descriptor validator in both current and reference runs.
+_STRIKE_MODEL = os.path.join(os.path.dirname(HERE), "src", "data", "lib", "turn-damage.js")
+_strike_source = open(_STRIKE_MODEL, encoding="utf-8").read().split("export function turnDamageProblems", 1)[0]
+_strike_validator = re.sub(r"^import[^\n]*\n", "", _strike_source, flags=re.M).replace("export function", "function")
+_STRIKE_VALIDATOR_JS = "const validStrike=(function(){" + _strike_validator + ";return divineStrikeDescriptorProblems})();"
+
 JS_LIB = r"""()=>{
  if(window.__zm) return 1;
+ __STRIKE_VALIDATOR__
  const SRC={core:true,dmg:true,efa:true}; const store={};
  const t=x=>x==null?'':String(x);
  const lines=(C)=>{ const o=[]; const add=(sec,kind,label,text)=>o.push([sec,kind,t(label),t(text)]);
@@ -130,7 +141,13 @@ JS_LIB = r"""()=>{
   const sv=C.saves||{}; for(const k in sv) add('prof','c',sv[k],'save '+k);
   (C.res||[]).forEach(r=>add('res','c',[r.n,r.f,r.own].join(' | '),r.tag+' max '+r.max+' '+r.reset));
   (C.xdmg||[]).forEach(x=>add('xdmg','c',x.n+' '+x.sub,x.dmg+' '+x.type+' '+x.note));
-  (C.attacks||[]).forEach(a=>add('att','c',t(a.dieSrc)+' '+t(a.miscSrc),a.n+' '+t(a.die)+' '+t(a.note)+' '+JSON.stringify(a.xdice||'')));
+  (C.attacks||[]).forEach(a=>{const label=t(a.dieSrc)+' '+t(a.miscSrc),text=a.n+' '+t(a.die)+' '+t(a.note)+' '+JSON.stringify(a.xdice||'');
+   // A producer's source-level label is provenance, not a changing damage value.
+   let deltaText=label+'|'+text;(a.xdice||[]).forEach(packet=>{if(/^(Divine Strike|Blessed Strikes|Improved Blessed Strikes) \(/.test(packet.s||'')){const stable=packet.s.replace(/\s+\d+\)$/,')');deltaText=deltaText.split(packet.s).join(stable)}});
+   o.push(['att','c',label,text,deltaText]);});
+  const descriptor=C.divineStrike;if(descriptor&&validStrike(descriptor).length===0&&descriptor.source.edition===(C.rs===undefined?'2024':C.rs)&&Number.isSafeInteger(C.level)&&C.level>=descriptor.source.level&&(descriptor.source.pre!==''||C.cls==='Cleric')){
+   const rule=descriptor.rule,improved=descriptor.source.edition==='2024'&&rule.feature==='Blessed Strikes'&&rule.dice==='2d8'?'Improved Blessed Strikes | ':'';add('strike','c',rule.feature+' | '+improved+descriptor.source.owner,rule.dice+' '+(rule.typeFrom==='weapon'?'weapon damage type':rule.types.join(' or '))+'; '+rule.turn+' turn; '+(rule.creatureOnly?'creature required':'qualifying target'));}
+
   (C.hpBonus||[]).forEach(x=>add('num','c',x.s,'hp '+x.v)); (C.initBonus||[]).forEach(x=>add('num','c',x.s,'init '+x.v));
   (C.spells||[]).forEach(s=>add('spell','c',t(s.src)+' '+t(s.mi),s.n)); if(C.spellcasting) add('spellc','c','spellcasting pact magic',JSON.stringify(C.spellcasting));
   (C.itemAdv||[]).forEach(x=>add('def','c','',JSON.stringify(x)));
@@ -151,6 +168,9 @@ JS_LIB = r"""()=>{
  return 1}"""
 
 # ------------------------------------------------------------------------------------------------ the units
+JS_LIB = JS_LIB.replace("__STRIKE_VALIDATOR__", _STRIKE_VALIDATOR_JS)
+
+
 def bk(kind):
     """the kind without the edition mark (cls14 -> cls)"""
     return kind[:-2] if kind.endswith("14") else kind
@@ -210,7 +230,7 @@ def units(D, D14=None):
 
 
 SEC = {  # section -> classes it is evidence for, plus the keyword rule below for text sections
-    "ac": ["AC"], "speed": ["SPEED"], "skill": ["PROF"], "prof": ["PROF"], "res": ["RESOURCE"], "xdmg": ["DICE"], "att": ["DICE"], "num": ["NUM"], "spell": ["SPELL"], "spellc": ["SPELL"], "wm": ["MASTERY"]}
+    "ac": ["AC"], "speed": ["SPEED"], "skill": ["PROF"], "prof": ["PROF"], "res": ["RESOURCE"], "xdmg": ["DICE"], "att": ["DICE"], "strike": ["DICE"], "num": ["NUM"], "spell": ["SPELL"], "spellc": ["SPELL"], "wm": ["MASTERY"]}
 KW = {"RES": re.compile(r"resist|immun"), "ADV": re.compile(r"advantage|disadvantage|\"adv\""), "SPEED": re.compile(r"\bspeed\b|\bfly|swim|climb|burrow"), "PROF": re.compile(r"proficien|expertise"),
       "DICE": RX["DICE"], "RESOURCE": re.compile(r"\buses?\b|\brest\b"), "SPELL": re.compile(r"spell|cast|\bslots?\b|cantrip"), "AC": re.compile(r"\bac\b|armor class"), "NUM": re.compile(r"initiative|hit point"),
       "MASTERY": re.compile(r"mastery|masteries"), "D20": re.compile(r"9 or lower|count[^.]{0,30}as a 10|treat[^.]{0,30}as a 10")}
@@ -230,9 +250,16 @@ def line_classes(sec, label, text):
 def prep(lines):
     """lines from the page -> list of (kind, label.lower, text.lower, classes, key)"""
     out = []
-    for sec, kind, label, text in lines:
-        out.append((kind, label.lower(), text.lower(), line_classes(sec, label.lower(), text.lower()), sec + "|" + label + "|" + text))
+    for line in lines:
+        sec, kind, label, text = line[:4]
+        key = line[4] if len(line)>4 else label + "|" + text
+        out.append((kind, label.lower(), text.lower(), line_classes(sec, label.lower(), text.lower()), sec + "|" + key))
     return out
+
+
+def delta_eligible(line, category):
+    """Source-named conditional dice prove their own feature only."""
+    return category in line[3] and not (category == "DICE" and line[4].startswith("strike|"))
 
 
 def run_page(root, D=None):
@@ -314,6 +341,7 @@ def main():
     U = units(D, D14)
     print("bases %.0fs, %d units (%d from 2014)" % (time.time() - t0, len(U), len([u for u in U if u["kind"].endswith("14")])), flush=True)
 
+    delta_evidence = {}
     status = {}   # id -> (state, how)
 
     def match(lines, u, kinds):
@@ -364,9 +392,15 @@ def main():
             A = sheet(key, 20, tog); Z = sheet("species14|Human (2014)" if kind.endswith("14") else "species|Human", 20, ())
         else:
             A = sheet(key, 19, tog, ft); Z = sheet(kind + "|base", 19, ())
+        if cat == "DICE":
+            generic_lines=[line for line in A if not line[4].startswith("strike|")]
+            named=sum(status.get(unit["id"],("",))[0]=="ok" and match(generic_lines,unit,("c",)) for unit in us)
         zs = {x[4] for x in Z}
-        new_c = [x for x in A if x[4] not in zs and cat in x[3] and x[0] == "c"]
+        new_c = [x for x in A if x[4] not in zs and delta_eligible(x,cat) and x[0] == "c"]
         new_k = [x for x in A if x[4] not in zs and cat in x[3] and x[0] == "k"]
+        if cat == "DICE":
+            for unit in unmet:
+                delta_evidence[unit["id"]] = {"level":lvl,"before":[x for x in Z if cat in x[3] and x[0]=="c"],"after":[x for x in A if cat in x[3] and x[0]=="c"],"new":new_c}
         if len(new_c) - named >= len(unmet) and new_c:
             for u in unmet: status[u["id"]] = ("ok", "delta")
         elif status.get(unmet[0]["id"]) is None and new_k and len(new_k) >= len(unmet):
@@ -390,7 +424,7 @@ def main():
                 for gl in u["lvls"]:
                     if gl < 2: continue
                     zs = {x[4] for x in sheet(key, gl - 1, tog, ft, sp, v)}
-                    if [x for x in sheet(key, gl, tog, ft, sp, v) if x[4] not in zs and u["cat"] in x[3] and x[0] == "c"]:
+                    if [x for x in sheet(key, gl, tog, ft, sp, v) if x[4] not in zs and delta_eligible(x,u["cat"]) and x[0] == "c"]:
                         hit = True; break
             if hit:
                 status[u["id"]] = ("ok", "variant"); break
@@ -433,7 +467,9 @@ def main():
         print("\nMISS (%d)" % len(miss)); [print("  " + x) for x in sorted(miss)]
         print("\nCARD (%d)" % len(card)); [print("  " + x) for x in sorted(card)]
     cur = {"measured": {c: res["2024"][c] for c in CLASSES}, "measured14": {c: res["2014"][c] for c in CLASSES if res["2014"][c]["n"]}, "miss": sorted(miss), "card": sorted(card), "by_design": {k: design[k] for k in sorted(design)}}
-    if OUT: json.dump(cur, open(OUT, "w"), indent=1)
+    cur["extractor"] = hashlib.sha256(_MEASURE_SOURCE_BYTES+_STRIKE_VALIDATOR_JS.encode()).hexdigest()
+    cur["unitIds"] = sorted(u["id"] for u in U)
+    cur["deltaEvidence"] = json.loads(json.dumps(delta_evidence,default=lambda value:sorted(value) if isinstance(value,set) else value))
     bad = 0
     if base:
         newm = sorted(set(miss) - set(base["miss"]))
@@ -443,6 +479,20 @@ def main():
         for x in newm: print("  NEW MISS " + x)
         for x in newc: print("  NEW CARD " + x)
         bad = len(newm) + len(newc)
+    cur["pageErrors"] = errs
+    cur["strictBaselinePassed"] = not bool(bad)
+    cur["strictBaselineNewMiss"] = newm if base else []
+    if REFERENCE:
+        reference=json.load(open(REFERENCE,encoding="utf-8"))
+        if reference.get("extractor")!=cur["extractor"] or reference.get("unitIds")!=cur["unitIds"]:
+            raise ValueError("Reference must use the identical extractor and unit universe")
+        new_miss=sorted(set(miss)-set(reference["miss"]))
+        new_card=sorted((set(card)|set(miss))-set(reference["card"])-set(reference["miss"]))
+        cur["referenceComparison"]={"reference":REFERENCE,"newMiss":new_miss,"newCardOrMiss":new_card,"existingMiss":sorted(set(miss)&set(reference["miss"])),"fixedMiss":sorted(set(reference["miss"])-set(miss))}
+        print("\nagainst identical-extractor reference: %d fixed, %d new miss, %d new card-or-miss; %d existing miss" % (len(cur["referenceComparison"]["fixedMiss"]),len(new_miss),len(new_card),len(cur["referenceComparison"]["existingMiss"])))
+        for unit in cur["referenceComparison"]["existingMiss"]:print("  EXISTING MISS "+unit)
+        bad=len(new_miss)+len(new_card)
+    if OUT:json.dump(cur,open(OUT,"w"),indent=1,default=lambda value:sorted(value) if isinstance(value,set) else value)
     if "--update-baseline" in args:
         if base and bad and "--force" not in args:
             print("not written: the baseline would get worse"); return 1

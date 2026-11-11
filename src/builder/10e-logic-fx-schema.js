@@ -1,4 +1,4 @@
-import {typeOk,targetProblems,riderProblems,dieReplaceProblems,selfDamageProblems,spendDiceProblems,repairSpecProblems} from "./01-logic-core-helpers.js";
+import {typeOk,targetProblems,riderProblems,dieReplaceProblems,selfDamageProblems,spendDiceProblems,repairSpecProblems,divineStrikeMarkerProblems,whenSingleProblems} from "./01-logic-core-helpers.js";
 /* ==========================================================================================================================================
    fx engine, SOLID stage 2 (L): ONE schema for an effect entry. Every field an entry may carry and the types it may hold. The same schema applies to
    all registries: the GX.<kind> tables, the class, species and background effect lists, the magic item rows (fx object) and the entries gfx() builds.
@@ -12,6 +12,7 @@ export const FX_FIELDS={
  pick:"array",
  init:"array|number|string",
  when:"object",
+ divineStrike:"object",
  toggle:"object",
  consume:"object",
  retain:"boolean",
@@ -130,7 +131,7 @@ export function fxEntryProblems(e){const bad=[];
  extraEntryProblems(e,bad);
  return bad}
 
-function extraEntryProblems(e,bad){ if(e.retain&&(!e.toggle||!e.toggle.id||e.toggle.default!==false))bad.push("retain needs a toggle with default false");
+function extraEntryProblems(e,bad){if(Object.prototype.hasOwnProperty.call(e,"divineStrike"))bad.push(...divineStrikeMarkerProblems(e.divineStrike));if(e.when)bad.push(...whenSingleProblems(e.when)); if(e.retain&&(!e.toggle||!e.toggle.id||e.toggle.default!==false))bad.push("retain needs a toggle with default false");
  if(e.consume){
   if(!e.toggle||!e.toggle.id||e.toggle.default!==false)bad.push("consume needs a toggle with default false");
   if(typeof e.consume.duration!=="string"||!e.consume.duration.trim())bad.push("consume needs a duration label");

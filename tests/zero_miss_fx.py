@@ -155,15 +155,15 @@ DS_ROWS = [("Life Domain (2014)", "2014", "Radiant"), ("Nature Domain", None, "C
            ("Trickery Domain (2014)", "2014", "Poison"), ("War Domain (2014)", "2014", "of the weapon's type"), ("Death Domain", None, "Necrotic"), ("Order Domain", None, "Psychic"),
            ("Twilight Domain", None, "Radiant"), ("Forge Domain", None, "Fire")]
 for sub, rs, typ in DS_ROWS:
-    bb = dict(cls="Cleric", level=8, sub=sub, inv=LS, base=WL, src=dict(SRCS, tce=True, xge=True, dmg14=True))
+    bb = dict(rs="2014", cls="Cleric", level=8, sub=sub, inv=LS, base=WL, src=dict(SRCS, tce=True, xge=True, dmg14=True))
     if rs: bb["rs"] = rs
     CASES.append(dict(name="Z2 %s Divine Strike: +1d8 once per turn on a weapon hit" % sub, b=bb,
-                      expect=[("/Extra damage: \\+1d8 %s/.test(C.attacks.find(a=>a.n==='Longsword').note)" % typ, True), ("C.attacks.find(a=>a.n==='Longsword').xdice.length", 1)],
+                      expect=[("C.divineStrike.rule.dice", "1d8"), ("C.divineStrike.source.owner", sub), ("(C.attacks.find(a=>a.n==='Longsword').xdice||[]).length", 0)],
                       base_allow=[ATK + r"(note|xdice\.)"]))
 CASES.append(dict(name="Z2 Life Domain 14 (2014) Divine Strike: a second 1d8 (2d8 in all)", b=dict(rs="2014", cls="Cleric", level=14, sub="Life Domain (2014)", inv=LS, base=WL),
-                  expect=[("C.attacks.find(a=>a.n==='Longsword').xdice.map(x=>x.d).join()", "1d8,1d8")], base_allow=[ATK + r"(note|xdice\.)"]))
-CASES.append(dict(name="Z2 Blood Domain 14 Divine Strike: the second 1d8 was missing", b=dict(cls="Cleric", level=14, sub="Blood Domain", inv=LS, base=WL, src=dict(SRCS, tdcsr=True)),
-                  expect=[("C.attacks.find(a=>a.n==='Longsword').xdice.map(x=>x.d).join()", "1d8,1d8")], base_allow=[ATK + r"(note|xdice\.)"]))
+                  expect=[("C.divineStrike.rule.dice", "2d8"), ("(C.attacks.find(a=>a.n==='Longsword').xdice||[]).length", 0)], base_allow=[ATK + r"(note|xdice\.)"]))
+CASES.append(dict(name="Z2 Blood Domain 14 Divine Strike: the second 1d8 was missing", b=dict(rs="2014", cls="Cleric", level=14, sub="Blood Domain", inv=LS, base=WL, src=dict(SRCS, tdcsr=True)),
+                  expect=[("C.divineStrike.rule.dice", "2d8"), ("(C.attacks.find(a=>a.n==='Longsword').xdice||[]).length", 0)], base_allow=[ATK + r"(note|xdice\.)"]))
 CASES.append(dict(name="NEG Z2 Divine Strike is not there before level 8", b=dict(cls="Cleric", level=7, sub="Tempest Domain", inv=LS, base=WL),
                   expect=[("(C.attacks.find(a=>a.n==='Longsword').xdice||[]).length", 0)], base_allow=[]))
 
@@ -2928,12 +2928,59 @@ for rs in ["2014","2024"]:
 for item in ["Carpet of Flying","Wings of Flying","Ornithopter of Flying"]:
     CASES.append(dict(name="NEG U37 unrelated ridden vehicle "+item,b=dict(rs="2024",cls="Artificer",level=4,inv=[dict(n=item,q=1,eq=False,attuned=True)]),expect=[("C.inv[0].riddenVehicleInfo===undefined",True)]))
 
+# U38 oracle reads actual native feature objects, including separately named milestones.
+U38_NATIVE={}
+for filename in ["wotc09-subclasses-2014.js","tp14-tkdm.js","tp01-tdcsr.js","tp15-thhw.js"]:
+    native_text=open(os.path.join(ROOT,"src","data",filename),encoding="utf-8").read()
+    native_match=re.search(r"\bvar D\s*=",native_text)
+    native_rows=json.JSONDecoder().raw_decode(native_text[native_match.end():])[0]
+    for native in native_rows:
+        owner=native.get("name","");text=native.get("full",{}).get(owner+"|Divine Strike","")
+        if native.get("cls")!="Cleric" or "1d8" not in text:continue
+        milestones=[(a[0],a[1],native.get("full",{}).get(owner+"|"+a[1],a[2])) for a in native.get("arr",[]) if a[1].startswith("Divine Strike")]
+        upgrade=any("2d8" in feature for level,title,feature in milestones)
+        weapon=bool(re.search(r"same type|weapon's type",text,re.I))
+        types=re.findall(r"\b(Acid|Bludgeoning|Cold|Fire|Force|Lightning|Necrotic|Piercing|Poison|Psychic|Radiant|Slashing|Thunder)\b",text,re.I)
+        U38_NATIVE[owner]=dict(sourceFile=filename,turn="own" if re.search(r"\byour turns?\b",text) else "any",creatureOnly="hit a creature" in text,upgrade=upgrade,typeFrom="weapon" if weapon else None,types=[x.title() for x in types],milestones=milestones)
+assert len(U38_NATIVE)==31 and all(profile["upgrade"] for profile in U38_NATIVE.values())
+U38_NO_AUTO="C.attacks.every(a=>!(a.xdice||[]).some(d=>/Divine Strike|Blessed Strikes/.test(d.note||''))&&!/Extra damage:.*(?:Divine Strike|Blessed Strikes)/.test(a.note||''))"
+for owner,native in U38_NATIVE.items():
+    for level in [7,8,13,14]:
+        expect=[(U38_NO_AUTO,True)]
+        if level<8:expect.append(("C.divineStrike===undefined",True))
+        else:
+            rule=dict(v=1,key="divine-strike",source=owner,feature="Divine Strike",turn=native["turn"],dice="2d8" if level>=14 else "1d8",creatureOnly=native["creatureOnly"])
+            if native["typeFrom"]:rule["typeFrom"]="weapon"
+            else:rule["types"]=native["types"]
+            expect += [("C.divineStrike.rule",rule),("C.divineStrike.source",dict(kind="sub",owner=owner,classKey="Cleric",level=level,pre="",edition="2014"))]
+        CASES.append(dict(name="Z3 U38 native Divine Strike "+owner+" level "+str(level),b=dict(rs="2014",cls="Cleric",sub=owner,level=level,base=dict(WL,WIS=18),inv=LS),expect=expect))
+    for choice in ["Divine Strike","Potent Spellcasting"]:
+        expect=[(U38_NO_AUTO,True)]
+        if choice=="Divine Strike":expect += [("C.divineStrike.rule",dict(v=1,key="divine-strike",source="Cleric",feature="Blessed Strikes",turn="own",dice="2d8",creatureOnly=True,types=["Necrotic","Radiant"])),("C.divineStrike.source.kind","cls"),("C.divineStrike.source.owner","Cleric")]
+        else:expect += [("C.divineStrike===undefined",True),("(C.spells.find(s=>s.n==='Sacred Flame').db||[]).reduce((n,x)=>n+x.v,0)",4),("(C.spells.find(s=>s.n==='Sacred Flame').db||[]).length",1)]
+        CASES.append(dict(name="Z3 U38 current override "+owner+" "+choice,b=dict(rs="2024",cls="Cleric",sub=owner,level=14,base=dict(WL,WIS=18),ch={"p7opt":choice},extra={"sp":["Sacred Flame"]},inv=LS),expect=expect))
+for level in [6,7,13,14]:
+    for choice in ["Divine Strike",["Divine Strike"],["Divine Strike","Potent Spellcasting"],["Divine Strike","Divine Strike"],[]]:
+        present=level>=7 and (choice=="Divine Strike" or choice==["Divine Strike"])
+        expect=[("!!C.divineStrike",present),(U38_NO_AUTO,True)]
+        if present:expect += [("C.divineStrike.rule.dice","2d8" if level>=14 else "1d8"),("C.divineStrike.rule.key","divine-strike")]
+        CASES.append(dict(name="Z3 U38 selected current choice "+str(level)+" "+json.dumps(choice),b=dict(rs="2024",cls="Cleric",level=level,ch={"p7opt":choice},inv=LS),expect=expect))
+for rs in ["2014","2024"]:
+    for level in [6,7,8,13,14]:
+        threshold=8 if rs=="2014" else 7;present=level>=threshold
+        CASES.append(dict(name="Z3 U38 multiclass Cleric own level "+rs+" "+str(level),b=dict(rs=rs,cls="Fighter",level=6,extra={"mc":[dict(cls="Cleric",sub="Tempest Domain",lv=level)]},ch={"m0:p7opt":"Divine Strike"},inv=LS),expect=[("!!C.divineStrike",present),("C.divineStrike?.source.level||null",level if present else None),("C.divineStrike?.source.pre||null","m0:" if present else None),("C.divineStrike?.rule.dice||null",("2d8" if level>=14 else "1d8") if present else None),(U38_NO_AUTO,True)]))
+for owner in ["Grave Domain (2014)","Peace Domain"]:
+    for rs in ["2014","2024"]:
+        CASES.append(dict(name="Z3 U38 legacy Potent compatibility "+owner+" "+rs,b=dict(rs=rs,cls="Cleric",sub=owner,level=14,ch={"p7opt":"Potent Spellcasting"} if rs=="2024" else {},base=dict(WL,WIS=18),extra={"sp":["Sacred Flame"]},inv=LS),expect=[("C.divineStrike===undefined",True),("(C.spells.find(s=>s.n==='Sacred Flame').db||[]).reduce((n,x)=>n+x.v,0)",4 if rs=="2024" else 0),("(C.spells.find(s=>s.n==='Sacred Flame').db||[]).length",1 if rs=="2024" else 0),(U38_NO_AUTO,True)]))
+for owner in ["Cat Domain","Knowledge Domain (2014)"]:
+    CASES.append(dict(name="NEG U38 no native weapon rider "+owner,b=dict(rs="2014",cls="Cleric",sub=owner,level=20,inv=LS),expect=[("C.divineStrike===undefined",True),(U38_NO_AUTO,True)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
 # warming does not permit any additional changed paths.
 for c in CASES:
-    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]) or c["name"] in ["Z3 U29 rider differential Duskcrusher 2024","Z3 U26 target differential Ruinblade 2024"]:c["warm"]=True
+    if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]) or c["name"] in ["Z3 U29 rider differential Duskcrusher 2024","Z3 U29 rider differential Dawnbringer 2024","Z3 U26 target differential Ruinblade 2024"]:c["warm"]=True
 
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };

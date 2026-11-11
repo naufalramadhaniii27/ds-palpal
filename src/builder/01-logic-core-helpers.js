@@ -1,3 +1,4 @@
+export {divineStrikeMarkerProblems,divineStrikeProfile,blessedStrikeProfile,turnDamageProblems} from "../data/lib/turn-damage.js";
 export {projectTemporaryCantrips,nativeCantripDefinition,definitelyKnownCantrip} from "../data/lib/temporary-cantrip-projection.js";
 export {spellChannel,spellChannelsDiffer,selectSpellSource} from "../data/lib/spell-source.js";
 export {CARPET_SIZES,carpetMetadata,normalizeVehicleState,migrateVehicles,chooseCarpetSize,carpetSourceStatus,activateCarpet,evaluateCarpet} from "../data/lib/carpet-vehicle.js";
@@ -35,3 +36,6 @@ export function __set_SRC(v){ return SRC=v; }
 /* shared by the state schema (12b) and the effect-entry schema (10e): does value v fit the type word desc? "string" "number" "boolean" "array" "object" "any", "a|b" = either, trailing "?" also allows undefined and null */
 export function typeOk(desc,v){const opt=/\?$/.test(desc);if(v===undefined||v===null)return opt||desc==="any";
  return desc.replace(/\?$/,"").split("|").some((t) =>{return t==="any"||(t==="array"?Array.isArray(v):t==="object"?typeof v==="object"&&!Array.isArray(v):typeof v===t)})}
+
+/* An explicit single flag opts into strict choice shape; old when objects keep their semantics. */
+export function whenSingleProblems(when){if(!when||typeof when!=="object"||!Object.prototype.hasOwnProperty.call(when,"single"))return [];const bad=[];if(typeof when.single!=="boolean")bad.push("when.single must be boolean");Reflect.ownKeys(when).filter(key=>typeof key!=="string"||!["key","val","any","single"].includes(key)).forEach(()=>bad.push("when.single has an unknown field"));if(when.single===true){if(typeof when.key!=="string"||!when.key||when.key.trim()!==when.key)bad.push("when.single needs a key");if(typeof when.val!=="string"||!when.val||when.val.trim()!==when.val)bad.push("when.single needs a value");if(Object.prototype.hasOwnProperty.call(when,"any")&&typeof when.any!=="boolean")bad.push("when.single any must be boolean")}return bad}

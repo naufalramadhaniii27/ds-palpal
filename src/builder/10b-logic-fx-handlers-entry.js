@@ -1,4 +1,4 @@
-import {targetMatches} from "./01-logic-core-helpers.js";
+import {targetMatches,whenSingleProblems} from "./01-logic-core-helpers.js";
 import {registerFxHandler,chPick,ABFULL} from "./10a-logic-fx-registry.js";
 /* Entry handlers (registry "entry", contract in 10a). ctx = {src:{kind,owner,lv,pre,okey,alias}, ch:(the pick map, read only), fxT:(toggle state map)}.
    gate and prepare handlers get the raw source entry e, post handlers get the built entry o. One handler per field group. */
@@ -10,8 +10,9 @@ registerFxHandler("entry",{id:"gate-item-state-source",group:"gate",phase:"gate"
 registerFxHandler("entry",{id:"gate-source-class",group:"gate",phase:"gate",fields:["classOnly"],uses:["src"],run:function(e,ctx){return e.classOnly&&e.classOnly!==ctx.src.ocls?{skip:true}:null}});
 /* ed:"2024": the entry is for a 2024 build only (a feature the 2014 class table does not have, or reads differently). A 2014 build drops it, toggle row included (zero miss 3) */
 registerFxHandler("entry",{id:"gate-edition",group:"gate",phase:"gate",fields:["ed"],uses:["rs"],run:function(e,ctx){return (e.ed==="2024"&&ctx.rs==="2014")||(e.ed==="2014"&&ctx.rs!=="2014")?{skip:true}:null}});
+function singleChoiceValue(value){return typeof value==="string"||Array.isArray(value)&&value.length===1&&Reflect.ownKeys(value).length===2&&Object.keys(value)[0]==="0"&&typeof value[0]==="string"}
 /* when {key,val,any}: only while the pick named in key holds val */
-registerFxHandler("entry",{id:"gate-when",group:"gate",phase:"gate",fields:["when"],uses:["ch", "src"],run:function(e,ctx){if(!e.when)return null;const s=ctx.src,v=chPick(ctx.ch,e.when.key,s.pre,s.kind,s.okey,e.when.any),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(e.when.val)>=0?null:{skip:true}}});
+registerFxHandler("entry",{id:"gate-when",group:"gate",phase:"gate",fields:["when"],uses:["ch", "src"],run:function(e,ctx){if(!e.when)return null;if(whenSingleProblems(e.when).length)return {skip:true};const s=ctx.src,v=chPick(ctx.ch,e.when.key,s.pre,s.kind,s.okey,e.when.any),a=Array.isArray(v)?v:(v?[v]:[]);if(e.when.single===true&&(!singleChoiceValue(v)||a.length!==1))return {skip:true};return a.indexOf(e.when.val)>=0?null:{skip:true}}});
 /* spCls "@asi" / "@abpick": the source names the ability, the entry gets the "@sub:AB" form (src.alias is {"@asi":"@sub:CHA",...}) */
 registerFxHandler("entry",{id:"spcls-alias",group:"spellcasting",phase:"prepare",fields:["spCls"],uses:["src"],run:function(e,ctx){const al=ctx.src.alias;return e.spCls&&al&&Object.prototype.hasOwnProperty.call(al,e.spCls)?{set:{spCls:al[e.spCls]}}:null}});
 /* abPick {k,from:[ab],up,max,set}: gets its own pick (one ability from the list) unless the entry already has a pick with that k */

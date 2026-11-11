@@ -1,5 +1,5 @@
 {
- "why": "Cleric 14 Divine Strike 1d8 plus Improved 1d8 (2d8 total, Improved Blessed Strikes) with Thaumaturge Arcana bonus: WIS 10 gives +0, minimum +1.",
+ "why": "2024 Cleric 14 selects Divine Strike: the owned Blessed Strikes hit consumer uses 2d8 Necrotic or Radiant on the Cleric's turn, without an automatic Mace rider. Thaumaturge still gives the minimum +1 to Arcana and Religion.",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -55,10 +55,32 @@
  },
  "expect": {},
  "expectC": {
-  "attacks.Mace.xdice": {
-   "in": "Improved Blessed Strikes"
-  },
   "skills.Arcana.misc": 1,
-  "skills.Religion.misc": 1
+  "skills.Religion.misc": 1,
+  "divineStrike": {
+   "rule": {
+    "v": 1,
+    "key": "divine-strike",
+    "source": "Cleric",
+    "feature": "Blessed Strikes",
+    "turn": "own",
+    "dice": "2d8",
+    "creatureOnly": true,
+    "types": [
+     "Necrotic",
+     "Radiant"
+    ]
+   },
+   "source": {
+    "kind": "cls",
+    "owner": "Cleric",
+    "classKey": "Cleric",
+    "level": 14,
+    "pre": "",
+    "edition": "2024"
+   }
+  },
+  "attacks.Mace.xdice": null,
+  "attacks.Mace.die": "1d6"
  }
 }

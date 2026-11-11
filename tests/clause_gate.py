@@ -1696,6 +1696,59 @@ def selftest():
     for entry in ridden_registered:
         expected=expected_ridden_by_id.get(entry["id"])
         check("U37 registered exact vehicle source and consumers "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
+    # U38 reconstructs every native milestone, including separately named Blood14.
+    strike_rows=[]
+    for domain,profile in tool_cases.U38_NATIVE.items():
+        for level,title,feature in profile["milestones"]:
+            for index,text in enumerate(split_sentences(feature),1):
+                if re.search(r"\b\d+d\d+\b",text):strike_rows.append(("sub","Cleric/"+domain,title,level,index,text))
+    cf_text=open(os.path.join(ROOT,"src","data","cffull-class-feature-text.js"),encoding="utf-8").read()
+    cf_start=re.search(r"\bvar CF_FULL\s*=",cf_text)
+    native_cf=json.JSONDecoder().raw_decode(cf_text[cf_start.end():])[0]
+    for title,level in [("Blessed Strikes",7),("Improved Blessed Strikes",14)]:
+        for index,text in enumerate(split_sentences(native_cf["Cleric|"+title]),1):
+            if re.search(r"\b\d+d\d+\b",text):strike_rows.append(("class","Cleric",title,level,index,text))
+    check("U38 all63 native damage milestones including Blood14",len(strike_rows)==63 and any(row[2]=="Divine Strike (14th Level)" for row in strike_rows))
+    strike_anchors=[
+        ["src/builder/12n-logic-sheet-handlers-turn-damage.js","ctx.C.divineStrike=options[0]"],
+        ["src/app/lib/turn-damage-runtime.js","value.actor.S.sit=next.sit"],
+        ["src/data/lib/turn-damage.js","export function commitTurnDamage(rule,sit,context,expectedGeneration)"],
+        ["src/app/34-ui-situations.js","export function sitReset(kind){invalidateTurnDamageState(S);"],
+        ["src/fx/16-z-pack-dice-sound-hover.js","FXENV.__miRoll.commitHook=1"],
+    ]
+    strike_expected=[]
+    for kind,owner,title,level,index,text in strike_rows:
+        sid="%s|%s|%s#%s" % (kind,owner,title,index)
+        values=list(dict.fromkeys(re.findall(r"\b\d+d\d+\b",text.lower())));scaling=values==["2d8"]
+        case=("Z3 U38 native Divine Strike "+owner.split("/",1)[1]+" level "+("14" if "2d8" in values else "8")) if kind=="sub" else "Z3 U38 selected current choice "+("14" if scaling else "7")+" "+json.dumps("Divine Strike")
+        extra_strike_anchors=[list(pair) for pair in strike_anchors]
+        if kind=="sub" and tool_cases.U38_NATIVE[owner.split("/",1)[1]]["sourceFile"].startswith("tp"):
+            extra_strike_anchors.append(["src/builder/08-logic-2014-rules.js",'if(c14NativeSource(cn,x))return'])
+        entry=dict(id="u38-"+re.sub("[^a-z0-9]+","-",sid.lower()).strip("-"),kind=kind,owner=owner,name=title,lvl=level,cls=["DMG"] if scaling else ["DMG","RESOURCE"],vals=values,scopeValues=True,rx="^"+re.escape(text.lower())+"$",anchor=["src/app/08f-ui-turn-damage.js","const result=turnDamageRuntime.request(view.context,facts,"],extraAnchors=extra_strike_anchors,test=case)
+        strike_expected.append(entry);loaded=load_code_atoms([entry]);key="%s|%s|%s" % (kind,owner,title);atoms=[atom for proof,atom in loaded.get(key,[])]
+        row=analyze(synth(kind,owner,title,text,atoms,lvl=level))[0]
+        check("U38 exact source-owned damage proof "+entry["id"],row["status"]=="covered",row["why"])
+        fixture=tool_cases_by_name.get(case)
+        check("U38 computed source/level fixture "+entry["id"],bool(fixture and fixture.get("expect")))
+        for anchor_index in range(1+len(extra_strike_anchors)):
+            damaged=dict(entry,extraAnchors=[list(pair) for pair in extra_strike_anchors])
+            if anchor_index==0:damaged["anchor"]=[entry["anchor"][0],"missing-conditional-hit-ui"]
+            else:damaged["extraAnchors"][anchor_index-1][1]="missing-conditional-hit-producer-or-commit"
+            check("U38 NEG missing actual producer/consumer "+entry["id"]+str(anchor_index),not load_code_atoms([damaged]));CODE_NOTES.clear()
+        for other in ["You deal 1 damage.","You gain a +1 bonus to AC.","You can teleport 8 feet.",re.sub(r"\b[12]d8\b","3d8",text),"You deal an extra 1d8 damage on every attack."]:
+            check("U38 NEG unrelated/version/wrong dice "+entry["id"]+other,all(result["status"]!="covered" for result in analyze(synth(kind,owner,title,other,atoms))))
+        for wrong_key in [kind+"|Unrelated|"+title,kind+"|"+owner+"|Unrelated Strike"]:
+            wrong=[atom for proof,atom in loaded.get(wrong_key,[])]
+            check("U38 NEG wrong native source "+entry["id"]+wrong_key,all(result["status"]!="covered" for result in analyze(synth(kind,owner,title,text,wrong,lvl=level))))
+    for profile in ["legacy","blessed"]:
+        marker_atoms=atoms_from({"divineStrike":{"v":1,"profile":profile}},"GX.typed-strike")
+        check("U38 selector/version alone grants no gate atoms "+profile,not marker_atoms)
+    strike_registered=[entry for entry in json.load(open(CODE,encoding="utf-8"))["entries"] if entry.get("id","").startswith("u38-")]
+    check("U38 draft or exactly63 registered native damage proofs",len(strike_registered) in (0,63))
+    strike_by_id={entry["id"]:entry for entry in strike_expected}
+    for entry in strike_registered:
+        expected=strike_by_id.get(entry["id"])
+        check("U38 registered exact source and conditional consumers "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

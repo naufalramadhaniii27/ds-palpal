@@ -1,4 +1,6 @@
 import {bindLive,renderAll} from "./00a-reg-late-ports.js";import {C,S,save} from "./04-logic-storage.js";import {esc,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {featAll} from "./08b-ui-render-summaries-actions.js";import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {akIcon,atkKind,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {hasFeat,lvOf} from "./32b-logic-play-concentration-casting.js";import {toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";import {env} from "./00-env.js";
+import {advanceTurnDamageGeneration,divineStrikeDescriptorProblems} from "../data/lib/turn-damage.js";
+import {invalidateTurnDamageState} from "./lib/turn-damage-runtime.js";
 bindLive("sitAtk",{get:function(){return sitAtk;}});
 bindLive("sitCardH",{get:function(){return sitCardH;}});
 bindLive("sitDiceRows",{get:function(){return sitDiceRows;}});
@@ -6,6 +8,7 @@ bindLive("sitNum",{get:function(){return sitNum;}});
 bindLive("sitReset",{get:function(){return sitReset;}});
 const SIT=[
  /* in combat */
+ {k:"divine-strike",f:["Divine Strike","Blessed Strikes"],n:"Divine Strike",g:"c",t:"used",rs:"turn",s:"Extra-damage rolls mark this allowance Used automatically. You can record or correct a physical-table roll here. New turn restores the allowance."},
  {k:"reckless",f:["Reckless Attack"],n:"Reckless Attack",g:"c",t:"on",rs:"turn",s:"Advantage on your Strength attacks. Attacks against you have Advantage too.",e:{atk:[{t:"ADV",m:"str"}]}},
  {k:"brutal",f:["Brutal Strike","Improved Brutal Strike"],n:"Brutal Strike",g:"c",t:"used",rs:"turn",s:function(){ return sitOn("reckless")?"Give up Advantage on one Strength attack for extra damage.":"Needs Reckless Attack. Give up Advantage for extra damage."; },dice:function(){ if(!sitOn("reckless")) return null; return {dmg:lvOf("Barbarian")>=17?"2d10":"1d10",type:"Weapon type"}; }},
  {k:"sneak",f:["Sneak Attack"],n:"Sneak Attack",g:"c",t:"used",rs:"turn",s:"Once per turn, with Advantage or an ally next to the target. Finesse or ranged weapon.",dice:function(){ return {dmg:Math.max(1,Math.ceil(lvOf("Rogue")/2))+"d6",type:"Weapon type"}; }},
@@ -84,7 +87,8 @@ function sitRead(){ const s=S&&S.sit; return s&&typeof s==="object"?{on:s.on||{}
 function sitSt(){ if(!S.sit||typeof S.sit!=="object") S.sit={}; const s=S.sit; if(!s.on) s.on={}; if(!s.used) s.used={}; if(!s.v) s.v={}; return s; }
 function sitRow(k){ return SIT.filter((r) =>{ return r.k===k; })[0]; }
 let SIT_FORCE=false;
-function sitHave(r){ return SIT_FORCE||r.f.some(hasFeat); }
+function sitDivineStrikeAvailable(){const descriptor=C.divineStrike;if(divineStrikeDescriptorProblems(descriptor).length)return false;const source=descriptor.source;return (C.rs===undefined?"2024":C.rs)===source.edition&&Number.isFinite(C.level)&&C.level>=source.level&&(source.pre!==""||C.cls==="Cleric")}
+function sitHave(r){if(r.k==="divine-strike")return sitDivineStrikeAvailable();return SIT_FORCE||r.f.some(hasFeat); }
 env.__sit={table:SIT,force:function(v){ SIT_FORCE=!!v; renderAll(); },n:function(){ return SIT.length; }};/* test hook */
 function sitPick(n){ let o=null; (C.features||[]).forEach((g) =>{ (g.items||[]).forEach((f) =>{ if(f.n!==n) return; const m=/\*\*Your choice\.\*\*\s*([^\n*]+)/.exec(String(f.d||f.full||"")); if(m) o=m[1].trim().replace(/\.$/,""); }); }); return o; }
 function sitOpts(r){ if(!r.o) return null; if(r.pick){ const p=sitPick(r.pick); if(p){ const m=r.o.filter((x) =>{ return p.toLowerCase().indexOf(x.toLowerCase())===0||x.toLowerCase().indexOf(p.toLowerCase())===0; }); if(m.length) return m; } } return r.o; }
@@ -109,7 +113,7 @@ export function sitFx(o){ const st=sitRead(); o.atkS=[]; o.dice=[]; SIT.forEach(
     if(r.dice){ const d=r.dice(); if(d) o.dice.push({k:r.k,n:r.n+" damage",dmg:d.dmg,type:d.type,used:!!st.used[r.k]}); } }); }
 /* the tags on one attack row: the common ones, plus the situation tags that fit this weapon */
 export function sitAtk(a){ const f=D.cf||{}, base=(f.atk||[]).slice(), k=atkKind(a); (f.atkS||[]).forEach((x) =>{ const ok=x.m==="all"||(x.m==="str"&&a.ab==="STR"&&k!=="spell")||(x.m==="melee"&&(k==="melee"||k==="unarmed"))||(x.m==="ranged"&&k==="ranged"); if(ok) base.push(x); }); return base; }
-export function sitReset(kind){ const s=S.sit; if(!s) return false; let ch=false, rank={turn:1,short:2,long:3}[kind]||3;
+export function sitReset(kind){invalidateTurnDamageState(S);const advanced=advanceTurnDamageGeneration(S.sit);if(advanced.ok)S.sit=advanced.sit;const s=S.sit; if(!s) return false; let ch=false, rank={turn:1,short:2,long:3}[kind]||3;
   SIT.forEach((r) =>{ const need=r.rs==="turn"?1:r.rs==="short"?2:3; if(rank<need) return; if(s.on&&s.on[r.k]){ delete s.on[r.k]; ch=true; } if(s.used&&s.used[r.k]){ delete s.used[r.k]; ch=true; } if(s.v&&s.v[r.k+"_r"]&&need<=rank){ delete s.v[r.k+"_r"]; ch=true; } });
   return ch; }
 function sitFind(r){ let fa=featAll(), x=null; r.f.forEach((n) =>{ if(!x) x=fa.filter((q) =>{ return q.f.n===n; })[0]; }); return x; }
@@ -149,9 +153,10 @@ function sitDo(spec){
   if(kind==="used"){ sitDoUsed(p, k, r, st); return; }
   if(kind==="opt"){ sitDoOpt(p, k, r, st); return; }
   if(kind==="act"){ sitDoAct(p, k, r, st); return; } }
+export function beginSituationTurn(){sitDo("turn")}
 function sitDoOn(p, k, r, st){ if(!st.on[k]){ if(r.rage&&!modeOn("rage")){ toast("Turn on Rage first."); return; } undoMark(r.n); st.on[k]=1; const L=sitOpts(r); if(L&&!st.v[k]) st.v[k]=L[0]; } else { undoMark("End "+r.n); delete st.on[k]; } save(); renderAll(); refreshEntry(); toastU(r.n+(st.on[k]?" is on.":" is off.")); return; 
 }
-function sitDoUsed(p, k, r, st){ undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return; 
+function sitDoUsed(p, k, r, st){if(k==="divine-strike")invalidateTurnDamageState(S);undoMark(r.n); if(st.used[k]) delete st.used[k]; else st.used[k]=1; save(); renderAll(); toastU(r.n+(st.used[k]?" used.":" ready again.")); return;
 }
 function sitDoOpt(p, k, r, st){ undoMark(r.n); st.v[k]=p.slice(2).join(":"); save(); renderAll(); return; 
 }

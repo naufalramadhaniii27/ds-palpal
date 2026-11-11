@@ -635,10 +635,11 @@
  "GX.sub|Hunting Domain": {
   "files": [
    "fx-F-sub.js",
-   "fx-L10.js"
+   "fx-L10.js",
+   "fx-Z16.js"
   ],
-  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|Knight Errant": {
   "files": [
@@ -850,12 +851,13 @@
  "GX.sub|Blood Domain": {
   "files": [
    "fx-N1.js",
-   "fx-Z2.js"
+   "fx-Z2.js",
+   "fx-Z16.js"
   ],
-  "reason": "Divine Strike is layered by level: fx-N1 gives 1d8 from level 8, fx-Z2 gives the second 1d8 from level 14, so level 14 shows 2d8 in all as the rule says. Not counted twice.",
   "shared": [
    "atkDice"
-  ]
+  ],
+  "reason": "N1 and Z2 previously supplied the advisory Divine Strike base die and level14 upgrade. Z16 removes those two exact advisory packets and installs one ed2014, classOnlyCleric source selector. The guarded consumer rolls 1d8 at8 and 2d8 at14, including the separate native level14 milestone, and spends the existing Situations turn-use key once; no automatic weapon rider remains. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|Champion": {
   "files": [
@@ -895,10 +897,13 @@
  "GX.sub|Forge Domain": {
   "files": [
    "fx-L10.js",
-   "fx-Z2.js"
+   "fx-Z2.js",
+   "fx-Z16.js"
   ],
-  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
-  "shared": []
+  "shared": [
+   "acAdd"
+  ],
+  "reason": "Z16 rewrites this owner list to remove the exact old advisory Divine Strike packets and add one ed2014, classOnlyCleric selector for the guarded per-turn consumer. The existing Soul of the Forge AC bonus is retained once while the old Divine Strike packets are replaced. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|Gloom Stalker": {
   "files": [
@@ -957,18 +962,26 @@
   "files": [
    "fx-L10.js",
    "fx-Z2.js",
-   "fx-Z4.js"
+   "fx-Z4.js",
+   "fx-Z16.js"
   ],
-  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
+  "shared": [
+   "defs",
+   "ed",
+   "mv"
+  ],
+  "reason": "Z16 rewrites this owner list to remove the exact old advisory Divine Strike packets and add one ed2014, classOnlyCleric selector for the guarded per-turn consumer. The existing Stormborn movement and Wrath of the Storm note are retained once while the old Divine Strike packets are replaced; their edition metadata is preserved. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|War Domain (2014)": {
   "files": [
    "fx-L10.js",
-   "fx-Z2.js"
+   "fx-Z2.js",
+   "fx-Z16.js"
   ],
-  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
-  "shared": []
+  "shared": [
+   "def"
+  ],
+  "reason": "Z16 rewrites this owner list to remove the exact old advisory Divine Strike packets and add one ed2014, classOnlyCleric selector for the guarded per-turn consumer. The existing Avatar of Battle defense is retained once while the old Divine Strike packets are replaced. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|Warrior of Shadow": {
   "files": [
@@ -1044,18 +1057,24 @@
  "GX.sub|Life Domain (2014)": {
   "files": [
    "fx-Z2.js",
-   "fx-Z4.js"
+   "fx-Z4.js",
+   "fx-Z16.js"
   ],
-  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
+  "shared": [
+   "defs"
+  ],
+  "reason": "Z16 rewrites this owner list to remove the exact old advisory Divine Strike packets and add one ed2014, classOnlyCleric selector for the guarded per-turn consumer. The existing Preserve Life defense note is retained once while the old Divine Strike packets are replaced. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|Nature Domain": {
   "files": [
    "fx-Z2.js",
-   "fx-Z4.js"
+   "fx-Z4.js",
+   "fx-Z16.js"
   ],
-  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
+  "shared": [
+   "defs"
+  ],
+  "reason": "Z16 rewrites this owner list to remove the exact old advisory Divine Strike packets and add one ed2014, classOnlyCleric selector for the guarded per-turn consumer. The existing Dampen Elements defense note is retained once while the old Divine Strike packets are replaced. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|Oath of Vengeance (2014)": {
   "files": [
@@ -1100,10 +1119,13 @@
  "GX.sub|Trickery Domain (2014)": {
   "files": [
    "fx-Z2.js",
-   "fx-Z4.js"
+   "fx-Z4.js",
+   "fx-Z16.js"
   ],
-  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
+  "shared": [
+   "advOn"
+  ],
+  "reason": "Z16 rewrites this owner list to remove the exact old advisory Divine Strike packets and add one ed2014, classOnlyCleric selector for the guarded per-turn consumer. The existing Blessing of the Trickster and Invoke Duplicity toggles and advantages are retained once while the old Divine Strike packets are replaced. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|Wild Magic Sorcery": {
   "files": [
@@ -1205,10 +1227,11 @@
  "GX.sub|Justice Domain": {
   "files": [
    "fx-L10.js",
-   "fx-Z5.js"
+   "fx-Z5.js",
+   "fx-Z16.js"
   ],
   "shared": [],
-  "reason": " Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once. Z5 adds the documented source feature or active state. Shared fields belong to distinct benefits or extend the existing state with advantage only. U5 differences remove only the new entry or switch the state off, and assert each new advantage line occurs exactly once."
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  },
  "GX.sub|Circle of Configuration": {
   "files": [
@@ -1323,5 +1346,166 @@
   ],
   "shared": [],
   "reason": "L13 supplies Extra Attack and SUB_GRANT armor. Z5 replaces the unusable restricted SUB_GRANT weapon label with typed martial groups excluding Heavy weapons. U17 preserves armor, attacks and unrelated effects while checking allowed and forbidden weapons."
+ },
+ "GX.cls|Cleric": {
+  "files": [
+   "fx-L1.js",
+   "fx-Z16.js"
+  ],
+  "shared": [
+   "atkBonus",
+   "defs",
+   "min",
+   "skillBonus"
+  ],
+  "reason": "Z16 replaces the two L1 advisory Divine Strike packets with one source-bound Blessed Strikes selector, scaled by the native Cleric level and committed through the per-turn consumer. The rewritten owner list retains Potent Spellcasting, Improved Potent Spellcasting and Divine Order exactly once; their atkBonus, defs, min and skillBonus fields are preserved rather than added again. Current Cleric option entries use ed2024 and when.single to prevent both options from activating together. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Apocalypse Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Beer Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Darkness Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Death Domain": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Grave Domain (2014)": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [
+   "atkBonus"
+  ],
+  "reason": "Z16 replaces the L10 Potent Spellcasting packet with one ed2014, classOnlyCleric copy, preserving its numerical packet and qualifiers. This implements the native 2024 Blessed Strikes replacement rule without adding Wisdom twice or retaining the old option alongside the selected current option. Unrelated fields remain in their original entry. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Hunger Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Labyrinth Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Lust Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Mountain Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Ocean Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Order Domain": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Peace Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [
+   "atkBonus"
+  ],
+  "reason": "Z16 replaces the L10 Potent Spellcasting packet with one ed2014, classOnlyCleric copy, preserving its numerical packet and qualifiers. This implements the native 2024 Blessed Strikes replacement rule without adding Wisdom twice or retaining the old option alongside the selected current option. Unrelated fields remain in their original entry. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Prophecy Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Speed Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Strength Domain (PSA)": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Travel Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Twilight Domain": {
+  "files": [
+   "fx-Z2.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
+ },
+ "GX.sub|Void Domain": {
+  "files": [
+   "fx-L10.js",
+   "fx-Z16.js"
+  ],
+  "shared": [],
+  "reason": "Z16 adds one ed2014, classOnlyCleric Divine Strike selector for the native source and Cleric level, consumed through the guarded Situations turn-use workflow. Earlier files supply distinct features or the old advisory Divine Strike packets; exact matching advisory packets are removed, and unrelated effects are preserved. The selector adds no unconditional atkDice damage. Exact replacement, unrelated-effect preservation, option gating and one canonical descriptor are checked by divine_strike_fx_model.mjs and divine_strike_backend.mjs."
  }
 }

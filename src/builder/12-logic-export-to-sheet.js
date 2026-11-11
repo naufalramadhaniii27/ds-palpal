@@ -21,6 +21,7 @@ import "./12j-logic-sheet-handlers-features.js";
 import "./12k-logic-sheet-handlers-spells.js";
 import "./12l-logic-sheet-handlers-late.js";
 import "./12m-logic-sheet-handlers-tools.js";
+import "./12n-logic-sheet-handlers-turn-damage.js";
 import "./11c-logic-fx-handlers-sheet.js";
 import {spellRows,classDef,appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef,sheetState,genv} from "./00-env.js";
 bindLive("toSheet",{get:function(){return toSheet;}});

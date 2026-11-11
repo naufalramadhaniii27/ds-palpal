@@ -100,1361 +100,1377 @@
    "layer": "ui",
    "order": 24
   },
-  "app/09-ui-hit-points-playbar-death-saves.js": {
+  "app/08f-ui-turn-damage.js": {
    "layer": "ui",
    "order": 25
   },
-  "app/10-ui-conditions.js": {
+  "app/09-ui-hit-points-playbar-death-saves.js": {
    "layer": "ui",
    "order": 26
   },
-  "app/11-ui-breakdown.js": {
+  "app/10-ui-conditions.js": {
    "layer": "ui",
    "order": 27
   },
-  "app/12-ui-bottom-sheet-modal.js": {
+  "app/11-ui-breakdown.js": {
    "layer": "ui",
    "order": 28
   },
-  "app/13-ui-detail-cards.js": {
+  "app/12-ui-bottom-sheet-modal.js": {
    "layer": "ui",
    "order": 29
   },
-  "app/13b-ui-detail-spell-targets-render.js": {
+  "app/13-ui-detail-cards.js": {
    "layer": "ui",
    "order": 30
   },
-  "app/14-ui-editor.js": {
+  "app/13b-ui-detail-spell-targets-render.js": {
    "layer": "ui",
    "order": 31
   },
-  "app/15-logic-roster-backup-files-snapshots.js": {
-   "layer": "logic",
+  "app/14-ui-editor.js": {
+   "layer": "ui",
    "order": 32
   },
-  "app/15b-logic-backup.js": {
+  "app/15-logic-roster-backup-files-snapshots.js": {
    "layer": "logic",
    "order": 33
   },
-  "app/15c-logic-file-state-compress.js": {
+  "app/15b-logic-backup.js": {
    "layer": "logic",
    "order": 34
   },
-  "app/15d-logic-snapshots-character-files.js": {
+  "app/15c-logic-file-state-compress.js": {
    "layer": "logic",
    "order": 35
   },
-  "app/16-logic-import-chat-text-and-build-files.js": {
+  "app/15d-logic-snapshots-character-files.js": {
    "layer": "logic",
    "order": 36
   },
+  "app/16-logic-import-chat-text-and-build-files.js": {
+   "layer": "logic",
+   "order": 37
+  },
   "app/16b-data-whats-new.js": {
    "layer": "data",
-   "order": 37
+   "order": 38
   },
   "app/16c-ui-whats-new-and-hooks.js": {
    "layer": "ui",
-   "order": 38
+   "order": 39
   },
   "app/17-logic-tab-sync-and-test-hooks.js": {
    "layer": "logic",
-   "order": 39
+   "order": 40
   },
   "app/18-ui-header-and-more-menu.js": {
    "layer": "ui",
-   "order": 40
+   "order": 41
   },
   "app/19-ui-global-click-delegation.js": {
    "layer": "ui",
-   "order": 41
+   "order": 42
   },
   "app/20-ui-portrait.js": {
    "layer": "ui",
-   "order": 42
+   "order": 43
   },
   "app/21-ui-tabs-pager.js": {
    "layer": "ui",
-   "order": 43
+   "order": 44
   },
   "app/21b-ui-weapon-forms.js": {
    "layer": "ui",
-   "order": 44
+   "order": 45
   },
   "app/21c-ui-wield-minimum.js": {
    "layer": "ui",
-   "order": 45
+   "order": 46
   },
   "app/21d-logic-wield-refresh.js": {
    "layer": "logic",
-   "order": 46
+   "order": 47
   },
   "app/21e-ui-carpet-vehicles.js": {
    "layer": "ui",
-   "order": 47
+   "order": 48
   },
   "app/21f-ui-temporary-cantrip.js": {
    "layer": "ui",
-   "order": 48
+   "order": 49
   },
   "app/21g-ui-ridden-vehicles.js": {
    "layer": "ui",
-   "order": 49
+   "order": 50
   },
   "app/21a-ui-attunement.js": {
    "layer": "ui",
-   "order": 50
+   "order": 51
   },
   "app/22-ui-spell-data-and-slots.js": {
    "layer": "ui",
-   "order": 51
+   "order": 52
   },
   "app/23-ui-uses-items-coins-rest-spell-dc.js": {
    "layer": "ui",
-   "order": 52
+   "order": 53
   },
   "app/23b-ui-items-containers.js": {
    "layer": "ui",
-   "order": 53
+   "order": 54
   },
   "app/23c-ui-coins.js": {
    "layer": "ui",
-   "order": 54
+   "order": 55
   },
   "app/23d-ui-rest.js": {
    "layer": "ui",
-   "order": 55
+   "order": 56
   },
   "app/23e-ui-spells-dc.js": {
    "layer": "ui",
-   "order": 56
+   "order": 57
   },
   "app/23f-ui-spell-source-rolls.js": {
    "layer": "ui",
-   "order": 57
+   "order": 58
   },
   "app/24-ui-manage-spells.js": {
    "layer": "ui",
-   "order": 58
+   "order": 59
   },
   "app/25-ui-settings-appearance.js": {
    "layer": "ui",
-   "order": 59
+   "order": 60
   },
   "app/26-ui-customize.js": {
    "layer": "ui",
-   "order": 60
+   "order": 61
   },
   "app/27-ui-party-search-commands-library.js": {
    "layer": "ui",
-   "order": 61
+   "order": 62
   },
   "app/27b-ui-library.js": {
    "layer": "ui",
-   "order": 62
+   "order": 63
   },
   "app/27d-ui-library-search-open.js": {
    "layer": "ui",
-   "order": 63
+   "order": 64
   },
   "app/27c-ui-report-pins.js": {
    "layer": "ui",
-   "order": 64
+   "order": 65
   },
   "app/28-ui-bastion.js": {
    "layer": "ui",
-   "order": 65
+   "order": 66
   },
   "app/29-ui-ddb-look.js": {
    "layer": "ui",
-   "order": 66
+   "order": 67
   },
   "app/29b-ui-creatures-extras.js": {
    "layer": "ui",
-   "order": 67
+   "order": 68
   },
   "app/29c-ui-tool-forms.js": {
    "layer": "ui",
-   "order": 68
+   "order": 69
   },
   "app/29c-data-ddb-icons.js": {
    "layer": "data",
-   "order": 69
+   "order": 70
   },
   "app/30-ui-icons.js": {
    "layer": "ui",
-   "order": 70
+   "order": 71
   },
   "app/31-ui-tour-and-focus.js": {
    "layer": "ui",
-   "order": 71
+   "order": 72
   },
   "app/32-logic-play-undo-actions.js": {
    "layer": "logic",
-   "order": 72
+   "order": 73
   },
   "app/32b-logic-play-concentration-casting.js": {
    "layer": "logic",
-   "order": 73
+   "order": 74
   },
   "app/32c-ui-object-repair.js": {
    "layer": "ui",
-   "order": 74
+   "order": 75
   },
   "app/32c-logic-play-temp-features-ammo.js": {
    "layer": "logic",
-   "order": 75
+   "order": 76
   },
   "app/32d-logic-play-hp-rest-recovery.js": {
    "layer": "logic",
-   "order": 76
+   "order": 77
   },
   "app/33-logic-play-rage-conditions.js": {
    "layer": "logic",
-   "order": 77
+   "order": 78
   },
   "app/34-ui-situations.js": {
    "layer": "ui",
-   "order": 78
+   "order": 79
   },
   "app/34b-ui-combat-effects-modes.js": {
    "layer": "ui",
-   "order": 79
+   "order": 80
   },
   "app/34c-ui-experience-journal-combat-view.js": {
    "layer": "ui",
-   "order": 80
+   "order": 81
   },
   "app/35-ui-combo.js": {
    "layer": "ui",
-   "order": 81
+   "order": 82
   },
   "app/36-ui-printable-sheet.js": {
    "layer": "ui",
-   "order": 82
+   "order": 83
   },
   "app/37a-ui-pdf-model.js": {
    "layer": "ui",
-   "order": 83
+   "order": 84
   },
   "app/37-ui-pdf-export-hold-slide-confirm.js": {
    "layer": "ui",
-   "order": 84
+   "order": 85
   },
   "app/38-boot-init.js": {
    "layer": "-",
-   "order": 85
+   "order": 86
   },
   "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js": {
    "layer": "ui",
-   "order": 86
+   "order": 87
   },
   "app/40-ui-segments-notes-swipe-motion-panels.js": {
    "layer": "ui",
-   "order": 87
+   "order": 88
   },
   "app/40b-ui-notes-description.js": {
    "layer": "ui",
-   "order": 88
+   "order": 89
   },
   "app/40c-ui-motion-sheet-morph.js": {
    "layer": "ui",
-   "order": 89
+   "order": 90
   },
   "app/40d-ui-overlays-context-dock.js": {
    "layer": "ui",
-   "order": 90
+   "order": 91
   },
   "app/40e-ui-reorder-drag.js": {
    "layer": "ui",
-   "order": 91
+   "order": 92
   },
   "app/40f-ui-tabs-spring.js": {
    "layer": "ui",
-   "order": 92
+   "order": 93
   },
   "app/41-ui-edit-mode.js": {
    "layer": "ui",
-   "order": 93
+   "order": 94
   },
   "app/42-logic-pwa-qr-icons-wallet.js": {
    "layer": "logic",
-   "order": 94
+   "order": 95
   },
   "app/43-logic-cloud-sync.js": {
    "layer": "logic",
-   "order": 95
+   "order": 96
   },
   "app/44-ui-friends.js": {
    "layer": "ui",
-   "order": 96
+   "order": 97
   },
   "app/45-learn-bridge.js": {
    "layer": "-",
-   "order": 97
+   "order": 98
   },
   "app/46-logic-receipts.js": {
    "layer": "logic",
-   "order": 98
+   "order": 99
   },
   "app/47-logic-time-machine.js": {
    "layer": "logic",
-   "order": 99
+   "order": 100
   },
   "app/48-logic-sync-merge.js": {
    "layer": "logic",
-   "order": 100
+   "order": 101
   },
   "app/49-logic-status-and-odds.js": {
    "layer": "logic",
-   "order": 101
+   "order": 102
   },
   "app/50-logic-reverse-builder.js": {
    "layer": "logic",
-   "order": 102
+   "order": 103
   },
   "app/51-ui-table-help.js": {
    "layer": "ui",
-   "order": 103
+   "order": 104
   },
   "app/52-tg-bridge.js": {
    "layer": "-",
-   "order": 104
+   "order": 105
   },
   "app/53-logic-number-map.js": {
    "layer": "logic",
-   "order": 105
+   "order": 106
   },
   "app/54-dev-fps-probe.js": {
    "layer": "-",
-   "order": 106
+   "order": 107
   },
   "app/99-ui-backup-reminder-handlers.js": {
    "layer": "ui",
-   "order": 107
+   "order": 108
   },
   "app/main.js": {
    "layer": "-",
-   "order": 108
+   "order": 109
   },
   "fx/00-fx-env.js": {
    "layer": "ui",
-   "order": 109
+   "order": 110
   },
   "fx/00b-fx-shared.js": {
    "layer": "ui",
-   "order": 110
+   "order": 111
   },
   "fx/01-core-router-and-switch.js": {
    "layer": "ui",
-   "order": 111
+   "order": 112
   },
   "fx/02-micro-interactions.js": {
    "layer": "ui",
-   "order": 112
+   "order": 113
   },
   "fx/02b-micro-interactions-2.js": {
    "layer": "ui",
-   "order": 113
+   "order": 114
   },
   "fx/03-f1-card-light-and-morph.js": {
    "layer": "ui",
-   "order": 114
+   "order": 115
   },
   "fx/04-f2-odometer-hp-bar-scrub.js": {
    "layer": "ui",
-   "order": 115
+   "order": 116
   },
   "fx/05-f3-indicator-dock-toast.js": {
    "layer": "ui",
-   "order": 116
+   "order": 117
   },
   "fx/06-f4-reveal-on-scroll.js": {
    "layer": "ui",
-   "order": 117
+   "order": 118
   },
   "fx/07-f5-moments.js": {
    "layer": "ui",
-   "order": 118
+   "order": 119
   },
   "fx/08-round6.js": {
    "layer": "ui",
-   "order": 119
+   "order": 120
   },
   "fx/09-wow-pack.js": {
    "layer": "ui",
-   "order": 120
+   "order": 121
   },
   "fx/10-x-pack.js": {
    "layer": "ui",
-   "order": 121
+   "order": 122
   },
   "fx/11-d-pack.js": {
    "layer": "ui",
-   "order": 122
+   "order": 123
   },
   "fx/12-mini-window-v2.js": {
    "layer": "ui",
-   "order": 123
+   "order": 124
   },
   "fx/13-class-colour-hp-ring.js": {
    "layer": "ui",
-   "order": 124
+   "order": 125
   },
   "fx/14-w-pack.js": {
    "layer": "ui",
-   "order": 125
+   "order": 126
   },
   "fx/15-y-pack.js": {
    "layer": "ui",
-   "order": 126
+   "order": 127
   },
   "fx/16-z-pack-dice-sound-hover.js": {
    "layer": "ui",
-   "order": 127
+   "order": 128
   },
   "fx/16b-z-pack-dice-sound-hover-2.js": {
    "layer": "ui",
-   "order": 128
+   "order": 129
   },
   "fx/17-l-pack-webgl-sky.js": {
    "layer": "ui",
-   "order": 129
+   "order": 130
   },
   "fx/18-m-pack-rolls-concentration.js": {
    "layer": "ui",
-   "order": 130
+   "order": 131
   },
   "fx/19-g-pack-cinematic.js": {
    "layer": "ui",
-   "order": 131
+   "order": 132
   },
   "fx/20-k-pack-character-colour-icon.js": {
    "layer": "ui",
-   "order": 132
+   "order": 133
   },
   "fx/21-connected-home-sheet.js": {
    "layer": "ui",
-   "order": 133
+   "order": 134
   },
   "fx/22-home-hero.js": {
    "layer": "ui",
-   "order": 134
+   "order": 135
   },
   "fx/24-class-art.js": {
    "layer": "ui",
-   "order": 135
+   "order": 136
   },
   "fx/25-dice3d.js": {
    "layer": "ui",
-   "order": 136
+   "order": 137
   },
   "fx/26-tab-notch.js": {
    "layer": "ui",
-   "order": 137
+   "order": 138
   },
   "fx/27-blend-sheet.js": {
    "layer": "ui",
-   "order": 138
+   "order": 139
   },
   "boot/deferred-loader.js": {
    "layer": "-",
-   "order": 139
+   "order": 140
   },
   "data/00-data-env.js": {
    "layer": "data",
-   "order": 140
+   "order": 141
   },
   "data/db1-phb-skills-species-backgrounds-feats-weapons.js": {
    "layer": "data",
-   "order": 141
+   "order": 142
   },
   "data/db2-phb-classes-a.js": {
    "layer": "data",
-   "order": 142
+   "order": 143
   },
   "data/db3-phb-classes-b.js": {
    "layer": "data",
-   "order": 143
+   "order": 144
   },
   "data/fx-B2-subclass.js": {
    "layer": "data",
-   "order": 144
+   "order": 145
   },
   "data/cffull-class-feature-text.js": {
    "layer": "data",
-   "order": 145
+   "order": 146
   },
   "data/subfull-subclass-feature-text.js": {
    "layer": "data",
-   "order": 146
+   "order": 147
   },
   "data/spfull-spell-text.js": {
    "layer": "data",
-   "order": 147
+   "order": 148
   },
   "data/spells-spell-list.js": {
    "layer": "data",
-   "order": 148
+   "order": 149
   },
   "data/dmgi-magic-items-dmg2024.js": {
    "layer": "data",
-   "order": 149
+   "order": 150
   },
   "data/itsp-spells-from-items.js": {
    "layer": "data",
-   "order": 150
+   "order": 151
   },
   "data/db4/01-languages-auto-spells-grants-prices-gear.js": {
    "layer": "data",
-   "order": 151
+   "order": 152
   },
   "data/db4/02-limited-uses-damage-rows-save-notes.js": {
    "layer": "data",
-   "order": 152
+   "order": 153
   },
   "data/db4/03-lifestyle-containers-printed-pages.js": {
    "layer": "data",
-   "order": 153
+   "order": 154
   },
   "data/db4/04-creature-stat-blocks.js": {
    "layer": "data",
-   "order": 154
+   "order": 155
   },
   "data/db4/05-gifts-weights-quick-build-bastions.js": {
    "layer": "data",
-   "order": 155
+   "order": 156
   },
   "data/db4/06-tools-proficiencies-packs-kits.js": {
    "layer": "data",
-   "order": 156
+   "order": 157
   },
   "data/db4/07-actions.js": {
    "layer": "data",
-   "order": 157
+   "order": 158
   },
   "data/db4/08-mpmm-species.js": {
    "layer": "data",
-   "order": 158
+   "order": 159
   },
   "data/efa-eberron-forge-of-the-artificer.js": {
    "layer": "data",
-   "order": 159
+   "order": 160
   },
   "data/wotc01-sources-2025-feats-boons-spells.js": {
    "layer": "data",
-   "order": 160
+   "order": 161
   },
   "data/wotc02-subclasses-2025.js": {
    "layer": "data",
-   "order": 161
+   "order": 162
   },
   "data/wotc03-magic-items-2025.js": {
    "layer": "data",
-   "order": 162
+   "order": 163
   },
   "data/wotc04-species-lorwyn-ravenloft.js": {
    "layer": "data",
-   "order": 163
+   "order": 164
   },
   "data/wotc05-backgrounds-2025.js": {
    "layer": "data",
-   "order": 164
+   "order": 165
   },
   "data/wotc06-gear-2024.js": {
    "layer": "data",
-   "order": 165
+   "order": 166
   },
   "data/wotc07-feats-2014.js": {
    "layer": "data",
-   "order": 166
+   "order": 167
   },
   "data/wotc08-backgrounds-2014.js": {
    "layer": "data",
-   "order": 167
+   "order": 168
   },
   "data/wotc09-subclasses-2014.js": {
    "layer": "data",
-   "order": 168
+   "order": 169
   },
   "data/wotc10-species-2014.js": {
    "layer": "data",
-   "order": 169
+   "order": 170
   },
   "data/wotc11-magic-items-2014.js": {
    "layer": "data",
-   "order": 170
+   "order": 171
   },
   "data/wotc12-spells-2014.js": {
    "layer": "data",
-   "order": 171
+   "order": 172
   },
   "data/wotc13-creature-stat-blocks.js": {
    "layer": "data",
-   "order": 172
+   "order": 173
   },
   "data/wotc14-gear-2014.js": {
    "layer": "data",
-   "order": 173
+   "order": 174
   },
   "data/wotc15-class-options-2014.js": {
    "layer": "data",
-   "order": 174
+   "order": 175
   },
   "data/tp01-tdcsr.js": {
    "layer": "data",
-   "order": 175
+   "order": 176
   },
   "data/tp02-tdcg.js": {
    "layer": "data",
-   "order": 176
+   "order": 177
   },
   "data/tp03-tvss.js": {
    "layer": "data",
-   "order": 177
+   "order": 178
   },
   "data/tp04-tee24.js": {
    "layer": "data",
-   "order": 178
+   "order": 179
   },
   "data/tp05-tghp.js": {
    "layer": "data",
-   "order": 179
+   "order": 180
   },
   "data/tp06-tsgeh.js": {
    "layer": "data",
-   "order": 180
+   "order": 181
   },
   "data/tp07-tsae.js": {
    "layer": "data",
-   "order": 181
+   "order": 182
   },
   "data/tp08-tghg.js": {
    "layer": "data",
-   "order": 182
+   "order": 183
   },
   "data/tp09-tshl.js": {
    "layer": "data",
-   "order": 183
+   "order": 184
   },
   "data/tp10-tssm.js": {
    "layer": "data",
-   "order": 184
+   "order": 185
   },
   "data/tp11-tsdd.js": {
    "layer": "data",
-   "order": 185
+   "order": 186
   },
   "data/tp12-tsgs.js": {
    "layer": "data",
-   "order": 186
+   "order": 187
   },
   "data/tp13-tsdm.js": {
    "layer": "data",
-   "order": 187
+   "order": 188
   },
   "data/tp14-tkdm.js": {
    "layer": "data",
-   "order": 188
+   "order": 189
   },
   "data/tp15-thhw.js": {
    "layer": "data",
-   "order": 189
+   "order": 190
   },
   "data/fx-C-feat.js": {
    "layer": "data",
-   "order": 190
+   "order": 191
   },
   "data/fx-E-feat.js": {
    "layer": "data",
-   "order": 191
+   "order": 192
   },
   "data/q00-src.js": {
    "layer": "data",
-   "order": 192
+   "order": 193
   },
   "data/q09-hbindex.js": {
    "layer": "data",
-   "order": 193
+   "order": 194
   },
   "data/q20-hbnames.js": {
    "layer": "data",
-   "order": 194
+   "order": 195
   },
   "data/q21-spellref.js": {
    "layer": "data",
-   "order": 195
+   "order": 196
   },
   "data/q22-textfix.js": {
    "layer": "data",
-   "order": 196
+   "order": 197
   },
   "data/q01-reward.js": {
    "layer": "data",
-   "order": 197
+   "order": 198
   },
   "data/q02-deity.js": {
    "layer": "data",
-   "order": 198
+   "order": 199
   },
   "data/q03-loot.js": {
    "layer": "data",
-   "order": 199
+   "order": 200
   },
   "data/q04-recipe.js": {
    "layer": "data",
-   "order": 200
+   "order": 201
   },
   "data/q05-charopt.js": {
    "layer": "data",
-   "order": 201
+   "order": 202
   },
   "data/q05-cult.js": {
    "layer": "data",
-   "order": 202
+   "order": 203
   },
   "data/q06-disease.js": {
    "layer": "data",
-   "order": 203
+   "order": 204
   },
   "data/q06-language.js": {
    "layer": "data",
-   "order": 204
+   "order": 205
   },
   "data/q08-deck.js": {
    "layer": "data",
-   "order": 205
+   "order": 206
   },
   "data/q08-hazard.js": {
    "layer": "data",
-   "order": 206
+   "order": 207
   },
   "data/q08-object.js": {
    "layer": "data",
-   "order": 207
+   "order": 208
   },
   "data/q08-psionic.js": {
    "layer": "data",
-   "order": 208
+   "order": 209
   },
   "data/q08-table.js": {
    "layer": "data",
-   "order": 209
+   "order": 210
   },
   "data/q08-vehicle.js": {
    "layer": "data",
-   "order": 210
+   "order": 211
   },
   "data/q10-fluff.js": {
    "layer": "data",
-   "order": 211
+   "order": 212
   },
   "data/q11-img.js": {
    "layer": "data",
-   "order": 212
+   "order": 213
   },
   "data/q12-crimg.js": {
    "layer": "data",
-   "order": 213
+   "order": 214
   },
   "data/q19-img-more.js": {
    "layer": "data",
-   "order": 214
+   "order": 215
   },
   "data/q12-rule.js": {
    "layer": "data",
-   "order": 215
+   "order": 216
   },
   "data/q13-rule-gaps.js": {
    "layer": "data",
-   "order": 216
+   "order": 217
   },
   "data/q15-books.js": {
    "layer": "data",
-   "order": 217
+   "order": 218
   },
   "data/q18-life.js": {
    "layer": "data",
-   "order": 218
+   "order": 219
   },
   "data/q16-items-gap.js": {
    "layer": "data",
-   "order": 219
+   "order": 220
   },
   "data/q17-class-gap.js": {
    "layer": "data",
-   "order": 220
+   "order": 221
   },
   "data/q14-optfeat.js": {
    "layer": "data",
-   "order": 221
+   "order": 222
   },
   "data/q12-facility.js": {
    "layer": "data",
-   "order": 222
+   "order": 223
   },
   "data/q23-gapfill.js": {
    "layer": "data",
-   "order": 223
+   "order": 224
   },
   "data/q24-gapfill2.js": {
    "layer": "data",
-   "order": 224
+   "order": 225
   },
   "data/q07-lazy-stub.js": {
    "layer": "data",
-   "order": 225
+   "order": 226
   },
   "data/q07-bestiary.js": {
    "layer": "data",
-   "order": 226
+   "order": 227
   },
   "data/hbpack-builtin-homebrew.js": {
    "layer": "data",
-   "order": 227
+   "order": 228
   },
   "data/fx-A-class-species.js": {
    "layer": "data",
-   "order": 228
+   "order": 229
   },
   "data/fx-B1-subclass.js": {
    "layer": "data",
-   "order": 229
+   "order": 230
   },
   "data/fx-F-sub.js": {
    "layer": "data",
-   "order": 230
+   "order": 231
   },
   "data/fx-G-engine.js": {
    "layer": "data",
-   "order": 231
+   "order": 232
   },
   "data/fx-H-audit.js": {
    "layer": "data",
-   "order": 232
+   "order": 233
   },
   "data/fx-L1.js": {
    "layer": "data",
-   "order": 233
+   "order": 234
   },
   "data/fx-L4.js": {
    "layer": "data",
-   "order": 234
+   "order": 235
   },
   "data/fx-L5.js": {
    "layer": "data",
-   "order": 235
+   "order": 236
   },
   "data/fx-L9.js": {
    "layer": "data",
-   "order": 236
+   "order": 237
   },
   "data/fx-L10.js": {
    "layer": "data",
-   "order": 237
+   "order": 238
   },
   "data/fx-L11.js": {
    "layer": "data",
-   "order": 238
+   "order": 239
   },
   "data/fx-L12.js": {
    "layer": "data",
-   "order": 239
+   "order": 240
   },
   "data/fx-L13.js": {
    "layer": "data",
-   "order": 240
+   "order": 241
   },
   "data/fx-D-item.js": {
    "layer": "data",
-   "order": 241
+   "order": 242
   },
   "data/fx-L2.js": {
    "layer": "data",
-   "order": 242
+   "order": 243
   },
   "data/fx-L3.js": {
    "layer": "data",
-   "order": 243
+   "order": 244
   },
   "data/fx-L6.js": {
    "layer": "data",
-   "order": 244
+   "order": 245
   },
   "data/fx-L7.js": {
    "layer": "data",
-   "order": 245
+   "order": 246
   },
   "data/fx-L8.js": {
    "layer": "data",
-   "order": 246
+   "order": 247
   },
   "data/fx-M1.js": {
    "layer": "data",
-   "order": 247
+   "order": 248
   },
   "data/fx-M2.js": {
    "layer": "data",
-   "order": 248
+   "order": 249
   },
   "data/fx-N1.js": {
    "layer": "data",
-   "order": 249
+   "order": 250
   },
   "data/fx-Z1.js": {
    "layer": "data",
-   "order": 250
+   "order": 251
   },
   "data/fx-Z2.js": {
    "layer": "data",
-   "order": 251
+   "order": 252
   },
   "data/fx-Z3.js": {
    "layer": "data",
-   "order": 252
+   "order": 253
   },
   "data/fx-Z4.js": {
    "layer": "data",
-   "order": 253
+   "order": 254
   },
   "data/fx-Z5.js": {
    "layer": "data",
-   "order": 254
+   "order": 255
   },
   "data/fx-Z6.js": {
    "layer": "data",
-   "order": 255
+   "order": 256
   },
   "data/fx-Z7.js": {
    "layer": "data",
-   "order": 256
+   "order": 257
   },
   "data/fx-Z8.js": {
    "layer": "data",
-   "order": 257
+   "order": 258
   },
   "data/fx-Z9.js": {
    "layer": "data",
-   "order": 258
+   "order": 259
   },
   "data/fx-Z10.js": {
    "layer": "data",
-   "order": 259
+   "order": 260
   },
   "data/fx-Z11.js": {
    "layer": "data",
-   "order": 260
+   "order": 261
   },
   "data/fx-Z12.js": {
    "layer": "data",
-   "order": 261
+   "order": 262
   },
   "data/fx-Z13.js": {
    "layer": "data",
-   "order": 262
+   "order": 263
   },
   "data/fx-Z14.js": {
    "layer": "data",
-   "order": 263
+   "order": 264
   },
   "data/fx-Z15.js": {
    "layer": "data",
-   "order": 264
+   "order": 265
+  },
+  "data/fx-Z16.js": {
+   "layer": "data",
+   "order": 266
   },
   "builder/00-reg.js": {
    "layer": "-",
-   "order": 265
+   "order": 267
   },
   "builder/00-env.js": {
    "layer": "-",
-   "order": 266
+   "order": 268
   },
   "builder/01-logic-core-helpers.js": {
    "layer": "logic",
-   "order": 267
+   "order": 269
   },
   "builder/01a-logic-query-registry.js": {
    "layer": "logic",
-   "order": 268
+   "order": 270
   },
   "builder/01b-logic-late-ports.js": {
    "layer": "logic",
-   "order": 269
+   "order": 271
   },
   "builder/02-data-magic-item-summaries.js": {
    "layer": "data",
-   "order": 270
+   "order": 272
   },
   "builder/03-logic-magic-item-effects.js": {
    "layer": "logic",
-   "order": 271
+   "order": 273
   },
   "builder/04-logic-storage.js": {
    "layer": "logic",
-   "order": 272
+   "order": 274
   },
   "builder/05-logic-choice-model-ruleset.js": {
    "layer": "logic",
-   "order": 273
+   "order": 275
   },
   "builder/06-data-2014-classes.js": {
    "layer": "data",
-   "order": 274
+   "order": 276
   },
   "builder/06a-data-2014-long-text-more.js": {
    "layer": "data",
-   "order": 275
+   "order": 277
   },
   "builder/06a2-data-2024-species-long-text.js": {
    "layer": "data",
-   "order": 276
+   "order": 278
   },
   "builder/06b-data-2014-long-text.js": {
    "layer": "data",
-   "order": 277
+   "order": 279
   },
   "builder/07-data-2014-spells.js": {
    "layer": "data",
-   "order": 278
+   "order": 280
   },
   "builder/08-logic-2014-rules.js": {
    "layer": "logic",
-   "order": 279
+   "order": 281
   },
   "builder/09-logic-feats-and-choices.js": {
    "layer": "logic",
-   "order": 280
+   "order": 282
   },
   "builder/09c-logic-edition-overlays.js": {
    "layer": "logic",
-   "order": 281
+   "order": 283
   },
   "builder/09d-logic-wotc-source-gate.js": {
    "layer": "logic",
-   "order": 282
+   "order": 284
   },
   "builder/09b-logic-choice-stages.js": {
    "layer": "logic",
-   "order": 283
+   "order": 285
   },
   "builder/10-logic-v17-additions.js": {
    "layer": "logic",
-   "order": 284
+   "order": 286
   },
   "builder/10a-logic-fx-registry.js": {
    "layer": "logic",
-   "order": 285
+   "order": 287
   },
   "builder/10b-logic-fx-handlers-entry.js": {
    "layer": "logic",
-   "order": 286
+   "order": 288
   },
   "builder/10c-logic-fx-handlers-ability.js": {
    "layer": "logic",
-   "order": 287
+   "order": 289
   },
   "builder/10d-logic-fx-rules-cond-value.js": {
    "layer": "logic",
-   "order": 288
+   "order": 290
   },
   "builder/10e-logic-fx-schema.js": {
    "layer": "logic",
-   "order": 289
+   "order": 291
   },
   "data/lib/attack-target.js": {
    "layer": "data",
-   "order": 290
+   "order": 292
   },
   "data/lib/attack-resources.js": {
    "layer": "data",
-   "order": 291
+   "order": 293
   },
   "data/lib/attack-kind.js": {
    "layer": "data",
-   "order": 292
+   "order": 294
   },
   "data/lib/weapon-form.js": {
    "layer": "data",
-   "order": 293
+   "order": 295
   },
   "data/lib/wield-minimum.js": {
    "layer": "data",
-   "order": 294
+   "order": 296
   },
   "data/lib/object-repair.js": {
    "layer": "data",
-   "order": 295
+   "order": 297
   },
   "data/lib/tool-form.js": {
    "layer": "data",
-   "order": 296
+   "order": 298
   },
   "data/lib/carpet-vehicle.js": {
    "layer": "data",
-   "order": 297
+   "order": 299
   },
   "data/lib/ridden-vehicle.js": {
    "layer": "data",
-   "order": 298
+   "order": 300
   },
   "data/lib/spell-source.js": {
    "layer": "data",
-   "order": 299
-  },
-  "data/lib/temporary-cantrip.js": {
-   "layer": "data",
-   "order": 300
-  },
-  "data/lib/temporary-cantrip-projection.js": {
-   "layer": "data",
    "order": 301
   },
-  "data/lib/all-purpose-source.js": {
+  "data/lib/turn-damage.js": {
    "layer": "data",
    "order": 302
   },
-  "data/lib/attunement.js": {
+  "data/lib/temporary-cantrip.js": {
    "layer": "data",
    "order": 303
   },
-  "builder/11-logic-derivation.js": {
-   "layer": "logic",
+  "data/lib/temporary-cantrip-projection.js": {
+   "layer": "data",
    "order": 304
   },
-  "builder/11b-logic-fx-sources.js": {
-   "layer": "logic",
+  "data/lib/all-purpose-source.js": {
+   "layer": "data",
    "order": 305
   },
-  "builder/11c-logic-fx-handlers-sheet.js": {
-   "layer": "logic",
+  "data/lib/attunement.js": {
+   "layer": "data",
    "order": 306
   },
-  "builder/12a-logic-sheet-registry.js": {
+  "builder/11-logic-derivation.js": {
    "layer": "logic",
    "order": 307
   },
-  "builder/12b-logic-sheet-schema.js": {
+  "builder/11b-logic-fx-sources.js": {
    "layer": "logic",
    "order": 308
   },
-  "builder/12c-logic-sheet-handlers-core.js": {
+  "builder/11c-logic-fx-handlers-sheet.js": {
    "layer": "logic",
    "order": 309
   },
-  "builder/12d-logic-sheet-handlers-skills.js": {
+  "builder/12a-logic-sheet-registry.js": {
    "layer": "logic",
    "order": 310
   },
-  "builder/12e-logic-sheet-handlers-defense.js": {
+  "builder/12b-logic-sheet-schema.js": {
    "layer": "logic",
    "order": 311
   },
-  "builder/12f-logic-sheet-handlers-movement.js": {
+  "builder/12c-logic-sheet-handlers-core.js": {
    "layer": "logic",
    "order": 312
   },
-  "builder/12g-logic-sheet-handlers-profs.js": {
+  "builder/12d-logic-sheet-handlers-skills.js": {
    "layer": "logic",
    "order": 313
   },
-  "builder/12h-logic-sheet-handlers-attacks.js": {
+  "builder/12e-logic-sheet-handlers-defense.js": {
    "layer": "logic",
    "order": 314
   },
-  "builder/12i-logic-sheet-handlers-gear-resources.js": {
+  "builder/12f-logic-sheet-handlers-movement.js": {
    "layer": "logic",
    "order": 315
   },
-  "builder/12j-logic-sheet-handlers-features.js": {
+  "builder/12g-logic-sheet-handlers-profs.js": {
    "layer": "logic",
    "order": 316
   },
-  "builder/12k-logic-sheet-handlers-spells.js": {
+  "builder/12h-logic-sheet-handlers-attacks.js": {
    "layer": "logic",
    "order": 317
   },
-  "builder/12l-logic-sheet-handlers-late.js": {
+  "builder/12i-logic-sheet-handlers-gear-resources.js": {
    "layer": "logic",
    "order": 318
   },
-  "builder/12m-logic-sheet-handlers-tools.js": {
+  "builder/12j-logic-sheet-handlers-features.js": {
    "layer": "logic",
    "order": 319
   },
-  "builder/12-logic-export-to-sheet.js": {
+  "builder/12k-logic-sheet-handlers-spells.js": {
    "layer": "logic",
    "order": 320
   },
-  "builder/13-logic-sources-and-packs.js": {
+  "builder/12l-logic-sheet-handlers-late.js": {
    "layer": "logic",
    "order": 321
   },
-  "builder/13a-logic-pack-registry.js": {
+  "builder/12m-logic-sheet-handlers-tools.js": {
    "layer": "logic",
    "order": 322
   },
-  "builder/13b-logic-pack-handlers.js": {
+  "builder/12n-logic-sheet-handlers-turn-damage.js": {
    "layer": "logic",
    "order": 323
   },
-  "builder/14-logic-multiclass-hp-shop.js": {
+  "builder/12-logic-export-to-sheet.js": {
    "layer": "logic",
    "order": 324
   },
-  "builder/15-logic-import-from-sheet.js": {
+  "builder/13-logic-sources-and-packs.js": {
    "layer": "logic",
    "order": 325
   },
-  "builder/16-logic-feature-numbers.js": {
+  "builder/13a-logic-pack-registry.js": {
    "layer": "logic",
    "order": 326
   },
-  "builder/17-ui-step-builder.js": {
-   "layer": "ui",
+  "builder/13b-logic-pack-handlers.js": {
+   "layer": "logic",
    "order": 327
   },
-  "builder/18-ui-spells.js": {
-   "layer": "ui",
+  "builder/14-logic-multiclass-hp-shop.js": {
+   "layer": "logic",
    "order": 328
   },
-  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
-   "layer": "ui",
+  "builder/15-logic-import-from-sheet.js": {
+   "layer": "logic",
    "order": 329
   },
-  "builder/20-ui-steps-equipment-next.js": {
-   "layer": "ui",
+  "builder/16-logic-feature-numbers.js": {
+   "layer": "logic",
    "order": 330
   },
-  "builder/21-ui-rules-reference.js": {
+  "builder/17-ui-step-builder.js": {
    "layer": "ui",
    "order": 331
   },
-  "builder/22-ui-shell.js": {
+  "builder/18-ui-spells.js": {
    "layer": "ui",
    "order": 332
   },
-  "builder/23-logic-level-up-and-build-files.js": {
-   "layer": "logic",
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
+   "layer": "ui",
    "order": 333
   },
-  "builder/24-ui-icons.js": {
+  "builder/20-ui-steps-equipment-next.js": {
    "layer": "ui",
    "order": 334
   },
+  "builder/21-ui-rules-reference.js": {
+   "layer": "ui",
+   "order": 335
+  },
+  "builder/22-ui-shell.js": {
+   "layer": "ui",
+   "order": 336
+  },
+  "builder/23-logic-level-up-and-build-files.js": {
+   "layer": "logic",
+   "order": 337
+  },
+  "builder/24-ui-icons.js": {
+   "layer": "ui",
+   "order": 338
+  },
   "builder/25-logic-hooks-for-the-sheet.js": {
    "layer": "logic",
-   "order": 335
+   "order": 339
   },
   "builder/main.js": {
    "layer": "-",
-   "order": 336
+   "order": 340
   },
   "learn/00-env.js": {
    "layer": "-",
-   "order": 337
+   "order": 341
   },
   "learn/00-bridge.js": {
    "layer": "-",
-   "order": 338
+   "order": 342
   },
   "learn/45b-data-learn-places-a.js": {
    "layer": "data",
-   "order": 339
+   "order": 343
   },
   "learn/45c-data-learn-places-b.js": {
    "layer": "data",
-   "order": 340
+   "order": 344
   },
   "learn/45-data-learn.js": {
    "layer": "data",
-   "order": 341
+   "order": 345
   },
   "learn/46-logic-learn.js": {
    "layer": "logic",
-   "order": 342
+   "order": 346
   },
   "learn/47-ui-learn.js": {
    "layer": "ui",
-   "order": 343
+   "order": 347
   },
   "tg/00-env.js": {
    "layer": "-",
-   "order": 344
+   "order": 348
   },
   "tg/00-bridge.js": {
    "layer": "-",
-   "order": 345
+   "order": 349
   },
   "tg/20-engine.js": {
    "layer": "logic",
-   "order": 346
+   "order": 350
   },
   "tg/25-sim.js": {
    "layer": "logic",
-   "order": 347
+   "order": 351
   },
   "tg/30-ui-tg.js": {
    "layer": "ui",
-   "order": 348
+   "order": 352
   },
   "tg/31-ui-tg-field.js": {
    "layer": "ui",
-   "order": 349
+   "order": 353
   },
   "pdf/00-env.js": {
    "layer": "-",
-   "order": 350
+   "order": 354
   },
   "pdf/01-data-style.js": {
    "layer": "data",
-   "order": 351
+   "order": 355
   },
   "pdf/02-logic-markup.js": {
    "layer": "logic",
-   "order": 352
+   "order": 356
   },
   "pdf/03-logic-typeset.js": {
    "layer": "logic",
-   "order": 353
+   "order": 357
   },
   "pdf/04-ui-canvas.js": {
    "layer": "ui",
-   "order": 354
+   "order": 358
   },
   "pdf/05-data-sheet-fields.js": {
    "layer": "data",
-   "order": 355
+   "order": 359
   },
   "pdf/06-ui-fields.js": {
    "layer": "ui",
-   "order": 356
+   "order": 360
   },
   "pdf/07-ui-sheet-pages.js": {
    "layer": "ui",
-   "order": 357
+   "order": 361
   },
   "pdf/08-ui-flow.js": {
    "layer": "ui",
-   "order": 358
+   "order": 362
   },
   "pdf/09-ui-blocks.js": {
    "layer": "ui",
-   "order": 359
+   "order": 363
   },
   "pdf/10-ui-appendix.js": {
    "layer": "ui",
-   "order": 360
+   "order": 364
   },
   "pdf/11-ui-render.js": {
    "layer": "ui",
-   "order": 361
+   "order": 365
   },
   "pdf/main.js": {
    "layer": "-",
-   "order": 362
+   "order": 366
   },
   "data/rs14-2014-wording.js": {
    "layer": "data",
-   "order": 363
+   "order": 367
   }
  },
  "edges": [
@@ -1921,6 +1937,16 @@
   },
   {
    "from": "app/08b-ui-render-summaries-actions.js",
+   "to": "app/08f-ui-turn-damage.js",
+   "import": false,
+   "names": [
+    "turnDamageControls",
+    "turnDamageGuide"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/08b-ui-render-summaries-actions.js",
    "to": "builder/12g-logic-sheet-handlers-profs.js",
    "import": false,
    "names": [
@@ -2127,6 +2153,45 @@
     "scaledResourceDice"
    ],
    "count": 1
+  },
+  {
+   "from": "app/08f-ui-turn-damage.js",
+   "to": "app/05-logic-helpers.js",
+   "import": false,
+   "names": [
+    "atkOn",
+    "sheetRootActive"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/08f-ui-turn-damage.js",
+   "to": "app/34-ui-situations.js",
+   "import": false,
+   "names": [
+    "beginSituationTurn"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08f-ui-turn-damage.js",
+   "to": "data/lib/attack-target.js",
+   "import": false,
+   "names": [
+    "DAMAGE_TYPES",
+    "known"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/08f-ui-turn-damage.js",
+   "to": "data/lib/turn-damage.js",
+   "import": false,
+   "names": [
+    "divineStrikeDescriptorProblems",
+    "readTurnDamageState"
+   ],
+   "count": 2
   },
   {
    "from": "app/09-ui-hit-points-playbar-death-saves.js",
@@ -2603,6 +2668,15 @@
     "spSum"
    ],
    "count": 3
+  },
+  {
+   "from": "app/13b-ui-detail-spell-targets-render.js",
+   "to": "app/08f-ui-turn-damage.js",
+   "import": false,
+   "names": [
+    "turnDamageControls"
+   ],
+   "count": 1
   },
   {
    "from": "app/13b-ui-detail-spell-targets-render.js",
@@ -6122,6 +6196,16 @@
     "keys"
    ],
    "count": 1
+  },
+  {
+   "from": "app/34-ui-situations.js",
+   "to": "data/lib/turn-damage.js",
+   "import": true,
+   "names": [
+    "advanceTurnDamageGeneration",
+    "divineStrikeDescriptorProblems"
+   ],
+   "count": 2
   },
   {
    "from": "app/34b-ui-combat-effects-modes.js",
@@ -10495,8 +10579,10 @@
    "from": "builder/10b-logic-fx-handlers-entry.js",
    "to": "builder/01-logic-core-helpers.js",
    "import": true,
-   "names": [],
-   "count": 0
+   "names": [
+    "whenSingleProblems"
+   ],
+   "count": 1
   },
   {
    "from": "builder/10b-logic-fx-handlers-entry.js",
@@ -10508,6 +10594,15 @@
     "registerFxHandler"
    ],
    "count": 3
+  },
+  {
+   "from": "builder/10b-logic-fx-handlers-entry.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
   },
   {
    "from": "builder/10c-logic-fx-handlers-ability.js",
@@ -10548,8 +10643,10 @@
    "from": "builder/10e-logic-fx-schema.js",
    "to": "builder/01-logic-core-helpers.js",
    "import": true,
-   "names": [],
-   "count": 0
+   "names": [
+    "whenSingleProblems"
+   ],
+   "count": 1
   },
   {
    "from": "builder/10e-logic-fx-schema.js",
@@ -11056,6 +11153,13 @@
   {
    "from": "builder/12-logic-export-to-sheet.js",
    "to": "builder/12m-logic-sheet-handlers-tools.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12n-logic-sheet-handlers-turn-damage.js",
    "import": true,
    "names": [],
    "count": 0
@@ -11907,6 +12011,40 @@
    "import": true,
    "names": [
     "registerSheetRule"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12n-logic-sheet-handlers-turn-damage.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "part"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12n-logic-sheet-handlers-turn-damage.js",
+   "to": "builder/01-logic-core-helpers.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12n-logic-sheet-handlers-turn-damage.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": true,
+   "names": [
+    "registerSheetGroup"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12n-logic-sheet-handlers-turn-damage.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
    ],
    "count": 1
   },
@@ -16080,6 +16218,24 @@
    "count": 1
   },
   {
+   "from": "data/fx-Z16.js",
+   "to": "data/00-data-env.js",
+   "import": false,
+   "names": [
+    "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-Z16.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
    "from": "data/fx-Z2.js",
    "to": "data/00-data-env.js",
    "import": false,
@@ -16288,6 +16444,25 @@
     "keys"
    ],
    "count": 1
+  },
+  {
+   "from": "data/lib/turn-damage.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/turn-damage.js",
+   "to": "data/lib/attack-target.js",
+   "import": false,
+   "names": [
+    "DAMAGE_TYPES",
+    "criticalDice"
+   ],
+   "count": 2
   },
   {
    "from": "data/lib/weapon-form.js",

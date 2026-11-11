@@ -3823,6 +3823,2896 @@
    ],
    "test": "Z3 U37 native ridden vehicle Bobbing Lily Pad 2024",
    "note": "Exact native ridden vehicle speed/load clause, backed by the current source-edition profile and actual declared rider/load consumer. Broom uses 50/30 at 200/400 pounds; Lily uses walking/flying/surface-swimming 20/10 at 300/600 pounds with hover. Vehicle values never grant actor movement. Effective quantity/attunement, source-specific activation/ending, physical-copy split and stale-context checks are verified in actual UI. Legacy Broom has a separate native profile; autonomous dispatch/recall remain unmodeled."
+  },
+  {
+   "id": "u38-class-cleric-blessed-strikes-5",
+   "kind": "class",
+   "owner": "Cleric",
+   "name": "Blessed Strikes",
+   "lvl": 7,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^if\\ an\\ attack\\ roll\\ you\\ make\\ with\\ a\\ weapon\\ hits\\ a\\ creature,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ damage\\ to\\ the\\ target,\\ and\\ you\\ choose\\ whether\\ that\\ damage\\ is\\ necrotic\\ or\\ radiant\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 selected current choice 7 \"Divine Strike\"",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-class-cleric-improved-blessed-strikes-3",
+   "kind": "class",
+   "owner": "Cleric",
+   "name": "Improved Blessed Strikes",
+   "lvl": 14,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^your\\ divine\\ strike's\\ extra\\ damage\\ becomes\\ 2d8\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 selected current choice 14 \"Divine Strike\"",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-life-domain-2014-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Life Domain (2014)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ radiant\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Life Domain (2014) level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-life-domain-2014-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Life Domain (2014)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Life Domain (2014) level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-nature-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Nature Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ cold,\\ fire,\\ or\\ lightning\\ \\(your\\ choice\\)\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Nature Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-nature-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Nature Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Nature Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-tempest-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Tempest Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ thunder\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Tempest Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-tempest-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Tempest Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Tempest Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-trickery-domain-2014-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Trickery Domain (2014)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ poison\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Trickery Domain (2014) level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-trickery-domain-2014-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Trickery Domain (2014)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Trickery Domain (2014) level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-war-domain-2014-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/War Domain (2014)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ damage\\ of\\ the\\ same\\ type\\ as\\ the\\ weapon\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike War Domain (2014) level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-war-domain-2014-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/War Domain (2014)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike War Domain (2014) level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-death-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Death Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ necrotic\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Death Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-death-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Death Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Death Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-solidarity-domain-psa-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Solidarity Domain (PSA)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ damage\\ of\\ the\\ same\\ type\\ as\\ the\\ weapon\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Solidarity Domain (PSA) level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-solidarity-domain-psa-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Solidarity Domain (PSA)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Solidarity Domain (PSA) level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-strength-domain-psa-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Strength Domain (PSA)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ damage\\ of\\ the\\ same\\ type\\ as\\ the\\ weapon\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Strength Domain (PSA) level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-strength-domain-psa-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Strength Domain (PSA)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Strength Domain (PSA) level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-zeal-domain-psa-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Zeal Domain (PSA)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ damage\\ of\\ the\\ same\\ type\\ as\\ the\\ weapon\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Zeal Domain (PSA) level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-zeal-domain-psa-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Zeal Domain (PSA)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Zeal Domain (PSA) level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-order-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Order Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ psychic\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Order Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-order-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Order Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Order Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-twilight-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Twilight Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ radiant\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Twilight Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-twilight-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Twilight Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Twilight Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-forge-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Forge Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ fire\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Forge Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-forge-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Forge Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ becomes\\ 2d8\\ at\\ cleric\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Forge Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-blood-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Blood Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ per\\ turn,\\ a\\ weapon\\ hit\\ deals\\ an\\ extra\\ 1d8\\ necrotic\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Blood Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-blood-domain-divine-strike-14th-level-1",
+   "kind": "sub",
+   "owner": "Cleric/Blood Domain",
+   "name": "Divine Strike (14th Level)",
+   "lvl": 14,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ extra\\ damage\\ becomes\\ 2d8\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Blood Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-apocalypse-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Apocalypse Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ necrotic\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Apocalypse Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-apocalypse-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Apocalypse Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ extra\\ damage\\ becomes\\ 2d8\\ at\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Apocalypse Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-beer-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Beer Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ radiant\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Beer Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-beer-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Beer Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ extra\\ damage\\ becomes\\ 2d8\\ at\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Beer Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-darkness-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Darkness Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ necrotic\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Darkness Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-darkness-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Darkness Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ extra\\ damage\\ becomes\\ 2d8\\ at\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Darkness Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-dragon-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Dragon Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ fire\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Dragon Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-dragon-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Dragon Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ extra\\ damage\\ becomes\\ 2d8\\ at\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Dragon Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-hunger-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Hunger Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ necrotic\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Hunger Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-hunger-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Hunger Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ extra\\ damage\\ becomes\\ 2d8\\ at\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Hunger Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-hunting-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Hunting Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ your\\ turn,\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ damage\\ of\\ the\\ same\\ type\\ the\\ weapon\\ deals\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Hunting Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-hunting-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Hunting Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ extra\\ damage\\ becomes\\ 2d8\\ at\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Hunting Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-justice-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Justice Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ a\\ creature\\ with\\ a\\ weapon\\ attack,\\ you\\ can\\ deal\\ an\\ extra\\ 1d8\\ radiant\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Justice Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-justice-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Justice Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ extra\\ damage\\ becomes\\ 2d8\\ at\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Justice Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-labyrinth-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Labyrinth Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ damage\\ of\\ the\\ weapon's\\ type\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Labyrinth Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-labyrinth-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Labyrinth Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Labyrinth Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-lust-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Lust Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ psychic\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Lust Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-lust-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Lust Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Lust Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-moon-domain-deep-magic-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Moon Domain (Deep Magic)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ cold\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Moon Domain (Deep Magic) level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-moon-domain-deep-magic-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Moon Domain (Deep Magic)",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Moon Domain (Deep Magic) level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-mountain-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Mountain Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ cold\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Mountain Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-mountain-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Mountain Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Mountain Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-ocean-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Ocean Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ cold\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Ocean Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-ocean-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Ocean Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Ocean Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-prophecy-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Prophecy Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ damage\\ of\\ the\\ weapon's\\ type\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Prophecy Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-prophecy-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Prophecy Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Prophecy Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-speed-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Speed Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ damage\\ of\\ the\\ weapon's\\ type\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Speed Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-speed-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Speed Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Speed Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-travel-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Travel Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ lightning\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Travel Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-travel-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Travel Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Travel Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-void-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Void Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ cold\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Void Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-void-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Void Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Void Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-winter-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Winter Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ cold\\ damage\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Winter Domain level 8",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-winter-domain-divine-strike-2",
+   "kind": "sub",
+   "owner": "Cleric/Winter Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG"
+   ],
+   "vals": [
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ becomes\\ 2d8\\ at\\ 14th\\ level\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Winter Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
+  },
+  {
+   "id": "u38-sub-cleric-community-domain-divine-strike-1",
+   "kind": "sub",
+   "owner": "Cleric/Community Domain",
+   "name": "Divine Strike",
+   "lvl": 8,
+   "cls": [
+    "DMG",
+    "RESOURCE"
+   ],
+   "vals": [
+    "1d8",
+    "2d8"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ on\\ each\\ of\\ your\\ turns\\ when\\ you\\ hit\\ with\\ a\\ weapon\\ attack,\\ deal\\ an\\ extra\\ 1d8\\ psychic\\ damage,\\ 2d8\\ from\\ level\\ 14\\.$",
+   "anchor": [
+    "src/app/08f-ui-turn-damage.js",
+    "const result=turnDamageRuntime.request(view.context,facts,"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/12n-logic-sheet-handlers-turn-damage.js",
+     "ctx.C.divineStrike=options[0]"
+    ],
+    [
+     "src/app/lib/turn-damage-runtime.js",
+     "value.actor.S.sit=next.sit"
+    ],
+    [
+     "src/data/lib/turn-damage.js",
+     "export function commitTurnDamage(rule,sit,context,expectedGeneration)"
+    ],
+    [
+     "src/app/34-ui-situations.js",
+     "export function sitReset(kind){invalidateTurnDamageState(S);"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXENV.__miRoll.commitHook=1"
+    ],
+    [
+     "src/builder/08-logic-2014-rules.js",
+     "if(c14NativeSource(cn,x))return"
+    ]
+   ],
+   "test": "Z3 U38 native Divine Strike Community Domain level 14",
+   "note": "Exact native conditional weapon-hit or scaling clause. Actual canonical Cleric source level, native turn/type/target requirements, selected current-class replacement, shared Situations use, pending-turn invalidation and transactional dice commit are required. No automatic attack rider or version-number gate evidence. Separately named native Blood14 milestone is included; Community target-death outcome and Potent Spellcasting remain outside this proof."
   }
  ]
 }

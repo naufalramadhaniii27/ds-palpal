@@ -84,7 +84,10 @@ function c14Base(cn,c,d){const o=BASE14[cn]={};KEYS14.forEach((k) =>{o[k]=c[k]})
 function c14SubRl(cn,c,sn,rl){c.subs[sn]=c.subs[sn].map((a,i) =>{const b=a.slice();if(rl[i]!=null)b[0]=rl[i];return b});
     LU_X.forEach((e,i) =>{if(e.src==="sub"&&e.owner===sn&&e.lvl===3){let f=null;c.subs[sn].forEach((a) =>{if(f==null&&a[1]===e.feature)f=a[0]});if(f!=null&&f<3)LU_X[i]=Object.assign({},e,{lvl:f})}});/* v91: a counter starts at the level of its feature */
     if(cn==="Cleric"&&AUTO[sn]&&AUTO[sn][0]&&AUTO[sn][0][0]===3){const sp=String(AUTO[sn][0][1]).split(",");if(sp.length>=4)AUTO[sn]=[[1,sp.slice(0,sp.length-2).join(",")],[3,sp.slice(sp.length-2).join(",")]].concat(AUTO[sn].slice(1))}}
+/* Selected Cleric subclasses from registered 2014 third-party sources keep their printed native levels. */
+function c14NativeSource(cn,x){const books=genv.WX&&genv.WX.src;return cn==="Cleric"&&!!x&&!!(B.src&&B.src[x.src])&&Array.isArray(books)&&books.some(book=>book&&book.id===x.src&&book.tp===1&&book.ed==="2014")}
 function c14Sub(cn,c,sn,nb,xs){const key=cn+"|"+sn,rl=RL14[key],x=xs[key];
+   if(c14NativeSource(cn,x))return;
    if(rl){c14SubRl(cn,c,sn,rl);return}
    if(nb[sn]||(x&&SRC14.indexOf(x.src)<0))delete c.subs[sn]}
 function c14ApplyCls(cn,b0,xs){const c=CLASSES[cn],d=CLS14[cn];

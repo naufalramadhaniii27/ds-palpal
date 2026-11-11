@@ -1,3 +1,4 @@
+import {turnDamageControls} from './08f-ui-turn-damage.js';
 import {riddenVehicleControl} from './21g-ui-ridden-vehicles.js';
 import {temporaryCantripControl} from './21f-ui-temporary-cantrip.js';
 import {spellSourceRollControls} from "./23f-ui-spell-source-rolls.js";
@@ -174,7 +175,7 @@ DETAIL.add("w", {
     if(a.note) h+='<div class="info-h">Notes</div><p class="info-d">'+esc(a.note)+'</p>';
     h+=ammoPickH(a)+ammoH(ammoFor(a));/* v21 RU51, v102 magic ammunition */
     if(GLOSS[a.n]) h+='<div class="info-h">Base weapon</div><p class="info-d">'+rich(GLOSS[a.n].d)+'</p>';
-    return {t:a.n, h:h+'</div>'};
+    return {t:a.n, h:h+turnDamageControls(a,+key)+'</div>'};
   }
 });
 DETAIL.add("it", {

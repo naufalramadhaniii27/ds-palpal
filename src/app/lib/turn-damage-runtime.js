@@ -1,0 +1,40 @@
+// Qualified-hit damage consumes the existing SIT use only at the native dice commit boundary.
+import {turnDamageProblems,readTurnDamageState,evaluateTurnDamage,commitTurnDamage} from '../../data/lib/turn-damage.js';
+import {damageType} from '../../data/lib/attack-target.js';
+const object=value=>!!value&&typeof value==='object'&&!Array.isArray(value);
+const epochs=new WeakMap();
+const failure=reason=>({ok:false,reason});
+function commitFailure(result){return 'reason' in result?result.reason:'commit-failed'}
+function encoded(value){try{return JSON.stringify(value)}catch(error){return null}}
+function epoch(state){if(!epochs.has(state))epochs.set(state,{});return epochs.get(state)}
+export function invalidateTurnDamageState(state){if(object(state))epochs.set(state,{})}
+export function createTurnDamageRuntime(options){
+ const {getActor,getRule,getAttackStatus,rootActive,getDice,beforeCommit,save}=options||{};
+ if([getActor,getRule,getAttackStatus,rootActive,getDice,beforeCommit,save].some(fn=>typeof fn!=='function'))throw new TypeError('Turn damage runtime requires live callbacks');
+ const contexts=new WeakMap();
+ function actor(){try{const value=getActor();return value&&object(value.C)&&object(value.S)&&value.readOnly!==true?value:null}catch(error){return null}}
+ function rootValid(root){try{return rootActive(root)===true}catch(error){return false}}
+ function ruleFor(owner){try{const rule=getRule(owner);return !turnDamageProblems(rule).length?rule:null}catch(error){return null}}
+ function statusFor(owner,index){try{const value=getAttackStatus(owner,index);return object(value)&&value.available===true&&[true,false,null].includes(value.weaponAttack)&&(!Object.prototype.hasOwnProperty.call(value,'weaponType')||value.weaponType===null||!!damageType(value.weaponType))?value:null}catch(error){return null}}
+ function sourceStamp(owner){return encoded({cls:owner.C.cls,clsLabel:owner.C.clsLabel,sub:owner.C.sub,level:owner.C.level,rs:owner.C.rs,abilities:owner.C.abilities,inventory:owner.C.inv,features:owner.C.features,divineStrike:owner.C.divineStrike,customization:owner.S.cust,ammunition:owner.S.ammoAct})}
+ function owned(view){const now=actor();return now&&view.C===now.C&&view.S===now.S&&view.name===now.C.name&&view.cid===now.C.cid&&view.id===now.C.id&&rootValid(view.root)?now:null}
+ function current(token){const view=token&&contexts.get(token);if(!view||view.completed||view.cancelled)return null;const now=owned(view);if(!now||epoch(now.S)!==view.epoch||(now.C.attacks||[])[view.index]!==view.attack||encoded(view.attack)!==view.attackStamp||sourceStamp(now)!==view.sourceStamp)return null;
+  const rule=ruleFor(now),status=statusFor(now,view.index),turn=rule&&readTurnDamageState(now.S.sit,rule.key);if(!rule||encoded(rule)!==view.ruleStamp||!status||encoded(status)!==view.statusStamp||!turn.ok||turn.generation!==view.generation||(now.S.sit&&now.S.sit.turn)!==view.turn)return null;return {view,actor:now,rule,status,turn}}
+ function capture(index,root){const owner=actor(),attack=owner&&Number.isInteger(index)&&(owner.C.attacks||[])[index];if(!attack||!rootValid(root))return null;const rule=ruleFor(owner),status=statusFor(owner,index),turn=rule&&readTurnDamageState(owner.S.sit,rule.key);if(!rule||!status||status.weaponAttack===false||!turn.ok)return null;const token={},view={root,index,attack,C:owner.C,S:owner.S,name:owner.C.name,cid:owner.C.cid,id:owner.C.id,epoch:epoch(owner.S),turn:owner.S.sit&&owner.S.sit.turn,generation:turn.generation,attackStamp:encoded(attack),sourceStamp:sourceStamp(owner),ruleStamp:encoded(rule),statusStamp:encoded(status),pending:false,completed:false,cancelled:false};if([view.attackStamp,view.sourceStamp,view.ruleStamp,view.statusStamp].some(value=>value===null))return null;contexts.set(token,view);return token}
+ function prepare(value,declarations){if(!object(declarations))return failure('invalid-context');const context={...declarations},actual=damageType(Object.prototype.hasOwnProperty.call(value.status,'weaponType')?value.status.weaponType:value.view.attack.type);if(value.rule.typeFrom==='weapon'&&actual){if(Object.prototype.hasOwnProperty.call(context,'weaponType')&&context.weaponType!==actual)return failure('weapon-type-mismatch');context.weaponType=actual}const preview=evaluateTurnDamage(value.rule,value.actor.S.sit,context);return preview.ok?{ok:true,context,preview}:preview}
+ function inspect(token,declarations){const value=current(token);if(!value)return failure('stale-turn-damage');if(value.status.weaponAttack===false)return failure('weapon-hit-required');const prepared=prepare(value,declarations);return prepared.ok?prepared.preview:prepared}
+ function notify(roll,response){if(roll.replied)return;roll.replied=true;if(owned(roll.view)&&typeof roll.onResult==='function')roll.onResult({...response,owner:roll.view.name,character:roll.view.C,state:roll.view.S})}
+ function refuse(roll,reason){roll.cancelled=true;roll.view.pending=false;notify(roll,failure(reason));return false}
+ function checkRoll(roll){if(roll.cancelled||roll.committed)return false;const value=current(roll.token);if(!value)return refuse(roll,'stale-turn-damage');const check=evaluateTurnDamage(value.rule,value.actor.S.sit,roll.declarations);return check.ok?true:refuse(roll,check.reason)}
+ function commitRoll(roll,result){if(!object(result)||!Number.isFinite(result.v)||result.v<0||!checkRoll(roll))return refuse(roll,'invalid-roll-result');let value=current(roll.token),next=commitTurnDamage(value.rule,value.actor.S.sit,roll.declarations,value.view.generation);if(!next.ok||!('sit' in next)||!('useKey' in next))return refuse(roll,commitFailure(next));
+  try{const accepted=beforeCommit(value.actor,value.rule.feature);if(accepted===false||accepted&&typeof accepted.then==='function')return refuse(roll,'commit-failed')}catch(error){return refuse(roll,'commit-failed')}
+  if(!checkRoll(roll))return false;value=current(roll.token);next=commitTurnDamage(value.rule,value.actor.S.sit,roll.declarations,value.view.generation);if(!next.ok||!('sit' in next)||!('useKey' in next))return refuse(roll,commitFailure(next));
+  value.actor.S.sit=next.sit;roll.committed=true;roll.view.completed=true;roll.view.pending=false;roll.certificate={ok:true,committed:true,result,profile:roll.preview,generation:next.generation,useKey:next.useKey};try{save(value.actor)}catch(error){roll.certificate.warning='save-failed'}return true}
+ function finishRoll(roll,result){if(!roll.committed||roll.cancelled)return;notify(roll,{...roll.certificate,result})}
+ function request(token,declarations,onResult){const value=current(token);if(!value)return failure('stale-turn-damage');if(value.view.pending)return failure('roll-pending');const prepared=prepare(value,declarations);if(!prepared.ok)return prepared;const preview=prepared.preview;let dice;try{dice=getDice()}catch(error){}if(!dice||typeof dice.roll!=='function'||dice.commitHook!==1)return failure('dice-transaction-unavailable');const stamp=encoded(prepared.context);if(stamp===null)return failure('invalid-context');const roll={token,view:value.view,declarations:JSON.parse(stamp),preview,onResult,cancelled:false,committed:false,replied:false};value.view.pending=true;
+  try{const returned=dice.roll({dmg:preview.normalDice,dtype:preview.type},roll.declarations.critical?'crit':'',value.rule.feature+': '+value.view.attack.n, result=>finishRoll(roll,result),()=>checkRoll(roll),result=>commitRoll(roll,result));if(returned&&typeof returned.then==='function'&&!roll.committed){refuse(roll,'dice-transaction-unavailable');return failure('dice-transaction-unavailable')}}catch(error){if(!roll.committed){refuse(roll,'dice-failed');return failure('dice-failed')}}
+  return roll.cancelled?failure('stale-turn-damage'):{ok:true,pending:value.view.pending,committed:roll.committed}}
+ function cancel(token){const view=token&&contexts.get(token);if(!view)return false;view.cancelled=true;view.pending=false;contexts.delete(token);return true}
+ function invalidate(owner){const now=owner||actor();if(now&&object(now.S))invalidateTurnDamageState(now.S)}
+ return {capture,inspect,request,cancel,invalidate};
+}
