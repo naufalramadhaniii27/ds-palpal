@@ -10,20 +10,145 @@
 "class|Dancer|Freestyle": "Batch A triage: Dua gaya sekaligus saat Dance dimulai, pilihan per Dance.",
 "class|Investigator|Exploit Weakness": "Batch A triage: Sekali per giliran saat serangan mengenai, dipilih saat bermain.",
 "class|Rogue|Thieves' Cant": "Batch A triage, not a real gap: Builder sudah punya pilihan langRogue (1 bahasa) pada Rogue. Pindai salah menandai.",
+"class|Shaman|Brutal Strike": "Mesin membaca nama fitur Brutal Strike di panel situasi. Berlaku untuk Shaman lewat kelas induk Barbarian.",
+"class|Shaman|Feral Instinct": "Mesin membaca nama fitur Feral Instinct untuk Initiative. Berlaku untuk Shaman lewat kelas induk Barbarian.",
 "class|Summoner|Shared Spellcasting": "Batch A triage: Eidolon merapal mantra memakai slot pemain, aturan bermain.",
+"feat|Aberrant Horror Transformation: Level 1|Aberrant Horror Transformation: Level 1": "Grim Hollow Campaign Guide 2014 triage: efek bersyarat, pilihan, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Aberrant Horror Transformation: Level 2|Aberrant Horror Transformation: Level 2": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Aberrant Horror Transformation: Level 3|Aberrant Horror Transformation: Level 3": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Aberrant Horror Transformation: Level 4|Aberrant Horror Transformation: Level 4": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
 "feat|Aberrant Horror Transformation: Stage 1|Aberrant Horror Transformation: Stage 1": "Cross audit 2026-11-04: Counted under the sub-effect names Chitinous Shell and Slimy Form (GX.feat, toggles, src/data/fx-G-engine.js). The 'uses' hit is the mutation rule (1 minute, one at a time), which is what the toggles model.",
+"feat|Android (2014)|Android (2014)": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Child|Child": "Valda 2014 triage: syarat pembuatan karakter. Ukuran Small, batas STR dan CON 16, kurang dua skill, dua save pilihan. Pilihan dibuat saat membangun karakter, tidak ada field mesin yang membaca batas ability.",
+"feat|Early Riser|Early Riser": "Valda 2014 triage: aturan istirahat (long rest 4 jam, short rest 30 menit). Tidak ada angka statis di sheet. Hit Dice pulih penuh ada di teks.",
+"feat|Exotic Mastery|Exotic Mastery": "Valda 2014 triage: pilihan senjata eksotis untuk proficiency. Dicatat sebagai teks, tidak ada angka statis.",
+"feat|Fey Transformation: Level 1|Fey Transformation: Level 1": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Fey Transformation: Level 4|Fey Transformation: Level 4": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Fiend Transformation: Level 4|Fiend Transformation: Level 4": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Fingers of Frost|Fingers of Frost": "Teks aturan soal sihir menembus resistansi Cold dan damage tambahan pada target Restrained. Lembar tidak menghitung resistansi lawan.",
+"feat|Firm Contractor (DM14)|Firm Contractor (DM14)": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Golem Upgrade|Golem Upgrade": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Grax's Guy|Grax's Guy": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Heavy Gunner (2014)|Heavy Gunner (2014)": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Hexer|Hexer": "Valda 2014 triage: pilihan dua hex Witch. Picker hex tidak ada di mesin (celah mesin sama dengan Witch Hexes), teks saja.",
+"feat|Hot Streak|Hot Streak": "Teks aturan soal sihir menembus resistansi Fire dan efek bakar. Lembar tidak menghitung resistansi lawan.",
+"feat|Lich Transformation: Level 1|Lich Transformation: Level 1": "Grim Hollow Campaign Guide 2014 triage: efek bersyarat, pilihan, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Lich Transformation: Level 2|Lich Transformation: Level 2": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Lich Transformation: Level 3|Lich Transformation: Level 3": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Lich Transformation: Level 4|Lich Transformation: Level 4": "Grim Hollow Campaign Guide 2014 triage: efek bersyarat, pilihan, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Lycanthrope Transformation: Level 1|Lycanthrope Transformation: Level 1": "Grim Hollow Campaign Guide 2014 triage: efek bersyarat, pilihan, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Lycanthrope Transformation: Level 2|Lycanthrope Transformation: Level 2": "Grim Hollow Campaign Guide 2014 triage: efek bersyarat, pilihan, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
 "feat|Ooze Transformation: Stage 1|Ooze Transformation: Stage 1": "Cross audit 2026-11-04: Counted under Ooze Form (senseAdd Blindsight 30, src/data/fx-E-feat.js) and the Speed 25 entry. The remaining hits are the Slimy Mien and manifest rules, activated and timed.",
+"feat|Primordial Transformation: Level 1|Primordial Transformation: Level 1": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Primordial Transformation: Level 3|Primordial Transformation: Level 3": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Scatter Weapon Master|Scatter Weapon Master": "Grim Hollow Campaign Guide 2014 triage: efek bersyarat, pilihan, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Secret|Secret": "Valda 2014 triage: pilihan kebohongan karakter. Tidak ada angka statis.",
+"feat|Seraph Transformation: Level 1|Seraph Transformation: Level 1": "Grim Hollow Campaign Guide 2014 triage: efek bersyarat, pilihan, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Seraph Transformation: Level 2|Seraph Transformation: Level 2": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Seraph Transformation: Level 3|Seraph Transformation: Level 3": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Specter Transformation: Level 1|Specter Transformation: Level 1": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Synaptic Bind|Synaptic Bind": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Tauran|Tauran": "Valda 2014 triage: +10 ft Speed hanya pada giliran gerak lurus. Bersyarat, jadi tidak masuk angka Speed statis. Tanduk 1d6 dan navigasi ada di teks.",
+"feat|Upper Limb Disability|Upper Limb Disability": "Valda 2014 triage: pilihan sisi tubuh yang terdampak. Tidak ada angka statis.",
+"feat|Vampire Transformation: Level 2|Vampire Transformation: Level 2": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Vampire Transformation: Level 3|Vampire Transformation: Level 3": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Vitality Upgrade|Vitality Upgrade": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|dmg|Adamantine Plating": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|dmg|Boots of the Hare": "Valda 2014 triage: Dash memberi 90 ft gerak ekstra dan kutukan menurunkan Speed jadi 15 ft. Keduanya bersyarat (aksi Dash, kutukan), tidak masuk Speed statis. Teks item yang menjelaskan.",
+"item|dmg|Mithral Plating": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|dmg|Personal Shield Emitter": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|dmg|Spiked Plating": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|tdm14|Adamantine Plating": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|tdm14|Mithral Plating": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|tdm14|Personal Shield Emitter": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|tdm14|Spiked Plating": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"item|tvss14|Boots of the Hare": "Valda 2014 triage: Dash memberi 90 ft gerak ekstra dan kutukan menurunkan Speed jadi 15 ft. Keduanya bersyarat (aksi Dash, kutukan), tidak masuk Speed statis. Teks item yang menjelaskan.",
 "species|Kalashtar|Severed from Dreams": "Batch A triage: Proficiency skill dipilih ulang tiap Long Rest, perlu toggle sheet.",
 "species|Lorwyn Changeling|Unpredictable Movement": "Batch A triage: Gerak saat Initiative, aturan bermain.",
+"species|Marionette Geppettin|Construct Anatomy": "Valda 2014 triage: kebal penyakit nonmagis dan tanpa makan atau napas. Mesin tidak punya field kekebalan penyakit atau kondisi, teks saja.",
+"species|Ogresh (GH14)|Gift of Gab": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"species|Pandaren|Inner Peace": "Tambahan 1 HP per Hit Die saat Short Rest. Tidak ada penghitung. Hit Dice dihitung di tombol istirahat tanpa bonus per dadu.",
 "species|Shifter (Beasthide)|Shifting Feature": "Batch A triage: Hanya saat shifted (aksi). Perlu toggle sheet. Spesies 2014 saja.",
 "species|Shifter (Swiftstride)|Shifting Feature": "Batch A triage: Hanya saat shifted. Spesies 2014 saja.",
 "species|Troglodyte|Stench": "Batch A triage: Aura saat bermain (save lawan). AC Natural Armor +1 sudah terhitung.",
 "species|Vampire (Ixalan)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Bukan angka statis. Resistance Necrotic sudah terhitung. Spesies 2014 saja.",
 "species|Vampire (Ixalan)|Feast of Blood": "Batch A triage: Efek sementara setelah menghisap. Spesies 2014 saja.",
 "species|Vampire (Zendikar)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Resistance Necrotic sudah terhitung. Spesies 2014 saja.",
+"species|Vect (DM14)|Construct Anatomy": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Barbarian/Path of Heavy Metal (2014)|Bonus Proficiencies": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Barbarian/Path of Tranquility (2014)|Zen State": "Valda 2014 triage: AC bersyarat (bentuk, aura, atau keadaan). Teks ada di fitur, tidak masuk AC statis.",
+"sub|Barbarian/Path of the Dreadnought (2014)|Focused Rage": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Barbarian/Path of the Dreadnought (2014)|Variant Resistances": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Barbarian/Path of the Elements|Primordial Bond": "Resistansi hanya saat Rage aktif. Lembar menampilkan teks. Resistansi bersyarat Rage tidak punya bidang data.",
+"sub|Barbarian/Path of the Fractured (2014)|Mask of Civility": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Barbarian/Path of the Spiritual Guardian|Spiritual Protectors": "Pilihan efek saat memukul dipilih saat bermain. Tidak ada penghitung atau pemilih.",
+"sub|Barbarian/Path of the Wrecker (2014)|Variant Resistances": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Bard/College of Adventurers (2014)|Well-Rounded": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
 "sub|Bard/College of Origami|Origami Familiar": "Batch F triage: Find Familiar is already always prepared through the subclass spell data (source College of Origami). The scan hit is the familiar's Fly Speed 60 ft and 1 HP, which belong to the familiar, not to the character.",
+"sub|Bard/College of the Mad God (2014)|Bonus Proficiencies": "Valda 2014 triage: pilihan keahlian oleh pemain saat bermain. Teks ada di fitur dan catatan.",
+"sub|Bard/College of the Mad God (2014)|Cacophony": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Cleric/Destruction Domain|Devastation Initiate": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Cleric/Eldritch Domain (2014)|Unpredictable Inspiration": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Cleric/Shadow Domain|Vampiric Embrace": "Efek penyembuhan pada makhluk lain dari dadu bonus. Teks saja.",
+"sub|Cleric/Sun Above Domain|Apologist": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Demon Hunter/Demon Hunter|Demon Hunter Spells": "Sihir kolom dipilih pemain. Sihir yang sama dengan Ranger otomatis, sisanya teks.",
+"sub|Demon Hunter/Demon Hunter|Torment": "Pilihan efek saat bermain. Teks saja.",
+"sub|Druid/Circle of the Deep|Vortex Attack": "Valda 2014 triage: HP atau dadu bersyarat. Teks ada di fitur, tidak masuk HP maksimum.",
+"sub|Druid/Circle of the Obelisk|Superior Health": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Druid/Circle of the Wyrm|Fangs And Flight": "Valda 2014 triage: kecepatan bersyarat (bentuk, aura, atau aksi). Teks ada di fitur, tidak masuk Speed statis.",
+"sub|Evoker/Draconic Sorcery|Evoker Spells": "Sihir kolom dipilih pemain. Tabel ada di teks fitur.",
 "sub|Fighter/Champion|Additional Fighting Style": "Batch F triage: counted by the native pick CLASSES.Fighter.pickSub.Champion {l:7,k:'fs'} (choice key p7fs, a Fighting Style feat that goes through allFeats). Golden: fsub_champion7_extra_fs (Defense: AC 17 against 16 without the pick).",
-"sub|Rogue/Assassin|Assassinate": "Cross audit 2026-11-04: Advantage on Initiative is counted by the PADV table (src/app/33-logic-play-rage-conditions.js, row Assassinate). The scan looks for the feature name in structured fields and does not read PADV."
+"sub|Fighter/Dungeoneer|Kick In The Door": "Valda 2014 triage: bonus inisiatif bersyarat pada keadaan tertentu. Teks ada di fitur.",
+"sub|Fighter/Mage Hand Magus|Handglide": "Valda 2014 triage: kecepatan bersyarat (bentuk, aura, atau aksi). Teks ada di fitur, tidak masuk Speed statis.",
+"sub|Fighter/Space Marine (2014)|Mobile Commander": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Fighter/Space Marine (2014)|Squad Leader": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Monk/Warrior of Mystic Brews|Drunken Technique": "Speed +10 kaki sampai akhir giliran setelah Patient Defense. Bonus sementara per giliran tidak dihitung.",
+"sub|Monk/Warrior of Mystic Brews|Master Brewer": "Menggabungkan dua opsi minuman saat bermain. Teks saja.",
+"sub|Monk/Way of Gravity|Subjective Gravity": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Monk/Way of Pride|Egotistical": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Monk/Way of Pride|Tall Tales": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Monk/Way of the Mask|Signature Move": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Monk/Way of the Rose|Colors of Love": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Paladin/Oath of Zeal (2014)|Aura of Clarity": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Paladin/Oath of the Sepulcher|Aura of Atmosphere": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Ranger/Green Reaper (2014)|5th-Level Effects": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Rogue/Assassin|Assassinate": "Cross audit 2026-11-04: Advantage on Initiative is counted by the PADV table (src/app/33-logic-play-rage-conditions.js, row Assassinate). The scan looks for the feature name in structured fields and does not read PADV.",
+"sub|Rogue/Enforcer|Threatening Demeanor": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Rogue/Grifter|Long Con": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Rogue/Swashbuckler|Dashing Strikes": "Opsi Cunning Strike tambahan dengan biaya dadu. Efek AC sementara dipilih saat bermain. Teks saja.",
+"sub|Rogue/Temporal Trickster|Time Dilation": "Valda 2014 triage: AC bersyarat (bentuk, aura, atau keadaan). Teks ada di fitur, tidak masuk AC statis.",
+"sub|Sorcerer/Emotion Lord|Mood Swing": "Valda 2014 triage: kecepatan bersyarat (bentuk, aura, atau aksi). Teks ada di fitur, tidak masuk Speed statis.",
+"sub|Sorcerer/Haunted|Strength of Spirit": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Sorcerer/Spiritborn|Spirit Animal": "Valda 2014 triage: AC bersyarat (bentuk, aura, atau keadaan). Teks ada di fitur, tidak masuk AC statis.",
+"sub|Sorcerer/Wretched Bloodline|Wretched Curse": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Warlock/The Legacy|Relic Force": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Warlock/The Parasite|Symbiotic Sentinel": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Wizard/Familiar Master (2014)|Servitor's Gift": "Valda 2014 triage: AC bersyarat (bentuk, aura, atau keadaan). Teks ada di fitur, tidak masuk AC statis.",
+"sub|Wizard/Familiar Master (2014)|Servitor's Greater Gift": "Valda 2014 triage: AC bersyarat (bentuk, aura, atau keadaan). Teks ada di fitur, tidak masuk AC statis.",
+"sub|Wizard/Mystic Savant|Stratagems": "Valda 2014 triage: bonus inisiatif bersyarat pada keadaan tertentu. Teks ada di fitur.",
+"sub|Wizard/Plague Doctor (2014)|Breathe It In": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Wizard/Plague Doctor (2014)|Potion Craft": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Wizard/School of Automata|Construct Upgrade": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"sub|Wizard/School of Sangromancy|Sanguine Vigor": "Grim Hollow 2014 dan Dark Matter 2014 triage: pilihan, efek bersyarat, atau pemakaian terbatas di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
+"feat|Atoner's Grace|Atoner's Grace": "Unearthed Arcana 2025 dan 2026: efek untuk makhluk lain di dekat Anda, tidak ada pilihan atau angka di sheet.",
+"feat|Lich Initiate|Lich Initiate": "Unearthed Arcana 2025 dan 2026: AC di teks adalah AC wadah roh, bukan AC karakter.",
+"species|Myconid|Skill Meld": "Unearthed Arcana 2025 dan 2026: proficiency skill dibagi ke sekutu sampai istirahat panjang berikutnya, dipilih saat bermain. Teks lengkap ada di trait.",
+"sub|Druid/Circle of the Titan|Primal Havoc": "Unearthed Arcana 2025 dan 2026: bonus AC hanya saat Titan Form dan bergantung pada slot yang dipakai. Teks lengkap ada di fitur.",
+"sub|Fighter/Purple Dragon Knight|Dragon Rider": "Unearthed Arcana 2025 dan 2026: kecepatan di teks adalah milik naga pendamping, bukan karakter.",
+"sub|Fighter/Purple Dragon Knight|Knightly Envoy": "Unearthed Arcana 2025 dan 2026: satu bahasa pilihan. Daftar bahasa di sheet diisi bebas.",
+"sub|Fighter/Purple Dragon Knight|Superior Mount": "Unearthed Arcana 2025 dan 2026: kecepatan di teks adalah milik naga pendamping, bukan karakter.",
+"sub|Rogue/Magic Stealer|Steal Resistance (Cost: 2d6)": "Unearthed Arcana 2025 dan 2026: resistensi sementara ditukar dengan target sampai awal giliran berikutnya, bergantung pada target.",
+"feat|Atmokinesis|Atmokinesis": "Psion UA 2025: satu pemakaian gratis per Long Rest dicatat di teks feat. Pelacak pemakaian untuk spell bebas slot belum ada.",
+"feat|Cryokinesis|Cryokinesis": "Psion UA 2025: dua spell, masing-masing sekali tanpa slot per Long Rest, ada di teks. Pelacak belum ada.",
+"feat|Pyrokinesis|Pyrokinesis": "Psion UA 2025: satu pemakaian gratis per Long Rest ada di teks. Pelacak belum ada.",
+"sub|Psion/Metamorph|Flesh Weaver": "Psion UA 2025: +2 AC hanya selama Mutable Form aktif, dan butuh satu Psionic Energy Die ekstra. Kondisi ini bukan status di sheet.",
+"sub|Psion/Metamorph|Improved Mutable Form": "Psion UA 2025: pemain memilih satu dari tiga manfaat setiap kali Mutable Form dipakai. Pilihan per pemakaian tidak disimpan.",
+"sub|Psion/Metamorph|Stony Epidermis": "Psion UA 2025: resistensi pilihan satu jenis damage dari sembilan, hanya selama Mutable Form aktif.",
+"sub|Psion/Metamorph|Unnatural Flexibility": "Psion UA 2025: +2 AC hanya selama Mutable Form aktif.",
+"sub|Psion/Psykinetic|Destructive Trance": "Psion UA 2025: Fly Speed 20 kaki hanya selama 10 menit setelah membelanjakan satu Psionic Energy Die.",
+"sub|Psion/Psykinetic|Telekinetic Techniques": "Psion UA 2025: +10 kaki Speed adalah efek ke target, bukan ke karakter.",
+"sub|Psion/Telepath|Bulwark Mind": "Psion UA 2025: resistensi Psychic hanya selama 10 menit setelah membelanjakan satu Psionic Energy Die.",
+"sub|Psion/Telepath|Scramble Minds": "Psion UA 2025: radius Sphere dan pilihan target untuk satu cast Confusion. Berlaku per cast, bukan nilai tetap."
 },
 "gaps": {
 "feat|Ability Score Improvement|Ability Score Improvement": [
@@ -67,9 +192,6 @@
 ],
 "feat|Elemental Familiar|Elemental Familiar": [
 "resist"
-],
-"feat|Field Medic|Field Medic": [
-"uses"
 ],
 "feat|Fiend Transformation: Stage 3|Fiend Transformation: Stage 3": [
 "uses"
@@ -149,9 +271,6 @@
 "item|bmt|Shield of the Tortoise": [
 "speed"
 ],
-"item|cos|Dark Gift of Yog the Invincible": [
-"hp"
-],
 "item|dmg|Amulet of the Spirit Caller": [
 "ac"
 ],
@@ -163,9 +282,6 @@
 ],
 "item|dmg|Cloak of Displacement": [
 "speed"
-],
-"item|dmg|Dark Gift of Yog the Invincible": [
-"hp"
 ],
 "item|dmg|Deck of Several Things": [
 "skill"
@@ -200,9 +316,6 @@
 "item|dmg|Orator's Quill": [
 "ac"
 ],
-"item|dmg|Personality Module": [
-"skill"
-],
 "item|dmg|Potion of Giant Size": [
 "hp"
 ],
@@ -218,21 +331,11 @@
 "item|dmg|Sanctified Cannon": [
 "speed"
 ],
-"item|dmg|Scalehide Cream": [
-"ac"
-],
 "item|dmg|Shield of the Tortoise": [
 "speed"
 ],
 "item|dmg|Switch": [
 "ac"
-],
-"item|dmg|Thayan Spell Tattoo": [
-"skill"
-],
-"item|dmg|The Infernal Machine of Lum the Mad": [
-"ac",
-"init"
 ],
 "item|dmg|Thuranni Cloak": [
 "speed"
@@ -245,13 +348,6 @@
 ],
 "item|ftd|Draconic Rebirth": [
 "skill"
-],
-"item|hof|Thayan Spell Tattoo": [
-"skill"
-],
-"item|imr|The Infernal Machine of Lum the Mad": [
-"ac",
-"init"
 ],
 "item|llk|Deck of Several Things": [
 "skill"
@@ -279,12 +375,6 @@
 ],
 "item|tftyp|Loadstone": [
 "speed"
-],
-"item|tkdm|Scalehide Cream": [
-"ac"
-],
-"item|tsdm|Personality Module": [
-"skill"
 ],
 "item|tsgeh|Sanctified Cannon": [
 "speed"
@@ -331,9 +421,6 @@
 "ac",
 "save"
 ],
-"sub|Barbarian/Path of the Beast|Bestial Soul": [
-"choice"
-],
 "sub|Barbarian/Path of the Beast|Form of the Beast": [
 "ac"
 ],
@@ -342,12 +429,6 @@
 ],
 "sub|Barbarian/Path of the Muscle Wizard|\"Cantrips\"": [
 "choice"
-],
-"sub|Barbarian/Path of the Slasher|Blood-Drunk": [
-"ac"
-],
-"sub|Barbarian/Path of the Wild Heart|Power of the Wilds": [
-"speed"
 ],
 "sub|Barbarian/Path of the Wrecker|Steel Shredder": [
 "choice"
@@ -375,9 +456,6 @@
 ],
 "sub|Bard/College of Spirits|Spirits from Beyond": [
 "choice"
-],
-"sub|Bard/College of Valor (2014)|Combat Inspiration": [
-"ac"
 ],
 "sub|Bard/College of the Dirge Singer|Commanding Voice": [
 "choice"
@@ -413,9 +491,6 @@
 "sub|Cleric/Grave Domain (2014)|Keeper of Souls": [
 "choice"
 ],
-"sub|Cleric/Speed Domain|Channel Divinity: Burst of Speed": [
-"speed"
-],
 "sub|Cleric/Void Domain|Channel Divinity: Dark Secrets": [
 "choice"
 ],
@@ -426,16 +501,7 @@
 "uses",
 "choice"
 ],
-"sub|Craftsman/Luminaries' Guild|Improved Radiant Shell": [
-"ac"
-],
-"sub|Dancer/Acrobat|Tumbling": [
-"speed"
-],
 "sub|Dancer/Cheerleader|Squad Warmup": [
-"choice"
-],
-"sub|Dancer/Courtesan|Beguiling Charm": [
 "choice"
 ],
 "sub|Dancer/Fey Ballerina|Sublime Start": [
@@ -448,27 +514,11 @@
 "sub|Dancer/Moonwalker|Moonwalk [Dance Style]": [
 "speed"
 ],
-"sub|Druid/Circle of Mutation|Endless Evolution": [
-"speed",
-"resist"
-],
-"sub|Druid/Circle of Roses|Overpowering Remedy": [
-"choice"
-],
 "sub|Druid/Circle of Stars|Twinkling Constellations": [
 "speed"
 ],
 "sub|Druid/Circle of Xenobiology|Adaptive Resilience": [
 "save"
-],
-"sub|Druid/Circle of the Moon (2014)|Primal Strike": [
-"resist"
-],
-"sub|Druid/Circle of the Stars|Twinkling Constellations": [
-"speed"
-],
-"sub|Fighter/Prescient Knight|Anticipatory Strike": [
-"ac"
 ],
 "sub|Fighter/Purple Dragon Knight (Banneret)|Bulwark": [
 "choice"
@@ -479,16 +529,10 @@
 "sub|Fighter/Space Marine|Sustained Flight": [
 "speed"
 ],
-"sub|Gadgeteer/Drone Jockey|Omega Upgrade": [
-"ac"
-],
 "sub|Healer/Vow of the Protector|Tether of Protection": [
 "save"
 ],
 "sub|Healer/Vow of the Protector|Warding Essence": [
-"choice"
-],
-"sub|Healer/Vow of the Siphon|Life Leech": [
 "choice"
 ],
 "sub|Investigator/Conspiracy Theorist|Connect the Dots": [
@@ -501,16 +545,10 @@
 "sub|Investigator/Infernum|Infernal Bargain": [
 "choice"
 ],
-"sub|Investigator/Inquisitor|Exorcist's Doctrines": [
-"ac"
-],
 "sub|Investigator/Kid Sleuth|Split Up, Gang": [
 "choice"
 ],
 "sub|Investigator/Medium|Trinkets": [
-"speed"
-],
-"sub|Jaeger/Sanguine Chapter|Blood Frenzy": [
 "speed"
 ],
 "sub|Jaeger/Sanguine Chapter|Blood Hex": [
@@ -522,14 +560,8 @@
 "sub|Martyr/Burden of Levity|Sacrificial Shenanigans": [
 "choice"
 ],
-"sub|Martyr/Burden of Levity|Zany Misdirection": [
-"choice"
-],
 "sub|Martyr/Burden of Mercy|Anointed Healer": [
 "hp"
-],
-"sub|Martyr/Burden of Mercy|Balm": [
-"choice"
 ],
 "sub|Martyr/Burden of Mercy|Virtuous Blessings": [
 "init",
@@ -538,24 +570,8 @@
 "sub|Martyr/Burden of Revolution|Rallying Strike": [
 "choice"
 ],
-"sub|Monk/Warrior of the Elements|Elemental Epitome": [
-"resist"
-],
-"sub|Monk/Warrior of the Elements|Stride of the Elements": [
-"speed"
-],
-"sub|Monk/Warrior of the Living Weapon|Perfect Form": [
-"ac"
-],
 "sub|Monk/Way of the Drunken Master|Drunken Technique": [
 "speed"
-],
-"sub|Monk/Way of the Kensei|Agile Parry": [
-"ac"
-],
-"sub|Monster Hunter/Trapper Guild|Monster-Hide Armor": [
-"ac",
-"choice"
 ],
 "sub|Necromancer/Blood Ascendant|Nosferatu [Lichdom]": [
 "hp",
@@ -563,9 +579,6 @@
 ],
 "sub|Necromancer/Crone|Baba Yaga [Lichdom]": [
 "speed"
-],
-"sub|Necromancer/Necrodancer|Backup Dancers": [
-"ac"
 ],
 "sub|Necromancer/Pharaoh|Mummy Lord [Lichdom]": [
 "hp"
@@ -575,9 +588,6 @@
 ],
 "sub|Necromancer/Plague Lord|Necrotoxin": [
 "resist"
-],
-"sub|Necromancer/Reanimator|Spell-Stitching": [
-"hp"
 ],
 "sub|Necromancer/Toymaker|Miniature Minions": [
 "ac",
@@ -593,20 +603,8 @@
 "sub|Ranger/Drakewarden|Bond of Fang and Scale": [
 "speed"
 ],
-"sub|Ranger/Freerunner|Evasive Fighter": [
-"ac"
-],
-"sub|Ranger/Gloom Stalker (2014)|Dread Ambusher": [
-"speed"
-],
 "sub|Ranger/Swarmkeeper|Gathered Swarm": [
 "choice"
-],
-"sub|Ranger/Vampire Slayer|Defensive Tactics": [
-"hp"
-],
-"sub|Rogue/Assassin|Envenom Weapons": [
-"resist"
 ],
 "sub|Rogue/Cyber Ninja|Covert Techniques": [
 "ac"
@@ -616,9 +614,6 @@
 ],
 "sub|Rogue/Phantom|Whispers of the Dead": [
 "choice"
-],
-"sub|Sorcerer/Aberrant Sorcery|Psychic Defenses": [
-"save"
 ],
 "sub|Sorcerer/Apocalypse Sorcery|Forbidden Magic": [
 "choice"
@@ -646,12 +641,6 @@
 ],
 "sub|Summoner/Bond of the Faerie Trickster|Faerie Eidolon": [
 "speed"
-],
-"sub|Summoner/Bond of the Fiendish Chain|Dark Versatility": [
-"choice"
-],
-"sub|Summoner/Bond of the Monster Shaper|Monstrous Eidolon": [
-"choice"
 ],
 "sub|Vagabond/Eagle Banner|Hundred-Arrow Volley": [
 "choice"
@@ -737,9 +726,6 @@
 "sub|Wizard/Doomsayer|Terrible Power": [
 "choice"
 ],
-"sub|Wizard/Familiar Master|Servitor's Agility": [
-"speed"
-],
 "sub|Wizard/Fumaturge|Smoke Animals": [
 "speed"
 ],
@@ -751,16 +737,6 @@
 ],
 "sub|Wizard/Illuminator|Omen of Warning": [
 "init"
-],
-"sub|Wizard/Leyline Magic|Thrum of the Land": [
-"choice"
-],
-"sub|Wizard/Necrophage|Feed on Life": [
-"hp",
-"resist"
-],
-"sub|Wizard/School of Evocation|Overchannel": [
-"uses"
 ],
 "sub|Wizard/School of Evocation|Sculpt Spells": [
 "choice"

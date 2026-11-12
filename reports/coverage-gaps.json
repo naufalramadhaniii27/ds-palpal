@@ -1,0 +1,102 @@
+{
+ "counts": {
+  "AEP24": {
+   "assumption": 1
+  },
+  "All": {
+   "engine": 2
+  },
+  "GHPG24": {
+   "engine": 3,
+   "optional feature": 1
+  },
+  "TDCSR": {
+   "assumption": 1,
+   "engine": 2
+  },
+  "VSS14": {
+   "class": 1,
+   "overlay": 40
+  },
+  "VSS24": {
+   "engine": 6
+  }
+ },
+ "names": {
+  "AEP24|assumption": [
+   "how many Subclass Upgrades (SU) you gain and when"
+  ],
+  "All|engine": [
+   "effects that need a state (Star Razor glowing, Titanstone under Enlarge, Wraps r",
+   "extra damage riders (Pyremaul fire, Agony mark, Condemner poison)"
+  ],
+  "GHPG24|engine": [
+   "Buckler, Tower Shield and Retractable Shield AC, Hunter's Armor on any worn armo",
+   "Heritage Traits taken twice, fixed skill or resistance or tool picks from a spec",
+   "Transformations (12) are four feats each (one per stage). Boon prerequisites, Bo"
+  ],
+  "GHPG24|optional feature": [
+   "Trapper Gadgets and Monster-Hide Armor modifications (TG:*), 11 Devourer mutatio"
+  ],
+  "TDCSR|assumption": [
+   "Deathwalker's Ward"
+  ],
+  "TDCSR|engine": [
+   "conditional AC and rider reactions (Plate of the Dawnmartyr rebuke, Cabal's Ruin",
+   "truesight 60 ft (Circlet of Barbed Vision, Exalted)"
+  ],
+  "VSS14|class": [
+   "Channeler (2014) multiclassing"
+  ],
+  "VSS14|overlay": [
+   "Alchemist (2014) feature Additional Discoveries",
+   "Black Magic | Black Magic",
+   "Blood Magic | Blood Magic",
+   "Blue Magic | Blue Magic",
+   "Captain (2014) feature Cohort Feature",
+   "Covert Operative | Covert Operative",
+   "Craftsman (2014) feature Artisan's Guild Feature",
+   "Craftsman (2014) feature Masterwork (Apprentice properties)",
+   "Fragrant Magic | Fragrant Magic",
+   "Gingerbread Magic | Gingerbread Magic",
+   "Green Magic | Green Magic",
+   "Grenadier | Grenadier",
+   "Gun Tank | Gun Tank",
+   "Gun-Ko Master | Gun-Ko Master",
+   "Gundead | Gundead",
+   "High Roller | High Roller",
+   "Investigator (2014) feature Enigma Arcane Improvement",
+   "Janissary | Janissary",
+   "Musketeer | Musketeer",
+   "Order of Blinknights | Order of Blinknights",
+   "Order of Dimensional Magi | Order of Dimensional Magi",
+   "Order of Titanfists | Order of Titanfists",
+   "Order of Wild Hunters | Order of Wild Hunters",
+   "Pistolero | Pistolero",
+   "Purple Magic | Purple Magic",
+   "Red Magic | Red Magic",
+   "Sharpshooter | Sharpshooter",
+   "Sky Magic | Sky Magic",
+   "Spellslinger | Spellslinger",
+   "Steel Magic | Steel Magic",
+   "Storm Gunner | Storm Gunner",
+   "Tea Magic | Tea Magic",
+   "Technicolor Magic | Technicolor Magic",
+   "Trick Shot | Trick Shot",
+   "Twice-Damned | Twice-Damned",
+   "Warmage (2014) feature Arcane Initiation",
+   "Warmage (2014) option Gauntlet Upgrade",
+   "Warmage (2014) option Technomancer",
+   "White Hat | White Hat",
+   "White Magic | White Magic"
+  ],
+  "VSS24|engine": [
+   "Investigator and Craftsman casting through features",
+   "Martyr Radiant-damage casting and Max Spell Levels",
+   "Witch Hexes, subclass-granted maneuvers, Kings maneuvers, Thrall stat tables, Ar",
+   "armor, weapon and tool training from a subclass feature that is not a plain gran",
+   "per-option trackers (Grand Hex uses, Cauldron points, Danse Macabre pool of leve",
+   "restore a use by spending a resource (Battle Dice, Radiant damage, Reagents, Dan"
+  ]
+ }
+}

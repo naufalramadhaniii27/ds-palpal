@@ -6,7 +6,7 @@ import {allFeats,asiOf,dmXl,raceBonus,wxAb} from "./09-logic-feats-and-choices.j
 import {luMax} from "./10-logic-v17-additions.js";
 
 import {MCL,TL,baseOf,bindLate,spOptFx} from "./01b-logic-late-ports.js";
-import {gx,sheetState,thirdSubs,inTS} from "./00-env.js";
+import {genv,gx,sheetState,thirdSubs,inTS} from "./00-env.js";
 import {abOfPick,chPick,fxSources,runFxPhase,foldFxPhase,fxCondRule,fxValueRule} from "./10a-logic-fx-registry.js";
 import "./10d-logic-fx-rules-cond-value.js";
 import "./10b-logic-fx-handlers-entry.js";
@@ -127,7 +127,9 @@ export function spellAb(key,sc){const cp=casterParts(),cast=cp.length?cp[0].ab:n
  const sa=sabSpecial1(key,cast,sc);if(sa!==null)return sa;
  const sb=sabSpecial2(key);if(sb!==null)return sb;
  const p=cp.filter((q) =>{return q.cls===key})[0];if(p)return p.ab;const c=CLASSES[key];if(c&&c.cast)return c.cast;return cast||"CHA"}
-export function clsLv(cls){const p=clsParts().filter((q) =>{return q.cls===cls})[0];return p?p.lv:0}
+/* a reskin class (Death Knight, Shaman ...) counts under the class it copies, so every hook keyed by the parent class name (Aura of Protection, Rage, ...) also works for it */
+export function clsInh(n){const w=genv.WXC&&genv.WXC[n];return w&&w.inh||""}
+export function clsLv(cls){let t=0;clsParts().forEach((q) =>{if(q.cls===cls||(q.cls!==cls&&clsInh(q.cls)===cls))t+=q.lv});return t}
 
 /* ---------- resource keys (L2) ---------- */
 /* Keys no longer depend on the order of CLASSES.*.res. New key = prefix + name slug, e.g. "r-second-wind",

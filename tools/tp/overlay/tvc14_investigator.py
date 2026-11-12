@@ -1,0 +1,31 @@
+"""Investigator, Valda's Spire of Secrets (2014 rules, Mage Hand Press). Own wording. Internal name "Investigator (2014)"."""
+CLASS = {
+ "eq": ["Leather Armor, a Dagger and a Longsword or Rapier, a Heavy Crossbow and 20 bolts or a Hand Crossbow and 20 bolts, a Dungeoneer's Pack or Priest's Pack, a grimoire and a Component Pouch", "4d4 × 10 GP"],
+ "f": {
+  "Expertise": "Pick two of your skill proficiencies. Your Proficiency Bonus is doubled for ability checks that use either one. At level 6 you pick two more.",
+  "Ritualist": "Grimoire. You keep a grimoire with four 1st-level ritual spells from any class list. You can cast them only as rituals unless you know them another way. Each level you gain in this class, you add one more ritual spell from the Investigator Rituals list for free. The Ritual Level column gives the highest spell level you can add. When you find a ritual spell of an allowed level on the Investigator Rituals list, you can copy it in, taking 2 hours and 50 gp of ink per spell level. Bonus Rituals. Spells on the Investigator Rituals table count as rituals for you, so you can add them to the grimoire and cast them as rituals. Spellcasting ability. Intelligence. It sets the save DC and attack bonus for your rituals and for spells your features grant: Spell save DC = 8 + Proficiency Bonus + Intelligence modifier. Spell attack = Proficiency Bonus + Intelligence modifier.",
+  "Myths and Legends": "You have Advantage on Intelligence checks to research creatures, spells and other ancient or secret lore.",
+  "Rushed Incantation": "You can perform a ritual spell from your grimoire with a casting time of 1 action as a Bonus Action. If its components are worth 100 gp or less, you cast it without components. You can do this a number of times equal to your Intelligence modifier (minimum 1), plus 1 at levels 5, 9, 13 and 17. A Long Rest restores all uses.",
+  "Occult Specialization": "You choose a specialization. It gives you features at levels 3, 6, 10 and 14. Trinkets. Each specialization comes with supernatural trinkets. After you use one, you cannot use trinkets again until you finish a Short or Long Rest. Uses: 1 at level 3, 2 at level 5, 3 at level 11 and 4 at level 17.",
+  "Exploit Vulnerability": "Once on each of your turns when you hit a creature with a weapon attack, treat it as vulnerable to that weapon's damage. This doubles only the weapon's damage dice and your ability modifier, not extra damage from spells or other features. This attack and all other attacks against that creature until the start of your next turn count as magical for overcoming resistance and immunity.",
+  "Occult Specialization feature": "Your specialization gives you a feature at this level.",
+  "Enigma Arcane improvement": "At level 15 you can also cast one of these once with no slot: Antimagic Field, Glibness, Maze or Mind Blank. At level 17 you can also cast one of these once with no slot: Astral Projection, Gate or Weird. Long Rest to use it again.",
+  "Occult Specialization Feature": "Your specialization gives you a feature at this level.",
+  "Opportunistic Piety": "You carry holy symbols and blessed objects. When you use this feature, choose one effect. A Short or Long Rest restores it. Banish: cast Banishment with no slot. If the target is a fey, fiend or undead and fails the save, it also takes Radiant damage equal to your level. Miracle Healing: as an action, a willing creature you touch regains HP equal to twice your Investigator level. It has no effect on undead or constructs. Warding: as an action, mark a creature within 5 feet for 1 minute. Aberrations, celestials, fey, fiends and undead that touch it or hit it with a melee attack take 1d12 Radiant damage.",
+  "Supernatural Resolve": "You cannot be possessed or charmed. You have resistance to Psychic and Necrotic damage.",
+  "Finisher": "When you take the Attack action and hit a creature with a weapon attack, you deal an extra 2d8 damage. If it has less than half its HP left, the extra damage is 4d8.",
+  "Enigma Arcane": "You can cast one of these spells once with no slot: Mirage Arcane, Plane Shift, Reverse Gravity, Sequester or Teleport. Long Rest to use it again.",
+  "Enigma Arcane Improvement": "You can also cast one of these once with no slot: Antimagic Field, Glibness, Maze or Mind Blank. Long Rest to use it again.",
+  "Exorcist": "You can cast Protection from Evil and Good with no slot or components.",
+  "Spellbinder": "Pick five ritual spells in your grimoire with a casting time of 1 action. You can cast them as a Bonus Action without spending a Rushed Incantation use and without the grimoire. If their components are worth 100 gp or less, you need none.",
+ },
+ "res": [{"n": "Rushed Incantation", "tag": "Intelligence modifier, +1 at levels 5, 9, 13, 17. Long Rest", "reset": "long", "max": {"f": "mod:INT+(lvl-1)/4", "min": 1}},
+         {"n": "Trinkets", "tag": "Short or Long Rest", "reset": "short", "max": [0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4]},
+         {"n": "Opportunistic Piety", "tag": "Short or Long Rest", "reset": "short", "max": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+         {"n": "Enigma Arcane", "tag": "Long Rest. One level 7 spell, plus one level 8 spell from level 15", "reset": "long", "max": [0]*12 + [1, 1] + [2]*6}],
+ "lu": [],
+ "acts": {"Rushed Incantation": "bonus", "Opportunistic Piety": "action", "Exploit Vulnerability": "other"},
+ "fx": [
+  {"n": "Supernatural Resolve", "l": 9, "res": ["Psychic", "Necrotic"], "defs": [["Note", "Supernatural Resolve: cannot be possessed or charmed"]]},
+ ],
+}

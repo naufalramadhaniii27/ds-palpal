@@ -1,0 +1,29 @@
+"""Channeler, Valda's Spire of Secrets (2014 rules, Mage Hand Press). Own wording. Internal name "Channeler (2014)"."""
+CLASS = {
+ "eq": ["A martial weapon", "(a Light Crossbow and 20 bolts, or any simple melee weapon)", "(a Dungeoneer's Pack or a Scholar's Pack)", "Scale Mail and a Component Pouch", "5d4 × 10 GP"],
+ "f": {
+  "Arcane Reverberation": "Spend an action concentrating on an object you touch and make an Intelligence check to learn whether it is under a magical effect or inside the area of a spell. The DC is 10 + the spell's level. You learn the school of magic, if any. A magic item gives you only an intense feeling of energy, not its type or properties. If the object is a portal or portal key, you learn which plane it leads to and whether it has special requirements, but not what they are.",
+  "Planar Order": "At level 1 you join a Planar Order, a confederation of channelers. It decides your portal key and gives features at levels 1, 7, 10 and 15. Portal key. With it in hand you can open some planar portals (GM's call) without the usual key. If it is out of reach for more than 1 minute, you can teleport it to your hand as a bonus action. If lost or destroyed, you replace it with a 1-hour ritual, which can be part of a short rest, imbuing a similar object.",
+  "Fighting Style": "You adopt a fighting style. Choose one option and do not take the same style twice. Combat Casting: being within 5 feet of a hostile creature does not give you Disadvantage on ranged spell attack rolls. Dueling: +2 damage with a melee weapon held in one hand when you hold no other weapon. Hand-and-a-Half: +1 to attack and damage rolls with a versatile weapon held in two hands. Magebreaker: when you damage a creature with a melee weapon attack, you have Advantage on saves against spells it casts until the start of your next turn.",
+  "Spell Channeling": "When you make a spell attack against a creature within your reach while holding a melee weapon that is not heavy, you can use your bonus action to replace the spell attack with a melee weapon attack. On a hit, the weapon attack deals normal damage in addition to the spell's effects.",
+  "Spellcasting": "You use arcana points to cast spells of 1st level and higher. Cantrips need no points. Arcana points. The Channeler table gives your pool, which a Long Rest restores. A slot costs 2 points at 1st level, 3 at 2nd, 5 at 3rd, 6 at 4th and 7 at 5th. Spells known. You know four 1st-level channeler spells and learn more as the table shows, up to the Max Spell Level column. When you gain a level you can swap one for another of an allowed level. Ability. Intelligence. Focus. You must use your portal key as a spellcasting focus.",
+  "Planar Focus": "As a bonus action you can start or end a planar focus. Once on each of your turns you can switch it. You keep it up like concentration. Elemental Air: +10 feet Speed, standing from prone costs no movement, opportunity attacks against you have Disadvantage. Elemental Earth: +2 AC while you hold no shield. Elemental Fire: when you roll a 1 or 2 on a damage die for a channeler spell, you can reroll it and must use the new roll. Elemental Water: when you take acid, cold, fire, lightning or thunder damage without resistance, you can use your reaction to halve it.",
+  "Combat Channeling": "When you use Spell Channeling, you can make two melee weapon attacks, not one. The second must target a different creature. The spell's effects trigger only on the first hit. At level 11 both attacks can target the same creature.",
+  "Extra Attack": "You can attack twice, not once, when you take the Attack action on your turn.",
+  "Null Arcane": "As a reaction when you see a creature within 60 feet cast a spell of 5th level or lower, produce a field of opposing magic. Spend arcana points equal to the spell's cost (1 point for a cantrip) and make an Intelligence check against DC 10 + the spell's level. On a success the spell fails.",
+  "Planar Order Feature": "Your Planar Order gives you a feature at this level.",
+  "Combat Channeling Improvement": "Both melee weapon attacks from Combat Channeling can target the same creature.",
+  "Greater Focus": "You gain more Planar Focus options. Limbo: once per turn when you damage a hostile creature with a melee weapon attack, you can use your bonus action to regain 1 arcana point, up to your maximum. Paradise: you have a flying Speed equal to your walking Speed. If you start your turn in the air, spend an arcana point to keep it up, otherwise you fall. Underworld: you can cast Vampiric Touch with no arcana points, and keep concentration on it while you keep this focus.",
+  "Planeshifter": "You can cast Plane Shift once with no arcana points or components. Long Rest to use it again.",
+  "Nexus Arcane": "When you roll initiative with no arcana points left, you regain 10 arcana points.",
+ },
+ "res": [{"n": "Arcana Points", "tag": "Long Rest. 1st 2, 2nd 3, 3rd 5, 4th 6, 5th 7 points", "reset": "long", "max": "col:Arcana Points"},
+         {"n": "Planeshifter", "tag": "Plane Shift, no cost. Long Rest", "reset": "long", "max": [0]*17 + [1]*3}],
+ "lu": [],
+ "acts": {"Null Arcane": "reaction", "Planar Focus": "bonus"},
+ "pick": [{"l": 2, "k": "opts", "key": "chanFs", "n": 1, "title": "Fighting Style", "feature": "Fighting Style", "list": [
+   ["Combat Casting", "Being within 5 feet of a hostile creature does not give you Disadvantage on ranged spell attack rolls."],
+   ["Dueling", "When you wield a melee weapon in one hand and no other weapon, you have +2 to damage rolls with it."],
+   ["Hand-and-a-Half", "While you wield a versatile weapon in two hands, you have +1 to attack and damage rolls with it."],
+   ["Magebreaker", "When you damage a creature with a melee weapon attack, you have Advantage on saves against spells it casts until the start of your next turn."]]}],
+}

@@ -1,5 +1,5 @@
 import {chJoin} from "./01-logic-core-helpers.js";
-import {cfFullText,full14,classDef,featDef,maneuverRows,masteryText,subFullText,toolOneName,weaponDef} from "./00-env.js";
+import {genv,cfFullText,full14,classDef,featDef,maneuverRows,masteryText,subFullText,toolOneName,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
 /* Sheet handlers, part 8 (contract in 12a-logic-sheet-registry.js): the feature cards (phase "features"): species, class (one handler per class
@@ -86,8 +86,8 @@ registerSheetGroup({id:"multiclass-features",group:"features",phase:"features",o
    mc.f.forEach((x) =>{if(x[0]<=m.lv&&!/Subclass$|Ability Score|Epic Boon/.test(x[1])){const o=mk(x,m.cls,cfFullText(m.cls+"|"+x[1]));if(seen[x[1]]!=null&&x[1]!=="Expertise"){it[seen[x[1]]]=o;return}seen[x[1]]=it.length;it.push(o)}});
    if(m.sub&&mc.subs[m.sub])mc.subs[m.sub].forEach((x) =>{if(x[0]<=m.lv)it.push(mk(x,m.sub,subFullText(m.sub+"|"+x[1])))});
    C.features.push({g:m.cls+" (multiclass "+m.lv+")"+(m.sub?": "+m.sub:""),items:it})});return ctx.patch()}});
-registerSheetGroup({id:"class-label",group:"features",phase:"features",order:100,reads:["i.B","i.L","i.mcl"],writes:["C.clsLabel","C.cls"],
- run:function(ctx){const I=ctx.i,B=I.B,C=ctx.C;if(I.mcl.length){C.clsLabel=[B.cls+" "+I.L].concat(I.mcl.map((m) =>{return m.cls+" "+m.lv})).join(" / ");C.cls=B.cls}return ctx.patch()}});
+registerSheetGroup({id:"class-label",group:"features",phase:"features",order:100,reads:["i.B","i.L","i.mcl"],writes:["C.clsLabel","C.cls","C.clsInh"],
+ run:function(ctx){const I=ctx.i,B=I.B,C=ctx.C;{const ih={};[B.cls].concat(I.mcl.map((m) =>{return m.cls})).forEach((n) =>{const w=genv.WXC&&genv.WXC[n],p=w&&w.inh;if(p)ih[n]=p});if(Object.keys(ih).length)C.clsInh=ih}if(I.mcl.length){C.clsLabel=[B.cls+" "+I.L].concat(I.mcl.map((m) =>{return m.cls+" "+m.lv})).join(" / ");C.cls=B.cls}return ctx.patch()}});
 /* 2014 rules: a Fighting Style is a class feature, not a feat. It replaces the class's "Fighting Style" entry as "Fighting Style: <name>", worded as the class book words it. Returns the feats it moved */
 /* 2014 rules: Ability Score Improvement is a class feature at the class's ASI levels, not a feat. It goes into the class group with its 2014 wording and the chosen increase. Returns the feats it moved */
 function asiToClass(ctx,I,B,SRC){

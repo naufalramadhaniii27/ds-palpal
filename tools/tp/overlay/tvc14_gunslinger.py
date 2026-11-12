@@ -1,0 +1,33 @@
+"""Gunslinger, Valda's Spire of Secrets (2014 rules, Mage Hand Press). Own wording. Internal name "Gunslinger (2014)"."""
+CLASS = {
+ "eq": ["Leather Armor with a longcoat", "A Dagger and (a Handgun and 20 bullets, or a Revolver and 10 bullets)", "Any two-handed firearm that is not heavy, with 30 bullets or shells", "(a Dungeoneer's Pack or an Explorer's Pack)", "5d4 × 10 GP"],
+ "f": {
+  "Fighting Style": "You adopt a style of gunfighting. Choose one option. You cannot take the same style twice, even if you could choose again later. Akimbo: when you fight with two firearms, the second attack keeps its damage modifier penalty-free. Bullseye: +2 to ranged firearm attack rolls if the weapon has the Sighted property or a normal range of 80 feet or more. It does not stack with Archery. Duelist: with a firearm in one hand and nothing in the other, when you make a ranged attack that beats the target's AC by 5 or more, you deal one extra weapon damage die, once per round. Shotgunner: when you hit with a ranged firearm attack that has the Scatter property, you can reroll the lowest damage die and must use the new roll.",
+  "Quick Draw": "You have Advantage on initiative rolls. You can draw or stow up to two weapons when you roll initiative and whenever you take an action on your turn.",
+  "Critical Shot": "Your ranged firearm attacks score a critical hit on a roll of 19 or 20. This becomes 18 to 20 at level 9 and 17 to 20 at level 17.",
+  "Poker Face": "You have Advantage on ability checks and saving throws to stop others from sensing your motives, reading your emotions or perceiving your thoughts.",
+  "Risk": "You have risk dice, fuel for daring deeds. You have four d8 risk dice at level 2, and the Risk Dice column shows more dice and larger dice as you level. A Long Rest restores all of them. Once per turn you can spend one risk die to perform a deed of your choice. Deeds. Bite the Bullet: as a bonus action, spend a die to gain Temporary HP equal to the roll + your Constitution modifier. Covering Fire: after you hit with a ranged weapon attack, spend a die as a bonus action to cow the target, subtracting the roll from its next attack roll before the start of your next turn. Dodge Roll: as a bonus action, spend a die to move up to 15 feet and reload any firearm you hold, without opportunity attacks, ignoring difficult terrain and passing through hostile creatures' spaces if you do not end there. Limb Shot: after you hit with a ranged weapon attack, spend a die as a bonus action to aim at a limb. The target makes a Constitution save or drops one held item you pick. Skin of Your Teeth: as a reaction when an attacker you see makes an attack roll against you, spend a die and add it to your AC against that attack. Steady Aim: as a bonus action on your turn, spend a die to double the normal and maximum range of your next ranged weapon attack. Deed save DC = 8 + Proficiency Bonus + Dexterity modifier.",
+  "Gunslinger's Creed": "At level 3 you pick a Gunslinger's Creed, which gives features at levels 3, 7, 10 and 14.",
+  "Extra Attack": "You can attack twice, not once, when you take the Attack action on your turn.",
+  "Gut Shot": "When you score a critical hit on a Large or smaller creature with a firearm, the bullet lodges in it. Until the creature uses its action to dig it out, it moves at half Speed and has Disadvantage on attack rolls and ability checks. Elementals, oozes and undead are immune.",
+  "Evasion": "When an effect lets you make a Dexterity save to take half damage, you take none on a success and half on a failure.",
+  "Gunslinger's Creed feature": "Your Gunslinger's Creed gives you a feature at this level.",
+  "Critical Shot Improvement": "Your ranged firearm attacks score a critical hit on a roll of 18 to 20 (level 9) and 17 to 20 (level 17).",
+  "Mankiller": "When you make firearm attacks as part of an action, you can add your ability modifier to the firearm's damage rolls. Firearms do not normally add it.",
+  "Dire Gambit": "Whenever you score a critical hit, you regain one expended risk die.",
+  "Cheat Death": "As a reaction when you drop to 0 hit points without dying outright, spend one risk die to stay on your feet. You drop to a number of hit points equal to the die roll instead. Short or Long Rest to use it again.",
+  "Maverick": "You have Advantage on Constitution checks and saving throws.",
+  "Head Shot": "When you score a critical hit on a creature with a firearm, you can make it a head shot. A creature with fewer than 100 hit points dies. Otherwise it takes an extra 10d10 damage. Elementals, oozes, undead and creatures with no nervous system or vital organs take no extra damage. Short or Long Rest to use it again.",
+ },
+ "res": [{"n": "Risk Dice", "tag": "Long Rest. d8, d10 from 10, d12 from 18", "reset": "long", "max": [0, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6]},
+         {"n": "Cheat Death", "tag": "Reaction. Short or Long Rest", "reset": "short", "max": [0]*14 + [1]*6},
+         {"n": "Head Shot", "tag": "Short or Long Rest", "reset": "short", "max": [0]*19 + [1]}],
+ "lu": [],
+ "acts": {"Cheat Death": "reaction"},
+ "opts": [{"feature": "Fighting Style", "title": "Fighting Style", "types": ["FS:G"], "levels": [1]}],
+ "opt": {"FS:G": {
+   "Akimbo": "When you fight with two firearms, you do not take a penalty to the damage of the second attack.",
+   "Bullseye": "You have +2 to ranged attack rolls with firearms. The weapon must have the Sighted property or a normal range of 80 feet or more. It does not stack with Archery.",
+   "Duelist": "While you wield a firearm in one hand and nothing in the other, when you make a ranged weapon attack that beats the target's AC by 5 or more, you deal one extra weapon damage die. Once per round.",
+   "Shotgunner": "When you hit with a ranged firearm attack that has the Scatter property, you can reroll the lowest damage die and must use the new roll, even if it is worse."}},
+}
