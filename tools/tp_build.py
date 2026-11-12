@@ -66,6 +66,17 @@ def alias(bk, n):
     r = "%s (%s)" % (n, bk["alias"]) if (('"%s"' % n) in _CORE[0] or _SEEN.get(n, bk["id"]) != bk["id"]) else n
     _SEEN.setdefault(r, bk["id"]); return r
 
+_SPN = {}
+def spell_name(s):
+    """An always-prepared spell takes the app's spelling of it ("Protection from Evil and Good", "Speak with Dead"), so the sheet finds it"""
+    if not _SPN:
+        for f in ("spells-spell-list.js", "spfull-spell-text.js"):
+            fp = os.path.join(ROOT, "src", "data", f)
+            if os.path.exists(fp):
+                for n in re.findall(r'"([A-Z][^"]{2,45})"', open(fp, encoding="utf-8").read()): _SPN.setdefault(n.lower(), n)
+    s = re.sub(r"^(\S+) \1 ", r"\1 ", s.split("|")[0])   # a doubled first word in the source ("Tasha's Tasha's Hideous Laughter")
+    return _SPN.get(s.lower(), title(s))
+
 def title(s):
     s = s.split("|")[0]
     small = {"of", "the", "and", "or", "to", "in", "on", "a"}
@@ -116,7 +127,7 @@ def sub_records(bk, data, M):
             for key in ("prepared", "known"):
                 for lv, sp in (blk.get(key) or {}).items():
                     if not isinstance(sp, list): continue          # "daily" and similar blocks hold free casts, not always-prepared lists
-                    L = max(3, int(lv)); names = [title(x) for x in sp if isinstance(x, str)]
+                    L = max(3, int(lv)); names = [spell_name(x) for x in sp if isinstance(x, str)]
                     ex = [a for a in auto if a[0] == L]
                     if ex: ex[0][1] = ex[0][1] + "," + ",".join(names)
                     else: auto.append([L, ",".join(names)])
