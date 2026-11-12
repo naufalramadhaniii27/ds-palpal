@@ -22,13 +22,33 @@ def serve():
 BUILD = """()=>{const b=window.__bldTestB(); Object.assign(b,{name:"Tigor",rs:"2014",cls:"Warden (2014)",sub:"Stoneheart Defender (2014)",level:5,species:"Warforged (2014)",bg:"Soldier (2014)",bgMode:"111",method:"point",
  base:{STR:15,DEX:10,CON:14,INT:8,WIS:14,CHA:10},arr:{},src:{core:true,dmg:true,phb14:true,dmg14:true,tvss14:true,erlw:true,cos:true},eqC:"A",eqG:["","c","b","a"],eqP:{"0_1_0":"Battleaxe","2_0_0":"Javelin"},
  ch:{clsk:["Perception","Survival"],spsk:["Insight"],sptool:["Smith's Tools"],bgTool:["Dice Set"],rasi:["STR"],stand14:["Armor Proficiency"],lang:["Dwarvish"],fs2:"Protection",feat4:{feat:"Ability Score Improvement",a1:"CON",a2:"CON"}},
- inv:[{n:"Battleaxe",q:1,eq:true,src:"Warden kit",kit:1},{n:"Chain Mail",q:1,eq:true,src:"Warden kit",kit:1},{n:"Javelin",q:1,eq:false,src:"Warden kit",kit:1},{n:"Backpack (Dungeoneer's Pack)",q:1,eq:false,src:"Warden kit",kit:1},{n:"Shield of the Silver Dragon",q:1,eq:true}]});
+ inv:[{n:"Battleaxe",q:1,eq:true,src:"Warden kit",kit:1},{n:"Chain Mail",q:1,eq:true,src:"Warden kit",kit:1},{n:"Javelin",q:5,eq:true,src:"Warden kit",kit:1},{n:"Backpack (Dungeoneer's Pack)",q:1,eq:false,src:"Warden kit",kit:1},{n:"Shield",q:1,eq:false,src:"Warden kit",kit:1},{n:"Shield of the Silver Dragon",q:1,eq:true},
+  {n:"Insignia",q:1,eq:false,src:"Soldier kit",kit:1},{n:"Trophy",q:1,eq:false,src:"Soldier kit",kit:1},{n:"Dice Set",q:1,eq:false,src:"Soldier kit",kit:1},{n:"Common Clothes",q:1,eq:false,src:"Soldier kit",kit:1},{n:"Pouch",q:1,eq:false,src:"Soldier kit",kit:1}]});
  delete b.unset; window.__tig=window.__bldSheetFor(b); return !!window.__tig; }"""
 AC = "()=>{const L=[...document.querySelectorAll('.tile.ac .v')];const e=L.filter(x=>x.offsetParent)[0]||L[0];return e?+(e.getAttribute('data-miv')||e.getAttribute('aria-label')||e.textContent.trim()):null}"
 INIT = "()=>document.body.innerText.replace(/\\s+/g,' ')"
 
 async def hp(pg, btn):
     await pg.evaluate("b=>{const i=document.getElementById('hpAmt');i.value='30';i.dispatchEvent(new Event('input',{bubbles:true}));document.querySelector(b).click()}", btn)
+
+# Tigor's identity, as agreed with the player: cheerful, trusts people fast, sent to find out why the world is falling apart
+IDENT = {
+    "personality": "Greets everyone like an old friend. Hums marching songs when it gets quiet.\nTakes people at their word. Usually that works out.",
+    "ideal": "Protection. If somebody has to take the hit, it should be me.",
+    "bond": "My old commander gave me one order: find out why the world is falling apart. I'm not going back without an answer.",
+    "flaw": "I trust people way too fast. A smile and a sad story, and I'm in.",
+    "backstory": "Tigor was built for the war. A shield with legs. Then the war ended, and he didn't know what to do with himself.\n"
+        "So he stayed in uniform anyway. He fixed fences, hauled supplies, and made friends with anyone who would talk to him.\n"
+        "Lately things keep breaking. Towns go quiet, roads vanish, and monsters show up where they never used to. "
+        "His old commander called him in and told him straight: go find out what's going on. He said yes before she finished the sentence.\n"
+        "He's no scout and he's not sneaky about it. He walks in, says hi, and stands between the trouble and whoever's behind him.",
+}
+
+NOTES = {
+    "org": "The Iron Ninth, the army company he was built for. Mostly disbanded after the war. A few old soldiers still keep in touch.",
+    "allies": "Commander Vexana, his old commander. She's the one who sent him to find out why the world is falling apart. Tough, tired, and the only person he'd follow without asking questions.\n"
+        "Pip, a halfling supply clerk from the Iron Ninth. Still sends him letters. He keeps all of them in his backpack.",
+}
 
 async def run(b, url, W, H, bad, keep):
     vp = "%dx%d" % (W, H)
@@ -45,6 +65,12 @@ async def run(b, url, W, H, bad, keep):
     for a in ("bonus:Warden's Grasp", "bonus:Warden's Mark", "action:Font of Life", "reaction:Protection"):
         if a not in c["acts"]: bad.append(vp + " action missing: " + a)
     await pg.evaluate("()=>window.__sheetApply(window.__tig,'')"); await pg.wait_for_timeout(2500)
+    await pg.evaluate("(o)=>Object.keys(o).forEach(k=>window.__sheetIdentSet(k,o[k]))", IDENT)
+    # Organizations and Allies: written into the Notes tab the way a player types them
+    await pg.evaluate("""(o)=>{const nb=document.getElementById('notesBody');Object.keys(o).forEach(k=>{const t=document.createElement('textarea');t.setAttribute('data-note',k);nb.appendChild(t);t.value=o[k];t.dispatchEvent(new Event('input',{bubbles:true}));t.remove();});}""", NOTES)
+    # the player's portrait, uploaded the way the sheet does it
+    await pg.set_input_files("#avFile", os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures", "tigor-portrait.jpg"))
+    await pg.wait_for_function("()=>/^data:image\\/jpeg/.test(window.__sheetPortrait()||'')", timeout=15000)
     await pg.evaluate("()=>{var b=document.querySelector('[data-hview]'); if(b&&document.getElementById('homeV')&&document.getElementById('homeV').offsetParent) b.click()}"); await pg.wait_for_timeout(2500)
     txt = await pg.evaluate(INIT)
     if "/ 54" not in txt: bad.append(vp + " HP max is not 54")
@@ -75,8 +101,10 @@ async def run(b, url, W, H, bad, keep):
         async with pg.expect_download(timeout=240000) as dl:
             await pg.evaluate("()=>document.getElementById('pdfBtn').click()")
         d = await dl.value; path = os.path.join(OUT, "tigor.pdf"); await d.save_as(path); keep.append(path)
-        t = re.sub(r"\s+", " ", " ".join((p.extract_text() or "") for p in pypdf.PdfReader(path).pages))
-        for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency"):
+        rd = pypdf.PdfReader(path)  # page 1 values live in form fields, so their values count as text too
+        fv = " ".join(str(f.get("/V") or "") for f in (rd.get_fields() or {}).values())
+        t = re.sub(r"\s+", " ", " ".join((p.extract_text() or "") for p in rd.pages) + " " + fv)
+        for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency", "old friend", "A shield with legs", "way too fast", "Commander Vexana", "Iron Ninth", "Fighting Style: Protection", "Trophy", "Disadvantage."):
             if w not in t: bad.append("PDF lacks " + w)
     if errs: bad.append(vp + " page errors: " + str(errs[:2]))
 

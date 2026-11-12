@@ -1,9 +1,12 @@
 /* PDFX blocks: an entry of the appendix as typeset lines. One builder per kind in PX_BLOCKS; a new kind is one more entry */
 import {PX_INK,PX_GRAY,PX_ACC,PX_TINT,PX_NB,PX_SIZE} from "./01-data-style.js";
 import {pxRuns} from "./02-logic-markup.js";
-function pxTitle(T, name, tag){ const segs = [[0,name,"Bold",10.5,PX_INK]];
-  if(tag) segs.push([T.width(name+"   ","Bold",10.5), String(tag).toUpperCase(), "SemiBold", 6.4, PX_ACC]);
-  return [[13.5,segs]]; }
+/* the source tag sits after the name; when both do not fit the column, the tag moves to its own line under the name */
+function pxTitle(T, name, tag, CW){ const segs = [[0,name,"Bold",10.5,PX_INK]], up = tag ? String(tag).toUpperCase() : "";
+  if(!up) return [[13.5,segs]];
+  const x = T.width(name+"   ","Bold",10.5);
+  if(!(CW>0)||x+T.width(up,"SemiBold",6.4)<=CW){ segs.push([x, up, "SemiBold", 6.4, PX_ACC]); return [[13.5,segs]]; }
+  return [[13.5,segs]].concat(T.wrap([[up,"SemiBold",6.4,PX_ACC]], CW, 8.6)); }
 /* IN SHORT: the line the player reads first, on a light band with an accent bar */
 export function pxSummary(T, text, CW){ if(!text) return [];
   const bg = {rect:true, bar:true, x:0, w:CW, c:PX_TINT}, out = [[3,[bg]]];
@@ -24,10 +27,10 @@ function pxSections(T, secs, CW){ let out = [];
     sec[1].forEach((e) =>{ out = out.concat(T.wrap(pxRuns("**"+e[0]+".** "+e[1],7.7),CW,9.6)); out.push([2.5,[]]); }); });
   return out; }
 export const PX_BLOCKS = {
-  spell(T, sp, CW){ return pxTitle(T,sp.name,sp.tag).concat(sp.line?[[10,[[0,sp.line,"Italic",7.6,PX_GRAY]]]]:[], [[2.5,[]]], pxShortFull(T,sp,CW), pxDetails(T,sp.details,CW)); },
-  feature(T, f, CW){ return pxTitle(T,f.name,f.tag).concat([[1.5,[]]], pxShortFull(T,f,CW)); },
+  spell(T, sp, CW){ return pxTitle(T,sp.name,sp.tag,CW).concat(sp.line?[[10,[[0,sp.line,"Italic",7.6,PX_GRAY]]]]:[], [[2.5,[]]], pxShortFull(T,sp,CW), pxDetails(T,sp.details,CW)); },
+  feature(T, f, CW){ return pxTitle(T,f.name,f.tag,CW).concat([[1.5,[]]], pxShortFull(T,f,CW)); },
   text(T, f, CW){ return T.layout(f.text||[], CW, PX_SIZE.body); },
-  creature(T, c, CW){ return [pxRule(CW,1.6)].concat(pxTitle(T,c.name,c.tag), c.meta?[[10,[[0,c.meta,"Italic",7.6,PX_GRAY]]]]:[],
+  creature(T, c, CW){ return [pxRule(CW,1.6)].concat(pxTitle(T,c.name,c.tag,CW), c.meta?[[10,[[0,c.meta,"Italic",7.6,PX_GRAY]]]]:[],
       c.summary?[[3,[]]].concat(pxSummary(T,c.summary,CW),[[2,[]]]):[], [pxRule(CW,0.6)], pxPairs(T,c.stats,7.8,10.4,CW),
       c.abilities?pxAbilityRows(T,c.abilities,CW):[], pxPairs(T,c.lines,7.6,10,CW), pxSections(T,c.sections,CW), [pxRule(CW,1.6)]); }
 };

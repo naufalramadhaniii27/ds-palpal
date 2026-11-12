@@ -18,7 +18,7 @@ function fBlk(t){return String(t).replace(/([.!?:)\]"]) \*\*(?!Your choice\.|Sti
    (the sheet then uses only C.acts for them; other names keep the old text rule) */
 function actEsc(x){return String(x).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
 function actSec(t,lab){const m=new RegExp("\\*\\*"+actEsc(lab)+"\\.\\*\\*\\s*([\\s\\S]*?)(?=\\s*\\*\\*[^*\\n]{1,80}?\\.\\*\\*|$)").exec(String(t||""));return m?m[1].trim():null}
-function actKeys(B,gg,n){const mm=/^(\w+) \(multiclass \d+\)(?:: (.+))?$/.exec(gg);
+function actKeys(B,gg,n){const mm=/^(\w+) \(multiclass \d+\)(?:: (.+))?$/.exec(gg),fsm=/^Fighting Style: (.+)$/.exec(n);if(fsm)return ["feat|"+fsm[1]];
   if(gg==="Feats")return ["feat|"+n];if(/^Species: /.test(gg))return ["sp|"+B.species+"|"+n];if(gg===B.cls)return ["cls|"+B.cls+"|"+n];
   if(B.sub&&gg===B.cls+" Subclass: "+B.sub)return ["sub|"+B.sub+"|"+n];if(mm)return ["cls|"+mm[1]+"|"+n].concat(mm[2]?["sub|"+mm[2]+"|"+n]:[]);
   if(gg==="Eldritch Invocations")return ["inv|"+n];if(gg==="Metamagic Options")return ["meta|"+n];return []}
@@ -26,7 +26,7 @@ function actPut(out,lin,q,it,gg,lab0,txt){const k=q[0],lab=q[1]||lab0,e={k:k,n:l
   if(txt!=null)e.d=txt;else if(q[1]&&q[1]!==it.n){const d=actSec(it.full||it.d,q[1]);if(d)e.d=d}out.push(e)}
 function actFeat(C,B,T,lin,out){(C.features||[]).forEach((g) =>{const gg=g.g,ak=[];(g.items||[]).forEach((it) =>{
    if(it.n==="Maneuvers known"){ak.push(it.n);let re=/\*\*([^*\n]{1,60}?)\.\*\*/g,m;while((m=re.exec(String(it.d||"")))){const L0=T["man|"+m[1]];if(L0)L0.forEach((q) =>{actPut(out,lin,q,it,gg,m[1],actSec(it.d,m[1]))})}return}
-   let L=null;actKeys(B,gg,it.n).some((k) =>{if(T[k]){L=T[k];return true}return false});if(!L)return;ak.push(it.n);L.forEach((q) =>{actPut(out,lin,q,it,gg,it.n)})});
+   let L=null;actKeys(B,gg,it.n).some((k) =>{if(T[k]){L=T[k];return true}return false});if(!L)return;ak.push(it.n);L.forEach((q) =>{actPut(out,lin,q,it,gg,it.n.replace(/^Fighting Style: /,""))})});
   if(ak.length)g.ak=ak;else delete g.ak});}
 function actItems(B,I,Q,out){/* magic items in use (attunement within the limit), from the item text: Magic action, Bonus Action, Reaction */
 let att=0,am=I.attMax;(B.inv||[]).forEach((x) =>{if(!x.eq)return;const d=Q.dmapRow(x.n);if(!d)return;if(d[3]){if(att>=am||!Q.byOk(d[5]&&d[5].by))return;att++}
@@ -186,7 +186,9 @@ registerSheetGroup({id:"combat-maneuver-roll",group:"late",phase:"late",order:32
   C.actions.push({c:"Actions",n:"Combat Maneuver Roll",hb:1,t:"Variant rule (Aurvidya)",d:"Instead of letting a target save against a nonmagical maneuver of a martial feature that calls for a Strength or Dexterity saving throw, roll d20 "+(rb<0?"\u2212"+(-rb):"+"+rb)+" (Proficiency Bonus plus your Strength or Dexterity modifier). It works if the total meets the target's DC: 8 + its Proficiency Bonus + its Strength modifier + its Dexterity modifier. Your own DC against such a roll is "+(8+pb+sm+dm)+"."})}
   return ctx.patch()}});
 function ctLv(it){const m=/ (\d+)$/.exec(it.s||"");return m?+m[1]:0}
-function ctPut(cg,it,lv){let i=0;while(i<cg.items.length&&(ctLv(cg.items[i])||0)<=lv)i++;cg.items.splice(i,0,it)}
+function ctPut(cg,it,lv){const twin=cg.items.filter((x) =>{ return x.n===it.n&&(ctLv(x)||0)===lv; })[0];
+  if(twin){ const tail=(/\s\*\*Your choice\.\*\*[\s\S]*$/.exec(it.d||"")||[""])[0]; if(tail&&String(twin.d||"").indexOf(tail.trim())<0){ twin.d=(twin.d||"")+tail; if(twin.full) twin.full+=tail; } return; }
+  let i=0;while(i<cg.items.length&&(ctLv(cg.items[i])||0)<=lv)i++;cg.items.splice(i,0,it)}
 function ctCoreA(B,c){return "**Primary Ability:** "+String(c.prim||"").split("/").map((k) =>{return ABN[k]||k}).join(" or ")+". **Hit Point Die:** D"+c.hd+" per "+B.cls+" level. **Saving Throw Proficiencies:** "+(c.saves||[]).map((k) =>{return ABN[k]}).join(" and ")+". **Skill Proficiencies:** Choose "+(c.sk&&c.sk.n||0)+(c.sk&&c.sk.from==="any"?" skills.":" from "+((c.sk&&c.sk.from)||[]).join(", ")+".")}
 function ctCoreB(B,c,ck,wp,arm){return (wp.length?" **Weapon Proficiencies:** "+wp.join(" and ")+".":"")+(c.tools?" **Tool Proficiencies:** "+c.tools+".":"")+(arm.length?" **Armor Training:** "+arm.join(", ")+".":" **Armor Training:** None.")+(function(){const y=ck.concat(c.toolPick?(B.ch.clsTool||[]):[]);return y.length?" **Your choice.** "+y.join(", ")+".":""})()}
 function ctCoreCard(C,I,c,cg){const B=I.B;
@@ -195,7 +197,9 @@ function ctCoreCard(C,I,c,cg){const B=I.B;
   const core=ctCoreA(B,c)+ctCoreB(B,c,ck,wp,arm);
   cg.items.unshift({n:"Core "+B.cls+" Traits",s:I.SRC+", "+B.cls+" 1",d:core});}
 function ctSubCard(cg,I,Q){const B=I.B,L=I.L;
-  if(B.sub&&B.sub!=="__custom"&&L>=Q.subLv(B.cls))ctPut(cg,{n:I.r14?Q.subLbl(B.cls):B.cls+" Subclass",s:I.SRC+", "+B.cls+" "+Q.subLv(B.cls),d:"You gain "+(/^[AEIOU]/.test(B.cls)?"an ":"a ")+B.cls+" subclass of your choice. Its features come at the levels it lists. **Your choice.** "+Q.sdn(B.sub)+"."},Q.subLv(B.cls));}
+  if(B.sub&&B.sub!=="__custom"&&L>=Q.subLv(B.cls))ctPut(cg,{n:I.r14?Q.subLbl(B.cls):B.cls+" Subclass",s:I.SRC+", "+B.cls+" "+Q.subLv(B.cls),d:"You gain "+(/^[AEIOU]/.test(B.cls)?"an ":"a ")+B.cls+" subclass of your choice. Its features come at the levels it lists. **Your choice.** "+Q.sdn(B.sub)+".",
+    /* the full text the PDF prints under the short line (2014 names the choice: Primal Path, Sacred Oath, and so on) */
+    full:"At level "+Q.subLv(B.cls)+" you commit to a "+(I.r14?Q.subLbl(B.cls):B.cls+" subclass")+", the path that shapes the rest of your "+B.cls+" training. It gives you features at the levels its description lists, starting now, and it stays with you as you gain levels. **Your choice.** "+Q.sdn(B.sub)+"."},Q.subLv(B.cls));}
 function ctAsiCards(cg,I,Q){const B=I.B;
   Q.allFeats().forEach((f) =>{const m=new RegExp("\\("+B.cls+" (\\d+)\\)$").exec(f.s||"");if(!m)return;const F=featDef(f.n)||{},lv=+m[1],ep=F.cat==="E",v=f.asi||{},ex=v.a1?(F.asi2?(v.a1===v.a2?v.a1+" +2":v.a1+" +1, "+v.a2+" +1"):v.a1+" +1"):"";
    ctPut(cg,{n:ep?"Epic Boon":"Ability Score Improvement",s:I.SRC+", "+B.cls+" "+lv,d:ep?"You gain an Epic Boon feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+".":"You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+"."},lv)});}

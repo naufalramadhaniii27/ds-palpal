@@ -12,6 +12,9 @@ export const PX_SAVE_DOT = ["Check Box 11","Check Box 18","Check Box 19","Check 
 export const PX_DEATH_DOT = [["Check Box 12","Check Box 13","Check Box 14"],["Check Box 15","Check Box 16","Check Box 17"]];
 export const PX_WEAPON_ROWS = [["Wpn Name","Wpn1 AtkBonus","Wpn1 Damage"],["Wpn Name 2","Wpn2 AtkBonus ","Wpn2 Damage "],["Wpn Name 3","Wpn3 AtkBonus  ","Wpn3 Damage "]];
 export const PX_COINS = ["CP","SP","EP","GP","PP"];
+/* fields that stay editable in the PDF, for play with only the PDF in hand: hit points, hit dice, inspiration, death saves, coins, spent slots.
+   The spent-slot fields come from the spell map, so they are added at render time */
+export const PX_LIVE = ["HPCurrent","HPTemp","HD","Inspiration","CP","SP","EP","GP","PP"].concat([].concat.apply([],PX_DEATH_DOT));
 /* single-value fields: [model key, field, style, size, align, pad, vfrac] */
 export const PX_HEADER = [["classLevel","ClassLevel"],["background","Background"],["slot3","PlayerName"],["species","Race "],["alignment","Alignment"],["xp","XP"]];
 export const PX_STATS = [["prof","ProfBonus","Bold",12.5,"center",0,0.5],["inspiration","Inspiration","Bold",12.5,"center",0,0.5],
