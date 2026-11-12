@@ -101,7 +101,14 @@ function pxLimited(){ return (D.res||[]).filter((r) =>{ return !(r.k==="hd"||/^h
     return "**"+pxPlain(r.n)+".** "+r.max+(r.pool?" points":+r.max===1?" use":" uses")+(r.die?" (d"+r.die+")":"")+(back?" {{"+back+"}}":""); }); }
 /* when the uses come back, in the words the player reads at the table */
 const PX_RESET = {long:"back on a Long Rest", short:"back on a Short or Long Rest", short1:"all back on a Long Rest, 1 back on a Short Rest", dawn:"back at dawn", dusk:"back at dusk"};
-function pxMagicItems(){ return (C.inv||[]).filter((i) =>{ return i.d&&(i.att||i.rar||/magic|\+\d/i.test(i.n+" "+(i.t||""))); }); }
+/* an item's rules text: when the sheet keeps only its rarity line ("Uncommon magic item."), the full text comes from the item list */
+function pxItemD(i){ const d=String(i.d||"");
+  if(!/^[^.]{0,30}magic item\.?$/i.test(d.trim())||!env.__itemMeta) return d;
+  let m=null; try{ m=env.__itemMeta(i.n); }catch(e){ m=null; } if(m&&m.txt&&m.txt.length>d.length) return m.txt; const h=m&&m.html; if(!h) return d;
+  const t=String(h).replace(/<(b|strong)>/gi,"**").replace(/<\/(b|strong)>/gi,"**").replace(/<br\s*\/?>|<\/p>|<\/div>|<\/li>/gi,"\n").replace(/<[^>]+>/g,"")
+    .replace(/&nbsp;/g," ").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&#39;|&apos;/g,"'").replace(/&quot;/g,'"').replace(/[ \t]+/g," ").replace(/\n\s*\n+/g,"\n").trim();
+  return t.length>d.length ? t : d; }
+function pxMagicItems(){ return (C.inv||[]).filter((i) =>{ return i.d&&(i.att||i.rar||/magic|\+\d/i.test(i.n+" "+(i.t||""))); }).map((i) =>{ return Object.assign({},i,{d:pxItemD(i)}); }); }
 function pxTreasure(){ const att=(C.inv||[]).filter((i) =>{ return i.att; });
   const head=att.length?["**Attuned** {{"+Math.min(3,att.filter(eqOn).length)+" of 3}}. "+att.map((i) =>{ return i.n; }).join(", ")]:[];
   return head.concat(pxMagicItems().map((i) =>{ return "**"+i.n+".** "+pxBrief(i.d); })); }

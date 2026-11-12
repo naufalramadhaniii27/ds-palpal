@@ -1,5 +1,5 @@
 {
- "why": "+2 Soulbind Chains: +2 to spell attack rolls and to the save DC of Summoner spells. Summoner 5, INT 10: DC 11 -> 13, attack +3 -> +5.",
+ "why": "+2 Soulbind Chains: +2 to spell attack rolls and to the save DC of Summoner spells. Summoner 5 casts with Charisma (book: Spellcasting Ability. Charisma), CHA 16: DC 14 -> 16, attack +6 -> +8.",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -50,7 +50,7 @@
  },
  "expect": {},
  "expectC": {
-  "spellcasting.dc": 13,
-  "spellcasting.atk": 5
+  "spellcasting.dc": 16,
+  "spellcasting.atk": 8
  }
 }
