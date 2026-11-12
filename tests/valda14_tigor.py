@@ -59,6 +59,9 @@ async def run(b, url, W, H, bad, keep):
         if a not in c["acts"]: bad.append(vp + " action missing: " + a)
     await pg.evaluate("()=>window.__sheetApply(window.__tig,'')"); await pg.wait_for_timeout(2500)
     await pg.evaluate("(o)=>Object.keys(o).forEach(k=>window.__sheetIdentSet(k,o[k]))", IDENT)
+    # the player's portrait, uploaded the way the sheet does it
+    await pg.set_input_files("#avFile", os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures", "tigor-portrait.jpg"))
+    await pg.wait_for_function("()=>/^data:image\\/jpeg/.test(window.__sheetPortrait()||'')", timeout=15000)
     await pg.evaluate("()=>{var b=document.querySelector('[data-hview]'); if(b&&document.getElementById('homeV')&&document.getElementById('homeV').offsetParent) b.click()}"); await pg.wait_for_timeout(2500)
     txt = await pg.evaluate(INIT)
     if "/ 54" not in txt: bad.append(vp + " HP max is not 54")
