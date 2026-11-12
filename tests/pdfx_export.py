@@ -46,6 +46,7 @@ async def export(pg, path):
 
 def inspect(path, tag, want, bad, info):
     r = pypdf.PdfReader(path); text = "\n".join((p.extract_text() or "") for p in r.pages)
+    text += "\n" + "\n".join(str(f.get("/V") or "") for f in (r.get_fields() or {}).values())  # page 1 values are form fields
     flat = re.sub(r"\s+", " ", text)
     info[tag] = {"pages": len(r.pages), "kb": os.path.getsize(path) // 1024, "title": (r.metadata or {}).get("/Title")}
     if not open(path, "rb").read(5).startswith(b"%PDF"): bad.append(tag + " not a PDF")
@@ -57,9 +58,9 @@ def inspect(path, tag, want, bad, info):
     if n_feat < 3: bad.append(tag + " too few IN SHORT lines: %d" % n_feat)
     try:
         import pypdfium2 as pdfium
-        doc = pdfium.PdfDocument(path)
+        doc = pdfium.PdfDocument(path); doc.init_forms()  # page 1 values are form fields: draw them like a viewer does
         for i in range(len(doc)):
-            doc[i].render(scale=1.3).to_pil().save(os.path.join(OUT, "%s-p%d.png" % (tag, i + 1)))
+            doc[i].render(scale=1.3, may_draw_forms=True).to_pil().save(os.path.join(OUT, "%s-p%d.png" % (tag, i + 1)))
     except Exception as e:
         info[tag]["render"] = str(e)
 

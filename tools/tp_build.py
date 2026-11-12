@@ -51,7 +51,7 @@ BOOKS = [
   "feat": "tgh14c_feat", "spell": "tgh14c_spell", "item": "tgh14c_item", "bg": "tgh14c_bg", "trans": "tgh14c_trans", "alias": "GH14C", "twin": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2024.json", "subsfx": " (2014)"},
  {"id": "twow", "file": "5etools; World of Warcraft - 2024.json", "tag": "WoW", "name": "World of Warcraft", "pub": "Blizzard Entertainment", "ed": "2024",
   "sub": "twow_sub", "spell": "twow_spell", "feat": "twow_feat", "species": "twow_species", "opt": "twow_opt", "item": "twow_item", "monsters": True, "cls": ["death knight", "demon hunter", "shaman", "evoker"], "clspre": "twow_", "reskin": True, "alias": "WoW"},
- {"id": "tua24", "ua": True, "file": ["ua/subclass/Unearthed Arcana 2026 - Villainous Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options.json",
+ {"id": "tua24", "ua": True, "monsters": True, "cls": ["psion"], "clspre": "tua24_", "clsspell": True, "file": ["ua/class/Unearthed Arcana 2025 - Psion Update.json", "ua/class/Unearthed Arcana 2025 - The Psion.json", "ua/subclass/Unearthed Arcana 2026 - Villainous Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options.json",
   "ua/collection/Unearthed Arcana 2026 - Villainous Options Update.json", "ua/collection/Unearthed Arcana 2026 - Villainous Options.json", "ua/subclass/Unearthed Arcana 2026 - Mystic Subclasses.json",
   "ua/subclass/Unearthed Arcana 2025 - Subclasses Update.json", "ua/subclass/Unearthed Arcana 2025 - Forgotten Realms Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Updates.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Horror Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Apocalyptic Subclasses.json"],
   "tag": "UA24", "name": "Unearthed Arcana (2024 rules)", "pub": "Wizards of the Coast", "ed": "2024", "sub": "tua24_sub", "feat": "tua24_feat", "species": "tua24_species", "spell": "tua24_spell", "alias": "UA"}
@@ -466,7 +466,7 @@ def species_records(bk, data, M):
     for k, v in getattr(M, "GXSP", {}).items(): GXSP[ren.get(k, k)] = v          # fx rows of a species: registry GX.species
     return out, {ren.get(k, k): v for k, v in M.DEF.items()}
 
-SPLU = []; SPACTS = {}; SPAUTO = {}; GXSP = {}
+SPLU = []; SPACTS = {}; SPAUTO = {}; GXSP = {}; CSP = {}
 FDM = {}
 REGCLS = '''DataEnv.slot.WXC=DataEnv.slot.WXC||{};
 Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;DataEnv.slot.WXC[n]={book:SRC.id,rec:r,ed:SRC.ed,tw:k.tw,inh:k.inh,cfa:k.cfa};
@@ -480,6 +480,9 @@ Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;DataEnv.slot.WXC[n]={boo
   /* the table rows of the parent class (limited uses) are read for this class by the builder (luOwnLv), not copied */}});
 '''
 
+REGCSP = '''/* spell list of a new class: core spells get the class name in their class list, so the spell step offers them */
+if(typeof SPELLS!=="undefined")Object.keys(CSP).forEach(function(c){var h={};CSP[c].forEach(function(n){h[n]=1});SPELLS.forEach(function(x){if(h[x[0]]&&x[3].indexOf(c)<0)x[3].push(c)})});
+'''
 REGSPC = '''DataEnv.slot.WXSP=DataEnv.slot.WXSP||{};DataEnv.slot.WXSP[SRC.id]=Object.assign(DataEnv.slot.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
 SRC.species=Object.keys(SPC);
 if(Object.keys(GXSP).length){DataEnv.slot.GX=DataEnv.slot.GX||{};DataEnv.slot.GX.species=DataEnv.slot.GX.species||{};Object.keys(GXSP).forEach(function(k){DataEnv.slot.GX.species[k]=(DataEnv.slot.GX.species[k]||[]).concat(GXSP[k])})}
@@ -489,6 +492,8 @@ def ua_skip(data):
     """Unearthed Arcana repeats options the core books already have. Entries whose name is a core name (tools/tp/ua_core_names.json) are left out, so the book only adds new ones."""
     have = json.load(open(os.path.join(HERE, "tp", "ua_core_names.json")))
     nz = lambda x: re.sub(r"[^a-z0-9]", "", x.lower())
+    if any(c.get("source") == "XUA2025PsionUpdate" for c in data.get("class", [])):          # the Psion Update replaces the disciplines of the first Psion file
+        data["optionalfeature"] = [x for x in data.get("optionalfeature", []) if not (x.get("source") == "XUA2025Psion" and "PD" in x.get("featureType", []))]
     for k, nk in (("subclass", "subclass"), ("feat", "feat"), ("race", "race"), ("subrace", "race"), ("background", "background")):
         if k in data: data[k] = [x for x in data[k] if nz(x["name"]) not in have[nk]]
 
@@ -497,7 +502,7 @@ def build():
     files = {}
     for i, bk in enumerate(BOOKS, 1):
         if ONLY and bk["id"] not in ONLY: continue
-        FDM.clear(); del SPLU[:]; SPACTS.clear(); SPAUTO.clear(); GXSP.clear()
+        FDM.clear(); del SPLU[:]; SPACTS.clear(); SPAUTO.clear(); GXSP.clear(); CSP.clear()
         data = load(bk["file"]); M = ovl(bk["sub"]) if bk.get("sub") else None
         if bk.get("ua"): ua_skip(data)
         recs = sub_records(bk, data, M) if M else []
@@ -528,6 +533,7 @@ def build():
             ex["rec"] = rc
             if kn != sc[0]["name"]: ex["tw"] = sc[0]["name"]
             cl[kn] = ex
+            if bk.get("clsspell"): CSP[kn] = sorted(set(e.split("|")[0].strip() for e in sc[0].get("classSpells", [])))
         spr, spf = spell_records(bk, data, ovl(bk["spell"])) if bk.get("spell") else ([], {})
         it, isp, wpn, gr = item_records(bk, data, ovl(bk["item"])) if bk.get("item") else ([], {}, [], [])
         wpw, mst = weapon_records(bk, data, ovl(bk["item"])) if bk.get("item") and hasattr(ovl(bk["item"]), "MASTERY") else ({}, {})
@@ -535,7 +541,7 @@ def build():
                "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else "", "%d items" % (len(it) + len(gr) + len(wpw)) if (it or gr or wpw) else "", "%d spells" % len(spr) if spr else "", "%d species" % len(spc) if spc else "", "%d classes" % len(cl) if cl else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
                "tp": 1, "pub": bk["pub"], "ed": bk["ed"], "classes": list(cl)}
         if bk["ed"] == "2014": src["legacy"] = 0
-        body = HEAD % (bk["file"] if isinstance(bk["file"], str) else " + ".join(bk["file"]), bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar EX=" + json.dumps([dict(e, src=bk["id"]) for e in getattr(M, "EXT", [])], ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar GXSP=" + json.dumps(GXSP, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var WPA=" + json.dumps(dict(ARMR), ensure_ascii=False, separators=(",", ":")) + ";\n" if ARMR else "") + "var MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var OPT=" + json.dumps({"inv": [list(x) for x in getattr(ovl(bk["opt"]), "INV", [])], "man": [list(x) for x in getattr(ovl(bk["opt"]), "MAN", [])]}, ensure_ascii=False, separators=(",", ":")) + ";\n" if bk.get("opt") else "") + (REGOPT if bk.get("opt") else "") + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
+        body = HEAD % (bk["file"] if isinstance(bk["file"], str) else " + ".join(bk["file"]), bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar EX=" + json.dumps([dict(e, src=bk["id"]) for e in getattr(M, "EXT", [])], ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar GXSP=" + json.dumps(GXSP, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var WPA=" + json.dumps(dict(ARMR), ensure_ascii=False, separators=(",", ":")) + ";\n" if ARMR else "") + "var MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var CSP=" + json.dumps(CSP, ensure_ascii=False, separators=(",", ":")) + ";\n" + REGCSP if CSP else "") + ("var OPT=" + json.dumps({"inv": [list(x) for x in getattr(ovl(bk["opt"]), "INV", [])], "man": [list(x) for x in getattr(ovl(bk["opt"]), "MAN", [])]}, ensure_ascii=False, separators=(",", ":")) + ";\n" if bk.get("opt") else "") + (REGOPT if bk.get("opt") else "") + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
         files["src/data/tp%02d-%s.js" % (i, bk["id"])] = body
         if bk.get("vehicles") and (data.get("vehicle") or data.get("vehicleUpgrade")):
             import tp_vehicles

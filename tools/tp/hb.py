@@ -31,6 +31,8 @@ def prune(ds):
         for k in ("subclass", "feat", "race", "subrace", "spell", "optionalfeature", "background", "item"):
             keep = []
             for x in d.get(k, []):
+                if k == "subclass" and "subclassFeatures" in x and not x["subclassFeatures"]: continue
+                if k == "subclass" and "subclassFeatures" not in x and x.get("source", "").endswith("Update"): continue          # an Update file lists an unchanged subclass without its features: the older file keeps it
                 key = (k, x.get("name"), x.get("className"), x.get("raceName"))
                 if key in seen and seen[key] != x.get("source"):
                     if k == "subclass": drop_src.add((x.get("className"), x.get("shortName"), x.get("source")))
