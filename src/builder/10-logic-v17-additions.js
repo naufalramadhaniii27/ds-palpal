@@ -1,6 +1,6 @@
 import {bindLive,clsLv,clsParts,featsOf,resKey,spLists,spRec} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {SRC,mod} from "./01-logic-core-helpers.js";
-import {DMAP,activeFx,spX,un,allPurposeResource,allPurposeAllocatedKeys} from "./03-logic-magic-item-effects.js";
+import {DMAP,activeFx,spX,un,allPurposeResource,allPurposeAllocatedKeys,suppressGemLegacyPool} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL} from "./05-logic-choice-model-ruleset.js";
 import {PACTB14} from "./08-logic-2014-rules.js";
@@ -37,7 +37,7 @@ function luFxRow(C,e,q,a,pb){const lv=e.lv;let mx=q.max;if(typeof mx==="string"&
   const o={k:resKey("x-",q.n||e.n,C.res),n:q.n||e.n,tag:q.tag||"",max:m,reset:rs,f:q.f||e.n};if(q.pool)o.pool=1;if(e.kind==="species"||e.kind==="feat")o.own=e.owner;luFxTags(o,q);C.res.push(o)}
 function luFxTags(o,q){if(q.reset==="init")o.tag=(o.tag?o.tag+", ":"")+"also regained when you roll Initiative";if(q.reset==="dusk"||q.reset==="dawn")o.tag=(o.tag?o.tag+", ":"")+"back at "+q.reset;if(q.die)o.tag=(o.tag?o.tag+", ":"")+q.die}
 function luItemKey(C,x){const reserved=allPurposeAllocatedKeys();return resKey("i-",x.n,reserved.length?C.res.concat(reserved.map(k=>({k}))):C.res)}
-function luItemRow(C,x,invIndex){const source=allPurposeResource(x,invIndex);if(source&&source.managed){if(source.active)C.res.push({k:source.source.chargeKey,n:x.n,tag:"One activation; back at the next declared dawn",max:1,reset:"none",f:x.n,item:1,invIndex:invIndex,rg:"1",when:"dawn",borrowedCantrip:1});return}const d=DMAP[x.n],ch=d&&d[5]&&d[5].ch;if(!ch)return;if(d[3]&&!x.eq)return;let mx=+ch[0],dm=null;if(!(mx>0)){dm=diceTop(ch[0]);if(!(dm>0))return;mx=dm}/* v21 RU44: a starting number rolled on dice */const nev=ch[2]==="never"||String(ch[1])==="0",full=String(ch[1])==="all"||+ch[1]===mx,dym=/^([\dd]+) (days?|hours?)$/.exec(ch[2]);
+function luItemRow(C,x,invIndex){if(suppressGemLegacyPool(x))return;const source=allPurposeResource(x,invIndex);if(source&&source.managed){if(source.active)C.res.push({k:source.source.chargeKey,n:x.n,tag:"One activation; back at the next declared dawn",max:1,reset:"none",f:x.n,item:1,invIndex:invIndex,rg:"1",when:"dawn",borrowedCantrip:1});return}const d=DMAP[x.n],ch=d&&d[5]&&d[5].ch;if(!ch)return;if(d[3]&&!x.eq)return;let mx=+ch[0],dm=null;if(!(mx>0)){dm=diceTop(ch[0]);if(!(dm>0))return;mx=dm}/* v21 RU44: a starting number rolled on dice */const nev=ch[2]==="never"||String(ch[1])==="0",full=String(ch[1])==="all"||+ch[1]===mx,dym=/^([\dd]+) (days?|hours?)$/.exec(ch[2]);
   if(dym){C.res.push({k:luItemKey(C,x),n:x.n,tag:"Each use is back after "+dym[1]+" "+dym[2]+". Tick it back when the time has passed."+(ch[3]?" "+ch[3]+".":""),max:mx,reset:"none",f:x.n,item:1,invIndex:invIndex});return}/* v56: Figurine of Wondrous Power and other items with a wait in days */
   luItemCharges(C,x,ch,mx,dm,nev,full,invIndex)}
 function luItemCharges(C,x,ch,mx,dm,nev,full,invIndex){const when={dawn:"at dawn",dusk:"at dusk",long:"on a Long Rest",short:"on a Short Rest"}[ch[2]]||ch[2];

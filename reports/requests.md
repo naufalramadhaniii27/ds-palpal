@@ -1,5 +1,9 @@
 # Requests to other parts
 
+## Logic: ordinary spell damage-roll feature scope discovered during U41
+
+The shared Gem/Tattoo bridge now distinguishes native cast-time and damage-time features, optional application, actual damage types and the chosen Elemental Affinity roll. The existing ordinary `spFxTo` path in `src/builder/09-logic-feats-and-choices.js` still uses unscoped `db` values. Its `eaType` recognizes current Draconic Sorcery only, while legacy Draconic Bloodline has a native ancestry-based Elemental Affinity rule. Class-specific one-roll entries such as Empowered Evocation and Radiant Soul also require their own source/roll review before reusing the new generic commitment model. U41 preserves ordinary output and does not claim those ordinary consumers are repaired. Continue with native-only eligibility and real roll consumers in a subsequent batch.
+
 ## Logic: Builder Apply drops Library additions (from UI/UX, T4)
 - Library "Add" and "Buy" write entries to the sheet with `lib:1` (items in `C.inv`, spells in the spell list).
 - Builder Apply replaces `C`. `manualLost` lists only attacks and resources, so `lib:1` entries vanish without a warning.

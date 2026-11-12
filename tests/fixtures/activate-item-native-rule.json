@@ -1,0 +1,19 @@
+{
+  "path": "/workspace/work/uncovered-3/src/data/q12-rule.js",
+  "line": 3,
+  "record": {
+    "n": "Activate an Item",
+    "s": "dmg14",
+    "sub": "Action",
+    "tl": [
+      [
+        "Time",
+        "{'number': 1, 'unit': 'action'}"
+      ]
+    ],
+    "p": [
+      "An action to activate an item isn't Use an Object, so Fast Hands can't activate it. A command word must be spoken aloud and fails in silence. Consumables like potions, oils, and scrolls lose their magic once used. Spells cast from items use the lowest level, spend no slots, need no components, and keep normal casting time, range, duration, and Concentration. Without spellcasting, your modifier is +0 but proficiency bonus applies. Identify or attunement reveals charges."
+    ],
+    "tx": "activate an item action an action to activate an item isn't use an object, so fast hands can't activate it. a command word must be spoken aloud and fails in silence. consumables like potions, oils, and scrolls lose their magic once used. spells cast from items use the lowest level, spend no slots, need no components, and keep normal casting time, range, duration, and concentration. without spellcasting, your modifier is +0 but proficiency bonus applies. identify or attunement reveals charges."
+  }
+}

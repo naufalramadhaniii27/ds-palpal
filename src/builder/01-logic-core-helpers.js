@@ -1,3 +1,5 @@
+export {spellGemProfile} from "../data/lib/spell-gem.js";
+export {createCastingSources,castingSourcesProblems,actorCastingSourceChoices,actorCastingScores} from "../data/lib/casting-sources.js";
 export {discipleOfLifeProfile,discipleOfLifeDescriptorProblems,discipleHealingBonus} from "../data/lib/disciple-of-life.js";
 export {clericPowerPart,clericPowerMarkerProblems,clericPowerSourceProblems,clericPowerSource,supremeHealingDescriptorProblems,divineSparkDice,divineSparkDescriptorProblems,divineSparkResourceMatches,divineInterventionDescriptorProblems} from "../data/lib/cleric-capabilities.js";
 export {supremeHealingProfile,supremeHealingProblems,interventionRecoveryProfile,interventionRecoveryProblems,greaterInterventionProfile,interventionProfileProblems} from "../data/lib/cleric-maths.js";
@@ -43,3 +45,9 @@ export function typeOk(desc,v){const opt=/\?$/.test(desc);if(v===undefined||v===
 
 /* An explicit single flag opts into strict choice shape; old when objects keep their semantics. */
 export function whenSingleProblems(when){if(!when||typeof when!=="object"||!Object.prototype.hasOwnProperty.call(when,"single"))return [];const bad=[];if(typeof when.single!=="boolean")bad.push("when.single must be boolean");Reflect.ownKeys(when).filter(key=>typeof key!=="string"||!["key","val","any","single"].includes(key)).forEach(()=>bad.push("when.single has an unknown field"));if(when.single===true){if(typeof when.key!=="string"||!when.key||when.key.trim()!==when.key)bad.push("when.single needs a key");if(typeof when.val!=="string"||!when.val||when.val.trim()!==when.val)bad.push("when.single needs a value");if(Object.prototype.hasOwnProperty.call(when,"any")&&typeof when.any!=="boolean")bad.push("when.single any must be boolean")}return bad}
+
+export {createGemCheckBonuses} from "../data/lib/gem-check-bonuses.js";
+
+export {tattooBodyProblems,spellwroughtTattooProfile} from "../data/lib/spellwrought-tattoo.js";
+export {spellGemCastsProblems} from "../data/lib/spell-gem-casts.js";
+export {itemSpellDamageFeaturesProblems} from "../data/lib/item-spell-damage.js";

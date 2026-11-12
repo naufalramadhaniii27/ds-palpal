@@ -66,8 +66,8 @@ export function atkOn(a){if(!temporarySpellOn(a))return false;if(a&&a.of&&!carri
    Speed and Stealth disadvantage follow the same rule, each on its own. Returns true if AC was copied */
 /* M18: attuned magic items on this sheet */
 export function attMaxC(){const n=+C.attMax;return Number.isFinite(n)&&n>0?Math.floor(n):3}/* v19 RL43 */
-export function attOn(i){return !!i.att&&(typeof i.attuned==="boolean"?i.attuned:eqOn(i))}
-export function attActive(i){return !!i.att&&num(i.q,1)>0&&(typeof i.attunedActive==="boolean"?i.attunedActive:attOn(i))}
+export function attOn(i){if(i.attOptional)return i.attuned===true;return !!i.att&&(typeof i.attuned==="boolean"?i.attuned:eqOn(i))}
+export function attActive(i){return !!(i.att||i.attOptional)&&num(i.q,1)>0&&(typeof i.attunedActive==="boolean"?i.attunedActive:attOn(i))}
 export function attCount(){return (C.inv||[]).filter((i)=>attActive(i)&&num(i.q,1)>0).length}
 export function armorFx(fx,it){ const j=JSON.stringify; if(!fx||j(C.ac)!==j(fx.b0.ac)) return false;
   armorFxStep1(j, fx);

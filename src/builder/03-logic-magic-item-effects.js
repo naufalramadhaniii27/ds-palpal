@@ -1,3 +1,4 @@
+import {spellGemProfile} from "../data/lib/spell-gem.js";
 import {casterParts,clsLv,lateGet,subAt} from "./01b-logic-late-ports.js";import {clone} from "./01-logic-core-helpers.js";
 
 import {baseOf,fxListBase,miFeats} from "./01b-logic-late-ports.js";
@@ -30,7 +31,7 @@ export function byOk(by,attunedKeys){if(!by)return true;const s=String(by),cls=O
  if(/Belt of Dwarvenkind/.test(s)&&beltAttuned(attunedKeys))return true;
  if(cls.length)return cls.some((c) =>{return clsLv(c)>0});if(/Spellcaster/i.test(s))return casterParts().length>0||miFeats().length>0;
  const sp=Object.keys(SPECIES).filter((n) =>{return new RegExp("\\b"+n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","i").test(s)});if(sp.length)return sp.indexOf(lateGet("B").species)>=0;return true}
-export function attunementMeta(n){const d=DMAP[n];return d?{key:d[0],requires:!!d[3],by:d[5]&&d[5].by}:{requires:false,key:n}}
+export function attunementMeta(n){const d=DMAP[n];return d?{key:d[0],requires:!!d[3],...(spellGemProfile(d[0])?{optional:true}:{}),by:d[5]&&d[5].by}:{requires:false,key:n,...(spellGemProfile(n)?{optional:true}:{})}}
 export function migrateItemAttunement(x){return migrateAttunement(x,attunementMeta(x.n))}
 function formMetadataFor(row,edition){const d=DMAP[row.n];return weaponFormMetadata(d?d[0]:row.n,edition)}
 function canonicalForm(row,formMeta){const f=row.form;if(!f||typeof f!=="object"||Array.isArray(f))return false;if(Object.prototype.hasOwnProperty.call(f,"v")&&f.v!==1)return true;if(f.v!==1||typeof f.active!=="boolean")return false;const l=formMeta.light;return Number.isInteger(f.radius)&&f.radius>=l.min&&f.radius<=l.max&&(l.adjustable?(f.radius-l.min)%l.step===0:f.radius===l.default)}
@@ -98,7 +99,7 @@ export function cleanCh(b){try{const ch=b&&b.ch;if(ch)Object.keys(ch).forEach((k
 
 /* Records a completed attunement, independently of wearing/holding the item. */
 export function setItemAttuned(index,on){const b=migrateInventory(lateGet("B")),it=(b.inv||[])[index];if(!it)return {ok:false,reason:"missing"};
- if(!attunementMeta(it.n).requires)return {ok:false,reason:"not-required"};const was=it.attuned;it.attuned=!!on;
+ if(!attunementMeta(it.n).requires&&!attunementMeta(it.n).optional)return {ok:false,reason:"not-required"};const was=it.attuned;it.attuned=!!on;
  if(on){const st=attunementState(),row=st.rows[index];if(!row||!row.attuned){it.attuned=was;return {ok:false,reason:row&&row.reason||"requirements",limit:st.limit}}}return {ok:true}}
 
 // Legacy projection is scoped to one synchronous derivation and always restored.
@@ -122,3 +123,6 @@ export function itemRiddenVehicleInfoForRow(row,state,edition){const nativeEditi
 export function getRiddenVehicleInfo(index){const b=migrateInventory(lateGet("B")),row=(b.inv||[])[index];if(!row||!riddenVehicleMetadata(row.n,b.rs))return {available:false,reason:"unsupported-vehicle",index};const profile=itemRiddenVehicleInfoForRow(row,attunementState().rows[index],b.rs);return Object.assign({},profile,{index,signature:JSON.stringify(row),vehicle:clone(row.vehicle)})}
 export function changeRiddenVehicle(index,change){const b=lateGet("B"),info=getRiddenVehicleInfo(index),row=(b.inv||[])[index];if(!row||!change||typeof change!=="object"||Array.isArray(change))return {ok:false,reason:"invalid-declarations"};const declarations=Object.assign({},change);let next;if(change.activate===true){if(!info.activationAvailable)return {ok:false,reason:info.reason||"already-active"};delete declarations.activate;next=activateRiddenVehicle(Object.assign({},row,{attunedActive:attunementState().rows[index].attuned}),declarations,b.rs)}else if(change.end===true){if(!info.endAvailable)return {ok:false,reason:"inactive"};delete declarations.end;next=endRiddenVehicle(row,declarations,b.rs)}if(!next)return {ok:false,reason:"invalid-declarations"};return {ok:true,row:Object.assign({},row,{vehicle:next})}}
 export function splitRiddenVehicleRow(index,change){const b=lateGet("B");return splitRiddenVehicle(b.inv,index,change,b.rs)}
+
+// Absent metadata retains the legacy projection. Any own claim, including unsupported versions, suppresses the wrong charge path without granting permission.
+export function suppressGemLegacyPool(row){return !!spellGemProfile(row&&row.n)&&Object.prototype.hasOwnProperty.call(lateGet("B"),"spellGemSources")}

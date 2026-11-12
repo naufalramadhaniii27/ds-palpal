@@ -1,7 +1,8 @@
+import {itemSpellDamageSnapshotProblems,itemSpellDamageUsageProblems,declareItemSpellDamageEvent,updateItemSpellDamageUsage} from './item-spell-damage.js';
 import {discipleOfLifeDescriptorProblems} from './disciple-of-life.js';
 // Physical Spellwrought sources and actor-owned body permissions; no storage or dice side effects.
 const object=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
-const own=(x,k)=>Object.prototype.hasOwnProperty.call(x,k);
+const own=(x,k)=>x!=null&&Object.prototype.hasOwnProperty.call(x,k);
 const exact=(x,keys)=>object(x)&&Reflect.ownKeys(x).length===keys.length&&keys.every(k=>own(x,k));
 const text=x=>typeof x==='string'&&!!x&&x.trim()===x;
 const dense=x=>Array.isArray(x)&&Object.keys(x).length===x.length&&Reflect.ownKeys(x).length===x.length+1&&Object.keys(x).every((k,i)=>k===String(i));
@@ -23,16 +24,18 @@ function canonicalTattooJSON(value){if(Array.isArray(value))return '['+value.map
 export function tattooDefinitionStamp(definition){if(!object(definition))return null;const copy={...definition};delete copy.fixedSpellSource;delete copy.use;copy.cmp=String(copy.cmp||'').split(',').map(x=>x.trim()).filter(x=>x!=='M').join(', ');return canonicalTattooJSON(copy)}
 function castContextProblems(context){
  if(exact(context,['v','casterLevel'])&&context.v===1)return Number.isSafeInteger(context.casterLevel)&&context.casterLevel>=1&&context.casterLevel<=20?[]:['casterLevel'];
- if(!exact(context,['v','casterLevel','ruleset','nativeDefinition','disciple'])||context.v!==2||!Number.isSafeInteger(context.casterLevel)||context.casterLevel<1||context.casterLevel>20||!['2014','2024'].includes(context.ruleset)||!text(context.nativeDefinition)||typeof context.disciple!=='string')return ['castContext'];
+ if(!exact(context,['v','casterLevel','ruleset','nativeDefinition','disciple'].concat(own(context,'itemDamage')?['itemDamage']:[]))||context.v!==2||!Number.isSafeInteger(context.casterLevel)||context.casterLevel<1||context.casterLevel>20||!['2014','2024'].includes(context.ruleset)||!text(context.nativeDefinition)||typeof context.disciple!=='string')return ['castContext'];
+ if(own(context,'itemDamage')&&(itemSpellDamageSnapshotProblems(context.itemDamage).length||context.itemDamage.features.some(feature=>feature.source.edition!==context.ruleset)))return ['item-damage-snapshot'];
  try{const d=JSON['parse'](context.disciple);if(d!==null&&discipleOfLifeDescriptorProblems(d).length||canonicalTattooJSON(d)!==context.disciple)return ['disciple']}catch(error){return ['disciple']}return [];
 }
-export function createTattooCastContext(definition,casterLevel,ruleset,disciple=undefined){const result={v:2,casterLevel,ruleset,nativeDefinition:tattooDefinitionStamp(definition),disciple:canonicalTattooJSON(disciple===undefined?null:disciple)};return castContextProblems(result).length?null:result}
+export function createTattooCastContext(definition,casterLevel,ruleset,disciple=undefined,itemDamage=undefined){const result={v:2,casterLevel,ruleset,nativeDefinition:tattooDefinitionStamp(definition),disciple:canonicalTattooJSON(disciple===undefined?null:disciple),...(itemDamage===undefined?{}:{itemDamage:structuredClone(itemDamage)})};return castContextProblems(result).length?null:result}
 export function tattooBodyProblems(body){
  if(!exact(body,['v','nextCastId','tattoos'])||body.v!==1||!integer(body.nextCastId)||body.nextCastId<1||!dense(body.tattoos))return ['body'];
  const errors=[],sources=new Set(),casts=new Set();
  for(const grant of body.tattoos){
-  if(!exact(grant,['sourceId','item','spell','phase','castId','outcome'].concat(own(grant,'castContext')?['castContext']:[]))){errors.push('grant');continue}
+  if(!exact(grant,['sourceId','item','spell','phase','castId','outcome'].concat(own(grant,'castContext')?['castContext']:[]).concat(own(grant,'itemDamageUsage')?['itemDamageUsage']:[]))){errors.push('grant');continue}
   if(own(grant,'castContext')&&(castContextProblems(grant.castContext).length||!['active','ended'].includes(grant.phase)))errors.push('castContext');
+  if(own(grant,'itemDamageUsage')&&(itemSpellDamageUsageProblems(grant.itemDamageUsage).length||!['active','ended'].includes(grant.phase)||grant.outcome!=='cast'))errors.push('itemDamageUsage');
   if(!sourceNumber(grant.sourceId)||sources.has(grant.sourceId))errors.push('sourceId');sources.add(grant.sourceId);
   if(!spellwroughtTattooProfile(grant.item)||!text(grant.spell))errors.push('payload');
   if(!['ready','casting','active','ended'].includes(grant.phase))errors.push('phase');
@@ -137,3 +140,6 @@ export function tattooFixedSourceCapability(body,marker,spell,mode){
  if(!result.ok)return result;const grant=result.grant;
  if(grant.sourceId!==marker.sourceId||grant.item!==marker.item||grant.spell!==marker.spell||grant.castId!==marker.castId||mode==='casting'&&marker.castId===null)return failure('source-mismatch');return {...result,stats:tattooFixedSourceStats(marker,spell)};
 }
+
+export function updateTattooDamageUsage(body,castId,expected,next){const state=bodyState(body),grant=state&&state.tattoos.find(value=>value.castId===castId);if(!grant||grant.outcome!=='cast'||!['active','ended'].includes(grant.phase))return failure('successful-tattoo-cast-required');const updated=updateItemSpellDamageUsage(grant.itemDamageUsage,expected,next);return updated.ok?{ok:true,body:{...state,tattoos:state.tattoos.map(value=>value===grant?{...value,itemDamageUsage:updated.usage}:{...value})}}:updated}
+export function declareTattooDamageEvent(body,castId,declarations){const state=bodyState(body),grant=state&&state.tattoos.find(value=>value.castId===castId);if(!grant||grant.outcome!=='cast'||!['active','ended'].includes(grant.phase))return failure('successful-tattoo-cast-required');const declared=declareItemSpellDamageEvent(grant.itemDamageUsage,declarations);if(!declared.ok)return declared;const before=grant.itemDamageUsage===undefined?{v:1,nextEventId:1,currentEventId:null,events:[],legacyAffinityUsed:false}:grant.itemDamageUsage,updated=updateTattooDamageUsage(state,castId,before,declared.usage);return updated.ok?{...updated,eventId:declared.eventId}:updated}

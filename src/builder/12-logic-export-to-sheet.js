@@ -1,9 +1,10 @@
-import {bindLive} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf,applyWieldScoreCustomization,projectTemporaryCantrips} from "./01-logic-core-helpers.js";
+import {bindLive} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf,applyWieldScoreCustomization,projectTemporaryCantrips,tattooBodyProblems,spellGemCastsProblems} from "./01-logic-core-helpers.js";
+import {spellGemCatalogForRuleset} from "./09c-logic-edition-overlays.js";
 import {withAllPurposeLegacy,DMAP,activeFx,attMax,bgX,byOk,htText,spX,attunementState,itemInUse,itemMagicBonus} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {PACTB14,sdn,subLbl,subLv} from "./08-logic-2014-rules.js";
-import {XFX,allFeats,gxPicks,bgTl,chOf,choices,dmSpells,featSpells,grantTools,hbPickOk,kitTool,sbWx,spClsJ,spFxTo,spItemB,spItemSrc,spLinTrait,spTraitText,subAt,toolChoices} from "./09-logic-feats-and-choices.js";
+import {XFX,collectItemSpellDamageFeatures,wxProvenAbility,allFeats,gxPicks,bgTl,chOf,choices,dmSpells,featSpells,grantTools,hbPickOk,kitTool,sbWx,spClsJ,spFxTo,spItemB,spItemSrc,spLinTrait,spTraitText,subAt,toolChoices} from "./09-logic-feats-and-choices.js";
 import {agOn,invList,luRows,historicalInterventionWishBinding,optAny,pactWeapon,saveNoteRows,wisElse,wmAll,xdmgRows,ycOf} from "./10-logic-v17-additions.js";
 import {fxTargets,fxToggles,ATKC,__set_ATKC,fxCh,fxList,fxOk,fxVal,abilScores,casterParts,classFeatures,clsLv,clsParts,featsOf,keepResKeys,resKey,resMax,slotsFor,slugK,spLists,spellAb} from "./11-logic-derivation.js";
 
@@ -24,13 +25,16 @@ import "./12m-logic-sheet-handlers-tools.js";
 import "./12n-logic-sheet-handlers-turn-damage.js";
 import "./12o-logic-sheet-handlers-cleric-powers.js";
 import "./12p-logic-sheet-handlers-disciple.js";
+import "./12q-logic-sheet-handlers-casting-sources.js";
+import "./12r-logic-sheet-handlers-gem-checks.js";
+import "./12s-logic-sheet-handlers-item-spell-damage.js";
 import "./11c-logic-fx-handlers-sheet.js";
 import {spellRows,classDef,appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef,sheetState,genv} from "./00-env.js";
 bindLive("toSheet",{get:function(){return toSheet;}});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
 /* the pure reads a handler may ask for (state.q): the old code reached them through __R. Functions of 09 and 11 are imported; the modules that load later (13, 14, 16, 20) provide theirs with provideQueries (01a-logic-query-registry.js) */
-provideQueries({itemInUse:itemInUse,itemMagicBonus:itemMagicBonus,byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,getPbAdd:getPbAdd,fxToggles:fxToggles,fxTargets:fxTargets,xfxSenses:function(C){XFX.senses(C)},setProfc:function(C){if(C.profs)QRY.profcSet(C.profs)},spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)QRY.profcSet(profs);return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
+provideQueries({"itemSpellDamageFeatures":collectItemSpellDamageFeatures,itemSpellCatalog:spellGemCatalogForRuleset,wxProvenAbility:wxProvenAbility,classDef:classDef,itemInUse:itemInUse,itemMagicBonus:itemMagicBonus,byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,getPbAdd:getPbAdd,fxToggles:fxToggles,fxTargets:fxTargets,xfxSenses:function(C){XFX.senses(C)},setProfc:function(C){if(C.profs)QRY.profcSet(C.profs)},spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)QRY.profcSet(profs);return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
  itemHtml:function(n,x){if(inTS())return null;setInTS(1);try{return {html:QRY.itemDetail(n,x)}}finally{setInTS(0)}},
  kitTool:kitTool,
  resMax:resMax,resKey:resKey,luRows:luRows,historicalInterventionWishBinding:historicalInterventionWishBinding,slugK:slugK,keepResKeys:keepResKeys,featsOf:featsOf,saveNotesOf:function(f){return saveNoteRows(f)},xdmgRows:xdmgRows,
@@ -40,6 +44,8 @@ provideQueries({itemInUse:itemInUse,itemMagicBonus:itemMagicBonus,byOk:byOk,subL
 /* the inputs of a build: read once, in the order the old code read them (abilScores() settles pbAdd before pb is taken) */
 function ownedWieldCustomization(){const st=sheetState();if(!st||!st.C||st.C.name!==B.name)return {};const id=genv.__sheetId&&genv.__sheetId();if(!B.cid||!id||B.cid!==id)return {};return st.cust||{}}
 function ownedTemporaryCantrips(){const st=sheetState(),id=genv.__sheetId&&genv.__sheetId();return st&&st.C&&st.C.name===B.name&&B.cid&&id===B.cid?st.temporaryCantrips:undefined}
+function stagedTattooBodyValid(staged,current){return !!(staged&&Object.keys(staged).length===3&&staged.character===current.C&&staged.state===current.state&&!tattooBodyProblems(staged.body).length)}
+function ownedItemSpellBodyPresent(options){const st=sheetState(),id=genv.__sheetId&&genv.__sheetId();if(!st||!st.C||st.C.name!==B.name||!B.cid||id!==B.cid)return false;const planned=options&&Object.prototype.hasOwnProperty.call(options,'tattooBodyProjection'),staged=planned&&options.tattooBodyProjection;if(planned&&!stagedTattooBodyValid(staged,st))return false;const body=planned?staged.body:st.state&&st.state.spellwroughtTattoos;return !!((body&&!tattooBodyProblems(body).length&&body.tattoos.length)||(st.state&&st.state.spellGemCasts&&!spellGemCastsProblems(st.state.spellGemCasts).length&&st.state.spellGemCasts.casts.length))}
 function sheetInputs(options){
  syncPickItems();/* fx pick t:"item": chosen items join the inventory before anything reads it */
  const c=CL(),L=B.level,TLv=TL(),a=abilScores(),pb=pbOf(TLv),sp=speciesDef(B.species),custom=B.species==="Custom";
@@ -52,7 +58,7 @@ function sheetInputs(options){
  const EA=effArmor(),ESH=effShield(),EW0=effWeps(wieldScores),BO=baseOf(EA),ar=armorDef(BO.b),mcl=MCL(),ATT=attunementState(),AFX=activeFx(ATT),EAp=itemMagicBonus(EA,BO,AFX),SFX=spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
  const SM={};spellRows().forEach((x) =>{SM[x[0]]=x});
  const temporalState=options&&Object.prototype.hasOwnProperty.call(options,"temporaryCantrips")?options.temporaryCantrips:ownedTemporaryCantrips(),nativeClasses=[...new Set(spellRows().flatMap(x=>x[3]||[]).filter(k=>classDef(k)))],temporaryCantrips=projectTemporaryCantrips(temporalState,spellRows(),nativeClasses,"Artificer");
- return {i:{temporaryCantrips:temporaryCantrips,SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,wieldScores:wieldScores,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,ATT:ATT,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
+ return {i:{itemSpellBodyPresent:ownedItemSpellBodyPresent(options),temporaryCantrips:temporaryCantrips,SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,wieldScores:wieldScores,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,ATT:ATT,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
 /* solid:orchestrator toSheet */
 export function toSheet(options={}){
  /* every field group and class rule is a handler registered in 12c-12l (contract in 12a-logic-sheet-registry.js); this function only builds the inputs and runs the phases */

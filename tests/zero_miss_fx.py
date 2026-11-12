@@ -3054,6 +3054,77 @@ CASES.append(dict(name="NEG U40 future needle metadata preserved without grants"
 future_disciple="(()=>{const table=window.GX.sub,key='Life Domain (2014)',old=table[key];try{table[key]=old.map(e=>e.n==='Disciple of Life'&&e.clericPower?{...e,clericPower:{v:2,profile:'disciple-of-life'}}:e);return __bldSheetFor(structuredClone(__zmB)).discipleOfLife===undefined}finally{table[key]=old}})()"
 CASES.append(dict(name="NEG U40 future Disciple marker does not authorize source",b=dict(rs="2014",cls="Cleric",sub="Life Domain (2014)",level=17,inv=LS),expect=[(future_disciple,True)]))
 
+# U41 native Gem physical projection, optional allocation and scoped caster provenance.
+# Physical metadata is not a learned spell, actor bonus or live casting permission.
+U41_GEMS=[("Spell Gem (Obsidian)","Mending",0),("Spell Gem (Lapis lazuli)","Cure Wounds",1),("Spell Gem (Quartz)","Scorching Ray",2),("Spell Gem (Bloodstone)","Fireball",3),("Spell Gem (Amber)","Polymorph",4),("Spell Gem (Jade)","Greater Restoration",5),("Spell Gem (Topaz)","Heal",6),("Spell Gem (Star ruby)","Resurrection",7),("Spell Gem (Ruby)","Maze",8),("Spell Gem (Diamond)","Wish",9)]
+def u41base(rs,item,attuned=False,eq=False,q=1,**extra):
+    return dict(rs=rs,cls="Fighter",level=1,inv=[dict(n=item,q=q,eq=eq,attuned=attuned)],extra=dict(bg="Soldier (2014)" if rs=="2014" else "Soldier",**extra))
+U41_NO_ACTOR_GRANT="(()=>{const b=structuredClone(__zmB);b.inv=[];delete b.spellGemSources;const c=__bldSheetFor(b);return ['abilities','spellcasting','spells','attacks','saves','saveBonus','profs','speed'].every(key=>JSON.stringify(C[key])===JSON.stringify(c[key]))})()"
+U41_OTHER_RESOURCES="(()=>{const item=__zmB.inv[0].n,b=structuredClone(__zmB);b.inv=b.inv.slice(1);delete b.spellGemSources;const baseline=__bldSheetFor(b);return JSON.stringify((C.res||[]).filter(row=>row.n!==item))===JSON.stringify(baseline.res||[])})()"
+for rs in ["2014","2024"]:
+    for item,spell,level in U41_GEMS:
+        for requested in [False,True]:
+            case=dict(name="Z3 U41 optional attunement "+rs+" "+item+" requested "+str(requested),b=u41base(rs,item,requested),expect=[("C.inv[0].attOptional",1),("C.inv[0].att===undefined",True),("C.inv[0].attunedActive",requested),("C.castingSources.v",1),("C.castingSources.edition",rs),("C.castingSources.classParts.length",0),("C.castingSources.sources.length",0),("C.castingSources.complete",True),(U41_NO_ACTOR_GRANT,True)])
+            if requested:case.update(lo=u41base(rs,item,False),expectWithout=[("C.inv[0].attunedActive",False)],allow=[r"^inv\.0\.(attuned|attunedActive|attuneReason)$"])
+            CASES.append(case)
+        registry=dict(v=1,nextId=2,reservedIds=["gem-1"]);unrecorded=dict(v=1,id="gem-1",contents=None,imbueAvailable=None,reviewRequired=True)
+        legacy=u41base(rs,item);adopted=u41base(rs,item,spellGemSources=registry);adopted["inv"][0]["spellGem"]=unrecorded
+        CASES.append(dict(name="Z3 U41 native adopted physical gem "+rs+" "+item,b=adopted,lo=legacy,expect=[("C.inv[0].spellGem",unrecorded),("C.spellGemSources",registry),("(C.res||[]).filter(r=>r.n==="+json.dumps(item)+").length",0),("C.inv[0].chargeKey===undefined",True),(U41_NO_ACTOR_GRANT,True),(U41_OTHER_RESOURCES,True)],expectWithout=[("C.inv[0].spellGem===undefined",True),("C.spellGemSources===undefined",True),("(C.res||[]).filter(r=>r.n==="+json.dumps(item)+").length",1),("typeof C.inv[0].chargeKey==='string'&&(C.res||[]).find(row=>row.n==="+json.dumps(item)+").k===C.inv[0].chargeKey",True),(U41_OTHER_RESOURCES,True)],allow=[r"^inv\.0\.spellGem\.(v|id|contents|imbueAvailable|reviewRequired)$",r"^inv\.0\.chargeKey$",r"^spellGemSources\.(v|nextId|reservedIds\.0)$",r"^res\.1\.(k|n|tag|max|auto|f|item|invIndex)$",r"^res\.2\.(k|n|tag|max|reset|auto)$"]))
+        loaded=dict(v=1,id="gem-1",contents=dict(spell=spell,level=level),imbueAvailable=False,loadId="sgl-1");b=u41base(rs,item,spellGemSources=registry);b["inv"][0]["spellGem"]=loaded
+        CASES.append(dict(name="Z3 U41 native loaded physical gem "+rs+" "+item,b=b,lo=adopted,expect=[("C.inv[0].spellGem",loaded),("C.spellGemSources",registry),("(C.res||[]).filter(row=>row.n==="+json.dumps(item)+").length",0),(U41_NO_ACTOR_GRANT,True),(U41_OTHER_RESOURCES,True),("(C.spells||[]).some(row=>Object.prototype.hasOwnProperty.call(row,'fixedSpellSource'))",False)],expectWithout=[("C.inv[0].spellGem",unrecorded),(U41_OTHER_RESOURCES,True)],allow=[r"^inv\.0\.spellGem\.contents(?:\.(spell|level))?$",r"^inv\.0\.spellGem\.(imbueAvailable|reviewRequired|loadId)$"]))
+for rs in ["2014","2024"]:
+    missing=u41base(rs,"Spell Gem (Quartz)",eq=True);del missing["inv"][0]["attuned"]
+    CASES.append(dict(name="NEG U41 equipped legacy Gem does not infer optional attunement "+rs,b=missing,expect=[("C.inv[0].attOptional",1),("C.inv[0].attunedActive",False),("C.inv[0].att===undefined",True),(U41_NO_ACTOR_GRANT,True)]))
+    zero=u41base(rs,"Spell Gem (Quartz)",attuned=True,q=0)
+    CASES.append(dict(name="NEG U41 zero quantity Gem grants no optional allocation or caster capability "+rs,b=zero,expect=[("C.inv[0].attunedActive",False),("C.castingSources===undefined",True),(U41_NO_ACTOR_GRANT,True)]))
+    for registry in [dict(v=2,opaque={"keep":[1,2]}),dict(v=1,nextId=1,reservedIds=["gem-9"])]:
+        raw=dict(v=2,id="future",opaque={"contents":"preserve","use":False});b=u41base(rs,"Spell Gem (Quartz)",spellGemSources=registry);b["inv"][0]["spellGem"]=raw
+        CASES.append(dict(name="NEG U41 unsupported Gem registry suppresses legacy pool without authorizing source "+rs+" "+json.dumps(registry,sort_keys=True),b=b,expect=[("C.inv[0].spellGem",raw),("C.spellGemSources",registry),("(C.res||[]).filter(r=>r.n==='Spell Gem (Quartz)').length",0),(U41_NO_ACTOR_GRANT,True)]))
+    absent=u41base(rs,"Spell Gem (Quartz)")
+    CASES.append(dict(name="Z3 U41 absent registry retains legacy projection "+rs,b=absent,expect=[("C.spellGemSources===undefined",True),("(C.res||[]).filter(r=>r.n==='Spell Gem (Quartz)').length",1),(U41_NO_ACTOR_GRANT,True)]))
+for rs in ["2014","2024"]:
+    ordinary=[dict(n=n,q=1,eq=True,attuned=True) for n in ["Ring of Protection","Cloak of Protection","Amulet of Health"]]
+    crowded=u41base(rs,"Spell Gem (Quartz)",attuned=True);crowded["inv"]=ordinary+crowded["inv"]
+    CASES.append(dict(name="NEG U41 optional Gem obeys native allocated capacity "+rs,b=crowded,expect=[("C.inv.slice(0,3).every(row=>row.attunedActive===true)",True),("C.inv[3].attuned",True),("C.inv[3].attOptional",1),("C.inv[3].attunedActive",False),("C.inv[3].attuneReason","limit")]))
+    priority=u41base(rs,"Spell Gem (Quartz)",attuned=True);priority["inv"]+=ordinary
+    CASES.append(dict(name="Z3 U41 optional Gem consumes a native allocation slot "+rs,b=priority,expect=[("C.inv[0].attunedActive",True),("C.inv.slice(0,3).every(row=>row.attunedActive===true)",True),("C.inv[3].attunedActive",False),("C.inv[3].attuneReason","limit")]))
+    CASES.append(dict(name="Z3 U41 same ability multiclass source provenance "+rs,b=dict(rs=rs,cls="Wizard",level=10,base={"INT":16},inv=[dict(n="Spell Gem (Amber)",q=1,eq=False,attuned=False)],extra={"bg":"Soldier (2014)" if rs=="2014" else "Soldier","mc":[dict(cls="Artificer",lv=10)]}),expect=[("C.castingSources.edition",rs),("C.castingSources.classParts.map(p=>p.key).sort().join()","Artificer,Wizard"),("C.castingSources.classParts.every(p=>p.ability==='INT'&&p.level===10)",True),("C.castingSources.sources.filter(p=>p.kind==='class').map(p=>p.key).sort().join()","Artificer,Wizard"),("C.castingSources.complete",True),("C.spellcasting.by===undefined",True)]))
+
+for rs in ["2014","2024"]:
+    for cls in ["Paladin","Ranger"]:
+        active=rs=="2024"
+        CASES.append(dict(name="Z3 U41 class list is separate from active spellcasting "+cls+" "+rs,b=dict(rs=rs,cls=cls,level=1,inv=[dict(n="Spell Gem (Lapis lazuli)",q=1,eq=False,attuned=False)],extra={"bg":"Soldier (2014)" if rs=="2014" else "Soldier"}),expect=[("C.castingSources.classParts.length",1),("C.castingSources.classParts[0].key",cls),("C.castingSources.classParts[0].list",cls),("C.castingSources.classParts[0].spellcasting",active),("C.castingSources.sources.filter(source=>source.kind==='class').length",1 if active else 0),("C.castingSources.complete",True)]))
+
+for rs in ["2014","2024"]:
+    CASES.append(dict(name="Z3 U41 generic Gem check uses only native legacy Jack of All Trades "+rs,b=dict(rs=rs,cls="Bard",level=2,inv=[dict(n="Spell Gem (Quartz)",q=1,eq=False,attuned=False)],extra={"bg":"Soldier (2014)" if rs=="2014" else "Soldier"}),expect=[("C.castingSources.checkBonuses.rows.filter(row=>row.formula==='halfPb').map(row=>row.ability).sort().join()","CHA,CON,DEX,INT,STR,WIS" if rs=="2014" else ""),("C.castingSources.checkBonuses.reviewAbilities.length",0)]))
+
+CASES.append(dict(name="NEG U41 no Gem has no casting capability and cannot be inferred noncaster",b=dict(rs="2024",cls="Wizard",level=5,inv=LS,extra={"bg":"Soldier"}),expect=[("C.castingSources===undefined",True)]))
+CASES.append(dict(name="NEG U41 unknown Gem name gains no optional attunement or casting capability",b=u41base("2024","Spell Gem (Wood)",attuned=True),expect=[("C.inv[0].attOptional===undefined",True),("C.castingSources===undefined",True)]))
+
+# U41 shared native item-spell damage eligibility is provenance, not a damage grant.
+for rs in ["2014","2024"]:
+    gem=[dict(n="Spell Gem (Amber)",q=1,eq=False,attuned=False)]
+    for variant,changes,present in [("admitted",{},True),("missing invocation",{"invocation":[]},False),("unknown cantrip",{"sp":[]},False),("unselected current cantrip",{"invab":[]},rs=="2014")]:
+        choices={"invocation":["Agonizing Blast"],"invab":["Eldritch Blast"]}
+        extra={"sp":["Eldritch Blast"],"bg":"Soldier (2014)" if rs=="2014" else "Soldier"}
+        for key,value in changes.items():
+            (extra if key=="sp" else choices)[key]=value
+        feature=dict(kind="agonizing-blast",source=dict(kind="cls",owner="Warlock",classKey="Warlock",level=2,pre="",edition=rs),spells=["Eldritch Blast"])
+        CASES.append(dict(name="Z3 U41 native item Agonizing provenance "+rs+" "+variant,b=dict(rs=rs,cls="Warlock",level=2,ch=choices,extra=extra,inv=gem),expect=[("C.itemSpellDamageFeatures",dict(v=1,features=[feature] if present else []))]))
+    domain="Draconic Bloodline" if rs=="2014" else "Draconic Sorcery"
+    key="p3opt" if rs=="2014" else "p6opt"
+    choice="Red (Fire)" if rs=="2014" else "Fire"
+    for variant,level,selected,items,present in [("admitted",6,choice,gem,True),("below native level",5,choice,gem,False),("unknown native choice",6,"Invented (Fire)",gem,False),("no item scope",6,choice,LS,None)]:
+        feature=dict(kind="elemental-affinity",source=dict(kind="sub",owner=domain,classKey="Sorcerer",level=6,pre="",edition=rs),type="Fire")
+        expected=[("C.itemSpellDamageFeatures===undefined",True)] if present is None else [("C.itemSpellDamageFeatures",dict(v=1,features=[feature] if present else []))]
+        CASES.append(dict(name="Z3 U41 native item Affinity provenance "+rs+" "+variant,b=dict(rs=rs,cls="Sorcerer",sub=domain,level=level,ch={key:selected},extra={"bg":"Soldier (2014)" if rs=="2014" else "Soldier"},inv=items),expect=expected))
+
+# A native Pact of the Tome can make an off-list cantrip a known Warlock cantrip.
+for active in [True,False]:
+    invocations=["Agonizing Blast"]+(["Pact of the Tome"] if active else [])
+    feature=dict(kind="agonizing-blast",source=dict(kind="cls",owner="Warlock",classKey="Warlock",level=2,pre="",edition="2024"),spells=["Fire Bolt"])
+    CASES.append(dict(name="Z3 U41 native item Agonizing Tome "+str(active),b=dict(rs="2024",cls="Warlock",level=2,ch={"invocation":invocations,"invab":["Fire Bolt"],"tomeC":["Fire Bolt"]},extra={"sp":[],"bg":"Soldier"},inv=[dict(n="Spell Gem (Amber)",q=1,eq=False,attuned=False)]),expect=[("C.itemSpellDamageFeatures",dict(v=1,features=[feature] if active else []))]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;

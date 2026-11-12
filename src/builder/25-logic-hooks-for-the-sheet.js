@@ -199,4 +199,4 @@ function mutateRiddenVehicle(name,owner,change,occ,expected,beforeCommit,split){
 genv.__bldSetRiddenVehicle=function(name,owner,change,occ,expected,beforeCommit=undefined){return mutateRiddenVehicle(name,owner,change,occ,expected,beforeCommit,false)};
 genv.__bldSplitRiddenVehicle=function(name,owner,change,occ,expected,beforeCommit=undefined){return mutateRiddenVehicle(name,owner,change,occ,expected,beforeCommit,true)};
 // Shared strict physical-source transaction primitives; callers must revalidate before every write.
-export {borrowedBound,borrowedSignature,borrowedCurrent,borrowedBefore,borrowedProjection,toolFormWriteGuard,withB};
+export {borrowedBound,borrowedSignature,borrowedCurrent,borrowedBefore,borrowedProjection,toolFormWriteGuard,withB,wieldProjectionChanged};

@@ -124,1429 +124,1489 @@
    "layer": "ui",
    "order": 30
   },
-  "app/09-ui-hit-points-playbar-death-saves.js": {
+  "app/08l-ui-spell-gem-casting.js": {
    "layer": "ui",
    "order": 31
   },
-  "app/10-ui-conditions.js": {
+  "app/09-ui-hit-points-playbar-death-saves.js": {
    "layer": "ui",
    "order": 32
   },
-  "app/11-ui-breakdown.js": {
+  "app/10-ui-conditions.js": {
    "layer": "ui",
    "order": 33
   },
-  "app/12-ui-bottom-sheet-modal.js": {
+  "app/11-ui-breakdown.js": {
    "layer": "ui",
    "order": 34
   },
-  "app/13-ui-detail-cards.js": {
+  "app/12-ui-bottom-sheet-modal.js": {
    "layer": "ui",
    "order": 35
   },
-  "app/13b-ui-detail-spell-targets-render.js": {
+  "app/13-ui-detail-cards.js": {
    "layer": "ui",
    "order": 36
   },
-  "app/14-ui-editor.js": {
+  "app/13b-ui-detail-spell-targets-render.js": {
    "layer": "ui",
    "order": 37
   },
-  "app/15-logic-roster-backup-files-snapshots.js": {
-   "layer": "logic",
+  "app/14-ui-editor.js": {
+   "layer": "ui",
    "order": 38
   },
-  "app/15b-logic-backup.js": {
+  "app/15-logic-roster-backup-files-snapshots.js": {
    "layer": "logic",
    "order": 39
   },
-  "app/15c-logic-file-state-compress.js": {
+  "app/15b-logic-backup.js": {
    "layer": "logic",
    "order": 40
   },
-  "app/15d-logic-snapshots-character-files.js": {
+  "app/15c-logic-file-state-compress.js": {
    "layer": "logic",
    "order": 41
   },
-  "app/16-logic-import-chat-text-and-build-files.js": {
+  "app/15d-logic-snapshots-character-files.js": {
    "layer": "logic",
    "order": 42
   },
+  "app/16-logic-import-chat-text-and-build-files.js": {
+   "layer": "logic",
+   "order": 43
+  },
   "app/16b-data-whats-new.js": {
    "layer": "data",
-   "order": 43
+   "order": 44
   },
   "app/16c-ui-whats-new-and-hooks.js": {
    "layer": "ui",
-   "order": 44
+   "order": 45
   },
   "app/17-logic-tab-sync-and-test-hooks.js": {
    "layer": "logic",
-   "order": 45
+   "order": 46
   },
   "app/18-ui-header-and-more-menu.js": {
    "layer": "ui",
-   "order": 46
+   "order": 47
   },
   "app/19-ui-global-click-delegation.js": {
    "layer": "ui",
-   "order": 47
+   "order": 48
   },
   "app/20-ui-portrait.js": {
    "layer": "ui",
-   "order": 48
+   "order": 49
   },
   "app/21-ui-tabs-pager.js": {
    "layer": "ui",
-   "order": 49
+   "order": 50
   },
   "app/21b-ui-weapon-forms.js": {
    "layer": "ui",
-   "order": 50
+   "order": 51
   },
   "app/21c-ui-wield-minimum.js": {
    "layer": "ui",
-   "order": 51
+   "order": 52
   },
   "app/21d-logic-wield-refresh.js": {
    "layer": "logic",
-   "order": 52
+   "order": 53
   },
   "app/21e-ui-carpet-vehicles.js": {
    "layer": "ui",
-   "order": 53
+   "order": 54
   },
   "app/21f-ui-temporary-cantrip.js": {
    "layer": "ui",
-   "order": 54
+   "order": 55
   },
   "app/21h-ui-spellwrought-needle.js": {
    "layer": "ui",
-   "order": 55
-  },
-  "app/21g-ui-ridden-vehicles.js": {
-   "layer": "ui",
    "order": 56
   },
-  "app/21a-ui-attunement.js": {
+  "app/21i-ui-spell-gem.js": {
    "layer": "ui",
    "order": 57
   },
-  "app/22-ui-spell-data-and-slots.js": {
+  "app/21g-ui-ridden-vehicles.js": {
    "layer": "ui",
    "order": 58
   },
-  "app/23-ui-uses-items-coins-rest-spell-dc.js": {
+  "app/21a-ui-attunement.js": {
    "layer": "ui",
    "order": 59
   },
-  "app/23b-ui-items-containers.js": {
+  "app/22-ui-spell-data-and-slots.js": {
    "layer": "ui",
    "order": 60
   },
-  "app/23c-ui-coins.js": {
+  "app/23-ui-uses-items-coins-rest-spell-dc.js": {
    "layer": "ui",
    "order": 61
   },
-  "app/23d-ui-rest.js": {
+  "app/23b-ui-items-containers.js": {
    "layer": "ui",
    "order": 62
   },
-  "app/23e-ui-spells-dc.js": {
+  "app/23c-ui-coins.js": {
    "layer": "ui",
    "order": 63
   },
-  "app/23f-ui-spell-source-rolls.js": {
+  "app/23d-ui-rest.js": {
    "layer": "ui",
    "order": 64
   },
-  "app/24-ui-manage-spells.js": {
+  "app/23e-ui-spells-dc.js": {
    "layer": "ui",
    "order": 65
   },
-  "app/25-ui-settings-appearance.js": {
+  "app/23f-ui-spell-source-rolls.js": {
    "layer": "ui",
    "order": 66
   },
-  "app/26-ui-customize.js": {
+  "app/24-ui-manage-spells.js": {
    "layer": "ui",
    "order": 67
   },
-  "app/27-ui-party-search-commands-library.js": {
+  "app/25-ui-settings-appearance.js": {
    "layer": "ui",
    "order": 68
   },
-  "app/27b-ui-library.js": {
+  "app/26-ui-customize.js": {
    "layer": "ui",
    "order": 69
   },
-  "app/27d-ui-library-search-open.js": {
+  "app/27-ui-party-search-commands-library.js": {
    "layer": "ui",
    "order": 70
   },
-  "app/27c-ui-report-pins.js": {
+  "app/27b-ui-library.js": {
    "layer": "ui",
    "order": 71
   },
-  "app/28-ui-bastion.js": {
+  "app/27d-ui-library-search-open.js": {
    "layer": "ui",
    "order": 72
   },
-  "app/29-ui-ddb-look.js": {
+  "app/27c-ui-report-pins.js": {
    "layer": "ui",
    "order": 73
   },
-  "app/29b-ui-creatures-extras.js": {
+  "app/28-ui-bastion.js": {
    "layer": "ui",
    "order": 74
   },
-  "app/29c-ui-tool-forms.js": {
+  "app/29-ui-ddb-look.js": {
    "layer": "ui",
    "order": 75
   },
-  "app/29c-data-ddb-icons.js": {
-   "layer": "data",
+  "app/29b-ui-creatures-extras.js": {
+   "layer": "ui",
    "order": 76
   },
-  "app/30-ui-icons.js": {
+  "app/29c-ui-tool-forms.js": {
    "layer": "ui",
    "order": 77
   },
+  "app/29c-data-ddb-icons.js": {
+   "layer": "data",
+   "order": 78
+  },
+  "app/30-ui-icons.js": {
+   "layer": "ui",
+   "order": 79
+  },
   "app/31-ui-tour-and-focus.js": {
    "layer": "ui",
-   "order": 78
+   "order": 80
   },
   "app/32-logic-play-undo-actions.js": {
    "layer": "logic",
-   "order": 79
+   "order": 81
   },
   "app/32b-logic-play-concentration-casting.js": {
    "layer": "logic",
-   "order": 80
+   "order": 82
   },
   "app/32c-ui-object-repair.js": {
    "layer": "ui",
-   "order": 81
+   "order": 83
   },
   "app/32c-logic-play-temp-features-ammo.js": {
    "layer": "logic",
-   "order": 82
+   "order": 84
   },
   "app/32d-logic-play-hp-rest-recovery.js": {
    "layer": "logic",
-   "order": 83
+   "order": 85
   },
   "app/32f-logic-divine-intervention.js": {
    "layer": "logic",
-   "order": 84
+   "order": 86
   },
   "app/32g-logic-spellwrought-tattoo.js": {
    "layer": "logic",
-   "order": 85
+   "order": 87
+  },
+  "app/32h-logic-spell-gem.js": {
+   "layer": "logic",
+   "order": 88
   },
   "app/33-logic-play-rage-conditions.js": {
    "layer": "logic",
-   "order": 86
+   "order": 89
   },
   "app/34-ui-situations.js": {
    "layer": "ui",
-   "order": 87
+   "order": 90
   },
   "app/34b-ui-combat-effects-modes.js": {
    "layer": "ui",
-   "order": 88
+   "order": 91
   },
   "app/34c-ui-experience-journal-combat-view.js": {
    "layer": "ui",
-   "order": 89
+   "order": 92
   },
   "app/35-ui-combo.js": {
    "layer": "ui",
-   "order": 90
+   "order": 93
   },
   "app/36-ui-printable-sheet.js": {
    "layer": "ui",
-   "order": 91
+   "order": 94
   },
   "app/37a-ui-pdf-model.js": {
    "layer": "ui",
-   "order": 92
+   "order": 95
   },
   "app/37-ui-pdf-export-hold-slide-confirm.js": {
    "layer": "ui",
-   "order": 93
+   "order": 96
   },
   "app/38-boot-init.js": {
    "layer": "-",
-   "order": 94
+   "order": 97
   },
   "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js": {
    "layer": "ui",
-   "order": 95
+   "order": 98
   },
   "app/40-ui-segments-notes-swipe-motion-panels.js": {
    "layer": "ui",
-   "order": 96
+   "order": 99
   },
   "app/40b-ui-notes-description.js": {
    "layer": "ui",
-   "order": 97
+   "order": 100
   },
   "app/40c-ui-motion-sheet-morph.js": {
    "layer": "ui",
-   "order": 98
+   "order": 101
   },
   "app/40d-ui-overlays-context-dock.js": {
    "layer": "ui",
-   "order": 99
+   "order": 102
   },
   "app/40e-ui-reorder-drag.js": {
    "layer": "ui",
-   "order": 100
+   "order": 103
   },
   "app/40f-ui-tabs-spring.js": {
    "layer": "ui",
-   "order": 101
+   "order": 104
   },
   "app/41-ui-edit-mode.js": {
    "layer": "ui",
-   "order": 102
+   "order": 105
   },
   "app/42-logic-pwa-qr-icons-wallet.js": {
    "layer": "logic",
-   "order": 103
+   "order": 106
   },
   "app/43-logic-cloud-sync.js": {
    "layer": "logic",
-   "order": 104
+   "order": 107
   },
   "app/44-ui-friends.js": {
    "layer": "ui",
-   "order": 105
+   "order": 108
   },
   "app/45-learn-bridge.js": {
    "layer": "-",
-   "order": 106
+   "order": 109
   },
   "app/46-logic-receipts.js": {
    "layer": "logic",
-   "order": 107
+   "order": 110
   },
   "app/47-logic-time-machine.js": {
    "layer": "logic",
-   "order": 108
+   "order": 111
   },
   "app/48-logic-sync-merge.js": {
    "layer": "logic",
-   "order": 109
+   "order": 112
   },
   "app/49-logic-status-and-odds.js": {
    "layer": "logic",
-   "order": 110
+   "order": 113
   },
   "app/50-logic-reverse-builder.js": {
    "layer": "logic",
-   "order": 111
+   "order": 114
   },
   "app/51-ui-table-help.js": {
    "layer": "ui",
-   "order": 112
+   "order": 115
   },
   "app/52-tg-bridge.js": {
    "layer": "-",
-   "order": 113
+   "order": 116
   },
   "app/53-logic-number-map.js": {
    "layer": "logic",
-   "order": 114
+   "order": 117
   },
   "app/54-dev-fps-probe.js": {
    "layer": "-",
-   "order": 115
+   "order": 118
   },
   "app/99-ui-backup-reminder-handlers.js": {
    "layer": "ui",
-   "order": 116
+   "order": 119
   },
   "app/main.js": {
    "layer": "-",
-   "order": 117
+   "order": 120
   },
   "fx/00-fx-env.js": {
    "layer": "ui",
-   "order": 118
+   "order": 121
   },
   "fx/00b-fx-shared.js": {
    "layer": "ui",
-   "order": 119
+   "order": 122
   },
   "fx/01-core-router-and-switch.js": {
    "layer": "ui",
-   "order": 120
+   "order": 123
   },
   "fx/02-micro-interactions.js": {
    "layer": "ui",
-   "order": 121
+   "order": 124
   },
   "fx/02b-micro-interactions-2.js": {
    "layer": "ui",
-   "order": 122
+   "order": 125
   },
   "fx/03-f1-card-light-and-morph.js": {
    "layer": "ui",
-   "order": 123
+   "order": 126
   },
   "fx/04-f2-odometer-hp-bar-scrub.js": {
    "layer": "ui",
-   "order": 124
+   "order": 127
   },
   "fx/05-f3-indicator-dock-toast.js": {
    "layer": "ui",
-   "order": 125
+   "order": 128
   },
   "fx/06-f4-reveal-on-scroll.js": {
    "layer": "ui",
-   "order": 126
+   "order": 129
   },
   "fx/07-f5-moments.js": {
    "layer": "ui",
-   "order": 127
+   "order": 130
   },
   "fx/08-round6.js": {
    "layer": "ui",
-   "order": 128
+   "order": 131
   },
   "fx/09-wow-pack.js": {
    "layer": "ui",
-   "order": 129
+   "order": 132
   },
   "fx/10-x-pack.js": {
    "layer": "ui",
-   "order": 130
+   "order": 133
   },
   "fx/11-d-pack.js": {
    "layer": "ui",
-   "order": 131
+   "order": 134
   },
   "fx/12-mini-window-v2.js": {
    "layer": "ui",
-   "order": 132
+   "order": 135
   },
   "fx/13-class-colour-hp-ring.js": {
    "layer": "ui",
-   "order": 133
+   "order": 136
   },
   "fx/14-w-pack.js": {
    "layer": "ui",
-   "order": 134
+   "order": 137
   },
   "fx/15-y-pack.js": {
    "layer": "ui",
-   "order": 135
+   "order": 138
   },
   "fx/16-z-pack-dice-sound-hover.js": {
    "layer": "ui",
-   "order": 136
+   "order": 139
   },
   "fx/16b-z-pack-dice-sound-hover-2.js": {
    "layer": "ui",
-   "order": 137
+   "order": 140
   },
   "fx/17-l-pack-webgl-sky.js": {
    "layer": "ui",
-   "order": 138
+   "order": 141
   },
   "fx/18-m-pack-rolls-concentration.js": {
    "layer": "ui",
-   "order": 139
+   "order": 142
   },
   "fx/19-g-pack-cinematic.js": {
    "layer": "ui",
-   "order": 140
+   "order": 143
   },
   "fx/20-k-pack-character-colour-icon.js": {
    "layer": "ui",
-   "order": 141
+   "order": 144
   },
   "fx/21-connected-home-sheet.js": {
    "layer": "ui",
-   "order": 142
+   "order": 145
   },
   "fx/22-home-hero.js": {
    "layer": "ui",
-   "order": 143
+   "order": 146
   },
   "fx/24-class-art.js": {
    "layer": "ui",
-   "order": 144
+   "order": 147
   },
   "fx/25-dice3d.js": {
    "layer": "ui",
-   "order": 145
+   "order": 148
   },
   "fx/26-tab-notch.js": {
    "layer": "ui",
-   "order": 146
+   "order": 149
   },
   "fx/27-blend-sheet.js": {
    "layer": "ui",
-   "order": 147
+   "order": 150
   },
   "boot/deferred-loader.js": {
    "layer": "-",
-   "order": 148
+   "order": 151
   },
   "data/00-data-env.js": {
    "layer": "data",
-   "order": 149
+   "order": 152
   },
   "data/db1-phb-skills-species-backgrounds-feats-weapons.js": {
    "layer": "data",
-   "order": 150
+   "order": 153
   },
   "data/db2-phb-classes-a.js": {
    "layer": "data",
-   "order": 151
+   "order": 154
   },
   "data/db3-phb-classes-b.js": {
    "layer": "data",
-   "order": 152
+   "order": 155
   },
   "data/fx-B2-subclass.js": {
    "layer": "data",
-   "order": 153
+   "order": 156
   },
   "data/cffull-class-feature-text.js": {
    "layer": "data",
-   "order": 154
+   "order": 157
   },
   "data/subfull-subclass-feature-text.js": {
    "layer": "data",
-   "order": 155
+   "order": 158
   },
   "data/spfull-spell-text.js": {
    "layer": "data",
-   "order": 156
+   "order": 159
   },
   "data/spells-spell-list.js": {
    "layer": "data",
-   "order": 157
+   "order": 160
   },
   "data/dmgi-magic-items-dmg2024.js": {
    "layer": "data",
-   "order": 158
+   "order": 161
   },
   "data/itsp-spells-from-items.js": {
    "layer": "data",
-   "order": 159
+   "order": 162
   },
   "data/db4/01-languages-auto-spells-grants-prices-gear.js": {
    "layer": "data",
-   "order": 160
+   "order": 163
   },
   "data/db4/02-limited-uses-damage-rows-save-notes.js": {
    "layer": "data",
-   "order": 161
+   "order": 164
   },
   "data/db4/03-lifestyle-containers-printed-pages.js": {
    "layer": "data",
-   "order": 162
+   "order": 165
   },
   "data/db4/04-creature-stat-blocks.js": {
    "layer": "data",
-   "order": 163
+   "order": 166
   },
   "data/db4/05-gifts-weights-quick-build-bastions.js": {
    "layer": "data",
-   "order": 164
+   "order": 167
   },
   "data/db4/06-tools-proficiencies-packs-kits.js": {
    "layer": "data",
-   "order": 165
+   "order": 168
   },
   "data/db4/07-actions.js": {
    "layer": "data",
-   "order": 166
+   "order": 169
   },
   "data/db4/08-mpmm-species.js": {
    "layer": "data",
-   "order": 167
+   "order": 170
   },
   "data/efa-eberron-forge-of-the-artificer.js": {
    "layer": "data",
-   "order": 168
+   "order": 171
   },
   "data/wotc01-sources-2025-feats-boons-spells.js": {
    "layer": "data",
-   "order": 169
+   "order": 172
   },
   "data/wotc02-subclasses-2025.js": {
    "layer": "data",
-   "order": 170
+   "order": 173
   },
   "data/wotc03-magic-items-2025.js": {
    "layer": "data",
-   "order": 171
+   "order": 174
   },
   "data/wotc04-species-lorwyn-ravenloft.js": {
    "layer": "data",
-   "order": 172
+   "order": 175
   },
   "data/wotc05-backgrounds-2025.js": {
    "layer": "data",
-   "order": 173
+   "order": 176
   },
   "data/wotc06-gear-2024.js": {
    "layer": "data",
-   "order": 174
+   "order": 177
   },
   "data/wotc07-feats-2014.js": {
    "layer": "data",
-   "order": 175
+   "order": 178
   },
   "data/wotc08-backgrounds-2014.js": {
    "layer": "data",
-   "order": 176
+   "order": 179
   },
   "data/wotc09-subclasses-2014.js": {
    "layer": "data",
-   "order": 177
+   "order": 180
   },
   "data/wotc10-species-2014.js": {
    "layer": "data",
-   "order": 178
+   "order": 181
   },
   "data/wotc11-magic-items-2014.js": {
    "layer": "data",
-   "order": 179
+   "order": 182
   },
   "data/wotc12-spells-2014.js": {
    "layer": "data",
-   "order": 180
+   "order": 183
   },
   "data/wotc13-creature-stat-blocks.js": {
    "layer": "data",
-   "order": 181
+   "order": 184
   },
   "data/wotc14-gear-2014.js": {
    "layer": "data",
-   "order": 182
+   "order": 185
   },
   "data/wotc15-class-options-2014.js": {
    "layer": "data",
-   "order": 183
+   "order": 186
   },
   "data/tp01-tdcsr.js": {
    "layer": "data",
-   "order": 184
+   "order": 187
   },
   "data/tp02-tdcg.js": {
    "layer": "data",
-   "order": 185
+   "order": 188
   },
   "data/tp03-tvss.js": {
    "layer": "data",
-   "order": 186
+   "order": 189
   },
   "data/tp04-tee24.js": {
    "layer": "data",
-   "order": 187
+   "order": 190
   },
   "data/tp05-tghp.js": {
    "layer": "data",
-   "order": 188
+   "order": 191
   },
   "data/tp06-tsgeh.js": {
    "layer": "data",
-   "order": 189
+   "order": 192
   },
   "data/tp07-tsae.js": {
    "layer": "data",
-   "order": 190
+   "order": 193
   },
   "data/tp08-tghg.js": {
    "layer": "data",
-   "order": 191
+   "order": 194
   },
   "data/tp09-tshl.js": {
    "layer": "data",
-   "order": 192
+   "order": 195
   },
   "data/tp10-tssm.js": {
    "layer": "data",
-   "order": 193
+   "order": 196
   },
   "data/tp11-tsdd.js": {
    "layer": "data",
-   "order": 194
+   "order": 197
   },
   "data/tp12-tsgs.js": {
    "layer": "data",
-   "order": 195
+   "order": 198
   },
   "data/tp13-tsdm.js": {
    "layer": "data",
-   "order": 196
+   "order": 199
   },
   "data/tp14-tkdm.js": {
    "layer": "data",
-   "order": 197
+   "order": 200
   },
   "data/tp15-thhw.js": {
    "layer": "data",
-   "order": 198
+   "order": 201
   },
   "data/fx-C-feat.js": {
    "layer": "data",
-   "order": 199
+   "order": 202
   },
   "data/fx-E-feat.js": {
    "layer": "data",
-   "order": 200
+   "order": 203
   },
   "data/q00-src.js": {
    "layer": "data",
-   "order": 201
+   "order": 204
   },
   "data/q09-hbindex.js": {
    "layer": "data",
-   "order": 202
+   "order": 205
   },
   "data/q20-hbnames.js": {
    "layer": "data",
-   "order": 203
+   "order": 206
   },
   "data/q21-spellref.js": {
    "layer": "data",
-   "order": 204
+   "order": 207
   },
   "data/q22-textfix.js": {
    "layer": "data",
-   "order": 205
+   "order": 208
   },
   "data/q01-reward.js": {
    "layer": "data",
-   "order": 206
+   "order": 209
   },
   "data/q02-deity.js": {
    "layer": "data",
-   "order": 207
+   "order": 210
   },
   "data/q03-loot.js": {
    "layer": "data",
-   "order": 208
+   "order": 211
   },
   "data/q04-recipe.js": {
    "layer": "data",
-   "order": 209
+   "order": 212
   },
   "data/q05-charopt.js": {
    "layer": "data",
-   "order": 210
+   "order": 213
   },
   "data/q05-cult.js": {
    "layer": "data",
-   "order": 211
+   "order": 214
   },
   "data/q06-disease.js": {
    "layer": "data",
-   "order": 212
+   "order": 215
   },
   "data/q06-language.js": {
    "layer": "data",
-   "order": 213
+   "order": 216
   },
   "data/q08-deck.js": {
    "layer": "data",
-   "order": 214
+   "order": 217
   },
   "data/q08-hazard.js": {
    "layer": "data",
-   "order": 215
+   "order": 218
   },
   "data/q08-object.js": {
    "layer": "data",
-   "order": 216
+   "order": 219
   },
   "data/q08-psionic.js": {
    "layer": "data",
-   "order": 217
+   "order": 220
   },
   "data/q08-table.js": {
    "layer": "data",
-   "order": 218
+   "order": 221
   },
   "data/q08-vehicle.js": {
    "layer": "data",
-   "order": 219
+   "order": 222
   },
   "data/q10-fluff.js": {
    "layer": "data",
-   "order": 220
+   "order": 223
   },
   "data/q11-img.js": {
    "layer": "data",
-   "order": 221
+   "order": 224
   },
   "data/q12-crimg.js": {
    "layer": "data",
-   "order": 222
+   "order": 225
   },
   "data/q19-img-more.js": {
    "layer": "data",
-   "order": 223
+   "order": 226
   },
   "data/q12-rule.js": {
    "layer": "data",
-   "order": 224
+   "order": 227
   },
   "data/q13-rule-gaps.js": {
    "layer": "data",
-   "order": 225
+   "order": 228
   },
   "data/q15-books.js": {
    "layer": "data",
-   "order": 226
+   "order": 229
   },
   "data/q18-life.js": {
    "layer": "data",
-   "order": 227
+   "order": 230
   },
   "data/q16-items-gap.js": {
    "layer": "data",
-   "order": 228
+   "order": 231
   },
   "data/q17-class-gap.js": {
    "layer": "data",
-   "order": 229
+   "order": 232
   },
   "data/q14-optfeat.js": {
    "layer": "data",
-   "order": 230
+   "order": 233
   },
   "data/q12-facility.js": {
    "layer": "data",
-   "order": 231
+   "order": 234
   },
   "data/q23-gapfill.js": {
    "layer": "data",
-   "order": 232
+   "order": 235
   },
   "data/q24-gapfill2.js": {
    "layer": "data",
-   "order": 233
+   "order": 236
   },
   "data/q07-lazy-stub.js": {
    "layer": "data",
-   "order": 234
+   "order": 237
   },
   "data/q07-bestiary.js": {
    "layer": "data",
-   "order": 235
+   "order": 238
   },
   "data/hbpack-builtin-homebrew.js": {
    "layer": "data",
-   "order": 236
+   "order": 239
   },
   "data/fx-A-class-species.js": {
    "layer": "data",
-   "order": 237
+   "order": 240
   },
   "data/fx-B1-subclass.js": {
    "layer": "data",
-   "order": 238
+   "order": 241
   },
   "data/fx-F-sub.js": {
    "layer": "data",
-   "order": 239
+   "order": 242
   },
   "data/fx-G-engine.js": {
    "layer": "data",
-   "order": 240
+   "order": 243
   },
   "data/fx-H-audit.js": {
    "layer": "data",
-   "order": 241
+   "order": 244
   },
   "data/fx-L1.js": {
    "layer": "data",
-   "order": 242
+   "order": 245
   },
   "data/fx-L4.js": {
    "layer": "data",
-   "order": 243
+   "order": 246
   },
   "data/fx-L5.js": {
    "layer": "data",
-   "order": 244
+   "order": 247
   },
   "data/fx-L9.js": {
    "layer": "data",
-   "order": 245
+   "order": 248
   },
   "data/fx-L10.js": {
    "layer": "data",
-   "order": 246
+   "order": 249
   },
   "data/fx-L11.js": {
    "layer": "data",
-   "order": 247
+   "order": 250
   },
   "data/fx-L12.js": {
    "layer": "data",
-   "order": 248
+   "order": 251
   },
   "data/fx-L13.js": {
    "layer": "data",
-   "order": 249
+   "order": 252
   },
   "data/fx-D-item.js": {
    "layer": "data",
-   "order": 250
+   "order": 253
   },
   "data/fx-L2.js": {
    "layer": "data",
-   "order": 251
+   "order": 254
   },
   "data/fx-L3.js": {
    "layer": "data",
-   "order": 252
+   "order": 255
   },
   "data/fx-L6.js": {
    "layer": "data",
-   "order": 253
+   "order": 256
   },
   "data/fx-L7.js": {
    "layer": "data",
-   "order": 254
+   "order": 257
   },
   "data/fx-L8.js": {
    "layer": "data",
-   "order": 255
+   "order": 258
   },
   "data/fx-M1.js": {
    "layer": "data",
-   "order": 256
+   "order": 259
   },
   "data/fx-M2.js": {
    "layer": "data",
-   "order": 257
+   "order": 260
   },
   "data/fx-N1.js": {
    "layer": "data",
-   "order": 258
+   "order": 261
   },
   "data/fx-Z1.js": {
    "layer": "data",
-   "order": 259
+   "order": 262
   },
   "data/fx-Z2.js": {
    "layer": "data",
-   "order": 260
+   "order": 263
   },
   "data/fx-Z3.js": {
    "layer": "data",
-   "order": 261
+   "order": 264
   },
   "data/fx-Z4.js": {
    "layer": "data",
-   "order": 262
+   "order": 265
   },
   "data/fx-Z5.js": {
    "layer": "data",
-   "order": 263
+   "order": 266
   },
   "data/fx-Z6.js": {
    "layer": "data",
-   "order": 264
+   "order": 267
   },
   "data/fx-Z7.js": {
    "layer": "data",
-   "order": 265
+   "order": 268
   },
   "data/fx-Z8.js": {
    "layer": "data",
-   "order": 266
+   "order": 269
   },
   "data/fx-Z9.js": {
    "layer": "data",
-   "order": 267
+   "order": 270
   },
   "data/fx-Z10.js": {
    "layer": "data",
-   "order": 268
+   "order": 271
   },
   "data/fx-Z11.js": {
    "layer": "data",
-   "order": 269
+   "order": 272
   },
   "data/fx-Z12.js": {
    "layer": "data",
-   "order": 270
+   "order": 273
   },
   "data/fx-Z13.js": {
    "layer": "data",
-   "order": 271
+   "order": 274
   },
   "data/fx-Z14.js": {
    "layer": "data",
-   "order": 272
+   "order": 275
   },
   "data/fx-Z15.js": {
    "layer": "data",
-   "order": 273
+   "order": 276
   },
   "data/fx-Z16.js": {
    "layer": "data",
-   "order": 274
+   "order": 277
   },
   "data/fx-Z17.js": {
    "layer": "data",
-   "order": 275
+   "order": 278
   },
   "data/fx-Z18.js": {
    "layer": "data",
-   "order": 276
+   "order": 279
   },
   "builder/00-reg.js": {
    "layer": "-",
-   "order": 277
+   "order": 280
   },
   "builder/00-env.js": {
    "layer": "-",
-   "order": 278
+   "order": 281
   },
   "builder/01-logic-core-helpers.js": {
    "layer": "logic",
-   "order": 279
+   "order": 282
   },
   "builder/01a-logic-query-registry.js": {
    "layer": "logic",
-   "order": 280
+   "order": 283
   },
   "builder/01b-logic-late-ports.js": {
    "layer": "logic",
-   "order": 281
+   "order": 284
   },
   "builder/02-data-magic-item-summaries.js": {
    "layer": "data",
-   "order": 282
+   "order": 285
   },
   "builder/03-logic-magic-item-effects.js": {
    "layer": "logic",
-   "order": 283
+   "order": 286
   },
   "builder/04-logic-storage.js": {
    "layer": "logic",
-   "order": 284
+   "order": 287
   },
   "builder/05-logic-choice-model-ruleset.js": {
    "layer": "logic",
-   "order": 285
+   "order": 288
   },
   "builder/06-data-2014-classes.js": {
    "layer": "data",
-   "order": 286
+   "order": 289
   },
   "builder/06a-data-2014-long-text-more.js": {
    "layer": "data",
-   "order": 287
+   "order": 290
   },
   "builder/06a2-data-2024-species-long-text.js": {
    "layer": "data",
-   "order": 288
+   "order": 291
   },
   "builder/06b-data-2014-long-text.js": {
    "layer": "data",
-   "order": 289
+   "order": 292
   },
   "builder/07-data-2014-spells.js": {
    "layer": "data",
-   "order": 290
+   "order": 293
   },
   "builder/08-logic-2014-rules.js": {
    "layer": "logic",
-   "order": 291
+   "order": 294
   },
   "builder/09-logic-feats-and-choices.js": {
    "layer": "logic",
-   "order": 292
+   "order": 295
   },
   "builder/09c-logic-edition-overlays.js": {
    "layer": "logic",
-   "order": 293
+   "order": 296
   },
   "builder/09d-logic-wotc-source-gate.js": {
    "layer": "logic",
-   "order": 294
+   "order": 297
   },
   "builder/09b-logic-choice-stages.js": {
    "layer": "logic",
-   "order": 295
+   "order": 298
   },
   "builder/10-logic-v17-additions.js": {
    "layer": "logic",
-   "order": 296
+   "order": 299
   },
   "builder/10a-logic-fx-registry.js": {
    "layer": "logic",
-   "order": 297
+   "order": 300
   },
   "builder/10b-logic-fx-handlers-entry.js": {
    "layer": "logic",
-   "order": 298
+   "order": 301
   },
   "builder/10c-logic-fx-handlers-ability.js": {
    "layer": "logic",
-   "order": 299
+   "order": 302
   },
   "builder/10d-logic-fx-rules-cond-value.js": {
    "layer": "logic",
-   "order": 300
+   "order": 303
   },
   "builder/10e-logic-fx-schema.js": {
    "layer": "logic",
-   "order": 301
+   "order": 304
   },
   "data/lib/attack-target.js": {
    "layer": "data",
-   "order": 302
+   "order": 305
   },
   "data/lib/attack-resources.js": {
    "layer": "data",
-   "order": 303
+   "order": 306
   },
   "data/lib/attack-kind.js": {
    "layer": "data",
-   "order": 304
+   "order": 307
   },
   "data/lib/weapon-form.js": {
    "layer": "data",
-   "order": 305
+   "order": 308
   },
   "data/lib/wield-minimum.js": {
    "layer": "data",
-   "order": 306
+   "order": 309
   },
   "data/lib/object-repair.js": {
    "layer": "data",
-   "order": 307
+   "order": 310
   },
   "data/lib/tool-form.js": {
    "layer": "data",
-   "order": 308
+   "order": 311
   },
   "data/lib/carpet-vehicle.js": {
    "layer": "data",
-   "order": 309
+   "order": 312
   },
   "data/lib/ridden-vehicle.js": {
    "layer": "data",
-   "order": 310
+   "order": 313
   },
   "data/lib/spellwrought-tattoo.js": {
    "layer": "data",
-   "order": 311
+   "order": 314
   },
   "data/lib/tattoo-projection.js": {
    "layer": "data",
-   "order": 312
+   "order": 315
   },
   "data/lib/disciple-of-life.js": {
    "layer": "data",
-   "order": 313
-  },
-  "data/lib/spell-source.js": {
-   "layer": "data",
-   "order": 314
-  },
-  "data/lib/turn-damage.js": {
-   "layer": "data",
-   "order": 315
-  },
-  "data/lib/cleric-maths.js": {
-   "layer": "data",
    "order": 316
   },
-  "data/lib/orders-wrath.js": {
+  "data/lib/spell-gem.js": {
    "layer": "data",
    "order": 317
   },
-  "data/lib/cleric-capabilities.js": {
+  "data/lib/spell-gem-physical.js": {
    "layer": "data",
    "order": 318
   },
-  "data/lib/temporary-cantrip.js": {
+  "data/lib/spell-gem-authority.js": {
    "layer": "data",
    "order": 319
   },
-  "data/lib/temporary-cantrip-projection.js": {
+  "data/lib/spell-gem-source.js": {
    "layer": "data",
    "order": 320
   },
-  "data/lib/all-purpose-source.js": {
+  "data/lib/spell-gem-casts.js": {
    "layer": "data",
    "order": 321
   },
-  "data/lib/attunement.js": {
+  "data/lib/gem-check-bonuses.js": {
    "layer": "data",
    "order": 322
   },
-  "builder/11-logic-derivation.js": {
-   "layer": "logic",
+  "data/lib/casting-sources.js": {
+   "layer": "data",
    "order": 323
   },
-  "builder/11b-logic-fx-sources.js": {
-   "layer": "logic",
+  "data/lib/item-spell-damage.js": {
+   "layer": "data",
    "order": 324
   },
-  "builder/11c-logic-fx-handlers-sheet.js": {
-   "layer": "logic",
+  "data/lib/spell-source.js": {
+   "layer": "data",
    "order": 325
   },
-  "builder/12a-logic-sheet-registry.js": {
-   "layer": "logic",
+  "data/lib/turn-damage.js": {
+   "layer": "data",
    "order": 326
   },
-  "builder/12b-logic-sheet-schema.js": {
-   "layer": "logic",
+  "data/lib/cleric-maths.js": {
+   "layer": "data",
    "order": 327
   },
-  "builder/12c-logic-sheet-handlers-core.js": {
-   "layer": "logic",
+  "data/lib/orders-wrath.js": {
+   "layer": "data",
    "order": 328
   },
-  "builder/12d-logic-sheet-handlers-skills.js": {
-   "layer": "logic",
+  "data/lib/cleric-capabilities.js": {
+   "layer": "data",
    "order": 329
   },
-  "builder/12e-logic-sheet-handlers-defense.js": {
-   "layer": "logic",
+  "data/lib/temporary-cantrip.js": {
+   "layer": "data",
    "order": 330
   },
-  "builder/12f-logic-sheet-handlers-movement.js": {
-   "layer": "logic",
+  "data/lib/temporary-cantrip-projection.js": {
+   "layer": "data",
    "order": 331
   },
-  "builder/12g-logic-sheet-handlers-profs.js": {
-   "layer": "logic",
+  "data/lib/all-purpose-source.js": {
+   "layer": "data",
    "order": 332
   },
-  "builder/12h-logic-sheet-handlers-attacks.js": {
-   "layer": "logic",
+  "data/lib/attunement.js": {
+   "layer": "data",
    "order": 333
   },
-  "builder/12i-logic-sheet-handlers-gear-resources.js": {
+  "builder/11-logic-derivation.js": {
    "layer": "logic",
    "order": 334
   },
-  "builder/12j-logic-sheet-handlers-features.js": {
+  "builder/11b-logic-fx-sources.js": {
    "layer": "logic",
    "order": 335
   },
-  "builder/12k-logic-sheet-handlers-spells.js": {
+  "builder/11c-logic-fx-handlers-sheet.js": {
    "layer": "logic",
    "order": 336
   },
-  "builder/12l-logic-sheet-handlers-late.js": {
+  "builder/12a-logic-sheet-registry.js": {
    "layer": "logic",
    "order": 337
   },
-  "builder/12m-logic-sheet-handlers-tools.js": {
+  "builder/12b-logic-sheet-schema.js": {
    "layer": "logic",
    "order": 338
   },
-  "builder/12n-logic-sheet-handlers-turn-damage.js": {
+  "builder/12c-logic-sheet-handlers-core.js": {
    "layer": "logic",
    "order": 339
   },
-  "builder/12o-logic-sheet-handlers-cleric-powers.js": {
+  "builder/12d-logic-sheet-handlers-skills.js": {
    "layer": "logic",
    "order": 340
   },
-  "builder/12p-logic-sheet-handlers-disciple.js": {
+  "builder/12e-logic-sheet-handlers-defense.js": {
    "layer": "logic",
    "order": 341
   },
-  "builder/12-logic-export-to-sheet.js": {
+  "builder/12f-logic-sheet-handlers-movement.js": {
    "layer": "logic",
    "order": 342
   },
-  "builder/13-logic-sources-and-packs.js": {
+  "builder/12g-logic-sheet-handlers-profs.js": {
    "layer": "logic",
    "order": 343
   },
-  "builder/13a-logic-pack-registry.js": {
+  "builder/12h-logic-sheet-handlers-attacks.js": {
    "layer": "logic",
    "order": 344
   },
-  "builder/13b-logic-pack-handlers.js": {
+  "builder/12i-logic-sheet-handlers-gear-resources.js": {
    "layer": "logic",
    "order": 345
   },
-  "builder/14-logic-multiclass-hp-shop.js": {
+  "builder/12j-logic-sheet-handlers-features.js": {
    "layer": "logic",
    "order": 346
   },
-  "builder/15-logic-import-from-sheet.js": {
+  "builder/12k-logic-sheet-handlers-spells.js": {
    "layer": "logic",
    "order": 347
   },
-  "builder/16-logic-feature-numbers.js": {
+  "builder/12l-logic-sheet-handlers-late.js": {
    "layer": "logic",
    "order": 348
   },
-  "builder/17-ui-step-builder.js": {
-   "layer": "ui",
+  "builder/12m-logic-sheet-handlers-tools.js": {
+   "layer": "logic",
    "order": 349
   },
-  "builder/18-ui-spells.js": {
-   "layer": "ui",
+  "builder/12n-logic-sheet-handlers-turn-damage.js": {
+   "layer": "logic",
    "order": 350
   },
-  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
-   "layer": "ui",
+  "builder/12o-logic-sheet-handlers-cleric-powers.js": {
+   "layer": "logic",
    "order": 351
   },
-  "builder/20-ui-steps-equipment-next.js": {
-   "layer": "ui",
+  "builder/12p-logic-sheet-handlers-disciple.js": {
+   "layer": "logic",
    "order": 352
   },
-  "builder/21-ui-rules-reference.js": {
-   "layer": "ui",
+  "builder/12q-logic-sheet-handlers-casting-sources.js": {
+   "layer": "logic",
    "order": 353
   },
-  "builder/22-ui-shell.js": {
-   "layer": "ui",
+  "builder/12r-logic-sheet-handlers-gem-checks.js": {
+   "layer": "logic",
    "order": 354
   },
-  "builder/23-logic-level-up-and-build-files.js": {
+  "builder/12s-logic-sheet-handlers-item-spell-damage.js": {
    "layer": "logic",
    "order": 355
   },
-  "builder/24-ui-icons.js": {
-   "layer": "ui",
+  "builder/12-logic-export-to-sheet.js": {
+   "layer": "logic",
    "order": 356
   },
-  "builder/25-logic-hooks-for-the-sheet.js": {
+  "builder/13-logic-sources-and-packs.js": {
    "layer": "logic",
    "order": 357
   },
-  "builder/25a-logic-tattoo-sources.js": {
+  "builder/13a-logic-pack-registry.js": {
    "layer": "logic",
    "order": 358
   },
-  "builder/main.js": {
-   "layer": "-",
+  "builder/13b-logic-pack-handlers.js": {
+   "layer": "logic",
    "order": 359
   },
-  "learn/00-env.js": {
-   "layer": "-",
+  "builder/14-logic-multiclass-hp-shop.js": {
+   "layer": "logic",
    "order": 360
   },
-  "learn/00-bridge.js": {
-   "layer": "-",
+  "builder/15-logic-import-from-sheet.js": {
+   "layer": "logic",
    "order": 361
   },
-  "learn/45b-data-learn-places-a.js": {
-   "layer": "data",
+  "builder/16-logic-feature-numbers.js": {
+   "layer": "logic",
    "order": 362
   },
-  "learn/45c-data-learn-places-b.js": {
-   "layer": "data",
+  "builder/17-ui-step-builder.js": {
+   "layer": "ui",
    "order": 363
   },
-  "learn/45-data-learn.js": {
-   "layer": "data",
+  "builder/18-ui-spells.js": {
+   "layer": "ui",
    "order": 364
   },
-  "learn/46-logic-learn.js": {
-   "layer": "logic",
+  "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
+   "layer": "ui",
    "order": 365
   },
-  "learn/47-ui-learn.js": {
+  "builder/20-ui-steps-equipment-next.js": {
    "layer": "ui",
    "order": 366
   },
-  "tg/00-env.js": {
-   "layer": "-",
+  "builder/21-ui-rules-reference.js": {
+   "layer": "ui",
    "order": 367
   },
-  "tg/00-bridge.js": {
-   "layer": "-",
+  "builder/22-ui-shell.js": {
+   "layer": "ui",
    "order": 368
   },
-  "tg/20-engine.js": {
+  "builder/23-logic-level-up-and-build-files.js": {
    "layer": "logic",
    "order": 369
   },
-  "tg/25-sim.js": {
-   "layer": "logic",
+  "builder/24-ui-icons.js": {
+   "layer": "ui",
    "order": 370
   },
-  "tg/30-ui-tg.js": {
-   "layer": "ui",
+  "builder/25-logic-hooks-for-the-sheet.js": {
+   "layer": "logic",
    "order": 371
   },
-  "tg/31-ui-tg-field.js": {
-   "layer": "ui",
+  "builder/25a-logic-tattoo-sources.js": {
+   "layer": "logic",
    "order": 372
   },
-  "pdf/00-env.js": {
-   "layer": "-",
+  "builder/25b-logic-spell-gem-sources.js": {
+   "layer": "logic",
    "order": 373
   },
-  "pdf/01-data-style.js": {
-   "layer": "data",
+  "builder/main.js": {
+   "layer": "-",
    "order": 374
   },
-  "pdf/02-logic-markup.js": {
-   "layer": "logic",
+  "learn/00-env.js": {
+   "layer": "-",
    "order": 375
   },
-  "pdf/03-logic-typeset.js": {
-   "layer": "logic",
+  "learn/00-bridge.js": {
+   "layer": "-",
    "order": 376
   },
-  "pdf/04-ui-canvas.js": {
-   "layer": "ui",
+  "learn/45b-data-learn-places-a.js": {
+   "layer": "data",
    "order": 377
   },
-  "pdf/05-data-sheet-fields.js": {
+  "learn/45c-data-learn-places-b.js": {
    "layer": "data",
    "order": 378
   },
-  "pdf/06-ui-fields.js": {
-   "layer": "ui",
+  "learn/45-data-learn.js": {
+   "layer": "data",
    "order": 379
   },
-  "pdf/07-ui-sheet-pages.js": {
-   "layer": "ui",
+  "learn/46-logic-learn.js": {
+   "layer": "logic",
    "order": 380
   },
-  "pdf/08-ui-flow.js": {
+  "learn/47-ui-learn.js": {
    "layer": "ui",
    "order": 381
   },
+  "tg/00-env.js": {
+   "layer": "-",
+   "order": 382
+  },
+  "tg/00-bridge.js": {
+   "layer": "-",
+   "order": 383
+  },
+  "tg/20-engine.js": {
+   "layer": "logic",
+   "order": 384
+  },
+  "tg/25-sim.js": {
+   "layer": "logic",
+   "order": 385
+  },
+  "tg/30-ui-tg.js": {
+   "layer": "ui",
+   "order": 386
+  },
+  "tg/31-ui-tg-field.js": {
+   "layer": "ui",
+   "order": 387
+  },
+  "pdf/00-env.js": {
+   "layer": "-",
+   "order": 388
+  },
+  "pdf/01-data-style.js": {
+   "layer": "data",
+   "order": 389
+  },
+  "pdf/02-logic-markup.js": {
+   "layer": "logic",
+   "order": 390
+  },
+  "pdf/03-logic-typeset.js": {
+   "layer": "logic",
+   "order": 391
+  },
+  "pdf/04-ui-canvas.js": {
+   "layer": "ui",
+   "order": 392
+  },
+  "pdf/05-data-sheet-fields.js": {
+   "layer": "data",
+   "order": 393
+  },
+  "pdf/06-ui-fields.js": {
+   "layer": "ui",
+   "order": 394
+  },
+  "pdf/07-ui-sheet-pages.js": {
+   "layer": "ui",
+   "order": 395
+  },
+  "pdf/08-ui-flow.js": {
+   "layer": "ui",
+   "order": 396
+  },
   "pdf/09-ui-blocks.js": {
    "layer": "ui",
-   "order": 382
+   "order": 397
   },
   "pdf/10-ui-appendix.js": {
    "layer": "ui",
-   "order": 383
+   "order": 398
   },
   "pdf/11-ui-render.js": {
    "layer": "ui",
-   "order": 384
+   "order": 399
   },
   "pdf/main.js": {
    "layer": "-",
-   "order": 385
+   "order": 400
   },
   "data/rs14-2014-wording.js": {
    "layer": "data",
-   "order": 386
+   "order": 401
   }
  },
  "edges": [
@@ -1686,6 +1746,15 @@
   },
   {
    "from": "app/04-logic-storage.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/04-logic-storage.js",
    "to": "data/lib/tool-form.js",
    "import": true,
    "names": [],
@@ -1746,6 +1815,15 @@
    "import": false,
    "names": [
     "attMax"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/05-logic-helpers.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },
@@ -1812,6 +1890,24 @@
     "senseList"
    ],
    "count": 3
+  },
+  {
+   "from": "app/06-logic-derivation.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/06-logic-derivation.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
   },
   {
    "from": "app/06a-logic-ui-registry.js",
@@ -2050,10 +2146,28 @@
   },
   {
    "from": "app/08b-ui-render-summaries-actions.js",
+   "to": "app/08l-ui-spell-gem-casting.js",
+   "import": false,
+   "names": [
+    "spellGemReceiptControls"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08b-ui-render-summaries-actions.js",
    "to": "builder/12g-logic-sheet-handlers-profs.js",
    "import": false,
    "names": [
     "rowsOf"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08b-ui-render-summaries-actions.js",
+   "to": "data/lib/spell-gem-authority.js",
+   "import": false,
+   "names": [
+    "same"
    ],
    "count": 1
   },
@@ -2289,6 +2403,15 @@
   },
   {
    "from": "app/08f-ui-turn-damage.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08f-ui-turn-damage.js",
    "to": "data/lib/turn-damage.js",
    "import": false,
    "names": [
@@ -2407,6 +2530,15 @@
    "count": 1
   },
   {
+   "from": "app/08i-ui-orders-wrath.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/08j-ui-cleric-controls.js",
    "to": "app/05-logic-helpers.js",
    "import": false,
@@ -2449,6 +2581,7 @@
    "import": false,
    "names": [
     "acceptTattooCommit",
+    "acceptTattooDamageCommit",
     "beginTattooCast",
     "cancelTattooCast",
     "captureTattooSession",
@@ -2458,7 +2591,7 @@
     "requestTattooEffect",
     "tattooReceiptDetailsForSession"
    ],
-   "count": 9
+   "count": 10
   },
   {
    "from": "app/08k-ui-spellwrought-body.js",
@@ -2478,6 +2611,91 @@
     "spellDefinition"
    ],
    "count": 2
+  },
+  {
+   "from": "app/08l-ui-spell-gem-casting.js",
+   "to": "app/05-logic-helpers.js",
+   "import": false,
+   "names": [
+    "sheetRootActive"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08l-ui-spell-gem-casting.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "part"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08l-ui-spell-gem-casting.js",
+   "to": "app/32c-ui-object-repair.js",
+   "import": false,
+   "names": [
+    "repairTargetFieldsHTML",
+    "repairTargetRead"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/08l-ui-spell-gem-casting.js",
+   "to": "app/32h-logic-spell-gem.js",
+   "import": false,
+   "names": [
+    "acceptGemCastCommit",
+    "acceptGemDamageCommit",
+    "createGemCastSession",
+    "createGemReceiptSession",
+    "currentGemImbueOptions",
+    "currentGemReceipts",
+    "currentGemReleaseOptions",
+    "endGemReceiptConcentration",
+    "getGemReceiptDetails",
+    "getGemRepairProfile",
+    "requestGemImbue",
+    "requestGemReceiptEffect",
+    "requestGemRelease"
+   ],
+   "count": 13
+  },
+  {
+   "from": "app/08l-ui-spell-gem-casting.js",
+   "to": "data/lib/attack-target.js",
+   "import": false,
+   "names": [
+    "known"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08l-ui-spell-gem-casting.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08l-ui-spell-gem-casting.js",
+   "to": "data/lib/spellwrought-tattoo.js",
+   "import": false,
+   "names": [
+    "sourceRow"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/08l-ui-spell-gem-casting.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "castLevel"
+   ],
+   "count": 1
   },
   {
    "from": "app/09-ui-hit-points-playbar-death-saves.js",
@@ -3102,6 +3320,15 @@
   },
   {
    "from": "app/13b-ui-detail-spell-targets-render.js",
+   "to": "app/21i-ui-spell-gem.js",
+   "import": false,
+   "names": [
+    "spellGemPhysicalControl"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/13b-ui-detail-spell-targets-render.js",
    "to": "app/23f-ui-spell-source-rolls.js",
    "import": true,
    "names": [
@@ -3203,6 +3430,15 @@
    "import": true,
    "names": [],
    "count": 0
+  },
+  {
+   "from": "app/14-ui-editor.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
   },
   {
    "from": "app/14-ui-editor.js",
@@ -3350,6 +3586,15 @@
   },
   {
    "from": "app/15b-logic-backup.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/15b-logic-backup.js",
    "to": "data/lib/weapon-form.js",
    "import": false,
    "names": [
@@ -3481,6 +3726,15 @@
   },
   {
    "from": "app/15d-logic-snapshots-character-files.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/15d-logic-snapshots-character-files.js",
    "to": "tg/20-engine.js",
    "import": false,
    "names": [
@@ -3554,6 +3808,24 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/16-logic-import-chat-text-and-build-files.js",
+   "to": "data/lib/spell-gem-authority.js",
+   "import": false,
+   "names": [
+    "same"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/16-logic-import-chat-text-and-build-files.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },
@@ -3693,6 +3965,15 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/17-logic-tab-sync-and-test-hooks.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },
@@ -3841,6 +4122,15 @@
    "import": true,
    "names": [
     "MYID"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/18-ui-header-and-more-menu.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },
@@ -4321,6 +4611,15 @@
   },
   {
    "from": "app/21f-ui-temporary-cantrip.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/21f-ui-temporary-cantrip.js",
    "to": "data/lib/temporary-cantrip.js",
    "import": false,
    "names": [
@@ -4387,11 +4686,29 @@
    "count": 1
   },
   {
-   "from": "app/21h-ui-spellwrought-needle.js",
-   "to": "data/lib/spellwrought-tattoo.js",
+   "from": "app/21i-ui-spell-gem.js",
+   "to": "app/05-logic-helpers.js",
    "import": false,
    "names": [
-    "spellwroughtTattooProfile"
+    "sheetRootActive"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/21i-ui-spell-gem.js",
+   "to": "app/08l-ui-spell-gem-casting.js",
+   "import": false,
+   "names": [
+    "openSpellGemCasting"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/21i-ui-spell-gem.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "choices"
    ],
    "count": 1
   },
@@ -4449,6 +4766,25 @@
    "import": true,
    "names": [
     "evaluateSupremeHealing"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/22-ui-spell-data-and-slots.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": true,
+   "names": [
+    "abilities",
+    "gemOwnedSpellRow"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/22-ui-spell-data-and-slots.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -5376,6 +5712,24 @@
   },
   {
    "from": "app/27-ui-party-search-commands-library.js",
+   "to": "data/lib/spell-gem-authority.js",
+   "import": false,
+   "names": [
+    "same"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/27-ui-party-search-commands-library.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/27-ui-party-search-commands-library.js",
    "to": "data/spells-spell-list.js",
    "import": false,
    "names": [
@@ -5739,6 +6093,15 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/27c-ui-report-pins.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },
@@ -6314,6 +6677,15 @@
   },
   {
    "from": "app/32-logic-play-undo-actions.js",
+   "to": "app/32h-logic-spell-gem.js",
+   "import": false,
+   "names": [
+    "invalidateGemCastState"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32-logic-play-undo-actions.js",
    "to": "data/lib/all-purpose-source.js",
    "import": false,
    "names": [
@@ -6394,6 +6766,15 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32b-logic-play-concentration-casting.js",
+   "to": "data/lib/spell-gem-authority.js",
+   "import": false,
+   "names": [
+    "same"
    ],
    "count": 1
   },
@@ -6509,6 +6890,15 @@
    "count": 0
   },
   {
+   "from": "app/32c-ui-object-repair.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/32d-logic-play-hp-rest-recovery.js",
    "to": "app/00a-reg-late-ports.js",
    "import": true,
@@ -6570,6 +6960,15 @@
   },
   {
    "from": "app/32f-logic-divine-intervention.js",
+   "to": "app/32h-logic-spell-gem.js",
+   "import": false,
+   "names": [
+    "invalidateGemCastState"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32f-logic-divine-intervention.js",
    "to": "data/lib/cleric-maths.js",
    "import": false,
    "names": [
@@ -6582,6 +6981,15 @@
     "reviewLegacyInterventionRecovery"
    ],
    "count": 7
+  },
+  {
+   "from": "app/32f-logic-divine-intervention.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
   },
   {
    "from": "app/32f-logic-divine-intervention.js",
@@ -6639,6 +7047,138 @@
   },
   {
    "from": "app/32g-logic-spellwrought-tattoo.js",
+   "to": "data/lib/item-spell-damage.js",
+   "import": false,
+   "names": [
+    "createItemSpellDamageSnapshot",
+    "liveItemSpellDamageFeatures"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/32g-logic-spellwrought-tattoo.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32g-logic-spellwrought-tattoo.js",
+   "to": "data/lib/spellwrought-tattoo.js",
+   "import": false,
+   "names": [
+    "sourceRow",
+    "updateTattooDamageUsage"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/32g-logic-spellwrought-tattoo.js",
+   "to": "data/lib/tattoo-projection.js",
+   "import": false,
+   "names": [
+    "tattooBodyProjection"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "app/05-logic-helpers.js",
+   "import": false,
+   "names": [
+    "sheetRootActive"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "part"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "app/32b-logic-play-concentration-casting.js",
+   "import": false,
+   "names": [
+    "gemNativeSourcePaymentOptions",
+    "gemNativeSourcePaymentReady"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "app/33-logic-play-rage-conditions.js",
+   "import": false,
+   "names": [
+    "modeOn"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "choices"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "builder/14-logic-multiclass-hp-shop.js",
+   "import": false,
+   "names": [
+    "spent"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "data/lib/gem-check-bonuses.js",
+   "import": false,
+   "names": [
+    "evaluateGemCheckBonuses"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities",
+    "spellGemReceipt",
+    "updateGemDamageUsage"
+   ],
+   "count": 3
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "data/lib/spell-gem-source.js",
+   "import": false,
+   "names": [
+    "gemClassListEvidence"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "evaluateGemRelease",
+    "source"
+   ],
+   "count": 2
+  },
+  {
+   "from": "app/32h-logic-spell-gem.js",
    "to": "data/lib/spellwrought-tattoo.js",
    "import": false,
    "names": [
@@ -6647,11 +7187,11 @@
    "count": 1
   },
   {
-   "from": "app/32g-logic-spellwrought-tattoo.js",
-   "to": "data/lib/tattoo-projection.js",
+   "from": "app/32h-logic-spell-gem.js",
+   "to": "tg/20-engine.js",
    "import": false,
    "names": [
-    "tattooBodyProjection"
+    "castLevel"
    ],
    "count": 1
   },
@@ -6735,6 +7275,15 @@
    "import": true,
    "names": [
     "ordersWrathStateProblems"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/34-ui-situations.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -7372,6 +7921,24 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/37a-ui-pdf-model.js",
+   "to": "data/lib/spell-gem-authority.js",
+   "import": false,
+   "names": [
+    "same"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/37a-ui-pdf-model.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },
@@ -8443,6 +9010,15 @@
   },
   {
    "from": "app/44-ui-friends.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/44-ui-friends.js",
    "to": "tg/20-engine.js",
    "import": false,
    "names": [
@@ -8742,6 +9318,15 @@
   },
   {
    "from": "app/48-logic-sync-merge.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/48-logic-sync-merge.js",
    "to": "tg/20-engine.js",
    "import": false,
    "names": [
@@ -8907,6 +9492,15 @@
    "count": 1
   },
   {
+   "from": "app/50-logic-reverse-builder.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
    "from": "app/51-ui-table-help.js",
    "to": "app/00-env.js",
    "import": true,
@@ -9059,6 +9653,15 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/52-tg-bridge.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },
@@ -10151,6 +10754,15 @@
   },
   {
    "from": "builder/03-logic-magic-item-effects.js",
+   "to": "data/lib/spell-gem.js",
+   "import": true,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/03-logic-magic-item-effects.js",
    "to": "data/lib/spellwrought-tattoo.js",
    "import": false,
    "names": [
@@ -10441,6 +11053,15 @@
   },
   {
    "from": "builder/09-logic-feats-and-choices.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "part"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09-logic-feats-and-choices.js",
    "to": "builder/00-env.js",
    "import": true,
    "names": [
@@ -10564,6 +11185,24 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09-logic-feats-and-choices.js",
+   "to": "data/lib/attack-target.js",
+   "import": false,
+   "names": [
+    "known"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09-logic-feats-and-choices.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -10741,6 +11380,15 @@
    "import": false,
    "names": [
     "WEAPONS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/09c-logic-edition-overlays.js",
+   "to": "data/db2-phb-classes-a.js",
+   "import": false,
+   "names": [
+    "CLASSES"
    ],
    "count": 1
   },
@@ -10992,9 +11640,10 @@
     "DMAP",
     "activeFx",
     "allPurposeAllocatedKeys",
-    "allPurposeResource"
+    "allPurposeResource",
+    "suppressGemLegacyPool"
    ],
-   "count": 4
+   "count": 5
   },
   {
    "from": "builder/10-logic-v17-additions.js",
@@ -11103,6 +11752,15 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/10-logic-v17-additions.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -11570,6 +12228,7 @@
     "bgTl",
     "chOf",
     "choices",
+    "collectItemSpellDamageFeatures",
     "dmSpells",
     "featSpells",
     "grantTools",
@@ -11582,9 +12241,19 @@
     "spItemSrc",
     "spLinTrait",
     "spTraitText",
-    "toolChoices"
+    "toolChoices",
+    "wxProvenAbility"
    ],
-   "count": 17
+   "count": 19
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/09c-logic-edition-overlays.js",
+   "import": true,
+   "names": [
+    "spellGemCatalogForRuleset"
+   ],
+   "count": 1
   },
   {
    "from": "builder/12-logic-export-to-sheet.js",
@@ -11737,6 +12406,45 @@
    "count": 0
   },
   {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12q-logic-sheet-handlers-casting-sources.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12r-logic-sheet-handlers-gem-checks.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "builder/12s-logic-sheet-handlers-item-spell-damage.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12-logic-export-to-sheet.js",
+   "to": "data/lib/tattoo-projection.js",
+   "import": false,
+   "names": [
+    "tattooBodyProjection"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/12a-logic-sheet-registry.js",
    "to": "app/06-logic-derivation.js",
    "import": false,
@@ -11809,6 +12517,15 @@
    "count": 1
   },
   {
+   "from": "builder/12b-logic-sheet-schema.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/12c-logic-sheet-handlers-core.js",
    "to": "builder/00-env.js",
    "import": true,
@@ -11852,6 +12569,15 @@
     "registerSheetRule"
    ],
    "count": 2
+  },
+  {
+   "from": "builder/12c-logic-sheet-handlers-core.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
   },
   {
    "from": "builder/12d-logic-sheet-handlers-skills.js",
@@ -12459,6 +13185,15 @@
    "count": 1
   },
   {
+   "from": "builder/12k-logic-sheet-handlers-spells.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/12l-logic-sheet-handlers-late.js",
    "to": "builder/00-env.js",
    "import": true,
@@ -12569,6 +13304,15 @@
    "count": 1
   },
   {
+   "from": "builder/12l-logic-sheet-handlers-late.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/12m-logic-sheet-handlers-tools.js",
    "to": "builder/00-env.js",
    "import": true,
@@ -12583,6 +13327,15 @@
    "import": true,
    "names": [
     "registerSheetRule"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12m-logic-sheet-handlers-tools.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -12617,6 +13370,15 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12n-logic-sheet-handlers-turn-damage.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -12673,11 +13435,101 @@
    "count": 1
   },
   {
+   "from": "builder/12o-logic-sheet-handlers-cleric-powers.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
    "from": "builder/12p-logic-sheet-handlers-disciple.js",
    "to": "builder/12a-logic-sheet-registry.js",
    "import": false,
    "names": [
     "registerSheetGroup"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12p-logic-sheet-handlers-disciple.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12q-logic-sheet-handlers-casting-sources.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "part"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12q-logic-sheet-handlers-casting-sources.js",
+   "to": "builder/00-env.js",
+   "import": false,
+   "names": [
+    "classDef"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12q-logic-sheet-handlers-casting-sources.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "wxProvenAbility"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12q-logic-sheet-handlers-casting-sources.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": false,
+   "names": [
+    "registerSheetGroup"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12q-logic-sheet-handlers-casting-sources.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12r-logic-sheet-handlers-gem-checks.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": false,
+   "names": [
+    "registerSheetGroup"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12s-logic-sheet-handlers-item-spell-damage.js",
+   "to": "builder/12a-logic-sheet-registry.js",
+   "import": false,
+   "names": [
+    "registerSheetGroup"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/12s-logic-sheet-handlers-item-spell-damage.js",
+   "to": "data/lib/attack-target.js",
+   "import": false,
+   "names": [
+    "known"
    ],
    "count": 1
   },
@@ -13451,6 +14303,15 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/15-logic-import-from-sheet.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },
@@ -14977,12 +15838,17 @@
   },
   {
    "from": "builder/22-ui-shell.js",
+   "to": "data/lib/spell-gem.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/22-ui-shell.js",
    "to": "data/lib/spellwrought-tattoo.js",
    "import": true,
-   "names": [
-    "spellwroughtTattooProfile"
-   ],
-   "count": 1
+   "names": [],
+   "count": 0
   },
   {
    "from": "builder/22-ui-shell.js",
@@ -15675,6 +16541,15 @@
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/25-logic-hooks-for-the-sheet.js",
    "to": "data/lib/spellwrought-tattoo.js",
    "import": false,
    "names": [
@@ -15783,13 +16658,158 @@
     "applySpellwroughtTattoo",
     "migrateTattooSources",
     "recordTattooNeedle",
-    "spellwroughtTattooProfile",
     "splitTattooNeedle",
-    "tattooBodyProblems",
     "tattooNeedleProblems",
     "tattooSourcesProblems"
    ],
-   "count": 8
+   "count": 6
+  },
+  {
+   "from": "builder/25a-logic-tattoo-sources.js",
+   "to": "data/lib/tattoo-projection.js",
+   "import": false,
+   "names": [
+    "tattooBodyProjection"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "builder/00-env.js",
+   "import": false,
+   "names": [
+    "genv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "builder/03-logic-magic-item-effects.js",
+   "import": false,
+   "names": [
+    "attunementState"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "builder/09-logic-feats-and-choices.js",
+   "import": false,
+   "names": [
+    "choices"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "builder/09c-logic-edition-overlays.js",
+   "import": false,
+   "names": [
+    "spellGemCatalogForRuleset"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "builder/25-logic-hooks-for-the-sheet.js",
+   "import": false,
+   "names": [
+    "borrowedBefore",
+    "borrowedBound",
+    "borrowedCurrent",
+    "borrowedProjection",
+    "borrowedSignature",
+    "toolFormWriteGuard",
+    "wieldProjectionChanged"
+   ],
+   "count": 7
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "data/lib/item-spell-damage.js",
+   "import": false,
+   "names": [
+    "createItemSpellDamageSnapshot",
+    "liveItemSpellDamageFeatures"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "data/lib/spell-gem-authority.js",
+   "import": false,
+   "names": [
+    "applyGemPhysicalChanges",
+    "assertGemPhysicalCurrent",
+    "gemPhysicalAuthorityProblems",
+    "initializeGemAuthority",
+    "resyncGemPhysical",
+    "validateGemActorView"
+   ],
+   "count": 6
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities",
+    "recordSpellGemCast"
+   ],
+   "count": 2
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "data/lib/spell-gem-physical.js",
+   "import": false,
+   "names": [
+    "gemRegistryProblems",
+    "migrateGemPhysical",
+    "reviewGemPhysical",
+    "splitGemPhysical"
+   ],
+   "count": 4
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "declareGemNextDawn",
+    "imbueSpellGem",
+    "releaseSpellGem",
+    "source",
+    "spellGemProblems"
+   ],
+   "count": 5
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "data/lib/temporary-cantrip.js",
+   "import": false,
+   "names": [
+    "activeTemporaryCantrips"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/25b-logic-spell-gem-sources.js",
+   "to": "tg/20-engine.js",
+   "import": false,
+   "names": [
+    "castLevel",
+    "fresh"
+   ],
+   "count": 2
   },
   {
    "from": "builder/main.js",
@@ -16116,6 +17136,13 @@
   {
    "from": "builder/main.js",
    "to": "builder/25a-logic-tattoo-sources.js",
+   "import": true,
+   "names": [],
+   "count": 0
+  },
+  {
+   "from": "builder/main.js",
+   "to": "builder/25b-logic-spell-gem-sources.js",
    "import": true,
    "names": [],
    "count": 0
@@ -17087,6 +18114,15 @@
   },
   {
    "from": "data/lib/all-purpose-source.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/all-purpose-source.js",
    "to": "data/lib/spellwrought-tattoo.js",
    "import": false,
    "names": [
@@ -17159,11 +18195,65 @@
    "count": 1
   },
   {
+   "from": "data/lib/carpet-vehicle.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/casting-sources.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/casting-sources.js",
+   "to": "data/lib/gem-check-bonuses.js",
+   "import": false,
+   "names": [
+    "gemCheckBonusesProblems"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/casting-sources.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/casting-sources.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
    "from": "data/lib/cleric-capabilities.js",
    "to": "data/lib/all-purpose-source.js",
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/cleric-capabilities.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -17177,11 +18267,74 @@
    "count": 1
   },
   {
+   "from": "data/lib/cleric-maths.js",
+   "to": "data/lib/spell-gem-authority.js",
+   "import": false,
+   "names": [
+    "same"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/cleric-maths.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
    "from": "data/lib/disciple-of-life.js",
    "to": "data/lib/all-purpose-source.js",
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/disciple-of-life.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/gem-check-bonuses.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/gem-check-bonuses.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/item-spell-damage.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/item-spell-damage.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -17205,6 +18358,15 @@
   },
   {
    "from": "data/lib/orders-wrath.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/orders-wrath.js",
    "to": "data/lib/turn-damage.js",
    "import": false,
    "names": [
@@ -17219,6 +18381,148 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/ridden-vehicle.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem-authority.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem-authority.js",
+   "to": "data/lib/spell-gem-physical.js",
+   "import": false,
+   "names": [
+    "gemRegistryProblems"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem-authority.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source",
+    "spellGemProblems"
+   ],
+   "count": 2
+  },
+  {
+   "from": "data/lib/spell-gem-casts.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem-casts.js",
+   "to": "data/lib/item-spell-damage.js",
+   "import": false,
+   "names": [
+    "createItemSpellDamageUsage",
+    "declareItemSpellDamageEvent",
+    "itemSpellDamageSnapshotProblems",
+    "itemSpellDamageUsageProblems",
+    "updateItemSpellDamageUsage"
+   ],
+   "count": 5
+  },
+  {
+   "from": "data/lib/spell-gem-casts.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem-casts.js",
+   "to": "data/lib/spellwrought-tattoo.js",
+   "import": false,
+   "names": [
+    "createTattooCastContext",
+    "sourceRow",
+    "tattooDefinitionStamp"
+   ],
+   "count": 3
+  },
+  {
+   "from": "data/lib/spell-gem-physical.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem-physical.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "spellGemProblems"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem-source.js",
+   "to": "data/lib/attack-target.js",
+   "import": false,
+   "names": [
+    "known"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem-source.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-gem.js",
+   "to": "data/lib/all-purpose-source.js",
+   "import": false,
+   "names": [
+    "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-source.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "spellGemFixedSourceStats"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spell-source.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -17251,6 +18555,27 @@
   },
   {
    "from": "data/lib/spellwrought-tattoo.js",
+   "to": "data/lib/item-spell-damage.js",
+   "import": false,
+   "names": [
+    "declareItemSpellDamageEvent",
+    "itemSpellDamageSnapshotProblems",
+    "itemSpellDamageUsageProblems",
+    "updateItemSpellDamageUsage"
+   ],
+   "count": 4
+  },
+  {
+   "from": "data/lib/spellwrought-tattoo.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/spellwrought-tattoo.js",
    "to": "data/lib/weapon-form.js",
    "import": false,
    "names": [
@@ -17264,6 +18589,15 @@
    "import": false,
    "names": [
     "keys"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/tattoo-projection.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
    ],
    "count": 1
   },
@@ -17317,6 +18651,15 @@
   },
   {
    "from": "data/lib/tool-form.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/lib/tool-form.js",
    "to": "data/lib/spellwrought-tattoo.js",
    "import": false,
    "names": [
@@ -17342,6 +18685,15 @@
     "criticalDice"
    ],
    "count": 2
+  },
+  {
+   "from": "data/lib/turn-damage.js",
+   "to": "data/lib/spell-gem.js",
+   "import": false,
+   "names": [
+    "source"
+   ],
+   "count": 1
   },
   {
    "from": "data/lib/wield-minimum.js",
@@ -20139,6 +21491,15 @@
   },
   {
    "from": "fx/02-micro-interactions.js",
+   "to": "data/lib/spell-gem-authority.js",
+   "import": false,
+   "names": [
+    "same"
+   ],
+   "count": 1
+  },
+  {
+   "from": "fx/02-micro-interactions.js",
    "to": "fx/00-fx-env.js",
    "import": false,
    "names": [
@@ -21250,6 +22611,15 @@
   },
   {
    "from": "pdf/07-ui-sheet-pages.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/07-ui-sheet-pages.js",
    "to": "pdf/01-data-style.js",
    "import": true,
    "names": [
@@ -21330,6 +22700,15 @@
    "import": false,
    "names": [
     "meta"
+   ],
+   "count": 1
+  },
+  {
+   "from": "pdf/09-ui-blocks.js",
+   "to": "data/lib/spell-gem-casts.js",
+   "import": false,
+   "names": [
+    "abilities"
    ],
    "count": 1
   },

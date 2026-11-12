@@ -1907,7 +1907,7 @@ def selftest():
          'cls': ['SPELL'],
          'test': 'tests/spellwrought_tattoo_runtime.mjs'},
      7: {'anchor': ['src/data/lib/spell-source.js',
-                    'const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};'],
+                    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"],
          'extraAnchors': [['src/builder/25a-logic-tattoo-sources.js',
                            'function commitTattooPlan(owner,current,plan,body,beforeCommit,result)'],
                           ['src/data/lib/spellwrought-tattoo.js', 'export function applySpellwroughtTattoo('],
@@ -1959,6 +1959,134 @@ def selftest():
     for entry in tattoo_registered:
         expected=tattoo_by_id.get(entry["id"])
         check("U40 registered exact native source and lifecycle "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
+    # U41 native preflight: these inputs alone cannot count as a computed source.
+    gem_native_rows=[row for row in native_tattoo["oota"] if row[0].startswith("Spell Gem (")]
+    check("U41 ten exact native Gem profiles",len(gem_native_rows)==10)
+    gem_native_candidates=[]
+    for native in gem_native_rows:
+        text=native[4];fixed=re.search(r"save DC of (\d+) and an attack bonus of \+(\d+)",text)
+        check("U41 printed source has independent ATK/DC "+native[0],bool(fixed))
+        check("U41 source does not print a fixed modifier "+native[0],not re.search(r"ability modifier|spellcasting modifier",text,re.I))
+        check("U41 optional imbue attunement is not release ATT "+native[0],native[3]==0 and "doesn't require attunement" in text and "attuned to it and it's empty" in text)
+        check("U41 native dawn metadata is not a release pool "+native[0],native[5].get("ch")==[1,"1","dawn"] and "can't be imbued again until the next dawn" in text)
+        for owner in ["dmg","oota"]:
+            for index,sentence in enumerate(split_sentences(text),1):
+                if index not in (1,7,10,12) and not(index==9 and native[0]=="Spell Gem (Obsidian)"):continue
+                sid="item|%s|%s#%s"%(owner,native[0],index);gem_native_candidates.append(sid)
+                raw={"spellGem":{"v":1,"id":"gem-1","contents":{"spell":"Mending","level":0},"imbueAvailable":False,"loadId":"sgl-1"}}
+                markers=atoms_from(raw,"physical-gem")
+                result=analyze(synth("item",owner,native[0],sentence,markers))[0]
+                check("U41 native target requires real consumer evidence "+sid,not markers and result["status"]=="uncovered",result["why"])
+    check("U41 exactly82 initial source-sentence candidates",len(gem_native_candidates)==82 and len(set(gem_native_candidates))==82)
+    for version in [1,2]:
+        for field,value in [("spellGemSources",{"v":version,"nextId":2,"reservedIds":["gem-1"]}),("castingSources",{"v":version,"edition":"2024","classParts":[],"sources":[],"complete":True}),("spellGemCasts",{"v":version,"nextCastId":2,"casts":[]})]:
+            check("U41 registry/caster/receipt versions give no gate atoms "+field+str(version),not atoms_from({field:value},"gem-metadata"))
+    # Exact U41 candidates remain outside registration until actual UI approval.
+    gem_proof_groups = {1: {'anchor': ['src/builder/25b-logic-spell-gem-sources.js', 'genv.__bldGemReview=function'],
+         'extraAnchors': [['src/builder/25b-logic-spell-gem-sources.js', 'function gemCommit(token,prepare,beforeCommit,isCurrent'],
+                          ['src/data/lib/spell-gem-authority.js', 'export function assertGemPhysicalCurrent('],
+                          ['src/data/lib/spell-gem-authority.js', 'export function applyGemPhysicalChanges('],
+                          ['src/builder/25b-logic-spell-gem-sources.js', 'Array.isArray(matches[0].classList)'],
+                          ['src/data/lib/spell-gem-physical.js', 'export function reviewGemPhysical('],
+                          ['src/data/lib/spell-gem.js', 'export function spellGemProblems('],
+                          ['src/data/lib/spell-gem.js', 'export function evaluateGemImbue(']],
+         'consumerTests': ['tests/spell_gem_model.mjs',
+                           'tests/spell_gem_physical.mjs',
+                           'tests/spell_gem_authority.mjs',
+                           'tests/spell_gem_backend.mjs']},
+     7: {'anchor': ['src/app/32h-logic-spell-gem.js', 'function gemReleaseCheck(options,view,facts,evaluated,selection)'],
+         'extraAnchors': [['src/builder/25b-logic-spell-gem-sources.js', 'function gemCommit(token,prepare,beforeCommit,isCurrent'],
+                          ['src/data/lib/spell-gem-authority.js', 'export function assertGemPhysicalCurrent('],
+                          ['src/data/lib/spell-gem-authority.js', 'export function applyGemPhysicalChanges('],
+                          ['src/data/lib/spell-gem.js', 'checkDC:checkRequired?10+state.contents.level:null'],
+                          ['src/app/32h-logic-spell-gem.js', 'dice.commitHook!==1'],
+                          ['src/app/32h-logic-spell-gem.js', 'function gemReleaseCommit(token,facts,event,selection'],
+                          ['src/builder/25b-logic-spell-gem-sources.js', 'genv.__bldGemRelease=function'],
+                          ['src/data/lib/spell-gem-casts.js', 'export function recordSpellGemCast('],
+                          ['src/data/lib/gem-check-bonuses.js', 'export function evaluateGemCheckBonuses(']],
+         'consumerTests': ['tests/spell_gem_model.mjs',
+                           'tests/spell_gem_runtime.mjs',
+                           'tests/casting_sources.mjs',
+                           'tests/gem_check_bonuses.mjs']},
+     10: {'anchor': ['src/app/32h-logic-spell-gem.js', 'export function requestGemReceiptEffect(options)'],
+          'extraAnchors': [['src/builder/25b-logic-spell-gem-sources.js', 'function gemCommit(token,prepare,beforeCommit,isCurrent'],
+                           ['src/data/lib/spell-gem-authority.js', 'export function assertGemPhysicalCurrent('],
+                           ['src/data/lib/spell-gem-authority.js', 'export function applyGemPhysicalChanges('],
+                           ['src/data/lib/spell-gem-casts.js', 'export function spellGemFixedSourceStats('],
+                           ['src/data/lib/spell-gem-casts.js', 'export function gemOwnedSpellRow('],
+                           ['src/data/lib/spell-source.js', 'spellGemFixedSourceStats(spell.fixedSpellSource,spell)'],
+                           ['src/app/22-ui-spell-data-and-slots.js', 'export function gemReceiptDetails('],
+                           ['src/data/lib/spell-gem-casts.js', 'export function recordSpellGemCast(']],
+          'consumerTests': ['tests/spell_gem_consumer.mjs',
+                            'tests/spell_gem_casts.mjs',
+                            'tests/spell_gem_source.mjs',
+                            'tests/spell_gem_runtime.mjs']},
+     12: {'anchor': ['src/builder/25b-logic-spell-gem-sources.js', 'genv.__bldGemImbue=function'],
+          'extraAnchors': [['src/builder/25b-logic-spell-gem-sources.js', 'function gemCommit(token,prepare,beforeCommit,isCurrent'],
+                           ['src/data/lib/spell-gem-authority.js', 'export function assertGemPhysicalCurrent('],
+                           ['src/data/lib/spell-gem-authority.js', 'export function applyGemPhysicalChanges('],
+                           ['src/app/32h-logic-spell-gem.js', 'export function requestGemImbue(options)'],
+                           ['src/app/32h-logic-spell-gem.js', 'export function gemNativePaymentPlan('],
+                           ['src/app/lib/gem-native-payment.js', 'function plan(token,bound,material)'],
+                           ['src/data/lib/spell-gem.js', 'export function imbueSpellGem('],
+                           ['src/data/lib/spell-gem.js', 'externalSpellEffectAllowed:false'],
+                           ['src/builder/25b-logic-spell-gem-sources.js', 'attunedActive:!!(status&&status.attuned)'],
+                           ['src/data/lib/spell-gem.js', 'export function declareGemNextDawn(']],
+          'consumerTests': ['tests/spell_gem_runtime.mjs',
+                            'tests/spell_gem_backend.mjs',
+                            'tests/spell_gem_attunement.mjs',
+                            'tests/spell_gem_model.mjs']},
+     9: {'anchor': ['src/builder/25b-logic-spell-gem-sources.js', 'genv.__bldGemReview=function'],
+         'extraAnchors': [['src/builder/25b-logic-spell-gem-sources.js', 'function gemCommit(token,prepare,beforeCommit,isCurrent'],
+                          ['src/data/lib/spell-gem-authority.js', 'export function assertGemPhysicalCurrent('],
+                          ['src/data/lib/spell-gem-authority.js', 'export function applyGemPhysicalChanges('],
+                          ['src/builder/25b-logic-spell-gem-sources.js', 'Array.isArray(matches[0].classList)'],
+                          ['src/data/lib/spell-gem-physical.js', 'export function reviewGemPhysical('],
+                          ['src/data/lib/spell-gem.js', 'export function spellGemProblems('],
+                          ['src/data/lib/spell-gem.js', 'export function evaluateGemImbue(']],
+         'consumerTests': ['tests/spell_gem_model.mjs',
+                           'tests/spell_gem_physical.mjs',
+                           'tests/spell_gem_authority.mjs',
+                           'tests/spell_gem_backend.mjs']}}
+    gem_proof_expected=[]
+    for native in gem_native_rows:
+        for owner in ["dmg","oota"]:
+            for index,text in enumerate(split_sentences(native[4]),1):
+                if index not in (1,7,10,12) and not(index==9 and native[0]=="Spell Gem (Obsidian)"):continue
+                sid="item|%s|%s#%s"%(owner,native[0],index);group=gem_proof_groups[index]
+                bare=analyze(synth("item",owner,native[0],text,[]))[0]
+                entry=dict(id="u41-"+re.sub("[^a-z0-9]+","-",sid.lower()).strip("-"),kind="item",owner=owner,name=native[0],cls=bare["K"],vals=list(dict.fromkeys(value for value,kind in bare["toks"])),scopeValues=True,rx="^"+re.escape(text.lower())+"$",anchor=group["anchor"],extraAnchors=group["extraAnchors"],test="Z3 U41 native loaded physical gem "+("2014" if owner=="dmg" else "2024")+" "+native[0],consumerTests=group["consumerTests"])
+                gem_proof_expected.append(entry);loaded=load_code_atoms([entry]);key="item|%s|%s"%(owner,native[0]);atoms=[atom for proof,atom in loaded.get(key,[])]
+                result=analyze(synth("item",owner,native[0],text,atoms))[0]
+                check("U41 candidate exact native source outcome "+sid,result["status"]=="covered",result["why"])
+                fixture=tool_cases_by_name.get(entry["test"])
+                check("U41 real native physical FX differential "+sid,bool(fixture and fixture.get("expect") and fixture.get("lo") and fixture["b"]["inv"][0]["n"]==native[0]))
+                for testfile in entry["consumerTests"]:
+                    filename=os.path.join(ROOT,testfile);needle="casting-sources" if testfile.endswith("casting_sources.mjs") else "gem-check-bonuses" if testfile.endswith("gem_check_bonuses.mjs") else "spell-gem"
+                    check("U41 actual consumer witness retained "+sid+testfile,os.path.isfile(filename) and needle in open(filename,encoding="utf-8").read())
+                for anchor_index in range(1+len(entry["extraAnchors"])):
+                    damaged=dict(entry,extraAnchors=[list(pair) for pair in entry["extraAnchors"]])
+                    if anchor_index==0:damaged["anchor"]=[entry["anchor"][0],"missing-native-gem-source-consumer"]
+                    else:damaged["extraAnchors"][anchor_index-1][1]="missing-native-gem-authority-or-transaction"
+                    check("U41 NEG missing native producer/consumer "+sid+str(anchor_index),not load_code_atoms([damaged]));CODE_NOTES.clear()
+                if index==7:changed=text.replace("10 +","11 +")
+                elif index==10:
+                    fixed=re.search(r"save DC of (\d+)",text);changed=text[:fixed.start(1)]+str(int(fixed.group(1))+1)+text[fixed.end(1):]
+                elif index==1:changed=text.replace("one spell","two spells").replace("one cantrip","two cantrips")
+                elif index==9:changed=text.replace("only store cantrips","store ninth level spells")
+                else:changed=text.replace("while holding the gem","without holding the gem")
+                check("U41 source-sentence mutant differs "+sid,changed!=text)
+                for other in [changed,"You permanently learn this spell.","You gain a +3 bonus to all spell attacks.","The gem refills after every Long Rest.","You can cast any spell without a real casting source."]:
+                    check("U41 NEG changed or broadened permission "+sid+other,all(row["status"]!="covered" for row in analyze(synth("item",owner,native[0],other,atoms))))
+                for wrong_key in ["item|other|"+native[0],"item|"+owner+"|Ordinary Gem"]:
+                    check("U41 NEG wrong source alias or item "+sid+wrong_key,not loaded.get(wrong_key))
+    check("U41 exactly82 narrowly scoped draft proofs",len(gem_proof_expected)==82)
+    gem_registered=[entry for entry in json.load(open(CODE,encoding="utf-8"))["entries"] if entry.get("id","").startswith("u41-")]
+    check("U41 outside draft or exactly82 registered proofs",len(gem_registered) in (0,82))
+    gem_expected_by_id={entry["id"]:entry for entry in gem_proof_expected}
+    for entry in gem_registered:
+        expected=gem_expected_by_id.get(entry["id"])
+        check("U41 registered exact native source and real consumers "+entry["id"],bool(expected and all(entry.get(key)==value for key,value in expected.items())))
     # 8 ACTIVATE
     c8 = synth("feat", "F", "F", "As a bonus action you deal 2d8 radiant damage to one creature within 30 feet.", [], acts=True)
     r = analyze(c8)

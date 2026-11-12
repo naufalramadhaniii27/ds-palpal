@@ -5,7 +5,7 @@ import {sheetRootActive} from '../05-logic-helpers.js';
 import {env} from '../00-env.js';
 import {temporaryCantripStatus} from './temporary-cantrip-guard.js';
 const contexts=new WeakSet();
-const bodySource=row=>!!row&&['fixedSpellSource','tattooSource'].some(key=>Object.prototype.hasOwnProperty.call(row,key));
+const bodySource=row=>!!row&&['fixedSpellSource','tattooSource','gemSpellcasting'].some(key=>Object.prototype.hasOwnProperty.call(row,key));
 function spellSourceIdentity(view){if(!view||!contexts.has(view)||view.character!==C||view.state!==S||view.owner!==C.name||view.cid!==C.cid||view.id!==C.id)return false;if(view.kind==='spell')return !bodySource(view.spell)&&(C.spells||[])[view.index]===view.spell;return Array.isArray((C.spellcasting||{}).by)&&(C.spellcasting.by).some(row=>row.k===view.key)}
 function spellSourceSnapshot(){return JSON.stringify({casting:C.spellcasting,abilities:C.abilities,level:C.level,pbAdd:C.pbAdd,rs:C.rs,exhMin:C.exhMin,inventory:C.inv,cust:S.cust,cond:S.cond,exh:S.exh,exhLk:S.exhLk,mode:S.mode,hp:S.hp,temporaryCantrips:S.temporaryCantrips})}
 function spellSourceStats(view){if(view.kind==='spell'){const get=lateGet('scOf');return typeof get==='function'?get(view.spell):null}const adjust=lateGet('scAdj'),casting=typeof adjust==='function'?adjust(C.spellcasting||{}):null;return casting&&Array.isArray(casting.by)?casting.by.find(row=>row.k===view.key):null}

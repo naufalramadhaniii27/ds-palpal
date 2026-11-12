@@ -2,6 +2,9 @@ import {bindLive,lateGet,scOf} from "./00a-reg-late-ports.js";import {C,S} from 
 import {evaluateSupremeHealing} from "../data/lib/cleric-maths.js";
 import {healingSpellOwned} from "../data/lib/tattoo-projection.js";
 import {tattooHealingCalculation} from "./lib/tattoo-healing.js";
+import {gemHealingCalculation} from "./lib/spell-gem-healing.js";
+import {itemSpellDamageView} from "./lib/item-spell-damage-view.js";
+import {gemOwnedSpellRow} from "../data/lib/spell-gem-casts.js";
 import {supremeHealingRuleForCharacter} from "./lib/supreme-healing-runtime.js";
 import {clamp,esc,sg} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
@@ -14,6 +17,7 @@ bindLive("dtIcon",{get:function(){return dtIcon;}});
 bindLive("spAreaTxt",{get:function(){return spAreaTxt;}});
 bindLive("spCalc",{get:function(){return spCalc;}});
 bindLive("tattooReceiptDetails",{get:function(){return tattooReceiptDetails;}});
+bindLive("gemReceiptDetails",{get:function(){return gemReceiptDetails;}});
 bindLive("spFx",{get:function(){return spFx;}});
 bindLive("spFxBlock",{get:function(){return spFxBlock;}});
 bindLive("spLvRange",{get:function(){return spLvRange;}});
@@ -54,10 +58,10 @@ export function spCalc(x,lv,cl,smod,healingFacts=undefined){ const f=spFx(x); if
   const supreme=supremeSpellHealing(x,heal,healingFacts);if(supreme&&supreme.applies)heal=supreme.expression;
   const result={parts:parts,heal:heal,n:n,unit:unit,lv:lv,up:!!up,area:f.area||null,bon:spDb(x).concat((x.hb||[]).map((b) =>{ return {v:(+b.v||0)+(b.lv?lv:0),s:b.s+" (healing)"}; }))};return {...result,...(supreme?{supremeHealing:supreme}:{})}; }
 const tattooCalculationSources=new WeakMap();
-function typedBodySource(row){return !!row&&["fixedSpellSource","tattooSource"].some(key=>Object.prototype.hasOwnProperty.call(row,key))}
+function typedBodySource(row){return !!row&&["fixedSpellSource","tattooSource","gemSpellcasting"].some(key=>Object.prototype.hasOwnProperty.call(row,key))}
 function supremeSpellHealing(spell,expression,facts){
  const owned=tattooCalculationSources.get(spell),sourceSpell=owned?owned.sourceRow:spell;
- const rule=supremeHealingRuleForCharacter(C);if(!expression||!rule||!healingSpellOwned(C,S,owned?owned.definitions:[],sourceSpell))return null;
+ const rule=supremeHealingRuleForCharacter(C);if(!expression||!rule||!(owned&&owned.kind==="gem"?gemOwnedSpellRow(S.spellGemCasts,owned.definitions,sourceSpell,C.rs===undefined?"2024":C.rs).ok:healingSpellOwned(C,S,owned?owned.definitions:[],sourceSpell)))return null;
  const packet={v:1,sourceKind:"spell",owner:"actor",effect:"restore-hp",expression},candidate=evaluateSupremeHealing(rule,packet,{targetCreature:true});if(!candidate.ok||!("amount" in candidate)||!candidate.applies)return null;
  const targetCreature=facts&&typeof facts.targetCreature==="boolean"?facts.targetCreature:false,actual=evaluateSupremeHealing(rule,packet,{targetCreature});return {...candidate,applies:actual.ok&&("applies" in actual)&&actual.applies,requiresCreature:rule.creatureOnly};
 }
@@ -70,10 +74,27 @@ export function tattooSpellCalculation(row,definitions,facts,mode="receipt"){
 }
 export function tattooReceiptDetails(row,definitions,facts={targetCreature:false,restoresHitPoints:false}){
  const result=tattooSpellCalculation(row,definitions,facts,"receipt");if(!result.ok)return result;
- const stats=scOf(result.sourceRow),calculation=result.calculation;
- const lines=(calculation.parts||[]).map(part=>esc(part.d)+" "+esc(part.t));
+ const stats=scOf(result.sourceRow),calculation=result.calculation,itemDamage=itemSpellDamageView(C,S,result.sourceRow,calculation,result.itemDamageSnapshot,result.itemDamageUsage);
+ const lines=(calculation.parts||[]).map((part,index)=>esc(itemDamage.ok?itemDamage.parts[index].normalExpression:part.d)+" "+esc(part.t));
  if(calculation.heal)lines.push("Healing: "+esc(calculation.heal));
- return {ok:true,...result,stats,signature:JSON.stringify({source:result.signature,stats,calculation}),html:'<p>Spell attack '+esc(sg(stats.atk))+" · Save DC "+esc(stats.dc)+" · Fixed modifier "+esc(sg(stats.mod))+'</p><p>'+lines.join("<br>")+'</p>'};
+ return {ok:true,...result,stats,itemDamage,signature:JSON.stringify({source:result.signature,stats,calculation,itemDamage}),html:'<p>Spell attack '+esc(sg(stats.atk))+" · Save DC "+esc(stats.dc)+" · Fixed modifier "+esc(sg(stats.mod))+'</p><p>'+lines.join("<br>")+'</p>'};
+}
+export function gemSpellCalculation(row,definitions,facts){
+ const resolved=gemHealingCalculation(C,S,definitions,row,facts);if(!resolved.ok)return resolved;
+ tattooCalculationSources.set(resolved.calculationRow,{sourceRow:resolved.sourceRow,definitions,kind:"gem"});
+ try{const calculation=spCalc(resolved.calculationRow,resolved.castLevel,resolved.casterLevel,scOf(resolved.sourceRow).mod,facts);return {ok:true,...resolved,calculation};}
+ finally{tattooCalculationSources.delete(resolved.calculationRow);}
+}
+function gemReceiptCalculation(row,definitions,facts){
+ const result=gemSpellCalculation(row,definitions,facts);if(result.ok||result.reason!=="spellcasting-modifier-review-required")return result;
+ const owned=gemOwnedSpellRow(S.spellGemCasts,definitions,row,C.rs===undefined?"2024":C.rs);if(!owned.ok)return owned;
+ return {ok:true,...owned,modifierReviewRequired:true,calculation:{parts:[],heal:null,n:0},signature:JSON.stringify(owned.cast)};
+}
+export function gemReceiptDetails(row,definitions,facts={targetCreature:false,restoresHitPoints:false}){
+ const result=gemReceiptCalculation(row,definitions,facts);if(!result.ok)return result;
+ const stats=scOf(result.sourceRow),calculation=result.calculation,itemDamage=itemSpellDamageView(C,S,result.sourceRow,calculation,result.cast.castContext.itemDamage,result.cast.itemDamageUsage),lines=(calculation.parts||[]).map((part,index)=>esc(itemDamage.ok?itemDamage.parts[index].normalExpression:part.d)+" "+esc(part.t));if(calculation.heal)lines.push("Healing: "+esc(calculation.heal));
+ const modifier=Number.isFinite(stats.mod)?esc(sg(stats.mod)):"Unresolved; review before modifier-dependent effects";
+ return {ok:true,...result,stats,itemDamage,signature:JSON.stringify({source:result.signature,stats,calculation,itemDamage}),html:'<p>Spell attack '+esc(sg(stats.atk))+" · Save DC "+esc(stats.dc)+" · Spellcasting modifier "+modifier+'</p><p>'+lines.join("<br>")+'</p>'};
 }
 export function tattooSupremeSpellPacket(row,definitions,facts){
  const result=tattooSpellCalculation(row,definitions,facts,"receipt");if(!result.ok)return result;
@@ -109,7 +130,7 @@ function spAreaTxt(a){ if(!a) return ""; return a[1]+" ft."+(a[0]==="Line"&&a[2]
 export function spRangeH(r,x){ const f=spFx(x), a=f&&f.area; return esc(String(r||"").replace(/ ft$/," ft."))+(a?'<span class="spar">/'+esc(spAreaTxt(a))+arIcon(a[0])+'</span>':''); }
 export function spCompH(cmp,x){ const f=spFx(x), m=(x&&x.mat)||(f&&f.mat); return esc(cmp)+(m&&/M/.test(cmp)?' <span class="spmat">('+esc(m)+')</span>':''); }
 /* Effect cell: count x first damage part with icon, or healing, or the old text summary */
-export function spEffH(x,lv){ if(typedBodySource(x))return '<span class="speff">Use the body tattoo controls</span>';const c=spCalc(x,lv,D.level,scOf(x).mod); if(c&&c.parts.length){ const p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
+export function spEffH(x,lv){ if(typedBodySource(x))return '<span class="speff">'+(Object.prototype.hasOwnProperty.call(x,"gemSpellcasting")||x.fixedSpellSource&&x.fixedSpellSource.kind==="spell-gem"?"Use the Spell Gem controls":"Use the body tattoo controls")+'</span>';const c=spCalc(x,lv,D.level,scOf(x).mod); if(c&&c.parts.length){ const p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
   if(c&&c.heal) return '<span class="speff">'+esc(c.heal)+dtIcon("Healing")+'</span>'; return esc(spEffect(x)); }
 /* RU35 no. 2: a Warlock spell is cast with a Pact Magic slot, so its row uses the Pact slot level (Mystic Arcanum keeps its own level) */
 export function spPact(x){ const sc=C.spellcasting||{}; if(!x.l||!sc.pact) return false; if(x.pact!=null) return !!x.pact; if(/Long Rest|At will/.test(x.use||"")) return false; if(C.cls==="Warlock"&&!/\//.test(C.clsLabel||"")) return true; return /^(Warlock|.* Patron)$/.test(String(x.src||""))&&/Warlock/.test(C.clsLabel||""); }/* v31 p95 */

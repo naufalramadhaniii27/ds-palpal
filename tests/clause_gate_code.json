@@ -7026,7 +7026,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7181,7 +7181,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7336,7 +7336,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7491,7 +7491,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7646,7 +7646,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+5;\\ the\\ save\\ dc\\ is\\ 17\\ and\\ the\\ attack\\ bonus\\ is\\ \\+9\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7836,7 +7836,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7991,7 +7991,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8146,7 +8146,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8301,7 +8301,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8456,7 +8456,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8611,7 +8611,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+5;\\ the\\ save\\ dc\\ is\\ 17\\ and\\ the\\ attack\\ bonus\\ is\\ \\+9\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8801,7 +8801,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8835,6 +8835,5054 @@
     "tests/tattoo_spell_source.mjs",
     "tests/tattoo_spell_consumer.mjs"
    ]
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-amber-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Amber)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^an\\ amber\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Amber)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-amber-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Amber)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Amber)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-amber-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Amber)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "15",
+    "9"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 15\\ and\\ an\\ attack\\ bonus\\ of\\ \\+9\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Amber)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-amber-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Amber)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Amber)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-bloodstone-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Bloodstone)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ bloodstone\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Bloodstone)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-bloodstone-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Bloodstone)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Bloodstone)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-bloodstone-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Bloodstone)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "15",
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 15\\ and\\ an\\ attack\\ bonus\\ of\\ \\+7\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Bloodstone)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-bloodstone-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Bloodstone)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Bloodstone)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-diamond-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Diamond)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ diamond\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Diamond)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-diamond-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Diamond)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Diamond)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-diamond-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Diamond)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "19",
+    "11"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 19\\ and\\ an\\ attack\\ bonus\\ of\\ \\+11\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Diamond)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-diamond-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Diamond)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Diamond)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-jade-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Jade)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ jade\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Jade)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-jade-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Jade)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Jade)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-jade-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Jade)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "17",
+    "9"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 17\\ and\\ an\\ attack\\ bonus\\ of\\ \\+9\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Jade)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-jade-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Jade)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Jade)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-lapis-lazuli-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Lapis lazuli)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ lapis\\ lazuli\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Lapis lazuli)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-lapis-lazuli-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Lapis lazuli)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Lapis lazuli)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-lapis-lazuli-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Lapis lazuli)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 13\\ and\\ an\\ attack\\ bonus\\ of\\ \\+5\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Lapis lazuli)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-lapis-lazuli-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Lapis lazuli)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Lapis lazuli)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-obsidian-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^an\\ obsidian\\ spell\\ gem\\ can\\ contain\\ one\\ cantrip\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-obsidian-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-obsidian-9",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^an\\ obsidian\\ spell\\ gem\\ can\\ only\\ store\\ cantrips\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-obsidian-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^cantrips\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 13\\ and\\ an\\ attack\\ bonus\\ of\\ \\+5\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-obsidian-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-quartz-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Quartz)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ quartz\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Quartz)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-quartz-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Quartz)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Quartz)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-quartz-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Quartz)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 13\\ and\\ an\\ attack\\ bonus\\ of\\ \\+5\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Quartz)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-quartz-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Quartz)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Quartz)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-ruby-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Ruby)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ ruby\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Ruby)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-ruby-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Ruby)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Ruby)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-ruby-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Ruby)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "18",
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 18\\ and\\ an\\ attack\\ bonus\\ of\\ \\+10\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Ruby)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-ruby-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Ruby)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Ruby)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-star-ruby-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Star ruby)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ star\\ ruby\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Star ruby)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-star-ruby-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Star ruby)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Star ruby)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-star-ruby-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Star ruby)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "18",
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 18\\ and\\ an\\ attack\\ bonus\\ of\\ \\+10\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Star ruby)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-star-ruby-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Star ruby)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Star ruby)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-topaz-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Topaz)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ topaz\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Topaz)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-topaz-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Topaz)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Topaz)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-topaz-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Topaz)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "17",
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 17\\ and\\ an\\ attack\\ bonus\\ of\\ \\+10\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Topaz)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-dmg-spell-gem-topaz-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell Gem (Topaz)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2014 Spell Gem (Topaz)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-amber-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Amber)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^an\\ amber\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Amber)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-amber-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Amber)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Amber)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-amber-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Amber)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "15",
+    "9"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 15\\ and\\ an\\ attack\\ bonus\\ of\\ \\+9\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Amber)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-amber-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Amber)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Amber)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-bloodstone-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Bloodstone)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ bloodstone\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Bloodstone)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-bloodstone-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Bloodstone)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Bloodstone)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-bloodstone-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Bloodstone)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "15",
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 15\\ and\\ an\\ attack\\ bonus\\ of\\ \\+7\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Bloodstone)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-bloodstone-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Bloodstone)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Bloodstone)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-diamond-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Diamond)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ diamond\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Diamond)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-diamond-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Diamond)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Diamond)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-diamond-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Diamond)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "19",
+    "11"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 19\\ and\\ an\\ attack\\ bonus\\ of\\ \\+11\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Diamond)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-diamond-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Diamond)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Diamond)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-jade-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Jade)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ jade\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Jade)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-jade-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Jade)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Jade)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-jade-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Jade)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "17",
+    "9"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 17\\ and\\ an\\ attack\\ bonus\\ of\\ \\+9\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Jade)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-jade-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Jade)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Jade)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-lapis-lazuli-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Lapis lazuli)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ lapis\\ lazuli\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Lapis lazuli)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-lapis-lazuli-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Lapis lazuli)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Lapis lazuli)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-lapis-lazuli-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Lapis lazuli)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 13\\ and\\ an\\ attack\\ bonus\\ of\\ \\+5\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Lapis lazuli)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-lapis-lazuli-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Lapis lazuli)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Lapis lazuli)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-obsidian-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^an\\ obsidian\\ spell\\ gem\\ can\\ contain\\ one\\ cantrip\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-obsidian-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-obsidian-9",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^an\\ obsidian\\ spell\\ gem\\ can\\ only\\ store\\ cantrips\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-obsidian-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^cantrips\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 13\\ and\\ an\\ attack\\ bonus\\ of\\ \\+5\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-obsidian-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Obsidian)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Obsidian)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-quartz-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Quartz)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ quartz\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Quartz)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-quartz-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Quartz)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Quartz)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-quartz-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Quartz)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "13",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 13\\ and\\ an\\ attack\\ bonus\\ of\\ \\+5\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Quartz)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-quartz-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Quartz)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Quartz)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-ruby-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Ruby)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ ruby\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Ruby)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-ruby-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Ruby)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Ruby)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-ruby-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Ruby)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "18",
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 18\\ and\\ an\\ attack\\ bonus\\ of\\ \\+10\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Ruby)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-ruby-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Ruby)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Ruby)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-star-ruby-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Star ruby)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ star\\ ruby\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Star ruby)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-star-ruby-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Star ruby)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Star ruby)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-star-ruby-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Star ruby)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "18",
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 18\\ and\\ an\\ attack\\ bonus\\ of\\ \\+10\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Star ruby)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-star-ruby-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Star ruby)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Star ruby)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-topaz-1",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Topaz)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^a\\ topaz\\ spell\\ gem\\ can\\ contain\\ one\\ spell\\ from\\ any\\ class's\\ spell\\ list\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemReview=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "Array.isArray(matches[0].classList)"
+    ],
+    [
+     "src/data/lib/spell-gem-physical.js",
+     "export function reviewGemPhysical("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function spellGemProblems("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function evaluateGemImbue("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Topaz)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_physical.mjs",
+    "tests/spell_gem_authority.mjs",
+    "tests/spell_gem_backend.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-topaz-7",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Topaz)",
+   "cls": [
+    "DC"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ dc\\ equals\\ 10\\ \\+\\ the\\ spell's\\ level\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "function gemReleaseCheck(options,view,facts,evaluated,selection)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "checkDC:checkRequired?10+state.contents.level:null"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "dice.commitHook!==1"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "function gemReleaseCommit(token,facts,event,selection"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "genv.__bldGemRelease=function"
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ],
+    [
+     "src/data/lib/gem-check-bonuses.js",
+     "export function evaluateGemCheckBonuses("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Topaz)",
+   "consumerTests": [
+    "tests/spell_gem_model.mjs",
+    "tests/spell_gem_runtime.mjs",
+    "tests/casting_sources.mjs",
+    "tests/gem_check_bonuses.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-topaz-10",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Topaz)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SPELL"
+   ],
+   "vals": [
+    "17",
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^spells\\ cast\\ from\\ the\\ spell\\ gem\\ have\\ a\\ save\\ dc\\ of\\ 17\\ and\\ an\\ attack\\ bonus\\ of\\ \\+10\\.$",
+   "anchor": [
+    "src/app/32h-logic-spell-gem.js",
+    "export function requestGemReceiptEffect(options)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function spellGemFixedSourceStats("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function gemOwnedSpellRow("
+    ],
+    [
+     "src/data/lib/spell-source.js",
+     "spellGemFixedSourceStats(spell.fixedSpellSource,spell)"
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function gemReceiptDetails("
+    ],
+    [
+     "src/data/lib/spell-gem-casts.js",
+     "export function recordSpellGemCast("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Topaz)",
+   "consumerTests": [
+    "tests/spell_gem_consumer.mjs",
+    "tests/spell_gem_casts.mjs",
+    "tests/spell_gem_source.mjs",
+    "tests/spell_gem_runtime.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u41-item-oota-spell-gem-topaz-12",
+   "kind": "item",
+   "owner": "oota",
+   "name": "Spell Gem (Topaz)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ do\\ so,\\ you\\ cast\\ the\\ spell\\ while\\ holding\\ the\\ gem\\.$",
+   "anchor": [
+    "src/builder/25b-logic-spell-gem-sources.js",
+    "genv.__bldGemImbue=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "function gemCommit(token,prepare,beforeCommit,isCurrent"
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function assertGemPhysicalCurrent("
+    ],
+    [
+     "src/data/lib/spell-gem-authority.js",
+     "export function applyGemPhysicalChanges("
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function requestGemImbue(options)"
+    ],
+    [
+     "src/app/32h-logic-spell-gem.js",
+     "export function gemNativePaymentPlan("
+    ],
+    [
+     "src/app/lib/gem-native-payment.js",
+     "function plan(token,bound,material)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function imbueSpellGem("
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "externalSpellEffectAllowed:false"
+    ],
+    [
+     "src/builder/25b-logic-spell-gem-sources.js",
+     "attunedActive:!!(status&&status.attuned)"
+    ],
+    [
+     "src/data/lib/spell-gem.js",
+     "export function declareGemNextDawn("
+    ]
+   ],
+   "test": "Z3 U41 native loaded physical gem 2024 Spell Gem (Topaz)",
+   "consumerTests": [
+    "tests/spell_gem_runtime.mjs",
+    "tests/spell_gem_backend.mjs",
+    "tests/spell_gem_attunement.mjs",
+    "tests/spell_gem_model.mjs"
+   ],
+   "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
   }
  ]
 }

@@ -1,0 +1,26 @@
+// Pure physical provenance: unknown legacy contents/history stay unknown until factual review.
+import {spellGemProfile,spellGemProblems} from './spell-gem.js';
+const own=(x,k)=>Object.prototype.hasOwnProperty.call(x,k),object=x=>!!x&&typeof x==='object'&&!Array.isArray(x),exact=(x,keys)=>object(x)&&Reflect.ownKeys(x).length===keys.length&&keys.every(k=>own(x,k)),fail=reason=>({ok:false,reason});
+function idNumber(id){const match=typeof id==='string'&&/^gem-([1-9][0-9]*)$/.exec(id),n=match&&Number(match[1]);return Number.isSafeInteger(n)?n:null}
+const quantity=row=>row.q==null?1:row.q;
+function native(row){return object(row)&&spellGemProfile(row.key||row.n)}
+function unrecorded(state){return exact(state,['v','id','contents','imbueAvailable','reviewRequired'])&&state.v===1&&!!idNumber(state.id)&&state.contents===null&&state.imbueAvailable===null&&state.reviewRequired===true}
+function physicalState(row){return unrecorded(row.spellGem)||!spellGemProblems(row).length}
+export function gemRegistryProblems(registry){if(!exact(registry,['v','nextId','reservedIds'])||registry.v!==1||!Number.isSafeInteger(registry.nextId)||registry.nextId<1||!Array.isArray(registry.reservedIds)||Object.keys(registry.reservedIds).length!==registry.reservedIds.length||Reflect.ownKeys(registry.reservedIds).length!==registry.reservedIds.length+1)return ['registry'];const seen=new Set();for(const id of registry.reservedIds){const number=idNumber(id);if(!number||number>=registry.nextId||seen.has(id))return ['reservedIds'];seen.add(id)}return []}
+export function migrateGemPhysical(rows,registry=undefined){
+ if(!Array.isArray(rows))return fail('invalid-inventory');if(registry!==undefined&&gemRegistryProblems(registry).length)return fail('unsupported-registry');const base=registry||{v:1,nextId:1,reservedIds:[]},reserved=new Set(base.reservedIds),seen=new Set();let nextId=base.nextId;
+ for(const row of rows){if(!native(row)||!own(row,'spellGem'))continue;if(!physicalState(row))return fail('unsupported-physical-state');const id=row.spellGem.id;if(seen.has(id))return fail('duplicate-physical-id');seen.add(id);reserved.add(id);nextId=Math.max(nextId,idNumber(id)+1)}
+ const result=[];for(const row of rows){if(!native(row)||own(row,'spellGem')){result.push(structuredClone(row));continue}if(!Number.isSafeInteger(nextId+1))return fail('identity-capacity');const id='gem-'+nextId++;reserved.add(id);result.push({...structuredClone(row),spellGem:{v:1,id,contents:null,imbueAvailable:null,reviewRequired:true}})}
+ return {ok:true,rows:result,registry:{v:1,nextId,reservedIds:[...reserved]}};
+}
+export function reviewGemPhysical(row,definition,declarations){
+ if(!native(row)||!unrecorded(row.spellGem))return fail('review-unavailable');if(quantity(row)!==1)return fail('singleton-required');if(!exact(declarations,['physicalContentsVerified','notImbuedSinceLastDawn'])||declarations.physicalContentsVerified!==true||typeof declarations.notImbuedSinceLastDawn!=='boolean')return fail('physical-review-required');
+ const profile=native(row);if(definition!==null&&(!exact(definition,['n','l'])||typeof definition.n!=='string'||!definition.n||definition.n.trim()!==definition.n||!Number.isSafeInteger(definition.l)||definition.l<0||definition.l>profile.maxSpellLevel))return fail('invalid-contents');
+ return {ok:true,row:{...row,spellGem:{v:1,id:row.spellGem.id,contents:definition&&{spell:definition.n,level:definition.l},imbueAvailable:declarations.notImbuedSinceLastDawn}}};
+}
+export function splitGemPhysical(rows,index,registry,options=undefined){
+ if(!Array.isArray(rows)||!Number.isSafeInteger(index)||index<0||!rows[index]||!native(rows[index]))return fail('invalid-selection');if(gemRegistryProblems(registry).length)return fail('unsupported-registry');const row=rows[index],q=quantity(row);if(!Number.isSafeInteger(q)||q<=1)return fail('stack-required');if(!physicalState(row))return fail('unsupported-physical-state');const ids=rows.filter(native).filter(r=>own(r,'spellGem')).map(r=>r.spellGem.id);if(new Set(ids).size!==ids.length)return fail('duplicate-physical-id');if(!registry.reservedIds.includes(row.spellGem.id))return fail('unreserved-identity');
+ const state=row.spellGem,requiresKeepChoice=row.attuned===true||!unrecorded(state)&&(state.contents!==null||state.imbueAvailable===false);if(options!==undefined&&(!exact(options,['keepRecordedWith'])||!['original','split'].includes(options.keepRecordedWith)))return fail('invalid-keeper');if(requiresKeepChoice&&options===undefined)return fail('physical-keeper-required');if(!Number.isSafeInteger(registry.nextId+1))return fail('identity-capacity');
+ const keeper=options?options.keepRecordedWith:'original',original=structuredClone(row),split=structuredClone(row),id='gem-'+registry.nextId;if(registry.reservedIds.includes(id)||ids.includes(id))return fail('identity-collision');original.q=q-1;split.q=1;const other=keeper==='split'?original:split;other.attuned=false;other.spellGem={v:1,id,contents:null,imbueAvailable:null,reviewRequired:true};const result=rows.map((r,i)=>i===index?original:structuredClone(r));result.push(split);
+ return {ok:true,rows:result,index,splitIndex:result.length-1,registry:{v:1,nextId:registry.nextId+1,reservedIds:registry.reservedIds.concat(id)}};
+}

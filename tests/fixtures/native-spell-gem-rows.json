@@ -1,0 +1,172 @@
+[
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Amber)",
+      "Wondrous Item",
+      "Very Rare",
+      0,
+      "An amber spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nAn amber spell gem can store up to 4th level spells. Spells cast from the spell gem have a save DC of 15 and an attack bonus of +9.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Bloodstone)",
+      "Wondrous Item",
+      "Rare",
+      0,
+      "A bloodstone spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nA bloodstone spell gem can store up to 3rd level spells. Spells cast from the spell gem have a save DC of 15 and an attack bonus of +7.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Diamond)",
+      "Wondrous Item",
+      "Legendary",
+      0,
+      "A diamond spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nA diamond spell gem can store up to 9th level spells. Spells cast from the spell gem have a save DC of 19 and an attack bonus of +11.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Jade)",
+      "Wondrous Item",
+      "Very Rare",
+      0,
+      "A jade spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nA jade spell gem can store up to 5th level spells. Spells cast from the spell gem have a save DC of 17 and an attack bonus of +9.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Lapis lazuli)",
+      "Wondrous Item",
+      "Uncommon",
+      0,
+      "A lapis lazuli spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nA lapis lazuli spell gem can store up to 1st level spells. Spells cast from the spell gem have a save DC of 13 and an attack bonus of +5.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Obsidian)",
+      "Wondrous Item",
+      "Uncommon",
+      0,
+      "An obsidian spell gem can contain one cantrip from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nAn obsidian spell gem can only store cantrips. Cantrips cast from the spell gem have a save DC of 13 and an attack bonus of +5.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Quartz)",
+      "Wondrous Item",
+      "Rare",
+      0,
+      "A quartz spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nA quartz spell gem can store up to 2nd level spells. Spells cast from the spell gem have a save DC of 13 and an attack bonus of +5.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Ruby)",
+      "Wondrous Item",
+      "Legendary",
+      0,
+      "A ruby spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nA ruby spell gem can store up to 8th level spells. Spells cast from the spell gem have a save DC of 18 and an attack bonus of +10.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Star ruby)",
+      "Wondrous Item",
+      "Legendary",
+      0,
+      "A star ruby spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nA star ruby spell gem can store up to 7th level spells. Spells cast from the spell gem have a save DC of 18 and an attack bonus of +10.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "oota",
+    "row": [
+      "Spell Gem (Topaz)",
+      "Wondrous Item",
+      "Very Rare",
+      0,
+      "A topaz spell gem can contain one spell from any class's spell list. You become aware of the spell when you learn the gem's properties. While holding the gem, you can cast the spell from it as an action if you know the spell or if the spell is on your class's spell list. Doing so doesn't require any components, and doesn't require attunement. The spell then disappears from the gem.\nIf the spell is of a higher level than you can normally cast, you must make an ability check using your spellcasting ability to determine whether you cast it successfully. The DC equals 10 + the spell's level. On a failed check, the spell disappears from the gem with no other effect.\nA topaz spell gem can store up to 6th level spells. Spells cast from the spell gem have a save DC of 17 and an attack bonus of +10.\nYou can imbue the gem with a spell if you're attuned to it and it's empty. To do so, you cast the spell while holding the gem. The spell is stored in the gem instead of having any effect. Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the gem's maximum. If the spell belongs to the school of abjuration and requires material components that are consumed, you must provide them, but they can be worth half as much as normal.\nOnce imbued with a spell, the gem can't be imbued again until the next dawn.\nDeep gnomes created these magic gemstones and keep the creation process a secret.",
+      {
+        "ch": [
+          1,
+          "1",
+          "dawn"
+        ]
+      }
+    ]
+  }
+]
