@@ -3125,6 +3125,18 @@ for active in [True,False]:
     feature=dict(kind="agonizing-blast",source=dict(kind="cls",owner="Warlock",classKey="Warlock",level=2,pre="",edition="2024"),spells=["Fire Bolt"])
     CASES.append(dict(name="Z3 U41 native item Agonizing Tome "+str(active),b=dict(rs="2024",cls="Warlock",level=2,ch={"invocation":invocations,"invab":["Fire Bolt"],"tomeC":["Fire Bolt"]},extra={"sp":[],"bg":"Soldier"},inv=[dict(n="Spell Gem (Amber)",q=1,eq=False,attuned=False)]),expect=[("C.itemSpellDamageFeatures",dict(v=1,features=[feature] if active else []))]))
 
+# U42 physical storage snapshots preserve source identity without becoming learned spells.
+U42_STORAGE_PROFILES=[("Ring of Spell Storing","ring"),("Ioun Stone (reserve)","reserve-2024"),("Ioun Stone, Reserve","reserve-2014")]
+for rs in ["2014","2024"]:
+    for item,profile in U42_STORAGE_PROFILES:
+        for contents in [None,[]]:
+            state=dict(v=1,id="ssi-1",profile=profile,entries=contents)
+            CASES.append(dict(name="Z3 U42 native physical stored source "+rs+" "+item+(" unknown" if contents is None else " empty"),b=dict(rs=rs,cls="Fighter",level=1,inv=[dict(n=item,q=1,eq=False,attuned=False,storedSpells=state)]),expect=[("C.inv[0].storedSpells",state),("C.inv[0].att",1),("C.inv[0].attunedActive",False),("(C.spells||[]).length",0),("C.castingSources.complete",True),("C.castingSources.sources.length",0),("C.itemSpellDamageFeatures",dict(v=1,features=[])),("(C.res||[]).some(row=>row.n===__zmB.inv[0].n)",False)]))
+    for item in ["Ioun Stone","Ioun Stone (not a native Reserve)"]:
+        CASES.append(dict(name="NEG U42 generic or unknown Ioun cannot imply Reserve "+rs+" "+item,b=dict(rs=rs,cls="Fighter",level=1,inv=[dict(n=item,q=1,eq=False,attuned=False)]),expect=[("C.castingSources===undefined",True),("C.itemSpellDamageFeatures===undefined",True),("(C.spells||[]).length",0)]))
+    future=dict(v=99,id="future",opaque={"originalDC":99,"capacity":99},entries=[{"spell":"Wish"}])
+    CASES.append(dict(name="NEG U42 future stored source preserved without ordinary grants "+rs,b=dict(rs=rs,cls="Fighter",level=1,inv=[dict(n="Ring of Spell Storing",q=1,eq=False,attuned=False,storedSpells=future)]),expect=[("C.inv[0].storedSpells",future),("(C.spells||[]).length",0),("(C.res||[]).some(row=>row.n==='Ring of Spell Storing')",False)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;

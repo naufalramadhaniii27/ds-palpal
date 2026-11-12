@@ -5,6 +5,8 @@ import {tattooHealingCalculation} from "./lib/tattoo-healing.js";
 import {gemHealingCalculation} from "./lib/spell-gem-healing.js";
 import {itemSpellDamageView} from "./lib/item-spell-damage-view.js";
 import {gemOwnedSpellRow} from "../data/lib/spell-gem-casts.js";
+import {ownedStoredSpellRow} from "../data/lib/stored-spell.js";
+import {storedSpellHealingCalculation} from "./lib/stored-spell-healing.js";
 import {supremeHealingRuleForCharacter} from "./lib/supreme-healing-runtime.js";
 import {clamp,esc,sg} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
@@ -18,6 +20,7 @@ bindLive("spAreaTxt",{get:function(){return spAreaTxt;}});
 bindLive("spCalc",{get:function(){return spCalc;}});
 bindLive("tattooReceiptDetails",{get:function(){return tattooReceiptDetails;}});
 bindLive("gemReceiptDetails",{get:function(){return gemReceiptDetails;}});
+bindLive("storedReceiptDetails",{get:function(){return storedReceiptDetails;}});
 bindLive("spFx",{get:function(){return spFx;}});
 bindLive("spFxBlock",{get:function(){return spFxBlock;}});
 bindLive("spLvRange",{get:function(){return spLvRange;}});
@@ -58,10 +61,10 @@ export function spCalc(x,lv,cl,smod,healingFacts=undefined){ const f=spFx(x); if
   const supreme=supremeSpellHealing(x,heal,healingFacts);if(supreme&&supreme.applies)heal=supreme.expression;
   const result={parts:parts,heal:heal,n:n,unit:unit,lv:lv,up:!!up,area:f.area||null,bon:spDb(x).concat((x.hb||[]).map((b) =>{ return {v:(+b.v||0)+(b.lv?lv:0),s:b.s+" (healing)"}; }))};return {...result,...(supreme?{supremeHealing:supreme}:{})}; }
 const tattooCalculationSources=new WeakMap();
-function typedBodySource(row){return !!row&&["fixedSpellSource","tattooSource","gemSpellcasting"].some(key=>Object.prototype.hasOwnProperty.call(row,key))}
+function typedBodySource(row){return !!row&&["fixedSpellSource","tattooSource","gemSpellcasting","storedSpellcasting","storedSpellSlotLevel"].some(key=>Object.prototype.hasOwnProperty.call(row,key))}
 function supremeSpellHealing(spell,expression,facts){
  const owned=tattooCalculationSources.get(spell),sourceSpell=owned?owned.sourceRow:spell;
- const rule=supremeHealingRuleForCharacter(C);if(!expression||!rule||!(owned&&owned.kind==="gem"?gemOwnedSpellRow(S.spellGemCasts,owned.definitions,sourceSpell,C.rs===undefined?"2024":C.rs).ok:healingSpellOwned(C,S,owned?owned.definitions:[],sourceSpell)))return null;
+ const rule=supremeHealingRuleForCharacter(C);if(!expression||!rule||!(owned&&owned.kind==="stored"?ownedStoredSpellRow(S.storedSpellCasts,sourceSpell,C.rs===undefined?"2024":C.rs,owned.definitions).ok:owned&&owned.kind==="gem"?gemOwnedSpellRow(S.spellGemCasts,owned.definitions,sourceSpell,C.rs===undefined?"2024":C.rs).ok:healingSpellOwned(C,S,owned?owned.definitions:[],sourceSpell)))return null;
  const packet={v:1,sourceKind:"spell",owner:"actor",effect:"restore-hp",expression},candidate=evaluateSupremeHealing(rule,packet,{targetCreature:true});if(!candidate.ok||!("amount" in candidate)||!candidate.applies)return null;
  const targetCreature=facts&&typeof facts.targetCreature==="boolean"?facts.targetCreature:false,actual=evaluateSupremeHealing(rule,packet,{targetCreature});return {...candidate,applies:actual.ok&&("applies" in actual)&&actual.applies,requiresCreature:rule.creatureOnly};
 }
@@ -96,6 +99,19 @@ export function gemReceiptDetails(row,definitions,facts={targetCreature:false,re
  const modifier=Number.isFinite(stats.mod)?esc(sg(stats.mod)):"Unresolved; review before modifier-dependent effects";
  return {ok:true,...result,stats,itemDamage,signature:JSON.stringify({source:result.signature,stats,calculation,itemDamage}),html:'<p>Spell attack '+esc(sg(stats.atk))+" · Save DC "+esc(stats.dc)+" · Spellcasting modifier "+modifier+'</p><p>'+lines.join("<br>")+'</p>'};
 }
+export function storedSpellCalculation(row,facts={targetCreature:false,restoresHitPoints:false},originalDefinitions){
+ const resolved=storedSpellHealingCalculation(C,S,row,facts,originalDefinitions);if(!resolved.ok)return resolved;
+ tattooCalculationSources.set(resolved.calculationRow,{sourceRow:resolved.sourceRow,kind:"stored",definitions:originalDefinitions});
+ try{const calculation=spCalc(resolved.calculationRow,resolved.castLevel,resolved.casterLevel,scOf(resolved.sourceRow).mod,facts);return {ok:true,...resolved,calculation};}
+ finally{tattooCalculationSources.delete(resolved.calculationRow);}
+}
+function storedReceiptCalculation(row,facts,originalDefinitions){const result=storedSpellCalculation(row,facts,originalDefinitions);if(result.ok||result.reason!=="original-spell-modifier-review-required")return result;const owned=ownedStoredSpellRow(S.storedSpellCasts,row,C.rs===undefined?"2024":C.rs,originalDefinitions);return owned.ok?{ok:true,...owned,modifierReviewRequired:true,calculation:{parts:[],heal:null,n:0},signature:JSON.stringify(owned.cast)}:owned;}
+export function storedReceiptDetails(row,facts={targetCreature:false,restoresHitPoints:false},originalDefinitions){
+ const result=storedReceiptCalculation(row,facts,originalDefinitions);if(!result.ok)return result;
+ const stats=scOf(result.sourceRow),calculation=result.calculation,itemDamage=itemSpellDamageView(C,S,result.sourceRow,calculation,result.cast.context.itemDamage,result.cast.itemDamageUsage),lines=(calculation.parts||[]).map((part,index)=>esc(itemDamage.ok?itemDamage.parts[index].normalExpression:part.d)+" "+esc(part.t));if(calculation.heal)lines.push("Healing: "+esc(calculation.heal));
+ const values=["Original slot level "+esc(result.castLevel),"Original modifier "+(Number.isFinite(stats.mod)?esc(sg(stats.mod)):"Unresolved"),"Original spell attack "+(Number.isFinite(stats.atk)?esc(sg(stats.atk)):"Unresolved"),"Original save DC "+(Number.isFinite(stats.dc)?esc(stats.dc):"Unresolved")];
+ return {ok:true,...result,stats,itemDamage,signature:JSON.stringify({source:result.signature,stats,calculation,itemDamage}),html:'<p>'+values.join(" · ")+'</p><p>'+lines.join("<br>")+'</p>'};
+}
 export function tattooSupremeSpellPacket(row,definitions,facts){
  const result=tattooSpellCalculation(row,definitions,facts,"receipt");if(!result.ok)return result;
  const maximum=result.calculation&&result.calculation.supremeHealing;if(!maximum||!maximum.applies)return {ok:false,reason:"maximized-healing-unavailable"};
@@ -129,8 +145,9 @@ function spDb(x){ if(x.db) return x.db; if(x.fx||x.n!=="Eldritch Blast"||typeof 
 function spAreaTxt(a){ if(!a) return ""; return a[1]+" ft."+(a[0]==="Line"&&a[2]?" x "+a[2]+" ft.":a[0]==="Cylinder"&&a[2]?" x "+a[2]+" ft.":""); }
 export function spRangeH(r,x){ const f=spFx(x), a=f&&f.area; return esc(String(r||"").replace(/ ft$/," ft."))+(a?'<span class="spar">/'+esc(spAreaTxt(a))+arIcon(a[0])+'</span>':''); }
 export function spCompH(cmp,x){ const f=spFx(x), m=(x&&x.mat)||(f&&f.mat); return esc(cmp)+(m&&/M/.test(cmp)?' <span class="spmat">('+esc(m)+')</span>':''); }
+function typedItemSpellGuide(row){if(Object.prototype.hasOwnProperty.call(row,"storedSpellcasting")||Object.prototype.hasOwnProperty.call(row,"storedSpellSlotLevel")||row.fixedSpellSource&&row.fixedSpellSource.kind==="stored-spell")return "Use the stored-spell item controls";return Object.prototype.hasOwnProperty.call(row,"gemSpellcasting")||row.fixedSpellSource&&row.fixedSpellSource.kind==="spell-gem"?"Use the Spell Gem controls":"Use the body tattoo controls";}
 /* Effect cell: count x first damage part with icon, or healing, or the old text summary */
-export function spEffH(x,lv){ if(typedBodySource(x))return '<span class="speff">'+(Object.prototype.hasOwnProperty.call(x,"gemSpellcasting")||x.fixedSpellSource&&x.fixedSpellSource.kind==="spell-gem"?"Use the Spell Gem controls":"Use the body tattoo controls")+'</span>';const c=spCalc(x,lv,D.level,scOf(x).mod); if(c&&c.parts.length){ const p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
+export function spEffH(x,lv){ if(typedBodySource(x))return '<span class="speff">'+esc(typedItemSpellGuide(x))+'</span>';const c=spCalc(x,lv,D.level,scOf(x).mod); if(c&&c.parts.length){ const p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
   if(c&&c.heal) return '<span class="speff">'+esc(c.heal)+dtIcon("Healing")+'</span>'; return esc(spEffect(x)); }
 /* RU35 no. 2: a Warlock spell is cast with a Pact Magic slot, so its row uses the Pact slot level (Mystic Arcanum keeps its own level) */
 export function spPact(x){ const sc=C.spellcasting||{}; if(!x.l||!sc.pact) return false; if(x.pact!=null) return !!x.pact; if(/Long Rest|At will/.test(x.use||"")) return false; if(C.cls==="Warlock"&&!/\//.test(C.clsLabel||"")) return true; return /^(Warlock|.* Patron)$/.test(String(x.src||""))&&/Warlock/.test(C.clsLabel||""); }/* v31 p95 */
@@ -139,7 +156,7 @@ export function spGrpLv(x){ const sc=C.spellcasting||{}; if(x.itc&&x.itc.lv&&!Ar
 export function spPactLv(){ const p=(C.spellcasting||{}).pact; if(!p) return 0; if(+p.lvl) return +p.lvl; const r=(D.res||[]).filter((q) =>{return q.k==="pact"})[0], m=r&&/level (\d)/.exec(r.n||""); return m?+m[1]:0; }/* v36 p01 */
 export function spRowLv(x){ if(x.itc&&x.itc.lv&&!Array.isArray(x.itc.c)) return x.itc.lv; return spPact(x)?Math.max(x.l,spPactLv()||x.l):x.l; }
 /* v15 Checker: the Lvl control stays inside the slots the character can use. Pact Magic: the Pact level only. Mystic Arcanum and once-per-rest casts: the spell level */
-function spLvRange(x){ if(x&&Object.prototype.hasOwnProperty.call(x,"fixedSpellSource"))return [x.l,x.l]; const sc=C.spellcasting||{}; if(!x.l) return [0,0]; if(spPact(x)){ const p=Math.max(x.l,spPactLv()||x.l); return [p,p]; } if(/Long Rest|At will/.test(x.use||"")) return [x.l,x.l]; const mx=(sc.slots||[]).length; return [x.l,Math.max(x.l,mx||9)]; }
+function spLvRange(x){ if(x&&x.fixedSpellSource&&x.fixedSpellSource.kind==="stored-spell"&&Number.isSafeInteger(x.storedSpellSlotLevel))return [x.storedSpellSlotLevel,x.storedSpellSlotLevel];if(x&&Object.prototype.hasOwnProperty.call(x,"fixedSpellSource"))return [x.l,x.l]; const sc=C.spellcasting||{}; if(!x.l) return [0,0]; if(spPact(x)){ const p=Math.max(x.l,spPactLv()||x.l); return [p,p]; } if(/Long Rest|At will/.test(x.use||"")) return [x.l,x.l]; const mx=(sc.slots||[]).length; return [x.l,Math.max(x.l,mx||9)]; }
 export var spLvSel={};
 function spellHealingBlock(calc,key){
  let html=calc.heal?'<p class="spfl">'+dtIcon("Healing")+'<b>'+esc(calc.heal)+'</b> Hit Points regained</p>':'';

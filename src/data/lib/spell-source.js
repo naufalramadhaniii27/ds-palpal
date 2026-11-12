@@ -1,5 +1,6 @@
 import {tattooFixedSourceStats} from './spellwrought-tattoo.js';
 import {spellGemFixedSourceStats} from './spell-gem-casts.js';
+import {storedSpellFixedSourceStats} from './stored-spell.js';
 // Derived source-key spellcasting channels. Never infers class identity from display text.
 const ABILITIES=['STR','DEX','CON','INT','WIS','CHA'];
 const object=value=>!!value&&typeof value==='object'&&!Array.isArray(value);
@@ -18,11 +19,12 @@ export function spellChannelsDiffer(channels){
 }
 function spellOverrideNumber(value){return value==null||value===''||!Number.isFinite(+value)?null:+value}
 export function selectSpellSource(spellcasting,spell,overrides,adjustments=undefined){
+ if(spell&&['storedSpellcasting','storedSpellSlotLevel'].some(key=>own(spell,key))&&(!own(spell,'fixedSpellSource')||!spell.fixedSpellSource||spell.fixedSpellSource.kind!=='stored-spell'))return {};
  if(spell&&own(spell,'gemSpellcasting')&&(!own(spell,'fixedSpellSource')||!spell.fixedSpellSource||spell.fixedSpellSource.kind!=='spell-gem'))return {};
  if(spell&&own(spell,'fixedSpellSource')){
-  const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};
-  if(adjustments!==undefined){if(!object(adjustments)||Reflect.ownKeys(adjustments).length!==1||!own(adjustments,'attackAdjustment')||!Number.isFinite(adjustments.attackAdjustment))return {};tattoo.atk+=adjustments.attackAdjustment;if(!Number.isFinite(tattoo.atk))return {}}
-  return selectSpellSource(tattoo,null,overrides);
+  const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};
+  if(adjustments!==undefined){if(!object(adjustments)||Reflect.ownKeys(adjustments).length!==1||!own(adjustments,'attackAdjustment')||!Number.isFinite(adjustments.attackAdjustment))return {};if(Number.isFinite(tattoo.atk)){tattoo.atk+=adjustments.attackAdjustment;if(!Number.isFinite(tattoo.atk))return {}}}
+  const allowed=stored&&object(overrides)?{...(Number.isFinite(tattoo.atk)?{atk:overrides.atk}:{}),...(Number.isFinite(tattoo.dc)?{dc:overrides.dc}:{})}:overrides;return selectSpellSource(tattoo,null,allowed);
  }
  const main=object(spellcasting)?spellcasting:{};
  let chosen=main;

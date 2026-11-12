@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 73254 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 36782 (50.2%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 8212 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 8225 |
 | Info (tag terdokumentasi) | 23601 (SPELL_TEXT 6470, FORM:ACTIVATE 2723, NUMONLY:GEOMETRY 2232, FORM:ROLL 1938, NUMONLY:TEXT 1341, ACTIVATE 1309, FORM:TABLE 1156, NUMONLY:ROLL 984, NUMONLY:TABLE 862, FXO_NULL 828, ACTIVE:TRIGGER 784, ACTIVE:OTHERS 642, REST:NONUM 586, NUMONLY:FLAVOR 305, STD:ASI 208, COND:PLAY_STATE 188, NUMONLY:ZERO 162, ROLL:LAST_CHARGE 136, OBJECT:STATS 106, ITEM:SENSES 82, DC:REFERENCE 77, BY_DESIGN 72, TABLE:CLASS 70, COND:ATTACK_ROLL_ADV 68, STD:PICK_TEXT 63, ACTIVE:REACTION 56, MOVE:SPEED_REF 50, ACTIVE:TIMED_IMM 43, TARGET:SPEED 30, FOCUS:SPELLCASTING 14, STD:AC10 7, KNOW:TARGET_DEFENSES 7, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 4969 |
+| Uncovered | 4956 |
 | Uncovered dengan angka | 2962 |
-| Uncovered dengan kelas kata kunci mekanik | 4609 |
+| Uncovered dengan kelas kata kunci mekanik | 4596 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 360 |
 | Angka yang tidak dijelaskan record mana pun | 2768 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4178 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4165 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 306 |
-| Waktu | muat data 1 s, analisis 14 s |
+| Waktu | muat data 1 s, analisis 13 s |
 
-Uji mutasi pada data nyata (seed 7): 297 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 189 ditangkap (63.6%). Hapus semua atom kelas yang dibutuhkan: 191 ditangkap (64.3%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 185 ditangkap (62.1%). Hapus semua atom kelas yang dibutuhkan: 186 ditangkap (62.4%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 293 ditangkap (97.7%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 294 ditangkap (98.0%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -42,8 +42,8 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | GX | 1924 |
 | wxs | 707 |
 | LU_X | 536 |
+| CODE | 375 |
 | ITEM_SPELLS | 363 |
-| CODE | 362 |
 | species | 352 |
 | AUTO | 315 |
 | feat | 246 |
@@ -65,7 +65,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
 | RESOURCE | 6659 | 876 | 13.2% |
-| SPELL | 2882 | 729 | 25.3% |
+| SPELL | 2882 | 720 | 25.0% |
 | DMG | 3912 | 658 | 16.8% |
 | SPEED | 1135 | 404 | 35.6% |
 | CHOICE | 1345 | 357 | 26.5% |
@@ -73,11 +73,11 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | ADV | 1516 | 353 | 23.3% |
 | RES | 1123 | 329 | 29.3% |
 | NUM | 7110 | 322 | 4.5% |
-| SLOT | 1121 | 320 | 28.5% |
+| SLOT | 1121 | 314 | 28.0% |
 | IMM | 852 | 308 | 36.2% |
-| DC | 2624 | 230 | 8.8% |
+| DC | 2624 | 225 | 8.6% |
 | DIS | 932 | 213 | 22.9% |
-| ATK | 860 | 187 | 21.7% |
+| ATK | 860 | 182 | 21.2% |
 | AC | 593 | 165 | 27.8% |
 | SENSE | 515 | 148 | 28.7% |
 | SAVE | 272 | 139 | 51.1% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1028 | 243 | 548 | 0 | 237 |
 | feat | 2101 | 535 | 1042 | 0 | 524 |
-| item | 18391 | 4664 | 10978 | 0 | 2749 |
+| item | 18391 | 4677 | 10978 | 0 | 2736 |
 | species | 1037 | 571 | 297 | 0 | 169 |
 | spell | 6748 | 278 | 6470 | 0 | 0 |
 | sub | 7477 | 1921 | 4266 | 0 | 1290 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10151 | 2573 | 6071 | 1507 | 14.8% |
+| dmg | 10151 | 2583 | 6071 | 1497 | 14.7% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tsgs | 1483 | 379 | 857 | 247 | 16.7% |
@@ -115,7 +115,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | tce | 736 | 169 | 459 | 108 | 14.7% |
 | tdcsr | 416 | 134 | 185 | 97 | 23.3% |
 | phb14 | 516 | 170 | 261 | 85 | 16.5% |
-| dmg14 | 540 | 183 | 273 | 84 | 15.6% |
+| dmg14 | 540 | 186 | 273 | 81 | 15.0% |
 | thhw | 395 | 87 | 231 | 77 | 19.5% |
 | tee24 | 464 | 166 | 232 | 66 | 14.2% |
 | tssm | 275 | 66 | 147 | 62 | 22.5% |
@@ -186,13 +186,13 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | Kelas utama | Uncovered | Dengan angka |
 |---|---|---|
 | RESOURCE | 617 | 501 |
-| SPELL | 507 | 74 |
+| SPELL | 500 | 74 |
 | DMG | 488 | 449 |
 | ADV | 347 | 136 |
 | SPEED | 341 | 265 |
 | PROF | 327 | 109 |
 | NUM | 322 | 322 |
-| SLOT | 303 | 92 |
+| SLOT | 297 | 92 |
 | RES | 268 | 110 |
 | CHOICE | 235 | 67 |
 | IMM | 204 | 64 |
@@ -255,7 +255,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Sorcerer/Nanite Magic|Recycling Protocol#1` When you reduce an enemy to 0 HP, or someone else does within 10 ft of you, regain 2 Sorcery Points. | number 10,0 no record explains
 - `sub|Summoner/Bond of the Living Armament|Armament Eidolon#1` In a 1-hour ritual, which you can do during a Short or Long Rest, you bind your Eidolon to one Simple or Martial melee weapon and one suit of armor. | no record for RESOURCE; number 1 unexplained
 
-### SPELL (507 uncovered)
+### SPELL (500 uncovered)
 
 - `class|Bard|Spellcasting#14` To begin, your list holds four level 1 spells that you pick from the Bard spell list. | no record for SPELL; number 4 unexplained
 - `class|Healer|Spellcasting#3` You know two cantrips from the Healer spell list. | no record for SPELL; number 2 unexplained
@@ -513,7 +513,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `item|tsgs|Pendant of Thieves' Sight#2` You also gain a +5 bonus to Intelligence checks to understand a written or spoken cipher. | number 5 no record explains
 - `sub|Cleric/Cat Domain|Channel Divinity: Feline Finesse#1` Add a +10 bonus to a Dexterity ability or skill check made by you or by a creature you designate within 30 ft. | number 30,10 no record explains
 
-### SLOT (303 uncovered)
+### SLOT (297 uncovered)
 
 - `class|Druid|Archdruid#6` Pick some of your unexpended Wild Shape uses and convert them into one spell slot, where each use counts for 2 spell levels. | no record for SLOT; number 2 unexplained
 - `class|Sorcerer|Font of Magic#13` The highest slot level you can create is 5. | no record for SLOT; number 5 unexplained
@@ -812,33 +812,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|dmg|Blaster Mod (+3 Enchanted Battery)#2` While installed, you have a +3 bonus to ranged attack and damage rolls with this blaster, which counts as a magic weapon -> info:NUMONLY:ROLL
-- class `item|dmg|Blaster Mod (+3 Enchanted Battery)#2` While installed, you have a +3 bonus to ranged attack and damage rolls with this blaster, which counts as a magic weapon -> info:NUMONLY:ROLL
+- record `item|idrotf|Cauldron of Plenty#9` The cauldron can create stew three times. -> info:NUMONLY:TEXT
+- class `item|idrotf|Cauldron of Plenty#9` The cauldron can create stew three times. -> info:NUMONLY:TEXT
+- record `sub|Warden/Rimekeeper|Hoarfrost Herald#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> covered
+- class `sub|Warden/Rimekeeper|Hoarfrost Herald#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> info:REST:NONUM
+- record `item|tkdm|Girdle of Traveling Alchemy#2` Once you attune to it, the containers fill with 2 flasks of Alchemist's Fire, 2 flasks of alchemist's ice, 2 vials of Ac -> info:NUMONLY:TABLE
+- class `item|tkdm|Girdle of Traveling Alchemy#2` Once you attune to it, the containers fill with 2 flasks of Alchemist's Fire, 2 flasks of alchemist's ice, 2 vials of Ac -> info:NUMONLY:TABLE
+- record `sub|Wizard/Magic Missile Mage|Magic Missile Savant#4` Short Rest regains one use, Long Rest all. -> covered
 - record `sub|Captain/Knight Errant|Inspiring Battlecry#2` You can do this once, then you must finish a Long Rest to do it again. -> info:REST:NONUM
 - class `sub|Captain/Knight Errant|Inspiring Battlecry#2` You can do this once, then you must finish a Long Rest to do it again. -> info:REST:NONUM
-- record `class|Necromancer|Thralls#16` It regains Hit Points equal to the points spent instead of taking damage. -> info:REST:NONUM
-- class `class|Necromancer|Thralls#16` It regains Hit Points equal to the points spent instead of taking damage. -> info:REST:NONUM
-- record `sub|Wizard/Illusionist|Illusory Self#3` After you use this feature, it recharges when you finish a Short or Long Rest. -> info:REST:NONUM
-- class `sub|Wizard/Illusionist|Illusory Self#3` After you use this feature, it recharges when you finish a Short or Long Rest. -> info:REST:NONUM
-- record `item|dmg|Love's Embrace#1` A greatsword made of two scimitars, one cold and one fire. -> info:NUMONLY:TABLE
-- class `item|dmg|Love's Embrace#1` A greatsword made of two scimitars, one cold and one fire. -> info:NUMONLY:TABLE
-- record `item|rhw|Charm of Electromancy#3` When the last charge is gone, the Charm leaves you. -> info:REST:NONUM
-- class `item|rhw|Charm of Electromancy#3` When the last charge is gone, the Charm leaves you. -> info:REST:NONUM
-- record `item|dmg|Orb of Damara#31` Hold Person: 1. -> info:NUMONLY:TABLE
-- class `item|dmg|Orb of Damara#31` Hold Person: 1. -> info:NUMONLY:TABLE
-- record `feat|Shadowsteel Ghoul Transformation: Stage 4|Shadowsteel Ghoul Transformation: Stage 4#1` Stage 4. -> info:NUMONLY:TABLE
-- class `feat|Shadowsteel Ghoul Transformation: Stage 4|Shadowsteel Ghoul Transformation: Stage 4#1` Stage 4. -> info:NUMONLY:TABLE
-- record `sub|Witch/Blood Magic|Blood Spells#2` 3 Melf's Acid Arrow, Hex: Blood Curse, Hold Person, Inflict Wounds, Hollowing Curse. -> covered
-- class `sub|Witch/Blood Magic|Blood Spells#2` 3 Melf's Acid Arrow, Hex: Blood Curse, Hold Person, Inflict Wounds, Hollowing Curse. -> covered
-- record `sub|Wizard/Gastronomer|Heroic Snacks#4` Long Rest to use again. -> covered
-- class `sub|Wizard/Gastronomer|Heroic Snacks#4` Long Rest to use again. -> info:REST:NONUM
-- record `sub|Witch/Technicolor Magic|Redemption Arc#5` Once you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- class `sub|Witch/Technicolor Magic|Redemption Arc#5` Once you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Mogis's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
-- class `item|dmg|Mogis's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
-- record `sub|Bard/College of Masks|Virtuoso Skill#1` Once per turn when you make a D20 Test, use Charisma instead if it does not already use it. -> covered
-- class `sub|Bard/College of Masks|Virtuoso Skill#1` Once per turn when you make a D20 Test, use Charisma instead if it does not already use it. -> info:ACTIVE:TRIGGER
-- record `item|au|Staff of the Lost#4` When the staff has no more charges remaining, it loses its magic and becomes a nonmagical Quarterstaff. -> info:REST:NONUM
-- class `item|au|Staff of the Lost#4` When the staff has no more charges remaining, it loses its magic and becomes a nonmagical Quarterstaff. -> info:REST:NONUM
-- record `sub|Craftsman/Mechanauts' Guild|Frame Upgrade#8` Its jump distance triples and it takes no damage from falls of less than 100 feet. -> info:NUMONLY:GEOMETRY
-- class `sub|Craftsman/Mechanauts' Guild|Frame Upgrade#8` Its jump distance triples and it takes no damage from falls of less than 100 feet. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Blaster Mod (+3 Enchanted Battery)#2` While installed, you have a +3 bonus to ranged attack and damage rolls with this blaster, which counts as a magic weapon -> info:NUMONLY:ROLL
+- class `item|dmg|Blaster Mod (+3 Enchanted Battery)#2` While installed, you have a +3 bonus to ranged attack and damage rolls with this blaster, which counts as a magic weapon -> info:NUMONLY:ROLL
+- record `item|dmg|Spell Gem (Diamond)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Spell Gem (Diamond)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
+- record `sub|Vagabond/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
+- class `sub|Vagabond/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
+- record `item|dmg|Yuan-Ti Pureblood Transformation#5` Innate Spellcasting: you know Poison Spray, can cast Animal Friendship at will (snakes only), and from 3rd level can cas -> info:REST:NONUM
+- class `item|dmg|Yuan-Ti Pureblood Transformation#5` Innate Spellcasting: you know Poison Spray, can cast Animal Friendship at will (snakes only), and from 3rd level can cas -> info:REST:NONUM
+- record `sub|Dancer/Courtesan|Honeyed Words#4` You learn two languages of your choice. -> info:STD:PICK_TEXT
+- class `sub|Dancer/Courtesan|Honeyed Words#4` You learn two languages of your choice. -> info:STD:PICK_TEXT
+- record `item|egw|Danoth's Visor (Dormant)#3` While wearing the goggles in their dormant state, you can see normally in darkness, both magical and nonmagical, to a di -> info:NUMONLY:GEOMETRY
+- class `item|egw|Danoth's Visor (Dormant)#3` While wearing the goggles in their dormant state, you can see normally in darkness, both magical and nonmagical, to a di -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Mask of the Beast#3` The mask regains all expended charges at dawn. -> info:REST:NONUM
+- class `item|dmg|Mask of the Beast#3` The mask regains all expended charges at dawn. -> info:REST:NONUM
+- record `class|Wizard|Spellcasting#10` It is a Tiny object that weighs 3 pounds and has 100 pages, and only you or someone casting Identify can read it. -> info:NUMONLY:FLAVOR
+- class `class|Wizard|Spellcasting#10` It is a Tiny object that weighs 3 pounds and has 100 pages, and only you or someone casting Identify can read it. -> info:NUMONLY:FLAVOR
+- record `feat|Aberrant Horror Transformation: Stage 2|Aberrant Horror Transformation: Stage 2#3` You also gain the Stage 2 Flaw. -> info:NUMONLY:TABLE
+- class `feat|Aberrant Horror Transformation: Stage 2|Aberrant Horror Transformation: Stage 2#3` You also gain the Stage 2 Flaw. -> info:NUMONLY:TABLE
+- record `item|tkdm|Oathbound Ring#7` When a creature directly tries to stop you from keeping your oath, you have Advantage on attack rolls, saving throws, an -> info:ACTIVE:OTHERS
+- class `item|tkdm|Oathbound Ring#7` When a creature directly tries to stop you from keeping your oath, you have Advantage on attack rolls, saving throws, an -> info:ACTIVE:OTHERS
+- record `sub|Warden/Godsworn|Benediction#3` A Long Rest regains your ability to cast each one this way. -> covered

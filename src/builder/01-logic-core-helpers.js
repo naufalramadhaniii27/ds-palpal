@@ -51,3 +51,5 @@ export {createGemCheckBonuses} from "../data/lib/gem-check-bonuses.js";
 export {tattooBodyProblems,spellwroughtTattooProfile} from "../data/lib/spellwrought-tattoo.js";
 export {spellGemCastsProblems} from "../data/lib/spell-gem-casts.js";
 export {itemSpellDamageFeaturesProblems} from "../data/lib/item-spell-damage.js";
+
+export {storedSpellProfile,storedSpellCastsProblems} from "../data/lib/stored-spell.js";

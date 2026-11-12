@@ -167,3 +167,7 @@ Spellwrought Tattoo now has a physical immutable needle record, actor-owned one-
 A separate actual native Inspiration/Undo/Redo reproduction proved that pending sheet saves could be lost on immediate reload. The existing boot journal flush could not see S/C writes still held by domain debounce timers. The narrow storage fix flushes only pending native S/C saves before the journal's pagehide/hidden flush, preserves native merge/FROZEN rules, and avoids a second queued WebLock write. Builder save is already synchronous. Both ordinary Inspiration and actual Tattoo final-Redo/immediate-reload now pass at both viewports without waiting for the debounce.
 
 The specific Tattoo Material-only policy versus the native dmg14 general no-components summary remains an explicitly documented reading not decided. No item grants permanent knowledge merely because its contents were identified. The four reserved class/Attack wording issues remain unchanged.
+
+## U42 stored-spell catalog guidance
+
+A stored receipt whose original native catalog definition is unavailable or changed correctly supplies no effect permission. Its existing exact concentration instance can still be ended without rewriting the historical ledger. The UI currently gives generic stale-operation guidance instead of identifying the unavailable original definition. Improve that explanation separately while retaining the same fail-closed effect guard and exact-instance End-only path. This presentation limitation does not establish a new casting permission or change the stored original spell.

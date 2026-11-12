@@ -7026,7 +7026,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7181,7 +7181,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7336,7 +7336,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7491,7 +7491,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7646,7 +7646,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+5;\\ the\\ save\\ dc\\ is\\ 17\\ and\\ the\\ attack\\ bonus\\ is\\ \\+9\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7836,7 +7836,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -7991,7 +7991,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8146,7 +8146,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8301,7 +8301,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8456,7 +8456,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+4;\\ the\\ save\\ dc\\ is\\ 15\\ and\\ the\\ attack\\ bonus\\ is\\ \\+7\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8611,7 +8611,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+5;\\ the\\ save\\ dc\\ is\\ 17\\ and\\ the\\ attack\\ bonus\\ is\\ \\+9\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -8801,7 +8801,7 @@
    "rx": "^the\\ ability\\ modifier\\ for\\ this\\ spell\\ is\\ \\+3;\\ the\\ save\\ dc\\ is\\ 13\\ and\\ the\\ attack\\ bonus\\ is\\ \\+5\\.$",
    "anchor": [
     "src/data/lib/spell-source.js",
-    "const tattoo=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
+    "const stored=spell.fixedSpellSource&&spell.fixedSpellSource.kind==='stored-spell',tattoo=stored?storedSpellFixedSourceStats(spell.fixedSpellSource,spell):spell.fixedSpellSource&&spell.fixedSpellSource.kind==='spell-gem'?spellGemFixedSourceStats(spell.fixedSpellSource,spell):tattooFixedSourceStats(spell.fixedSpellSource,spell);if(!tattoo)return {};"
    ],
    "extraAnchors": [
     [
@@ -13883,6 +13883,749 @@
     "tests/spell_gem_model.mjs"
    ],
    "note": "Native Spell Gem model and actual producer/consumer verified. Physical metadata does not teach spells or establish casting costs. Actual native UI covers printed profiles, eligibility/checks, optional attunement, real slot/item payment and Material boundary, persistent physical authority, original fixed-stat receipts and replay protection. See SOURCE-NOTES.md U41 and reports/uncovered-3.md."
+  },
+  {
+   "id": "u42-item-dmg-ioun-stone-reserve-19",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone (reserve)",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ the\\ prism\\ orbits\\ your\\ head,\\ you\\ can\\ cast\\ any\\ spell\\ it\\ holds\\.$",
+   "anchor": [
+    "src/app/32i-logic-stored-spells.js",
+    "function storedReleaseCommit("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "genv.__bldStoredSpellRelease=function"
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function releaseStoredSpell("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellRelease("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone (reserve) empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ioun-stone-reserve-20",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone (reserve)",
+   "cls": [
+    "ATK",
+    "DC",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^that\\ spell\\ uses\\ the\\ original\\ caster's\\ slot\\ level,\\ spellcasting\\ ability,\\ spell\\ attack\\ bonus,\\ and\\ spell\\ save\\ dc,\\ but\\ in\\ every\\ other\\ way\\ it\\ counts\\ as\\ a\\ spell\\ you\\ cast\\.$",
+   "anchor": [
+    "src/app/22-ui-spell-data-and-slots.js",
+    "export function storedSpellCalculation("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellFixedSourceStats("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function ownedStoredSpellRow("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function storedReceiptDetails("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellReceiptEffect("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function recordStoredSpellCast("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone (reserve) empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ring-of-spell-storing-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ring of Spell Storing",
+   "cls": [
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ level\\ of\\ the\\ spell\\ slot\\ used\\ for\\ the\\ casting\\ sets\\ how\\ much\\ room\\ the\\ spell\\ takes\\.$",
+   "anchor": [
+    "src/builder/25c-logic-stored-spell-sources.js",
+    "genv.__bldStoredSpellLoad=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedCapacity("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storeSpell("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "function storedLoadCommit("
+    ],
+    [
+     "src/app/lib/stored-spell-payment.js",
+     "export function createStoredSpellPayment("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ring of Spell Storing empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ring-of-spell-storing-8",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ring of Spell Storing",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ wear\\ the\\ ring,\\ you\\ can\\ cast\\ any\\ spell\\ held\\ in\\ it\\.$",
+   "anchor": [
+    "src/app/32i-logic-stored-spells.js",
+    "function storedReleaseCommit("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "genv.__bldStoredSpellRelease=function"
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function releaseStoredSpell("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellRelease("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ring of Spell Storing empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ring-of-spell-storing-9",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ring of Spell Storing",
+   "cls": [
+    "ATK",
+    "DC",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^that\\ spell\\ keeps\\ the\\ slot\\ level,\\ spellcasting\\ ability,\\ spell\\ attack\\ bonus,\\ and\\ spell\\ save\\ dc\\ of\\ whoever\\ first\\ cast\\ it,\\ but\\ in\\ every\\ other\\ way\\ it\\ counts\\ as\\ a\\ spell\\ you\\ cast\\.$",
+   "anchor": [
+    "src/app/22-ui-spell-data-and-slots.js",
+    "export function storedSpellCalculation("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellFixedSourceStats("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function ownedStoredSpellRow("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function storedReceiptDetails("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellReceiptEffect("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function recordStoredSpellCast("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ring of Spell Storing empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ioun-stone-reserve-14",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone, Reserve",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ level\\ of\\ the\\ slot\\ used\\ to\\ cast\\ the\\ spell\\ determines\\ how\\ much\\ space\\ it\\ uses\\.$",
+   "anchor": [
+    "src/builder/25c-logic-stored-spell-sources.js",
+    "genv.__bldStoredSpellLoad=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedCapacity("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storeSpell("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "function storedLoadCommit("
+    ],
+    [
+     "src/app/lib/stored-spell-payment.js",
+     "export function createStoredSpellPayment("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone, Reserve empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ioun-stone-reserve-15",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone, Reserve",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ this\\ stone\\ orbits\\ your\\ head,\\ you\\ can\\ cast\\ any\\ spell\\ stored\\ in\\ it\\.$",
+   "anchor": [
+    "src/app/32i-logic-stored-spells.js",
+    "function storedReleaseCommit("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "genv.__bldStoredSpellRelease=function"
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function releaseStoredSpell("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellRelease("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone, Reserve empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ioun-stone-reserve-16",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone, Reserve",
+   "cls": [
+    "ATK",
+    "DC",
+    "SLOT",
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ spell\\ uses\\ the\\ slot\\ level,\\ spell\\ save\\ dc,\\ spell\\ attack\\ bonus,\\ and\\ spellcasting\\ ability\\ of\\ the\\ original\\ caster,\\ but\\ is\\ otherwise\\ treated\\ as\\ if\\ you\\ cast\\ the\\ spell\\.$",
+   "anchor": [
+    "src/app/22-ui-spell-data-and-slots.js",
+    "export function storedSpellCalculation("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellFixedSourceStats("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function ownedStoredSpellRow("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function storedReceiptDetails("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellReceiptEffect("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function recordStoredSpellCast("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone, Reserve empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg14-ioun-stone-reserve-14",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Ioun Stone, Reserve",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ level\\ of\\ the\\ slot\\ used\\ to\\ cast\\ the\\ spell\\ determines\\ how\\ much\\ space\\ it\\ uses\\.$",
+   "anchor": [
+    "src/builder/25c-logic-stored-spell-sources.js",
+    "genv.__bldStoredSpellLoad=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedCapacity("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storeSpell("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "function storedLoadCommit("
+    ],
+    [
+     "src/app/lib/stored-spell-payment.js",
+     "export function createStoredSpellPayment("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone, Reserve empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg14-ioun-stone-reserve-15",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Ioun Stone, Reserve",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ this\\ stone\\ orbits\\ your\\ head,\\ you\\ can\\ cast\\ any\\ spell\\ stored\\ in\\ it\\.$",
+   "anchor": [
+    "src/app/32i-logic-stored-spells.js",
+    "function storedReleaseCommit("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "genv.__bldStoredSpellRelease=function"
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function releaseStoredSpell("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellRelease("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone, Reserve empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg14-ioun-stone-reserve-16",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Ioun Stone, Reserve",
+   "cls": [
+    "ATK",
+    "DC",
+    "SLOT",
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ spell\\ uses\\ the\\ slot\\ level,\\ spell\\ save\\ dc,\\ spell\\ attack\\ bonus,\\ and\\ spellcasting\\ ability\\ of\\ the\\ original\\ caster,\\ but\\ is\\ otherwise\\ treated\\ as\\ if\\ you\\ cast\\ the\\ spell\\.$",
+   "anchor": [
+    "src/app/22-ui-spell-data-and-slots.js",
+    "export function storedSpellCalculation("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellFixedSourceStats("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function ownedStoredSpellRow("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function storedReceiptDetails("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellReceiptEffect("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function recordStoredSpellCast("
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone, Reserve empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ioun-stone-56",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "SPELL"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ the\\ prism\\ orbits\\ your\\ head,\\ you\\ can\\ cast\\ any\\ spell\\ it\\ holds\\.$",
+   "anchor": [
+    "src/app/32i-logic-stored-spells.js",
+    "function storedReleaseCommit("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "genv.__bldStoredSpellRelease=function"
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function releaseStoredSpell("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellRelease("
+    ],
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "genv.__bldStoredSpellSelectReserve=function"
+    ],
+    [
+     "tests/stored_spell_backend.mjs",
+     "eq(generic.B.inv[0].n,item)"
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone (reserve) empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u42-item-dmg-ioun-stone-57",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "ATK",
+    "DC",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^that\\ spell\\ uses\\ the\\ original\\ caster's\\ slot\\ level,\\ spellcasting\\ ability,\\ spell\\ attack\\ bonus,\\ and\\ spell\\ save\\ dc,\\ but\\ in\\ every\\ other\\ way\\ it\\ counts\\ as\\ a\\ spell\\ you\\ cast\\.$",
+   "anchor": [
+    "src/app/22-ui-spell-data-and-slots.js",
+    "export function storedSpellCalculation("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "function storingCommit("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function assertStoredItemCurrent("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellProfile("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function storedSpellFixedSourceStats("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function ownedStoredSpellRow("
+    ],
+    [
+     "src/app/22-ui-spell-data-and-slots.js",
+     "export function storedReceiptDetails("
+    ],
+    [
+     "src/app/32i-logic-stored-spells.js",
+     "export function requestStoredSpellReceiptEffect("
+    ],
+    [
+     "src/data/lib/stored-spell.js",
+     "export function recordStoredSpellCast("
+    ],
+    [
+     "src/builder/25c-logic-stored-spell-sources.js",
+     "genv.__bldStoredSpellSelectReserve=function"
+    ],
+    [
+     "tests/stored_spell_backend.mjs",
+     "eq(generic.B.inv[0].n,item)"
+    ]
+   ],
+   "test": "Z3 U42 native physical stored source 2024 Ioun Stone (reserve) empty",
+   "consumerTests": [
+    "tests/stored_spell_backend.mjs",
+    "tests/stored_spell_model.mjs",
+    "tests/stored_spell_consumer.mjs",
+    "tests/stored_spell_runtime.mjs",
+    "tests/stored_spell_payment.mjs"
+   ],
+   "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
   }
  ]
 }

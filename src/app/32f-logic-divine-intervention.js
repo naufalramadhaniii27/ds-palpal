@@ -1,3 +1,4 @@
+import {invalidateStoredSpellState} from './32i-logic-stored-spells.js';
 import {invalidateGemCastState} from './32h-logic-spell-gem.js';
 /* Records actual DI-as-Wish use; it does not simulate Wish's arbitrary spell effects. */
 import {C,S,FROZEN,save} from './04-logic-storage.js';
@@ -17,7 +18,7 @@ const diFail=reason=>({ok:false,reason});
 function diStamp(value){try{return JSON.stringify(value)}catch(error){return null}}
 function diEpoch(){if(!diEpochs.has(S))diEpochs.set(S,{});return diEpochs.get(S)}
 export function invalidateDivineInterventionState(state){if(diObject(state))diEpochs.set(state,{})}
-export function invalidateClericResourceState(){invalidateGemCastState(S);invalidateDivineInterventionState(S);invalidateTurnDamageState(S);invalidateSupremeHealingState(S);invalidateOrdersWrathState(S)}
+export function invalidateClericResourceState(){invalidateStoredSpellState(S);invalidateGemCastState(S);invalidateDivineInterventionState(S);invalidateTurnDamageState(S);invalidateSupremeHealingState(S);invalidateOrdersWrathState(S)}
 function diNativeResource(key,wish=false){return (C.res||[]).find(row=>row&&row.k===key&&row.max===1&&!row.item&&row.n===(wish?'Greater Divine Intervention: Wish':'Divine Intervention')&&row.f===(wish?'Greater Divine Intervention':'Divine Intervention')&&row.reset===(wish?'none':'long'))}
 function diDescriptor(){const value=C.divineIntervention;if(divineInterventionDescriptorProblems(value).length)return null;const source=value.source;if((C.rs===undefined?'2024':C.rs)!==source.edition||!Number.isSafeInteger(C.level)||C.level<source.level||source.pre===''&&C.cls!=='Cleric')return null;if(!diNativeResource(value.recovery.baseKey)||value.recovery.wishKey!==null&&!diNativeResource(value.recovery.wishKey,true))return null;return value}
 function diGeneration(){const next=advanceTurnDamageGeneration(S.sit);return next.ok?next.generation-1:null}

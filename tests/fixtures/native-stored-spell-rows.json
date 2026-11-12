@@ -1,0 +1,57 @@
+[
+  {
+    "edition": "2024",
+    "source": "src/data/dmgi-magic-items-dmg2024.js",
+    "table": "DMGI",
+    "index": 309,
+    "row": [
+      "Ring of Spell Storing",
+      "Ring",
+      "Rare",
+      1,
+      "Spells cast into this ring are kept inside it until the wearer attuned to it uses them. At any one time the ring can hold spells totaling up to 5 levels. When you find it, it already holds 1d6 minus 1 levels of spells that the Dungeon Master picks.\nAny creature can put a spell of level 1 to 5 into the ring by touching the ring while casting that spell. The spell does nothing except become stored in the ring. If there isn't enough room in the ring for it, the spell is used up with no effect. The level of the spell slot used for the casting sets how much room the spell takes.\nWhile you wear the ring, you can cast any spell held in it. That spell keeps the slot level, spellcasting ability, spell attack bonus, and spell save DC of whoever first cast it, but in every other way it counts as a spell you cast. Once cast from the ring, the spell no longer occupies it, which frees that room."
+    ]
+  },
+  {
+    "edition": "2024",
+    "source": "src/data/dmgi-magic-items-dmg2024.js",
+    "table": "DMGI",
+    "index": 203,
+    "row": [
+      "Ioun Stone (reserve)",
+      "Wondrous Item",
+      "Rare",
+      1,
+      "Ioun Stones are about the size of a marble. They take their name from Ioun, a god of prophecy and knowledge worshiped on some worlds. Many types exist, and each type has its own pairing of color and shape. You can toss a stone into the air as a Magic action. It then circles your head at a distance of 1d3 feet and grants you its benefit while it does so. At most three Ioun Stones can orbit your head at once. A stone orbiting your head counts as an object you are wearing. It steers clear of other objects and creatures, shifting its path to avoid collisions, and it foils every attempt by other creatures to attack or grab it. As a Utilize action, you can catch and stow any number of the stones that orbit your head. If your Attunement to a stone ends while it orbits your head, the stone falls as if you had dropped it. **Reserve (Rare).** This vibrant purple prism holds spells that are cast into it until you use them. It can hold up to 4 levels of spells at one time. When you find it, it already holds 1d4 levels of stored spells that the Dungeon Master chooses. Any creature can store a spell of level 1 to 4 in the stone by touching it while casting the spell. The spell then does nothing except become stored. If there isn't enough room in the stone for the spell, the spell is spent and has no effect. How much room a spell takes up depends on the level of the slot used to cast it. While the prism orbits your head, you can cast any spell it holds. That spell uses the original caster's slot level, spellcasting ability, spell attack bonus, and spell save DC, but in every other way it counts as a spell you cast. Casting a spell from the stone removes it, which frees up that space."
+    ]
+  },
+  {
+    "edition": "2014",
+    "source": "src/data/dmgi-magic-items-dmg2024.js",
+    "table": "DM14.ov",
+    "key": "Ring of Spell Storing",
+    "row": [
+      "Ring of Spell Storing",
+      "Ring",
+      "Rare",
+      1,
+      "This ring stores spells cast into it, holding them until the attuned wearer uses them. The ring can store up to 5 levels worth of spells at a time. When found, it contains 1d6 - 1 levels of stored spells chosen by the DM.\nAny creature can cast a spell of 1st through 5th level into the ring by touching the ring as the spell is cast. The spell has no effect, other than to be stored in the ring. If the ring can't hold the spell, the spell is expended without effect. The level of the slot used to cast the spell determines how much space it uses.\nWhile wearing this ring, you can cast any spell stored in it. The spell uses the slot level, spell save DC, spell attack bonus, and spellcasting ability of the original caster, but is otherwise treated as if you cast the spell. The spell cast from the ring is no longer stored in it, freeing up space.",
+      null
+    ]
+  },
+  {
+    "edition": "2014",
+    "source": "src/data/wotc11-magic-items-2014.js",
+    "table": "WXI",
+    "book": "dmg14",
+    "index": 64,
+    "row": [
+      "Ioun Stone, Reserve",
+      "Wondrous Item",
+      "Rare",
+      1,
+      "An Ioun stone is named after Ioun, a god of knowledge and prophecy revered on some worlds. Many types of Ioun stone exist, each type a distinct combination of shape and color.\nWhen you use an action to toss one of these stones into the air, the stone orbits your head at a distance of 1d3 feet and confers a benefit to you. Thereafter, another creature must use an action to grasp or net the stone to separate it from you, either by making a successful attack roll against AC 24 or a successful DC 24 Dexterity (Acrobatics) check. You can use an action to seize and stow the stone, ending its effect.\nA stone has AC 24, 10 hit points, and resistance to all damage. It is considered to be an object that is being worn while it orbits your head.\nThis vibrant purple prism stores spells cast into it, holding them until you use them. The stone can store up to 3 levels worth of spells at a time. When found, it contains 1d4 - 1 levels of stored spells chosen by the DM.\nAny creature can cast a spell of 1st through 3rd level into the stone by touching it as the spell is cast. The spell has no effect, other than to be stored in the stone. If the stone can't hold the spell, the spell is expended without effect. The level of the slot used to cast the spell determines how much space it uses.\nWhile this stone orbits your head, you can cast any spell stored in it. The spell uses the slot level, spell save DC, spell attack bonus, and spellcasting ability of the original caster, but is otherwise treated as if you cast the spell. The spell cast from the stone is no longer stored in it, freeing up space.",
+      null
+    ]
+  }
+]
