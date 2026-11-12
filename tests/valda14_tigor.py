@@ -43,6 +43,12 @@ IDENT = {
         "He's no scout and he's not sneaky about it. He walks in, says hi, and stands between the trouble and whoever's behind him.",
 }
 
+NOTES = {
+    "org": "The Iron Ninth, the army company he was built for. Mostly disbanded after the war. A few old soldiers still keep in touch.",
+    "allies": "Commander Vexana, his old commander. She's the one who sent him to find out why the world is falling apart. Tough, tired, and the only person he'd follow without asking questions.\n"
+        "Pip, a halfling supply clerk from the Iron Ninth. Still sends him letters. He keeps all of them in his backpack.",
+}
+
 async def run(b, url, W, H, bad, keep):
     vp = "%dx%d" % (W, H)
     ctx = await b.new_context(viewport={"width": W, "height": H}, accept_downloads=True, has_touch=W < 600)
@@ -59,6 +65,8 @@ async def run(b, url, W, H, bad, keep):
         if a not in c["acts"]: bad.append(vp + " action missing: " + a)
     await pg.evaluate("()=>window.__sheetApply(window.__tig,'')"); await pg.wait_for_timeout(2500)
     await pg.evaluate("(o)=>Object.keys(o).forEach(k=>window.__sheetIdentSet(k,o[k]))", IDENT)
+    # Organizations and Allies: written into the Notes tab the way a player types them
+    await pg.evaluate("""(o)=>{const nb=document.getElementById('notesBody');Object.keys(o).forEach(k=>{const t=document.createElement('textarea');t.setAttribute('data-note',k);nb.appendChild(t);t.value=o[k];t.dispatchEvent(new Event('input',{bubbles:true}));t.remove();});}""", NOTES)
     # the player's portrait, uploaded the way the sheet does it
     await pg.set_input_files("#avFile", os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures", "tigor-portrait.jpg"))
     await pg.wait_for_function("()=>/^data:image\\/jpeg/.test(window.__sheetPortrait()||'')", timeout=15000)
@@ -95,7 +103,7 @@ async def run(b, url, W, H, bad, keep):
         rd = pypdf.PdfReader(path)  # page 1 values live in form fields, so their values count as text too
         fv = " ".join(str(f.get("/V") or "") for f in (rd.get_fields() or {}).values())
         t = re.sub(r"\s+", " ", " ".join((p.extract_text() or "") for p in rd.pages) + " " + fv)
-        for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency", "old friend", "A shield with legs", "way too fast"):
+        for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency", "old friend", "A shield with legs", "way too fast", "Commander Vexana", "Iron Ninth"):
             if w not in t: bad.append("PDF lacks " + w)
     if errs: bad.append(vp + " page errors: " + str(errs[:2]))
 
