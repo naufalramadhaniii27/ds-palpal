@@ -22,7 +22,8 @@ def serve():
 BUILD = """()=>{const b=window.__bldTestB(); Object.assign(b,{name:"Tigor",rs:"2014",cls:"Warden (2014)",sub:"Stoneheart Defender (2014)",level:5,species:"Warforged (2014)",bg:"Soldier (2014)",bgMode:"111",method:"point",
  base:{STR:15,DEX:10,CON:14,INT:8,WIS:14,CHA:10},arr:{},src:{core:true,dmg:true,phb14:true,dmg14:true,tvss14:true,erlw:true,cos:true},eqC:"A",eqG:["","c","b","a"],eqP:{"0_1_0":"Battleaxe","2_0_0":"Javelin"},
  ch:{clsk:["Perception","Survival"],spsk:["Insight"],sptool:["Smith's Tools"],bgTool:["Dice Set"],rasi:["STR"],stand14:["Armor Proficiency"],lang:["Dwarvish"],fs2:"Protection",feat4:{feat:"Ability Score Improvement",a1:"CON",a2:"CON"}},
- inv:[{n:"Battleaxe",q:1,eq:true,src:"Warden kit",kit:1},{n:"Chain Mail",q:1,eq:true,src:"Warden kit",kit:1},{n:"Javelin",q:5,eq:true,src:"Warden kit",kit:1},{n:"Backpack (Dungeoneer's Pack)",q:1,eq:false,src:"Warden kit",kit:1},{n:"Shield of the Silver Dragon",q:1,eq:true}]});
+ inv:[{n:"Battleaxe",q:1,eq:true,src:"Warden kit",kit:1},{n:"Chain Mail",q:1,eq:true,src:"Warden kit",kit:1},{n:"Javelin",q:5,eq:true,src:"Warden kit",kit:1},{n:"Backpack (Dungeoneer's Pack)",q:1,eq:false,src:"Warden kit",kit:1},{n:"Shield",q:1,eq:false,src:"Warden kit",kit:1},{n:"Shield of the Silver Dragon",q:1,eq:true},
+  {n:"Insignia",q:1,eq:false,src:"Soldier kit",kit:1},{n:"Trophy",q:1,eq:false,src:"Soldier kit",kit:1},{n:"Dice Set",q:1,eq:false,src:"Soldier kit",kit:1},{n:"Common Clothes",q:1,eq:false,src:"Soldier kit",kit:1},{n:"Pouch",q:1,eq:false,src:"Soldier kit",kit:1}]});
  delete b.unset; window.__tig=window.__bldSheetFor(b); return !!window.__tig; }"""
 AC = "()=>{const L=[...document.querySelectorAll('.tile.ac .v')];const e=L.filter(x=>x.offsetParent)[0]||L[0];return e?+(e.getAttribute('data-miv')||e.getAttribute('aria-label')||e.textContent.trim()):null}"
 INIT = "()=>document.body.innerText.replace(/\\s+/g,' ')"
@@ -103,7 +104,7 @@ async def run(b, url, W, H, bad, keep):
         rd = pypdf.PdfReader(path)  # page 1 values live in form fields, so their values count as text too
         fv = " ".join(str(f.get("/V") or "") for f in (rd.get_fields() or {}).values())
         t = re.sub(r"\s+", " ", " ".join((p.extract_text() or "") for p in rd.pages) + " " + fv)
-        for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency", "old friend", "A shield with legs", "way too fast", "Commander Vexana", "Iron Ninth"):
+        for w in ("Tigor", "Warden", "Stoneheart", "Warforged", "Roots of Rock", "Sentinel's Stand", "Armor Proficiency", "old friend", "A shield with legs", "way too fast", "Commander Vexana", "Iron Ninth", "Fighting Style: Protection", "Trophy", "Disadvantage."):
             if w not in t: bad.append("PDF lacks " + w)
     if errs: bad.append(vp + " page errors: " + str(errs[:2]))
 

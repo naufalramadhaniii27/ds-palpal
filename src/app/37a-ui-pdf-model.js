@@ -71,7 +71,10 @@ function pxCoins(){ const c=coinsNow(), o={}; ["cp","sp","ep","gp","pp"].forEach
 function pxProfs(ed){ const p=C.profs||{}, sv=ABK.filter((k) =>{ return C.saves&&C.saves[k]; }).map((k) =>{ return ABN[k]; });
   const sk=(C.skills||[]).filter((s) =>{ return num(s.p,0)>0; }).map((s) =>{ return s.n+(num(s.p,0)>1?" (expertise)":""); });
   return [(ed==="2014"?"**Armor.** ":"**Armor Training.** ")+(p.armor||"None"),"**Weapons.** "+(p.weapons||"None"),"**Tools.** "+(p.tools||"None"),
-    "**Saving Throws.** "+(sv.join(", ")||"None"),"**Skills.** "+(sk.join(", ")||"None"),"","**Senses.** "+pxSenses(),"**Languages.** "+pxUnEsc(langText())]; }
+    "**Saving Throws.** "+(sv.join(", ")||"None"),"**Skills.** "+(sk.join(", ")||"None")].concat(pxDisLine()).concat(["","**Senses.** "+pxSenses(),"**Languages.** "+pxUnEsc(langText())]); }
+/* a check made with Disadvantage because of what is worn (Chain Mail: Stealth) */
+function pxDisLine(){ const L=(C.skills||[]).filter((s) =>{ return s.dis; }).map((s) =>{ return s.n+" ("+pxPlain(String(s.dis))+")"; });
+  return L.length?["**Disadvantage.** "+L.join(", ")]:[]; }
 /* Darkvision and the other senses from the builder, then Passive Perception */
 function pxSenses(){ const L=[]; if(num(C.darkvision,0)) L.push("Darkvision "+num(C.darkvision,0)+" ft");
   senseList().forEach((x) =>{ L.push(pxPlain(x[0].n)+(num(x[0].v,0)?" "+num(x[0].v,0)+" ft":"")); });
