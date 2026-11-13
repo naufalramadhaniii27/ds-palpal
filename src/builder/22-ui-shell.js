@@ -101,7 +101,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.packdel){const pid=d.packdel;ask("Remove this homebrew source?","Remove",() =>{B.packs=(B.packs||[]).filter((p) =>{return p.id!==pid});delete B.src[pid];applyPacks();commit()});return}
  if(d.packadd){let pk;try{pk=JSON.parse(packTxt)}catch(er){toast("That text isn't valid JSON");return}if(!pk||!pk.id||!pk.name){toast("A pack needs an id and a name");return}if(HB_BUILTIN[pk.id]){toast("That id is already used");return}B.packs=(B.packs||[]).filter((p) =>{return p.id!==pk.id}).concat([pk]);B.src[pk.id]=true;__set_packTxt("");applyPacks();commit();toast("Added "+pk.name);return}
  if(d.tpl){__set_showTpl(!showTpl);render();return}
- if(d.tog2){openCards[d.tog2]=openCards[d.tog2]===false?true:false;render();return}
+ if(d.tog2){openCards[d.tog2]=d.tog2==="add"?openCards[d.tog2]!==true:openCards[d.tog2]===false;render();return}
  if(d.skip){B.eqC="none";B.eqB="none";unDone("eqC");unDone("eqB");rebuildKit();commit();return}
  if(d.clearinv){ask("Clear your starting equipment choices and remove every item from your inventory?","Clear All",() =>{B.inv=[];B.eqC="none";B.eqB="none";B.gpOverride=null;commit();toast("Inventory cleared")});return}
  if(d.ieq!=null){const it=B.inv[+d.ieq];if(!it.eq&&DMAP[it.n]&&DMAP[it.n][3]&&attN()>=attMax()){toast("You can attune to at most "+attMax()+" magic items. Unattune one first.");return}it.eq=!it.eq;if(it.eq&&ARMOR[it.n])B.inv.forEach((y,k) =>{if(k!==+d.ieq&&ARMOR[y.n])y.eq=false});commit();return}
@@ -174,12 +174,12 @@ document.addEventListener("change",(e) =>{if(!e.target.closest("#bld"))return;co
  if(d.fk){const o=B.ch[d.fk]||{};o[d.fp]=t.value;if(d.fp==="feat"){delete o.a1;delete o.a2;delete o.dt}B.ch[d.fk]=o;commit()}});
 document.addEventListener("input",(e) =>{if(e.target.closest&&e.target.closest("#bld .hbmk"))__set_HBF(Object.assign(hbRead(),{}));});/* v26: keep what is typed in Create Homebrew */
 document.addEventListener("change",(e) =>{if(e.target.closest&&e.target.closest("#bld .hbmk"))__set_HBF(hbRead());});
-let chtxT=0;
+let chtxT=0;let nmT=0;document.addEventListener("focusin",(e) =>{const t=e.target;if(t&&t.id==="nmIn"&&(t.value==="New Character"||t.value==="New Hero")){try{t.select()}catch(er){}}});/* the default name is selected, so typing replaces it */
 function chtxSave(t){const k=t.dataset.chtx,v=t.value.replace(/\s+/g," ").trim();if(v)B.ch[k]=v;else delete B.ch[k];save()}
 document.addEventListener("input",(e) =>{const t=e.target;if(!t||!t.dataset||t.dataset.chtx==null||!t.closest||!t.closest("#bld"))return;clearTimeout(chtxT);chtxT=setTimeout(() =>{chtxSave(t)},350)});
 document.addEventListener("change",(e) =>{const t=e.target;if(!t||!t.dataset||t.dataset.chtx==null||!t.closest||!t.closest("#bld"))return;clearTimeout(chtxT);const was=!!B.ch[t.dataset.chtx];chtxSave(t);if(was!==!!B.ch[t.dataset.chtx])render()});/* fx v3a: text pick, saved while typing, redrawn only when done state flips */
 document.addEventListener("input",(e) =>{if(!e.target.closest("#bld"))return;const t=e.target;
- if(t.id==="nmIn"){B.name=t.value||"New Hero";save();return}
+ if(t.id==="nmIn"){const old=B.name;B.name=t.value||"New Hero";save();clearTimeout(nmT);nmT=setTimeout(() =>{try{const st=genv.__sheetState&&genv.__sheetState();if(genv.__sheetSetName&&st&&st.C&&B.name!=="New Hero"&&(!st.C.cls||own(st.C.name)||st.C.name===old))genv.__sheetSetName(B.name)}catch(er){}},400);return}
  if(t.id==="cpIn"){B.camp=t.value;save();return}
  if(t.id==="packtxt"){__set_packTxt(t.value);return}
  if(t.id==="custn"){cust.n=t.value;return}
