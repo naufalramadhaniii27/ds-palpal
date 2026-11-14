@@ -19,11 +19,36 @@ def merge(ds):
                     seen.add(kk); out[k].append(x)
             elif k not in out: out[k] = v
     return out
+UA = os.environ.get("UA_DIR", "/home/claude/src-data/ua")
+def _path(n):
+    """A name starting with "ua/" is a file of TheGiddyLimit/unearthed-arcana (UA_DIR), anything else is in the homebrew collection."""
+    return os.path.join(UA, n[3:]) if n.startswith("ua/") else os.path.join(HB, n)
+def prune(ds):
+    """Unearthed Arcana files repeat an entry in each playtest round. ds is ordered newest first: an entry already seen (same name,
+    class) is dropped from the older files, together with the features that belong to that older copy."""
+    seen = {}; drop_src = set()
+    for d in ds:
+        for k in ("subclass", "feat", "race", "subrace", "spell", "optionalfeature", "background", "item"):
+            keep = []
+            for x in d.get(k, []):
+                if k == "subclass" and "subclassFeatures" in x and not x["subclassFeatures"]: continue
+                if k == "subclass" and "subclassFeatures" not in x and x.get("source", "").endswith("Update"): continue          # an Update file lists an unchanged subclass without its features: the older file keeps it
+                key = (k, x.get("name"), x.get("className"), x.get("raceName"))
+                if key in seen and seen[key] != x.get("source"):
+                    if k == "subclass": drop_src.add((x.get("className"), x.get("shortName"), x.get("source")))
+                    continue
+                seen[key] = x.get("source"); keep.append(x)
+            if k in d: d[k] = keep
+    for d in ds:
+        for k in ("subclassFeature",):
+            if k in d: d[k] = [f for f in d[k] if (f.get("className"), f.get("subclassShortName"), f.get("source")) not in drop_src]
+    return ds
 def load(name):
     if isinstance(name, (list, tuple)):
-        ds = [json.load(open(os.path.join(HB, n), encoding="utf-8")) for n in name]
+        ds = [json.load(open(_path(n), encoding="utf-8")) for n in name]
+        if any(n.startswith("ua/") for n in name): ds = prune(ds)
         return merge(ds)
-    return json.load(open(os.path.join(HB, name), encoding="utf-8"))
+    return json.load(open(_path(name), encoding="utf-8"))
 
 def strip(t):
     """Plain text from 5e.tools markup: {@spell fireball|phb} -> fireball, {@dice 1d6} -> 1d6, {@b x} -> x."""

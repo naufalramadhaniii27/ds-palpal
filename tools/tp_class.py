@@ -40,9 +40,9 @@ def _row_val(v):
         if v.get("type") == "dice": return "".join("%sd%s" % (d.get("number"), d.get("faces")) for d in v.get("toRoll", []))
     return json.dumps(v)
 
-def class_record(c, data, O, gap, tag):
+def class_record(c, data, O, gap, tag, name=None):
     """c: source class. O: overlay dict for it. gap(kind, item, note) records what is missing."""
-    n = c["name"]; sp = c.get("startingProficiencies", {})
+    n = name or c["name"]; sp = c.get("startingProficiencies", {})
     sk = {}
     for s in sp.get("skills", []):
         ch = s.get("choose")
@@ -50,6 +50,9 @@ def class_record(c, data, O, gap, tag):
         elif s.get("any"): sk = {"n": s["any"], "from": "all"}
     FULL = {"str": "Strength", "dex": "Dexterity", "con": "Constitution", "int": "Intelligence", "wis": "Wisdom", "cha": "Charisma"}
     alts = [[k for k in p if k in AB] for p in c.get("primaryAbility", [])]
+    if not alts:            # 2014 books: only the multiclassing requirement is given
+        rq = (c.get("multiclassing", {}).get("requirements") or {})
+        alts = [[k for k in rq if k in AB]] if any(k in AB for k in rq) else []
     prim = " or ".join(" and ".join(FULL[k] for k in a) for a in alts)
     rec = {"name": n, "hd": c["hd"]["faces"], "prim": prim, "saves": [AB[k] for k in c["proficiency"]], "sk": sk,
            "armor": _list(sp.get("armor")), "weapons": _list(sp.get("weapons")), "tools": _list([t for t in (sp.get("toolProficiencies") and []) or []]),
@@ -108,8 +111,8 @@ def class_record(c, data, O, gap, tag):
     if c.get("preparedSpellsProgression"): rec["prep"] = c["preparedSpellsProgression"]
     if not rec.get("caster") and c.get("spellcastingAbility") and (c.get("cantripProgression") or c.get("preparedSpellsProgression")):
         rec["nslot"] = 1                       # casts without spell slots: the picker shows spells up to smax
-        col = track.get("Max Spell Levels")
-        rec["smax"] = [int(float(x)) if re.match(r"^\d+(\.\d+)?$", str(x)) else 0 for x in col] if col else [0] * 20
+        col = track.get("Max Spell Levels") or track.get("Max Spell Level")
+        rec["smax"] = [int(float(x)) if re.match(r"^\d+(\.\d+)?$", str(x)) else (int(str(x)[0]) if re.match(r"^\d(st|nd|rd|th)$", str(x)) else 0) for x in col] if col else [0] * 20
     # optional feature picks (Formulas, Discoveries, Tricks, ...): the list comes from the source, the text from O["opt"][type][name]
     pk = list(O.get("pick", []))
     for gi, g in enumerate(O.get("opts", [])):
@@ -135,7 +138,7 @@ def class_record(c, data, O, gap, tag):
         for lv, k in steps:
             pk.append({"l": lv, "k": "opts", "n": k, "key": "%s%d_%d" % (n.lower().replace(" ", ""), gi, lv), "feature": g["feature"], "title": "%s (%s)" % (g["title"], "level %d" % lv), "list": lst})
     if pk: rec["pick"] = pk
-    for k in ("ua", "fs", "asiX", "resSub", "acSub"):
+    for k in ("ua", "fs", "asiX", "resSub", "acSub", "fx", "eqg", "fs14"):
         if k in O: rec[k] = O[k]
     rs = []
     for r in O.get("res", []):
@@ -152,7 +155,9 @@ def class_record(c, data, O, gap, tag):
     if mc.get("weapons"): g["weapons"] = _list(mc["weapons"])
     if mc.get("tools"): g["tools"] = ", ".join(hb.strip(t) for t in mc["tools"])
     if g: rec["mcg"] = g
-    if len(alts) == 1: req = [[AB[k]] for k in alts[0]]
+    if not alts:
+        req = []; gap("class", n + " multiclassing", "source gives no multiclassing requirement, none set")
+    elif len(alts) == 1: req = [[AB[k]] for k in alts[0]]
     else:
         common = [k for k in alts[0] if all(k in a for a in alts)]
         rest = []
@@ -162,7 +167,7 @@ def class_record(c, data, O, gap, tag):
         req = [[AB[k]] for k in common] + ([rest] if rest else [])
     rec["mcreq"] = req
     ex = {"cf": full, "lu": [dict({"n": e["feature"]}, **dict(e, src="class", owner=n)) for e in O.get("lu", [])], "acts": {},
-          "auto": O.get("auto"), "quick": O.get("quick")}
+          "auto": O.get("auto"), "quick": O.get("quick"), "sub": c.get("subclassTitle")}
     for ft, kind in O.get("acts", {}).items():
         ex["acts"]["cls|%s|%s" % (n, ft)] = [["other", ft]] if kind == "other" else [[kind, "", ft]]
     return rec, ex

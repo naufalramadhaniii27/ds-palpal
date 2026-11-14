@@ -33,7 +33,7 @@ async def main():
             await pg.click("[data-hview]"); await pg.wait_for_selector("#dmgBtn"); await pg.wait_for_timeout(1000)
             await pg.evaluate("window.__coinsPut({gp:2,cp:5},'test')")
             await pg.evaluate("document.getElementById('bldBtn').click()"); await pg.wait_for_selector("#bld:not([hidden])"); await pg.wait_for_timeout(2500)
-            await pg.evaluate("document.querySelector(\"#bld [data-step='equip']\").click()"); await pg.wait_for_selector("#invq"); await pg.wait_for_timeout(600)
+            await pg.evaluate("document.querySelector(\"#bld [data-step='equip']\").click()"); await pg.wait_for_selector("[data-tog2=add]"); await pg.evaluate("document.querySelector('#bld [data-tog2=add]').click()"); await pg.wait_for_selector("#invq"); await pg.wait_for_timeout(600)
             await pg.fill("#invq", "Pouch"); await pg.wait_for_timeout(700)
             await pg.evaluate("document.querySelector('#bld [data-tog=\"addPouch\"].itn').click()"); await pg.wait_for_timeout(500)
             txt = await pg.evaluate("(document.querySelector('#bld [data-ibuy=\"Pouch\"]')||{}).textContent||''")

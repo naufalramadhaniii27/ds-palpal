@@ -1,6 +1,6 @@
 import {bindLive,lateGet,spCmpB,spDmgB,spRngB} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {esc} from "./01-logic-core-helpers.js";
-import {bgX,spX} from "./03-logic-magic-item-effects.js";
+import {bgX,spX,featSourceReview} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {fs14List,sdn,subLbl} from "./08-logic-2014-rules.js";
@@ -111,15 +111,16 @@ const CB_TYPES={
    h+='<p class="wgrp">'+g[2]+'</p><div class="chips">'+ns.map((n) =>{const on=sel.indexOf(n)>=0;return '<button type="button" class="chip'+(on?" on":"")+'" data-ck="'+c.key+'" data-n="'+c.n+'" data-v="'+esc(n)+'" title="'+esc(WEAPONS[n].m+": "+MASTERY[WEAPONS[n].m])+'">'+esc(n)+' <small>'+WEAPONS[n].m+'</small></button>'}).join("")+'</div>'});
   return h+(sel.length?'<div class="picked">'+sel.map((n) =>{return '<p><b>'+n+' ('+WEAPONS[n].m+').</b> '+MASTERY[WEAPONS[n].m]+'</p>'}).join("")+'</div>':'')},
  multi:function(c,v){return chips(c,c.list);},
- fs:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose a Fighting Style -</option>'+missOpt(v)+(R14()?fs14List(c.cls||B.cls):Object.keys(FEATS).filter((n) =>{return FEATS[n].cat==="F"||(FEATS[n].cat==="X"&&c.xopt&&FEATS[n].cls===(c.cls||B.cls))}))/* v32: a multiclass Paladin or Ranger too */.map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'')+duelCtl(v);},
+ fs:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose a Fighting Style -</option>'+missOpt(v)+(R14()?fs14List(c.cls||B.cls):Object.keys(FEATS).filter((n) =>{return FEATS[n].cat==="F"||(FEATS[n].cat==="X"&&c.xopt&&(FEATS[n].cls===(c.cls||B.cls)||FEATS[n].cls===(CLASSES[c.cls||B.cls]||{}).inh))}))/* v32: a multiclass Paladin or Ranger too */.map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'')+duelCtl(v);},
  opt:function(c,v){return '<div class="radios">'+OPTS[c.list].map((o) =>{return '<button type="button" class="rad'+(v===o[0]?" on":"")+'" data-ch1="'+c.key+'" data-v="'+esc(o[0])+'"><b>'+esc(o[0])+'</b><span>'+esc(o[1])+'</span></button>'}).join("")+'</div>';},
  lin:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose -</option>'+SPECIES[B.species].lin.opts.map((o) =>{return '<option'+(v===o?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select>';},
  bgfp:function(c,v){return '<select class="dd" data-ch="'+c.key+'">'+c.opts.map((n) =>{return '<option'+((B.ch[c.key]||c.def)===n?" selected":"")+'>'+esc(n)+'</option>'}).join("")+'</select>';/* v67 */},
  ofeat:function(c,v){return '<select class="dd" data-ch="'+c.key+'"><option value="">- Choose an Origin Feat -</option>'+missOpt(v)+featOptsList(c).map((n) =>{return '<option'+(v===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(v?featInfo(v):'');},
  sub:function(c,v){const subs=Object.keys(CL().subs);return '<select class="dd" data-subsel="1"><option value="">- Choose a '+subLbl(B.cls)+' -</option>'+subs.map((s) =>{return '<option value="'+esc(s)+'"'+(B.sub===s?" selected":"")+'>'+esc(sdn(s))+'</option>'}).join("")+'<option value="__custom"'+(B.sub==="__custom"?" selected":"")+'>Homebrew subclass</option></select>'+
   (B.sub==="__custom"?'<input class="btx" data-b="cSub" placeholder="Subclass name" value="'+esc(B.cSub)+'">':'')+(B.sub&&B.sub!=="__custom"?'<p class="fd">'+esc(CL().subs[B.sub].map((f) =>{return f[1]+" ("+ord(f[0])+")"}).join(", "))+'.</p>':'')},
- feat:function(c,v){const fv=v||{},F=fv.feat&&FEATS[fv.feat];
-  var h=cbFeatSel(c,fv);
+ feat:function(c,v){const fv=v||{},review=featSourceReview(B,fv.feat),F=!review&&fv.feat&&FEATS[fv.feat];
+  var h=cbFeatSel(c,review?{}:fv);
+  if(review)h+='<div class="caution">This saved feat name belongs to two books. Choose its source before applying its benefits. The saved choice is preserved.</div><label class="one">Saved feat source<select class="dd" data-ch="'+esc(review.memo)+'"><option value="">Choose the actual book</option><option value="'+esc(review.source)+'">'+esc(review.label)+'</option><option value="tvss14">Valda’s Spire of Secrets (2014)</option></select></label>';
   if(F&&redundant(fv.feat))h+='<div class="caution">\u26a0 '+esc(fv.feat)+': '+esc(redundant(fv.feat))+'. You only get the ability score increase from it.</div>';
   if(F)h+=cbFeatInfo(c,fv,F);
   return h}

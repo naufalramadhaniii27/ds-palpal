@@ -40,9 +40,25 @@ BOOKS = [
   "tag": "KPDM", "name": "Deep Magic", "pub": "Kobold Press", "ed": "2014", "sub": "tkdm_sub", "bg": "tkdm_bg", "feat": "tkdm_feat", "spell": "tkdm_spell", "item": "tkdm_item", "alias": "Deep Magic"},
  {"id": "thhw", "file": ["Hit Point Press; Humblewood Campaign Setting.json", "Hit Point Press; Humblewood Tales.json"],
   "tag": "HWCS", "name": "Humblewood", "pub": "Hit Point Press", "ed": "2014", "sub": "thhw_sub", "bg": "thhw_bg", "feat": "thhw_feat", "spell": "thhw_spell", "item": "thhw_item", "species": "thhw_species", "alias": "Humblewood"},
+ {"id": "tvss14", "monsters": True, "subren": ["House of Lancers"], "file": "Mage Hand Press; Valda's Spire of Secrets - 2014.json", "tag": "VSS14", "name": "Valda's Spire of Secrets", "pub": "Mage Hand Press", "ed": "2014",
+  "sub": "tvss14_sub", "feat": "tvss14_feat", "featren": {"Gambler": "Gambler (Valda 2014)", "Aberrant Spawn": "Aberrant Spawn (Valda 2014)", "Proto-Man": "Proto-Man (Valda 2014)"}, "species": "tvss14_species", "spell": "tvss14_spell", "item": "tvss14_item", "cls": ["warden", "alchemist", "captain", "craftsman", "investigator", "martyr", "necromancer", "warmage", "witch", "gunslinger", "channeler"], "clspre": "tvc14_", "twin": "Mage Hand Press; Valda's Spire of Secrets - 2024.json", "subsfx": " (2014)",
+  "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Investigator": "Investigator (2014)", "Martyr": "Martyr (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}}, {"id": "tdm14", "monsters": True, "vehicles": "tdm14_vehicle", "file": "Mage Hand Press; Dark Matter - 2014.json", "tag": "DM14", "name": "Dark Matter", "pub": "Mage Hand Press", "ed": "2014",
+  "sub": "tdm14_sub", "feat": "tdm14_feat", "spell": "tdm14_spell", "species": "tdm14_species", "bg": "tdm14_bg", "item": "tdm14_item", "alias": "DM14", "cls": ["gadgeteer"], "clspre": "tvc14_", "twin": "Mage Hand Press; Dark Matter - 2024.json", "subsfx": " (2014)",
+  "clsmap": {"Alchemist": "Alchemist (2014)", "Captain": "Captain (2014)", "Craftsman": "Craftsman (2014)", "Necromancer": "Necromancer (2014)", "Warden": "Warden (2014)", "Warmage": "Warmage (2014)", "Witch": "Witch (2014)", "Gunslinger": "Gunslinger (2014)", "Channeler": "Channeler (2014)"}},
+ {"id": "tgh14p", "monsters": True, "file": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2014.json", "tag": "GHPG14", "name": "Grim Hollow Player's Guide", "pub": "Ghostfire Gaming", "ed": "2014",
+  "sub": "tgh14p_sub", "spell": "tgh14p_spell", "item": "tgh14p_item", "species": "tgh14p_species", "bg": "tgh14p_bg", "trans": "tgh14p_trans", "alias": "GH14", "twin": "Ghostfire Gaming; Grim Hollow - Player's Guide - 2024.json", "subsfx": " (2014)"},
+ {"id": "tgh14c", "monsters": True, "file": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2014.json", "tag": "GHCG14", "name": "Grim Hollow Campaign Guide", "pub": "Ghostfire Gaming", "ed": "2014",
+  "feat": "tgh14c_feat", "spell": "tgh14c_spell", "item": "tgh14c_item", "bg": "tgh14c_bg", "trans": "tgh14c_trans", "alias": "GH14C", "twin": "Ghostfire Gaming; Grim Hollow - Campaign Guide - 2024.json", "subsfx": " (2014)"},
+ {"id": "twow", "file": "5etools; World of Warcraft - 2024.json", "tag": "WoW", "name": "World of Warcraft", "pub": "Blizzard Entertainment", "ed": "2024",
+  "sub": "twow_sub", "spell": "twow_spell", "feat": "twow_feat", "species": "twow_species", "opt": "twow_opt", "item": "twow_item", "monsters": True, "cls": ["death knight", "demon hunter", "shaman", "evoker"], "clspre": "twow_", "reskin": True, "alias": "WoW"},
+ {"id": "tua24", "ua": True, "monsters": True, "cls": ["psion"], "clspre": "tua24_", "clsspell": True, "file": ["ua/class/Unearthed Arcana 2025 - Psion Update.json", "ua/class/Unearthed Arcana 2025 - The Psion.json", "ua/subclass/Unearthed Arcana 2026 - Villainous Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options.json",
+  "ua/collection/Unearthed Arcana 2026 - Villainous Options Update.json", "ua/collection/Unearthed Arcana 2026 - Villainous Options.json", "ua/subclass/Unearthed Arcana 2026 - Mystic Subclasses.json",
+  "ua/subclass/Unearthed Arcana 2025 - Subclasses Update.json", "ua/subclass/Unearthed Arcana 2025 - Forgotten Realms Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Updates.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Horror Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Apocalyptic Subclasses.json"],
+  "tag": "UA24", "name": "Unearthed Arcana (2024 rules)", "pub": "Wizards of the Coast", "ed": "2024", "sub": "tua24_sub", "feat": "tua24_feat", "species": "tua24_species", "spell": "tua24_spell", "alias": "UA"}
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
+ONLY = [x for x in os.environ.get("TP_ONLY", "").split(",") if x]      # TP_ONLY=tvss,tvss14: build only these books (needs only their source files). reports/tp-gap.md is then not written
 
 def ovl(mod):
     p = os.path.join(HERE, "tp", "overlay", mod + ".py")
@@ -62,6 +78,25 @@ def alias(bk, n):
     r = "%s (%s)" % (n, bk["alias"]) if (('"%s"' % n) in _CORE[0] or _SEEN.get(n, bk["id"]) != bk["id"]) else n
     _SEEN.setdefault(r, bk["id"]); return r
 
+_SPN = {}
+def spell_name(s):
+    """An always-prepared spell takes the app's spelling of it ("Protection from Evil and Good", "Speak with Dead"), so the sheet finds it"""
+    if not _SPN:
+        for f in ("spells-spell-list.js", "spfull-spell-text.js"):
+            fp = os.path.join(ROOT, "src", "data", f)
+            if os.path.exists(fp):
+                for n in re.findall(r'"([A-Z][^"]{2,45})"', open(fp, encoding="utf-8").read()): _SPN.setdefault(n.lower(), n)
+    s = re.sub(r"^(\S+) \1 ", r"\1 ", s.split("|")[0])   # a doubled first word in the source ("Tasha's Tasha's Hideous Laughter")
+    return _SPN.get(s.lower(), title(s))
+
+_TWINN = {}
+def twinname(bk, n, kind):
+    """2014 book with a 2024 twin of the same title: an entry whose name the twin also has carries (2014), in every build order."""
+    if not bk.get("twin"): return n
+    k = (bk["id"], kind)
+    if k not in _TWINN: _TWINN[k] = set(x["name"] for x in load(bk["twin"]).get(kind, []))
+    return n + " (2014)" if n in _TWINN[k] else n
+
 def title(s):
     s = s.split("|")[0]
     small = {"of", "the", "and", "or", "to", "in", "on", "a"}
@@ -75,6 +110,8 @@ def sub_records(bk, data, M):
     for f in feats: cnt[(f["className"], f.get("subclassShortName"))] = cnt.get((f["className"], f.get("subclassShortName")), 0) + 1
     byname = {}
     for s in data["subclass"]: byname.setdefault(s["name"], []).append(s)
+    cm = bk.get("clsmap", {})
+    sfxn = set(x["name"] for x in load(bk["twin"]).get("subclass", [])) if bk.get("twin") else set()      # names the 2024 book of the same title also has
     for s in data["subclass"]:
         name = s["name"]; O = M.SUB.get(name)
         twins = byname[name]
@@ -90,6 +127,7 @@ def sub_records(bk, data, M):
         if key_ in _SEENSUB and _SEENSUB[key_] != bk["id"] and bk.get("alias"):
             nm = "%s (%s)" % (name, bk["alias"])          # same subclass name as an earlier book: renamed so neither replaces the other
         else: nm = name
+        if bk.get("subsfx") and (name in sfxn or name in bk.get("subren", ())): nm = name + bk["subsfx"]          # same name as a subclass of the 2024 book: kept apart, so no table is shared
         _SEENSUB.setdefault(key_, bk["id"])
         fl = [f for f in feats if f.get("subclassShortName") == s["shortName"] and f["className"] == s["className"]]
         arr = []; full = {}
@@ -103,16 +141,29 @@ def sub_records(bk, data, M):
             arr.append([lvl, f["name"], t]); full[nm + "|" + f["name"]] = t
         unused = set(O["f"]) - {a[1] for a in arr}
         for u in sorted(unused): GAP.append((bk["tag"], "overlay", name + " | " + u, "overlay text without a source feature"))
+        if O.get("base"):          # a reskin subclass keeps the rows of its Player's Handbook parent, except the ones named in drop or replaced by an overlay row
+            import tp_wow
+            _pr = tp_wow.phb()["CLASSES"][O["base"][0]]["subs"][O["base"][1]]; _have = {a[1] for a in arr}
+            arr = [list(r) for r in _pr if r[1] not in O.get("drop", []) and r[1] not in _have] + arr
         arr.sort(key=lambda a: a[0])
         auto = []
-        for blk in s.get("additionalSpells", []):
+        _blks = s.get("additionalSpells", [])
+        if len([b for b in _blks if b.get("name") and b.get("prepared")]) > 1:
+            # named blocks are columns the player picks one of (Blood, Frost, Unholy). Only the spells every column has are always prepared. The rest is in the feature text
+            _lv = {}
+            for b in _blks:
+                for lv, sp in (b.get("prepared") or {}).items():
+                    if isinstance(sp, list): _lv.setdefault(lv, []).append(set(title(x) for x in sp if isinstance(x, str)))
+            _blks = [{"prepared": {lv: sorted(set.intersection(*cols)) for lv, cols in _lv.items() if len(cols) == len([b for b in _blks if b.get("prepared")])}}]
+        for blk in _blks:
             for key in ("prepared", "known"):
                 for lv, sp in (blk.get(key) or {}).items():
                     if not isinstance(sp, list): continue          # "daily" and similar blocks hold free casts, not always-prepared lists
-                    L = max(3, int(lv)); names = [title(x) for x in sp if isinstance(x, str)]
+                    L = max(3, int(lv)); names = [spell_name(x) for x in sp if isinstance(x, str)]
                     ex = [a for a in auto if a[0] == L]
                     if ex: ex[0][1] = ex[0][1] + "," + ",".join(names)
                     else: auto.append([L, ",".join(names)])
+        if O.get("noauto"): auto = []
         auto.sort(key=lambda a: a[0])
         lu = []
         for l in O.get("lu", []):
@@ -124,27 +175,31 @@ def sub_records(bk, data, M):
             acts[k] = [["other", "", ft]] if kind == "other" else [[kind, ""]]
         if alt and arr: arr[0][2] = arr[0][2] + " Cross-compatible with %s: your GM decides whether it may be used." % " and ".join(alt)
         for a_ in alt: full[nm + "|" + arr[0][1]] = arr[0][2] if arr else ""
-        rec = {"alt": alt, "cls": s["className"], "name": nm, "src": bk["id"], "arr": arr, "full": full, "auto": auto, "lu": lu, "acts": acts,
+        rec = {"alt": [cm.get(a, a) for a in alt], "cls": cm.get(s["className"], s["className"]), "name": nm, "src": bk["id"], "arr": arr, "full": full, "auto": auto, "lu": lu, "acts": acts,
                "cantrips": [], "pick": O.get("pick", []), "fx": O.get("fx", []), "spab": O.get("spab", "")}
         if O.get("grant"): rec["grant"] = O["grant"]
+        if O.get("third"): rec["third"] = O["third"]
+        if O.get("gx"): rec["gx"] = O["gx"]
         if O.get("acb"): rec["acb"] = O["acb"]
         out.append(rec)
     return out
 
 HEAD = "/* Generated by tools/tp_build.py from %s (%s, %s). Own wording. Source %s is off until the player turns it on. Do not edit by hand: change tools/tp/overlay/ and run the build. */\n"
 
-REG = '''window.WXS=(window.WXS||[]).concat(D);
+REG = '''DataEnv.slot.WXS=(DataEnv.slot.WXS||[]).concat(D);
 D.forEach(function(s){[s.cls].concat(s.alt||[]).forEach(function(cn){var c=CLASSES[cn];if(c){c.subs=c.subs||{};c.subs[s.name]=s.arr;
  c.pickSub=c.pickSub||{};if(s.pick.length)c.pickSub[s.name]=s.pick}SUBLABEL[cn]=SUBLABEL[cn]||(cn+" Subclass")});
  Object.keys(s.full).forEach(function(k){SUB_FULL[k]=s.full[k]});
  if(s.auto.length)AUTO[s.name]=s.auto;
  if(s.grant)SUB_GRANT[s.name]=s.grant;
+ if(s.gx){DataEnv.slot.GX=DataEnv.slot.GX||{};DataEnv.slot.GX.sub=DataEnv.slot.GX.sub||{};DataEnv.slot.GX.sub[s.name]=(DataEnv.slot.GX.sub[s.name]||[]).concat(s.gx)}
+ if(s.third){DataEnv.slot.THIRD_SUBS=DataEnv.slot.THIRD_SUBS||{};DataEnv.slot.THIRD_SUBS[s.name]=s.third}
  s.lu.forEach(function(e){LU_X.push(e)});
  Object.keys(s.acts).forEach(function(k){ACTS[k]=s.acts[k]});
  (s.sn||[]).forEach(function(r){SAVE_NOTES.push(r)})});
-window.WXE=(window.WXE||[]).concat(EX);
-window.WX=window.WX||{src:[]};
-if(!window.WX.src.some(function(x){return x.id===SRC.id}))window.WX.src.push(SRC);
+DataEnv.slot.WXE=(DataEnv.slot.WXE||[]).concat(EX);
+DataEnv.slot.WX=DataEnv.slot.WX||{src:[]};
+if(!DataEnv.slot.WX.src.some(function(x){return x.id===SRC.id}))DataEnv.slot.WX.src.push(SRC);
 '''
 
 def bg_records(bk, data, M):
@@ -166,7 +221,7 @@ def bg_records(bk, data, M):
         if "_copy" in b: GAP.append((bk["tag"], "background variant", b["name"], "carried as a story variant on " + b["_copy"]["name"]))
     return out
 
-REGBG = '''window.WXBG=window.WXBG||{};window.WXBG[SRC.id]=Object.assign(window.WXBG[SRC.id]||{},BG);
+REGBG = '''DataEnv.slot.WXBG=DataEnv.slot.WXBG||{};DataEnv.slot.WXBG[SRC.id]=Object.assign(DataEnv.slot.WXBG[SRC.id]||{},BG);
 Object.keys(TL).forEach(function(k){TOOLS[k]=TL[k].list;TOOL_CAT[k]=TL[k].cat;TOOL_ONE[k]=TL[k].one});
 SRC.backgrounds=Object.keys(BG);
 '''
@@ -174,19 +229,26 @@ SRC.backgrounds=Object.keys(BG);
 def _featname(bk, n, M=None):
     """Name of a feat as the app knows it: the book's own feats may be renamed, the core feats never are."""
     own = getattr(bk.get("_featmod"), "FEATS", {})
-    return alias(bk, n) if n in own else n
+    return bk.get("featren", {}).get(n, alias(bk, n)) if n in own else n
 
 def trans_records(bk, data, M2):
     """Transformations of Grim Hollow: one feat per stage (pick the stage Boons, the Flaws are listed). T = {name: {intro, stages: {n: {rule, take, fixed}}, opt: {optname: text}}}, GIFTS = {name: text}."""
     T = M2.TRANS; out = {}; acts = {}
+    SL = "Level" if bk["ed"] == "2014" else "Stage"
     by = {}                                   # transformation name -> stage -> {"B": [...], "F": [...]}
     for o in data.get("optionalfeature", []):
         ft = [t for t in o["featureType"] if t.endswith(":TB") or t.endswith(":TF")]
         if not ft: continue
         txt = json.dumps(o.get("prerequisite", ""))
         m = re.search(r"Stage (\d+) of the \{@charoption ([^|}]+)", txt)
+        if not m:
+            m14 = re.search(r"(\d+)(?:st|nd|rd|th) Level of ([A-Za-z ]+?) Transformation", txt)
+            if m14: m = type("M", (), {"group": lambda self, i, a=m14: {1: a.group(1), 2: a.group(2)}[i]})()
         if not m: GAP.append((bk["tag"], "transformation", o["name"], "no stage in the prerequisite")); continue
-        by.setdefault(m.group(2), {}).setdefault(int(m.group(1)), {"B": [], "F": []})["B" if ft[0].endswith("TB") else "F"].append(o["name"])
+        by.setdefault(m.group(2), {}).setdefault(int(m.group(1)), {"B": [], "F": []})["B" if ft[0].endswith("TB") and o["name"] not in getattr(M2, "AS_FLAW", ()) else "F"].append(o["name"])
+    for nm, sts in getattr(M2, "EXTRA", {}).items():          # boons of another book that share a transformation Level with this book
+        for st, names in sts.items():
+            by.setdefault(nm, {}).setdefault(st, {"B": [], "F": []})["B"].extend(n for n in names if n not in by.get(nm, {}).get(st, {"B": []})["B"])
     for nm in sorted(by):
         t = T.get(nm)
         if not t: GAP.append((bk["tag"], "transformation", nm, "no overlay text, transformation not built")); continue
@@ -197,27 +259,30 @@ def trans_records(bk, data, M2):
                 if n not in t["opt"]: GAP.append((bk["tag"], "transformation", "%s | %s" % (nm, n), "no overlay text"))
             fixed = [n for n in rule.get("fixed", []) if n in sd["B"]]
             rest = [n for n in sd["B"] if n not in fixed]
+            if t.get("lower"):      # the book lets a Level pick a Boon of this or a lower Level
+                rest = [n for s2 in sorted(by[nm]) if s2 < st for n in by[nm][s2]["B"] if n not in (t["stages"].get(s2) or {}).get("fixed", [])] + rest
             full = ""
             if st == 1 and t.get("intro"): full += t["intro"] + "\n"
-            full += "**Stage %d.** %s" % (st, rule["rule"])
+            full += "**%s %d.** %s" % (SL, st, rule["rule"])
             for n in fixed: full += "\n**%s (Boon).** %s" % (n, t["opt"].get(n, ""))
             for n in sd["F"]: full += "\n**%s (Flaw).** %s" % (n, t["opt"].get(n, ""))
-            rec = {"cat": "G", "hb": bk["tag"], "d": rule.get("d") or ("%s Transformation, stage %d. %s" % (nm, st, rule["rule"]))[:170], "full": full}
-            if st > 1: rec["pre"] = "Stage %d of the %s Transformation" % (st - 1, nm)
+            rec = {"cat": "G", "hb": bk["tag"], "d": rule.get("d") or ("%s Transformation, %s %d. %s" % (nm, SL.lower(), st, rule["rule"]))[:170], "full": full}
+            if st > 1: rec["pre"] = "%s %d of the %s Transformation" % (SL, st - 1, nm)
             else: rec["pre"] = "Your GM allows the %s Transformation" % nm
             if rest and rule.get("take", 0) > 0:
-                rec["pick"] = [{"k": "tr%s%d" % (re.sub("[^A-Za-z]", "", nm), st), "t": "multi", "n": rule["take"], "title": "%s stage %d Boons" % (nm, st),
+                rec["pick"] = [{"k": ("t14" if SL == "Level" else "tr") + "%s%d" % (re.sub("[^A-Za-z]", "", nm), st), "t": "multi", "n": rule["take"], "title": "%s %s %d Boons" % (nm, SL.lower(), st),
                                 "list": [[n, t["opt"].get(n, "")] for n in rest]}]
             elif rest: 
                 for n in rest: rec["full"] += "\n**%s (Boon).** %s" % (n, t["opt"].get(n, ""))
-            out["%s Transformation: Stage %d" % (nm, st)] = rec
+            out["%s Transformation: %s %d" % (nm, SL, st)] = rec
     gods = [o["name"] for o in data.get("optionalfeature", []) if "GoD" in o["featureType"]]
     G = getattr(M2, "GIFTS", {})
     for n in gods:
         if n not in G: GAP.append((bk["tag"], "optional feature", "Gift of Dread | " + n, "no overlay text"))
     if gods:
-        out["Gift of Dread"] = {"cat": "G", "hb": bk["tag"], "d": getattr(M2, "GIFT_D", "Pick one Gift of Dread."), "full": getattr(M2, "GIFT_INTRO", "Pick one Gift of Dread."),
-                                "pick": [{"k": "god", "t": "multi", "n": 1, "title": "Gift of Dread", "list": [[n, G.get(n, "")] for n in gods]}]}
+        gn = getattr(M2, "GIFT_NAME", "Gift of Dread")
+        out[gn] = {"cat": "G", "hb": bk["tag"], "d": getattr(M2, "GIFT_D", "Pick one " + gn + "."), "full": getattr(M2, "GIFT_INTRO", "Pick one " + gn + "."),
+                   "pick": [{"k": getattr(M2, "GIFT_KEY", "god"), "t": "multi", "n": 1, "title": gn, "list": [[n, G.get(n, "")] for n in gods]}]}
     return out, acts
 
 def feat_records(bk, data, M):
@@ -227,10 +292,10 @@ def feat_records(bk, data, M):
     for n in names + [x for x in getattr(M, "ALSO", []) if x not in names]:
         r = M.FEATS.get(n)
         if not r: GAP.append((bk["tag"], "feat", n, "no overlay text, feat not built")); continue
-        rec = {"cat": "G", "hb": bk["tag"], "d": r["d"], "full": r["full"]}
-        for k in ("pre", "asi", "fx", "pick", "needs"):
+        rec = {"cat": r.get("cat", "G"), "hb": bk["tag"], "d": r["d"], "full": r["full"]}
+        for k in ("pre", "asi", "fx", "pick", "needs", "cls"):
             if k in r: rec[k] = r[k]
-        n0 = n; n = alias(bk, n); out[n] = rec
+        n0 = n; n = bk.get("featren", {}).get(n, alias(bk, twinname(bk, n, "feat"))); out[n] = rec
         if r.get("dm"): FDM[n] = r["dm"]
         if r.get("lu"):
             l = r["lu"]; lus.append({"src": "feat", "owner": n, "feature": n, "n": l["n"], "lvl": 1, "max": l["max"], "reset": l["reset"], "tag": l.get("tag", "")})
@@ -239,7 +304,7 @@ def feat_records(bk, data, M):
         if n not in names and n not in getattr(M, "ALSO", ()): GAP.append((bk["tag"], "overlay", "feat " + n, "overlay text without a source feat"))
     return out, lus, acts
 
-REGFT = '''window.DM_SP=window.DM_SP||{};Object.keys(FDM).forEach(function(k){window.DM_SP[k]=FDM[k]});
+REGFT = '''DataEnv.slot.DM_SP=DataEnv.slot.DM_SP||{};Object.keys(FDM).forEach(function(k){DataEnv.slot.DM_SP[k]=FDM[k]});
 Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(function(e){LU_X.push(e)});Object.keys(FTA).forEach(function(k){ACTS[k]=FTA[k]});
 SRC.feats=Object.keys(FT);
 '''
@@ -256,11 +321,12 @@ def item_records(bk, data, M):
         if n in M.WPN: op["wp"] = M.WPN[n]; op.setdefault("base", [n]); wpn.append(n)
         rows.append([n, typ, rar, att, text, op])
     have = set(r[0] for r in rows) | set(g[0] for g in M.GEAR) | set(getattr(M, "SUPERSEDED", ()))
+    if bk["ed"] == "2014": have |= set(" ".join(i["name"].split()) for i in data.get("item", []) if i.get("rarity") == "none" and i.get("weaponCategory") and (i.get("type") or "").split("|")[0] in ("M", "R"))     # weapon forms are built by weapon_records
     for n in getattr(M, "SUPERSEDED", ()):
         if n in src_names: GAP.append((bk["tag"], "item", n, "older version of the Reborn entry of the same name. Use the TDCSR book"))
     for n in sorted(src_names - have):
         GAP.append((bk["tag"], "item", n, "no overlay text, item not built"))
-    for k, lab in (("monster", "monsters (stat blocks)"), ("deity", "deities"), ("variantrule", "variant rules"), ("reward", "rewards (boons and blessings)")):
+    for k, lab in (("monster", "monsters (stat blocks)") if not bk.get("monsters") else ("_none", ""), ("deity", "deities"), ("variantrule", "variant rules"), ("reward", "rewards (boons and blessings)")):
         if data.get(k): GAP.append((bk["tag"], "reference only", "%d %s" % (len(data[k]), lab), "not in the builder or sheet. Planned for the Library as own-wording entries"))
     for k in ("itemGroup",):
         if data.get(k): GAP.append((bk["tag"], "reference only", "%d %s" % (len(data[k]), k), "grouping of items already listed one by one"))
@@ -268,16 +334,23 @@ def item_records(bk, data, M):
 
 DMGT = {"B": "Bludgeoning", "P": "Piercing", "S": "Slashing", "N": "Necrotic", "R": "Radiant", "O": "Force", "F": "Fire", "L": "Lightning", "I": "Poison", "Y": "Psychic", "T": "Thunder", "A": "Acid", "C": "Cold"}
 PROP = {"A": "Ammunition", "F": "Finesse", "H": "Heavy", "L": "Light", "LD": "Loading", "R": "Reach", "T": "Thrown", "2H": "Two-Handed", "V": "Versatile", "RLD": "Reload", "Alc:D": "Destructible", "GC:VSS-B": "Blaster", "GC:VSS-C": "Cooldown", "Craft:R": "Reload", "HC": "High Caliber", "AP": "Armor-Piercing", "BP": "Blackpowder", "CS": "Cumbersome", "D": "Double", "Dam": "Damage", "Haft": "Hafted", "Mag": "Magazine", "Mom": "Momentum", "Rep": "Repeater", "SGttEH:Art": "Artillery", "SGttEH:Bar": "Barrel", "SGttEH:Bla": "Blaring", "SGttEH:Boo": "Booming", "SGttEH:FnFr": "Fan Fire", "SGttEH:Sdy": "Steady", "SGttEH:SpFr": "Spread Fire", "SGttEH:TwBar": "Twinned Barrel", "TK": "Trick Weapon", "DM-B": "Blaster", "DM-C": "Cooldown", "DM-D": "Destructible", "DM-F": "Firearm", "DM-R": "Recoil"}
+PROP14 = {"AU": "Automatic", "CO": "Concealable", "DR": "Dry", "DU": "Double", "EL": "Elegant", "EX": "Explosive", "FG": "Foregrip", "FI": "Fist", "HT": "Heat", "LO": "Loading", "MA": "Massive", "MO": "Mounted", "MS": "Misfire", "PA": "Parrying", "RE": "Returning", "RO": "Rocket", "SC": "Scatter", "SH": "Superheavy", "ST": "Sighted", "TE": "Tension", "TR": "Trip", "TW": "Twinshot", "XO": "Exotic", "SW": "Switch", "BLSTR": "Blaster", "SCTR": "Scatter", "SGT": "Sighted", "MNT": "Mounted", "OH": "Overheat", "NL": "Nonlethal", "FST": "Fist", "ADV_AP": "Armor Piercing", "ADV_B": "Brutal", "ADV_BP": "Blackpowder", "ADV_C": "Cumbersome", "ADV_DBL": "Double", "ADV_DEF": "Defending", "ADV_DIS": "Disarming", "ADV_DMG": "Damage", "ADV_ENT": "Entangling", "ADV_G": "Guard", "ADV_HFT": "Hafted", "ADV_M": "Momentum", "ADV_MAG": "Magazine", "ADV_MON": "Monk", "ADV_PRC": "Precise", "ADV_RES": "Restraining", "ADV_RET": "Returning", "ADV_RPT": "Repeater", "ADV_SC": "Scatter", "ADV_SET": "Set", "ADV_STRD": "Strong-Draw", "ADV_SW": "Swift", "ADV_TRIP": "Tripping"}      # properties of the 2014 Valda and Dark Matter books (only read for 2014 books)
+ARMR = {}
 WEAP = {}; MAST = {}
 
 def weapon_records(bk, data, M):
     """Weapons from the source baseitems (stats from the source, text from the overlay). Switch weapons become one entry per form."""
-    WEAP.clear(); MAST.clear()
+    WEAP.clear(); MAST.clear(); ARMR.clear()
     base = json.load(open(os.path.join(ROOT, "tools", "tp", "base_weapons.json"), encoding="utf-8"))
     desc = getattr(M, "WDESC", {}); MAST.update(getattr(M, "MASTERY", {}))
     seen = set()
-    for it in data.get("baseitem", []):
+    _forms = [i for i in data.get("item", []) if bk["ed"] == "2014" and i.get("rarity") == "none" and i.get("weaponCategory") and (i.get("type") or "").split("|")[0] in ("M", "R")]       # 2014 Valda: switch forms and other weapons that sit in the item list
+    for it in list(data.get("baseitem", [])) + _forms:
         n = it["name"]; ty = (it.get("type") or "").split("|")[0]
+        if bk["ed"] == "2014" and ty in ("LA", "MA", "HA") and n not in seen:       # armor of a 2014 book: base AC, Dexterity cap, Strength need, Stealth Disadvantage
+            seen.add(n); fn = getattr(M, "WDESC_FN", None)
+            ARMR[n] = {"o": dict({"ac": it["ac"], "dex": {"LA": "full", "MA": "max2", "HA": "none"}[ty], "cat": {"LA": "Light", "MA": "Medium", "HA": "Heavy"}[ty], "w": it.get("weight") or 0}, **({"str": int(it["strength"])} if it.get("strength") else {}), **({"dis": 1} if it.get("stealth") else {})), "c": round((it.get("value") or 0) / 100.0, 2), "t": desc.get(n) or (fn(it) if fn else "")}
+            continue
         if ty not in ("M", "R", "SW") or n in seen: continue
         seen.add(n); price = round((it.get("value") or 0) / 100.0, 2)
         if ty == "SW":
@@ -290,12 +363,15 @@ def weapon_records(bk, data, M):
         props = []
         for c in it.get("property", []) or []:
             k = c.split("|")[0]
+            if bk["ed"] == "2014" and (k in PROP14 or k == "RLD"):
+                nm_ = PROP14.get(k) or "Reload"; ex_ = it["dmg2"] if k in ("SC", "SCTR") and it.get("dmg2") else it.get("reload") if k == "RLD" and it.get("reload") else None
+                props.append(nm_ + (" (%s)" % ex_ if ex_ else "")); continue
             if k in PROP: props.append(PROP[k] + (" (%s)" % it["dmg2"] if k == "V" and it.get("dmg2") else ""))
         mast = ((it.get("mastery") or [""])[0]).split("|")[0]
-        o = {"d": it.get("dmg1", "1"), "t": DMGT.get(it.get("dmgType"), "Piercing"), "cat": "S" if it.get("weaponCategory") == "simple" else "M", "k": "M" if ty == "M" else "R", "p": ", ".join(props), "m": mast, "w": it.get("weight") or 0, "tp": bk["id"]}
+        o = {"d": it.get("dmg1", "1"), "t": DMGT.get(it.get("dmgType"), "Piercing"), "cat": "S" if it.get("weaponCategory") == "simple" else "M", "k": "M" if ty == "M" else "R", "p": ", ".join(props + (["Exotic"] if it.get("weaponCategory") == "exotic" and "Exotic" not in props else [])), "m": mast, "w": it.get("weight") or 0, "tp": bk["id"]}
         if it.get("range"): o["r"] = it["range"]
         if mast and mast not in base_mastery() and mast not in MAST: GAP.append((bk["tag"], "item", n, "mastery %s has no overlay text" % mast))
-        WEAP[n] = {"o": o, "c": price, "t": desc.get(n, "")}
+        WEAP[n] = {"o": o, "c": price, "t": desc.get(n) or (getattr(M, "WDESC_FN", None) or (lambda _x: ""))(it)}
     return WEAP, MAST
 
 _BM = []
@@ -303,12 +379,15 @@ def base_mastery():
     if not _BM: _BM.extend(["Cleave", "Graze", "Nick", "Push", "Sap", "Slow", "Topple", "Vex"])
     return _BM
 
-REGIT = '''window.WXI=window.WXI||{};window.WXI[SRC.id]=IT;
-window.WXWP=(window.WXWP||[]).concat(WPN);
+REGIT = '''DataEnv.slot.WXI=DataEnv.slot.WXI||{};DataEnv.slot.WXI[SRC.id]=IT;
+DataEnv.slot.WXWP=(DataEnv.slot.WXWP||[]).concat(WPN);
 Object.keys(ISP).forEach(function(k){if(typeof ITEM_SPELLS!=="undefined")ITEM_SPELLS[k]=ISP[k]});
 SRC.items=IT.map(function(r){return r[0]});
-if(GR.length){window.WXG=window.WXG||{};window.WXG[SRC.id]=GR}
-if(Object.keys(WPW).length){window.WXW=window.WXW||{};window.WXW[SRC.id]={w:WPW,a:{}};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
+if(GR.length){DataEnv.slot.WXG=DataEnv.slot.WXG||{};DataEnv.slot.WXG[SRC.id]=GR}
+if(Object.keys(WPW).length){DataEnv.slot.WXW=DataEnv.slot.WXW||{};DataEnv.slot.WXW[SRC.id]={w:WPW,a:(typeof WPA!=="undefined"?WPA:{})};if(typeof MASTERY!=="undefined")Object.assign(MASTERY,MST)}
+'''
+
+REGOPT = '''DataEnv.declare("WXO");DataEnv.slot.WXO=DataEnv.slot.WXO||{};DataEnv.slot.WXO[SRC.id]=OPT;
 '''
 
 SCH = {"A": "Abjuration", "C": "Conjuration", "D": "Divination", "E": "Enchantment", "V": "Evocation", "I": "Illusion", "N": "Necromancy", "T": "Transmutation", "CLOCK": "Clockwork", "VOID": "Void"}
@@ -343,8 +422,14 @@ def spell_meta(s):
     return [s["name"], s["level"], SCH[s["school"]], sorted(set(cl)), cast, _dist(s["range"]), comp, dur, conc, rit, AB.get(sv, "")]
 
 def spell_records(bk, data, M):
-    src = {x["name"]: x for x in data.get("spell", [])}
+    from collections import Counter as _C
+    _cnt = _C(x["name"] for x in data.get("spell", []))
+    src = {(x["name"] if _cnt[x["name"]] == 1 else "%s|%s" % (x["name"], x["level"])): x for x in data.get("spell", [])}      # same name twice in a book: key "Name|level", shown as "Name (Level N)"
     rows = []
+    _cs = {}                    # classSpells of the book's classes: spell name (lowercase) -> the app names of the classes that list it
+    for _c in data.get("class", []):
+        for _e in _c.get("classSpells", []):
+            _cs.setdefault(_e.split("|")[0].strip().lower(), set()).add(bk.get("clsmap", {}).get(_c["name"], _c["name"]))
     T = getattr(M, "TEXT", None)
     if T is None:
         names = set(src)
@@ -360,7 +445,7 @@ def spell_records(bk, data, M):
         if isinstance(tx, str):
             import re as _re
             m_ = _re.match(r"(.{40,200}?[.!?])(\s|$)", tx.replace("**", "")); tx = [(m_.group(1) if m_ else tx[:200]).strip(), tx]
-        r = spell_meta(src[n]); r[0] = alias(bk, n); r.append(tx[0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[r[0]] = tx[1]
+        r = spell_meta(src[n]); r[0] = alias(bk, twinname(bk, n if "|" not in n else "%s (Level %s)" % tuple(n.split("|")), "spell")); r[3] = sorted(set(bk.get("clsmap", {}).get(c, c) for c in r[3]) | _cs.get(src[n]["name"].lower(), set())); r.append(tx[0]); r += [bk["tag"], list(r[3])]; rows.append(r); full[r[0]] = tx[1]
     for n in sorted(set(src) - set(T)): GAP.append((bk["tag"], "spell", n, "no overlay text, spell not built"))
     return rows, full
 
@@ -369,35 +454,68 @@ REGSP = '''SRC.rows=SPR;Object.keys(SPF).forEach(function(k){SPELL_FULL[k]=SPF[k
 
 def species_records(bk, data, M):
     names = set(x["name"] for x in data.get("race", []))
+    subs = {}          # 2014 books: each subrace is its own species, named "<subrace> <race>" or "<subrace>", with the parent traits in it
+    for x in data.get("subrace", []):
+        subs.setdefault(x["raceName"], []).append(x); names.add(x["name"]); names.add(x["name"] + " " + x["raceName"])
     for n in M.SPECIES:
         if n not in names: GAP.append((bk["tag"], "overlay", "species " + n, "overlay text without a source species"))
-    for n in sorted(names - set(M.SPECIES)): GAP.append((bk["tag"], "species", n, "no overlay text, species not built"))
+    covered = set(M.SPECIES)
+    for r in data.get("race", []):
+        if r["name"] in subs and all((x["name"] in covered or x["name"] + " " + r["name"] in covered) for x in subs[r["name"]]): covered.add(r["name"])
+    for n in sorted(set(x["name"] for x in data.get("race", [])) - covered): GAP.append((bk["tag"], "species", n, "no overlay text, species not built"))
     out = {}
     for n, r in M.SPECIES.items():
         rec = dict(r); rec["hb"] = bk["tag"]; out[alias(bk, n)] = rec
-    for l in getattr(M, "LU", []): SPLU.append(l)
-    for k, v in getattr(M, "ACTS", {}).items(): SPACTS[k] = v
-    for k, v in getattr(M, "SP_AUTO", {}).items(): SPAUTO[k] = v
-    return out, M.DEF
+    ren = {n: alias(bk, n) for n in M.SPECIES}          # a species renamed by the alias keeps its trackers, actions, free spells and fx: the overlay may write the plain name
+    def _sk(k):
+        p = k.split("|")
+        if len(p) == 3 and p[1] in ren: p[1] = ren[p[1]]
+        return "|".join(p)
+    for l in getattr(M, "LU", []): SPLU.append(dict(l, owner=ren.get(l["owner"], l["owner"])) if l.get("owner") in ren else l)
+    for k, v in getattr(M, "ACTS", {}).items(): SPACTS[_sk(k)] = v
+    for k, v in getattr(M, "SP_AUTO", {}).items(): SPAUTO[ren.get(k, k)] = v
+    for k, v in getattr(M, "GXSP", {}).items(): GXSP[ren.get(k, k)] = v          # fx rows of a species: registry GX.species
+    return out, {ren.get(k, k): v for k, v in M.DEF.items()}
 
-SPLU = []; SPACTS = {}; SPAUTO = {}
+SPLU = []; SPACTS = {}; SPAUTO = {}; GXSP = {}; CSP = {}
 FDM = {}
-REGCLS = '''window.WXC=window.WXC||{};
-Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;window.WXC[n]={book:SRC.id,rec:r};
- SUBLABEL[n]=n+" Subclass";if(r.cant)CANT[n]=r.cant;if(r.prep)PREP[n]=r.prep;if(r.mcg)MC_GRANT[n]=r.mcg;MC_REQ[n]=r.mcreq;if(k.auto)CLS_AUTO[n]=k.auto;
+REGCLS = '''DataEnv.slot.WXC=DataEnv.slot.WXC||{};
+Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;DataEnv.slot.WXC[n]={book:SRC.id,rec:r,ed:SRC.ed,tw:k.tw,inh:k.inh,cfa:k.cfa};
+ SUBLABEL[n]=k.sub||n+" Subclass";if(r.cant)CANT[n]=r.cant;if(r.prep)PREP[n]=r.prep;if(r.mcg)MC_GRANT[n]=r.mcg;MC_REQ[n]=r.mcreq;if(k.auto)CLS_AUTO[n]=k.auto;
  Object.keys(k.cf).forEach(function(x){CF_FULL[n+"|"+x]=k.cf[x]});
- k.lu.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,k.acts);if(k.quick)QUICK[n]=k.quick});
+ k.lu.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,k.acts);if(k.quick)QUICK[n]=k.quick;
+ if(k.inh){var p=k.inh,dn=k.cfa||{};/* a reskin class reads the tables of its parent class under its own name, except what the book replaces */
+  [CANT,PREP,MC_GRANT,MC_REQ,CLS_AUTO,QUICK,SUBLABEL].forEach(function(T){if(T&&T[p]!==undefined&&T[n]===undefined)T[n]=T===SUBLABEL?n+" Subclass":T[p]});
+  Object.keys(dn).forEach(function(x){if(CF_FULL[p+"|"+x]&&!CF_FULL[n+"|"+x])CF_FULL[n+"|"+x]=CF_FULL[p+"|"+x]});
+  Object.keys(ACTS).forEach(function(a){var m=a.split("|");if(m[0]==="cls"&&m[1]===p&&dn[m[2]]&&!ACTS["cls|"+n+"|"+m[2]])ACTS["cls|"+n+"|"+m[2]]=ACTS[a]});
+  /* the table rows of the parent class (limited uses) are read for this class by the builder (luOwnLv), not copied */}});
 '''
 
-REGSPC = '''window.WXSP=window.WXSP||{};window.WXSP[SRC.id]=Object.assign(window.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
-SRC.species=Object.keys(SPC);
+REGCSP = '''/* spell list of a new class: core spells get the class name in their class list, so the spell step offers them */
+if(typeof SPELLS!=="undefined")Object.keys(CSP).forEach(function(c){var h={};CSP[c].forEach(function(n){h[n]=1});SPELLS.forEach(function(x){if(h[x[0]]&&x[3].indexOf(c)<0)x[3].push(c)})});
 '''
+REGSPC = '''DataEnv.slot.WXSP=DataEnv.slot.WXSP||{};DataEnv.slot.WXSP[SRC.id]=Object.assign(DataEnv.slot.WXSP[SRC.id]||{},SPC);Object.assign(DEF_SP,DFS);SPL.forEach(function(e){LU_X.push(e)});Object.assign(ACTS,SPA);Object.assign(SP_AUTO,SPS);
+SRC.species=Object.keys(SPC);
+if(Object.keys(GXSP).length){DataEnv.slot.GX=DataEnv.slot.GX||{};DataEnv.slot.GX.species=DataEnv.slot.GX.species||{};Object.keys(GXSP).forEach(function(k){DataEnv.slot.GX.species[k]=(DataEnv.slot.GX.species[k]||[]).concat(GXSP[k])})}
+'''
+
+def ua_skip(data):
+    """Unearthed Arcana repeats options the core books already have. Entries whose name is a core name (tools/tp/ua_core_names.json) are left out, so the book only adds new ones."""
+    have = json.load(open(os.path.join(HERE, "tp", "ua_core_names.json")))
+    nz = lambda x: re.sub(r"[^a-z0-9]", "", x.lower())
+    if any(c.get("source") == "XUA2025PsionUpdate" for c in data.get("class", [])):          # the Psion Update replaces the disciplines of the first Psion file
+        data["optionalfeature"] = [x for x in data.get("optionalfeature", []) if not (x.get("source") == "XUA2025Psion" and "PD" in x.get("featureType", []))]
+    for k, nk in (("subclass", "subclass"), ("feat", "feat"), ("race", "race"), ("subrace", "race"), ("background", "background")):
+        if k in data: data[k] = [x for x in data[k] if nz(x["name"]) not in have[nk]]
+
 
 def build():
     files = {}
     for i, bk in enumerate(BOOKS, 1):
-        FDM.clear(); del SPLU[:]; SPACTS.clear(); SPAUTO.clear()
+        if ONLY and bk["id"] not in ONLY: continue
+        FDM.clear(); del SPLU[:]; SPACTS.clear(); SPAUTO.clear(); GXSP.clear(); CSP.clear()
         data = load(bk["file"]); M = ovl(bk["sub"]) if bk.get("sub") else None
+        if bk.get("ua"): ua_skip(data)
         recs = sub_records(bk, data, M) if M else []
         if not M:
             for x in data.get("subclass", []): GAP.append((bk["tag"], "subclass", x["name"], ("older version of the Reborn subclass of the same name. Use the TDCSR book" if bk.get("dup") else "not built yet (plan P3b, P4)")))
@@ -417,8 +535,16 @@ def build():
             mp = os.path.join(HERE, "tp", "overlay", cmod + ".py")
             if not os.path.exists(mp):
                 GAP.append((bk["tag"], "class", sc[0]["name"], "no overlay yet, class not built")); continue
-            rc, ex = tp_class.class_record(sc[0], data, ovl(cmod).CLASS, lambda k, i, nt, _t=bk["tag"]: GAP.append((_t, k, i, nt)), bk["id"])
-            ex["rec"] = rc; cl[sc[0]["name"]] = ex
+            kn = bk.get("clsmap", {}).get(sc[0]["name"], sc[0]["name"])
+            if bk.get("reskin"):
+                import tp_wow
+                rc, ex = tp_wow.reskin_record(kn, sc[0], ovl(cmod).CLASS, bk["id"], lambda k, i, nt, _t=bk["tag"]: GAP.append((_t, k, i, nt)))
+            else:
+                rc, ex = tp_class.class_record(sc[0], data, ovl(cmod).CLASS, lambda k, i, nt, _t=bk["tag"]: GAP.append((_t, k, i, nt)), bk["id"], name=kn)
+            ex["rec"] = rc
+            if kn != sc[0]["name"]: ex["tw"] = sc[0]["name"]
+            cl[kn] = ex
+            if bk.get("clsspell"): CSP[kn] = sorted(set(e.split("|")[0].strip() for e in sc[0].get("classSpells", [])))
         spr, spf = spell_records(bk, data, ovl(bk["spell"])) if bk.get("spell") else ([], {})
         it, isp, wpn, gr = item_records(bk, data, ovl(bk["item"])) if bk.get("item") else ([], {}, [], [])
         wpw, mst = weapon_records(bk, data, ovl(bk["item"])) if bk.get("item") and hasattr(ovl(bk["item"]), "MASTERY") else ({}, {})
@@ -426,8 +552,14 @@ def build():
                "desc": ", ".join(x for x in ["%d subclasses" % len(recs) if recs else "", "%d backgrounds" % len(bgs) if bgs else "", "%d feats" % len(ft) if ft else "", "%d items" % (len(it) + len(gr) + len(wpw)) if (it or gr or wpw) else "", "%d spells" % len(spr) if spr else "", "%d species" % len(spc) if spc else "", "%d classes" % len(cl) if cl else ""] if x) + ".", "feats": [], "spells": [], "rows": [], "subs": [r["name"] for r in recs],
                "tp": 1, "pub": bk["pub"], "ed": bk["ed"], "classes": list(cl)}
         if bk["ed"] == "2014": src["legacy"] = 0
-        body = HEAD % (bk["file"] if isinstance(bk["file"], str) else " + ".join(bk["file"]), bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar EX=" + json.dumps([dict(e, src=bk["id"]) for e in getattr(M, "EXT", [])], ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\nvar MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
+        body = HEAD % (bk["file"] if isinstance(bk["file"], str) else " + ".join(bk["file"]), bk["pub"], bk["ed"] + " rules", bk["id"]) + "(function(){\nvar SRC=" + json.dumps(src, ensure_ascii=False, separators=(",", ":")) + ";\nvar D=" + json.dumps(recs, ensure_ascii=False, separators=(",", ":")) + ";\nvar EX=" + json.dumps([dict(e, src=bk["id"]) for e in getattr(M, "EXT", [])], ensure_ascii=False, separators=(",", ":")) + ";\nvar BG=" + json.dumps(bgs, ensure_ascii=False, separators=(",", ":")) + ";\nvar TL=" + json.dumps(tl, ensure_ascii=False, separators=(",", ":")) + ";\nvar FT=" + json.dumps(ft, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTLU=" + json.dumps(ftlu, ensure_ascii=False, separators=(",", ":")) + ";\nvar FTA=" + json.dumps(fta, ensure_ascii=False, separators=(",", ":")) + ";\nvar FDM=" + json.dumps(FDM, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPL=" + json.dumps(SPLU, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPA=" + json.dumps(SPACTS, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPS=" + json.dumps(SPAUTO, ensure_ascii=False, separators=(",", ":")) + ";\nvar GXSP=" + json.dumps(GXSP, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPC=" + json.dumps(spc, ensure_ascii=False, separators=(",", ":")) + ";\nvar DFS=" + json.dumps(dfs, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPR=" + json.dumps(spr, ensure_ascii=False, separators=(",", ":")) + ";\nvar SPF=" + json.dumps(spf, ensure_ascii=False, separators=(",", ":")) + ";\nvar IT=" + json.dumps(it, ensure_ascii=False, separators=(",", ":")) + ";\nvar ISP=" + json.dumps(isp, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPN=" + json.dumps(wpn, ensure_ascii=False) + ";\nvar GR=" + json.dumps(gr, ensure_ascii=False, separators=(",", ":")) + ";\nvar WPW=" + json.dumps(wpw, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var WPA=" + json.dumps(dict(ARMR), ensure_ascii=False, separators=(",", ":")) + ";\n" if ARMR else "") + "var MST=" + json.dumps(mst, ensure_ascii=False, separators=(",", ":")) + ";\nvar CL=" + json.dumps(cl, ensure_ascii=False, separators=(",", ":")) + ";\n" + ("var CSP=" + json.dumps(CSP, ensure_ascii=False, separators=(",", ":")) + ";\n" + REGCSP if CSP else "") + ("var OPT=" + json.dumps({"inv": [list(x) for x in getattr(ovl(bk["opt"]), "INV", [])], "man": [list(x) for x in getattr(ovl(bk["opt"]), "MAN", [])]}, ensure_ascii=False, separators=(",", ":")) + ";\n" if bk.get("opt") else "") + (REGOPT if bk.get("opt") else "") + (REGBG if bgs else "") + (REGFT if ft else "") + (REGIT if (it or gr or wpw) else "") + (REGSP if spr else "") + (REGCLS if cl else "") + (REGSPC if spc else "") + REG + "})();\n"
         files["src/data/tp%02d-%s.js" % (i, bk["id"])] = body
+        if bk.get("vehicles") and (data.get("vehicle") or data.get("vehicleUpgrade")):
+            import tp_vehicles
+            files["src/data/q08-%s-vehicle.js" % bk["id"]] = tp_vehicles.vehicle_file(data.get("vehicle", []), data.get("vehicleUpgrade", []), bk["id"], bk["name"], ovl(bk["vehicles"]).UPGRADES)
+        if bk.get("monsters") and data.get("monster"):
+            import tp_monsters
+            files["src/data/q06-%s-monster.js" % bk["id"]] = tp_monsters.monster_file(data["monster"], bk["id"], bk["name"])
     for g in (("AEP24", "assumption", "how many Subclass Upgrades (SU) you gain and when", "the data lists no counts, so one upgrade at each of levels 3, 6 and 17 is assumed. Change _picks in tsae_sub.py if the book says otherwise"),
               ("GHPG24", "engine", "Transformations (12) are four feats each (one per stage). Boon prerequisites, Boon effects on AC, speed, senses, resistance and uses, and Boon choices inside a Boon", "text only. The stage feats list the Boons to pick and the Flaws"),
               ("GHPG24", "optional feature", "Trapper Gadgets and Monster-Hide Armor modifications (TG:*), 11 Devourer mutations (DG:M), the Unstable Form table", "chosen at play time, text sits inside the class and subclass features"),
@@ -447,7 +579,7 @@ def build():
         GAP.append(g)
     gap = ["# Third party GAP list", "", "Generated by tools/tp_build.py. A GAP is a source feature the app cannot place on the sheet by itself, or text that is missing.", "",
            "| Book | Kind | Item | Note |", "|---|---|---|---|"] + ["| %s | %s | %s | %s |" % g for g in GAP]
-    files["reports/tp-gap.md"] = "\n".join(gap) + "\n"
+    if not ONLY: files["reports/tp-gap.md"] = "\n".join(gap) + "\n"
     return files
 
 if __name__ == "__main__":
@@ -459,4 +591,6 @@ if __name__ == "__main__":
         else:
             open(fp, "w", encoding="utf-8").write(t); print("wrote", p, len(t))
     print("GAP rows:", len(GAP))
+    if os.environ.get("TP_GAPDUMP"):
+        for g in GAP: print("GAP", g)
     sys.exit(bad)

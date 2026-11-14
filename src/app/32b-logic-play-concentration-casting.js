@@ -19,8 +19,9 @@ bindLive("hasFeat",{get:function(){return hasFeat;}});
 bindLive("spCastH",{get:function(){return spCastH;}});
 bindLive("spIx",{get:function(){return spIx;}});
 bindLive("requestObjectRepairCast",{get:function(){return requestObjectRepairCast;}});
-export function clsLvls(){ let o={}, t=String(C.clsLabel||""), m, re=/([A-Z][A-Za-z']+) (\d+)/g; while((m=re.exec(t))) o[m[1]]=+m[2]; if(!Object.keys(o).length&&C.cls) o[C.cls]=D.level; return o; }
-export function lvOf(c){ return clsLvls()[c]||0; }
+export function clsLvls(){ let o={}, t=String(C.clsLabel||""), m, re=/([A-Z][A-Za-z']+(?: [A-Z][A-Za-z']+)*) (\d+)/g; while((m=re.exec(t))) o[m[1]]=+m[2]; if(!Object.keys(o).length&&C.cls) o[C.cls]=D.level; return o; }
+/* a reskin class counts under the class it copies (C.clsInh), so Rage, Aura and weapon mastery hooks keyed by the parent name also work for it */
+export function lvOf(c){ const o=clsLvls(), ih=C.clsInh||{}; let t=o[c]||0; Object.keys(o).forEach((k) =>{ if(k!==c&&ih[k]===c) t+=o[k]; }); return t; }
 export function hasFeat(n){ return featAll().some((x) =>{ return x.f.n===n; }); }
 
 /* ---------- RU50 Concentration ---------- */

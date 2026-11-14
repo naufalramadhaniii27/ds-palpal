@@ -59,7 +59,7 @@ function cls14Tabs(on){ c14Undo(); if(!on)return;
 const FS14={PHB:["Archery","Defense","Dueling","Great Weapon Fighting","Protection","Two-Weapon Fighting"],
  TCE:{Fighter:["Blind Fighting","Interception","Superior Technique","Thrown Weapon Fighting","Unarmed Fighting"],Paladin:["Blessed Warrior","Blind Fighting","Interception"],Ranger:["Blind Fighting","Druidic Warrior","Thrown Weapon Fighting"]},
  PHBC:{Fighter:1,Paladin:1,Ranger:1}};
-export function fs14List(cls){const o=[];if(!FS14.PHBC[cls])return o;FS14.PHB.forEach((n) =>{const ok=cls==="Fighter"||(cls==="Paladin"&&["Defense","Dueling","Great Weapon Fighting","Protection"].indexOf(n)>=0)||(cls==="Ranger"&&["Archery","Defense","Dueling","Two-Weapon Fighting"].indexOf(n)>=0);if(ok)o.push(n)});
+export function fs14List(cls){const o=[];const cc=CLASSES[cls];if(cc&&cc.fs14)return cc.fs14.filter((n) =>{return FEATS[n]});/* a class of a 2014 third party book lists its own styles (Warden, Valda 2014) */if(!FS14.PHBC[cls])return o;FS14.PHB.forEach((n) =>{const ok=cls==="Fighter"||(cls==="Paladin"&&["Defense","Dueling","Great Weapon Fighting","Protection"].indexOf(n)>=0)||(cls==="Ranger"&&["Archery","Defense","Dueling","Two-Weapon Fighting"].indexOf(n)>=0);if(ok)o.push(n)});
  if(B.src&&B.src.tce)(FS14.TCE[cls]||[]).forEach((n) =>{o.push(n)});return o.filter((n) =>{return FEATS[n]})}
 function cls14Feats(){if(!R14())return;
  FEATS["Great Weapon Fighting"]=Object.assign({},FEATS["Great Weapon Fighting"],{d:"When you roll a 1 or 2 on a damage die for an attack made with a Two-Handed or Versatile melee weapon held in two hands, you reroll the die and must use the new roll."});

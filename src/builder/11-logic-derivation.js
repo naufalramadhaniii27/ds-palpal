@@ -7,7 +7,7 @@ import {allFeats,asiOf,dmXl,raceBonus,wxAb} from "./09-logic-feats-and-choices.j
 import {luMax} from "./10-logic-v17-additions.js";
 
 import {MCL,TL,baseOf,bindLate,spOptFx} from "./01b-logic-late-ports.js";
-import {gx,sheetState,thirdSubs,inTS} from "./00-env.js";
+import {genv,gx,sheetState,thirdSubs,inTS} from "./00-env.js";
 import {abOfPick,chPick,fxSources,runFxPhase,foldFxPhase,fxCondRule,fxValueRule} from "./10a-logic-fx-registry.js";
 import "./10d-logic-fx-rules-cond-value.js";
 import "./10b-logic-fx-handlers-entry.js";
@@ -98,7 +98,7 @@ export {fxv,fxVal,fxOk,fxCh};
 export function clsParts(){return [{cls:B.cls,sub:B.sub,lv:B.level,mc:0}].concat(MCL().map((m) =>{return {cls:m.cls,sub:m.sub,lv:m.lv,mc:1}}))}
 /* M9: spellcasting classes in order (main class first): {cls, sub, lv, mc, list (spell list class), ab} */
 export function isThird3(x){const ts=thirdSubs();if(ts&&ts[x])return true;/* fx engine v4: window.THIRD_SUBS[sub]={list,ab,cant} makes a subclass a third caster */return x==="Eldritch Knight"||x==="Arcane Trickster"||x==="Eldritch Knight (2014)"||x==="Arcane Trickster (2014)"}
-export function casterParts(){return clsParts().map((q) =>{const c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster?q.cls:thirdOf(q.sub).list,ab:c.caster?c.cast:thirdOf(q.sub).ab,xl:(R14()&&q.cls==="Bard"?xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(q.cls))/* v32: Magical Secrets */}}).filter(Boolean)}
+export function casterParts(){return clsParts().map((q) =>{const c=CLASSES[q.cls],third=isThird3(q.sub)&&q.lv>=3;if(!c.caster&&!c.nslot&&!third)return null;return {cls:q.cls,sub:q.sub,lv:q.lv,mc:q.mc,list:c.caster||(c.nslot&&!third&&c.cast)?q.cls:thirdOf(q.sub).list,ab:c.caster||(c.nslot&&!third&&c.cast)?c.cast:thirdOf(q.sub).ab,/* a class with its own spell pool (nslot: Martyr) uses its own list and ability */xl:(R14()&&q.cls==="Bard"?xl14(q.sub,q.lv):(c.xlists&&q.lv>=c.xlists.l?c.xlists.lists:[])).concat(dmXl(q.cls))/* v32: Magical Secrets */}}).filter(Boolean)}
 export function thirdOf(sub){const t=(thirdSubs()&&thirdSubs()[sub])||{};return {list:t.list||"Wizard",ab:t.ab||"INT",cant:t.cant!=null?t.cant:(/^Arcane Trickster/.test(sub)?3:2)}}
 /* M9: chosen spells per caster class. B.sp = first caster class (old builds), B.spm[cls] = other classes. A B.sp spell that is not on the first
    class list but is on another caster class list belongs to that class (read only, B is not changed) */
@@ -128,7 +128,9 @@ export function spellAb(key,sc){const cp=casterParts(),cast=cp.length?cp[0].ab:n
  const sa=sabSpecial1(key,cast,sc);if(sa!==null)return sa;
  const sb=sabSpecial2(key);if(sb!==null)return sb;
  const p=cp.filter((q) =>{return q.cls===key})[0];if(p)return p.ab;const c=CLASSES[key];if(c&&c.cast)return c.cast;return cast||"CHA"}
-export function clsLv(cls){const p=clsParts().filter((q) =>{return q.cls===cls})[0];return p?p.lv:0}
+/* a reskin class (Death Knight, Shaman ...) counts under the class it copies, so every hook keyed by the parent class name (Aura of Protection, Rage, ...) also works for it */
+export function clsInh(n){const w=genv.WXC&&genv.WXC[n];return w&&w.inh||""}
+export function clsLv(cls){let t=0;clsParts().forEach((q) =>{if(q.cls===cls||(q.cls!==cls&&clsInh(q.cls)===cls))t+=q.lv});return t}
 
 /* ---------- resource keys (L2) ---------- */
 /* Keys no longer depend on the order of CLASSES.*.res. New key = prefix + name slug, e.g. "r-second-wind",

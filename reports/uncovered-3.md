@@ -1,5 +1,33 @@
 # Uncovered 3: source-owned physical spell sources
 
+## 2026-11-14: synchronize origin/main before U43
+
+Merged origin/main `939da1aa` (0.0.32, APP_VER 134), 84 commits after the previous main reference, into U42 checkpoint `fb3799ed`. Unfinished U43 was first preserved in stash `780cb8d49ec785f87b7fa4d721fd906ba0c0e70d`; it is not part of this merge or its coverage result. README.md and HANDOFF-character-sheet-builder.md are absent from both revisions; the available SOURCE-NOTES, uncovered reports, requests and rule notes were read instead.
+
+Main wins for its new source books, reskin/inherited class handling, 2014 feature grouping/book labels, PDF improvements, deferred dice/controller, name synchronization and version. Validated U models retain their native source guards, physical IDs/authority, original-cast receipts, atomic roll commitments, inventory-form behavior and pending S/C journal flush. Conflicting env/schema lists are unions, including main's sheetSetName/clsInh and the validated U ports/fields. Generated HTML/service-worker/dependency reports are rebuilt from the composed sources. Existing localStorage keys and .bs layout are not renamed.
+
+The first full FX run exposed three genuine cross-book collisions: new Valda 2014 entries globally replaced the older Gambler, Aberrant Spawn and Proto-Man profiles. The merge repair preserves the validated bare keys and supplies explicit Valda 2014 aliases. A scoped compatibility migration handles unambiguous 2014 Valda imports; ambiguous saved source choices remain intact, inert and visibly reviewable, with an explicit original-source memo supported while Valda stays enabled. No broad test allowance hides the new Proto-Man resource or substitutes one book's rules for another's.
+
+The initial pre-repair merge scan measured 9,035 covered, 27,263 info and 5,806 uncovered. All 72,866 unchanged ID/hash rows retained their status, with zero covered/info-to-uncovered regressions. The initial increase of 850 uncovered comes from added, removed and revised native text, not claimed closures. Twenty previous uncovered IDs disappeared and fourteen changed text: none is counted as a completed mechanic. The final post-repair starting universe and per-kind totals follow below.
+
+Validation: initial full FX 2,125 cases found exactly the three collisions above; all other cases passed. Only affected old/new profiles and migration paths are repeated after the scoped repair. Thirty stored_spell, spell_gem, tattoo and Spellwrought Tattoo suites pass once, with 6,545 assertions. Strict measurement runs all 752 units in both editions and reports zero new miss or card-or-miss. No measurement baseline rewrite is used. Final scoped repair results are 12/12 native FX cases (the three original positive oracles remain unchanged), 15/15 actual UI/import checks and 114 migration checks. The required old Yudhi, after Apply and new-character scenarios run once at 390x844 and 1250x850: 24 checks pass, with no page error or native dialog. Build/check/lint passes 423 JS pieces and 46 script blocks; TypeScript remains 200 and all guards report zero violations. Final tested build is `d9a5ec44ba39c149`.
+
+Final post-merge baseline for U43: **9,040 covered, 27,264 info, 5,808 uncovered, allow zero**, from 82,585 sentences / 42,112 mechanical sentences.
+
+| Kind | Covered | Info | Uncovered |
+|---|---:|---:|---:|
+| Item | 4,880 | 11,662 | 2,965 |
+| Subclass | 2,234 | 5,388 | 1,664 |
+| Feat | 654 | 1,455 | 681 |
+| Class | 269 | 654 | 268 |
+| Species | 725 | 365 | 230 |
+| Spell | 278 | 7,740 | 0 |
+| Total | 9,040 | 27,264 | 5,808 |
+
+The final independent full map exactly matches the root gate-written baseline. All 72,881 unchanged ID/hash rows keep their status. Relative to U42, 9,601 IDs are added, 270 removed and 103 have revised text; uncovered rises by 852 through these native universe changes. Of the old 4,956 uncovered, 4,924 remain with the same hash, nineteen IDs are removed and thirteen change text. These are not claimed as completed features. The three Valda aliases retain all 66 incoming native feat records without mechanical rewriting; preserving both old and new profiles accounts for the difference from the initial pre-repair scan. No INFO rule, allowlist or measurement baseline was changed.
+
+The old report below is historical. New batches continue in `reports/uncovered-4.md` against this 5,808-clause universe, with item-first priority and a new main synchronization after every five completed batches.
+
 ## U42: original-source spell storage and release
 
 Ring of Spell Storing and Reserve now use persistent physical containers with separate original spell loads and cast receipts. Ring capacity is five levels, current Reserve four and legacy Reserve three. The generic current Ioun Stone becomes Reserve only after explicit physical identity selection. A bare generic stone grants no spell permission.

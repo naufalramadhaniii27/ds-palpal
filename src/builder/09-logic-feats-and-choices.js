@@ -1,6 +1,6 @@
 import {agOn,bindLive,choicesBuild,casterParts,clsLv,clsParts,invList,lateGet,pk,preFail,spHasFeat,spLists,spellAb} from "./01b-logic-late-ports.js";import {ABK,clone,mod,pbOf} from "./01-logic-core-helpers.js";
 
-import {activeFx,bgX,spX} from "./03-logic-magic-item-effects.js";
+import {activeFx,bgX,spX,featSourceReview} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 
@@ -14,7 +14,7 @@ export function raceBonus(){const o={};if(!R14())return o;const sp=spX();if(!sp)
 export function asiLevels(){const c=CL(),a=R14()?[4,8,12,16,19].concat(c.asiX||[]):[4,8,12,16].concat(c.asiX||[]);/* 2014: level 19 is a normal improvement, no Epic Boon */return a.filter((x,i) =>{return a.indexOf(x)===i}).sort((x,y) =>{return x-y})}
 export function featChosen(exceptKey){const out=[];Object.keys(B.ch).forEach((k) =>{if(k===exceptKey)return;const v=B.ch[k];if(v&&typeof v==="object"&&v.feat)out.push(v.feat);if(k==="spfeat"&&v)out.push(v)});const bg=bgX();if(bg&&!R14())out.push(bgFeatN(bg));return out}
 /* allFeats(raw): every feat the build holds. Without raw, a second copy of a feat that cannot be repeated (FEATS.rep missing: two Fighting Style picks of Defense from two classes) is dropped, so the sheet counts it once; the first pick, in level order, stays. raw=true keeps all (featViol, scoreAt, saveTaken report the duplicate) */
-/* allFeats step (SOLID s16): the feat of one choice c */function afChoice(f,c){const v=B.ch[c.key];if(c.t==="feat"&&v&&v.feat)f.push({n:v.feat,s:c.src,asi:v,key:c.key});if(c.t==="fs"&&v)f.push({n:v,s:c.src});if(c.t==="ofeat"&&c.inv&&v)f.push({n:v,s:"Origin feat (Lessons of the First Ones)",key:c.key})}export function allFeats(raw){const f=[];const bg=bgX();if(bg&&!R14())f.push({n:bgFeatN(bg),s:"Origin feat ("+B.bg+")"});if(!R14()&&B.ch.spfeat&&spHasFeat())f.push({n:B.ch.spfeat,s:"Origin feat ("+B.species+", Versatile)"});
+/* allFeats step (SOLID s16): the feat of one choice c */function afChoice(f,c){const v=B.ch[c.key];if(c.t==="feat"&&v&&v.feat&&!featSourceReview(B,v.feat))f.push({n:v.feat,s:c.src,asi:v,key:c.key});if(c.t==="fs"&&v)f.push({n:v,s:c.src,fs:1});if(c.t==="ofeat"&&c.inv&&v)f.push({n:v,s:"Origin feat (Lessons of the First Ones)",key:c.key})}export function allFeats(raw){const f=[];const bg=bgX();if(bg&&!R14())f.push({n:bgFeatN(bg),s:"Origin feat ("+B.bg+")"});if(!R14()&&B.ch.spfeat&&spHasFeat())f.push({n:B.ch.spfeat,s:"Origin feat ("+B.species+", Versatile)"});
 choices(true).forEach((c) =>{afChoice(f,c)});
  f.slice().forEach((x) =>{const F=FEATS[x.n];if(F&&F.fi){const v=B.ch[F.fi+"-"+(x.key||x.s)];if(Array.isArray(v)&&v[0]&&FEATS[v[0]])f.push({n:v[0],s:x.n})}});/* v69: Fighting Initiate (2014) */
  if(raw)return f;const seen={};return f.filter((x) =>{const F=FEATS[x.n];if(!F||F.rep)return true;if(seen[x.n])return false;seen[x.n]=1;return true})}

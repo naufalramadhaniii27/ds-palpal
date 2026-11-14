@@ -95,7 +95,11 @@ export function NEWB(){const b=clone(BLANK);b.name="New Character";b.method="";b
 export function kitGP(t){const m=/(\d+) GP$/.exec(t||"");return m?+m[1]:0}
 /* L5: fromSheet v1 to v3 wrote B.ch.feat1 (Fighter) or feat2 (Paladin, Ranger) from the Fighting Style row. No class has an ASI below level 4,
    so a featN key with N < 4 is always junk and is dropped on load. Other keys are left alone. Persisted by the next save(). */
-export function cleanCh(b){try{const ch=b&&b.ch;if(ch)Object.keys(ch).forEach((k) =>{const m=/^feat(\d+)$/.exec(k);if(m&&+m[1]<4)delete ch[k]})}catch(e){}return migrateInventory(b)}
+const VALDA_FEAT_SOURCES=Object.assign(Object.create(null),{"Gambler":{alias:"Gambler (Valda 2014)",source:"tdcg",label:"TalDorei Campaign Guide",memo:"feat-source-gambler"},"Aberrant Spawn":{alias:"Aberrant Spawn (Valda 2014)",source:"tsdm",label:"Dark Matter (2024)",memo:"feat-source-aberrant-spawn"},"Proto-Man":{alias:"Proto-Man (Valda 2014)",source:"tsdm",label:"Dark Matter (2024)",memo:"feat-source-proto-man"}});
+export function featSourceReview(b,name){const row=VALDA_FEAT_SOURCES[name];if(!row||!b||b.rs!=="2014"||!b.src||b.src.tvss14!==true||!b.ch)return null;const memo=b.ch[row.memo],review=memo!==row.source&&memo!=="tvss14";return review&&(b.src[row.source]===true||Object.prototype.hasOwnProperty.call(b.ch,row.memo))?row:null}
+export function rememberFeatSource(b,name){const row=VALDA_FEAT_SOURCES[name];if(row&&b&&b.ch&&b.rs==="2014"&&b.src&&b.src.tvss14===true)b.ch[row.memo]=row.source}
+export function migrateFeatSources(b){if(!b||b.rs!=="2014"||!b.src||b.src.tvss14!==true||!b.ch)return b;Object.keys(b.ch).forEach(key=>{const value=b.ch[key],name=value&&typeof value==="object"&&!Array.isArray(value)?value.feat:null,row=VALDA_FEAT_SOURCES[name];if(!row)return;const memo=b.ch[row.memo];if(Object.prototype.hasOwnProperty.call(b.ch,row.memo)&&memo!==row.source&&memo!=="tvss14")return;if(memo==="tvss14"||b.src[row.source]!==true&&memo!==row.source)value.feat=row.alias});return b}
+export function cleanCh(b){try{const ch=b&&b.ch;if(ch)Object.keys(ch).forEach((k) =>{const m=/^feat(\d+)$/.exec(k);if(m&&+m[1]<4)delete ch[k]})}catch(e){}return migrateInventory(migrateFeatSources(b))}
 
 /* Records a completed attunement, independently of wearing/holding the item. */
 export function setItemAttuned(index,on){const b=migrateInventory(lateGet("B")),it=(b.inv||[])[index];if(!it)return {ok:false,reason:"missing"};

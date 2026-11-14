@@ -58,7 +58,7 @@ export function itemDetail(n,x){const fullN=n,BO=baseOf(n),rr=rarityOf(x||{n:n})
  else if(!DMAP[n]&&!scrollOf(n))h+=idGear(n,c);
  return h+'</div>'}
 /* V16-1: pick the base weapon or armor of a named magic item (renames the item "Name (Base)"). V16-8: attunement limited to some classes */
-function basePick(x,i){const dm=DMAP[x.n],mb=itemBases(dm);if(!mb||mb.length<2)return "";const cur=baseOf(x.n).b;return '<div class="iact"><span>Base item</span><select class="dd" data-ibase="'+i+'">'+mb.map((o) =>{return '<option'+(o===cur?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select></div>'}
+function basePick(x,i){const dm=DMAP[x.n]||DMAP[x.n.replace(/ \([^()]*\)$/,"")],mb=itemBases(dm);if(!mb||mb.length<2)return "";const cur=baseOf(x.n).b;return '<div class="iact"><span>Base item</span><select class="dd" data-ibase="'+i+'">'+mb.map((o) =>{return '<option'+(o===cur?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select></div>'}
 function attWarn(x){const dm=DMAP[x.n],by=dm&&dm[3]&&dm[5]&&dm[5].by;if(!by)return "";const cl=[B.cls].concat(MCL().map((m) =>{return m.cls})),need=Object.keys(CLASSES).filter((c) =>{return by.indexOf(c)>=0});if(!need.length||need.some((c) =>{return cl.indexOf(c)>=0}))return "";return '<div class="caution">\u26a0 Only '+esc(by)+' can attune to this item.</div>'}
 function badge(x,i){const bb=baseOf(x.n).b,dm=DMAP[x.n];if(dm&&dm[1]!=="Potion"&&dm[1]!=="Scroll"&&!WEAPONS[bb]&&!ARMOR[bb]&&bb!=="Shield")return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"In Use":"Use")+'</button>';if(ARMOR[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wearing":"Wear")+'</button>';
  if(bb==="Shield"||WEAPONS[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wielding":"Wield")+'</button>';
@@ -76,7 +76,8 @@ function coinsB(c,t){const o=[["cp","Copper"],["sp","Silver"],["ep","Electrum"],
 function bHint(k,txt,cls,attr){return '<p class="bhint'+(cls?" "+cls:"")+'"'+(attr||"")+'>'+bI(k||"ui-info")+'<span>'+txt+'</span></p>'}
 /* renderEquip() in parts (SOLID stage 13C): one function per section of the step, in the same order. eqOpt and eqSec are the two helpers the sections share */
 function eqOpt(key,cur,list,title){return '<h3 class="eqh">'+title+'</h3><div class="eqbox">'+list.map((t,i) =>{const L="ABC"[i];return (i?'<p class="or">OR</p>':'')+'<button type="button" class="eqo'+(cur===L?" on":"")+'" data-eq="'+key+'" data-v="'+L+'"><span class="bcb"></span>('+L+') '+esc(t)+'</button>'}).join("")+'</div>'}
-function eqSec(id,title,right,body){const o=openCards[id]!==false;return '<div class="sech2"><button type="button" class="sech2h" data-tog2="'+id+'"><b>'+title+'</b><span>'+(right||"")+'</span><svg class="bchev'+(o?" up":"")+'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+(o?'<div class="sech2b">'+body+'</div>':'')+'</div>'}
+/* the Add Items catalog holds every item of every book (about 12000 nodes), so it starts closed and is drawn only once it is opened */
+function eqSec(id,title,right,body){const o=id==="add"?openCards[id]===true:openCards[id]!==false;return '<div class="sech2"><button type="button" class="sech2h" data-tog2="'+id+'"><b>'+title+'</b><span>'+(right||"")+'</span><svg class="bchev'+(o?" up":"")+'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+(o?'<div class="sech2b">'+body+'</div>':'')+'</div>'}
 function eqStart(bg){const opt=eqOpt;
  const st=(un("cls")?'<h3 class="eqh">Class Starting Equipment</h3><p class="fd bhint">Choose a class first.</p>':opt("eqC",B.eqC==="none"||un("eqC")?"":"ABC"[eqIdx()],R14()&&CLASSES[B.cls].eqg?[clsKitText0(),CLASSES[B.cls].eq[1]+" ("+CLASSES[B.cls].eqg.goldTxt+" on average)"]:CLASSES[B.cls].eq,B.cls+" Starting Equipment")+eq14UI())+(un("bg")?'<h3 class="eqh">Background Starting Equipment</h3><p class="fd bhint">Choose a background first.</p>':opt("eqB",B.eqB==="none"||un("eqB")?"":B.eqB,R14()?[bg.eq]:[bg.eq,"50 GP"],B.bg+" Starting Equipment"))+'<div class="eqact"><button type="button" class="skip" data-skip="1">Skip Starting Equipment</button><button type="button" class="link" data-clearinv="1">Clear All</button></div>';
  return st}
@@ -114,7 +115,7 @@ function eqCoins(){
 export function renderEquip(){let c=CL(),bg=BACKGROUNDS[B.bg],inv=ensureInv(),h='<h2 class="ttl">Choose Equipment</h2>'+acModeCard();
  h+=eqSec("st","Starting Equipment","",eqStart(bg));
  h+=eqCurrent(inv);
- h+=eqSec("add","Add Items","",eqAdd(eqCatalog()));
+ h+=eqSec("add","Add Items","",openCards.add===true?eqAdd(eqCatalog()):"");
  h+=eqCoins();
  return h}
 

@@ -1,0 +1,68 @@
+/* Dice roller panel (fx/16c-z-pack-dice-roller.js). Same family as the Rolls drawer (.mi-rh). Below the 3D dice tray, which fades the panel while dice fly. */
+.mi-dp{position:fixed;inset:0;z-index:80;pointer-events:none}
+.mi-dpx{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .25s}
+.mi-dpp{position:absolute;left:50%;top:0;width:min(420px,100vw);max-height:100dvh;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column;background:#151a1e;color:#e7ecef;border-radius:0 0 20px 20px;box-shadow:0 20px 50px -10px rgba(0,0,0,.75);transform:translate(-50%,-105%);transition:transform .32s var(--ease-out,cubic-bezier(.2,.8,.2,1)),opacity .2s}
+@media (min-width:760px){.mi-dpp{top:50%;border-radius:20px;max-height:min(640px,92dvh);transform:translate(-50%,-44%) scale(.96);opacity:0}}
+.mi-dp.on{pointer-events:auto}.mi-dp.on .mi-dpx{opacity:1}.mi-dp.on .mi-dpp{transform:translate(-50%,0)}
+@media (min-width:760px){.mi-dp.on .mi-dpp{transform:translate(-50%,-50%);opacity:1}}
+.mi-dp.rolling .mi-dpp{opacity:.1;pointer-events:none}.mi-dp.rolling .mi-dpx{opacity:.15}
+.mi-dph{display:flex;align-items:center;gap:8px;padding:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.mi-dph b{flex:1;font:700 20px/1 "Cinzel",var(--f-nar,serif);color:#fff;letter-spacing:.04em}
+.mi-dpb{display:flex;flex-direction:column;gap:14px;padding:14px 16px 18px}
+.mi-dk{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.mi-dk button{min-height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#e7ecef;font:800 14px/1 var(--f-nar,system-ui);cursor:pointer;transition:transform .12s,background .15s}
+.mi-dk button:active{transform:scale(.94)}
+.mi-dk button.on{color:#fff;border-color:transparent;background:linear-gradient(180deg,rgb(var(--pl-rgb,214,69,59)),color-mix(in srgb,rgb(var(--pl-rgb,214,69,59)) 60%,#000))}
+.mi-dr2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mi-dfd{display:flex;flex-direction:column;gap:6px}
+.mi-dfd>span,.mi-dl{font:700 11px/1.2 var(--f-nar,system-ui);letter-spacing:.12em;text-transform:uppercase;color:#a7b1b9}
+.mi-st{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:stretch;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);overflow:hidden}
+.mi-st button{min-height:46px;border:0;background:transparent;color:#fff;font:800 22px/1 var(--f-nar,system-ui);cursor:pointer}
+.mi-st button:active{background:rgba(255,255,255,.12)}
+.mi-st input{min-width:0;width:100%;border:0;border-inline:1px solid rgba(255,255,255,.1);background:transparent;color:#fff;text-align:center;font:800 18px/1 var(--f-nar,system-ui);-moz-appearance:textfield;appearance:textfield}
+.mi-st input::-webkit-outer-spin-button,.mi-st input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.mi-dsp{text-align:center;font:800 28px/1.1 var(--f-nar,system-ui);color:#fff;letter-spacing:.02em}
+.mi-dpb .mi-rbs{display:flex;flex-wrap:wrap;gap:8px}
+.mi-dbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:1 1 0;min-height:46px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03));color:inherit;font:700 14px/1 var(--f-sans,system-ui);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s}
+.mi-dbtn:active{transform:scale(.95)}
+.mi-dbtn.pri{flex:1 1 100%;font-size:16px;color:#fff;border-color:transparent;background:linear-gradient(180deg,rgb(var(--pl-rgb,214,69,59)),color-mix(in srgb,rgb(var(--pl-rgb,214,69,59)) 60%,#000));box-shadow:0 8px 18px -8px rgba(var(--pl-rgb,214,69,59),.8)}
+.mi-dbtn:disabled{opacity:.5}
+.mi-dman{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.mi-dman[hidden]{display:none}
+.mi-dl{display:flex;flex-direction:column;gap:6px}
+.mi-dl input,.mi-dbx input{min-height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;text-align:center;font:800 16px/1 var(--f-nar,system-ui)}
+.mi-dbx{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px}
+.mi-dhint{margin:0;min-height:0;font-size:13px;color:#ef6a62}.mi-dhint:empty{display:none}
+.mi-dres{display:flex;align-items:center;gap:14px;min-height:0}
+.mi-dres:empty{display:none}
+.mi-dres strong{font:800 56px/1 var(--f-nar,system-ui);color:#fff;min-width:1.2ch;text-align:center}
+.mi-dres>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.mi-dres small{font-size:12px;color:#a7b1b9;overflow-wrap:anywhere}
+.mi-dch{display:flex;flex-wrap:wrap;gap:5px;max-height:96px;overflow:auto}
+.mi-dch i{font:800 14px/1 var(--f-nar,system-ui);font-style:normal;min-width:30px;padding:7px 6px;text-align:center;border-radius:9px;background:rgba(255,255,255,.08);color:#fff}
+.mi-dch i.mx{background:rgba(226,170,76,.25);color:#ffd36b}.mi-dch i.mn{background:rgba(239,106,98,.22);color:#ef6a62}
+.mi-dcr{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;padding-top:2px}
+.mi-dcl{flex:1 1 100%;font:700 11px/1.2 var(--f-nar,system-ui);letter-spacing:.12em;text-transform:uppercase;color:#a7b1b9}
+.mi-dsw{position:relative;flex:1 1 0;min-width:70px;min-height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;border-radius:14px;border:2px solid rgba(255,255,255,.16);background:linear-gradient(135deg,var(--c1,#2f5fe0),var(--c2,#b23fb8));color:var(--ink,#ffd45e);cursor:pointer;overflow:hidden;-webkit-tap-highlight-color:transparent;transition:transform .12s}
+.mi-dsw:active{transform:scale(.95)}
+.mi-dsw b{font:800 24px/1 var(--f-nar,system-ui);text-shadow:1px 0 var(--hal,#000),-1px 0 var(--hal,#000),0 1px var(--hal,#000),0 -1px var(--hal,#000),0 0 6px var(--hal,#000)}
+.mi-dsw small{font:700 10px/1 var(--f-nar,system-ui);letter-spacing:.08em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+.mi-dsw.on{border-color:#fff;box-shadow:0 0 0 2px rgb(var(--pl-rgb,214,69,59)),0 8px 18px -8px rgba(0,0,0,.8)}
+.mi-dsw:focus-visible,.mi-dswc:focus-within{outline:2px solid #fff;outline-offset:2px}
+.mi-dswc input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0}
+.mi-dres.pop strong{animation:mi-dpop .36s var(--ease-out,cubic-bezier(.2,.8,.2,1))}
+@keyframes mi-dpop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+:root[data-motion="off"] .mi-dpp,:root[data-motion="off"] .mi-dpx,:root[data-motion="off"] .mi-dres.pop strong{transition:none;animation:none}
+:root[data-skin="ddb"][data-theme="light"] .mi-dpp{background:#fbf3df;color:#2b2117}
+:root[data-skin="ddb"][data-theme="light"] :is(.mi-dph b,.mi-dsp,.mi-dres strong,.mi-st button,.mi-st input,.mi-dk button,.mi-dl input,.mi-dbx input,.mi-dch i){color:#2b2117}
+:root[data-skin="ddb"][data-theme="light"] :is(.mi-dfd>span,.mi-dl,.mi-dcl,.mi-dres small){color:#5a4a36}
+:root[data-skin="ddb"][data-theme="light"] :is(.mi-dk button,.mi-st,.mi-dman,.mi-dl input,.mi-dbx input){background:rgba(90,60,20,.06);border-color:rgba(90,60,20,.2)}
+:root[data-skin="ddb"][data-theme="light"] :is(.mi-dk button.on,.mi-dbtn.pri){color:#fff}
+/* light skin: the specific states above must win over the generic light fills */
+:root[data-skin="ddb"][data-theme="light"] .mi-dpp .mi-rhc{color:#2b2117;background:rgba(90,60,20,.06);border-color:rgba(90,60,20,.2)}
+:root[data-skin="ddb"][data-theme="light"] .mi-dpp .mi-dk button.on{color:#fff;border-color:transparent;background:linear-gradient(180deg,rgb(var(--pl-rgb,214,69,59)),color-mix(in srgb,rgb(var(--pl-rgb,214,69,59)) 60%,#000))}
+:root[data-skin="ddb"][data-theme="light"] .mi-dbtn:not(.pri){color:#2b2117;background:rgba(90,60,20,.06);border-color:rgba(90,60,20,.2)}
+:root[data-skin="ddb"][data-theme="light"] .mi-dch i{background:rgba(90,60,20,.1)}
+:root[data-skin="ddb"][data-theme="light"] .mi-dch i.mx{background:rgba(190,130,20,.22);color:#7a5200}
+:root[data-skin="ddb"][data-theme="light"] .mi-dch i.mn{background:rgba(179,38,30,.16);color:#a3201a}
+@media print{.mi-dp{display:none!important}}

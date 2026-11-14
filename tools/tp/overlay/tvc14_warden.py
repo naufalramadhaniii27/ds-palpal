@@ -1,0 +1,71 @@
+"""Warden, Valda's Spire of Secrets (2014 rules, Mage Hand Press). Own wording. Internal class name "Warden (2014)" (see BOOKS tvss14 clsmap), so the 2024 Warden of book tvss never shares a table with it."""
+CLASS = {
+ "eq": ["Chain Mail, Shield, a martial weapon, a simple melee weapon, Dungeoneer's Pack", "125 GP"],
+ "eqg": {"g": [
+   {"_": [["Shield", 1], ["@wm", 1]]},
+   {"a": [["Chain Shirt", 1]], "b": [["Leather Armor", 1], ["Spear", 1]], "c": [["Chain Mail", 1]], "cn": "needs Heavy armor proficiency, Armor Proficiency from Sentinel's Stand"},
+   {"a": [["Light Hammer", 2]], "b": [["@wsm", 1]]},
+   {"a": [["Dungeoneer's Pack", 1]], "b": [["Explorer's Pack", 1]]}], "gold": 125, "goldTxt": "5d4 × 10"},
+ "fs": 2,
+ "fs14": ["Crippling", "Great Weapon Fighting", "Protection", "Titan Fighting"],
+ "f": {
+  "Sentinel's Stand": "Pick one of these benefits. **Armor Proficiency.** You gain proficiency with Heavy armor. **Primal Toughness.** Your Hit Point maximum rises by 1 plus your Constitution modifier, and by 1 more for each Warden level you gain after the first. **Stalwart Spirit.** You gain proficiency in one saving throw of your choice.",
+  "Warden's Grasp": "As a Bonus Action you set yourself against nearby foes. Until the start of your next turn you cannot move. Each Large or smaller creature you choose within 5 feet cannot willingly move away from you unless it takes the Disengage action first.",
+  "Fighting Style": "You adopt a fighting style. Pick one option. You cannot pick the same option twice, even if a later feature lets you choose again. **Crippling.** When you hit a creature with a Melee weapon attack, its Speed drops by 10 feet (to a minimum of 0) until the end of its next turn, and it cannot take the Dash action until then. **Great Weapon Fighting.** When you roll a 1 or 2 on a damage die for a Melee weapon attack made with a weapon you hold in two hands, you can reroll that die and must use the new roll. The weapon needs the Two-Handed or Versatile property. **Protection.** When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your Reaction to give the attack roll Disadvantage. You must be holding a weapon or a Shield. **Titan Fighting.** You have a +2 bonus to Melee weapon attack rolls against Large or larger creatures.",
+  "Warden's Mark": "As a Bonus Action you mark a creature you can see within 30 feet. While the marked creature is within 5 feet of you, it has Disadvantage on every attack roll that does not target you. The mark lasts 1 minute. It ends early if you mark another creature, become Incapacitated, or die.",
+  "Champion's Call": "At 3rd level you take on a duty that pulls at you. Nothing forces the choice, and if you fail your charge, the fault is yours alone. Your Champion's Call gives you features at 3rd, 6th, 13th and 20th level.",
+  "Warden's Resolve": "While your Hit Points are below half your maximum, you have Resistance to Bludgeoning, Piercing and Slashing damage.",
+  "Font of Life": "As an action you end one disease or one condition on yourself. The condition can be Blinded, Charmed, Deafened, Frightened, Paralyzed or Poisoned. You can use this action even if the condition would normally stop you. After you use it, you must finish a Short or Long Rest before using it again.",
+  "Extra Attack": "You attack twice instead of once when you take the Attack action on your turn.",
+  "Call Feature": "Your Champion's Call gives you a feature at this level.",
+  "Sentinel's Step": "Pick one of these benefits. **Earthstrength.** Your carrying capacity doubles, and you have Advantage on ability checks and saving throws against being pushed against your will or knocked Prone. **Thundering Charge.** In the first round of a combat your Speed rises by 30 feet, and you have Advantage on your first Melee weapon attack. **Wildblood.** You cannot be surprised while you are conscious, and you gain +5 to your passive Wisdom (Perception) and passive Intelligence (Investigation).",
+  "Undying": "When you drop to 0 Hit Points and are not killed outright, you can drop to 1 Hit Point instead. After you use this, you cannot use it again until you finish a Long Rest.",
+  "Interrupt": "As a Reaction when a creature within 5 feet makes a Melee attack against you, you can break its rhythm. After that attack, the creature can make one attack fewer than normal on this turn.",
+  "Mark Improvement": "When you take the Attack action on your turn, you can make one extra attack against a creature you have marked.",
+  "Grasp Improvement": "The range of Warden's Grasp rises to 10 feet.",
+  "Font of Life Improvement": "Once per day, when you use Font of Life, you also regain Hit Points up to half your maximum if you have fewer than that.",
+  "Resolve Improvement": "While your Hit Points are below half your maximum, you have Resistance to all damage except Psychic.",
+  "Sentinel's Soul": "Pick one of these benefits. **Ageless Guardian.** You are immune to Poison damage and the Poisoned condition and to disease. You need no food or water, you suffer none of the frailty of old age, and magic cannot age you. You can still die of old age. You also have Advantage on Dexterity saving throws. **Eyes of the Mountain.** You gain Tremorsense with a range of 15 feet and can sense hidden or Invisible creatures within 30 feet. You also have Advantage on Constitution saving throws. **Impenetrable Mind.** Your thoughts cannot be read, and you cannot be Charmed or Frightened. You also have Advantage on Wisdom saving throws.",
+ },
+ "s": {
+  "Sentinel's Stand": "Pick Armor Proficiency, Primal Toughness, or Stalwart Spirit.",
+  "Sentinel's Step": "Pick Earthstrength, Thundering Charge, or Wildblood.",
+  "Sentinel's Soul": "Pick Ageless Guardian, Eyes of the Mountain, or Impenetrable Mind.",
+  "Fighting Style": "Pick Crippling, Great Weapon Fighting, Protection, or Titan Fighting.",
+  "Call Feature": "Your Champion's Call gives you a feature.",
+ },
+ "pick": [
+  {"l": 1, "k": "opts", "key": "stand14", "yc": 1, "n": 1, "title": "Sentinel's Stand", "feature": "Sentinel's Stand", "list": [
+    ["Armor Proficiency", "Proficiency with Heavy armor."],
+    ["Primal Toughness", "Hit Point maximum rises by 1 plus your Constitution modifier, and by 1 for each Warden level after the first."],
+    ["Stalwart Spirit", "Proficiency in one saving throw of your choice."]]},
+  {"l": 1, "k": "opts", "key": "stand14Save", "yc": 1, "n": 1, "title": "Stalwart Spirit: saving throw", "feature": "Sentinel's Stand", "when": {"key": "stand14", "val": "Stalwart Spirit"}, "list": [
+    ["Dexterity", "Proficiency in Dexterity saving throws."], ["Intelligence", "Proficiency in Intelligence saving throws."],
+    ["Wisdom", "Proficiency in Wisdom saving throws."], ["Charisma", "Proficiency in Charisma saving throws."]]},
+  {"l": 7, "k": "opts", "key": "step14", "yc": 1, "n": 1, "title": "Sentinel's Step", "feature": "Sentinel's Step", "list": [
+    ["Earthstrength", "Double carrying capacity. Advantage on checks and saves against being pushed or knocked Prone."],
+    ["Thundering Charge", "First round of combat: +30 feet Speed and Advantage on your first Melee weapon attack."],
+    ["Wildblood", "Cannot be surprised while conscious. +5 to passive Perception and passive Investigation."]]},
+  {"l": 18, "k": "opts", "key": "soul14", "yc": 1, "n": 1, "title": "Sentinel's Soul", "feature": "Sentinel's Soul", "list": [
+    ["Ageless Guardian", "Immune to Poison damage, the Poisoned condition and disease. No food or water needed. Advantage on Dexterity saves."],
+    ["Eyes of the Mountain", "Tremorsense 15 feet, sense hidden or Invisible creatures within 30 feet. Advantage on Constitution saves."],
+    ["Impenetrable Mind", "Thoughts cannot be read. Cannot be Charmed or Frightened. Advantage on Wisdom saves."]]},
+ ],
+ "fx": [
+  {"n": "Armor Proficiency", "when": {"key": "stand14", "val": "Armor Proficiency"}, "armor": ["Heavy"]},
+  {"n": "Primal Toughness", "when": {"key": "stand14", "val": "Primal Toughness"}, "hp": "con+lvl"},
+  {"n": "Stalwart Spirit", "when": {"key": "stand14", "val": "Stalwart Spirit"}, "saveFrom": "stand14Save"},
+  {"n": "Earthstrength", "l": 7, "when": {"key": "step14", "val": "Earthstrength"}, "advOn": ["ability checks and saving throws against being pushed against your will or knocked Prone"], "defs": [["Note", "Earthstrength: carrying capacity is doubled"]]},
+  {"n": "Thundering Charge", "l": 7, "when": {"key": "step14", "val": "Thundering Charge"}, "defs": [["Note", "Thundering Charge: first round of combat, Speed +30 ft and Advantage on your first Melee weapon attack"]]},
+  {"n": "Wildblood", "l": 7, "when": {"key": "step14", "val": "Wildblood"}, "defs": [["Note", "Wildblood: cannot be surprised while conscious; +5 passive Wisdom (Perception) and passive Intelligence (Investigation)"]]},
+  {"n": "Ageless Guardian", "l": 18, "when": {"key": "soul14", "val": "Ageless Guardian"}, "imm": ["Poison"], "condImm": ["Poisoned"], "advOn": ["Dexterity saving throws"], "defs": [["Immunity", "Disease"], ["Note", "Ageless Guardian: no food or water needed, no frailty of old age, cannot be aged magically"]]},
+  {"n": "Eyes of the Mountain", "l": 18, "when": {"key": "soul14", "val": "Eyes of the Mountain"}, "sense": [["Tremorsense", 15, "Also detect hidden or Invisible creatures within 30 ft"]], "advOn": ["Constitution saving throws"]},
+  {"n": "Impenetrable Mind", "l": 18, "when": {"key": "soul14", "val": "Impenetrable Mind"}, "condImm": ["Charmed", "Frightened"], "advOn": ["Wisdom saving throws"], "defs": [["Note", "Impenetrable Mind: thoughts cannot be read"]]},
+ ],
+ "res": [
+  {"n": "Font of Life", "tag": "Action. Short or Long Rest", "reset": "short", "max": [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+  {"n": "Font of Life (half HP)", "tag": "Once per day", "reset": "long", "max": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]},
+  {"n": "Undying", "tag": "Drop to 1 HP", "reset": "long", "max": [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+ ],
+ "acts": {"Warden's Grasp": "bonus", "Warden's Mark": "bonus", "Font of Life": "action", "Interrupt": "reaction"},
+}

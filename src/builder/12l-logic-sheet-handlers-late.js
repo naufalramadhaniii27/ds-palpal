@@ -1,5 +1,5 @@
 import {ABN,dieAvg,mod,attackKindsForRow,weaponFormMetadata,weaponRowAllowed} from "./01-logic-core-helpers.js";
-import {actsTable,bookPages,featDef,weaponDef} from "./00-env.js";
+import {actsTable,bookPages,featDef,genv,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
 defineLocals({itemWeaponEffects:"object"});
@@ -20,7 +20,7 @@ function fBlk(t){return String(t).replace(/([.!?:)\]"]) \*\*(?!Your choice\.|Sti
    (the sheet then uses only C.acts for them; other names keep the old text rule) */
 function actEsc(x){return String(x).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
 function actSec(t,lab){const m=new RegExp("\\*\\*"+actEsc(lab)+"\\.\\*\\*\\s*([\\s\\S]*?)(?=\\s*\\*\\*[^*\\n]{1,80}?\\.\\*\\*|$)").exec(String(t||""));return m?m[1].trim():null}
-function actKeys(B,gg,n){const mm=/^(\w+) \(multiclass \d+\)(?:: (.+))?$/.exec(gg);
+function actKeys(B,gg,n){const mm=/^(\w+) \(multiclass \d+\)(?:: (.+))?$/.exec(gg),fsm=/^Fighting Style: (.+)$/.exec(n);if(fsm)return ["feat|"+fsm[1]];
   if(gg==="Feats")return ["feat|"+n];if(/^Species: /.test(gg))return ["sp|"+B.species+"|"+n];if(gg===B.cls)return ["cls|"+B.cls+"|"+n];
   if(B.sub&&gg===B.cls+" Subclass: "+B.sub)return ["sub|"+B.sub+"|"+n];if(mm)return ["cls|"+mm[1]+"|"+n].concat(mm[2]?["sub|"+mm[2]+"|"+n]:[]);
   if(gg==="Eldritch Invocations")return ["inv|"+n];if(gg==="Metamagic Options")return ["meta|"+n];return []}
@@ -28,7 +28,7 @@ function actPut(out,lin,q,it,gg,lab0,txt){const k=q[0],lab=q[1]||lab0,e={k:k,n:l
   if(txt!=null)e.d=txt;else if(q[1]&&q[1]!==it.n){const d=actSec(it.full||it.d,q[1]);if(d)e.d=d}out.push(e)}
 function actFeat(C,B,T,lin,out){(C.features||[]).forEach((g) =>{const gg=g.g,ak=[];(g.items||[]).forEach((it) =>{
    if(it.n==="Maneuvers known"){ak.push(it.n);let re=/\*\*([^*\n]{1,60}?)\.\*\*/g,m;while((m=re.exec(String(it.d||"")))){const L0=T["man|"+m[1]];if(L0)L0.forEach((q) =>{actPut(out,lin,q,it,gg,m[1],actSec(it.d,m[1]))})}return}
-   let L=null;actKeys(B,gg,it.n).some((k) =>{if(T[k]){L=T[k];return true}return false});if(!L)return;ak.push(it.n);L.forEach((q) =>{actPut(out,lin,q,it,gg,it.n)})});
+   let L=null;actKeys(B,gg,it.n).some((k) =>{if(T[k]){L=T[k];return true}return false});if(!L)return;ak.push(it.n);L.forEach((q) =>{actPut(out,lin,q,it,gg,it.n.replace(/^Fighting Style: /,""))})});
   if(ak.length)g.ak=ak;else delete g.ak});}
 function actItems(B,I,Q,out){/* magic items in use (attunement within the limit), from the item text: Magic action, Bonus Action, Reaction */
 (B.inv||[]).forEach((x,ix) =>{if(!Q.itemInUse(x,I.ATT.rows[ix]))return;const d=Q.dmapRow(x.n);if(!d)return;
@@ -210,7 +210,9 @@ registerSheetGroup({id:"combat-maneuver-roll",group:"late",phase:"late",order:32
   C.actions.push({c:"Actions",n:"Combat Maneuver Roll",hb:1,t:"Variant rule (Aurvidya)",d:"Instead of letting a target save against a nonmagical maneuver of a martial feature that calls for a Strength or Dexterity saving throw, roll d20 "+(rb<0?"\u2212"+(-rb):"+"+rb)+" (Proficiency Bonus plus your Strength or Dexterity modifier). It works if the total meets the target's DC: 8 + its Proficiency Bonus + its Strength modifier + its Dexterity modifier. Your own DC against such a roll is "+(8+pb+sm+dm)+"."})}
   return ctx.patch()}});
 function ctLv(it){const m=/ (\d+)$/.exec(it.s||"");return m?+m[1]:0}
-function ctPut(cg,it,lv){let i=0;while(i<cg.items.length&&(ctLv(cg.items[i])||0)<=lv)i++;cg.items.splice(i,0,it)}
+function ctPut(cg,it,lv){const twin=cg.items.filter((x) =>{ return x.n===it.n&&(ctLv(x)||0)===lv; })[0];
+  if(twin){ const tail=(/\s\*\*Your choice\.\*\*[\s\S]*$/.exec(it.d||"")||[""])[0]; if(tail&&String(twin.d||"").indexOf(tail.trim())<0){ twin.d=(twin.d||"")+tail; if(twin.full) twin.full+=tail; } return; }
+  let i=0;while(i<cg.items.length&&(ctLv(cg.items[i])||0)<=lv)i++;cg.items.splice(i,0,it)}
 function ctCoreA(B,c){return "**Primary Ability:** "+String(c.prim||"").split("/").map((k) =>{return ABN[k]||k}).join(" or ")+". **Hit Point Die:** D"+c.hd+" per "+B.cls+" level. **Saving Throw Proficiencies:** "+(c.saves||[]).map((k) =>{return ABN[k]}).join(" and ")+". **Skill Proficiencies:** Choose "+(c.sk&&c.sk.n||0)+(c.sk&&c.sk.from==="any"?" skills.":" from "+((c.sk&&c.sk.from)||[]).join(", ")+".")}
 function ctCoreB(B,c,ck,wp,arm){return (wp.length?" **Weapon Proficiencies:** "+wp.join(" and ")+".":"")+(c.tools?" **Tool Proficiencies:** "+c.tools+".":"")+(arm.length?" **Armor Training:** "+arm.join(", ")+".":" **Armor Training:** None.")+(function(){const y=ck.concat(c.toolPick?(B.ch.clsTool||[]):[]);return y.length?" **Your choice.** "+y.join(", ")+".":""})()}
 function ctCoreCard(C,I,c,cg){const B=I.B;
@@ -219,7 +221,9 @@ function ctCoreCard(C,I,c,cg){const B=I.B;
   const core=ctCoreA(B,c)+ctCoreB(B,c,ck,wp,arm);
   cg.items.unshift({n:"Core "+B.cls+" Traits",s:I.SRC+", "+B.cls+" 1",d:core});}
 function ctSubCard(cg,I,Q){const B=I.B,L=I.L;
-  if(B.sub&&B.sub!=="__custom"&&L>=Q.subLv(B.cls))ctPut(cg,{n:I.r14?Q.subLbl(B.cls):B.cls+" Subclass",s:I.SRC+", "+B.cls+" "+Q.subLv(B.cls),d:"You gain "+(/^[AEIOU]/.test(B.cls)?"an ":"a ")+B.cls+" subclass of your choice. Its features come at the levels it lists. **Your choice.** "+Q.sdn(B.sub)+"."},Q.subLv(B.cls));}
+  if(B.sub&&B.sub!=="__custom"&&L>=Q.subLv(B.cls))ctPut(cg,{n:I.r14?Q.subLbl(B.cls):B.cls+" Subclass",s:I.SRC+", "+B.cls+" "+Q.subLv(B.cls),d:"You gain "+(/^[AEIOU]/.test(B.cls)?"an ":"a ")+B.cls+" subclass of your choice. Its features come at the levels it lists. **Your choice.** "+Q.sdn(B.sub)+".",
+    /* the full text the PDF prints under the short line (2014 names the choice: Primal Path, Sacred Oath, and so on) */
+    full:"At level "+Q.subLv(B.cls)+" you commit to a "+(I.r14?Q.subLbl(B.cls):B.cls+" subclass")+", the path that shapes the rest of your "+B.cls+" training. It gives you features at the levels its description lists, starting now, and it stays with you as you gain levels. **Your choice.** "+Q.sdn(B.sub)+"."},Q.subLv(B.cls));}
 function ctAsiCards(cg,I,Q){const B=I.B;
   Q.allFeats().forEach((f) =>{const m=new RegExp("\\("+B.cls+" (\\d+)\\)$").exec(f.s||"");if(!m)return;const F=featDef(f.n)||{},lv=+m[1],ep=F.cat==="E",v=f.asi||{},ex=v.a1?(F.asi2?(v.a1===v.a2?v.a1+" +2":v.a1+" +1, "+v.a2+" +1"):v.a1+" +1"):"";
    ctPut(cg,{n:ep?"Epic Boon":"Ability Score Improvement",s:I.SRC+", "+B.cls+" "+lv,d:ep?"You gain an Epic Boon feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+".":"You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+"."},lv)});}
@@ -260,6 +264,11 @@ registerSheetGroup({id:"paragraph-breaks",group:"late",phase:"post",order:40,rea
 registerSheetGroup({id:"edition-2014-book-names",group:"late",phase:"post",order:50,reads:["i.r14", "C.abilities", "C.ac", "C.actions", "C.acts", "C.attMax", "C.attacks", "C.bg", "C.bv", "C.camp", "C.cardNo", "C.carryBump", "C.cls", "C.clsLabel", "C.companion", "C.darkSrc", "C.darkvision", "C.dcAb", "C.dcSrc", "C.defenses", "C.equipNote", "C.exhMin", "C.features", "C.fxToggles", "C.gp", "C.grappler", "C.hitDie", "C.hpBonus", "C.hpPerLevel", "C.initBonus", "C.inv", "C.itemAdv", "C.lang", "C.level", "C.moves", "C.name", "C.office", "C.pasBon", "C.pbAdd", "C.profSrc", "C.profs", "C.res", "C.rolledNote", "C.rs", "C.saveBonus", "C.saveNotes", "C.saves", "C.senses", "C.size", "C.skills", "C.species", "C.speed", "C.speedSrc", "C.speeds", "C.spellcasting", "C.spells", "C.sub", "C.toolExp", "C.v", "C.wsForms", "C.xdmg"],writes:["C.v", "C.bv", "C.name", "C.species", "C.cls", "C.sub", "C.bg", "C.size", "C.office", "C.camp", "C.cardNo", "C.level", "C.hitDie", "C.hpPerLevel", "C.abilities", "C.rolledNote", "C.saves", "C.skills", "C.initBonus", "C.hpBonus", "C.grappler", "C.lang", "C.ac", "C.saveBonus", "C.attMax", "C.speed", "C.speedSrc", "C.rs", "C.darkvision", "C.darkSrc", "C.profs", "C.profSrc", "C.attacks", "C.inv", "C.gp", "C.equipNote", "C.res", "C.actions", "C.features", "C.defenses", "C.itemAdv", "C.speeds", "C.senses", "C.moves", "C.xdmg", "C.saveNotes", "C.wsForms", "C.companion", "C.spells", "C.spellcasting", "C.carryBump", "C.toolExp", "C.exhMin", "C.acts", "C.pasBon", "C.dcAb", "C.dcSrc", "C.clsLabel", "C.pbAdd", "C.fxToggles"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {r14}=I; if(I.r14)(function w(o){if(!o||typeof o!=="object")return;Object.keys(o).forEach((k) =>{const v=o[k];if(typeof v==="string"){if(v.indexOf("PHB-2024")>=0)o[k]=v.replace(/PHB-2024/g,"PHB-2014")}else w(v)})})(C);/* v85: the book of the 2014 rules */
   return ctx.patch()}});
+/* a feature from a third party book names that book, not the core rulebook: "PHB-2024, Martyr 1" becomes "VSS24, Martyr 1". The book comes from the book's own list of classes, subclasses, species and feats */
+function tpBookOf(n){const W=(genv.WX&&genv.WX.src)||[];for(let i=0;i<W.length;i++){const q=W[i];if(!q.tp)continue;if([].concat(q.classes||[],q.subs||[],q.species||[],q.feats||[]).indexOf(n)>=0)return q.tag||q.id}return ""}
+function tpRelabel(s){const m=/^(PHB-20(?:14|24)), (.+?)( \d+| table)?$/.exec(String(s||""));if(!m)return s;const tag=tpBookOf(m[2])||tpBookOf(m[2].replace(/ \(2014\)$/,""));return tag?tag+", "+m[2]+(m[3]||""):s}
+registerSheetGroup({id:"third-party-book-names",group:"late",phase:"post",order:55,reads:["C.features"],writes:["C.features"],
+ run:function(ctx){(ctx.C.features||[]).forEach((g) =>{(g.items||[]).forEach((it) =>{it.s=tpRelabel(it.s);const F=g.g==="Feats"&&featDef(it.n);if(F&&F.hb&&/^PHB-20(14|24), /.test(it.s||""))it.s=String(it.s).replace(/^PHB-20(14|24)/,F.hb)})});return ctx.patch()}});
 registerSheetGroup({id:"pb-add",group:"late",phase:"post",order:60,reads:["q.getPbAdd", "C.pbAdd"],writes:["C.pbAdd"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C; if(Q.getPbAdd())C.pbAdd=Q.getPbAdd();/* fx engine v5: Proficiency Bonus added by pbAdd entries */
   return ctx.patch()}});

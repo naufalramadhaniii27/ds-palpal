@@ -7,7 +7,7 @@ import {attunementMessage} from "../app/lib/attunement-message.js";
 import {attN,bDeco,bindLive,bldMine,toSheetApply,unList} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {copyText} from "../app/lib/clipboard.js";
 import {$,ABK,esc,toast} from "./01-logic-core-helpers.js";
-import {DMAP,NEWB,attMax,un,unDone,setItemAttuned,setItemForm} from "./03-logic-magic-item-effects.js";
+import {rememberFeatSource,migrateFeatSources,DMAP,NEWB,attMax,un,unDone,setItemAttuned,setItemForm} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save} from "./04-logic-storage.js";
 import {R14,rsLoad,rsStash} from "./05-logic-choice-model-ruleset.js";
 import {choices} from "./09-logic-feats-and-choices.js";
@@ -107,7 +107,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(d.packdel){const pid=d.packdel;ask("Remove this homebrew source?","Remove",() =>{B.packs=(B.packs||[]).filter((p) =>{return p.id!==pid});delete B.src[pid];applyPacks();commit()});return}
  if(d.packadd){let pk;try{pk=JSON.parse(packTxt)}catch(er){toast("That text isn't valid JSON");return}if(!pk||!pk.id||!pk.name){toast("A pack needs an id and a name");return}if(HB_BUILTIN[pk.id]){toast("That id is already used");return}B.packs=(B.packs||[]).filter((p) =>{return p.id!==pk.id}).concat([pk]);B.src[pk.id]=true;__set_packTxt("");applyPacks();commit();toast("Added "+pk.name);return}
  if(d.tpl){__set_showTpl(!showTpl);render();return}
- if(d.tog2){openCards[d.tog2]=openCards[d.tog2]===false?true:false;render();return}
+ if(d.tog2){openCards[d.tog2]=d.tog2==="add"?openCards[d.tog2]!==true:openCards[d.tog2]===false;render();return}
  if(d.skip){B.eqC="none";B.eqB="none";unDone("eqC");unDone("eqB");rebuildKit();commit();return}
  if(d.clearinv){ask("Clear your starting equipment choices and remove every item from your inventory?","Clear All",() =>{B.inv=[];B.eqC="none";B.eqB="none";B.gpOverride=null;commit();toast("Inventory cleared")});return}
  if(d.iform!=null){formEdit(+d.iform,d.formAction);return}
@@ -161,9 +161,9 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(t.id==="bakBtn"){restoreBak();return}});
 document.addEventListener("change",(e) =>{if(!e.target.closest("#bld"))return;const t=e.target,d=t.dataset;
  if(d.iin!=null){const it2=B.inv[+d.iin],XD=/^(Bag of Holding|Heward's Handy Haversack|Portable Hole)\b/;if(!it2)return;if(t.value&&XD.test(it2.n)&&XD.test(t.value)){toast("Putting "+it2.n+" inside "+t.value+" tears both apart and opens a rift to the Astral Plane. Not moved.");render();return}if(t.value)it2.in=t.value;else delete it2.in;commit();return}/* v27 RU46 */
- if(d.ibase!=null){const bi=B.inv[+d.ibase],bd=bi&&DMAP[bi.n];if(bd&&bd[5]&&bd[5].base){bi.n=t.value===bd[5].base[0]?bd[0]:bd[0]+" ("+t.value+")";delete bi.alias;commit()}return}/* V16-1 */ if(d.eqp){B.eqP=B.eqP||{};B.eqP[d.eqp]=t.value;ensureInv();rebuildKit(1);B.gpOverride=null;commit();return}/* v93 */
+ if(d.ibase!=null){const bi=B.inv[+d.ibase],bd=bi&&(DMAP[bi.n]||DMAP[bi.n.replace(/ \([^()]*\)$/,"")]);if(bd&&bd[5]&&bd[5].base){bi.n=t.value===bd[5].base[0]?bd[0]:bd[0]+" ("+t.value+")";delete bi.alias;commit()}return}/* V16-1 */ if(d.eqp){B.eqP=B.eqP||{};B.eqP[d.eqp]=t.value;ensureInv();rebuildKit(1);B.gpOverride=null;commit();return}/* v93 */
  if(d.b){const v=t.type==="checkbox"?t.checked:t.type==="number"?+t.value:t.value;if(d.b==="bg"&&!v){render();return}setB(d.b,v);if(d.b==="bg"){B.bg2="";B.bg1="";delete B.ch.bgfeatc;unDone("bg")}commit();return}
- if(d.ch){B.ch[d.ch]=t.value;commit();return}
+ if(d.ch){B.ch[d.ch]=t.value;if(/^feat-source-/.test(d.ch))migrateFeatSources(B);commit();return}
  if(d.addcls){if(t.value){B.mc=B.mc||[];B.mc.push({cls:t.value,lv:1,sub:""})}commit();return}
  if(d.mclv!=null){B.mc[+d.mclv].lv=+t.value;commit();return}
  if(d.mcsub!=null){B.mc[+d.mcsub].sub=t.value;commit();return}
@@ -179,15 +179,15 @@ document.addEventListener("change",(e) =>{if(!e.target.closest("#bld"))return;co
  if(d.lvsel){B.level=+t.value;commit();return}
  if(d.method){if(!t.value){render();return}const was=un("abil");unDone("abil");B.method=t.value;if(was&&B.method==="point")ABK.forEach((k) =>{B.base[k]=8});if(B.method==="point")ABK.forEach((k) =>{B.base[k]=Math.max(8,Math.min(15,B.base[k]))});if(B.method==="array")B.arr={};commit();return}
  if(d.arr){B.arr=B.arr||{};B.arr[d.arr]=t.value;B.base[d.arr]=+t.value||8;commit();return}
- if(d.fk){const o=B.ch[d.fk]||{};o[d.fp]=t.value;if(d.fp==="feat"){delete o.a1;delete o.a2;delete o.dt}B.ch[d.fk]=o;commit()}});
+ if(d.fk){const o=B.ch[d.fk]||{};o[d.fp]=t.value;if(d.fp==="feat"){rememberFeatSource(B,o.feat);delete o.a1;delete o.a2;delete o.dt}B.ch[d.fk]=o;commit()}});
 document.addEventListener("input",(e) =>{if(e.target.closest&&e.target.closest("#bld .hbmk"))__set_HBF(Object.assign(hbRead(),{}));});/* v26: keep what is typed in Create Homebrew */
 document.addEventListener("change",(e) =>{if(e.target.closest&&e.target.closest("#bld .hbmk"))__set_HBF(hbRead());});
-let chtxT=0;
+let chtxT=0;let nmT=0;document.addEventListener("focusin",(e) =>{const t=e.target;if(t&&t.id==="nmIn"&&(t.value==="New Character"||t.value==="New Hero")){try{t.select()}catch(er){}}});/* the default name is selected, so typing replaces it */
 function chtxSave(t){const k=t.dataset.chtx,v=t.value.replace(/\s+/g," ").trim();if(v)B.ch[k]=v;else delete B.ch[k];save()}
 document.addEventListener("input",(e) =>{const t=e.target;if(!t||!t.dataset||t.dataset.chtx==null||!t.closest||!t.closest("#bld"))return;clearTimeout(chtxT);chtxT=setTimeout(() =>{chtxSave(t)},350)});
 document.addEventListener("change",(e) =>{const t=e.target;if(!t||!t.dataset||t.dataset.chtx==null||!t.closest||!t.closest("#bld"))return;clearTimeout(chtxT);const was=!!B.ch[t.dataset.chtx];chtxSave(t);if(was!==!!B.ch[t.dataset.chtx])render()});/* fx v3a: text pick, saved while typing, redrawn only when done state flips */
 document.addEventListener("input",(e) =>{if(!e.target.closest("#bld"))return;const t=e.target;
- if(t.id==="nmIn"){B.name=t.value||"New Hero";save();return}
+ if(t.id==="nmIn"){const old=B.name;B.name=t.value||"New Hero";save();clearTimeout(nmT);nmT=setTimeout(() =>{try{const st=genv.__sheetState&&genv.__sheetState();if(genv.__sheetSetName&&st&&st.C&&B.name!=="New Hero"&&(!st.C.cls||own(st.C.name)||st.C.name===old))genv.__sheetSetName(B.name)}catch(er){}},400);return}
  if(t.id==="cpIn"){B.camp=t.value;save();return}
  if(t.id==="packtxt"){__set_packTxt(t.value);return}
  if(t.id==="custn"){cust.n=t.value;return}

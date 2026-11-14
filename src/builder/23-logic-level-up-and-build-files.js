@@ -1,6 +1,6 @@
 import {bindLive,choiceList,lateGet,withB,__set_step,ask,issueText,ruleIssues,spInfoPart,qbBook,qbFill,qbMI,qbSpells,copyOf,own,render,sid,stamp,stepBack} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,ABN,clone,toast} from "./01-logic-core-helpers.js";
-import {migrateItemAttunement,migrateInventory,BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
+import {migrateItemAttunement,migrateInventory,migrateFeatSources,BLANK,DMAP,cleanCh,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save,saveBak,savedRaw} from "./04-logic-storage.js";
 import {CL} from "./05-logic-choice-model-ruleset.js";
 import {featViol,toolAll} from "./09-logic-feats-and-choices.js";
@@ -171,7 +171,7 @@ function bnBgSub(b,notes,said,L){
 genv.__bldNorm=function(b0){let keep=B,err=[],notes=[],b;
  const said=saidIn(notes);
  try{
- b=structuredClone(b0||{});const byName=bnHead(b),src0=b.src;
+ b=structuredClone(b0||{});const byName=bnHead(b),src0=b.src;migrateFeatSources(b);
  bnOn(b,src0);const N0=bnNames(),ids=[];
  const cl=bnPick(b.cls,Object.keys(CLASSES));if(!cl){err.push(b.cls?"the class "+bnQ(b.cls)+" is not a 2024 class":"it has no class");return {err:err,notes:notes,b:b}}said(b.cls,cl);b.cls=cl.v;
  const want=bnWant(b,N0);

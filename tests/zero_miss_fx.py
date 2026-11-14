@@ -3144,6 +3144,23 @@ for rs in ["2014","2024"]:
 for c in CASES:
     if c["name"] in ["Z3 U15 Potion of Giant Strength (fire)","Z3 U17 Gamma complete spell saves"] or ("U23 Lightbringer" in c["name"]) or c["name"] in ["Z3 U29 rider differential Duskcrusher 2024","Z3 U29 rider differential Dawnbringer 2024","Z3 U26 target differential Ruinblade 2024"]:c["warm"]=True
 
+# Merge integration: Valda 2014's distinct feat profiles must not replace the
+# previously validated bare TalDorei/Dark Matter feat names. These are identity
+# and existing-profile preservation cases, not new coverage claims.
+for _bare, _checks in [
+    ("Gambler", [("C.features.some(g=>g.items.some(f=>f.n==='Gambler (Valda 2014)'&&/all gaming sets/.test(f.d)))", True), ("C.abilities.CHA.bonus.some(x=>/Gambler/.test(x.s))", False)]),
+    ("Aberrant Spawn", [("C.defenses.some(x=>x.s==='Aberrant Spawn (Valda 2014)'&&/sense emotions/.test(x.v))", True), ("C.defenses.some(x=>x.s==='Aberrant Spawn'&&/Charmed.*read your thoughts/.test(x.v))", False)]),
+    ("Proto-Man", [("C.res.filter(x=>x.n==='Primal Recovery'&&x.own==='Proto-Man (Valda 2014)'&&x.max===1&&x.reset==='long').length", 1), ("C.abilities.CON.bonus.some(x=>x.s==='Proto-Man')", False)]),
+]:
+    _alias = _bare + " (Valda 2014)"
+    _original = next(c for c in CASES if c["name"] == "Z3 U6 computed " + _bare)
+    _b = dict(cls="Fighter", level=4, rs="2014", base=WL, ch={"feat4": {"feat":_alias,"a1":"CON"}}, extra={"species":"Near-Human","src":{"core":True,"tvss14":True,"dmg":True}})
+    _paths = list(_original["allow"])
+    if _bare == "Proto-Man":
+        _paths += [r"^res\.[23]\.(k|n|tag|max|reset|auto|f|own)$"]
+    CASES.append(dict(name="MERGE Valda 2014 distinct " + _bare,b=_b,drop={"feat4":None},expect=_checks,allow=_paths,base_allow=[]))
+    CASES.append(dict(name="NEG MERGE Valda 2014 absent " + _bare,b=dict(_b,ch={}),expect=[("C.features.some(g=>g.items.some(f=>f.n==="+json.dumps(_alias)+"))",False)],base_allow=[]))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

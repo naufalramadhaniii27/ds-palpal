@@ -1,5 +1,5 @@
 import {chJoin} from "./01-logic-core-helpers.js";
-import {cfFullText,full14,classDef,featDef,maneuverRows,masteryText,subFullText,toolOneName,weaponDef} from "./00-env.js";
+import {genv,cfFullText,full14,classDef,featDef,maneuverRows,masteryText,subFullText,toolOneName,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
 /* Sheet handlers, part 8 (contract in 12a-logic-sheet-registry.js): the feature cards (phase "features"): species, class (one handler per class
@@ -86,11 +86,30 @@ registerSheetGroup({id:"multiclass-features",group:"features",phase:"features",o
    mc.f.forEach((x) =>{if(x[0]<=m.lv&&!/Subclass$|Ability Score|Epic Boon/.test(x[1])){const o=mk(x,m.cls,cfFullText(m.cls+"|"+x[1]));if(seen[x[1]]!=null&&x[1]!=="Expertise"){it[seen[x[1]]]=o;return}seen[x[1]]=it.length;it.push(o)}});
    if(m.sub&&mc.subs[m.sub])mc.subs[m.sub].forEach((x) =>{if(x[0]<=m.lv)it.push(mk(x,m.sub,subFullText(m.sub+"|"+x[1])))});
    C.features.push({g:m.cls+" (multiclass "+m.lv+")"+(m.sub?": "+m.sub:""),items:it})});return ctx.patch()}});
-registerSheetGroup({id:"class-label",group:"features",phase:"features",order:100,reads:["i.B","i.L","i.mcl"],writes:["C.clsLabel","C.cls"],
- run:function(ctx){const I=ctx.i,B=I.B,C=ctx.C;if(I.mcl.length){C.clsLabel=[B.cls+" "+I.L].concat(I.mcl.map((m) =>{return m.cls+" "+m.lv})).join(" / ");C.cls=B.cls}return ctx.patch()}});
+registerSheetGroup({id:"class-label",group:"features",phase:"features",order:100,reads:["i.B","i.L","i.mcl"],writes:["C.clsLabel","C.cls","C.clsInh"],
+ run:function(ctx){const I=ctx.i,B=I.B,C=ctx.C;{const ih={};[B.cls].concat(I.mcl.map((m) =>{return m.cls})).forEach((n) =>{const w=genv.WXC&&genv.WXC[n],p=w&&w.inh;if(p)ih[n]=p});if(Object.keys(ih).length)C.clsInh=ih}if(I.mcl.length){C.clsLabel=[B.cls+" "+I.L].concat(I.mcl.map((m) =>{return m.cls+" "+m.lv})).join(" / ");C.cls=B.cls}return ctx.patch()}});
+/* 2014 rules: a Fighting Style is a class feature, not a feat. It replaces the class's "Fighting Style" entry as "Fighting Style: <name>", worded as the class book words it. Returns the feats it moved */
+/* 2014 rules: Ability Score Improvement is a class feature at the class's ASI levels, not a feat. It goes into the class group with its 2014 wording and the chosen increase. Returns the feats it moved */
+function asiToClass(ctx,I,B,SRC){
+  if(B.rs!=="2014")return [];const out=I.feats.filter((f) =>{ return f.n==="Ability Score Improvement"&&!f.fs; });if(!out.length)return out;
+  const cg=ctx.C.features.filter((g) =>{ return g.g===B.cls; })[0];
+  out.forEach((f) =>{const v=f.asi||{},pick=v.a1?(v.a1===v.a2||!v.a2?v.a1+" +2.":v.a1+" +1, "+v.a2+" +1."):"Not chosen yet.",lv=(/(\d+)\)?\s*$/.exec(f.s||"")||[])[1]||"";
+    const body="When you reach this level, raise one ability score by 2, or two ability scores by 1 each. No score can go above 20 this way.";
+    const it={n:"Ability Score Improvement",s:SRC+", "+B.cls+(lv?" "+lv:""),d:pick,full:body+" **Your choice.** "+pick};
+    if(cg){const lvOf=(x) =>{ return +((/ (\d+)$/.exec(x.s||"")||[])[1]||0); },at=cg.items.findIndex((x) =>{ return lvOf(x)>+lv; });if(at<0)cg.items.push(it);else cg.items.splice(at,0,it);}});
+  return out; }
+function fsToClass(ctx,I,B,SRC){
+  const r14=B.rs==="2014", fsOut=r14?I.feats.filter((f) =>{ return f.fs; }):[];
+  if(fsOut.length){ const cg=ctx.C.features.filter((g) =>{ return g.g===B.cls; })[0];
+    fsOut.forEach((f) =>{ const F=featDef(f.n)||{}, base=cg&&cg.items.filter((x) =>{ return x.n==="Fighting Style"; })[0];
+      const m=base&&new RegExp("\\*\\*"+f.n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\.\\*\\*\\s*([\\s\\S]*?)(?=\\s*\\*\\*[^*\\n]{1,60}?\\.\\*\\*|$)").exec(String((typeof cfFullText==="function"&&cfFullText(B.cls+"|Fighting Style"))||base.full||base.d||""));
+      const txt=m?m[1].trim():(F.full||F.d||""), it={n:"Fighting Style: "+f.n,s:base?base.s:(f.s.indexOf(SRC)===0?f.s:SRC+", "+f.s),d:m?txt:(F.d||""),full:txt};
+      if(base) cg.items.splice(cg.items.indexOf(base),1,it); else if(cg) cg.items.push(it); }); }
+  return fsOut; }
 registerSheetGroup({id:"feat-features",group:"features",phase:"features",order:110,reads:["i.B","i.feats","i.CH","i.SRC"],writes:["C.features"],
  run:function(ctx){const I=ctx.i,B=I.B,SRC=I.SRC;
-  ctx.C.features.push({g:"Feats",items:I.feats.map((f) =>{const F=featDef(f.n)||{};let ex="";if(f.asi){const v=f.asi;if(F.asi2)ex=v.a1===v.a2?" "+v.a1+" +2.":" "+v.a1+" +1, "+v.a2+" +1.";else if(v.a1)ex=" "+v.a1+" +1.";if(F.dt&&v.dt)ex+=" Damage type: "+v.dt+"."}const fk2=f.key||f.s;I.CH.forEach((q) =>{const pv=B.ch[q.key];if(q.fk===fk2&&Array.isArray(pv)&&pv.length)ex+=" "+q.title.replace(/^.*?: /,"").replace(/^./,(ch) =>{return ch.toUpperCase()})+": "+pv.join(", ")+"."});/* v32 RL49 */
+  const fsOut=fsToClass(ctx,I,B,SRC).concat(asiToClass(ctx,I,B,SRC));
+  ctx.C.features.push({g:"Feats",items:I.feats.filter((f) =>{ return fsOut.indexOf(f)<0; }).map((f) =>{const F=featDef(f.n)||{};let ex="";if(f.asi){const v=f.asi;if(F.asi2)ex=v.a1===v.a2?" "+v.a1+" +2.":" "+v.a1+" +1, "+v.a2+" +1.";else if(v.a1)ex=" "+v.a1+" +1.";if(F.dt&&v.dt)ex+=" Damage type: "+v.dt+"."}const fk2=f.key||f.s;I.CH.forEach((q) =>{const pv=B.ch[q.key];if(q.fk===fk2&&Array.isArray(pv)&&pv.length)ex+=" "+q.title.replace(/^.*?: /,"").replace(/^./,(ch) =>{return ch.toUpperCase()})+": "+pv.join(", ")+"."});/* v32 RL49 */
    return {n:f.n,s:f.s.indexOf(SRC)===0?f.s:SRC+", "+f.s/* m4 (RL20): no "PHB-2024, PHB-2024" */,d:(F.d||"")+ex,full:F.full?F.full+(ex?" **Your choice.**"+ex:""):""}})});return ctx.patch()}});/* v19: the chosen increase and damage type also under the full text */
 registerSheetGroup({id:"background-features",group:"features",phase:"features",order:120,reads:["i.B","i.bg","i.SRC"],writes:["C.features"],
  run:function(ctx){const I=ctx.i,B=I.B,bg=I.bg,SRC=I.SRC;if(!bg)return null;

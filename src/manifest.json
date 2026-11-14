@@ -60,6 +60,7 @@
     "css/37-g0-art.css",
     "css/38-blend-sheet.css",
     "css/39-duotone-icons.css",
+    "css/40-dice-roller.css",
     "css/L-builder.css",
     "css/L-dice.css",
     "css/L-learn.css",
@@ -275,6 +276,7 @@
     "fx/15-y-pack.js",
     "fx/16-z-pack-dice-sound-hover.js",
     "fx/16b-z-pack-dice-sound-hover-2.js",
+    "fx/16c-z-pack-dice-roller.js",
     "fx/17-l-pack-webgl-sky.js",
     "fx/18-m-pack-rolls-concentration.js",
     "fx/19-g-pack-cinematic.js",
@@ -282,7 +284,7 @@
     "fx/21-connected-home-sheet.js",
     "fx/22-home-hero.js",
     "fx/24-class-art.js",
-    "fx/25-dice3d.js",
+    "fx/25a-dice3d-bridge.js",
     "fx/26-tab-notch.js",
     "fx/27-blend-sheet.js"
    ]
@@ -306,6 +308,19 @@
   {
    "t": "text",
    "text": "\n<div id=\"bld\" hidden>\n<div class=\"top\"><div class=\"brand\"><b><span class=\"bt0\"><span class=\"bt1\">Character </span>Builder</span></b><span>PHB 2024</span><button type=\"button\" class=\"lvhead\" data-lvup=\"1\"><span>Level Up</span></button><button type=\"button\" id=\"b-toSheet\" class=\"tosheet\">Apply to Sheet</button><button type=\"button\" id=\"b-close\" class=\"bclose\" aria-label=\"Close builder\" title=\"Close builder\"></button></div><nav class=\"steps\" id=\"steps\"></nav></div>\n<main><div class=\"bnm\" id=\"nameRow\"><label for=\"nmIn\">Character Name</label><input class=\"btx\" id=\"nmIn\" autocomplete=\"off\"></div><div id=\"body\"></div></main>\n<div class=\"foot\"><button type=\"button\" id=\"prev\"><span>Prev</span></button><button type=\"button\" id=\"next\"><span>Next</span></button></div>\n<div class=\"exp\" id=\"exp\" hidden><div class=\"expb\"><h3>Export to Character Sheet</h3><p class=\"fd\">Copy this text. In the character sheet, open Edit, scroll to Import build, paste, then Apply.</p><textarea id=\"expTxt\" readonly></textarea><div class=\"row\"><button type=\"button\" id=\"expClose\">Close</button><button type=\"button\" class=\"pri\" id=\"expCopy\">Copy</button></div></div></div>\n<div class=\"btoast\" id=\"btoast\" role=\"status\"></div>\n</div>\n"
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"dice3d\">",
+   "close": "</script>",
+   "files": [
+    "fx/25-dice3d-head.js",
+    "fx/25-dice3d.js"
+   ]
+  },
+  {
+   "t": "text",
+   "text": "\n"
   },
   {
    "t": "block",
@@ -648,6 +663,12 @@
     "data/tp13-tsdm.js",
     "data/tp14-tkdm.js",
     "data/tp15-thhw.js",
+    "data/tp16-tvss14.js",
+    "data/tp17-tdm14.js",
+    "data/tp18-tgh14p.js",
+    "data/tp19-tgh14c.js",
+    "data/tp20-twow.js",
+    "data/tp21-tua24.js",
     "data/fx-C-feat.js",
     "data/fx-E-feat.js"
    ]
@@ -674,12 +695,19 @@
     "data/q05-cult.js",
     "data/q06-disease.js",
     "data/q06-language.js",
+    "data/q06-tvss14-monster.js",
+    "data/q06-tdm14-monster.js",
+    "data/q06-tgh14p-monster.js",
+    "data/q06-tgh14c-monster.js",
+    "data/q06-twow-monster.js",
+    "data/q06-tua24-monster.js",
     "data/q08-deck.js",
     "data/q08-hazard.js",
     "data/q08-object.js",
     "data/q08-psionic.js",
     "data/q08-table.js",
     "data/q08-vehicle.js",
+    "data/q08-tdm14-vehicle.js",
     "data/q10-fluff.js",
     "data/q11-img.js",
     "data/q12-crimg.js",
