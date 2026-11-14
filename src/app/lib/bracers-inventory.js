@@ -1,0 +1,5 @@
+/* Native passive Bracers must be recalculated through their matching Build. */
+import {BRACERS_PROFILES} from '../../data/lib/bracers-profiles.js';
+export function bracersSourceItem(row){const name=row&&Object.prototype.hasOwnProperty.call(row,'key')?row.key:row?.n;return typeof name==='string'&&Object.prototype.hasOwnProperty.call(BRACERS_PROFILES,name)}
+export function bracersInventoryRequiresBuild(character){const tagged=value=>typeof value==='string'&&Object.keys(BRACERS_PROFILES).some(name=>value===name||value.startsWith(name+' (')||value.startsWith(name+': '));return (character?.inv||[]).some(bracersSourceItem)||(character?.ac?.bonus||[]).some(row=>tagged(row?.s))||(character?.attacks||[]).some(row=>typeof row?.miscSrc==='string'&&row.miscSrc.split('; ').some(tagged))||(character?.profSrc?.weapons||[]).some(row=>Array.isArray(row)&&tagged(row[1]))}
+export const bracersInventoryGuidance='Open this character’s matching Build and Apply before changing inventory while these bracers are recorded. Their proficiency, damage and Armor Class must be recalculated together.';

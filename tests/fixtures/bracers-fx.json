@@ -1,0 +1,228 @@
+{
+  "generatedBy": "Actual source/native03+11b+12g/h/l+14gear+12e→app06/26; no newmath or actorledger",
+  "inventory": {
+    "defense": [
+      {
+        "n": "Bracers of Defense",
+        "q": 1,
+        "eq": true,
+        "attuned": true
+      }
+    ],
+    "carried": [
+      {
+        "n": "Bracers of Defense",
+        "q": 1,
+        "eq": true,
+        "attuned": true
+      },
+      {
+        "n": "Shield",
+        "q": 1,
+        "eq": false
+      }
+    ],
+    "zeroShield": [
+      {
+        "n": "Bracers of Defense",
+        "q": 1,
+        "eq": true,
+        "attuned": true
+      },
+      {
+        "n": "Shield",
+        "q": 0,
+        "eq": false
+      }
+    ],
+    "armor": [
+      {
+        "n": "Bracers of Defense",
+        "q": 1,
+        "eq": true,
+        "attuned": true
+      },
+      {
+        "n": "Leather Armor",
+        "q": 1,
+        "eq": true
+      }
+    ],
+    "wielded": [
+      {
+        "n": "Bracers of Defense",
+        "q": 1,
+        "eq": true,
+        "attuned": true
+      },
+      {
+        "n": "Shield",
+        "q": 1,
+        "eq": true
+      }
+    ],
+    "duplicate": [
+      {
+        "n": "Bracers of Defense",
+        "q": 1,
+        "eq": true,
+        "attuned": true
+      },
+      {
+        "n": "Bracers of Defense",
+        "q": 1,
+        "eq": true,
+        "attuned": true
+      }
+    ]
+  },
+  "proof": {
+    "defense": {
+      "armorClass": 12,
+      "source": {
+        "v": 1,
+        "itemFingerprint": "[\"Bracers of Defense\",\"Wondrous Item\",\"Rare\",1,\"While wearing these bracers, you get a +2 bonus to your Armor Class, provided you wear no armor and carry no Shield.\"]",
+        "sourceIndex": 0,
+        "sourceWorn": true,
+        "sourceAttuned": true,
+        "armorWorn": false,
+        "shieldClasses": [
+          false
+        ],
+        "inventoryFingerprint": "[\"array\",[[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Rare magic item. \"],[\"eq\",true],[\"equippable\",true],[\"key\",\"Bracers of Defense\"],[\"n\",\"Bracers of Defense\"],[\"q\",1],[\"rar\",\"Rare\"],[\"type\",\"Wondrous Item\"],[\"w\",0]]]]]",
+        "acPartIndex": 0
+      }
+    },
+    "carried": {
+      "armorClass": 10,
+      "source": {
+        "v": 1,
+        "itemFingerprint": "[\"Bracers of Defense\",\"Wondrous Item\",\"Rare\",1,\"While wearing these bracers, you get a +2 bonus to your Armor Class, provided you wear no armor and carry no Shield.\"]",
+        "sourceIndex": 0,
+        "sourceWorn": true,
+        "sourceAttuned": true,
+        "armorWorn": false,
+        "shieldClasses": [
+          false,
+          true
+        ],
+        "inventoryFingerprint": "[\"array\",[[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Rare magic item. \"],[\"eq\",true],[\"equippable\",true],[\"key\",\"Bracers of Defense\"],[\"n\",\"Bracers of Defense\"],[\"q\",1],[\"rar\",\"Rare\"],[\"type\",\"Wondrous Item\"],[\"w\",0]]],[\"object\",[[\"cost\",0],[\"d\",\"+2 AC.\"],[\"eq\",false],[\"equippable\",true],[\"gear\",\"equip\"],[\"key\",\"Shield\"],[\"n\",\"Shield\"],[\"q\",1],[\"type\",\"Shield\"],[\"w\",0]]]]]",
+        "acPartIndex": null
+      }
+    },
+    "zeroShield": {
+      "armorClass": 12,
+      "source": {
+        "v": 1,
+        "itemFingerprint": "[\"Bracers of Defense\",\"Wondrous Item\",\"Rare\",1,\"While wearing these bracers, you get a +2 bonus to your Armor Class, provided you wear no armor and carry no Shield.\"]",
+        "sourceIndex": 0,
+        "sourceWorn": true,
+        "sourceAttuned": true,
+        "armorWorn": false,
+        "shieldClasses": [
+          false,
+          true
+        ],
+        "inventoryFingerprint": "[\"array\",[[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Rare magic item. \"],[\"eq\",true],[\"equippable\",true],[\"key\",\"Bracers of Defense\"],[\"n\",\"Bracers of Defense\"],[\"q\",1],[\"rar\",\"Rare\"],[\"type\",\"Wondrous Item\"],[\"w\",0]]],[\"object\",[[\"cost\",0],[\"d\",\"+2 AC.\"],[\"eq\",false],[\"equippable\",true],[\"gear\",\"equip\"],[\"key\",\"Shield\"],[\"n\",\"Shield\"],[\"q\",0],[\"type\",\"Shield\"],[\"w\",0]]]]]",
+        "acPartIndex": 0
+      }
+    },
+    "armor": {
+      "armorClass": 11,
+      "source": {
+        "v": 1,
+        "itemFingerprint": "[\"Bracers of Defense\",\"Wondrous Item\",\"Rare\",1,\"While wearing these bracers, you get a +2 bonus to your Armor Class, provided you wear no armor and carry no Shield.\"]",
+        "sourceIndex": 0,
+        "sourceWorn": true,
+        "sourceAttuned": true,
+        "armorWorn": true,
+        "shieldClasses": [
+          false,
+          false
+        ],
+        "inventoryFingerprint": "[\"array\",[[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Rare magic item. \"],[\"eq\",true],[\"equippable\",true],[\"key\",\"Bracers of Defense\"],[\"n\",\"Bracers of Defense\"],[\"q\",1],[\"rar\",\"Rare\"],[\"type\",\"Wondrous Item\"],[\"w\",0]]],[\"object\",[[\"cost\",0],[\"d\",\"AC 11 + Dex.\"],[\"eq\",true],[\"equippable\",true],[\"gear\",\"equip\"],[\"key\",\"Leather Armor\"],[\"n\",\"Leather Armor\"],[\"q\",1],[\"type\",\"Light Armor\"],[\"w\",0]]]]]",
+        "acPartIndex": null
+      }
+    },
+    "wielded": {
+      "armorClass": 12,
+      "source": {
+        "v": 1,
+        "itemFingerprint": "[\"Bracers of Defense\",\"Wondrous Item\",\"Rare\",1,\"While wearing these bracers, you get a +2 bonus to your Armor Class, provided you wear no armor and carry no Shield.\"]",
+        "sourceIndex": 0,
+        "sourceWorn": true,
+        "sourceAttuned": true,
+        "armorWorn": false,
+        "shieldClasses": [
+          false,
+          true
+        ],
+        "inventoryFingerprint": "[\"array\",[[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Rare magic item. \"],[\"eq\",true],[\"equippable\",true],[\"key\",\"Bracers of Defense\"],[\"n\",\"Bracers of Defense\"],[\"q\",1],[\"rar\",\"Rare\"],[\"type\",\"Wondrous Item\"],[\"w\",0]]],[\"object\",[[\"cost\",0],[\"d\",\"+2 AC.\"],[\"eq\",true],[\"equippable\",true],[\"gear\",\"equip\"],[\"key\",\"Shield\"],[\"n\",\"Shield\"],[\"q\",1],[\"type\",\"Shield\"],[\"w\",0]]]]]",
+        "acPartIndex": null
+      }
+    },
+    "duplicate": {
+      "armorClass": 12,
+      "source": {
+        "v": 1,
+        "itemFingerprint": "[\"Bracers of Defense\",\"Wondrous Item\",\"Rare\",1,\"While wearing these bracers, you get a +2 bonus to your Armor Class, provided you wear no armor and carry no Shield.\"]",
+        "sourceIndex": 0,
+        "sourceWorn": true,
+        "sourceAttuned": true,
+        "armorWorn": false,
+        "shieldClasses": [
+          false,
+          false
+        ],
+        "inventoryFingerprint": "[\"array\",[[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Rare magic item. \"],[\"eq\",true],[\"equippable\",true],[\"key\",\"Bracers of Defense\"],[\"n\",\"Bracers of Defense\"],[\"q\",1],[\"rar\",\"Rare\"],[\"type\",\"Wondrous Item\"],[\"w\",0]]],[\"object\",[[\"att\",1],[\"attuneReason\",\"duplicate\"],[\"attuned\",true],[\"attunedActive\",false],[\"cost\",0],[\"d\",\"Rare magic item. \"],[\"eq\",true],[\"equippable\",true],[\"key\",\"Bracers of Defense\"],[\"n\",\"Bracers of Defense\"],[\"q\",1],[\"rar\",\"Rare\"],[\"type\",\"Wondrous Item\"],[\"w\",0]]]]]",
+        "acPartIndex": 0
+      }
+    }
+  },
+  "oldPart": {
+    "s": "Bracers of Defense (no armor or Shield)",
+    "v": 2
+  },
+  "oldPartProvenance": {
+    "commit": "d6343e42f197d07e34af7f8220470d5c12a658ec",
+    "path": "src/builder/12e-logic-sheet-handlers-defense.js",
+    "group": "item-bracers",
+    "sha256": "7f3f9c379cd2ec70af66072995a16b7fc6e0f06d22ac40474994a777f0412e58"
+  },
+  "deriveDefaults": {
+    "attackTarget": {
+      "type": "",
+      "alignment": "",
+      "hp": null,
+      "maxHp": null,
+      "tags": []
+    },
+    "hp": null,
+    "tmp": 0,
+    "used": {},
+    "insp": false,
+    "ds": [
+      0,
+      0
+    ],
+    "cond": {},
+    "exh": 0,
+    "burn": 1,
+    "jinx": "",
+    "notes": {},
+    "lang": [
+      "Common",
+      "",
+      ""
+    ],
+    "portrait": "",
+    "theme": "",
+    "align": "",
+    "color": "forest",
+    "sym": "star",
+    "skin": "ddb",
+    "coins": null,
+    "coinBase": null,
+    "lifestyle": ""
+  }
+}

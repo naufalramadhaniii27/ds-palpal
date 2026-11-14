@@ -1,0 +1,6 @@
+import assert from'node:assert/strict';import{createBracersEngine,deriveBracersAttacks}from'./fixtures/bracers-native.mjs';
+let checks=0;const plain=x=>JSON.parse(JSON.stringify(x)),eq=(a,b)=>{assert.deepEqual(plain(a),plain(b));checks++};const source={n:'Bracers of Archery',q:1,eq:true,attuned:true};
+{const f=createBracersEngine({inventory:[source]}),C=f.C;eq(C.profs.weapons,'Longbow, Shortbow');eq(C.attacks.map(a=>a.prof),[true,true,false]);eq(C.attacks.map(a=>a.dmgBonus),[2,2,0]);const d=deriveBracersAttacks(C);eq(d.map(a=>a.hit),[5,5,3]);eq(d.map(a=>a.dmg),['1d8+5','1d8+5','1d8+3'])}
+for(const change of [{eq:false},{attuned:false},{q:0}]){const f=createBracersEngine({inventory:[{...source,...change}]}),C=f.C,d=deriveBracersAttacks(C);eq(C.profs.weapons,'');eq(C.attacks.map(a=>a.prof),[false,false,false]);eq(C.attacks.map(a=>a.dmgBonus),[0,0,0]);eq(d.map(a=>a.hit),[3,3,3]);eq(d.map(a=>a.dmg),['1d8+3','1d8+3','1d8+3'])}
+{const f=createBracersEngine({inventory:[source,{...source}]}),C=f.C;eq(C.profs.weapons,'Longbow, Shortbow');eq(C.attacks.map(a=>a.dmgBonus),[2,2,0]);eq(deriveBracersAttacks(C).map(a=>a.dmg),['1d8+5','1d8+5','1d8+3'])}
+console.log(checks+' actual serialized GX/native proficiency/attack damage Archery checks PASS');

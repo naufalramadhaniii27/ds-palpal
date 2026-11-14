@@ -29,6 +29,7 @@ export function bgDef(n){return BACKGROUNDS[n]}
 export function featDef(n){return FEATS[n]}
 export function weaponDef(n){return WEAPONS[n]}
 export function armorDef(n){return ARMOR[n]}
+export function gearDefinition(n){return typeof GEAR!=="undefined"?GEAR.find(row=>row[0]===n)||null:null}
 export function skillAb(n){return SKILLS[n]}
 export function allSkillNames(){return ALLSK}
 export function subGrantRow(sub){return typeof SUB_GRANT!=="undefined"?SUB_GRANT[sub]:undefined}
@@ -92,3 +93,4 @@ bindG(["__bldNecronomiconInfo", "__bldNecronomiconCapture", "__bldNecronomiconTo
 
 bindG(["__bldTimedDefensesInfo", "__bldTimedDefensesCapture", "__bldTimedDefensesTokenCurrent", "__bldTimedDefensesCommand", "__bldTimedDefensesAcceptReceipt", "__bldTimedDefensesInventoryOwner", "__timedDefensesSave"]);
 bindG(["__bldIounOrbitInfo", "__bldIounOrbitCapture", "__bldIounOrbitTokenCurrent", "__bldIounOrbitCommand", "__bldIounOrbitAcceptReceipt", "__bldIounOrbitInventoryOwner", "__iounOrbitSave"]);
+bindG(["__bldBracersAttackInfo", "__bldBracersAttackCapture", "__bldBracersAttackCurrent"]);

@@ -1,0 +1,9 @@
+{
+  "provenance": {
+    "commit": "d6343e42f197d07e34af7f8220470d5c12a658ec",
+    "path": "src/builder/12e-logic-sheet-handlers-defense.js",
+    "group": "item-bracers",
+    "sha256": "7f3f9c379cd2ec70af66072995a16b7fc6e0f06d22ac40474994a777f0412e58"
+  },
+  "source": "registerSheetGroup({id:\"item-bracers\",group:\"armorClass\",phase:\"acbonus\",order:10,reads:[\"i.B\",\"i.EA\",\"i.ESH\",\"i.ATT\",\"q.itemInUse\"],writes:[\"C.ac\"],\n run:function(ctx){const I=ctx.i,C=ctx.C;(I.B.inv||[]).forEach((x,ix) =>{if(!ctx.q.itemInUse(x,I.ATT.rows[ix]))return;if(x.n===\"Bracers of Defense\"&&!I.EA&&!I.ESH)C.ac.bonus.push({s:\"Bracers of Defense (no armor or Shield)\",v:2})});return ctx.patch()}});\n"
+}

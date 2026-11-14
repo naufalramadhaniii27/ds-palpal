@@ -1,5 +1,8 @@
 import {ABN,mod} from "./01-logic-core-helpers.js";
-import {armorDef,classDef,featDef,weaponDef} from "./00-env.js";
+import {armorDef,classDef,featDef,weaponDef,gearDefinition,genv,sheetState,fxo,gx} from "./00-env.js";
+import {iounOrbitLegacyComparisonActive} from "./10o-logic-ioun-orbit.js";
+import {bracersDefenseCondition} from "../data/lib/bracers.js";
+import {classifyBracersShield,bracersSourceProfile,isBracersDefensePart,bracersDefenseWitnessProblems,canonicalBracersInventory} from "../data/lib/bracers-source.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
 /* Sheet handlers, part 3 (contract in 12a-logic-sheet-registry.js): what is worn and held (phase "gear"), Armor Class (phases "ac" and "acbonus"),
@@ -7,7 +10,7 @@ import {defineLocals} from "./12b-logic-sheet-schema.js";
    l.EW active weapons (a conjured pact weapon joins), l.pactW pact weapon name or "", l.uaM / l.acS / l.uaX ways to get an unarmored AC (main class
    Unarmored Defense, subclass AC, multiclass Unarmored Defense), l.monkLv, l.umOn (Monk, no armor, no Shield), l.maOn (Martial Arts usable), l.maDie,
    l.acm AC methods (read by the builder), l.sbn saving throw bonuses. */
-defineLocals({EW:"array",pactW:"string",uaM:"object?",acS:"object?",uaX:"object?",monkLv:"number",umOn:"boolean",maOn:"boolean",maDie:"string",acm:"array",sbn:"array"});
+defineLocals({bracersDefenseDraft:"object?",EW:"array",pactW:"string",uaM:"object?",acS:"object?",uaX:"object?",monkLv:"number",umOn:"boolean",maOn:"boolean",maDie:"string",acm:"array",sbn:"array"});
 /* ---------- gear ---------- */
 /* M13: Pact of the Blade. A pact weapon that is not in the inventory is conjured in your hand, so it counts as an active weapon */
 registerSheetRule({id:"warlock-pact-weapon",group:"gear",about:"Warlock, Pact of the Blade: the bonded weapon counts as active",phase:"gear",order:10,reads:["i.EW0","q.pactWeapon","q.baseOf","q.ensureInv"],writes:["l.EW","l.pactW"],
@@ -84,8 +87,21 @@ registerSheetGroup({id:"save-bonus-sheet",group:"saveBonus",phase:"savebonus",or
 registerSheetGroup({id:"attunement-max",group:"attunement",phase:"savebonus",order:70,reads:["i.attMax"],writes:["C.attMax"],
  run:function(ctx){if(ctx.i.attMax!==3)ctx.C.attMax=ctx.i.attMax;return ctx.patch()}});
 /* ---------- more AC (phase "acbonus") ---------- */
-registerSheetGroup({id:"item-bracers",group:"armorClass",phase:"acbonus",order:10,reads:["i.B","i.EA","i.ESH","i.ATT","q.itemInUse"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i,C=ctx.C;(I.B.inv||[]).forEach((x,ix) =>{if(!ctx.q.itemInUse(x,I.ATT.rows[ix]))return;if(x.n==="Bracers of Defense"&&!I.EA&&!I.ESH)C.ac.bonus.push({s:"Bracers of Defense (no armor or Shield)",v:2})});return ctx.patch()}});
+const BRACERS_DEFENSE_NAME='Bracers of Defense',BRACERS_DEFENSE_LABEL='Bracers of Defense (no armor or Shield)',bracersOwn=(o,k)=>o!=null&&Object.prototype.hasOwnProperty.call(o,k);
+const bracersForeign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit'];
+function bracersFuture(build){const live=sheetState();if(!live?.C||!build.cid||build.cid!==genv.__sheetId?.()||!bracersOwn(live.C,'bracersDefense')||!bracersDefenseWitnessProblems(live.C.bracersDefense).length)return null;return {value:live.C.bracersDefense}}
+function bracersRegistry(I,Q){return {baseOf:Q.baseOf,armorDef,weaponDef,gearDefinition,itemDefinition:Q.dmapRow,customDefinition:name=>(I.B.custLib||[]).find(row=>row.n===name)}}
+function nativeBracersDraft(I,Q){const future=bracersFuture(I.B);if(future)return {future};const inventory=I.B.inv||[],profile=bracersSourceProfile(Q.bracersDefinitions(),BRACERS_DEFENSE_NAME,{customItems:I.B.custLib||[],fxOverrides:fxo(),gxItems:gx().item||{}});if(!profile||!inventory.some(row=>(bracersOwn(row,'key')?row.key:row.n)===BRACERS_DEFENSE_NAME))return null;const candidates=inventory.map((row,index)=>({row,index})).filter(({row})=>(bracersOwn(row,'key')?row.key:row.n)===BRACERS_DEFENSE_NAME&&!bracersForeign.some(k=>bracersOwn(row,k))),chosen=candidates.find(({row,index})=>Q.itemInUse(row,I.ATT.rows[index]))||candidates[0],sourceIndex=chosen?.index??null,row=chosen?.row,status=I.ATT.rows[sourceIndex],registry=bracersRegistry(I,Q);return {v:1,itemFingerprint:profile.fingerprint,sourceIndex,sourceWorn:!!row?.eq&&Q.qOf(row)>0,sourceAttuned:status?.requires===true&&status.attuned===true,armorWorn:!!I.EA||!!I.ar,shieldClasses:inventory.map(row=>classifyBracersShield(row,registry)),inventoryFingerprint:'',acPartIndex:null}}
+function historicalBracersComparison(ctx){
+ const I=ctx.i;
+ if(!bracersSourceProfile(ctx.q.bracersDefinitions(),BRACERS_DEFENSE_NAME,{customItems:I.B.custLib||[],fxOverrides:fxo(),gxItems:gx().item}))return ctx.patch();
+ (I.B.inv||[]).forEach((row,index)=>{
+  if(ctx.q.itemInUse(row,I.ATT.rows[index])&&row.n===BRACERS_DEFENSE_NAME&&!I.EA&&!I.ESH)ctx.C.ac.bonus.push({s:BRACERS_DEFENSE_LABEL,v:2});
+ });
+ return ctx.patch();
+}
+registerSheetGroup({id:"item-bracers",group:"armorClass",phase:"acbonus",order:10,reads:["i.B","i.EA","i.ar","i.ATT","q.itemInUse","q.qOf","q.baseOf","q.dmapRow","q.bracersDefinitions"],writes:["C.ac","l.bracersDefenseDraft"],run:function(ctx){if(iounOrbitLegacyComparisonActive())return historicalBracersComparison(ctx);const draft=nativeBracersDraft(ctx.i,ctx.q);ctx.l.bracersDefenseDraft=draft;if(!draft||draft.future)return ctx.patch();const result=bracersDefenseCondition({sourceWorn:draft.sourceWorn,sourceAttuned:draft.sourceAttuned,armorWorn:draft.armorWorn},ctx.i.B.inv||[],(_,index)=>draft.shieldClasses[index]);if(result.ok&&result.eligible){draft.acPartIndex=ctx.C.ac.bonus.length;ctx.C.ac.bonus.push({s:BRACERS_DEFENSE_LABEL,v:2})}return ctx.patch()}});
+registerSheetGroup({id:'bracers-defense-source',group:'armorClass',phase:'post',order:120,reads:['l.bracersDefenseDraft','C.inv','C.ac'],writes:['C.bracersDefense'],run:function(ctx){if(iounOrbitLegacyComparisonActive())return ctx.patch();const draft=ctx.l.bracersDefenseDraft;if(!draft)return ctx.patch();if(draft.future){ctx.C.bracersDefense=structuredClone(draft.future.value);return ctx.patch()}const fingerprint=canonicalBracersInventory(ctx.C.inv);if(fingerprint===null)return ctx.patch();const part=draft.acPartIndex===null?null:ctx.C.ac.bonus[draft.acPartIndex];ctx.C.bracersDefense={...draft,inventoryFingerprint:fingerprint,acPartIndex:isBracersDefensePart(part)?draft.acPartIndex:null};return ctx.patch()}});
 registerSheetGroup({id:"shield-ac",group:"armorClass",phase:"acbonus",order:20,reads:["i.ESH","i.SRC","i.AFX","q.baseOf","q.itemMagicBonus"],writes:["C.ac"],
  run:function(ctx){const I=ctx.i;if(I.ESH)ctx.C.ac.bonus.push({s:I.ESH+" ("+I.SRC+")",v:2+ctx.q.itemMagicBonus(I.ESH,ctx.q.baseOf(I.ESH),I.AFX)});return ctx.patch()}});
 /* generic: fx.shAc, extra AC while a Shield is held (Warden Tower Shield) */

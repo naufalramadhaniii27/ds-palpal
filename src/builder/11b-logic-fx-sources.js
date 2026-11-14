@@ -1,5 +1,8 @@
 import {B} from "./04-logic-storage.js";
-import {activeFx,bgX,un,attunementState,DMAP,itemQuantity} from "./03-logic-magic-item-effects.js";
+import {bracersSourceProfile,bracersInventorySourceSupported} from "../data/lib/bracers-source.js";
+import {fxo} from "./00-env.js";
+import {lateGet} from "./01b-logic-late-ports.js";
+import {activeFx,bgX,un,attunementState,DMAP,itemQuantity,itemInUse} from "./03-logic-magic-item-effects.js";
 import {allFeats} from "./09-logic-feats-and-choices.js";
 import {clsParts} from "./11-logic-derivation.js";
 import {registerFxSource} from "./10a-logic-fx-registry.js";
@@ -18,7 +21,14 @@ registerFxSource({id:"background",items:false,collect:function(ctx){const bg=bgX
 registerFxSource({id:"feats",items:false,collect:function(ctx){const G=ctx.G,out=[];allFeats().forEach((f) =>{const F=FEATS[f.n],fok=f.key||f.s,fab=(f.asi&&f.asi.a1)||"CHA",fpa=(B.ch["gx-ab-feat-"+fok]||[])[0]||"INT";
  out.push({list:((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),kind:"feat",owner:f.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+f.n+" feat)"},okey:f.key||f.s,alias:{"@asi":"@sub:"+fab,"@abpick":"@sub:"+fpa}})});return out}});
 /* equipped (and attuned when needed) magic items: row gx and GX.item[name] */
-registerFxSource({id:"items",items:true,collect:function(ctx){const G=ctx.G;return activeFx().map((q) =>{
+function bracersItemGxAllowed(q,G){
+ if(q.n!=="Bracers of Archery"&&q.mi!=="Bracers of Archery")return true;
+ const ATT=attunementState();
+ if(!(B.inv||[]).some((row,index)=>bracersInventorySourceSupported(row,"Bracers of Archery")&&itemInUse(row,ATT.rows[index])))return false;
+ const rows=lateGet("DM14S")||(typeof DMGI!=="undefined"?DMGI:[]);
+ return !!bracersSourceProfile(rows,"Bracers of Archery",{customItems:B.custLib||[],fxOverrides:fxo(),gxItems:G.item});
+}
+registerFxSource({id:"items",items:true,collect:function(ctx){const G=ctx.G;return activeFx().filter(q=>bracersItemGxAllowed(q,G)).map((q) =>{
  return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]).filter((e) =>!e.consume&&!e.retain&&!e.itemState),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
 
 /* Consumable effects have a lifetime independent of their inventory row. Available

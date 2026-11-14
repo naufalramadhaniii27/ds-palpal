@@ -69,3 +69,4 @@ import "./25k-logic-magic-ropes.js";
 import "./25l-logic-swim-climb-gloves.js";
 import "./25m-logic-timed-defenses.js";
 import "./25n-logic-ioun-orbit.js";
+import "./25o-logic-bracers.js";

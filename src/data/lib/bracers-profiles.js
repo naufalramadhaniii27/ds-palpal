@@ -1,0 +1,3 @@
+/* Exact original current core definitions; no invented legacy profiles. */
+export const BRACERS_PROFILES = Object.freeze({"Bracers of Archery":{"kind":"archery","fingerprint":"[\"Bracers of Archery\",\"Wondrous Item\",\"Uncommon\",1,\"While you wear these bracers, you have proficiency with the Longbow and the Shortbow, and your damage rolls with either of those weapons get a +2 bonus.\"]"},"Bracers of Defense":{"kind":"defense","fingerprint":"[\"Bracers of Defense\",\"Wondrous Item\",\"Rare\",1,\"While wearing these bracers, you get a +2 bonus to your Armor Class, provided you wear no armor and carry no Shield.\"]"}});
+for (const entry of Object.values(BRACERS_PROFILES)) Object.freeze(entry);

@@ -207,7 +207,7 @@ const FXS16A={};
   ;
   FXS16A.barHint=function barHint(spec){ let hint=(!spec.dmg&&FXENV.__miRoll&&FXENV.__miRoll.hint)?FXENV.__miRoll.hint(FXS16A.last.k):null, hh="";
     if(hint){ if(hint.fail.length) hh='<p class="mi-rhint bad">Automatic failure: '+esc(hint.fail.join(", "))+'</p>'; else hh='<p class="mi-rhint">'+(hint.mode==="dis"?"Disadvantage":hint.mode==="adv"?"Advantage":"Advantage and disadvantage cancel")+' from '+esc(hint.dis.concat(hint.adv).join(", "))+'</p>'; }
-    return {hint:hint,hh:hh}; };
+    if(spec.sourceGuidance)hh='<p class="mi-rhint bad">'+esc(spec.sourceGuidance)+'</p>'+hh;return {hint:hint,hh:hh}; };
 })();
 (function(){
   const MI=FXENV.__MI;

@@ -1,3 +1,4 @@
+import {bracersSourceProfile,bracersInventorySourceSupported} from '../data/lib/bracers-source.js';
 import {lateGet} from './01b-logic-late-ports.js';
 import {genv,sheetState,fxo,gx} from './00-env.js';
 import {createIounOrbit,iounOrbitProblems,iounOrbitAvailability} from '../data/lib/ioun-orbit.js';
@@ -7,6 +8,7 @@ function currentBuild(){return lateGet('B');}
 function nativeAttunementState(){return lateGet('attunementState')();}
 export function iounOrbitCatalog(){return iounNativeSources(lateGet('DM14S')||DMGI);}
 export function withIounOrbitProjection(state,run){const previous=scope;scope={state};try{return run();}finally{scope=previous;}}
+export function iounOrbitLegacyComparisonActive(){return legacyComparison;}
 export function withIounOrbitLegacyComparison(run){const previous=legacyComparison;legacyComparison=true;try{return run();}finally{legacyComparison=previous;}}
 function ownedFrame(){const live=sheetState();return live?.C&&currentBuild().cid&&currentBuild().cid===genv.__sheetId?.()?live:null;}
 export function iounOrbitOwnedState(ATT=nativeAttunementState()){
@@ -61,6 +63,14 @@ export function iounOrbitApplyPlan(candidate){
 }
 export function iounOrbitApplyCurrent(plan){const ticket=IOUN_APPLY_PLANS.get(plan),live=sheetState();return !!(ticket&&live?.C===ticket.character&&live?.state===ticket.state&&currentBuild()===ticket.build&&live?.readOnly===ticket.readOnly&&genv.__sheetId?.()===ticket.cid&&iounApplySignature(ticket.character)===ticket.before.C&&iounApplySignature(ticket.state)===ticket.before.S&&iounApplySignature(currentBuild())===ticket.before.B&&iounApplySignature(ticket.candidate)===ticket.before.candidate&&iounApplySources()===ticket.before.sources);}
 
+function bracersLegacySourcesSafe(){
+ const build=currentBuild(),rows=lateGet('DM14S')||DMGI;
+ return (build?.inv||[]).every(row=>{
+  const item=key(row);if(!['Bracers of Archery','Bracers of Defense'].includes(item))return true;
+  return bracersInventorySourceSupported(row,item)&&!!bracersSourceProfile(rows,item,{customItems:build.custLib||[],fxOverrides:fxo(),gxItems:gx().item});
+ });
+}
 export function iounOrbitLegacySourcesSafe(){
+ if(!bracersLegacySourcesSafe())return false;
  const catalog=iounOrbitCatalog(),rows=currentBuild()?.inv||[];return rows.every(row=>{if(!row||!iounOrbitItemName(key(row)))return true;const source=iounSource(catalog,key(row));if(!source||(currentBuild().custLib||[]).some(item=>item.n===key(row)))return false;if(source.kind==='reserve')return !own(row,'iounOrbit');return !['iounOrbit','storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses'].some(field=>own(row,field))&&nativeEffectsMatch(source);});
 }

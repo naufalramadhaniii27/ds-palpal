@@ -28097,6 +28097,153 @@
     "tests/ioun_orbit_legacy_app_contracts.mjs"
    ],
    "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u55-item-dmg-bracers-of-archery-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Bracers of Archery",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ wear\\ these\\ bracers,\\ you\\ have\\ proficiency\\ with\\ the\\ longbow\\ and\\ the\\ shortbow,\\ and\\ your\\ damage\\ rolls\\ with\\ either\\ of\\ those\\ weapons\\ get\\ a\\ \\+2\\ bonus\\.$",
+   "anchor": [
+    "src/builder/11b-logic-fx-sources.js",
+    "function bracersItemGxAllowed("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/bracers-source.js",
+     "export function bracersSourceProfile("
+    ],
+    [
+     "src/data/lib/bracers-source.js",
+     "export function bracersInventorySourceSupported("
+    ],
+    [
+     "src/builder/12g-logic-sheet-handlers-profs.js",
+     "id:\"fx-profs\""
+    ],
+    [
+     "src/builder/12h-logic-sheet-handlers-attacks.js",
+     "id:\"weapon-row-proficiency\""
+    ],
+    [
+     "src/builder/12l-logic-sheet-handlers-late.js",
+     "id:\"fx-atk-bonus\""
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "function deriveFn1Step2("
+    ],
+    [
+     "src/builder/25o-logic-bracers.js",
+     "function consistent("
+    ],
+    [
+     "src/builder/25o-logic-bracers.js",
+     "function current(token)"
+    ],
+    [
+     "src/builder/25o-logic-bracers.js",
+     "genv.__bldBracersAttackInfo=info"
+    ],
+    [
+     "src/app/32w-logic-bracers-attack.js",
+     "export function bracersAttackSpec("
+    ],
+    [
+     "src/app/32w-logic-bracers-attack.js",
+     "env.__bracersAttackSpec=bracersAttackSpec"
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.bracersSpec=function bracersSpec("
+    ]
+   ],
+   "test": "Z3 U55 actual native Archery whole compound",
+   "consumerTests": [
+    "tests/bracers_conditions.mjs",
+    "tests/bracers_sources.mjs",
+    "tests/bracers_archery_native.mjs",
+    "tests/bracers_defense_native.mjs",
+    "tests/bracers_inventory_runtime.mjs",
+    "tests/bracers_loaded_native.mjs",
+    "tests/bracers_attack_backend.mjs",
+    "tests/bracers_ioun_legacy.mjs",
+    "tests/bracers_attack_runtime.mjs"
+   ],
+   "note": "U55 exact current core native whole clause. Actual worn and allocated attunement source qualification; original native bow proficiency and single +2 damage producer. Actual matching-Build native reprojection validates saved bow source/proficiency/damage before issuing an opaque roll token. Live hit and damage dice preserve existing guards and reject stale actor, source, derived or Build payloads before effects."
+  },
+  {
+   "id": "u55-item-dmg-bracers-of-defense-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Bracers of Defense",
+   "cls": [
+    "AC"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ wearing\\ these\\ bracers,\\ you\\ get\\ a\\ \\+2\\ bonus\\ to\\ your\\ armor\\ class,\\ provided\\ you\\ wear\\ no\\ armor\\ and\\ carry\\ no\\ shield\\.$",
+   "anchor": [
+    "src/builder/12e-logic-sheet-handlers-defense.js",
+    "function nativeBracersDraft("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/bracers-source.js",
+     "export function bracersSourceProfile("
+    ],
+    [
+     "src/data/lib/bracers-source.js",
+     "export function bracersInventorySourceSupported("
+    ],
+    [
+     "src/data/lib/bracers.js",
+     "export function bracersDefenseEligibility("
+    ],
+    [
+     "src/data/lib/bracers-source.js",
+     "export function classifyBracersShield("
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-bracers\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:'bracers-defense-source'"
+    ],
+    [
+     "src/data/lib/bracers-source.js",
+     "export function bracersDefensePartEligible("
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "if(isBracersDefensePart(b)&&!bracersDefensePartEligible(C,b,index))"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "function deriveArmorClass("
+    ]
+   ],
+   "test": "Z3 U55 actual native Defense condition defense",
+   "consumerTests": [
+    "tests/bracers_conditions.mjs",
+    "tests/bracers_sources.mjs",
+    "tests/bracers_archery_native.mjs",
+    "tests/bracers_defense_native.mjs",
+    "tests/bracers_inventory_runtime.mjs",
+    "tests/bracers_loaded_native.mjs"
+   ],
+   "note": "U55 exact current core native whole clause. Actual worn allocated-attuned source, armor worn and any carried positive-quantity Shield; individually attributed source-certified +2 AC before Customize. Loaded historical unproved part is inert; manual absolute AC and other sources preserved."
   }
  ]
 }

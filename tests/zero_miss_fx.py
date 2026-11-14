@@ -3440,6 +3440,25 @@ for _case in CASES:
             _case["comparisonOptions"]={"iounOrbit":U54_FIX["states"]["intellect"]}
         _case["name"]+=" [U54 actual admitted orbit]"
 
+
+# U55 original native Archery math and source-qualified carried-Shield Defense, no ledger.
+U55_FIX=json.load(open(os.path.join(HERE,"fixtures","bracers-fx.json")))
+U55_D="window.__deriveFor(C,window.__zmDeriveState)"
+def u55_build(inv,cls="Fighter",base=None):
+    return dict(rs="2024",cls=cls,level=1,base=base or dict.fromkeys(["STR","DEX","CON","INT","WIS","CHA"],10),inv=inv,extra=dict(bg="Acolyte",bgMode="21",bg2="",bg1="",unset={},src=dict(core=True,dmg=True)))
+def u55_archery(row):
+    return u55_build([row]+[dict(n=n,q=1,eq=True) for n in ["Longbow","Shortbow","Longsword"]],"Wizard",dict(STR=10,DEX=16,CON=10,INT=10,WIS=10,CHA=10))
+_u55_arch=dict(n="Bracers of Archery",q=1,eq=True,attuned=True)
+_u55_bows="C.attacks.filter(row=>['Longbow','Shortbow'].includes(row.n))"
+CASES.append(dict(name="Z3 U55 actual native Archery whole compound",b=u55_archery(_u55_arch),expect=[(_u55_bows+".map(row=>row.dmgBonus||0)",[2,2]),(_u55_bows+".every(row=>row.prof===true)",True),("C.attacks.find(row=>row.n==='Longsword').dmgBonus||0",0),("(()=>{const i=C.attacks.findIndex(row=>row.n==='Longbow');return window.__deriveFor(C).atk[i].hit})()",5),("(()=>{const i=C.attacks.findIndex(row=>row.n==='Longbow');return window.__deriveFor(C).atk[i].dmg})()","1d8+5"),("(()=>{const i=C.attacks.findIndex(row=>row.n==='Shortbow');return window.__deriveFor(C).atk[i].dmg})()","1d6+5")]))
+for _name,_row in [("unworn",dict(_u55_arch,eq=False)),("unattuned",dict(_u55_arch,attuned=False)),("foreign owned marker",dict(_u55_arch,storedSpells=None))]:
+    CASES.append(dict(name="NEG U55 Archery native source "+_name,b=u55_archery(_row),expect=[(_u55_bows+".map(row=>row.dmgBonus||0)",[0,0]),("C.attacks.find(row=>row.n==='Longbow').prof===true",False)]))
+for _name,_ac,_parts in [("defense",12,1),("carried",10,0),("zeroShield",12,1),("armor",11,0),("wielded",12,0),("duplicate",12,1)]:
+    CASES.append(dict(name="Z3 U55 actual native Defense condition "+_name,b=u55_build(U55_FIX["inventory"][_name]),deriveState=U55_FIX["deriveDefaults"],expect=[(U55_D+".ac",_ac),("C.ac.bonus.filter(row=>row.s==='Bracers of Defense (no armor or Shield)').length",_parts)]))
+_u55_old="(()=>{const old=structuredClone(C);delete old.bracersDefense;old.ac.bonus=old.ac.bonus.filter(row=>row.s!=='Bracers of Defense (no armor or Shield)');old.ac.bonus.push("+json.dumps(U55_FIX["oldPart"])+");return window.__deriveFor(old,window.__zmDeriveState).ac})()"
+CASES.append(dict(name="NEG U55 actual pre-update loaded Defense part inert",b=u55_build(U55_FIX["inventory"]["carried"]),deriveState=U55_FIX["deriveDefaults"],expect=[(_u55_old,10)]))
+CASES.append(dict(name="Z3 U55 loaded native Defense preserves manual AC50",b=u55_build(U55_FIX["inventory"]["carried"]),deriveState=dict(U55_FIX["deriveDefaults"],cust={"n:ac":{"o":50}}),expect=[(_u55_old,50)]))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

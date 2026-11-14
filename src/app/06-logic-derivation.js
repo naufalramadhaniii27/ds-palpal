@@ -1,3 +1,4 @@
+import {isBracersDefensePart,bracersDefensePartEligible} from '../data/lib/bracers-source.js';
 import {attackDamagePackets,combinedDamage,rolledRiders} from "./lib/damage-packets.js";
 import {swimClimbGlovesCheck} from '../data/lib/swim-climb-gloves.js';
 import {defenderAttackDelta,defenderDamageDelta,defenderArmorClassBonus} from "../data/lib/defender-effects.js";
@@ -137,7 +138,7 @@ function deriveArmorClass(){
   if(mode==="full") acParts.push(part("Dexterity modifier", dm, "Light armor or no armor"));
   else if(mode==="max2") acParts.push(part("Dexterity modifier (max 2)", Math.min(2,dm), "Medium armor caps it at +2"));
   else if(mode==="max3") acParts.push(part("Dexterity modifier (max 3)", Math.min(3,dm), "Medium Armor Master raises the cap to +3"));/* v69 */
-  (C.ac.bonus||[]).forEach((b) =>{ acParts.push(part(b.s||"Bonus", num(b.v))); });
+  (C.ac.bonus||[]).forEach((b,index) =>{ if(isBracersDefensePart(b)&&!bracersDefensePartEligible(C,b,index)){acParts.push(part("Bracers of Defense: not applied",0,"Its native source and current armor and carried Shield conditions need verification in the matching Build."));return}acParts.push(part(b.s||"Bonus", num(b.v))); });
   sitNum("ac").forEach((b) =>{ acParts.push(part(b.s,b.v)); });/* v103 */
   deriveArmorEffects(acParts);
   const defenderAC=defenderArmorClassBonus(C,S);if(defenderAC)acParts.push(part("Defender: held weapon",defenderAC,"Transferred from its +3 attack and damage bonus until your next turn starts"));
