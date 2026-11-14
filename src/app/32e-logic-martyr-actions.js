@@ -1,7 +1,7 @@
 import {renderAll,syncHP,hdHeal,used,refreshEntry} from "./00a-reg-late-ports.js";/* Responsibility: one-tap use of Martyr (VSS24), Shifter and Bloodlust features on the sheet. Each button rolls the dice, spends the uses and Hit Point Dice, and changes Hit Points. Hit Point Dice are one pool: the Short Rest dialog and these buttons spend the same dice. */
 import {C,S,save} from "./04-logic-storage.js";
 import {esc,num,ask} from "./05-logic-helpers.js";
-import {D} from "./06-logic-derivation.js";
+import {B,D} from "./06-logic-derivation.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
 import {hasFeat} from "./32b-logic-play-concentration-casting.js";
 import {env} from "./00-env.js";
@@ -56,18 +56,24 @@ const ACT={
     done("Reprisal: the "+L.a+" damage is halved, you get "+half+" back. The attacker takes "+r+" Necrotic or Radiant ("+dn+"d6)."); }
 };
 /* buttons under a feature card */
-function rin(k,lab,ph){ return '<label class="hdv">'+esc(lab)+'<input type="text" inputmode="numeric" data-mrin="'+k+'" placeholder="'+esc(ph)+'" aria-label="'+esc(lab)+'"></label>'; }
-const RNOTE='<p class="muted spcn">Type the numbers you rolled, or leave it empty and the app rolls its dice.</p>';
-export function martyrActH(f){ const n=f&&f.n, b=function(a,v,t,s,off){ return '<button type="button" class="btn press'+(off?' off':'')+'" data-mact="'+a+'" data-mv="'+(v||"")+'"'+(off?' disabled':'')+'>'+t+(s?' <small>'+s+'</small>':'')+'</button>'; };
-  const hl=left(hdKey()), hd=hdDie();
-  if(n==="Miraculous Healing"&&martyrLv()){ const mx=Math.min(Math.floor(martyrLv()/2),hl); let h='<div class="info-h">Use</div><p class="info-d">Each die heals 1d'+hd+' + CON'+(hdHeal(1)>Math.max(1,1+num(D.mod.CON,0))?' (doubled)':'')+'. Hit Point Dice left: <b>'+hl+'</b>. The Short Rest dialog uses the same dice.</p>'+rin("mh","Hit Point Dice rolled (d"+hd+")","e.g. 7 3 12")+(hasFeat("Balm")?rin("balm","Balm rolled (d8)","e.g. 5 2 8"):"")+RNOTE+'<div class="spcast">';
-    for(let i=1;i<=Math.floor(martyrLv()/2);i++) h+=b("mh",i,"Spend "+i,i>mx?"":"",i>mx); return h+'</div>'; }
-  if(n==="Bloodlust") return '<div class="info-h">Sanguine Feast</div><p class="info-d">After you hit a Bloodied creature. Uses left: <b>'+left("x-sanguine-feast")+'</b>, Hit Point Dice left: <b>'+hl+'</b>.</p>'+rin("feast","Hit Point Die rolled (d"+hd+")","e.g. 9")+RNOTE+'<div class="spcast">'+b("feast","","Spend 1 Hit Point Die","",left("x-sanguine-feast")<1||hl<1)+'</div>';
-  if(n==="Shifting") return (!S.shift&&chosen("Beasthide")?rin("shift","Beasthide rolled (d6)","e.g. 4")+RNOTE:"")+'<div class="spcast">'+(S.shift?b("unshift","","End Shifting"):b("shift","","Shift now",left("x-shifting")+" left",left("x-shifting")<1))+'</div>';
-  if(n==="Sacrifice") return '<div class="spcast">'+b("strike","","Sacrificial Strike","take 5")+b("skill","","Sacrificial Skill","take 10")+'</div>';
-  if(n==="Undying") return rin("und","Hit Point Dice rolled (d"+hd+")","e.g. 7 3 12 5 9")+(hasFeat("Balm")?rin("undb","Balm rolled (d8)","e.g. 5 2 8 1 6"):"")+RNOTE+'<div class="spcast">'+b("undying","","Use Undying",left("x-undying")+" left",left("x-undying")<1)+'</div>';
-  if(n==="Divine Respite") return '<div class="spcast">'+b("respite","","Regain Hit Point Dice",left("x-divine-respite")+" left",left("x-divine-respite")<1)+'</div>';
-  if(n==="Reprisal"&&martyrLv()) return rin("rep","Reprisal rolled (d6)","e.g. 3 5")+RNOTE+'<div class="spcast">'+b("reprisal","","Halve the last damage",S.lastDmg&&S.lastDmg.a?"last: "+S.lastDmg.a:"no damage yet",!(S.lastDmg&&S.lastDmg.a))+'</div>';
+function rin(k,lab,ph){ return '<label class="mact-f"><span>'+esc(lab)+'</span><input type="text" inputmode="numeric" autocomplete="off" data-mrin="'+k+'" placeholder="'+esc(ph)+'"></label>'; }
+function stat(lab,v,sub){ return '<div class="mact-s"><small>'+esc(lab)+'</small><b>'+v+'</b>'+(sub?'<i>'+esc(sub)+'</i>':'')+'</div>'; }
+function box(title,stats,fields,btns,grid){ return '<div class="mact"><div class="mact-h">'+esc(title)+'</div>'+(stats?'<div class="mact-ss">'+stats+'</div>':'')
+  +(fields?'<div class="mact-fs">'+fields+'</div><p class="mact-n">Type what you rolled, or leave empty and tap a button to roll the app dice.</p>':'')
+  +'<div class="mact-b'+(grid?' g'+grid:'')+'">'+btns+'</div></div>'; }
+function b(a,v,t,s,off,pri){ return '<button type="button" class="btn press'+(pri?' pri':'')+(off?' off':'')+'" data-mact="'+a+'" data-mv="'+(v||"")+'"'+(off?' disabled':'')+'><span>'+t+'</span>'+(s?'<small>'+s+'</small>':'')+'</button>'; }
+/* buttons under a feature card */
+export function martyrActH(f){ const n=f&&f.n, hl=left(hdKey()), hr=rk(hdKey()), hm=hr?hr.max:0, hd=hdDie(), cm=num(D.mod.CON,0), cs=(cm>=0?"+":"\u2212")+Math.abs(cm), dbl=hdHeal(5)>Math.max(1,5+cm), bal=hasFeat("Balm");
+  const per="1d"+hd+" "+cs+(dbl?" \u00d7 2":""), hdS=stat("Hit Point Dice",hl+" / "+hm,"shared with Short Rest");
+  if(n==="Miraculous Healing"&&martyrLv()){ const mx=Math.floor(martyrLv()/2); let bt=""; for(let i=1;i<=mx;i++) bt+=b("mh",i,String(i),i===1?"die":"dice",i>hl,i===Math.min(mx,hl));
+    return box("Spend Hit Point Dice",hdS+stat("Each die heals",per,B["heal-hd"]?B["heal-hd"].total:""),rin("mh","Hit Point Dice (d"+hd+")","7 3 12")+(bal?rin("balm","Balm (d8)","5 2 8"):""),bt,mx); }
+  if(n==="Bloodlust") return box("Sanguine Feast",stat("Uses left",String(left("x-sanguine-feast")))+hdS,rin("feast","Hit Point Die (d"+hd+")","9"),b("feast","","Heal with 1 Hit Point Die",per,left("x-sanguine-feast")<1||hl<1,true));
+  if(n==="Shifting"){ const bh=chosen("Beasthide"), pb=num(D.pb,2);
+    return box(S.shift?"Shifted":"Shift",stat("Uses left",String(left("x-shifting")))+stat("Temporary HP",(2*pb)+(bh?" + 1d6":""),bh?"+1 AC while shifted":""),!S.shift&&bh?rin("shift","Beasthide (d6)","4"):"",S.shift?b("unshift","","End Shifting"):b("shift","","Shift now","",left("x-shifting")<1,true)); }
+  if(n==="Sacrifice") return box("Pay with your blood","","",b("strike","","Sacrificial Strike","you take 5, target +10")+b("skill","","Sacrificial Skill","you take 10, roll +5"),2);
+  if(n==="Undying") return box("Undying",stat("Uses left",String(left("x-undying")))+hdS,rin("und","Hit Point Dice (d"+hd+")","7 3 12 5 9")+(bal?rin("undb","Balm (d8)","5 2 8 1 6"):""),b("undying","","Use Undying","1 HP, then heal "+Math.min(Math.floor(martyrLv()/2),hl)+" dice",left("x-undying")<1,true));
+  if(n==="Divine Respite"){ const L=martyrLv(), g=L>=17?10:L>=13?6:3; return box("Divine Respite",stat("Uses left",String(left("x-divine-respite")))+hdS,"",b("respite","","Regain "+g+" Hit Point Dice","after a Short Rest",left("x-divine-respite")<1,true)); }
+  if(n==="Reprisal"&&martyrLv()){ const L=S.lastDmg, lv=martyrLv(), dn=lv>=17?4:lv>=11?3:lv>=5?2:1; return box("Reprisal",stat("Last damage",L&&L.a?String(L.a):"\u2014",L&&L.a?"you get "+Math.floor(L.a/2)+" back":"take damage first")+stat("Attacker takes",dn+"d6"),rin("rep","Reprisal ("+dn+"d6)","3 5"),b("reprisal","","Halve the last damage","",!(L&&L.a),true)); }
   return ""; }
 /* the dice each action needs, so they can be typed or rolled before it runs */
 function need(a,v){ const n=+v||1, lv=martyrLv(), mx=Math.floor(lv/2), hl=left(hdKey()), hd=hdDie(), bal=hasFeat("Balm");
