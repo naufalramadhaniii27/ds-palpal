@@ -81,6 +81,7 @@ bindM(["fetch", "matchMedia", "scrollTo"]);
 
 bindG(["__bldSlotRecoveryInfo", "__bldSlotRecoveryCapture", "__bldSlotRecoveryTokenCurrent", "__bldSlotRecoveryAcceptReceipt", "__bldSlotRecoveryAdopt", "__bldSlotRecoveryReview", "__bldSlotRecoverySplit", "__bldSlotRecoveryResync", "__bldSlotRecoveryRestore", "__bldSlotRecoveryRemove", "__bldSlotRecoveryActivate", "__bldSlotRecoveryReset", "__bldSlotRecoveryInventoryOwner", "__bldSlotRecoveryRestPlan", "__slotRecoveryActionAllowed", "__slotRecoverySave"]);
 
+bindG(["__bldSwimClimbGlovesInfo", "__bldSwimClimbGlovesCheck", "__bldSwimClimbGlovesCurrent"]);
 bindG(["__bldMagicRopesInfo", "__bldMagicRopesCapture", "__bldMagicRopesTokenCurrent", "__bldMagicRopesCommand", "__bldMagicRopesAcceptReceipt", "__bldMagicRopesInventoryOwner", "__magicRopesSave", "__bldMagicRopesClimbInfo", "__bldMagicRopesClimbCurrent"]);
 bindG(["__bldBirdTokenInfo", "__bldBirdTokenCapture", "__bldBirdTokenTokenCurrent", "__bldBirdTokenCommand", "__bldBirdTokenAcceptReceipt", "__bldBirdTokenInventoryOwner", "__birdTokenSave"]);
 bindG(["__bldDefenderAttackInfo", "__bldDefenderAttackCurrent", "__bldDefenderCommitAttack", "__bldDefenderInfo", "__bldDefenderCapture", "__bldDefenderTokenCurrent", "__bldDefenderCommand", "__bldDefenderAcceptReceipt", "__bldDefenderInventoryOwner", "__defenderSave", "__defenderAttackSpec"]);

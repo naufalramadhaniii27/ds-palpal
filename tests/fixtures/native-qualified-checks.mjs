@@ -1,0 +1,11 @@
+import fs from 'node:fs';import vm from 'node:vm';import {swimClimbGlovesCheck} from '../../src/data/lib/swim-climb-gloves.js';
+const read=p=>fs.readFileSync(new URL('../../src/'+p,import.meta.url),'utf8');
+export function installNativeChecks(x,edition='2024',skills=[{n:'Acrobatics',ab:'DEX',p:1,misc:1}]){
+ Object.assign(x.f.C,{rs:edition,level:5,abilities:Object.fromEntries(['STR','DEX','CON','INT','WIS','CHA'].map(ab=>[ab,{base:ab==='DEX'?16:14,bonus:[]}])),skills:structuredClone(skills)});x.f.c.S.exh=2;
+ const n={swimClimbGlovesCheck,S:x.f.c.S,D:{},B:{},ABK:['STR','DEX','CON','INT','WIS','CHA'],ABN:{STR:'Strength',DEX:'Dexterity',CON:'Constitution',INT:'Intelligence',WIS:'Wisdom',CHA:'Charisma'},esc:String,lateSet(){},lateGet:()=>n.CU0,CU0:{},x14:()=>x.f.C.rs==='2014',PADV:[],INCAP:['Incapacitated','Paralyzed','Petrified','Stunned','Unconscious'],hasFeat:()=>false,modeOn:()=>false,rageDmg:()=>2,sitFx(){}};Object.defineProperty(n,'C',{get:()=>x.f.C});vm.createContext(n);
+ const helpers=read('app/05-logic-helpers.js');for(const name of ['sg','num','clamp','mod'])vm.runInContext(helpers.split('\n').find(line=>line.startsWith('export function '+name+'(')).replace('export ',''),n);
+ const app=read('app/06-logic-derivation.js');for(const name of ['part','nativeAbilityCheckBonus'])vm.runInContext(app.split('\n').find(line=>line.startsWith('export function '+name+'(')).replace('export ',''),n);vm.runInContext(app.slice(app.indexOf('function deriveBase('),app.indexOf('function deriveArmorEffects(')).replace(/^export /gm,''),n);
+ const custom=read('app/26-ui-customize.js');vm.runInContext(custom.slice(custom.indexOf('export function cuK('),custom.indexOf('function cuSpeed(')).replace(/^export /gm,''),n);
+ const conditions=read('app/34b-ui-combat-effects-modes.js');vm.runInContext(conditions.slice(conditions.indexOf('function cfx('),conditions.indexOf('/* one tag per kind')),n);vm.runInContext(conditions.split('\n').find(line=>line.startsWith('function cfSkill(')),n);
+ const derive=()=>{vm.runInContext('var base=deriveBase();deriveSaves(base.abPart,base.pb,base.exhN,base.exP);deriveSkills(base.abPart,base.pb,base.exhN,base.exP);D.cf=cfx();',n);x.c.D=n.D};x.c.derive=derive;x.c.nativeAbilityCheckBonus=n.nativeAbilityCheckBonus;x.c.nativeQualifiedSkillCheckBonus=n.nativeQualifiedSkillCheckBonus;x.c.lateGet=name=>n[name];derive();return n;
+}

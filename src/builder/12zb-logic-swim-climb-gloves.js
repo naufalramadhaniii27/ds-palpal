@@ -1,0 +1,2 @@
+import {registerSheetGroup} from './12a-logic-sheet-registry.js';
+registerSheetGroup({id:'swim-climb-gloves-source',group:'swim-climb-gloves',phase:'post',order:105,reads:['i.ATT','q.swimClimbGloves','q.swimClimbGlovesOwnFuture'],writes:['C.swimClimbGloves'],run:function(ctx){const capability=ctx.q.swimClimbGloves(ctx.i.ATT);if(capability!==undefined)ctx.C.swimClimbGloves=capability;else if(ctx.q.swimClimbGlovesOwnFuture?.())ctx.C.swimClimbGloves=undefined;return ctx.patch()}});

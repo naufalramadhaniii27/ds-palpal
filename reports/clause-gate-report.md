@@ -8,19 +8,19 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9129 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9130 |
 | Info (tag terdokumentasi) | 27239 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1481, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 975, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 228, STD:ASI 225, NUMONLY:ZERO 172, ROLL:LAST_CHARGE 142, OBJECT:STATS 109, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5744 |
-| Uncovered dengan angka | 3358 |
+| Uncovered | 5743 |
+| Uncovered dengan angka | 3357 |
 | Uncovered dengan kelas kata kunci mekanik | 5364 |
-| Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 380 |
-| Angka yang tidak dijelaskan record mana pun | 3151 kalimat |
+| Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 379 |
+| Angka yang tidak dijelaskan record mana pun | 3150 kalimat |
 | Kelas tanpa atom (record tidak ada untuk kelas itu) | 4900 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 262 |
-| Waktu | muat data 15 s, analisis 15 s |
+| Waktu | muat data 16 s, analisis 15 s |
 
-Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 178 ditangkap (59.7%). Hapus semua atom kelas yang dibutuhkan: 181 ditangkap (60.7%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 172 ditangkap (57.7%). Hapus semua atom kelas yang dibutuhkan: 178 ditangkap (59.7%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 289 ditangkap (96.3%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -42,8 +42,8 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | GX | 1940 |
 | wxs | 849 |
 | LU_X | 652 |
+| CODE | 468 |
 | AUTO | 467 |
-| CODE | 467 |
 | species | 440 |
 | ITEM_SPELLS | 370 |
 | feat | 327 |
@@ -74,7 +74,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | RES | 1294 | 388 | 30.0% |
 | IMM | 953 | 346 | 36.3% |
 | SLOT | 1330 | 341 | 25.6% |
-| NUM | 8063 | 337 | 4.2% |
+| NUM | 8063 | 336 | 4.2% |
 | DC | 2887 | 248 | 8.6% |
 | DIS | 1073 | 247 | 23.0% |
 | ATK | 1013 | 220 | 21.7% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 4968 | 11637 | 0 | 2902 |
+| item | 19507 | 4969 | 11637 | 0 | 2901 |
 | species | 1320 | 726 | 365 | 0 | 229 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2729 | 6309 | 1545 | 14.6% |
+| dmg | 10583 | 2730 | 6309 | 1544 | 14.6% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -197,7 +197,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | ADV | 446 | 151 |
 | PROF | 395 | 134 |
 | SPEED | 395 | 309 |
-| NUM | 337 | 337 |
+| NUM | 336 | 336 |
 | SLOT | 323 | 106 |
 | RES | 314 | 128 |
 | CHOICE | 267 | 75 |
@@ -476,7 +476,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Wizard/Enchanter|Hypnotic Presence#4` While Charmed this way, the target is Incapacitated and has a Speed of 0. | no record for SPEED; number 0 unexplained
 - `sub|Wizard/Transmuter|Transmuter's Stone#10` Speed increases by 10 feet. | no record for SPEED; number 10 unexplained
 
-### NUM (337 uncovered)
+### NUM (336 uncovered)
 
 - `class|Captain|Cohort~3#16` The stat blocks already include a +2 bonus, so you only adjust skill and save proficiencies from level 5. | number 2 no record explains
 - `class|Healer|Combat Supporter (+2)#1` Your Combat Supporter bonus is +2. | number 2 no record explains
@@ -487,32 +487,32 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `feat|Poisoner|Poisoner#2` Pick Dexterity or Intelligence and raise it by 1 (maximum 20). | number 1,20 no record explains
 - `feat|Resilient|Resilient#3` That score increases by 1 (maximum 20). | number 20 no record explains
 - `feat|Ritual Caster|Ritual Caster#2` Pick Intelligence, Wisdom, or Charisma and raise it by 1 (maximum 20). | number 20 no record explains
-- `item|bgg|Prehistoric Figurine of Wondrous Power, Jasper Tyrannosaurus Rex#16` On a 1, you lose control of the figurine, and it becomes hostile to you and your companions until it is reduced to 0 hit points, at which point it reverts to figurine form. | number 0 no record explains
-- `item|coa|Accounting and Valuation of All Things#7` - 1 major detrimental property | number 1 no record explains
-- `item|coa|Ruby Rod of Asmodeus#10` - 1 minor beneficial property | number 1 no record explains
-- `item|crcotn|Ruidium Shield#14` If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and a ruidium shield becomes a +2 shield. | number 2 no record explains
-- `item|dmg|Blade of Avernus#9` - 2 minor beneficial properties | number 2 no record explains
-- `item|dmg|Crown of Lies#13` - 1 major beneficial property | number 1 no record explains
+- `item|cm|Orcus Figurine#11` It attacks all non-undead creatures it encounters, and it disappears after 1 hour or when reduced to 0 hit points. | number 1,0 no record explains
+- `item|coa|Accounting and Valuation of All Things#21` You gain a passive +5 to Charisma (Persuasion) checks made to barter. | number 5 no record explains
+- `item|coa|Ruby Rod of Asmodeus#11` - 1 major beneficial property | number 1 no record explains
+- `item|dmg|Adze of Annam#4` - 2 minor beneficial properties | number 2 no record explains
+- `item|dmg|Aqua Fortis#5` On a weapon it gives a permanent, cumulative -1 to damage (at -5 it is destroyed). | number 1,5 no record explains
+- `item|dmg|Bag of Sundrops#1` A bag holding 1d6 + 4 glowing golden orbs. | number 1d6,4 no record explains
+- `item|dmg|Blade of Avernus#10` - 1 major beneficial property | number 1 no record explains
 - `item|dmg|Crown of Lies#14` - 1 minor detrimental property | number 1 no record explains
-- `item|dmg|Faerie Crown#2` When you first don it after attuning, 1d6 + 3 butterflies flutter around it. | number 1d6,3 no record explains
+- `item|dmg|Daoud's Wondrous Lanthorn#9` - 2 minor beneficial properties | number 2 no record explains
+- `item|dmg|Festerwood Masher#4` A Large or smaller target takes a cumulative -1 penalty to AC for 1 minute. | number 1,1 no record explains
 - `item|dmg|Figurine of Wondrous Power#29` Challenge Rating 0 (0 experience points, Proficiency Bonus +2). | number 0,2,pb no record explains
-- `item|dmg|Gloves of Swimming and Climbing#2` You also gain a +5 bonus to any Strength (Athletics) check you make to climb or to swim. | number 5 no record explains
-- `item|dmg|Keoghtom's Ointment#1` This glass jar is 3 inches across and holds 1d4 + 1 doses of a thick mixture with a faint smell of aloe. | number 3 no record explains
-- `item|dmg|Keystone of Creation#4` - 1 minor beneficial property | number 1 no record explains
-- `item|dmg|Kwark's Wondrous Kernels, Tossable#12` Each creature within 10 ft gains 2d4 + 2 Temporary Hit Points. | number 2d4,10,2 no record explains
-- `item|dmg|Mythcarver (Exalted)#7` The bonus becomes +2. | number 2 no record explains
-- `item|dmg|Overshield#2` The bonus is +2 while you have any Temporary HP, and the Shield glows blue. | number 2 no record explains
-- `item|dmg|Scourge of Shadow#13` - 1 major detrimental property | number 1 no record explains
-- `item|dmg|Terraforming Engine#4` It does nothing on a Tier 1 or Tier X world, and two engines cannot lower a planet's Tier by more than 1 (extra engines only add backup). | number 1,2 no record explains
-- `item|dmg|Weapon of Spite#3` Against a creature that has damaged you since the end of your last turn, the bonus is +2. | number 2 no record explains
-- `item|egw|Vox Seeker#5` A vox seeker reduced to 0 hit points is destroyed. | number 0 no record explains
-- `item|misc14|Crown of Lies#14` - 1 minor detrimental property | number 1 no record explains
-- `item|tdm14|Terraforming Engine#3` Set on a Tier 4 or higher planet and left running for a year to process its water, air and soil, it lowers the planet's Tier by 1. | number 4,1 no record explains
-- `item|tee24|Grieving Tree#4` When a prisoner would be left at 0 Hit Points alive, it heals 1d4 + 1 from the pool. | number 1d4,1 no record explains
-- `item|tsgs|Bag of Sundrops#1` A bag holding 1d6 + 4 glowing golden orbs. | number 1d6,4 no record explains
+- `item|dmg|Hammer of Thunderbolts#13` Might of Giants: the Strength score that your Belt of Giant Strength or Gauntlets of Ogre Power gives you rises by 4, up to a maximum of 30. | number 4 no record explains
+- `item|dmg|Keystone of Creation#5` - 1 beneficial manifestation | number 1 no record explains
+- `item|dmg|Mace of Smiting#2` When you attack a Construct with it, that bonus is +3 instead. | number 3 no record explains
+- `item|dmg|Pendant of Thieves' Sight#2` You also gain a +5 bonus to Intelligence checks to understand a written or spoken cipher. | number 5 no record explains
+- `item|dmg|Scalehide Cream#4` A jar holds 1d6 + 1 doses. | number 1d6,1 no record explains
+- `item|dmg|Whisper (Exalted)#7` The bonus becomes +2. | number 2 no record explains
+- `item|dsotdq|Flying Citadel Helm#3` It is destroyed if reduced to 0 hit points. | number 0 no record explains
+- `item|misc14|Daoud's Wondrous Lanthorn#9` - 2 minor beneficial properties | number 2 no record explains
+- `item|skt|Ingot of the Skold Rune#8` Until the end of your next turn, any damage the target takes is reduced to 1, but you take half the damage prevented in this way. | number half no record explains
+- `item|tdm14|Terraforming Engine#4` It does nothing on a Tier 1 or Tier X world, and two engines cannot lower a planet's Tier by more than 1 (extra engines only add backup). | number 1,2 no record explains
+- `item|tghg|Faerie Crown#2` When you first don it after attuning, 1d6 + 3 butterflies flutter around it. | number 1d6,3 no record explains
 - `item|tsgs|Dragon's Call#2` You also get +1 to Intelligence, Wisdom and Charisma checks about dragon lore. | number 1 no record explains
-- `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#8` 6 Red: 1d8 + 4 Temporary Hit Points. | number 1d8,6,4 no record explains
-- `item|tsgs|Tote of Tricky Treat Sugarbombs#1` A canvas bag holding 5d8 + 10 clove and pumpkin candies, with an illusory face on its pumpkin at night. | number 5d8,10 no record explains
+- `item|tsgs|Firecracker Crystals#1` A bag of 1d4 + 8 festival crystals. | number 1d4,8 no record explains
+- `item|tsgs|Kraken's Whip#3` On a failure it is Grappled and takes 1d4 + 2 Bludgeoning, and again at the end of each of its turns. | number 1d4,2 no record explains
+- `item|tsgs|Weapon of Spite#3` Against a creature that has damaged you since the end of your last turn, the bonus is +2. | number 2 no record explains
 - `sub|Druid/Circle of Dreams|Hearth of Moonlight and Shadow#2` You and your allies inside get +5 on Dexterity (Stealth) and Wisdom (Perception) checks, and flames inside cannot be seen from outside. | number 5 no record explains
 - `sub|Druid/Circle of Mutation (2014)|Mutate Shape#7` Multiattack: 2 + 2 x the form's CR points, to make two natural weapon attacks with an action. | number 2 no record explains
 - `sub|Druid/Circle of the Shepherd|Faithful Summons#2` It summons four beasts of CR 2 or lower within 20 feet. | number 20,4 no record explains
@@ -717,38 +717,38 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `feat|Shadowsteel Master|Shadowsteel Master#7` Also, once on each of your turns when you hit with a weapon attack using your Focus, you can deal an extra 2d8 Necrotic damage to the target. | angka: 2d8
 - `feat|Specter Transformation: Stage 2|Specter Transformation: Stage 2#5` Whenever you regain Hit Points, you regain only half as many, rounded down. | angka: half
 
-### item (1910)
+### item (1909)
 
-- `item|tsgs|Forgemaster's Might#3` As a Bonus Action, speak "light the forge" to wreathe the head in flames: Bright Light in 20 ft and Dim Light for 20 ft more, an extra 1d8 Fire damage on a hit, and it ignores Fire Resistance. | angka: 1d8,20
-- `item|dmg|Charm of the Black Rose#1` Expend this Charm for one of two effects. | angka: 2
-- `item|dmg|Stone of Creation#8` - 2 minor beneficial properties | angka: 2
-- `item|tee24|War Staff#3` Beyond twice the normal range, your attack rolls have Disadvantage and targets have Advantage on saves. | angka: double
-- `item|dmg|Deck of Several Things#87` Increase one of your ability scores by 1 for the duration of the adventure. | angka: 1
-- `item|dmg|Thaumatonic Rifle, +3#1` A standard carbine (2d6 Radiant, range 80/320, Blaster, Automatic, Two-Handed) with a +3 bonus to attack and damage rolls. | angka: 2d6,80,320
-- `item|dmg|Vithrak, Gaze of the Deadman#2` Magic action, 1 charge: learn the Resistances, Vulnerabilities and Immunities of a creature you see within 120 feet. | angka: 120,1
-- `item|tvss14|Coil of Strength Storing#5` Stored charges vanish 1 minute after being stored. | angka: 1
-- `item|wbtw|Iggwilv's Cauldron#39` At the same time, all Humanoid creatures within a certain radius of the cauldron fall unconscious for 1 hour, except those that are attuned to the cauldron or immune to being charmed. | angka: 1
-- `item|tdm14|Un's Codex#3` Spending 10 hours of experiment unlocks one trait of your choice. | angka: 10
-- `item|dmg|Wand of Wonder#12` On 01 to 20, you cast a spell from the chosen point. | angka: 01,20
-- `item|tvss14|Ankh of Anubis#2` While you have 10 hit points or fewer, you have Advantage on attack rolls, ability checks and saving throws. | angka: 10
-- `item|tkdm|Bubbling Retort#3` It spews multicolored bubbles in a 20-foot radius for 1d4 + 1 rounds. | angka: 1d4,20,1
-- `item|dmg|Shroud of Ending#6` While attuned, you deal 1d6 necrotic damage to any plant you touch that is not a creature, plant and beast creatures within 30 ft become hostile to you, and you stop aging and need no food or sleep. | angka: 1d6,30
-- `item|tsgs|Greaves of Dendallen#3` Once per turn you can jump 30 ft for 10 ft of movement. | angka: 30,10
-- `item|dmg|Chameleon Concoction#1` Your skin matches the color and texture of your surroundings for 1 hour, giving you Advantage on Dexterity (Stealth) checks to avoid being seen. | angka: 1
-- `item|dmg|Battle Rod#3` For example, Fire Bolt reaches 240 ft but attacks past 120 ft have Disadvantage. | angka: 240,120
-- `item|dmg|Orcsplitter#11` It can see and hear out to 120 feet and has darkvision. | angka: 120
-- `item|dmg|Crook of Rao#29` The gate then, once per round on initiative count 20, audibly speaks a fiend's name in Iggwilv's voice, doing so until the gate calls on every fiend ever banished by the Crook of Rao. | angka: 20
-- `item|dmg|Titan Frame#2` Worn, you gain +2 AC, Strength 23 if lower, Large size if smaller, and a base walking speed of 30 ft if lower. | angka: 30,23
+- `item|tsgs|Memento of the Shapeless#12` If you try to grapple with it, the save DC is 15. | angka: 15
+- `item|dmg|+1 Arcane Grimoire#3` In addition, when you use your Arcane Recovery feature, you can increase the number of spell slot levels you regain by 1. | angka: 1
+- `item|dmg|Stone of Creation#9` - 1 major beneficial property | angka: 1
+- `item|tee24|War Staff#4` For example, Fire Bolt reaches 480 ft but attacks past 240 ft have Disadvantage. | angka: 480,240
+- `item|dmg|Deck of Several Things#97` You gain proficiency in the Persuasion skill and you double your proficiency bonus on checks made with that skill for the duration of the adventure. | angka: double,pb
+- `item|dmg|Potion of Quantum Effect#2` You gain a flying speed of 5 ft and can move through creatures and objects as difficult terrain. | angka: 5
+- `item|dmg|Potion of Rejuvenation#1` Drink: Regain 3d4 + 3 Hit Points and one expended level 1 spell slot. | angka: 3d4,3
+- `item|tvss14|Cure-All#1` Holds 1d4 + 1 doses of strong medicine, with a red swirl shaped like a snake on a staff. | angka: 1d4,1
+- `item|wbtw|Iggwilv's Cauldron#43` - Tying a dead frog or toad to the end of an ordinary branch and dipping it in the water-filled cauldron transforms the branch into a wand of polymorph with 3 charges. | angka: 3
+- `item|tdm14|Arcane Warhead#8` The center becomes a permanent Dead Magic Zone 5d10 + 5 ft wide. | angka: 5d10,5
+- `item|dmg|Wand of Wonder#18` You take 1d6 Psychic damage instead. | angka: 1d6
+- `item|tvss14|Aqua Fortis#4` On armor or a shield it gives a permanent, cumulative -1 to AC (armor at AC 10 or a shield at +0 is destroyed). | angka: 1,10,0
+- `item|tkdm|Nithing Pole#4` When the target comes within 60 ft, the pole casts Bestow Curse on them at a range of 60 ft, with a Wisdom save DC of 15. | angka: 60,15
+- `item|dmg|Talon Tincture#2` Apply it to your talons, claws, or other limbs and you have Advantage on Dexterity ability checks and saving throws for 24 hours. | angka: 24
+- `item|tsgs|Greaves of Dendallen#9` Once removed, your Speed is 0 and rises by 5 ft every 24 hours until normal. | angka: 5,24,0
+- `item|dmg|Coil of Strength Storing#5` Stored charges vanish 1 minute after being stored. | angka: 1
+- `item|dmg|Quiver of Energy#2` The first time each turn you hit with a weapon attack using ammunition from this quiver, it deals an extra 1d6 damage of that type. | angka: 1d6
+- `item|dmg|Tinderstrike#2` Its handle is always warm to the touch, and the blade smolders for 1d4 minutes after it is used to deal damage. | angka: 1d4
+- `item|dmg|Devotee's Censer#5` At the start of each of your turns, you and any other creatures in the incense each regain 1d4 hit points. | angka: 1d4
+- `item|dmg|Hunter's Mutagen#2` When you drink it, you are immune to Poison damage and disease for 1 hour. | angka: 1
 - `item|dmg|Figurine of Wondrous Power#25` Speed 30 feet, Fly 60 feet. | angka: 30,60
-- `item|dmg|Cabal's Ruin (Exalted)#3` 4 charges, regains 1d4 at dawn. | angka: 1d4
-- `item|egw|Wreath of the Prism (Exalted)#21` - The save DC of the wreath's spell increases to 17. | angka: 17
-- `item|dmg|Glowrune Pigment#1` This set of 1d4 + 2 small paint pots contains pigments mixed from crushed luminescent gemstones. | angka: 1d4,2
-- `item|dmg|Deathwalker's Ward (Exalted)#6` The AC bonus becomes +2. | angka: 2
-- `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#6` 4 Gray: Advantage on saves against Charmed and Frightened. | angka: 4
-- `item|dmg|Mudslick Tower#16` The roof, the door, and the walls each have 100 hit points, immunity to damage from nonmagical weapons excluding siege weapons, and resistance to all other damage. | angka: 100
-- `item|egw|Grovelthrash (Dormant)#14` When you hit with an attack using this warhammer, you can deal an extra 2d6 bludgeoning damage to the target. | angka: 2d6
-- `item|tsdm|Un's Codex#11` Fail: 4d6 Force damage and it is pushed to the nearest free space. | angka: 4d6
-- `item|tdcsr|Skysail#2` While the wings are open and you ride it, you glide with a flying speed of 60 feet, but you must descend at least 10 feet by the end of each of your turns and cannot gain height. | angka: 60
+- `item|dmg|Cabal's Ruin (Exalted)#9` 6 charges, regains 1d4 + 2 at dawn. | angka: 1d4,6,2
+- `item|nf|Arcane Battery#3` If that magic item normally regains expended charges daily, it immediately regains 1d4 + 1 expended charges, and the battery loses its magic. | angka: 1d4
+- `item|dmg|Glowrune Pigment#10` The painted creature gains darkvision to a range of 30 feet. | angka: 30
+- `item|dmg|Deathwalker's Ward (Exalted)#12` You gain a flying speed of 60 feet for 1 hour. | angka: 60
+- `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#7` 5 Gold: Climb Speed equal to your Speed. | angka: 5
+- `item|dmg|Mudslick Tower#19` Each casting of wish causes the roof, the door, or one wall to regain 50 hit points. | angka: 50
+- `item|egw|Grovelthrash (Dormant)#15` If you do, you take 1d6 psychic damage. | angka: 1d6
+- `item|tkdm|Pearl Elixir#8` The vessel gains a damage threshold of 20 against all environmental effects, and whoever pilots it has Advantage on ability checks tied to piloting. | angka: 20
+- `item|tdcsr|Spire of Conflux (Awakened)#4` 8 charges, regains 1d4 + 2 at dawn. | angka: 1d4,8
 
 ### species (124)
 
@@ -818,24 +818,20 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|dmg|Horn of Valhalla (silver)#13` This horn is Rare and calls 2 spirits. -> info:NUMONLY:TEXT
-- class `item|dmg|Horn of Valhalla (silver)#13` This horn is Rare and calls 2 spirits. -> info:NUMONLY:TEXT
+- record `item|tsdm|Thermalsight Eyes#2` Heat-sensing augments in your eyes give you Thermalsight with a range of 30 ft. -> info:NUMONLY:GEOMETRY
+- class `item|tsdm|Thermalsight Eyes#2` Heat-sensing augments in your eyes give you Thermalsight with a range of 30 ft. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Horn of Valhalla (silver)#7` Once you have blown the horn, it stays inert until 7 days pass. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Horn of Valhalla (silver)#7` Once you have blown the horn, it stays inert until 7 days pass. -> info:NUMONLY:GEOMETRY
 - record `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> covered
 - class `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> info:REST:NONUM
 - record `sub|Witch/Purple Magic|Waking Nightmare#5` Frenzied ends after 1 minute or when the spell ends. -> info:NUMONLY:GEOMETRY
 - class `sub|Witch/Purple Magic|Waking Nightmare#5` Frenzied ends after 1 minute or when the spell ends. -> info:NUMONLY:GEOMETRY
 - record `feat|Boon of the Furious Storm|Boon of the Furious Storm#4` You have Resistance to Lightning and Thunder damage. -> covered
-- record `item|dmg|Spell Gem (Topaz)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Spell Gem (Topaz)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Ranseur of Torture#6` When you hit a good aligned creature with it, that creature takes an extra 1d10 necrotic damage. -> info:ACTIVE:TRIGGER
-- record `item|mot|Kruphix's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
-- class `item|mot|Kruphix's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
-- record `item|tftyp|Eagle Whistle#3` A use of the whistle also ends if you land. -> info:REST:NONUM
-- class `item|tftyp|Eagle Whistle#3` A use of the whistle also ends if you land. -> info:REST:NONUM
+- record `item|mot|Kruphix's Devotee#3` You also know the Mage Hand cantrip. -> covered
+- record `item|tftyp|Bracelet of Rock Magic#2` Once the spell has been cast three times, the bracelet can no longer cast it. -> info:NUMONLY:TEXT
+- class `item|tftyp|Bracelet of Rock Magic#2` Once the spell has been cast three times, the bracelet can no longer cast it. -> info:NUMONLY:TEXT
 - record `sub|Captain/Holy Icon|Raise Cohort#3` After you use this, you cannot use it again until you finish a Long Rest. -> covered
 - class `sub|Captain/Holy Icon|Raise Cohort#3` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `item|tsgs|Seafarer's Jacket#3` Once per dawn you can cast Fog Cloud from it at level 2. -> info:REST:NONUM
-- class `item|tsgs|Seafarer's Jacket#3` Once per dawn you can cast Fog Cloud from it at level 2. -> info:REST:NONUM
 - record `feat|Spellblade (2014)|Spellblade (2014)#4` You can cast Shield once with no slot, and a Long Rest restores that. -> info:REST:NONUM
 - class `feat|Spellblade (2014)|Spellblade (2014)#4` You can cast Shield once with no slot, and a Long Rest restores that. -> info:REST:NONUM
 - record `sub|Summoner/Bond of the Symbiote|Empowered Wrap#7` A Long Rest restores all. -> info:REST:NONUM
@@ -848,3 +844,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - class `sub|Dancer/Cheerleader|Athletic Dexterity#2` After you use this, you cannot use it again until you finish a Short or Long Rest. -> info:REST:NONUM
 - record `feat|Iron Hero (2014)|Iron Hero (2014)#7` Short or Long Rest to use again. -> info:REST:NONUM
 - class `feat|Iron Hero (2014)|Iron Hero (2014)#7` Short or Long Rest to use again. -> info:REST:NONUM
+- record `species|Spring Mandrake|Root Magic#1` You know the Shillelagh cantrip and can target yourself, treating one limb as a club in place of an unarmed strike. -> covered
+- record `item|dmg|Silken Spite (Dormant)#17` The poison remains for 1 minute or until an attack using this weapon hits a creature. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Silken Spite (Dormant)#17` The poison remains for 1 minute or until an attack using this weapon hits a creature. -> info:NUMONLY:GEOMETRY
+- record `sub|Sorcerer/Wretched Bloodline Sorcery|Wretched Curse#8` You see normally in Dim Light and Darkness, magical or not, within 120 ft. Plaguebearer. -> info:NUMONLY:GEOMETRY

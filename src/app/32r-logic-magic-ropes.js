@@ -3,7 +3,7 @@ import {C,S,FROZEN} from './04-logic-storage.js';
 import {env} from './00-env.js';
 import {sheetRootActive} from './05-logic-helpers.js';
 import {undoMark} from './32-logic-play-undo-actions.js';
-import {D,derive,nativeAbilityCheckBonus} from './06-logic-derivation.js';
+import {D,derive,nativeAbilityCheckBonus,nativeQualifiedSkillCheckBonus} from './06-logic-derivation.js';
 import {lateGet} from './00a-reg-late-ports.js';
 import {qualifiedSkillMode} from './lib/qualified-skill-roll.js';
 const fail=reason=>({ok:false,reason}),sessions=new WeakMap(),receipts=new WeakMap(),epochs=new WeakMap();
@@ -25,7 +25,7 @@ function climbContext(){const character={...C},state={...S};delete character._ap
 function nativeClimbCheck(options){
  if(!options||options.actualUsingRope!==true||!['skill','ability'].includes(options.kind)||!Number.isFinite(options.modifier))return fail('actual-climbing-check-required');
  let row,total,label;
- if(options.kind==='skill'){row=C.skills?.[options.index];total=D.skill?.[options.index];label=row?row.ab+' ('+row.n+')':''}else{row={ab:options.ability,n:''};total=nativeAbilityCheckBonus(options.ability);label=options.ability+' ability check'}
+ if(options.kind==='skill'){row=C.skills?.[options.index];total=nativeQualifiedSkillCheckBonus(options.index,'climbing');label=row?row.ab+' ('+row.n+')':''}else{row={ab:options.ability,n:''};total=nativeAbilityCheckBonus(options.ability);label=options.ability+' ability check'}
  if(!row||!Number.isFinite(total))return fail('native-climbing-bonus-unavailable');const flags=lateGet('cfSkill');if(typeof flags!=='function')return fail('native-climbing-flags-unavailable');let native;try{native=flags(row)}catch(error){return fail('native-climbing-flags-unavailable')}
  const adjusted=climbFlags(native,row,options);if(!adjusted.ok)return adjusted;const hint=qualifiedSkillMode(adjusted.flags,false,'Rope of Climbing');if(!hint.ok)return hint;
  return {ok:true,row,total:total+options.modifier,label,hint:{adv:hint.adv,dis:hint.dis,fail:[],mode:hint.mode}};

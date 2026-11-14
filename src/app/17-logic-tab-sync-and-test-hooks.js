@@ -1,7 +1,7 @@
 import {bindLive,edmSet,lateGet,renderAll,syncPortrait,applyLook,__set_actF,renderActions,campName,renderNotes,refreshEntry,rEnsure,rGet,rSave,wnBanner} from "./00a-reg-late-ports.js";import {PUBLIC_BUILD} from "./01-logic-boot-flags-builder-loader.js";
 import {APP_VER,C,CKEY,DEF,FROZEN,KEY,S,SPEND,S_BASE,S_RAW,__set_C,__set_FROZEN,__set_S,__set_S_BASE,__set_S_RAW,__set_cSaveT,__set_saveT,cSaveT,loadC,loadS,lsGet,mergeS,newerApp,save,saveC,saveT} from "./04-logic-storage.js";
 import {$,ask,clamp,num,toast} from "./05-logic-helpers.js";
-import {D,__set_D,derive} from "./06-logic-derivation.js";
+import {D,__set_D,derive,nativeQualifiedSkillCheckBonus} from "./06-logic-derivation.js";
 
 
 
@@ -157,7 +157,7 @@ env.__birdTokenSave=function(state){if(FROZEN||state!==S)return false;save();ret
 env.__magicRopesSave=function(state){if(FROZEN||state!==S)return false;save();return true};
 env.__sheetState=function(){ return {C:C, state:S, readOnly:!!FROZEN, temporaryCantrips:S.temporaryCantrips, lang:S.lang, camp:campName(), fxT:S.fxT||{}, cust:S.cust||{}, attackTarget:S.attackTarget, exh:S.exh||0, exhLk:S.exhLk||null}; };/* fx engine v6: exh and exhLk for the Exhaustion lock tests */
 env.__D=function(){ return D; };/* T11 N6: derive a sheet object without saving. The open character and its state come back afterwards */
-env.__deriveFor=function(c,state){ let C0=C, S0=S, D0=D, out=null; try{ __set_C(structuredClone(c)); __set_S(structuredClone(state===undefined?DEF:state)); derive(); out=structuredClone({level:D.level,pb:D.pb,ac:D.ac,hpmax:D.hpmax,init:D.init,dc:D.dc,speed:D.speed,score:D.score,mod:D.mod,save:D.save,skill:D.skill,atk:D.atk,res:D.res,carry:D.carry,exh:D.exh,exhMin:D.exhMin}); }catch(e){ out={err:String(e&&e.stack||e)}; } __set_C(C0); __set_S(S0); __set_D(D0); try{ derive(); }catch(e){} return out; };/* v35 p05 */
+env.__deriveFor=function(c,state,check){ let C0=C, S0=S, D0=D, out=null; try{ __set_C(structuredClone(c)); __set_S(structuredClone(state===undefined?DEF:state)); derive(); out=structuredClone({level:D.level,pb:D.pb,ac:D.ac,hpmax:D.hpmax,init:D.init,dc:D.dc,speed:D.speed,score:D.score,mod:D.mod,save:D.save,skill:D.skill,atk:D.atk,res:D.res,carry:D.carry,exh:D.exh,exhMin:D.exhMin,...(check===undefined?{}:{qualifiedSkill:nativeQualifiedSkillCheckBonus(check?.index,check?.purpose)})}); }catch(e){ out={err:String(e&&e.stack||e)}; } __set_C(C0); __set_S(S0); __set_D(D0); try{ derive(); }catch(e){} return out; };/* v35 p05 */
 /* v32 RL51 test hook: the Actions tab of another C (from __bldSheetFor) without saving it: entries per category and attack rows. The sheet is restored */
 env.__actProbe=function(C2){ let C0=C, S0=JSON.stringify(S), F0=lateGet("actF"), out=null; try{ __set_C(C2); __set_S(JSON.parse(S0)); __set_actF("all"); derive(); renderActions();
   let b=document.getElementById("actBody"), cat="", res={action:[],onhit:[],bonus:[],reaction:[],other:[],rows:[]};

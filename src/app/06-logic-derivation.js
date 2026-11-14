@@ -1,4 +1,5 @@
 import {attackDamagePackets,combinedDamage,rolledRiders} from "./lib/damage-packets.js";
+import {swimClimbGlovesCheck} from '../data/lib/swim-climb-gloves.js';
 import {defenderAttackDelta,defenderDamageDelta,defenderArmorClassBonus} from "../data/lib/defender-effects.js";
 import {ammoBonus,atkKind,bindLive,carryOf,cfx,cuApply,cuK,cuNum,cuSpeed,lateGet,lateSet,scAdj,setOf,sitNum} from "./00a-reg-late-ports.js";// @ts-check
 import {ABK,ABN} from "./02-data-default-character.js";
@@ -100,12 +101,16 @@ function deriveSaves(abPart, pb, exhN, exP){
 
   D.skill={};
 }
-function deriveSkills(abPart, pb, exhN, exP){
-  C.skills.forEach((s,i) =>{
-    const parts=[abPart(s.ab)], p=num(s.p,0);
+function nativeSkillCalculation(s,abPart,pb,exhN,exP,extra=[]){
+ const parts=[abPart(s.ab)], p=num(s.p,0);
     if(p>=1) parts.push(part(p===2?"Expertise (double Proficiency Bonus)":"Proficiency Bonus", pb*(p===2?2:1), s.src?("From "+s.src):"Source not set"));    if(num(s.misc,0)) parts.push(part(s.miscSrc||"Other bonus", num(s.misc)));
     if(exhN) parts.push(exP());
-    let t=parts.reduce((a,q) =>{return a+q.v},0); t=cuApply("sk:"+s.n,parts,t);/* v26 RU38 no. 2 */
+    parts.push(...extra);let t=parts.reduce((a,q) =>{return a+q.v},0); t=cuApply("sk:"+s.n,parts,t);/* v26 RU38 no. 2 */
+ return {parts,p,total:t};
+}
+function deriveSkills(abPart, pb, exhN, exP){
+  C.skills.forEach((s,i) =>{
+    const {parts,p,total:t}=nativeSkillCalculation(s,abPart,pb,exhN,exP);
     D.skill[i]=t;
     const f=[]; if(s.dis) f.push("Disadvantage on this check while wearing "+esc(s.dis)+".");
     if(s.hb) f.push(s.hbd?esc(s.hbd)+" (Retromistika Playtest, Skills.)":"Homebrew skill from Retromistika Playtest, Skills.");
@@ -114,6 +119,13 @@ function deriveSkills(abPart, pb, exhN, exP){
   });
   function skillByName(n){ for(let i=0;i<C.skills.length;i++){ if(C.skills[i].n===n) return i; } return -1; }
   return /** @type {any} */ ({skillByName});
+}
+export function nativeQualifiedSkillCheckBonus(index,purpose){
+ const row=C.skills?.[index];if(!Number.isInteger(index)||!row)return null;
+ const source=swimClimbGlovesCheck(C,{skill:row.n,ability:row.ab,purpose});if(!source.ok||source.bonus!==5)return Number.isFinite(D.skill?.[index])?D.skill[index]:null;
+ if(!Number.isFinite(D.mod?.[row.ab])||!Number.isFinite(D.pb)||!Number.isInteger(D.exhN)||D.exhN<0||D.exhN>6)return null;
+ const cache=lateGet('CU0'),key='n:sk:'+row.n+'|o',had=cache&&Object.prototype.hasOwnProperty.call(cache,key),previous=cache?.[key];
+ try{return nativeSkillCalculation(row,k=>part(ABN[k]+' modifier',D.mod[k],ABN[k]+' score '+D.score[k]),D.pb,D.exhN,()=>part('Exhaustion level '+D.exh,-2*D.exhN,'Every D20 Test is 2 lower for each Exhaustion level'),[part('Gloves of Swimming and Climbing',5,'Strength (Athletics) to climb or swim')]).total}finally{if(cache){if(had)cache[key]=previous;else delete cache[key]}}
 }
 function deriveArmorEffects(acParts){
   if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));

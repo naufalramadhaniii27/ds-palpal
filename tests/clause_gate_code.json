@@ -25127,6 +25127,81 @@
     "tests/magic_ropes_ui.mjs"
    ],
    "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO\u2192covered; not extra UNC closure."
+  },
+  {
+   "id": "u52-qualified-gloves-strength-athletics",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Gloves of Swimming and Climbing",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^you\\ also\\ gain\\ a\\ \\+5\\ bonus\\ to\\ any\\ strength\\ \\(athletics\\)\\ check\\ you\\ make\\ to\\ climb\\ or\\ to\\ swim\\.$",
+   "anchor": [
+    "src/data/lib/swim-climb-gloves.js",
+    "export function swimClimbGlovesCheck("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10m-logic-swim-climb-gloves.js",
+     "export function swimClimbGlovesProjection("
+    ],
+    [
+     "src/builder/12zb-logic-swim-climb-gloves.js",
+     "id:'swim-climb-gloves-source'"
+    ],
+    [
+     "src/builder/25l-logic-swim-climb-gloves.js",
+     "function sourceReason("
+    ],
+    [
+     "src/builder/25l-logic-swim-climb-gloves.js",
+     "function check("
+    ],
+    [
+     "src/builder/25l-logic-swim-climb-gloves.js",
+     "function current("
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "export function nativeQualifiedSkillCheckBonus("
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "[part('Gloves of Swimming and Climbing',5,'Strength (Athletics) to climb or swim')]"
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "total=nativeQualifiedSkillCheckBonus(options.index,'climbing')"
+    ],
+    [
+     "src/app/32s-logic-swim-climb-gloves.js",
+     "export function requestSwimClimbGlovesCheck("
+    ],
+    [
+     "src/app/32s-logic-swim-climb-gloves.js",
+     "total=nativeQualifiedSkillCheckBonus(options.index,options.purpose)"
+    ],
+    [
+     "src/app/21t-ui-swim-climb-gloves.js",
+     "function openSwimClimbGloves("
+    ],
+    [
+     "src/app/17-logic-tab-sync-and-test-hooks.js",
+     "qualifiedSkill:nativeQualifiedSkillCheckBonus(check?.index,check?.purpose)"
+    ]
+   ],
+   "test": "Z3 U52 native worn allocated Gloves source",
+   "consumerTests": [
+    "tests/swim_climb_gloves_model.mjs",
+    "tests/swim_climb_gloves_backend.mjs",
+    "tests/swim_climb_gloves_provenance.mjs"
+   ],
+   "note": "U52 exact conditional +5 to actual Strength (Athletics) climbing/swimming, native qualified skill calculation before Customize absolute override. Worn/allocated native source, shared real Rope check composition and native deferred/manual dice; no global Athletics or new actor ledger. Movement sentence already covered remains unchanged. Actual native mobile source/Customize/Rope composition proof passed on43b9f500; FX8 includes24 actual contextual numeric assertions."
   }
  ]
 }

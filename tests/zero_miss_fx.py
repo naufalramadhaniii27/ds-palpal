@@ -3371,6 +3371,25 @@ for _state,_ledger in U51_FIX["states"].items():
 _u51_future={"v":99,"physical":[{"id":"mrp-1","hp":999,"armorClass":99,"immunities":["Poison","Psychic"],"adv":True}]}
 CASES.append(dict(name="NEG U51 future rope history grants no player defenses",b=u51_build("Rope of Climbing"),magicRopes=_u51_future,deriveState=dict(U51_FIX["deriveDefaults"],magicRopes=_u51_future),expect=[("C.magicRopes",_u51_future),(U51_D+".ac",10),(U51_D+".hpmax",10),(U51_D+".speed",30)]))
 
+
+# U52 passive source admission. Qualified numeric consumers are exercised by native runtime tests.
+def u52_build(inv=None,custom=None):
+    return dict(rs="2024",cls="Fighter",level=1,base=dict(STR=16,DEX=10,CON=10,INT=10,WIS=10,CHA=10),inv=inv if inv is not None else [dict(n="Gloves of Swimming and Climbing",q=1,eq=True,attuned=True)],extra=dict(bg="Acolyte",bgMode="21",bg2="INT",bg1="WIS",src=dict(core=True,dmg=True),custLib=custom or []))
+_u52_positive=[("Z3 U52 native worn allocated Gloves source",u52_build(),[0]),("Z3 U52 duplicate Gloves remains one qualified capability",u52_build([dict(n="Gloves of Swimming and Climbing",q=1,eq=True,attuned=True),dict(n="Gloves of Swimming and Climbing",q=1,eq=True,attuned=True)]),[0])]
+for _name,_build,_indices in _u52_positive:
+    CASES.append(dict(name=_name,b=_build,expect=[("C.swimClimbGloves.v",1),("C.swimClimbGloves.nativeProfile","dmg2024"),("C.swimClimbGloves.sourceIndices",_indices),("C.speeds.climb.v","walk"),("C.speeds.swim.v","walk"),("C.skills.find(row=>row.n==='Athletics').adv===true",False)]))
+for _name,_inv in [("unworn",[dict(n="Gloves of Swimming and Climbing",q=1,eq=False,attuned=True)]),("unattuned",[dict(n="Gloves of Swimming and Climbing",q=1,eq=True,attuned=False)]),("zero quantity",[dict(n="Gloves of Swimming and Climbing",q=0,eq=True,attuned=True)]),("no item",[]),("foreign typed marker",[dict(n="Gloves of Swimming and Climbing",q=1,eq=True,attuned=True,birdToken={"v":99})]),("ordinary Climber kit",[dict(n="Climber's Kit",q=1,eq=True)])]:
+    CASES.append(dict(name="NEG U52 Gloves source "+_name,b=u52_build(_inv),expect=[("Object.prototype.hasOwnProperty.call(C,'swimClimbGloves')",False),("C.skills.find(row=>row.n==='Athletics').adv===true",False)]))
+
+
+# U52 real contextual numeric helper, third readonly argument; all ordinary skill values stay native.
+for _case in [c for c in CASES if "U52" in c["name"]]:
+    _qualified=not _case["name"].startswith("NEG")
+    for _purpose in ["climbing","swimming"]:
+        _expr="(()=>{const i=C.skills.findIndex(row=>row.n==='Athletics'),d=window.__deriveFor(C,undefined,{index:i,purpose:"+json.dumps(_purpose)+"});return d.qualifiedSkill-d.skill[i]})()"
+        _case["expect"].append((_expr,5 if _qualified else 0))
+    _case["expect"].append(("(()=>{const i=C.skills.findIndex(row=>row.n==='Athletics'),d=window.__deriveFor(C,undefined,{index:i,purpose:'generic'});return d.qualifiedSkill-d.skill[i]})()",0))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

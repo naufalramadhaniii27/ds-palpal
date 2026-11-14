@@ -1,0 +1,13 @@
+import {genv} from './00-env.js';
+import {swimClimbGlovesCatalog} from './10m-logic-swim-climb-gloves.js';
+import * as model from '../data/lib/swim-climb-gloves.js';
+const tokens=new WeakMap(),own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),fail=reason=>({ok:false,reason});
+function sourceStamp(){return JSON.stringify(swimClimbGlovesCatalog())}
+function shape(value,top=false){if(value===null||typeof value!=='object')return [typeof value,String(value)];const keys=Reflect.ownKeys(value),version=genv.__appVer,native=top&&typeof genv.__lsSave==='function'&&Number.isSafeInteger(version)&&version>=0;if(native&&!keys.includes('_app'))keys.push('_app');return [Array.isArray(value)?'array':'object',keys.map(key=>[typeof key,String(key),shape(native&&key==='_app'?Math.max(+value._app||0,version):value[key])])]}
+function signature(b){return JSON.stringify([shape(b.C,true),shape(b.S,true),b.cid])}
+function bound(owner){const live=genv.__sheetState?.(),cid=genv.__sheetId?.();if(!live||live.readOnly!==false||live.C?.name!==owner||!live.state||!cid)return null;return {C:live.C,S:live.state,cid,owner}}
+function sourceReason(b){const cap=b.C.swimClimbGloves;if(!own(b.C,'swimClimbGloves'))return 'apply-native-gloves-source-required';if(model.swimClimbGlovesProblems(cap).length)return 'unsupported-gloves-capability';const source=swimClimbGlovesCatalog();if(!source||source.itemFingerprint!==cap.itemFingerprint)return 'native-gloves-source-unavailable';const check=model.swimClimbGlovesCheck(b.C,{skill:'Athletics',ability:'STR',purpose:'climbing'});return check.ok?null:check.reason}
+function info(owner){const b=bound(owner);if(!b)return {actorAvailable:false,available:false,reason:'current-actor-required'};const reason=sourceReason(b);return {actorAvailable:true,available:!reason,reason,capability:own(b.C,'swimClimbGloves')?structuredClone(b.C.swimClimbGloves):undefined,signature:signature(b)}}
+function check(owner,input){const b=bound(owner);if(!b)return fail('current-actor-required');const reason=sourceReason(b);if(reason)return fail(reason);const result=model.swimClimbGlovesCheck(b.C,input);if(!result.ok)return result;const token={};tokens.set(token,{bound:b,signature:signature(b),sourceStamp:sourceStamp()});return {...result,token}}
+function current(token){const proof=tokens.get(token),b=proof&&bound(proof.bound.owner);return !!(b&&b.C===proof.bound.C&&b.S===proof.bound.S&&b.cid===proof.bound.cid&&signature(b)===proof.signature&&sourceStamp()===proof.sourceStamp&&!sourceReason(b))}
+genv.__bldSwimClimbGlovesInfo=info;genv.__bldSwimClimbGlovesCheck=check;genv.__bldSwimClimbGlovesCurrent=current;
