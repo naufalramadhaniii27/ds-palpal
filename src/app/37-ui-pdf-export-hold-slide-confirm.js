@@ -1,3 +1,4 @@
+import {pactRodSheetReview} from './32x-logic-pact-rod-spell.js';
 import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {C,S} from "./04-logic-storage.js";
 import {$,$$,toast} from "./05-logic-helpers.js";
@@ -61,6 +62,7 @@ function makeSheetPdf(){ const need=env.__bldNeed?env.__bldNeed():Promise.resolv
 function makeBlob(){ return makeSheetPdf().catch((e) =>{ try{ console.warn("PDFX failed, using the picture export",e); }catch(er){} return loadLibs().then(makePdfBlob); }); }
 function printFallback(){ buildPrint(); setTimeout(() =>{ env.print(); },60); }
 $("#pdfBtn").addEventListener("click",() =>{if(iounCharacterMathStatus(C,S).reviewRequired){toast('Review the saved Ioun Stone bonuses before exporting a verified PDF. Open the Ioun Stone review panel or Apply this character’s matching Build.');return}
+  const review=pactRodSheetReview();if(review){toast(review);return}
   const busy=$("#busy");
   downloadsP.then((dl) =>{
     busy.classList.add("on");

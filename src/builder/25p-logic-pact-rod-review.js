@@ -1,0 +1,27 @@
+import {genv,fxo,gx} from './00-env.js';
+import {lateGet} from './01b-logic-late-ports.js';
+import {borrowedBound,borrowedProjection,withB} from './25-logic-hooks-for-the-sheet.js';
+import {LEGACY_PACT_ROD_ROWS} from '../data/lib/pact-rod-profiles.js';
+import {canonicalBracersInventory} from '../data/lib/bracers-source.js';
+const tokens=new WeakMap(),views=new Map();let sequence=0;
+const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),names=Object.keys(LEGACY_PACT_ROD_ROWS),key=row=>own(row,'key')?row.key:row?.n;
+const guidance='Open and Apply this character’s matching Build to verify the recorded Pact Rod spell attack and save DC bonuses.';
+function fail(reason){return {ok:false,reason,guidance}}
+function bytes(value){return canonicalBracersInventory(value)}
+function actorBytes(value){const copy=value&&typeof value==='object'?Object.fromEntries(Reflect.ownKeys(value).map(key=>[key,value[key]])):value,version=genv.__appVer;if(copy&&typeof genv.__lsSave==='function'&&Number.isSafeInteger(version)&&version>=0)copy._app=Math.max(+copy._app||0,version);return bytes(copy)}
+function bound(owner){const live=genv.__sheetState?.(),cid=genv.__sheetId?.();if(!live||live.readOnly!==false||live.C?.name!==owner||!live.state||!cid)return null;const matching=borrowedBound(owner);return {C:live.C,S:live.state,B:matching?.B||null,cid,owner}}
+function attackIndex(index){return index&&typeof index==='object'&&!Array.isArray(index)&&Reflect.ownKeys(index).length===1&&own(index,'attack')&&Number.isInteger(index.attack)&&index.attack>=0?index.attack:null}
+function sheetTarget(index){return index&&typeof index==='object'&&!Array.isArray(index)&&Reflect.ownKeys(index).length===1&&own(index,'sheet')&&index.sheet===true}
+function targetKey(index){if(sheetTarget(index))return 'sheet';if(index===null)return 'main';if(typeof index==='string')return 'channel:'+index;if(Number.isInteger(index))return 'spell:'+index;const attack=attackIndex(index);return attack===null?null:'attack:'+attack}
+function selection(C,index){if(sheetTarget(index))return Array.isArray(C.inv)&&Array.isArray(C.attacks)?{sheet:true,attacks:C.attacks}:null;const attack=attackIndex(index);if(attack!==null)return C.attacks?.[attack]?{attack:C.attacks[attack]}:null;if(index===null)return C.spellcasting&&typeof C.spellcasting==='object'?{main:true}:null;if(typeof index==='string')return Array.isArray(C.spellcasting?.by)&&C.spellcasting.by.some(row=>row.k===index)?{channel:index}:null;return Number.isInteger(index)&&C.spells?.[index]?{spell:C.spells[index]}:null}
+function fixed(spell,stat=spell.sv==='ATK'?'atk':'dc'){return ['fixedSpellSource','tattooSource','gemSpellcasting','storedSpellcasting','storedSpellSlotLevel'].some(key=>own(spell,key))||Number.isFinite(spell.itc?.[stat])}
+function cantripClaim(C,row){return String(row.sub||'').startsWith('Cantrip')||(C.spellcasting?.by||[]).some(channel=>typeof row.sourceKey==='string'&&channel.k===row.sourceKey)||names.some(name=>String(row.miscSrc||'').includes(name))}
+function suspected(C,index){const selected=selection(C,index),spell=selected?.spell,attack=selected?.attack;if(!selected||spell&&(!spell.sv||fixed(spell))||attack&&(!cantripClaim(C,attack)||fixed(attack,'atk')))return false;return (C.inv||[]).some(row=>names.includes(key(row)))||(C.spellcasting?.items||[]).some(name=>names.includes(name))||(C.spellcasting?.by||[]).some(row=>(row.items||[]).some(name=>names.includes(name)))||(C.attacks||[]).some(row=>names.some(name=>String(row.miscSrc||'').includes(name)))}
+function sourceStamp(){const catalog=lateGet('DM14S')||(typeof DMGI!=='undefined'?DMGI:[]),book=genv.WXI?.dmg14,map=lateGet('DMAP');return names.map(name=>[name,Array.isArray(catalog)?catalog.filter(row=>row?.[0]===name):catalog,Array.isArray(book)?book.filter(row=>row?.[0]===name):book,map?.[name],fxo()?.[name],gx().item?.[name]])}
+function frame(b){try{const character=actorBytes(b.C),build=actorBytes(b.B);return character&&build?bytes([character,build,b.cid,sourceStamp()]):null}catch(error){return null}}
+function consistent(b,index){if(!b.B)return false;try{const next=withB(structuredClone(b.B),()=>borrowedProjection({})),left=bytes([b.C.inv,selection(b.C,index),b.C.spellcasting]),right=bytes([next.inv,selection(next,index),next.spellcasting]);return typeof left==='string'&&left===right}catch(error){return false}}
+function info(owner,index){const b=bound(owner);if(!b)return fail('current-actor-required');if(!selection(b.C,index))return fail('current-spell-source-required');if(!suspected(b.C,index))return null;const before=frame(b);if(typeof before!=='string'||!consistent(b,index)||before!==frame(b))return fail('pact-rod-native-source-review-required');const signature=String(++sequence);views.set(signature,{bound:b,indexKey:targetKey(index),frame:before});if(views.size>128)views.delete(views.keys().next().value);return {ok:true,signature}}
+function same(proof){const b=bound(proof.bound.owner);return !!(b&&b.C===proof.bound.C&&b.S===proof.bound.S&&b.B===proof.bound.B&&b.cid===proof.bound.cid&&typeof proof.frame==='string'&&frame(b)===proof.frame)}
+function capture(owner,input){const proof=views.get(input?.signature);if(!proof||proof.bound.owner!==owner||proof.indexKey!==targetKey(input.index)||!same(proof))return null;const token={};tokens.set(token,proof);return token}
+function current(token){const proof=tokens.get(token);return !!proof&&same(proof)}
+genv.__bldPactRodSpellInfo=info;genv.__bldPactRodSpellCapture=capture;genv.__bldPactRodSpellCurrent=current;

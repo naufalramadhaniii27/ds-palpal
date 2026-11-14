@@ -1,0 +1,5 @@
+/* Saved spell channels must be rebuilt together when a legacy Pact rod changes. */
+import {LEGACY_PACT_ROD_ROWS} from '../../data/lib/pact-rod-profiles.js';
+function legacyRodTag(value){return typeof value==='string'&&Object.keys(LEGACY_PACT_ROD_ROWS).some(name=>value===name||value.startsWith(name+' (')||value.startsWith(name+': '))}
+export function legacyPactRodInventoryRequiresBuild(character){return (character?.inv||[]).some(row=>{const name=row&&Object.prototype.hasOwnProperty.call(row,'key')?row.key:row?.n;return typeof name==='string'&&Object.prototype.hasOwnProperty.call(LEGACY_PACT_ROD_ROWS,name)})||(character?.spellcasting?.items||[]).some(legacyRodTag)||(character?.spellcasting?.by||[]).some(channel=>(channel.items||[]).some(legacyRodTag))}
+export const legacyPactRodInventoryGuidance='Open this character’s matching Build and Apply before changing inventory while a legacy Rod of the Pact Keeper is recorded. Its held item conditions and each spellcasting source must be recalculated together.';

@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9147 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9153 |
 | Info (tag terdokumentasi) | 27239 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1481, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 975, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 228, STD:ASI 225, NUMONLY:ZERO 172, ROLL:LAST_CHARGE 142, OBJECT:STATS 109, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5726 |
-| Uncovered dengan angka | 3343 |
-| Uncovered dengan kelas kata kunci mekanik | 5355 |
+| Uncovered | 5720 |
+| Uncovered dengan angka | 3337 |
+| Uncovered dengan kelas kata kunci mekanik | 5349 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 371 |
 | Angka yang tidak dijelaskan record mana pun | 3136 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4893 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4887 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 262 |
-| Waktu | muat data 16 s, analisis 18 s |
+| Waktu | muat data 2 s, analisis 14 s |
 
-Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 181 ditangkap (60.7%). Hapus semua atom kelas yang dibutuhkan: 180 ditangkap (60.4%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 192 ditangkap (64.0%). Hapus semua atom kelas yang dibutuhkan: 186 ditangkap (62.0%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 290 ditangkap (96.7%), semua atom kelas dihapus: 295 ditangkap (98.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 287 ditangkap (95.7%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -38,11 +38,11 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 
 | Sumber | Kalimat covered |
 |---|---|
-| item | 3358 |
+| item | 3364 |
 | GX | 1940 |
 | wxs | 849 |
 | LU_X | 652 |
-| CODE | 485 |
+| CODE | 491 |
 | AUTO | 467 |
 | species | 440 |
 | ITEM_SPELLS | 370 |
@@ -77,10 +77,10 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | NUM | 8063 | 328 | 4.1% |
 | DC | 2887 | 248 | 8.6% |
 | DIS | 1073 | 247 | 23.0% |
-| ATK | 1013 | 220 | 21.7% |
+| ATK | 1013 | 214 | 21.1% |
 | SENSE | 599 | 194 | 32.4% |
 | AC | 672 | 189 | 28.1% |
-| SAVE | 280 | 142 | 50.7% |
+| SAVE | 280 | 136 | 48.6% |
 | HP | 178 | 98 | 55.1% |
 | NUM-DICE | 1446 | 69 | 4.8% |
 | ABIL | 382 | 65 | 17.0% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 4986 | 11637 | 0 | 2884 |
+| item | 19507 | 4992 | 11637 | 0 | 2878 |
 | species | 1320 | 726 | 365 | 0 | 229 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2747 | 6309 | 1527 | 14.4% |
+| dmg | 10583 | 2750 | 6309 | 1524 | 14.4% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -121,8 +121,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | twow | 544 | 167 | 283 | 94 | 17.3% |
 | phb14 | 516 | 170 | 261 | 85 | 16.5% |
 | thhw | 395 | 87 | 231 | 77 | 19.5% |
-| dmg14 | 540 | 203 | 269 | 68 | 12.6% |
 | tee24 | 464 | 166 | 232 | 66 | 14.2% |
+| dmg14 | 540 | 206 | 269 | 65 | 12.0% |
 | tssm | 275 | 66 | 147 | 62 | 22.5% |
 | rhw | 232 | 57 | 115 | 60 | 25.9% |
 | hof | 253 | 40 | 155 | 58 | 22.9% |
@@ -206,7 +206,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | AC | 189 | 156 |
 | SENSE | 171 | 146 |
 | ATK | 137 | 97 |
-| SAVE | 136 | 118 |
+| SAVE | 130 | 112 |
 | DC | 124 | 119 |
 | HP | 98 | 72 |
 | ABIL | 53 | 50 |
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|mot|Mogis's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
-- class `item|mot|Mogis's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
-- record `item|dmg|Battlechef Buckler#2` While wielding it you have Advantage on saves against Fire damage. -> info:ACTIVE:OTHERS
-- class `item|dmg|Battlechef Buckler#2` While wielding it you have Advantage on saves against Fire damage. -> info:ACTIVE:OTHERS
-- record `item|dmg|Wand of Wonder#10` If the roll is a 1, the wand crumbles to dust and is destroyed. -> info:NUMONLY:ROLL
-- class `item|dmg|Wand of Wonder#10` If the roll is a 1, the wand crumbles to dust and is destroyed. -> info:NUMONLY:ROLL
-- record `sub|Sorcerer/Storm Sorcery|Wind Soul#3` You regain use after a Short or Long Rest. -> covered
-- class `sub|Sorcerer/Storm Sorcery|Wind Soul#3` You regain use after a Short or Long Rest. -> info:REST:NONUM
-- record `item|dmg|Iroas's Disciple#4` After using this, you must finish a long rest to use it again. -> info:REST:NONUM
-- class `item|dmg|Iroas's Disciple#4` After using this, you must finish a long rest to use it again. -> info:REST:NONUM
-- record `item|dmg|Shard of the Ise Rune#13` Once you use this property, you can't use it again until you finish a short or long rest. -> info:REST:NONUM
-- class `item|dmg|Shard of the Ise Rune#13` Once you use this property, you can't use it again until you finish a short or long rest. -> info:REST:NONUM
-- record `sub|Sorcerer/Apocalypse Sorcery|Arcane Apocrypha#1` After a Long Rest you can create one Spell Scroll for free, of a level 5 or lower spell you can cast. -> covered
-- class `sub|Sorcerer/Apocalypse Sorcery|Arcane Apocrypha#1` After a Long Rest you can create one Spell Scroll for free, of a level 5 or lower spell you can cast. -> info:REST:NONUM
-- record `sub|Martyr/Burden of Tyranny|Diabolic Presence#1` You gain proficiency in Intimidation. -> covered
-- record `item|dmg|True-Ice Shards (Rapier)#18` Once you use this feature, you may not use it again until after you have finished a long rest. -> info:REST:NONUM
-- class `item|dmg|True-Ice Shards (Rapier)#18` Once you use this feature, you may not use it again until after you have finished a long rest. -> info:REST:NONUM
+- record `sub|Sorcerer/Faerzress Sorcery|Faerzress Spells#3` 7 Arcane Eye, Stone Shape. -> info:NUMONLY:TABLE
+- class `sub|Sorcerer/Faerzress Sorcery|Faerzress Spells#3` 7 Arcane Eye, Stone Shape. -> info:NUMONLY:TABLE
+- record `sub|Healer/Vow of the Siphon|Sap Defenses#6` Once a creature fails the save, you cannot use this feature again until you finish a Long Rest. -> covered
+- class `sub|Healer/Vow of the Siphon|Sap Defenses#6` Once a creature fails the save, you cannot use this feature again until you finish a Long Rest. -> info:REST:NONUM
+- record `item|ftd|Topaz Annihilator#2` The weapon has a normal range of 100 feet and a long range of 300 feet, and it has the two-handed property. -> info:NUMONLY:GEOMETRY
+- class `item|ftd|Topaz Annihilator#2` The weapon has a normal range of 100 feet and a long range of 300 feet, and it has the two-handed property. -> info:NUMONLY:GEOMETRY
+- record `sub|Paladin/Oath of the Giving Grave|Aura of the Unrepentant#2` At level 18 the range is 30 ft. -> info:NUMONLY:GEOMETRY
+- class `sub|Paladin/Oath of the Giving Grave|Aura of the Unrepentant#2` At level 18 the range is 30 ft. -> info:NUMONLY:GEOMETRY
+- record `sub|Dancer/Mime|Invisible Wall#2` After you use this, you cannot use it again until you finish a Long Rest. -> covered
+- class `sub|Dancer/Mime|Invisible Wall#2` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
+- record `item|dmg|Firearm Bullet, +2#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Rare firearm bullet carries the +2 bo -> info:NUMONLY:FLAVOR
+- class `item|dmg|Firearm Bullet, +2#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Rare firearm bullet carries the +2 bo -> info:NUMONLY:FLAVOR
 - record `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
 - class `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Sling Bullet, +1#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Uncommon sling bullet carries the +1  -> info:NUMONLY:FLAVOR
-- class `item|dmg|Sling Bullet, +1#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Uncommon sling bullet carries the +1  -> info:NUMONLY:FLAVOR
-- record `sub|Martyr/Burden of Fame|Crowd Suggestion#2` After you cast it this way, you cannot do so again until you finish a Long Rest. -> covered
-- class `sub|Martyr/Burden of Fame|Crowd Suggestion#2` After you cast it this way, you cannot do so again until you finish a Long Rest. -> info:REST:NONUM
+- record `sub|Warlock/Singularity Patron|Wormhole#4` A Short Rest regains one and a Long Rest all. -> covered
+- class `sub|Warlock/Singularity Patron|Wormhole#4` A Short Rest regains one and a Long Rest all. -> info:REST:NONUM
+- record `class|Monster Hunter|Grave Strike#4` On a failure it drops to 0 Hit Points. -> info:NUMONLY:ZERO
+- class `class|Monster Hunter|Grave Strike#4` On a failure it drops to 0 Hit Points. -> info:NUMONLY:ZERO
 - record `sub|Rogue/Misfortune Bringer|Evil Eye#2` The curse lasts 1 minute or until you curse another creature with it. -> info:NUMONLY:GEOMETRY
 - class `sub|Rogue/Misfortune Bringer|Evil Eye#2` The curse lasts 1 minute or until you curse another creature with it. -> info:NUMONLY:GEOMETRY
-- record `sub|Cleric/Pestilence Domain (2014)|Tumor#3` Short or Long Rest to use again. -> covered
-- class `sub|Cleric/Pestilence Domain (2014)|Tumor#3` Short or Long Rest to use again. -> info:REST:NONUM
-- record `feat|Background Talents (Outlander)|Background Talents (Outlander)#3` Pick one talent from this list when you choose the profession, and one more each time you rank up. -> info:ACTIVE:TRIGGER
-- class `feat|Background Talents (Outlander)|Background Talents (Outlander)#3` Pick one talent from this list when you choose the profession, and one more each time you rank up. -> info:ACTIVE:TRIGGER
-- record `item|dmg|Love's Embrace#8` It casts Fire Shield twice, regaining uses at dawn, and each attuned creature can cast it only once a day. -> info:ACTIVE:OTHERS
+- record `sub|Monk/Way of the Kensei|Path of the Kensei#2` Choose one melee and one ranged weapon type, each a Simple or Martial weapon without the Heavy or Special property, or a -> covered
+- record `sub|Witch/Blood Magic|Blood Spells#4` 7 Blight, Dominate Beast. -> info:NUMONLY:TABLE
+- class `sub|Witch/Blood Magic|Blood Spells#4` 7 Blight, Dominate Beast. -> info:NUMONLY:TABLE
+- record `item|tsgs|Belt of the Raid Leader#4` Usable once per dawn. -> info:REST:NONUM
+- class `item|tsgs|Belt of the Raid Leader#4` Usable once per dawn. -> info:REST:NONUM
+- class `item|dmg|Nightstalker's Kanabo#2` It deals an extra 2d8 Psychic damage to an Unconscious target. -> info:ACTIVE:OTHERS
+- record `species|Mandrake|Entangling Vines#6` Spring lets you target a flying creature within 30 feet of the ground and pulls it safely down. -> info:NUMONLY:GEOMETRY
+- class `species|Mandrake|Entangling Vines#6` Spring lets you target a flying creature within 30 feet of the ground and pulls it safely down. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Wrought-Iron Tower#6` When you hit a good aligned creature with it, that creature takes an extra 3d6 fire damage. -> info:ACTIVE:TRIGGER
+- record `sub|Witch/Steel Magic|Steel Spells#2` 3 Heat Metal, Heroism, Magic Weapon, Shield, True Strike. -> covered

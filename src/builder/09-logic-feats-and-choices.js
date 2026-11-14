@@ -1,6 +1,7 @@
 import {agOn,bindLive,choicesBuild,casterParts,clsLv,clsParts,invList,lateGet,pk,preFail,spHasFeat,spLists,spellAb} from "./01b-logic-late-ports.js";import {ABK,clone,mod,pbOf} from "./01-logic-core-helpers.js";
 
 import {activeFx,bgX,spX,featSourceReview} from "./03-logic-magic-item-effects.js";
+import {legacyPactRodBonus} from "./10p-logic-pact-rod.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 
@@ -24,7 +25,7 @@ choices(true).forEach((c) =>{afChoice(f,c)});
 /* v19 RL42: spell attack and save DC bonuses of active items. cls: only that class's spells (Rod of the Pact Keeper: Warlock) */
 /* fx engine v2: gfx entries add spAtk and spDc (number, "pb", ability key) for the class named in spCls, or for every class when spCls is missing */
 function gxSp(k,cls){return fxList().filter((e) =>{const v=k==="atk"?e.spAtk:e.spDc;return v!=null&&(!e.spCls||e.spCls===cls)})}
-export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k==="atk"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;return t+v},0)+gxSp(k,cls).reduce((t,e) =>{return t+fxVal(k==="atk"?e.spAtk:e.spDc,e)},0)}
+export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k==="atk"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;const original=legacyPactRodBonus(q,k,cls);return t+(original===null?v:original)},0)+gxSp(k,cls).reduce((t,e) =>{return t+fxVal(k==="atk"?e.spAtk:e.spDc,e)},0)}
 export function spItemSrc(cls){return activeFx().filter((q) =>{return (q.fx.spellAtk||q.fx.spellDc)&&(!q.fx.spellCls||q.fx.spellCls===cls)}).map((q) =>{return q.n}).concat(gxSp("atk",cls).concat(gxSp("dc",cls)).map((e) =>{return e.lbl}).filter((x,i,a) =>{return a.indexOf(x)===i}))}
 /* v19 RL41: chosen Elemental Affinity type ("" without Draconic Sorcery 6) */
 export function chOf(cls,key){if(B.cls===cls)return B.ch[key];let i=-1;MCL().forEach((m,j) =>{if(m.cls===cls)i=j});return i<0?undefined:B.ch["m"+i+":"+key]}

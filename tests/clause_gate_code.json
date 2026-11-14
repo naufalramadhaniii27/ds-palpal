@@ -25849,7 +25849,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26061,7 +26061,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26305,7 +26305,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26519,7 +26519,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26733,7 +26733,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26947,7 +26947,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -27162,7 +27162,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -27376,7 +27376,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -27590,7 +27590,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -27803,7 +27803,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -28048,7 +28048,7 @@
     ],
     [
      "src/app/32b-logic-play-concentration-casting.js",
-     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+     "export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired)"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -28244,6 +28244,762 @@
     "tests/bracers_loaded_native.mjs"
    ],
    "note": "U55 exact current core native whole clause. Actual worn allocated-attuned source, armor worn and any carried positive-quantity Shield; individually attributed source-certified +2 AC before Customize. Loaded historical unproved part is inert; manual absolute AC and other sources preserved."
+  },
+  {
+   "id": "u56-item-dmg-pact-rod-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 Rod of the Pact Keeper",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ rod,\\ you\\ gain\\ a\\ \\+1\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ warlock\\ spells\\.$",
+   "anchor": [
+    "src/builder/10p-logic-pact-rod.js",
+    "export function legacyPactRodBonus("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/pact-rod-source.js",
+     "export function legacyPactRodNativeBonus("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "export function spItemB("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "const original=legacyPactRodBonus(q,k,cls)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "dc:Q.spItemB(\"dc\",b.k)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "function cantripRow("
+    ],
+    [
+     "src/builder/25p-logic-pact-rod-review.js",
+     "function consistent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function preparePactRodCast("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodCastCurrent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodMainRollGuard("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "const permission=preparePactRodCast("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.spellSourceSpec=function spellSourceSpec("
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark(\"Cast \"+x.n);if(!pactRodCastCurrent(pactRod,i))return;"
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function requestSpellSourceRoll("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function spellSourceGuard("
+    ],
+    [
+     "src/app/23f-ui-spell-source-rolls.js",
+     "function spellSourceClick("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodLegacyAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodSheetReview("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function temporaryAttackGuard("
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/52-tg-bridge.js",
+     "const review=pactRodSheetReview();if(review)return review;"
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "const review=pactRodSheetReview();if(review)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "const review=pactRodSheetReview();if(review)"
+    ]
+   ],
+   "consumerTests": [
+    "tests/pact_rod_sources.mjs",
+    "tests/pact_rod_adapter.mjs",
+    "tests/pact_rod_native_consumers.mjs",
+    "tests/pact_rod_inventory_runtime.mjs",
+    "tests/pact_rod_spell_review.mjs",
+    "tests/ioun_pact_rod_legacy_refresh.mjs",
+    "tests/pact_rod_spell_runtime.mjs",
+    "tests/pact_rod_env_boundary.mjs",
+    "tests/pact_rod_verified_exports.mjs"
+   ],
+   "test": "Z3 U56 original Pact Rod whole bonus +1 Warlock first",
+   "note": "U56 exact original native2014 bonus sentence, represented in existing dmg/dmg14 source namespaces. Reuses native spell attack arithmetic; only original certified save DC applies to actual Warlock casting source. Existing spell attack scope is preserved under the documented literal reading, belum diputuskan resmi. Native held/allocated-attunement/source guards and matching-Build saved spell review protect real casting; existing slotRecovery owner, identity and budget remain unchanged."
+  },
+  {
+   "id": "u56-item-dmg14-pact-rod-1",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "+1 Rod of the Pact Keeper",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ rod,\\ you\\ gain\\ a\\ \\+1\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ warlock\\ spells\\.$",
+   "anchor": [
+    "src/builder/10p-logic-pact-rod.js",
+    "export function legacyPactRodBonus("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/pact-rod-source.js",
+     "export function legacyPactRodNativeBonus("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "export function spItemB("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "const original=legacyPactRodBonus(q,k,cls)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "dc:Q.spItemB(\"dc\",b.k)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "function cantripRow("
+    ],
+    [
+     "src/builder/25p-logic-pact-rod-review.js",
+     "function consistent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function preparePactRodCast("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodCastCurrent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodMainRollGuard("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "const permission=preparePactRodCast("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.spellSourceSpec=function spellSourceSpec("
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark(\"Cast \"+x.n);if(!pactRodCastCurrent(pactRod,i))return;"
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function requestSpellSourceRoll("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function spellSourceGuard("
+    ],
+    [
+     "src/app/23f-ui-spell-source-rolls.js",
+     "function spellSourceClick("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodLegacyAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodSheetReview("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function temporaryAttackGuard("
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/52-tg-bridge.js",
+     "const review=pactRodSheetReview();if(review)return review;"
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "const review=pactRodSheetReview();if(review)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "const review=pactRodSheetReview();if(review)"
+    ]
+   ],
+   "consumerTests": [
+    "tests/pact_rod_sources.mjs",
+    "tests/pact_rod_adapter.mjs",
+    "tests/pact_rod_native_consumers.mjs",
+    "tests/pact_rod_inventory_runtime.mjs",
+    "tests/pact_rod_spell_review.mjs",
+    "tests/ioun_pact_rod_legacy_refresh.mjs",
+    "tests/pact_rod_spell_runtime.mjs",
+    "tests/pact_rod_env_boundary.mjs",
+    "tests/pact_rod_verified_exports.mjs"
+   ],
+   "test": "Z3 U56 original Pact Rod whole bonus +1 Warlock first",
+   "note": "U56 exact original native2014 bonus sentence, represented in existing dmg/dmg14 source namespaces. Reuses native spell attack arithmetic; only original certified save DC applies to actual Warlock casting source. Existing spell attack scope is preserved under the documented literal reading, belum diputuskan resmi. Native held/allocated-attunement/source guards and matching-Build saved spell review protect real casting; existing slotRecovery owner, identity and budget remain unchanged."
+  },
+  {
+   "id": "u56-item-dmg-pact-rod-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 Rod of the Pact Keeper",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ rod,\\ you\\ gain\\ a\\ \\+2\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ warlock\\ spells\\.$",
+   "anchor": [
+    "src/builder/10p-logic-pact-rod.js",
+    "export function legacyPactRodBonus("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/pact-rod-source.js",
+     "export function legacyPactRodNativeBonus("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "export function spItemB("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "const original=legacyPactRodBonus(q,k,cls)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "dc:Q.spItemB(\"dc\",b.k)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "function cantripRow("
+    ],
+    [
+     "src/builder/25p-logic-pact-rod-review.js",
+     "function consistent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function preparePactRodCast("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodCastCurrent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodMainRollGuard("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "const permission=preparePactRodCast("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.spellSourceSpec=function spellSourceSpec("
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark(\"Cast \"+x.n);if(!pactRodCastCurrent(pactRod,i))return;"
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function requestSpellSourceRoll("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function spellSourceGuard("
+    ],
+    [
+     "src/app/23f-ui-spell-source-rolls.js",
+     "function spellSourceClick("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodLegacyAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodSheetReview("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function temporaryAttackGuard("
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/52-tg-bridge.js",
+     "const review=pactRodSheetReview();if(review)return review;"
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "const review=pactRodSheetReview();if(review)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "const review=pactRodSheetReview();if(review)"
+    ]
+   ],
+   "consumerTests": [
+    "tests/pact_rod_sources.mjs",
+    "tests/pact_rod_adapter.mjs",
+    "tests/pact_rod_native_consumers.mjs",
+    "tests/pact_rod_inventory_runtime.mjs",
+    "tests/pact_rod_spell_review.mjs",
+    "tests/ioun_pact_rod_legacy_refresh.mjs",
+    "tests/pact_rod_spell_runtime.mjs",
+    "tests/pact_rod_env_boundary.mjs",
+    "tests/pact_rod_verified_exports.mjs"
+   ],
+   "test": "Z3 U56 original Pact Rod whole bonus +2 Warlock first",
+   "note": "U56 exact original native2014 bonus sentence, represented in existing dmg/dmg14 source namespaces. Reuses native spell attack arithmetic; only original certified save DC applies to actual Warlock casting source. Existing spell attack scope is preserved under the documented literal reading, belum diputuskan resmi. Native held/allocated-attunement/source guards and matching-Build saved spell review protect real casting; existing slotRecovery owner, identity and budget remain unchanged."
+  },
+  {
+   "id": "u56-item-dmg14-pact-rod-2",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "+2 Rod of the Pact Keeper",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ rod,\\ you\\ gain\\ a\\ \\+2\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ warlock\\ spells\\.$",
+   "anchor": [
+    "src/builder/10p-logic-pact-rod.js",
+    "export function legacyPactRodBonus("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/pact-rod-source.js",
+     "export function legacyPactRodNativeBonus("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "export function spItemB("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "const original=legacyPactRodBonus(q,k,cls)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "dc:Q.spItemB(\"dc\",b.k)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "function cantripRow("
+    ],
+    [
+     "src/builder/25p-logic-pact-rod-review.js",
+     "function consistent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function preparePactRodCast("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodCastCurrent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodMainRollGuard("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "const permission=preparePactRodCast("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.spellSourceSpec=function spellSourceSpec("
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark(\"Cast \"+x.n);if(!pactRodCastCurrent(pactRod,i))return;"
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function requestSpellSourceRoll("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function spellSourceGuard("
+    ],
+    [
+     "src/app/23f-ui-spell-source-rolls.js",
+     "function spellSourceClick("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodLegacyAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodSheetReview("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function temporaryAttackGuard("
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/52-tg-bridge.js",
+     "const review=pactRodSheetReview();if(review)return review;"
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "const review=pactRodSheetReview();if(review)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "const review=pactRodSheetReview();if(review)"
+    ]
+   ],
+   "consumerTests": [
+    "tests/pact_rod_sources.mjs",
+    "tests/pact_rod_adapter.mjs",
+    "tests/pact_rod_native_consumers.mjs",
+    "tests/pact_rod_inventory_runtime.mjs",
+    "tests/pact_rod_spell_review.mjs",
+    "tests/ioun_pact_rod_legacy_refresh.mjs",
+    "tests/pact_rod_spell_runtime.mjs",
+    "tests/pact_rod_env_boundary.mjs",
+    "tests/pact_rod_verified_exports.mjs"
+   ],
+   "test": "Z3 U56 original Pact Rod whole bonus +2 Warlock first",
+   "note": "U56 exact original native2014 bonus sentence, represented in existing dmg/dmg14 source namespaces. Reuses native spell attack arithmetic; only original certified save DC applies to actual Warlock casting source. Existing spell attack scope is preserved under the documented literal reading, belum diputuskan resmi. Native held/allocated-attunement/source guards and matching-Build saved spell review protect real casting; existing slotRecovery owner, identity and budget remain unchanged."
+  },
+  {
+   "id": "u56-item-dmg-pact-rod-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 Rod of the Pact Keeper",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ rod,\\ you\\ gain\\ a\\ \\+3\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ warlock\\ spells\\.$",
+   "anchor": [
+    "src/builder/10p-logic-pact-rod.js",
+    "export function legacyPactRodBonus("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/pact-rod-source.js",
+     "export function legacyPactRodNativeBonus("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "export function spItemB("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "const original=legacyPactRodBonus(q,k,cls)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "dc:Q.spItemB(\"dc\",b.k)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "function cantripRow("
+    ],
+    [
+     "src/builder/25p-logic-pact-rod-review.js",
+     "function consistent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function preparePactRodCast("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodCastCurrent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodMainRollGuard("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "const permission=preparePactRodCast("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.spellSourceSpec=function spellSourceSpec("
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark(\"Cast \"+x.n);if(!pactRodCastCurrent(pactRod,i))return;"
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function requestSpellSourceRoll("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function spellSourceGuard("
+    ],
+    [
+     "src/app/23f-ui-spell-source-rolls.js",
+     "function spellSourceClick("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodLegacyAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodSheetReview("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function temporaryAttackGuard("
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/52-tg-bridge.js",
+     "const review=pactRodSheetReview();if(review)return review;"
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "const review=pactRodSheetReview();if(review)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "const review=pactRodSheetReview();if(review)"
+    ]
+   ],
+   "consumerTests": [
+    "tests/pact_rod_sources.mjs",
+    "tests/pact_rod_adapter.mjs",
+    "tests/pact_rod_native_consumers.mjs",
+    "tests/pact_rod_inventory_runtime.mjs",
+    "tests/pact_rod_spell_review.mjs",
+    "tests/ioun_pact_rod_legacy_refresh.mjs",
+    "tests/pact_rod_spell_runtime.mjs",
+    "tests/pact_rod_env_boundary.mjs",
+    "tests/pact_rod_verified_exports.mjs"
+   ],
+   "test": "Z3 U56 original Pact Rod whole bonus +3 Warlock first",
+   "note": "U56 exact original native2014 bonus sentence, represented in existing dmg/dmg14 source namespaces. Reuses native spell attack arithmetic; only original certified save DC applies to actual Warlock casting source. Existing spell attack scope is preserved under the documented literal reading, belum diputuskan resmi. Native held/allocated-attunement/source guards and matching-Build saved spell review protect real casting; existing slotRecovery owner, identity and budget remain unchanged."
+  },
+  {
+   "id": "u56-item-dmg14-pact-rod-3",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "+3 Rod of the Pact Keeper",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ rod,\\ you\\ gain\\ a\\ \\+3\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ warlock\\ spells\\.$",
+   "anchor": [
+    "src/builder/10p-logic-pact-rod.js",
+    "export function legacyPactRodBonus("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/pact-rod-source.js",
+     "export function legacyPactRodNativeBonus("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "export function spItemB("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "const original=legacyPactRodBonus(q,k,cls)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "dc:Q.spItemB(\"dc\",b.k)"
+    ],
+    [
+     "src/builder/12k-logic-sheet-handlers-spells.js",
+     "function cantripRow("
+    ],
+    [
+     "src/builder/25p-logic-pact-rod-review.js",
+     "function consistent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function preparePactRodCast("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodCastCurrent("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodMainRollGuard("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "const permission=preparePactRodCast("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.spellSourceSpec=function spellSourceSpec("
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark(\"Cast \"+x.n);if(!pactRodCastCurrent(pactRod,i))return;"
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function requestSpellSourceRoll("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function spellSourceGuard("
+    ],
+    [
+     "src/app/23f-ui-spell-source-rolls.js",
+     "function spellSourceClick("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodLegacyAttackGuard("
+    ],
+    [
+     "src/app/32x-logic-pact-rod-spell.js",
+     "export function pactRodSheetReview("
+    ],
+    [
+     "src/app/lib/spell-source-runtime.js",
+     "export function temporaryAttackGuard("
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/52-tg-bridge.js",
+     "const review=pactRodSheetReview();if(review)return review;"
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "const review=pactRodSheetReview();if(review)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "const review=pactRodSheetReview();if(review)"
+    ]
+   ],
+   "consumerTests": [
+    "tests/pact_rod_sources.mjs",
+    "tests/pact_rod_adapter.mjs",
+    "tests/pact_rod_native_consumers.mjs",
+    "tests/pact_rod_inventory_runtime.mjs",
+    "tests/pact_rod_spell_review.mjs",
+    "tests/ioun_pact_rod_legacy_refresh.mjs",
+    "tests/pact_rod_spell_runtime.mjs",
+    "tests/pact_rod_env_boundary.mjs",
+    "tests/pact_rod_verified_exports.mjs"
+   ],
+   "test": "Z3 U56 original Pact Rod whole bonus +3 Warlock first",
+   "note": "U56 exact original native2014 bonus sentence, represented in existing dmg/dmg14 source namespaces. Reuses native spell attack arithmetic; only original certified save DC applies to actual Warlock casting source. Existing spell attack scope is preserved under the documented literal reading, belum diputuskan resmi. Native held/allocated-attunement/source guards and matching-Build saved spell review protect real casting; existing slotRecovery owner, identity and budget remain unchanged."
   }
  ]
 }

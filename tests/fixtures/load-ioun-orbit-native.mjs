@@ -1,3 +1,4 @@
+import {loadPactRodNative} from './load-pact-rod-native.mjs';
 /* Real native Ioun producer for isolated older source fixtures; no substitute permission. */
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -7,6 +8,7 @@ const text=fs.readFileSync(new URL('../../src/builder/10o-logic-ioun-orbit.js',i
 const names=[...text.matchAll(/export function (\w+)/g)].map(m=>m[1]);
 const code=text.replace(/^import [^\n]*\n/gm,'').replace(/^export \{[^\n]*\};?\n?/gm,'').replace(/export /g,'');
 export function loadIounOrbitNative(context){
+ loadPactRodNative(context);
  Object.assign(context,model,source);
  vm.runInContext('(function(){'+code+';Object.assign(globalThis,{'+names.join(',')+'})})()',context);
 }

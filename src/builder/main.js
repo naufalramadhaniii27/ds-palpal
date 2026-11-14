@@ -70,3 +70,4 @@ import "./25l-logic-swim-climb-gloves.js";
 import "./25m-logic-timed-defenses.js";
 import "./25n-logic-ioun-orbit.js";
 import "./25o-logic-bracers.js";
+import "./25p-logic-pact-rod-review.js";

@@ -48,6 +48,7 @@ export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b
  b.inventoryFormV=result.version;return b}
 export function attunementState(){return allocateAttunement(lateGet("B").inv||[],attMax(),attunementMeta,(m,x,keys)=>byOk(m.by,keys))}
 bindLive("attunementState",{get:function(){return attunementState;}});
+bindLive("DMAP",{get:function(){return DMAP;}});
 function beltAttuned(keys){return (keys||new Set(attunementState().keys)).has("Belt of Dwarvenkind")}
 export function itemBases(d){const o=itemOverride(d),b=o&&Object.prototype.hasOwnProperty.call(o,"base")?o.base:d&&d[5]&&d[5].base;return Array.isArray(b)?b:null}
 /* Scores are supplied by the current actor's completed ability calculation.

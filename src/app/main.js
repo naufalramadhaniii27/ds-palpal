@@ -57,6 +57,7 @@ import "./32c-logic-play-temp-features-ammo.js";
 import "./32d-logic-play-hp-rest-recovery.js";
 import "./32e-logic-martyr-actions.js";
 import "./32w-logic-bracers-attack.js";
+import "./32x-logic-pact-rod-spell.js";
 import "./33-logic-play-rage-conditions.js";
 import "./34-ui-situations.js";
 import "./34b-ui-combat-effects-modes.js";

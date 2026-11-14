@@ -40,4 +40,5 @@ bind(["__bldTimedDefensesInfo", "__bldTimedDefensesCapture", "__bldTimedDefenses
 bind(["__bldIounOrbitInfo", "__bldIounOrbitCapture", "__bldIounOrbitTokenCurrent", "__bldIounOrbitCommand", "__bldIounOrbitAcceptReceipt", "__bldIounOrbitInventoryOwner", "__iounOrbitSave"]);
 bind(["__iounOrbitCheckRoll", "__iounOrbitMathStatus"]);
 bind(["__bracersAttackSpec", "__bldBracersAttackInfo", "__bldBracersAttackCapture", "__bldBracersAttackCurrent"]);
+bind(["__bldPactRodSpellInfo", "__bldPactRodSpellCapture", "__bldPactRodSpellCurrent"]);
 export const ENV_NAMES = Object.keys(env);

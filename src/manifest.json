@@ -237,6 +237,7 @@
     "app/32u-logic-player-damage.js",
     "app/32v-logic-ioun-orbit.js",
     "app/32w-logic-bracers-attack.js",
+    "app/32x-logic-pact-rod-spell.js",
     "app/lib/native-actor-frame.js",
         "app/32e-logic-martyr-actions.js",
         "app/33-logic-play-rage-conditions.js",
@@ -885,6 +886,7 @@
     "builder/10m-logic-swim-climb-gloves.js",
     "builder/10n-logic-timed-defenses.js",
     "builder/10o-logic-ioun-orbit.js",
+    "builder/10p-logic-pact-rod.js",
         "data/lib/attack-target.js",
         "data/lib/attack-resources.js",
         "data/lib/attack-kind.js",
@@ -928,6 +930,8 @@
     "data/lib/bracers.js",
     "data/lib/bracers-profiles.js",
     "data/lib/bracers-source.js",
+    "data/lib/pact-rod-source.js",
+    "data/lib/pact-rod-profiles.js",
         "data/lib/gem-check-bonuses.js",
         "data/lib/casting-sources.js",
         "data/lib/item-spell-damage.js",
@@ -1004,6 +1008,7 @@
     "builder/25m-logic-timed-defenses.js",
     "builder/25n-logic-ioun-orbit.js",
     "builder/25o-logic-bracers.js",
+    "builder/25p-logic-pact-rod-review.js",
         "builder/main.js"
       ],
       "entry": "builder/main.js"

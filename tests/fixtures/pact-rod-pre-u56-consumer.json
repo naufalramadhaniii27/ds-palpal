@@ -1,0 +1,6 @@
+{
+  "commit": "ff207dcf",
+  "path": "src/builder/09-logic-feats-and-choices.js",
+  "source": "export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k===\"atk\"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;return t+v},0)+gxSp(k,cls).reduce((t,e) =>{return t+fxVal(k===\"atk\"?e.spAtk:e.spDc,e)},0)}",
+  "sha256": "7042ff32c320eaeaec66618c268bd07325a3c0505a65caca98fe2226a563ca39"
+}

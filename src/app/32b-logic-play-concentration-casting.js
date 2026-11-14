@@ -1,3 +1,4 @@
+import {preparePactRodCast,pactRodCastCurrent,pactRodSpellReview} from './32x-logic-pact-rod-spell.js';
 import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {captureNativeActorIdentity,captureNativeActorFrame} from './lib/native-actor-frame.js';
 import {endTattooEffect as endTattooBodyEffect} from '../data/lib/spellwrought-tattoo.js';
@@ -106,7 +107,7 @@ export function spCastOpts(x){ const o=[], sc=C.spellcasting||{}; if(spAtWill(x)
   return o; }
 const spStepSel={};
 function spStepIx(i,sl){ let v=spStepSel[i]; if(v==null||v<0||v>=sl.length){ v=0; for(let k=0;k<sl.length;k++){ if(sl[k].left>0){ v=k; break; } } spStepSel[i]=v; } return v; }
-function spCastH(x,i){if(x&&['fixedSpellSource','tattooSource','gemSpellcasting','storedSpellcasting','storedSpellSlotLevel'].some(key=>Object.prototype.hasOwnProperty.call(x,key)))return '<div class="info-d">Use this source’s own controls for its current casting permission or original cast receipt. Imported source rows cannot be cast from the ordinary spell card.</div>';let h='<div class="info-h">Cast</div><div class="spcast">', o=spCastOpts(x);
+function spCastH(x,i){if(x&&['fixedSpellSource','tattooSource','gemSpellcasting','storedSpellcasting','storedSpellSlotLevel'].some(key=>Object.prototype.hasOwnProperty.call(x,key)))return '<div class="info-d">Use this source’s own controls for its current casting permission or original cast receipt. Imported source rows cannot be cast from the ordinary spell card.</div>';const review=pactRodSpellReview(i);let h=(review?'<p class="info-d caution">'+esc(review)+'</p>':'')+'<div class="info-h">Cast</div><div class="spcast">', o=spCastOpts(x);
   if(spAtWill(x)) h+='<button type="button" class="btn pri press" data-cast="'+i+'" data-ck="">Cast <small>'+(x.l?'at will':'cantrip, no slot')+'</small></button>';
   else { const qb=function(q){ return '<button type="button" class="btn press'+(qOk(q)?'':' off')+'" data-cast="'+i+'" data-ck="'+esc(ckOf(q))+'" data-cl="'+q.lv+'"'+(qOk(q)?'':' disabled')+'>'+esc(q.free?"Use "+q.lab:"Cast with a "+q.lab)+' <small>'+q.left+' left</small></button>'; };
     /* v49: with two or more slot levels, one stepper picks the level and one Cast button casts */
@@ -131,7 +132,8 @@ const temporalCasts=new WeakSet();
 function temporaryCastContext(index,spell){const status=temporaryCantripStatus(spell,S.temporaryCantrips);if(!status.allowed)return null;const view={character:C,state:S,cid:C.cid,id:C.id,name:C.name,index,spell,root:typeof document.querySelector==="function"?document.querySelector("#sheet.on"):null,signature:JSON.stringify(spell),permission:status.signature};temporalCasts.add(view);return view}
 function temporaryCastCurrent(view,index,spell){return temporalCasts.has(view)&&(!view.root||view.root.isConnected&&view.root.classList.contains("on"))&&view.character===C&&view.state===S&&view.cid===C.cid&&view.id===C.id&&view.name===C.name&&view.index===index&&view.spell===spell&&view.signature===JSON.stringify(spell)&&temporaryCantripStatus(spell,S.temporaryCantrips).allowed&&temporaryCantripStatus(spell,S.temporaryCantrips).signature===view.permission}
 function temporaryCastAllowed(view,index,spell){return !view||temporaryCastCurrent(view,index,spell)}
-export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired){toast('Review the saved Ioun Stone bonuses before casting. Open the Ioun Stone review panel or Apply this character’s matching Build.');return false}const spell=(C.spells||[])[i];if(!spell)return;if(["fixedSpellSource","tattooSource","gemSpellcasting","storedSpellcasting","storedSpellSlotLevel"].some(key=>Object.prototype.hasOwnProperty.call(spell,key))){toast("Use this source’s own controls to cast or resolve its original spell.");return}if(temporal||Object.prototype.hasOwnProperty.call(spell,"temporaryCantrip")){temporal=temporal||temporaryCastContext(i,spell);if(!temporal||!temporaryCastCurrent(temporal,i,spell)){toast("This temporary cantrip changed or expired. Open its current spell card.");return}}castCurrentSpell(i,k,lv,ok,repair,temporal)}
+function castSourcesCurrent(temporal,index,spell,pactRod){return temporaryCastAllowed(temporal,index,spell)&&pactRodCastCurrent(pactRod,index)}
+export function castDo(i,k,lv,ok,repair,temporal,pactRod){if(iounCharacterMathStatus(C,S).reviewRequired){toast('Review the saved Ioun Stone bonuses before casting. Open the Ioun Stone review panel or Apply this character’s matching Build.');return false}const spell=(C.spells||[])[i];if(!spell)return;if(["fixedSpellSource","tattooSource","gemSpellcasting","storedSpellcasting","storedSpellSlotLevel"].some(key=>Object.prototype.hasOwnProperty.call(spell,key))){toast("Use this source’s own controls to cast or resolve its original spell.");return}if(temporal||Object.prototype.hasOwnProperty.call(spell,"temporaryCantrip")){temporal=temporal||temporaryCastContext(i,spell);if(!temporal||!temporaryCastCurrent(temporal,i,spell)){toast("This temporary cantrip changed or expired. Open its current spell card.");return}}const permission=preparePactRodCast(i,pactRod);if(!permission.ok){toast(permission.guidance);return false}castCurrentSpell(i,k,lv,ok,repair,temporal,permission.context)}
 function castPaymentMessage(x,k,lv,s,nd,msg){
   if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
@@ -145,12 +147,12 @@ function castMagicWeapon(x,k,lv,s,nd,msg){
   if(x.n==="Magic Weapon"){ const w=(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"&&!/^Cantrip/.test(a.sub||"")&&/^\d+ ft$|^5 ft/.test(a.range||"5 ft"); })[0]||(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"; })[0]; if(w){ S.mw={w:w.n,l:+lv||x.l}; msg+=". "+w.n+" gets +"+((+lv||x.l)>=6?3:(+lv||x.l)>=4?2:1)+" to attack and damage until you rest"; } }
   return msg;
 }
-function castCurrentSpell(i,k,lv,ok,repair,temporal){ const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
+function castCurrentSpell(i,k,lv,ok,repair,temporal,pactRod){if(!pactRodCastCurrent(pactRod,i))return; const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
   if(!spRepairCastAllowed(i,k,lv,x,repair))return;
   if(!spFormCommitAllowed(x,k,nd))return;
-  if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true,repair,temporal); }); return; }/* v22 i4 */
+  if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true,repair,temporal,pactRod); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
-  if(!temporaryCastAllowed(temporal,i,x))return;undoMark("Cast "+x.n); let msg="Cast "+x.n;
+  if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark("Cast "+x.n);if(!pactRodCastCurrent(pactRod,i))return; let msg="Cast "+x.n;
   msg=castPaymentMessage(x,k,lv,s,nd,msg);msg=castMartyrPayment(x,k,lv,s,nd,msg);msg=castMagicWeapon(x,k,lv,s,nd,msg);
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
   save(); if(x.n==="Magic Weapon"||x.conc||k==="r-spell-uses"){ try{ renderAll(); }catch(er){} } syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} spRepairCommitted(repair); }

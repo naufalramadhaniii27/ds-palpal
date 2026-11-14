@@ -1,3 +1,4 @@
+import {withLegacyPactRodComparison,legacyPactRodSourcesSafe} from './10p-logic-pact-rod.js';
 import {bracersSourceProfile,bracersInventorySourceSupported} from '../data/lib/bracers-source.js';
 import {lateGet} from './01b-logic-late-ports.js';
 import {genv,sheetState,fxo,gx} from './00-env.js';
@@ -9,7 +10,7 @@ function nativeAttunementState(){return lateGet('attunementState')();}
 export function iounOrbitCatalog(){return iounNativeSources(lateGet('DM14S')||DMGI);}
 export function withIounOrbitProjection(state,run){const previous=scope;scope={state};try{return run();}finally{scope=previous;}}
 export function iounOrbitLegacyComparisonActive(){return legacyComparison;}
-export function withIounOrbitLegacyComparison(run){const previous=legacyComparison;legacyComparison=true;try{return run();}finally{legacyComparison=previous;}}
+export function withIounOrbitLegacyComparison(run){const previous=legacyComparison;legacyComparison=true;try{return withLegacyPactRodComparison(run);}finally{legacyComparison=previous;}}
 function ownedFrame(){const live=sheetState();return live?.C&&currentBuild().cid&&currentBuild().cid===genv.__sheetId?.()?live:null;}
 export function iounOrbitOwnedState(ATT=nativeAttunementState()){
  const live=ownedFrame();if(!scope&&!live)return undefined;const state=scope?scope.state:own(live.C,'iounOrbit')&&iounOrbitProblems(live.C.iounOrbit).length?live.C.iounOrbit:live.state?.iounOrbit;
@@ -71,6 +72,6 @@ function bracersLegacySourcesSafe(){
  });
 }
 export function iounOrbitLegacySourcesSafe(){
- if(!bracersLegacySourcesSafe())return false;
+ if(!bracersLegacySourcesSafe()||!legacyPactRodSourcesSafe())return false;
  const catalog=iounOrbitCatalog(),rows=currentBuild()?.inv||[];return rows.every(row=>{if(!row||!iounOrbitItemName(key(row)))return true;const source=iounSource(catalog,key(row));if(!source||(currentBuild().custLib||[]).some(item=>item.n===key(row)))return false;if(source.kind==='reserve')return !own(row,'iounOrbit');return !['iounOrbit','storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses'].some(field=>own(row,field))&&nativeEffectsMatch(source);});
 }

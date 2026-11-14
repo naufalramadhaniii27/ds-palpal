@@ -3459,6 +3459,21 @@ _u55_old="(()=>{const old=structuredClone(C);delete old.bracersDefense;old.ac.bo
 CASES.append(dict(name="NEG U55 actual pre-update loaded Defense part inert",b=u55_build(U55_FIX["inventory"]["carried"]),deriveState=U55_FIX["deriveDefaults"],expect=[(_u55_old,10)]))
 CASES.append(dict(name="Z3 U55 loaded native Defense preserves manual AC50",b=u55_build(U55_FIX["inventory"]["carried"]),deriveState=dict(U55_FIX["deriveDefaults"],cust={"n:ac":{"o":50}}),expect=[(_u55_old,50)]))
 
+# U56: exact original native2014 Pact Rod DC scope; existing spell-attack behavior is preserved.
+def u56_build(item, main="Warlock", row=None):
+    other="Wizard" if main=="Warlock" else "Warlock"
+    spells={"Warlock":["Eldritch Blast","Charm Person"],"Wizard":["Fire Bolt","Burning Hands"]}
+    return dict(rs="2014",cls=main,level=2,base=dict(WL,INT=18),unset={},extra={"mc":[dict(cls=other,lv=2)],"sp":spells[main],"spm":{other:spells[other]},"src":{"core":True,"dmg":True,"phb14":True,"dmg14":True}},inv=[dict({"n":item,"q":1,"eq":True,"attuned":True},**(row or {}))])
+def u56_checks(bonus, modern=False):
+    # Compare actual native channels with the same actor without its item; do not infer math from a source badge.
+    return [("(()=>{const b=structuredClone(__zmB);b.inv=[];const base=__bldSheetFor(b);const by=(c,k)=>(c.spellcasting.by||[]).find(x=>x.k===k)||c.spellcasting;return ['Warlock','Wizard'].every(k=>by(C,k).dc-by(base,k).dc===(k==='Warlock'?"+str(bonus)+":0)&&by(C,k).atk-by(base,k).atk==="+("(k==='Warlock'?"+str(bonus)+":0)" if modern else str(bonus))+")&&['Eldritch Blast','Fire Bolt'].every(n=>{const a=C.attacks.find(x=>x.n===n);return a&&Number(a.misc||0)==="+("(n==='Eldritch Blast'?"+str(bonus)+":0)" if modern else str(bonus)) +"})&&JSON.stringify(C.saves)===JSON.stringify(base.saves)&&JSON.stringify(C.saveBonus)===JSON.stringify(base.saveBonus)})()",True)]
+for magnitude in [1,2,3]:
+    for main in ["Warlock","Wizard"]:
+        CASES.append(dict(name="Z3 U56 original Pact Rod whole bonus +"+str(magnitude)+" "+main+" first",b=u56_build("+"+str(magnitude)+" Rod of the Pact Keeper",main),expect=u56_checks(magnitude)+[("C.spellcasting.by.map(x=>x.k).sort()",["Warlock","Wizard"]),("C.attacks.find(x=>x.n==='Eldritch Blast').sourceKey","Warlock"),("C.attacks.find(x=>x.n==='Fire Bolt').sourceKey","Wizard")]))
+for label,row in [("not held",{"eq":False}),("zero quantity",{"q":0}),("not attuned",{"attuned":False})]:
+    CASES.append(dict(name="NEG U56 original Pact Rod "+label,b=u56_build("+3 Rod of the Pact Keeper",row=row),expect=u56_checks(0)))
+CASES.append(dict(name="Z3 U56 current Pact Rod class-scoped control",b=u56_build("Rod of the Pact Keeper, +1"),expect=u56_checks(1,modern=True)))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

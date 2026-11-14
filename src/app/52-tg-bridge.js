@@ -1,3 +1,6 @@
+import {pactRodSheetReview} from './32x-logic-pact-rod-spell.js';
+import {legacyPactRodInventoryRequiresBuild} from './lib/pact-rod-inventory.js';
+import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {bindLive} from "./00a-reg-late-ports.js";import {C,FROZEN,S,__set_C} from "./04-logic-storage.js";
 import {num,toast} from "./05-logic-helpers.js";
 import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
@@ -5,7 +8,7 @@ import {uiGet} from "./07-ui-theme-contrast-spring.js";
 import {rGet} from "./14-ui-editor.js";
 import {uiSet} from "./15c-logic-file-state-compress.js";
 import {spCalc,spFx} from "./22-ui-spell-data-and-slots.js";
-import {scAdj} from "./23e-ui-spells-dc.js";
+import {scAdj,scOf} from "./23e-ui-spells-dc.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
 import {env} from "./00-env.js";
 bindLive("tgPcFor",{get:function(){return tgPcFor;}});
@@ -53,7 +56,17 @@ const row={}; SPELLS.forEach((r) =>{ row[r[0]]=r; });
   const sc0=C.spellcasting?(typeof scAdj==="function"?scAdj(C.spellcasting):C.spellcasting):{}, smod=sc0.mod!=null?+sc0.mod:(D.mod&&C.dcAb?D.mod[C.dcAb]:null), top=(sc0.slots||[]).length;
   return /** @type {any} */ ({row, smod, top});
 }
-function tgPcNow(){
+function tgSpellStatsDiffer(aggregate){return (C.spells||[]).some(spell=>{if(!spell||!spell.n)return false;const stats=scOf(spell);if(!stats)return true;if(spell.sv==='ATK')return stats.atk!==aggregate.atk;if(/^(STR|DEX|CON|INT|WIS|CHA)$/.test(spell.sv||''))return stats.dc!==aggregate.dc;const fx=spFx(spell);return !!(fx&&fx.heal&&stats.mod!==aggregate.mod)})}
+function tgSourceReview(){
+ if(iounCharacterMathStatus(C,S).reviewRequired)return 'Review the saved Ioun Stone values on this character’s sheet before using it in the Training Ground.';
+ const review=pactRodSheetReview();if(review)return review;
+ if(!legacyPactRodInventoryRequiresBuild(C)||!C.spellcasting)return '';
+ const guidance='This character has different spellcasting source values. Use its character sheet for casting; the Training Ground cannot represent those separate attack bonuses, save DCs and spellcasting modifiers.';
+ try{const adjusted=scAdj(C.spellcasting,undefined,true),channels=adjusted.by||[];return channels.some(row=>row.atk!==adjusted.atk||row.dc!==adjusted.dc||row.mod!==adjusted.mod)||tgSpellStatsDiffer(adjusted)?guidance:''}catch(error){return guidance}
+}
+function tgPcNow(quiet=false){
+ const review=tgSourceReview();if(review){if(!quiet)toast(review);return null}
+
  const {at, sv, sp, sl, sca}=tgPcNowStep1();
   return {name:C.name||"Hero",ac:D.ac,hp:D.hpmax,max:D.hpmax,speed:num(D.speed,30)||30,ini:D.init,saves:sv,attacks:at,level:D.level,spells:sp.list,slots:sl,satk:sca.atk!=null?+sca.atk:D.dc-8,sdc:sca.dc!=null?+sca.dc:D.dc,manual:sp.manual,cls:C.clsLabel||C.cls||"",species:String(C.species||"").split(" (")[0],por:typeof S.portrait==="string"&&/^data:image\//.test(S.portrait)?S.portrait:""}; }
 function tgPcNowStep1(){
@@ -65,11 +78,11 @@ const at=[]; (C.attacks||[]).forEach((a,i) =>{ const d=D.atk&&D.atk[i]; if(!d||!
   return /** @type {any} */ ({at, sv, sp, sl, sca});
 }
 /* c: a character object (C). Swaps it in, derives, reads, puts the open one back */
-function tgPcFor(c){ if(!c||!c.abilities) return null; let kC=C, kD=D, kB=B, kCU=CU0, out=null; try{ __set_C(c); derive(); out=tgPcNow(); out.por=""; } catch(e){ out=null; } finally{ __set_C(kC); __set_D(kD); __set_B(kB); __set_CU0(kCU); } return out; }
-function tgRoster(){ const r=rGet(), out=[]; if(!r||!r.chars) return out; Object.keys(r.chars).forEach((id) =>{ const e=r.chars[id]; if(!e||e.ph) return;
-    if(id===r.active&&!FROZEN){ const p=tgPcNow(); p.id=id; out.push(p); return; }
-    let c=null; try{ c=JSON.parse(e.C||"null"); }catch(x){ c=null; } const p2=tgPcFor(c); if(p2){ p2.id=id; out.push(p2); } });
-  return out; }
+function tgPcFor(c,quiet=false){ if(!c||!c.abilities) return null;if(c!==C&&legacyPactRodInventoryRequiresBuild(c)){if(!quiet)toast('Open this character’s sheet and Apply its matching Build before using its legacy Pact Rod values in the Training Ground.');return null} let kC=C, kD=D, kB=B, kCU=CU0, out=null; try{ __set_C(c); derive(); out=tgPcNow(quiet); if(out)out.por=""; } catch(e){ out=null; } finally{ __set_C(kC); __set_D(kD); __set_B(kB); __set_CU0(kCU); } return out; }
+function tgRoster(){ const r=rGet(), out=[];let skipped=0; if(!r||!r.chars) return out; Object.keys(r.chars).forEach((id) =>{ const e=r.chars[id]; if(!e||e.ph) return;
+    if(id===r.active&&!FROZEN){ const p=tgPcNow(true);if(p){p.id=id;out.push(p)}else skipped++;return; }
+    let c=null; try{ c=JSON.parse(e.C||"null"); }catch(x){ c=null; } const p2=tgPcFor(c,true); if(p2){ p2.id=id; out.push(p2); }else if(c&&c.abilities)skipped++; });
+  if(skipped)toast('Some characters could not be verified for combat or need separate spellcasting source values. Open their character sheets for review and casting.');return out; }
 /* a class to try: the builder makes a level N character with its first choices (Human, Soldier, standard scores) */
 function tgTry(cls,level,sub){ if(!env.__bldSheetFor) return null; const lv=Math.max(1,Math.min(20,level|0||1)), nb=(env.__bldQuickFor&&env.__bldQuickFor(cls,lv))||{cls:cls,level:lv,sub:sub||"",species:"Human",bg:"Soldier",unset:[]}; nb.name="Trial "+cls;
   let c2=null; try{ c2=env.__bldSheetFor(nb); }catch(e){ c2=null; } const p=tgPcFor(c2); if(p){ p.name=cls+" "+nb.level; p.trial=1; } return p; }
