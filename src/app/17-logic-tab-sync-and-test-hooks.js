@@ -10,6 +10,7 @@ import {bkpKeyOk} from "./15b-logic-backup.js";import {homeCards,rLoad,rSnap,sho
 
 import {env} from "./00-env.js";
 import {reconcileStoredInventory} from "../data/lib/stored-spell.js";
+import {reconcileSlotRecoveryInventory} from "../data/lib/slot-recovery.js";
 bindLive("MYID",{get:function(){return MYID;},set:function(v){MYID=v;}});
 bindLive("PUBLIC_FRESH",{get:function(){return PUBLIC_FRESH;},set:function(v){PUBLIC_FRESH=v;}});
 bindLive("WN_FROM",{get:function(){return WN_FROM;},set:function(v){WN_FROM=v;}});
@@ -93,16 +94,23 @@ function storedInventoryProjection(next){
  const character=C,state=S,identity=JSON.stringify(C),namespace=JSON.stringify([S.storedSpellItems,S.storedSpellCasts]);let owned=false;try{owned=env.__bldStoredSpellInventoryOwner(character,next,state)===true}catch(error){}
  if(FROZEN||C!==character||S!==state||identity!==JSON.stringify(C)||namespace!==JSON.stringify([S.storedSpellItems,S.storedSpellCasts]))return {ok:false,changed:false};if(!owned)return {ok:true,changed:false};const result=reconcileStoredInventory(character,next,state);return result.ok?result:{ok:true,changed:false};
 }
-function installStoredInventoryProjection(projection){if(projection.changed){S.storedSpellItems=projection.authority;save()}}
-env.__sheetApply=function(p,note){ if(!p||!p.abilities) return; if(lsGet(CKEY)!=null) snTake(MYID||(rGet()||{}).active,"Before Apply from the builder");/* v18 RU48 (d) */ const om=(D&&D.hpmax)||0, oh=S.hp,candidate=keepNewer(p),inventory=storedInventoryProjection(candidate);if(!inventory.ok)return;__set_C(candidate);installStoredInventoryProjection(inventory); if(Array.isArray(p.lang)&&p.lang.length){ S.lang=p.lang.slice(); save(); } if(typeof p.camp==="string"&&p.camp.trim()){ S.camp=p.camp.trim(); save(); }/* T10: campaign typed in the builder */
+function recoveryInventoryProjection(next){
+ if(FROZEN||!S||!Object.prototype.hasOwnProperty.call(S,'slotRecoveryItems')||typeof env.__bldSlotRecoveryInventoryOwner!=='function')return {ok:true,changed:false};
+ const character=C,state=S,identity=JSON.stringify(C),snapshot=JSON.stringify(S);let owned=false;try{owned=env.__bldSlotRecoveryInventoryOwner(character,next,state)===true}catch(error){}
+ if(FROZEN||C!==character||S!==state||identity!==JSON.stringify(C)||snapshot!==JSON.stringify(S))return {ok:false,changed:false};if(!owned)return {ok:true,changed:false};const result=reconcileSlotRecoveryInventory(character.inv||[],next.inv||[],state.slotRecoveryItems);return result.ok?result:{ok:true,changed:false};
+}
+function combinedInventoryProjection(next){const character=C,state=S,readOnly=FROZEN,identity=JSON.stringify(C),snapshot=JSON.stringify(S),stored=storedInventoryProjection(next);if(!stored.ok)return stored;const recovery=recoveryInventoryProjection(next);return !recovery.ok||FROZEN!==readOnly||C!==character||S!==state||identity!==JSON.stringify(C)||snapshot!==JSON.stringify(S)?{ok:false}:{ok:true,stored,recovery}}
+function installStoredInventoryProjection(projection){if(projection.stored.changed)S.storedSpellItems=projection.stored.authority;if(projection.recovery.changed)S.slotRecoveryItems=projection.recovery.authority;if(projection.stored.changed||projection.recovery.changed)save()}
+env.__sheetApply=function(p,note){ if(!p||!p.abilities) return; if(lsGet(CKEY)!=null) snTake(MYID||(rGet()||{}).active,"Before Apply from the builder");/* v18 RU48 (d) */ const om=(D&&D.hpmax)||0, oh=S.hp,candidate=keepNewer(p),inventory=combinedInventoryProjection(candidate);if(!inventory.ok)return;__set_C(candidate);installStoredInventoryProjection(inventory); if(Array.isArray(p.lang)&&p.lang.length){ S.lang=p.lang.slice(); save(); } if(typeof p.camp==="string"&&p.camp.trim()){ S.camp=p.camp.trim(); save(); }/* T10: campaign typed in the builder */
   if(oh!=null&&om){ try{ derive(); S.hp=clamp(oh+(D.hpmax-om),0,D.hpmax); }catch(er){ S.hp=null; } } else S.hp=null; if(!S.used) S.used={}; save(); saveC(); renderAll(); renderNotes(); const gq=S.coins?num(S.coins.gp,0)+num(C.gp,0)-num(S.coinBase,num(C.gp,0)):0; if(note!==false) toast(gq<0?"Sheet updated. Starting gold is now lower than the gold you spent, so Gold shows 0.":note||"Sheet updated from builder"); };/* v24 p08: quiet for the blank first sheet */
 env.__sheetName=function(){ return C&&C.name; };/* the builder names the character while the name is typed: the sheet shows it at once, without Apply */env.__sheetSetName=function(v){ v=String(v||"").trim(); if(!v||!C||C.name===v) return false; C.name=v; try{ saveC(); renderAll(); }catch(er){ return false; } return true; };env.__ask=ask;/* T10: test hook, opens the confirm dialog with any text */
 env.__sheetRerender=function(){ renderAll(); };
-env.__sheetSoft=function(p){ if(!p||!p.abilities) return;const candidate=keepNewer(p),inventory=storedInventoryProjection(candidate);if(!inventory.ok)return;__set_C(candidate);installStoredInventoryProjection(inventory);saveC();renderAll(); };
+env.__sheetSoft=function(p){ if(!p||!p.abilities) return;const candidate=keepNewer(p),inventory=combinedInventoryProjection(candidate);if(!inventory.ok)return;__set_C(candidate);installStoredInventoryProjection(inventory);saveC();renderAll(); };
 env.__temporaryCantripSave=function(state){if(FROZEN||state!==S)return false;save();return true};
 env.__spellwroughtTattooSave=function(state){if(FROZEN||state!==S)return false;save();return true};
 env.__spellGemSave=function(state){if(FROZEN||state!==S)return false;save();return true};
 env.__storedSpellSave=function(state){if(FROZEN||state!==S)return false;save();return true};
+env.__slotRecoverySave=function(state){if(FROZEN||state!==S)return false;save();return true};
 env.__sheetState=function(){ return {C:C, state:S, readOnly:!!FROZEN, temporaryCantrips:S.temporaryCantrips, lang:S.lang, camp:campName(), fxT:S.fxT||{}, cust:S.cust||{}, attackTarget:S.attackTarget, exh:S.exh||0, exhLk:S.exhLk||null}; };/* fx engine v6: exh and exhLk for the Exhaustion lock tests */
 env.__D=function(){ return D; };/* T11 N6: derive a sheet object without saving. The open character and its state come back afterwards */
 env.__deriveFor=function(c){ let C0=C, S0=S, D0=D, out=null; try{ __set_C(structuredClone(c)); __set_S(structuredClone(DEF)); derive(); out=structuredClone({level:D.level,pb:D.pb,ac:D.ac,hpmax:D.hpmax,init:D.init,dc:D.dc,speed:D.speed,score:D.score,mod:D.mod,save:D.save,skill:D.skill,atk:D.atk,res:D.res,carry:D.carry,exh:D.exh,exhMin:D.exhMin}); }catch(e){ out={err:String(e&&e.stack||e)}; } __set_C(C0); __set_S(S0); __set_D(D0); try{ derive(); }catch(e){} return out; };/* v35 p05 */

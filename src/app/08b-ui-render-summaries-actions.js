@@ -1,3 +1,4 @@
+import {slotRecoveryControls} from './21k-ui-slot-recovery.js';
 import {storedSpellReceiptControls} from './08m-ui-stored-spell-casting.js';
 import {spellGemReceiptControls} from './08l-ui-spell-gem-casting.js';
 import {spellwroughtTattooControls} from './08k-ui-spellwrought-body.js';
@@ -214,7 +215,7 @@ function renderActionsStep3(rowsOf, apa, AH, kinds, feats){
   const tabs='<div class="ifil">'+[["all","All"],["attack","Attack"],["action","Action"],["onhit","On Hit"],["bonus","Bonus Action"],["reaction","Reaction"],["other","Other"],["limited","Limited Use"]].map((f) =>{return '<button type="button" class="ifb'+(actF===f[0]?' on':'')+'" data-actf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
   const show=function(k){return actF==="all"||actF===k};
   let h=tabs, bRows=rowsOf("bonus"), rRows=rowsOf("reaction");
-  h+=storedSpellReceiptControls()+spellGemReceiptControls()+spellwroughtTattooControls()+noActH()+turnDamageGuide()+supremeHealingControls()+divineInterventionControls()+ordersWrathControls();/* v22 RU53 */
+  h+=slotRecoveryControls()+storedSpellReceiptControls()+spellGemReceiptControls()+spellwroughtTattooControls()+noActH()+turnDamageGuide()+supremeHealingControls()+divineInterventionControls()+ordersWrathControls();/* v22 RU53 */
   if(show("attack")||show("action")) h+=sitCardH();/* v103 */
   if(show("attack")||show("action")) h+='<h3 class="fcat">Actions <span class="apa">• Attacks per Action: '+apa+'</span></h3>'+AH+rows+saveCantripRows()+modeXdRows()+sitDiceRows();/* v22 RU43, RU56 */
   if(show("action")) h+=combat(["Attack","Dash","Disengage","Dodge","Grapple","Help","Hide","Improvise","Influence","Magic","Ready","Search","Shove","Study","Utilize"])+kinds.action.map((o) =>{return actOne(o,"")}).join("")+actPlain("Actions",feats);

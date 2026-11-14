@@ -1,3 +1,4 @@
+import {slotRecoveryProfile} from '../data/lib/slot-recovery.js';
 import {lateGet,pk} from "./01b-logic-late-ports.js";
 import {MAGIC_SUM} from "./02-data-magic-item-summaries.js";
 import {DMAP,dmapAlias} from "./03-logic-magic-item-effects.js";
@@ -78,3 +79,6 @@ genv.__sp14Set=function(on){sp14Set(on,false);eq14Set(on);dm14Set(on);genv.__gl1
 export function __set_DM14ON(v){ return DM14ON=v; }
 export function __set_DM14S(v){ return DM14S=v; }
 export function __set_DM14M(v){ return DM14M=v; }
+
+/* Native physical-profile catalogue is independent from the open Build overlays. */
+export function slotRecoveryNativeCatalog(){const base=(DM14S||DMGI).concat(Object.values(genv.WXI||{}).flat()),seen=new Set(),out=[];base.forEach(row=>{for(const nativeProfile of ["dmg2024","dmg2014","efa","au"]){if(!slotRecoveryProfile(row[0],nativeProfile))continue;const id=row[0]+"|"+nativeProfile;if(seen.has(id))continue;seen.add(id);out.push({item:row[0],nativeProfile,row:structuredClone(row)})}});return out}

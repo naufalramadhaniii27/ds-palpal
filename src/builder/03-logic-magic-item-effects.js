@@ -1,3 +1,4 @@
+import {slotRecoveryProfile,slotRecoveryAuthorityProblems,assertSlotRecoveryCurrent} from '../data/lib/slot-recovery.js';
 import {spellGemProfile} from "../data/lib/spell-gem.js";
 import {casterParts,clsLv,lateGet,subAt} from "./01b-logic-late-ports.js";import {clone} from "./01-logic-core-helpers.js";
 
@@ -130,3 +131,8 @@ export function splitRiddenVehicleRow(index,change){const b=lateGet("B");return 
 
 // Absent metadata retains the legacy projection. Any own claim, including unsupported versions, suppresses the wrong charge path without granting permission.
 export function suppressGemLegacyPool(row){return !!spellGemProfile(row&&row.n)&&Object.prototype.hasOwnProperty.call(lateGet("B"),"spellGemSources")}
+
+/* Typed direct slot restoration uses one stable native S.used key per physical copy. */
+export function slotRecoveryNativeProfile(row){const n=Object.prototype.hasOwnProperty.call(row,"key")?row.key:row.n,raw=row.slotRecovery;if(raw&&slotRecoveryProfile(n,raw.nativeProfile)&&DMAP[n])return raw.nativeProfile;if(n==="Pearl of Power")return lateGet("B").rs==="2014"?null:"dmg2024";if(/^Rod of the Pact Keeper, \+[123]$/.test(n))return "dmg2024";if(/^\+[123] Rod of the Pact Keeper$/.test(n))return "dmg2014";if(n==="Spell-Refueling Ring")return "efa";if(/^(Psionic|Tranquil|Vigilant) Rod of the Honed Mind$/.test(n))return "au";return null}
+export function slotRecoveryAllocatedKeys(){const registry=lateGet("B").slotRecoverySources;return slotRecoveryAuthorityProblems(registry).length?[]:registry.sources.map(source=>source.state.chargeKey)}
+export function slotRecoveryResource(row,index){if(!Object.prototype.hasOwnProperty.call(row,"slotRecovery"))return null;const registry=lateGet("B").slotRecoverySources;if(!Object.prototype.hasOwnProperty.call(row,"slotRecovery")&&!Object.prototype.hasOwnProperty.call(lateGet("B"),"slotRecoverySources"))return null;if(!slotRecoveryNativeProfile(row))return {managed:true,active:false};const current=assertSlotRecoveryCurrent(row,registry);return current.ok?{managed:true,active:(row.q==null?1:row.q)>0,source:current.source,profile:current.profile,index}: {managed:true,active:false}}

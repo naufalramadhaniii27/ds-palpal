@@ -78,3 +78,5 @@ bindG(["__GLOSS", "__MANSUM", "__ICO", "__appVer", "__bldArmor", "__bldSetAttune
 bindG(["__sheetSetName"]);
 /* browser methods */
 bindM(["fetch", "matchMedia", "scrollTo"]);
+
+bindG(["__bldSlotRecoveryInfo", "__bldSlotRecoveryCapture", "__bldSlotRecoveryTokenCurrent", "__bldSlotRecoveryAcceptReceipt", "__bldSlotRecoveryAdopt", "__bldSlotRecoveryReview", "__bldSlotRecoverySplit", "__bldSlotRecoveryResync", "__bldSlotRecoveryRestore", "__bldSlotRecoveryRemove", "__bldSlotRecoveryActivate", "__bldSlotRecoveryReset", "__bldSlotRecoveryInventoryOwner", "__bldSlotRecoveryRestPlan", "__slotRecoveryActionAllowed", "__slotRecoverySave"]);

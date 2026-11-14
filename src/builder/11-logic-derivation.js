@@ -1,6 +1,6 @@
 import {normalizeTarget} from "../data/lib/attack-target.js";
 import {bindLive,own,clsLv as clsLv$L,toSheet,xl14} from "./01b-logic-late-ports.js";import {ABK,SRC,mod,pbOf,setPbAdd,getPbAdd} from "./01-logic-core-helpers.js";
-import {activeFx,bgX,un} from "./03-logic-magic-item-effects.js";
+import {activeFx,bgX,un,slotRecoveryAllocatedKeys} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {allFeats,asiOf,dmXl,raceBonus,wxAb} from "./09-logic-feats-and-choices.js";
@@ -137,7 +137,7 @@ export function clsLv(cls){let t=0;clsParts().forEach((q) =>{if(q.cls===cls||(q.
    "m-cleric-channel-divinity". The sheet saves uses per key (S.used), so keepResKeys() reuses the key the sheet
    already has for the same resource (same name and tag first, then same name): old builds keep "r0", "m0r1", "sw". No stored data is migrated. */
 export function slugK(t){return String(t||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")}
-export function resKey(pre,n,list){let b=pre+slugK(n),k=b,i=2;while(list.some((x) =>{return x.k===k}))k=b+"-"+(i++);return k}
+export function resKey(pre,n,list){let b=pre+slugK(n),k=b,i=2;while(slotRecoveryAllocatedKeys().includes(k)||list.some((x) =>{return x.k===k}))k=b+"-"+(i++);return k}
 /* keepResKeys steps (SOLID s16): a key the builder made, the keys taken over from the sheet (two passes: same tag first), the new keys */
 function krMine(k){return /^[rm]-/.test(k)}
 function krInherit(C,P,fixed,took,inh){

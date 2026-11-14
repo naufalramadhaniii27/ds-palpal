@@ -177,6 +177,7 @@
     "app/21h-ui-spellwrought-needle.js",
     "app/21i-ui-spell-gem.js",
     "app/21j-ui-stored-spells.js",
+    "app/21k-ui-slot-recovery.js",
     "app/21g-ui-ridden-vehicles.js",
     "app/21a-ui-attunement.js",
     "app/22-ui-spell-data-and-slots.js",
@@ -209,6 +210,7 @@
     "app/32g-logic-spellwrought-tattoo.js",
     "app/32h-logic-spell-gem.js",
     "app/32i-logic-stored-spells.js",
+    "app/32j-logic-slot-recovery.js",
     "app/33-logic-play-rage-conditions.js",
     "app/34-ui-situations.js",
     "app/34b-ui-combat-effects-modes.js",
@@ -863,6 +865,7 @@
     "data/lib/spell-gem-source.js",
     "data/lib/spell-gem-casts.js",
     "data/lib/stored-spell.js",
+    "data/lib/slot-recovery.js",
     "data/lib/gem-check-bonuses.js",
     "data/lib/casting-sources.js",
     "data/lib/item-spell-damage.js",
@@ -916,6 +919,7 @@
     "builder/25a-logic-tattoo-sources.js",
     "builder/25b-logic-spell-gem-sources.js",
     "builder/25c-logic-stored-spell-sources.js",
+    "builder/25d-logic-slot-recovery-sources.js",
     "builder/main.js"
    ],
    "entry": "builder/main.js"

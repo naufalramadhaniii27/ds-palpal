@@ -1,3 +1,4 @@
+import {slotRecoveryControl} from './21k-ui-slot-recovery.js';
 import {storedSpellPhysicalControl} from './21j-ui-stored-spells.js';
 import {spellGemPhysicalControl} from './21i-ui-spell-gem.js';
 import {spellwroughtNeedleControl} from './21h-ui-spellwrought-needle.js';
@@ -190,7 +191,7 @@ DETAIL.add("w", {
 DETAIL.add("it", {
   render:function(key){ let h="";
   const it=(C.inv||[])[+key]; if(!it) return {t:"Item", h:""};
-    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+weaponWieldControl(it)+attunementControl(it,+key)+weaponFormControl(it,+key)+toolFormControl(it,+key)+carpetVehicleControl(it,+key)+riddenVehicleControl(it,+key)+temporaryCantripControl(it,+key)+spellwroughtNeedleControl(it,+key)+spellGemPhysicalControl(it,+key)+storedSpellPhysicalControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?"Unequip":"Equip")+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
+    if(it.html){ const dci=dcItem(itemHtml(it)); return {t:it.n, h:'<div class="dc dc-i">'+dci.h+'</div><div class="idetail">'+xlink(dci.rest,it.n)+(it.pg?'<p class="info-d" style="color:var(--faint)">Source: '+esc(srcPg("DMG-2024",it.pg))+'.</p>':'')+(it.west?'<p class="info-d" style="color:var(--faint)">Weight '+fmtW(num(it.w,0))+' lb is an estimate: the DMG gives none for this item.</p>':'')+'</div>'+packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+weaponWieldControl(it)+attunementControl(it,+key)+weaponFormControl(it,+key)+toolFormControl(it,+key)+carpetVehicleControl(it,+key)+riddenVehicleControl(it,+key)+temporaryCantripControl(it,+key)+spellwroughtNeedleControl(it,+key)+spellGemPhysicalControl(it,+key)+storedSpellPhysicalControl(it,+key)+slotRecoveryControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key)+'<div class="iacts">'+(it.equippable?'<button type="button" class="btn press" data-ieqs="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">'+(eqOn(it)?"Unequip":"Equip")+'</button>':'')+'<button type="button" class="idel" data-idel="'+esc(it.key||it.n)+'" data-iix="'+(+key)+'">DELETE</button></div>'}; }
     ({h}=renderStep1(it, h, key));
     return {t:it.n, h:h};
   },
@@ -203,7 +204,7 @@ function renderStep1(it, h, key){
     if(it.d) h+='<div class="info-h">Your note</div><p class="info-d">'+esc(it.d)+'</p>';
     const wl2=[]; (C.attacks||[]).forEach((a,ix) =>{ if((a.n===it.n||a.n===it.n+" (thrown)")&&atkOn(a)) wl2.push(ix); }); /* RU15 */
     if(wl2.length) h+='<div class="info-l">'+wl2.map((ix) =>{ return '<button type="button" data-info="w:'+ix+'">Attack with '+esc(C.attacks[ix].n)+'<span>'+sg(D.atk[ix].hit)+' to hit, '+esc(D.atk[ix].dmg)+'</span></button>'; }).join("")+'</div>';
-    h+=packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+weaponWieldControl(it)+attunementControl(it,+key)+weaponFormControl(it,+key)+toolFormControl(it,+key)+carpetVehicleControl(it,+key)+riddenVehicleControl(it,+key)+temporaryCantripControl(it,+key)+spellwroughtNeedleControl(it,+key)+spellGemPhysicalControl(it,+key)+storedSpellPhysicalControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key);
+    h+=packH(it,+key)+ctH(it,+key)+useH(it,+key)+qtyCtl(it,+key)+weaponWieldControl(it)+attunementControl(it,+key)+weaponFormControl(it,+key)+toolFormControl(it,+key)+carpetVehicleControl(it,+key)+riddenVehicleControl(it,+key)+temporaryCantripControl(it,+key)+spellwroughtNeedleControl(it,+key)+spellGemPhysicalControl(it,+key)+storedSpellPhysicalControl(it,+key)+slotRecoveryControl(it,+key)+mwH(it,+key)+itemRes(it)+moveCtl(it,+key);
   return /** @type {any} */ ({h});
 }
 /* solid:orchestrator renderDetail */

@@ -53,3 +53,5 @@ export {spellGemCastsProblems} from "../data/lib/spell-gem-casts.js";
 export {itemSpellDamageFeaturesProblems} from "../data/lib/item-spell-damage.js";
 
 export {storedSpellProfile,storedSpellCastsProblems} from "../data/lib/stored-spell.js";
+
+export {slotRecoveryProfile} from '../data/lib/slot-recovery.js';

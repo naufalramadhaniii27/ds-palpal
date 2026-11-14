@@ -26,4 +26,5 @@ bind(["CSS", "CompressionStream", "DecompressionStream", "IntersectionObserver",
 function bindFn(names){ names.forEach((n) =>{ Object.defineProperty(env, n, { get(){ const f = window[n]; return typeof f === "function" ? f.bind(window) : f; }, enumerable: true }); }); }
 bindFn(["addEventListener", "removeEventListener", "fetch", "focus", "matchMedia", "print", "requestAnimationFrame", "scrollBy", "scrollTo", "showSaveFilePicker"]);
 /* list of the bound names (the contract test reads it) */
+bind(["__bldSlotRecoveryInfo", "__bldSlotRecoveryCapture", "__bldSlotRecoveryTokenCurrent", "__bldSlotRecoveryAcceptReceipt", "__bldSlotRecoveryAdopt", "__bldSlotRecoveryReview", "__bldSlotRecoverySplit", "__bldSlotRecoveryResync", "__bldSlotRecoveryRestore", "__bldSlotRecoveryRemove", "__bldSlotRecoveryActivate", "__bldSlotRecoveryReset", "__bldSlotRecoveryInventoryOwner", "__bldSlotRecoveryRestPlan", "__slotRecoveryActionAllowed", "__slotRecoverySave"]);
 export const ENV_NAMES = Object.keys(env);

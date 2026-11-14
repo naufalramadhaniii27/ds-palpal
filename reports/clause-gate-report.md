@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9040 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9058 |
 | Info (tag terdokumentasi) | 27264 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1490, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 974, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 229, STD:ASI 225, NUMONLY:ZERO 187, ROLL:LAST_CHARGE 142, OBJECT:STATS 110, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5808 |
+| Uncovered | 5790 |
 | Uncovered dengan angka | 3385 |
-| Uncovered dengan kelas kata kunci mekanik | 5411 |
+| Uncovered dengan kelas kata kunci mekanik | 5393 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 397 |
 | Angka yang tidak dijelaskan record mana pun | 3178 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4947 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4929 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 263 |
-| Waktu | muat data 14 s, analisis 15 s |
+| Waktu | muat data 1 s, analisis 14 s |
 
-Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 182 ditangkap (61.1%). Hapus semua atom kelas yang dibutuhkan: 186 ditangkap (62.4%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 186 ditangkap (62.0%). Hapus semua atom kelas yang dibutuhkan: 186 ditangkap (62.0%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 290 ditangkap (96.7%), semua atom kelas dihapus: 294 ditangkap (98.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 293 ditangkap (97.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -38,13 +38,13 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 
 | Sumber | Kalimat covered |
 |---|---|
-| item | 3340 |
+| item | 3357 |
 | GX | 1946 |
 | wxs | 849 |
 | LU_X | 652 |
 | AUTO | 467 |
 | species | 440 |
-| CODE | 372 |
+| CODE | 390 |
 | ITEM_SPELLS | 370 |
 | feat | 327 |
 | SPELL_FX | 241 |
@@ -64,7 +64,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
-| RESOURCE | 7506 | 992 | 13.2% |
+| RESOURCE | 7506 | 975 | 13.0% |
 | SPELL | 3208 | 868 | 27.1% |
 | DMG | 4548 | 743 | 16.3% |
 | SPEED | 1321 | 477 | 36.1% |
@@ -72,9 +72,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | PROF | 1048 | 443 | 42.3% |
 | CHOICE | 1598 | 401 | 25.1% |
 | RES | 1294 | 388 | 30.0% |
-| SLOT | 1330 | 359 | 27.0% |
 | NUM | 8063 | 354 | 4.4% |
 | IMM | 953 | 352 | 36.9% |
+| SLOT | 1330 | 341 | 25.6% |
 | DC | 2887 | 248 | 8.6% |
 | DIS | 1073 | 247 | 23.0% |
 | ATK | 1013 | 220 | 21.7% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 4880 | 11662 | 0 | 2965 |
+| item | 19507 | 4898 | 11662 | 0 | 2947 |
 | species | 1320 | 725 | 365 | 0 | 230 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2661 | 6332 | 1590 | 15.0% |
+| dmg | 10583 | 2672 | 6332 | 1579 | 14.9% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -114,13 +114,13 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | tdm14 | 645 | 127 | 378 | 140 | 21.7% |
 | tua24 | 637 | 159 | 341 | 137 | 21.5% |
 | egw | 566 | 141 | 289 | 136 | 24.0% |
-| au | 536 | 104 | 311 | 121 | 22.6% |
+| au | 536 | 107 | 311 | 118 | 22.0% |
 | tce | 736 | 169 | 459 | 108 | 14.7% |
 | tgh14p | 491 | 107 | 282 | 102 | 20.8% |
 | tdcsr | 416 | 134 | 185 | 97 | 23.3% |
 | twow | 544 | 167 | 283 | 94 | 17.3% |
 | phb14 | 516 | 170 | 261 | 85 | 16.5% |
-| dmg14 | 540 | 186 | 273 | 81 | 15.0% |
+| dmg14 | 540 | 189 | 273 | 78 | 14.4% |
 | thhw | 395 | 87 | 231 | 77 | 19.5% |
 | tee24 | 464 | 166 | 232 | 66 | 14.2% |
 | tssm | 275 | 66 | 147 | 62 | 22.5% |
@@ -174,9 +174,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | psx | 18 | 8 | 5 | 5 | 27.8% |
 | psz | 38 | 31 | 2 | 5 | 13.2% |
 | tdcg | 12 | 4 | 5 | 3 | 25.0% |
-| efa | 28 | 10 | 15 | 3 | 10.7% |
 | eepc | 9 | 7 | 0 | 2 | 22.2% |
 | psd | 5 | 3 | 0 | 2 | 40.0% |
+| efa | 28 | 11 | 15 | 2 | 7.1% |
 | nf | 25 | 9 | 14 | 2 | 8.0% |
 | imr | 186 | 6 | 178 | 2 | 1.1% |
 | gos | 12 | 6 | 4 | 2 | 16.7% |
@@ -198,7 +198,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | PROF | 405 | 136 |
 | SPEED | 399 | 312 |
 | NUM | 354 | 354 |
-| SLOT | 341 | 106 |
+| SLOT | 323 | 106 |
 | RES | 314 | 128 |
 | CHOICE | 267 | 75 |
 | IMM | 240 | 77 |
@@ -519,7 +519,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Sorcerer/Ancestral Sorcery|Ancestor's Lore#1` Add your Charisma modifier (min +1) to your Intelligence checks. | number 1 no record explains
 - `sub|Warmage/Coalition Arcanist|Tactical Uplink#3` You also get +5 to your Passive Wisdom (Perception). | number 5 no record explains
 
-### SLOT (341 uncovered)
+### SLOT (323 uncovered)
 
 - `class|Summoner|Conjuration Expert#1` You have two extra spell slots, one of level 1 and one of level 2, separate from your Spellcasting slots, and usable only for Conjuration spells. | no record for SLOT; number 2 unexplained
 - `class|Warlock|Magical Cunning#2` When it ends, you regain expended Pact Magic spell slots, up to half your maximum number of slots (round up). | no record for SLOT; number half unexplained
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Sorcerer/Runechild|Essence Runes#2` Runes you spend sorcery points on become charged at the end of that turn. -> info:ACTIVE:TRIGGER
-- class `sub|Sorcerer/Runechild|Essence Runes#2` Runes you spend sorcery points on become charged at the end of that turn. -> info:ACTIVE:TRIGGER
-- record `sub|Bard/College of Masks|Persona Masks#1` You gain 3 persona masks from the book's list, 4 at Bard level 6 and 5 at 14. -> info:NUMONLY:TEXT
-- class `sub|Bard/College of Masks|Persona Masks#1` You gain 3 persona masks from the book's list, 4 at Bard level 6 and 5 at 14. -> info:NUMONLY:TEXT
-- record `sub|Warmage/House of Darts|Trick Shot#6` A Short Rest returns one expended use. -> covered
-- class `sub|Warmage/House of Darts|Trick Shot#6` A Short Rest returns one expended use. -> info:REST:NONUM
+- record `sub|Warlock/Primordial Patron|Elemental Spells#14` Fire: 3 Burning Hands, Heat Metal. -> covered
+- class `sub|Warlock/Primordial Patron|Elemental Spells#14` Fire: 3 Burning Hands, Heat Metal. -> covered
+- record `item|thhw|Red-Feather Bow#6` You see from the spot where it lands as if you stood there for 1 minute. -> info:NUMONLY:GEOMETRY
+- class `item|thhw|Red-Feather Bow#6` You see from the spot where it lands as if you stood there for 1 minute. -> info:NUMONLY:GEOMETRY
+- record `species|Dhakaani Ghaal'dar (Hobgoblin)|Strength in Unity#2` After you use this, finish a Short or Long Rest to do so again. -> info:REST:NONUM
+- class `species|Dhakaani Ghaal'dar (Hobgoblin)|Strength in Unity#2` After you use this, finish a Short or Long Rest to do so again. -> info:REST:NONUM
+- record `item|dmg|Orb of Dragonkind#21` An Orb of Dragonkind has two minor beneficial properties, one minor detrimental property, and one major detrimental prop -> info:NUMONLY:TEXT
+- class `item|dmg|Orb of Dragonkind#21` An Orb of Dragonkind has two minor beneficial properties, one minor detrimental property, and one major detrimental prop -> info:NUMONLY:TEXT
+- record `item|cm|Gloves of Soul Catching#2` This property of the gloves has no effect on you if your Constitution is already 20 or higher. -> info:NUMONLY:TEXT
+- class `item|cm|Gloves of Soul Catching#2` This property of the gloves has no effect on you if your Constitution is already 20 or higher. -> info:NUMONLY:TEXT
+- record `sub|Paladin/Oath of the Ancients|Undying Sentinel#2` After you use this feature, it is unavailable until you finish a Long Rest. -> info:REST:NONUM
+- class `sub|Paladin/Oath of the Ancients|Undying Sentinel#2` After you use this feature, it is unavailable until you finish a Long Rest. -> info:REST:NONUM
+- record `item|dmg|Spell Gem (Obsidian)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Spell Gem (Obsidian)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
+- record `item|tsgeh|Big Bertha#1` A Cannon inlaid with moongold (3d10 Bludgeoning, range 120/240 ft, Artillery, Booming, Two-Handed, Push mastery, uses Ca -> info:NUMONLY:ROLL
+- class `item|tsgeh|Big Bertha#1` A Cannon inlaid with moongold (3d10 Bludgeoning, range 120/240 ft, Artillery, Booming, Two-Handed, Push mastery, uses Ca -> info:NUMONLY:ROLL
+- record `item|dmg14|Figurine of Wondrous Power, Marble Elephant#14` Once it has been used, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg14|Figurine of Wondrous Power, Marble Elephant#14` Once it has been used, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- record `sub|Rogue/Magic Stealer|Occult Shroud#1` After a Long Rest you can cast Nondetection on yourself only, with a 24-hour duration. -> covered
+- record `sub|Paladin/Oath of Revelry|Merrymaker#2` Three uses, all regained on a Long Rest. -> covered
 - record `sub|Barbarian/Path of the Abomination|Bloodcurdling Howl#3` Short or Long Rest to use again. -> covered
 - class `sub|Barbarian/Path of the Abomination|Bloodcurdling Howl#3` Short or Long Rest to use again. -> info:REST:NONUM
-- record `sub|Sorcerer/Demonic Sorcery|Demonic Spells#2` 5 Dispel Magic, Bestow Curse. -> info:NUMONLY:TABLE
-- class `sub|Sorcerer/Demonic Sorcery|Demonic Spells#2` 5 Dispel Magic, Bestow Curse. -> info:NUMONLY:TABLE
-- record `sub|Bard/College of Fools|Last Laugh#5` Long Rest to use again. -> covered
-- class `sub|Bard/College of Fools|Last Laugh#5` Long Rest to use again. -> info:REST:NONUM
-- record `sub|Psion/Psi Warper|Psi Warper Spells#3` 5 Blink, Haste. -> info:NUMONLY:TABLE
-- class `sub|Psion/Psi Warper|Psi Warper Spells#3` 5 Blink, Haste. -> info:NUMONLY:TABLE
-- record `item|tdcsr|Spire of Conflux (Exalted)#9` New spells: ice storm (4) and conjure elemental (5). -> info:NUMONLY:TABLE
-- class `item|tdcsr|Spire of Conflux (Exalted)#9` New spells: ice storm (4) and conjure elemental (5). -> info:NUMONLY:TABLE
-- record `item|dmg|Scimitar of Speed#1` Attack rolls and damage rolls you make with this magic Scimitar get a +2 bonus. -> info:NUMONLY:ROLL
-- class `item|dmg|Scimitar of Speed#1` Attack rolls and damage rolls you make with this magic Scimitar get a +2 bonus. -> info:NUMONLY:ROLL
-- record `sub|Wizard/School of Chronomancy|Foreimage#2` Acting on your foreknowledge destroys the shadow until your next Long Rest and gives one benefit. -> info:REST:NONUM
-- class `sub|Wizard/School of Chronomancy|Foreimage#2` Acting on your foreknowledge destroys the shadow until your next Long Rest and gives one benefit. -> info:REST:NONUM
-- record `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
-- class `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
-- record `sub|Barbarian/Path of the Swamp|Primal Magic#4` Each returns on a Long Rest. -> covered
-- class `sub|Barbarian/Path of the Swamp|Primal Magic#4` Each returns on a Long Rest. -> info:REST:NONUM
-- record `item|ggr|Rakdos Riteknife#13` If the target dies, you can't use this property again until you finish a long rest. -> info:REST:NONUM
-- class `item|ggr|Rakdos Riteknife#13` If the target dies, you can't use this property again until you finish a long rest. -> info:REST:NONUM
-- record `item|dmg|Spell Gem (Lapis lazuli)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Spell Gem (Lapis lazuli)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Instrument of the Bards (Canaith mandolin)#2` Seven kinds exist, and each one is named after a bard college. -> info:NUMONLY:TEXT
-- class `item|dmg|Instrument of the Bards (Canaith mandolin)#2` Seven kinds exist, and each one is named after a bard college. -> info:NUMONLY:TEXT
+- record `item|bgdia|Charm of the Adamant#4` When the last charge is spent, the Charm vanishes. -> info:REST:NONUM
+- class `item|bgdia|Charm of the Adamant#4` When the last charge is spent, the Charm vanishes. -> info:REST:NONUM
+- record `sub|Cleric/Shadow Domain|Shadow Spells#1` Always prepared from the listed Cleric levels: 3 Crown of Madness, Dissonant Whispers, Mind Spike, Shadow Word: Pain. -> covered
+- class `sub|Cleric/Shadow Domain|Shadow Spells#1` Always prepared from the listed Cleric levels: 3 Crown of Madness, Dissonant Whispers, Mind Spike, Shadow Word: Pain. -> covered
+- record `sub|Warlock/Primordial Patron|Elemental Spells#7` 5 Fly. -> info:NUMONLY:TABLE
+- class `sub|Warlock/Primordial Patron|Elemental Spells#7` 5 Fly. -> info:NUMONLY:TABLE
+- record `species|Yuan-ti Pureblood|Innate Spellcasting#2` At level 3 you can cast Suggestion once per Long Rest. -> info:REST:NONUM
+- class `species|Yuan-ti Pureblood|Innate Spellcasting#2` At level 3 you can cast Suggestion once per Long Rest. -> info:REST:NONUM

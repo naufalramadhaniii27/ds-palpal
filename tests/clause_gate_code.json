@@ -14626,6 +14626,1229 @@
     "tests/stored_spell_payment.mjs"
    ],
    "note": "Verified native physical loading, release, original-stat calculation and receipt consumers with differential FX and independent runtime suites. Generic parent scope requires explicitly selected current Reserve; bare Ioun Stone and other variants grant no permission."
+  },
+  {
+   "id": "u43-item-dmg-pearl-of-power-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Pearl of Power",
+   "cls": [
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^as\\ a\\ magic\\ action,\\ you\\ can\\ use\\ this\\ pearl\\ to\\ recover\\ one\\ spent\\ spell\\ slot\\ of\\ level\\ 3\\ or\\ lower,\\ provided\\ the\\ pearl\\ is\\ somewhere\\ on\\ your\\ person\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Pearl of Power",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-rod-of-the-pact-keeper-1-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rod of the Pact Keeper, +1",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ the\\ rod,\\ you\\ can\\ also\\ take\\ a\\ magic\\ action\\ to\\ regain\\ one\\ spell\\ slot\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Rod of the Pact Keeper, +1",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-rod-of-the-pact-keeper-2-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rod of the Pact Keeper, +2",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ the\\ rod,\\ you\\ can\\ also\\ take\\ a\\ magic\\ action\\ to\\ regain\\ one\\ spell\\ slot\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Rod of the Pact Keeper, +2",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-rod-of-the-pact-keeper-3-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rod of the Pact Keeper, +3",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ the\\ rod,\\ you\\ can\\ also\\ take\\ a\\ magic\\ action\\ to\\ regain\\ one\\ spell\\ slot\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Rod of the Pact Keeper, +3",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-psionic-rod-of-the-honed-mind-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Psionic Rod of the Honed Mind",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ spell\\ slot\\ as\\ a\\ magic\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Psionic Rod of the Honed Mind",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-tranquil-rod-of-the-honed-mind-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Tranquil Rod of the Honed Mind",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ spell\\ slot\\ as\\ a\\ magic\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Tranquil Rod of the Honed Mind",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-vigilant-rod-of-the-honed-mind-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Vigilant Rod of the Honed Mind",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ spell\\ slot\\ as\\ a\\ magic\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Vigilant Rod of the Honed Mind",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-spell-refueling-ring-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Spell-Refueling Ring",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ wearing\\ this\\ ring,\\ you\\ can\\ recover\\ one\\ expended\\ spell\\ slot\\ as\\ a\\ bonus\\ action\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Spell-Refueling Ring",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-1-rod-of-the-pact-keeper-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 Rod of the Pact Keeper",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ warlock\\ spell\\ slot\\ as\\ an\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 +1 Rod of the Pact Keeper",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-2-rod-of-the-pact-keeper-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 Rod of the Pact Keeper",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ warlock\\ spell\\ slot\\ as\\ an\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 +2 Rod of the Pact Keeper",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg-3-rod-of-the-pact-keeper-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 Rod of the Pact Keeper",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ warlock\\ spell\\ slot\\ as\\ an\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 +3 Rod of the Pact Keeper",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-au-psionic-rod-of-the-honed-mind-2",
+   "kind": "item",
+   "owner": "au",
+   "name": "Psionic Rod of the Honed Mind",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ spell\\ slot\\ as\\ a\\ magic\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Psionic Rod of the Honed Mind",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-au-tranquil-rod-of-the-honed-mind-2",
+   "kind": "item",
+   "owner": "au",
+   "name": "Tranquil Rod of the Honed Mind",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ spell\\ slot\\ as\\ a\\ magic\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Tranquil Rod of the Honed Mind",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-au-vigilant-rod-of-the-honed-mind-2",
+   "kind": "item",
+   "owner": "au",
+   "name": "Vigilant Rod of the Honed Mind",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ spell\\ slot\\ as\\ a\\ magic\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Vigilant Rod of the Honed Mind",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-efa-spell-refueling-ring-1",
+   "kind": "item",
+   "owner": "efa",
+   "name": "Spell-Refueling Ring",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ wearing\\ this\\ ring,\\ you\\ can\\ recover\\ one\\ expended\\ spell\\ slot\\ as\\ a\\ bonus\\ action\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 Spell-Refueling Ring",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg14-1-rod-of-the-pact-keeper-2",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "+1 Rod of the Pact Keeper",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ warlock\\ spell\\ slot\\ as\\ an\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 +1 Rod of the Pact Keeper",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg14-2-rod-of-the-pact-keeper-2",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "+2 Rod of the Pact Keeper",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ warlock\\ spell\\ slot\\ as\\ an\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 +2 Rod of the Pact Keeper",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u43-item-dmg14-3-rod-of-the-pact-keeper-2",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "+3 Rod of the Pact Keeper",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ you\\ can\\ regain\\ one\\ warlock\\ spell\\ slot\\ as\\ an\\ action\\ while\\ holding\\ the\\ rod\\.$",
+   "anchor": [
+    "src/builder/25d-logic-slot-recovery-sources.js",
+    "genv.__bldSlotRecoveryActivate=function"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25d-logic-slot-recovery-sources.js",
+     "function recoveryCommit("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "export function slotRecoveryNativeProfile("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recoverSlotRecovery("
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function assertSlotRecoveryCurrent("
+    ],
+    [
+     "src/data/lib/slot-recovery-slots.js",
+     "export function slotRecoverySpentSlots("
+    ],
+    [
+     "src/app/32j-logic-slot-recovery.js",
+     "export function requestSlotRecovery("
+    ],
+    [
+     "src/app/lib/slot-recovery-action.js",
+     "export function slotRecoveryActionAllowed("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "slotRecovery:{v:1,id:recovery.source.id,nativeProfile:recovery.source.nativeProfile}"
+    ],
+    [
+     "src/data/lib/slot-recovery.js",
+     "export function recordSlotRecoveryReset("
+    ],
+    [
+     "src/app/lib/slot-recovery-rest.js",
+     "export function createSlotRecoveryRestBoundary("
+    ]
+   ],
+   "test": "Z3 U43 native one-budget recovery source 2024 +3 Rod of the Pact Keeper",
+   "consumerTests": [
+    "tests/slot_recovery_backend.mjs",
+    "tests/slot_recovery_model.mjs",
+    "tests/slot_recovery_slots.mjs",
+    "tests/slot_recovery_runtime.mjs",
+    "tests/slot_recovery_rest.mjs"
+   ],
+   "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
   }
  ]
 }

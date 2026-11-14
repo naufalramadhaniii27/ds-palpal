@@ -3137,6 +3137,25 @@ for rs in ["2014","2024"]:
     future=dict(v=99,id="future",opaque={"originalDC":99,"capacity":99},entries=[{"spell":"Wish"}])
     CASES.append(dict(name="NEG U42 future stored source preserved without ordinary grants "+rs,b=dict(rs=rs,cls="Fighter",level=1,inv=[dict(n="Ring of Spell Storing",q=1,eq=False,attuned=False,storedSpells=future)]),expect=[("C.inv[0].storedSpells",future),("(C.spells||[]).length",0),("(C.res||[]).some(row=>row.n==='Ring of Spell Storing')",False)]))
 
+# U43 direct restoration has one native physical resource and never creates slots/spells.
+U43_RECOVERY_PROFILES=[("Pearl of Power","dmg2024"),("Spell-Refueling Ring","efa")]+[("Rod of the Pact Keeper, +"+str(n),"dmg2024") for n in [1,2,3]]+[("+"+str(n)+" Rod of the Pact Keeper","dmg2014") for n in [1,2,3]]+[(kind+" Rod of the Honed Mind","au") for kind in ["Psionic","Tranquil","Vigilant"]]
+for rs in ["2014","2024"]:
+    for item,native_profile in U43_RECOVERY_PROFILES:
+        raw=dict(v=1,id="recovery-1",nativeProfile=native_profile,chargeKey="u43-native-use")
+        authority=dict(v=1,nextId=2,dawnEvents=[],sources=[dict(id="recovery-1",item=item,nativeProfile=native_profile,state=raw,present=True,historyKnown=False,legacyState=None)])
+        base=dict(rs=rs,cls="Warlock",level=2,ch={},extra={"sp":[],"slotRecoverySources":authority},inv=[dict(n=item,q=1,eq=False,attuned=False,slotRecovery=raw)])
+        unchanged="(()=>{const b=structuredClone(__zmB);b.inv=[];delete b.slotRecoverySources;const other=__bldSheetFor(b);return JSON.stringify(C.spellcasting)===JSON.stringify(other.spellcasting)&&JSON.stringify(C.spells||[])===JSON.stringify(other.spells||[])})()"
+        CASES.append(dict(name="Z3 U43 native one-budget recovery source "+rs+" "+item,b=base,expect=[("C.inv[0].slotRecovery",raw),("C.slotRecoverySources",authority),("C.inv[0].att",1),("C.inv[0].attunedActive",False),("C.res.filter(row=>row.k==='u43-native-use').length",1),("C.res.find(row=>row.k==='u43-native-use').reset","none"),("C.res.find(row=>row.k==='u43-native-use').max",1),("C.res.filter(row=>row.n===__zmB.inv[0].n).length",1),(unchanged,True)]))
+        future=dict(v=99,id="future",nativeProfile=native_profile,chargeKey="s1",opaque={"ready":True,"recover":99})
+        CASES.append(dict(name="NEG U43 future source preserves payload and suppresses legacy fallback "+rs+" "+item,b=dict(rs=rs,cls="Warlock",level=2,extra={"sp":[]},inv=[dict(n=item,q=1,eq=True,attuned=True,slotRecovery=future)]),expect=[("C.inv[0].slotRecovery",future),("C.res.some(row=>row.n===__zmB.inv[0].n)",False)]))
+        CASES.append(dict(name="NEG U43 raw identity without authority cannot mint ready pool "+rs+" "+item,b=dict(rs=rs,cls="Warlock",level=2,extra={"sp":[]},inv=[dict(n=item,q=1,eq=True,attuned=True,slotRecovery=raw)]),expect=[("C.inv[0].slotRecovery",raw),("C.res.some(row=>row.n===__zmB.inv[0].n)",False)]))
+
+# A managed rod preserves the unsupported legacy Pearl's existing generic resource.
+# Immutable fb3799ed generic full dawn pools project reset=long; no native dawn fix claimed here.
+u43_rod_raw=dict(v=1,id="recovery-1",nativeProfile="dmg2014",chargeKey="u43-rod-use")
+u43_rod_authority=dict(v=1,nextId=2,dawnEvents=[],sources=[dict(id="recovery-1",item="+1 Rod of the Pact Keeper",nativeProfile="dmg2014",state=u43_rod_raw,present=True,historyKnown=True,legacyState=None)])
+CASES.append(dict(name="NEG U43 legacy Pearl keeps its own pool beside a managed rod",b=dict(rs="2014",cls="Warlock",level=2,extra={"sp":[],"slotRecoverySources":u43_rod_authority},inv=[dict(n="Pearl of Power",q=1,eq=True,attuned=True),dict(n="+1 Rod of the Pact Keeper",q=1,eq=False,attuned=False,slotRecovery=u43_rod_raw)]),expect=[("C.res.filter(row=>row.n==='Pearl of Power').length",1),("C.res.find(row=>row.n==='Pearl of Power').slotRecovery===undefined",True),("C.res.find(row=>row.n==='Pearl of Power').reset","long"),("C.res.find(row=>row.n==='Pearl of Power').tag.includes('at dawn')",True),("C.res.filter(row=>row.k==='u43-rod-use').length",1),("C.res.find(row=>row.k==='u43-rod-use').reset","none")]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
