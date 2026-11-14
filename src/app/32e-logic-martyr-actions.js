@@ -3,7 +3,7 @@ import {C,S,save} from "./04-logic-storage.js";
 import {esc,num,ask} from "./05-logic-helpers.js";
 import {B,D} from "./06-logic-derivation.js";
 import {toastU,undoMark} from "./32-logic-play-undo-actions.js";
-import {hasFeat} from "./32b-logic-play-concentration-casting.js";
+import {hasFeat,spCastOpts,castDo,ckOf} from "./32b-logic-play-concentration-casting.js";
 import {env} from "./00-env.js";
 
 function ma_rk(k){ return (D.res||[]).filter((r) =>{ return r.k===k; })[0]||null; }
@@ -39,9 +39,13 @@ function ma_mirac(n,free){ const max=Math.floor(ma_martyrLv()/2), hl=ma_left(ma_
   return m; }
 /* healing spells (Cure Wounds, Prayer of Healing...): roll the formula, heal yourself or show the number for an ally */
 function ma_healRoll(f){ const m=/(\d+)d(\d+)\s*([+-]\s*\d+)?/.exec(f||""); if(!m) return {t:num(f,0),r:[]}; const r=[]; let t=0; for(let i=0;i<+m[1];i++){ const v=ma_roll(+m[2]); r.push(v); t+=v; } t+=m[3]?+m[3].replace(/\s/g,""):0; return {t:Math.max(0,t),r:r}; }
+/* the heal buttons cast the spell too: spend the slot or Spell Use (and the Martyr HP cost) at the chosen level */
+function ma_castFor(n,lv){ const i=(C.spells||[]).findIndex((x) =>{ return x.n===n; }); if(i<0) return true; const x=C.spells[i];
+  const o=spCastOpts(x).filter((q) =>{ return q.left==null||q.left>0; }); if(!o.length){ toastU("No spell slot or use left for "+n+"."); return false; }
+  const q=o.filter((z) =>{ return z.lv===lv; })[0]||o[0]; castDo(i,ckOf(q),q.lv); return true; }
 const ACT={
-  sheal:function(v){ const p=String(v||"").split("|"), h=ma_healRoll(p[0]); undoMark(p[1]||"Healing"); const got=ma_addHp(h.t); ma_done((p[1]||"Healing")+": rolled "+h.r.join(", ")+", you regain "+got+(got<h.t?" of "+h.t:"")+"."); },
-  shealo:function(v){ const p=String(v||"").split("|"), h=ma_healRoll(p[0]); toastU((p[1]||"Healing")+": rolled "+h.r.join(", ")+". The creature regains "+h.t+" Hit Points."); },
+  sheal:function(v){ const p=String(v||"").split("|"); if(!ma_castFor(p[1],+p[2])) return; const h=ma_healRoll(p[0]); undoMark(p[1]||"Healing"); const got=ma_addHp(h.t); ma_done((p[1]||"Healing")+": rolled "+h.r.join(", ")+", you regain "+got+(got<h.t?" of "+h.t:"")+"."); },
+  shealo:function(v){ const p=String(v||"").split("|"); if(!ma_castFor(p[1],+p[2])) return; const h=ma_healRoll(p[0]); toastU((p[1]||"Healing")+": rolled "+h.r.join(", ")+". The creature regains "+h.t+" Hit Points."); },
   mh:function(n){ undoMark("Miraculous Healing"); const m=ma_mirac(+n||1); if(m) ma_done(m); },
   feast:function(){ if(ma_left("x-sanguine-feast")<1){ toastU("No Sanguine Feast uses left."); return; } if(ma_left(ma_hdKey())<1){ toastU("No Hit Point Dice left."); return; }
     undoMark("Sanguine Feast"); const h=ma_healRolls(1); ma_spend(ma_hdKey(),1); ma_spend("x-sanguine-feast",1); const got=ma_addHp(h.t); ma_done("Sanguine Feast: rolled "+h.r[0]+", healed "+got+"."); },
@@ -98,6 +102,6 @@ function ma_run(a,v){ const f=ACT[a]; if(!f) return; ma_gather(ma_need(a,v),() =
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-mact]"); if(!t||t.disabled) return; e.preventDefault(); e.stopPropagation(); ma_run(t.getAttribute("data-mact"),t.getAttribute("data-mv")); },true);
 /* at 0 Hit Points with Undying left: offer it at once */
 export function martyrZero(){ if(num(S.hp,0)!==0||ma_left("x-undying")<1||!ma_martyrLv()) return; ask("You dropped to 0 Hit Points. Use Undying: drop to 1 Hit Point and heal with Miraculous Healing?","Use Undying",() =>{ ma_run("undying",""); }); }
-export function healH(f,n,dur){ if(!/\d+d\d+/.test(f||"")||/hour|minute/i.test(dur||"")&&!/Instant/i.test(dur||"")) return ""; const v=esc(f+"|"+n);
+export function healH(f,n,dur,lv){ if(!/\d+d\d+/.test(f||"")||/hour|minute/i.test(dur||"")&&!/Instant/i.test(dur||"")) return ""; const v=esc(f+"|"+n+"|"+(lv||""));
   return ma_box("Roll the healing","",ma_rin("sh","Healing dice ("+(/(\d+d\d+)/.exec(f)||["",""])[1]+")","e.g. 5 7"),'<button type="button" class="btn press pri" data-mact="sheal" data-mv="'+v+'"><span>Heal me</span><small>'+esc(f)+'</small></button><button type="button" class="btn press" data-mact="shealo" data-mv="'+v+'"><span>Heal an ally</span><small>shows the number</small></button>',2); }
 env.__martyr={act:function(a,v){ ma_run(a,v); }, html:martyrActH, healH:healH};/* test hook */
