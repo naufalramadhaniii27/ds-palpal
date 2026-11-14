@@ -1,3 +1,4 @@
+import {invalidateHornValhallaState} from './32o-logic-horn-valhalla.js';
 import {invalidateBagTricksState} from './32n-logic-bag-tricks.js';
 import {invalidateStudyBooksState} from './32m-logic-study-books.js';
 import {invalidatePluvennGrappleclawsState} from './32l-logic-pluvenn-grappleclaws.js';
@@ -33,7 +34,7 @@ function undoBack(cur,b0,a0){ const J1=function(x){ return JSON.stringify(x===un
     if(b&&a&&typeof b==="object"&&typeof a==="object"&&!Array.isArray(b)&&!Array.isArray(a)&&cur[k]&&typeof cur[k]==="object"&&!Array.isArray(cur[k])){ Object.keys(b).concat(Object.keys(a)).forEach((j) =>{ if(J1(b[j])===J1(a[j])) return; if(b[j]===undefined) delete cur[k][j]; else cur[k][j]=structuredClone(b[j]); }); }
     else if(b===undefined) delete cur[k]; else cur[k]=structuredClone(b); }); return cur; }
 /* re=false: back to before the step. re=true: Redo, forward to after it. Only the fields the step changed move */
-function undoApply(u,re){invalidateClericResourceState();invalidateTattooState(S);invalidateGemCastState(S);invalidateStoredSpellState(S);invalidateSlotRecoveryState(S);invalidateNecronomiconState(S);invalidatePluvennGrappleclawsState(S);invalidateStudyBooksState(S);invalidateBagTricksState(S);undoFix(u); let note="", s0=re?u.A:u.S, s1=re?u.S:u.A;
+function undoApply(u,re){invalidateClericResourceState();invalidateTattooState(S);invalidateGemCastState(S);invalidateStoredSpellState(S);invalidateSlotRecoveryState(S);invalidateNecronomiconState(S);invalidatePluvennGrappleclawsState(S);invalidateStudyBooksState(S);invalidateBagTricksState(S);invalidateHornValhallaState(S);undoFix(u); let note="", s0=re?u.A:u.S, s1=re?u.S:u.A;
   __set_S(undoBack(S,JSON.parse(s0),JSON.parse(s1))); if(u.C!==u.CA) __set_C(undoBack(C,JSON.parse(re?u.CA:u.C),JSON.parse(re?u.C:u.CA)));
   const b0=re?u.BA:u.B, b1=re?u.B:u.BA;
   if(b0!=null&&b0!==b1){ if(lsGet(lateGet("BKEY"))===b1){ lsSet(lateGet("BKEY"),b0); try{ if(env.__bldReload) env.__bldReload(); }catch(er){} } else note=" The build changed since then, so it was left as it is."; }

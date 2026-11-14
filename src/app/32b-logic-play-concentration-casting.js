@@ -124,16 +124,26 @@ function temporaryCastContext(index,spell){const status=temporaryCantripStatus(s
 function temporaryCastCurrent(view,index,spell){return temporalCasts.has(view)&&(!view.root||view.root.isConnected&&view.root.classList.contains("on"))&&view.character===C&&view.state===S&&view.cid===C.cid&&view.id===C.id&&view.name===C.name&&view.index===index&&view.spell===spell&&view.signature===JSON.stringify(spell)&&temporaryCantripStatus(spell,S.temporaryCantrips).allowed&&temporaryCantripStatus(spell,S.temporaryCantrips).signature===view.permission}
 function temporaryCastAllowed(view,index,spell){return !view||temporaryCastCurrent(view,index,spell)}
 export function castDo(i,k,lv,ok,repair,temporal){const spell=(C.spells||[])[i];if(!spell)return;if(["fixedSpellSource","tattooSource","gemSpellcasting","storedSpellcasting","storedSpellSlotLevel"].some(key=>Object.prototype.hasOwnProperty.call(spell,key))){toast("Use this source’s own controls to cast or resolve its original spell.");return}if(temporal||Object.prototype.hasOwnProperty.call(spell,"temporaryCantrip")){temporal=temporal||temporaryCastContext(i,spell);if(!temporal||!temporaryCastCurrent(temporal,i,spell)){toast("This temporary cantrip changed or expired. Open its current spell card.");return}}castCurrentSpell(i,k,lv,ok,repair,temporal)}
+function castPaymentMessage(x,k,lv,s,nd,msg){
+  if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
+  else if(k==="rit") msg+=" as a Ritual";
+  return msg;
+}
+function castMartyrPayment(x,k,lv,s,nd,msg){
+  if(k==="r-spell-uses"&&C.cls==="Martyr"){ const hp=martyrCost(x,+lv||x.l); if(hp){ S.hp=Math.max(0,num(S.hp,0)-hp); msg+=", level "+(+lv||x.l)+", you take "+hp+" Radiant (not from Temporary Hit Points)"; try{ syncHP(); }catch(er){} } else msg+=", level "+(+lv||x.l)+", no damage"; lateGet("spLvSel")[x.n]=+lv||x.l; }
+  return msg;
+}
+function castMagicWeapon(x,k,lv,s,nd,msg){
+  if(x.n==="Magic Weapon"){ const w=(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"&&!/^Cantrip/.test(a.sub||"")&&/^\d+ ft$|^5 ft/.test(a.range||"5 ft"); })[0]||(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"; })[0]; if(w){ S.mw={w:w.n,l:+lv||x.l}; msg+=". "+w.n+" gets +"+((+lv||x.l)>=6?3:(+lv||x.l)>=4?2:1)+" to attack and damage until you rest"; } }
+  return msg;
+}
 function castCurrentSpell(i,k,lv,ok,repair,temporal){ const x=(C.spells||[])[i]; if(!x) return; const payment=spCastPayment(k);k=payment.k;let s=null,nd=payment.nd;
   if(!spRepairCastAllowed(i,k,lv,x,repair))return;
   if(!spFormCommitAllowed(x,k,nd))return;
   if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true,repair,temporal); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
   if(!temporaryCastAllowed(temporal,i,x))return;undoMark("Cast "+x.n); let msg="Cast "+x.n;
-  if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
-  else if(k==="rit") msg+=" as a Ritual";
-  if(k==="r-spell-uses"&&C.cls==="Martyr"){ const hp=martyrCost(x,+lv||x.l); if(hp){ S.hp=Math.max(0,num(S.hp,0)-hp); msg+=", level "+(+lv||x.l)+", you take "+hp+" Radiant (not from Temporary Hit Points)"; try{ syncHP(); }catch(er){} } else msg+=", level "+(+lv||x.l)+", no damage"; lateGet("spLvSel")[x.n]=+lv||x.l; }
-  if(x.n==="Magic Weapon"){ const w=(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"&&!/^Cantrip/.test(a.sub||"")&&/^\d+ ft$|^5 ft/.test(a.range||"5 ft"); })[0]||(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"; })[0]; if(w){ S.mw={w:w.n,l:+lv||x.l}; msg+=". "+w.n+" gets +"+((+lv||x.l)>=6?3:(+lv||x.l)>=4?2:1)+" to attack and damage until you rest"; } }
+  msg=castPaymentMessage(x,k,lv,s,nd,msg);msg=castMartyrPayment(x,k,lv,s,nd,msg);msg=castMagicWeapon(x,k,lv,s,nd,msg);
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
   save(); if(x.n==="Magic Weapon"||x.conc||k==="r-spell-uses"){ try{ renderAll(); }catch(er){} } syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} spRepairCommitted(repair); }
 /* the CAST or USE badge in the Spells list: one way to cast it, cast now. Several (slot levels, Pact, free use): open the spell to choose */

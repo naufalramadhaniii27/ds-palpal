@@ -70,6 +70,8 @@ export function martyrActH(f){ const n=f&&f.n, hl=left(hdKey()), hr=rk(hdKey()),
   if(n==="Bloodlust") return box("Sanguine Feast",stat("Uses left",String(left("x-sanguine-feast")))+hdS,rin("feast","Hit Point Die (d"+hd+")","9"),b("feast","","Heal with 1 Hit Point Die",per,left("x-sanguine-feast")<1||hl<1,true));
   if(n==="Shifting"){ const bh=chosen("Beasthide"), pb=num(D.pb,2);
     return box(S.shift?"Shifted":"Shift",stat("Uses left",String(left("x-shifting")))+stat("Temporary HP",(2*pb)+(bh?" + 1d6":""),bh?"+1 AC while shifted":""),!S.shift&&bh?rin("shift","Beasthide (d6)","4"):"",S.shift?b("unshift","","End Shifting"):b("shift","","Shift now","",left("x-shifting")<1,true)); }
+  return martyrAdditionalActH(n,hl,hd,bal,hdS); }
+function martyrAdditionalActH(n,hl,hd,bal,hdS){
   if(n==="Sacrifice") return box("Pay with your blood","","",b("strike","","Sacrificial Strike","you take 5, target +10")+b("skill","","Sacrificial Skill","you take 10, roll +5"),2);
   if(n==="Undying") return box("Undying",stat("Uses left",String(left("x-undying")))+hdS,rin("und","Hit Point Dice (d"+hd+")","7 3 12 5 9")+(bal?rin("undb","Balm (d8)","5 2 8 1 6"):""),b("undying","","Use Undying","1 HP, then heal "+Math.min(Math.floor(martyrLv()/2),hl)+" dice",left("x-undying")<1,true));
   if(n==="Divine Respite"){ const L=martyrLv(), g=L>=17?10:L>=13?6:3; return box("Divine Respite",stat("Uses left",String(left("x-divine-respite")))+hdS,"",b("respite","","Regain "+g+" Hit Point Dice","after a Short Rest",left("x-divine-respite")<1,true)); }

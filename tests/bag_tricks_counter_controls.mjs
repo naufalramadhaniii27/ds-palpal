@@ -2,14 +2,16 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import * as bag from '../src/data/lib/bag-tricks.js';
+import * as horn from "../src/data/lib/horn-valhalla.js";
+import {summonResourceManaged} from "../src/app/lib/summon-resource.js";
 const read=p=>fs.readFileSync(new URL('../src/'+p,import.meta.url),'utf8');
 const click=read('app/19-ui-global-click-delegation.js'),pager=read('app/21-ui-tabs-pager.js');
 const paths=['const uf=e.target.closest','const plb=e.target.closest','const bx=e.target.closest'];
 let checks=0;const eq=(a,b)=>{assert.deepEqual(a,b);checks++};
-function fixture(marker,namespace){
- const key='i-bag-of-tricks',trace=[],C={res:[{k:key,n:'Bag of Tricks',max:3,reset:'long'},{k:'s1',n:'Slot',max:3,reset:'long'}]},S={used:{[key]:2,s1:2}};
- if(marker!==false)C.res[0].bagTricks=marker;if(namespace!==undefined)S.bagTricks=namespace;
- const ctx={...bag,C,S,D:{res:C.res},bagOwn:(o,k)=>Object.prototype.hasOwnProperty.call(o,k),used:(k,max)=>Math.min(max,S.used[k]||0),num:(v,f)=>Number.isFinite(+v)?+v:f,clamp:(v,min,max)=>Math.min(max,Math.max(min,v)),toast:()=>trace.push('toast'),undoMark:()=>trace.push('undo'),save:()=>trace.push('save'),syncLU(){},refreshEntry(){},invalidateClericResourceState(){},invalidateSlotRecoveryState(){},routeDivineInterventionUse:()=>false,esc:String};
+function fixture(marker,namespace,family="bagTricks"){
+ const key=family==="bagTricks"?"i-bag-of-tricks":"i-horn-of-valhalla-silver",trace=[],C={res:[{k:key,n:family,max:family==="bagTricks"?3:1,reset:"long"},{k:"s1",n:"Slot",max:3,reset:"long"}]},S={used:{[key]:family==="bagTricks"?2:1,s1:2}};
+ if(marker!==false)C.res[0][family]=marker;if(namespace!==undefined)S[family]=namespace;
+ const ctx={...bag,summonResourceManaged,C,S,D:{res:C.res},bagOwn:(o,k)=>Object.prototype.hasOwnProperty.call(o,k),used:(k,max)=>Math.min(max,S.used[k]||0),num:(v,f)=>Number.isFinite(+v)?+v:f,clamp:(v,min,max)=>Math.min(max,Math.max(min,v)),toast:()=>trace.push('toast'),undoMark:()=>trace.push('undo'),save:()=>trace.push('save'),syncLU(){},refreshEntry(){},invalidateClericResourceState(){},invalidateSlotRecoveryState(){},routeDivineInterventionUse:()=>false,esc:String};
  vm.createContext(ctx);vm.runInContext(read('app/32n-logic-bag-tricks.js').split('\n').find(line=>line.startsWith('export function bagTricksResourceManaged(')).replace('export ',''),ctx);
  return {ctx,C,S,key,trace};
 }
@@ -24,6 +26,11 @@ for(const marker of [undefined,null,{v:99},{v:1},false])for(let kind=0;kind<4;ki
  const h=fixture(marker,marker===false?plan.state:undefined),before=JSON.stringify(h.S);
  run(h,kind);eq(JSON.stringify(h.S),before);eq(h.trace.includes('undo'),false);eq(h.trace.includes('save'),false);
 }
+const adoptedHorn=horn.adoptHornValhalla(horn.createHornValhalla(),{profile:'current',metal:'silver',key:'i-horn-of-valhalla-silver'},{key:'i-horn-of-valhalla-silver',used:1,max:1},{actualPhysicalIdentityVerified:true});assert(adoptedHorn.ok);
+for(const marker of [undefined,null,{v:99},{v:1},false])for(let kind=0;kind<4;kind++){
+ const h=fixture(marker,marker===false?adoptedHorn.state:undefined,'hornValhalla'),before=JSON.stringify(h.S);
+ run(h,kind);eq(JSON.stringify(h.S),before);eq(h.trace.includes('undo'),false);eq(h.trace.includes('save'),false);
+}
 for(let kind=0;kind<4;kind++){
  const h=fixture({v:1});run(h,kind,'s1');eq(h.S.used.s1,kind===3?0:1);eq(h.trace.includes('save'),true);
 }
@@ -36,10 +43,10 @@ for(let kind=0;kind<4;kind++){
 {
  const h=fixture({v:1}),source=read('app/08-ui-render-sheet-and-actions.js'),start=source.indexOf('export function boxes('),end=source.indexOf('export function used(',start);
  vm.runInContext(source.slice(start,end).replace('export ',''),h.ctx);
- const html=h.ctx.boxes(2,3,h.key,'Bag of Tricks',false);eq(html.includes('data-k='),false);eq(html.includes('Bag of Tricks panel'),true);
+ const html=h.ctx.boxes(2,3,h.key,'Bag of Tricks',false);eq(html.includes('data-k='),false);eq(html.includes('item panel'),true);
  eq(h.ctx.boxes(2,3,'s1','Slot',false).includes('class="bx"'),true);
 }
 {
  const h=fixture(false,{v:99,physical:[{key:'s1'}]});eq(h.ctx.bagTricksResourceManaged('s1'),false);
 }
-console.log(checks+' actual native Bag counter editor/rest/render boundary assertions PASS');
+console.log(checks+' actual native summon counter editor/rest/render boundary assertions PASS');

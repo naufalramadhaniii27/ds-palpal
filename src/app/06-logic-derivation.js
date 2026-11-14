@@ -110,6 +110,23 @@ function deriveSkills(abPart, pb, exhN, exP){
   function skillByName(n){ for(let i=0;i<C.skills.length;i++){ if(C.skills[i].n===n) return i; } return -1; }
   return /** @type {any} */ ({skillByName});
 }
+function deriveArmorEffects(acParts){
+  if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
+  if(S.shift&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: Beasthide"; }); })) acParts.push(part("Shifting (Beasthide)", 1, "While shifted"));
+}
+function deriveArmorClass(){
+  const dexPart=null, dm=D.mod.DEX, mode=C.ac.dex||"none";
+  const acParts=[part(C.ac.baseSrc||"Base AC", num(C.ac.base,10))]; acParts[0].raw=true;
+  if(mode==="full") acParts.push(part("Dexterity modifier", dm, "Light armor or no armor"));
+  else if(mode==="max2") acParts.push(part("Dexterity modifier (max 2)", Math.min(2,dm), "Medium armor caps it at +2"));
+  else if(mode==="max3") acParts.push(part("Dexterity modifier (max 3)", Math.min(3,dm), "Medium Armor Master raises the cap to +3"));/* v69 */
+  (C.ac.bonus||[]).forEach((b) =>{ acParts.push(part(b.s||"Bonus", num(b.v))); });
+  sitNum("ac").forEach((b) =>{ acParts.push(part(b.s,b.v)); });/* v103 */
+  deriveArmorEffects(acParts);
+  D.ac=acParts.reduce((a,p) =>{return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
+  B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
+
+}
 function derivePassivesAcInit(abPart, exhN, exP, skillByName, xr, exh){
   [["Perception","per"],["Insight","ins"],["Investigation","inv"]].forEach((x) =>{
     const i=skillByName(x[0]); const v=i>=0?D.skill[i]+2*exhN:D.mod[x[0]==="Investigation"?"INT":"WIS"];
@@ -118,17 +135,7 @@ function derivePassivesAcInit(abPart, exhN, exP, skillByName, xr, exh){
     B["pas-"+x[1]]={t:"Passive "+x[0], parts:pp, total:String(pv), f:""};
   });
 
-  const dexPart=null, dm=D.mod.DEX, mode=C.ac.dex||"none";
-  const acParts=[part(C.ac.baseSrc||"Base AC", num(C.ac.base,10))]; acParts[0].raw=true;
-  if(mode==="full") acParts.push(part("Dexterity modifier", dm, "Light armor or no armor"));
-  else if(mode==="max2") acParts.push(part("Dexterity modifier (max 2)", Math.min(2,dm), "Medium armor caps it at +2"));
-  else if(mode==="max3") acParts.push(part("Dexterity modifier (max 3)", Math.min(3,dm), "Medium Armor Master raises the cap to +3"));/* v69 */
-  (C.ac.bonus||[]).forEach((b) =>{ acParts.push(part(b.s||"Bonus", num(b.v))); });
-  sitNum("ac").forEach((b) =>{ acParts.push(part(b.s,b.v)); });/* v103 */
-  if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
-  if(S.shift&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: Beasthide"; }); })) acParts.push(part("Shifting (Beasthide)", 1, "While shifted"));
-  D.ac=acParts.reduce((a,p) =>{return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
-  B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
+  deriveArmorClass();
 
   const inParts=[abPart("DEX")]; (C.initBonus||[]).forEach((b) =>{ inParts.push(part(b.s||"Bonus", num(b.v))); }); if(exhN) inParts.push(exP());
   D.init=inParts.reduce((a,p) =>{return a+p.v},0); D.init=cuApply("init",inParts,D.init);/* v26 RU38 no. 2 */

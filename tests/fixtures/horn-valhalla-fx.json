@@ -1,0 +1,3052 @@
+{
+  "generatedBy": "Actual product pure APIs and source-qualified native QREFS; not native consumer/UI proof",
+  "nativeDefinitions": [
+    {
+      "profile": "current",
+      "nativeName": "Berserker",
+      "source": "core",
+      "maxHP": 67,
+      "definitionSHA256": "d580e60c6842deb239c960e72ae95b48b878892aef9f0b86e540b22e37abf104"
+    },
+    {
+      "profile": "legacy",
+      "nativeName": "Berserker (MM)",
+      "source": "mm14",
+      "maxHP": 67,
+      "definitionSHA256": "c340d92f8df5d9e71be6fa0f530c78f2a5adc3ab2fa8ff6f8c6319469bd94e46"
+    }
+  ],
+  "states": {
+    "current-silver": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 3,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "silver",
+            "key": "i-horn-of-valhalla-silver",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [],
+            "count": 2,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-silver",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "current-brass": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 4,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "brass",
+            "key": "i-horn-of-valhalla-brass",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [],
+            "count": 3,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-brass",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "current-bronze": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 5,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "bronze",
+            "key": "i-horn-of-valhalla-bronze",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [],
+            "count": 4,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-bronze",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "current-iron": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 6,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [],
+            "count": 5,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-iron",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "legacy-silver": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 6,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "legacy",
+            "metal": "silver",
+            "key": "i-horn-of-valhalla-silver",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [
+              1,
+              2
+            ],
+            "count": 5,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker (MM)",
+              "source": "mm14",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+              "definition": {
+                "n": "Berserker (MM)",
+                "s": "mm14",
+                "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13 (hide armor)"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "any one language (usually Common)"
+                  ],
+                  [
+                    "Environment",
+                    "coastal, mountain, hill, arctic, forest, desert"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+                  "**Actions**",
+                  "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+                ],
+                "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-silver",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "legacy-brass": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 10,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "legacy",
+            "metal": "brass",
+            "key": "i-horn-of-valhalla-brass",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [
+              1,
+              2,
+              3
+            ],
+            "count": 9,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker (MM)",
+              "source": "mm14",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+              "definition": {
+                "n": "Berserker (MM)",
+                "s": "mm14",
+                "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13 (hide armor)"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "any one language (usually Common)"
+                  ],
+                  [
+                    "Environment",
+                    "coastal, mountain, hill, arctic, forest, desert"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+                  "**Actions**",
+                  "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+                ],
+                "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-6",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-7",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-8",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-9",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-brass",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "legacy-bronze": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 15,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "legacy",
+            "metal": "bronze",
+            "key": "i-horn-of-valhalla-bronze",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "count": 14,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker (MM)",
+              "source": "mm14",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+              "definition": {
+                "n": "Berserker (MM)",
+                "s": "mm14",
+                "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13 (hide armor)"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "any one language (usually Common)"
+                  ],
+                  [
+                    "Environment",
+                    "coastal, mountain, hill, arctic, forest, desert"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+                  "**Actions**",
+                  "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+                ],
+                "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-6",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-7",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-8",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-9",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-10",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-11",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-12",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-13",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-14",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-bronze",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "legacy-iron": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 17,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "legacy",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [
+              1,
+              2,
+              3,
+              4,
+              1
+            ],
+            "count": 16,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker (MM)",
+              "source": "mm14",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+              "definition": {
+                "n": "Berserker (MM)",
+                "s": "mm14",
+                "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13 (hide armor)"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "any one language (usually Common)"
+                  ],
+                  [
+                    "Environment",
+                    "coastal, mountain, hill, arctic, forest, desert"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+                  "**Actions**",
+                  "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+                ],
+                "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-6",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-7",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-8",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-9",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-10",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-11",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-12",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-13",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-14",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-15",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-16",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-iron",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "generic": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 6,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [],
+            "count": 5,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "current-hostile": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 6,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial with Finesse or Light",
+              "armor": "Light"
+            },
+            "disposition": "hostile",
+            "dice": [],
+            "count": 5,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-iron",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "current-retained": {
+      "removed": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 6,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [],
+            "count": 5,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "zero": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 6,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [],
+            "count": 5,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 0,
+            "active": false,
+            "endReason": "zero-hp",
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "hour": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 6,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "current",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [],
+            "count": 5,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker",
+              "source": "core",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker\",\"p\":[\"**Traits**\",\"**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.\",\"**Actions**\",\"**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage.\"],\"s\":\"core\",\"sub\":\"Small, Medium humanoid, neutral • CR 2\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"Common\"],[\"Environment\",\"any\"]],\"tx\":\"berserker small, medium humanoid, neutral • cr 2 any\"}",
+              "definition": {
+                "n": "Berserker",
+                "s": "core",
+                "sub": "Small, Medium humanoid, neutral • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "Common"
+                  ],
+                  [
+                    "Environment",
+                    "any"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Bloodied Frenzy.** Attack rolls and saving throws are made with Advantage by the berserker whenever it is Bloodied.",
+                  "**Actions**",
+                  "**Greataxe.** Melee Attack Roll: +5, reach 5 ft. Hit: 9 (1d12 + 3) Slashing damage."
+                ],
+                "tx": "berserker small, medium humanoid, neutral • cr 2 any",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 0,
+            "active": false,
+            "endReason": "zero-hp",
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      }
+    },
+    "legacy-hostile": {
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 17,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "legacy",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial with Finesse or Light",
+              "armor": "Light"
+            },
+            "disposition": "hostile",
+            "dice": [
+              1,
+              2,
+              3,
+              4,
+              1
+            ],
+            "count": 16,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker (MM)",
+              "source": "mm14",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+              "definition": {
+                "n": "Berserker (MM)",
+                "s": "mm14",
+                "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13 (hide armor)"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "any one language (usually Common)"
+                  ],
+                  [
+                    "Environment",
+                    "coastal, mountain, hill, arctic, forest, desert"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+                  "**Actions**",
+                  "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+                ],
+                "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-6",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-7",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-8",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-9",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-10",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-11",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-12",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-13",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-14",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-15",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-16",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "id": "hvp-1",
+      "activationId": "hva-1",
+      "budget": {
+        "key": "i-horn-of-valhalla-iron",
+        "used": 1,
+        "max": 1
+      }
+    },
+    "legacy-retained": {
+      "removed": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 17,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "legacy",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [
+              1,
+              2,
+              3,
+              4,
+              1
+            ],
+            "count": 16,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker (MM)",
+              "source": "mm14",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+              "definition": {
+                "n": "Berserker (MM)",
+                "s": "mm14",
+                "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13 (hide armor)"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "any one language (usually Common)"
+                  ],
+                  [
+                    "Environment",
+                    "coastal, mountain, hill, arctic, forest, desert"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+                  "**Actions**",
+                  "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+                ],
+                "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-6",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-7",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-8",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-9",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-10",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-11",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-12",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-13",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-14",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-15",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-16",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "zero": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 17,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "legacy",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [
+              1,
+              2,
+              3,
+              4,
+              1
+            ],
+            "count": 16,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker (MM)",
+              "source": "mm14",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+              "definition": {
+                "n": "Berserker (MM)",
+                "s": "mm14",
+                "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13 (hide armor)"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "any one language (usually Common)"
+                  ],
+                  [
+                    "Environment",
+                    "coastal, mountain, hill, arctic, forest, desert"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+                  "**Actions**",
+                  "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+                ],
+                "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": false
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 0,
+            "active": false,
+            "endReason": "zero-hp",
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-6",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-7",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-8",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-9",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-10",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-11",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-12",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-13",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-14",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-15",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          },
+          {
+            "id": "hve-16",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": true,
+            "endReason": null,
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      },
+      "hour": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextActivation": 2,
+        "nextEntity": 17,
+        "physical": [
+          {
+            "id": "hvp-1",
+            "profile": "legacy",
+            "metal": "iron",
+            "key": "i-horn-of-valhalla-iron",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "activations": [
+          {
+            "id": "hva-1",
+            "physicalId": "hvp-1",
+            "profs": {
+              "weapons": "Simple, Martial",
+              "armor": "Medium"
+            },
+            "disposition": "friendly",
+            "dice": [
+              1,
+              2,
+              3,
+              4,
+              1
+            ],
+            "count": 16,
+            "creature": {
+              "logicalName": "Berserker",
+              "nativeName": "Berserker (MM)",
+              "source": "mm14",
+              "maxHP": 67,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+              "definition": {
+                "n": "Berserker (MM)",
+                "s": "mm14",
+                "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+                "tl": [
+                  [
+                    "AC",
+                    "13 (hide armor)"
+                  ],
+                  [
+                    "HP",
+                    "67 (9d8 + 27)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 10"
+                  ],
+                  [
+                    "Languages",
+                    "any one language (usually Common)"
+                  ],
+                  [
+                    "Environment",
+                    "coastal, mountain, hill, arctic, forest, desert"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+                  "**Actions**",
+                  "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+                ],
+                "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+                "im": "bestiary/XMM/Berserkers"
+              }
+            },
+            "hourEnded": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "hve-1",
+            "activationId": "hva-1",
+            "hp": 0,
+            "active": false,
+            "endReason": "zero-hp",
+            "conditions": []
+          },
+          {
+            "id": "hve-2",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-3",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-4",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-5",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-6",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-7",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-8",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-9",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-10",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-11",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-12",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-13",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-14",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-15",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          },
+          {
+            "id": "hve-16",
+            "activationId": "hva-1",
+            "hp": 67,
+            "active": false,
+            "endReason": "one-hour",
+            "conditions": []
+          }
+        ],
+        "resetEvents": []
+      }
+    }
+  },
+  "markers": {
+    "dmg2024-silver": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024",
+      "itemFingerprint": "[\"Horn of Valhalla (silver)\",\"Wondrous Item\",\"Rare\",0,\"As a Magic action, you can blow this horn to call warrior spirits from the plane of Ysgard. They appear in unoccupied spaces within 60 feet of you. Every spirit uses the Berserker stat block. A spirit goes back to Ysgard when 1 hour has passed or when its Hit Points reach 0. The spirits seem to be living, breathing warriors. They have Immunity to the Charmed condition and the Frightened condition. Once you have blown the horn, it stays inert until 7 days pass. There are four kinds of this horn, each made of a different metal. The metal sets how many spirits the horn calls and the requirement you must meet to use it. If you blow the horn while meeting its requirement, the spirits obey your commands and are Friendly to you and your allies. If you blow it without meeting the requirement, the spirits attack you. **Silver Horn.** This horn is Rare and calls 2 spirits. It has no requirement, so the spirits are always Friendly to you and your allies.\",{\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2024-brass": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024",
+      "itemFingerprint": "[\"Horn of Valhalla (brass)\",\"Wondrous Item\",\"Rare\",0,\"As a Magic action, you can blow this horn to call warrior spirits from the plane of Ysgard. They appear in unoccupied spaces within 60 feet of you. Every spirit uses the Berserker stat block. A spirit goes back to Ysgard when 1 hour has passed or when its Hit Points reach 0. The spirits seem to be living, breathing warriors. They have Immunity to the Charmed condition and the Frightened condition. Once you have blown the horn, it stays inert until 7 days pass. There are four kinds of this horn, each made of a different metal. The metal sets how many spirits the horn calls and the requirement you must meet to use it. If you blow the horn while meeting its requirement, the spirits obey your commands and are Friendly to you and your allies. If you blow it without meeting the requirement, the spirits attack you. **Brass Horn.** This horn is Rare and calls 3 spirits. Requirement: you have proficiency with all Simple weapons.\",{\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2024-bronze": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024",
+      "itemFingerprint": "[\"Horn of Valhalla (bronze)\",\"Wondrous Item\",\"Very Rare\",0,\"As a Magic action, you can blow this horn to call warrior spirits from the plane of Ysgard. They show up in unoccupied spaces up to 60 feet away from you, and each of them uses the Berserker stat block. A spirit goes back to Ysgard when it drops to 0 Hit Points or when 1 hour has passed. The spirits look like living, breathing warriors. They have Immunity to the Charmed condition and the Frightened condition. Once the horn has been blown, 7 days must pass before it works again. **Bronze Horn.** This bronze horn summons 4 spirits. Its requirement is training with all Medium armor. **Requirement.** If you meet the requirement of your horn when you blow it, the spirits are Friendly to you and your allies and obey your commands. If you blow it without meeting the requirement, the spirits attack you.\",{\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2024-iron": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024",
+      "itemFingerprint": "[\"Horn of Valhalla (iron)\",\"Wondrous Item\",\"Legendary\",0,\"As a Magic action, you can blow this horn to call warrior spirits from the plane of Ysgard. They show up in unoccupied spaces up to 60 feet away from you, and each of them uses the Berserker stat block. A spirit goes back to Ysgard when it drops to 0 Hit Points or when 1 hour has passed. The spirits look like living, breathing warriors. They have Immunity to the Charmed condition and the Frightened condition. Once the horn has been blown, 7 days must pass before it works again. **Iron Horn.** This iron horn summons 5 spirits. Its requirement is proficiency with all Martial weapons. **Requirement.** If you meet the requirement of your horn when you blow it, the spirits are Friendly to you and your allies and obey your commands. If you blow it without meeting the requirement, the spirits attack you.\",{\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2024-legacy-silver": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024-legacy",
+      "itemFingerprint": "[\"Horn of Valhalla, Silver\",\"Wondrous Item\",\"Rare\",0,\"You can use an action to blow this horn. In response, warrior spirits from the plane of Ysgard appear within 60 feet of you. These spirits use the berserker statistics. They return to Ysgard after 1 hour or when they drop to 0 hit points. Once you use the horn, it can't be used again until 7 days have passed.\\nThe silver horn summons 2d4 + 2 berserkers.\\nThe berserkers are friendly to you and your companions and follow your commands.\",{\"base\":[\"Horn\"],\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2024-legacy-brass": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024-legacy",
+      "itemFingerprint": "[\"Horn of Valhalla, Brass\",\"Wondrous Item\",\"Rare\",0,\"You can use an action to blow this horn. In response, warrior spirits from the plane of Ysgard appear within 60 feet of you. These spirits use the berserker statistics. They return to Ysgard after 1 hour or when they drop to 0 hit points. Once you use the horn, it can't be used again until 7 days have passed.\\nA brass horn summons 3d4 + 3 berserkers. To use the brass horn, you must be proficient with all simple weapons.\\nIf you blow the horn without meeting its requirement, the summoned berserkers attack you. If you meet the requirement, they are friendly to you and your companions and follow your commands.\",{\"base\":[\"Horn\"],\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2024-legacy-bronze": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024-legacy",
+      "itemFingerprint": "[\"Horn of Valhalla, Bronze\",\"Wondrous Item\",\"Very Rare\",0,\"You can use an action to blow this horn. In response, warrior spirits from the plane of Ysgard appear within 60 feet of you. These spirits use the berserker statistics. They return to Ysgard after 1 hour or when they drop to 0 hit points. Once you use the horn, it can't be used again until 7 days have passed.\\nA bronze horn summons 4d4 + 4 berserkers. To use the bronze horn, you must be proficient with medium armor.\\nIf you blow the horn without meeting its requirement, the summoned berserkers attack you. If you meet the requirement, they are friendly to you and your companions and follow your commands.\",{\"base\":[\"Horn\"],\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2024-legacy-iron": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024-legacy",
+      "itemFingerprint": "[\"Horn of Valhalla, Iron\",\"Wondrous Item\",\"Legendary\",0,\"You can use an action to blow this horn. In response, warrior spirits from the plane of Ysgard appear within 60 feet of you. These spirits use the berserker statistics. They return to Ysgard after 1 hour or when they drop to 0 hit points. Once you use the horn, it can't be used again until 7 days have passed.\\nThe iron horn summons 5d4 + 5 berserkers. To use the iron horn, you must be proficient with all martial weapons.\\nIf you blow the horn without meeting its requirement, the summoned berserkers attack you. If you meet the requirement, they are friendly to you and your companions and follow your commands.\",{\"base\":[\"Horn\"],\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2014-silver": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2014",
+      "itemFingerprint": "[\"Horn of Valhalla, Silver\",\"Wondrous Item\",\"Rare\",0,\"You can use an action to blow this horn. In response, warrior spirits from the plane of Ysgard appear within 60 feet of you. These spirits use the berserker statistics. They return to Ysgard after 1 hour or when they drop to 0 hit points. Once you use the horn, it can't be used again until 7 days have passed.\\nThe silver horn summons 2d4 + 2 berserkers.\\nThe berserkers are friendly to you and your companions and follow your commands.\",{\"base\":[\"Horn\"],\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2014-brass": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2014",
+      "itemFingerprint": "[\"Horn of Valhalla, Brass\",\"Wondrous Item\",\"Rare\",0,\"You can use an action to blow this horn. In response, warrior spirits from the plane of Ysgard appear within 60 feet of you. These spirits use the berserker statistics. They return to Ysgard after 1 hour or when they drop to 0 hit points. Once you use the horn, it can't be used again until 7 days have passed.\\nA brass horn summons 3d4 + 3 berserkers. To use the brass horn, you must be proficient with all simple weapons.\\nIf you blow the horn without meeting its requirement, the summoned berserkers attack you. If you meet the requirement, they are friendly to you and your companions and follow your commands.\",{\"base\":[\"Horn\"],\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2014-bronze": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2014",
+      "itemFingerprint": "[\"Horn of Valhalla, Bronze\",\"Wondrous Item\",\"Very Rare\",0,\"You can use an action to blow this horn. In response, warrior spirits from the plane of Ysgard appear within 60 feet of you. These spirits use the berserker statistics. They return to Ysgard after 1 hour or when they drop to 0 hit points. Once you use the horn, it can't be used again until 7 days have passed.\\nA bronze horn summons 4d4 + 4 berserkers. To use the bronze horn, you must be proficient with medium armor.\\nIf you blow the horn without meeting its requirement, the summoned berserkers attack you. If you meet the requirement, they are friendly to you and your companions and follow your commands.\",{\"base\":[\"Horn\"],\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "dmg2014-iron": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2014",
+      "itemFingerprint": "[\"Horn of Valhalla, Iron\",\"Wondrous Item\",\"Legendary\",0,\"You can use an action to blow this horn. In response, warrior spirits from the plane of Ysgard appear within 60 feet of you. These spirits use the berserker statistics. They return to Ysgard after 1 hour or when they drop to 0 hit points. Once you use the horn, it can't be used again until 7 days have passed.\\nThe iron horn summons 5d4 + 5 berserkers. To use the iron horn, you must be proficient with all martial weapons.\\nIf you blow the horn without meeting its requirement, the summoned berserkers attack you. If you meet the requirement, they are friendly to you and your companions and follow your commands.\",{\"base\":[\"Horn\"],\"ch\":[1,\"1\",\"7 days\"]}]"
+    },
+    "generic": {
+      "v": 1,
+      "id": "hvp-1",
+      "nativeProfile": "dmg2024",
+      "itemFingerprint": "[\"Horn of Valhalla\",\"Wondrous Item\",\"Varies\",0,\"As a Magic action, you can blow this horn to call warrior spirits from the plane of Ysgard. They show up in unoccupied spaces up to 60 feet away from you, and each of them uses the Berserker stat block. A spirit goes back to Ysgard when it drops to 0 Hit Points or when 1 hour has passed. The spirits look like living, breathing warriors. They have Immunity to the Charmed condition and the Frightened condition. Once the horn has been blown, 7 days must pass before it works again. **Horn Types.** Four types of this horn are known, each made of a different metal. The type decides how many spirits appear and what you need in order to use the horn safely. The Dungeon Master chooses the type or rolls 1d100. 01-40, silver horn (Rare): 2 spirits, with no requirement. 41-75, brass horn (Rare): 3 spirits, and you must have proficiency with all Simple weapons. 76-90, bronze horn (Very Rare): 4 spirits, and you must have training with all Medium armor. 91-00, iron horn (Legendary): 5 spirits, and you must have proficiency with all Martial weapons. **Requirement.** If you meet the requirement of your horn when you blow it, the spirits are Friendly to you and your allies and obey your commands. If you blow it without meeting the requirement, the spirits attack you.\",{\"ch\":[1,\"1\",\"7 days\"]}]"
+    }
+  },
+  "legacyCharmed": {
+    "v": 1,
+    "nextPhysical": 2,
+    "nextActivation": 2,
+    "nextEntity": 17,
+    "physical": [
+      {
+        "id": "hvp-1",
+        "profile": "legacy",
+        "metal": "iron",
+        "key": "i-horn-of-valhalla-iron",
+        "present": true,
+        "historyKnown": true
+      }
+    ],
+    "activations": [
+      {
+        "id": "hva-1",
+        "physicalId": "hvp-1",
+        "profs": {
+          "weapons": "Simple, Martial",
+          "armor": "Medium"
+        },
+        "disposition": "friendly",
+        "dice": [
+          1,
+          2,
+          3,
+          4,
+          1
+        ],
+        "count": 16,
+        "creature": {
+          "logicalName": "Berserker",
+          "nativeName": "Berserker (MM)",
+          "source": "mm14",
+          "maxHP": 67,
+          "definitionFingerprint": "{\"im\":\"bestiary/XMM/Berserkers\",\"n\":\"Berserker (MM)\",\"p\":[\"**Traits**\",\"**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.\",\"**Actions**\",\"**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Medium humanoid (any race), chaotic good NY evil • CR 2\",\"tl\":[[\"AC\",\"13 (hide armor)\"],[\"HP\",\"67 (9d8 + 27)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)\"],[\"Senses\",\"passive Perception 10\"],[\"Languages\",\"any one language (usually Common)\"],[\"Environment\",\"coastal, mountain, hill, arctic, forest, desert\"]],\"tx\":\"berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert\"}",
+          "definition": {
+            "n": "Berserker (MM)",
+            "s": "mm14",
+            "sub": "Medium humanoid (any race), chaotic good NY evil • CR 2",
+            "tl": [
+              [
+                "AC",
+                "13 (hide armor)"
+              ],
+              [
+                "HP",
+                "67 (9d8 + 27)"
+              ],
+              [
+                "Speed",
+                "30 ft."
+              ],
+              [
+                "Abilities",
+                "STR 16 (+3)  DEX 12 (+1)  CON 17 (+3)  INT 9 (-1)  WIS 11 (+0)  CHA 9 (-1)"
+              ],
+              [
+                "Senses",
+                "passive Perception 10"
+              ],
+              [
+                "Languages",
+                "any one language (usually Common)"
+              ],
+              [
+                "Environment",
+                "coastal, mountain, hill, arctic, forest, desert"
+              ]
+            ],
+            "p": [
+              "**Traits**",
+              "**Reckless.** The berserker may begin its turn by taking advantage on every melee weapon attack roll it makes that turn. In exchange, attack rolls against it have advantage until its next turn starts.",
+              "**Actions**",
+              "**Greataxe.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage."
+            ],
+            "tx": "berserker medium humanoid (any race), chaotic good ny evil • cr 2 coastal mountain hill arctic forest desert",
+            "im": "bestiary/XMM/Berserkers"
+          }
+        },
+        "hourEnded": false
+      }
+    ],
+    "entities": [
+      {
+        "id": "hve-1",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": [
+          "Charmed"
+        ]
+      },
+      {
+        "id": "hve-2",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-3",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-4",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-5",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-6",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-7",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-8",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-9",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-10",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-11",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-12",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-13",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-14",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-15",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      },
+      {
+        "id": "hve-16",
+        "activationId": "hva-1",
+        "hp": 67,
+        "active": true,
+        "endReason": null,
+        "conditions": []
+      }
+    ],
+    "resetEvents": []
+  }
+}

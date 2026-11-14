@@ -17659,6 +17659,5557 @@
     "tests/bag_tricks_ui.mjs"
    ],
    "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. One exact legacy-style UNC closure, with its native source alias separately scoped. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ spirit\\ goes\\ back\\ to\\ ysgard\\ when\\ it\\ drops\\ to\\ 0\\ hit\\ points\\ or\\ when\\ 1\\ hour\\ has\\ passed\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source generic iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla",
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^they\\ have\\ immunity\\ to\\ the\\ charmed\\ condition\\ and\\ the\\ frightened\\ condition\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function conditionPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source generic iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC immunity: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-11",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla",
+   "cls": [
+    "NUM",
+    "PROF"
+   ],
+   "vals": [
+    "01",
+    "40",
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^01\\-40,\\ silver\\ horn\\ \\(rare\\):\\ 2\\ spirits,\\ with\\ no\\ requirement\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source generic iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-12",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla",
+   "cls": [
+    "PROF",
+    "NUM"
+   ],
+   "vals": [
+    "41",
+    "75",
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^41\\-75,\\ brass\\ horn\\ \\(rare\\):\\ 3\\ spirits,\\ and\\ you\\ must\\ have\\ proficiency\\ with\\ all\\ simple\\ weapons\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source generic iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-13",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla",
+   "cls": [
+    "NUM",
+    "PROF"
+   ],
+   "vals": [
+    "76",
+    "90",
+    "4"
+   ],
+   "scopeValues": true,
+   "rx": "^76\\-90,\\ bronze\\ horn\\ \\(very\\ rare\\):\\ 4\\ spirits,\\ and\\ you\\ must\\ have\\ training\\ with\\ all\\ medium\\ armor\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source generic iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-14",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla",
+   "cls": [
+    "PROF",
+    "NUM"
+   ],
+   "vals": [
+    "91",
+    "00",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^91\\-00,\\ iron\\ horn\\ \\(legendary\\):\\ 5\\ spirits,\\ and\\ you\\ must\\ have\\ proficiency\\ with\\ all\\ martial\\ weapons\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source generic iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-brass-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (brass)",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ spirit\\ goes\\ back\\ to\\ ysgard\\ when\\ 1\\ hour\\ has\\ passed\\ or\\ when\\ its\\ hit\\ points\\ reach\\ 0\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-brass-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (brass)",
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^they\\ have\\ immunity\\ to\\ the\\ charmed\\ condition\\ and\\ the\\ frightened\\ condition\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function conditionPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC immunity: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-brass-13",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (brass)",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ horn\\ is\\ rare\\ and\\ calls\\ 3\\ spirits\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-brass-14",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (brass)",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^requirement:\\ you\\ have\\ proficiency\\ with\\ all\\ simple\\ weapons\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-bronze-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (bronze)",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ spirit\\ goes\\ back\\ to\\ ysgard\\ when\\ it\\ drops\\ to\\ 0\\ hit\\ points\\ or\\ when\\ 1\\ hour\\ has\\ passed\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-bronze-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (bronze)",
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^they\\ have\\ immunity\\ to\\ the\\ charmed\\ condition\\ and\\ the\\ frightened\\ condition\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function conditionPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC immunity: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-bronze-8",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (bronze)",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "4"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ bronze\\ horn\\ summons\\ 4\\ spirits\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-iron-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (iron)",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ spirit\\ goes\\ back\\ to\\ ysgard\\ when\\ it\\ drops\\ to\\ 0\\ hit\\ points\\ or\\ when\\ 1\\ hour\\ has\\ passed\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-iron-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (iron)",
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^they\\ have\\ immunity\\ to\\ the\\ charmed\\ condition\\ and\\ the\\ frightened\\ condition\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function conditionPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC immunity: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-iron-8",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (iron)",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ iron\\ horn\\ summons\\ 5\\ spirits\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-iron-9",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (iron)",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^its\\ requirement\\ is\\ proficiency\\ with\\ all\\ martial\\ weapons\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-silver-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (silver)",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ spirit\\ goes\\ back\\ to\\ ysgard\\ when\\ 1\\ hour\\ has\\ passed\\ or\\ when\\ its\\ hit\\ points\\ reach\\ 0\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 silver",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-silver-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (silver)",
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^they\\ have\\ immunity\\ to\\ the\\ charmed\\ condition\\ and\\ the\\ frightened\\ condition\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function conditionPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 silver",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC immunity: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-current-item-dmg-horn-of-valhalla-silver-13",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla (silver)",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ horn\\ is\\ rare\\ and\\ calls\\ 2\\ spirits\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024 silver",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-brass-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Brass",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^they\\ return\\ to\\ ysgard\\ after\\ 1\\ hour\\ or\\ when\\ they\\ drop\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-brass-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Brass",
+   "cls": [
+    "DICE"
+   ],
+   "vals": [
+    "3d4",
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ brass\\ horn\\ summons\\ 3d4\\ \\+\\ 3\\ berserkers\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-brass-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Brass",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ use\\ the\\ brass\\ horn,\\ you\\ must\\ be\\ proficient\\ with\\ all\\ simple\\ weapons\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-bronze-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Bronze",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^they\\ return\\ to\\ ysgard\\ after\\ 1\\ hour\\ or\\ when\\ they\\ drop\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-bronze-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Bronze",
+   "cls": [
+    "DICE"
+   ],
+   "vals": [
+    "4d4",
+    "4"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ bronze\\ horn\\ summons\\ 4d4\\ \\+\\ 4\\ berserkers\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-bronze-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Bronze",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ use\\ the\\ bronze\\ horn,\\ you\\ must\\ be\\ proficient\\ with\\ medium\\ armor\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-iron-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Iron",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^they\\ return\\ to\\ ysgard\\ after\\ 1\\ hour\\ or\\ when\\ they\\ drop\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-iron-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Iron",
+   "cls": [
+    "DICE"
+   ],
+   "vals": [
+    "5d4",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ iron\\ horn\\ summons\\ 5d4\\ \\+\\ 5\\ berserkers\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-iron-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Iron",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ use\\ the\\ iron\\ horn,\\ you\\ must\\ be\\ proficient\\ with\\ all\\ martial\\ weapons\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-silver-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Silver",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^they\\ return\\ to\\ ysgard\\ after\\ 1\\ hour\\ or\\ when\\ they\\ drop\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy silver",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg-horn-of-valhalla-silver-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Horn of Valhalla, Silver",
+   "cls": [
+    "DICE"
+   ],
+   "vals": [
+    "2d4",
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ silver\\ horn\\ summons\\ 2d4\\ \\+\\ 2\\ berserkers\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2024-legacy silver",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-brass-4",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Brass",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^they\\ return\\ to\\ ysgard\\ after\\ 1\\ hour\\ or\\ when\\ they\\ drop\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-brass-6",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Brass",
+   "cls": [
+    "DICE"
+   ],
+   "vals": [
+    "3d4",
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ brass\\ horn\\ summons\\ 3d4\\ \\+\\ 3\\ berserkers\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-brass-7",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Brass",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ use\\ the\\ brass\\ horn,\\ you\\ must\\ be\\ proficient\\ with\\ all\\ simple\\ weapons\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 brass",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-bronze-4",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Bronze",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^they\\ return\\ to\\ ysgard\\ after\\ 1\\ hour\\ or\\ when\\ they\\ drop\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-bronze-6",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Bronze",
+   "cls": [
+    "DICE"
+   ],
+   "vals": [
+    "4d4",
+    "4"
+   ],
+   "scopeValues": true,
+   "rx": "^a\\ bronze\\ horn\\ summons\\ 4d4\\ \\+\\ 4\\ berserkers\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-bronze-7",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Bronze",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ use\\ the\\ bronze\\ horn,\\ you\\ must\\ be\\ proficient\\ with\\ medium\\ armor\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 bronze",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-iron-4",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Iron",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^they\\ return\\ to\\ ysgard\\ after\\ 1\\ hour\\ or\\ when\\ they\\ drop\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-iron-6",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Iron",
+   "cls": [
+    "DICE"
+   ],
+   "vals": [
+    "5d4",
+    "5"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ iron\\ horn\\ summons\\ 5d4\\ \\+\\ 5\\ berserkers\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-iron-7",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Iron",
+   "cls": [
+    "PROF"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^to\\ use\\ the\\ iron\\ horn,\\ you\\ must\\ be\\ proficient\\ with\\ all\\ martial\\ weapons\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 iron",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC requirement: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-silver-4",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Silver",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "1",
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^they\\ return\\ to\\ ysgard\\ after\\ 1\\ hour\\ or\\ when\\ they\\ drop\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function summonPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 silver",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
+  },
+  {
+   "id": "u48-legacy-item-dmg14-horn-of-valhalla-silver-6",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Horn of Valhalla, Silver",
+   "cls": [
+    "DICE"
+   ],
+   "vals": [
+    "2d4",
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ silver\\ horn\\ summons\\ 2d4\\ \\+\\ 2\\ berserkers\\.$",
+   "anchor": [
+    "src/builder/25h-logic-horn-valhalla.js",
+    "function summonPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function planHornValhallaSummon("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "function countFor("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function hornProficiencyDisposition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaHP("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function changeHornValhallaCondition("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaHour("
+    ],
+    [
+     "src/data/lib/horn-valhalla.js",
+     "export function recordHornValhallaSevenDays("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaNativeSources("
+    ],
+    [
+     "src/data/lib/horn-valhalla-source.js",
+     "export function hornValhallaCreature("
+    ],
+    [
+     "src/builder/10i-logic-horn-valhalla.js",
+     "export function hornValhallaResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "hornValhalla:{v:1,id:horn.physical.id}"
+    ],
+    [
+     "src/builder/12x-logic-horn-valhalla.js",
+     "id:'retained-horn-valhalla'"
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function actualProfs("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hpPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function conditionPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function hourPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function sevenDayPlan("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "function command("
+    ],
+    [
+     "src/builder/25h-logic-horn-valhalla.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaCommand("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "export function requestHornValhallaSummon("
+    ],
+    [
+     "src/app/32o-logic-horn-valhalla.js",
+     "function hornResultFaces("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiHPBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiConditionBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiBody("
+    ],
+    [
+     "src/app/21p-ui-horn-valhalla.js",
+     "function hornUiCommand("
+    ]
+   ],
+   "test": "Z3 U48 native Horn source dmg2014 silver",
+   "consumerTests": [
+    "tests/horn_valhalla_model.mjs",
+    "tests/horn_valhalla_backend.mjs",
+    "tests/horn_valhalla_runtime.mjs",
+    "tests/horn_valhalla_ui.mjs"
+   ],
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
   }
  ]
 }
