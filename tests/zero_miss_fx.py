@@ -3296,6 +3296,27 @@ CASES.append(dict(name="Z3 U48 legacy NPC Charmed condition stays off actor",b=u
 CASES.append(dict(name="NEG U48 future typed horn cannot mint generic resource",b=u48_build([dict(_u48_generic,hornValhalla=dict(v=99,id="hvp-1",opaque="preserve"))]),hornValhalla=U48_FIX["states"]["generic"]["active"],expect=[("C.res.some(row=>row.n==='Horn of Valhalla')",False)]))
 CASES.append(dict(name="NEG U48 duplicate Horn physical identity cannot mint budgets",b=u48_build([_u48_generic,_u48_generic]),hornValhalla=U48_FIX["states"]["generic"]["active"],expect=[("C.res.some(row=>row.n==='Horn of Valhalla')",False)]))
 
+# U49 actual live native attack/damage/AC consumers receive a full native DEF snapshot.
+U49_FIX=json.load(open(os.path.join(HERE,"fixtures","defender-fx.json")))
+U49_D="window.__deriveFor(C,window.__zmDeriveState)"
+U49_ATTACK=U49_D+".atk[C.attacks.findIndex(row=>row.n==='Defender')]"
+def u49_build(attuned=True):
+    return dict(rs="2024",cls="Fighter",level=1,base=dict(STR=16,DEX=10,CON=10,INT=10,WIS=10,CHA=10),inv=[dict(n="Defender",q=1,eq=True,attuned=attuned,defender=U49_FIX["marker"])],extra=dict(bg="Acolyte",bgMode="21",bg2="INT",bg1="WIS",armor="",shield=False,src=dict(core=True,dmg=True)))
+def u49_case(name,state,hit,damage,ac,**kwargs):
+    return dict(name=name,b=u49_build(),defender=state,deriveState=dict(U49_FIX["deriveDefaults"],defender=state),expect=[("Boolean("+U49_D+".err)",False),(U49_ATTACK+".hit",hit),(U49_ATTACK+".dmg",damage),(U49_D+".ac",ac)],**kwargs)
+for _k in range(4):
+    CASES.append(u49_case("Z3 U49 actual derived source conservation k"+str(_k),U49_FIX["states"]["k"+str(_k)],8-_k,"1d8+"+str(6-_k),10+_k))
+for _state,_ac in [("drop",10),("rehold",12),("endTurn",12),("nextTurn",10)]:
+    CASES.append(u49_case("Z3 U49 held and actual turn boundary "+_state,U49_FIX["states"][_state],8 if _state=="nextTurn" else 6,"1d8+6" if _state=="nextTurn" else "1d8+4",_ac))
+CASES.append(u49_case("NEG U49 adopted unknown turn cannot invent AC",U49_FIX["states"]["unknown"],8,"1d8+6",10))
+_u49_inactive=dict(name="NEG U49 actual allocated attunement required for transferred AC",b=u49_build(False),defender=U49_FIX["states"]["k2"],deriveState=dict(U49_FIX["deriveDefaults"],defender=U49_FIX["states"]["k2"]),expect=[("C.inv.find(row=>row.n==='Defender').attunedActive===true",False),(U49_D+".ac",10)])
+CASES.append(_u49_inactive)
+_u49_spell=u49_case("Z3 U49 preserves actual Magic Weapon spell contribution",U49_FIX["states"]["k2"],8,"1d8+6",12)
+_u49_spell["deriveState"]["mw"]=dict(w="Defender",l=4)
+CASES.append(_u49_spell)
+_u49_future=dict(v=99,turn=dict(id="future",ownTurn=True),physical=[dict(id="dfp-1",allocation=99,held=True)])
+CASES.append(dict(name="NEG U49 future allocation namespace grants no AC",b=u49_build(),defender=_u49_future,deriveState=dict(U49_FIX["deriveDefaults"],defender=_u49_future),expect=[("C.defender",_u49_future),(U49_D+".ac",10)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
@@ -3345,7 +3366,7 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  // created from a later timer callback. The page policy itself stays unchanged.
  cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
  for(const c of cases){ const r={name:c.name,fail:[]},warmBefore=c.warm?window.__bldTestB():null;
-  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{}),...(Object.prototype.hasOwnProperty.call(c,"studyBooks")?{studyBooks:c.studyBooks}:{}),...(Object.prototype.hasOwnProperty.call(c,"bagTricks")?{bagTricks:c.bagTricks}:{}),...(Object.prototype.hasOwnProperty.call(c,"hornValhalla")?{hornValhalla:c.hornValhalla}:{})}; window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{}),...(Object.prototype.hasOwnProperty.call(c,"studyBooks")?{studyBooks:c.studyBooks}:{}),...(Object.prototype.hasOwnProperty.call(c,"bagTricks")?{bagTricks:c.bagTricks}:{}),...(Object.prototype.hasOwnProperty.call(c,"hornValhalla")?{hornValhalla:c.hornValhalla}:{}),...(Object.prototype.hasOwnProperty.call(c,"defender")?{defender:c.defender}:{})}; window.__zmB=B0; window.__zmDeriveState=c.deriveState; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
    for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }

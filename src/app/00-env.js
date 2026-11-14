@@ -31,5 +31,6 @@ bind(["__bldNecronomiconInfo", "__bldNecronomiconCapture", "__bldNecronomiconTok
 bind(["__bldStudyBooksInfo", "__bldStudyBooksCapture", "__bldStudyBooksTokenCurrent", "__bldStudyBooksCommand", "__bldStudyBooksAcceptReceipt", "__bldStudyBooksInventoryOwner", "__studyBooksSave"]);
 bind(["__bldBagTricksInfo", "__bldBagTricksCapture", "__bldBagTricksTokenCurrent", "__bldBagTricksCommand", "__bldBagTricksAcceptReceipt", "__bldBagTricksInventoryOwner", "__bagTricksSave"]);
 bind(["__martyr", "__dsPeri"]);
+bind(["__bldDefenderAttackInfo", "__bldDefenderAttackCurrent", "__bldDefenderCommitAttack", "__bldDefenderInfo", "__bldDefenderCapture", "__bldDefenderTokenCurrent", "__bldDefenderCommand", "__bldDefenderAcceptReceipt", "__bldDefenderInventoryOwner", "__defenderSave", "__defenderAttackSpec"]);
 bind(["__bldHornValhallaInfo", "__bldHornValhallaCapture", "__bldHornValhallaTokenCurrent", "__bldHornValhallaCommand", "__bldHornValhallaAcceptReceipt", "__bldHornValhallaInventoryOwner", "__hornValhallaSave"]);
 export const ENV_NAMES = Object.keys(env);

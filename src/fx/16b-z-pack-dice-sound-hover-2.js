@@ -2,7 +2,8 @@
 (function(){
   const MI=FXENV.__MI;
   if(!MI||!document.body.animate) return;
-  FXS16A.sourceSpec=function sourceSpec(key,spec){if(!spec)return spec;let guard;if(/^(ah-|ad-)/.test(key)){try{guard=FXENV.__temporaryAttackGuard&&FXENV.__temporaryAttackGuard(key)}catch(error){guard=false}if(guard===undefined)return spec}else if(/^spatk-source-/.test(key)){try{guard=FXENV.__spellSourceGuard&&FXENV.__spellSourceGuard(key,spec.bon)}catch(error){guard=false}}else return spec;spec.sourceGuard=typeof guard==="function"?guard:function(){return false};return spec};
+  FXS16A.defenderSpec=function defenderSpec(key,spec){if(!/^(ah-|ad-)/.test(key)||typeof FXENV.__defenderAttackSpec!=="function")return spec;try{return FXENV.__defenderAttackSpec(key,spec)||spec}catch(error){return Object.assign({},spec,{sourceGuard:function(){return false}})}};
+  FXS16A.sourceSpec=function sourceSpec(key,spec){if(!spec)return spec;let guard;if(/^(ah-|ad-)/.test(key)){try{guard=FXENV.__temporaryAttackGuard&&FXENV.__temporaryAttackGuard(key)}catch(error){guard=false}if(guard===undefined)return FXS16A.defenderSpec(key,spec)}else if(/^spatk-source-/.test(key)){try{guard=FXENV.__spellSourceGuard&&FXENV.__spellSourceGuard(key,spec.bon)}catch(error){guard=false}}else return spec;spec.sourceGuard=typeof guard==="function"?guard:function(){return false};return FXS16A.defenderSpec(key,spec)};
 })();
 (function(){
   const MI=FXENV.__MI;

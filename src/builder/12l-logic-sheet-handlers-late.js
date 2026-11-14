@@ -42,7 +42,7 @@ function actsFor(C,I,Q){const B=I.B;const out=[],T=(actsTable()||{}),lin=String(
 function atkPole(L,add,I,Q){const feats=I.feats;
  if(feats.some((f) =>{return f.n==="Polearm Master"}))L.forEach((r) =>{if(r.act||/ \(thrown\)$/.test(r.n)||r.n==="Unarmed Strike")return;const b=Q.baseOf(r.n).b,w=weaponDef(b);
   if(!w||w.k!=="M"||!(b==="Quarterstaff"||b==="Spear"||(/Heavy/.test(w.p)&&/Reach/.test(w.p))))return;
-  add.push({n:"Pole Strike",sub:r.n+" • Bonus Action",ab:r.ab,prof:r.prof,die:"1d4",dieSrc:"Polearm Master: Pole Strike ("+I.SRC+"), the other end of the "+b,misc:r.misc,miscSrc:r.miscSrc,dmgBonus:r.dmgBonus,
+  add.push({... (Object.prototype.hasOwnProperty.call(r,"defender")?{defender:structuredClone(r.defender)}:{}),n:"Pole Strike",sub:r.n+" • Bonus Action",ab:r.ab,prof:r.prof,die:"1d4",dieSrc:"Polearm Master: Pole Strike ("+I.SRC+"), the other end of the "+b,misc:r.misc,miscSrc:r.miscSrc,dmgBonus:r.dmgBonus,
    type:"Bludgeoning",range:/Reach/.test(w.p)?"10 ft":"5 ft",m:r.m,note:"Bonus Action, right after you take the Attack action and attack with this weapon.",act:"bonus",of:r.n});if(r.spendDice)add[add.length-1].spendDice=r.spendDice.map(function(x){return Object.assign({},x)})});
  const pn=add.filter((r) =>{return r.n==="Pole Strike"});if(pn.length>1)pn.forEach((r) =>{r.n="Pole Strike ("+r.of+")"});/* one name per row when two weapons carry it */}
 function atkSoul(add,I,a,sk){if(sk>=3){const fab=a.sc.DEX>a.sc.STR?"DEX":"STR",src="Psychic Blades ("+I.SRC+", Soulknife 3)";

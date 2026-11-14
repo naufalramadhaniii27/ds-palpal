@@ -234,7 +234,7 @@ const FXS16A={};
     if(b.hasAttribute("data-mrself")){ res.innerHTML='<label class="mi-self">'+(sp.dmg?'Damage total you rolled ('+esc(sp.dmg)+')':'The number on your d20')+' <input type="number" inputmode="numeric" min="'+(sp.dmg?0:1)+'" max="'+(sp.dmg?999:20)+'" data-mrin="1"></label><button type="button" class="mi-rb pri" data-mrok="1">Add it</button>'; const inp=res.querySelector("input"); if(inp) inp.focus(); return; }
     const v=parseInt((res.querySelector("[data-mrin]")||{}).value,10); if(!isFinite(v)||(!sp.dmg&&(v<1||v>20))||v<0){ const i2=res.querySelector("[data-mrin]"); if(i2) i2.focus(); return; }
     const r=FXS16A.handResult(w,sp,v);
-    if(!FXS16A.barAllowed(w))return; FXS16A.after(r); res.innerHTML='<b class="'+r.k+'">'+r.v+'</b><span>'+esc(r.d)+'</span><button type="button" class="mi-rsh" data-mrs="1">Share</button>'; res.__r=r; },true);
+    if(!FXS16A.barAllowed(w))return;if(!FXS16A.commitRollResult(r,undefined,sp.beforeCommit))return; res.innerHTML='<b class="'+r.k+'">'+r.v+'</b><span>'+esc(r.d)+'</span><button type="button" class="mi-rsh" data-mrs="1">Share</button>'; res.__r=r; },true);
 })();
 (function(){
   const MI=FXENV.__MI;
@@ -244,7 +244,7 @@ const FXS16A={};
     if(navigator.share) navigator.share({text:t}).catch(() =>{}); else if(navigator.clipboard) navigator.clipboard.writeText(t).then(() =>{ s.textContent="Copied"; },() =>{}); };
   FXS16A.rollGo=function rollGo(e){ const b=e.target.closest&&e.target.closest(".mi-rb:not(.mi-4d6):not([data-cpr]):not([data-cpx]):not([data-mrself]):not([data-mrok])"); if(!b) return; e.preventDefault(); e.stopPropagation(); const w=b.closest(".mi-roll"); if(!w) return; var res=w.querySelector(".mi-rres"); if(w.__busy) return; w.__busy=1;
   FXS16A.doRoll(w.__spec,b.getAttribute("data-mr"),w.__lab,(r) =>{ w.__busy=0;
-    res.innerHTML='<b class="'+r.k+'">'+r.v+'</b><span>'+esc(r.d)+'</span><button type="button" class="mi-rsh" data-mrs="1">Share</button>'; res.__r=r; res.animate([{opacity:0,transform:"translateY(6px)"},{opacity:1,transform:"none"}],{duration:300,delay:(FXS16A.calm()||r.three)?0:700,fill:"backwards",easing:"ease-out"}); },()=>FXS16A.barAllowed(w)); };
+    res.innerHTML='<b class="'+r.k+'">'+r.v+'</b><span>'+esc(r.d)+'</span><button type="button" class="mi-rsh" data-mrs="1">Share</button>'; res.__r=r; res.animate([{opacity:0,transform:"translateY(6px)"},{opacity:1,transform:"none"}],{duration:300,delay:(FXS16A.calm()||r.three)?0:700,fill:"backwards",easing:"ease-out"}); },()=>FXS16A.barAllowed(w),w.__spec.beforeCommit); };
 })();
 (function(){
   const MI=FXENV.__MI;

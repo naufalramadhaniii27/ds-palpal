@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9112 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9115 |
 | Info (tag terdokumentasi) | 27245 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1482, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 975, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 229, STD:ASI 225, NUMONLY:ZERO 175, ROLL:LAST_CHARGE 142, OBJECT:STATS 110, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5755 |
-| Uncovered dengan angka | 3366 |
-| Uncovered dengan kelas kata kunci mekanik | 5375 |
+| Uncovered | 5752 |
+| Uncovered dengan angka | 3365 |
+| Uncovered dengan kelas kata kunci mekanik | 5372 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 380 |
-| Angka yang tidak dijelaskan record mana pun | 3159 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4911 kalimat |
+| Angka yang tidak dijelaskan record mana pun | 3158 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4908 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 263 |
-| Waktu | muat data 16 s, analisis 16 s |
+| Waktu | muat data 14 s, analisis 15 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 177 ditangkap (59.2%). Hapus semua atom kelas yang dibutuhkan: 180 ditangkap (60.2%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 188 ditangkap (62.9%). Hapus semua atom kelas yang dibutuhkan: 190 ditangkap (63.5%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 291 ditangkap (97.0%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 288 ditangkap (96.0%), semua atom kelas dihapus: 295 ditangkap (98.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -43,7 +43,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | wxs | 849 |
 | LU_X | 652 |
 | AUTO | 467 |
-| CODE | 450 |
+| CODE | 453 |
 | species | 440 |
 | ITEM_SPELLS | 370 |
 | feat | 327 |
@@ -66,7 +66,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|
 | RESOURCE | 7506 | 975 | 13.0% |
 | SPELL | 3208 | 868 | 27.1% |
-| DMG | 4548 | 743 | 16.3% |
+| DMG | 4548 | 742 | 16.3% |
 | SPEED | 1321 | 477 | 36.1% |
 | ADV | 1750 | 454 | 25.9% |
 | PROF | 1048 | 433 | 41.3% |
@@ -79,7 +79,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | DIS | 1073 | 247 | 23.0% |
 | ATK | 1013 | 220 | 21.7% |
 | SENSE | 599 | 194 | 32.4% |
-| AC | 672 | 194 | 28.9% |
+| AC | 672 | 191 | 28.4% |
 | SAVE | 280 | 142 | 50.7% |
 | HP | 178 | 98 | 55.1% |
 | NUM-DICE | 1446 | 69 | 4.8% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 4951 | 11643 | 0 | 2913 |
+| item | 19507 | 4954 | 11643 | 0 | 2910 |
 | species | 1320 | 726 | 365 | 0 | 229 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2712 | 6315 | 1556 | 14.7% |
+| dmg | 10583 | 2715 | 6315 | 1553 | 14.7% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -203,7 +203,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | CHOICE | 267 | 75 |
 | IMM | 235 | 77 |
 | DIS | 210 | 81 |
-| AC | 194 | 159 |
+| AC | 191 | 158 |
 | SENSE | 171 | 146 |
 | ATK | 137 | 97 |
 | SAVE | 136 | 118 |
@@ -717,38 +717,38 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `feat|Greater Mark of Storm|Greater Mark of Storm#2` One ability score of your choice +1 (max 20). | angka: 1
 - `feat|Hulking Figure (GH14C)|Hulking Figure (GH14C)#4` When you hit with a melee attack made with your Strength modifier, you deal 1d4 extra damage of the weapon's type. | angka: 1d4
 
-### item (1918)
+### item (1917)
 
-- `item|dmg|Charm of Biting Cold#3` While it lasts, each hit with a melee or ranged weapon attack deals an extra 1d6 Cold damage. | angka: 1d6
-- `item|dmg|Rod of Lordly Might#10` Button 2: the flanged head folds away and two crescent blades spring out, turning the rod into a magic Battleaxe; attack rolls and damage rolls made with it gain a +3 bonus. | angka: 2,3
-- `item|dmg|Psionic Piercing#33` Blindsight with a range of 20 ft. | angka: 20
-- `item|wdmm|Tearulai#24` Note: According to the SRD, it is an extra 4d6 slashing damage, although this is incorrect. | angka: 4d6
-- `item|dmg|Knight's Standard of Vigor#3` You and allies within 10 ft add Proficiency Bonus to saves against or to end Poisoned if not already proficient. | angka: 10,pb
-- `item|dmg|Burrowing Adaptation#1` Graft (donor: a creature with a Burrow Speed of 10+ ft). | angka: 10
-- `item|thhw|Potion of Rest#2` Drink it before a short or long rest and you wake with 1d10 + 5 Temporary Hit Points and with one level of exhaustion removed. | angka: 1d10,5
+- `item|dmg|Charm of Cold Resistance#1` As an action, give yourself resistance to Cold damage for 24 hours. | angka: 24
+- `item|dmg|Rod of Lordly Might#11` Button 3: the flanged head folds away, a spearhead springs from the tip, and the handle extends into a haft 6 feet long, turning the rod into a magic Spear; attack rolls and damage rolls made with it  | angka: 6,3
+- `item|dmg|Scout Scanner#2` As a Bonus Action, spend 1 charge to analyze a creature you see within 60 ft. You learn two of these: its AC, current Hit Points, Immunities, Resistances, Vulnerabilities, or the spells currently affe | angka: 60,1,2
+- `item|cos|Blood Spear#6` Any creature can wield the spear, but only the character 15 to wield it gains a +2 bonus to attack and damage rolls made with this magic weapon. | angka: 15
+- `item|dmg|Knight's Standard of Virtue#3` You and allies within 10 ft add Proficiency Bonus to saves against or to end Charmed if not already proficient. | angka: 10,pb
+- `item|dmg|Heart of Steel#3` You can finish a Long Rest in 4 hours if you spend them motionless but conscious. | angka: 4
+- `item|thhw|Ring of the Sky Hunter#4` While you wear it, you can use an action and spend any number of charges to attack one creature you can see within 60 ft. A pair of spectral talons dives from the sky and makes an attack roll with a + | angka: 60,7
+- `item|bgdia|Shatterstick#3` When the effects ends, the shatterstick breaks apart, becoming useless, and all structures within 20 feet of it take 35 (10d6) bludgeoning damage. | angka: 10d6,20,35
+- `item|coa|Wrought-Iron Tower#15` When you make an attack, you may spend 1 or more charges. | angka: 1
+- `item|egw|Grovelthrash (Awakened)#13` - You gain a +1 bonus to attack and damage rolls made with this magic weapon. | angka: 1
+- `item|tsgs|Wavebender's Leiomano#4` Rowing a waterborne vehicle with it adds 5 ft Speed (1/2 mile per hour) for each such oar used. | angka: 5,2,1
+- `item|dmg|Scholar's Anchoring Bangle#4` When you take the Study action and make an Intelligence check using a skill in which you have proficiency, you can treat a d20 roll of 9 or lower as a 10. | angka: 1d20,10
+- `item|dmg|Keystone of Creation#5` - 1 beneficial manifestation | angka: 1
+- `item|tee24|Quiver of Energy#2` The first time each turn you hit with a weapon attack using ammunition from this quiver, it deals an extra 1d6 damage of that type. | angka: 1d6
+- `item|dmg|Orrery of the Wanderer#31` As long as the orrery is within 30 feet of you, you gain a +1 bonus to AC. | angka: 30
+- `item|dmg|Doom Gauntlet#4` When you hit with it you can spend the charge to deal an extra 1d4 mega (1d4 x 100) Force damage. | angka: 1d4,100
+- `item|dmg|Frostmourne#4` A creature reduced to 0 Hit Points by it dies and its soul is trapped in the sword, so it cannot be raised until the sword is destroyed. | angka: 0
+- `item|tvss14|Bedroll of Rest#3` After sleeping in it you need no rest for 48 hours, though you can still take a Long Rest in that time. | angka: 48
 - `item|bgdia|Helm of Devil Command#10` The helm regains all its charges 24 hours after its last charge is expended. | angka: 24
-- `item|coa|True-Ice Shards (Rapier)#31` Additionally, you may cast Scrying (with a spell save DC of 20) and Find the Path. | angka: 20
-- `item|egw|Grovelthrash (Dormant)#15` If you do, you take 1d6 psychic damage. | angka: 1d6
-- `item|tsgs|Warmind Wand#9` Magic action, 1 charge: an ally who sees or hears you gains 2d4 + 2 Temporary Hit Points and can use its Reaction to move half its Speed without provoking Opportunity Attacks. | angka: 2d4,2,half
-- `item|dmg|Pulverizing Staff of Skulls#4` Additionally, you have Advantage on Charisma (Intimidation) checks made while holding the staff, and the staff's eye sockets glow a disquieting green, shedding Dim Light in a 5-foot radius. | angka: 5
-- `item|dmg|Keystone of Creation#4` - 1 minor beneficial property | angka: 1
-- `item|tee24|Battle Rod#3` For example, Fire Bolt reaches 240 ft but attacks past 120 ft have Disadvantage. | angka: 240,120
-- `item|dmg|Orrery of the Wanderer#12` - 2 minor beneficial properties | angka: 2
-- `item|dmg|Wings#4` Deployed, you have a flying speed equal to your walking speed, for 10 minutes total until you finish a short or long rest. | angka: 10
-- `item|dmg|Flask of the Titans#1` Drink: your Hit Point maximum and current Hit Points rise by 30 for 1 hour. | angka: 1,30
-- `item|tvss14|Arrow of Glue#2` Fire it at any point you can see in range to cover a 1-ft square with hardened glue (the GM may give Disadvantage on hard shots). | angka: 1
-- `item|bgdia|Fane-Eater#3` If you attack a creature with this weapon and roll a 20 on the attack roll, the creature takes an extra 2d8 necrotic damage, and you regain a number of hit points equal to the necrotic damage taken. | angka: 2d8
-- `item|tdm14|Thaumatonic Rifle, +2#1` A standard carbine (2d6 Radiant, range 80/320, Blaster, Automatic, Two-Handed) with a +2 bonus to attack and damage rolls. | angka: 2d6,80,320
-- `item|dmg|Thunderous Greatclub#8` Each nonmagical object in the Cone that nobody is wearing or carrying takes 3d8 Thunder damage. | angka: 3d8
-- `item|thhw|Kwark's Wondrous Kernels, Tossable#12` Each creature within 10 ft gains 2d4 + 2 Temporary Hit Points. | angka: 2d4,10,2
-- `item|tsdm|Terraforming Engine#3` Set on a Tier 4 or higher planet and left running for a year to process its water, air and soil, it lowers the planet's Tier by 1. | angka: 4,1
-- `item|dmg|Fangs of Guile#7` If the necklace has no charges at dusk, roll 1d6. | angka: 1d6
-- `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#9` 7 Green: Resistance to Poison and Advantage on checks to end Grappled or Restrained. | angka: 7
-- `item|dmg|Aqua Fortis#5` On a weapon it gives a permanent, cumulative -1 to damage (at -5 it is destroyed). | angka: 1,5
-- `item|dmg|Ghallanda Cauldron#3` Cooking in it takes 90 percent less time, and you have Advantage on ability checks with Cook's Utensils. | angka: 90
-- `item|dmg|Mizzium Apparatus#9` The DC is 10 + twice the level of the spell slot you expend to cast the spell. | angka: 10,double
-- `item|dmg|+2 Bloodwell Vial#5` In addition, when you roll any Hit Dice to recover hit points while you are carrying the vial, you can regain 5 sorcery points. | angka: 5
-- `item|dmg|Hivemaster Pistol#3` Once per turn when you fire it automatically, you can fire 6 times with Disadvantage instead of twice. | angka: 6,double
+- `item|tdm14|Thaumatonic Rifle, +3#1` A standard carbine (2d6 Radiant, range 80/320, Blaster, Automatic, Two-Handed) with a +3 bonus to attack and damage rolls. | angka: 2d6,80,320
+- `item|dmg|Trident of Fish Command#3` While you carry the trident, spending 1 charge lets you cast Dominate Beast (save DC 15) from it, and the target must be a Beast that has a Swim Speed. | angka: 1
+- `item|thhw|Potion of Rest#2` Drink it before a short or long rest and you wake with 1d10 + 5 Temporary Hit Points and with one level of exhaustion removed. | angka: 1d10,5
+- `item|tsdm|Terraforming Engine#4` It does nothing on a Tier 1 or Tier X world, and two engines cannot lower a planet's Tier by more than 1 (extra engines only add backup). | angka: 1,2
+- `item|dmg|Flame of Ingenuity#10` By meditating on the flame for 1 minute, you regain spell slots totaling up to 5 levels, divided as you like. | angka: 5
+- `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#10` 8 Yellow: Resistance to Lightning and Immunity to Magic Missile damage. | angka: 8
+- `item|dmg|Arrow of Glue#2` Fire it at any point you can see in range to cover a 1-ft square with hardened glue (the GM may give Disadvantage on hard shots). | angka: 1
+- `item|dmg|Eyes of the Dragonne#2` You have Advantage on sight-based Wisdom (Perception) checks, and in clear visibility you can pick out details as small as 2 ft across at great distance. | angka: 2
+- `item|dmg|Pyroconverger#5` Each time you use the Pyroconverger, roll a d10 and add the number of times you have used it since your last long rest. | angka: 1d10
+- `item|dmg|+3 Arcane Grimoire#3` In addition, when you use your Arcane Recovery feature, you can increase the number of spell slot levels you regain by 1. | angka: 1
+- `item|dmg|Hivemaster Pistol#4` Each hit then deals 1d4 Radiant damage instead of 2d4. | angka: 1d4,2d4
 
 ### species (124)
 
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `feat|Survivor|Survivor#5` Once used, it returns after a Long Rest. -> info:REST:NONUM
-- class `feat|Survivor|Survivor#5` Once used, it returns after a Long Rest. -> info:REST:NONUM
-- record `item|frafi|Calimemnon Crystal#16` A creature takes this damage only once per turn. -> info:ACTIVE:OTHERS
-- class `item|frafi|Calimemnon Crystal#16` A creature takes this damage only once per turn. -> info:ACTIVE:OTHERS
+- record `feat|Fey Transformation: Stage 2|Fey Transformation: Stage 2#3` You also gain the Stage 2 Flaw. -> info:NUMONLY:TABLE
+- class `feat|Fey Transformation: Stage 2|Fey Transformation: Stage 2#3` You also gain the Stage 2 Flaw. -> info:NUMONLY:TABLE
+- class `item|dmg|Ruby Rod of Asmodeus#3` All damage dealt with it is converted to necrotic, and when you hit a good aligned creature, that creature takes an extr -> info:ACTIVE:TRIGGER
 - record `sub|Captain/Holy Icon|Raise Cohort#3` After you use this, you cannot use it again until you finish a Long Rest. -> covered
 - class `sub|Captain/Holy Icon|Raise Cohort#3` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- class `item|coa|Ruby Rod of Asmodeus#3` All damage dealt with it is converted to necrotic, and when you hit a good aligned creature, that creature takes an extr -> info:ACTIVE:TRIGGER
 - record `sub|Investigator/Time Operative|Borrowed Time#3` You have 2 uses. -> covered
-- record `feat|Forest Sage|Forest Sage#5` Learn two spells from the Druid or Wizard list, of a level you can cast. -> info:NUMONLY:TEXT
-- class `feat|Forest Sage|Forest Sage#5` Learn two spells from the Druid or Wizard list, of a level you can cast. -> info:NUMONLY:TEXT
+- record `feat|Fey Transformation: Level 4|Fey Transformation: Level 4#2` Choose one Boon from the list. -> info:BY_DESIGN
+- class `feat|Fey Transformation: Level 4|Fey Transformation: Level 4#2` Choose one Boon from the list. -> info:BY_DESIGN
 - record `class|Barbarian|Rage#4` Finishing a Short Rest restores one expended use, and finishing a Long Rest restores all of them. -> covered
 - class `class|Barbarian|Rage#4` Finishing a Short Rest restores one expended use, and finishing a Long Rest restores all of them. -> info:REST:NONUM
-- record `item|dmg|Horn of Valhalla, Brass#4` They return to Ysgard after 1 hour or when they drop to 0 hit points. -> info:NUMONLY:ZERO
-- class `item|dmg|Horn of Valhalla, Brass#4` They return to Ysgard after 1 hour or when they drop to 0 hit points. -> info:NUMONLY:ZERO
-- record `item|dmg|Gauntlets of Ogre Power#2` If your Strength is already 19 or higher without them, they do nothing for you. -> info:NUMONLY:TEXT
-- class `item|dmg|Gauntlets of Ogre Power#2` If your Strength is already 19 or higher without them, they do nothing for you. -> info:NUMONLY:TEXT
-- record `item|dmg|Planecaller's Codex#6` You can use the charges in the following ways while holding it: -> info:REST:NONUM
-- class `item|dmg|Planecaller's Codex#6` You can use the charges in the following ways while holding it: -> info:REST:NONUM
-- record `item|dmg|Dream Weaver#5` During a Long Rest, you can spend an hour studying the tapestry. -> info:REST:NONUM
-- class `item|dmg|Dream Weaver#5` During a Long Rest, you can spend an hour studying the tapestry. -> info:REST:NONUM
-- record `item|wdh|Azuredge#12` The axe regains all expended charges daily at dawn. -> info:REST:NONUM
-- class `item|wdh|Azuredge#12` The axe regains all expended charges daily at dawn. -> info:REST:NONUM
-- record `item|tghg|Blessed Reliquary#2` While it is on your person, you have Advantage on saving throws caused by Undead and can use each Channel Divinity featu -> info:ACTIVE:OTHERS
-- class `item|tghg|Blessed Reliquary#2` While it is on your person, you have Advantage on saving throws caused by Undead and can use each Channel Divinity featu -> info:ACTIVE:OTHERS
-- record `item|dmg|Elemental Gem, Emerald#2` When you use an action to break the gem, a water elemental is summoned as if you had cast the conjure elemental spell, a -> info:ACTIVE:TRIGGER
-- class `item|dmg|Elemental Gem, Emerald#2` When you use an action to break the gem, a water elemental is summoned as if you had cast the conjure elemental spell, a -> info:ACTIVE:TRIGGER
+- record `item|dmg|Horn of the Endless Maze#5` Once you use the horn, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Horn of the Endless Maze#5` Once you use the horn, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Gauntlets of Ogre Power#1` While you wear these gauntlets, your Strength score is 19. -> info:NUMONLY:TEXT
+- class `item|dmg|Gauntlets of Ogre Power#1` While you wear these gauntlets, your Strength score is 19. -> info:NUMONLY:TEXT
+- record `item|dmg|Keranos's Votary#3` After using this, you must finish a long rest to use it again. -> info:REST:NONUM
+- class `item|dmg|Keranos's Votary#3` After using this, you must finish a long rest to use it again. -> info:REST:NONUM
 - record `sub|Wizard/Necromancer|Death's Master#5` After you use this, you must finish a Long Rest before using it again. -> covered
 - class `sub|Wizard/Necromancer|Death's Master#5` After you use this, you must finish a Long Rest before using it again. -> info:REST:NONUM
 - record `sub|Summoner/Bond of the Dragon Herald|Dragon Eidolon#25` A Short Rest restores one use and a Long Rest restores all. -> covered
-- record `item|dmg|Green Copper Ewer#2` Furthermore, a creature that grasps the ewer's handle can command the ewer to fill with 1 gallon of wine, and it can't p -> info:NUMONLY:FLAVOR
+- record `item|dmg|Scourge of Shadow#22` You're protected by a field of shadow that makes you resistant to radiant and necrotic damage. -> covered
+- record `item|bgg|Ring of Amity#4` You can bond with a different creature whenever you finish a long rest, provided that you can touch the creature and the -> info:REST:NONUM
+- class `item|bgg|Ring of Amity#4` You can bond with a different creature whenever you finish a long rest, provided that you can touch the creature and the -> info:REST:NONUM
+- record `item|dmg|Storm Dragonmark Channel#4` It cannot be used again until you finish a Long Rest. -> info:REST:NONUM
+- class `item|dmg|Storm Dragonmark Channel#4` It cannot be used again until you finish a Long Rest. -> info:REST:NONUM
+- record `item|tee24|Houseward (Legendary)#2` A 1-cubic-foot lead block with a Siberys dragonshard, usually set into a floor. -> info:NUMONLY:FLAVOR
+- class `item|tee24|Houseward (Legendary)#2` A 1-cubic-foot lead block with a Siberys dragonshard, usually set into a floor. -> info:NUMONLY:FLAVOR
+- record `sub|Barbarian/Path of the Swamp|Primal Magic#4` Each returns on a Long Rest. -> covered
+- class `sub|Barbarian/Path of the Swamp|Primal Magic#4` Each returns on a Long Rest. -> info:REST:NONUM
+- record `sub|Craftsman/Mechanauts' Guild|Magitech Upgrade#2` After a Long Rest, you can swap it for another. -> covered
+- class `sub|Craftsman/Mechanauts' Guild|Magitech Upgrade#2` After a Long Rest, you can swap it for another. -> info:REST:NONUM

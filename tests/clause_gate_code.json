@@ -23210,6 +23210,395 @@
     "tests/horn_valhalla_ui.mjs"
    ],
    "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. One exact UNC closure."
+  },
+  {
+   "id": "u49-item-dmg-defender-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Defender",
+   "cls": [
+    "AC",
+    "DMG"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^the\\ first\\ time\\ you\\ attack\\ with\\ it\\ on\\ each\\ of\\ your\\ turns,\\ you\\ can\\ move\\ some\\ or\\ all\\ of\\ that\\ bonus\\ to\\ your\\ armor\\ class\\.$",
+   "anchor": [
+    "src/data/lib/defender-effects.js",
+    "export function defenderAttackEffect("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/defender.js",
+     "export function planDefenderAttack("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function recordDefenderTurnStart("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function recordDefenderTurnEnd("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function setDefenderHeld("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function defenderProjection("
+    ],
+    [
+     "src/data/lib/defender-source.js",
+     "export function defenderNativeSource("
+    ],
+    [
+     "src/data/lib/defender-source.js",
+     "export function defenderMarkerSource("
+    ],
+    [
+     "src/builder/10j-logic-defender.js",
+     "export function defenderWeaponCertificate("
+    ],
+    [
+     "src/builder/12y-logic-defender.js",
+     "id:'retained-defender'"
+    ],
+    [
+     "src/data/lib/defender-effects.js",
+     "export function defenderArmorClassBonus("
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "appendDefenderAttackPart(hp,i);"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "defenderDamageDelta(C,S,i)"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "defenderArmorClassBonus(C,S)"
+    ],
+    [
+     "src/builder/25i-logic-defender.js",
+     "function attackInfo("
+    ],
+    [
+     "src/builder/25i-logic-defender.js",
+     "function commitAttack("
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "function attackCommit("
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "export function defenderAttackSpec("
+    ],
+    [
+     "src/app/lib/defender-roll.js",
+     "export function createDefenderRollRuntime("
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.commitRollResult=function commitRollResult("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.defenderSpec=function defenderSpec("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "\"__defenderAttackSpec\""
+    ],
+    [
+     "src/app/00-env.js",
+     "\"__defenderAttackSpec\""
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "env.__defenderAttackSpec=defenderAttackSpec;"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.commitRollResult(r,undefined,sp.beforeCommit)"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "w.__spec.beforeCommit"
+    ]
+   ],
+   "test": "Z3 U49 actual derived source conservation k2",
+   "consumerTests": [
+    "tests/defender_model.mjs",
+    "tests/defender_effects.mjs",
+    "tests/defender_roll.mjs",
+    "tests/defender_runtime.mjs",
+    "tests/defender_native_runtime.mjs",
+    "tests/defender_ui.mjs"
+   ],
+   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3−k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
+  },
+  {
+   "id": "u49-item-dmg-defender-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Defender",
+   "cls": [
+    "AC",
+    "DMG"
+   ],
+   "vals": [
+    "1",
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^for\\ example,\\ you\\ could\\ keep\\ only\\ \\+1\\ on\\ your\\ attack\\ and\\ damage\\ rolls\\ and\\ take\\ \\+2\\ to\\ armor\\ class\\.$",
+   "anchor": [
+    "src/data/lib/defender-effects.js",
+    "export function defenderAttackEffect("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/defender.js",
+     "export function planDefenderAttack("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function recordDefenderTurnStart("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function recordDefenderTurnEnd("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function setDefenderHeld("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function defenderProjection("
+    ],
+    [
+     "src/data/lib/defender-source.js",
+     "export function defenderNativeSource("
+    ],
+    [
+     "src/data/lib/defender-source.js",
+     "export function defenderMarkerSource("
+    ],
+    [
+     "src/builder/10j-logic-defender.js",
+     "export function defenderWeaponCertificate("
+    ],
+    [
+     "src/builder/12y-logic-defender.js",
+     "id:'retained-defender'"
+    ],
+    [
+     "src/data/lib/defender-effects.js",
+     "export function defenderArmorClassBonus("
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "appendDefenderAttackPart(hp,i);"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "defenderDamageDelta(C,S,i)"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "defenderArmorClassBonus(C,S)"
+    ],
+    [
+     "src/builder/25i-logic-defender.js",
+     "function attackInfo("
+    ],
+    [
+     "src/builder/25i-logic-defender.js",
+     "function commitAttack("
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "function attackCommit("
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "export function defenderAttackSpec("
+    ],
+    [
+     "src/app/lib/defender-roll.js",
+     "export function createDefenderRollRuntime("
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.commitRollResult=function commitRollResult("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.defenderSpec=function defenderSpec("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "\"__defenderAttackSpec\""
+    ],
+    [
+     "src/app/00-env.js",
+     "\"__defenderAttackSpec\""
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "env.__defenderAttackSpec=defenderAttackSpec;"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.commitRollResult(r,undefined,sp.beforeCommit)"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "w.__spec.beforeCommit"
+    ]
+   ],
+   "test": "Z3 U49 actual derived source conservation k2",
+   "consumerTests": [
+    "tests/defender_model.mjs",
+    "tests/defender_effects.mjs",
+    "tests/defender_roll.mjs",
+    "tests/defender_runtime.mjs",
+    "tests/defender_native_runtime.mjs",
+    "tests/defender_ui.mjs"
+   ],
+   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3−k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
+  },
+  {
+   "id": "u49-item-dmg-defender-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Defender",
+   "cls": [
+    "AC"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^these\\ adjusted\\ bonuses\\ stay\\ in\\ effect\\ until\\ your\\ next\\ turn\\ starts,\\ but\\ you\\ gain\\ the\\ armor\\ class\\ bonus\\ only\\ while\\ you\\ hold\\ the\\ weapon\\.$",
+   "anchor": [
+    "src/data/lib/defender-effects.js",
+    "export function defenderArmorClassBonus("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/defender.js",
+     "export function planDefenderAttack("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function recordDefenderTurnStart("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function recordDefenderTurnEnd("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function setDefenderHeld("
+    ],
+    [
+     "src/data/lib/defender.js",
+     "export function defenderProjection("
+    ],
+    [
+     "src/data/lib/defender-source.js",
+     "export function defenderNativeSource("
+    ],
+    [
+     "src/data/lib/defender-source.js",
+     "export function defenderMarkerSource("
+    ],
+    [
+     "src/builder/10j-logic-defender.js",
+     "export function defenderWeaponCertificate("
+    ],
+    [
+     "src/builder/12y-logic-defender.js",
+     "id:'retained-defender'"
+    ],
+    [
+     "src/data/lib/defender-effects.js",
+     "export function defenderAttackEffect("
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "appendDefenderAttackPart(hp,i);"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "defenderDamageDelta(C,S,i)"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "defenderArmorClassBonus(C,S)"
+    ],
+    [
+     "src/builder/25i-logic-defender.js",
+     "function attackInfo("
+    ],
+    [
+     "src/builder/25i-logic-defender.js",
+     "function commitAttack("
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "function attackCommit("
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "export function defenderAttackSpec("
+    ],
+    [
+     "src/app/lib/defender-roll.js",
+     "export function createDefenderRollRuntime("
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.commitRollResult=function commitRollResult("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.defenderSpec=function defenderSpec("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "\"__defenderAttackSpec\""
+    ],
+    [
+     "src/app/00-env.js",
+     "\"__defenderAttackSpec\""
+    ],
+    [
+     "src/app/32p-logic-defender.js",
+     "env.__defenderAttackSpec=defenderAttackSpec;"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.commitRollResult(r,undefined,sp.beforeCommit)"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "w.__spec.beforeCommit"
+    ]
+   ],
+   "test": "Z3 U49 actual derived source conservation k2",
+   "consumerTests": [
+    "tests/defender_model.mjs",
+    "tests/defender_effects.mjs",
+    "tests/defender_roll.mjs",
+    "tests/defender_runtime.mjs",
+    "tests/defender_native_runtime.mjs",
+    "tests/defender_ui.mjs"
+   ],
+   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3−k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
   }
  ]
 }

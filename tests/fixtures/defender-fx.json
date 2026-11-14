@@ -1,0 +1,276 @@
+{
+  "generatedBy": "Actual product pure APIs and native source marker; native DEF expression evaluated with actual normalizeTarget",
+  "id": "dfp-1",
+  "deriveDefaults": {
+    "attackTarget": {
+      "type": "",
+      "alignment": "",
+      "hp": null,
+      "maxHp": null,
+      "tags": []
+    },
+    "hp": null,
+    "tmp": 0,
+    "used": {},
+    "insp": false,
+    "ds": [
+      0,
+      0
+    ],
+    "cond": {},
+    "exh": 0,
+    "burn": 1,
+    "jinx": "",
+    "notes": {},
+    "lang": [
+      "Common",
+      "",
+      ""
+    ],
+    "portrait": "",
+    "theme": "",
+    "align": "",
+    "color": "forest",
+    "sym": "star",
+    "skin": "ddb",
+    "coins": null,
+    "coinBase": null,
+    "lifestyle": ""
+  },
+  "states": {
+    "unknown": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": null,
+      "turnEvents": [],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": false,
+          "allocation": null,
+          "firstAttack": null
+        }
+      ]
+    },
+    "ready": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": true,
+          "allocation": 0,
+          "firstAttack": false
+        }
+      ]
+    },
+    "k0": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": true,
+          "allocation": 0,
+          "firstAttack": true
+        }
+      ]
+    },
+    "k1": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": true,
+          "allocation": 1,
+          "firstAttack": true
+        }
+      ]
+    },
+    "k2": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": true,
+          "allocation": 2,
+          "firstAttack": true
+        }
+      ]
+    },
+    "k3": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": true,
+          "allocation": 3,
+          "firstAttack": true
+        }
+      ]
+    },
+    "drop": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": false,
+          "allocation": 2,
+          "firstAttack": true
+        }
+      ]
+    },
+    "rehold": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": true,
+          "allocation": 2,
+          "firstAttack": true
+        }
+      ]
+    },
+    "endTurn": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": false
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": true,
+          "allocation": 2,
+          "firstAttack": true
+        }
+      ]
+    },
+    "nextTurn": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-2",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1",
+        "u49-turn-2"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": true,
+          "held": true,
+          "allocation": 0,
+          "firstAttack": false
+        }
+      ]
+    },
+    "removed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "turn": {
+        "id": "u49-turn-1",
+        "ownTurn": true
+      },
+      "turnEvents": [
+        "u49-turn-1"
+      ],
+      "physical": [
+        {
+          "id": "dfp-1",
+          "base": "Longsword",
+          "present": false,
+          "held": false,
+          "allocation": 2,
+          "firstAttack": true
+        }
+      ]
+    }
+  },
+  "marker": {
+    "v": 1,
+    "id": "dfp-1",
+    "nativeProfile": "dmg2024",
+    "base": "Longsword",
+    "itemFingerprint": "[\"Defender\",\"Weapon\",\"Legendary\",1,\"This magic weapon can be any Melee weapon. You have a +3 bonus to attack and damage rolls made with it. The first time you attack with it on each of your turns, you can move some or all of that bonus to your Armor Class. For example, you could keep only +1 on your attack and damage rolls and take +2 to Armor Class. These adjusted bonuses stay in effect until your next turn starts, but you gain the Armor Class bonus only while you hold the weapon.\",{\"base\":[\"Longsword\",\"Battleaxe\",\"Club\",\"Dagger\",\"Flail\",\"Glaive\",\"Greataxe\",\"Greatclub\",\"Greatsword\",\"Halberd\",\"Handaxe\",\"Javelin\",\"Lance\",\"Light Hammer\",\"Mace\",\"Maul\",\"Morningstar\",\"Pike\",\"Quarterstaff\",\"Rapier\",\"Scimitar\",\"Shortsword\",\"Sickle\",\"Spear\",\"Trident\",\"War Pick\",\"Warhammer\",\"Whip\"],\"fx\":{\"atk\":3,\"dmg\":3}}]"
+  }
+}

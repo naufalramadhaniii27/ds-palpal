@@ -1,4 +1,5 @@
 import {attackDamagePackets,combinedDamage,rolledRiders} from "./lib/damage-packets.js";
+import {defenderAttackDelta,defenderDamageDelta,defenderArmorClassBonus} from "../data/lib/defender-effects.js";
 import {ammoBonus,atkKind,bindLive,carryOf,cfx,cuApply,cuK,cuNum,cuSpeed,lateGet,lateSet,scAdj,setOf,sitNum} from "./00a-reg-late-ports.js";// @ts-check
 import {ABK,ABN} from "./02-data-default-character.js";
 import {x14} from "./03-data-glossary.js";
@@ -23,7 +24,7 @@ export function derive(){
   deriveSpellAdjust();
 }
 function deriveFn1(pb, CF, exhN, exP, a,i){
-    const _deriveFn1Step1=deriveFn1Step1(a, pb, CF, exhN, exP);
+    const _deriveFn1Step1=deriveFn1Step1(a, pb, CF, exhN, exP, i);
     const {m, hp, amB, amN, cuA}=_deriveFn1Step1;
     let {hit}=_deriveFn1Step1;
     const _deriveFn1Step2=deriveFn1Step2(CF, a, m, amN, cuA, i, hit);
@@ -33,10 +34,11 @@ function deriveFn1(pb, CF, exhN, exP, a,i){
   }
 /* Magic Weapon (S.mw = {w: attack name, l: slot level}): +1, +2 at level 4, +3 at level 6, to attack and damage with that weapon */
 export function mwB(a){ const w=S.mw; if(!w||!a||w.w!==a.n) return 0; const l=num(w.l,2); return l>=6?3:l>=4?2:1; }
-function deriveFn1Step1(a, pb, CF, exhN, exP){
+function deriveFn1Step1(a, pb, CF, exhN, exP, i){
     const m=D.mod[a.ab]||0, hp=[part(ABN[a.ab]+" modifier", m, ABN[a.ab]+" score "+D.score[a.ab])];
     if(a.prof) hp.push(part("Proficiency Bonus", pb, "Proficient with this weapon"));
     if(num(a.misc,0)) hp.push(part(a.miscSrc||"Other bonus", num(a.misc)));
+    appendDefenderAttackPart(hp,i);
     if(mwB(a)) hp.push(part("Magic Weapon", mwB(a), "Spell, until it ends or you rest"));
     const amB=ammoBonus(a), amN=amB&&amB.on?amB.on.n:0; if(amN) hp.push(part(amB.on.it.n, amN, "Magic ammunition fired from this weapon"));/* v102 */
     if(CF.atkW&&!/^Cantrip/.test(a.sub||"")&&a.n!=="Unarmed Strike"&&atkKind(a)==="melee") hp.push(part("Sacred Weapon", CF.atkW, "Charisma modifier, while it lasts"));/* v22 RU56 */    if(exhN) hp.push(exP());
@@ -45,8 +47,9 @@ function deriveFn1Step1(a, pb, CF, exhN, exP){
     if(cuA&&cuNum(cuA.ho)!=null){ hp.push({l:"Set by you", v:sg(cuNum(cuA.ho)), note:"Calculated value: "+sg(lateGet("CU0")["a:"+a.n+"|ho"])+". Your number replaces it.", raw:true}); hit=cuNum(cuA.ho); }
   return /** @type {any} */ ({m, hp, amB, amN, cuA, hit});
 }
+function appendDefenderAttackPart(parts,index){const delta=defenderAttackDelta(C,S,index);if(delta)parts.push(part("Defender: transferred to Armor Class",delta,"Only this weapon’s +3 bonus is redistributed"));}
 function deriveFn1Step2(CF, a, m, amN, cuA, i, hit){
-    const rgB=(CF.dmgStr&&a.ab==="STR"&&!/^Cantrip/.test(a.sub||""))?CF.dmgStr:0;/* v22 RU56 Rage */ const dm=(a.nomod?0:m)+num(a.dmgBonus,0)+mwB(a)+amN+rgB+(cuA?cuNum(cuA.db)||0:0); let dmg=(a.die||"1")+(dm===0?"":(dm>0?"+"+dm:"\u2212"+Math.abs(dm)));
+    const rgB=(CF.dmgStr&&a.ab==="STR"&&!/^Cantrip/.test(a.sub||""))?CF.dmgStr:0;/* v22 RU56 Rage */ const dm=(a.nomod?0:m)+num(a.dmgBonus,0)+defenderDamageDelta(C,S,i)+mwB(a)+amN+rgB+(cuA?cuNum(cuA.db)||0:0); let dmg=(a.die||"1")+(dm===0?"":(dm>0?"+"+dm:"\u2212"+Math.abs(dm)));
     const packets=attackDamagePackets(a,dmg);if(packets.length)dmg=packets.map((p) =>p.expr).join("+");
     const dmC=dm-(cuA?cuNum(cuA.db)||0:0), cDo=cuA&&cuA["do"]?String(cuA["do"]):""; if(cuA) lateGet("CU0")["a:"+a.n+"|do"]=combinedDamage(a,(a.die||"1")+(dmC===0?"":(dmC>0?"+"+dmC:"\u2212"+Math.abs(dmC)))); if(cDo) dmg=cDo;/* explicit damage overrides still replace the calculated total */
     D.atk[i]={hit:hit, dmg:dmg, rg:rgB};setAttackPacketData(D.atk[i],a,cDo,packets);
@@ -56,6 +59,7 @@ function deriveFn1Step3(amB, hp, i, a, hit, m, amN, cuA, cDo, dmg){
     if(amB&&!amB.on) hp.push({l:"Magic ammunition", v:"None selected", note:"You carry "+amB.L.map((x) =>{ return x.it.n; }).join(" and ")+". Open this attack to pick one.", raw:true});/* v102 */
     B["ah-"+i]={t:a.n+": attack roll", parts:hp, total:sg(hit), f:""};
     B["ad-"+i]={t:a.n+": damage", parts:[{l:"Damage die", v:a.die||"\u2014", note:a.dieSrc||"", raw:true}, part(ABN[a.ab]+" modifier", a.nomod?0:m, a.nomod?"Not added to this damage":"Added to damage")].concat(num(a.dmgBonus,0)?[part(a.miscSrc||"Magic bonus", num(a.dmgBonus))]:[]).concat(mwB(a)?[part("Magic Weapon", mwB(a), "Spell")]:[]).concat(amN?[part(amB.on.it.n, amN, "Magic ammunition fired from this weapon")]:[]).concat(cuA&&cuNum(cuA.db)?[part("Customize: damage bonus", cuNum(cuA.db), cuA.note||"Set with Customize")]:[]).concat(cDo?[{l:"Set by you", v:cDo, note:"Calculated value: "+lateGet("CU0")["a:"+a.n+"|do"]+". Your text replaces it.", raw:true}]:[]), total:dmg, f:a.type?("Damage type: "+esc(a.type)+"."):""};
+    const defenderDelta=defenderDamageDelta(C,S,i);if(defenderDelta)B["ad-"+i].parts.push(part("Defender: transferred to Armor Class",defenderDelta,"Only this weapon’s +3 bonus is redistributed"));
     if(!cDo)B["ad-"+i].parts.push(...rolledRiders(a).map((p) =>({l:p.source,v:p.expr+" "+p.type,note:"Applied extra damage",raw:true})));
 }
 function deriveBase(){
@@ -123,6 +127,7 @@ function deriveArmorClass(){
   (C.ac.bonus||[]).forEach((b) =>{ acParts.push(part(b.s||"Bonus", num(b.v))); });
   sitNum("ac").forEach((b) =>{ acParts.push(part(b.s,b.v)); });/* v103 */
   deriveArmorEffects(acParts);
+  const defenderAC=defenderArmorClassBonus(C,S);if(defenderAC)acParts.push(part("Defender: held weapon",defenderAC,"Transferred from its +3 attack and damage bonus until your next turn starts"));
   D.ac=acParts.reduce((a,p) =>{return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
   B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
 

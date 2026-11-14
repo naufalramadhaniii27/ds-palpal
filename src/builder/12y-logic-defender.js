@@ -1,0 +1,3 @@
+import {registerSheetGroup} from './12a-logic-sheet-registry.js';
+import {collectDefenderSources} from './10j-logic-defender.js';
+registerSheetGroup({id:'retained-defender',group:'defender',phase:'post',order:99,reads:['q.defender','i.ATT','i.wieldScores','i.B','C.attacks'],writes:['C.defender','C.defenderSources','C.defenderBindings'],run:function(ctx){const state=ctx.q.defender();if(state!==undefined)ctx.C.defender=state;ctx.C.defenderSources=collectDefenderSources(ctx.C,ctx.i.ATT,ctx.i.wieldScores);if(Object.prototype.hasOwnProperty.call(ctx.i.B,'defenderBindings'))ctx.C.defenderBindings=structuredClone(ctx.i.B.defenderBindings);return ctx.patch()}});

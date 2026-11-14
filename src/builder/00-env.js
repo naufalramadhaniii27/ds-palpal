@@ -81,6 +81,7 @@ bindM(["fetch", "matchMedia", "scrollTo"]);
 
 bindG(["__bldSlotRecoveryInfo", "__bldSlotRecoveryCapture", "__bldSlotRecoveryTokenCurrent", "__bldSlotRecoveryAcceptReceipt", "__bldSlotRecoveryAdopt", "__bldSlotRecoveryReview", "__bldSlotRecoverySplit", "__bldSlotRecoveryResync", "__bldSlotRecoveryRestore", "__bldSlotRecoveryRemove", "__bldSlotRecoveryActivate", "__bldSlotRecoveryReset", "__bldSlotRecoveryInventoryOwner", "__bldSlotRecoveryRestPlan", "__slotRecoveryActionAllowed", "__slotRecoverySave"]);
 
+bindG(["__bldDefenderAttackInfo", "__bldDefenderAttackCurrent", "__bldDefenderCommitAttack", "__bldDefenderInfo", "__bldDefenderCapture", "__bldDefenderTokenCurrent", "__bldDefenderCommand", "__bldDefenderAcceptReceipt", "__bldDefenderInventoryOwner", "__defenderSave", "__defenderAttackSpec"]);
 bindG(["__bldHornValhallaInfo", "__bldHornValhallaCapture", "__bldHornValhallaTokenCurrent", "__bldHornValhallaCommand", "__bldHornValhallaAcceptReceipt", "__bldHornValhallaInventoryOwner", "__hornValhallaSave"]);
 bindG(["__bldBagTricksInfo", "__bldBagTricksCapture", "__bldBagTricksTokenCurrent", "__bldBagTricksCommand", "__bldBagTricksAcceptReceipt", "__bldBagTricksInventoryOwner", "__bagTricksSave"]);
 bindG(["__bldStudyBooksInfo", "__bldStudyBooksCapture", "__bldStudyBooksTokenCurrent", "__bldStudyBooksCommand", "__bldStudyBooksAcceptReceipt", "__bldStudyBooksInventoryOwner", "__studyBooksSave"]);
