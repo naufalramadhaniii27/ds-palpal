@@ -1,0 +1,6 @@
+{
+  "commit": "07f41785",
+  "path": "src/builder/09-logic-feats-and-choices.js",
+  "source": "export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k===\"atk\"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;const original=legacyPactRodBonus(q,k,cls);return t+(original===null?v:original)},0)+gxSp(k,cls).reduce((t,e) =>{return t+fxVal(k===\"atk\"?e.spAtk:e.spDc,e)},0)}\nexport function spItemSrc(cls){return activeFx().filter((q) =>{return (q.fx.spellAtk||q.fx.spellDc)&&(!q.fx.spellCls||q.fx.spellCls===cls)}).map((q) =>{return q.n}).concat(gxSp(\"atk\",cls).concat(gxSp(\"dc\",cls)).map((e) =>{return e.lbl}).filter((x,i,a) =>{return a.indexOf(x)===i}))}",
+  "sha256": "be2fa250ee45520731513598cd87ef1706ae74c99cc29d4ef8f74eb38fc376e2"
+}

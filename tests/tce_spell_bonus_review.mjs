@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';import vm from 'node:vm';import {createPactRodEngine} from './fixtures/pact-rod-native.mjs';import {attachPactRodReview} from './pact_rod_spell_review.mjs';
+let checks=0;const ok=v=>{assert.ok(v);checks++};
+function engine({family="Rhythm-Maker's Drum",magnitude=2,legacy=false,mixed=false}={}){const item=`+${magnitude} ${family}`,inventory=[{n:item,q:1,eq:true,attuned:true}];if(mixed)inventory.push({n:'+1 Rod of the Pact Keeper',q:1,eq:true,attuned:true},{n:'+1 Amulet of the Devout',q:1,eq:true,attuned:true});return createPactRodEngine({item,main:'Wizard',secondary:family==='Amulet of the Devout'?'Cleric':'Bard',inventory,cantrip:true,starry:true,mutate:c=>{for(const name of new Set([item,'+1 Amulet of the Devout'])){const row=c.WXI.tce.find(row=>row[0]===name);c.DMAP[name]=structuredClone(row);c.DMGI.push(structuredClone(row))}c.B.base.WIS=18;if(legacy)vm.runInContext('tceSpellItemBonus=(entry,kind,cls)=>{const p=tceSpellBonusProfile(entry.mi||entry.n);return p?p.magnitude:null}',c)}})}
+for(const family of ["Rhythm-Maker's Drum",'Amulet of the Devout'])for(const magnitude of [1,2,3]){
+ const e=engine({family,magnitude}),review=attachPactRodReview(e),casting=e.C.spellcasting;ok(review.info(0).ok);ok(review.info(1).ok);ok(review.info(null).ok);ok(review.info('Wizard').ok);ok(review.info({sheet:true}).ok);assert.equal(casting.by.find(row=>row.k==='Wizard').atk,8+magnitude,family+' attack');checks++;ok(casting.by.find(row=>row.k==='Wizard').dc===16+(family==='Amulet of the Devout'?magnitude:0));const v=review.info({attack:0}),token=review.capture({attack:0},v.signature);ok(v.ok&&token&&review.current(token));e.c.WXI.tce=[];ok(!review.current(token));ok(!review.info(null).ok);
+ if(family==="Rhythm-Maker's Drum"){const fresh=engine({family,magnitude}),old=engine({family,magnitude,legacy:true}).C,r=attachPactRodReview(fresh,old),before=JSON.stringify(old);ok(r.info(0).ok===false);ok(JSON.stringify(fresh.c.C)===before);fresh.c.C.spells[0].sv='DEX';fresh.c.C.spells[0].itc={dc:50};ok(r.info(0)===null);fresh.c.C=fresh.project();ok(r.info(0).ok)}
+}
+{
+ const e=engine({mixed:true}),p=attachPactRodReview(e);ok(p.info(null).ok);const v=p.info('Bard'),token=p.capture('Bard',v.signature);Object.defineProperty(e.c.C.inv[0],'studyBook',{value:undefined,enumerable:false});ok(!p.current(token));ok(p.info({sheet:true}).ok===false);
+}
+{
+ const e=engine(),p=attachPactRodReview(e);e.c.C.spells[0].sv='DEX';e.c.C.spells[0].itc={dc:50};ok(p.info(0)===null);e.c.WXI.tce=[];ok(p.info({spellAttack:0}).ok===false);e.c.C.spells[0].itc.atk=50;ok(p.info({spellAttack:0})===null);delete e.c.C.spells[0].itc.atk;e.c.C.spells[0].itc.atk=undefined;ok(p.info({spellAttack:0}).ok===false);ok(p.info({spellAttack:0,extra:true}).ok===false);
+}
+console.log(checks+' PASS');

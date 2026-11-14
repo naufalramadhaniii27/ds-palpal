@@ -1,0 +1,424 @@
+{
+  "cases": [
+    {
+      "item": "+1 Amulet of the Devout",
+      "magnitude": 1,
+      "main": "Cleric",
+      "secondary": "Wizard",
+      "drum": false,
+      "inventory": [
+        {
+          "n": "+1 Amulet of the Devout",
+          "q": 1,
+          "eq": true,
+          "attuned": true
+        }
+      ],
+      "casting": {
+        "ab": "WIS",
+        "dc": 17,
+        "atk": 9,
+        "mod": 4,
+        "slots": [
+          4,
+          3,
+          3,
+          3,
+          2
+        ],
+        "pact": null,
+        "items": [
+          "+1 Amulet of the Devout"
+        ],
+        "by": [
+          {
+            "k": "Cleric",
+            "n": "Cleric",
+            "ab": "WIS",
+            "mod": 4,
+            "atk": 9,
+            "dc": 17
+          },
+          {
+            "k": "Wizard",
+            "n": "Wizard",
+            "ab": "INT",
+            "mod": 4,
+            "atk": 9,
+            "dc": 17
+          }
+        ]
+      },
+      "values": [
+        {
+          "cls": "Cleric",
+          "k": "Cleric",
+          "n": "Cleric",
+          "ab": "WIS",
+          "mod": 4,
+          "atk": 9,
+          "dc": 17
+        },
+        {
+          "cls": "Wizard",
+          "k": "Wizard",
+          "n": "Wizard",
+          "ab": "INT",
+          "mod": 4,
+          "atk": 9,
+          "dc": 17
+        }
+      ]
+    },
+    {
+      "item": "+1 Rhythm-Maker's Drum",
+      "magnitude": 1,
+      "main": "Bard",
+      "secondary": "Sorcerer",
+      "drum": true,
+      "inventory": [
+        {
+          "n": "+1 Rhythm-Maker's Drum",
+          "q": 1,
+          "eq": true,
+          "attuned": true
+        }
+      ],
+      "casting": {
+        "ab": "CHA",
+        "dc": 17,
+        "atk": 9,
+        "mod": 4,
+        "slots": [
+          4,
+          3,
+          3,
+          3,
+          2
+        ],
+        "pact": null,
+        "items": [
+          "+1 Rhythm-Maker's Drum"
+        ],
+        "by": [
+          {
+            "k": "Bard",
+            "n": "Bard",
+            "ab": "CHA",
+            "mod": 4,
+            "atk": 9,
+            "dc": 17
+          },
+          {
+            "k": "Sorcerer",
+            "n": "Sorcerer",
+            "ab": "CHA",
+            "mod": 4,
+            "atk": 9,
+            "dc": 16
+          }
+        ]
+      },
+      "values": [
+        {
+          "cls": "Bard",
+          "k": "Bard",
+          "n": "Bard",
+          "ab": "CHA",
+          "mod": 4,
+          "atk": 9,
+          "dc": 17
+        },
+        {
+          "cls": "Sorcerer",
+          "k": "Sorcerer",
+          "n": "Sorcerer",
+          "ab": "CHA",
+          "mod": 4,
+          "atk": 9,
+          "dc": 16
+        }
+      ]
+    },
+    {
+      "item": "+2 Amulet of the Devout",
+      "magnitude": 2,
+      "main": "Cleric",
+      "secondary": "Wizard",
+      "drum": false,
+      "inventory": [
+        {
+          "n": "+2 Amulet of the Devout",
+          "q": 1,
+          "eq": true,
+          "attuned": true
+        }
+      ],
+      "casting": {
+        "ab": "WIS",
+        "dc": 18,
+        "atk": 10,
+        "mod": 4,
+        "slots": [
+          4,
+          3,
+          3,
+          3,
+          2
+        ],
+        "pact": null,
+        "items": [
+          "+2 Amulet of the Devout"
+        ],
+        "by": [
+          {
+            "k": "Cleric",
+            "n": "Cleric",
+            "ab": "WIS",
+            "mod": 4,
+            "atk": 10,
+            "dc": 18
+          },
+          {
+            "k": "Wizard",
+            "n": "Wizard",
+            "ab": "INT",
+            "mod": 4,
+            "atk": 10,
+            "dc": 18
+          }
+        ]
+      },
+      "values": [
+        {
+          "cls": "Cleric",
+          "k": "Cleric",
+          "n": "Cleric",
+          "ab": "WIS",
+          "mod": 4,
+          "atk": 10,
+          "dc": 18
+        },
+        {
+          "cls": "Wizard",
+          "k": "Wizard",
+          "n": "Wizard",
+          "ab": "INT",
+          "mod": 4,
+          "atk": 10,
+          "dc": 18
+        }
+      ]
+    },
+    {
+      "item": "+2 Rhythm-Maker's Drum",
+      "magnitude": 2,
+      "main": "Bard",
+      "secondary": "Sorcerer",
+      "drum": true,
+      "inventory": [
+        {
+          "n": "+2 Rhythm-Maker's Drum",
+          "q": 1,
+          "eq": true,
+          "attuned": true
+        }
+      ],
+      "casting": {
+        "ab": "CHA",
+        "dc": 18,
+        "atk": 10,
+        "mod": 4,
+        "slots": [
+          4,
+          3,
+          3,
+          3,
+          2
+        ],
+        "pact": null,
+        "items": [
+          "+2 Rhythm-Maker's Drum"
+        ],
+        "by": [
+          {
+            "k": "Bard",
+            "n": "Bard",
+            "ab": "CHA",
+            "mod": 4,
+            "atk": 10,
+            "dc": 18
+          },
+          {
+            "k": "Sorcerer",
+            "n": "Sorcerer",
+            "ab": "CHA",
+            "mod": 4,
+            "atk": 10,
+            "dc": 16
+          }
+        ]
+      },
+      "values": [
+        {
+          "cls": "Bard",
+          "k": "Bard",
+          "n": "Bard",
+          "ab": "CHA",
+          "mod": 4,
+          "atk": 10,
+          "dc": 18
+        },
+        {
+          "cls": "Sorcerer",
+          "k": "Sorcerer",
+          "n": "Sorcerer",
+          "ab": "CHA",
+          "mod": 4,
+          "atk": 10,
+          "dc": 16
+        }
+      ]
+    },
+    {
+      "item": "+3 Amulet of the Devout",
+      "magnitude": 3,
+      "main": "Cleric",
+      "secondary": "Wizard",
+      "drum": false,
+      "inventory": [
+        {
+          "n": "+3 Amulet of the Devout",
+          "q": 1,
+          "eq": true,
+          "attuned": true
+        }
+      ],
+      "casting": {
+        "ab": "WIS",
+        "dc": 19,
+        "atk": 11,
+        "mod": 4,
+        "slots": [
+          4,
+          3,
+          3,
+          3,
+          2
+        ],
+        "pact": null,
+        "items": [
+          "+3 Amulet of the Devout"
+        ],
+        "by": [
+          {
+            "k": "Cleric",
+            "n": "Cleric",
+            "ab": "WIS",
+            "mod": 4,
+            "atk": 11,
+            "dc": 19
+          },
+          {
+            "k": "Wizard",
+            "n": "Wizard",
+            "ab": "INT",
+            "mod": 4,
+            "atk": 11,
+            "dc": 19
+          }
+        ]
+      },
+      "values": [
+        {
+          "cls": "Cleric",
+          "k": "Cleric",
+          "n": "Cleric",
+          "ab": "WIS",
+          "mod": 4,
+          "atk": 11,
+          "dc": 19
+        },
+        {
+          "cls": "Wizard",
+          "k": "Wizard",
+          "n": "Wizard",
+          "ab": "INT",
+          "mod": 4,
+          "atk": 11,
+          "dc": 19
+        }
+      ]
+    },
+    {
+      "item": "+3 Rhythm-Maker's Drum",
+      "magnitude": 3,
+      "main": "Bard",
+      "secondary": "Sorcerer",
+      "drum": true,
+      "inventory": [
+        {
+          "n": "+3 Rhythm-Maker's Drum",
+          "q": 1,
+          "eq": true,
+          "attuned": true
+        }
+      ],
+      "casting": {
+        "ab": "CHA",
+        "dc": 19,
+        "atk": 11,
+        "mod": 4,
+        "slots": [
+          4,
+          3,
+          3,
+          3,
+          2
+        ],
+        "pact": null,
+        "items": [
+          "+3 Rhythm-Maker's Drum"
+        ],
+        "by": [
+          {
+            "k": "Bard",
+            "n": "Bard",
+            "ab": "CHA",
+            "mod": 4,
+            "atk": 11,
+            "dc": 19
+          },
+          {
+            "k": "Sorcerer",
+            "n": "Sorcerer",
+            "ab": "CHA",
+            "mod": 4,
+            "atk": 11,
+            "dc": 16
+          }
+        ]
+      },
+      "values": [
+        {
+          "cls": "Bard",
+          "k": "Bard",
+          "n": "Bard",
+          "ab": "CHA",
+          "mod": 4,
+          "atk": 11,
+          "dc": 19
+        },
+        {
+          "cls": "Sorcerer",
+          "k": "Sorcerer",
+          "n": "Sorcerer",
+          "ab": "CHA",
+          "mod": 4,
+          "atk": 11,
+          "dc": 16
+        }
+      ]
+    }
+  ]
+}

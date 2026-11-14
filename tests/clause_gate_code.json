@@ -28274,7 +28274,7 @@
     ],
     [
      "src/builder/09-logic-feats-and-choices.js",
-     "const original=legacyPactRodBonus(q,k,cls)"
+     "const pact=legacyPactRodBonus(q,k,cls)"
     ],
     [
      "src/builder/12k-logic-sheet-handlers-spells.js",
@@ -28400,7 +28400,7 @@
     ],
     [
      "src/builder/09-logic-feats-and-choices.js",
-     "const original=legacyPactRodBonus(q,k,cls)"
+     "const pact=legacyPactRodBonus(q,k,cls)"
     ],
     [
      "src/builder/12k-logic-sheet-handlers-spells.js",
@@ -28526,7 +28526,7 @@
     ],
     [
      "src/builder/09-logic-feats-and-choices.js",
-     "const original=legacyPactRodBonus(q,k,cls)"
+     "const pact=legacyPactRodBonus(q,k,cls)"
     ],
     [
      "src/builder/12k-logic-sheet-handlers-spells.js",
@@ -28652,7 +28652,7 @@
     ],
     [
      "src/builder/09-logic-feats-and-choices.js",
-     "const original=legacyPactRodBonus(q,k,cls)"
+     "const pact=legacyPactRodBonus(q,k,cls)"
     ],
     [
      "src/builder/12k-logic-sheet-handlers-spells.js",
@@ -28778,7 +28778,7 @@
     ],
     [
      "src/builder/09-logic-feats-and-choices.js",
-     "const original=legacyPactRodBonus(q,k,cls)"
+     "const pact=legacyPactRodBonus(q,k,cls)"
     ],
     [
      "src/builder/12k-logic-sheet-handlers-spells.js",
@@ -28904,7 +28904,7 @@
     ],
     [
      "src/builder/09-logic-feats-and-choices.js",
-     "const original=legacyPactRodBonus(q,k,cls)"
+     "const pact=legacyPactRodBonus(q,k,cls)"
     ],
     [
      "src/builder/12k-logic-sheet-handlers-spells.js",
@@ -30073,6 +30073,534 @@
    ],
    "test": "Z3 U58 actual native Traveling hourly budget and seven-day recovery",
    "note": "U58 exact native Traveling component only. One actual canonical S.used key per physical Traveling statuette, replay-validated factual history and real native C.res/D.res/used/boxes consumers. Actual per-form hour/part rounding spends one charge per started hour without a shadow balance; NPC HP0 or touching action reverts, exhaustion blocks new forms, and verified seven-day recovery restores24 through the same owned native budget. Old current3 pool and legacy24 values are preserved; only proven managed legacy resource is suppressed. Unknown metadata/history without matching actual budget grants no availability. Actual source-specific Horse snapshots remain independent of player HP/stats."
+  },
+  {
+   "id": "u59-item-dmg-amulet-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 Amulet of the Devout",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ wear\\ the\\ holy\\ symbol,\\ you\\ gain\\ a\\ \\+1\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-dmg-drum-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 Rhythm-Maker's Drum",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ drum,\\ you\\ gain\\ a\\ \\+1\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ bard\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-dmg-amulet-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 Amulet of the Devout",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ wear\\ the\\ holy\\ symbol,\\ you\\ gain\\ a\\ \\+2\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-dmg-drum-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 Rhythm-Maker's Drum",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ drum,\\ you\\ gain\\ a\\ \\+2\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ bard\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-dmg-amulet-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 Amulet of the Devout",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ wear\\ the\\ holy\\ symbol,\\ you\\ gain\\ a\\ \\+3\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-dmg-drum-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 Rhythm-Maker's Drum",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ drum,\\ you\\ gain\\ a\\ \\+3\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ bard\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-tce-amulet-1",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+1 Amulet of the Devout",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ wear\\ the\\ holy\\ symbol,\\ you\\ gain\\ a\\ \\+1\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-tce-drum-1",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+1 Rhythm-Maker's Drum",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ drum,\\ you\\ gain\\ a\\ \\+1\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ bard\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-tce-amulet-2",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+2 Amulet of the Devout",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ wear\\ the\\ holy\\ symbol,\\ you\\ gain\\ a\\ \\+2\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-tce-drum-2",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+2 Rhythm-Maker's Drum",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ drum,\\ you\\ gain\\ a\\ \\+2\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ bard\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-tce-amulet-3",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+3 Amulet of the Devout",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ wear\\ the\\ holy\\ symbol,\\ you\\ gain\\ a\\ \\+3\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u59-item-tce-drum-3",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+3 Rhythm-Maker's Drum",
+   "cls": [
+    "ATK",
+    "SAVE"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ holding\\ this\\ drum,\\ you\\ gain\\ a\\ \\+3\\ bonus\\ to\\ spell\\ attack\\ rolls\\ and\\ to\\ the\\ saving\\ throw\\ dcs\\ of\\ your\\ bard\\ spells\\.$",
+   "anchor": [
+    "src/builder/09-logic-feats-and-choices.js",
+    "const pact=legacyPactRodBonus(q,k,cls)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10s-logic-tce-spell-bonus.js",
+     "export function tceSpellItemBonus("
+    ],
+    [
+     "src/data/lib/tce-spell-bonus-source.js",
+     "export function tceSpellBonusNative("
+    ],
+    [
+     "src/builder/09-logic-feats-and-choices.js",
+     "function tceSpellClassOrigin("
+    ]
+   ],
+   "consumerTests": [
+    "tests/tce_spell_bonus_source.mjs",
+    "tests/tce_spell_bonus_native_consumers.mjs",
+    "tests/tce_spell_bonus_initiate_native.mjs",
+    "tests/tce_spell_bonus_review.mjs",
+    "tests/tce_spell_bonus_client.mjs",
+    "tests/tce_spell_bonus_inventory.mjs",
+    "tests/tce_spell_bonus_exports.mjs"
+   ],
+   "test": "Z3 U59 actual native TCE class-aware spell bonuses",
+   "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
   }
  ]
 }

@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9163 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9175 |
 | Info (tag terdokumentasi) | 27239 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1481, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 975, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 228, STD:ASI 225, NUMONLY:ZERO 172, ROLL:LAST_CHARGE 142, OBJECT:STATS 109, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5710 |
-| Uncovered dengan angka | 3330 |
-| Uncovered dengan kelas kata kunci mekanik | 5339 |
+| Uncovered | 5698 |
+| Uncovered dengan angka | 3318 |
+| Uncovered dengan kelas kata kunci mekanik | 5327 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 371 |
 | Angka yang tidak dijelaskan record mana pun | 3129 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4879 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4867 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 262 |
-| Waktu | muat data 13 s, analisis 15 s |
+| Waktu | muat data 17 s, analisis 16 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 189 ditangkap (63.2%). Hapus semua atom kelas yang dibutuhkan: 190 ditangkap (63.5%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 191 ditangkap (63.7%). Hapus semua atom kelas yang dibutuhkan: 192 ditangkap (64.0%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 285 ditangkap (95.0%), semua atom kelas dihapus: 295 ditangkap (98.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 291 ditangkap (97.0%), semua atom kelas dihapus: 295 ditangkap (98.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -38,11 +38,11 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 
 | Sumber | Kalimat covered |
 |---|---|
-| item | 3364 |
+| item | 3376 |
 | GX | 1940 |
 | wxs | 849 |
 | LU_X | 652 |
-| CODE | 501 |
+| CODE | 513 |
 | AUTO | 467 |
 | species | 440 |
 | ITEM_SPELLS | 370 |
@@ -77,10 +77,10 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | NUM | 8063 | 328 | 4.1% |
 | DC | 2887 | 248 | 8.6% |
 | DIS | 1073 | 247 | 23.0% |
-| ATK | 1013 | 214 | 21.1% |
+| ATK | 1013 | 202 | 19.9% |
 | SENSE | 599 | 194 | 32.4% |
 | AC | 672 | 189 | 28.1% |
-| SAVE | 280 | 136 | 48.6% |
+| SAVE | 280 | 124 | 44.3% |
 | HP | 178 | 98 | 55.1% |
 | NUM-DICE | 1446 | 69 | 4.8% |
 | ABIL | 382 | 65 | 17.0% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 5002 | 11637 | 0 | 2868 |
+| item | 19507 | 5014 | 11637 | 0 | 2856 |
 | species | 1320 | 726 | 365 | 0 | 229 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2758 | 6309 | 1516 | 14.3% |
+| dmg | 10583 | 2764 | 6309 | 1510 | 14.3% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -115,7 +115,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | tua24 | 637 | 159 | 341 | 137 | 21.5% |
 | egw | 566 | 141 | 289 | 136 | 24.0% |
 | au | 536 | 107 | 311 | 118 | 22.0% |
-| tce | 736 | 169 | 459 | 108 | 14.7% |
+| tce | 736 | 175 | 459 | 102 | 13.9% |
 | tgh14p | 491 | 107 | 282 | 102 | 20.8% |
 | tdcsr | 416 | 134 | 185 | 97 | 23.3% |
 | twow | 544 | 167 | 283 | 94 | 17.3% |
@@ -206,8 +206,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | AC | 189 | 156 |
 | SENSE | 171 | 146 |
 | ATK | 137 | 97 |
-| SAVE | 130 | 112 |
 | DC | 124 | 119 |
+| SAVE | 118 | 100 |
 | HP | 98 | 72 |
 | ABIL | 53 | 50 |
 | NUM-DIST | 22 | 22 |
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `species|Dreamer|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
-- class `species|Dreamer|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
-- record `sub|Warlock/Celestial Patron|Celestial Spells#1` Starting at the Warlock level in parentheses, each of these is always prepared for you: Sacred Flame, Light, Lesser Rest -> info:NUMONLY:FLAVOR
-- class `sub|Warlock/Celestial Patron|Celestial Spells#1` Starting at the Warlock level in parentheses, each of these is always prepared for you: Sacred Flame, Light, Lesser Rest -> info:NUMONLY:FLAVOR
-- record `item|dmg|Elemental Gem, Yellow Diamond#2` When you use an action to break the gem, an earth elemental is summoned as if you had cast the conjure elemental spell,  -> info:ACTIVE:TRIGGER
-- class `item|dmg|Elemental Gem, Yellow Diamond#2` When you use an action to break the gem, an earth elemental is summoned as if you had cast the conjure elemental spell,  -> info:ACTIVE:TRIGGER
-- record `species|Shifter (Beasthide)|Shifting#4` Once per Short or Long Rest. -> info:REST:NONUM
-- class `species|Shifter (Beasthide)|Shifting#4` Once per Short or Long Rest. -> info:REST:NONUM
-- record `item|dmg|Ring of Red Fury#10` You can't use this property of the ring again until you finish a long rest. -> info:REST:NONUM
-- class `item|dmg|Ring of Red Fury#10` You can't use this property of the ring again until you finish a long rest. -> info:REST:NONUM
-- record `sub|Cleric/Night Domain|Ward of Shadows#3` You can use it a number of times equal to your Wisdom modifier (minimum 1) and regain all uses on a Long Rest. -> info:REST:NONUM
-- class `sub|Cleric/Night Domain|Ward of Shadows#3` You can use it a number of times equal to your Wisdom modifier (minimum 1) and regain all uses on a Long Rest. -> info:REST:NONUM
-- record `sub|Fighter/Echo Knight|Reclaim Potential#2` You can do this a number of times equal to your Constitution modifier (minimum one) and regain all uses after a Long Res -> covered
-- class `sub|Fighter/Echo Knight|Reclaim Potential#2` You can do this a number of times equal to your Constitution modifier (minimum one) and regain all uses after a Long Res -> info:REST:NONUM
+- record `sub|Vagabond/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
+- class `sub|Vagabond/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
+- record `sub|Cleric/Evolution Domain|Evolution Domain Spells#3` 7 Giant Insect, Polymorph. -> info:NUMONLY:TABLE
+- class `sub|Cleric/Evolution Domain|Evolution Domain Spells#3` 7 Giant Insect, Polymorph. -> info:NUMONLY:TABLE
+- record `item|dmg|Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus#14` Once it has been used, it can't be used again until 4 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus#14` Once it has been used, it can't be used again until 4 days have passed. -> info:NUMONLY:GEOMETRY
+- record `species|Dragonborn|Breath Weapon#5` Uses equal to PB per Long Rest. -> covered
+- class `species|Dragonborn|Breath Weapon#5` Uses equal to PB per Long Rest. -> info:REST:NONUM
+- record `sub|Vagabond/Adrenaline Junkie|Stim Potion#1` After a Long Rest, you can brew Stim Potions equal to your Constitution modifier. -> covered
+- class `sub|Vagabond/Adrenaline Junkie|Stim Potion#1` After a Long Rest, you can brew Stim Potions equal to your Constitution modifier. -> info:REST:NONUM
+- record `sub|Vagabond/Daggermark|Preemptive Strike#3` After you use this, you cannot use it again until you finish a Short or Long Rest, unless you expend one Battle Die (no  -> info:REST:NONUM
+- class `sub|Vagabond/Daggermark|Preemptive Strike#3` After you use this, you cannot use it again until you finish a Short or Long Rest, unless you expend one Battle Die (no  -> info:REST:NONUM
+- record `item|dmg|Quaal's Feather Token#19` The bird vanishes once it has flown its maximum distance for the day or when it drops to 0 Hit Points. -> info:NUMONLY:ZERO
+- class `item|dmg|Quaal's Feather Token#19` The bird vanishes once it has flown its maximum distance for the day or when it drops to 0 Hit Points. -> info:NUMONLY:ZERO
+- record `sub|Bard/College of Fools|Last Laugh#5` Long Rest to use again. -> covered
+- class `sub|Bard/College of Fools|Last Laugh#5` Long Rest to use again. -> info:REST:NONUM
+- record `item|dmg|Kruphix's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
+- class `item|dmg|Kruphix's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
 - record `sub|Druid/Circle of Xenobiology|Circle of Xenobiology Spells#1` Always prepared from the listed Druid levels: 3 Aberrate, Alter Self, Jump, Longstrider. -> covered
 - class `sub|Druid/Circle of Xenobiology|Circle of Xenobiology Spells#1` Always prepared from the listed Druid levels: 3 Aberrate, Alter Self, Jump, Longstrider. -> covered
-- record `item|dmg|Dream Weaver#7` Once before you finish a Long Rest, you can replace any D20 Test you make with this result. -> info:ACTIVE:TRIGGER
-- class `item|dmg|Dream Weaver#7` Once before you finish a Long Rest, you can replace any D20 Test you make with this result. -> info:ACTIVE:TRIGGER
-- record `item|dmg|Ring of Elemental Command#3` All of these rings share the two properties below. -> info:NUMONLY:FLAVOR
-- class `item|dmg|Ring of Elemental Command#3` All of these rings share the two properties below. -> info:NUMONLY:FLAVOR
-- record `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
-- class `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
-- record `sub|Wizard/Daemonologist|Borrowed Tongues and Hides#7` Long Rest to do so again. -> covered
-- class `sub|Wizard/Daemonologist|Borrowed Tongues and Hides#7` Long Rest to do so again. -> info:REST:NONUM
-- record `item|twow|Staff of Light and Shadow#2` While attuned you can switch states at dawn. -> info:REST:NONUM
-- class `item|twow|Staff of Light and Shadow#2` While attuned you can switch states at dawn. -> info:REST:NONUM
-- class `item|cos|Sunsword#14` When you hit an undead with it, that target takes an extra 1d8 radiant damage. -> info:ACTIVE:TRIGGER
-- record `item|mot|Mogis's Disciple#3` You have Advantage on saving throws against the Charmed and Frightened conditions. -> info:ACTIVE:OTHERS
-- class `item|mot|Mogis's Disciple#3` You have Advantage on saving throws against the Charmed and Frightened conditions. -> info:ACTIVE:OTHERS
-- record `sub|Demon Hunter/Demon Hunter|Demon Hunter Spells#21` 17 Sigil of Chains. -> info:BY_DESIGN
+- record `item|dmg|Constantori's Portrait#24` The painting regains all expended charges daily at dawn. -> info:REST:NONUM
+- class `item|dmg|Constantori's Portrait#24` The painting regains all expended charges daily at dawn. -> info:REST:NONUM
+- record `item|tsdm|Shield Emitter#4` Then it must recharge and cannot be used again until the next dawn. -> info:REST:NONUM
+- class `item|tsdm|Shield Emitter#4` Then it must recharge and cannot be used again until the next dawn. -> info:REST:NONUM
+- record `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> covered
+- class `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> info:REST:NONUM
+- record `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#15` If you end your move with no creature within 5 feet, you must Dash toward the nearest. -> info:NUMONLY:GEOMETRY
+- class `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#15` If you end your move with no creature within 5 feet, you must Dash toward the nearest. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Charm of the Sage#2` After three casts the charm vanishes. -> info:NUMONLY:TABLE
+- class `item|dmg|Charm of the Sage#2` After three casts the charm vanishes. -> info:NUMONLY:TABLE

@@ -2,6 +2,8 @@ import {agOn,bindLive,choicesBuild,casterParts,clsLv,clsParts,invList,lateGet,pk
 
 import {activeFx,bgX,spX,featSourceReview} from "./03-logic-magic-item-effects.js";
 import {legacyPactRodBonus} from "./10p-logic-pact-rod.js";
+import {tceSpellItemBonus} from "./10s-logic-tce-spell-bonus.js";
+import {canonicalTceSpellBonus,ORIGINAL_MI2014_FEAT,ORIGINAL_MI2014_RULE} from "../data/lib/tce-spell-bonus-profiles.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 
@@ -25,8 +27,8 @@ choices(true).forEach((c) =>{afChoice(f,c)});
 /* v19 RL42: spell attack and save DC bonuses of active items. cls: only that class's spells (Rod of the Pact Keeper: Warlock) */
 /* fx engine v2: gfx entries add spAtk and spDc (number, "pb", ability key) for the class named in spCls, or for every class when spCls is missing */
 function gxSp(k,cls){return fxList().filter((e) =>{const v=k==="atk"?e.spAtk:e.spDc;return v!=null&&(!e.spCls||e.spCls===cls)})}
-export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k==="atk"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;const original=legacyPactRodBonus(q,k,cls);return t+(original===null?v:original)},0)+gxSp(k,cls).reduce((t,e) =>{return t+fxVal(k==="atk"?e.spAtk:e.spDc,e)},0)}
-export function spItemSrc(cls){return activeFx().filter((q) =>{return (q.fx.spellAtk||q.fx.spellDc)&&(!q.fx.spellCls||q.fx.spellCls===cls)}).map((q) =>{return q.n}).concat(gxSp("atk",cls).concat(gxSp("dc",cls)).map((e) =>{return e.lbl}).filter((x,i,a) =>{return a.indexOf(x)===i}))}
+export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k==="atk"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;const pact=legacyPactRodBonus(q,k,cls),original=pact===null?tceSpellItemBonus(q,k,cls,tceSpellClassOrigin(cls)):pact;return t+(original===null?v:original)},0)+gxSp(k,cls).reduce((t,e) =>{return t+fxVal(k==="atk"?e.spAtk:e.spDc,e)},0)}
+export function spItemSrc(cls){return activeFx().filter((q) =>{return (q.fx.spellAtk||q.fx.spellDc)&&(!q.fx.spellCls||q.fx.spellCls===cls)&&tceSpellItemSource(q,cls)}).map((q) =>{return q.n}).concat(gxSp("atk",cls).concat(gxSp("dc",cls)).map((e) =>{return e.lbl}).filter((x,i,a) =>{return a.indexOf(x)===i}))}
 /* v19 RL41: chosen Elemental Affinity type ("" without Draconic Sorcery 6) */
 export function chOf(cls,key){if(B.cls===cls)return B.ch[key];let i=-1;MCL().forEach((m,j) =>{if(m.cls===cls)i=j});return i<0?undefined:B.ch["m"+i+":"+key]}
 export function eaType(){return subAt("Sorcerer","Draconic Sorcery")>=6?(chOf("Sorcerer","p6opt")||""):""}
@@ -220,3 +222,14 @@ function itemAgonizingSpell(source,definition,known,name){return !!(source&&sour
 function includeLegacyBlast(definitions,known,source,selected){if(source&&known.includes('Eldritch Blast')&&definitions.some(definition=>definition.n==='Eldritch Blast'&&definition.fx&&definition.fx.dmg))selected.add('Eldritch Blast')}
 function itemAgonizingSource(source,feat){return source&&source.level>=2&&invList().includes('Agonizing Blast')?source:feat}
 export function collectItemSpellDamageFeatures(definitions,a,known,legacyKnown=known,knownRows=[]){const warlockKnown=known.concat(itemInitiateWarlockCantrips(knownRows)),features=[],selected=new Set(),legacy=legacyAffinityType(),warlock=itemDamageSource('Warlock','cls','Warlock'),featSource=legacyAgonizingFeat(warlock);let affinity=null;const record=(kind,value)=>{if(kind==='agonizing-blast'){const definition=definitions.find(row=>row.n===value);if(itemAgonizingSpell(warlock,definition,R14()?legacyKnown:warlockKnown,value))selected.add(value)}else if(typeof value==='string'&&['Acid','Cold','Fire','Lightning','Poison'].includes(value))affinity=value};definitions.forEach(definition=>{const fx=definition.fx||{},type=(fx.dmg||[]).map(packet=>packet[1]).join('|');sfDmgA(definition,'',a,fx,key=>mod(a.sc[key]),type,[],record);if(legacy&&fx.dmg&&type.split('|').includes(legacy))record('elemental-affinity',legacy)});includeLegacyBlast(definitions,legacyKnown,R14()?itemAgonizingSource(warlock,featSource):null,selected);if(selected.size)features.push({kind:'agonizing-blast',source:itemAgonizingSource(warlock,featSource),spells:[...selected].sort()});if(affinity){const owner=legacy?'Draconic Bloodline':'Draconic Sorcery',source=itemDamageSource('Sorcerer','sub',owner);if(source&&source.level>=6)features.push({kind:'elemental-affinity',source,type:affinity})}return {v:1,features}}
+
+function tceSpellItemSource(q,cls){const atk=tceSpellItemBonus(q,"atk",cls,tceSpellClassOrigin(cls)),dc=tceSpellItemBonus(q,"dc",cls,tceSpellClassOrigin(cls));return atk===null||dc===null||atk>0||dc>0;}
+
+function tceSpellClassOrigin(source){
+ if(typeof source!=="string"||!source.startsWith("@dm:"))return undefined;
+ const id=source.slice(4),name="Magic Initiate (2014)",feat=allFeats().find(row=>((('key' in row)&&row.key)||row.s)===id),choice=B.ch["cp-"+id];
+ if(!feat||feat.n!==name||!Array.isArray(choice)||choice.length!==1)return undefined;
+ if(canonicalTceSpellBonus(FEATS[name])!==canonicalTceSpellBonus(ORIGINAL_MI2014_FEAT)||canonicalTceSpellBonus(genv.DM_SP?.[name])!==canonicalTceSpellBonus(ORIGINAL_MI2014_RULE))return undefined;
+ const grants=dmSpells().filter(row=>row.k===source),picks=wxPicks().filter(row=>row.fk===id);
+ return grants.length&&grants.every(row=>picks.some(pick=>pick.list.some(item=>item[0]===row.n)))?choice[0]:undefined;
+}

@@ -3515,6 +3515,24 @@ row=U58_FIX["current-generic"];badused={**row["used"],row["key"]:2}
 CASES.append(dict(name="NEG U58 mismatched actual canonical budget grants no Traveling resource",b=u58_build(row),travelGoat=row["state"],travelGoatUsed=badused,deriveState={"travelGoat":row["state"],"used":badused},expect=[("C.res.some(r=>Object.hasOwn(r,'travelGoat'))",False),("C.travelGoatSources.rows.length",0),u58_no_player_grant()]))
 CASES.append(dict(name="NEG U58 future namespace stays opaque without new resources",b=u58_build(row),travelGoat={"v":99,"opaque":["preserved"]},travelGoatUsed=row["used"],expect=[("C.travelGoat.v",99),("C.res.some(r=>Object.hasOwn(r,'travelGoat'))",False),("C.travelGoatSources.rows.length",0),u58_no_player_grant()]))
 
+
+# U59: actual original TCE native ATT and class-origin spell bonus consumers.
+U59_FIX=json.load(open(os.path.join(HERE,"fixtures","tce-spell-bonus-fx.json"),encoding="utf-8"))["cases"]
+def u59_build(row,inventory=None):
+    return dict(rs="2024",cls=row["main"],level=5,unset={},base={"STR":10,"DEX":10,"CON":10,"INT":18,"WIS":18,"CHA":18},extra={"mc":[dict(cls=row["secondary"],lv=5)],"sp":["Charm Person","Vicious Mockery"] if row["drum"] else ["Cure Wounds","Sacred Flame"],"spm":{row["secondary"]:["Burning Hands","Fire Bolt"]},"src":{"core":True,"phb":True,"dmg":True,"tce":True}},inv=row["inventory"] if inventory is None else inventory)
+for row in U59_FIX:
+    n=row["magnitude"]; checks=[("C.spellcasting.slots",row["casting"]["slots"])]
+    if row["drum"]:
+        for cls,dc in [(row["main"],16+n),(row["secondary"],16)]:
+            checks.extend([("C.spellcasting.by.find(s=>s.k==="+json.dumps(cls)+").dc",dc),("C.spellcasting.by.find(s=>s.k==="+json.dumps(cls)+").atk",8+n)])
+        checks.append(("C.spellcasting.by.map(s=>s.ab).join(',')","CHA,CHA"))
+    else:
+        checks.extend([("C.spellcasting.dc",16+n),("C.spellcasting.atk",8+n)])
+    CASES.append(dict(name="Z3 U59 actual native TCE class-aware spell bonuses "+row["item"],b=u59_build(row),expect=checks))
+for field,value in [("eq",False),("attuned",False),("q",0)]:
+    row=U59_FIX[0]; inv=json.loads(json.dumps(row["inventory"]));inv[0][field]=value
+    CASES.append(dict(name="NEG U59 inactive original TCE source "+field,b=u59_build(row,inv),expect=[("C.spellcasting.dc",16),("C.spellcasting.atk",8)]))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

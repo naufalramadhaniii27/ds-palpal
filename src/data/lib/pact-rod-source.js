@@ -1,3 +1,4 @@
+import {tceSpellBonusProfiles} from './tce-spell-bonus-profiles.js';
 import {LEGACY_PACT_ROD_ROWS} from './pact-rod-profiles.js';
 import {itemInUse,itemQuantity} from './attunement.js';
 import {assertSlotRecoveryCurrent} from './slot-recovery.js';
@@ -43,3 +44,9 @@ export function legacyPactRodNativeBonus(frame,kind,spellClass){
  const amount=original[5].fx[kind==='atk'?'spellAtk':'spellDc'];
  return {certified:true,bonus:kind==='dc'&&spellClass!=='Warlock'?0:amount,item,nativeProfile:'dmg2014'};
 }
+
+// Family labels only identify a source that requires native verification.
+export function nativeSpellBonusItemNames(){return [...Object.keys(LEGACY_PACT_ROD_ROWS),...tceSpellBonusProfiles().map(profile=>profile.item)]}
+export function nativeSpellBonusSourceClaim(C){const names=nativeSpellBonusItemNames(),tag=value=>names.some(name=>String(value||'').includes(name));return (C?.inv||[]).some(row=>names.includes(own(row,'key')?row.key:row?.n))||(C?.spellcasting?.items||[]).some(tag)||(C?.spellcasting?.by||[]).some(row=>(row.items||[]).some(tag))||(C?.attacks||[]).some(row=>tag(row.miscSrc))}
+export function nativeSpellBonusAttackClaim(C,row){return !!row&&(String(row.sub||'').startsWith('Cantrip')||(C?.spellcasting?.by||[]).some(channel=>typeof row.sourceKey==='string'&&channel.k===row.sourceKey)||nativeSpellBonusItemNames().some(name=>String(row.miscSrc||'').includes(name)))}
+export const nativeSpellBonusReviewGuidance='Open and Apply this character’s matching Build to verify the original spell-bonus items and each recorded spellcasting source.';
