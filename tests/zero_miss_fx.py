@@ -3247,6 +3247,32 @@ CASES.append(dict(name="NEG U46 raw Build study ledger is not actor authority",b
 _u46_saved=json.load(open(os.path.join(HERE,"golden","builds","fx_L6_unkh_tome.json")))["build"]
 CASES.append(dict(name="Z3 U46 completed-study counterpart for fx_L6_unkh_tome",b=dict(rs=_u46_saved.get("rs","2024"),cls=_u46_saved["cls"],level=_u46_saved["level"],extra=_u46_saved),studyBooks=U46_STATES["before12"],expect=[("window.__deriveFor(C).score.INT",14),("window.__deriveFor(C).score.CON",23)]))
 
+# U47 bounded Bag of Tricks entities retain their source-qualified HP and one native resource.
+U47_FIX=json.load(open(os.path.join(HERE,"fixtures","bag-tricks-fx.json")))
+def u47_build(inv=None,rs="2024"):
+    return dict(rs=rs,cls="Fighter",level=1,base=dict.fromkeys(["STR","DEX","CON","INT","WIS","CHA"],10),inv=inv or [],extra=dict(bg="Soldier",bgMode="21",bg2="STR",bg1="DEX",src=dict(core=True,dmg=True,dmg14=True)))
+def u47_item(profile,color,quantity=1):
+    return dict(n="Bag of Tricks" if profile=="dmg2024" else "Bag of Tricks, "+color.title(),q=quantity,eq=False,attuned=False,bagTricks=U47_FIX["markers"][profile+"-"+color])
+# Current Monster Manual profiles first, then both native legacy item aliases.
+for _native_profile in ["dmg2024","dmg2024-legacy","dmg2014"]:
+    for _color in ["gray","rust","tan"]:
+        _profile="current" if _native_profile=="dmg2024" else "legacy"
+        _state=U47_FIX["states"][_profile+"-"+_color]
+        _key=_state["budget"]["key"]
+        CASES.append(dict(name="Z3 U47 native bounded bag "+_native_profile+" "+_color,b=u47_build([u47_item(_native_profile,_color)],"2014" if _native_profile=="dmg2014" else "2024"),bagTricks=_state["active"],expect=[("C.bagTricks",_state["active"]),("C.res.filter(row=>row.k==="+json.dumps(_key)+").length",1),("C.res.find(row=>row.k==="+json.dumps(_key)+").max",3),("C.res.find(row=>row.k==="+json.dumps(_key)+").reset","none"),("C.res.find(row=>row.k==="+json.dumps(_key)+").bagTricks.id",_state["id"]),("C.bagTricks.physical.every(row=>!('used' in row)&&!('remaining' in row)&&!('drawn' in row))",True),("window.__deriveFor(C).hpmax",10)]))
+for _profile in ["current","legacy"]:
+    _fixture=U47_FIX["states"][_profile+"-tan"]
+    _hp=30 if _profile=="current" else 37
+    CASES.append(dict(name="Z3 U47 retained original Tiger without source bag "+_profile,b=u47_build(),bagTricks=_fixture["removed"],expect=[("C.bagTricks.entities[0].active",True),("C.bagTricks.entities[0].hp",_hp),("C.bagTricks.entities[0].creature.maxHP",_hp),("C.res.some(row=>row.bagTricks)",False),("window.__deriveFor(C).hpmax",10)]))
+    for _end,_reason in [("zero","zero-hp"),("dawn","next-dawn")]:
+        CASES.append(dict(name="Z3 U47 actual expiry receipt "+_profile+" "+_end,b=u47_build(),bagTricks=_fixture[_end],expect=[("C.bagTricks.entities[0].active",False),("C.bagTricks.entities[0].endReason",_reason),("C.bagTricks.entities[0].creature.maxHP",_hp),("window.__deriveFor(C).hpmax",10)]))
+_u47_native=u47_item("dmg2024","tan")
+_u47_state=U47_FIX["states"]["current-tan"]["active"]
+CASES.append(dict(name="NEG U47 future typed bag marker cannot restore generic resource",b=u47_build([dict(_u47_native,bagTricks=dict(v=99,id="btp-1",opaque="preserve"))]),bagTricks=_u47_state,expect=[("C.res.some(row=>row.n==='Bag of Tricks')",False)]))
+CASES.append(dict(name="NEG U47 raw Build ledger is not actor authority",b=dict(u47_build([_u47_native]),extra=dict(u47_build()["extra"],bagTricks=_u47_state)),expect=[("C.res.some(row=>row.bagTricks)",False)]))
+CASES.append(dict(name="NEG U47 duplicate physical id cannot mint two budgets",b=u47_build([_u47_native,_u47_native]),bagTricks=_u47_state,expect=[("C.res.some(row=>row.n==='Bag of Tricks')",False)]))
+CASES.append(dict(name="NEG U47 unresolved bag stack cannot mint managed budget",b=u47_build([u47_item("dmg2024","tan",2)]),bagTricks=_u47_state,expect=[("C.res.some(row=>row.n==='Bag of Tricks')",False)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
@@ -3296,7 +3322,7 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  // created from a later timer callback. The page policy itself stays unchanged.
  cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
  for(const c of cases){ const r={name:c.name,fail:[]},warmBefore=c.warm?window.__bldTestB():null;
-  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{}),...(Object.prototype.hasOwnProperty.call(c,"studyBooks")?{studyBooks:c.studyBooks}:{})}; window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{}),...(Object.prototype.hasOwnProperty.call(c,"studyBooks")?{studyBooks:c.studyBooks}:{}),...(Object.prototype.hasOwnProperty.call(c,"bagTricks")?{bagTricks:c.bagTricks}:{})}; window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
    for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }

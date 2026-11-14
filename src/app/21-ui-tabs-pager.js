@@ -1,3 +1,4 @@
+import {bagTricksResourceManaged} from "./32n-logic-bag-tricks.js";
 import {invalidateSlotRecoveryState} from './32j-logic-slot-recovery.js';
 import {handleSlotRecoveryInventoryDelete,markSlotRecoveryQuantityChange} from './21k-ui-slot-recovery.js';
 import {handleStoredSpellInventoryDelete,markStoredSpellQuantityChange} from './21j-ui-stored-spells.js';
@@ -54,10 +55,10 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest("[data-iqd],[
   const bix=b.dataset.iix, fin=function(){ const ix=(bix!=null&&C.inv&&C.inv[+bix]&&(C.inv[+bix].key||C.inv[+bix].n)===nm)?+bix:(C.inv||[]).findIndex((x) =>{return (x.key||x.n)===nm}); if(ix>=0){ const r=infoHTML("it:"+ix); $("#sheetBody").innerHTML=r.h; if(navStack.length) navStack[navStack.length-1]={type:"info",spec:"it:"+ix}; }
     toast("Quantity set to "+q); };
   if(viaBld(nm)&&env.__bldSetQty){ bldGuard(() =>{ const tracked=invAt(nm,bix);if(physicalInventoryConflict(tracked)||!markSlotRecoveryQuantityChange(nm,bix)||!markStoredSpellQuantityChange(nm,bix))return;if(env.__bldSetQty(nm,q,occOf(tracked))===false){toast("This quantity could not be changed. Existing data is preserved.");return} fin(); }); return; } /* N1 */
-  const it=invAt(nm,bix); if(!it) return;if(Object.prototype.hasOwnProperty.call(it,'storedSpells')||Object.prototype.hasOwnProperty.call(it,'slotRecovery')){toast('Use this character’s matching Build to change this tracked physical item’s quantity. Its history is preserved.');return} it.q=q; bldSync(nm,{q:q,occ:occOf(it)}); saveC(); renderAll(); fin(); },true);
+  const it=invAt(nm,bix); if(!it) return;if(['storedSpells','slotRecovery','studyBook','bagTricks'].some(key=>Object.prototype.hasOwnProperty.call(it,key))){toast('Use this character’s matching Build to change this tracked physical item’s quantity. Its history is preserved.');return} it.q=q; bldSync(nm,{q:q,occ:occOf(it)}); saveC(); renderAll(); fin(); },true);
 document.addEventListener("input",(e) =>{ if(e.target.classList&&e.target.classList.contains("iqi")) iqSync(e.target); });
 /* m6: typed points left for a pool resource */
-document.addEventListener("change",(e) =>{ const t=e.target; if(!(t.classList&&t.classList.contains("pli"))) return; const k=t.getAttribute("data-k"), r=(D.res||[]).filter((q) =>{return q.k===k})[0]; if(!r) return; const lf=clamp(Math.round(num(t.value,r.max-used(k,r.max))),0,r.max); invalidateSlotRecoveryState(S);S.used[k]=r.max-lf; save(); syncLU(); t.value=lf; });
+document.addEventListener("change",(e) =>{ const t=e.target; if(!(t.classList&&t.classList.contains("pli"))) return; const k=t.getAttribute("data-k"), r=(D.res||[]).filter((q) =>{return q.k===k})[0]; if(!r) return;if(bagTricksResourceManaged(k)){t.value=r.max-used(k,r.max);toast('Use the Bag of Tricks panel to resolve a draw or record an actual dawn.');return} const lf=clamp(Math.round(num(t.value,r.max-used(k,r.max))),0,r.max); invalidateSlotRecoveryState(S);S.used[k]=r.max-lf; save(); syncLU(); t.value=lf; });
 document.addEventListener("keydown",(e) =>{ if(e.key==="Enter"&&e.target.classList&&e.target.classList.contains("iqi")){ e.preventDefault(); const a=e.target.closest(".iqty-r").querySelector("[data-iqa]"); if(a&&!a.disabled) a.click(); } });
 $("#invBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-invf]"); if(!b) return; __set_invF(b.getAttribute("data-invf")); renderInv(); });
 $("#actBody").addEventListener("click",(e) =>{ const b=e.target.closest("[data-actf]"); if(!b) return; __set_actF(b.getAttribute("data-actf")); renderActions(); });

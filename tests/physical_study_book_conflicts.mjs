@@ -19,14 +19,14 @@ const cases=[
  {name:'Stored',module:stored,ready:stored.ready,action:f=>stored.load(f,'Cure Wounds',2),adopt:f=>f.service.adopt()}
 ];
 const snapshot=f=>JSON.stringify([f.B,f.C,f.S]);
-for(const c of cases){
+for(const marker of ['studyBook','bagTricks'])for(const c of cases){
  const normal=c.module.fixture();c.ready(normal);eq(c.action(normal).ok,true);
  for(const value of [undefined,null,{v:99,opaque:'preserve'}])for(const side of ['B','C']){
-  const f=c.module.fixture();c.ready(f);f[side].inv[0].studyBook=structuredClone(value);
+  const f=c.module.fixture();c.ready(f);f[side].inv[0][marker]=structuredClone(value);
   const before=snapshot(f),undos=f.history.length;
-  eq(c.action(f).ok,false);eq(f.history.length,undos);eq(snapshot(f),before);eq(Object.hasOwn(f[side].inv[0],'studyBook'),true);
+  eq(c.action(f).ok,false);eq(f.history.length,undos);eq(snapshot(f),before);eq(Object.hasOwn(f[side].inv[0],marker),true);
  }
- const fresh=c.module.fixture();fresh.B.inv[0].studyBook={v:99,opaque:'unadopted'};const before=snapshot(fresh);
+ const fresh=c.module.fixture();fresh.B.inv[0][marker]={v:99,opaque:'unadopted'};const before=snapshot(fresh);
  eq(c.adopt(fresh).ok,false);eq(fresh.history.length,0);eq(snapshot(fresh),before);
 }
 // A successful stored cast remains historical authority after the physical row conflicts.
@@ -35,4 +35,11 @@ const entry=retained.C.inv[0].storedSpells.entries[0];eq(retained.service.releas
 const ledger=JSON.stringify(retained.S.storedSpellCasts);
 retained.B.inv[0].studyBook={v:99};retained.C.inv[0].studyBook={v:99};
 eq(stored.load(retained,'Cure Wounds',2).ok,false);eq(JSON.stringify(retained.S.storedSpellCasts),ledger);
-console.log(`physical study-book conflicts: ${checks} PASS`);
+const {createStudyBooksBackend}=await import('./fixtures/study-books-backend-native.mjs');
+for(const value of [undefined,null,{v:99,opaque:'preserve'}])for(const side of ['B','C']){
+ const f=createStudyBooksBackend();eq(f.command('adopt',{index:0}).ok,true);eq(f.command('review-availability',{physicalId:'sbp-1',actualAvailabilityVerified:true,available:true}).ok,true);
+ f.c[side].inv[0].bagTricks=structuredClone(value);const before=JSON.stringify([f.c.B,f.C,f.c.S]),undos=f.undos;
+ eq(f.command('study',{physicalId:'sbp-1',actualStudyAndPracticeCompleted:true,completedStudyHours:48,elapsedSpanHours:72}).ok,false);eq(f.undos,undos);eq(JSON.stringify([f.c.B,f.C,f.c.S]),before);eq(Object.hasOwn(f.c[side].inv[0],'bagTricks'),true);
+ const fresh=createStudyBooksBackend();fresh.c.B.inv[0].bagTricks=structuredClone(value);eq(fresh.command('adopt',{index:0}).ok,false);eq(fresh.undos,0);
+}
+console.log(`physical typed-marker conflicts: ${checks} PASS`);

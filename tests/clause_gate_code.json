@@ -16875,6 +16875,790 @@
     "tests/study_books_ui.mjs"
    ],
    "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO→covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+  },
+  {
+   "id": "u47-item-dmg-bag-of-tricks-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Bag of Tricks",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ creature\\ disappears\\ at\\ the\\ next\\ dawn\\ or\\ when\\ it\\ drops\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25g-logic-bag-tricks.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function dawnPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function drawPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function command("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function publish("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function planBagTricksDraw("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function changeBagTricksHP("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function recordBagTricksDawn("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksNativeSources("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksCreature("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksMarkerSource("
+    ],
+    [
+     "src/builder/10h-logic-bag-tricks.js",
+     "export function bagTricksResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "bagTricks:{v:1,id:bag.physical.id}"
+    ],
+    [
+     "src/builder/12w-logic-bag-tricks.js",
+     "id:'retained-bag-tricks'"
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksCommand("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksDraw("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "function bagDrawCommit("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "dice.roll({dmg:'1d8'}"
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiHPBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiCommand("
+    ]
+   ],
+   "test": "Z3 U47 native bounded bag dmg2024 tan",
+   "consumerTests": [
+    "tests/bag_tricks_model.mjs",
+    "tests/bag_tricks_backend.mjs",
+    "tests/bag_tricks_runtime.mjs",
+    "tests/bag_tricks_ui.mjs"
+   ],
+   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. Current generic INFO→covered; no new UNC closure claimed. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
+  },
+  {
+   "id": "u47-item-dmg-bag-of-tricks-gray-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Bag of Tricks, Gray",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ creature\\ vanishes\\ at\\ the\\ next\\ dawn\\ or\\ when\\ it\\ is\\ reduced\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25g-logic-bag-tricks.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function dawnPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function drawPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function command("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function publish("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function planBagTricksDraw("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function changeBagTricksHP("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function recordBagTricksDawn("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksNativeSources("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksCreature("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksMarkerSource("
+    ],
+    [
+     "src/builder/10h-logic-bag-tricks.js",
+     "export function bagTricksResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "bagTricks:{v:1,id:bag.physical.id}"
+    ],
+    [
+     "src/builder/12w-logic-bag-tricks.js",
+     "id:'retained-bag-tricks'"
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksCommand("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksDraw("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "function bagDrawCommit("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "dice.roll({dmg:'1d8'}"
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiHPBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiCommand("
+    ]
+   ],
+   "test": "Z3 U47 native bounded bag dmg2024-legacy gray",
+   "consumerTests": [
+    "tests/bag_tricks_model.mjs",
+    "tests/bag_tricks_backend.mjs",
+    "tests/bag_tricks_runtime.mjs",
+    "tests/bag_tricks_ui.mjs"
+   ],
+   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. One exact legacy-style UNC closure, with its native source alias separately scoped. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
+  },
+  {
+   "id": "u47-item-dmg-bag-of-tricks-rust-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Bag of Tricks, Rust",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ creature\\ vanishes\\ at\\ the\\ next\\ dawn\\ or\\ when\\ it\\ is\\ reduced\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25g-logic-bag-tricks.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function dawnPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function drawPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function command("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function publish("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function planBagTricksDraw("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function changeBagTricksHP("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function recordBagTricksDawn("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksNativeSources("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksCreature("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksMarkerSource("
+    ],
+    [
+     "src/builder/10h-logic-bag-tricks.js",
+     "export function bagTricksResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "bagTricks:{v:1,id:bag.physical.id}"
+    ],
+    [
+     "src/builder/12w-logic-bag-tricks.js",
+     "id:'retained-bag-tricks'"
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksCommand("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksDraw("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "function bagDrawCommit("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "dice.roll({dmg:'1d8'}"
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiHPBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiCommand("
+    ]
+   ],
+   "test": "Z3 U47 native bounded bag dmg2024-legacy rust",
+   "consumerTests": [
+    "tests/bag_tricks_model.mjs",
+    "tests/bag_tricks_backend.mjs",
+    "tests/bag_tricks_runtime.mjs",
+    "tests/bag_tricks_ui.mjs"
+   ],
+   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. One exact legacy-style UNC closure, with its native source alias separately scoped. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
+  },
+  {
+   "id": "u47-item-dmg-bag-of-tricks-tan-5",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Bag of Tricks, Tan",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ creature\\ vanishes\\ at\\ the\\ next\\ dawn\\ or\\ when\\ it\\ is\\ reduced\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25g-logic-bag-tricks.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function dawnPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function drawPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function command("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function publish("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function planBagTricksDraw("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function changeBagTricksHP("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function recordBagTricksDawn("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksNativeSources("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksCreature("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksMarkerSource("
+    ],
+    [
+     "src/builder/10h-logic-bag-tricks.js",
+     "export function bagTricksResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "bagTricks:{v:1,id:bag.physical.id}"
+    ],
+    [
+     "src/builder/12w-logic-bag-tricks.js",
+     "id:'retained-bag-tricks'"
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksCommand("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksDraw("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "function bagDrawCommit("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "dice.roll({dmg:'1d8'}"
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiHPBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiCommand("
+    ]
+   ],
+   "test": "Z3 U47 native bounded bag dmg2024-legacy tan",
+   "consumerTests": [
+    "tests/bag_tricks_model.mjs",
+    "tests/bag_tricks_backend.mjs",
+    "tests/bag_tricks_runtime.mjs",
+    "tests/bag_tricks_ui.mjs"
+   ],
+   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. One exact legacy-style UNC closure, with its native source alias separately scoped. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
+  },
+  {
+   "id": "u47-item-dmg14-bag-of-tricks-gray-5",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Bag of Tricks, Gray",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ creature\\ vanishes\\ at\\ the\\ next\\ dawn\\ or\\ when\\ it\\ is\\ reduced\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25g-logic-bag-tricks.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function dawnPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function drawPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function command("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function publish("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function planBagTricksDraw("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function changeBagTricksHP("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function recordBagTricksDawn("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksNativeSources("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksCreature("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksMarkerSource("
+    ],
+    [
+     "src/builder/10h-logic-bag-tricks.js",
+     "export function bagTricksResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "bagTricks:{v:1,id:bag.physical.id}"
+    ],
+    [
+     "src/builder/12w-logic-bag-tricks.js",
+     "id:'retained-bag-tricks'"
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksCommand("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksDraw("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "function bagDrawCommit("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "dice.roll({dmg:'1d8'}"
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiHPBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiCommand("
+    ]
+   ],
+   "test": "Z3 U47 native bounded bag dmg2014 gray",
+   "consumerTests": [
+    "tests/bag_tricks_model.mjs",
+    "tests/bag_tricks_backend.mjs",
+    "tests/bag_tricks_runtime.mjs",
+    "tests/bag_tricks_ui.mjs"
+   ],
+   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. One exact legacy-style UNC closure, with its native source alias separately scoped. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
+  },
+  {
+   "id": "u47-item-dmg14-bag-of-tricks-rust-5",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Bag of Tricks, Rust",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ creature\\ vanishes\\ at\\ the\\ next\\ dawn\\ or\\ when\\ it\\ is\\ reduced\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25g-logic-bag-tricks.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function dawnPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function drawPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function command("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function publish("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function planBagTricksDraw("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function changeBagTricksHP("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function recordBagTricksDawn("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksNativeSources("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksCreature("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksMarkerSource("
+    ],
+    [
+     "src/builder/10h-logic-bag-tricks.js",
+     "export function bagTricksResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "bagTricks:{v:1,id:bag.physical.id}"
+    ],
+    [
+     "src/builder/12w-logic-bag-tricks.js",
+     "id:'retained-bag-tricks'"
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksCommand("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksDraw("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "function bagDrawCommit("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "dice.roll({dmg:'1d8'}"
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiHPBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiCommand("
+    ]
+   ],
+   "test": "Z3 U47 native bounded bag dmg2014 rust",
+   "consumerTests": [
+    "tests/bag_tricks_model.mjs",
+    "tests/bag_tricks_backend.mjs",
+    "tests/bag_tricks_runtime.mjs",
+    "tests/bag_tricks_ui.mjs"
+   ],
+   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. One exact legacy-style UNC closure, with its native source alias separately scoped. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
+  },
+  {
+   "id": "u47-item-dmg14-bag-of-tricks-tan-5",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Bag of Tricks, Tan",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ creature\\ vanishes\\ at\\ the\\ next\\ dawn\\ or\\ when\\ it\\ is\\ reduced\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/builder/25g-logic-bag-tricks.js",
+    "function hpPlan("
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function dawnPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function drawPlan("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function command("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "function publish("
+    ],
+    [
+     "src/builder/25g-logic-bag-tricks.js",
+     "b.S.used[patch.key]=patch.used"
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function planBagTricksDraw("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function changeBagTricksHP("
+    ],
+    [
+     "src/data/lib/bag-tricks.js",
+     "export function recordBagTricksDawn("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksNativeSources("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksCreature("
+    ],
+    [
+     "src/data/lib/bag-tricks-source.js",
+     "export function bagTricksMarkerSource("
+    ],
+    [
+     "src/builder/10h-logic-bag-tricks.js",
+     "export function bagTricksResource("
+    ],
+    [
+     "src/builder/10-logic-v17-additions.js",
+     "bagTricks:{v:1,id:bag.physical.id}"
+    ],
+    [
+     "src/builder/12w-logic-bag-tricks.js",
+     "id:'retained-bag-tricks'"
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksCommand("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "export function requestBagTricksDraw("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "function bagDrawCommit("
+    ],
+    [
+     "src/app/32n-logic-bag-tricks.js",
+     "dice.roll({dmg:'1d8'}"
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiHPBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiBody("
+    ],
+    [
+     "src/app/21o-ui-bag-tricks.js",
+     "function bagUiCommand("
+    ]
+   ],
+   "test": "Z3 U47 native bounded bag dmg2014 tan",
+   "consumerTests": [
+    "tests/bag_tricks_model.mjs",
+    "tests/bag_tricks_backend.mjs",
+    "tests/bag_tricks_runtime.mjs",
+    "tests/bag_tricks_ui.mjs"
+   ],
+   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. One exact legacy-style UNC closure, with its native source alias separately scoped. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
   }
  ]
 }

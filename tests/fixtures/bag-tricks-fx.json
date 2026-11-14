@@ -1,0 +1,1627 @@
+{
+  "generatedBy": "Actual native source-qualified QREFS plus actual product pure lifecycle APIs",
+  "nativeDefinitions": [
+    {
+      "profile": "current",
+      "color": "gray",
+      "die": 1,
+      "logicalName": "Weasel",
+      "nativeName": "Weasel",
+      "source": "core",
+      "maxHP": 1,
+      "definitionSHA256": "077d1c45bbb08d565d05a740720d3b6845fac84e2a923e4af2eadeb9d9d4b45b"
+    },
+    {
+      "profile": "current",
+      "color": "gray",
+      "die": 2,
+      "logicalName": "Giant Rat",
+      "nativeName": "Giant Rat",
+      "source": "core",
+      "maxHP": 7,
+      "definitionSHA256": "15038a248fab19aa5a567cb657e382daf89b3df8684c413ed45fc6bde0f35056"
+    },
+    {
+      "profile": "current",
+      "color": "gray",
+      "die": 3,
+      "logicalName": "Badger",
+      "nativeName": "Badger",
+      "source": "core",
+      "maxHP": 5,
+      "definitionSHA256": "550c1c5e7d3b88f70f66dad0759b9dd6adc511d40266040e68ea2e8051809c72"
+    },
+    {
+      "profile": "current",
+      "color": "gray",
+      "die": 4,
+      "logicalName": "Boar",
+      "nativeName": "Boar",
+      "source": "core",
+      "maxHP": 13,
+      "definitionSHA256": "e9a0cdaaef2c4ff0867480727c81e5c56d2ba3c0b76209508a828b4d850f64b8"
+    },
+    {
+      "profile": "current",
+      "color": "gray",
+      "die": 5,
+      "logicalName": "Panther",
+      "nativeName": "Panther",
+      "source": "core",
+      "maxHP": 13,
+      "definitionSHA256": "d838cc81143e7353dafb93ee52461c5530797d29ec712d1ac67985101461af81"
+    },
+    {
+      "profile": "current",
+      "color": "gray",
+      "die": 6,
+      "logicalName": "Giant Badger",
+      "nativeName": "Giant Badger",
+      "source": "core",
+      "maxHP": 15,
+      "definitionSHA256": "d9d1b60302c27ed57f4b6c3a59b6dd471ccc9ec576dfc4993e9ecacda0221c03"
+    },
+    {
+      "profile": "current",
+      "color": "gray",
+      "die": 7,
+      "logicalName": "Dire Wolf",
+      "nativeName": "Dire Wolf",
+      "source": "core",
+      "maxHP": 22,
+      "definitionSHA256": "798e8c1ac85f1885505a5498ce210722700803946619d322ea1ea1333f0a6660"
+    },
+    {
+      "profile": "current",
+      "color": "gray",
+      "die": 8,
+      "logicalName": "Giant Elk",
+      "nativeName": "Giant Elk",
+      "source": "core",
+      "maxHP": 42,
+      "definitionSHA256": "a20280ea750ec7e330ebdddc055752881d50ad9b8dc3505cde88ddb5285d4af2"
+    },
+    {
+      "profile": "current",
+      "color": "rust",
+      "die": 1,
+      "logicalName": "Rat",
+      "nativeName": "Rat",
+      "source": "core",
+      "maxHP": 1,
+      "definitionSHA256": "00ddb393f40bbccd3819b4799d5876dcad42270d9e925305a1c47aefe67ea18f"
+    },
+    {
+      "profile": "current",
+      "color": "rust",
+      "die": 2,
+      "logicalName": "Owl",
+      "nativeName": "Owl",
+      "source": "core",
+      "maxHP": 1,
+      "definitionSHA256": "a6e3a8693fe3078f623976d52aff018d1955f884b232949cae0990462985fc0c"
+    },
+    {
+      "profile": "current",
+      "color": "rust",
+      "die": 3,
+      "logicalName": "Mastiff",
+      "nativeName": "Mastiff",
+      "source": "core",
+      "maxHP": 5,
+      "definitionSHA256": "d7673c2c7988ec3381930429c844d8abb72e92ebf7794fd6dd90fb95a80beb80"
+    },
+    {
+      "profile": "current",
+      "color": "rust",
+      "die": 4,
+      "logicalName": "Goat",
+      "nativeName": "Goat",
+      "source": "core",
+      "maxHP": 4,
+      "definitionSHA256": "9172486cc0df8a762fcdcf34985f4ddf16c37c9457ac12a67791db0bd2650402"
+    },
+    {
+      "profile": "current",
+      "color": "rust",
+      "die": 5,
+      "logicalName": "Giant Goat",
+      "nativeName": "Giant Goat",
+      "source": "core",
+      "maxHP": 19,
+      "definitionSHA256": "90f3e8dd2454b4b73e627c60afb136b3168d896a3f823b8bd492709985b5f3a8"
+    },
+    {
+      "profile": "current",
+      "color": "rust",
+      "die": 6,
+      "logicalName": "Giant Boar",
+      "nativeName": "Giant Boar",
+      "source": "core",
+      "maxHP": 42,
+      "definitionSHA256": "2e8855563c50fc6a1d6fa78d74b1411c9737b760fbe42694b334975f490c1fac"
+    },
+    {
+      "profile": "current",
+      "color": "rust",
+      "die": 7,
+      "logicalName": "Lion",
+      "nativeName": "Lion",
+      "source": "core",
+      "maxHP": 22,
+      "definitionSHA256": "2e9988e93c83436a7f08cd1fdbeae2f756c85ddc4faa8a6f7a9df37f223604dd"
+    },
+    {
+      "profile": "current",
+      "color": "rust",
+      "die": 8,
+      "logicalName": "Brown Bear",
+      "nativeName": "Brown Bear",
+      "source": "core",
+      "maxHP": 22,
+      "definitionSHA256": "605cb56ded28659904584074bdd0aca86f1d96a81045dfac7119c8f722f0726b"
+    },
+    {
+      "profile": "current",
+      "color": "tan",
+      "die": 1,
+      "logicalName": "Jackal",
+      "nativeName": "Jackal",
+      "source": "core",
+      "maxHP": 3,
+      "definitionSHA256": "570f94bfe17945dc53825b2081196d9bc0a9ea404d6138d813dd965eb2f1b8d4"
+    },
+    {
+      "profile": "current",
+      "color": "tan",
+      "die": 2,
+      "logicalName": "Ape",
+      "nativeName": "Ape",
+      "source": "core",
+      "maxHP": 19,
+      "definitionSHA256": "db58f6e7f69c90379ba73a244bd836ad56d3adcc5b9676446f8e7665f1d545f4"
+    },
+    {
+      "profile": "current",
+      "color": "tan",
+      "die": 3,
+      "logicalName": "Baboon",
+      "nativeName": "Baboon",
+      "source": "core",
+      "maxHP": 3,
+      "definitionSHA256": "63c2bfde6a02508fd475f7801db5644d3f43678a8b27042318206b5780fad8d9"
+    },
+    {
+      "profile": "current",
+      "color": "tan",
+      "die": 4,
+      "logicalName": "Axe Beak",
+      "nativeName": "Axe Beak",
+      "source": "core",
+      "maxHP": 19,
+      "definitionSHA256": "aa5856547effe85f2aa4b3ca17f622bdbe537ad69caf7e04a340c9be74f7e164"
+    },
+    {
+      "profile": "current",
+      "color": "tan",
+      "die": 5,
+      "logicalName": "Black Bear",
+      "nativeName": "Black Bear",
+      "source": "core",
+      "maxHP": 19,
+      "definitionSHA256": "f115fbfd498296655bc654d6d72b221f279c7dfb3da2db96e038cc32c2036486"
+    },
+    {
+      "profile": "current",
+      "color": "tan",
+      "die": 6,
+      "logicalName": "Giant Weasel",
+      "nativeName": "Giant Weasel",
+      "source": "core",
+      "maxHP": 9,
+      "definitionSHA256": "58f1824699578cd0c4e9caeee2bb9e8c08bb2fca9f609b3eeb77ec3a160ce45c"
+    },
+    {
+      "profile": "current",
+      "color": "tan",
+      "die": 7,
+      "logicalName": "Giant Hyena",
+      "nativeName": "Giant Hyena",
+      "source": "core",
+      "maxHP": 45,
+      "definitionSHA256": "15cd058aec3b89ad17fc4291fbc51dab73a91e7da6f624288c59f82c967e1b02"
+    },
+    {
+      "profile": "current",
+      "color": "tan",
+      "die": 8,
+      "logicalName": "Tiger",
+      "nativeName": "Tiger",
+      "source": "core",
+      "maxHP": 30,
+      "definitionSHA256": "62c0880f7f2820c23a9176e275a76bb231a4e78d672bfb2ab1154345d0312624"
+    },
+    {
+      "profile": "legacy",
+      "color": "gray",
+      "die": 1,
+      "logicalName": "Weasel",
+      "nativeName": "Weasel (MM)",
+      "source": "mm14",
+      "maxHP": 1,
+      "definitionSHA256": "7c91708d9b80e64d7e7eecbe3ed34d889f54e6d7ad5e9c75889f1c0b4aaaed7e"
+    },
+    {
+      "profile": "legacy",
+      "color": "gray",
+      "die": 2,
+      "logicalName": "Giant Rat",
+      "nativeName": "Giant Rat (MM)",
+      "source": "mm14",
+      "maxHP": 7,
+      "definitionSHA256": "5f9f9aaedbc8f800c0786544751fb49234d01c25652ac75d2a64de61a5d155ff"
+    },
+    {
+      "profile": "legacy",
+      "color": "gray",
+      "die": 3,
+      "logicalName": "Badger",
+      "nativeName": "Badger (MM)",
+      "source": "mm14",
+      "maxHP": 3,
+      "definitionSHA256": "f100d9623ee76f22328663d665a8927697af35ba2aa2707dc519bfb7f199be4a"
+    },
+    {
+      "profile": "legacy",
+      "color": "gray",
+      "die": 4,
+      "logicalName": "Boar",
+      "nativeName": "Boar (MM)",
+      "source": "mm14",
+      "maxHP": 11,
+      "definitionSHA256": "9ea54cfb932421bc768d49286ed01115f378b66e0bfd262c2c65f7c92d77e974"
+    },
+    {
+      "profile": "legacy",
+      "color": "gray",
+      "die": 5,
+      "logicalName": "Panther",
+      "nativeName": "Panther (MM)",
+      "source": "mm14",
+      "maxHP": 13,
+      "definitionSHA256": "2975a827b1cce6d9483d9179fcdf247e3e3bb18177165f2821d518fb9648b30b"
+    },
+    {
+      "profile": "legacy",
+      "color": "gray",
+      "die": 6,
+      "logicalName": "Giant Badger",
+      "nativeName": "Giant Badger (MM)",
+      "source": "mm14",
+      "maxHP": 13,
+      "definitionSHA256": "38429e7d8590b41b011f4b9d1535fb0ba11b227dd6590b3e7eeaae0d7c014478"
+    },
+    {
+      "profile": "legacy",
+      "color": "gray",
+      "die": 7,
+      "logicalName": "Dire Wolf",
+      "nativeName": "Dire Wolf (MM)",
+      "source": "mm14",
+      "maxHP": 37,
+      "definitionSHA256": "cea4a1df1655211cc7da3199384f8df337e589fcc70867a462286eb1c7e9ec65"
+    },
+    {
+      "profile": "legacy",
+      "color": "gray",
+      "die": 8,
+      "logicalName": "Giant Elk",
+      "nativeName": "Giant Elk (MM)",
+      "source": "mm14",
+      "maxHP": 42,
+      "definitionSHA256": "8b8c567bdd863006c5ef977e8861bea02d4fa857825310b19e7aa061df445db8"
+    },
+    {
+      "profile": "legacy",
+      "color": "rust",
+      "die": 1,
+      "logicalName": "Rat",
+      "nativeName": "Rat (MM)",
+      "source": "mm14",
+      "maxHP": 1,
+      "definitionSHA256": "33934d72852e701bd2e64ccc2196873dd7cb47541c9440c448526af90b571fba"
+    },
+    {
+      "profile": "legacy",
+      "color": "rust",
+      "die": 2,
+      "logicalName": "Owl",
+      "nativeName": "Owl (MM)",
+      "source": "mm14",
+      "maxHP": 1,
+      "definitionSHA256": "789af3fdd84cbc79b81d7b7374a1439081615967ca7613480f21407d5192a1de"
+    },
+    {
+      "profile": "legacy",
+      "color": "rust",
+      "die": 3,
+      "logicalName": "Mastiff",
+      "nativeName": "Mastiff (MM)",
+      "source": "mm14",
+      "maxHP": 5,
+      "definitionSHA256": "9d3bb7f767d62ca76f059c9bb8bd376dde979076709e3f811f244918877693db"
+    },
+    {
+      "profile": "legacy",
+      "color": "rust",
+      "die": 4,
+      "logicalName": "Goat",
+      "nativeName": "Goat (MM)",
+      "source": "mm14",
+      "maxHP": 4,
+      "definitionSHA256": "0e04040d09ba14ffa54a70b3e5e72581a773c54e85c7aee98788861b8ac76d85"
+    },
+    {
+      "profile": "legacy",
+      "color": "rust",
+      "die": 5,
+      "logicalName": "Giant Goat",
+      "nativeName": "Giant Goat (MM)",
+      "source": "mm14",
+      "maxHP": 19,
+      "definitionSHA256": "0fe599ef1694675f0d883e580c35a948c2d323dccbf6df398a9d85577ef726b0"
+    },
+    {
+      "profile": "legacy",
+      "color": "rust",
+      "die": 6,
+      "logicalName": "Giant Boar",
+      "nativeName": "Giant Boar (MM)",
+      "source": "mm14",
+      "maxHP": 42,
+      "definitionSHA256": "53ce5261ebb43ee8a172c220efb474216f2331cdde398bea2343cec566713acf"
+    },
+    {
+      "profile": "legacy",
+      "color": "rust",
+      "die": 7,
+      "logicalName": "Lion",
+      "nativeName": "Lion (MM)",
+      "source": "mm14",
+      "maxHP": 26,
+      "definitionSHA256": "bc5485ab0f11efc3e7ccdd07b6da01b0b1c62c963dbd8aff5d9594cf583f5d0a"
+    },
+    {
+      "profile": "legacy",
+      "color": "rust",
+      "die": 8,
+      "logicalName": "Brown Bear",
+      "nativeName": "Brown Bear (MM)",
+      "source": "mm14",
+      "maxHP": 34,
+      "definitionSHA256": "6304a69510733f1f42cc28ecef08a942ac984d64405e68fbb2c819755cc26351"
+    },
+    {
+      "profile": "legacy",
+      "color": "tan",
+      "die": 1,
+      "logicalName": "Jackal",
+      "nativeName": "Jackal (MM)",
+      "source": "mm14",
+      "maxHP": 3,
+      "definitionSHA256": "c124c9efc59b1654fc67d402d901959fb0146783cbeeeee188577e8e58454162"
+    },
+    {
+      "profile": "legacy",
+      "color": "tan",
+      "die": 2,
+      "logicalName": "Ape",
+      "nativeName": "Ape (MM)",
+      "source": "mm14",
+      "maxHP": 19,
+      "definitionSHA256": "dcd13b2fb22d2dde4f9a814d67d3526d5d4b6a81fdff5017322b1dd768b3ed5d"
+    },
+    {
+      "profile": "legacy",
+      "color": "tan",
+      "die": 3,
+      "logicalName": "Baboon",
+      "nativeName": "Baboon (MM)",
+      "source": "mm14",
+      "maxHP": 3,
+      "definitionSHA256": "3374d8a71eb605cd27145246d03aea9c897b416b0291ab20040b6bd2fe160e30"
+    },
+    {
+      "profile": "legacy",
+      "color": "tan",
+      "die": 4,
+      "logicalName": "Axe Beak",
+      "nativeName": "Axe Beak (MM)",
+      "source": "mm14",
+      "maxHP": 19,
+      "definitionSHA256": "f3d7c50a5e482c53cbcceed9a19e0a11902b7363c89340e0e20b8a0b7bd875d9"
+    },
+    {
+      "profile": "legacy",
+      "color": "tan",
+      "die": 5,
+      "logicalName": "Black Bear",
+      "nativeName": "Black Bear (MM)",
+      "source": "mm14",
+      "maxHP": 19,
+      "definitionSHA256": "fa30fe9bce3115b2b37491c4b4a81064a415fd27332e427e8f96a139f5bcbb99"
+    },
+    {
+      "profile": "legacy",
+      "color": "tan",
+      "die": 6,
+      "logicalName": "Giant Weasel",
+      "nativeName": "Giant Weasel (MM)",
+      "source": "mm14",
+      "maxHP": 9,
+      "definitionSHA256": "29060ea08d0cd10cb0fb1785c1c3699da8a718198b24b82d74580893494154ba"
+    },
+    {
+      "profile": "legacy",
+      "color": "tan",
+      "die": 7,
+      "logicalName": "Giant Hyena",
+      "nativeName": "Giant Hyena (MM)",
+      "source": "mm14",
+      "maxHP": 45,
+      "definitionSHA256": "dc8b2082e05c32148f26775e0a3bd740e43c9b507acf59325893511105a96e6d"
+    },
+    {
+      "profile": "legacy",
+      "color": "tan",
+      "die": 8,
+      "logicalName": "Tiger",
+      "nativeName": "Tiger (MM)",
+      "source": "mm14",
+      "maxHP": 37,
+      "definitionSHA256": "552e85ce939b4c87c562fd85eb59d8f52ba72209d8c9c061854fda788a692ad0"
+    }
+  ],
+  "states": {
+    "current-gray": {
+      "ready": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 1,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "gray",
+            "key": "i-bag-of-tricks",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [],
+        "dawnEvents": []
+      },
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "gray",
+            "key": "i-bag-of-tricks",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 1,
+            "creature": {
+              "logicalName": "Weasel",
+              "nativeName": "Weasel",
+              "source": "core",
+              "maxHP": 1,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Weasel\",\"n\":\"Weasel\",\"p\":[\"**Actions**\",\"**Bite.** Melee Attack Roll: +5, reach 5 ft. Hit: 1 Piercing damage.\"],\"s\":\"core\",\"sub\":\"Tiny beast, unaligned • CR 0\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"1 (1d4 - 1)\"],[\"Speed\",\"30 ft., climb 30 ft.\"],[\"Abilities\",\"STR 3 (-4)  DEX 16 (+3)  CON 8 (-1)  INT 2 (-4)  WIS 12 (+1)  CHA 3 (-4)\"],[\"Skills\",\"Acrobatics +5, Perception +3, Stealth +5\"],[\"Senses\",\"Darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"forest, grassland, hill\"]],\"tx\":\"weasel tiny beast, unaligned • cr 0 forest grassland hill\"}",
+              "definition": {
+                "n": "Weasel",
+                "s": "core",
+                "sub": "Tiny beast, unaligned • CR 0",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "1 (1d4 - 1)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft., climb 30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 3 (-4)  DEX 16 (+3)  CON 8 (-1)  INT 2 (-4)  WIS 12 (+1)  CHA 3 (-4)"
+                  ],
+                  [
+                    "Skills",
+                    "Acrobatics +5, Perception +3, Stealth +5"
+                  ],
+                  [
+                    "Senses",
+                    "Darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "forest, grassland, hill"
+                  ]
+                ],
+                "p": [
+                  "**Actions**",
+                  "**Bite.** Melee Attack Roll: +5, reach 5 ft. Hit: 1 Piercing damage."
+                ],
+                "tx": "weasel tiny beast, unaligned • cr 0 forest grassland hill",
+                "im": "bestiary/XMM/Weasel"
+              }
+            },
+            "hp": 1,
+            "active": true,
+            "endReason": null
+          }
+        ],
+        "dawnEvents": []
+      },
+      "budget": {
+        "key": "i-bag-of-tricks",
+        "used": 1,
+        "max": 3
+      },
+      "id": "btp-1",
+      "entityId": "bte-1"
+    },
+    "current-rust": {
+      "ready": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 1,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "rust",
+            "key": "i-bag-of-tricks",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [],
+        "dawnEvents": []
+      },
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "rust",
+            "key": "i-bag-of-tricks",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 1,
+            "creature": {
+              "logicalName": "Rat",
+              "nativeName": "Rat",
+              "source": "core",
+              "maxHP": 1,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Animals Hills and Mountains\",\"n\":\"Rat\",\"p\":[\"**Traits**\",\"**Agile.** The rat can leave an enemy's reach without provoking Opportunity Attack.\",\"**Actions**\",\"**Bite.** Melee Attack Roll: +2, reach 5 ft. Hit: 1 Piercing damage.\"],\"s\":\"core\",\"sub\":\"Tiny beast, unaligned • CR 0\",\"tl\":[[\"AC\",\"10\"],[\"HP\",\"1 (1d4 - 1)\"],[\"Speed\",\"20 ft., climb 20 ft.\"],[\"Abilities\",\"STR 2 (-4)  DEX 11 (+0)  CON 9 (-1)  INT 2 (-4)  WIS 10 (+0)  CHA 4 (-3)\"],[\"Skills\",\"Perception +2\"],[\"Senses\",\"Darkvision 30 ft., passive Perception 12\"],[\"Environment\",\"forest, swamp, underdark, urban\"]],\"tx\":\"rat tiny beast, unaligned • cr 0 forest swamp underdark urban\"}",
+              "definition": {
+                "n": "Rat",
+                "s": "core",
+                "sub": "Tiny beast, unaligned • CR 0",
+                "tl": [
+                  [
+                    "AC",
+                    "10"
+                  ],
+                  [
+                    "HP",
+                    "1 (1d4 - 1)"
+                  ],
+                  [
+                    "Speed",
+                    "20 ft., climb 20 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 2 (-4)  DEX 11 (+0)  CON 9 (-1)  INT 2 (-4)  WIS 10 (+0)  CHA 4 (-3)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +2"
+                  ],
+                  [
+                    "Senses",
+                    "Darkvision 30 ft., passive Perception 12"
+                  ],
+                  [
+                    "Environment",
+                    "forest, swamp, underdark, urban"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Agile.** The rat can leave an enemy's reach without provoking Opportunity Attack.",
+                  "**Actions**",
+                  "**Bite.** Melee Attack Roll: +2, reach 5 ft. Hit: 1 Piercing damage."
+                ],
+                "tx": "rat tiny beast, unaligned • cr 0 forest swamp underdark urban",
+                "im": "bestiary/XMM/Animals Hills and Mountains"
+              }
+            },
+            "hp": 1,
+            "active": true,
+            "endReason": null
+          }
+        ],
+        "dawnEvents": []
+      },
+      "budget": {
+        "key": "i-bag-of-tricks",
+        "used": 1,
+        "max": 3
+      },
+      "id": "btp-1",
+      "entityId": "bte-1"
+    },
+    "current-tan": {
+      "ready": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 1,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "tan",
+            "key": "i-bag-of-tricks",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [],
+        "dawnEvents": []
+      },
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "tan",
+            "key": "i-bag-of-tricks",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 8,
+            "creature": {
+              "logicalName": "Tiger",
+              "nativeName": "Tiger",
+              "source": "core",
+              "maxHP": 30,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Tiger\",\"n\":\"Tiger\",\"p\":[\"**Actions**\",\"**Rend.** Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. A Large or smaller target gains the Prone condition.\",\"**Bonus Actions**\",\"**Nimble Escape.** The tiger can take either the Disengage or the Hide action.\"],\"s\":\"core\",\"sub\":\"Large beast, unaligned • CR 1\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"30 (4d10 + 8)\"],[\"Speed\",\"40 ft.\"],[\"Abilities\",\"STR 17 (+3)  DEX 16 (+3)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)\"],[\"Skills\",\"Perception +3, Stealth +7\"],[\"Senses\",\"Darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"forest, grassland\"]],\"tx\":\"tiger large beast, unaligned • cr 1 forest grassland\"}",
+              "definition": {
+                "n": "Tiger",
+                "s": "core",
+                "sub": "Large beast, unaligned • CR 1",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "30 (4d10 + 8)"
+                  ],
+                  [
+                    "Speed",
+                    "40 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 17 (+3)  DEX 16 (+3)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +7"
+                  ],
+                  [
+                    "Senses",
+                    "Darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "forest, grassland"
+                  ]
+                ],
+                "p": [
+                  "**Actions**",
+                  "**Rend.** Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. A Large or smaller target gains the Prone condition.",
+                  "**Bonus Actions**",
+                  "**Nimble Escape.** The tiger can take either the Disengage or the Hide action."
+                ],
+                "tx": "tiger large beast, unaligned • cr 1 forest grassland",
+                "im": "bestiary/XMM/Tiger"
+              }
+            },
+            "hp": 30,
+            "active": true,
+            "endReason": null
+          }
+        ],
+        "dawnEvents": []
+      },
+      "removed": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "tan",
+            "key": "i-bag-of-tricks",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 8,
+            "creature": {
+              "logicalName": "Tiger",
+              "nativeName": "Tiger",
+              "source": "core",
+              "maxHP": 30,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Tiger\",\"n\":\"Tiger\",\"p\":[\"**Actions**\",\"**Rend.** Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. A Large or smaller target gains the Prone condition.\",\"**Bonus Actions**\",\"**Nimble Escape.** The tiger can take either the Disengage or the Hide action.\"],\"s\":\"core\",\"sub\":\"Large beast, unaligned • CR 1\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"30 (4d10 + 8)\"],[\"Speed\",\"40 ft.\"],[\"Abilities\",\"STR 17 (+3)  DEX 16 (+3)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)\"],[\"Skills\",\"Perception +3, Stealth +7\"],[\"Senses\",\"Darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"forest, grassland\"]],\"tx\":\"tiger large beast, unaligned • cr 1 forest grassland\"}",
+              "definition": {
+                "n": "Tiger",
+                "s": "core",
+                "sub": "Large beast, unaligned • CR 1",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "30 (4d10 + 8)"
+                  ],
+                  [
+                    "Speed",
+                    "40 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 17 (+3)  DEX 16 (+3)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +7"
+                  ],
+                  [
+                    "Senses",
+                    "Darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "forest, grassland"
+                  ]
+                ],
+                "p": [
+                  "**Actions**",
+                  "**Rend.** Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. A Large or smaller target gains the Prone condition.",
+                  "**Bonus Actions**",
+                  "**Nimble Escape.** The tiger can take either the Disengage or the Hide action."
+                ],
+                "tx": "tiger large beast, unaligned • cr 1 forest grassland",
+                "im": "bestiary/XMM/Tiger"
+              }
+            },
+            "hp": 30,
+            "active": true,
+            "endReason": null
+          }
+        ],
+        "dawnEvents": []
+      },
+      "zero": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "tan",
+            "key": "i-bag-of-tricks",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 8,
+            "creature": {
+              "logicalName": "Tiger",
+              "nativeName": "Tiger",
+              "source": "core",
+              "maxHP": 30,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Tiger\",\"n\":\"Tiger\",\"p\":[\"**Actions**\",\"**Rend.** Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. A Large or smaller target gains the Prone condition.\",\"**Bonus Actions**\",\"**Nimble Escape.** The tiger can take either the Disengage or the Hide action.\"],\"s\":\"core\",\"sub\":\"Large beast, unaligned • CR 1\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"30 (4d10 + 8)\"],[\"Speed\",\"40 ft.\"],[\"Abilities\",\"STR 17 (+3)  DEX 16 (+3)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)\"],[\"Skills\",\"Perception +3, Stealth +7\"],[\"Senses\",\"Darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"forest, grassland\"]],\"tx\":\"tiger large beast, unaligned • cr 1 forest grassland\"}",
+              "definition": {
+                "n": "Tiger",
+                "s": "core",
+                "sub": "Large beast, unaligned • CR 1",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "30 (4d10 + 8)"
+                  ],
+                  [
+                    "Speed",
+                    "40 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 17 (+3)  DEX 16 (+3)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +7"
+                  ],
+                  [
+                    "Senses",
+                    "Darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "forest, grassland"
+                  ]
+                ],
+                "p": [
+                  "**Actions**",
+                  "**Rend.** Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. A Large or smaller target gains the Prone condition.",
+                  "**Bonus Actions**",
+                  "**Nimble Escape.** The tiger can take either the Disengage or the Hide action."
+                ],
+                "tx": "tiger large beast, unaligned • cr 1 forest grassland",
+                "im": "bestiary/XMM/Tiger"
+              }
+            },
+            "hp": 0,
+            "active": false,
+            "endReason": "zero-hp"
+          }
+        ],
+        "dawnEvents": []
+      },
+      "dawn": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "current",
+            "color": "tan",
+            "key": "i-bag-of-tricks",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 8,
+            "creature": {
+              "logicalName": "Tiger",
+              "nativeName": "Tiger",
+              "source": "core",
+              "maxHP": 30,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Tiger\",\"n\":\"Tiger\",\"p\":[\"**Actions**\",\"**Rend.** Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. A Large or smaller target gains the Prone condition.\",\"**Bonus Actions**\",\"**Nimble Escape.** The tiger can take either the Disengage or the Hide action.\"],\"s\":\"core\",\"sub\":\"Large beast, unaligned • CR 1\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"30 (4d10 + 8)\"],[\"Speed\",\"40 ft.\"],[\"Abilities\",\"STR 17 (+3)  DEX 16 (+3)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)\"],[\"Skills\",\"Perception +3, Stealth +7\"],[\"Senses\",\"Darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"forest, grassland\"]],\"tx\":\"tiger large beast, unaligned • cr 1 forest grassland\"}",
+              "definition": {
+                "n": "Tiger",
+                "s": "core",
+                "sub": "Large beast, unaligned • CR 1",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "30 (4d10 + 8)"
+                  ],
+                  [
+                    "Speed",
+                    "40 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 17 (+3)  DEX 16 (+3)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +7"
+                  ],
+                  [
+                    "Senses",
+                    "Darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "forest, grassland"
+                  ]
+                ],
+                "p": [
+                  "**Actions**",
+                  "**Rend.** Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage. A Large or smaller target gains the Prone condition.",
+                  "**Bonus Actions**",
+                  "**Nimble Escape.** The tiger can take either the Disengage or the Hide action."
+                ],
+                "tx": "tiger large beast, unaligned • cr 1 forest grassland",
+                "im": "bestiary/XMM/Tiger"
+              }
+            },
+            "hp": 30,
+            "active": false,
+            "endReason": "next-dawn"
+          }
+        ],
+        "dawnEvents": [
+          "u47-actual-dawn"
+        ]
+      },
+      "dawnBudgets": [
+        {
+          "key": "i-bag-of-tricks",
+          "used": 0,
+          "max": 3
+        }
+      ],
+      "budget": {
+        "key": "i-bag-of-tricks",
+        "used": 1,
+        "max": 3
+      },
+      "id": "btp-1",
+      "entityId": "bte-1"
+    },
+    "legacy-gray": {
+      "ready": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 1,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "gray",
+            "key": "i-bag-of-tricks-gray",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [],
+        "dawnEvents": []
+      },
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "gray",
+            "key": "i-bag-of-tricks-gray",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 1,
+            "creature": {
+              "logicalName": "Weasel",
+              "nativeName": "Weasel (MM)",
+              "source": "mm14",
+              "maxHP": 1,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Weasel\",\"n\":\"Weasel (MM)\",\"p\":[\"**Traits**\",\"**Keen Hearing and Smell.** Wisdom (Perception) checks for the weasel that involve hearing or smell have advantage.\",\"**Actions**\",\"**Bite.** Attack Roll: +5 to hit, reach 5 ft., one creature. Hit: 1 piercing damage.\"],\"s\":\"mm14\",\"sub\":\"Tiny beast, unaligned • CR 0\",\"tl\":[[\"AC\",\"13\"],[\"HP\",\"1 (1d4 - 1)\"],[\"Speed\",\"30 ft.\"],[\"Abilities\",\"STR 3 (-4)  DEX 16 (+3)  CON 8 (-1)  INT 2 (-4)  WIS 12 (+1)  CHA 3 (-4)\"],[\"Skills\",\"Perception +3, Stealth +5\"],[\"Senses\",\"passive Perception 13\"]],\"tx\":\"weasel tiny beast, unaligned • cr 0 \"}",
+              "definition": {
+                "n": "Weasel (MM)",
+                "s": "mm14",
+                "sub": "Tiny beast, unaligned • CR 0",
+                "tl": [
+                  [
+                    "AC",
+                    "13"
+                  ],
+                  [
+                    "HP",
+                    "1 (1d4 - 1)"
+                  ],
+                  [
+                    "Speed",
+                    "30 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 3 (-4)  DEX 16 (+3)  CON 8 (-1)  INT 2 (-4)  WIS 12 (+1)  CHA 3 (-4)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +5"
+                  ],
+                  [
+                    "Senses",
+                    "passive Perception 13"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Keen Hearing and Smell.** Wisdom (Perception) checks for the weasel that involve hearing or smell have advantage.",
+                  "**Actions**",
+                  "**Bite.** Attack Roll: +5 to hit, reach 5 ft., one creature. Hit: 1 piercing damage."
+                ],
+                "tx": "weasel tiny beast, unaligned • cr 0 ",
+                "im": "bestiary/XMM/Weasel"
+              }
+            },
+            "hp": 1,
+            "active": true,
+            "endReason": null
+          }
+        ],
+        "dawnEvents": []
+      },
+      "budget": {
+        "key": "i-bag-of-tricks-gray",
+        "used": 1,
+        "max": 3
+      },
+      "id": "btp-1",
+      "entityId": "bte-1"
+    },
+    "legacy-rust": {
+      "ready": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 1,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "rust",
+            "key": "i-bag-of-tricks-rust",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [],
+        "dawnEvents": []
+      },
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "rust",
+            "key": "i-bag-of-tricks-rust",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 1,
+            "creature": {
+              "logicalName": "Rat",
+              "nativeName": "Rat (MM)",
+              "source": "mm14",
+              "maxHP": 1,
+              "definitionFingerprint": "{\"im\":\"bestiary/MM/Rat\",\"n\":\"Rat (MM)\",\"p\":[\"**Traits**\",\"**Keen Smell.** The rat has advantage on Wisdom (Perception) checks that rely on smell.\",\"**Actions**\",\"**Bite.** Melee Attack Roll: +0, reach 5 ft. Hit: 1 Piercing damage.\"],\"s\":\"mm14\",\"sub\":\"Tiny beast, unaligned • CR 0\",\"tl\":[[\"AC\",\"10\"],[\"HP\",\"1 (1d4 - 1)\"],[\"Speed\",\"20 ft.\"],[\"Abilities\",\"STR 2 (-4)  DEX 11 (+0)  CON 9 (-1)  INT 2 (-4)  WIS 10 (+0)  CHA 4 (-3)\"],[\"Senses\",\"darkvision 30 ft., passive Perception 10\"],[\"Environment\",\"swamp, urban\"]],\"tx\":\"rat tiny beast, unaligned • cr 0 swamp urban\"}",
+              "definition": {
+                "n": "Rat (MM)",
+                "s": "mm14",
+                "sub": "Tiny beast, unaligned • CR 0",
+                "tl": [
+                  [
+                    "AC",
+                    "10"
+                  ],
+                  [
+                    "HP",
+                    "1 (1d4 - 1)"
+                  ],
+                  [
+                    "Speed",
+                    "20 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 2 (-4)  DEX 11 (+0)  CON 9 (-1)  INT 2 (-4)  WIS 10 (+0)  CHA 4 (-3)"
+                  ],
+                  [
+                    "Senses",
+                    "darkvision 30 ft., passive Perception 10"
+                  ],
+                  [
+                    "Environment",
+                    "swamp, urban"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Keen Smell.** The rat has advantage on Wisdom (Perception) checks that rely on smell.",
+                  "**Actions**",
+                  "**Bite.** Melee Attack Roll: +0, reach 5 ft. Hit: 1 Piercing damage."
+                ],
+                "tx": "rat tiny beast, unaligned • cr 0 swamp urban",
+                "im": "bestiary/MM/Rat"
+              }
+            },
+            "hp": 1,
+            "active": true,
+            "endReason": null
+          }
+        ],
+        "dawnEvents": []
+      },
+      "budget": {
+        "key": "i-bag-of-tricks-rust",
+        "used": 1,
+        "max": 3
+      },
+      "id": "btp-1",
+      "entityId": "bte-1"
+    },
+    "legacy-tan": {
+      "ready": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 1,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "tan",
+            "key": "i-bag-of-tricks-tan",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [],
+        "dawnEvents": []
+      },
+      "active": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "tan",
+            "key": "i-bag-of-tricks-tan",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 8,
+            "creature": {
+              "logicalName": "Tiger",
+              "nativeName": "Tiger (MM)",
+              "source": "mm14",
+              "maxHP": 37,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Tiger\",\"n\":\"Tiger (MM)\",\"p\":[\"**Traits**\",\"**Keen Smell.** Wisdom (Perception) checks for the tiger that involve smell have advantage.\",\"**Pounce.** Should the tiger travel 20 feet or more straight toward a creature and then land a claw hit that same turn, the target must succeed on a DC 13 Strength saving throw or fall prone. A prone target can then be bitten once by the tiger as a bonus action.\",\"**Actions**\",\"**Bite.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.\",\"**Claw.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Large beast, unaligned • CR 1\",\"tl\":[[\"AC\",\"12\"],[\"HP\",\"37 (5d10 + 10)\"],[\"Speed\",\"40 ft.\"],[\"Abilities\",\"STR 17 (+3)  DEX 15 (+2)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)\"],[\"Skills\",\"Perception +3, Stealth +6\"],[\"Senses\",\"darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"grassland, forest\"]],\"tx\":\"tiger large beast, unaligned • cr 1 grassland forest\"}",
+              "definition": {
+                "n": "Tiger (MM)",
+                "s": "mm14",
+                "sub": "Large beast, unaligned • CR 1",
+                "tl": [
+                  [
+                    "AC",
+                    "12"
+                  ],
+                  [
+                    "HP",
+                    "37 (5d10 + 10)"
+                  ],
+                  [
+                    "Speed",
+                    "40 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 17 (+3)  DEX 15 (+2)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +6"
+                  ],
+                  [
+                    "Senses",
+                    "darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "grassland, forest"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Keen Smell.** Wisdom (Perception) checks for the tiger that involve smell have advantage.",
+                  "**Pounce.** Should the tiger travel 20 feet or more straight toward a creature and then land a claw hit that same turn, the target must succeed on a DC 13 Strength saving throw or fall prone. A prone target can then be bitten once by the tiger as a bonus action.",
+                  "**Actions**",
+                  "**Bite.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.",
+                  "**Claw.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage."
+                ],
+                "tx": "tiger large beast, unaligned • cr 1 grassland forest",
+                "im": "bestiary/XMM/Tiger"
+              }
+            },
+            "hp": 37,
+            "active": true,
+            "endReason": null
+          }
+        ],
+        "dawnEvents": []
+      },
+      "removed": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "tan",
+            "key": "i-bag-of-tricks-tan",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 8,
+            "creature": {
+              "logicalName": "Tiger",
+              "nativeName": "Tiger (MM)",
+              "source": "mm14",
+              "maxHP": 37,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Tiger\",\"n\":\"Tiger (MM)\",\"p\":[\"**Traits**\",\"**Keen Smell.** Wisdom (Perception) checks for the tiger that involve smell have advantage.\",\"**Pounce.** Should the tiger travel 20 feet or more straight toward a creature and then land a claw hit that same turn, the target must succeed on a DC 13 Strength saving throw or fall prone. A prone target can then be bitten once by the tiger as a bonus action.\",\"**Actions**\",\"**Bite.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.\",\"**Claw.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Large beast, unaligned • CR 1\",\"tl\":[[\"AC\",\"12\"],[\"HP\",\"37 (5d10 + 10)\"],[\"Speed\",\"40 ft.\"],[\"Abilities\",\"STR 17 (+3)  DEX 15 (+2)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)\"],[\"Skills\",\"Perception +3, Stealth +6\"],[\"Senses\",\"darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"grassland, forest\"]],\"tx\":\"tiger large beast, unaligned • cr 1 grassland forest\"}",
+              "definition": {
+                "n": "Tiger (MM)",
+                "s": "mm14",
+                "sub": "Large beast, unaligned • CR 1",
+                "tl": [
+                  [
+                    "AC",
+                    "12"
+                  ],
+                  [
+                    "HP",
+                    "37 (5d10 + 10)"
+                  ],
+                  [
+                    "Speed",
+                    "40 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 17 (+3)  DEX 15 (+2)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +6"
+                  ],
+                  [
+                    "Senses",
+                    "darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "grassland, forest"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Keen Smell.** Wisdom (Perception) checks for the tiger that involve smell have advantage.",
+                  "**Pounce.** Should the tiger travel 20 feet or more straight toward a creature and then land a claw hit that same turn, the target must succeed on a DC 13 Strength saving throw or fall prone. A prone target can then be bitten once by the tiger as a bonus action.",
+                  "**Actions**",
+                  "**Bite.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.",
+                  "**Claw.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage."
+                ],
+                "tx": "tiger large beast, unaligned • cr 1 grassland forest",
+                "im": "bestiary/XMM/Tiger"
+              }
+            },
+            "hp": 37,
+            "active": true,
+            "endReason": null
+          }
+        ],
+        "dawnEvents": []
+      },
+      "zero": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "tan",
+            "key": "i-bag-of-tricks-tan",
+            "present": true,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 8,
+            "creature": {
+              "logicalName": "Tiger",
+              "nativeName": "Tiger (MM)",
+              "source": "mm14",
+              "maxHP": 37,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Tiger\",\"n\":\"Tiger (MM)\",\"p\":[\"**Traits**\",\"**Keen Smell.** Wisdom (Perception) checks for the tiger that involve smell have advantage.\",\"**Pounce.** Should the tiger travel 20 feet or more straight toward a creature and then land a claw hit that same turn, the target must succeed on a DC 13 Strength saving throw or fall prone. A prone target can then be bitten once by the tiger as a bonus action.\",\"**Actions**\",\"**Bite.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.\",\"**Claw.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Large beast, unaligned • CR 1\",\"tl\":[[\"AC\",\"12\"],[\"HP\",\"37 (5d10 + 10)\"],[\"Speed\",\"40 ft.\"],[\"Abilities\",\"STR 17 (+3)  DEX 15 (+2)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)\"],[\"Skills\",\"Perception +3, Stealth +6\"],[\"Senses\",\"darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"grassland, forest\"]],\"tx\":\"tiger large beast, unaligned • cr 1 grassland forest\"}",
+              "definition": {
+                "n": "Tiger (MM)",
+                "s": "mm14",
+                "sub": "Large beast, unaligned • CR 1",
+                "tl": [
+                  [
+                    "AC",
+                    "12"
+                  ],
+                  [
+                    "HP",
+                    "37 (5d10 + 10)"
+                  ],
+                  [
+                    "Speed",
+                    "40 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 17 (+3)  DEX 15 (+2)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +6"
+                  ],
+                  [
+                    "Senses",
+                    "darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "grassland, forest"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Keen Smell.** Wisdom (Perception) checks for the tiger that involve smell have advantage.",
+                  "**Pounce.** Should the tiger travel 20 feet or more straight toward a creature and then land a claw hit that same turn, the target must succeed on a DC 13 Strength saving throw or fall prone. A prone target can then be bitten once by the tiger as a bonus action.",
+                  "**Actions**",
+                  "**Bite.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.",
+                  "**Claw.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage."
+                ],
+                "tx": "tiger large beast, unaligned • cr 1 grassland forest",
+                "im": "bestiary/XMM/Tiger"
+              }
+            },
+            "hp": 0,
+            "active": false,
+            "endReason": "zero-hp"
+          }
+        ],
+        "dawnEvents": []
+      },
+      "dawn": {
+        "v": 1,
+        "nextPhysical": 2,
+        "nextEntity": 2,
+        "physical": [
+          {
+            "id": "btp-1",
+            "profile": "legacy",
+            "color": "tan",
+            "key": "i-bag-of-tricks-tan",
+            "present": false,
+            "historyKnown": true
+          }
+        ],
+        "entities": [
+          {
+            "id": "bte-1",
+            "physicalId": "btp-1",
+            "die": 8,
+            "creature": {
+              "logicalName": "Tiger",
+              "nativeName": "Tiger (MM)",
+              "source": "mm14",
+              "maxHP": 37,
+              "definitionFingerprint": "{\"im\":\"bestiary/XMM/Tiger\",\"n\":\"Tiger (MM)\",\"p\":[\"**Traits**\",\"**Keen Smell.** Wisdom (Perception) checks for the tiger that involve smell have advantage.\",\"**Pounce.** Should the tiger travel 20 feet or more straight toward a creature and then land a claw hit that same turn, the target must succeed on a DC 13 Strength saving throw or fall prone. A prone target can then be bitten once by the tiger as a bonus action.\",\"**Actions**\",\"**Bite.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.\",\"**Claw.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage.\"],\"s\":\"mm14\",\"sub\":\"Large beast, unaligned • CR 1\",\"tl\":[[\"AC\",\"12\"],[\"HP\",\"37 (5d10 + 10)\"],[\"Speed\",\"40 ft.\"],[\"Abilities\",\"STR 17 (+3)  DEX 15 (+2)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)\"],[\"Skills\",\"Perception +3, Stealth +6\"],[\"Senses\",\"darkvision 60 ft., passive Perception 13\"],[\"Environment\",\"grassland, forest\"]],\"tx\":\"tiger large beast, unaligned • cr 1 grassland forest\"}",
+              "definition": {
+                "n": "Tiger (MM)",
+                "s": "mm14",
+                "sub": "Large beast, unaligned • CR 1",
+                "tl": [
+                  [
+                    "AC",
+                    "12"
+                  ],
+                  [
+                    "HP",
+                    "37 (5d10 + 10)"
+                  ],
+                  [
+                    "Speed",
+                    "40 ft."
+                  ],
+                  [
+                    "Abilities",
+                    "STR 17 (+3)  DEX 15 (+2)  CON 14 (+2)  INT 3 (-4)  WIS 12 (+1)  CHA 8 (-1)"
+                  ],
+                  [
+                    "Skills",
+                    "Perception +3, Stealth +6"
+                  ],
+                  [
+                    "Senses",
+                    "darkvision 60 ft., passive Perception 13"
+                  ],
+                  [
+                    "Environment",
+                    "grassland, forest"
+                  ]
+                ],
+                "p": [
+                  "**Traits**",
+                  "**Keen Smell.** Wisdom (Perception) checks for the tiger that involve smell have advantage.",
+                  "**Pounce.** Should the tiger travel 20 feet or more straight toward a creature and then land a claw hit that same turn, the target must succeed on a DC 13 Strength saving throw or fall prone. A prone target can then be bitten once by the tiger as a bonus action.",
+                  "**Actions**",
+                  "**Bite.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.",
+                  "**Claw.** Attack Roll: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage."
+                ],
+                "tx": "tiger large beast, unaligned • cr 1 grassland forest",
+                "im": "bestiary/XMM/Tiger"
+              }
+            },
+            "hp": 37,
+            "active": false,
+            "endReason": "next-dawn"
+          }
+        ],
+        "dawnEvents": [
+          "u47-actual-dawn"
+        ]
+      },
+      "dawnBudgets": [
+        {
+          "key": "i-bag-of-tricks-tan",
+          "used": 0,
+          "max": 3
+        }
+      ],
+      "budget": {
+        "key": "i-bag-of-tricks-tan",
+        "used": 1,
+        "max": 3
+      },
+      "id": "btp-1",
+      "entityId": "bte-1"
+    }
+  },
+  "markers": {
+    "dmg2024-gray": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2024",
+      "itemFingerprint": "[\"Bag of Tricks\",\"Wondrous Item\",\"Uncommon\",0,\"This bag, made of gray, rust, or tan cloth, looks empty. Anyone who reaches inside, though, finds a small fuzzy object there.\\nAs a Magic action, you can pull out the fuzzy object and toss it as far as 20 feet. On landing, it transforms into a creature determined by rolling 1d8 on the table for the bag's color. The creature's stat block is in the Monster Manual. The creature disappears at the next dawn or when it drops to 0 Hit Points.\\nToward you and your allies, the creature is Friendly. Its turn comes immediately after yours on your Initiative count. As a Bonus Action, you can decide how it moves and what action it uses on its next turn, for example an attack against an enemy. If you give it no orders, it behaves in a way that suits its nature.\\nAfter three fuzzy objects have been drawn from the bag, it can't be used again until the next dawn.\\n**Gray Bag of Tricks (1d8).** Weasel on a 1, Giant Rat on a 2, Badger on a 3, Boar on a 4, Panther on a 5, Giant Badger on a 6, Dire Wolf on a 7, Giant Elk on an 8.\\n**Rust Bag of Tricks (1d8).** Rat on a 1, Owl on a 2, Mastiff on a 3, Goat on a 4, Giant Goat on a 5, Giant Boar on a 6, Lion on a 7, Brown Bear on an 8.\\n**Tan Bag of Tricks (1d8).** Jackal on a 1, Ape on a 2, Baboon on a 3, Axe Beak on a 4, Black Bear on a 5, Giant Weasel on a 6, Giant Hyena on a 7, Tiger on an 8.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    },
+    "dmg2024-rust": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2024",
+      "itemFingerprint": "[\"Bag of Tricks\",\"Wondrous Item\",\"Uncommon\",0,\"This bag, made of gray, rust, or tan cloth, looks empty. Anyone who reaches inside, though, finds a small fuzzy object there.\\nAs a Magic action, you can pull out the fuzzy object and toss it as far as 20 feet. On landing, it transforms into a creature determined by rolling 1d8 on the table for the bag's color. The creature's stat block is in the Monster Manual. The creature disappears at the next dawn or when it drops to 0 Hit Points.\\nToward you and your allies, the creature is Friendly. Its turn comes immediately after yours on your Initiative count. As a Bonus Action, you can decide how it moves and what action it uses on its next turn, for example an attack against an enemy. If you give it no orders, it behaves in a way that suits its nature.\\nAfter three fuzzy objects have been drawn from the bag, it can't be used again until the next dawn.\\n**Gray Bag of Tricks (1d8).** Weasel on a 1, Giant Rat on a 2, Badger on a 3, Boar on a 4, Panther on a 5, Giant Badger on a 6, Dire Wolf on a 7, Giant Elk on an 8.\\n**Rust Bag of Tricks (1d8).** Rat on a 1, Owl on a 2, Mastiff on a 3, Goat on a 4, Giant Goat on a 5, Giant Boar on a 6, Lion on a 7, Brown Bear on an 8.\\n**Tan Bag of Tricks (1d8).** Jackal on a 1, Ape on a 2, Baboon on a 3, Axe Beak on a 4, Black Bear on a 5, Giant Weasel on a 6, Giant Hyena on a 7, Tiger on an 8.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    },
+    "dmg2024-tan": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2024",
+      "itemFingerprint": "[\"Bag of Tricks\",\"Wondrous Item\",\"Uncommon\",0,\"This bag, made of gray, rust, or tan cloth, looks empty. Anyone who reaches inside, though, finds a small fuzzy object there.\\nAs a Magic action, you can pull out the fuzzy object and toss it as far as 20 feet. On landing, it transforms into a creature determined by rolling 1d8 on the table for the bag's color. The creature's stat block is in the Monster Manual. The creature disappears at the next dawn or when it drops to 0 Hit Points.\\nToward you and your allies, the creature is Friendly. Its turn comes immediately after yours on your Initiative count. As a Bonus Action, you can decide how it moves and what action it uses on its next turn, for example an attack against an enemy. If you give it no orders, it behaves in a way that suits its nature.\\nAfter three fuzzy objects have been drawn from the bag, it can't be used again until the next dawn.\\n**Gray Bag of Tricks (1d8).** Weasel on a 1, Giant Rat on a 2, Badger on a 3, Boar on a 4, Panther on a 5, Giant Badger on a 6, Dire Wolf on a 7, Giant Elk on an 8.\\n**Rust Bag of Tricks (1d8).** Rat on a 1, Owl on a 2, Mastiff on a 3, Goat on a 4, Giant Goat on a 5, Giant Boar on a 6, Lion on a 7, Brown Bear on an 8.\\n**Tan Bag of Tricks (1d8).** Jackal on a 1, Ape on a 2, Baboon on a 3, Axe Beak on a 4, Black Bear on a 5, Giant Weasel on a 6, Giant Hyena on a 7, Tiger on an 8.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    },
+    "dmg2024-legacy-gray": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2024-legacy",
+      "itemFingerprint": "[\"Bag of Tricks, Gray\",\"Wondrous Item\",\"Uncommon\",0,\"This ordinary bag, made from gray cloth, appears empty. Reaching inside the bag, however, reveals the presence of a small, fuzzy object.\\nYou can use an action to pull the fuzzy object from the bag and throw it up to 20 feet. When the object lands, it transforms into a creature you determine by rolling a d8 and consulting the table. The creature vanishes at the next dawn or when it is reduced to 0 hit points.\\nThe creature is friendly to you and your companions, and it acts on your turn. You can use a bonus action to command how the creature moves and what action it takes on its next turn, or to give it general orders, such as to attack your enemies. In the absence of such orders, the creature acts in a fashion appropriate to its nature.\\nOnce three fuzzy objects have been pulled from the bag, the bag can't be used again until the next dawn.\\n**Table.** (d8 / Creature) 1: Weasel. 2: Giant rat. 3: Badger. 4: Boar. 5: Panther. 6: Giant badger. 7: Dire wolf. 8: Giant elk.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    },
+    "dmg2024-legacy-rust": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2024-legacy",
+      "itemFingerprint": "[\"Bag of Tricks, Rust\",\"Wondrous Item\",\"Uncommon\",0,\"This ordinary bag, made from rust cloth, appears empty. Reaching inside the bag, however, reveals the presence of a small, fuzzy object.\\nYou can use an action to pull the fuzzy object from the bag and throw it up to 20 feet. When the object lands, it transforms into a creature you determine by rolling a d8 and consulting the table. The creature vanishes at the next dawn or when it is reduced to 0 hit points.\\nThe creature is friendly to you and your companions, and it acts on your turn. You can use a bonus action to command how the creature moves and what action it takes on its next turn, or to give it general orders, such as to attack your enemies. In the absence of such orders, the creature acts in a fashion appropriate to its nature.\\nOnce three fuzzy objects have been pulled from the bag, the bag can't be used again until the next dawn.\\n**Table.** (d8 / Creature) 1: Rat. 2: Owl. 3: Mastiff. 4: Goat. 5: Giant goat. 6: Giant boar. 7: Lion. 8: Brown bear.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    },
+    "dmg2024-legacy-tan": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2024-legacy",
+      "itemFingerprint": "[\"Bag of Tricks, Tan\",\"Wondrous Item\",\"Uncommon\",0,\"This ordinary bag, made from tan cloth, appears empty. Reaching inside the bag, however, reveals the presence of a small, fuzzy object.\\nYou can use an action to pull the fuzzy object from the bag and throw it up to 20 feet. When the object lands, it transforms into a creature you determine by rolling a d8 and consulting the table. The creature vanishes at the next dawn or when it is reduced to 0 hit points.\\nThe creature is friendly to you and your companions, and it acts on your turn. You can use a bonus action to command how the creature moves and what action it takes on its next turn, or to give it general orders, such as to attack your enemies. In the absence of such orders, the creature acts in a fashion appropriate to its nature.\\nOnce three fuzzy objects have been pulled from the bag, the bag can't be used again until the next dawn.\\n**Table.** (d8 / Creature) 1: Jackal. 2: Ape. 3: Baboon. 4: Axe beak. 5: Black bear. 6: Giant weasel. 7: Giant hyena. 8: Tiger.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    },
+    "dmg2014-gray": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2014",
+      "itemFingerprint": "[\"Bag of Tricks, Gray\",\"Wondrous Item\",\"Uncommon\",0,\"This ordinary bag, made from gray cloth, appears empty. Reaching inside the bag, however, reveals the presence of a small, fuzzy object.\\nYou can use an action to pull the fuzzy object from the bag and throw it up to 20 feet. When the object lands, it transforms into a creature you determine by rolling a d8 and consulting the table. The creature vanishes at the next dawn or when it is reduced to 0 hit points.\\nThe creature is friendly to you and your companions, and it acts on your turn. You can use a bonus action to command how the creature moves and what action it takes on its next turn, or to give it general orders, such as to attack your enemies. In the absence of such orders, the creature acts in a fashion appropriate to its nature.\\nOnce three fuzzy objects have been pulled from the bag, the bag can't be used again until the next dawn.\\n**Table.** (d8 / Creature) 1: Weasel. 2: Giant rat. 3: Badger. 4: Boar. 5: Panther. 6: Giant badger. 7: Dire wolf. 8: Giant elk.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    },
+    "dmg2014-rust": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2014",
+      "itemFingerprint": "[\"Bag of Tricks, Rust\",\"Wondrous Item\",\"Uncommon\",0,\"This ordinary bag, made from rust cloth, appears empty. Reaching inside the bag, however, reveals the presence of a small, fuzzy object.\\nYou can use an action to pull the fuzzy object from the bag and throw it up to 20 feet. When the object lands, it transforms into a creature you determine by rolling a d8 and consulting the table. The creature vanishes at the next dawn or when it is reduced to 0 hit points.\\nThe creature is friendly to you and your companions, and it acts on your turn. You can use a bonus action to command how the creature moves and what action it takes on its next turn, or to give it general orders, such as to attack your enemies. In the absence of such orders, the creature acts in a fashion appropriate to its nature.\\nOnce three fuzzy objects have been pulled from the bag, the bag can't be used again until the next dawn.\\n**Table.** (d8 / Creature) 1: Rat. 2: Owl. 3: Mastiff. 4: Goat. 5: Giant goat. 6: Giant boar. 7: Lion. 8: Brown bear.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    },
+    "dmg2014-tan": {
+      "v": 1,
+      "id": "btp-1",
+      "nativeProfile": "dmg2014",
+      "itemFingerprint": "[\"Bag of Tricks, Tan\",\"Wondrous Item\",\"Uncommon\",0,\"This ordinary bag, made from tan cloth, appears empty. Reaching inside the bag, however, reveals the presence of a small, fuzzy object.\\nYou can use an action to pull the fuzzy object from the bag and throw it up to 20 feet. When the object lands, it transforms into a creature you determine by rolling a d8 and consulting the table. The creature vanishes at the next dawn or when it is reduced to 0 hit points.\\nThe creature is friendly to you and your companions, and it acts on your turn. You can use a bonus action to command how the creature moves and what action it takes on its next turn, or to give it general orders, such as to attack your enemies. In the absence of such orders, the creature acts in a fashion appropriate to its nature.\\nOnce three fuzzy objects have been pulled from the bag, the bag can't be used again until the next dawn.\\n**Table.** (d8 / Creature) 1: Jackal. 2: Ape. 3: Baboon. 4: Axe beak. 5: Black bear. 6: Giant weasel. 7: Giant hyena. 8: Tiger.\",{\"ch\":[3,\"all\",\"dawn\"]}]"
+    }
+  }
+}
