@@ -1,5 +1,5 @@
 {
- "why": "Martyr 5 (VSS24) Anointed Armor: Scale Mail 14 + Wisdom 3 in place of Dexterity + Shield 2 = 19 (before the fix: Dex capped at +2 gave 18).",
+ "why": "Martyr 5 (VSS24) Anointed Armor: Wisdom replaces Dexterity and keeps the Medium armor limit of +2 (only the modifier changes). Scale Mail 14 + Wisdom 3 (limited to +2) + Shield 2 = 18",
  "build": {
   "name": "FxA",
   "species": "Human",
@@ -62,7 +62,7 @@
   ]
  },
  "expect": {
-  "ac": 19
+  "ac": 18
  },
  "expectC": [
   {

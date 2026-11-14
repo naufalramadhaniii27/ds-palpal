@@ -128,10 +128,8 @@ export function nativeQualifiedSkillCheckBonus(index,purpose){
  const cache=lateGet('CU0'),key='n:sk:'+row.n+'|o',had=cache&&Object.prototype.hasOwnProperty.call(cache,key),previous=cache?.[key];
  try{return nativeSkillCalculation(row,k=>part(ABN[k]+' modifier',D.mod[k],ABN[k]+' score '+D.score[k]),D.pb,D.exhN,()=>part('Exhaustion level '+D.exh,-2*D.exhN,'Every D20 Test is 2 lower for each Exhaustion level'),[part('Gloves of Swimming and Climbing',5,'Strength (Athletics) to climb or swim')]).total}finally{if(cache){if(had)cache[key]=previous;else delete cache[key]}}
 }
-function deriveArmorEffects(acParts){
-  if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
-  if(S.shift&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: Beasthide"; }); })) acParts.push(part("Shifting (Beasthide)", 1, "While shifted"));
-}
+function deriveArmorEffects(acParts){acBuffParts(acParts)}
+
 function deriveArmorClass(){
   const dexPart=null, dm=D.mod.DEX, mode=C.ac.dex||"none";
   const acParts=[part(C.ac.baseSrc||"Base AC", num(C.ac.base,10))]; acParts[0].raw=true;
@@ -145,6 +143,11 @@ function deriveArmorClass(){
   D.ac=acParts.reduce((a,p) =>{return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
   B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
 
+}
+/* AC from buffs the sheet tracks: Shield of Faith while concentrating on it, Beasthide while shifted */
+function acBuffParts(acParts){
+  if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
+  if(S.shift&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: Beasthide"; }); })) acParts.push(part("Shifting (Beasthide)", 1, "While shifted"));
 }
 function derivePassivesAcInit(abPart, exhN, exP, skillByName, xr, exh){
   [["Perception","per"],["Insight","ins"],["Investigation","inv"]].forEach((x) =>{

@@ -135,7 +135,22 @@ function temporaryCastAllowed(view,index,spell){return !view||temporaryCastCurre
 const rodEnergyCasts=new WeakMap();
 function rodEnergyFailure(reason){return {ok:false,reason}}
 function rodEnergyCurrent(context,index){const view=rodEnergyCasts.get(context);if(!view)return false;try{return !view.done&&view.index===index&&view.owner()&&(!view.isCurrent||view.isCurrent())&&pactRodCastCurrent(view.pactRod,index)&&env.__bldRodAbsorptionCastCurrent?.(view.payment)===true}catch(error){return false}}
-function nativeCastContextCurrent(context,index){return rodEnergyCasts.has(context)?rodEnergyCurrent(context,index):pactRodCastCurrent(context,index)}
+/* Narrow ordinary healing continuation. Neither token nor completion is a payment permission. */
+const healingCasts=new WeakMap();
+function healingCastCurrent(context,index){const view=healingCasts.get(context);try{return !!(view&&!view.done&&view.index===index&&view.frame()&&(!view.isCurrent||view.isCurrent())&&pactRodCastCurrent(view.source,index))}catch(error){return false}}
+function nativePactCastContext(context){const energy=rodEnergyCasts.get(context),healing=healingCasts.get(context);return energy?energy.pactRod:healing?healing.source:context}
+export function prepareHealingSpellCast(request){
+ const index=request?.spellIndex,spell=C.spells?.[index];if(!spell||iounCharacterMathStatus(C,S).reviewRequired)return {ok:false};
+ const option=spCastOpts(spell).find(q=>qOk(q)&&ckOf(q)===request.key&&q.lv===request.level);if(!option)return {ok:false};
+ const permission=preparePactRodCast(index),scOf=lateGet('scOf'),calculate=lateGet('spCalc');if(!permission.ok||typeof scOf!=='function'||typeof calculate!=='function')return {ok:false};
+ const calculated=calculate(spell,request.level,D.level,scOf(spell).mod),formula=calculated?.heal;if(typeof formula!=='string'||! /\d+d\d+/.test(formula)||/hour|minute/i.test(spell.dur||'')&&!/Instant/i.test(spell.dur||''))return {ok:false};
+ const context={},view={index,key:request.key,level:request.level,character:C,state:S,source:permission.context,frame:captureNativeActorFrame(),owner:captureNativeActorIdentity(),isCurrent:typeof request.isCurrent==='function'?request.isCurrent:null,done:false,complete:null};healingCasts.set(context,view);return healingCastCurrent(context,index)?{ok:true,context,formula}:{ok:false};
+}
+export function healingSpellCastCurrent(context){const view=healingCasts.get(context);return !!view&&healingCastCurrent(context,view.index)}
+export function requestHealingSpellCast(context,complete){const view=healingCasts.get(context);if(!view||!healingCastCurrent(context,view.index)||typeof complete!=='function')return {ok:false};view.complete=complete;castDo(view.index,view.key,view.level,false,undefined,undefined,context);return {ok:true,pending:!view.done}}
+function finishHealingSpellCast(context,index){const view=healingCasts.get(context);if(!view||view.done||view.index!==index||view.character!==C||view.state!==S||!view.owner()||!view.complete)return '';if(view.isCurrent&&!view.isCurrent())return '';view.done=true;return ' '+String(view.complete()||'')}
+
+function nativeCastContextCurrent(context,index){if(healingCasts.has(context))return healingCastCurrent(context,index);return rodEnergyCasts.has(context)?rodEnergyCurrent(context,index):pactRodCastCurrent(context,index)}
 function rodEnergyReply(view,result){view.result=result;view.done=true;if(view.owner()&&typeof view.onCommitted==='function')view.onCommitted(result);return result}
 function rodEnergySourceAllowed(index){const spell=C.spells?.[index];return !!spell&&spell.l>=1&&!['itc','fixedSpellSource','tattooSource','gemSpellcasting','storedSpellcasting','storedSpellSlotLevel','temporaryCantrip'].some(key=>Object.prototype.hasOwnProperty.call(spell,key))&&!INCAP.some(key=>S.cond?.[key])}
 export function requestRodAbsorptionCast(options){
@@ -153,7 +168,7 @@ function commitRodEnergyCast(context,index,spell){
  rodEnergyReply(view,result||rodEnergyFailure('rod-casting-refused'));if(!result?.ok||!view.owner())return result;try{renderAll()}catch(error){}syncLU();renderSpells();renderConds();refreshEntry();toastU(result.message||'Cast '+spell.n+' using the rod’s stored energy.');try{cmbRe()}catch(error){}return result;
 }
 function castSourcesCurrent(temporal,index,spell,pactRod){return temporaryCastAllowed(temporal,index,spell)&&nativeCastContextCurrent(pactRod,index)}
-export function castDo(i,k,lv,ok,repair,temporal,pactRod){const energy=rodEnergyCasts.get(pactRod);if(energy&&(!rodEnergyCurrent(pactRod,i)||k||lv!==energy.level))return rodEnergyReply(energy,rodEnergyFailure('stale-rod-cast'));if(iounCharacterMathStatus(C,S).reviewRequired){toast('Review the saved Ioun Stone bonuses before casting. Open the Ioun Stone review panel or Apply this character’s matching Build.');return false}const spell=(C.spells||[])[i];if(!spell)return;if(["fixedSpellSource","tattooSource","gemSpellcasting","storedSpellcasting","storedSpellSlotLevel"].some(key=>Object.prototype.hasOwnProperty.call(spell,key))){toast("Use this source’s own controls to cast or resolve its original spell.");return}if(temporal||Object.prototype.hasOwnProperty.call(spell,"temporaryCantrip")){temporal=temporal||temporaryCastContext(i,spell);if(!temporal||!temporaryCastCurrent(temporal,i,spell)){toast("This temporary cantrip changed or expired. Open its current spell card.");return}}const permission=preparePactRodCast(i,energy?energy.pactRod:pactRod);if(!permission.ok){toast(permission.guidance);return false}castCurrentSpell(i,k,lv,ok,repair,temporal,energy?pactRod:permission.context)}
+export function castDo(i,k,lv,ok,repair,temporal,pactRod){const energy=rodEnergyCasts.get(pactRod);if(energy&&(!rodEnergyCurrent(pactRod,i)||k||lv!==energy.level))return rodEnergyReply(energy,rodEnergyFailure('stale-rod-cast'));if(iounCharacterMathStatus(C,S).reviewRequired){toast('Review the saved Ioun Stone bonuses before casting. Open the Ioun Stone review panel or Apply this character’s matching Build.');return false}const spell=(C.spells||[])[i];if(!spell)return;if(["fixedSpellSource","tattooSource","gemSpellcasting","storedSpellcasting","storedSpellSlotLevel"].some(key=>Object.prototype.hasOwnProperty.call(spell,key))){toast("Use this source’s own controls to cast or resolve its original spell.");return}if(temporal||Object.prototype.hasOwnProperty.call(spell,"temporaryCantrip")){temporal=temporal||temporaryCastContext(i,spell);if(!temporal||!temporaryCastCurrent(temporal,i,spell)){toast("This temporary cantrip changed or expired. Open its current spell card.");return}}const permission=preparePactRodCast(i,nativePactCastContext(pactRod));if(!permission.ok){toast(permission.guidance);return false}castCurrentSpell(i,k,lv,ok,repair,temporal,energy||healingCasts.has(pactRod)?pactRod:permission.context)}
 function castPaymentMessage(x,k,lv,s,nd,msg){
   if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
@@ -174,9 +189,9 @@ function castCurrentSpell(i,k,lv,ok,repair,temporal,pactRod){if(!nativeCastConte
   if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true,repair,temporal,pactRod); }); return; }/* v22 i4 */
   if(rodEnergyCasts.has(pactRod))return commitRodEnergyCast(pactRod,i,x);
   const selected=nativeSpellPayment(k,nd,x);if(!selected.ok)return;s=selected.slot;
-  if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark("Cast "+x.n);if(!pactRodCastCurrent(pactRod,i))return; let msg="Cast "+x.n;
+  if(!castSourcesCurrent(temporal,i,x,pactRod))return;undoMark("Cast "+x.n);if(!nativeCastContextCurrent(pactRod,i))return; let msg="Cast "+x.n;
   msg=castPaymentMessage(x,k,lv,s,nd,msg);msg=castMartyrPayment(x,k,lv,s,nd,msg);msg=castMagicWeapon(x,k,lv,s,nd,msg);
-  msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
+  msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);msg+=finishHealingSpellCast(pactRod,i);
   save(); if(x.n==="Magic Weapon"||x.conc||k==="r-spell-uses"){ try{ renderAll(); }catch(er){} } syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} spRepairCommitted(repair); }
 /* the CAST or USE badge in the Spells list: one way to cast it, cast now. Several (slot levels, Pact, free use): open the spell to choose */
 export function quickCast(i){ const x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; }

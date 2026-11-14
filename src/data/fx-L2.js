@@ -111,7 +111,7 @@
  add("Watchful Helm",{n:"Watchful Helm",advOn:["Wisdom (Perception) checks that rely on sight"]});
  add("Blackrazor",{n:"Blackrazor",sense:[["Blindsight",30,""]]});
  add("Axe of the Dwarvish Lords",{n:"Axe of the Dwarvish Lords",tools:["Smith's Tools","Brewer's Supplies","Mason's Tools"]});
- add("Belt of Dwarvenkind",{n:"Belt of Dwarvenkind",langs:["Dwarvish"]});
+ add("Belt of Dwarvenkind",{n:"Belt of Dwarvenkind",langs:["Dwarvish"],res:["Poison"],advOn:["saving throws to avoid or end the Poisoned condition"],darkNone:60});/* non-dwarf benefits; a dwarf already has them, so they change nothing there */
  add("Accounting and Valuation of All Things",{n:"Accounting and Valuation of All Things",spAtk:3,spDc:3});
  add("Arcane Resonator",{n:"Arcane Resonator",attune:4});
  add("Athreos's Devotee",{n:"Athreos's Devotee",lu:{n:"Gentle Repose (no Material components)",max:"mod:WIS",reset:"long"}});

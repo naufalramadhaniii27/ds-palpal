@@ -162,13 +162,14 @@ function spellHealingBlock(calc,key){
  let html=calc.heal?'<p class="spfl">'+dtIcon("Healing")+'<b>'+esc(calc.heal)+'</b> Hit Points regained</p>':'';
  if(calc.supremeHealing)html+='<p class="spfl muted">Supreme Healing: '+esc(calc.supremeHealing.amount)+' Hit Points'+(calc.supremeHealing.requiresCreature?' when this spell restores a creature’s Hit Points':'')+'; dice maximized, fixed bonuses unchanged.</p><button type="button" class="btn press" data-supreme-spell-open="'+esc(key)+'" data-supreme-level="'+calc.lv+'">Record maximized healing</button>';return html;
 }
+function spHealPanel(c,x,lv){const m=env.__martyr;return c.heal&&m&&m.healH?m.healH(c.heal,x.n,x.dur,lv,C.spells.indexOf(x)):""}
 function spFxBlock(x,key){ if(typedBodySource(x))return "";const sc=scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod); if(!c||(!c.parts.length&&!c.heal&&!c.n)) return "";
   let h='<div class="info-h">'+(c.parts.length?"Damage":"Effect")+'</div><div class="spfx">';
   if(c.up&&rg[1]>rg[0]) h+='<div class="splv"><button type="button" class="btn press" data-splv="-1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Lower spell level"'+(c.lv<=rg[0]?' disabled':'')+'>−</button><span>Lvl <b>'+c.lv+'</b></span><button type="button" class="btn press" data-splv="1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Higher spell level"'+(c.lv>=rg[1]?' disabled':'')+'>+</button></div>';
   else if(x.l) h+='<p class="spfl splvs">Slot level <b>'+c.lv+'</b>'+(spPact(x)?' (Pact Magic)':'')+'</p>';
   if(c.n) h+='<p class="spfl"><b>'+c.n+' '+esc(c.unit)+(c.n>1?'s':'')+'</b>'+(x.l?'':' at character level '+D.level)+', each:</p>';
   c.parts.forEach((p) =>{ h+='<p class="spfl">'+dtIcon(p.t)+'<b>'+esc(p.d)+'</b> '+esc(dTxt(p.t))+' damage'+(p.lab?' <span class="muted">('+esc(p.lab)+')</span>':'')+'</p>'; });
-  h+=spellHealingBlock(c,key);
+  h+=spellHealingBlock(c,key)+spHealPanel(c,x,lv);
   if(c.bon.length) h+='<p class="spfl muted">Includes '+c.bon.map((b) =>{ return sg(b.v)+" from "+esc(b.s); }).join(", ")+'.</p>';
   if(!x.l&&spFx(x).cs) h+='<p class="spfl muted">Cantrip dice at character level '+D.level+'.</p>';
   return h+'</div>'; }
