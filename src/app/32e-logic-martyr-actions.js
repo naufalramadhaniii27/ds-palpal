@@ -64,7 +64,7 @@ function box(title,stats,fields,btns,grid){ return '<div class="mact"><div class
 function b(a,v,t,s,off,pri){ return '<button type="button" class="btn press'+(pri?' pri':'')+(off?' off':'')+'" data-mact="'+a+'" data-mv="'+(v||"")+'"'+(off?' disabled':'')+'><span>'+t+'</span>'+(s?'<small>'+s+'</small>':'')+'</button>'; }
 /* buttons under a feature card */
 export function martyrActH(f){ const n=f&&f.n, hl=left(hdKey()), hr=rk(hdKey()), hm=hr?hr.max:0, hd=hdDie(), cm=num(D.mod.CON,0), cs=(cm>=0?"+":"\u2212")+Math.abs(cm), dbl=hdHeal(5)>Math.max(1,5+cm), bal=hasFeat("Balm");
-  const per="1d"+hd+" "+cs+(dbl?" \u00d7 2":""), hdS=stat("Hit Point Dice",hl+" / "+hm,"shared with Short Rest");
+  const per=dbl?"(1d"+hd+" "+cs+") \u00d7 2":"1d"+hd+" "+cs, hdS=stat("Hit Point Dice",hl+" / "+hm,"shared with Short Rest");
   if(n==="Miraculous Healing"&&martyrLv()){ const mx=Math.floor(martyrLv()/2); let bt=""; for(let i=1;i<=mx;i++) bt+=b("mh",i,String(i),i===1?"die":"dice",i>hl,i===Math.min(mx,hl));
     return box("Spend Hit Point Dice",hdS+stat("Each die heals",per,B["heal-hd"]?B["heal-hd"].total:""),rin("mh","Hit Point Dice (d"+hd+")","7 3 12")+(bal?rin("balm","Balm (d8)","5 2 8"):""),bt,mx); }
   if(n==="Bloodlust") return box("Sanguine Feast",stat("Uses left",String(left("x-sanguine-feast")))+hdS,rin("feast","Hit Point Die (d"+hd+")","9"),b("feast","","Heal with 1 Hit Point Die",per,left("x-sanguine-feast")<1||hl<1,true));
