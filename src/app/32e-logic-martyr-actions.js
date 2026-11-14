@@ -37,7 +37,11 @@ function mirac(n,free){ const max=Math.floor(martyrLv()/2), hl=left(hdKey()); n=
   let m=(free?"":"Miraculous Healing: ")+"spent "+n+" Hit "+(n>1?"Dice":"Die")+" (rolled "+h.r.join(", ")+"), healed "+got+(got<h.t?" of "+h.t:"")+".";
   if(hasFeat("Balm")){ let b=0; const br=[]; for(let i=0;i<n;i++){ const v=roll(8); br.push(v); b+=v; } m+=" Balm: one creature within 60 ft regains "+b+" ("+br.join(", ")+") and can end Blinded, Deafened or Poisoned."; }
   return m; }
+/* healing spells (Cure Wounds, Prayer of Healing...): roll the formula, heal yourself or show the number for an ally */
+function healRoll(f){ const m=/(\d+)d(\d+)\s*([+-]\s*\d+)?/.exec(f||""); if(!m) return {t:num(f,0),r:[]}; const r=[]; let t=0; for(let i=0;i<+m[1];i++){ const v=roll(+m[2]); r.push(v); t+=v; } t+=m[3]?+m[3].replace(/\s/g,""):0; return {t:Math.max(0,t),r:r}; }
 const ACT={
+  sheal:function(v){ const p=String(v||"").split("|"), h=healRoll(p[0]); undoMark(p[1]||"Healing"); const got=addHp(h.t); done((p[1]||"Healing")+": rolled "+h.r.join(", ")+", you regain "+got+(got<h.t?" of "+h.t:"")+"."); },
+  shealo:function(v){ const p=String(v||"").split("|"), h=healRoll(p[0]); toastU((p[1]||"Healing")+": rolled "+h.r.join(", ")+". The creature regains "+h.t+" Hit Points."); },
   mh:function(n){ undoMark("Miraculous Healing"); const m=mirac(+n||1); if(m) done(m); },
   feast:function(){ if(left("x-sanguine-feast")<1){ toastU("No Sanguine Feast uses left."); return; } if(left(hdKey())<1){ toastU("No Hit Point Dice left."); return; }
     undoMark("Sanguine Feast"); const h=healRolls(1); spend(hdKey(),1); spend("x-sanguine-feast",1); const got=addHp(h.t); done("Sanguine Feast: rolled "+h.r[0]+", healed "+got+"."); },
@@ -51,8 +55,8 @@ const ACT={
     const m=mirac(Math.floor(martyrLv()/2),true); done("Undying: you drop to 1 Hit Point instead. "+(m||"No Hit Point Dice left to heal.")); },
   respite:function(){ if(left("x-divine-respite")<1){ toastU("Divine Respite is used. A Long Rest restores it."); return; } const L=martyrLv(), n=L>=17?10:L>=13?6:3, k=hdKey(), u=num(S.used[k],0), g=Math.min(n,u);
     undoMark("Divine Respite"); S.used[k]=u-g; spend("x-divine-respite",1); done("Divine Respite: regained "+g+" Hit Point "+(g===1?"Die":"Dice")+"."); },
-  reprisal:function(){ const L=S.lastDmg; if(!L||!L.a){ toastU("Take the damage on the sheet first, then use Reprisal."); return; } const half=Math.floor(L.a/2), lv=martyrLv(), dn=lv>=17?4:lv>=11?3:lv>=5?2:1; let r=0; for(let i=0;i<dn;i++) r+=roll(6);
-    undoMark("Reprisal"); const back=Math.min(half,num(L.hp,0)); S.hp=Math.min(D.hpmax,num(S.hp,0)+back); if(half>back) S.tmp=num(S.tmp,0)+(half-back); S.lastDmg=null;
+  reprisal:function(){ const L=S.lastDmg; if(!L||!L.a){ toastU("Take the damage on the sheet first, then use Reprisal."); return; } const half=Math.min(Math.floor(L.a/2),num(L.hp,0)+num(L.tmp,0)), lv=martyrLv(), dn=lv>=17?4:lv>=11?3:lv>=5?2:1; let r=0; for(let i=0;i<dn;i++) r+=roll(6);
+    undoMark("Reprisal"); const back=Math.min(half,num(L.hp,0)); S.hp=Math.min(D.hpmax,num(S.hp,0)+back); if(half>back) S.tmp=num(S.tmp,0)+Math.min(half-back,num(L.tmp,0));/* only what this hit took comes back */ S.lastDmg=null;
     done("Reprisal: the "+L.a+" damage is halved, you get "+half+" back. The attacker takes "+r+" Necrotic or Radiant ("+dn+"d6)."); }
 };
 /* buttons under a feature card */
@@ -82,9 +86,12 @@ function need(a,v){ const n=+v||1, lv=martyrLv(), mx=Math.floor(lv/2), hl=left(h
   if(a==="feast") return [{k:"feast",n:1,die:hd,lab:"Hit Point Die"}];
   if(a==="shift") return [{k:"shift",n:chosen("Beasthide")?1:0,die:6,lab:"Beasthide"}];
   if(a==="reprisal") return [{k:"rep",n:lv>=17?4:lv>=11?3:lv>=5?2:1,die:6,lab:"Reprisal"}];
+  if(a==="sheal"||a==="shealo"){ const m=/(\d+)d(\d+)/.exec(String(v||"").split("|")[0]); return m?[{k:"sh",n:+m[1],die:+m[2],lab:"Healing"}]:[]; }
   return []; }
 function run(a,v){ const f=ACT[a]; if(!f) return; gather(need(a,v),() =>{ f(v); QUEUE={}; document.querySelectorAll("[data-mrin]").forEach((i) =>{ i.value=""; }); try{ refreshEntry(); }catch(er){} }); }
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-mact]"); if(!t||t.disabled) return; e.preventDefault(); e.stopPropagation(); run(t.getAttribute("data-mact"),t.getAttribute("data-mv")); },true);
 /* at 0 Hit Points with Undying left: offer it at once */
 export function martyrZero(){ if(num(S.hp,0)!==0||left("x-undying")<1||!martyrLv()) return; ask("You dropped to 0 Hit Points. Use Undying: drop to 1 Hit Point and heal with Miraculous Healing?","Use Undying",() =>{ run("undying",""); }); }
-env.__martyr={act:function(a,v){ run(a,v); }, html:martyrActH};/* test hook */
+export function healH(f,n,dur){ if(!/\d+d\d+/.test(f||"")||/hour|minute/i.test(dur||"")&&!/Instant/i.test(dur||"")) return ""; const v=esc(f+"|"+n);
+  return box("Roll the healing","",rin("sh","Healing dice ("+(/(\d+d\d+)/.exec(f)||["",""])[1]+")","e.g. 5 7"),'<button type="button" class="btn press pri" data-mact="sheal" data-mv="'+v+'"><span>Heal me</span><small>'+esc(f)+'</small></button><button type="button" class="btn press" data-mact="shealo" data-mv="'+v+'"><span>Heal an ally</span><small>shows the number</small></button>',2); }
+env.__martyr={act:function(a,v){ run(a,v); }, html:martyrActH, healH:healH};/* test hook */
