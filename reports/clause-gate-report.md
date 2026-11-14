@@ -8,19 +8,19 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9058 |
-| Info (tag terdokumentasi) | 27264 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1490, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 974, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 229, STD:ASI 225, NUMONLY:ZERO 187, ROLL:LAST_CHARGE 142, OBJECT:STATS 110, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9056 |
+| Info (tag terdokumentasi) | 27268 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1490, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 978, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 229, STD:ASI 225, NUMONLY:ZERO 187, ROLL:LAST_CHARGE 142, OBJECT:STATS 110, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5790 |
+| Uncovered | 5788 |
 | Uncovered dengan angka | 3385 |
-| Uncovered dengan kelas kata kunci mekanik | 5393 |
+| Uncovered dengan kelas kata kunci mekanik | 5391 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 397 |
 | Angka yang tidak dijelaskan record mana pun | 3178 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4929 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4927 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 263 |
-| Waktu | muat data 1 s, analisis 14 s |
+| Waktu | muat data 13 s, analisis 15 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 186 ditangkap (62.0%). Hapus semua atom kelas yang dibutuhkan: 186 ditangkap (62.0%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 182 ditangkap (60.9%). Hapus semua atom kelas yang dibutuhkan: 178 ditangkap (59.5%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 293 ditangkap (97.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -39,12 +39,12 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3357 |
-| GX | 1946 |
+| GX | 1940 |
 | wxs | 849 |
 | LU_X | 652 |
 | AUTO | 467 |
 | species | 440 |
-| CODE | 390 |
+| CODE | 394 |
 | ITEM_SPELLS | 370 |
 | feat | 327 |
 | SPELL_FX | 241 |
@@ -68,7 +68,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SPELL | 3208 | 868 | 27.1% |
 | DMG | 4548 | 743 | 16.3% |
 | SPEED | 1321 | 477 | 36.1% |
-| ADV | 1750 | 457 | 26.1% |
+| ADV | 1750 | 455 | 26.0% |
 | PROF | 1048 | 443 | 42.3% |
 | CHOICE | 1598 | 401 | 25.1% |
 | RES | 1294 | 388 | 30.0% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 4898 | 11662 | 0 | 2947 |
+| item | 19507 | 4896 | 11666 | 0 | 2945 |
 | species | 1320 | 725 | 365 | 0 | 230 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,13 +103,13 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2672 | 6332 | 1579 | 14.9% |
+| dmg | 10583 | 2671 | 6334 | 1578 | 14.9% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
 | tsgs | 1483 | 379 | 857 | 247 | 16.7% |
-| tkdm | 922 | 236 | 492 | 194 | 21.0% |
 | tsdm | 1074 | 281 | 600 | 193 | 18.0% |
+| tkdm | 922 | 235 | 494 | 193 | 20.9% |
 | tghp | 1117 | 374 | 560 | 183 | 16.4% |
 | tdm14 | 645 | 127 | 378 | 140 | 21.7% |
 | tua24 | 637 | 159 | 341 | 137 | 21.5% |
@@ -194,7 +194,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | RESOURCE | 692 | 556 |
 | SPELL | 620 | 90 |
 | DMG | 547 | 502 |
-| ADV | 450 | 152 |
+| ADV | 448 | 152 |
 | PROF | 405 | 136 |
 | SPEED | 399 | 312 |
 | NUM | 354 | 354 |
@@ -347,7 +347,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Investigator/Inquisitor|Divine Strike#1` Once on each of your turns, when you take the Attack action and hit a creature with a weapon, it takes an extra 1d8 Necrotic or Radiant damage (your choice). | no record for DMG; number 1d8 unexplained
 - `sub|Paladin/Oath of Revelry|Aura of Fraternity#1` While at least one ally is adjacent to you, you and each ally within 5 ft deal extra 1d4 damage on melee attacks. | no record for DMG; number 1d4,5 unexplained
 
-### ADV (450 uncovered)
+### ADV (448 uncovered)
 
 - `class|Rogue|Sneak Attack#2` Once per turn, if you have Advantage on an attack roll that uses a Finesse or Ranged weapon and the attack hits a creature, you can deal an extra 1d6 damage to that creature. | no record for ADV
 - `feat|Convincing Inquisitor|Convincing Inquisitor#6` When you succeed on a Wisdom (Insight) check made with the Search action to detect lies or evasion, you have Advantage on Initiative rolls for combat against that creature for 1 hour. | no record for ADV,INIT; number 1 unexplained
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Warlock/Primordial Patron|Elemental Spells#14` Fire: 3 Burning Hands, Heat Metal. -> covered
-- class `sub|Warlock/Primordial Patron|Elemental Spells#14` Fire: 3 Burning Hands, Heat Metal. -> covered
-- record `item|thhw|Red-Feather Bow#6` You see from the spot where it lands as if you stood there for 1 minute. -> info:NUMONLY:GEOMETRY
-- class `item|thhw|Red-Feather Bow#6` You see from the spot where it lands as if you stood there for 1 minute. -> info:NUMONLY:GEOMETRY
-- record `species|Dhakaani Ghaal'dar (Hobgoblin)|Strength in Unity#2` After you use this, finish a Short or Long Rest to do so again. -> info:REST:NONUM
-- class `species|Dhakaani Ghaal'dar (Hobgoblin)|Strength in Unity#2` After you use this, finish a Short or Long Rest to do so again. -> info:REST:NONUM
-- record `item|dmg|Orb of Dragonkind#21` An Orb of Dragonkind has two minor beneficial properties, one minor detrimental property, and one major detrimental prop -> info:NUMONLY:TEXT
-- class `item|dmg|Orb of Dragonkind#21` An Orb of Dragonkind has two minor beneficial properties, one minor detrimental property, and one major detrimental prop -> info:NUMONLY:TEXT
-- record `item|cm|Gloves of Soul Catching#2` This property of the gloves has no effect on you if your Constitution is already 20 or higher. -> info:NUMONLY:TEXT
-- class `item|cm|Gloves of Soul Catching#2` This property of the gloves has no effect on you if your Constitution is already 20 or higher. -> info:NUMONLY:TEXT
-- record `sub|Paladin/Oath of the Ancients|Undying Sentinel#2` After you use this feature, it is unavailable until you finish a Long Rest. -> info:REST:NONUM
-- class `sub|Paladin/Oath of the Ancients|Undying Sentinel#2` After you use this feature, it is unavailable until you finish a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Spell Gem (Obsidian)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Spell Gem (Obsidian)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- record `item|tsgeh|Big Bertha#1` A Cannon inlaid with moongold (3d10 Bludgeoning, range 120/240 ft, Artillery, Booming, Two-Handed, Push mastery, uses Ca -> info:NUMONLY:ROLL
-- class `item|tsgeh|Big Bertha#1` A Cannon inlaid with moongold (3d10 Bludgeoning, range 120/240 ft, Artillery, Booming, Two-Handed, Push mastery, uses Ca -> info:NUMONLY:ROLL
-- record `item|dmg14|Figurine of Wondrous Power, Marble Elephant#14` Once it has been used, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|dmg14|Figurine of Wondrous Power, Marble Elephant#14` Once it has been used, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
-- record `sub|Rogue/Magic Stealer|Occult Shroud#1` After a Long Rest you can cast Nondetection on yourself only, with a 24-hour duration. -> covered
-- record `sub|Paladin/Oath of Revelry|Merrymaker#2` Three uses, all regained on a Long Rest. -> covered
-- record `sub|Barbarian/Path of the Abomination|Bloodcurdling Howl#3` Short or Long Rest to use again. -> covered
-- class `sub|Barbarian/Path of the Abomination|Bloodcurdling Howl#3` Short or Long Rest to use again. -> info:REST:NONUM
-- record `item|bgdia|Charm of the Adamant#4` When the last charge is spent, the Charm vanishes. -> info:REST:NONUM
-- class `item|bgdia|Charm of the Adamant#4` When the last charge is spent, the Charm vanishes. -> info:REST:NONUM
-- record `sub|Cleric/Shadow Domain|Shadow Spells#1` Always prepared from the listed Cleric levels: 3 Crown of Madness, Dissonant Whispers, Mind Spike, Shadow Word: Pain. -> covered
-- class `sub|Cleric/Shadow Domain|Shadow Spells#1` Always prepared from the listed Cleric levels: 3 Crown of Madness, Dissonant Whispers, Mind Spike, Shadow Word: Pain. -> covered
-- record `sub|Warlock/Primordial Patron|Elemental Spells#7` 5 Fly. -> info:NUMONLY:TABLE
-- class `sub|Warlock/Primordial Patron|Elemental Spells#7` 5 Fly. -> info:NUMONLY:TABLE
 - record `species|Yuan-ti Pureblood|Innate Spellcasting#2` At level 3 you can cast Suggestion once per Long Rest. -> info:REST:NONUM
 - class `species|Yuan-ti Pureblood|Innate Spellcasting#2` At level 3 you can cast Suggestion once per Long Rest. -> info:REST:NONUM
+- record `species|Arisen|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- class `species|Arisen|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- record `feat|Aberrant Horror Transformation: Level 2|Aberrant Horror Transformation: Level 2#2` Choose one Boon of this Level or a lower Level whose requirements you meet. -> info:BY_DESIGN
+- class `feat|Aberrant Horror Transformation: Level 2|Aberrant Horror Transformation: Level 2#2` Choose one Boon of this Level or a lower Level whose requirements you meet. -> info:BY_DESIGN
+- record `item|dmg|Belt of Giant Strength (storm)#2` If your Strength without the belt is already 29 or higher, the belt has no effect on you. -> info:NUMONLY:TEXT
+- class `item|dmg|Belt of Giant Strength (storm)#2` If your Strength without the belt is already 29 or higher, the belt has no effect on you. -> info:NUMONLY:TEXT
+- record `item|bgdia|Sword of Zariel#21` You can see in normal and magical darkness, see invisible creatures and objects, automatically detect visual illusions a -> info:NUMONLY:GEOMETRY
+- class `item|bgdia|Sword of Zariel#21` You can see in normal and magical darkness, see invisible creatures and objects, automatically detect visual illusions a -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Figurine of Wondrous Power, Silver Raven#13` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Figurine of Wondrous Power, Silver Raven#13` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
+- record `sub|Ranger/Green Reaper|Green Reaper Spells#2` 5 Hold Person. -> info:NUMONLY:TABLE
+- class `sub|Ranger/Green Reaper|Green Reaper Spells#2` 5 Hold Person. -> info:NUMONLY:TABLE
+- record `item|dmg|Crystalline Chronicle#7` You can use the charges in the following ways while holding it: -> info:REST:NONUM
+- class `item|dmg|Crystalline Chronicle#7` You can use the charges in the following ways while holding it: -> info:REST:NONUM
+- record `item|dmg|Hcor'uk the Colossal's Portable Handheld Weapon of Walloping#2` Hits deal an extra 1d8 Bludgeoning, or 2d8 against a structure. -> info:NUMONLY:ROLL
+- class `item|dmg|Hcor'uk the Colossal's Portable Handheld Weapon of Walloping#2` Hits deal an extra 1d8 Bludgeoning, or 2d8 against a structure. -> info:NUMONLY:ROLL
+- record `item|dmg|Crown of Deep Winter#2` You can cast Fire Shield from it using the chill shield option, once per dawn. -> covered
+- class `item|dmg|Crown of Deep Winter#2` You can cast Fire Shield from it using the chill shield option, once per dawn. -> info:REST:NONUM
+- record `feat|Plantmender|Plantmender#9` Finish a Long Rest before casting either this way again. -> info:REST:NONUM
+- class `feat|Plantmender|Plantmender#9` Finish a Long Rest before casting either this way again. -> info:REST:NONUM
+- record `sub|Witch/Technicolor Magic|Technicolor Spells#2` 3 Animal Messenger, Color Spray, Hex: Musical Interlude, Speak with Animals, Warding Bond. -> covered
+- class `sub|Witch/Technicolor Magic|Technicolor Spells#2` 3 Animal Messenger, Color Spray, Hex: Musical Interlude, Speak with Animals, Warding Bond. -> covered
+- record `item|dmg|Eagle Whistle#3` A use of the whistle also ends if you land. -> info:REST:NONUM
+- class `item|dmg|Eagle Whistle#3` A use of the whistle also ends if you land. -> info:REST:NONUM
+- record `item|dmg|Bolt, +2#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Rare bolt carries the +2 bonus. -> info:NUMONLY:FLAVOR
+- class `item|dmg|Bolt, +2#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Rare bolt carries the +2 bonus. -> info:NUMONLY:FLAVOR
+- record `sub|Sorcerer/Haunted Sorcery|Become Death#4` Long Rest to use again. -> covered
+- class `sub|Sorcerer/Haunted Sorcery|Become Death#4` Long Rest to use again. -> info:REST:NONUM

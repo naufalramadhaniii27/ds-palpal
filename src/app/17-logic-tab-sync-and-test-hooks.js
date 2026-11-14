@@ -111,6 +111,7 @@ env.__spellwroughtTattooSave=function(state){if(FROZEN||state!==S)return false;s
 env.__spellGemSave=function(state){if(FROZEN||state!==S)return false;save();return true};
 env.__storedSpellSave=function(state){if(FROZEN||state!==S)return false;save();return true};
 env.__slotRecoverySave=function(state){if(FROZEN||state!==S)return false;save();return true};
+env.__necronomiconReadingSave=function(state){if(FROZEN||state!==S)return false;save();return true};
 env.__sheetState=function(){ return {C:C, state:S, readOnly:!!FROZEN, temporaryCantrips:S.temporaryCantrips, lang:S.lang, camp:campName(), fxT:S.fxT||{}, cust:S.cust||{}, attackTarget:S.attackTarget, exh:S.exh||0, exhLk:S.exhLk||null}; };/* fx engine v6: exh and exhLk for the Exhaustion lock tests */
 env.__D=function(){ return D; };/* T11 N6: derive a sheet object without saving. The open character and its state come back afterwards */
 env.__deriveFor=function(c){ let C0=C, S0=S, D0=D, out=null; try{ __set_C(structuredClone(c)); __set_S(structuredClone(DEF)); derive(); out=structuredClone({level:D.level,pb:D.pb,ac:D.ac,hpmax:D.hpmax,init:D.init,dc:D.dc,speed:D.speed,score:D.score,mod:D.mod,save:D.save,skill:D.skill,atk:D.atk,res:D.res,carry:D.carry,exh:D.exh,exhMin:D.exhMin}); }catch(e){ out={err:String(e&&e.stack||e)}; } __set_C(C0); __set_S(S0); __set_D(D0); try{ derive(); }catch(e){} return out; };/* v35 p05 */

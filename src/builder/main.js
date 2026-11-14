@@ -49,3 +49,4 @@ import "./25a-logic-tattoo-sources.js";
 import "./25b-logic-spell-gem-sources.js";
 import "./25c-logic-stored-spell-sources.js";
 import "./25d-logic-slot-recovery-sources.js";
+import "./25e-logic-necronomicon-reading.js";

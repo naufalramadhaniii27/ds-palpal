@@ -1,5 +1,5 @@
 {
- "why": "Necronomicon: Intelligence +2 (max 24) = 14, Wisdom -2 (min 3) = 8, Void Speech",
+ "why": "Necronomicon carried without completed-reading history: INT 12 and WIS 10 stay unchanged; active Eldritch Guise retains Void Speech.",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -56,8 +56,8 @@
   ]
  },
  "expect": {
-  "D:mod.INT": 2,
-  "D:mod.WIS": -1
+  "D:mod.INT": 1,
+  "D:mod.WIS": 0
  },
  "expectC": [
   {

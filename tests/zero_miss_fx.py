@@ -3156,6 +3156,48 @@ u43_rod_raw=dict(v=1,id="recovery-1",nativeProfile="dmg2014",chargeKey="u43-rod-
 u43_rod_authority=dict(v=1,nextId=2,dawnEvents=[],sources=[dict(id="recovery-1",item="+1 Rod of the Pact Keeper",nativeProfile="dmg2014",state=u43_rod_raw,present=True,historyKnown=True,legacyState=None)])
 CASES.append(dict(name="NEG U43 legacy Pearl keeps its own pool beside a managed rod",b=dict(rs="2014",cls="Warlock",level=2,extra={"sp":[],"slotRecoverySources":u43_rod_authority},inv=[dict(n="Pearl of Power",q=1,eq=True,attuned=True),dict(n="+1 Rod of the Pact Keeper",q=1,eq=False,attuned=False,slotRecovery=u43_rod_raw)]),expect=[("C.res.filter(row=>row.n==='Pearl of Power').length",1),("C.res.find(row=>row.n==='Pearl of Power').slotRecovery===undefined",True),("C.res.find(row=>row.n==='Pearl of Power').reset","long"),("C.res.find(row=>row.n==='Pearl of Power').tag.includes('at dawn')",True),("C.res.filter(row=>row.k==='u43-rod-use').length",1),("C.res.find(row=>row.k==='u43-rod-use').reset","none")]))
 
+# U44 retained Necronomicon: actual post-reading ability projection, not inventory bonuses.
+# The fourth hook option is a readonly actor-state snapshot; it does not authorize a Study commit.
+def u44_reading(int_before=18, int_delta=2, wis_before=12, wis_delta=-2, embedded_int=None, embedded_wis=None):
+    def ability(before, delta, anchor):
+        return dict(mode="already-accounted", before=None, delta=None, baseAnchor=anchor) if anchor is not None else dict(mode="fixed-delta", before=before, delta=delta, baseAnchor=None)
+    return dict(v=1, reading=dict(source="Necronomicon", hoursVerified=19, INT=ability(int_before,int_delta,embedded_int), WIS=ability(wis_before,wis_delta,embedded_wis), warp=dict(result=None,cured=False), madness=dict(result=None,cured=False)))
+
+def u44_score(ability):
+    return "Math.max(1,Math.min(30,C.abilities."+ability+".base+C.abilities."+ability+".bonus.reduce((sum,row)=>sum+row.v,0)))"
+
+U44_READING_LABEL="Necronomicon: completed reading (permanent)"
+U44_READING_ALLOW=[r"^abilities\.(INT|WIS)\.bonus(?:\.|$)",r"^necronomiconReading(?:\.|$)",r"^spellcasting\.(mod|atk|dc)$"]
+for _rs in ["2024","2014"]:
+    _base=dict(WL,INT=18,WIS=12)
+    _b=dict(rs=_rs,cls="Fighter",level=1,base=_base,inv=[])
+    _normal=u44_reading()
+    _book=[dict(n="Necronomicon",q=1,eq=True,attuned=True)]
+    CASES.append(dict(name="Z3 U44 retained Necronomicon completed reading "+_rs,b=_b,necronomiconReading=_normal,lo=_b,expect=[(u44_score("INT"),20),(u44_score("WIS"),10),("C.abilities.INT.base",18),("C.abilities.WIS.base",12),("C.necronomiconReading",_normal),("C.lang.includes('Void Speech')",False),("C.res.some(row=>row.n==='Necronomicon: Dominate Monster')",False)],expectWithout=[(u44_score("INT"),18),(u44_score("WIS"),12)],allow=U44_READING_ALLOW))
+    CASES.append(dict(name="NEG U44 unread Necronomicon cannot grant ability changes "+_rs,b=dict(_b,inv=_book),necronomiconReading=dict(v=1,reading=None),expect=[(u44_score("INT"),18),(u44_score("WIS"),12),("C.necronomiconReading",dict(v=1,reading=None)),("C.abilities.INT.bonus.some(row=>row.s==="+json.dumps(U44_READING_LABEL)+")",False)]))
+    CASES.append(dict(name="NEG U44 inventory attunement is not reading proof "+_rs,b=dict(_b,inv=_book),expect=[(u44_score("INT"),18),(u44_score("WIS"),12)]))
+    CASES.append(dict(name="NEG U44 future reading state is inert "+_rs,b=dict(_b,inv=_book),necronomiconReading=dict(v=99,reading=dict(opaque="preserve")),expect=[(u44_score("INT"),18),(u44_score("WIS"),12),("C.abilities.INT.bonus.some(row=>row.s==="+json.dumps(U44_READING_LABEL)+")",False)]))
+    CASES.append(dict(name="NEG U44 raw Build reading marker is not actor authority "+_rs,b=dict(_b,extra=dict(necronomiconReading=_normal)),expect=[(u44_score("INT"),18),(u44_score("WIS"),12)]))
+    for _name,_ib,_id,_wb,_wd,_want_i,_want_w in [("acquisition caps",23,1,4,-1,24,3),("scores already beyond caps",26,0,2,0,26,2)]:
+        _raw=dict(WL,INT=_ib,WIS=_wb)
+        CASES.append(dict(name="Z3 U44 "+_name+" "+_rs,b=dict(_b,base=_raw),necronomiconReading=u44_reading(_ib,_id,_wb,_wd),expect=[(u44_score("INT"),_want_i),(u44_score("WIS"),_want_w)]))
+    CASES.append(dict(name="Z3 U44 fixed acquired deltas never recap later scores "+_rs,b=_b,necronomiconReading=u44_reading(23,1,4,-1),expect=[(u44_score("INT"),19),(u44_score("WIS"),11)]))
+    _embedded=u44_reading(embedded_int=20,embedded_wis=10)
+    CASES.append(dict(name="Z3 U44 historical changes already in base do not double "+_rs,b=dict(_b,base=dict(WL,INT=20,WIS=10)),necronomiconReading=_embedded,expect=[(u44_score("INT"),20),(u44_score("WIS"),10),("C.necronomiconReading.reading.INT.delta",None),("C.necronomiconReading.reading.WIS.delta",None)]))
+    CASES.append(dict(name="NEG U44 embedded base change cannot reapply old delta "+_rs,b=dict(_b,base=dict(WL,INT=18,WIS=10)),necronomiconReading=_embedded,expect=[(u44_score("INT"),18),(u44_score("WIS"),10)]))
+    CASES.append(dict(name="Z3 U44 carried attuned guise remains separate from retained reading "+_rs,b=dict(_b,inv=_book),necronomiconReading=_normal,expect=[(u44_score("INT"),20),(u44_score("WIS"),10),("C.lang.includes('Void Speech')",True),("C.res.some(row=>row.n==='Necronomicon: Dominate Monster')",True)]))
+    _ioun=dict(_b,inv=[dict(n="Ioun Stone (intellect)" if _rs=="2024" else "Ioun Stone, Intellect",q=1,eq=True,attuned=True)])
+    CASES.append(dict(name="Z3 U44 permanent reading precedes Ioun item cap "+_rs,b=_ioun,necronomiconReading=_normal,lo=_ioun,expect=[(u44_score("INT"),20),(u44_score("WIS"),10)],expectWithout=[(u44_score("INT"),20),(u44_score("WIS"),12)],allow=U44_READING_ALLOW))
+    CASES.append(dict(name="Z3 U44 normal permanent ASI precedes reading "+_rs,b=dict(_b,level=4,ch=dict(feat4=dict(feat="Ability Score Improvement",a1="INT",a2="INT"))),necronomiconReading=u44_reading(20,2,12,-2),expect=[(u44_score("INT"),22),(u44_score("WIS"),10)]))
+    _headband_reading=u44_reading(16,2,12,-2)
+    CASES.append(dict(name="Z3 U44 headband masks retained permanent gain "+_rs,b=dict(_b,base=dict(WL,INT=16,WIS=12),inv=[dict(n="Headband of Intellect",q=1,eq=True,attuned=True)]),necronomiconReading=_headband_reading,expect=[(u44_score("INT"),19),(u44_score("WIS"),10)]))
+    CASES.append(dict(name="Z3 U44 removing headband retains acquired delta "+_rs,b=dict(_b,base=dict(WL,INT=16,WIS=12)),necronomiconReading=_headband_reading,expect=[(u44_score("INT"),18),(u44_score("WIS"),10)]))
+
+# Native counterparts for the two historical golden fixtures: they now need actual reading provenance.
+for _fixture,_wis_before,_wis_mod in [("fx_L8_necronomicon",10,-1),("fx_L5_necronomicon",16,2)]:
+    _saved=json.load(open(os.path.join(HERE,"golden","builds",_fixture+".json"),encoding="utf-8"))["build"]
+    CASES.append(dict(name="Z3 U44 completed-reading counterpart for "+_fixture,b=dict(rs=_saved.get("rs","2024"),cls=_saved["cls"],level=_saved["level"],extra=_saved),necronomiconReading=u44_reading(12,2,_wis_before,-2),expect=[("Math.floor(("+u44_score("INT")+"-10)/2)",2),("Math.floor(("+u44_score("WIS")+"-10)/2)",_wis_mod),("C.lang.includes('Void Speech')",True)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
@@ -3205,7 +3247,7 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  // created from a later timer callback. The page policy itself stays unchanged.
  cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
  for(const c of cases){ const r={name:c.name,fail:[]},warmBefore=c.warm?window.__bldTestB():null;
-  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b); window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{})}; window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
    for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }

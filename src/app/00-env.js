@@ -27,4 +27,5 @@ function bindFn(names){ names.forEach((n) =>{ Object.defineProperty(env, n, { ge
 bindFn(["addEventListener", "removeEventListener", "fetch", "focus", "matchMedia", "print", "requestAnimationFrame", "scrollBy", "scrollTo", "showSaveFilePicker"]);
 /* list of the bound names (the contract test reads it) */
 bind(["__bldSlotRecoveryInfo", "__bldSlotRecoveryCapture", "__bldSlotRecoveryTokenCurrent", "__bldSlotRecoveryAcceptReceipt", "__bldSlotRecoveryAdopt", "__bldSlotRecoveryReview", "__bldSlotRecoverySplit", "__bldSlotRecoveryResync", "__bldSlotRecoveryRestore", "__bldSlotRecoveryRemove", "__bldSlotRecoveryActivate", "__bldSlotRecoveryReset", "__bldSlotRecoveryInventoryOwner", "__bldSlotRecoveryRestPlan", "__slotRecoveryActionAllowed", "__slotRecoverySave"]);
+bind(["__bldNecronomiconInfo", "__bldNecronomiconCapture", "__bldNecronomiconTokenCurrent", "__bldNecronomiconStudy", "__bldNecronomiconAffliction", "__bldNecronomiconCure", "__bldNecronomiconReviewBase", "__bldNecronomiconAcceptReceipt", "__necronomiconReadingSave"]);
 export const ENV_NAMES = Object.keys(env);

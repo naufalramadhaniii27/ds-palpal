@@ -58,7 +58,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
 
  /* ---- Kibbles and Deep Magic (tkdm) ---- */
  A("Golden Elixir",{n:"Golden Elixir",toggle:{id:"golden-elixir",label:"Golden Elixir drunk",default:false},imm:["Poison","All natural and magical diseases"],condImm:["Poisoned"]});
- A("Necronomicon",{n:"Necronomicon",abUp:[["INT",2,24]],abDown:[["WIS",-2,3]],langs:["Void Speech"],lu:{n:"Necronomicon: Dominate Monster",max:1,reset:"dawn"}});
+ A("Necronomicon",{n:"Necronomicon",langs:["Void Speech"],lu:{n:"Necronomicon: Dominate Monster",max:1,reset:"dawn"}});
  A("Scalehide Cream",{n:"Scalehide Cream",toggle:{id:"scalehide-cream",label:"Scalehide Cream scales (1 hour)",default:false},acBase:[15,"","CON"]});
 
  /* ---- tsdm ---- */

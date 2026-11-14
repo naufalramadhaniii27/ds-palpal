@@ -15849,6 +15849,284 @@
     "tests/slot_recovery_rest.mjs"
    ],
    "note": "Verified native direct slot restoration with actual allocated attunement, activation/presence, one existing item-use counter and one eligible spent-slot transaction. Native UI308 and backend204/future-preservation364 checks pass. Profile follows the physical item source; no extra slot capacity, spell grant, legacy Pearl conversion or unrelated attack/DC claim."
+  },
+  {
+   "id": "u44-item-dmg-necronomicon-13",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Necronomicon",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "2",
+    "24",
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^after\\ the\\ reading,\\ your\\ intelligence\\ rises\\ by\\ 2\\ \\(maximum\\ 24\\)\\ and\\ your\\ wisdom\\ falls\\ by\\ 2\\ \\(minimum\\ 3\\)\\.$",
+   "anchor": [
+    "src/builder/11-logic-derivation.js",
+    "function applyNecronomiconReading("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconReadingProfile("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconProblems("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function recordNecronomiconReading("
+    ],
+    [
+     "src/builder/25e-logic-necronomicon-reading.js",
+     "function readingCommit("
+    ],
+    [
+     "src/builder/25e-logic-necronomicon-reading.js",
+     "genv.__bldNecronomiconStudy="
+    ],
+    [
+     "src/builder/12t-logic-necronomicon-reading.js",
+     "id:'retained-necronomicon-reading'"
+    ],
+    [
+     "src/builder/10f-logic-necronomicon-reading.js",
+     "export function necronomiconAbilityProjection("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconProjection("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "applyNecronomiconReading(actx,core,AFX,GF);"
+    ]
+   ],
+   "test": "Z3 U44 retained Necronomicon completed reading 2024",
+   "consumerTests": [
+    "tests/necronomicon_reading_model.mjs",
+    "tests/necronomicon_ability.mjs",
+    "tests/necronomicon_backend.mjs",
+    "tests/necronomicon_base_review.mjs"
+   ],
+   "note": "U44 verified native completed-reading consumer: acquisition captures actual once-only capped INT/WIS deltas; projection retains them without the book, respects later item/set phases, and historical embedded scores do not double. FX32 and focused golden2 preserve unknown-reading fail-closed behavior. Replaces previous inventory-bound ability evidence; no new closure claimed."
+  },
+  {
+   "id": "u44-item-dmg-necronomicon-25",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Necronomicon",
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^you\\ have\\ advantage\\ on\\ charisma\\ \\(persuasion\\)\\ checks\\ against\\ aberrations\\ and\\ on\\ charisma\\ \\(intimidation\\)\\ checks\\ against\\ non\\-aberrations\\.$",
+   "anchor": [
+    "src/app/32k-logic-necronomicon-reading.js",
+    "export function requestNecronomiconSocialCheck("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconReadingProfile("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconProblems("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function recordNecronomiconReading("
+    ],
+    [
+     "src/builder/25e-logic-necronomicon-reading.js",
+     "function readingCommit("
+    ],
+    [
+     "src/builder/25e-logic-necronomicon-reading.js",
+     "genv.__bldNecronomiconStudy="
+    ],
+    [
+     "src/builder/12t-logic-necronomicon-reading.js",
+     "id:'retained-necronomicon-reading'"
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconSocialCheck("
+    ],
+    [
+     "src/app/32k-logic-necronomicon-reading.js",
+     "export function currentNecronomiconSocialCheck("
+    ],
+    [
+     "src/app/32k-logic-necronomicon-reading.js",
+     "total=D.skill&&D.skill[index]"
+    ],
+    [
+     "src/app/lib/qualified-skill-roll.js",
+     "export function qualifiedSkillMode("
+    ],
+    [
+     "src/app/lib/qualified-skill-roll.js",
+     "export function createQualifiedSkillRollRuntime("
+    ],
+    [
+     "src/app/lib/qualified-skill-roll.js",
+     "dice.roll({bon:check.total},check.mode,check.label"
+    ]
+   ],
+   "test": "Z3 U44 retained Necronomicon completed reading 2024",
+   "consumerTests": [
+    "tests/necronomicon_reading_model.mjs",
+    "tests/necronomicon_reading_runtime.mjs",
+    "tests/necronomicon_reading_ui.mjs"
+   ],
+   "note": "U44 verified native qualified Charisma roll consumer: actual sheet skill modifier, explicit aberration interaction, Persuasion/Intimidation qualification, shared Advantage/Disadvantage cancellation, guarded D20 roll and history. Actual native UI verified both widths; source reading persistence does not retain carried Eldritch Guise language or resource."
+  },
+  {
+   "id": "u44-item-tkdm-necronomicon-13",
+   "kind": "item",
+   "owner": "tkdm",
+   "name": "Necronomicon",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "2",
+    "24",
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^after\\ the\\ reading,\\ your\\ intelligence\\ rises\\ by\\ 2\\ \\(maximum\\ 24\\)\\ and\\ your\\ wisdom\\ falls\\ by\\ 2\\ \\(minimum\\ 3\\)\\.$",
+   "anchor": [
+    "src/builder/11-logic-derivation.js",
+    "function applyNecronomiconReading("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconReadingProfile("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconProblems("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function recordNecronomiconReading("
+    ],
+    [
+     "src/builder/25e-logic-necronomicon-reading.js",
+     "function readingCommit("
+    ],
+    [
+     "src/builder/25e-logic-necronomicon-reading.js",
+     "genv.__bldNecronomiconStudy="
+    ],
+    [
+     "src/builder/12t-logic-necronomicon-reading.js",
+     "id:'retained-necronomicon-reading'"
+    ],
+    [
+     "src/builder/10f-logic-necronomicon-reading.js",
+     "export function necronomiconAbilityProjection("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconProjection("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "applyNecronomiconReading(actx,core,AFX,GF);"
+    ]
+   ],
+   "test": "Z3 U44 retained Necronomicon completed reading 2024",
+   "consumerTests": [
+    "tests/necronomicon_reading_model.mjs",
+    "tests/necronomicon_ability.mjs",
+    "tests/necronomicon_backend.mjs",
+    "tests/necronomicon_base_review.mjs"
+   ],
+   "note": "U44 verified native completed-reading consumer: acquisition captures actual once-only capped INT/WIS deltas; projection retains them without the book, respects later item/set phases, and historical embedded scores do not double. FX32 and focused golden2 preserve unknown-reading fail-closed behavior. Replaces previous inventory-bound ability evidence; no new closure claimed."
+  },
+  {
+   "id": "u44-item-tkdm-necronomicon-25",
+   "kind": "item",
+   "owner": "tkdm",
+   "name": "Necronomicon",
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^you\\ have\\ advantage\\ on\\ charisma\\ \\(persuasion\\)\\ checks\\ against\\ aberrations\\ and\\ on\\ charisma\\ \\(intimidation\\)\\ checks\\ against\\ non\\-aberrations\\.$",
+   "anchor": [
+    "src/app/32k-logic-necronomicon-reading.js",
+    "export function requestNecronomiconSocialCheck("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconReadingProfile("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconProblems("
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function recordNecronomiconReading("
+    ],
+    [
+     "src/builder/25e-logic-necronomicon-reading.js",
+     "function readingCommit("
+    ],
+    [
+     "src/builder/25e-logic-necronomicon-reading.js",
+     "genv.__bldNecronomiconStudy="
+    ],
+    [
+     "src/builder/12t-logic-necronomicon-reading.js",
+     "id:'retained-necronomicon-reading'"
+    ],
+    [
+     "src/data/lib/necronomicon-reading.js",
+     "export function necronomiconSocialCheck("
+    ],
+    [
+     "src/app/32k-logic-necronomicon-reading.js",
+     "export function currentNecronomiconSocialCheck("
+    ],
+    [
+     "src/app/32k-logic-necronomicon-reading.js",
+     "total=D.skill&&D.skill[index]"
+    ],
+    [
+     "src/app/lib/qualified-skill-roll.js",
+     "export function qualifiedSkillMode("
+    ],
+    [
+     "src/app/lib/qualified-skill-roll.js",
+     "export function createQualifiedSkillRollRuntime("
+    ],
+    [
+     "src/app/lib/qualified-skill-roll.js",
+     "dice.roll({bon:check.total},check.mode,check.label"
+    ]
+   ],
+   "test": "Z3 U44 retained Necronomicon completed reading 2024",
+   "consumerTests": [
+    "tests/necronomicon_reading_model.mjs",
+    "tests/necronomicon_reading_runtime.mjs",
+    "tests/necronomicon_reading_ui.mjs"
+   ],
+   "note": "U44 verified native qualified Charisma roll consumer: actual sheet skill modifier, explicit aberration interaction, Persuasion/Intimidation qualification, shared Advantage/Disadvantage cancellation, guarded D20 roll and history. Actual native UI verified both widths; source reading persistence does not retain carried Eldritch Guise language or resource."
   }
  ]
 }

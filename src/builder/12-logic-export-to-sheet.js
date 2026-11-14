@@ -1,3 +1,4 @@
+import {withNecronomiconProjection,necronomiconProjectionMirror,withNecronomiconLegacy} from "./10f-logic-necronomicon-reading.js";
 import {bindLive} from "./01b-logic-late-ports.js";import {ABK,ABN,SRC,chJoin,dieAvg,getPbAdd,mod,pbOf,applyWieldScoreCustomization,projectTemporaryCantrips,tattooBodyProblems,spellGemCastsProblems,storedSpellCastsProblems} from "./01-logic-core-helpers.js";
 import {spellGemCatalogForRuleset} from "./09c-logic-edition-overlays.js";
 import {withAllPurposeLegacy,DMAP,activeFx,attMax,bgX,byOk,htText,spX,attunementState,itemInUse,itemMagicBonus} from "./03-logic-magic-item-effects.js";
@@ -28,13 +29,14 @@ import "./12p-logic-sheet-handlers-disciple.js";
 import "./12q-logic-sheet-handlers-casting-sources.js";
 import "./12r-logic-sheet-handlers-gem-checks.js";
 import "./12s-logic-sheet-handlers-item-spell-damage.js";
+import "./12t-logic-necronomicon-reading.js";
 import "./11c-logic-fx-handlers-sheet.js";
 import {spellRows,classDef,appVer,xsk,setInTS,inTS,speciesDef,bgDef,armorDef,sheetState,genv} from "./00-env.js";
 bindLive("toSheet",{get:function(){return toSheet;}});
 /* ---------- export to sheet (v3) ---------- */
 export var ACM=[];/* v27 i2: AC methods of the last toSheet, for the builder */
 /* the pure reads a handler may ask for (state.q): the old code reached them through __R. Functions of 09 and 11 are imported; the modules that load later (13, 14, 16, 20) provide theirs with provideQueries (01a-logic-query-registry.js) */
-provideQueries({"itemSpellDamageFeatures":collectItemSpellDamageFeatures,itemSpellCatalog:spellGemCatalogForRuleset,wxProvenAbility:wxProvenAbility,classDef:classDef,itemInUse:itemInUse,itemMagicBonus:itemMagicBonus,byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,getPbAdd:getPbAdd,fxToggles:fxToggles,fxTargets:fxTargets,xfxSenses:function(C){XFX.senses(C)},setProfc:function(C){if(C.profs)QRY.profcSet(C.profs)},spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)QRY.profcSet(profs);return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
+provideQueries({necronomiconReading:necronomiconProjectionMirror,"itemSpellDamageFeatures":collectItemSpellDamageFeatures,itemSpellCatalog:spellGemCatalogForRuleset,wxProvenAbility:wxProvenAbility,classDef:classDef,itemInUse:itemInUse,itemMagicBonus:itemMagicBonus,byOk:byOk,subLv:subLv,subLbl:subLbl,sdn:sdn,allFeats:allFeats,getPbAdd:getPbAdd,fxToggles:fxToggles,fxTargets:fxTargets,xfxSenses:function(C){XFX.senses(C)},setProfc:function(C){if(C.profs)QRY.profcSet(C.profs)},spellAb:spellAb,spFxTo:spFxTo,spClsJ:spClsJ,spLists:spLists,spItemB:spItemB,spItemSrc:spItemSrc,featSpells:featSpells,dmSpells:dmSpells,hbPickOk:hbPickOk,agOn:agOn,pactInvocation:function(n){return PACTB14.filter((x) =>{return x[0]===n})[0]},spTraitText:spTraitText,htText:htText,spLinTrait:spLinTrait,ycOf:ycOf,invList:invList,withItemContext:function(attacks,profs,fn){try{__set_ATKC(attacks);if(profs)QRY.profcSet(profs);return fn()}finally{__set_ATKC(null)}},/* RL31, RL36 b: item texts read the attack rows built so far */
  itemHtml:function(n,x){if(inTS())return null;setInTS(1);try{return {html:QRY.itemDetail(n,x)}}finally{setInTS(0)}},
  kitTool:kitTool,
  resMax:resMax,resKey:resKey,luRows:luRows,historicalInterventionWishBinding:historicalInterventionWishBinding,slugK:slugK,keepResKeys:keepResKeys,featsOf:featsOf,saveNotesOf:function(f){return saveNoteRows(f)},xdmgRows:xdmgRows,
@@ -68,4 +70,4 @@ export function toSheet(options={}){
  runSheet(T);
  ACM=T.l.acm;/* v27 i2 */
  QRY.setProfc(T.C);/* the profs object of the finished sheet (item texts read it) */
- return T.C};return options&&options.allPurposeLegacy?withAllPurposeLegacy(render):render()}
+ return T.C};const legacy=()=>options.necronomiconLegacy===true?withNecronomiconLegacy(render):render(),project=()=>options&&options.allPurposeLegacy?withAllPurposeLegacy(legacy):legacy();return Object.prototype.hasOwnProperty.call(options,'necronomiconReading')?withNecronomiconProjection(options.necronomiconReading,project):project()}
