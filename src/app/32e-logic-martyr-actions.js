@@ -44,6 +44,10 @@ function ma_castFor(n,lv){ const i=(C.spells||[]).findIndex((x) =>{ return x.n==
   const o=spCastOpts(x).filter((q) =>{ return q.left==null||q.left>0; }); if(!o.length){ toastU("No spell slot or use left for "+n+"."); return false; }
   const q=o.filter((z) =>{ return z.lv===lv; })[0]||o[0]; castDo(i,ckOf(q),q.lv); return true; }
 const ACT={
+  sit:function(k){ const s=S.sit&&typeof S.sit==="object"?S.sit:(S.sit={}); s.on=s.on||{}; const on=!s.on[k]; s.on[k]=on; undoMark("Situation");
+    if(k==="mark14"){ const i=document.querySelector('[data-mrin="markwho"]'); S.markWho=on&&i&&i.value.trim()?i.value.trim():""; }
+    ma_done((k==="grasp14"?"Warden's Grasp":"Warden's Mark")+(on?" is on.":" ended.")); },
+  font:function(c){ if(ma_left("r-font-of-life")<1){ toastU("Font of Life is used. A Short or Long Rest restores it."); return; } undoMark("Font of Life"); ma_spend("r-font-of-life",1); if(S.cond) delete S.cond[c]; ma_done("Font of Life: "+c+" ended."); },
   sheal:function(v){ const p=String(v||"").split("|"); if(!ma_castFor(p[1],+p[2])) return; const h=ma_healRoll(p[0]); undoMark(p[1]||"Healing"); const got=ma_addHp(h.t); ma_done((p[1]||"Healing")+": rolled "+h.r.join(", ")+", you regain "+got+(got<h.t?" of "+h.t:"")+"."); },
   shealo:function(v){ const p=String(v||"").split("|"); if(!ma_castFor(p[1],+p[2])) return; const h=ma_healRoll(p[0]); toastU((p[1]||"Healing")+": rolled "+h.r.join(", ")+". The creature regains "+h.t+" Hit Points."); },
   mh:function(n){ undoMark("Miraculous Healing"); const m=ma_mirac(+n||1); if(m) ma_done(m); },
@@ -88,6 +92,18 @@ const PANEL={
   "Reprisal":function(){ const lv=ma_martyrLv(); if(!lv) return ""; const L=S.lastDmg, on=!!(L&&L.a), dn=lv>=17?4:lv>=11?3:lv>=5?2:1;
     return ma_box("Reprisal",ma_stat("Last damage",on?String(L.a):"—",on?"you get "+Math.floor(L.a/2)+" back":"take damage first")+ma_stat("Attacker takes",dn+"d6"),ma_rin("rep","Reprisal ("+dn+"d6)","3 5"),ma_b("reprisal","","Halve the last damage","",!on,true)); }
 };
+/* Warden (2014): the feature cards switch the same Situations rows (S.sit.on), and Font of Life ends a condition */
+function ma_sitOn(k){ return !!(S.sit&&S.sit.on&&S.sit.on[k]); }
+const FONT=["Blinded","Charmed","Deafened","Frightened","Paralyzed","Poisoned"];
+Object.assign(PANEL,{
+  "Warden's Grasp":function(){ const on=ma_sitOn("grasp14"), rr=hasFeat("Roots of Rock");
+    return ma_box("Warden's Grasp",ma_stat("Status",on?"On":"Off",on?"ends at the start of your next turn":"")+(rr?ma_stat("Roots of Rock","+2 AC","while it is on"):""),"",on?ma_b("sit","grasp14","End Grasp"):ma_b("sit","grasp14","Grasp now","Bonus Action",false,true)); },
+  "Warden's Mark":function(){ const on=ma_sitOn("mark14");
+    return ma_box("Warden's Mark",ma_stat("Status",on?"Marked":"No mark",on&&S.markWho?String(S.markWho):""),on?"":ma_rin("markwho","Who (optional)","Goblin boss"),on?ma_b("sit","mark14","End mark"):ma_b("sit","mark14","Mark a creature","Bonus Action, 1 minute",false,true)); },
+  "Font of Life":function(){ const u=ma_left("r-font-of-life"), act=FONT.filter((c) =>{ return S.cond&&S.cond[c]; });
+    const bt=act.length?act.map((c) =>{ return ma_b("font",c,"End "+c,"",u<1,true); }).join(""):'<p class="mact-n">No condition from the list is on you now. Turn one on in Conditions and it shows here.</p>';
+    return ma_box("Font of Life",ma_uses("r-font-of-life"),"",bt,act.length>1?2:0); }
+});
 export function martyrActH(f){ const p=f&&PANEL[f.n]; return p?p(ma_ctx()):""; }
 /* the dice each action needs, so they can be typed or rolled before it runs */
 function ma_need(a,v){ const n=+v||1, lv=ma_martyrLv(), mx=Math.floor(lv/2), hl=ma_left(ma_hdKey()), hd=ma_hdDie(), bal=hasFeat("Balm");
