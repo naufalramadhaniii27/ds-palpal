@@ -88,7 +88,7 @@ function spFxBlock(x,key){ const sc=scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x
   else if(x.l) h+='<p class="spfl splvs">Slot level <b>'+c.lv+'</b>'+(spPact(x)?' (Pact Magic)':'')+'</p>';
   if(c.n) h+='<p class="spfl"><b>'+c.n+' '+esc(c.unit)+(c.n>1?'s':'')+'</b>'+(x.l?'':' at character level '+D.level)+', each:</p>';
   c.parts.forEach((p) =>{ h+='<p class="spfl">'+dtIcon(p.t)+'<b>'+esc(p.d)+'</b> '+esc(dTxt(p.t))+' damage'+(p.lab?' <span class="muted">('+esc(p.lab)+')</span>':'')+'</p>'; });
-  if(c.heal) h+='<p class="spfl">'+dtIcon("Healing")+'<b>'+esc(c.heal)+'</b> Hit Points regained</p>';
+  if(c.heal) h+='<p class="spfl">'+dtIcon("Healing")+'<b>'+esc(c.heal)+'</b> Hit Points regained</p>'+(env.__martyr&&env.__martyr.healH?env.__martyr.healH(c.heal,x.n,x.dur):"");
   if(c.bon.length) h+='<p class="spfl muted">Includes '+c.bon.map((b) =>{ return sg(b.v)+" from "+esc(b.s); }).join(", ")+'.</p>';
   if(!x.l&&spFx(x).cs) h+='<p class="spfl muted">Cantrip dice at character level '+D.level+'.</p>';
   return h+'</div>'; }
