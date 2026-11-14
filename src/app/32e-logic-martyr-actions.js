@@ -55,8 +55,8 @@ const ACT={
     const m=mirac(Math.floor(martyrLv()/2),true); done("Undying: you drop to 1 Hit Point instead. "+(m||"No Hit Point Dice left to heal.")); },
   respite:function(){ if(left("x-divine-respite")<1){ toastU("Divine Respite is used. A Long Rest restores it."); return; } const L=martyrLv(), n=L>=17?10:L>=13?6:3, k=hdKey(), u=num(S.used[k],0), g=Math.min(n,u);
     undoMark("Divine Respite"); S.used[k]=u-g; spend("x-divine-respite",1); done("Divine Respite: regained "+g+" Hit Point "+(g===1?"Die":"Dice")+"."); },
-  reprisal:function(){ const L=S.lastDmg; if(!L||!L.a){ toastU("Take the damage on the sheet first, then use Reprisal."); return; } const half=Math.floor(L.a/2), lv=martyrLv(), dn=lv>=17?4:lv>=11?3:lv>=5?2:1; let r=0; for(let i=0;i<dn;i++) r+=roll(6);
-    undoMark("Reprisal"); const back=Math.min(half,num(L.hp,0)); S.hp=Math.min(D.hpmax,num(S.hp,0)+back); if(half>back) S.tmp=num(S.tmp,0)+(half-back); S.lastDmg=null;
+  reprisal:function(){ const L=S.lastDmg; if(!L||!L.a){ toastU("Take the damage on the sheet first, then use Reprisal."); return; } const half=Math.min(Math.floor(L.a/2),num(L.hp,0)+num(L.tmp,0)), lv=martyrLv(), dn=lv>=17?4:lv>=11?3:lv>=5?2:1; let r=0; for(let i=0;i<dn;i++) r+=roll(6);
+    undoMark("Reprisal"); const back=Math.min(half,num(L.hp,0)); S.hp=Math.min(D.hpmax,num(S.hp,0)+back); if(half>back) S.tmp=num(S.tmp,0)+Math.min(half-back,num(L.tmp,0));/* only what this hit took comes back */ S.lastDmg=null;
     done("Reprisal: the "+L.a+" damage is halved, you get "+half+" back. The attacker takes "+r+" Necrotic or Radiant ("+dn+"d6)."); }
 };
 /* buttons under a feature card */
