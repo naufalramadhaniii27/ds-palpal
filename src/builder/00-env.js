@@ -97,3 +97,5 @@ bindG(["__bldBracersAttackInfo", "__bldBracersAttackCapture", "__bldBracersAttac
 bindG(["__bldPactRodSpellInfo", "__bldPactRodSpellCapture", "__bldPactRodSpellCurrent"]);
 bindG(["__bldRodAbsorptionCastPrepare", "__bldRodAbsorptionCastCurrent", "__bldRodAbsorptionCastCommit"]);
 bindG(["__bldRodAbsorptionInfo", "__bldRodAbsorptionCapture", "__bldRodAbsorptionTokenCurrent", "__bldRodAbsorptionCommand", "__bldRodAbsorptionAcceptReceipt", "__bldRodAbsorptionInventoryOwner", "__rodAbsorptionSave"]);
+
+bindG(["__bldTravelGoatInfo", "__bldTravelGoatCapture", "__bldTravelGoatTokenCurrent", "__bldTravelGoatCommand", "__bldTravelGoatAcceptReceipt", "__bldTravelGoatInventoryOwner", "__travelGoatInventoryWriteAllowed", "__travelGoatSave"]);

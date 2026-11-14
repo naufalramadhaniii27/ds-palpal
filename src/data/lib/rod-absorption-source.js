@@ -5,7 +5,7 @@ import {canonicalBracersInventory} from './bracers-source.js';
 export const canonicalRodAbsorptionDefinition=canonicalBracersInventory;
 export function rodAbsorptionItemName(name){return name==='Rod of Absorption';}
 const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),obj=v=>v!==null&&typeof v==='object'&&!Array.isArray(v),key=row=>own(row,'key')?row.key:row?.n;
-const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit'];
+const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','travelGoat'];
 export function rodAbsorptionInventorySourceSupported(row){return obj(row)&&key(row)==='Rod of Absorption'&&!foreign.some(k=>own(row,k));}
 export function rodAbsorptionNativeSource(rows,options={}){
  const profile=rodAbsorptionNativeProfile(rows);if(!profile)return null;

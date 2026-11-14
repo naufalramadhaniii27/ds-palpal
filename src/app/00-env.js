@@ -43,4 +43,5 @@ bind(["__bracersAttackSpec", "__bldBracersAttackInfo", "__bldBracersAttackCaptur
 bind(["__bldPactRodSpellInfo", "__bldPactRodSpellCapture", "__bldPactRodSpellCurrent"]);
 bind(["__bldRodAbsorptionCastPrepare", "__bldRodAbsorptionCastCurrent", "__bldRodAbsorptionCastCommit"]);
 bind(["__bldRodAbsorptionInfo", "__bldRodAbsorptionCapture", "__bldRodAbsorptionTokenCurrent", "__bldRodAbsorptionCommand", "__bldRodAbsorptionAcceptReceipt", "__bldRodAbsorptionInventoryOwner", "__rodAbsorptionSave"]);
+bind(["__bldTravelGoatInfo", "__bldTravelGoatCapture", "__bldTravelGoatTokenCurrent", "__bldTravelGoatCommand", "__bldTravelGoatAcceptReceipt", "__bldTravelGoatInventoryOwner", "__travelGoatInventoryWriteAllowed", "__travelGoatSave"]);
 export const ENV_NAMES = Object.keys(env);

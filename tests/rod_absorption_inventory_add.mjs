@@ -1,3 +1,4 @@
+import {travelGoatItemName} from '../src/data/lib/travel-goat-source.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';import vm from 'node:vm';
 import {rodAbsorptionItemName} from '../src/data/lib/rod-absorption-source.js';
@@ -17,7 +18,7 @@ import {allPurposeMetadata} from '../src/data/lib/all-purpose-source.js';
 import {riddenVehicleMetadata} from '../src/data/lib/ridden-vehicle.js';
 const read=p=>fs.readFileSync(new URL('../src/'+p,import.meta.url),'utf8'),source=read('builder/22-ui-shell.js').split('\n').find(line=>line.startsWith(' if(d.iadd){'));
 let checks=0;const eq=(a,b)=>{assert.deepEqual(a,b);checks++;};
-function fixture(row){const c={rodAbsorptionItemName,iounOrbitItemName,timedDefensesItemName,magicRopesItemName,birdTokenItemName,defenderItemName,hornValhallaItemName,bagTricksItemName,studyBookProfileForItem,storedSpellProfile,slotRecoveryProfile,spellGemProfile,spellwroughtTattooProfile,allPurposeMetadata,riddenVehicleMetadata,B:{rs:'2024',inv:[structuredClone(row)]},ARMOR:{},DMAP:{},addQty:{},bMsg:'',equippable:()=>false,ensureInv:()=>c.B.inv,commit(){},toast(){},__set_bMsg(){}};vm.createContext(c);vm.runInContext('function nativeAdd(d){'+source+'}',c);return c;}
+function fixture(row){const c={travelGoatItemName,rodAbsorptionItemName,iounOrbitItemName,timedDefensesItemName,magicRopesItemName,birdTokenItemName,defenderItemName,hornValhallaItemName,bagTricksItemName,studyBookProfileForItem,storedSpellProfile,slotRecoveryProfile,spellGemProfile,spellwroughtTattooProfile,allPurposeMetadata,riddenVehicleMetadata,B:{rs:'2024',inv:[structuredClone(row)]},ARMOR:{},DMAP:{},addQty:{},bMsg:'',equippable:()=>false,ensureInv:()=>c.B.inv,commit(){},toast(){},__set_bMsg(){}};vm.createContext(c);vm.runInContext('function nativeAdd(d){'+source+'}',c);return c;}
 for(const name of ['Rod of Absorption','Future cosmetic alias'])for(const marker of [undefined,null,{v:99,opaque:'preserve'}])for(const q of [0,1]){
  const c=fixture({n:name,q,eq:false,rodAbsorption:marker}),old=c.B.inv[0];c.nativeAdd({iadd:name,qty:1});eq(c.B.inv.length,2);eq(c.B.inv[0],old);eq(c.B.inv[0].q,q);eq(Object.hasOwn(old,'rodAbsorption'),true);eq(old.rodAbsorption,marker);eq(c.B.inv[1].q,1);eq(Object.hasOwn(c.B.inv[1],'rodAbsorption'),false);
 }

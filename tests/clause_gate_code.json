@@ -29506,6 +29506,573 @@
    ],
    "test": "Z3 U57 actual native energy-funded cast",
    "note": "U57 exact current native casting clause. Actual held allocated-attuned physical source, immutable lifetime/energy history, canonical native known/prepared spell binding, including source-verified Magic Initiate grants and native ordinary/Pact slot maximum capped at5. Opaque one-use energy payment reuses normal components, casting time, source, Rage and concentration/native effects, debiting stored energy instead of actor slots under one Undo/Save transaction. Metadata is not casting evidence; future/unknown/foreign sources remain inert. Coverage is tied to actual native casting/payment consumers and source qualification; namespace metadata alone supplies no slot or casting evidence."
+  },
+  {
+   "id": "u58-item-dmg-travel-goat-generic-49",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Figurine of Wondrous Power",
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "1",
+    "24"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ has\\ 24\\ charges,\\ and\\ every\\ hour\\ or\\ part\\ of\\ an\\ hour\\ it\\ spends\\ as\\ a\\ goat\\ uses\\ 1\\ charge\\.$",
+   "anchor": [
+    "src/builder/25r-logic-travel-goat.js",
+    "genv.__bldTravelGoatCommand=command"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/travel-goat.js",
+     "export function travelGoatProblems("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function charge("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function elapsed("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function recovery("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "export function recoverTravelGoat("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatBudget("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatResource("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function withTravelGoatProjection("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function travelGoatProjectResources("
+    ],
+    [
+     "src/builder/12zf-logic-travel-goat.js",
+     "ctx.C.res=travelGoatProjectResources(ctx.C.inv,ctx.C.res)"
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function knownPlan("
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function publish("
+    ],
+    [
+     "src/app/21y-ui-travel-goat.js",
+     "export async function openTravelGoat("
+    ],
+    [
+     "src/app/32z-logic-travel-goat.js",
+     "export function createTravelGoatSession("
+    ]
+   ],
+   "consumerTests": [
+    "tests/travel_goat.mjs",
+    "tests/travel_goat_sources.mjs",
+    "tests/travel_goat_backend.mjs",
+    "tests/travel_goat_native_resources.mjs",
+    "tests/travel_goat_source_context.mjs",
+    "tests/measure_travel_goat_boundary.mjs",
+    "tests/travel_goat_app17.mjs",
+    "tests/travel_goat_apply_boundary.mjs",
+    "tests/travel_goat_resources.mjs",
+    "tests/travel_goat_runtime.mjs",
+    "tests/travel_goat_ui.mjs",
+    "tests/physical_travel_goat_conflicts.mjs",
+    "tests/travel_goat_inventory_roundtrip.mjs",
+    "tests/travel_goat_inventory_add.mjs"
+   ],
+   "test": "Z3 U58 actual native Traveling hourly budget and seven-day recovery",
+   "note": "U58 exact native Traveling component only. One actual canonical S.used key per physical Traveling statuette, replay-validated factual history and real native C.res/D.res/used/boxes consumers. Actual per-form hour/part rounding spends one charge per started hour without a shadow balance; NPC HP0 or touching action reverts, exhaustion blocks new forms, and verified seven-day recovery restores24 through the same owned native budget. Old current3 pool and legacy24 values are preserved; only proven managed legacy resource is suppressed. Unknown metadata/history without matching actual budget grants no availability. Actual source-specific Horse snapshots remain independent of player HP/stats."
+  },
+  {
+   "id": "u58-item-dmg-travel-goat-generic-51",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Figurine of Wondrous Power",
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^once\\ its\\ charges\\ run\\ out,\\ it\\ turns\\ back\\ into\\ a\\ figurine,\\ and\\ you\\ must\\ wait\\ 7\\ days\\ before\\ using\\ it\\ again;\\ at\\ that\\ point\\ it\\ regains\\ all\\ its\\ charges\\.$",
+   "anchor": [
+    "src/builder/25r-logic-travel-goat.js",
+    "genv.__bldTravelGoatCommand=command"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/travel-goat.js",
+     "export function travelGoatProblems("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function charge("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function elapsed("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function recovery("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "export function recoverTravelGoat("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatBudget("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatResource("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function withTravelGoatProjection("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function travelGoatProjectResources("
+    ],
+    [
+     "src/builder/12zf-logic-travel-goat.js",
+     "ctx.C.res=travelGoatProjectResources(ctx.C.inv,ctx.C.res)"
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function knownPlan("
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function publish("
+    ],
+    [
+     "src/app/21y-ui-travel-goat.js",
+     "export async function openTravelGoat("
+    ],
+    [
+     "src/app/32z-logic-travel-goat.js",
+     "export function createTravelGoatSession("
+    ]
+   ],
+   "consumerTests": [
+    "tests/travel_goat.mjs",
+    "tests/travel_goat_sources.mjs",
+    "tests/travel_goat_backend.mjs",
+    "tests/travel_goat_native_resources.mjs",
+    "tests/travel_goat_source_context.mjs",
+    "tests/measure_travel_goat_boundary.mjs",
+    "tests/travel_goat_app17.mjs",
+    "tests/travel_goat_apply_boundary.mjs",
+    "tests/travel_goat_resources.mjs",
+    "tests/travel_goat_runtime.mjs",
+    "tests/travel_goat_ui.mjs",
+    "tests/physical_travel_goat_conflicts.mjs",
+    "tests/travel_goat_inventory_roundtrip.mjs",
+    "tests/travel_goat_inventory_add.mjs"
+   ],
+   "test": "Z3 U58 actual native Traveling hourly budget and seven-day recovery",
+   "note": "U58 exact native Traveling component only. One actual canonical S.used key per physical Traveling statuette, replay-validated factual history and real native C.res/D.res/used/boxes consumers. Actual per-form hour/part rounding spends one charge per started hour without a shadow balance; NPC HP0 or touching action reverts, exhaustion blocks new forms, and verified seven-day recovery restores24 through the same owned native budget. Old current3 pool and legacy24 values are preserved; only proven managed legacy resource is suppressed. Unknown metadata/history without matching actual budget grants no availability. Actual source-specific Horse snapshots remain independent of player HP/stats."
+  },
+  {
+   "id": "u58-item-dmg-travel-goat-ivory-16",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Figurine of Wondrous Power, Ivory Goats",
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "1",
+    "24"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ has\\ 24\\ charges,\\ and\\ each\\ hour\\ or\\ portion\\ thereof\\ it\\ spends\\ in\\ beast\\ form\\ costs\\ 1\\ charge\\.$",
+   "anchor": [
+    "src/builder/25r-logic-travel-goat.js",
+    "genv.__bldTravelGoatCommand=command"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/travel-goat.js",
+     "export function travelGoatProblems("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function charge("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function elapsed("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function recovery("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "export function recoverTravelGoat("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatBudget("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatResource("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function withTravelGoatProjection("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function travelGoatProjectResources("
+    ],
+    [
+     "src/builder/12zf-logic-travel-goat.js",
+     "ctx.C.res=travelGoatProjectResources(ctx.C.inv,ctx.C.res)"
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function knownPlan("
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function publish("
+    ],
+    [
+     "src/app/21y-ui-travel-goat.js",
+     "export async function openTravelGoat("
+    ],
+    [
+     "src/app/32z-logic-travel-goat.js",
+     "export function createTravelGoatSession("
+    ]
+   ],
+   "consumerTests": [
+    "tests/travel_goat.mjs",
+    "tests/travel_goat_sources.mjs",
+    "tests/travel_goat_backend.mjs",
+    "tests/travel_goat_native_resources.mjs",
+    "tests/travel_goat_source_context.mjs",
+    "tests/measure_travel_goat_boundary.mjs",
+    "tests/travel_goat_app17.mjs",
+    "tests/travel_goat_apply_boundary.mjs",
+    "tests/travel_goat_resources.mjs",
+    "tests/travel_goat_runtime.mjs",
+    "tests/travel_goat_ui.mjs",
+    "tests/physical_travel_goat_conflicts.mjs",
+    "tests/travel_goat_inventory_roundtrip.mjs",
+    "tests/travel_goat_inventory_add.mjs"
+   ],
+   "test": "Z3 U58 actual native Traveling hourly budget and seven-day recovery",
+   "note": "U58 exact native Traveling component only. One actual canonical S.used key per physical Traveling statuette, replay-validated factual history and real native C.res/D.res/used/boxes consumers. Actual per-form hour/part rounding spends one charge per started hour without a shadow balance; NPC HP0 or touching action reverts, exhaustion blocks new forms, and verified seven-day recovery restores24 through the same owned native budget. Old current3 pool and legacy24 values are preserved; only proven managed legacy resource is suppressed. Unknown metadata/history without matching actual budget grants no availability. Actual source-specific Horse snapshots remain independent of player HP/stats."
+  },
+  {
+   "id": "u58-item-dmg-travel-goat-ivory-18",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Figurine of Wondrous Power, Ivory Goats",
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^when\\ it\\ runs\\ out\\ of\\ charges,\\ it\\ reverts\\ to\\ a\\ figurine\\ and\\ can't\\ be\\ used\\ again\\ until\\ 7\\ days\\ have\\ passed,\\ when\\ it\\ regains\\ all\\ its\\ charges\\.$",
+   "anchor": [
+    "src/builder/25r-logic-travel-goat.js",
+    "genv.__bldTravelGoatCommand=command"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/travel-goat.js",
+     "export function travelGoatProblems("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function charge("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function elapsed("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function recovery("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "export function recoverTravelGoat("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatBudget("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatResource("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function withTravelGoatProjection("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function travelGoatProjectResources("
+    ],
+    [
+     "src/builder/12zf-logic-travel-goat.js",
+     "ctx.C.res=travelGoatProjectResources(ctx.C.inv,ctx.C.res)"
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function knownPlan("
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function publish("
+    ],
+    [
+     "src/app/21y-ui-travel-goat.js",
+     "export async function openTravelGoat("
+    ],
+    [
+     "src/app/32z-logic-travel-goat.js",
+     "export function createTravelGoatSession("
+    ]
+   ],
+   "consumerTests": [
+    "tests/travel_goat.mjs",
+    "tests/travel_goat_sources.mjs",
+    "tests/travel_goat_backend.mjs",
+    "tests/travel_goat_native_resources.mjs",
+    "tests/travel_goat_source_context.mjs",
+    "tests/measure_travel_goat_boundary.mjs",
+    "tests/travel_goat_app17.mjs",
+    "tests/travel_goat_apply_boundary.mjs",
+    "tests/travel_goat_resources.mjs",
+    "tests/travel_goat_runtime.mjs",
+    "tests/travel_goat_ui.mjs",
+    "tests/physical_travel_goat_conflicts.mjs",
+    "tests/travel_goat_inventory_roundtrip.mjs",
+    "tests/travel_goat_inventory_add.mjs"
+   ],
+   "test": "Z3 U58 actual native Traveling hourly budget and seven-day recovery",
+   "note": "U58 exact native Traveling component only. One actual canonical S.used key per physical Traveling statuette, replay-validated factual history and real native C.res/D.res/used/boxes consumers. Actual per-form hour/part rounding spends one charge per started hour without a shadow balance; NPC HP0 or touching action reverts, exhaustion blocks new forms, and verified seven-day recovery restores24 through the same owned native budget. Old current3 pool and legacy24 values are preserved; only proven managed legacy resource is suppressed. Unknown metadata/history without matching actual budget grants no availability. Actual source-specific Horse snapshots remain independent of player HP/stats."
+  },
+  {
+   "id": "u58-item-dmg14-travel-goat-ivory-16",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Figurine of Wondrous Power, Ivory Goats",
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "1",
+    "24"
+   ],
+   "scopeValues": true,
+   "rx": "^it\\ has\\ 24\\ charges,\\ and\\ each\\ hour\\ or\\ portion\\ thereof\\ it\\ spends\\ in\\ beast\\ form\\ costs\\ 1\\ charge\\.$",
+   "anchor": [
+    "src/builder/25r-logic-travel-goat.js",
+    "genv.__bldTravelGoatCommand=command"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/travel-goat.js",
+     "export function travelGoatProblems("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function charge("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function elapsed("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function recovery("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "export function recoverTravelGoat("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatBudget("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatResource("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function withTravelGoatProjection("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function travelGoatProjectResources("
+    ],
+    [
+     "src/builder/12zf-logic-travel-goat.js",
+     "ctx.C.res=travelGoatProjectResources(ctx.C.inv,ctx.C.res)"
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function knownPlan("
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function publish("
+    ],
+    [
+     "src/app/21y-ui-travel-goat.js",
+     "export async function openTravelGoat("
+    ],
+    [
+     "src/app/32z-logic-travel-goat.js",
+     "export function createTravelGoatSession("
+    ]
+   ],
+   "consumerTests": [
+    "tests/travel_goat.mjs",
+    "tests/travel_goat_sources.mjs",
+    "tests/travel_goat_backend.mjs",
+    "tests/travel_goat_native_resources.mjs",
+    "tests/travel_goat_source_context.mjs",
+    "tests/measure_travel_goat_boundary.mjs",
+    "tests/travel_goat_app17.mjs",
+    "tests/travel_goat_apply_boundary.mjs",
+    "tests/travel_goat_resources.mjs",
+    "tests/travel_goat_runtime.mjs",
+    "tests/travel_goat_ui.mjs",
+    "tests/physical_travel_goat_conflicts.mjs",
+    "tests/travel_goat_inventory_roundtrip.mjs",
+    "tests/travel_goat_inventory_add.mjs"
+   ],
+   "test": "Z3 U58 actual native Traveling hourly budget and seven-day recovery",
+   "note": "U58 exact native Traveling component only. One actual canonical S.used key per physical Traveling statuette, replay-validated factual history and real native C.res/D.res/used/boxes consumers. Actual per-form hour/part rounding spends one charge per started hour without a shadow balance; NPC HP0 or touching action reverts, exhaustion blocks new forms, and verified seven-day recovery restores24 through the same owned native budget. Old current3 pool and legacy24 values are preserved; only proven managed legacy resource is suppressed. Unknown metadata/history without matching actual budget grants no availability. Actual source-specific Horse snapshots remain independent of player HP/stats."
+  },
+  {
+   "id": "u58-item-dmg14-travel-goat-ivory-18",
+   "kind": "item",
+   "owner": "dmg14",
+   "name": "Figurine of Wondrous Power, Ivory Goats",
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "7"
+   ],
+   "scopeValues": true,
+   "rx": "^when\\ it\\ runs\\ out\\ of\\ charges,\\ it\\ reverts\\ to\\ a\\ figurine\\ and\\ can't\\ be\\ used\\ again\\ until\\ 7\\ days\\ have\\ passed,\\ when\\ it\\ regains\\ all\\ its\\ charges\\.$",
+   "anchor": [
+    "src/builder/25r-logic-travel-goat.js",
+    "genv.__bldTravelGoatCommand=command"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/travel-goat.js",
+     "export function travelGoatProblems("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function charge("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function elapsed("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "function recovery("
+    ],
+    [
+     "src/data/lib/travel-goat.js",
+     "export function recoverTravelGoat("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatBudget("
+    ],
+    [
+     "src/data/lib/travel-goat-source.js",
+     "export function travelGoatResource("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function withTravelGoatProjection("
+    ],
+    [
+     "src/builder/10r-logic-travel-goat.js",
+     "export function travelGoatProjectResources("
+    ],
+    [
+     "src/builder/12zf-logic-travel-goat.js",
+     "ctx.C.res=travelGoatProjectResources(ctx.C.inv,ctx.C.res)"
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function knownPlan("
+    ],
+    [
+     "src/builder/25r-logic-travel-goat.js",
+     "function publish("
+    ],
+    [
+     "src/app/21y-ui-travel-goat.js",
+     "export async function openTravelGoat("
+    ],
+    [
+     "src/app/32z-logic-travel-goat.js",
+     "export function createTravelGoatSession("
+    ]
+   ],
+   "consumerTests": [
+    "tests/travel_goat.mjs",
+    "tests/travel_goat_sources.mjs",
+    "tests/travel_goat_backend.mjs",
+    "tests/travel_goat_native_resources.mjs",
+    "tests/travel_goat_source_context.mjs",
+    "tests/measure_travel_goat_boundary.mjs",
+    "tests/travel_goat_app17.mjs",
+    "tests/travel_goat_apply_boundary.mjs",
+    "tests/travel_goat_resources.mjs",
+    "tests/travel_goat_runtime.mjs",
+    "tests/travel_goat_ui.mjs",
+    "tests/physical_travel_goat_conflicts.mjs",
+    "tests/travel_goat_inventory_roundtrip.mjs",
+    "tests/travel_goat_inventory_add.mjs"
+   ],
+   "test": "Z3 U58 actual native Traveling hourly budget and seven-day recovery",
+   "note": "U58 exact native Traveling component only. One actual canonical S.used key per physical Traveling statuette, replay-validated factual history and real native C.res/D.res/used/boxes consumers. Actual per-form hour/part rounding spends one charge per started hour without a shadow balance; NPC HP0 or touching action reverts, exhaustion blocks new forms, and verified seven-day recovery restores24 through the same owned native budget. Old current3 pool and legacy24 values are preserved; only proven managed legacy resource is suppressed. Unknown metadata/history without matching actual budget grants no availability. Actual source-specific Horse snapshots remain independent of player HP/stats."
   }
  ]
 }
