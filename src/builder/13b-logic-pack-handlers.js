@@ -69,4 +69,4 @@ registerPackStep({id:"fallback-species",phase:"post",order:80,about:"a species t
 registerPackStep({id:"fallback-background",phase:"post",order:90,about:"a background that no longer exists becomes Soldier",uses:["T.B","T.BACKGROUNDS"],writes:["T.B"],
  run:function(ctx){const B=ctx.T.B;if(!ctx.T.BACKGROUNDS[B.bg])B.bg="Soldier"}});
 registerPackStep({id:"fallback-subclass",phase:"post",order:100,about:"a subclass that no longer exists is cleared",uses:["T.B","q.CL"],writes:["T.B"],
- run:function(ctx){const B=ctx.T.B;if(B.sub&&B.sub!=="__custom"&&!ctx.q.CL().subs[B.sub])B.sub=""}});
+ run:function(ctx){const B=ctx.T.B,c=ctx.q.CL();if(!c)return;/* class pack not loaded (yet): keep the pick, never crash */if(B.sub&&B.sub!=="__custom"&&!(c.subs||{})[B.sub])B.sub=""}});
