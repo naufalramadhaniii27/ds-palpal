@@ -153,7 +153,7 @@ document.addEventListener("click",(e) =>{if(!e.target.closest("#bld"))return;con
  if(t.id==="bakBtn"){restoreBak();return}});
 document.addEventListener("change",(e) =>{if(!e.target.closest("#bld"))return;const t=e.target,d=t.dataset;
  if(d.iin!=null){const it2=B.inv[+d.iin],XD=/^(Bag of Holding|Heward's Handy Haversack|Portable Hole)\b/;if(!it2)return;if(t.value&&XD.test(it2.n)&&XD.test(t.value)){toast("Putting "+it2.n+" inside "+t.value+" tears both apart and opens a rift to the Astral Plane. Not moved.");render();return}if(t.value)it2.in=t.value;else delete it2.in;commit();return}/* v27 RU46 */
- if(d.ibase!=null){const bi=B.inv[+d.ibase],bd=bi&&DMAP[bi.n];if(bd&&bd[5]&&bd[5].base){bi.n=t.value===bd[5].base[0]?bd[0]:bd[0]+" ("+t.value+")";delete bi.alias;commit()}return}/* V16-1 */ if(d.eqp){B.eqP=B.eqP||{};B.eqP[d.eqp]=t.value;ensureInv();rebuildKit(1);B.gpOverride=null;commit();return}/* v93 */
+ if(d.ibase!=null){const bi=B.inv[+d.ibase],bd=bi&&(DMAP[bi.n]||DMAP[bi.n.replace(/ \([^()]*\)$/,"")]);if(bd&&bd[5]&&bd[5].base){bi.n=t.value===bd[5].base[0]?bd[0]:bd[0]+" ("+t.value+")";delete bi.alias;commit()}return}/* V16-1 */ if(d.eqp){B.eqP=B.eqP||{};B.eqP[d.eqp]=t.value;ensureInv();rebuildKit(1);B.gpOverride=null;commit();return}/* v93 */
  if(d.b){const v=t.type==="checkbox"?t.checked:t.type==="number"?+t.value:t.value;if(d.b==="bg"&&!v){render();return}setB(d.b,v);if(d.b==="bg"){B.bg2="";B.bg1="";delete B.ch.bgfeatc;unDone("bg")}commit();return}
  if(d.ch){B.ch[d.ch]=t.value;commit();return}
  if(d.addcls){if(t.value){B.mc=B.mc||[];B.mc.push({cls:t.value,lv:1,sub:""})}commit();return}
