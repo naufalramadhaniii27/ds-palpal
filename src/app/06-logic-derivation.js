@@ -123,6 +123,7 @@ function derivePassivesAcInit(abPart, exhN, exP, skillByName, xr, exh){
   (C.ac.bonus||[]).forEach((b) =>{ acParts.push(part(b.s||"Bonus", num(b.v))); });
   sitNum("ac").forEach((b) =>{ acParts.push(part(b.s,b.v)); });/* v103 */
   if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
+  if(S.shift&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: Beasthide"; }); })) acParts.push(part("Shifting (Beasthide)", 1, "While shifted"));
   D.ac=acParts.reduce((a,p) =>{return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
   B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
 

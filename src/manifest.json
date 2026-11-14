@@ -182,6 +182,7 @@
     "app/32b-logic-play-concentration-casting.js",
     "app/32c-logic-play-temp-features-ammo.js",
     "app/32d-logic-play-hp-rest-recovery.js",
+    "app/32e-logic-martyr-actions.js",
     "app/33-logic-play-rage-conditions.js",
     "app/34-ui-situations.js",
     "app/34b-ui-combat-effects-modes.js",
