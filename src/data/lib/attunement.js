@@ -4,9 +4,9 @@ export function itemQuantity(row){const n=parseFloat(row&&row.q);return isNaN(n)
 export function migrateAttunement(row,itemRule,legacyUse){if(!row||typeof row!=="object")return row;
  return itemRule&&itemRule.requires&&typeof row.attuned!=="boolean"?Object.assign({},row,{attuned:legacyUse==null?!!row.eq:!!legacyUse}):row}
 export function migrateItems(items,resolve,legacyUse){if(!Array.isArray(items))return items;let changed=false;
- const out=items.map((row)=>{if(!row||typeof row!=="object")return row;const next=migrateAttunement(row,resolve(row.n),legacyUse?legacyUse(row):null);if(next!==row)changed=true;return next});return changed?out:items}
+ const out=items.map((row,index)=>{if(!row||typeof row!=="object")return row;const next=migrateAttunement(row,resolve(row.n,row,index),legacyUse?legacyUse(row):null);if(next!==row)changed=true;return next});return changed?out:items}
 export function allocateAttunement(items,limit,resolve,eligible){const seen=new Set(),cap=Number.isFinite(+limit)?Math.max(0,Math.floor(+limit)):3;let used=0;
- const data=items.map((row,index)=>{const itemRule=resolve(row.n)||{},requires=!!itemRule.requires,optional=!!itemRule.optional,requested=requires?(typeof row.attuned==='boolean'?row.attuned:!!row.eq):optional&&row.attuned===true;return {row,itemRule,status:{index,requires,...(optional?{optional:true}:{}),requested,attuned:false,reason:''}}});
+ const data=items.map((row,index)=>{const itemRule=resolve(row.n,row,index)||{},requires=!!itemRule.requires,optional=!!itemRule.optional,requested=requires?(typeof row.attuned==='boolean'?row.attuned:!!row.eq):optional&&row.attuned===true;return {row,itemRule,status:{index,requires,...(optional?{optional:true}:{}),requested,attuned:false,reason:''}}});
  let changed=true,rounds=0;
  while(changed&&used<cap&&rounds++<items.length){changed=false;
   data.forEach(({row,itemRule,status})=>{if(status.attuned||(!status.requires&&!status.optional)||!status.requested||itemQuantity(row)<=0)return;

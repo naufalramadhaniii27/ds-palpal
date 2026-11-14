@@ -19,3 +19,5 @@ for(const kind of ['cantrip','starry'])for(const prefix of ['ah','ad']){const h=
 {const h=fixture({item:'Rod of the Pact Keeper, +1'});h.engine.c.B.cid='foreign';eq(h.c.pactRodSheetReview(),'')}
 for(const item of ['+1 Rod of the Pact Keeper','Rod of the Pact Keeper, +1']){const h=fixture({item,spellSave:'ATK'}),d=dice(h);for(const row of h.c.C.spellcasting.by)delete row.k;const html=h.c.spHeadBy(h.c.C.spellcasting),key=/data-bd="(spatk-[^"]+)"/.exec(html)[1];eq(key,'spatk-INT');const before=JSON.stringify(h.c.C);for(const suffix of ['STR','DEX','CON','INT','WIS','CHA','FUTURE']){const spec=d.c.FXS16A.sourceSpec('spatk-'+suffix,{bon:9});if(item.startsWith('+')){eq(spec.sourceGuard(),false);d.roll(spec);eq(d.requests.length,0);eq(d.history.length,0)}else eq(spec.sourceGuard,undefined)}eq(JSON.stringify(h.c.C),before)}
 console.log(checks+' actual Pact Rod saved DC/cast payment/async/direct+keyed+main+Actions/export source checks PASS');
+
+export {fixture as createPactRodRuntimeFixture};

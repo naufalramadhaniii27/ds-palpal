@@ -41,4 +41,6 @@ bind(["__bldIounOrbitInfo", "__bldIounOrbitCapture", "__bldIounOrbitTokenCurrent
 bind(["__iounOrbitCheckRoll", "__iounOrbitMathStatus"]);
 bind(["__bracersAttackSpec", "__bldBracersAttackInfo", "__bldBracersAttackCapture", "__bldBracersAttackCurrent"]);
 bind(["__bldPactRodSpellInfo", "__bldPactRodSpellCapture", "__bldPactRodSpellCurrent"]);
+bind(["__bldRodAbsorptionCastPrepare", "__bldRodAbsorptionCastCurrent", "__bldRodAbsorptionCastCommit"]);
+bind(["__bldRodAbsorptionInfo", "__bldRodAbsorptionCapture", "__bldRodAbsorptionTokenCurrent", "__bldRodAbsorptionCommand", "__bldRodAbsorptionAcceptReceipt", "__bldRodAbsorptionInventoryOwner", "__rodAbsorptionSave"]);
 export const ENV_NAMES = Object.keys(env);

@@ -1,0 +1,7 @@
+import assert from'node:assert/strict';import fs from'node:fs';import vm from'node:vm';import{createRodAbsorptionEngine}from'./fixtures/rod-absorption-native.mjs';
+let n=0;const eq=(a,b)=>{assert.deepEqual(a,b);n++},data=vm.createContext({FEATS:{},LU_X:[],ACTS:{},SAVE_NOTES:[],DataEnv:{slot:{}}});vm.runInContext(fs.readFileSync(new URL('../src/data/wotc07-feats-2014.js',import.meta.url),'utf8'),data);
+const e=createRodAbsorptionEngine();e.c.FEATS['Magic Initiate (2014)']=structuredClone(data.FEATS['Magic Initiate (2014)']);e.c.genv.DM_SP=structuredClone(data.DataEnv.slot.DM_SP);e.c.DM_SP=e.c.genv.DM_SP;e.c.genv.WX=structuredClone(data.DataEnv.slot.WX);e.c.B.src={...e.c.B.src,phb14:true};e.c.B.ch.feat4={feat:'Magic Initiate (2014)'};e.c.B.ch['cp-feat4']=['Wizard'];e.c.B.ch['pks1-feat4']=['Shield'];e.setC(e.project());
+eq(e.c.dmSpells().some(q=>q.n==='Shield'&&q.k==='@dm:feat4'),true);eq(e.C.spells.some(q=>q.n==='Shield'&&q.src==='Magic Initiate (2014)'),true);eq(e.info().castOptions.some(q=>q.name==='Shield'&&q.sourceKey==='@dm:feat4'),true);
+e.c.B.ch['cp-feat4']=['Warlock'];e.setC(e.project());eq(e.info().castOptions.some(q=>q.name==='Shield'&&q.sourceKey==='@dm:feat4'),false);
+e.c.B.ch['cp-feat4']=['Wizard'];e.c.B.ch['pks1-feat4']=['Fireball'];e.setC(e.project());eq(e.info().castOptions.some(q=>q.name==='Fireball'&&q.sourceKey==='@dm:feat4'),false);
+console.log(n+' actual original2014 learned MI/native grant bounds checks PASS');

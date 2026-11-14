@@ -6,7 +6,7 @@ import * as model from '../data/lib/ioun-orbit.js';
 import {iounSource,iounMarker,iounMarkerSource,canonicalIounDefinition,iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 const views=new Map(),tokens=new WeakMap(),receipts=new WeakMap();let sequence=1,publication=null;
 const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),copy=structuredClone,json=JSON.stringify,fail=reason=>({ok:false,reason}),key=row=>own(row,'key')?row.key:row.n;
-const conflicts=row=>['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses'].some(k=>own(row,k));
+const conflicts=row=>['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','rodAbsorption'].some(k=>own(row,k));
 function stamp(value){const version=genv.__appVer;if(value&&typeof genv.__lsSave==='function'&&Number.isSafeInteger(version)&&version>=0)value._app=Math.max(+value._app||0,version)}
 function shape(v,top=false){if(v===null||typeof v!=='object')return [typeof v,String(v)];const keys=Reflect.ownKeys(v),version=genv.__appVer,native=top&&typeof genv.__lsSave==='function'&&Number.isSafeInteger(version)&&version>=0;if(native&&!keys.includes('_app'))keys.push('_app');return [Array.isArray(v)?'array':'object',keys.map(k=>[typeof k,String(k),shape(native&&k==='_app'?Math.max(+v._app||0,version):v[k])])]}
 function bytes(v){return json(shape(v,true))}

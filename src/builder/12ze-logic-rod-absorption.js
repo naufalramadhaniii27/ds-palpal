@@ -1,0 +1,3 @@
+import {registerSheetGroup} from './12a-logic-sheet-registry.js';
+import {rodAbsorptionProjectionMirror,rodAbsorptionOwnFuture,rodAbsorptionSourceWitness,rodAbsorptionRelevant,rodAbsorptionProjectedInventory} from './10q-logic-rod-absorption.js';
+registerSheetGroup({id:'rod-absorption-sources',group:'rod-absorption',phase:'post',order:121,reads:['i.ATT','C.inv'],writes:['C.rodAbsorption','C.rodAbsorptionSources','C.inv'],run:function(ctx){if(!rodAbsorptionRelevant())return ctx.patch();ctx.C.inv=rodAbsorptionProjectedInventory(ctx.C.inv);const state=rodAbsorptionProjectionMirror();if(state!==undefined||rodAbsorptionOwnFuture())ctx.C.rodAbsorption=state;ctx.C.rodAbsorptionSources=rodAbsorptionSourceWitness(ctx.i.ATT,ctx.C.inv);return ctx.patch();}});

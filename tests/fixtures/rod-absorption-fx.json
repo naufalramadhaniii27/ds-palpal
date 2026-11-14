@@ -1,0 +1,473 @@
+{
+  "generatedBy": "actual native class/MI producers→25q opaque payment→ordinary32b casting completion; no fabricated completion or slot",
+  "initiate": {
+    "build": {
+      "name": "Actor",
+      "cid": "actor",
+      "inv": [
+        {
+          "n": "Rod of Absorption",
+          "q": 1,
+          "eq": true,
+          "attuned": true,
+          "rodAbsorption": {
+            "v": 1,
+            "id": "ra-1",
+            "nativeProfile": "dmg2024-rod-of-absorption",
+            "itemFingerprint": "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]"
+          }
+        }
+      ],
+      "custLib": [],
+      "cls": "Wizard",
+      "sub": "",
+      "level": 5,
+      "rs": "2024",
+      "base": {
+        "STR": 10,
+        "DEX": 10,
+        "CON": 10,
+        "INT": 18,
+        "WIS": 10,
+        "CHA": 18
+      },
+      "ch": {},
+      "mc": [
+        {
+          "cls": "Warlock",
+          "sub": "",
+          "lv": 5
+        }
+      ],
+      "pk": {
+        "mi0": {
+          "c": [
+            "Fire Bolt",
+            "Mage Hand"
+          ],
+          "s": [
+            "Shield"
+          ],
+          "ab": "INT"
+        }
+      },
+      "sp": [
+        "Fireball",
+        "Hold Person",
+        "Magic Weapon",
+        "Burning Hands"
+      ],
+      "spm": {
+        "Warlock": [
+          "Charm Person"
+        ]
+      },
+      "unset": {
+        "species": true
+      },
+      "bg": "Sage",
+      "src": {
+        "core": true,
+        "dmg": true
+      }
+    },
+    "state": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextReceipt": 2,
+      "rods": [
+        {
+          "id": "ra-1",
+          "profile": "dmg2024-rod-of-absorption",
+          "fingerprint": "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]",
+          "review": {
+            "totalAbsorbed": 20,
+            "stored": 10,
+            "foundRoll": null
+          },
+          "totalAbsorbed": 20,
+          "stored": 9,
+          "nonmagical": false
+        }
+      ],
+      "receipts": [
+        {
+          "id": "rae-1",
+          "kind": "cast",
+          "rodId": "ra-1",
+          "level": 1,
+          "spell": {
+            "key": "class:%40mi%3Ami0|Shield",
+            "name": "Shield",
+            "baseLevel": 1,
+            "definitionFingerprint": "[\"object\",[[\"castingKind\",null],[\"classList\",[\"array\",[\"Sorcerer\",\"Wizard\"]]],[\"cmp\",\"V, S\"],[\"conc\",0],[\"consumesMaterial\",false],[\"ct\",\"Reaction\"],[\"dur\",\"1 round\"],[\"fx\",[\"object\",[]]],[\"l\",1],[\"n\",\"Shield\"],[\"r\",\"Self\"],[\"sch\",\"Abjuration\"],[\"school\",\"Abjuration\"],[\"sum\",\"Reaction: +5 AC until your next turn and no damage from Magic Missile.\"],[\"sv\",\"\"]]]"
+          }
+        }
+      ]
+    },
+    "used": {
+      "s1": 4,
+      "s2": 3,
+      "s3": 2,
+      "pact": 2,
+      "hd": 1,
+      "other": 9
+    },
+    "spellKey": "class:%40mi%3Ami0|Shield"
+  },
+  "before": {
+    "build": {
+      "name": "Actor",
+      "cid": "actor",
+      "inv": [
+        {
+          "n": "Rod of Absorption",
+          "q": 1,
+          "eq": true,
+          "attuned": true,
+          "rodAbsorption": {
+            "v": 1,
+            "id": "ra-1",
+            "nativeProfile": "dmg2024-rod-of-absorption",
+            "itemFingerprint": "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]"
+          }
+        }
+      ],
+      "custLib": [],
+      "cls": "Wizard",
+      "sub": "",
+      "level": 5,
+      "rs": "2024",
+      "base": {
+        "STR": 10,
+        "DEX": 10,
+        "CON": 10,
+        "INT": 18,
+        "WIS": 10,
+        "CHA": 18
+      },
+      "ch": {},
+      "mc": [
+        {
+          "cls": "Warlock",
+          "sub": "",
+          "lv": 5
+        }
+      ],
+      "pk": {},
+      "sp": [
+        "Fireball",
+        "Hold Person",
+        "Magic Weapon",
+        "Burning Hands"
+      ],
+      "spm": {
+        "Warlock": [
+          "Charm Person"
+        ]
+      },
+      "unset": {
+        "species": true
+      },
+      "src": {
+        "core": true,
+        "dmg": true
+      }
+    },
+    "state": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextReceipt": 1,
+      "rods": [
+        {
+          "id": "ra-1",
+          "profile": "dmg2024-rod-of-absorption",
+          "fingerprint": "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]",
+          "review": {
+            "totalAbsorbed": 20,
+            "stored": 10,
+            "foundRoll": null
+          },
+          "totalAbsorbed": 20,
+          "stored": 10,
+          "nonmagical": false
+        }
+      ],
+      "receipts": []
+    },
+    "used": {
+      "s1": 4,
+      "s2": 3,
+      "s3": 2,
+      "pact": 2,
+      "hd": 1,
+      "other": 9
+    },
+    "casting": {
+      "ab": "INT",
+      "dc": 16,
+      "atk": 8,
+      "mod": 4,
+      "slots": [
+        4,
+        3,
+        2
+      ],
+      "pact": {
+        "n": 2,
+        "lvl": 3
+      },
+      "by": [
+        {
+          "k": "Wizard",
+          "n": "Wizard",
+          "ab": "INT",
+          "mod": 4,
+          "atk": 8,
+          "dc": 16
+        },
+        {
+          "k": "Warlock",
+          "n": "Warlock",
+          "ab": "CHA",
+          "mod": 4,
+          "atk": 8,
+          "dc": 16
+        }
+      ]
+    }
+  },
+  "after": {
+    "build": {
+      "name": "Actor",
+      "cid": "actor",
+      "inv": [
+        {
+          "n": "Rod of Absorption",
+          "q": 1,
+          "eq": true,
+          "attuned": true,
+          "rodAbsorption": {
+            "v": 1,
+            "id": "ra-1",
+            "nativeProfile": "dmg2024-rod-of-absorption",
+            "itemFingerprint": "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]"
+          }
+        }
+      ],
+      "custLib": [],
+      "cls": "Wizard",
+      "sub": "",
+      "level": 5,
+      "rs": "2024",
+      "base": {
+        "STR": 10,
+        "DEX": 10,
+        "CON": 10,
+        "INT": 18,
+        "WIS": 10,
+        "CHA": 18
+      },
+      "ch": {},
+      "mc": [
+        {
+          "cls": "Warlock",
+          "sub": "",
+          "lv": 5
+        }
+      ],
+      "pk": {},
+      "sp": [
+        "Fireball",
+        "Hold Person",
+        "Magic Weapon",
+        "Burning Hands"
+      ],
+      "spm": {
+        "Warlock": [
+          "Charm Person"
+        ]
+      },
+      "unset": {
+        "species": true
+      },
+      "src": {
+        "core": true,
+        "dmg": true
+      }
+    },
+    "state": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextReceipt": 2,
+      "rods": [
+        {
+          "id": "ra-1",
+          "profile": "dmg2024-rod-of-absorption",
+          "fingerprint": "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]",
+          "review": {
+            "totalAbsorbed": 20,
+            "stored": 10,
+            "foundRoll": null
+          },
+          "totalAbsorbed": 20,
+          "stored": 7,
+          "nonmagical": false
+        }
+      ],
+      "receipts": [
+        {
+          "id": "rae-1",
+          "kind": "cast",
+          "rodId": "ra-1",
+          "level": 3,
+          "spell": {
+            "key": "class:Wizard|Fireball",
+            "name": "Fireball",
+            "baseLevel": 3,
+            "definitionFingerprint": "[\"object\",[[\"castingKind\",\"one-action\"],[\"classList\",[\"array\",[\"Sorcerer\",\"Wizard\"]]],[\"cmp\",\"V, S, M\"],[\"conc\",0],[\"consumesMaterial\",false],[\"ct\",\"Action\"],[\"dur\",\"Instantaneous\"],[\"fx\",[\"object\",[[\"area\",[\"array\",[\"Sphere\",20,null]]],[\"dmg\",[\"array\",[[\"array\",[\"8d6\",\"Fire\",\"1d6\",\"\"]]]]],[\"mat\",\"a ball of bat guano and sulfur\"]]]],[\"l\",3],[\"n\",\"Fireball\"],[\"r\",\"150 ft\"],[\"sch\",\"Evocation\"],[\"school\",\"Evocation\"],[\"sum\",\"A 20-ft explosion. Dex save, 8d6 Fire, half on success.\"],[\"sv\",\"DEX\"]]]"
+          }
+        }
+      ]
+    },
+    "used": {
+      "s1": 4,
+      "s2": 3,
+      "s3": 2,
+      "pact": 2,
+      "hd": 1,
+      "other": 9
+    },
+    "casting": {
+      "ab": "INT",
+      "dc": 16,
+      "atk": 8,
+      "mod": 4,
+      "slots": [
+        4,
+        3,
+        2
+      ],
+      "pact": {
+        "n": 2,
+        "lvl": 3
+      },
+      "by": [
+        {
+          "k": "Wizard",
+          "n": "Wizard",
+          "ab": "INT",
+          "mod": 4,
+          "atk": 8,
+          "dc": 16
+        },
+        {
+          "k": "Warlock",
+          "n": "Warlock",
+          "ab": "CHA",
+          "mod": 4,
+          "atk": 8,
+          "dc": 16
+        }
+      ]
+    }
+  },
+  "concentration": {
+    "build": {
+      "name": "Actor",
+      "cid": "actor",
+      "inv": [
+        {
+          "n": "Rod of Absorption",
+          "q": 1,
+          "eq": true,
+          "attuned": true,
+          "rodAbsorption": {
+            "v": 1,
+            "id": "ra-1",
+            "nativeProfile": "dmg2024-rod-of-absorption",
+            "itemFingerprint": "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]"
+          }
+        }
+      ],
+      "custLib": [],
+      "cls": "Wizard",
+      "sub": "",
+      "level": 5,
+      "rs": "2024",
+      "base": {
+        "STR": 10,
+        "DEX": 10,
+        "CON": 10,
+        "INT": 18,
+        "WIS": 10,
+        "CHA": 18
+      },
+      "ch": {},
+      "mc": [
+        {
+          "cls": "Warlock",
+          "sub": "",
+          "lv": 5
+        }
+      ],
+      "pk": {},
+      "sp": [
+        "Fireball",
+        "Hold Person",
+        "Magic Weapon",
+        "Burning Hands"
+      ],
+      "spm": {
+        "Warlock": [
+          "Charm Person"
+        ]
+      },
+      "unset": {
+        "species": true
+      },
+      "src": {
+        "core": true,
+        "dmg": true
+      }
+    },
+    "state": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextReceipt": 2,
+      "rods": [
+        {
+          "id": "ra-1",
+          "profile": "dmg2024-rod-of-absorption",
+          "fingerprint": "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]",
+          "review": {
+            "totalAbsorbed": 20,
+            "stored": 10,
+            "foundRoll": null
+          },
+          "totalAbsorbed": 20,
+          "stored": 7,
+          "nonmagical": false
+        }
+      ],
+      "receipts": [
+        {
+          "id": "rae-1",
+          "kind": "cast",
+          "rodId": "ra-1",
+          "level": 3,
+          "spell": {
+            "key": "class:Wizard|Hold%20Person",
+            "name": "Hold Person",
+            "baseLevel": 2,
+            "definitionFingerprint": "[\"object\",[[\"castingKind\",\"one-action\"],[\"classList\",[\"array\",[\"Bard\",\"Cleric\",\"Druid\",\"Sorcerer\",\"Warlock\",\"Wizard\"]]],[\"cmp\",\"V, S, M\"],[\"conc\",1],[\"consumesMaterial\",false],[\"ct\",\"Action\"],[\"dur\",\"Up to 1 minute\"],[\"fx\",[\"object\",[[\"mat\",\"a straight piece of iron\"]]]],[\"l\",2],[\"n\",\"Hold Person\"],[\"r\",\"60 ft\"],[\"sch\",\"Enchantment\"],[\"school\",\"Enchantment\"],[\"sum\",\"A Humanoid makes a Wis save or is Paralyzed.\"],[\"sv\",\"WIS\"]]]"
+          }
+        }
+      ]
+    },
+    "conc": {
+      "n": "Hold Person",
+      "l": 3
+    }
+  }
+}

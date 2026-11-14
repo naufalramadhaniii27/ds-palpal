@@ -1,0 +1,10 @@
+export const ROD_ABSORPTION_PROFILE = "dmg2024-rod-of-absorption";
+export const ROD_ABSORPTION_FINGERPRINT = "[\"Rod of Absorption\",\"Rod\",\"Very Rare\",1,\"While you hold this rod, you can take a Reaction to soak up a spell that targets only you and doesn't produce an area of effect. The spell's effect is negated, and its energy, though not the spell itself, goes into the rod. That energy keeps the level the spell had when it was cast. The negated spell fizzles out harmlessly, and whatever was spent to cast it is lost.\\nOver its whole existence, the rod can soak up and store a total of 50 levels of energy. After it has absorbed 50 levels, it can't absorb any more. If a spell targets you that the rod can't store, the rod doesn't affect that spell.\\nOnce you attune to the rod, you know both the total levels of energy it has absorbed over its existence and the levels of spell energy it holds right now.\\nIf you are a spellcaster and are holding the rod, you can turn its stored energy into spell slots for casting spells you know or have prepared. Each slot you create can be no higher than the level of spell slots you yourself have, and never higher than level 5. You spend the stored levels instead of your own slots, but you otherwise cast the spell normally. For instance, 3 stored levels can serve as one level 3 spell slot.\\nA rod that has just been found usually holds 1d10 levels of spell energy. If the rod can no longer absorb spell energy and has none left inside, it stops being magical.\"]";
+export function rodAbsorptionNativeProfile(rows){
+ if(!Array.isArray(rows))return null;
+ const found=rows.filter(row=>Array.isArray(row)&&row[0]==='Rod of Absorption');
+ if(found.length!==1)return null;
+ const row=found[0];if(Reflect.ownKeys(row).length!==row.length+1||!row.every((_,i)=>Object.prototype.hasOwnProperty.call(row,i)))return null;
+ try{if(JSON.stringify(row)!==ROD_ABSORPTION_FINGERPRINT)return null;}catch{return null;}
+ return {item:'Rod of Absorption',profile:ROD_ABSORPTION_PROFILE,fingerprint:ROD_ABSORPTION_FINGERPRINT,attunementRequired:true};
+}

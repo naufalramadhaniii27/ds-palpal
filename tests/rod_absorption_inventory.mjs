@@ -1,0 +1,6 @@
+import assert from'node:assert/strict';import{nativeInventoryController}from'./fixtures/native-inventory-controller.mjs';import{rodAbsorptionInventoryRequiresBuild}from'../src/app/lib/rod-absorption-inventory.js';
+let n=0;const eq=(a,b)=>{assert.deepEqual(a,b);n++};
+for(const value of [undefined,null,{v:99},{v:1,id:'ra-1'}])for(const action of ['equip','attune','quantity','remove']){const C={name:'Actor',inv:[{n:'Rod of Absorption',q:1,eq:true,attuned:true,rodAbsorption:value}]},S={rodAbsorption:{opaque:'retained'}},before=structuredClone([C,S]),controller=nativeInventoryController({character:()=>C,state:()=>S});await controller[action](0,0);eq([C,S],before)}
+for(const action of ['equip','attune','quantity','remove']){const C={name:'Actor',inv:[{n:'Rod of Absorption',q:1,eq:true,attuned:true,rodAbsorption:{v:1,id:'ra-1'}}]},S={},before=structuredClone([C,S]),env={__bldHas:()=>true,__bldForName:()=>false},controller=nativeInventoryController({character:()=>C,state:()=>S,env,matching:'native'});await controller[action](0,0);eq([C,S],before)}
+eq(rodAbsorptionInventoryRequiresBuild({n:'Rod of Absorption'}),false);eq(rodAbsorptionInventoryRequiresBuild({n:'Display alias',rodAbsorption:undefined}),true);eq(rodAbsorptionInventoryRequiresBuild(null),false);
+console.log(n+' tracked Rod physical inventory missing/foreign Build opaque preservation checks PASS');
