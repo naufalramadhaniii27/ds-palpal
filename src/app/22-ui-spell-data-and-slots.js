@@ -82,13 +82,15 @@ export function spRowLv(x){ if(x.itc&&x.itc.lv&&!Array.isArray(x.itc.c)) return 
 /* v15 Checker: the Lvl control stays inside the slots the character can use. Pact Magic: the Pact level only. Mystic Arcanum and once-per-rest casts: the spell level */
 function spLvRange(x){ const sc=C.spellcasting||{}; if(!x.l) return [0,0]; if(spPact(x)){ const p=Math.max(x.l,spPactLv()||x.l); return [p,p]; } if(/Long Rest|At will/.test(x.use||"")) return [x.l,x.l]; const mx=(sc.slots||[]).length; return [x.l,Math.max(x.l,mx||9)]; }
 export var spLvSel={};
+/* roll panel for healing spells (32e) */
+function spHealPanel(c,x){ const m=env.__martyr; return m&&m.healH?m.healH(c.heal,x.n,x.dur):""; }
 function spFxBlock(x,key){ const sc=scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod); if(!c||(!c.parts.length&&!c.heal&&!c.n)) return "";
   let h='<div class="info-h">'+(c.parts.length?"Damage":"Effect")+'</div><div class="spfx">';
   if(c.up&&rg[1]>rg[0]) h+='<div class="splv"><button type="button" class="btn press" data-splv="-1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Lower spell level"'+(c.lv<=rg[0]?' disabled':'')+'>−</button><span>Lvl <b>'+c.lv+'</b></span><button type="button" class="btn press" data-splv="1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Higher spell level"'+(c.lv>=rg[1]?' disabled':'')+'>+</button></div>';
   else if(x.l) h+='<p class="spfl splvs">Slot level <b>'+c.lv+'</b>'+(spPact(x)?' (Pact Magic)':'')+'</p>';
   if(c.n) h+='<p class="spfl"><b>'+c.n+' '+esc(c.unit)+(c.n>1?'s':'')+'</b>'+(x.l?'':' at character level '+D.level)+', each:</p>';
   c.parts.forEach((p) =>{ h+='<p class="spfl">'+dtIcon(p.t)+'<b>'+esc(p.d)+'</b> '+esc(dTxt(p.t))+' damage'+(p.lab?' <span class="muted">('+esc(p.lab)+')</span>':'')+'</p>'; });
-  if(c.heal) h+='<p class="spfl">'+dtIcon("Healing")+'<b>'+esc(c.heal)+'</b> Hit Points regained</p>'+(env.__martyr&&env.__martyr.healH?env.__martyr.healH(c.heal,x.n,x.dur):"");
+  if(c.heal) h+='<p class="spfl">'+dtIcon("Healing")+'<b>'+esc(c.heal)+'</b> Hit Points regained</p>'+spHealPanel(c,x);
   if(c.bon.length) h+='<p class="spfl muted">Includes '+c.bon.map((b) =>{ return sg(b.v)+" from "+esc(b.s); }).join(", ")+'.</p>';
   if(!x.l&&spFx(x).cs) h+='<p class="spfl muted">Cantrip dice at character level '+D.level+'.</p>';
   return h+'</div>'; }
