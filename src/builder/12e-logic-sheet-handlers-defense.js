@@ -58,7 +58,7 @@ registerSheetGroup({id:"fx-ac-base",group:"armorClass",phase:"ac",order:40,reads
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;I.G.forEach((e) =>{acbOne(C,I,Q,e)});return ctx.patch()}});
 /* fx engine v2: acNoDex (the Dex modifier is not added to AC) and acArmAb "WIS" (while wearing armor, add that ability modifier to AC in place of the Dex modifier). Runs after the base AC is settled */
 registerSheetGroup({id:"fx-ac-nodex",group:"armorClass",phase:"ac",order:50,reads:["i.G","i.ar","i.ESH","i.EA","i.a","q.fxOk"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i,C=ctx.C,ar=I.ar;I.G.forEach((e) =>{if(!e.acNoDex&&!(e.acArmAb&&ar))return;if(!ctx.q.fxOk(e,ar,I.ESH,I.EA))return;C.ac.dex="";if(e.acArmAb&&ar)C.ac.bonus.push({s:ABN[e.acArmAb]+" modifier in place of Dexterity ("+e.lbl+")",v:Math.min(mod(I.a.sc[e.acArmAb]),e.acCap!=null?e.acCap:99)})});return ctx.patch()}});
+ run:function(ctx){const I=ctx.i,C=ctx.C,ar=I.ar;I.G.forEach((e) =>{if(!e.acNoDex&&!(e.acArmAb&&ar))return;if(!ctx.q.fxOk(e,ar,I.ESH,I.EA))return;/* the swapped ability keeps the armor's Dex limit: Medium armor +2 (Medium Armor Master +3), Heavy armor none */const dl=({full:99,max2:2,max3:3})[C.ac.dex]||0;C.ac.dex="";if(e.acArmAb&&ar)C.ac.bonus.push({s:ABN[e.acArmAb]+" modifier in place of Dexterity ("+e.lbl+")",v:Math.min(mod(I.a.sc[e.acArmAb]),e.acCap!=null?e.acCap:99,dl)})});return ctx.patch()}});
 /* M18: a magic item that gives AC (not armor) */
 registerSheetGroup({id:"item-ac-bonus",group:"armorClass",phase:"ac",order:60,reads:["i.AFX","q.dmapRow"],writes:["C.ac"],
  run:function(ctx){const C=ctx.C;ctx.i.AFX.forEach((q) =>{if(q.fx.ac&&!q.arm&&q.t!=="Armor")C.ac.bonus.push({s:q.n+" (magic item"+(ctx.q.dmapRow(q.n)[3]?", attuned":"")+")",v:q.fx.ac})});return ctx.patch()}});

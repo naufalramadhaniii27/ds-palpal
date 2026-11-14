@@ -122,8 +122,7 @@ function derivePassivesAcInit(abPart, exhN, exP, skillByName, xr, exh){
   else if(mode==="max3") acParts.push(part("Dexterity modifier (max 3)", Math.min(3,dm), "Medium Armor Master raises the cap to +3"));/* v69 */
   (C.ac.bonus||[]).forEach((b) =>{ acParts.push(part(b.s||"Bonus", num(b.v))); });
   sitNum("ac").forEach((b) =>{ acParts.push(part(b.s,b.v)); });/* v103 */
-  if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
-  if(S.shift&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: Beasthide"; }); })) acParts.push(part("Shifting (Beasthide)", 1, "While shifted"));
+  acBuffParts(acParts);
   D.ac=acParts.reduce((a,p) =>{return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
   B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
 
@@ -161,6 +160,11 @@ function deriveHdHeal(hd, cm){
   B["heal-hd"]={t:"Healing per Hit Point Die", parts:pts, total:"about "+one, f:"Range "+Math.max(0,mn)+" to "+mx+" per die."};
   const mart=C.cls==="Martyr"?Math.floor(num(C.level,1)/2):0;
   if(mart) B["heal-mh"]={t:"Miraculous Healing, all dice", parts:[{l:"Dice per use: half your Martyr level", v:String(mart), note:"Martyr "+num(C.level,1), raw:true},{l:"Healing per die", v:"about "+one, note:"Range "+Math.max(0,mn)+" to "+mx, raw:true}], total:"about "+Math.round((a+cm)*(per?2:1)*mart), f:"Range "+Math.max(0,mn*mart)+" to "+(mx*mart)+". Each use spends the dice. No limit on uses."};
+}
+/* AC from buffs the sheet tracks: Shield of Faith while concentrating on it, Beasthide while shifted */
+function acBuffParts(acParts){
+  if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
+  if(S.shift&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: Beasthide"; }); })) acParts.push(part("Shifting (Beasthide)", 1, "While shifted"));
 }
 function deriveHpDcCarry(lvl, hpl, hpParts, avg, hd, cm, xr, exh, abPart, pb){
   if(lvl>1 && hpl.length===lvl-1){ hpl.forEach((e,i) =>{ const v=typeof e==="object"?num(e.v):num(e); hpParts.push(part("Level "+(i+2)+(e&&e.c?" ("+e.c+")":"")+(e&&e.r?": rolled":": fixed"), v, e&&e.n?e.n:"")); }); }

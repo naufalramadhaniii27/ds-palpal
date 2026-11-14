@@ -95,16 +95,20 @@ function spCastH(x,i){ let h='<div class="info-h">Cast</div><div class="spcast">
   if(x.rit&&x.l) h+='<button type="button" class="btn press" data-cast="'+i+'" data-ck="rit">Cast as a Ritual <small>no slot, 10 minutes longer</small></button>';
   if(x.conc){ const c=concOf(); h+=(c&&c.n===x.n)?'<button type="button" class="btn press" data-concend="1">End Concentration</button>':'<button type="button" class="btn press" data-concon="'+i+'">Concentrate on this spell</button>'; }
   return h+'</div>'+(x.conc?'<p class="muted spcn">Concentration spell. Casting it ends any other spell you concentrate on.</p>':''); }
+/* Martyr Hit Point casting: the Radiant cost by slot level, after the Spell Use */
+function castMartyrHp(x,k,lv){ let m=""; if(k==="r-spell-uses"&&C.cls==="Martyr"){ const hp=martyrCost(x,+lv||x.l); if(hp){ S.hp=Math.max(0,num(S.hp,0)-hp); m+=", level "+(+lv||x.l)+", you take "+hp+" Radiant (not from Temporary Hit Points)"; try{ syncHP(); }catch(er){} } else m+=", level "+(+lv||x.l)+", no damage"; lateGet("spLvSel")[x.n]=+lv||x.l; } return m; }
+/* Magic Weapon: the first melee weapon gets the bonus until a rest (S.mw) */
+function castMagicWeapon(x,lv){ let m=""; if(x.n==="Magic Weapon"){ const w=(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"&&!/^Cantrip/.test(a.sub||"")&&/^\d+ ft$|^5 ft/.test(a.range||"5 ft"); })[0]||(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"; })[0]; if(w){ S.mw={w:w.n,l:+lv||x.l}; m+=". "+w.n+" gets +"+((+lv||x.l)>=6?3:(+lv||x.l)>=4?2:1)+" to attack and damage until you rest"; } } return m; }
+function castRefresh(x,k){ if(x.n==="Magic Weapon"||x.conc||k==="r-spell-uses"){ try{ renderAll(); }catch(er){} } }
 export function castDo(i,k,lv,ok){ const x=(C.spells||[])[i]; if(!x) return; let s=null, nd=1; if(k&&k.indexOf("|")>0){ const kp=k.split("|"); k=kp[0]; nd=+kp[1]||1; }
   if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
   undoMark("Cast "+x.n); let msg="Cast "+x.n;
   if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
-  if(k==="r-spell-uses"&&C.cls==="Martyr"){ const hp=martyrCost(x,+lv||x.l); if(hp){ S.hp=Math.max(0,num(S.hp,0)-hp); msg+=", level "+(+lv||x.l)+", you take "+hp+" Radiant (not from Temporary Hit Points)"; try{ syncHP(); }catch(er){} } else msg+=", level "+(+lv||x.l)+", no damage"; lateGet("spLvSel")[x.n]=+lv||x.l; }
-  if(x.n==="Magic Weapon"){ const w=(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"&&!/^Cantrip/.test(a.sub||"")&&/^\d+ ft$|^5 ft/.test(a.range||"5 ft"); })[0]||(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"; })[0]; if(w){ S.mw={w:w.n,l:+lv||x.l}; msg+=". "+w.n+" gets +"+((+lv||x.l)>=6?3:(+lv||x.l)>=4?2:1)+" to attack and damage until you rest"; } }
+  msg+=castMartyrHp(x,k,lv)+castMagicWeapon(x,lv);
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
-  save(); if(x.n==="Magic Weapon"||x.conc||k==="r-spell-uses"){ try{ renderAll(); }catch(er){} } syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} }
+  save(); castRefresh(x,k); syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} }
 /* the CAST or USE badge in the Spells list: one way to cast it, cast now. Several (slot levels, Pact, free use): open the spell to choose */
 export function quickCast(i){ const x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; }
   const o=spCastOpts(x), av=o.filter(qOk);

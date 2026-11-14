@@ -1,5 +1,5 @@
 {
- "why": "Intelligent Defense: Medium armor, INT instead of DEX. Scale Mail 14 + INT 16 (+3) = 17",
+ "why": "Intelligent Defense: Medium armor, INT instead of DEX. The swapped modifier keeps the Medium armor limit of +2 (it only replaces the modifier). Scale Mail 14 + INT 16 (+3, limited to +2) = 16",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -57,6 +57,6 @@
   "size": "Medium"
  },
  "expect": {
-  "ac": 17
+  "ac": 16
  }
 }
