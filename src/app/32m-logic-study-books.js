@@ -1,0 +1,19 @@
+/* A physical book's verified study is an owned transaction, not a passive inventory bonus. */
+import {C,S,FROZEN} from './04-logic-storage.js';
+import {env} from './00-env.js';
+import {sheetRootActive} from './05-logic-helpers.js';
+import {undoMark} from './00a-reg-late-ports.js';
+import {studyBookProblems} from '../data/lib/study-books.js';
+const studyFail=reason=>({ok:false,reason}),studyJSON=JSON.stringify,studySessions=new WeakMap(),studyReceipts=new WeakMap(),studyEpochs=new WeakMap();
+function studyIdentity(){return studyJSON([C.name,C.cid,C.id])}
+function studyNamespaceSignature(){return studyJSON([S.studyBooks,C.studyBooks])}
+function studySupported(){return [S,C].every(state=>!Object.prototype.hasOwnProperty.call(state,'studyBooks')||!studyBookProblems(state.studyBooks).length)}
+function studyEpoch(state){if(!studyEpochs.has(state))studyEpochs.set(state,{});return studyEpochs.get(state)}
+export function invalidateStudyBooksState(state){if(state&&typeof state==='object')studyEpochs.set(state,{})}
+export function currentStudyBooksInfo(){try{return typeof env.__bldStudyBooksInfo==='function'?env.__bldStudyBooksInfo(C.name):studyFail('native-study-source-unavailable')}catch(error){return studyFail('native-study-source-unavailable')}}
+function studyOwned(view){return !!(view&&!view.done&&!FROZEN&&view.C===C&&view.S===S&&view.identity===studyIdentity()&&view.epoch===studyEpoch(S)&&view.signature===studyNamespaceSignature()&&sheetRootActive(view.root))}
+function studyCurrent(token){const view=studySessions.get(token);if(!studyOwned(view)||typeof env.__bldStudyBooksTokenCurrent!=='function'||!env.__bldStudyBooksTokenCurrent(view.physical))return null;return studyOwned(view)?view:null}
+export function createStudyBooksSession(root,info){if(FROZEN||!studySupported()||!sheetRootActive(root)||!info||typeof env.__bldStudyBooksCapture!=='function')return null;const owner={C,S,root,identity:studyIdentity(),epoch:studyEpoch(S),signature:studyNamespaceSignature(),done:false},physical=env.__bldStudyBooksCapture(C.name,{signature:info.signature});if(!physical||!studyOwned(owner))return null;const token={};studySessions.set(token,{...owner,physical});return token}
+function studyBefore(token,label){if(!studyCurrent(token))return false;const checkpoint=undoMark(label);return checkpoint===false||checkpoint&&typeof checkpoint.then==='function'||!studyCurrent(token)?false:true}
+export function requestStudyBooksCommand(request){const view=studyCurrent(request?.session);if(!view||typeof env.__bldStudyBooksCommand!=='function')return studyFail('stale-study-source');let body;try{body=structuredClone(request.body)}catch(error){return studyFail('actual-study-facts-required')}if(!studyCurrent(request.session))return studyFail('stale-study-source');const result=env.__bldStudyBooksCommand(view.physical,request.kind,body,()=>studyBefore(request.session,'Record study book '+request.kind),()=>!!studyCurrent(request.session))||studyFail('study-operation-unavailable');if(result.ok){view.done=true;if(result.receipt)studyReceipts.set(result,{S:view.S,identity:view.identity,root:view.root,epoch:studyEpoch(view.S)})}return result}
+export function acceptStudyBooksCommit(result,root){const proof=result&&studyReceipts.get(result);if(!result?.ok||!result.receipt||!proof||proof.S!==S||proof.epoch!==studyEpoch(S)||proof.identity!==studyIdentity()||proof.root!==root||FROZEN||!sheetRootActive(root)||typeof env.__bldStudyBooksAcceptReceipt!=='function')return false;const character=C,state=S,signature=studyNamespaceSignature(),accepted=env.__bldStudyBooksAcceptReceipt(result.receipt);return !!(!FROZEN&&C===character&&S===state&&proof.epoch===studyEpoch(S)&&proof.identity===studyIdentity()&&signature===studyNamespaceSignature()&&sheetRootActive(root)&&accepted?.ok&&Object.keys(accepted).every(key=>key==='ok'||studyJSON(result[key])===studyJSON(accepted[key])))}

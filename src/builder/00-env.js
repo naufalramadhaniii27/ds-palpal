@@ -81,4 +81,5 @@ bindM(["fetch", "matchMedia", "scrollTo"]);
 
 bindG(["__bldSlotRecoveryInfo", "__bldSlotRecoveryCapture", "__bldSlotRecoveryTokenCurrent", "__bldSlotRecoveryAcceptReceipt", "__bldSlotRecoveryAdopt", "__bldSlotRecoveryReview", "__bldSlotRecoverySplit", "__bldSlotRecoveryResync", "__bldSlotRecoveryRestore", "__bldSlotRecoveryRemove", "__bldSlotRecoveryActivate", "__bldSlotRecoveryReset", "__bldSlotRecoveryInventoryOwner", "__bldSlotRecoveryRestPlan", "__slotRecoveryActionAllowed", "__slotRecoverySave"]);
 
+bindG(["__bldStudyBooksInfo", "__bldStudyBooksCapture", "__bldStudyBooksTokenCurrent", "__bldStudyBooksCommand", "__bldStudyBooksAcceptReceipt", "__bldStudyBooksInventoryOwner", "__studyBooksSave"]);
 bindG(["__bldNecronomiconInfo", "__bldNecronomiconCapture", "__bldNecronomiconTokenCurrent", "__bldNecronomiconStudy", "__bldNecronomiconAffliction", "__bldNecronomiconCure", "__bldNecronomiconReviewBase", "__bldNecronomiconAcceptReceipt", "__necronomiconReadingSave"]);

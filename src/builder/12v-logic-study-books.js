@@ -1,0 +1,3 @@
+import {registerSheetGroup} from './12a-logic-sheet-registry.js';
+import {studyBookProblems,studyBookSources,studyBookSourcesProblems} from '../data/lib/study-books.js';
+registerSheetGroup({id:'retained-study-books',group:'study-books',phase:'post',order:86,reads:['q.studyBooks','i.B'],writes:['C.studyBooks','C.studyBookSources'],run:function(ctx){const state=ctx.q.studyBooks();if(state!==undefined){ctx.C.studyBooks=state;if(!studyBookProblems(state).length&&(!Object.prototype.hasOwnProperty.call(ctx.i.B,'studyBookSources')||!studyBookSourcesProblems(ctx.i.B.studyBookSources).length))ctx.C.studyBookSources=studyBookSources(state)}return ctx.patch()}});

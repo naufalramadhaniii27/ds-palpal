@@ -3209,6 +3209,44 @@ for _rs in ["2024","2014"]:
     CASES.append(dict(name="NEG U45 raw build capability is not native source authority "+_rs,b=dict(_native,extra=dict(species=_species_other,src=dict(core=True,tsdd=True,dmg=True),pluvennGrappleclaws=U45_PLUVENN_CAP)),expect=[("C.pluvennGrappleclaws===undefined",True),("C.attacks.some(row=>row.pluvennUnarmed)",False)]))
     CASES.append(dict(name="NEG U45 weapon beside native unarmed roles cannot inherit them "+_rs,b=dict(_native,inv=LS),expect=[("C.attacks.some(row=>row.n==='Longsword')",True),("C.attacks.filter(row=>row.n==='Longsword').every(row=>row.pluvennUnarmed===undefined)",True),("C.attacks.filter(row=>row.pluvennUnarmed).length",2)]))
 
+# U46 native 2024 study books: immutable actual pure-API fixture acquisitions feed the real sheet.
+U46_STATES=json.load(open(os.path.join(HERE,"fixtures","study-books-fx.json")))
+U46_PROFILES=[("bodily","Manual of Bodily Health","CON","Fighter"),("gainful","Manual of Gainful Exercise","STR","Fighter"),("quickness","Manual of Quickness of Action","DEX","Fighter"),("thought","Tome of Clear Thought","INT","Wizard"),("leadership","Tome of Leadership and Influence","CHA","Sorcerer"),("understanding","Tome of Understanding","WIS","Cleric")]
+def u46_build(ability="INT",cls="Fighter",score=18):
+    other=[key for key in ["STR","DEX","CON","INT","WIS","CHA"] if key!=ability]
+    return dict(rs="2024",cls=cls,level=1,base=dict.fromkeys(["STR","DEX","CON","INT","WIS","CHA"],score),extra=dict(bg="Soldier",bgMode="21",bg2=other[0],bg1=other[1],armor="",shield=False))
+for _profile,_item,_ability,_cls in U46_PROFILES:
+    _b=u46_build(_ability,_cls)
+    _expected=[(u44_score(_ability),20)]
+    if _ability=="CON":_expected.append(("window.__deriveFor(C).hpmax",15))
+    if _ability=="DEX":_expected.append(("window.__deriveFor(C).ac",15))
+    if _ability in ["INT","WIS","CHA"]:_expected.append(("C.spellcasting.mod",5))
+    if _ability=="STR":
+        _b=dict(_b,inv=LS)
+        _expected.append(("window.__deriveFor(C).atk[C.attacks.findIndex(row=>row.n==='Longsword')].hit",7))
+    CASES.append(dict(name="Z3 U46 retained native study "+_profile,b=_b,studyBooks=U46_STATES["normal"][_profile],expect=_expected))
+    CASES.append(dict(name="NEG U46 carried book without study history "+_profile,b=dict(_b,inv=[dict(n=_item,q=1,eq=True,attuned=True)]),expect=[(u44_score(_ability),18)]))
+for _before,_want in [(28,30),(29,30),(30,30)]:
+    CASES.append(dict(name="Z3 U46 acquisition cap before "+str(_before),b=u46_build(score=_before),studyBooks=U46_STATES["cap"][str(_before)],expect=[(u44_score("INT"),_want)]))
+CASES.append(dict(name="Z3 U46 historical embedded ability does not double",b=u46_build(),studyBooks=U46_STATES["embedded"],expect=[(u44_score("INT"),18)]))
+CASES.append(dict(name="Z3 U46 original capped delta remains fixed after later base change",b=u46_build(),studyBooks=U46_STATES["cap"]["29"],expect=[(u44_score("INT"),19)]))
+for _state in ["secondCopy","century"]:
+    CASES.append(dict(name="Z3 U46 independent actual physical budget "+_state,b=u46_build(),studyBooks=U46_STATES[_state],expect=[(u44_score("INT"),22)]))
+CASES.append(dict(name="Z3 U46 composes with retained Necronomicon once",b=u46_build(),studyBooks=U46_STATES["mixed"],necronomiconReading=U46_STATES["mixedNc"],expect=[(u44_score("INT"),22),(u44_score("WIS"),16)]))
+# Fixed deltas are replayed in captured source order, with the native floor at each event.
+_u46_floor=u46_build("WIS")
+_u46_floor["base"]["WIS"]=1
+for _order,_want in [("after",3),("before",1),("subset",2),("unknown",1)]:
+    CASES.append(dict(name="Z3 U46 captured chronology at Wisdom floor "+_order,b=_u46_floor,studyBooks=U46_STATES["chronology"][_order],necronomiconReading=U46_STATES["chronology"]["nc"],expect=[(u44_score("WIS"),_want)]))
+CASES.append(dict(name="NEG U46 chronology source mismatch cannot replay ability events",b=_u46_floor,studyBooks=U46_STATES["chronology"]["after"],necronomiconReading=U46_STATES["chronology"]["mismatchNc"],expect=[(u44_score("WIS"),1)]))
+CASES.append(dict(name="Z3 U46 permanent study precedes Ioun item cap",b=dict(u46_build(),inv=[dict(n="Ioun Stone (intellect)",q=1,eq=True,attuned=True)]),studyBooks=U46_STATES["normal"]["thought"],expect=[(u44_score("INT"),20)]))
+CASES.append(dict(name="Z3 U46 normal permanent ASI precedes study",b=dict(u46_build(),level=4,ch=dict(feat4=dict(feat="Ability Score Improvement",a1="INT",a2="INT"))),studyBooks=U46_STATES["before20"],expect=[(u44_score("INT"),22)]))
+CASES.append(dict(name="Z3 U46 headband masks retained study",b=dict(u46_build(score=16),inv=[dict(n="Headband of Intellect",q=1,eq=True,attuned=True)]),studyBooks=U46_STATES["before16"],expect=[(u44_score("INT"),19)]))
+CASES.append(dict(name="NEG U46 future study ledger grants no abilities",b=u46_build(),studyBooks=dict(v=99,acquisitions=[dict(ability="INT",delta=99)]),expect=[(u44_score("INT"),18)]))
+CASES.append(dict(name="NEG U46 raw Build study ledger is not actor authority",b=dict(u46_build(),extra=dict(u46_build()["extra"],studyBooks=U46_STATES["normal"]["thought"])),expect=[(u44_score("INT"),18)]))
+_u46_saved=json.load(open(os.path.join(HERE,"golden","builds","fx_L6_unkh_tome.json")))["build"]
+CASES.append(dict(name="Z3 U46 completed-study counterpart for fx_L6_unkh_tome",b=dict(rs=_u46_saved.get("rs","2024"),cls=_u46_saved["cls"],level=_u46_saved["level"],extra=_u46_saved),studyBooks=U46_STATES["before12"],expect=[("window.__deriveFor(C).score.INT",14),("window.__deriveFor(C).score.CON",23)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
@@ -3258,7 +3296,7 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  // created from a later timer callback. The page policy itself stays unchanged.
  cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
  for(const c of cases){ const r={name:c.name,fail:[]},warmBefore=c.warm?window.__bldTestB():null;
-  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{})}; window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{}),...(Object.prototype.hasOwnProperty.call(c,"studyBooks")?{studyBooks:c.studyBooks}:{})}; window.__zmB=B0; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
    for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }

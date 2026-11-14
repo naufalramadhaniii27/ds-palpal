@@ -16245,6 +16245,636 @@
     "tests/pluvenn_grappleclaws_ui.mjs"
    ],
    "note": "U45 verified entire native compound sentence: typed native Unarmed Strike/Razormaw attack roll before an already-permitted grapple attempt, and actual Athletics climbing check using its current ability. Both use native derived modifiers/flags and guarded actual D20 history; native UI54 passed at both widths. No extra action, automatic grapple, target-save modifier, global Advantage, or unrelated bonus-damage closure."
+  },
+  {
+   "id": "u46-item-dmg-manual-of-bodily-health-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Manual of Bodily Health",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "48",
+    "6",
+    "2",
+    "30"
+   ],
+   "scopeValues": true,
+   "rx": "^if\\ you\\ spend\\ a\\ total\\ of\\ 48\\ hours\\ studying\\ what\\ the\\ book\\ teaches\\ and\\ practicing\\ its\\ guidelines,\\ over\\ a\\ span\\ of\\ no\\ more\\ than\\ 6\\ days,\\ you\\ gain\\ 2\\ points\\ of\\ constitution,\\ which\\ can\\ raise\\ that\\ score\\ as\\ high\\ as\\ 30\\ but\\ not\\ higher\\.$",
+   "anchor": [
+    "src/builder/10g-logic-study-books.js",
+    "export function studyBooksAbilityRows("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBookProfile("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBook("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function studyFacts("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function appendAcquisition("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksProjection("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBookCentury("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function removeStudyBook("
+    ],
+    [
+     "src/builder/10g-logic-study-books.js",
+     "export function studyBooksAbilityProjection("
+    ],
+    [
+     "src/builder/12v-logic-study-books.js",
+     "id:'retained-study-books'"
+    ],
+    [
+     "src/app/32m-logic-study-books.js",
+     "export function requestStudyBooksCommand("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksAbilityEvents("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksOrder("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyRetainedAbilityRows("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyNecronomiconReading("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "applyNecronomiconReading(actx,core,AFX,GF);"
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function finishStudyPlan("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function command("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "genv.__bldStudyBooksCommand=command"
+    ]
+   ],
+   "test": "Z3 U46 retained native study bodily",
+   "consumerTests": [
+    "tests/study_books_model.mjs",
+    "tests/study_books_order.mjs",
+    "tests/study_books_ability.mjs",
+    "tests/study_books_backend.mjs",
+    "tests/study_books_runtime.mjs",
+    "tests/study_books_ui.mjs"
+   ],
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC→covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+  },
+  {
+   "id": "u46-item-dmg-manual-of-gainful-exercise-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Manual of Gainful Exercise",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "48",
+    "6",
+    "2",
+    "30"
+   ],
+   "scopeValues": true,
+   "rx": "^if\\ you\\ spend\\ a\\ total\\ of\\ 48\\ hours\\ studying\\ what\\ the\\ book\\ teaches\\ and\\ practicing\\ its\\ guidelines,\\ over\\ a\\ span\\ of\\ no\\ more\\ than\\ 6\\ days,\\ you\\ gain\\ 2\\ points\\ of\\ strength,\\ which\\ can\\ raise\\ that\\ score\\ as\\ high\\ as\\ 30\\ but\\ not\\ higher\\.$",
+   "anchor": [
+    "src/builder/10g-logic-study-books.js",
+    "export function studyBooksAbilityRows("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBookProfile("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBook("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function studyFacts("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function appendAcquisition("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksProjection("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBookCentury("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function removeStudyBook("
+    ],
+    [
+     "src/builder/10g-logic-study-books.js",
+     "export function studyBooksAbilityProjection("
+    ],
+    [
+     "src/builder/12v-logic-study-books.js",
+     "id:'retained-study-books'"
+    ],
+    [
+     "src/app/32m-logic-study-books.js",
+     "export function requestStudyBooksCommand("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksAbilityEvents("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksOrder("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyRetainedAbilityRows("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyNecronomiconReading("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "applyNecronomiconReading(actx,core,AFX,GF);"
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function finishStudyPlan("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function command("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "genv.__bldStudyBooksCommand=command"
+    ]
+   ],
+   "test": "Z3 U46 retained native study gainful",
+   "consumerTests": [
+    "tests/study_books_model.mjs",
+    "tests/study_books_order.mjs",
+    "tests/study_books_ability.mjs",
+    "tests/study_books_backend.mjs",
+    "tests/study_books_runtime.mjs",
+    "tests/study_books_ui.mjs"
+   ],
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC→covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+  },
+  {
+   "id": "u46-item-dmg-manual-of-quickness-of-action-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Manual of Quickness of Action",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "48",
+    "6",
+    "2",
+    "30"
+   ],
+   "scopeValues": true,
+   "rx": "^if\\ you\\ spend\\ a\\ total\\ of\\ 48\\ hours\\ studying\\ what\\ the\\ book\\ teaches\\ and\\ practicing\\ its\\ guidelines,\\ over\\ a\\ span\\ of\\ no\\ more\\ than\\ 6\\ days,\\ you\\ gain\\ 2\\ points\\ of\\ dexterity,\\ which\\ can\\ raise\\ that\\ score\\ as\\ high\\ as\\ 30\\ but\\ not\\ higher\\.$",
+   "anchor": [
+    "src/builder/10g-logic-study-books.js",
+    "export function studyBooksAbilityRows("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBookProfile("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBook("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function studyFacts("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function appendAcquisition("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksProjection("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBookCentury("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function removeStudyBook("
+    ],
+    [
+     "src/builder/10g-logic-study-books.js",
+     "export function studyBooksAbilityProjection("
+    ],
+    [
+     "src/builder/12v-logic-study-books.js",
+     "id:'retained-study-books'"
+    ],
+    [
+     "src/app/32m-logic-study-books.js",
+     "export function requestStudyBooksCommand("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksAbilityEvents("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksOrder("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyRetainedAbilityRows("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyNecronomiconReading("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "applyNecronomiconReading(actx,core,AFX,GF);"
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function finishStudyPlan("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function command("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "genv.__bldStudyBooksCommand=command"
+    ]
+   ],
+   "test": "Z3 U46 retained native study quickness",
+   "consumerTests": [
+    "tests/study_books_model.mjs",
+    "tests/study_books_order.mjs",
+    "tests/study_books_ability.mjs",
+    "tests/study_books_backend.mjs",
+    "tests/study_books_runtime.mjs",
+    "tests/study_books_ui.mjs"
+   ],
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC→covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+  },
+  {
+   "id": "u46-item-dmg-tome-of-clear-thought-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Tome of Clear Thought",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "48",
+    "6",
+    "2",
+    "30"
+   ],
+   "scopeValues": true,
+   "rx": "^if\\ you\\ devote\\ 48\\ hours\\ within\\ a\\ span\\ of\\ no\\ more\\ than\\ 6\\ days\\ to\\ reading\\ the\\ book\\ and\\ practicing\\ what\\ it\\ teaches,\\ your\\ intelligence\\ score\\ goes\\ up\\ by\\ 2,\\ and\\ it\\ can't\\ exceed\\ 30\\ this\\ way\\.$",
+   "anchor": [
+    "src/builder/10g-logic-study-books.js",
+    "export function studyBooksAbilityRows("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBookProfile("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBook("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function studyFacts("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function appendAcquisition("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksProjection("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBookCentury("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function removeStudyBook("
+    ],
+    [
+     "src/builder/10g-logic-study-books.js",
+     "export function studyBooksAbilityProjection("
+    ],
+    [
+     "src/builder/12v-logic-study-books.js",
+     "id:'retained-study-books'"
+    ],
+    [
+     "src/app/32m-logic-study-books.js",
+     "export function requestStudyBooksCommand("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksAbilityEvents("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksOrder("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyRetainedAbilityRows("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyNecronomiconReading("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "applyNecronomiconReading(actx,core,AFX,GF);"
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function finishStudyPlan("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function command("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "genv.__bldStudyBooksCommand=command"
+    ]
+   ],
+   "test": "Z3 U46 retained native study thought",
+   "consumerTests": [
+    "tests/study_books_model.mjs",
+    "tests/study_books_order.mjs",
+    "tests/study_books_ability.mjs",
+    "tests/study_books_backend.mjs",
+    "tests/study_books_runtime.mjs",
+    "tests/study_books_ui.mjs"
+   ],
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO→covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+  },
+  {
+   "id": "u46-item-dmg-tome-of-leadership-and-influence-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Tome of Leadership and Influence",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "48",
+    "6",
+    "2",
+    "30"
+   ],
+   "scopeValues": true,
+   "rx": "^if\\ you\\ devote\\ 48\\ hours\\ within\\ a\\ span\\ of\\ no\\ more\\ than\\ 6\\ days\\ to\\ reading\\ the\\ book\\ and\\ practicing\\ what\\ it\\ teaches,\\ your\\ charisma\\ score\\ goes\\ up\\ by\\ 2,\\ and\\ it\\ can't\\ exceed\\ 30\\ this\\ way\\.$",
+   "anchor": [
+    "src/builder/10g-logic-study-books.js",
+    "export function studyBooksAbilityRows("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBookProfile("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBook("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function studyFacts("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function appendAcquisition("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksProjection("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBookCentury("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function removeStudyBook("
+    ],
+    [
+     "src/builder/10g-logic-study-books.js",
+     "export function studyBooksAbilityProjection("
+    ],
+    [
+     "src/builder/12v-logic-study-books.js",
+     "id:'retained-study-books'"
+    ],
+    [
+     "src/app/32m-logic-study-books.js",
+     "export function requestStudyBooksCommand("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksAbilityEvents("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksOrder("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyRetainedAbilityRows("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyNecronomiconReading("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "applyNecronomiconReading(actx,core,AFX,GF);"
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function finishStudyPlan("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function command("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "genv.__bldStudyBooksCommand=command"
+    ]
+   ],
+   "test": "Z3 U46 retained native study leadership",
+   "consumerTests": [
+    "tests/study_books_model.mjs",
+    "tests/study_books_order.mjs",
+    "tests/study_books_ability.mjs",
+    "tests/study_books_backend.mjs",
+    "tests/study_books_runtime.mjs",
+    "tests/study_books_ui.mjs"
+   ],
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO→covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+  },
+  {
+   "id": "u46-item-dmg-tome-of-understanding-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Tome of Understanding",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "48",
+    "6",
+    "2",
+    "30"
+   ],
+   "scopeValues": true,
+   "rx": "^if\\ you\\ devote\\ 48\\ hours\\ within\\ a\\ span\\ of\\ no\\ more\\ than\\ 6\\ days\\ to\\ reading\\ the\\ book\\ and\\ practicing\\ what\\ it\\ teaches,\\ your\\ wisdom\\ score\\ goes\\ up\\ by\\ 2,\\ and\\ it\\ can't\\ exceed\\ 30\\ this\\ way\\.$",
+   "anchor": [
+    "src/builder/10g-logic-study-books.js",
+    "export function studyBooksAbilityRows("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBookProfile("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBook("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function studyFacts("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "function appendAcquisition("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksProjection("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function recordStudyBookCentury("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function removeStudyBook("
+    ],
+    [
+     "src/builder/10g-logic-study-books.js",
+     "export function studyBooksAbilityProjection("
+    ],
+    [
+     "src/builder/12v-logic-study-books.js",
+     "id:'retained-study-books'"
+    ],
+    [
+     "src/app/32m-logic-study-books.js",
+     "export function requestStudyBooksCommand("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksAbilityEvents("
+    ],
+    [
+     "src/data/lib/study-books.js",
+     "export function studyBooksOrder("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyRetainedAbilityRows("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function applyNecronomiconReading("
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "applyNecronomiconReading(actx,core,AFX,GF);"
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function finishStudyPlan("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "function command("
+    ],
+    [
+     "src/builder/25f-logic-study-books.js",
+     "genv.__bldStudyBooksCommand=command"
+    ]
+   ],
+   "test": "Z3 U46 retained native study understanding",
+   "consumerTests": [
+    "tests/study_books_model.mjs",
+    "tests/study_books_order.mjs",
+    "tests/study_books_ability.mjs",
+    "tests/study_books_backend.mjs",
+    "tests/study_books_runtime.mjs",
+    "tests/study_books_ui.mjs"
+   ],
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO→covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
   }
  ]
 }

@@ -54,9 +54,9 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  add("Thayan Spell Tattoo",{n:"Thayan Spell Tattoo",pick:[1,2,3].map(function(l){return {k:"s"+l,t:"cantrip",lvl:l,n:1,opt:1,title:"Tattoo spell, level "+l+" (fill only the level of your tattoo)"}})});
 
  /* ---- Ability scores, saves, AC ---- */
- add("Tome of Clear Thought",{n:"Tome of Clear Thought",abUp:[["INT",2,30]]});
- add("Tome of Leadership and Influence",{n:"Tome of Leadership and Influence",abUp:[["CHA",2,30]]});
- add("Tome of Understanding",{n:"Tome of Understanding",abUp:[["WIS",2,30]]});
+ add("Tome of Clear Thought",{n:"Tome of Clear Thought"});
+ add("Tome of Leadership and Influence",{n:"Tome of Leadership and Influence"});
+ add("Tome of Understanding",{n:"Tome of Understanding"});
  add("Unkh",{n:"Unkh",abSet:[["CON",23]]});
  FXO["Ioun Stone of Vitality"]={fx:null};
  FXO["Tasha's Creeping Keelboat"]={fx:null};

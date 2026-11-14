@@ -1,3 +1,4 @@
+import {withStudyBooksInput,studyBooksInputOnly,studyBooksLegacyEntries,studyBooksAbilityRows,studyBooksOrderReview,studyBooksInputReview,studyBooksProjectionReviewByAbility} from './10g-logic-study-books.js';
 import {normalizeTarget} from "../data/lib/attack-target.js";
 import {NECRONOMICON_ABILITY_SOURCE,necronomiconInputOnly,withNecronomiconInput,necronomiconPermanentEntry,necronomiconAbilityProjection,necronomiconInputReview,necronomiconLegacyEntries} from "./10f-logic-necronomicon-reading.js";
 import {bindLive,own,clsLv as clsLv$L,toSheet,xl14} from "./01b-logic-late-ports.js";import {ABK,SRC,mod,pbOf,setPbAdd,getPbAdd} from "./01-logic-core-helpers.js";
@@ -45,20 +46,24 @@ export function abilScores(){
  abCap20(src);
  abTotal(sc,src);
  const core={sc:{...sc},src:Object.fromEntries(ABK.map(k=>[k,src[k].map(row=>({...row}))]))};
- const AFX=activeFx();if(necronomiconInputOnly()){runFxPhase("ability","raise",gfx().filter(necronomiconPermanentEntry),actx,apply);return {sc,src}}
+ const AFX=activeFx();if(necronomiconInputOnly()||studyBooksInputOnly()){runFxPhase("ability","raise",gfx().filter(necronomiconPermanentEntry),actx,apply);applyRetainedAbilityRows(actx,retainedAbilityRows(!necronomiconInputOnly()));return {sc,src}}
  runFxPhase("ability","item-raise",AFX,actx,apply);/* M18: DMGI fx (abil for Ioun Stones and similar) */
- const GF=necronomiconLegacyEntries(gfx());runFxPhase("ability","raise",GF,actx,apply);/* fx engine v2/v4: abUp, abDown, abPick up, abUpPick */
+ const GF=studyBooksLegacyEntries(necronomiconLegacyEntries(gfx()));runFxPhase("ability","raise",GF,actx,apply);/* fx engine v2/v4: abUp, abDown, abPick up, abUpPick */
  applyNecronomiconReading(actx,core,AFX,GF);
  runFxPhase("ability","item-set",AFX,actx,apply);/* V16-4: increases first, then "becomes" (setsc) */
  runFxPhase("ability","set",GF,actx,apply);/* fx engine v4: abSet and abPick set, after every increase */
  /*ORCH-END abil*/
  return {sc:sc,src:src}}
-function applyNecronomiconReading(context,core,active,entries){const reading=necronomiconAbilityProjection();if(!reading.ok||!reading.acquired)return;const keys=['INT','WIS'].filter(key=>reading.additional[key]&&!reading.review.includes(key));if(!keys.length)return;
+function retainedAbilityRows(includeNecronomicon=true){return studyBooksAbilityRows(includeNecronomicon)}
+function applyRetainedAbilityRows(context,rows){const applied=new Set();for(const row of rows){const key=row.ability,before=context.sc[key];if(!row.delta||!Number.isFinite(before)||before<1||before>30)continue;const after=Math.max(1,Math.min(30,before+row.delta));context.src[key].push({s:row.source,v:row.delta});if(after!==before+row.delta)context.src[key].push({s:'Ability score range (1 to 30)',v:after-before-row.delta,cap:1});context.sc[key]=after;applied.add(key)}return [...applied]}
+/* Replay the original fixed acquisition events in their verified cross-ledger order. */
+function applyNecronomiconReading(context,core,active,entries){const rows=retainedAbilityRows();if(!rows.some(row=>row.delta))return;
  const local={...context,sc:{...core.sc},src:Object.fromEntries(ABK.map(key=>[key,core.src[key].map(row=>({...row}))]))},apply=patch=>applyAbilityPatch(local,patch),permanent=entries.filter(necronomiconPermanentEntry);
- const applied=[];runFxPhase('ability','raise',permanent,local,apply);for(const key of keys){const before=local.sc[key];if(!Number.isFinite(before)||before<1||before>30)continue;const after=Math.max(1,Math.min(30,before+reading.additional[key]));local.src[key].push({s:NECRONOMICON_ABILITY_SOURCE,v:after-before});local.sc[key]=after;applied.push(key)}
+ runFxPhase('ability','raise',permanent,local,apply);const applied=applyRetainedAbilityRows(local,rows);
  runFxPhase('ability','item-raise',active,local,apply);runFxPhase('ability','raise',entries.filter(entry=>!necronomiconPermanentEntry(entry)),local,apply);for(const key of applied){context.sc[key]=local.sc[key];context.src[key]=local.src[key]}
 }
-export function necronomiconCanonicalInput(){return withNecronomiconInput(()=>{const ability=abilScores(),live=sheetState(),id=genv.__sheetId&&genv.__sheetId(),custom=live?.C?.name===B.name&&B.cid&&B.cid===id?live.state?.cust:undefined,review=necronomiconInputReview(activeFx(),gfx(),custom),scores={},baseScores={};for(const key of ['INT','WIS']){const value=ability.sc[key],base=+B.base?.[key];if(!Number.isSafeInteger(value)||value<1||value>30)review[key].push('native-score-unavailable');scores[key]=review[key].length?null:value;baseScores[key]=Number.isSafeInteger(base)&&base>=1&&base<=30?base:null}return {scores,baseScores,review}})}
+export function necronomiconCanonicalInput(){return withNecronomiconInput(()=>{const ability=abilScores(),live=sheetState(),id=genv.__sheetId&&genv.__sheetId(),custom=live?.C?.name===B.name&&B.cid&&B.cid===id?live.state?.cust:undefined,review=necronomiconInputReview(activeFx(),gfx(),custom),studyReview=studyBooksProjectionReviewByAbility(),scores={},baseScores={};for(const key of ['INT','WIS']){review[key].push(...studyReview[key]);if(studyBooksOrderReview().includes(key))review[key].push('study-ability-order-review-required');const value=ability.sc[key],base=+B.base?.[key];if(!Number.isSafeInteger(value)||value<1||value>30)review[key].push('native-score-unavailable');scores[key]=review[key].length?null:value;baseScores[key]=Number.isSafeInteger(base)&&base>=1&&base<=30?base:null}return {scores,baseScores,review}})}
+export function studyBooksCanonicalInput(){return withStudyBooksInput(()=>{const ability=abilScores(),live=sheetState(),id=genv.__sheetId&&genv.__sheetId(),custom=live?.C?.name===B.name&&B.cid&&B.cid===id?live.state?.cust:undefined,review=studyBooksInputReview(activeFx(),gfx(),custom),studyReview=studyBooksProjectionReviewByAbility(),necro=necronomiconAbilityProjection(),scores={},baseScores={};for(const key of ABK){review[key].push(...studyReview[key]);if(necro?.ok&&necro.review.includes(key))review[key].push('necronomicon-base-review-required');if(studyBooksOrderReview().includes(key))review[key].push('study-ability-order-review-required');const value=ability.sc[key],base=+B.base?.[key];if(!Number.isSafeInteger(value)||value<1||value>30)review[key].push('native-score-unavailable');scores[key]=review[key].length?null:value;baseScores[key]=Number.isSafeInteger(base)&&base>=1&&base<=30?base:null}return {scores,baseScores,review}})}
 export function slotsFor(){const c=CL(),L=B.level,t=c.caster;
  if(t==="full")return SLOTS_FULL[L-1];if(t==="half")return SLOTS_FULL[Math.ceil(L/2)-1];
  if(t==="pact"){const p=PACT[L-1];return {pact:p[0],lvl:p[1]}}

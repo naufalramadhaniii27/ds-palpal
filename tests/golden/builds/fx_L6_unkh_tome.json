@@ -1,5 +1,5 @@
 {
- "why": "Unkh: Constitution becomes 23 (13 + 1 background = 14, so 23). Tome of Clear Thought: Intelligence +2 (12 to 14), cap 30.",
+ "why": "Unkh still sets Constitution to 23. A carried Tome of Clear Thought without completed-study history leaves Intelligence at 12; retained study is covered by the explicit U46 acquisition counterpart.",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -55,7 +55,7 @@
  },
  "expect": {
   "D:score.CON": 23,
-  "D:score.INT": 14
+  "D:score.INT": 12
  },
  "expectC": {}
 }

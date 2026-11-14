@@ -1,0 +1,793 @@
+{
+  "chronology": {
+    "nc": {
+      "v": 1,
+      "reading": {
+        "source": "Necronomicon",
+        "hoursVerified": 19,
+        "INT": {
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": 2,
+          "baseAnchor": null
+        },
+        "WIS": {
+          "mode": "fixed-delta",
+          "before": 5,
+          "delta": -2,
+          "baseAnchor": null
+        },
+        "warp": {
+          "result": null,
+          "cured": false
+        },
+        "madness": {
+          "result": null,
+          "cured": false
+        }
+      }
+    },
+    "after": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "understanding",
+          "epoch": 0,
+          "available": false,
+          "present": true,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "understanding",
+          "ability": "WIS",
+          "mode": "fixed-delta",
+          "before": 1,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": {
+        "v": 1,
+        "necronomicon": {
+          "source": "Necronomicon",
+          "hoursVerified": 19,
+          "INT": {
+            "mode": "fixed-delta",
+            "before": 18,
+            "delta": 2
+          },
+          "WIS": {
+            "mode": "fixed-delta",
+            "before": 5,
+            "delta": -2
+          }
+        },
+        "beforeAcquisitionIds": []
+      }
+    },
+    "before": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "understanding",
+          "epoch": 0,
+          "available": false,
+          "present": true,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "understanding",
+          "ability": "WIS",
+          "mode": "fixed-delta",
+          "before": 1,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": {
+        "v": 1,
+        "necronomicon": {
+          "source": "Necronomicon",
+          "hoursVerified": 19,
+          "INT": {
+            "mode": "fixed-delta",
+            "before": 18,
+            "delta": 2
+          },
+          "WIS": {
+            "mode": "fixed-delta",
+            "before": 5,
+            "delta": -2
+          }
+        },
+        "beforeAcquisitionIds": [
+          "sba-1"
+        ]
+      }
+    },
+    "unknown": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "understanding",
+          "epoch": 0,
+          "available": false,
+          "present": true,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "understanding",
+          "ability": "WIS",
+          "mode": "fixed-delta",
+          "before": 1,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    },
+    "subset": {
+      "v": 1,
+      "nextPhysical": 3,
+      "nextAcquisition": 3,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "understanding",
+          "epoch": 0,
+          "available": false,
+          "present": true,
+          "rechargeEvents": []
+        },
+        {
+          "id": "sbp-2",
+          "profile": "understanding",
+          "epoch": 0,
+          "available": false,
+          "present": true,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "understanding",
+          "ability": "WIS",
+          "mode": "fixed-delta",
+          "before": 29,
+          "delta": 1,
+          "baseAnchor": null
+        },
+        {
+          "id": "sba-2",
+          "physicalId": "sbp-2",
+          "epoch": 0,
+          "profile": "understanding",
+          "ability": "WIS",
+          "mode": "fixed-delta",
+          "before": 1,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": {
+        "v": 1,
+        "necronomicon": {
+          "source": "Necronomicon",
+          "hoursVerified": 19,
+          "INT": {
+            "mode": "fixed-delta",
+            "before": 18,
+            "delta": 2
+          },
+          "WIS": {
+            "mode": "fixed-delta",
+            "before": 5,
+            "delta": -2
+          }
+        },
+        "beforeAcquisitionIds": [
+          "sba-2"
+        ]
+      }
+    },
+    "mismatchNc": {
+      "v": 1,
+      "reading": {
+        "source": "Necronomicon",
+        "hoursVerified": 19,
+        "INT": {
+          "mode": "fixed-delta",
+          "before": 20,
+          "delta": 2,
+          "baseAnchor": null
+        },
+        "WIS": {
+          "mode": "fixed-delta",
+          "before": 5,
+          "delta": -2,
+          "baseAnchor": null
+        },
+        "warp": {
+          "result": null,
+          "cured": false
+        },
+        "madness": {
+          "result": null,
+          "cured": false
+        }
+      }
+    }
+  },
+  "mixed": {
+    "v": 1,
+    "nextPhysical": 2,
+    "nextAcquisition": 2,
+    "physical": [
+      {
+        "id": "sbp-1",
+        "profile": "thought",
+        "epoch": 0,
+        "available": false,
+        "present": true,
+        "rechargeEvents": []
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "sba-1",
+        "physicalId": "sbp-1",
+        "epoch": 0,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "fixed-delta",
+        "before": 20,
+        "delta": 2,
+        "baseAnchor": null
+      }
+    ],
+    "order": {
+      "v": 1,
+      "necronomicon": {
+        "source": "Necronomicon",
+        "hoursVerified": 19,
+        "INT": {
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": 2
+        },
+        "WIS": {
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": -2
+        }
+      },
+      "beforeAcquisitionIds": []
+    }
+  },
+  "mixedNc": {
+    "v": 1,
+    "reading": {
+      "source": "Necronomicon",
+      "hoursVerified": 19,
+      "INT": {
+        "mode": "fixed-delta",
+        "before": 18,
+        "delta": 2,
+        "baseAnchor": null
+      },
+      "WIS": {
+        "mode": "fixed-delta",
+        "before": 18,
+        "delta": -2,
+        "baseAnchor": null
+      },
+      "warp": {
+        "result": null,
+        "cured": false
+      },
+      "madness": {
+        "result": null,
+        "cured": false
+      }
+    }
+  },
+  "generatedBy": "Actual src/data/lib/study-books.js exports; no manually constructed acquisition receipt",
+  "normal": {
+    "bodily": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "bodily",
+          "epoch": 0,
+          "available": false,
+          "present": false,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "bodily",
+          "ability": "CON",
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    },
+    "gainful": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "gainful",
+          "epoch": 0,
+          "available": false,
+          "present": false,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "gainful",
+          "ability": "STR",
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    },
+    "quickness": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "quickness",
+          "epoch": 0,
+          "available": false,
+          "present": false,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "quickness",
+          "ability": "DEX",
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    },
+    "thought": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "thought",
+          "epoch": 0,
+          "available": false,
+          "present": false,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "thought",
+          "ability": "INT",
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    },
+    "leadership": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "leadership",
+          "epoch": 0,
+          "available": false,
+          "present": false,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "leadership",
+          "ability": "CHA",
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    },
+    "understanding": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "understanding",
+          "epoch": 0,
+          "available": false,
+          "present": false,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "understanding",
+          "ability": "WIS",
+          "mode": "fixed-delta",
+          "before": 18,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    }
+  },
+  "cap": {
+    "28": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "thought",
+          "epoch": 0,
+          "available": false,
+          "present": true,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "thought",
+          "ability": "INT",
+          "mode": "fixed-delta",
+          "before": 28,
+          "delta": 2,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    },
+    "29": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "thought",
+          "epoch": 0,
+          "available": false,
+          "present": true,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "thought",
+          "ability": "INT",
+          "mode": "fixed-delta",
+          "before": 29,
+          "delta": 1,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    },
+    "30": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextAcquisition": 2,
+      "physical": [
+        {
+          "id": "sbp-1",
+          "profile": "thought",
+          "epoch": 0,
+          "available": false,
+          "present": true,
+          "rechargeEvents": []
+        }
+      ],
+      "acquisitions": [
+        {
+          "id": "sba-1",
+          "physicalId": "sbp-1",
+          "epoch": 0,
+          "profile": "thought",
+          "ability": "INT",
+          "mode": "fixed-delta",
+          "before": 30,
+          "delta": 0,
+          "baseAnchor": null
+        }
+      ],
+      "order": null
+    }
+  },
+  "embedded": {
+    "v": 1,
+    "nextPhysical": 2,
+    "nextAcquisition": 2,
+    "physical": [
+      {
+        "id": "sbp-1",
+        "profile": "thought",
+        "epoch": 0,
+        "available": false,
+        "present": true,
+        "rechargeEvents": []
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "sba-1",
+        "physicalId": "sbp-1",
+        "epoch": 0,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "already-accounted",
+        "before": null,
+        "delta": null,
+        "baseAnchor": 18
+      }
+    ],
+    "order": null
+  },
+  "secondCopy": {
+    "v": 1,
+    "nextPhysical": 3,
+    "nextAcquisition": 3,
+    "physical": [
+      {
+        "id": "sbp-1",
+        "profile": "thought",
+        "epoch": 0,
+        "available": false,
+        "present": true,
+        "rechargeEvents": []
+      },
+      {
+        "id": "sbp-2",
+        "profile": "thought",
+        "epoch": 0,
+        "available": false,
+        "present": true,
+        "rechargeEvents": []
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "sba-1",
+        "physicalId": "sbp-1",
+        "epoch": 0,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "fixed-delta",
+        "before": 18,
+        "delta": 2,
+        "baseAnchor": null
+      },
+      {
+        "id": "sba-2",
+        "physicalId": "sbp-2",
+        "epoch": 0,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "fixed-delta",
+        "before": 20,
+        "delta": 2,
+        "baseAnchor": null
+      }
+    ],
+    "order": null
+  },
+  "century": {
+    "v": 1,
+    "nextPhysical": 2,
+    "nextAcquisition": 3,
+    "physical": [
+      {
+        "id": "sbp-1",
+        "profile": "thought",
+        "epoch": 1,
+        "available": false,
+        "present": true,
+        "rechargeEvents": [
+          "u46-verified-century"
+        ]
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "sba-1",
+        "physicalId": "sbp-1",
+        "epoch": 0,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "fixed-delta",
+        "before": 18,
+        "delta": 2,
+        "baseAnchor": null
+      },
+      {
+        "id": "sba-2",
+        "physicalId": "sbp-1",
+        "epoch": 1,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "fixed-delta",
+        "before": 20,
+        "delta": 2,
+        "baseAnchor": null
+      }
+    ],
+    "order": null
+  },
+  "before20": {
+    "v": 1,
+    "nextPhysical": 2,
+    "nextAcquisition": 2,
+    "physical": [
+      {
+        "id": "sbp-1",
+        "profile": "thought",
+        "epoch": 0,
+        "available": false,
+        "present": true,
+        "rechargeEvents": []
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "sba-1",
+        "physicalId": "sbp-1",
+        "epoch": 0,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "fixed-delta",
+        "before": 20,
+        "delta": 2,
+        "baseAnchor": null
+      }
+    ],
+    "order": null
+  },
+  "before16": {
+    "v": 1,
+    "nextPhysical": 2,
+    "nextAcquisition": 2,
+    "physical": [
+      {
+        "id": "sbp-1",
+        "profile": "thought",
+        "epoch": 0,
+        "available": false,
+        "present": true,
+        "rechargeEvents": []
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "sba-1",
+        "physicalId": "sbp-1",
+        "epoch": 0,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "fixed-delta",
+        "before": 16,
+        "delta": 2,
+        "baseAnchor": null
+      }
+    ],
+    "order": null
+  },
+  "before12": {
+    "v": 1,
+    "nextPhysical": 2,
+    "nextAcquisition": 2,
+    "physical": [
+      {
+        "id": "sbp-1",
+        "profile": "thought",
+        "epoch": 0,
+        "available": false,
+        "present": true,
+        "rechargeEvents": []
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "sba-1",
+        "physicalId": "sbp-1",
+        "epoch": 0,
+        "profile": "thought",
+        "ability": "INT",
+        "mode": "fixed-delta",
+        "before": 12,
+        "delta": 2,
+        "baseAnchor": null
+      }
+    ],
+    "order": null
+  }
+}

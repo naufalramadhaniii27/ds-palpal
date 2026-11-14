@@ -32,4 +32,5 @@ for(const state of [undefined,null,{v:99,reading:'preserve'},model.createNecrono
 for(const invalid of [null,12,'bad',[],{skill:'Persuasion',[Symbol('future')]:true}]){const h=fixture();eq(h.ctx.currentNecronomiconSocialCheck(invalid).ok,false)}
 {const h=fixture();h.C.skills={unknown:true};eq(h.check().reason,'native-skill-unavailable')}
 eq(qualifiedSkillMode([{t:'FAIL',s:'Actual automatic failure'}],true,'Voidmarked').reason,'automatic-failure');eq(qualifiedSkillMode([{t:'future',s:'Unsupported'}],true,'Voidmarked').ok,false);
+{const h=fixture(),token=h.capture();eq(h.request(token).ok,true);h.S.studyBooks={v:1,newCommittedStudy:'pending projection'};h.dice.release([3,17]);await new Promise(setImmediate);eq(h.dice.history,[])}
 console.log(checks+' actual native skill/condition/customization/dice + retained Voidmarked runtime assertions PASS');
