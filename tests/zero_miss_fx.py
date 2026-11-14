@@ -3533,6 +3533,15 @@ for field,value in [("eq",False),("attuned",False),("q",0)]:
     row=U59_FIX[0]; inv=json.loads(json.dumps(row["inventory"]));inv[0][field]=value
     CASES.append(dict(name="NEG U59 inactive original TCE source "+field,b=u59_build(row,inv),expect=[("C.spellcasting.dc",16),("C.spellcasting.atk",8)]))
 
+
+# U60 evaluates the actual app rest consumer against actual native sheet/resource output.
+for _u60_n in [1,2,3]:
+    _u60_b=dict(rs="2024",cls="Wizard",level=5,unset={},base={"STR":10,"DEX":10,"CON":10,"INT":18,"WIS":18,"CHA":18},extra={"mc":[dict(cls="Warlock",lv=5)],"sp":["Burning Hands","Fire Bolt"],"spm":{"Warlock":["Hold Person","Eldritch Blast"]},"src":{"core":True,"phb":True,"dmg":True,"tce":True}},inv=[dict(n="+%d Arcane Grimoire"%_u60_n,q=1,eq=False,attuned=True)])
+    _u60_row="window.__zmRecoveryRows(C,{used:{}}).find(r=>r.n==='Arcane Recovery')"
+    _u60_negative="(()=>{const b=structuredClone(__zmB);b.inv[0].attuned=false;const n=__bldSheetFor(b);return window.__zmRecoveryRows(n,{used:{}}).find(r=>r.n==='Arcane Recovery').cap})()"
+    _u60_conserved="(()=>{const b=structuredClone(__zmB);b.inv[0].attuned=false;const n=__bldSheetFor(b);return JSON.stringify(C.res)===JSON.stringify(n.res)&&JSON.stringify(C.spellcasting.slots)===JSON.stringify(n.spellcasting.slots)})()"
+    CASES.append(dict(name="U60 actual native Arcane Grimoire recovery allowance +%d"%_u60_n,b=_u60_b,expect=[(_u60_row+".cap",4),(_u60_row+".left",1),(_u60_row+".r.max",1),(_u60_negative,3),(_u60_conserved,True)]))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }
@@ -3569,6 +3578,13 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
   res.push(r) }
  return res }"""
 
+
+
+# Compile before the existing CSP timer boundary, using exact source snippets only.
+import runpy as _u60_runpy
+_U60_REST_SOURCE=_u60_runpy.run_path(os.path.join(HERE,"fixtures","arcane_grimoire_fx_consumer.py"))["actual_rest_consumer"](ROOT)
+assert JS.count(" const res=[],evaluators=new Map();")==1
+JS=JS.replace(" const res=[],evaluators=new Map();"," window.__zmRecoveryRows=new Function('C','state',"+json.dumps(_U60_REST_SOURCE)+");\n const res=[],evaluators=new Map();")
 
 def run(root, cases, errs):
     from playwright.sync_api import sync_playwright

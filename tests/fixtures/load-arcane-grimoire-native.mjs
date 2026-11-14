@@ -1,0 +1,4 @@
+/* Evaluate the actual private source adapter once in isolated native fixtures. */
+import fs from'node:fs';import vm from'node:vm';import*as profiles from'../../src/data/lib/arcane-grimoire-recovery-profiles.js';import*as source from'../../src/data/lib/arcane-grimoire-recovery-source.js';
+const read=p=>fs.readFileSync(new URL('../../src/'+p,import.meta.url),'utf8'),seen=new WeakSet();
+export function loadArcaneGrimoireNative(c){if(seen.has(c))return;Object.assign(c,profiles,source);c.lateGet??=key=>c[key];c.sheetState??=()=>null;c.fxo??=()=>c.FXO||{};c.gx??=()=>c.GX||{item:{}};const text=read('builder/10t-logic-arcane-grimoire-recovery.js'),exports=[...text.matchAll(/export function (\w+)/g)].map(m=>m[1]);vm.runInContext('(function(){'+text.replace(/^import [^\n]*\n/gm,'').replace(/export /g,'')+';Object.assign(globalThis,{'+exports.join(',')+'})})()',c);seen.add(c);}

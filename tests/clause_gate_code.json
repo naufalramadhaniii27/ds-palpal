@@ -2440,7 +2440,7 @@
    "id": "u34-dmg-carpet-of-flying-3-ft-5-ft-1",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 3 ft. \u00d7 5 ft.",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2451,7 +2451,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "const result=activateCarpet(row,declarations);return result?"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. \u00d7 5 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2459,7 +2459,7 @@
    "id": "u34-dmg-carpet-of-flying-3-ft-5-ft-3",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 3 ft. \u00d7 5 ft.",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2470,12 +2470,12 @@
     "80",
     "200"
    ],
-   "rx": "^a\\ 3\\ ft\\.\\ \u00d7\\ 5\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 200\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 80\\ feet\\.$",
+   "rx": "^a\\ 3\\ ft\\.\\ ×\\ 5\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 200\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 80\\ feet\\.$",
    "anchor": [
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. \u00d7 5 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2483,7 +2483,7 @@
    "id": "u34-dmg-carpet-of-flying-3-ft-5-ft-4",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 3 ft. \u00d7 5 ft.",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2497,7 +2497,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. \u00d7 5 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2505,7 +2505,7 @@
    "id": "u34-dmg-carpet-of-flying-4-ft-6-ft-1",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 4 ft. \u00d7 6 ft.",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2516,7 +2516,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "const result=activateCarpet(row,declarations);return result?"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. \u00d7 6 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2524,7 +2524,7 @@
    "id": "u34-dmg-carpet-of-flying-4-ft-6-ft-3",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 4 ft. \u00d7 6 ft.",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2535,12 +2535,12 @@
     "60",
     "400"
    ],
-   "rx": "^a\\ 4\\ ft\\.\\ \u00d7\\ 6\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 400\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 60\\ feet\\.$",
+   "rx": "^a\\ 4\\ ft\\.\\ ×\\ 6\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 400\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 60\\ feet\\.$",
    "anchor": [
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. \u00d7 6 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2548,7 +2548,7 @@
    "id": "u34-dmg-carpet-of-flying-4-ft-6-ft-4",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 4 ft. \u00d7 6 ft.",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2562,7 +2562,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. \u00d7 6 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2570,7 +2570,7 @@
    "id": "u34-dmg-carpet-of-flying-5-ft-7-ft-1",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 5 ft. \u00d7 7 ft.",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2581,7 +2581,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "const result=activateCarpet(row,declarations);return result?"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. \u00d7 7 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2589,7 +2589,7 @@
    "id": "u34-dmg-carpet-of-flying-5-ft-7-ft-3",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 5 ft. \u00d7 7 ft.",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2600,12 +2600,12 @@
     "40",
     "600"
    ],
-   "rx": "^a\\ 5\\ ft\\.\\ \u00d7\\ 7\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 600\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 40\\ feet\\.$",
+   "rx": "^a\\ 5\\ ft\\.\\ ×\\ 7\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 600\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 40\\ feet\\.$",
    "anchor": [
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. \u00d7 7 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2613,7 +2613,7 @@
    "id": "u34-dmg-carpet-of-flying-5-ft-7-ft-4",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 5 ft. \u00d7 7 ft.",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2627,7 +2627,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. \u00d7 7 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2635,7 +2635,7 @@
    "id": "u34-dmg-carpet-of-flying-6-ft-9-ft-1",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 6 ft. \u00d7 9 ft.",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2646,7 +2646,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "const result=activateCarpet(row,declarations);return result?"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. \u00d7 9 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2654,7 +2654,7 @@
    "id": "u34-dmg-carpet-of-flying-6-ft-9-ft-3",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 6 ft. \u00d7 9 ft.",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2665,12 +2665,12 @@
     "30",
     "800"
    ],
-   "rx": "^a\\ 6\\ ft\\.\\ \u00d7\\ 9\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 800\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 30\\ feet\\.$",
+   "rx": "^a\\ 6\\ ft\\.\\ ×\\ 9\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 800\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 30\\ feet\\.$",
    "anchor": [
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. \u00d7 9 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2678,7 +2678,7 @@
    "id": "u34-dmg-carpet-of-flying-6-ft-9-ft-4",
    "kind": "item",
    "owner": "dmg",
-   "name": "Carpet of Flying, 6 ft. \u00d7 9 ft.",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2692,7 +2692,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. \u00d7 9 ft. 2024",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2024",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2700,7 +2700,7 @@
    "id": "u34-dmg14-carpet-of-flying-3-ft-5-ft-1",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 3 ft. \u00d7 5 ft.",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2711,7 +2711,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "const result=activateCarpet(row,declarations);return result?"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. \u00d7 5 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2719,7 +2719,7 @@
    "id": "u34-dmg14-carpet-of-flying-3-ft-5-ft-3",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 3 ft. \u00d7 5 ft.",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2730,12 +2730,12 @@
     "80",
     "200"
    ],
-   "rx": "^a\\ 3\\ ft\\.\\ \u00d7\\ 5\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 200\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 80\\ feet\\.$",
+   "rx": "^a\\ 3\\ ft\\.\\ ×\\ 5\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 200\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 80\\ feet\\.$",
    "anchor": [
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. \u00d7 5 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2743,7 +2743,7 @@
    "id": "u34-dmg14-carpet-of-flying-3-ft-5-ft-4",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 3 ft. \u00d7 5 ft.",
+   "name": "Carpet of Flying, 3 ft. × 5 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2757,7 +2757,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. \u00d7 5 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 3 ft. × 5 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2765,7 +2765,7 @@
    "id": "u34-dmg14-carpet-of-flying-4-ft-6-ft-1",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 4 ft. \u00d7 6 ft.",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2776,7 +2776,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "const result=activateCarpet(row,declarations);return result?"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. \u00d7 6 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2784,7 +2784,7 @@
    "id": "u34-dmg14-carpet-of-flying-4-ft-6-ft-3",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 4 ft. \u00d7 6 ft.",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2795,12 +2795,12 @@
     "60",
     "400"
    ],
-   "rx": "^a\\ 4\\ ft\\.\\ \u00d7\\ 6\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 400\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 60\\ feet\\.$",
+   "rx": "^a\\ 4\\ ft\\.\\ ×\\ 6\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 400\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 60\\ feet\\.$",
    "anchor": [
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. \u00d7 6 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2808,7 +2808,7 @@
    "id": "u34-dmg14-carpet-of-flying-4-ft-6-ft-4",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 4 ft. \u00d7 6 ft.",
+   "name": "Carpet of Flying, 4 ft. × 6 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2822,7 +2822,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. \u00d7 6 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 4 ft. × 6 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2830,7 +2830,7 @@
    "id": "u34-dmg14-carpet-of-flying-5-ft-7-ft-1",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 5 ft. \u00d7 7 ft.",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2841,7 +2841,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "const result=activateCarpet(row,declarations);return result?"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. \u00d7 7 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2849,7 +2849,7 @@
    "id": "u34-dmg14-carpet-of-flying-5-ft-7-ft-3",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 5 ft. \u00d7 7 ft.",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2860,12 +2860,12 @@
     "40",
     "600"
    ],
-   "rx": "^a\\ 5\\ ft\\.\\ \u00d7\\ 7\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 600\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 40\\ feet\\.$",
+   "rx": "^a\\ 5\\ ft\\.\\ ×\\ 7\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 600\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 40\\ feet\\.$",
    "anchor": [
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. \u00d7 7 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2873,7 +2873,7 @@
    "id": "u34-dmg14-carpet-of-flying-5-ft-7-ft-4",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 5 ft. \u00d7 7 ft.",
+   "name": "Carpet of Flying, 5 ft. × 7 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2887,7 +2887,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. \u00d7 7 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 5 ft. × 7 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2895,7 +2895,7 @@
    "id": "u34-dmg14-carpet-of-flying-6-ft-9-ft-1",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 6 ft. \u00d7 9 ft.",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2906,7 +2906,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "const result=activateCarpet(row,declarations);return result?"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. \u00d7 9 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2914,7 +2914,7 @@
    "id": "u34-dmg14-carpet-of-flying-6-ft-9-ft-3",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 6 ft. \u00d7 9 ft.",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2925,12 +2925,12 @@
     "30",
     "800"
    ],
-   "rx": "^a\\ 6\\ ft\\.\\ \u00d7\\ 9\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 800\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 30\\ feet\\.$",
+   "rx": "^a\\ 6\\ ft\\.\\ ×\\ 9\\ ft\\.\\ carpet\\ can\\ carry\\ up\\ to\\ 800\\ lb\\.\\ at\\ a\\ fly\\ speed\\ of\\ 30\\ feet\\.$",
    "anchor": [
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. \u00d7 9 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -2938,7 +2938,7 @@
    "id": "u34-dmg14-carpet-of-flying-6-ft-9-ft-4",
    "kind": "item",
    "owner": "dmg14",
-   "name": "Carpet of Flying, 6 ft. \u00d7 9 ft.",
+   "name": "Carpet of Flying, 6 ft. × 9 ft.",
    "lvl": null,
    "cls": [
     "SPEED"
@@ -2952,7 +2952,7 @@
     "src/app/lib/carpet-vehicle-runtime.js",
     "result=evaluateCarpet(row,facts);"
    ],
-   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. \u00d7 9 ft. 2014",
+   "test": "Z3 U34 native carpet profile Carpet of Flying, 6 ft. × 9 ft. 2014",
    "note": "Exact native vehicle clause only: owned activation or declared riders/cargo load and computed vehicle speed. Never grants actor Fly Speed. Native source fixture plus carpet_vehicle_model/integration/runtime tests prove profile literals, normal/double boundaries, half speed and owned consumer; table/range INFO unchanged.",
    "scopeValues": true
   },
@@ -16349,7 +16349,7 @@
     "tests/study_books_runtime.mjs",
     "tests/study_books_ui.mjs"
    ],
-   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC\u2192covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC→covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
   },
   {
    "id": "u46-item-dmg-manual-of-gainful-exercise-2",
@@ -16454,7 +16454,7 @@
     "tests/study_books_runtime.mjs",
     "tests/study_books_ui.mjs"
    ],
-   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC\u2192covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC→covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
   },
   {
    "id": "u46-item-dmg-manual-of-quickness-of-action-2",
@@ -16559,7 +16559,7 @@
     "tests/study_books_runtime.mjs",
     "tests/study_books_ui.mjs"
    ],
-   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC\u2192covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Manual UNC→covered; one new uncovered closure. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
   },
   {
    "id": "u46-item-dmg-tome-of-clear-thought-2",
@@ -16664,7 +16664,7 @@
     "tests/study_books_runtime.mjs",
     "tests/study_books_ui.mjs"
    ],
-   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO\u2192covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO→covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
   },
   {
    "id": "u46-item-dmg-tome-of-leadership-and-influence-2",
@@ -16769,7 +16769,7 @@
     "tests/study_books_runtime.mjs",
     "tests/study_books_ui.mjs"
    ],
-   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO\u2192covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO→covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
   },
   {
    "id": "u46-item-dmg-tome-of-understanding-2",
@@ -16874,7 +16874,7 @@
     "tests/study_books_runtime.mjs",
     "tests/study_books_ui.mjs"
    ],
-   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO\u2192covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
+   "note": "U46 verified native 2024 study: actual48h practice within6days commits an immutable capped delta from the real permanent score and spends exactly one physical epoch; retained chronological replay reaches native derived sheet numbers. Explicit physical loss/verified century, historical embedded/null delta, source-bound Necronomicon order and no-spend mismatch guards have actual consumers. All six native UI profiles verified at both widths. Tome existing INFO→covered; no new uncovered closure claimed. Proof epochs: native UI194 on5108deb9; FX31/strict752/golden1 on3d29b9ea, with byte-exact narrow metadata-only equivalence audits through14c96/fa546/5108."
   },
   {
    "id": "u47-item-dmg-bag-of-tricks-6",
@@ -16986,7 +16986,7 @@
     "tests/bag_tricks_runtime.mjs",
     "tests/bag_tricks_ui.mjs"
    ],
-   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. Current generic INFO\u2192covered; no new UNC closure claimed. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
+   "note": "U47 verified whole native OR expiry: actual native d8 draw atomically spends exactly one existing S.used charge and creates a source-qualified original-HP entity. Actual entity damage to0 and declared nextdawn each end it; removal/catalog changes do not rewrite retained source or bypass expiry. Both native UI branches verified across source/color profiles and widths. No actor HP, independent use counter, free command, or combat AI credit. Current generic INFO→covered; no new UNC closure claimed. Proof epochs: full native594 and readonly FX19/strict752 on873ce46c; final guard native78 on957ab411, with exact bounded guard/CSP reverse reconstruction."
   },
   {
    "id": "u47-item-dmg-bag-of-tricks-gray-5",
@@ -17791,7 +17791,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-5",
@@ -18056,7 +18056,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-12",
@@ -18326,7 +18326,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-14",
@@ -18594,7 +18594,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-brass-6",
@@ -18856,7 +18856,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-brass-14",
@@ -19119,7 +19119,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-bronze-5",
@@ -19381,7 +19381,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-iron-3",
@@ -19514,7 +19514,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-iron-5",
@@ -19776,7 +19776,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-iron-9",
@@ -20039,7 +20039,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-current-item-dmg-horn-of-valhalla-silver-6",
@@ -20301,7 +20301,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC count: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg-horn-of-valhalla-brass-4",
@@ -20434,7 +20434,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg-horn-of-valhalla-brass-6",
@@ -20830,7 +20830,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg-horn-of-valhalla-bronze-6",
@@ -21226,7 +21226,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg-horn-of-valhalla-iron-6",
@@ -21622,7 +21622,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg-horn-of-valhalla-silver-6",
@@ -21888,7 +21888,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg14-horn-of-valhalla-brass-6",
@@ -22284,7 +22284,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg14-horn-of-valhalla-bronze-6",
@@ -22680,7 +22680,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg14-horn-of-valhalla-iron-6",
@@ -23076,7 +23076,7 @@
     "tests/horn_valhalla_runtime.mjs",
     "tests/horn_valhalla_ui.mjs"
    ],
-   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO\u2192covered; no additional UNC closure claimed."
+   "note": "U48 verified bounded NPC duration: native original Berserker source snapshot, actual fixed/current or native d4/legacy roster count, actual categorical C.profs creating friendly/hostile spirits while spending one S.used use. Current NPC Charmed/Frightened immunity rejects real condition application; legacy accepts, actor state untouched. Independent HP0 and factual hour expiry preserve original source, with seven-day cooldown separate. Whole count+requirement clauses require both consumers. Existing INFO→covered; no additional UNC closure claimed."
   },
   {
    "id": "u48-legacy-item-dmg14-horn-of-valhalla-silver-6",
@@ -23338,7 +23338,7 @@
     "tests/defender_native_runtime.mjs",
     "tests/defender_ui.mjs"
    ],
-   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3\u2212k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
+   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3−k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
   },
   {
    "id": "u49-item-dmg-defender-4",
@@ -23470,7 +23470,7 @@
     "tests/defender_native_runtime.mjs",
     "tests/defender_ui.mjs"
    ],
-   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3\u2212k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
+   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3−k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
   },
   {
    "id": "u49-item-dmg-defender-5",
@@ -23598,7 +23598,7 @@
     "tests/defender_native_runtime.mjs",
     "tests/defender_ui.mjs"
    ],
-   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3\u2212k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
+   "note": "U49 verified native physical Defender +3 conservation: first actual own-turn attack commits the optional allocation only through actual native dice/manual beforeCommit, including a miss or choice0. Actual native attack/damage share3−k, held AC gainsk, drop/rehold preserves the spent window, and next factual own-turn start restores default3. Source certification and actual allocated attunement preserve unrelated bonuses/packets and deny stale generic bypass. Native formal78 and FX12 verified frozen8cdaffd1; one exact UNC closure."
   },
   {
    "id": "u50-item-dmg-quaal-s-feather-token-16",
@@ -24169,7 +24169,7 @@
     "tests/bird_token_native_runtime.mjs",
     "tests/bird_token_ui.mjs"
    ],
-   "note": "U50 verified physical token consumption and retained source-qualified Roc transport: actual load/speed limit, flight seconds and distance, required rest, irreversible144mile/HP0/dismiss endings. Native real command/UI receipts, not player FlySpeed or attack permission. Existing INFO\u2192covered; no extra UNC closure."
+   "note": "U50 verified physical token consumption and retained source-qualified Roc transport: actual load/speed limit, flight seconds and distance, required rest, irreversible144mile/HP0/dismiss endings. Native real command/UI receipts, not player FlySpeed or attack permission. Existing INFO→covered; no extra UNC closure."
   },
   {
    "id": "u50-item-dmg-quaal-s-feather-token-19",
@@ -24282,7 +24282,7 @@
     "tests/bird_token_native_runtime.mjs",
     "tests/bird_token_ui.mjs"
    ],
-   "note": "U50 verified physical token consumption and retained source-qualified Roc transport: actual load/speed limit, flight seconds and distance, required rest, irreversible144mile/HP0/dismiss endings. Native real command/UI receipts, not player FlySpeed or attack permission. Existing INFO\u2192covered; no extra UNC closure."
+   "note": "U50 verified physical token consumption and retained source-qualified Roc transport: actual load/speed limit, flight seconds and distance, required rest, irreversible144mile/HP0/dismiss endings. Native real command/UI receipts, not player FlySpeed or attack permission. Existing INFO→covered; no extra UNC closure."
   },
   {
    "id": "u50-item-dmg-quaal-s-feather-token-bird-11",
@@ -24395,7 +24395,7 @@
     "tests/bird_token_native_runtime.mjs",
     "tests/bird_token_ui.mjs"
    ],
-   "note": "U50 verified physical token consumption and retained source-qualified Roc transport: actual load/speed limit, flight seconds and distance, required rest, irreversible144mile/HP0/dismiss endings. Native real command/UI receipts, not player FlySpeed or attack permission. Existing INFO\u2192covered; no extra UNC closure."
+   "note": "U50 verified physical token consumption and retained source-qualified Roc transport: actual load/speed limit, flight seconds and distance, required rest, irreversible144mile/HP0/dismiss endings. Native real command/UI receipts, not player FlySpeed or attack permission. Existing INFO→covered; no extra UNC closure."
   },
   {
    "id": "u51-item-dmg-rope-of-climbing-6",
@@ -24917,7 +24917,7 @@
     "tests/magic_ropes_native_runtime.mjs",
     "tests/magic_ropes_ui.mjs"
    ],
-   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO\u2192covered; not extra UNC closure."
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO→covered; not extra UNC closure."
   },
   {
    "id": "u51-item-dmg-rope-of-entanglement-9",
@@ -25022,7 +25022,7 @@
     "tests/magic_ropes_native_runtime.mjs",
     "tests/magic_ropes_ui.mjs"
    ],
-   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO\u2192covered; not extra UNC closure."
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO→covered; not extra UNC closure."
   },
   {
    "id": "u51-item-dmg-rope-of-entanglement-11",
@@ -25126,7 +25126,7 @@
     "tests/magic_ropes_native_runtime.mjs",
     "tests/magic_ropes_ui.mjs"
    ],
-   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO\u2192covered; not extra UNC closure."
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO→covered; not extra UNC closure."
   },
   {
    "id": "u52-qualified-gloves-strength-athletics",
@@ -25322,7 +25322,7 @@
     "tests/player_damage_reactive.mjs",
     "tests/timed_defenses_app17.mjs"
    ],
-   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
+   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP→HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
   },
   {
    "id": "u53-item-dmg-armor-of-invulnerability-3",
@@ -25441,7 +25441,7 @@
     "tests/player_damage_reactive.mjs",
     "tests/timed_defenses_app17.mjs"
    ],
-   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
+   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP→HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
   },
   {
    "id": "u53-item-dmg-armor-of-invulnerability-4",
@@ -25562,7 +25562,7 @@
     "tests/player_damage_reactive.mjs",
     "tests/timed_defenses_app17.mjs"
    ],
-   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
+   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP→HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
   },
   {
    "id": "u53-item-dmg-potion-of-resistance-1",
@@ -25683,7 +25683,7 @@
     "tests/player_damage_reactive.mjs",
     "tests/timed_defenses_app17.mjs"
    ],
-   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
+   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP→HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
   },
   {
    "id": "u54-item-dmg-ioun-stone-19",
@@ -25861,7 +25861,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26073,7 +26073,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26317,7 +26317,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26531,7 +26531,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26745,7 +26745,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -26959,7 +26959,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -27174,7 +27174,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -27388,7 +27388,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -27602,7 +27602,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -27815,7 +27815,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -28060,7 +28060,7 @@
     ],
     [
      "src/app/23d-ui-rest.js",
-     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+     "undoMark(\"Short Rest\");if(iounRestDenied()"
     ],
     [
      "src/app/23d-ui-rest.js",
@@ -30601,6 +30601,390 @@
    ],
    "test": "Z3 U59 actual native TCE class-aware spell bonuses",
    "note": "U59 original TCE six physical attuned profiles: native ATT, active wear/hold and source fingerprints gate the original contribution. Amulet adds all-spell attack/DC; Drum adds all-spell attack and Bard-origin DC only. Actual 09/12k/13/18 consumers, genuine spell definitions, source-key channels sharing Charisma, original 2014 Magic Initiate origin, fixed DC50 and mixed Pact/Drum/Amulet are numerically tested. Actor ruleset never selects item source."
+  },
+  {
+   "id": "u60-item-dmg-grimoire-recovery-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+1 Arcane Grimoire",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ when\\ you\\ use\\ your\\ arcane\\ recovery\\ feature,\\ you\\ can\\ increase\\ the\\ number\\ of\\ spell\\ slot\\ levels\\ you\\ regain\\ by\\ 1\\.$",
+   "anchor": [
+    "src/app/32d-logic-play-hp-rest-recovery.js",
+    "cap:Math.ceil(lv/2)+(q[0]===\"Wizard\"?arcaneGrimoireRecoveryBonus(r,lv):0)"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireNativeSource("
+    ],
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireRecoveryBonus("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireResourceBinding("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireRecoveryProjection("
+    ],
+    [
+     "src/builder/12zg-logic-arcane-grimoire-recovery.js",
+     "id:'arcane-grimoire-recovery-source'"
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function prepareShortRestRecovery("
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function currentShortRestRecovery("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "currentShortRestRecovery(recovery.ticket,recList()"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function takeRestFn3("
+    ]
+   ],
+   "consumerTests": [
+    "tests/arcane_grimoire_native_resources.mjs",
+    "tests/arcane_grimoire_projection.mjs",
+    "tests/arcane_grimoire_rest.mjs"
+   ],
+   "test": "U60 actual native Arcane Grimoire recovery allowance",
+   "note": "U60 only the independent original-TCE Arcane Recovery paragraph. Exact original source and native allocated Wizard attunement authorize a single named +1 to the real rest picker allowance, independent of item magnitude and without an added feature use. Actual native Wizard resource/level and inventory witness bind this modifier. Real short-rest selection validation and the existing S.used standard-slot/Arcane-Recovery debit enforce the extra level, level1–5 integer spent slots, available feature uses, aggregate selection and source/actor/selection revalidation after Undo. No spell-focus or spell-bonus sentence is credited."
+  },
+  {
+   "id": "u60-item-dmg-grimoire-recovery-2",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+2 Arcane Grimoire",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ when\\ you\\ use\\ your\\ arcane\\ recovery\\ feature,\\ you\\ can\\ increase\\ the\\ number\\ of\\ spell\\ slot\\ levels\\ you\\ regain\\ by\\ 1\\.$",
+   "anchor": [
+    "src/app/32d-logic-play-hp-rest-recovery.js",
+    "cap:Math.ceil(lv/2)+(q[0]===\"Wizard\"?arcaneGrimoireRecoveryBonus(r,lv):0)"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireNativeSource("
+    ],
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireRecoveryBonus("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireResourceBinding("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireRecoveryProjection("
+    ],
+    [
+     "src/builder/12zg-logic-arcane-grimoire-recovery.js",
+     "id:'arcane-grimoire-recovery-source'"
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function prepareShortRestRecovery("
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function currentShortRestRecovery("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "currentShortRestRecovery(recovery.ticket,recList()"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function takeRestFn3("
+    ]
+   ],
+   "consumerTests": [
+    "tests/arcane_grimoire_native_resources.mjs",
+    "tests/arcane_grimoire_projection.mjs",
+    "tests/arcane_grimoire_rest.mjs"
+   ],
+   "test": "U60 actual native Arcane Grimoire recovery allowance",
+   "note": "U60 only the independent original-TCE Arcane Recovery paragraph. Exact original source and native allocated Wizard attunement authorize a single named +1 to the real rest picker allowance, independent of item magnitude and without an added feature use. Actual native Wizard resource/level and inventory witness bind this modifier. Real short-rest selection validation and the existing S.used standard-slot/Arcane-Recovery debit enforce the extra level, level1–5 integer spent slots, available feature uses, aggregate selection and source/actor/selection revalidation after Undo. No spell-focus or spell-bonus sentence is credited."
+  },
+  {
+   "id": "u60-item-dmg-grimoire-recovery-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "+3 Arcane Grimoire",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ when\\ you\\ use\\ your\\ arcane\\ recovery\\ feature,\\ you\\ can\\ increase\\ the\\ number\\ of\\ spell\\ slot\\ levels\\ you\\ regain\\ by\\ 1\\.$",
+   "anchor": [
+    "src/app/32d-logic-play-hp-rest-recovery.js",
+    "cap:Math.ceil(lv/2)+(q[0]===\"Wizard\"?arcaneGrimoireRecoveryBonus(r,lv):0)"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireNativeSource("
+    ],
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireRecoveryBonus("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireResourceBinding("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireRecoveryProjection("
+    ],
+    [
+     "src/builder/12zg-logic-arcane-grimoire-recovery.js",
+     "id:'arcane-grimoire-recovery-source'"
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function prepareShortRestRecovery("
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function currentShortRestRecovery("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "currentShortRestRecovery(recovery.ticket,recList()"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function takeRestFn3("
+    ]
+   ],
+   "consumerTests": [
+    "tests/arcane_grimoire_native_resources.mjs",
+    "tests/arcane_grimoire_projection.mjs",
+    "tests/arcane_grimoire_rest.mjs"
+   ],
+   "test": "U60 actual native Arcane Grimoire recovery allowance",
+   "note": "U60 only the independent original-TCE Arcane Recovery paragraph. Exact original source and native allocated Wizard attunement authorize a single named +1 to the real rest picker allowance, independent of item magnitude and without an added feature use. Actual native Wizard resource/level and inventory witness bind this modifier. Real short-rest selection validation and the existing S.used standard-slot/Arcane-Recovery debit enforce the extra level, level1–5 integer spent slots, available feature uses, aggregate selection and source/actor/selection revalidation after Undo. No spell-focus or spell-bonus sentence is credited."
+  },
+  {
+   "id": "u60-item-tce-grimoire-recovery-1",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+1 Arcane Grimoire",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ when\\ you\\ use\\ your\\ arcane\\ recovery\\ feature,\\ you\\ can\\ increase\\ the\\ number\\ of\\ spell\\ slot\\ levels\\ you\\ regain\\ by\\ 1\\.$",
+   "anchor": [
+    "src/app/32d-logic-play-hp-rest-recovery.js",
+    "cap:Math.ceil(lv/2)+(q[0]===\"Wizard\"?arcaneGrimoireRecoveryBonus(r,lv):0)"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireNativeSource("
+    ],
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireRecoveryBonus("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireResourceBinding("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireRecoveryProjection("
+    ],
+    [
+     "src/builder/12zg-logic-arcane-grimoire-recovery.js",
+     "id:'arcane-grimoire-recovery-source'"
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function prepareShortRestRecovery("
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function currentShortRestRecovery("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "currentShortRestRecovery(recovery.ticket,recList()"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function takeRestFn3("
+    ]
+   ],
+   "consumerTests": [
+    "tests/arcane_grimoire_native_resources.mjs",
+    "tests/arcane_grimoire_projection.mjs",
+    "tests/arcane_grimoire_rest.mjs"
+   ],
+   "test": "U60 actual native Arcane Grimoire recovery allowance",
+   "note": "U60 only the independent original-TCE Arcane Recovery paragraph. Exact original source and native allocated Wizard attunement authorize a single named +1 to the real rest picker allowance, independent of item magnitude and without an added feature use. Actual native Wizard resource/level and inventory witness bind this modifier. Real short-rest selection validation and the existing S.used standard-slot/Arcane-Recovery debit enforce the extra level, level1–5 integer spent slots, available feature uses, aggregate selection and source/actor/selection revalidation after Undo. No spell-focus or spell-bonus sentence is credited."
+  },
+  {
+   "id": "u60-item-tce-grimoire-recovery-2",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+2 Arcane Grimoire",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ when\\ you\\ use\\ your\\ arcane\\ recovery\\ feature,\\ you\\ can\\ increase\\ the\\ number\\ of\\ spell\\ slot\\ levels\\ you\\ regain\\ by\\ 1\\.$",
+   "anchor": [
+    "src/app/32d-logic-play-hp-rest-recovery.js",
+    "cap:Math.ceil(lv/2)+(q[0]===\"Wizard\"?arcaneGrimoireRecoveryBonus(r,lv):0)"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireNativeSource("
+    ],
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireRecoveryBonus("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireResourceBinding("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireRecoveryProjection("
+    ],
+    [
+     "src/builder/12zg-logic-arcane-grimoire-recovery.js",
+     "id:'arcane-grimoire-recovery-source'"
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function prepareShortRestRecovery("
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function currentShortRestRecovery("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "currentShortRestRecovery(recovery.ticket,recList()"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function takeRestFn3("
+    ]
+   ],
+   "consumerTests": [
+    "tests/arcane_grimoire_native_resources.mjs",
+    "tests/arcane_grimoire_projection.mjs",
+    "tests/arcane_grimoire_rest.mjs"
+   ],
+   "test": "U60 actual native Arcane Grimoire recovery allowance",
+   "note": "U60 only the independent original-TCE Arcane Recovery paragraph. Exact original source and native allocated Wizard attunement authorize a single named +1 to the real rest picker allowance, independent of item magnitude and without an added feature use. Actual native Wizard resource/level and inventory witness bind this modifier. Real short-rest selection validation and the existing S.used standard-slot/Arcane-Recovery debit enforce the extra level, level1–5 integer spent slots, available feature uses, aggregate selection and source/actor/selection revalidation after Undo. No spell-focus or spell-bonus sentence is credited."
+  },
+  {
+   "id": "u60-item-tce-grimoire-recovery-3",
+   "kind": "item",
+   "owner": "tce",
+   "name": "+3 Arcane Grimoire",
+   "cls": [
+    "RESOURCE",
+    "SLOT"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^in\\ addition,\\ when\\ you\\ use\\ your\\ arcane\\ recovery\\ feature,\\ you\\ can\\ increase\\ the\\ number\\ of\\ spell\\ slot\\ levels\\ you\\ regain\\ by\\ 1\\.$",
+   "anchor": [
+    "src/app/32d-logic-play-hp-rest-recovery.js",
+    "cap:Math.ceil(lv/2)+(q[0]===\"Wizard\"?arcaneGrimoireRecoveryBonus(r,lv):0)"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireNativeSource("
+    ],
+    [
+     "src/data/lib/arcane-grimoire-recovery-source.js",
+     "export function arcaneGrimoireRecoveryBonus("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireResourceBinding("
+    ],
+    [
+     "src/builder/10t-logic-arcane-grimoire-recovery.js",
+     "export function arcaneGrimoireRecoveryProjection("
+    ],
+    [
+     "src/builder/12zg-logic-arcane-grimoire-recovery.js",
+     "id:'arcane-grimoire-recovery-source'"
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function prepareShortRestRecovery("
+    ],
+    [
+     "src/app/32aa-logic-arcane-grimoire-recovery.js",
+     "export function currentShortRestRecovery("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "currentShortRestRecovery(recovery.ticket,recList()"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function takeRestFn3("
+    ]
+   ],
+   "consumerTests": [
+    "tests/arcane_grimoire_native_resources.mjs",
+    "tests/arcane_grimoire_projection.mjs",
+    "tests/arcane_grimoire_rest.mjs"
+   ],
+   "test": "U60 actual native Arcane Grimoire recovery allowance",
+   "note": "U60 only the independent original-TCE Arcane Recovery paragraph. Exact original source and native allocated Wizard attunement authorize a single named +1 to the real rest picker allowance, independent of item magnitude and without an added feature use. Actual native Wizard resource/level and inventory witness bind this modifier. Real short-rest selection validation and the existing S.used standard-slot/Arcane-Recovery debit enforce the extra level, level1–5 integer spent slots, available feature uses, aggregate selection and source/actor/selection revalidation after Undo. No spell-focus or spell-bonus sentence is credited."
   }
  ]
 }

@@ -1,3 +1,4 @@
+import {prepareShortRestRecovery,currentShortRestRecovery} from './32aa-logic-arcane-grimoire-recovery.js';
 import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {bindLive,chgApply,chgRows,hasFeat,hdHeal,lateGet,lateSet,longExtraH,periOn,recList,recSum,shortChg,shortExtraH,slotUsed,toastU,undoMark} from "./00a-reg-late-ports.js";/* Responsibility: short and long rest: dialog, recovery, summary and takeRest. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env: __coinTotal, __coinsFor, __coinsNow, __ico, __icoCls, __icoItem, __icoText, __miRoll, __openRest. Shared names with other modules come from the imports below, late names through __R. */
@@ -128,7 +129,7 @@ export function takeRest(kind){if(iounRestDenied())return; if(S.hp!=null&&S.hp<1
     if(takeRestPart1(picked, chefV)){ toast("Type the 1d8 roll for Replenishing Meal, 1 to 8, or untick it."); return; }
     const rl=recList(), bad=rl.filter((q,i) =>{ return recSum(i)>q.cap; })[0]; if(bad){ toast(bad.n+": choose slots with a combined level of "+bad.cap+" or less."); return; }
     const both={}; rl.forEach((q, i) => takeRestFn2(both, q, i)); const over=Object.keys(both).filter((L) =>{ return both[L]>slotUsed(+L); })[0]; if(over){ toast("You chose more level "+over+" slots than you have spent."); return; }
-    undoMark("Short Rest");if(iounRestDenied())return;/* v21 RU57 */ RS0=restSnap();/* v32 p25 */
+    if(!beginShortRestRecovery(rl))return;/* v21 RU57 */ RS0=restSnap();/* v32 p25 */
     Object.keys(restSel).forEach((k) =>{ (restSel[k]||[]).forEach((v) =>{ if(!v) return; spent++; heal+=hdHeal(v); S.used[k]=num(S.used[k],0)+1; }); });
     if(chefV) heal+=chefV;
     const before=S.hp==null?D.hpmax:S.hp; if(restAuto&&heal) S.hp=Math.min(D.hpmax,before+heal);
@@ -136,6 +137,11 @@ export function takeRest(kind){if(iounRestDenied())return; if(S.hp!=null&&S.hp<1
     const nc=chgApply(shortChg()); save(); syncLU(); closeSheet();
     takeRestPart2(spent, before, heal, rec, nc); restSumToast("short"); return; }
   takeRest2Step1(); }
+function beginShortRestRecovery(rows){
+ const recovery=prepareShortRestRecovery(rows,lateGet("restX").rec||{},shortRestRecoveryContext());if(!recovery.ok){toast("Review the selected recovery slots and remaining feature uses before resting.");return false;}
+ undoMark("Short Rest");if(iounRestDenied()||!currentShortRestRecovery(recovery.ticket,recList(),lateGet("restX").rec||{},shortRestRecoveryContext())){toast("The character or recovery sources changed. Review this Short Rest again.");return false;}return true;
+}
+function shortRestRecoveryContext(){return {slots:[1,2,3,4,5].map(slotUsed),restSel,restAuto,restX:lateGet("restX")}}
 function takeRestPart1(picked, chefV){ return (lateGet("restX").chef&&picked&&(chefV<1||chefV>8)); }
 function takeRestPart2(spent, before, heal, rec, nc){ return (toastU("Short Rest taken."+(spent?" "+spent+" Hit "+(spent>1?"Dice":"Die")+" spent"+(restAuto?", "+(S.hp-before)+" "+hpWord(S.hp-before)+" regained.":", "+heal+" "+hpWord(heal)+" rolled (apply them yourself)."):" No Hit Dice spent.")+(rec.length?" "+rec.join(" "):"")+(nc?" Charges updated.":"")+(function(){ return takeRestFn4(); })())); }
 function takeRest2Step1(){

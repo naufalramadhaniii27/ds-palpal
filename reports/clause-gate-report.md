@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9175 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9181 |
 | Info (tag terdokumentasi) | 27239 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1481, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 975, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 228, STD:ASI 225, NUMONLY:ZERO 172, ROLL:LAST_CHARGE 142, OBJECT:STATS 109, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5698 |
-| Uncovered dengan angka | 3318 |
-| Uncovered dengan kelas kata kunci mekanik | 5327 |
+| Uncovered | 5692 |
+| Uncovered dengan angka | 3312 |
+| Uncovered dengan kelas kata kunci mekanik | 5321 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 371 |
-| Angka yang tidak dijelaskan record mana pun | 3129 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4867 kalimat |
+| Angka yang tidak dijelaskan record mana pun | 3123 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4861 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 262 |
-| Waktu | muat data 17 s, analisis 16 s |
+| Waktu | muat data 17 s, analisis 17 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 191 ditangkap (63.7%). Hapus semua atom kelas yang dibutuhkan: 192 ditangkap (64.0%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 181 ditangkap (60.3%). Hapus semua atom kelas yang dibutuhkan: 183 ditangkap (61.0%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 291 ditangkap (97.0%), semua atom kelas dihapus: 295 ditangkap (98.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 291 ditangkap (97.0%), semua atom kelas dihapus: 294 ditangkap (98.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -42,7 +42,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | GX | 1940 |
 | wxs | 849 |
 | LU_X | 652 |
-| CODE | 513 |
+| CODE | 519 |
 | AUTO | 467 |
 | species | 440 |
 | ITEM_SPELLS | 370 |
@@ -64,7 +64,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
-| RESOURCE | 7506 | 965 | 12.9% |
+| RESOURCE | 7506 | 959 | 12.8% |
 | SPELL | 3208 | 867 | 27.0% |
 | DMG | 4548 | 742 | 16.3% |
 | SPEED | 1321 | 473 | 35.8% |
@@ -73,7 +73,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | CHOICE | 1598 | 401 | 25.1% |
 | RES | 1294 | 386 | 29.8% |
 | IMM | 953 | 344 | 36.1% |
-| SLOT | 1330 | 338 | 25.4% |
+| SLOT | 1330 | 332 | 25.0% |
 | NUM | 8063 | 328 | 4.1% |
 | DC | 2887 | 248 | 8.6% |
 | DIS | 1073 | 247 | 23.0% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 5014 | 11637 | 0 | 2856 |
+| item | 19507 | 5020 | 11637 | 0 | 2850 |
 | species | 1320 | 726 | 365 | 0 | 229 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2764 | 6309 | 1510 | 14.3% |
+| dmg | 10583 | 2767 | 6309 | 1507 | 14.2% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -115,8 +115,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | tua24 | 637 | 159 | 341 | 137 | 21.5% |
 | egw | 566 | 141 | 289 | 136 | 24.0% |
 | au | 536 | 107 | 311 | 118 | 22.0% |
-| tce | 736 | 175 | 459 | 102 | 13.9% |
 | tgh14p | 491 | 107 | 282 | 102 | 20.8% |
+| tce | 736 | 178 | 459 | 99 | 13.5% |
 | tdcsr | 416 | 134 | 185 | 97 | 23.3% |
 | twow | 544 | 167 | 283 | 94 | 17.3% |
 | phb14 | 516 | 170 | 261 | 85 | 16.5% |
@@ -198,7 +198,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SPEED | 395 | 309 |
 | PROF | 394 | 133 |
 | NUM | 328 | 328 |
-| SLOT | 320 | 105 |
+| SLOT | 314 | 99 |
 | RES | 312 | 126 |
 | CHOICE | 267 | 75 |
 | IMM | 232 | 75 |
@@ -519,9 +519,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Sorcerer/Ancestral Sorcery|Ancestor's Lore#1` Add your Charisma modifier (min +1) to your Intelligence checks. | number 1 no record explains
 - `sub|Warmage/Coalition Arcanist|Tactical Uplink#3` You also get +5 to your Passive Wisdom (Perception). | number 5 no record explains
 
-### SLOT (320 uncovered)
+### SLOT (314 uncovered)
 
-- `class|Summoner|Conjuration Expert#1` You have two extra spell slots, one of level 1 and one of level 2, separate from your Spellcasting slots, and usable only for Conjuration spells. | no record for SLOT; number 2 unexplained
+- `class|Evoker|Font of Magic#13` The highest slot level you can create is 5. | no record for SLOT; number 5 unexplained
 - `class|Warlock|Magical Cunning#2` When it ends, you regain expended Pact Magic spell slots, up to half your maximum number of slots (round up). | no record for SLOT; number half unexplained
 - `class|Warlock|Pact Magic#15` For example, a level 5 Warlock has two level 3 spell slots. | no record for SLOT; number 2 unexplained
 - `class|Witch|Familiar#2` You can cast it in 10 minutes with no spell slot and no components, and it gains these upgrades. | no record for SLOT
@@ -531,22 +531,20 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `feat|Shadowsteel Master|Shadowsteel Master#4` It also takes 1d4 Necrotic damage for each level of the spell slot used to cast the spell. | no record for DMG,SLOT,SPELL; number 1d4 unexplained
 - `item|coa|Gauntlets of Rage#6` Doing so causes the attack to deal an extra 3 (1d6) necrotic damage per level of spell slot expended, if the attack hits. | no record for DMG,SLOT; number 1d6,3 unexplained
 - `item|dmg14|Boon of the Fire Soul#2` You can also cast Burning Hands (save DC 15) at will, with no spell slot and no components. | no record for SLOT
-- `item|dmg14|Manual of Clay Golems#3` To decipher and use the manual, you must be a spellcaster with at least two 5th-level spell slots. | no record for SLOT; number 2 unexplained
+- `item|dmg14|Boon of the Stormborn#2` You can also cast Thunderwave (save DC 15) at will, with no spell slot and no components. | no record for SLOT
 - `item|dmg14|Manual of Flesh Golems#3` To decipher and use the manual, you must be a spellcaster with at least two 5th-level spell slots. | no record for SLOT; number 2 unexplained
-- `item|dmg14|Manual of Stone Golems#3` To decipher and use the manual, you must be a spellcaster with at least two 5th-level spell slots. | no record for SLOT; number 2 unexplained
-- `item|dmg|Ascendant Dragon-Touched Focus#7` Whenever you use a spell slot to cast a spell that deals acid, cold, fire, lightning, or poison damage, roll a d6, and you gain a bonus equal to the number rolled to one of the spell's damage rolls. | no record for DMG,SLOT; number 1d6 unexplained
-- `item|dmg|Ascendant Dragon-Touched Focus#9` Whenever you use a spell slot to cast a spell, you can immediately teleport to an unoccupied space you can see within 15 feet of you. | no record for SLOT,SPELL; number 15 unexplained
 - `item|dmg|Boon of the Stormborn#2` You can also cast Thunderwave (save DC 15) at will, with no spell slot and no components. | no record for SLOT
 - `item|dmg|Gauntlets of Rage#6` Doing so causes the attack to deal an extra 3 (1d6) necrotic damage per level of spell slot expended, if the attack hits. | no record for DMG,SLOT; number 1d6,3 unexplained
+- `item|dmg|Manual of Clay Golems#3` To decipher and use the manual, you must be a spellcaster with at least two 5th-level spell slots. | no record for SLOT; number 2 unexplained
 - `item|dmg|Manual of Flesh Golems#3` To decipher and use the manual, you must be a spellcaster with at least two 5th-level spell slots. | no record for SLOT; number 2 unexplained
-- `item|dmg|Manual of Iron Golems#3` To decipher and use the manual, you must be a spellcaster with at least two 5th-level spell slots. | no record for SLOT; number 2 unexplained
-- `item|dmg|Manual of Stone Golems#3` To decipher and use the manual, you must be a spellcaster with at least two 5th-level spell slots. | no record for SLOT; number 2 unexplained
-- `item|dmg|Potion of Rejuvenation (Superior)#1` Drink: Regain 9d4 + 9 Hit Points and one expended spell slot of level 1 to 5, your choice. | no record for RESOURCE,SLOT; number 9d4,9 unexplained
+- `item|dmg|Potion of Rejuvenation#1` Drink: Regain 3d4 + 3 Hit Points and one expended level 1 spell slot. | no record for RESOURCE,SLOT; number 3d4,3 unexplained
 - `item|dmg|Singularity Emitter#4` One charge casts it at level 3, and each extra charge raises the slot level by 1. | no record for RESOURCE,SLOT
 - `item|dmg|Tome of the Dragon#4` To decipher and use the Tome of the Dragon, you must be either a spellcaster with at least two level 5 spell slots or a Dragon. | no record for SLOT; number 2 unexplained
-- `item|dmg|Wakened Dragon-Touched Focus#7` Whenever you use a spell slot to cast a spell that deals acid, cold, fire, lightning, or poison damage, roll a d6, and you gain a bonus equal to the number rolled to one of the spell's damage rolls. | no record for DMG,SLOT; number 1d6 unexplained
-- `item|ftd|Ascendant Dragon-Touched Focus#9` Whenever you use a spell slot to cast a spell, you can immediately teleport to an unoccupied space you can see within 15 feet of you. | no record for SLOT,SPELL; number 15 unexplained
-- `item|tce|+1 Arcane Grimoire#3` In addition, when you use your Arcane Recovery feature, you can increase the number of spell slot levels you regain by 1. | no record for SLOT; number 1 unexplained
+- `item|dmg|Wakened Dragon-Touched Focus#9` Whenever you use a spell slot to cast a spell, you can immediately teleport to an unoccupied space you can see within 15 feet of you. | no record for SLOT,SPELL; number 15 unexplained
+- `item|dmg|Wyrmskull Throne#23` The spell is cast as though using a 9th-level spell slot and deals 49 (14d6) lightning damage. | no record for DMG,SLOT; number 14d6,49 unexplained
+- `item|ftd|Ascendant Dragon-Touched Focus#7` Whenever you use a spell slot to cast a spell that deals acid, cold, fire, lightning, or poison damage, roll a d6, and you gain a bonus equal to the number rolled to one of the spell's damage rolls. | no record for DMG,SLOT; number 1d6 unexplained
+- `item|ftd|Wakened Dragon-Touched Focus#7` Whenever you use a spell slot to cast a spell that deals acid, cold, fire, lightning, or poison damage, roll a d6, and you gain a bonus equal to the number rolled to one of the spell's damage rolls. | no record for DMG,SLOT; number 1d6 unexplained
+- `item|ggr|Mizzium Apparatus#9` The DC is 10 + twice the level of the spell slot you expend to cast the spell. | no record for DC,RESOURCE,SLOT,SPELL; number 10,double unexplained
 - `item|tgh14c|Aether Blood#2` For 1 hour after you drink it, a spell slot you use counts as 1 level higher when setting the level the spell is cast at. | no record for SLOT; number 1,1 unexplained
 - `sub|Bard/College of Spirits|Empowered Channeling#2` Once per turn, when you cast a Bard spell with a spell slot that deals damage or restores Hit Points, roll 1d6 and add the result to one of the spell's damage rolls or to the total Hit Points it restores. | no record for DMG,SLOT; number 1d6 unexplained
 - `sub|Cleric/Life Domain|Disciple of Life#2` The extra amount is 2 + the spell slot's level. | no record for SLOT; number 2 unexplained
@@ -559,6 +557,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Warlock/The First Vampire Patron|Drain Life#3` When it hits, you can expend a Pact Magic slot for an extra 1d8 Necrotic damage plus 1d8 per slot level. | no record for DMG,RESOURCE,SLOT; number 1d8 unexplained
 - `sub|Warlock/The First Vampire Patron|Eldritch Appetite#1` Reaction when Drain Life drops an enemy to 0 HP: regain one expended Pact Magic slot. | no record for SLOT; number 0 unexplained
 - `sub|Warlock/The First Vampire|Eldritch Appetite#1` When you reduce a creature to 0 hit points with Drain Life, use your reaction to regain one spent pact slot. | no record for SLOT; number 0 unexplained
+- `sub|Wizard/Abjurer|Arcane Ward#8` Each time you cast an Abjuration spell using a spell slot, the ward regains Hit Points equal to twice the slot's level. | no record for RESOURCE,SLOT,SPELL; number double unexplained
+- `sub|Wizard/Dragon Mage|Invoke Dragon Tail#1` Bonus Action and a spell slot: call a magical 15-ft dragon tail. | no record for SLOT; number 15 unexplained
 - `sub|Wizard/Dragon Mage|Invoke Dragon Tail#2` It lasts 1 round per slot level and ends early if you are Incapacitated or dismiss or replace it with a Bonus Action. | no record for SLOT; number 1 unexplained
 - `sub|Wizard/Somnomancer|Deep Sleep#4` With a level 2+ slot, the Sphere radius grows 5 ft per slot level above 1. | no record for SLOT; number 5,1 unexplained
 
@@ -717,38 +717,38 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `feat|Greater Mark of Storm|Greater Mark of Storm#2` One ability score of your choice +1 (max 20). | angka: 1
 - `feat|Hulking Figure (GH14C)|Hulking Figure (GH14C)#4` When you hit with a melee attack made with your Strength modifier, you deal 1d4 extra damage of the weapon's type. | angka: 1d4
 
-### item (1888)
+### item (1882)
 
-- `item|dmg|True-Ice Shards (Dagger)#28` Additionally, you may cast Scrying (with a spell save DC of 20) and Find the Path. | angka: 20
+- `item|dmg|True-Ice Shards (Rapier)#31` Additionally, you may cast Scrying (with a spell save DC of 20) and Find the Path. | angka: 20
 - `item|dmg|Wand of Orcus#21` When the wand is attuned to Orcus or to a follower he has blessed, that creature pays 2 fewer charges for each of these spells, to a minimum of 0. | angka: 2
-- `item|dmg|Strig Feather Robe#3` While you wear it, your Intelligence or Charisma becomes 22 (choose when you first attune) and you gain a +1 bonus to saving throws. | angka: 22
-- `item|ai|Portfolio Keeper#1` At rank 2, you gain the use of a weathered leather pouch that is an uncommon magic item. | angka: 2
-- `item|dmg|Potion of Spell Recovery#1` Drinking it restores expended spell slots of your choice, each of level 1 to 5, with a combined level of 1d3 + 3 or less. | angka: 1d3,3
-- `item|dmg|Ghaal'duur, the Mighty Dirge#6` Held in both hands as a Spellcasting Focus, your Bard spells have doubled duration if 1 minute or longer (max 24 hours), doubled range if 5 ft or more, and are cast as one slot level higher. | angka: 5,double
-- `item|tvss14|Pentacle of Woe (very rare)#1` A medallion that gives +3 to spell attack rolls and the save DCs of your Witch hexes and spells. | angka: 3
-- `item|cos|Dark Gift of Yrrga, the Eye of Shadows#1` You have Truesight out to 60 feet for 30 days, then the gift is gone. | angka: 30
-- `item|mot|Pyxis of Pandemonium#5` Any spells cast by the vessel have a spell save DC of 17. | angka: 17
-- `item|egw|Mace of the Black Crown (Exalted)#31` - The weapon's bonus to attack and damage rolls increases to +2, and the extra fire damage dealt by the weapon when it is ignited increases to 2d6. | angka: 2d6,2
-- `item|tsdm|Gamma Pendant#10` Any weapon you wield gets +2 to attack and damage (or its higher bonus) and can deal Force damage or its normal type. | angka: 2
-- `item|dmg|+1 Dragonhide Belt#2` While wearing it, you gain a +1 bonus to the saving throw DCs of your ki features. | angka: 1
-- `item|dmg|Strawbundle's Charm#3` The doll is a Tiny construct with 1 hit point, immune to poison and the poisoned condition. | angka: 1
-- `item|tghg|Sangromancer's Vial#2` When you attune, fill it with your blood by rolling up to 10 of your Hit Point Dice and lowering your Hit Point maximum by the total. | angka: 10
-- `item|dmg|Jewel of Three Prayers (Exalted)#44` - Each of your allies within 30 feet of you gains the ability to breathe water and gains a swimming speed equal to its walking speed. | angka: 30
-- `item|dmg|Sulfuras, Hand of Ragnaros#8` Boiling Point: water in a container or body within 1 mile boils for 1 minute, and a creature that enters or starts its turn there takes 2d10 Fire damage. | angka: 2d10,1,1
-- `item|au|Workshop Wrecker#1` When this 3-inch-diameter metal ball is activated as a Magic action, it moves at a rapid speed, bouncing off walls and defying any attempts to capture it. | angka: 3
-- `item|tdm14|Wings#4` Deployed, you have a flying speed equal to your walking speed, for 10 minutes total until you finish a short or long rest. | angka: 10
-- `item|cos|Dark Gift of Yog the Invincible#1` Your Hit Point maximum rises by 30 for 10 days, then the gift is gone. | angka: 10
-- `item|tgh14c|Aether Blood#5` You must drink it again every 24 hours or have Disadvantage on Constitution checks and saves. | angka: 24
+- `item|dmg|Draught of Slime Curse Cure#2` Drinking it gives you the benefit of remove curse as if cast on you, and Advantage on saves against being cursed for 1 hour afterward. | angka: 1
+- `item|llk|Deck of Several Things#97` You gain proficiency in the Persuasion skill and you double your proficiency bonus on checks made with that skill for the duration of the adventure. | angka: double,pb
+- `item|dmg|Precipit, the Formless#14` Resist Piercing and Slashing, Speed 5 ft, +3 AC, halved forced movement, and 10 Temporary HP at the start of each turn. | angka: 3,10
+- `item|dmg|War Staff#4` For example, Fire Bolt reaches 480 ft but attacks past 240 ft have Disadvantage. | angka: 480,240
+- `item|tvss14|Switch Amalgam#4` Once on two weapons, both become magical with +1 to attack and damage rolls (not if already magical with a bonus), and both gain the Switch property: two forms, swap between them at any time, even bet | angka: 1,2
+- `item|frafi|Calimemnon Crystal#25` The target regains 2d6 + 2 Hit Points. | angka: 2d6,2
+- `item|cm|Nether Scroll of Azumar#4` If this check fails, you take 16d10 psychic damage, and you can attempt the check again after another 30 days of concentrated study. | angka: 16d10,30
+- `item|egw|Ruin's Wake (Exalted)#12` - You gain a +1 bonus to attack and damage rolls made with this magic weapon, and it deals an extra 1d8 piercing damage to any target it hits. | angka: 1d8,1
+- `item|tsdm|Jax#2` For 1 hour, your Strength and Dexterity each rise by 2, to a maximum of 22. | angka: 1,2
+- `item|dmg|Ascendant Dragon-Touched Focus#7` Whenever you use a spell slot to cast a spell that deals acid, cold, fire, lightning, or poison damage, roll a d6, and you gain a bonus equal to the number rolled to one of the spell's damage rolls. | angka: 1d6
+- `item|dmg|Arcane Cannon#9` In addition, a creature that fails its saving throw takes 11 (2d10) acid damage at the start of each of its turns; a creature can end this damage by using its action to wash off the acid with a pint o | angka: 2d10,11
+- `item|tghg|Elixir of Life Protection#2` For 10 minutes after drinking it, your Hit Point maximum cannot be reduced. | angka: 10
+- `item|dmg|Mind Lash#2` In the hands of an illithid, this magic weapon strips away a creature's will to survive as it also strips away flesh, dealing an extra 2d4 psychic damage to any target it hits. | angka: 2d4
+- `item|dmg|Potion of Rejuvenation (Greater)#1` Drink: Regain 6d4 + 6 Hit Points and one expended spell slot of level 1 to 3, your choice. | angka: 6d4,6
+- `item|rhw|Charm of the Black Rose#1` Expend this Charm for one of two effects. | angka: 2
+- `item|tdm14|Taser Net#2` You have +1 to attack rolls with it. | angka: 1
+- `item|frafi|Calimemnon Crystal#3` When viewed by a creature with Truesight, the normally beautiful diamond is a grotesque sight: trapped within the gemstone are more than a hundred genies, including the physical forms of Calim and Mem | angka: 100
+- `item|twow|Ashbringer#5` The sword is sentient (Int 14, Wis 17, Cha 17, hearing and Darkvision 120 ft, speaks Common and Dwarvish, telepathy with its wielder). | angka: 120,14,17
 - `item|dmg|Spell-Slinger's Puppet#1` As a Bonus Action while holding this ventriloquist's doll, you can pull the cord on the doll's back to cause the doll to levitate to an unoccupied space you can see within 30 feet of yourself and hove | angka: 30
-- `item|tvss14|Pentacle of Woe (rare)#1` A medallion that gives +2 to spell attack rolls and the save DCs of your Witch hexes and spells. | angka: 2
-- `item|thhw|Fangs of Guile#7` If the necklace has no charges at dusk, roll 1d6. | angka: 1d6
-- `item|dmg|Gauntlet of the Grandmaster (rare)#2` You gain +2 to spell attack rolls, spell damage rolls and the save DCs of your Warmage spells. | angka: 2
-- `item|tsgs|Monocle of Clarity#3` Comprehend Languages lets you understand any writing you see, Darkvision gives 60 ft, and See Invisibility reveals Invisible creatures and objects. | angka: 60
-- `item|dmg|Wings#4` Deployed, you have a flying speed equal to your walking speed, for 10 minutes total until you finish a short or long rest. | angka: 10
-- `item|dmg|Coin of War and Fear#3` On an even roll you get the Boon of Empyreus for 1 minute, with +2 AC and 1d4 added to your first attack roll each turn. | angka: 1d4,1,2
-- `item|dmg|Fane-Eater#3` If you attack a creature with this weapon and roll a 20 on the attack roll, the creature takes an extra 2d8 necrotic damage, and you regain a number of hit points equal to the necrotic damage taken. | angka: 2d8
-- `item|dmg|Fate Cutter Shears#8` Until the target finishes a long rest, attack rolls against it score a critical hit on a roll of 19 or 20 on the d20. | angka: 1d20,20
-- `item|dmg|Potion of Rejuvenation#1` Drink: Regain 3d4 + 3 Hit Points and one expended level 1 spell slot. | angka: 3d4,3
+- `item|tvss14|Skitterlegs#5` Eliminate: they move to the nearest hostile and make two melee attacks at +7, dealing 1d8 + 2 Piercing each. | angka: 1d8,7,2
+- `item|thhw|Potion of Rest#2` Drink it before a short or long rest and you wake with 1d10 + 5 Temporary Hit Points and with one level of exhaustion removed. | angka: 1d10,5
+- `item|dmg|Marvelous Painted World#7` Time passes at half speed there and you need no food or drink. | angka: half
+- `item|tsgs|Ouroboros Rapier#2` Each 8 on a damage die adds 1d8 Poison damage. | angka: 1d8,8
+- `item|dmg|Hivemaster Pistol#4` Each hit then deals 1d4 Radiant damage instead of 2d4. | angka: 1d4,2d4
+- `item|dmg|Funeral Mask#4` With Stage 1 of the Lich, you gain +2 AC while the disguise holds. | angka: 1,2
+- `item|dmg|Shield of the Hidden Lord#7` - The shield has an Intelligence of 22, a Wisdom of 18, and a Charisma of 24, as well as hearing and truesight out to a range of 120 feet. | angka: 120,22,18,24
+- `item|dmg|Shrieking Greaves#3` While wearing these greaves, you can use a bonus action to expend 1 charge to increase your walking speed by 30 feet, and you have advantage on Dexterity saving throws. | angka: 30,1
+- `item|dmg|Observatory Charm#1` After a Long Rest in your Observatory, you gain a magical Charm that lasts 7 days or until you use it. | angka: 7
 
 ### species (124)
 
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Vagabond/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- class `sub|Vagabond/Siegeball Jersey|Game-Winning Play#5` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `sub|Cleric/Evolution Domain|Evolution Domain Spells#3` 7 Giant Insect, Polymorph. -> info:NUMONLY:TABLE
-- class `sub|Cleric/Evolution Domain|Evolution Domain Spells#3` 7 Giant Insect, Polymorph. -> info:NUMONLY:TABLE
-- record `item|dmg|Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus#14` Once it has been used, it can't be used again until 4 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus#14` Once it has been used, it can't be used again until 4 days have passed. -> info:NUMONLY:GEOMETRY
-- record `species|Dragonborn|Breath Weapon#5` Uses equal to PB per Long Rest. -> covered
-- class `species|Dragonborn|Breath Weapon#5` Uses equal to PB per Long Rest. -> info:REST:NONUM
-- record `sub|Vagabond/Adrenaline Junkie|Stim Potion#1` After a Long Rest, you can brew Stim Potions equal to your Constitution modifier. -> covered
-- class `sub|Vagabond/Adrenaline Junkie|Stim Potion#1` After a Long Rest, you can brew Stim Potions equal to your Constitution modifier. -> info:REST:NONUM
-- record `sub|Vagabond/Daggermark|Preemptive Strike#3` After you use this, you cannot use it again until you finish a Short or Long Rest, unless you expend one Battle Die (no  -> info:REST:NONUM
-- class `sub|Vagabond/Daggermark|Preemptive Strike#3` After you use this, you cannot use it again until you finish a Short or Long Rest, unless you expend one Battle Die (no  -> info:REST:NONUM
-- record `item|dmg|Quaal's Feather Token#19` The bird vanishes once it has flown its maximum distance for the day or when it drops to 0 Hit Points. -> info:NUMONLY:ZERO
-- class `item|dmg|Quaal's Feather Token#19` The bird vanishes once it has flown its maximum distance for the day or when it drops to 0 Hit Points. -> info:NUMONLY:ZERO
-- record `sub|Bard/College of Fools|Last Laugh#5` Long Rest to use again. -> covered
-- class `sub|Bard/College of Fools|Last Laugh#5` Long Rest to use again. -> info:REST:NONUM
-- record `item|dmg|Kruphix's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
-- class `item|dmg|Kruphix's Votary#3` After you do, you cannot do it again until you finish a long rest. -> info:REST:NONUM
-- record `sub|Druid/Circle of Xenobiology|Circle of Xenobiology Spells#1` Always prepared from the listed Druid levels: 3 Aberrate, Alter Self, Jump, Longstrider. -> covered
-- class `sub|Druid/Circle of Xenobiology|Circle of Xenobiology Spells#1` Always prepared from the listed Druid levels: 3 Aberrate, Alter Self, Jump, Longstrider. -> covered
-- record `item|dmg|Constantori's Portrait#24` The painting regains all expended charges daily at dawn. -> info:REST:NONUM
-- class `item|dmg|Constantori's Portrait#24` The painting regains all expended charges daily at dawn. -> info:REST:NONUM
-- record `item|tsdm|Shield Emitter#4` Then it must recharge and cannot be used again until the next dawn. -> info:REST:NONUM
-- class `item|tsdm|Shield Emitter#4` Then it must recharge and cannot be used again until the next dawn. -> info:REST:NONUM
+- class `item|dmg|Ashbringer (True State)#4` A hit deals an extra 1d10 Fire damage, or 3d10 against Undead. -> info:ACTIVE:OTHERS
+- record `sub|Bard/College of Chronology (Dark Matter)|Reorder Events#3` Long Rest to use again. -> covered
+- class `sub|Bard/College of Chronology (Dark Matter)|Reorder Events#3` Long Rest to use again. -> info:REST:NONUM
+- record `item|egw|Verminshroud (Exalted)#13` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant wasp. -> info:ACTIVE:TRIGGER
+- class `item|egw|Verminshroud (Exalted)#13` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant wasp. -> info:ACTIVE:TRIGGER
+- record `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
+- class `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
+- record `item|egw|Hide of the Feral Guardian (Awakened)#12` - When you cast the polymorph spell using this armor, you can transform into a cave bear. -> info:ACTIVE:TRIGGER
+- class `item|egw|Hide of the Feral Guardian (Awakened)#12` - When you cast the polymorph spell using this armor, you can transform into a cave bear. -> info:ACTIVE:TRIGGER
+- record `item|dmg|Spell Gem (Lapis lazuli)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Spell Gem (Lapis lazuli)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
+- record `item|tdm14|Shield Module#3` Once used, it cannot be used again until you finish a Long Rest. -> info:REST:NONUM
+- class `item|tdm14|Shield Module#3` Once used, it cannot be used again until you finish a Long Rest. -> info:REST:NONUM
+- record `item|dmg|Boon of the Stormborn#1` You are immune to Lightning and Thunder damage. -> covered
+- record `feat|Fiend Transformation: Level 2|Fiend Transformation: Level 2#11` The brand lasts 1 minute. -> info:NUMONLY:GEOMETRY
+- class `feat|Fiend Transformation: Level 2|Fiend Transformation: Level 2#11` The brand lasts 1 minute. -> info:NUMONLY:GEOMETRY
+- record `sub|Martyr/Burden of Fame|Burden of Fame Spells#2` They do not count against your prepared spells. -> info:ACTIVE:OTHERS
+- class `sub|Martyr/Burden of Fame|Burden of Fame Spells#2` They do not count against your prepared spells. -> info:ACTIVE:OTHERS
+- record `sub|Witch/Blue Magic|Cerulean Reflection#7` Once you use this, you cannot use it again until you finish a Long Rest. -> covered
+- class `sub|Witch/Blue Magic|Cerulean Reflection#7` Once you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
+- record `sub|Ranger/Big Game Hunter|Special Shots#11` You can use Power Shot a number of times equal to your Proficiency Bonus per Long Rest. -> covered
 - record `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> covered
 - class `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> info:REST:NONUM
-- record `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#15` If you end your move with no creature within 5 feet, you must Dash toward the nearest. -> info:NUMONLY:GEOMETRY
-- class `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#15` If you end your move with no creature within 5 feet, you must Dash toward the nearest. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Charm of the Sage#2` After three casts the charm vanishes. -> info:NUMONLY:TABLE
-- class `item|dmg|Charm of the Sage#2` After three casts the charm vanishes. -> info:NUMONLY:TABLE
+- record `item|dmg|Pearl of Wisdom Quiver#6` Works once per dawn. -> info:REST:NONUM
+- class `item|dmg|Pearl of Wisdom Quiver#6` Works once per dawn. -> info:REST:NONUM
+- record `sub|Fighter/Living Crucible|Compound Creator#1` You learn 3 compounds from the Compound Options, plus 2 more at Fighter levels 7, 10 and 15. -> info:NUMONLY:TEXT
+- class `sub|Fighter/Living Crucible|Compound Creator#1` You learn 3 compounds from the Compound Options, plus 2 more at Fighter levels 7, 10 and 15. -> info:NUMONLY:TEXT
+- record `item|pota|Ironfang#12` - You can sense the presence of precious metals and stones within 60 feet of you, but not their exact location. -> info:NUMONLY:GEOMETRY
+- class `item|pota|Ironfang#12` - You can sense the presence of precious metals and stones within 60 feet of you, but not their exact location. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Laser Eyes#3` Ranged weapon, 2d4 Radiant, range 50/200 ft, Vex mastery, Blaster and Firearm properties. -> info:NUMONLY:ROLL
