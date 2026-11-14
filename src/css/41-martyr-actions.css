@@ -1,0 +1,20 @@
+/* one-tap feature actions (Martyr, Shifter, Bloodlust): a small panel under the feature text */
+.mact{margin:12px 0 6px;padding:12px;border:1px solid var(--line,rgba(255,255,255,.12));border-radius:12px;background:var(--panel2,rgba(255,255,255,.03))}
+.mact-h{font-size:calc(12px*var(--tz,1));font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#aab);margin:0 0 10px}
+.mact-ss{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:0 0 10px}
+.mact-s{padding:8px 10px;border-radius:10px;background:var(--panel,rgba(0,0,0,.18));display:flex;flex-direction:column;gap:2px;min-width:0}
+.mact-s small{font-size:calc(11px*var(--tz,1));color:var(--muted,#aab);text-transform:uppercase;letter-spacing:.05em}
+.mact-s b{font-size:calc(18px*var(--tz,1));line-height:1.2}
+.mact-s i{font-style:normal;font-size:calc(11px*var(--tz,1));color:var(--muted,#aab)}
+.mact-fs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.mact-f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.mact-f span{font-size:calc(12px*var(--tz,1));color:var(--muted,#aab)}
+.mact-f input{width:100%;box-sizing:border-box;min-height:44px;padding:8px 10px;border-radius:10px;border:1px solid var(--line,rgba(255,255,255,.18));background:var(--bg,rgba(0,0,0,.25));color:inherit;font-size:calc(16px*var(--tz,1))}
+.mact-n{margin:6px 0 10px;font-size:calc(12px*var(--tz,1));color:var(--muted,#aab)}
+.mact-b{display:grid;grid-template-columns:1fr;gap:8px}
+.mact-b.g2{grid-template-columns:1fr 1fr}
+.mact-b.g3,.mact-b.g4,.mact-b.g5,.mact-b.g6,.mact-b.g7,.mact-b.g8{grid-template-columns:repeat(5,1fr)}
+.mact-b .btn{min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.15;padding:6px 8px;margin:0;width:100%}
+.mact-b .btn span{font-weight:700}
+.mact-b .btn small{font-size:calc(11px*var(--tz,1));opacity:.8;text-align:center}
+.mact-b.g3 .btn span,.mact-b.g4 .btn span,.mact-b.g5 .btn span{font-size:calc(18px*var(--tz,1))}

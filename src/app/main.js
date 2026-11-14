@@ -52,6 +52,7 @@ import "./32-logic-play-undo-actions.js";
 import "./32b-logic-play-concentration-casting.js";
 import "./32c-logic-play-temp-features-ammo.js";
 import "./32d-logic-play-hp-rest-recovery.js";
+import "./32e-logic-martyr-actions.js";
 import "./33-logic-play-rage-conditions.js";
 import "./34-ui-situations.js";
 import "./34b-ui-combat-effects-modes.js";

@@ -79,6 +79,7 @@ function chFxPicks(add,out,noFeat){
 export function choicesBuild(noFeat){
  const c=CL(),L=B.level,out=[];
  function add(o){out.push(o)}
+ if(!c)return out;/* the class pack is still loading (third-party classes come later): no picks yet, never a crash */
  chBase(add,c);
  const bgt=bgX();chBg(add,bgt);
  const sp=spX();

@@ -37,9 +37,23 @@ function cnTB(L,c,m,dc,rv,pb){return {
   "Psionic Power":function(){return rv("Psionic Energy Dice","Psi Warrior")+" Psionic Energy Dice"},
   "Breath Weapon":function(){return "Dexterity save DC "+dc("CON")+", "+(L>=17?4:L>=11?3:L>=5?2:1)+"d10, "+pb+" uses"},
   "Healing Hands":function(){return pb+"d4 Hit Points"},
+  "Bloodlust":function(){const h=hdHeal((c&&c.hd)||8,m("CON"));return "Sanguine Feast: "+pb+" uses per Long Rest, heals "+h.t+", about "+h.avg},
+  "Shifting":function(){return pb+" uses per Long Rest, "+(2*pb)+" Temporary Hit Points each time"},/* Shifter */
   "Relentless Rage":function(){return "Drops to "+(2*L)+" Hit Points on success"},
   "Divine Intervention":function(){return "Once per Long Rest"},
   "Mystic Arcanum":function(){return L>=17?"Level 6, 7, 8, 9 spells":L>=15?"Level 6, 7, 8 spells":L>=13?"Level 6, 7 spells":"Level 6 spell"}}}
+/* Healing from one Hit Point Die: Periapt of Wound Closure (equipped) doubles it, Bloodlust (Powerful Recovery) treats 1 and 2 as 3 */
+function hdHeal(die,con){const per=((B.inv||[]).some((i) =>{return i&&i.n==="Periapt of Wound Closure"&&i.eq!==false}));const pr=allFeats().some((f) =>{return f&&f.n==="Bloodlust"});
+ let a=0;for(let r=1;r<=die;r++)a+=(pr&&r<3?3:r);a=a/die+con;const cs=(con>=0?"+ ":"- ")+Math.abs(con);
+ return {t:(per?"(1d"+die+" "+cs+") x 2 (Periapt)":"1d"+die+" "+cs)+(pr?", 1 and 2 count as 3 (Bloodlust)":""),avg:Math.round(a*(per?2:1)),raw:a*(per?2:1)}}
+/* Martyr (VSS24): numbers that grow with level. Only for the Martyr class, so a same-named feature elsewhere gets nothing */
+function cnTC(L,cls,m){if(cls!=="Martyr")return {};const hd=Math.floor(L/2),con=m("CON"),cs=(con>=0?"+ ":"- ")+Math.abs(con);return {
+  "Miraculous Healing":function(){const per=hdHeal(12,con);return "Spend up to "+hd+" Hit Point "+(hd>1?"Dice":"Die")+" per use, each heals "+per.t+". About "+per.avg+" per die, about "+Math.round(per.raw*hd)+" for "+hd+". No limit on uses, only on unspent Hit Point Dice"},
+  "Reprisal":function(){return "Halve the damage, the attacker takes "+(L>=17?4:L>=11?3:L>=5?2:1)+"d6 Necrotic or Radiant"},
+  "Divine Respite":function(){return "Regain up to "+(L>=17?10:L>=13?6:3)+" spent Hit Point Dice"},
+  "Balm":function(){return "One creature within 60 ft regains 1d8 per Hit Point Die you spend, up to "+hd+"d8"},
+  "Virtuous Blessings":function(){const n=Math.max(1,m("WIS"));return n+" creature"+(n>1?"s":"")},
+  "Sacrifice":function(){return "Strike: you take 5, the target takes 10 extra Radiant. Skill: take 10 for +5 on a failed D20 Test"}}}
 function cnT14(L,c,m,dc,rv,pb){return {
    "Rage":function(){return (L>=20?"Unlimited uses":rv("Rage")+" uses per Long Rest")+", +"+c.track["Rage Damage"][L-1]+" Rage Damage"},
    "Indomitable":function(){return "Reroll a failed save, "+rv("Indomitable")+" use"+(rv("Indomitable")>1?"s":"")+" per Long Rest, you must keep the new roll"},  "Ki":function(){return L+" ki points, ki save DC "+dc("WIS")},
@@ -52,7 +66,7 @@ function cnT14(L,c,m,dc,rv,pb){return {
 function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=fxVal(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
  /* uses come from the resource with this name, not from its position in res/resSub (L2). Missing resource: no note, never a wrong number */
  const rv=function(n,sub){const l=sub?((c.resSub||{})[sub]||[]):(c.res||[]),r=l.filter((x) =>{return x.n===n})[0];if(!r)throw new Error("no resource "+n);return mcResMax(r,a,L)};
- const T=Object.assign(cnTA(L,c,m,dc,rv,pb),cnTB(L,c,m,dc,rv,pb)),T14=cnT14(L,c,m,dc,rv,pb);
+ const T=Object.assign(cnTA(L,c,m,dc,rv,pb),cnTB(L,c,m,dc,rv,pb),cnTC(L,cls,m)),T14=cnT14(L,c,m,dc,rv,pb);
   const f=(R14()&&T14[name])||T[name];if(!f)return "";try{const s=f();return s?" **At your level:** "+s+".":""}catch(e){return ""}}
 /* defenses() in parts (SOLID stage 13C): one function per source, in the same order. Each adds rows with add(type,value,source) */
 function defSpecies(add){const sp=SPECIES[B.species];
