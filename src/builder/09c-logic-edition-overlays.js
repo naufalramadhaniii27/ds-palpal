@@ -1,5 +1,5 @@
 import {slotRecoveryProfile} from '../data/lib/slot-recovery.js';
-import {lateGet,pk} from "./01b-logic-late-ports.js";
+import {lateGet,pk,bindLive} from "./01b-logic-late-ports.js";
 import {MAGIC_SUM} from "./02-data-magic-item-summaries.js";
 import {DMAP,dmapAlias} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
@@ -42,6 +42,7 @@ genv.__spellCatalogForRuleset=spellCatalogForRuleset;
 /* v93: 2014 equipment. eq14Set lays the 2014 weapons (no Weapon Mastery, Lance, Trident, Warhammer, War Pick, Net), equipment packs and armor words over the base tables. dm14Set swaps the 2024 Dungeon Master's Guide items for the 2014 ones (DM14.ov), and leaves out the 2024-only ones (DM14.hide) unless the character owns them. Both put everything back when off */
 function eqGear(n){return GEAR.filter((g) =>{return g[0]===n})[0]||null}
 export var EQ14S=null,EQ14SH=null,DM14ON=false,DM14S=null,DM14M=null;
+bindLive("DM14S",{get:function(){return DM14S;}});
 /* eq14Set steps (SOLID s16): put the 2024 equipment back from the saved copy S, lay the 2014 equipment over it */function eq14Undo(S){Object.keys(S.w).forEach((k) =>{const o=WEAPONS[k];if(S.w[k]===null){delete WEAPONS[k];return}if(o){Object.keys(o).forEach((q) =>{delete o[q]});Object.assign(o,S.w[k])}});
   Object.keys(S.pr).forEach((k) =>{if(S.pr[k]===undefined)delete PRICE[k];else PRICE[k]=S.pr[k]});
   Object.keys(S.pk).forEach((k) =>{PACKS[k]=S.pk[k]});

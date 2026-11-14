@@ -1,4 +1,5 @@
-import {C} from "./04-logic-storage.js";
+import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
+import {C,S} from "./04-logic-storage.js";
 import {$,$$,toast} from "./05-logic-helpers.js";
 import {D} from "./06-logic-derivation.js";
 import {buzz} from "./09-ui-hit-points-playbar-death-saves.js";
@@ -59,7 +60,7 @@ function makeSheetPdf(){ const need=env.__bldNeed?env.__bldNeed():Promise.resolv
     .then((out) =>{ return new Blob([out.bytes],{type:"application/pdf"}); }); }
 function makeBlob(){ return makeSheetPdf().catch((e) =>{ try{ console.warn("PDFX failed, using the picture export",e); }catch(er){} return loadLibs().then(makePdfBlob); }); }
 function printFallback(){ buildPrint(); setTimeout(() =>{ env.print(); },60); }
-$("#pdfBtn").addEventListener("click",() =>{
+$("#pdfBtn").addEventListener("click",() =>{if(iounCharacterMathStatus(C,S).reviewRequired){toast('Review the saved Ioun Stone bonuses before exporting a verified PDF. Open the Ioun Stone review panel or Apply this character’s matching Build.');return}
   const busy=$("#busy");
   downloadsP.then((dl) =>{
     busy.classList.add("on");

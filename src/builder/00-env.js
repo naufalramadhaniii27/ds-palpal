@@ -91,3 +91,4 @@ bindG(["__bldStudyBooksInfo", "__bldStudyBooksCapture", "__bldStudyBooksTokenCur
 bindG(["__bldNecronomiconInfo", "__bldNecronomiconCapture", "__bldNecronomiconTokenCurrent", "__bldNecronomiconStudy", "__bldNecronomiconAffliction", "__bldNecronomiconCure", "__bldNecronomiconReviewBase", "__bldNecronomiconAcceptReceipt", "__necronomiconReadingSave"]);
 
 bindG(["__bldTimedDefensesInfo", "__bldTimedDefensesCapture", "__bldTimedDefensesTokenCurrent", "__bldTimedDefensesCommand", "__bldTimedDefensesAcceptReceipt", "__bldTimedDefensesInventoryOwner", "__timedDefensesSave"]);
+bindG(["__bldIounOrbitInfo", "__bldIounOrbitCapture", "__bldIounOrbitTokenCurrent", "__bldIounOrbitCommand", "__bldIounOrbitAcceptReceipt", "__bldIounOrbitInventoryOwner", "__iounOrbitSave"]);

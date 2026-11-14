@@ -3403,6 +3403,43 @@ for _name,_row in [("unworn",dict(n="Armor of Invulnerability",q=1,eq=False,attu
 _u53_future={"v":99,"effects":[{"active":True,"kind":"armor-immunity","damageType":"all"}]}
 CASES.append(dict(name="NEG U53 future timed source grants no retained immunity",b=u53_build([]),timedDefenses=_u53_future,expect=[("C.timedDefenses",_u53_future),("C.defenses.some(row=>row.s.startsWith('Armor of Invulnerability')||row.s==='Potion of Resistance')",False)]))
 
+
+# U54 real source admission/stowed/toss receipts, native existing powers, no raw eq/ATT bypass.
+U54_FIX=json.load(open(os.path.join(HERE,"fixtures","ioun-orbit-fx.json")))
+U54_GOLDEN=json.load(open(os.path.join(HERE,"golden","builds","fx_M1_ioun_mastery_dmg.json")))
+U54_D="window.__deriveFor(C,window.__zmDeriveState)"
+def u54_build(inv,base=None,level=1,cls="Fighter",sub=""):
+    return dict(rs="2024",cls=cls,sub=sub,level=level,base=base or dict.fromkeys(["STR","DEX","CON","INT","WIS","CHA"],18),inv=inv,extra=dict(bg="Acolyte",bgMode="21",bg2="",bg1="",sub=sub,src=dict(core=True,dmg=True)))
+def u54_golden_build(inv):
+    original=U54_GOLDEN["build"]
+    return dict(rs="2024",cls=original["cls"],level=original["level"],base=original["base"],inv=inv,extra=dict(original,inv=inv,unset={}))
+def u54_case(name,key,expect=None,build=None):
+    state=U54_FIX["states"][key]
+    return dict(name=name,b=build or u54_build(U54_FIX["inventory"][key]),iounOrbit=state,deriveState=dict(U54_FIX["deriveDefaults"],iounOrbit=state),expect=[("C.iounOrbit",state)]+(expect or []))
+for _kind,_ability in [("agility","DEX"),("fortitude","CON"),("insight","WIS"),("intellect","INT"),("leadership","CHA"),("strength","STR")]:
+    CASES.append(u54_case("Z3 U54 actual native orbit "+_kind,_kind,[(U54_D+".score."+_ability,20)]))
+CASES.append(u54_case("Z3 U54 actual native orbit awareness","awareness",[("C.itemAdv.filter(row=>row.s==='Ioun Stone (awareness)')",U54_FIX["numbers"]["awareness"]["itemAdv"])]))
+CASES.append(u54_case("Z3 U54 actual native orbit protection","protection",[(U54_D+".ac",15)]))
+CASES.append(u54_case("Z3 U54 actual native orbit mastery","goldenMastery",[(U54_D+".pb",4),(U54_D+".save.STR",7),(U54_D+".save.CON",6),("C.pbAdd",1)],u54_golden_build(U54_FIX["inventory"]["goldenMastery"])))
+for _key in ["masteryStowed","masteryCaught"]:
+    CASES.append(u54_case("NEG U54 admitted stowed or caught has no Mastery "+_key,_key,[(U54_D+".pb",3),(U54_D+".save.STR",6),(U54_D+".save.CON",5),("C.pbAdd||0",0)],u54_golden_build(U54_FIX["inventory"][_key])))
+CASES.append(dict(name="NEG U54 plain unreviewed equipped Mastery grants no PB",b=u54_golden_build([dict(n="Ioun Stone (mastery)",q=1,eq=True,attuned=True)]),expect=[("window.__deriveFor(C).pb",3),("window.__deriveFor(C).save.STR",6),("window.__deriveFor(C).save.CON",5),("C.pbAdd||0",0)]))
+CASES.append(u54_case("Z3 U54 two actual generic types canonicalize independently","genericTwoTypes",[(U54_D+".score.DEX",20),(U54_D+".score.WIS",20),("C.inv.map(row=>row.n)",["Ioun Stone (agility)","Ioun Stone (insight)"])]))
+CASES.append(u54_case("Z3 U54 unsupported power stones occupy two of three slots","threeOccupiedIncludingUnsupported",[("C.iounOrbit.stones.filter(row=>row.orbiting).length",3),(U54_D+".score.DEX",20),("C.ac.bonus.some(row=>row.s.includes('Ioun Stone (protection)'))",False)],u54_build(U54_FIX["inventory"]["threeOccupiedIncludingUnsupported"],level=13,cls="Rogue",sub="Thief")))
+for _name,_inventory in [("allocated attunement lost",[dict(U54_FIX["inventory"]["intellect"][0],attuned=False)]),("physical source absent",[])]:
+    CASES.append(dict(name="NEG U54 orbit power ends when "+_name,b=u54_build(_inventory),iounOrbit=U54_FIX["states"]["intellect"],expect=[("window.__deriveFor(C).score.INT",18)]))
+CASES.append(dict(name="NEG U54 future orbit namespace grants no ability",b=u54_build(U54_FIX["inventory"]["intellect"]),iounOrbit={"v":99,"stones":[{"profile":"dmg2024-ioun-intellect","orbiting":True}]},expect=[("window.__deriveFor(C).score.INT",18)]))
+CASES.append(u54_case("Z3 U54 native cap does not lower already higher score","intellect",[(U54_D+".score.INT",22)],u54_build(U54_FIX["inventory"]["intellect"],base=dict.fromkeys(["STR","DEX","CON","INT","WIS","CHA"],22))))
+# Preserve the original two ordering oracles with an actual API-granted orbit on both compared sheets.
+for _case in CASES:
+    if _case["name"] in ["Z3 U44 permanent reading precedes Ioun item cap 2024","Z3 U46 permanent study precedes Ioun item cap"]:
+        _case["b"]["inv"]=U54_FIX["inventory"]["intellect"]
+        _case["iounOrbit"]=U54_FIX["states"]["intellect"]
+        if "lo" in _case:
+            _case["lo"]["inv"]=U54_FIX["inventory"]["intellect"]
+            _case["comparisonOptions"]={"iounOrbit":U54_FIX["states"]["intellect"]}
+        _case["name"]+=" [U54 actual admitted orbit]"
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }
@@ -3428,7 +3465,7 @@ JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  // created from a later timer callback. The page policy itself stays unchanged.
  cases.forEach(c=>[...c.expect,...(c.expectWithout||[])].forEach(([ex])=>{if(!evaluators.has(ex))evaluators.set(ex,new Function('C','return ('+ex+')'))}));
  for(const c of cases){ const r={name:c.name,fail:[]},warmBefore=c.warm?window.__bldTestB():null;
-  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{}),...(Object.prototype.hasOwnProperty.call(c,"studyBooks")?{studyBooks:c.studyBooks}:{}),...(Object.prototype.hasOwnProperty.call(c,"bagTricks")?{bagTricks:c.bagTricks}:{}),...(Object.prototype.hasOwnProperty.call(c,"hornValhalla")?{hornValhalla:c.hornValhalla}:{}),...(Object.prototype.hasOwnProperty.call(c,"defender")?{defender:c.defender}:{}),...(Object.prototype.hasOwnProperty.call(c,"birdToken")?{birdToken:c.birdToken}:{}),...(Object.prototype.hasOwnProperty.call(c,"magicRopes")?{magicRopes:c.magicRopes}:{}),...(Object.prototype.hasOwnProperty.call(c,"timedDefenses")?{timedDefenses:c.timedDefenses}:{})}; window.__zmB=B0; window.__zmDeriveState=c.deriveState; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo)):(c.tog?window.__bldSheetFor(mk(c.b)):null));
+  try{ if(c.warm){window.__bldTestSet(mk(c.b));if(!window.__xl||typeof window.__xl.idx!=='function')throw new Error('missing rule-link index refresh hook');await new Promise(resolve=>setTimeout(resolve,260));window.__xl.idx()} const B0=mk(c.b),projectionOptions={...(Object.prototype.hasOwnProperty.call(c,"temporal")?{temporaryCantrips:c.temporal}:{}),...(Object.prototype.hasOwnProperty.call(c,"necronomiconReading")?{necronomiconReading:c.necronomiconReading}:{}),...(Object.prototype.hasOwnProperty.call(c,"studyBooks")?{studyBooks:c.studyBooks}:{}),...(Object.prototype.hasOwnProperty.call(c,"bagTricks")?{bagTricks:c.bagTricks}:{}),...(Object.prototype.hasOwnProperty.call(c,"hornValhalla")?{hornValhalla:c.hornValhalla}:{}),...(Object.prototype.hasOwnProperty.call(c,"defender")?{defender:c.defender}:{}),...(Object.prototype.hasOwnProperty.call(c,"birdToken")?{birdToken:c.birdToken}:{}),...(Object.prototype.hasOwnProperty.call(c,"magicRopes")?{magicRopes:c.magicRopes}:{}),...(Object.prototype.hasOwnProperty.call(c,"timedDefenses")?{timedDefenses:c.timedDefenses}:{}),...(Object.prototype.hasOwnProperty.call(c,"iounOrbit")?{iounOrbit:c.iounOrbit}:{})}; window.__zmB=B0; window.__zmDeriveState=c.deriveState; const C=window.__bldSheetFor(B0,c.tog||undefined,c.target,Object.keys(projectionOptions).length?projectionOptions:undefined), C0=c.withoutGxFields?withoutGxFields(c):c.withoutGrant?withoutGrant(c):c.withoutGx?withoutGx(c):c.withoutWx?withoutWx(c):c.drop?window.__bldSheetFor(mk(c.b,c.drop)):(c.lo?window.__bldSheetFor(mk(c.lo),undefined,undefined,c.comparisonOptions):(c.tog?window.__bldSheetFor(mk(c.b)):null));
    for(const [ex,want] of c.expect){ let got; try{ got=evaluators.get(ex)(C) }catch(e){ got='ERR '+e.message } if(JSON.stringify(got)!==JSON.stringify(want)) r.fail.push(ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want)) }
    for(const [ex,want] of c.expectWithout||[]){let got;try{got=evaluators.get(ex)(C0)}catch(e){got='ERR '+e.message}if(JSON.stringify(got)!==JSON.stringify(want))r.fail.push('without record: '+ex+' = '+JSON.stringify(got)+', want '+JSON.stringify(want))}
    r.flat=flat(C,'',{}); if(!c.drop&&!c.tog&&!c.lo&&!c.withoutWx&&!c.withoutGx&&!c.withoutGrant&&!c.withoutGxFields){ res.push(r); continue }

@@ -5,7 +5,7 @@ import {effArmor} from './01b-logic-late-ports.js';
 import {attunementState,itemInUse,activeFx} from './03-logic-magic-item-effects.js';
 import {timedDefensesProblems,timedDefenseCapabilities} from '../data/lib/timed-defenses.js';
 import {timedDefensesNativeSources,timedDefensesSource,timedDefensesMarkerSource,reconcileTimedDefensesInventory,canonicalTimedDefenseDefinition} from '../data/lib/timed-defenses-source.js';
-let scope=null;const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),key=row=>own(row,'key')?row.key:row.n,conflicts=row=>['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes'].some(k=>own(row,k));
+let scope=null;const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),key=row=>own(row,'key')?row.key:row.n,conflicts=row=>['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','iounOrbit'].some(k=>own(row,k));
 export function timedDefensesCatalog(){return timedDefensesNativeSources(DM14S||DMGI)}
 export function withTimedDefensesProjection(state,run){const prev=scope;scope={state};try{return run()}finally{scope=prev}}
 export function timedDefensesSelectedArmorIndex(EA=effArmor()){return (B.inv||[]).findIndex(row=>row.n===EA&&row.eq===true&&(row.q==null?1:row.q)>0)}

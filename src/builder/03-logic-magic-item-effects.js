@@ -2,7 +2,8 @@ import {slotRecoveryProfile,slotRecoveryAuthorityProblems,assertSlotRecoveryCurr
 import {spellGemProfile} from "../data/lib/spell-gem.js";
 import {casterParts,clsLv,lateGet,subAt} from "./01b-logic-late-ports.js";import {clone} from "./01-logic-core-helpers.js";
 
-import {baseOf,fxListBase,miFeats} from "./01b-logic-late-ports.js";
+import {baseOf,fxListBase,miFeats,bindLive} from "./01b-logic-late-ports.js";
+import {iounOrbitActiveFx} from "./10o-logic-ioun-orbit.js";
 import {gx,fxo} from "./00-env.js";
 import {allocateAttunement,itemInUse,itemQuantity,migrateItems,migrateAttunement,itemOverrideProblems} from "../data/lib/attunement.js";
 import {weaponFormMetadata,migrateInventoryForms,setWeaponFormActive,adjustWeaponFormRadius,weaponFormUsable,weaponFormLight} from "../data/lib/weapon-form.js";
@@ -46,6 +47,7 @@ export function migrateInventory(b){if(!b||typeof b!=="object"||!Array.isArray(b
  if(Array.isArray(items)&&Array.isArray(result.rows)){const next=result.rows.map((row,i)=>JSON.stringify(row)===JSON.stringify(items[i])?items[i]:row);if(next.some((row,i)=>row!==items[i]))b.inv=next}
  b.inventoryFormV=result.version;return b}
 export function attunementState(){return allocateAttunement(lateGet("B").inv||[],attMax(),attunementMeta,(m,x,keys)=>byOk(m.by,keys))}
+bindLive("attunementState",{get:function(){return attunementState;}});
 function beltAttuned(keys){return (keys||new Set(attunementState().keys)).has("Belt of Dwarvenkind")}
 export function itemBases(d){const o=itemOverride(d),b=o&&Object.prototype.hasOwnProperty.call(o,"base")?o.base:d&&d[5]&&d[5].base;return Array.isArray(b)?b:null}
 /* Scores are supplied by the current actor's completed ability calculation.
@@ -78,6 +80,7 @@ export function setItemForm(index,change){const info=getItemFormInfo(index);if(!
 export function itemMagicBonus(n,bo,afx){const d=DMAP[n];if(!d||afx.some((q)=>q.n===n))return bo.p;
  const o=itemOverride(d);return o&&o.unattunedBonus||0}
 export function activeFx(state){const out=[],seen=new Set(),st=state||attunementState();(lateGet("B").inv||[]).forEach((x,i)=>{
+ const orbit=iounOrbitActiveFx(x,i,st);if(orbit?.managed){orbit.entries.forEach(entry=>{if(!seen.has(entry.n)){seen.add(entry.n);out.push(entry);}});return;}
  if(!itemInUse(x,st.rows[i])||seen.has(x.n))return;const d=DMAP[x.n];if(!d)return;seen.add(x.n);
  const f=ovFx(d),g=d[5]&&d[5].gx||null,bb=baseOf(x.n).b,GXI=gx().item,gi=GXI&&(GXI[x.n]||GXI[d[0]]);
  if(f||g||gi)out.push({n:x.n,mi:d[0],fx:f||{},gx:g,att:!!d[3],arm:!!(ARMOR[bb]||bb==="Shield"),t:d[1]})});return out}

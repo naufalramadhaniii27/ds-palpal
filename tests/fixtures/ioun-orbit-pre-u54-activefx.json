@@ -1,0 +1,9 @@
+{
+  "provenance": {
+    "commit": "44bf54e2bed2e5e981a9048d562b87315bc784d8",
+    "path": "src/builder/03-logic-magic-item-effects.js",
+    "function": "activeFx",
+    "sha256": "23702eea7a4ec8d37458e6efcc9b093a1d1dd77195c5432e454e59c1f09d4ea9"
+  },
+  "source": "export function activeFx(state){const out=[],seen=new Set(),st=state||attunementState();(lateGet(\"B\").inv||[]).forEach((x,i)=>{\n if(!itemInUse(x,st.rows[i])||seen.has(x.n))return;const d=DMAP[x.n];if(!d)return;seen.add(x.n);\n const f=ovFx(d),g=d[5]&&d[5].gx||null,bb=baseOf(x.n).b,GXI=gx().item,gi=GXI&&(GXI[x.n]||GXI[d[0]]);\n if(f||g||gi)out.push({n:x.n,mi:d[0],fx:f||{},gx:g,att:!!d[3],arm:!!(ARMOR[bb]||bb===\"Shield\"),t:d[1]})});return out}\n"
+}

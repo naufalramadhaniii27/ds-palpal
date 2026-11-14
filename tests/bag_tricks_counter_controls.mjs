@@ -1,3 +1,4 @@
+import {iounCharacterMathStatus} from '../src/data/lib/ioun-orbit-source.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -15,7 +16,7 @@ function fixture(marker,namespace,family="bagTricks"){
  const key=family==="timedDefenses"?nativeArmorPool.k:family==="bagTricks"?"i-bag-of-tricks":"i-horn-of-valhalla-silver",trace=[],C={res:[{k:key,n:family,max:family==="bagTricks"?3:1,reset:"long"},{k:"s1",n:"Slot",max:3,reset:"long"}]},S={used:{[key]:family==="bagTricks"?2:1,s1:2}};
  if(marker!==false)C.res[0][family]=marker;if(namespace!==undefined)S[family]=namespace;
  const ctx={...bag,summonResourceManaged,C,S,D:{res:C.res},bagOwn:(o,k)=>Object.prototype.hasOwnProperty.call(o,k),used:(k,max)=>Math.min(max,S.used[k]||0),num:(v,f)=>Number.isFinite(+v)?+v:f,clamp:(v,min,max)=>Math.min(max,Math.max(min,v)),toast:()=>trace.push('toast'),undoMark:()=>trace.push('undo'),save:()=>trace.push('save'),syncLU(){},refreshEntry(){},invalidateClericResourceState(){},invalidateSlotRecoveryState(){},routeDivineInterventionUse:()=>false,esc:String};
- vm.createContext(ctx);vm.runInContext(read('app/32n-logic-bag-tricks.js').split('\n').find(line=>line.startsWith('export function bagTricksResourceManaged(')).replace('export ',''),ctx);
+ Object.assign(ctx,{iounCharacterMathStatus});vm.createContext(ctx);vm.runInContext(click.split('\n').find(line=>line.startsWith('function iounMathDenied(')),ctx);vm.runInContext(read('app/32n-logic-bag-tricks.js').split('\n').find(line=>line.startsWith('export function bagTricksResourceManaged(')).replace('export ',''),ctx);
  return {ctx,C,S,key,trace};
 }
 function event(key){const node={disabled:false,value:3,classList:{contains:name=>name==='pli'},getAttribute:name=>({'data-usef':key+'|1','data-k':key,'data-pd':'1','data-i':'0'})[name]};node.closest=()=>node;return {target:node}}

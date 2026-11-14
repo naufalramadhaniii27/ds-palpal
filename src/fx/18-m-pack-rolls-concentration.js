@@ -58,7 +58,8 @@ const FXS18A={};
   if(!MI||!document.body.animate) return;
   const {nf,rm,vis,esc,fx,ls,st}=FXH;
   ;
-  FXS18A.MIr.hint=function(k){ const kd=FXS18A.kindOf(k); if(!kd) return null; const m=FXS18A.condMode(kd); if(kd==="save"&&!/^save-(STR|DEX)$/.test(k)) m.fail=[]; if(kd==="save"&&k!=="save-DEX") m.dis=m.dis.filter((x) =>{ return !/DEX/.test(x); }), m.mode=m.dis.length?"dis":m.adv.length?"adv":"";
+  FXS18A.iounCheckHint=function iounCheckHint(key){if(!/^(sk-[0-9]+|init)$/.test(key)||typeof FXENV.__iounOrbitCheckRoll!=="function")return null;try{const check=FXENV.__iounOrbitCheckRoll(key);return check?{adv:check.adv,dis:check.dis,fail:check.fail,mode:check.mode}:null}catch(error){return null}};
+  FXS18A.MIr.hint=function(k){ const source=FXS18A.iounCheckHint(k);if(source)return source; const kd=FXS18A.kindOf(k); if(!kd) return null; const m=FXS18A.condMode(kd); if(kd==="save"&&!/^save-(STR|DEX)$/.test(k)) m.fail=[]; if(kd==="save"&&k!=="save-DEX") m.dis=m.dis.filter((x) =>{ return !/DEX/.test(x); }), m.mode=m.dis.length?"dis":m.adv.length?"adv":"";
     if(!m.adv.length&&!m.dis.length&&!m.fail.length) return null; return m; };
 
   /* damage types and weapons for the roll overlay */

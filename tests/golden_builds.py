@@ -60,9 +60,9 @@ def main():
         pg.evaluate("window.__bldNeed && window.__bldNeed()")
         pg.wait_for_function("typeof window.__bldSheetFor==='function'", timeout=20000)
 
-        def run(b, fxT=None):
+        def run(b, fxT=None, projectionOptions=None):
             try:
-                C = pg.evaluate("([b,t])=>window.__bldSheetFor(b,t)", [b, fxT])
+                C = pg.evaluate("([b,t,o])=>window.__bldSheetFor(b,t,undefined,o===null?undefined:o)", [b, fxT, projectionOptions])
             except Exception as e:      # name the build that failed, so a CI-only failure can be traced
                 print("golden build failed:", {k: b.get(k) for k in ("cls", "sub", "species", "level", "src", "mc")}, str(e)[:300]); raise
             return C, pg.evaluate("c=>window.__deriveFor(c)", C)
@@ -105,7 +105,7 @@ def main():
                 continue
             g = json.load(open(os.path.join(gdir, fn)))
             pg.evaluate("ids=>ids.forEach(k=>window.__setSrc(k,true))", [k for k, v in g['build']['src'].items() if v and k != 'core'])
-            C, D = run(g['build'], g.get('fxT'))
+            C, D = run(g['build'], g.get('fxT'), g.get('projectionOptions'))
             for k, v in g['expect'].items():
                 n += 1
                 if k[:2] in ('C:', 'D:'):

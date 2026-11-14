@@ -3,7 +3,7 @@ const file=fs.readFileSync(new URL('../src/fx/16-z-pack-dice-sound-hover.js',imp
 let count=0;const eq=(a,b)=>{assert.deepEqual(a,b);count++};
 const c={FXS16A:{decorateAttack:(el,spec)=>spec},FXS18A:{},FXENV:{},console,Date,isFinite,parseInt,d:()=>10,esc:String,st:()=>({C:{name:'Actor'}}),navigator:{}};const listeners=[];c.addEventListener=(name,callback)=>listeners.push(callback);vm.createContext(c);
 function assignment(name,source=file){const start=source.indexOf('  '+name+'=');assert.ok(start>=0,'actual '+name);const end=source.indexOf('\n})();',start);assert.ok(end>start);vm.runInContext(source.slice(start,end),c)}
-assignment('FXS16A.sourceSpec',continuation);assignment('FXS16A.rollSpec');assignment('FXS18A.kindOf',pack);
+assignment('FXS16A.defenderSpec',continuation);assignment('FXS16A.iounCheckSpec',continuation);assignment('FXS16A.sourceSpec',continuation);assignment('FXS16A.rollSpec');assignment('FXS18A.kindOf',pack);
 let valid=true,seen=[];c.FXENV.__spellSourceGuard=(key,bonus)=>{seen.push({key,bonus});return ()=>valid};
 for(const key of ['spatk-source-Artificer','spatk-source-%40mi%3Ami1','spatk-source-%40species']){const spec=c.FXS16A.rollSpec(key,null,'+7');eq(spec.bon,7);eq(typeof spec.sourceGuard,'function');eq(spec.sourceGuard(),true);eq(c.FXS18A.kindOf(key),'atk')}
 for(const key of ['spatk','spatk-INT','spatk-CHA']){const spec=c.FXS16A.rollSpec(key,null,'+6');eq(spec.bon,6);eq(spec.sourceGuard,undefined);eq(c.FXS18A.kindOf(key),'atk')}

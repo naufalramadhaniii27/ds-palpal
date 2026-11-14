@@ -1,3 +1,4 @@
+import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {bindLive,chgApply,chgRows,hasFeat,hdHeal,lateGet,lateSet,longExtraH,periOn,recList,recSum,shortChg,shortExtraH,slotUsed,toastU,undoMark} from "./00a-reg-late-ports.js";/* Responsibility: short and long rest: dialog, recovery, summary and takeRest. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env: __coinTotal, __coinsFor, __coinsNow, __ico, __icoCls, __icoItem, __icoText, __miRoll, __openRest. Shared names with other modules come from the imports below, late names through __R. */
 import {hdPlan,x14} from "./03-data-glossary.js";
@@ -108,7 +109,8 @@ function restSumHTML(){ const s=REST_SUM; if(!s) return '<p class="info-d">No re
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-restsum]"); if(!b) return; e.preventDefault(); __set_navStack([]); openSheet((REST_SUM&&REST_SUM.k==="long"?"Long":"Short")+" Rest Summary",restSumHTML(),"restsum"); });
 function restNames(L){ const n=L.filter((x) =>{ return x[0]!=="Hit Points"&&!/^Hit Dice|^Hit Point Dice/.test(x[0]); }).map((x) =>{ return x[0]; }); return n.length>4?n.slice(0,3).join(", ")+", and "+(n.length-3)+" more":n.join(", "); }
 const CAMP="M12 3c1 3 4 4 4 7a4 4 0 0 1-8 0c0-2 1.5-3 1.5-4.5C11 7 11.5 8.5 12 9c.5-2 0-4 0-6zM4 20l16-4M4 16l16 4", MOON="M12 3a7.5 7.5 0 1 0 9 9A9 9 0 1 1 12 3z";
-export function openRest(kind){ restSel={}; lateSet("restX",{}); __set_navStack([]); openSheet(kind==="menu"?"Rest":kind==="short"?"Short Rest":"Long Rest", restHTML(kind), "rest"); }
+function iounRestDenied(){if(!iounCharacterMathStatus(C,S).reviewRequired)return false;toast('Review the saved Ioun Stone bonuses before using rest recovery. Open the Ioun Stone review panel or Apply this character’s matching Build.');return true}
+export function openRest(kind){if(iounRestDenied())return; restSel={}; lateSet("restX",{}); __set_navStack([]); openSheet(kind==="menu"?"Rest":kind==="short"?"Short Rest":"Long Rest", restHTML(kind), "rest"); }
 export function restRefresh(kind){ const b=$("#sheetBody"); if(b&&sheetMode==="rest") b.innerHTML=restHTML(kind); }
 document.addEventListener("click",(e) =>{ const t=e.target, dlg=t.closest&&t.closest("#restDlg"); if(!dlg) return; const kind=dlg.getAttribute("data-kind");
   const bx=t.closest("[data-hdk]"); if(bx){ e.stopPropagation(); const k=bx.getAttribute("data-hdk"), i=+bx.getAttribute("data-hdi"), s=restSel[k]||(restSel[k]=[]); if(s[i]!=null) s[i]=null; else s[i]=0; restRefresh(kind); return; }
@@ -119,14 +121,14 @@ document.addEventListener("input",(e) =>{ const t=e.target; if(!t.matches||!t.ma
   v=v>=1?Math.min(die,v):0; (restSel[k]||(restSel[k]=[]))[i]=v; const sp=t.parentNode.querySelector(".hdh"); if(sp) sp.textContent=v?"+"+hdHeal(v)+" "+hpWord(hdHeal(v)):"type the number rolled";
   let tot=0; Object.keys(restSel).forEach((q) =>{ (restSel[q]||[]).forEach((x) =>{ if(x) tot+=hdHeal(x); }); }); const te=document.getElementById("restTot"); if(te) te.textContent="Healing: "+tot+" "+hpWord(tot); });
 function hdCls(die){ return (String(C.clsLabel||"").match(/[A-Z][A-Za-z']+ \d+/g)||[]).filter((x) =>{ const c=(typeof CLASSES!=="undefined")&&CLASSES[x.replace(/ \d+$/,"")]; return c&&num(c.hd,0)===die; }).join(", "); }
-export function takeRest(kind){ if(S.hp!=null&&S.hp<1){ toast("You need at least 1 Hit Point to rest."); return; }
+export function takeRest(kind){if(iounRestDenied())return; if(S.hp!=null&&S.hp<1){ toast("You need at least 1 Hit Point to rest."); return; }
   if(kind==="short"){ let cm=D.mod.CON, heal=0, spent=0, miss=0; Object.keys(restSel).forEach((k) =>{ (restSel[k]||[]).forEach((v) =>{ if(v===0) miss++; }); });
     if(miss){ toast("Type the number rolled for each Hit Die you picked, or untick it."); return; }/* V17-2: nothing changes before this check */
     const picked=Object.keys(restSel).some((k) => takeRestFn1(k)), chefV=lateGet("restX").chef&&picked?Math.floor(num(lateGet("restX").chefV,0)):0;
     if(takeRestPart1(picked, chefV)){ toast("Type the 1d8 roll for Replenishing Meal, 1 to 8, or untick it."); return; }
     const rl=recList(), bad=rl.filter((q,i) =>{ return recSum(i)>q.cap; })[0]; if(bad){ toast(bad.n+": choose slots with a combined level of "+bad.cap+" or less."); return; }
     const both={}; rl.forEach((q, i) => takeRestFn2(both, q, i)); const over=Object.keys(both).filter((L) =>{ return both[L]>slotUsed(+L); })[0]; if(over){ toast("You chose more level "+over+" slots than you have spent."); return; }
-    undoMark("Short Rest");/* v21 RU57 */ RS0=restSnap();/* v32 p25 */
+    undoMark("Short Rest");if(iounRestDenied())return;/* v21 RU57 */ RS0=restSnap();/* v32 p25 */
     Object.keys(restSel).forEach((k) =>{ (restSel[k]||[]).forEach((v) =>{ if(!v) return; spent++; heal+=hdHeal(v); S.used[k]=num(S.used[k],0)+1; }); });
     if(chefV) heal+=chefV;
     const before=S.hp==null?D.hpmax:S.hp; if(restAuto&&heal) S.hp=Math.min(D.hpmax,before+heal);
@@ -143,8 +145,8 @@ function takeRestFn1(k){ return (restSel[k]||[]).some((v) =>{ return v; }); }
 function takeRestFn2(both, q,i){ const m=lateGet("restX").rec&&lateGet("restX").rec[i]||{}; Object.keys(m).forEach((L) =>{ both[L]=(both[L]||0)+num(m[L],0); }); }
 function takeRestFn3(rec, q,i){ const s=recSum(i); if(!s) return; const m=lateGet("restX").rec[i]; Object.keys(m).forEach((L) =>{ S.used["s"+L]=Math.max(0,num(S.used["s"+L],0)-num(m[L],0)); }); S.used[q.r.k]=num(S.used[q.r.k],0)+1; rec.push(q.n+": "+s+" slot level"+(s>1?"s":"")+" recovered."); }
 function takeRestFn4(){ const n=restNames(restDiff(RS0)); return n?" Restored: "+n+".":""; }
-function takeRestStep1(){
-  undoMark("Long Rest");/* v21 RU57 */ RS0=restSnap();/* v32 p25 */ const lc=chgRows(["dawn","dusk","long"]), hr=lateGet("restX").hpReset&&(num(S.hpMod,0)||num(S.hpOver,0)>0);
+function takeRestStep1(){if(iounRestDenied())return;
+  undoMark("Long Rest");if(iounRestDenied())return;/* v21 RU57 */ RS0=restSnap();/* v32 p25 */ const lc=chgRows(["dawn","dusk","long"]), hr=lateGet("restX").hpReset&&(num(S.hpMod,0)||num(S.hpOver,0)>0);
   if(hr){ delete S.hpMod; delete S.hpOver; derive(); }
   doRest("long",true); const nc2=chgApply(lc); if(nc2){ save(); syncLU(); } closeSheet(); const LD=restDiff(RS0), ln=restNames(LD), hpx=LD.filter((x) =>{ return x[0]==="Hit Points"; })[0];
   toastU("Long Rest taken."+(LD.length?" Restored: "+[hpx?"Hit Points ("+hpx[1]+")":""].concat(ln?[ln]:[]).filter(Boolean).join(", ")+".":" Everything was already full.")+(hr?" Maximum HP changes reset.":"")+(nc2?" Charges updated.":"")); restSumToast("long");

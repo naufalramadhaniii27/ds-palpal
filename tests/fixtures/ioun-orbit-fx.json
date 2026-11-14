@@ -1,0 +1,1421 @@
+{
+  "generatedBy": "Actual native source/ATT/AFX/GX/ability/PB/AC/Adv producer and25n admit-stowed/toss/catch with owned receipts+oneUndo; genericcanonical2types; nativeRogueThiefATT4 but fourthorbitdenied beforeUndo",
+  "states": {
+    "agilityStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-agility",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (agility)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Agility.** This stone is a deep-red sphere. While it circles your head, your Dexterity score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"DEX\",2,20]}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "agility": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-agility",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (agility)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Agility.** This stone is a deep-red sphere. While it circles your head, your Dexterity score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"DEX\",2,20]}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "awarenessStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-awareness",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (awareness)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Awareness.** This stone is a dark-blue rhomboid. While it circles your head, you have Advantage on Initiative rolls and on Wisdom (Perception) checks.\",{\"fx\":{\"adv\":[\"Initiative\",\"Perception\"]}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "awareness": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-awareness",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (awareness)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Awareness.** This stone is a dark-blue rhomboid. While it circles your head, you have Advantage on Initiative rolls and on Wisdom (Perception) checks.\",{\"fx\":{\"adv\":[\"Initiative\",\"Perception\"]}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "fortitudeStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-fortitude",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (fortitude)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Fortitude.** This stone is a pink rhomboid. While it circles your head, your Constitution score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"CON\",2,20]}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "fortitude": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-fortitude",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (fortitude)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Fortitude.** This stone is a pink rhomboid. While it circles your head, your Constitution score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"CON\",2,20]}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "insightStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-insight",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (insight)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Insight.** This stone is a incandescent blue sphere. While it circles your head, your Wisdom score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"WIS\",2,20]}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "insight": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-insight",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (insight)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Insight.** This stone is a incandescent blue sphere. While it circles your head, your Wisdom score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"WIS\",2,20]}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "intellectStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-intellect",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (intellect)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Intellect.** This stone is a marbled scarlet and blue sphere. While it circles your head, your Intelligence score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"INT\",2,20]}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "intellect": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-intellect",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (intellect)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Intellect.** This stone is a marbled scarlet and blue sphere. While it circles your head, your Intelligence score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"INT\",2,20]}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "leadershipStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-leadership",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (leadership)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Leadership.** This stone is a marbled pink and green sphere. While it circles your head, your Charisma score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"CHA\",2,20]}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "leadership": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-leadership",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (leadership)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Leadership.** This stone is a marbled pink and green sphere. While it circles your head, your Charisma score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"CHA\",2,20]}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "masteryStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-mastery",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "mastery": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-mastery",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "masteryCaught": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-mastery",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "protectionStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-protection",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (protection)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Protection.** This stone is a dusty-rose prism. While it circles your head, you gain a +1 bonus to your Armor Class.\",{\"fx\":{\"ac\":1}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "protection": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-protection",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (protection)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Protection.** This stone is a dusty-rose prism. While it circles your head, you gain a +1 bonus to your Armor Class.\",{\"fx\":{\"ac\":1}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "strengthStowed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-strength",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (strength)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Strength.** This stone is a pale blue rhomboid. While it circles your head, your Strength score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"STR\",2,20]}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    },
+    "strength": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-strength",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (strength)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Strength.** This stone is a pale blue rhomboid. While it circles your head, your Strength score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"STR\",2,20]}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "goldenMastery": {
+      "v": 1,
+      "nextPhysical": 2,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-mastery",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "genericTwoTypes": {
+      "v": 1,
+      "nextPhysical": 3,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-agility",
+          "origin": {
+            "kind": "generic-factual-selection",
+            "parentFingerprint": "[\"Ioun Stone\",\"Wondrous Item\",\"Varies\",1,\"Ioun Stones are about the size of a marble. They take their name from Ioun, a god of prophecy and knowledge worshiped on some worlds. Many types exist, and each type has its own pairing of color and shape. You can toss a stone into the air as a Magic action. It then circles your head at a distance of 1d3 feet and grants you its benefit while it does so. At most three Ioun Stones can orbit your head at once. A stone orbiting your head counts as an object you are wearing. It steers clear of other objects and creatures, shifting its path to avoid collisions, and it foils every attempt by other creatures to attack or grab it. As a Utilize action, you can catch and stow any number of the stones that orbit your head. If your Attunement to a stone ends while it orbits your head, the stone falls as if you had dropped it. The stone's type sets its rarity and its effect. **Absorption (Very Rare).** Pale lavender ellipsoid. While it circles your head, when a creature you can see casts a spell of level 4 or lower, you can take a Reaction to cancel that spell. The canceled spell does nothing, and whatever was spent to cast it is lost. After canceling a total of 20 levels of spells, the stone burns out, becomes dull gray, and loses its magic. **Agility (Very Rare).** Deep-red sphere. While it circles your head, your Dexterity rises by 2, up to a maximum of 20. **Awareness (Rare).** Dark-blue rhomboid. While it circles your head, your Initiative rolls and your Wisdom (Perception) checks have Advantage. **Fortitude (Very Rare).** Pink rhomboid. While it circles your head, your Constitution rises by 2, up to a maximum of 20. **Greater Absorption (Legendary).** Marbled lavender and green ellipsoid. It works like Absorption, but it can cancel a spell of level 8 or lower. It also burns out, turns dull gray, and loses its magic after canceling a total of 20 levels of spells. **Insight (Very Rare).** Incandescent blue sphere. While it circles your head, your Wisdom rises by 2, up to a maximum of 20. **Intellect (Very Rare).** Marbled scarlet and blue sphere. While it circles your head, your Intelligence rises by 2, up to a maximum of 20. **Leadership (Very Rare).** Marbled pink and green sphere. While it circles your head, your Charisma rises by 2, up to a maximum of 20. **Mastery (Legendary).** Pale green prism. While it circles your head, your Proficiency Bonus is 1 higher. **Protection (Rare).** Dusty-rose prism. While it circles your head, your Armor Class gets a +1 bonus. **Regeneration (Legendary).** Pearly white spindle. While it circles your head, you regain 15 Hit Points at the end of every hour, provided you have at least 1 Hit Point. **Reserve (Rare).** This vibrant purple prism holds spells that are cast into it until you use them. It can hold up to 4 levels of spells at one time. When you find it, it already holds 1d4 levels of stored spells that the Dungeon Master chooses. Any creature can store a spell of level 1 to 4 in the stone by touching it while casting the spell. The spell then does nothing except become stored. If there isn't enough room in the stone for the spell, the spell is spent and has no effect. How much room a spell takes up depends on the level of the slot used to cast it. While the prism orbits your head, you can cast any spell it holds. That spell uses the original caster's slot level, spellcasting ability, spell attack bonus, and spell save DC, but in every other way it counts as a spell you cast. Casting a spell from the stone removes it, which frees up that space. **Strength (Very Rare).** Pale blue rhomboid. While it circles your head, your Strength rises by 2, up to a maximum of 20. **Sustenance (Rare).** Clear spindle. While it circles your head, you have no need to eat or drink.\"]",
+            "childFingerprint": "[\"Ioun Stone (agility)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Agility.** This stone is a deep-red sphere. While it circles your head, your Dexterity score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"DEX\",2,20]}}]"
+          },
+          "orbiting": true
+        },
+        {
+          "id": "io-2",
+          "profile": "dmg2024-ioun-insight",
+          "origin": {
+            "kind": "generic-factual-selection",
+            "parentFingerprint": "[\"Ioun Stone\",\"Wondrous Item\",\"Varies\",1,\"Ioun Stones are about the size of a marble. They take their name from Ioun, a god of prophecy and knowledge worshiped on some worlds. Many types exist, and each type has its own pairing of color and shape. You can toss a stone into the air as a Magic action. It then circles your head at a distance of 1d3 feet and grants you its benefit while it does so. At most three Ioun Stones can orbit your head at once. A stone orbiting your head counts as an object you are wearing. It steers clear of other objects and creatures, shifting its path to avoid collisions, and it foils every attempt by other creatures to attack or grab it. As a Utilize action, you can catch and stow any number of the stones that orbit your head. If your Attunement to a stone ends while it orbits your head, the stone falls as if you had dropped it. The stone's type sets its rarity and its effect. **Absorption (Very Rare).** Pale lavender ellipsoid. While it circles your head, when a creature you can see casts a spell of level 4 or lower, you can take a Reaction to cancel that spell. The canceled spell does nothing, and whatever was spent to cast it is lost. After canceling a total of 20 levels of spells, the stone burns out, becomes dull gray, and loses its magic. **Agility (Very Rare).** Deep-red sphere. While it circles your head, your Dexterity rises by 2, up to a maximum of 20. **Awareness (Rare).** Dark-blue rhomboid. While it circles your head, your Initiative rolls and your Wisdom (Perception) checks have Advantage. **Fortitude (Very Rare).** Pink rhomboid. While it circles your head, your Constitution rises by 2, up to a maximum of 20. **Greater Absorption (Legendary).** Marbled lavender and green ellipsoid. It works like Absorption, but it can cancel a spell of level 8 or lower. It also burns out, turns dull gray, and loses its magic after canceling a total of 20 levels of spells. **Insight (Very Rare).** Incandescent blue sphere. While it circles your head, your Wisdom rises by 2, up to a maximum of 20. **Intellect (Very Rare).** Marbled scarlet and blue sphere. While it circles your head, your Intelligence rises by 2, up to a maximum of 20. **Leadership (Very Rare).** Marbled pink and green sphere. While it circles your head, your Charisma rises by 2, up to a maximum of 20. **Mastery (Legendary).** Pale green prism. While it circles your head, your Proficiency Bonus is 1 higher. **Protection (Rare).** Dusty-rose prism. While it circles your head, your Armor Class gets a +1 bonus. **Regeneration (Legendary).** Pearly white spindle. While it circles your head, you regain 15 Hit Points at the end of every hour, provided you have at least 1 Hit Point. **Reserve (Rare).** This vibrant purple prism holds spells that are cast into it until you use them. It can hold up to 4 levels of spells at one time. When you find it, it already holds 1d4 levels of stored spells that the Dungeon Master chooses. Any creature can store a spell of level 1 to 4 in the stone by touching it while casting the spell. The spell then does nothing except become stored. If there isn't enough room in the stone for the spell, the spell is spent and has no effect. How much room a spell takes up depends on the level of the slot used to cast it. While the prism orbits your head, you can cast any spell it holds. That spell uses the original caster's slot level, spellcasting ability, spell attack bonus, and spell save DC, but in every other way it counts as a spell you cast. Casting a spell from the stone removes it, which frees up that space. **Strength (Very Rare).** Pale blue rhomboid. While it circles your head, your Strength rises by 2, up to a maximum of 20. **Sustenance (Rare).** Clear spindle. While it circles your head, you have no need to eat or drink.\"]",
+            "childFingerprint": "[\"Ioun Stone (insight)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Insight.** This stone is a incandescent blue sphere. While it circles your head, your Wisdom score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"WIS\",2,20]}}]"
+          },
+          "orbiting": true
+        }
+      ]
+    },
+    "threeOccupiedIncludingUnsupported": {
+      "v": 1,
+      "nextPhysical": 5,
+      "stones": [
+        {
+          "id": "io-1",
+          "profile": "dmg2024-ioun-absorption",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (absorption)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Absorption.** This stone is a pale lavender ellipsoid. While it circles your head, you can take a Reaction when a creature you can see casts a spell of level 4 or lower to cancel that spell. A canceled spell has no effect, and anything spent to cast it is wasted. After the stone has canceled a total of 20 levels of spells, it burns out, turns a dull gray, and loses its magic.\"]"
+          },
+          "orbiting": true
+        },
+        {
+          "id": "io-2",
+          "profile": "dmg2024-ioun-sustenance",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (sustenance)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Sustenance.** This stone is a clear spindle. While it circles your head, you have no need to eat or drink.\"]"
+          },
+          "orbiting": true
+        },
+        {
+          "id": "io-3",
+          "profile": "dmg2024-ioun-agility",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (agility)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Agility.** This stone is a deep-red sphere. While it circles your head, your Dexterity score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"DEX\",2,20]}}]"
+          },
+          "orbiting": true
+        },
+        {
+          "id": "io-4",
+          "profile": "dmg2024-ioun-protection",
+          "origin": {
+            "kind": "native-child",
+            "parentFingerprint": null,
+            "childFingerprint": "[\"Ioun Stone (protection)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Protection.** This stone is a dusty-rose prism. While it circles your head, you gain a +1 bonus to your Armor Class.\",{\"fx\":{\"ac\":1}}]"
+          },
+          "orbiting": false
+        }
+      ]
+    }
+  },
+  "inventory": {
+    "agilityStowed": [
+      {
+        "n": "Ioun Stone (agility)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-agility",
+          "itemFingerprint": "[\"Ioun Stone (agility)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Agility.** This stone is a deep-red sphere. While it circles your head, your Dexterity score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"DEX\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "agility": [
+      {
+        "n": "Ioun Stone (agility)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-agility",
+          "itemFingerprint": "[\"Ioun Stone (agility)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Agility.** This stone is a deep-red sphere. While it circles your head, your Dexterity score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"DEX\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "awarenessStowed": [
+      {
+        "n": "Ioun Stone (awareness)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-awareness",
+          "itemFingerprint": "[\"Ioun Stone (awareness)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Awareness.** This stone is a dark-blue rhomboid. While it circles your head, you have Advantage on Initiative rolls and on Wisdom (Perception) checks.\",{\"fx\":{\"adv\":[\"Initiative\",\"Perception\"]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "awareness": [
+      {
+        "n": "Ioun Stone (awareness)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-awareness",
+          "itemFingerprint": "[\"Ioun Stone (awareness)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Awareness.** This stone is a dark-blue rhomboid. While it circles your head, you have Advantage on Initiative rolls and on Wisdom (Perception) checks.\",{\"fx\":{\"adv\":[\"Initiative\",\"Perception\"]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "fortitudeStowed": [
+      {
+        "n": "Ioun Stone (fortitude)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-fortitude",
+          "itemFingerprint": "[\"Ioun Stone (fortitude)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Fortitude.** This stone is a pink rhomboid. While it circles your head, your Constitution score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"CON\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "fortitude": [
+      {
+        "n": "Ioun Stone (fortitude)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-fortitude",
+          "itemFingerprint": "[\"Ioun Stone (fortitude)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Fortitude.** This stone is a pink rhomboid. While it circles your head, your Constitution score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"CON\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "insightStowed": [
+      {
+        "n": "Ioun Stone (insight)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-insight",
+          "itemFingerprint": "[\"Ioun Stone (insight)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Insight.** This stone is a incandescent blue sphere. While it circles your head, your Wisdom score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"WIS\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "insight": [
+      {
+        "n": "Ioun Stone (insight)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-insight",
+          "itemFingerprint": "[\"Ioun Stone (insight)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Insight.** This stone is a incandescent blue sphere. While it circles your head, your Wisdom score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"WIS\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "intellectStowed": [
+      {
+        "n": "Ioun Stone (intellect)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-intellect",
+          "itemFingerprint": "[\"Ioun Stone (intellect)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Intellect.** This stone is a marbled scarlet and blue sphere. While it circles your head, your Intelligence score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"INT\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "intellect": [
+      {
+        "n": "Ioun Stone (intellect)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-intellect",
+          "itemFingerprint": "[\"Ioun Stone (intellect)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Intellect.** This stone is a marbled scarlet and blue sphere. While it circles your head, your Intelligence score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"INT\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "leadershipStowed": [
+      {
+        "n": "Ioun Stone (leadership)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-leadership",
+          "itemFingerprint": "[\"Ioun Stone (leadership)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Leadership.** This stone is a marbled pink and green sphere. While it circles your head, your Charisma score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"CHA\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "leadership": [
+      {
+        "n": "Ioun Stone (leadership)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-leadership",
+          "itemFingerprint": "[\"Ioun Stone (leadership)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Leadership.** This stone is a marbled pink and green sphere. While it circles your head, your Charisma score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"CHA\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "masteryStowed": [
+      {
+        "n": "Ioun Stone (mastery)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-mastery",
+          "itemFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "mastery": [
+      {
+        "n": "Ioun Stone (mastery)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-mastery",
+          "itemFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "masteryCaught": [
+      {
+        "n": "Ioun Stone (mastery)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-mastery",
+          "itemFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "protectionStowed": [
+      {
+        "n": "Ioun Stone (protection)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-protection",
+          "itemFingerprint": "[\"Ioun Stone (protection)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Protection.** This stone is a dusty-rose prism. While it circles your head, you gain a +1 bonus to your Armor Class.\",{\"fx\":{\"ac\":1}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "protection": [
+      {
+        "n": "Ioun Stone (protection)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-protection",
+          "itemFingerprint": "[\"Ioun Stone (protection)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Protection.** This stone is a dusty-rose prism. While it circles your head, you gain a +1 bonus to your Armor Class.\",{\"fx\":{\"ac\":1}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "strengthStowed": [
+      {
+        "n": "Ioun Stone (strength)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-strength",
+          "itemFingerprint": "[\"Ioun Stone (strength)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Strength.** This stone is a pale blue rhomboid. While it circles your head, your Strength score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"STR\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "strength": [
+      {
+        "n": "Ioun Stone (strength)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-strength",
+          "itemFingerprint": "[\"Ioun Stone (strength)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Strength.** This stone is a pale blue rhomboid. While it circles your head, your Strength score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"STR\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "goldenMastery": [
+      {
+        "n": "Ioun Stone (mastery)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-mastery",
+          "itemFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]",
+          "parentFingerprint": null
+        }
+      }
+    ],
+    "genericTwoTypes": [
+      {
+        "n": "Ioun Stone (agility)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-agility",
+          "itemFingerprint": "[\"Ioun Stone (agility)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Agility.** This stone is a deep-red sphere. While it circles your head, your Dexterity score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"DEX\",2,20]}}]",
+          "parentFingerprint": "[\"Ioun Stone\",\"Wondrous Item\",\"Varies\",1,\"Ioun Stones are about the size of a marble. They take their name from Ioun, a god of prophecy and knowledge worshiped on some worlds. Many types exist, and each type has its own pairing of color and shape. You can toss a stone into the air as a Magic action. It then circles your head at a distance of 1d3 feet and grants you its benefit while it does so. At most three Ioun Stones can orbit your head at once. A stone orbiting your head counts as an object you are wearing. It steers clear of other objects and creatures, shifting its path to avoid collisions, and it foils every attempt by other creatures to attack or grab it. As a Utilize action, you can catch and stow any number of the stones that orbit your head. If your Attunement to a stone ends while it orbits your head, the stone falls as if you had dropped it. The stone's type sets its rarity and its effect. **Absorption (Very Rare).** Pale lavender ellipsoid. While it circles your head, when a creature you can see casts a spell of level 4 or lower, you can take a Reaction to cancel that spell. The canceled spell does nothing, and whatever was spent to cast it is lost. After canceling a total of 20 levels of spells, the stone burns out, becomes dull gray, and loses its magic. **Agility (Very Rare).** Deep-red sphere. While it circles your head, your Dexterity rises by 2, up to a maximum of 20. **Awareness (Rare).** Dark-blue rhomboid. While it circles your head, your Initiative rolls and your Wisdom (Perception) checks have Advantage. **Fortitude (Very Rare).** Pink rhomboid. While it circles your head, your Constitution rises by 2, up to a maximum of 20. **Greater Absorption (Legendary).** Marbled lavender and green ellipsoid. It works like Absorption, but it can cancel a spell of level 8 or lower. It also burns out, turns dull gray, and loses its magic after canceling a total of 20 levels of spells. **Insight (Very Rare).** Incandescent blue sphere. While it circles your head, your Wisdom rises by 2, up to a maximum of 20. **Intellect (Very Rare).** Marbled scarlet and blue sphere. While it circles your head, your Intelligence rises by 2, up to a maximum of 20. **Leadership (Very Rare).** Marbled pink and green sphere. While it circles your head, your Charisma rises by 2, up to a maximum of 20. **Mastery (Legendary).** Pale green prism. While it circles your head, your Proficiency Bonus is 1 higher. **Protection (Rare).** Dusty-rose prism. While it circles your head, your Armor Class gets a +1 bonus. **Regeneration (Legendary).** Pearly white spindle. While it circles your head, you regain 15 Hit Points at the end of every hour, provided you have at least 1 Hit Point. **Reserve (Rare).** This vibrant purple prism holds spells that are cast into it until you use them. It can hold up to 4 levels of spells at one time. When you find it, it already holds 1d4 levels of stored spells that the Dungeon Master chooses. Any creature can store a spell of level 1 to 4 in the stone by touching it while casting the spell. The spell then does nothing except become stored. If there isn't enough room in the stone for the spell, the spell is spent and has no effect. How much room a spell takes up depends on the level of the slot used to cast it. While the prism orbits your head, you can cast any spell it holds. That spell uses the original caster's slot level, spellcasting ability, spell attack bonus, and spell save DC, but in every other way it counts as a spell you cast. Casting a spell from the stone removes it, which frees up that space. **Strength (Very Rare).** Pale blue rhomboid. While it circles your head, your Strength rises by 2, up to a maximum of 20. **Sustenance (Rare).** Clear spindle. While it circles your head, you have no need to eat or drink.\"]"
+        }
+      },
+      {
+        "n": "Ioun Stone (insight)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-2",
+          "nativeProfile": "dmg2024-ioun-insight",
+          "itemFingerprint": "[\"Ioun Stone (insight)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Insight.** This stone is a incandescent blue sphere. While it circles your head, your Wisdom score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"WIS\",2,20]}}]",
+          "parentFingerprint": "[\"Ioun Stone\",\"Wondrous Item\",\"Varies\",1,\"Ioun Stones are about the size of a marble. They take their name from Ioun, a god of prophecy and knowledge worshiped on some worlds. Many types exist, and each type has its own pairing of color and shape. You can toss a stone into the air as a Magic action. It then circles your head at a distance of 1d3 feet and grants you its benefit while it does so. At most three Ioun Stones can orbit your head at once. A stone orbiting your head counts as an object you are wearing. It steers clear of other objects and creatures, shifting its path to avoid collisions, and it foils every attempt by other creatures to attack or grab it. As a Utilize action, you can catch and stow any number of the stones that orbit your head. If your Attunement to a stone ends while it orbits your head, the stone falls as if you had dropped it. The stone's type sets its rarity and its effect. **Absorption (Very Rare).** Pale lavender ellipsoid. While it circles your head, when a creature you can see casts a spell of level 4 or lower, you can take a Reaction to cancel that spell. The canceled spell does nothing, and whatever was spent to cast it is lost. After canceling a total of 20 levels of spells, the stone burns out, becomes dull gray, and loses its magic. **Agility (Very Rare).** Deep-red sphere. While it circles your head, your Dexterity rises by 2, up to a maximum of 20. **Awareness (Rare).** Dark-blue rhomboid. While it circles your head, your Initiative rolls and your Wisdom (Perception) checks have Advantage. **Fortitude (Very Rare).** Pink rhomboid. While it circles your head, your Constitution rises by 2, up to a maximum of 20. **Greater Absorption (Legendary).** Marbled lavender and green ellipsoid. It works like Absorption, but it can cancel a spell of level 8 or lower. It also burns out, turns dull gray, and loses its magic after canceling a total of 20 levels of spells. **Insight (Very Rare).** Incandescent blue sphere. While it circles your head, your Wisdom rises by 2, up to a maximum of 20. **Intellect (Very Rare).** Marbled scarlet and blue sphere. While it circles your head, your Intelligence rises by 2, up to a maximum of 20. **Leadership (Very Rare).** Marbled pink and green sphere. While it circles your head, your Charisma rises by 2, up to a maximum of 20. **Mastery (Legendary).** Pale green prism. While it circles your head, your Proficiency Bonus is 1 higher. **Protection (Rare).** Dusty-rose prism. While it circles your head, your Armor Class gets a +1 bonus. **Regeneration (Legendary).** Pearly white spindle. While it circles your head, you regain 15 Hit Points at the end of every hour, provided you have at least 1 Hit Point. **Reserve (Rare).** This vibrant purple prism holds spells that are cast into it until you use them. It can hold up to 4 levels of spells at one time. When you find it, it already holds 1d4 levels of stored spells that the Dungeon Master chooses. Any creature can store a spell of level 1 to 4 in the stone by touching it while casting the spell. The spell then does nothing except become stored. If there isn't enough room in the stone for the spell, the spell is spent and has no effect. How much room a spell takes up depends on the level of the slot used to cast it. While the prism orbits your head, you can cast any spell it holds. That spell uses the original caster's slot level, spellcasting ability, spell attack bonus, and spell save DC, but in every other way it counts as a spell you cast. Casting a spell from the stone removes it, which frees up that space. **Strength (Very Rare).** Pale blue rhomboid. While it circles your head, your Strength rises by 2, up to a maximum of 20. **Sustenance (Rare).** Clear spindle. While it circles your head, you have no need to eat or drink.\"]"
+        }
+      }
+    ],
+    "threeOccupiedIncludingUnsupported": [
+      {
+        "n": "Ioun Stone (absorption)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-1",
+          "nativeProfile": "dmg2024-ioun-absorption",
+          "itemFingerprint": "[\"Ioun Stone (absorption)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Absorption.** This stone is a pale lavender ellipsoid. While it circles your head, you can take a Reaction when a creature you can see casts a spell of level 4 or lower to cancel that spell. A canceled spell has no effect, and anything spent to cast it is wasted. After the stone has canceled a total of 20 levels of spells, it burns out, turns a dull gray, and loses its magic.\"]",
+          "parentFingerprint": null
+        }
+      },
+      {
+        "n": "Ioun Stone (sustenance)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-2",
+          "nativeProfile": "dmg2024-ioun-sustenance",
+          "itemFingerprint": "[\"Ioun Stone (sustenance)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Sustenance.** This stone is a clear spindle. While it circles your head, you have no need to eat or drink.\"]",
+          "parentFingerprint": null
+        }
+      },
+      {
+        "n": "Ioun Stone (agility)",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-3",
+          "nativeProfile": "dmg2024-ioun-agility",
+          "itemFingerprint": "[\"Ioun Stone (agility)\",\"Wondrous Item\",\"Very Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Agility.** This stone is a deep-red sphere. While it circles your head, your Dexterity score rises by 2, and it can't exceed 20 this way.\",{\"fx\":{\"abil\":[\"DEX\",2,20]}}]",
+          "parentFingerprint": null
+        }
+      },
+      {
+        "n": "Ioun Stone (protection)",
+        "q": 1,
+        "eq": false,
+        "attuned": true,
+        "iounOrbit": {
+          "v": 1,
+          "id": "io-4",
+          "nativeProfile": "dmg2024-ioun-protection",
+          "itemFingerprint": "[\"Ioun Stone (protection)\",\"Wondrous Item\",\"Rare\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Protection.** This stone is a dusty-rose prism. While it circles your head, you gain a +1 bonus to your Armor Class.\",{\"fx\":{\"ac\":1}}]",
+          "parentFingerprint": null
+        }
+      }
+    ]
+  },
+  "numbers": {
+    "agilityStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "agility": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 20,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "awarenessStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "awareness": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": [
+        {
+          "k": "Initiative",
+          "s": "Ioun Stone (awareness)"
+        },
+        {
+          "k": "Perception",
+          "s": "Ioun Stone (awareness)",
+          "ab": "WIS"
+        }
+      ]
+    },
+    "fortitudeStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "fortitude": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 20,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "insightStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "insight": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 20,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "intellectStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "intellect": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 20,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "leadershipStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "leadership": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 20
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "masteryStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "mastery": {
+      "pb": 3,
+      "pbAdd": 1,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "masteryCaught": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "protectionStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "protection": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": [
+          {
+            "s": "Ioun Stone (protection) (magic item, attuned)",
+            "v": 1
+          }
+        ]
+      },
+      "itemAdv": []
+    },
+    "strengthStowed": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "strength": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 20,
+        "DEX": 18,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "goldenMastery": {
+      "pb": 4,
+      "pbAdd": 1,
+      "scores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 16,
+        "CHA": 8
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "genericTwoTypes": {
+      "pb": 2,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 20,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 20,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    },
+    "threeOccupiedIncludingUnsupported": {
+      "pb": 5,
+      "pbAdd": 0,
+      "scores": {
+        "STR": 18,
+        "DEX": 20,
+        "CON": 18,
+        "INT": 18,
+        "WIS": 18,
+        "CHA": 18
+      },
+      "ac": {
+        "base": 10,
+        "baseSrc": "Unarmored",
+        "dex": "full",
+        "bonus": []
+      },
+      "itemAdv": []
+    }
+  },
+  "receipts": [
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "catch",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "admit",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "toss",
+      "accepted": true,
+      "undoDelta": 1
+    }
+  ],
+  "capacityDenial": {
+    "ok": false,
+    "reason": "orbit-capacity",
+    "noUndo": true,
+    "noMutation": true,
+    "actualATTLimit": 4
+  },
+  "deriveDefaults": {
+    "attackTarget": {
+      "type": "",
+      "alignment": "",
+      "hp": null,
+      "maxHp": null,
+      "tags": []
+    },
+    "hp": null,
+    "tmp": 0,
+    "used": {},
+    "insp": false,
+    "ds": [
+      0,
+      0
+    ],
+    "cond": {},
+    "exh": 0,
+    "burn": 1,
+    "jinx": "",
+    "notes": {},
+    "lang": [
+      "Common",
+      "",
+      ""
+    ],
+    "portrait": "",
+    "theme": "",
+    "align": "",
+    "color": "forest",
+    "sym": "star",
+    "skin": "ddb",
+    "coins": null,
+    "coinBase": null,
+    "lifestyle": ""
+  }
+}

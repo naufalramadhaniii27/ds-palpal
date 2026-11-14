@@ -3,12 +3,13 @@
   const MI=FXENV.__MI;
   if(!MI||!document.body.animate) return;
   FXS16A.defenderSpec=function defenderSpec(key,spec){if(!/^(ah-|ad-)/.test(key)||typeof FXENV.__defenderAttackSpec!=="function")return spec;try{return FXENV.__defenderAttackSpec(key,spec)||spec}catch(error){return Object.assign({},spec,{sourceGuard:function(){return false}})}};
-  FXS16A.sourceSpec=function sourceSpec(key,spec){if(!spec)return spec;let guard;if(/^(ah-|ad-)/.test(key)){try{guard=FXENV.__temporaryAttackGuard&&FXENV.__temporaryAttackGuard(key)}catch(error){guard=false}if(guard===undefined)return FXS16A.defenderSpec(key,spec)}else if(/^spatk-source-/.test(key)){try{guard=FXENV.__spellSourceGuard&&FXENV.__spellSourceGuard(key,spec.bon)}catch(error){guard=false}}else return spec;spec.sourceGuard=typeof guard==="function"?guard:function(){return false};return FXS16A.defenderSpec(key,spec)};
+  FXS16A.iounCheckSpec=function iounCheckSpec(key,spec){if(!/^(sk-[0-9]+|init)$/.test(key)||typeof FXENV.__iounOrbitCheckRoll!=="function")return spec;try{const check=FXENV.__iounOrbitCheckRoll(key);if(check===undefined)return spec;return Object.assign({},spec,{sourceGuard:typeof check?.guard==="function"?check.guard:function(){return false}})}catch(error){return Object.assign({},spec,{sourceGuard:function(){return false}})}};
+  FXS16A.sourceSpec=function sourceSpec(key,spec){if(!spec)return spec;let guard;if(/^(ah-|ad-)/.test(key)){try{guard=FXENV.__temporaryAttackGuard&&FXENV.__temporaryAttackGuard(key)}catch(error){guard=false}if(guard===undefined)return FXS16A.defenderSpec(key,spec)}else if(/^spatk-source-/.test(key)){try{guard=FXENV.__spellSourceGuard&&FXENV.__spellSourceGuard(key,spec.bon)}catch(error){guard=false}}else return FXS16A.iounCheckSpec(key,spec);spec.sourceGuard=typeof guard==="function"?guard:function(){return false};return FXS16A.defenderSpec(key,spec)};
 })();
 (function(){
   const MI=FXENV.__MI;
   if(!MI||!document.body.animate) return;
-  FXS16A.barAllowed=function barAllowed(w){const spec=w&&w.__spec;if(!spec||typeof spec.sourceGuard!=="function")return true;let allowed=false;try{const sh=w.closest&&w.closest("#sheet");allowed=!!(w.isConnected&&sh&&sh.classList.contains("on")&&spec.sourceGuard()===true)}catch(error){}if(!allowed){w.__busy=0;const result=w.querySelector(".mi-rres");if(result)result.textContent="This source changed. Open its numbers again."}return allowed};
+  FXS16A.barAllowed=function barAllowed(w){if(!FXS16A.rollAllowed())return false;const spec=w&&w.__spec;if(!spec||typeof spec.sourceGuard!=="function")return true;let allowed=false;try{const sh=w.closest&&w.closest("#sheet");allowed=!!(w.isConnected&&sh&&sh.classList.contains("on")&&spec.sourceGuard()===true)}catch(error){}if(!allowed){w.__busy=0;const result=w.querySelector(".mi-rres");if(result)result.textContent="This source changed. Open its numbers again."}return allowed};
 })();
 (function(){
   const MI=FXENV.__MI;

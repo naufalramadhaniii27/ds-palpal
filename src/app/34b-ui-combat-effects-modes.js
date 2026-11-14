@@ -30,7 +30,7 @@ function cfxStep2(c, add, o, inc, sv){
     (r.skill||[]).forEach((k) =>{ (o.skill[k]=o.skill[k]||[]).push({t:"ADV",s:src}); });
     if(!(r.noIncap&&inc)) (r.save||[]).forEach((k) =>{ sv(k,"ADV",src); });
     if(r.ds) add(o.ds,"ADV",src); if(r.dsd) add(o.ds,"DIS",src); });
-  (C.itemAdv||[]).forEach((r) =>{ if(r.k==="Initiative") add(o.init,"ADV",r.s); else (o.skill[r.k]=o.skill[r.k]||[]).push({t:"ADV",s:r.s}); });/* v65: magic items */
+  (C.itemAdv||[]).forEach((r) =>{ if(r.k==="Initiative") add(o.init,"ADV",r.s); else (o.skill[r.k]=o.skill[r.k]||[]).push(itemSkillFlag(r)); });/* v65: magic items */
   if(c.Blinded) add(o.atk,"DIS","Blinded");
 }
 function cfxStep3(c, add, o, xr2, sv){
@@ -56,7 +56,9 @@ export function cfFlags(list){ list=list||[]; if(!list.length) return ""; const 
   if(by.FAIL) return '<span class="flag cf fail" title="'+esc("Automatic failure: "+by.FAIL.join(", "))+'">FAIL</span>';
   if(by.ADV&&by.DIS) return '<span class="flag cf" title="'+esc("Advantage ("+by.ADV.join(", ")+") and Disadvantage ("+by.DIS.join(", ")+") cancel out")+'">ADV/DIS</span>';
   const t=by.ADV?"ADV":"DIS"; return '<span class="flag cf '+t.toLowerCase()+'" title="'+esc((t==="ADV"?"Advantage: ":"Disadvantage: ")+(by[t]||[]).join(", "))+'">'+t+'</span>'; }
-function cfSkill(s){ const f=D.cf||{}; return (f.chk||[]).concat((f.chkAb||{})[s.ab]||[]).concat((f.skill||{})[s.n]||[]); }
+function itemSkillFlag(row){const flag={t:"ADV",s:row.s};return Object.prototype.hasOwnProperty.call(row,"ab")?{...flag,ab:row.ab}:flag;}
+function skillFlagApplies(flag,skill){return !Object.prototype.hasOwnProperty.call(flag,"ab")||(ABK.includes(flag.ab)&&flag.ab===skill.ab);}
+export function cfSkill(s){ const f=D.cf||{}; return (f.chk||[]).concat((f.chkAb||{})[s.ab]||[]).concat(((f.skill||{})[s.n]||[]).filter(flag=>skillFlagApplies(flag,s))); }
 function cfSave(k){ const f=D.cf||{}; return ((f.save||{})[k]||[]).slice(); }
 export function modeChips(){ const av=modesAvail(); if(!av.length) return ""; return av.map((m) =>{ const on=modeOn(m.k); return '<button type="button" class="chip mode'+(on?' on':'')+' press" data-mode="'+m.k+'" aria-pressed="'+on+'">'+esc(m.n)+'</button>'; }).join(""); }
 function modeUse(m){ return (D.res||[]).filter((r) =>{ return m.use.test(r.n); })[0]; }

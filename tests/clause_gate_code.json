@@ -25684,6 +25684,2419 @@
     "tests/timed_defenses_app17.mjs"
    ],
    "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-19",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ dexterity\\ rises\\ by\\ 2,\\ up\\ to\\ a\\ maximum\\ of\\ 20\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit agility",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-22",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "ADV"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ initiative\\ rolls\\ and\\ your\\ wisdom\\ \\(perception\\)\\ checks\\ have\\ advantage\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitCheckRoll("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitCheckRoll=iounOrbitCheckRoll"
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitCheckRoll"
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.iounCheckSpec=function iounCheckSpec("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "return FXS16A.iounCheckSpec(key,spec)"
+    ],
+    [
+     "src/fx/18-m-pack-rolls-concentration.js",
+     "FXS18A.iounCheckHint=function iounCheckHint("
+    ],
+    [
+     "src/fx/18-m-pack-rolls-concentration.js",
+     "const source=FXS18A.iounCheckHint(k)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit awareness",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs",
+    "tests/ioun_orbit_native_roll_port.mjs",
+    "tests/ioun_orbit_fx_checks.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched. Actual Awareness uses the native Initiative/Perception hint and sourceSpec guard through the owned backend roll token, preserving WIS qualification and deferred cancellation."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-25",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ constitution\\ rises\\ by\\ 2,\\ up\\ to\\ a\\ maximum\\ of\\ 20\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit fortitude",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-32",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ wisdom\\ rises\\ by\\ 2,\\ up\\ to\\ a\\ maximum\\ of\\ 20\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit insight",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-35",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ intelligence\\ rises\\ by\\ 2,\\ up\\ to\\ a\\ maximum\\ of\\ 20\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit intellect",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-38",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ charisma\\ rises\\ by\\ 2,\\ up\\ to\\ a\\ maximum\\ of\\ 20\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit leadership",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-41",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "1",
+    "pb"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ proficiency\\ bonus\\ is\\ 1\\ higher\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit mastery",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-44",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "AC"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ armor\\ class\\ gets\\ a\\ \\+1\\ bonus\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit protection",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-61",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "2"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ strength\\ rises\\ by\\ 2,\\ up\\ to\\ a\\ maximum\\ of\\ 20\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit strength",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-awareness-13",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone (awareness)",
+   "cls": [
+    "ADV",
+    "INIT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ you\\ have\\ advantage\\ on\\ initiative\\ rolls\\ and\\ on\\ wisdom\\ \\(perception\\)\\ checks\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitCheckRoll("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitCheckRoll=iounOrbitCheckRoll"
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitCheckRoll"
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.iounCheckSpec=function iounCheckSpec("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "return FXS16A.iounCheckSpec(key,spec)"
+    ],
+    [
+     "src/fx/18-m-pack-rolls-concentration.js",
+     "FXS18A.iounCheckHint=function iounCheckHint("
+    ],
+    [
+     "src/fx/18-m-pack-rolls-concentration.js",
+     "const source=FXS18A.iounCheckHint(k)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit awareness",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs",
+    "tests/ioun_orbit_native_roll_port.mjs",
+    "tests/ioun_orbit_fx_checks.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched. Actual Awareness uses the native Initiative/Perception hint and sourceSpec guard through the owned backend roll token, preserving WIS qualification and deferred cancellation."
+  },
+  {
+   "id": "u54-item-dmg-ioun-stone-mastery-13",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Ioun Stone (mastery)",
+   "cls": [
+    "NUM"
+   ],
+   "vals": [
+    "1",
+    "pb"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ it\\ circles\\ your\\ head,\\ your\\ proficiency\\ bonus\\ increases\\ by\\ 1\\.$",
+   "anchor": [
+    "src/builder/10o-logic-ioun-orbit.js",
+    "export function iounOrbitActiveFx("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function admitIounStone("
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const tossIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export const catchIounStone="
+    ],
+    [
+     "src/data/lib/ioun-orbit.js",
+     "export function iounOrbitAvailability("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "parentFingerprint:original.generic?original.itemFingerprint:null"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "row.n=source.item"
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitContext("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "function nativeEffectsMatch("
+    ],
+    [
+     "src/builder/03-logic-magic-item-effects.js",
+     "const orbit=iounOrbitActiveFx(x,i,st)"
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-abil\""
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "runFxPhase(\"ability\",\"item-raise\",AFX,actx,apply)"
+    ],
+    [
+     "src/builder/11-logic-derivation.js",
+     "function gfx(noItem)"
+    ],
+    [
+     "src/builder/11b-logic-fx-sources.js",
+     "id:\"items\""
+    ],
+    [
+     "src/builder/12e-logic-sheet-handlers-defense.js",
+     "id:\"item-ac-bonus\""
+    ],
+    [
+     "src/builder/12zd-logic-ioun-orbit.js",
+     "id:'ioun-orbit-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "if(r.k===\"Initiative\") add(o.init,\"ADV\",r.s)"
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function admitPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function changePlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function publish("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function requestIounOrbitCommand("
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "export async function openIounOrbit("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "export function iounCharacterMathStatus("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function withIounOrbitLegacyComparison("
+    ],
+    [
+     "src/builder/10o-logic-ioun-orbit.js",
+     "export function iounOrbitLegacySourcesSafe("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyInspection("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "function legacyRefreshPlan("
+    ],
+    [
+     "src/builder/25n-logic-ioun-orbit.js",
+     "legacyView(pair.legacy,b.C)!==legacyView(b.C,b.C)"
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "export function iounOrbitMathStatus("
+    ],
+    [
+     "src/app/32v-logic-ioun-orbit.js",
+     "env.__iounOrbitMathStatus=iounOrbitMathStatus"
+    ],
+    [
+     "src/app/21w-ui-ioun-orbit.js",
+     "function legacyReviewHTML("
+    ],
+    [
+     "src/fx/00-fx-env.js",
+     "__iounOrbitMathStatus"
+    ],
+    [
+     "src/fx/16-z-pack-dice-sound-hover.js",
+     "FXS16A.rollAllowed=function rollAllowed(guard)"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "return !iounCharacterMathStatus(C,S).reviewRequired&&"
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "function iounMathDenied("
+    ],
+    [
+     "src/app/19-ui-global-click-delegation.js",
+     "if(iounMathDenied())return"
+    ],
+    [
+     "src/app/32b-logic-play-concentration-casting.js",
+     "export function castDo(i,k,lv,ok,repair,temporal){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "function iounRestDenied("
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "export function takeRest(kind){if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Short Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/23d-ui-rest.js",
+     "undoMark(\"Long Rest\");if(iounRestDenied())return"
+    ],
+    [
+     "src/app/35-ui-combo.js",
+     "function renderIounReviewNotice("
+    ],
+    [
+     "src/app/36-ui-printable-sheet.js",
+     "export function buildPrint(){if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ],
+    [
+     "src/app/37-ui-pdf-export-hold-slide-confirm.js",
+     "$(\"#pdfBtn\").addEventListener(\"click\",() =>{if(iounCharacterMathStatus(C,S).reviewRequired)"
+    ]
+   ],
+   "test": "Z3 U54 actual native orbit mastery",
+   "consumerTests": [
+    "tests/ioun_orbit.mjs",
+    "tests/ioun_orbit_sources.mjs",
+    "tests/ioun_orbit_backend.mjs",
+    "tests/ioun_orbit_native_consumers.mjs",
+    "tests/ioun_awareness_native.mjs",
+    "tests/ioun_orbit_native_equip.mjs",
+    "tests/ioun_orbit_app17.mjs",
+    "tests/ioun_orbit_apply_boundary.mjs",
+    "tests/ioun_orbit_ui.mjs",
+    "tests/ioun_legacy_math.mjs",
+    "tests/ioun_orbit_legacy_backend.mjs",
+    "tests/ioun_legacy_play_guards.mjs",
+    "tests/ioun_orbit_legacy_replay.mjs",
+    "tests/ioun_orbit_legacy_app_contracts.mjs"
+   ],
+   "note": "U54 exact current-core native clause: source-admitted immutable subtype and factual initially-stowed history, actual Magic toss/Utilize catch with three-slot occupancy including unsupported powers; allocatedATT/source-loss/future/Reserve-unresolved guards. Reuses original actual native ability/AC/PB producers exactlyonce and Initiative/WIS-only Perception consumers. Generic source requires actual factual type selection to original child; no legacy alias closure. Registration requires actual frozen native UI proof. Pre-U54 persisted native bonuses require explicit reviewed matching-Build native refresh, validated by full historical producer comparison without guessed numeric subtraction. Legacy refresh mints no orbit ledger, marker or action fact. Unreviewed historical numbers are labeled and blocked from native rolls, HP, resources, casting, rest and verified exports; opaque/manual/foreign/unapplied payloads remain untouched."
   }
  ]
 }

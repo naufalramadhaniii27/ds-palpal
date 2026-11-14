@@ -1,3 +1,4 @@
+import {iounCharacterMathStatus} from '../src/data/lib/ioun-orbit-source.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -8,7 +9,7 @@ const ctx={C:{name:'Hero',rs:'2024',inventoryFormV:1,spellcasting:{}},S:{used:{}
  bindLive(){},document:{addEventListener(){}},attActive:it=>it.attuned===true,eqOn:it=>it.eq===true,num:(v,d)=>Number.isFinite(+v)&&v!=null?+v:d,
  occOf:it=>it.occ||0,used:(k,max)=>Math.min(max,ctx.S.used[k]||0),modeOn:()=>false,undoMark(){marks++},save(){saves++},
  lateGet:()=>({}),syncLU(){},renderSpells(){},renderConds(){},refreshEntry(){},toastU(){},toast(){},cmbCast(){},cmbRe(){}};
-vm.createContext(ctx);vm.runInContext(source,ctx);
+Object.assign(ctx,{iounCharacterMathStatus});vm.createContext(ctx);vm.runInContext(source,ctx);
 for(const [item,spell] of [['Dawnbringer','Lesser Restoration'],['Duskcrusher','Sunbeam']]){
  const x={n:spell,l:2,itc:{it:item,c:1,lv:2}};
  const it={n:item,key:item,eq:true,q:1,attuned:true,form:{v:1,active:true,radius:15},chargeKey:'item-pool',occ:2};

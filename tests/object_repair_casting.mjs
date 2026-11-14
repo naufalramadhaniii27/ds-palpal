@@ -1,3 +1,4 @@
+import {iounCharacterMathStatus} from '../src/data/lib/ioun-orbit-source.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -9,7 +10,7 @@ const target={object:true,kind:'MagicItem',singleBreak:true,touch:true,dimension
 function harness(baseKnown=false){
  const trace=[],item={n:source.item,key:source.item,q:1,eq:false,attuned:true,attunedActive:true};const root={isConnected:true};let raging=false,opened=0,prompt=null;
  const c={C:{name:'Owned',inv:[item],spells:[{n:'Mending',l:0,ct:'1 minute',r:'Touch',cmp:'V, S, M',objectRepair:{spell:'Mending',baseKnown,sources:[{...source}],maxBreakFeet:5}}]},S:{used:{creation:1,fabricate:1,s2:1},hp:20,tmp:3},D:{res:[]},env:{},resolveObjectRepairProfile,evaluateRepairRequest,structuredClone,bindLive(){},document:{addEventListener(){}},modeOn:()=>raging,lateGet:k=>k==='openObjectRepair'?()=>opened++:{},ask:(msg,label,cb)=>{prompt=cb;trace.push('ask')},undoMark:()=>trace.push('undo'),save:()=>trace.push('save'),syncLU:()=>trace.push('sync'),renderSpells:()=>trace.push('spells'),renderConds:()=>trace.push('conds'),refreshEntry:()=>{trace.push('refresh');root.isConnected=false},toastU:()=>trace.push('toast'),toast:()=>trace.push('failure'),cmbCast:()=>trace.push('combo'),cmbRe:()=>trace.push('combo-render')};
- vm.createContext(c);vm.runInContext(code,c);return {c,root,item,trace,session:()=>c.createObjectRepairSession(0,root),request:(session,extra={})=>c.requestObjectRepairCast({session,target:structuredClone(target),declarations:{...declarations},...extra}),rage:on=>raging=on,opened:()=>opened,prompt:()=>prompt};
+ Object.assign(c,{iounCharacterMathStatus});vm.createContext(c);vm.runInContext(code,c);return {c,root,item,trace,session:()=>c.createObjectRepairSession(0,root),request:(session,extra={})=>c.requestObjectRepairCast({session,target:structuredClone(target),declarations:{...declarations},...extra}),rage:on=>raging=on,opened:()=>opened,prompt:()=>prompt};
 }
 {
  const h=harness();h.c.castDo(0,'',0);h.c.quickCast(0);eq(h.opened(),2);eq(h.trace,[]);h.c.castDo(0,'',0,true,{});eq(h.opened(),3);eq(h.trace,[]);

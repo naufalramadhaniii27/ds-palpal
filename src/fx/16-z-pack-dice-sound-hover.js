@@ -176,8 +176,8 @@ const FXS16A={};
   FXS16A.rollDice=function rollDice(spec,mode){ if(spec.dmg){ const L=[]; FXS16A.parseDmg(FXS16A.damageExpressionFor(spec,mode)).forEach((q) =>{ if(q.f){ const n=q.n*(mode==="crit"?2:1); for(let i=0;i<n;i++) L.push(q.f); } }); return L; } return mode?[20,20]:[20]; };
 })();
 (function(){
-  FXS16A.rollAllowed=function rollAllowed(guard){try{return typeof guard!=="function"||guard()===true}catch(error){return false}};
-  FXS16A.commitRollResult=function commitRollResult(r,cb,beforeCommit){if(beforeCommit!==undefined){let accepted=false;try{accepted=typeof beforeCommit==="function"&&beforeCommit(r)===true}catch(error){}if(!accepted)return null}FXS16A.after(r);if(cb)cb(r);return r};
+  FXS16A.rollAllowed=function rollAllowed(guard){try{return (typeof FXENV.__iounOrbitMathStatus!=="function"||FXENV.__iounOrbitMathStatus()?.reviewRequired!==true)&&(typeof guard!=="function"||guard()===true)}catch(error){return false}};
+  FXS16A.commitRollResult=function commitRollResult(r,cb,beforeCommit){if(!FXS16A.rollAllowed())return null;if(beforeCommit!==undefined){let accepted=false;try{accepted=typeof beforeCommit==="function"&&beforeCommit(r)===true}catch(error){}if(!accepted)return null}if(!FXS16A.rollAllowed())return null;FXS16A.after(r);if(cb)cb(r);return r};
 })();
 (function(){
   const MI=FXENV.__MI;

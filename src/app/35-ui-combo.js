@@ -1,3 +1,4 @@
+import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {syncWieldMinimum} from "./21d-logic-wield-refresh.js";
 import {bindLive,pipSync} from "./00a-reg-late-ports.js";import {GLOSS,gl14,x14,x14n} from "./03-data-glossary.js";
 import {C,FROZEN,S,recover,save} from "./04-logic-storage.js";
@@ -173,8 +174,9 @@ export function bldDot(){ const b=document.getElementById("bldBtn"); if(!b) retu
   let d=b.querySelector(".bdot"); if(n>0&&!d){ d=document.createElement("i"); d.className="bdot"; d.setAttribute("aria-hidden","true"); b.appendChild(d); } else if(!n&&d) d.remove();
   b.setAttribute("aria-label", n>0?"Build, "+n+" choice"+(n===1?"":"s")+" left":"Build, open character builder"); b.title=n>0?n+" choice"+(n===1?"":"s")+" left in the builder":""; }
 env.__bldDot=bldDot;
+function renderIounReviewNotice(){const pending=document.getElementById('iounReviewNotice');if(pending)pending.hidden=!iounCharacterMathStatus(C,S).reviewRequired}
 export function renderAll(instant){
-  try{ if((document.getElementById("bld")||{hidden:true}).hidden)gl14(x14());/* v94 */ if((document.getElementById("bld")||{hidden:true}).hidden&&env.__sp14Set)env.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); syncWieldMinimum(); }
+  try{ if((document.getElementById("bld")||{hidden:true}).hidden)gl14(x14());/* v94 */ if((document.getElementById("bld")||{hidden:true}).hidden&&env.__sp14Set)env.__sp14Set(!!(C&&C.rs==="2014"),false);/* v92: the sheet shows the spells of its own rules edition */ derive(); renderIounReviewNotice(); document.documentElement.setAttribute("data-rs",C&&C.rs==="2014"?"2014":"2024");/* v82: the sheet words follow the rules edition */ if(modeFix()) derive();/* v22 N1 */ renderIdentity(); renderAbilities(); renderTiles(); renderSkillsPage(); renderActions(); renderSpells(); renderInv(); renderFeat(); renderExtras(); syncHP(instant); renderConds(); bldDot(); syncWieldMinimum(); }
   catch(e){ if(FROZEN!=="recover"){ recover("Drawing the sheet",e); setTimeout(() =>{ throw e; },0); } }/* v18 RU78 */
 }
 

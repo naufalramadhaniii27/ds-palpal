@@ -1,5 +1,5 @@
 {
- "why": "Ioun Stone (mastery): your Proficiency Bonus increases by 1. Fighter 5: PB 3 becomes 4, Strength save 3 + 4 = 7 (Fighter saves Strength and Constitution), CON save 2 + 4 = 6.",
+ "why": "Ioun Stone (mastery): your Proficiency Bonus increases by 1. Fighter 5: PB 3 becomes 4, Strength save 3 + 4 = 7 (Fighter saves Strength and Constitution), CON save 2 + 4 = 6. Actual source was admitted while stowed, then tossed with its Magic action; generated native receipts provide orbit history and immutable physical marker.",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -59,7 +59,15 @@
    {
     "n": "Ioun Stone (mastery)",
     "q": 1,
-    "eq": true
+    "eq": true,
+    "attuned": true,
+    "iounOrbit": {
+     "v": 1,
+     "id": "io-1",
+     "nativeProfile": "dmg2024-ioun-mastery",
+     "itemFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]",
+     "parentFingerprint": null
+    }
    }
   ]
  },
@@ -73,5 +81,23 @@
    "path": "pbAdd",
    "eq": 1
   }
- ]
+ ],
+ "projectionOptions": {
+  "iounOrbit": {
+   "v": 1,
+   "nextPhysical": 2,
+   "stones": [
+    {
+     "id": "io-1",
+     "profile": "dmg2024-ioun-mastery",
+     "origin": {
+      "kind": "native-child",
+      "parentFingerprint": null,
+      "childFingerprint": "[\"Ioun Stone (mastery)\",\"Wondrous Item\",\"Legendary\",1,\"Ioun Stones are about the size of a marble and take their name from Ioun, a god of knowledge and prophecy worshiped on some worlds. There are many types, and each type has its own mix of shape and color. As a Magic action, you can toss an Ioun Stone into the air. It then circles your head at a distance of 1d3 feet and gives you its benefit while it does so. Up to three Ioun Stones can circle your head at once. A stone circling your head counts as an object you are wearing. It steers clear of other creatures and objects, shifting its path to avoid hitting them and foiling every attempt by other creatures to attack it or grab it. As a Utilize action, you can catch and stow any number of the Ioun Stones circling your head. If your Attunement to a stone ends while it circles your head, the stone falls as if you had dropped it. The type of stone sets its rarity and its effect. **Mastery.** This stone is a pale green prism. While it circles your head, your Proficiency Bonus increases by 1.\"]"
+     },
+     "orbiting": true
+    }
+   ]
+  }
+ }
 }

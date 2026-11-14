@@ -1,0 +1,3 @@
+import {registerSheetGroup} from './12a-logic-sheet-registry.js';
+import {iounOrbitProjectionMirror,iounOrbitOwnFuture,iounOrbitSourceWitness,iounOrbitAwarenessQualified} from './10o-logic-ioun-orbit.js';
+registerSheetGroup({id:'ioun-orbit-sources',group:'ioun-orbit',phase:'post',order:115,reads:['i.ATT','C.inv','C.itemAdv'],writes:['C.iounOrbit','C.iounOrbitSources','C.itemAdv'],run:function(ctx){const state=iounOrbitProjectionMirror(),witness=iounOrbitSourceWitness(ctx.i.ATT,ctx.C.inv);if(state!==undefined||iounOrbitOwnFuture())ctx.C.iounOrbit=state;ctx.C.iounOrbitSources=witness;if(iounOrbitAwarenessQualified(state,witness))ctx.C.itemAdv=(ctx.C.itemAdv||[]).map(row=>row.k==='Perception'&&row.s==='Ioun Stone (awareness)'?{...row,ab:'WIS'}:row);return ctx.patch();}});
