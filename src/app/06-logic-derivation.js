@@ -30,10 +30,13 @@ function deriveFn1(pb, CF, exhN, exP, a,i){
     let {dmg}=_deriveFn1Step2;
     deriveFn1Step3(amB, hp, i, a, hit, m, amN, cuA, cDo, dmg);
   }
+/* Magic Weapon (S.mw = {w: attack name, l: slot level}): +1, +2 at level 4, +3 at level 6, to attack and damage with that weapon */
+export function mwB(a){ const w=S.mw; if(!w||!a||w.w!==a.n) return 0; const l=num(w.l,2); return l>=6?3:l>=4?2:1; }
 function deriveFn1Step1(a, pb, CF, exhN, exP){
     const m=D.mod[a.ab]||0, hp=[part(ABN[a.ab]+" modifier", m, ABN[a.ab]+" score "+D.score[a.ab])];
     if(a.prof) hp.push(part("Proficiency Bonus", pb, "Proficient with this weapon"));
     if(num(a.misc,0)) hp.push(part(a.miscSrc||"Other bonus", num(a.misc)));
+    if(mwB(a)) hp.push(part("Magic Weapon", mwB(a), "Spell, until it ends or you rest"));
     const amB=ammoBonus(a), amN=amB&&amB.on?amB.on.n:0; if(amN) hp.push(part(amB.on.it.n, amN, "Magic ammunition fired from this weapon"));/* v102 */
     if(CF.atkW&&!/^Cantrip/.test(a.sub||"")&&a.n!=="Unarmed Strike"&&atkKind(a)==="melee") hp.push(part("Sacred Weapon", CF.atkW, "Charisma modifier, while it lasts"));/* v22 RU56 */    if(exhN) hp.push(exP());
     const cuA=cuK("a:"+a.n); if(cuA) lateGet("CU0")["a:"+a.n+"|ho"]=hp.reduce((t,p) =>{return t+p.v},0); if(cuA&&cuNum(cuA.hb)) hp.push(part("Customize: bonus", cuNum(cuA.hb), cuA.note||"Set with Customize"));/* v26 RU38 no. 2 */
@@ -42,7 +45,7 @@ function deriveFn1Step1(a, pb, CF, exhN, exP){
   return /** @type {any} */ ({m, hp, amB, amN, cuA, hit});
 }
 function deriveFn1Step2(CF, a, m, amN, cuA, i, hit){
-    const rgB=(CF.dmgStr&&a.ab==="STR"&&!/^Cantrip/.test(a.sub||""))?CF.dmgStr:0;/* v22 RU56 Rage */ const dm=(a.nomod?0:m)+num(a.dmgBonus,0)+amN+rgB+(cuA?cuNum(cuA.db)||0:0); let dmg=(a.die||"1")+(dm===0?"":(dm>0?"+"+dm:"\u2212"+Math.abs(dm)));
+    const rgB=(CF.dmgStr&&a.ab==="STR"&&!/^Cantrip/.test(a.sub||""))?CF.dmgStr:0;/* v22 RU56 Rage */ const dm=(a.nomod?0:m)+num(a.dmgBonus,0)+mwB(a)+amN+rgB+(cuA?cuNum(cuA.db)||0:0); let dmg=(a.die||"1")+(dm===0?"":(dm>0?"+"+dm:"\u2212"+Math.abs(dm)));
     const dmC=dm-(cuA?cuNum(cuA.db)||0:0), cDo=cuA&&cuA["do"]?String(cuA["do"]):""; if(cuA) lateGet("CU0")["a:"+a.n+"|do"]=(a.die||"1")+(dmC===0?"":(dmC>0?"+"+dmC:"\u2212"+Math.abs(dmC))); if(cDo) dmg=cDo;/* v34 RU85 */
     D.atk[i]={hit:hit, dmg:dmg, rg:rgB};
   return /** @type {any} */ ({dmg, cDo});
@@ -50,7 +53,7 @@ function deriveFn1Step2(CF, a, m, amN, cuA, i, hit){
 function deriveFn1Step3(amB, hp, i, a, hit, m, amN, cuA, cDo, dmg){
     if(amB&&!amB.on) hp.push({l:"Magic ammunition", v:"None selected", note:"You carry "+amB.L.map((x) =>{ return x.it.n; }).join(" and ")+". Open this attack to pick one.", raw:true});/* v102 */
     B["ah-"+i]={t:a.n+": attack roll", parts:hp, total:sg(hit), f:""};
-    B["ad-"+i]={t:a.n+": damage", parts:[{l:"Damage die", v:a.die||"\u2014", note:a.dieSrc||"", raw:true}, part(ABN[a.ab]+" modifier", a.nomod?0:m, a.nomod?"Not added to this damage":"Added to damage")].concat(num(a.dmgBonus,0)?[part(a.miscSrc||"Magic bonus", num(a.dmgBonus))]:[]).concat(amN?[part(amB.on.it.n, amN, "Magic ammunition fired from this weapon")]:[]).concat(cuA&&cuNum(cuA.db)?[part("Customize: damage bonus", cuNum(cuA.db), cuA.note||"Set with Customize")]:[]).concat(cDo?[{l:"Set by you", v:cDo, note:"Calculated value: "+lateGet("CU0")["a:"+a.n+"|do"]+". Your text replaces it.", raw:true}]:[]), total:dmg, f:a.type?("Damage type: "+esc(a.type)+"."):""};
+    B["ad-"+i]={t:a.n+": damage", parts:[{l:"Damage die", v:a.die||"\u2014", note:a.dieSrc||"", raw:true}, part(ABN[a.ab]+" modifier", a.nomod?0:m, a.nomod?"Not added to this damage":"Added to damage")].concat(num(a.dmgBonus,0)?[part(a.miscSrc||"Magic bonus", num(a.dmgBonus))]:[]).concat(mwB(a)?[part("Magic Weapon", mwB(a), "Spell")]:[]).concat(amN?[part(amB.on.it.n, amN, "Magic ammunition fired from this weapon")]:[]).concat(cuA&&cuNum(cuA.db)?[part("Customize: damage bonus", cuNum(cuA.db), cuA.note||"Set with Customize")]:[]).concat(cDo?[{l:"Set by you", v:cDo, note:"Calculated value: "+lateGet("CU0")["a:"+a.n+"|do"]+". Your text replaces it.", raw:true}]:[]), total:dmg, f:a.type?("Damage type: "+esc(a.type)+"."):""};
 }
 function deriveBase(){
   D = {}; B = {}; lateSet("CU0",{});/* v34 RU85 */
@@ -119,6 +122,7 @@ function derivePassivesAcInit(abPart, exhN, exP, skillByName, xr, exh){
   else if(mode==="max3") acParts.push(part("Dexterity modifier (max 3)", Math.min(3,dm), "Medium Armor Master raises the cap to +3"));/* v69 */
   (C.ac.bonus||[]).forEach((b) =>{ acParts.push(part(b.s||"Bonus", num(b.v))); });
   sitNum("ac").forEach((b) =>{ acParts.push(part(b.s,b.v)); });/* v103 */
+  if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
   D.ac=acParts.reduce((a,p) =>{return a+p.v},0); D.ac=cuApply("ac",acParts,D.ac);/* v26 RU38 no. 2 */
   B.ac={t:"Armor Class", parts:acParts, total:String(D.ac), f:mode==="none"?"Heavy armor ignores your Dexterity modifier.":""};
 
@@ -139,7 +143,23 @@ function deriveSpeedSensesHpBase(xr, exh){
   const hd=num(C.hitDie,10), cm=D.mod.CON, avg=hd/2+1;
   const hpParts=[part("Level 1: maximum of d"+hd, hd, C.cls+" level 1 (PHB-2024)")]; hpParts[0].raw=true;
   const hpl=Array.isArray(C.hpPerLevel)?C.hpPerLevel:[];
+  deriveHdHeal(hd, cm);
   return /** @type {any} */ ({hd, cm, avg, hpParts, hpl});
+}
+/* Healing from one Hit Point Die (Miraculous Healing, Sanguine Feast, Short Rest): the card numbers open this breakdown.
+   Periapt of Wound Closure (equipped) doubles it, Bloodlust (Powerful Recovery) treats 1 and 2 as 3 */
+function deriveHdHeal(hd, cm){
+  const per=(C.inv||[]).some((i) =>{ return i&&i.n==="Periapt of Wound Closure"&&i.eq!==false; });
+  const pr=(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Bloodlust"; }); });
+  let a=0; for(let r=1;r<=hd;r++) a+=(pr&&r<3?3:r); a=a/hd;
+  const pts=[{l:"Hit Point Die", v:"1d"+hd, note:"Average "+(Math.round(a*100)/100), raw:true}];
+  if(pr) pts.push({l:"Bloodlust: Powerful Recovery", v:"1, 2 = 3", note:"A roll of 1 or 2 counts as 3", raw:true});
+  pts.push({l:"Constitution modifier", v:sg(cm), note:"Con "+D.score.CON, raw:true});
+  if(per) pts.push({l:"Periapt of Wound Closure", v:"\u00d7 2", note:"Doubles Hit Points from a Hit Point Die", raw:true});
+  const one=Math.round((a+cm)*(per?2:1)), mn=((pr?3:1)+cm)*(per?2:1), mx=(hd+cm)*(per?2:1);
+  B["heal-hd"]={t:"Healing per Hit Point Die", parts:pts, total:"about "+one, f:"Range "+Math.max(0,mn)+" to "+mx+" per die."};
+  const mart=C.cls==="Martyr"?Math.floor(num(C.level,1)/2):0;
+  if(mart) B["heal-mh"]={t:"Miraculous Healing, all dice", parts:[{l:"Dice per use: half your Martyr level", v:String(mart), note:"Martyr "+num(C.level,1), raw:true},{l:"Healing per die", v:"about "+one, note:"Range "+Math.max(0,mn)+" to "+mx, raw:true}], total:"about "+Math.round((a+cm)*(per?2:1)*mart), f:"Range "+Math.max(0,mn*mart)+" to "+(mx*mart)+". Each use spends the dice. No limit on uses."};
 }
 function deriveHpDcCarry(lvl, hpl, hpParts, avg, hd, cm, xr, exh, abPart, pb){
   if(lvl>1 && hpl.length===lvl-1){ hpl.forEach((e,i) =>{ const v=typeof e==="object"?num(e.v):num(e); hpParts.push(part("Level "+(i+2)+(e&&e.c?" ("+e.c+")":"")+(e&&e.r?": rolled":": fixed"), v, e&&e.n?e.n:"")); }); }

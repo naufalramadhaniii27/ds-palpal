@@ -40,6 +40,7 @@ sitReset(kind==='short'?'short':'long'); const ex0=num(S.exh,0), hp14=(kind!=="s
   return /** @type {any} */ ({ex0});
 }
 function doRestStep2(kind, ex0, quiet){
+  if(S.mw) delete S.mw;/* Magic Weapon lasts 1 hour: any rest ends it */
   if(kind==="short"){ if(!quiet) toast("Short Rest: uses restored."); }
   else { const before=S.hp; S.hp=D.hpmax; S.tmp=0; S.ds=[0,0]; if(S.exh>Math.max(0,num(D.exhMin,0))) S.exh--; if(S.hp>before) flash("healed"); if(hasFeat("Resourceful")&&!S.insp){ S.insp=true; try{ renderTiles(); }catch(er){} }/* v21 RU54 */ if(!quiet) toast(x14()?"Long Rest: Hit Points, up to half of your Hit Dice, and every use restored.":"Long Rest: Hit Points, Hit Dice, and every use restored."); }  save(); syncHP(); syncLU(); renderConds();
   if(kind!=="short"&&ex0>0){ try{ renderAll(); }catch(er){} }/* v94: a lower Exhaustion level changes Speed, checks, and (2014) the Hit Point maximum, so the sheet is worked out again */
