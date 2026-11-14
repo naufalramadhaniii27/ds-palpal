@@ -1,0 +1,271 @@
+{
+  "generatedBy": "Actual native 10l/12i/12za/25k commands, owned opaque receipt accepted, exactly one Undo per changed transaction, zero for resolved miss/immunity; destroyed quantity0 in B and C; no S.used pool",
+  "markers": {
+    "Rope of Climbing": {
+      "v": 1,
+      "id": "mrp-1",
+      "nativeProfile": "dmg2024-climbing",
+      "itemFingerprint": "[\"Rope of Climbing\",\"Wondrous Item\",\"Uncommon\",0,\"This rope is 60 feet long and can support as much as 3,000 pounds. While you hold one end, you can take a Magic action to order the other end to come alive and move toward a destination you pick, no farther away than the rope's length. On your turn when you first give the order, that end moves 10 feet, and it moves another 10 feet at the start of each of your later turns, until it arrives or you tell it to stop. You can also order the rope to tie itself firmly to an object or to untie itself, to knot or unknot itself, or to coil up so you can carry it.\\nWhen you order the rope to knot, big knots form along it every 1 foot. While knotted, the rope is only 50 feet long, and it gives Advantage on ability checks made to climb with it.\\nThe rope has Armor Class 20, 20 Hit Points, and Immunity to Poison and Psychic damage. Every 5 minutes, provided it still has 1 Hit Point or more, it regains 1 Hit Point. The rope is destroyed if it drops to 0 Hit Points.\"]"
+    },
+    "Rope of Entanglement": {
+      "v": 1,
+      "id": "mrp-1",
+      "nativeProfile": "dmg2024-entanglement",
+      "itemFingerprint": "[\"Rope of Entanglement\",\"Wondrous Item\",\"Rare\",0,\"This rope is 30 feet long. While you hold one end, you can take a Magic action to make the other end lash out and wrap around one creature in your view no more than 20 feet away. The target must make a DC 15 Dexterity saving throw, and it has the Restrained condition if it fails. You can free the target either by dropping your end, which makes the rope coil up in the target's space, or by taking a Bonus Action to repeat the command, which makes the rope coil up in your hand.\\nWhile the rope holds a target Restrained, that target can use an action to try a DC 15 check, choosing either Dexterity (Acrobatics) or Strength (Athletics). If it succeeds, the rope no longer holds it Restrained. If you still have hold of the rope when a target breaks free, you can take a Reaction to order the rope to coil up in your hand. If you don't, the rope coils up in the target's space.\\nIts Armor Class is 20, it has 20 Hit Points, and it has Immunity to Poison and Psychic damage. Every 5 minutes, provided it still has 1 Hit Point or more, it regains 1 Hit Point. The rope is destroyed if it drops to 0 Hit Points.\"]"
+    }
+  },
+  "receipts": {
+    "Rope of Climbing": {
+      "accepted": true,
+      "undos": 2,
+      "usedKeys": []
+    },
+    "Rope of Entanglement": {
+      "accepted": true,
+      "undos": 2,
+      "usedKeys": []
+    }
+  },
+  "deriveDefaults": {
+    "attackTarget": {
+      "type": "",
+      "alignment": "",
+      "hp": null,
+      "maxHp": null,
+      "tags": []
+    },
+    "hp": null,
+    "tmp": 0,
+    "used": {},
+    "insp": false,
+    "ds": [
+      0,
+      0
+    ],
+    "cond": {},
+    "exh": 0,
+    "burn": 1,
+    "jinx": "",
+    "notes": {},
+    "lang": [
+      "Common",
+      "",
+      ""
+    ],
+    "portrait": "",
+    "theme": "",
+    "align": "",
+    "color": "forest",
+    "sym": "star",
+    "skin": "ddb",
+    "coins": null,
+    "coinBase": null,
+    "lifestyle": ""
+  },
+  "states": {
+    "climbingUnknown": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": true,
+          "hp": null,
+          "knotted": null,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "climbingIntact": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": true,
+          "hp": 20,
+          "knotted": false,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "entanglementUnknown": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "entanglement",
+          "present": true,
+          "hp": null,
+          "knotted": false,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "entanglementIntact": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "entanglement",
+          "present": true,
+          "hp": 20,
+          "knotted": false,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "knotted": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": true,
+          "hp": 20,
+          "knotted": true,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "unknotted": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": true,
+          "hp": 20,
+          "knotted": false,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "immune": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": true,
+          "hp": 20,
+          "knotted": true,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "miss": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": true,
+          "hp": 20,
+          "knotted": true,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "hit": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": true,
+          "hp": 13,
+          "knotted": true,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "recovered": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": true,
+          "hp": 14,
+          "knotted": true,
+          "recoveryEvents": [
+            "actual-five-minutes-1"
+          ]
+        }
+      ]
+    },
+    "destroyed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "climbing",
+          "present": false,
+          "hp": 0,
+          "knotted": true,
+          "recoveryEvents": [
+            "actual-five-minutes-1"
+          ]
+        }
+      ]
+    },
+    "entanglementDamaged": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "entanglement",
+          "present": true,
+          "hp": 13,
+          "knotted": false,
+          "recoveryEvents": []
+        }
+      ]
+    },
+    "entanglementRecovered": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "entanglement",
+          "present": true,
+          "hp": 14,
+          "knotted": false,
+          "recoveryEvents": [
+            "actual-five-minutes-1"
+          ]
+        }
+      ]
+    },
+    "entanglementDestroyed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "physical": [
+        {
+          "id": "mrp-1",
+          "kind": "entanglement",
+          "present": false,
+          "hp": 0,
+          "knotted": false,
+          "recoveryEvents": [
+            "actual-five-minutes-1"
+          ]
+        }
+      ]
+    }
+  }
+}

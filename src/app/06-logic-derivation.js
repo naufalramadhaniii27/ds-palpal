@@ -9,6 +9,7 @@ import {clamp,esc,mod,num,rich,senseList,sg} from "./05-logic-helpers.js";
 bindLive("D",{get:function(){return D;},set:function(v){D=v;}});
 /* ================= DERIVATION WITH SOURCES ================= */
 export var D = {}, B = {};
+export function nativeAbilityCheckBonus(ability){const bonus=D.mod?.[ability],exhaustion=D.exhN;if(!ABK.includes(ability)||!Number.isFinite(bonus)||!Number.isInteger(exhaustion)||exhaustion<0||exhaustion>6)return null;return bonus-2*exhaustion}
 export function part(l,v,note){ return {l:l, v:v, note:note||""}; }
 export function derive(){
   const {lvl, pb, exh, xr, exhN, abPart, exP}=deriveBase();

@@ -24396,6 +24396,737 @@
     "tests/bird_token_ui.mjs"
    ],
    "note": "U50 verified physical token consumption and retained source-qualified Roc transport: actual load/speed limit, flight seconds and distance, required rest, irreversible144mile/HP0/dismiss endings. Native real command/UI receipts, not player FlySpeed or attack permission. Existing INFO\u2192covered; no extra UNC closure."
+  },
+  {
+   "id": "u51-item-dmg-rope-of-climbing-6",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rope of Climbing",
+   "cls": [
+    "ADV"
+   ],
+   "vals": [
+    "50"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ knotted,\\ the\\ rope\\ is\\ only\\ 50\\ feet\\ long,\\ and\\ it\\ gives\\ advantage\\ on\\ ability\\ checks\\ made\\ to\\ climb\\ with\\ it\\.$",
+   "anchor": [
+    "src/data/lib/magic-ropes.js",
+    "export function magicRopeProjection("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function resolveMagicRopeAttack("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function damageMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function regenerateMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function setMagicRopeKnots("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function magicRopeClimbRoll("
+    ],
+    [
+     "src/data/lib/magic-ropes-source.js",
+     "export function reconcileMagicRopesInventory("
+    ],
+    [
+     "src/builder/10l-logic-magic-ropes.js",
+     "export function magicRopesInventoryRows("
+    ],
+    [
+     "src/builder/12i-logic-sheet-handlers-gear-resources.js",
+     "Q.magicRopesInventoryRows(Q.birdTokenInventoryRows(Q.ensureInv()))"
+    ],
+    [
+     "src/builder/12za-logic-magic-ropes.js",
+     "id:'retained-magic-ropes'"
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function damagePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function regeneratePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function knotPlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function climbInfo("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function publish("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesCommand("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesClimb("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function damageHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function climbHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function physicalHTML("
+    ]
+   ],
+   "test": "Z3 U51 actual physical rope ledger destroyed",
+   "consumerTests": [
+    "tests/magic_ropes_model.mjs",
+    "tests/magic_ropes_backend.mjs",
+    "tests/magic_ropes_native_runtime.mjs",
+    "tests/magic_ropes_ui.mjs"
+   ],
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. One UNC closure."
+  },
+  {
+   "id": "u51-item-dmg-rope-of-climbing-7",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rope of Climbing",
+   "cls": [
+    "IMM"
+   ],
+   "vals": [
+    "20"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ rope\\ has\\ armor\\ class\\ 20,\\ 20\\ hit\\ points,\\ and\\ immunity\\ to\\ poison\\ and\\ psychic\\ damage\\.$",
+   "anchor": [
+    "src/data/lib/magic-ropes.js",
+    "export function magicRopeProjection("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function resolveMagicRopeAttack("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function damageMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function regenerateMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function setMagicRopeKnots("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function magicRopeClimbRoll("
+    ],
+    [
+     "src/data/lib/magic-ropes-source.js",
+     "export function reconcileMagicRopesInventory("
+    ],
+    [
+     "src/builder/10l-logic-magic-ropes.js",
+     "export function magicRopesInventoryRows("
+    ],
+    [
+     "src/builder/12i-logic-sheet-handlers-gear-resources.js",
+     "Q.magicRopesInventoryRows(Q.birdTokenInventoryRows(Q.ensureInv()))"
+    ],
+    [
+     "src/builder/12za-logic-magic-ropes.js",
+     "id:'retained-magic-ropes'"
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function damagePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function regeneratePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function knotPlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function climbInfo("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function publish("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesCommand("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesClimb("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function damageHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function climbHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function physicalHTML("
+    ]
+   ],
+   "test": "Z3 U51 actual physical rope ledger destroyed",
+   "consumerTests": [
+    "tests/magic_ropes_model.mjs",
+    "tests/magic_ropes_backend.mjs",
+    "tests/magic_ropes_native_runtime.mjs",
+    "tests/magic_ropes_ui.mjs"
+   ],
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. One UNC closure."
+  },
+  {
+   "id": "u51-item-dmg-rope-of-climbing-8",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rope of Climbing",
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "5",
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^every\\ 5\\ minutes,\\ provided\\ it\\ still\\ has\\ 1\\ hit\\ point\\ or\\ more,\\ it\\ regains\\ 1\\ hit\\ point\\.$",
+   "anchor": [
+    "src/data/lib/magic-ropes.js",
+    "export function magicRopeProjection("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function resolveMagicRopeAttack("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function damageMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function regenerateMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function setMagicRopeKnots("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function magicRopeClimbRoll("
+    ],
+    [
+     "src/data/lib/magic-ropes-source.js",
+     "export function reconcileMagicRopesInventory("
+    ],
+    [
+     "src/builder/10l-logic-magic-ropes.js",
+     "export function magicRopesInventoryRows("
+    ],
+    [
+     "src/builder/12i-logic-sheet-handlers-gear-resources.js",
+     "Q.magicRopesInventoryRows(Q.birdTokenInventoryRows(Q.ensureInv()))"
+    ],
+    [
+     "src/builder/12za-logic-magic-ropes.js",
+     "id:'retained-magic-ropes'"
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function damagePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function regeneratePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function knotPlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function climbInfo("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function publish("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesCommand("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesClimb("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function damageHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function climbHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function physicalHTML("
+    ]
+   ],
+   "test": "Z3 U51 actual physical rope ledger destroyed",
+   "consumerTests": [
+    "tests/magic_ropes_model.mjs",
+    "tests/magic_ropes_backend.mjs",
+    "tests/magic_ropes_native_runtime.mjs",
+    "tests/magic_ropes_ui.mjs"
+   ],
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. One UNC closure."
+  },
+  {
+   "id": "u51-item-dmg-rope-of-entanglement-10",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rope of Entanglement",
+   "cls": [
+    "RESOURCE"
+   ],
+   "vals": [
+    "5",
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^every\\ 5\\ minutes,\\ provided\\ it\\ still\\ has\\ 1\\ hit\\ point\\ or\\ more,\\ it\\ regains\\ 1\\ hit\\ point\\.$",
+   "anchor": [
+    "src/data/lib/magic-ropes.js",
+    "export function magicRopeProjection("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function resolveMagicRopeAttack("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function damageMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function regenerateMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function setMagicRopeKnots("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function magicRopeClimbRoll("
+    ],
+    [
+     "src/data/lib/magic-ropes-source.js",
+     "export function reconcileMagicRopesInventory("
+    ],
+    [
+     "src/builder/10l-logic-magic-ropes.js",
+     "export function magicRopesInventoryRows("
+    ],
+    [
+     "src/builder/12i-logic-sheet-handlers-gear-resources.js",
+     "Q.magicRopesInventoryRows(Q.birdTokenInventoryRows(Q.ensureInv()))"
+    ],
+    [
+     "src/builder/12za-logic-magic-ropes.js",
+     "id:'retained-magic-ropes'"
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function damagePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function regeneratePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function knotPlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function climbInfo("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function publish("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesCommand("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesClimb("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function damageHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function climbHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function physicalHTML("
+    ]
+   ],
+   "test": "Z3 U51 actual physical rope ledger destroyed",
+   "consumerTests": [
+    "tests/magic_ropes_model.mjs",
+    "tests/magic_ropes_backend.mjs",
+    "tests/magic_ropes_native_runtime.mjs",
+    "tests/magic_ropes_ui.mjs"
+   ],
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. One UNC closure."
+  },
+  {
+   "id": "u51-item-dmg-rope-of-climbing-9",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rope of Climbing",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ rope\\ is\\ destroyed\\ if\\ it\\ drops\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/data/lib/magic-ropes.js",
+    "export function magicRopeProjection("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function resolveMagicRopeAttack("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function damageMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function regenerateMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function setMagicRopeKnots("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function magicRopeClimbRoll("
+    ],
+    [
+     "src/data/lib/magic-ropes-source.js",
+     "export function reconcileMagicRopesInventory("
+    ],
+    [
+     "src/builder/10l-logic-magic-ropes.js",
+     "export function magicRopesInventoryRows("
+    ],
+    [
+     "src/builder/12i-logic-sheet-handlers-gear-resources.js",
+     "Q.magicRopesInventoryRows(Q.birdTokenInventoryRows(Q.ensureInv()))"
+    ],
+    [
+     "src/builder/12za-logic-magic-ropes.js",
+     "id:'retained-magic-ropes'"
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function damagePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function regeneratePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function knotPlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function climbInfo("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function publish("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesCommand("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesClimb("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function damageHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function climbHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function physicalHTML("
+    ]
+   ],
+   "test": "Z3 U51 actual physical rope ledger destroyed",
+   "consumerTests": [
+    "tests/magic_ropes_model.mjs",
+    "tests/magic_ropes_backend.mjs",
+    "tests/magic_ropes_native_runtime.mjs",
+    "tests/magic_ropes_ui.mjs"
+   ],
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO\u2192covered; not extra UNC closure."
+  },
+  {
+   "id": "u51-item-dmg-rope-of-entanglement-9",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rope of Entanglement",
+   "cls": [
+    "AC",
+    "IMM"
+   ],
+   "vals": [
+    "20"
+   ],
+   "scopeValues": true,
+   "rx": "^its\\ armor\\ class\\ is\\ 20,\\ it\\ has\\ 20\\ hit\\ points,\\ and\\ it\\ has\\ immunity\\ to\\ poison\\ and\\ psychic\\ damage\\.$",
+   "anchor": [
+    "src/data/lib/magic-ropes.js",
+    "export function magicRopeProjection("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function resolveMagicRopeAttack("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function damageMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function regenerateMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function setMagicRopeKnots("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function magicRopeClimbRoll("
+    ],
+    [
+     "src/data/lib/magic-ropes-source.js",
+     "export function reconcileMagicRopesInventory("
+    ],
+    [
+     "src/builder/10l-logic-magic-ropes.js",
+     "export function magicRopesInventoryRows("
+    ],
+    [
+     "src/builder/12i-logic-sheet-handlers-gear-resources.js",
+     "Q.magicRopesInventoryRows(Q.birdTokenInventoryRows(Q.ensureInv()))"
+    ],
+    [
+     "src/builder/12za-logic-magic-ropes.js",
+     "id:'retained-magic-ropes'"
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function damagePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function regeneratePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function knotPlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function climbInfo("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function publish("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesCommand("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesClimb("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function damageHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function climbHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function physicalHTML("
+    ]
+   ],
+   "test": "Z3 U51 actual physical rope ledger destroyed",
+   "consumerTests": [
+    "tests/magic_ropes_model.mjs",
+    "tests/magic_ropes_backend.mjs",
+    "tests/magic_ropes_native_runtime.mjs",
+    "tests/magic_ropes_ui.mjs"
+   ],
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO\u2192covered; not extra UNC closure."
+  },
+  {
+   "id": "u51-item-dmg-rope-of-entanglement-11",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rope of Entanglement",
+   "cls": [
+    "HP"
+   ],
+   "vals": [
+    "0"
+   ],
+   "scopeValues": true,
+   "rx": "^the\\ rope\\ is\\ destroyed\\ if\\ it\\ drops\\ to\\ 0\\ hit\\ points\\.$",
+   "anchor": [
+    "src/data/lib/magic-ropes.js",
+    "export function magicRopeProjection("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function resolveMagicRopeAttack("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function damageMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function regenerateMagicRope("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function setMagicRopeKnots("
+    ],
+    [
+     "src/data/lib/magic-ropes.js",
+     "export function magicRopeClimbRoll("
+    ],
+    [
+     "src/data/lib/magic-ropes-source.js",
+     "export function reconcileMagicRopesInventory("
+    ],
+    [
+     "src/builder/10l-logic-magic-ropes.js",
+     "export function magicRopesInventoryRows("
+    ],
+    [
+     "src/builder/12i-logic-sheet-handlers-gear-resources.js",
+     "Q.magicRopesInventoryRows(Q.birdTokenInventoryRows(Q.ensureInv()))"
+    ],
+    [
+     "src/builder/12za-logic-magic-ropes.js",
+     "id:'retained-magic-ropes'"
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function damagePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function regeneratePlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function knotPlan("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function climbInfo("
+    ],
+    [
+     "src/builder/25k-logic-magic-ropes.js",
+     "function publish("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesCommand("
+    ],
+    [
+     "src/app/32r-logic-magic-ropes.js",
+     "export function requestMagicRopesClimb("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function damageHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function climbHTML("
+    ],
+    [
+     "src/app/21s-ui-magic-ropes.js",
+     "function physicalHTML("
+    ]
+   ],
+   "test": "Z3 U51 actual physical rope ledger destroyed",
+   "consumerTests": [
+    "tests/magic_ropes_model.mjs",
+    "tests/magic_ropes_backend.mjs",
+    "tests/magic_ropes_native_runtime.mjs",
+    "tests/magic_ropes_ui.mjs"
+   ],
+   "note": "U51 proposed exact source clause: actual object AC20 attack resolver, typed Poison/Psychic immunity and HP20, live-only five-minute regeneration, irreversible destroyed inventory quantity0; knotted Climbing length50 and qualified native ability check roll. No player defenses/global advantage. Existing INFO\u2192covered; not extra UNC closure."
   }
  ]
 }
