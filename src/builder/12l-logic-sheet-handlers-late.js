@@ -1,3 +1,4 @@
+import {pluvennGrappleclawsProblems,pluvennUnarmedRole} from '../data/lib/pluvenn-grappleclaws.js';
 import {ABN,dieAvg,mod,attackKindsForRow,weaponFormMetadata,weaponRowAllowed} from "./01-logic-core-helpers.js";
 import {actsTable,bookPages,featDef,genv,weaponDef} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
@@ -76,8 +77,8 @@ registerSheetGroup({id:"late-fly-moves",group:"late",phase:"late",order:50,reads
 registerSheetGroup({id:"late-natural-feat",group:"late",phase:"late",order:60,reads:["i.feats", "C.attacks"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {feats}=I; feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.attacks)F.attacks.forEach((q) =>{C.attacks.push({n:q.n,sub:"Natural weapon",ab:q.ab||"STR",prof:true,die:q.die,dieSrc:q.n+" ("+f.n+")",type:q.type,range:"5 ft",m:"",note:""})})});/* v69 */
   return ctx.patch()}});
-registerSheetGroup({id:"late-natural-species",group:"late",phase:"late",order:70,reads:["i.sp", "i.custom", "i.spName", "i.SRC", "C.attacks"],writes:["C.attacks"],
- run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {sp,custom,spName,SRC}=I; if(sp&&!custom&&sp.attacks)sp.attacks.forEach((q) =>{C.attacks.push({n:q.n,sub:"Natural weapon",ab:q.ab||"STR",prof:true,die:q.die,dieSrc:q.n+" ("+spName+", "+(sp.hb||I.SRC)+")",type:q.type,range:q.range||"5 ft",m:"",note:q.note||""})});/* v36 p21 */
+registerSheetGroup({id:"late-natural-species",group:"late",phase:"late",order:70,reads:["i.sp", "i.custom", "i.spName", "i.SRC", "C.pluvennGrappleclaws", "C.attacks"],writes:["C.attacks"],
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {sp,custom,spName,SRC}=I; if(sp&&!custom&&sp.attacks)sp.attacks.forEach((q) =>{C.attacks.push({...(!pluvennGrappleclawsProblems(C.pluvennGrappleclaws).length&&sp.attacks.length===1&&q===sp.attacks[0]&&q.n==='Razormaw'?{pluvennUnarmed:pluvennUnarmedRole('pluvenn-razormaw')}:{}) ,n:q.n,sub:"Natural weapon",ab:q.ab||"STR",prof:true,die:q.die,dieSrc:q.n+" ("+spName+", "+(sp.hb||I.SRC)+")",type:q.type,range:q.range||"5 ft",m:"",note:q.note||""})});/* v36 p21 */
   return ctx.patch()}});
 registerSheetRule({id:"leyak-queen-3-sharp-claws",group:"late",about:"Warlock, The Leyak Queen 3: the Sharp Claws attack of Leyak Form",phase:"late",order:80,reads:["i.B", "i.a", "i.mcl", "q.subAt", "C.attacks"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {B,a,mcl}=I; const lq=Q.subAt("Warlock","The Leyak Queen");if(lq>=3){const dc=lq>=10&&((B.ch.scgrand||[]).indexOf("Deadly Claws")>=0||(I.mcl.some((m,i) =>{return ((B.ch["m"+i+":scgrand"])||[]).indexOf("Deadly Claws")>=0}))),fab=a.sc.DEX>a.sc.STR?"DEX":"STR";

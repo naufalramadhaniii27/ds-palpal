@@ -21,6 +21,7 @@ import "./11b-logic-fx-sources.js";
 import "./11c-logic-fx-handlers-sheet.js";
 import "./12a-logic-sheet-registry.js";
 import "./12b-logic-sheet-schema.js";
+import "./12u-logic-pluvenn-grappleclaws.js";
 import "./12c-logic-sheet-handlers-core.js";
 import "./12d-logic-sheet-handlers-skills.js";
 import "./12e-logic-sheet-handlers-defense.js";

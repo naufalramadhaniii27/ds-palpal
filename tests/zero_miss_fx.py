@@ -3198,6 +3198,17 @@ for _fixture,_wis_before,_wis_mod in [("fx_L8_necronomicon",10,-1),("fx_L5_necro
     _saved=json.load(open(os.path.join(HERE,"golden","builds",_fixture+".json"),encoding="utf-8"))["build"]
     CASES.append(dict(name="Z3 U44 completed-reading counterpart for "+_fixture,b=dict(rs=_saved.get("rs","2024"),cls=_saved["cls"],level=_saved["level"],extra=_saved),necronomiconReading=u44_reading(12,2,_wis_before,-2),expect=[("Math.floor(("+u44_score("INT")+"-10)/2)",2),("Math.floor(("+u44_score("WIS")+"-10)/2)",_wis_mod),("C.lang.includes('Void Speech')",True)]))
 
+# U45 Pluvenn Grappleclaws: actual native producer roles, no global Advantage.
+U45_PLUVENN_CAP=dict(v=1,species="Pluvenn",feature="Grappleclaws",profile="DrDhrolins24")
+for _rs in ["2024","2014"]:
+    _species_other="Human (2014)" if _rs=="2014" else "Human"
+    _native=dict(rs=_rs,cls="Fighter",level=1,base=WL,extra=dict(species="Pluvenn",src=dict(core=True,tsdd=True,dmg=True)))
+    CASES.append(dict(name="Z3 U45 native Pluvenn Grappleclaws producer "+_rs,b=_native,expect=[("C.pluvennGrappleclaws",U45_PLUVENN_CAP),("C.attacks.filter(row=>row.pluvennUnarmed?.origin==='unarmed-strike').length",1),("C.attacks.filter(row=>row.pluvennUnarmed?.origin==='pluvenn-razormaw').length",1),("C.attacks.filter(row=>row.pluvennUnarmed).every(row=>row.pluvennUnarmed.v===1)",True),("C.skills.find(row=>row.n==='Athletics').adv===true",False)]))
+    CASES.append(dict(name="NEG U45 other species cannot mint Grappleclaws "+_rs,b=dict(_native,extra=dict(species=_species_other,src=dict(core=True,tsdd=True,dmg=True))),expect=[("C.pluvennGrappleclaws===undefined",True),("C.attacks.some(row=>row.pluvennUnarmed)",False)]))
+    CASES.append(dict(name="NEG U45 noncanonical species label cannot mint Grappleclaws "+_rs,b=dict(_native,extra=dict(species="Pluvenn (custom)",src=dict(core=True,tsdd=True,dmg=True))),expect=[("C.pluvennGrappleclaws===undefined",True),("C.attacks.some(row=>row.pluvennUnarmed)",False)]))
+    CASES.append(dict(name="NEG U45 raw build capability is not native source authority "+_rs,b=dict(_native,extra=dict(species=_species_other,src=dict(core=True,tsdd=True,dmg=True),pluvennGrappleclaws=U45_PLUVENN_CAP)),expect=[("C.pluvennGrappleclaws===undefined",True),("C.attacks.some(row=>row.pluvennUnarmed)",False)]))
+    CASES.append(dict(name="NEG U45 weapon beside native unarmed roles cannot inherit them "+_rs,b=dict(_native,inv=LS),expect=[("C.attacks.some(row=>row.n==='Longsword')",True),("C.attacks.filter(row=>row.n==='Longsword').every(row=>row.pluvennUnarmed===undefined)",True),("C.attacks.filter(row=>row.pluvennUnarmed).length",2)]))
+
 # __bldSheetFor restores its caller's packs, so a timer after a disposable build
 # can warm the wrong index. Keep the case packs installed for both compared
 # builds, then restore the exact previous fixture. HTML comparison stays strict;
