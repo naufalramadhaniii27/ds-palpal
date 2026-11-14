@@ -1,0 +1,1490 @@
+{
+  "generatedBy": "Actual source-qualified native 10k/12i/12z/25j command APIs with accepted opaque receipts and one Undo per command; no descriptor-only simulation",
+  "physicalId": "qbtp-1",
+  "birdId": "qbb-1",
+  "nativeRoc": {
+    "source": "core",
+    "nativeName": "Roc",
+    "maxHP": 248,
+    "sha256": "4ba882368cf562cc081c9942dc76895681bdad794699ba65c5298d94b83e2b4b"
+  },
+  "markers": {
+    "Quaal's Feather Token": {
+      "v": 1,
+      "id": "qbtp-1",
+      "nativeProfile": "dmg2024-bird",
+      "itemFingerprint": "[\"Quaal's Feather Token\",\"Wondrous Item\",\"Varies\",0,\"This item has the appearance of a feather. Several kinds of feather tokens exist, and each kind has its own effect that can be used only once. The Dungeon Master picks the kind or rolls on the Quaal's Feather Tokens table, and the kind sets the token's rarity.\\n**Quaal's Feather Tokens.** Roll 1d100: on 01 to 20 an anchor (Uncommon), on 21 to 35 a bird (Rare), on 36 to 50 a fan (Uncommon), on 51 to 65 a swan boat (Rare), on 66 to 90 a tree (Uncommon), and on 91 to 00 a whip (Rare).\\n**Anchor (Uncommon).** As a Magic action, you can press the token against a ship or boat. For the following 24 hours, no means of any kind can move that vessel. If you touch the token to the same vessel again, the effect stops. The token vanishes once the effect ends.\\n**Bird (Rare).** As a Magic action, you can throw the token 5 feet upward. It vanishes and is replaced by a huge bird of many colors. The bird uses the Roc's statistics, except that it can't attack. It follows your simple commands. Flying at its top speed, it can bear a load of up to 500 pounds. That top speed is 16 miles per hour, for no more than 144 miles per day, and it must rest 1 hour after every 3 hours of flight. Alternatively, it can bear up to 1,000 pounds while flying at half that speed. The bird vanishes once it has flown its maximum distance for the day or when it drops to 0 Hit Points. You can dismiss it as a Magic action.\\n**Fan (Uncommon).** While aboard a ship or boat, you can use a Magic action to throw the token up to 10 feet into the air. It vanishes and is replaced by a giant fan that floats and flaps, producing a strong wind. That wind can fill the sails of a single ship and add 5 miles per hour to that ship's speed for 8 hours. A Magic action lets you dismiss the fan.\\n**Swan Boat (Rare).** As a Magic action, you can touch the token to a body of water that is at least 60 feet across. The token vanishes, and a swan-shaped boat 50 feet long and 20 feet wide appears in its place. The boat moves itself over the water at 6 miles per hour. While aboard, you can take a Magic action to order it to move or to turn by up to 90 degrees. After 24 hours the boat vanishes. You can dismiss it as a Magic action.\\n**Tree (Uncommon).** This token works only when you are outdoors. As a Magic action, you can touch it to an unoccupied spot on the ground. The token vanishes, and an ordinary, nonmagical oak tree instantly appears there. The tree stands 60 feet tall with a trunk 5 feet in diameter, and the branches at its crown spread out in a 20-foot radius.\\n**Whip (Rare).** As a Magic action, you can throw the token to a point no more than 10 feet from you. It vanishes, and a whip that floats in the air appears in its place. From then on, a Bonus Action of yours lets the whip strike with a melee spell attack, at a +9 bonus, against one creature no more than 10 feet from the whip. A hit deals 1d6 + 5 Force damage to that creature. With a later Bonus Action, you can have the whip fly up to 20 feet and then attack again, targeting a creature within 10 feet of its new position. The whip vanishes at the end of 1 hour, if you dismiss it with a Magic action, if you die, or if you gain the Incapacitated condition.\"]"
+    },
+    "Quaal's Feather Token (bird)": {
+      "v": 1,
+      "id": "qbtp-1",
+      "nativeProfile": "dmg2024-bird",
+      "itemFingerprint": "[\"Quaal's Feather Token (bird)\",\"Wondrous Item\",\"Rare\",0,\"This item looks like a feather. Feather tokens come in several kinds, and each kind has a different effect that can be used only once. The kind of token sets its rarity. **Bird.** As a Magic action, you can toss the token 5 feet up into the air. The token vanishes, and a huge bird of many colors appears in its place. The bird has a Roc's statistics but is unable to attack. It obeys your simple commands. It can carry up to 500 pounds while it flies at its top speed, which is 16 miles per hour for no more than 144 miles per day, resting 1 hour after every 3 hours of flight. Flying at half that speed, it can instead carry up to 1,000 pounds. Once the bird has covered its maximum distance for a day, or when its Hit Points reach 0, it disappears. You can also take a Magic action to dismiss it.\"]"
+    }
+  },
+  "nativeReceipts": {
+    "Quaal's Feather Token": {
+      "accepted": true,
+      "undos": 3,
+      "buildQuantity": 0,
+      "sheetQuantity": 0,
+      "usedKeys": []
+    },
+    "Quaal's Feather Token (bird)": {
+      "accepted": true,
+      "undos": 3,
+      "buildQuantity": 0,
+      "sheetQuantity": 0,
+      "usedKeys": []
+    }
+  },
+  "deriveDefaults": {
+    "attackTarget": {
+      "type": "",
+      "alignment": "",
+      "hp": null,
+      "maxHp": null,
+      "tags": []
+    },
+    "hp": null,
+    "tmp": 0,
+    "used": {},
+    "insp": false,
+    "ds": [
+      0,
+      0
+    ],
+    "cond": {},
+    "exh": 0,
+    "burn": 1,
+    "jinx": "",
+    "notes": {},
+    "lang": [
+      "Common",
+      "",
+      ""
+    ],
+    "portrait": "",
+    "theme": "",
+    "align": "",
+    "color": "forest",
+    "sym": "star",
+    "skin": "ddb",
+    "coins": null,
+    "coinBase": null,
+    "lifestyle": ""
+  },
+  "states": {
+    "ready": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 1,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": true,
+          "availability": true
+        }
+      ],
+      "birds": []
+    },
+    "active": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 0
+        }
+      ]
+    },
+    "full500": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 8000,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 0
+        }
+      ]
+    },
+    "half500plus": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 8001,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 0
+        }
+      ]
+    },
+    "half1000": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 16000,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 0
+        }
+      ]
+    },
+    "over1000": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 16001,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 0
+        }
+      ]
+    },
+    "fullHour": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 8000,
+          "flightSecondsSinceRest": 3600,
+          "distanceUnits": 1267200
+        }
+      ]
+    },
+    "halfHour": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 8001,
+          "flightSecondsSinceRest": 3600,
+          "distanceUnits": 633600
+        }
+      ]
+    },
+    "threeHours": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 10800,
+          "distanceUnits": 3801600
+        }
+      ]
+    },
+    "rested": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 3801600
+        }
+      ]
+    },
+    "slowThreeHours": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 10800,
+          "distanceUnits": 1900800
+        }
+      ]
+    },
+    "unloadedAfterWindow": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 10800,
+          "distanceUnits": 3801600
+        }
+      ]
+    },
+    "nearCap": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": true,
+          "endReason": null,
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 11404799
+        }
+      ]
+    },
+    "distanceEnd": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": false,
+          "endReason": "distance",
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 1,
+          "distanceUnits": 11404800
+        }
+      ]
+    },
+    "zero": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 0,
+          "active": false,
+          "endReason": "zero-hp",
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 0
+        }
+      ]
+    },
+    "dismissed": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextBird": 2,
+      "physical": [
+        {
+          "id": "qbtp-1",
+          "profile": "dmg2024-bird",
+          "present": false,
+          "availability": false
+        }
+      ],
+      "birds": [
+        {
+          "id": "qbb-1",
+          "physicalId": "qbtp-1",
+          "creature": {
+            "logicalName": "Roc",
+            "nativeName": "Roc",
+            "source": "core",
+            "maxHP": 248,
+            "definitionFingerprint": "{\"im\":\"bestiary/XMM/Roc\",\"n\":\"Roc\",\"p\":[\"**Actions**\",\"**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.\",\"**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.\",\"**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.\",\"**Bonus Actions**\",\"**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature.\"],\"s\":\"core\",\"sub\":\"Gargantuan monstrosity, unaligned • CR 11\",\"tl\":[[\"AC\",\"15\"],[\"HP\",\"248 (16d20 + 80)\"],[\"Speed\",\"20 ft., fly 120 ft.\"],[\"Abilities\",\"STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)\"],[\"Saves\",\"DEX +4, WIS +4\"],[\"Skills\",\"Perception +8\"],[\"Senses\",\"passive Perception 18\"],[\"Environment\",\"arctic, coastal, desert, hill, mountain\"]],\"tx\":\"roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain\"}",
+            "definition": {
+              "n": "Roc",
+              "s": "core",
+              "sub": "Gargantuan monstrosity, unaligned • CR 11",
+              "tl": [
+                [
+                  "AC",
+                  "15"
+                ],
+                [
+                  "HP",
+                  "248 (16d20 + 80)"
+                ],
+                [
+                  "Speed",
+                  "20 ft., fly 120 ft."
+                ],
+                [
+                  "Abilities",
+                  "STR 28 (+9)  DEX 10 (+0)  CON 20 (+5)  INT 3 (-4)  WIS 10 (+0)  CHA 9 (-1)"
+                ],
+                [
+                  "Saves",
+                  "DEX +4, WIS +4"
+                ],
+                [
+                  "Skills",
+                  "Perception +8"
+                ],
+                [
+                  "Senses",
+                  "passive Perception 18"
+                ],
+                [
+                  "Environment",
+                  "arctic, coastal, desert, hill, mountain"
+                ]
+              ],
+              "p": [
+                "**Actions**",
+                "**Multiattack.** Two Beak attacks. One attack may be swapped for a Talons attack.",
+                "**Beak.** Melee Attack Roll: +13, reach 10 ft. Hit: 28 (3d12 + 9) Piercing damage.",
+                "**Talons.** Melee Attack Roll: +13, reach 5 ft. Hit: 23 (4d6 + 9) Slashing damage. A Huge or smaller target is Grappled (escape DC 19) by both talons and is Restrained until the grapple ends.",
+                "**Bonus Actions**",
+                "**Swoop 5.** When it has a Grappled creature, the roc can fly up to half its Fly Speed with no Opportunity Attack provoked, then release the creature."
+              ],
+              "tx": "roc gargantuan monstrosity, unaligned • cr 11 arctic coastal desert hill mountain",
+              "im": "bestiary/XMM/Roc"
+            }
+          },
+          "hp": 248,
+          "active": false,
+          "endReason": "dismissed",
+          "loadOunces": 0,
+          "flightSecondsSinceRest": 0,
+          "distanceUnits": 0
+        }
+      ]
+    }
+  },
+  "projections": {
+    "active": {
+      "ok": true,
+      "active": true,
+      "canFly": true,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 11404800,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    },
+    "full500": {
+      "ok": true,
+      "active": true,
+      "canFly": true,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 8000,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 11404800,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    },
+    "half500plus": {
+      "ok": true,
+      "active": true,
+      "canFly": true,
+      "topMph": 8,
+      "unitsPerSecond": 176,
+      "loadOunces": 8001,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 11404800,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    },
+    "half1000": {
+      "ok": true,
+      "active": true,
+      "canFly": true,
+      "topMph": 8,
+      "unitsPerSecond": 176,
+      "loadOunces": 16000,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 11404800,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    },
+    "over1000": {
+      "ok": true,
+      "active": true,
+      "canFly": false,
+      "topMph": 0,
+      "unitsPerSecond": 0,
+      "loadOunces": 16001,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 11404800,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    },
+    "fullHour": {
+      "ok": true,
+      "active": true,
+      "canFly": true,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 8000,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 10137600,
+      "flightSecondsRemaining": 7200,
+      "restRequired": false
+    },
+    "halfHour": {
+      "ok": true,
+      "active": true,
+      "canFly": true,
+      "topMph": 8,
+      "unitsPerSecond": 176,
+      "loadOunces": 8001,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 10771200,
+      "flightSecondsRemaining": 7200,
+      "restRequired": false
+    },
+    "threeHours": {
+      "ok": true,
+      "active": true,
+      "canFly": false,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 7603200,
+      "flightSecondsRemaining": 0,
+      "restRequired": true
+    },
+    "rested": {
+      "ok": true,
+      "active": true,
+      "canFly": true,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 7603200,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    },
+    "slowThreeHours": {
+      "ok": true,
+      "active": true,
+      "canFly": false,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 9504000,
+      "flightSecondsRemaining": 0,
+      "restRequired": true
+    },
+    "unloadedAfterWindow": {
+      "ok": true,
+      "active": true,
+      "canFly": false,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 7603200,
+      "flightSecondsRemaining": 0,
+      "restRequired": true
+    },
+    "nearCap": {
+      "ok": true,
+      "active": true,
+      "canFly": true,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 1,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    },
+    "distanceEnd": {
+      "ok": true,
+      "active": false,
+      "canFly": false,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 0,
+      "flightSecondsRemaining": 10799,
+      "restRequired": false
+    },
+    "zero": {
+      "ok": true,
+      "active": false,
+      "canFly": false,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 11404800,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    },
+    "dismissed": {
+      "ok": true,
+      "active": false,
+      "canFly": false,
+      "topMph": 16,
+      "unitsPerSecond": 352,
+      "loadOunces": 0,
+      "maximumLoadOunces": 16000,
+      "remainingDistanceUnits": 11404800,
+      "flightSecondsRemaining": 10800,
+      "restRequired": false
+    }
+  }
+}
