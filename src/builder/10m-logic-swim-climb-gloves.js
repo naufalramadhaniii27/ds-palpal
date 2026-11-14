@@ -4,7 +4,7 @@ import {DM14S} from './09c-logic-edition-overlays.js';
 import {attunementState,itemInUse} from './03-logic-magic-item-effects.js';
 import {swimClimbGlovesProblems,swimClimbGlovesNativeProfile,canonicalSwimClimbGlovesDefinition} from '../data/lib/swim-climb-gloves.js';
 export {canonicalSwimClimbGlovesDefinition};
-const ITEM='Gloves of Swimming and Climbing',own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),typed=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes'];
+const ITEM='Gloves of Swimming and Climbing',own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),typed=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses'];
 export function swimClimbGlovesNativeSource(rows){return swimClimbGlovesNativeProfile(rows)}
 export function swimClimbGlovesCatalog(){return swimClimbGlovesNativeSource(DM14S||DMGI)}
 function futureOwnedCapability(){const live=sheetState();return live?.C&&B.cid&&B.cid===genv.__sheetId?.()&&own(live.C,'swimClimbGloves')&&swimClimbGlovesProblems(live.C.swimClimbGloves).length?{value:live.C.swimClimbGloves}:null}

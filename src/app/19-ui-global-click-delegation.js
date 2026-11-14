@@ -1,3 +1,4 @@
+import {applyNativePlayerDamage} from './32u-logic-player-damage.js';
 import {summonResourceManaged} from "./lib/summon-resource.js";
 import {env} from "./00-env.js";import {concCheck,concEnd,concOf,hasFeat,lateGet,openRest,renderAll,sitReset,toastU,undoMark} from "./00a-reg-late-ports.js";import {hpWord} from "./05-logic-helpers.js";import {hdPlan,x14} from "./03-data-glossary.js";
 import {C,FROZEN,S,save} from "./04-logic-storage.js";
@@ -25,10 +26,10 @@ document.addEventListener("click",(e) =>{
   if(e.target.closest("#condOpen")){ showEntry({type:"cond"},false); return; }
   const off=e.target.closest("#conds [data-off]"); if(off){ undoMark("Remove "+off.getAttribute("data-off")); delete S.cond[off.getAttribute("data-off")]; save(); renderAll(); return; }
   const swb=e.target.closest("[data-swp]"); if(swb){ if(!swb.disabled) swpMove(+swb.getAttribute("data-swp")); return; }/* v36 p18 */
-  const uf=e.target.closest("[data-usef]"); if(uf&&!uf.disabled){ const up=uf.getAttribute("data-usef").split("|"), ur=(D.res||[]).filter((q) =>{return q.k===up[0]})[0]; if(ur){if(summonResourceManaged(C,S,up[0])){toast('Use the item panel to resolve a summon or record its actual recovery.');return}if(+up[1]<0&&routeDivineInterventionUse(up[0]))return;invalidateClericResourceState();invalidateSlotRecoveryState(S);undoMark("Limited Use",1); const ulf=clamp(ur.max-used(up[0],ur.max)+(+up[1]),0,ur.max); S.used[up[0]]=ur.max-ulf; save(); syncLU(); refreshEntry(); toast((+up[1]<0?"Used ":"Gave back ")+esc(ur.n||"")+". "+ulf+" left"); } return; }/* v36 p17 */
-  const plb=e.target.closest(".plb[data-k]"); if(plb){ const pk=plb.getAttribute("data-k"), pr=(D.res||[]).filter((q) =>{return q.k===pk})[0]; if(pr){if(summonResourceManaged(C,S,pk)){toast('Use the item panel to resolve a summon or record its actual recovery.');return}if(+plb.getAttribute("data-pd")<0&&routeDivineInterventionUse(pk))return;invalidateClericResourceState();invalidateSlotRecoveryState(S);undoMark("Limited Use",1); const lf=clamp(pr.max-used(pk,pr.max)+(+plb.getAttribute("data-pd")),0,pr.max); S.used[pk]=pr.max-lf; save(); syncLU(); } return; }
+  const uf=e.target.closest("[data-usef]"); if(uf&&!uf.disabled){ const up=uf.getAttribute("data-usef").split("|"), ur=(D.res||[]).filter((q) =>{return q.k===up[0]})[0]; if(ur){if(summonResourceManaged(C,S,up[0])){toast('Use the source item’s panel to resolve its activation or actual recovery.');return}if(+up[1]<0&&routeDivineInterventionUse(up[0]))return;invalidateClericResourceState();invalidateSlotRecoveryState(S);undoMark("Limited Use",1); const ulf=clamp(ur.max-used(up[0],ur.max)+(+up[1]),0,ur.max); S.used[up[0]]=ur.max-ulf; save(); syncLU(); refreshEntry(); toast((+up[1]<0?"Used ":"Gave back ")+esc(ur.n||"")+". "+ulf+" left"); } return; }/* v36 p17 */
+  const plb=e.target.closest(".plb[data-k]"); if(plb){ const pk=plb.getAttribute("data-k"), pr=(D.res||[]).filter((q) =>{return q.k===pk})[0]; if(pr){if(summonResourceManaged(C,S,pk)){toast('Use the source item’s panel to resolve its activation or actual recovery.');return}if(+plb.getAttribute("data-pd")<0&&routeDivineInterventionUse(pk))return;invalidateClericResourceState();invalidateSlotRecoveryState(S);undoMark("Limited Use",1); const lf=clamp(pr.max-used(pk,pr.max)+(+plb.getAttribute("data-pd")),0,pr.max); S.used[pk]=pr.max-lf; save(); syncLU(); } return; }
   const pw=e.target.closest("[data-pactset]"); if(pw){ const nm=pw.getAttribute("data-pactset"); if(env.__bldSetPact&&env.__bldSetPact(nm)){ toast(nm+" is now your pact weapon."); renderAll(); } return; }
-  const bx=e.target.closest("#lu .bx, #featBody .bx, #actBody .bx, #spBody .bx, #sheetBody .bx[data-k]"); if(bx){ const k=bx.getAttribute("data-k"), i=+bx.getAttribute("data-i");if(summonResourceManaged(C,S,k)){toast('Use the item panel to resolve a summon or record its actual recovery.');return}invalidateClericResourceState();invalidateSlotRecoveryState(S);undoMark(/^s\d$/.test(k)?"Spell slot":k==="hd"?"Hit Dice":"Limited Use"); S.used[k] = (num(S.used[k],0)===i+1) ? i : i+1; save(); syncLU(); return; }
+  const bx=e.target.closest("#lu .bx, #featBody .bx, #actBody .bx, #spBody .bx, #sheetBody .bx[data-k]"); if(bx){ const k=bx.getAttribute("data-k"), i=+bx.getAttribute("data-i");if(summonResourceManaged(C,S,k)){toast('Use the source item’s panel to resolve its activation or actual recovery.');return}invalidateClericResourceState();invalidateSlotRecoveryState(S);undoMark(/^s\d$/.test(k)?"Spell slot":k==="hd"?"Hit Dice":"Limited Use"); S.used[k] = (num(S.used[k],0)===i+1) ? i : i+1; save(); syncLU(); return; }
   const rest=e.target.closest("[data-rest]"); if(rest){ openRest(rest.getAttribute("data-rest")); return; }/* RU41 */
   const pip=e.target.closest("#dsS .pip, #dsF .pip"); if(pip){ undoMark("Death Saving Throw"); const which=pip.parentNode.id==="dsS"?0:1, pi=+pip.getAttribute("data-i"); S.ds[which]=(S.ds[which]===pi+1)?pi:pi+1; save(); syncDeath(); if(S.ds[0]===3) toast("Stable at 0 Hit Points"); if(S.ds[1]===3) toast("Three failures. Your character dies"); return; }
 });
@@ -68,25 +69,7 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
   $("#dmgBtn").addEventListener("click",() => anonFn1_(amt, nudge, inp));/* v21 RU57, RU50 */
   uiGlobalClickDelegationAnonStep2(inp, amt);
 })();
-function anonFn1_(amt, nudge, inp){ let a=amt(); if(!a){nudge();return;}
- const _anonFn1_Step1=anonFn1_Step1(a, inp);
- const {a0, fromTmp, before, z0}=_anonFn1_Step1;
- let {cm}=_anonFn1_Step1;
- a=_anonFn1_Step1.a;
-    anonFn1_Step2(before, z0, a0, fromTmp, cm); }
-function anonFn1_Step1(a, inp){
-undoMark("Damage"); const a0=a, fromTmp=Math.min(S.tmp,a); S.tmp-=fromTmp; a-=fromTmp; const before=S.hp; S.hp=Math.max(0,S.hp-a); S.lastDmg={a:a0,hp:before-S.hp,tmp:fromTmp}; if(S.hp<before){ flash("hit"); hpFloat("\u2212"+(before-S.hp),"dmg"); } else if(fromTmp) hpFloat("\u2212"+fromTmp+" temp","tmp"); inp.value="";
-    let cm="", z0=before===0&&a>0&&S.ds&&S.ds[1]<3&&!(S.exh>=6); if(z0){ S.ds=S.ds.slice(); if(S.ds[0]>=3) S.ds[0]=0; S.ds[1]=Math.min(3,S.ds[1]+1); }/* v32 p26: damage at 0 Hit Points is a failure */
-    if(before>0&&S.hp===0) __set_DS_OVER(Math.max(0,a-before)>=D.hpmax?a-before:0);
-    if(concOf()&&S.hp===0) cm=" "+concEnd("0 Hit Points"); save(); syncHP(); renderConds();
-  return /** @type {any} */ ({a0, fromTmp, before, cm, z0, a});
-}
-function anonFn1_Step2(before, z0, a0, fromTmp, cm){
-    if(before>0 && S.hp===0){ toastU("0 Hit Points. Start making Death Saving Throws."+cm); try{ martyrZero(); }catch(er){} if(lateGet("mq").matches&&lateGet("curPage")!==0&&!sheet.classList.contains("on")) hpOpen(); else if(!sheet.classList.contains("on")) setTimeout(() =>{ const g=document.getElementById("dsGuide"); if(g&&g.scrollIntoView) g.scrollIntoView({block:"nearest",behavior:REDUCE?"auto":"smooth"}); },480); }
-    else if(z0) toastU("Took "+a0+" damage at 0 Hit Points: one Death Saving Throw failure ("+S.ds[1]+" of 3)."+(S.ds[1]>=3?" Your character dies.":" A Critical Hit counts as two: use Critical Hit under Death Saves."));
-    else toastU("Took "+a0+" damage"+(fromTmp?" ("+fromTmp+" from Temporary Hit Points)":"")+".");
-    if(concOf()) concCheck(a0);
-}
+function anonFn1_(amt, nudge, inp){const amount=amt();if(!amount){nudge();return}applyNativePlayerDamage(amount,{input:inp})}
 function uiGlobalClickDelegationAnonStep1(){
   const inp=$("#hpAmt");
   function amt(){ const v=parseInt(inp.value,10); return isNaN(v)?0:Math.max(0,v); }

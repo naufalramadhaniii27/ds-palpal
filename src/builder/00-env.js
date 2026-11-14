@@ -89,3 +89,5 @@ bindG(["__bldHornValhallaInfo", "__bldHornValhallaCapture", "__bldHornValhallaTo
 bindG(["__bldBagTricksInfo", "__bldBagTricksCapture", "__bldBagTricksTokenCurrent", "__bldBagTricksCommand", "__bldBagTricksAcceptReceipt", "__bldBagTricksInventoryOwner", "__bagTricksSave"]);
 bindG(["__bldStudyBooksInfo", "__bldStudyBooksCapture", "__bldStudyBooksTokenCurrent", "__bldStudyBooksCommand", "__bldStudyBooksAcceptReceipt", "__bldStudyBooksInventoryOwner", "__studyBooksSave"]);
 bindG(["__bldNecronomiconInfo", "__bldNecronomiconCapture", "__bldNecronomiconTokenCurrent", "__bldNecronomiconStudy", "__bldNecronomiconAffliction", "__bldNecronomiconCure", "__bldNecronomiconReviewBase", "__bldNecronomiconAcceptReceipt", "__necronomiconReadingSave"]);
+
+bindG(["__bldTimedDefensesInfo", "__bldTimedDefensesCapture", "__bldTimedDefensesTokenCurrent", "__bldTimedDefensesCommand", "__bldTimedDefensesAcceptReceipt", "__bldTimedDefensesInventoryOwner", "__timedDefensesSave"]);

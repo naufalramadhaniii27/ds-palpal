@@ -1,7 +1,7 @@
 /* Passive, source-qualified Gloves bonus. Movement remains in the native item fx.
    This module does not alter ordinary Athletics or create actor storage. */
 const ITEM='Gloves of Swimming and Climbing',PROFILE='dmg2024',obj=v=>v!==null&&typeof v==='object'&&!Array.isArray(v),own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),exact=(v,keys)=>obj(v)&&Reflect.ownKeys(v).length===keys.length&&keys.every(k=>own(v,k)),dense=v=>Array.isArray(v)&&Reflect.ownKeys(v).length===v.length+1&&Object.keys(v).every((k,i)=>k===String(i));
-const CONFLICTS=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes'];
+const CONFLICTS=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses'];
 export function canonicalSwimClimbGlovesDefinition(value){if(Array.isArray(value))return '['+value.map(canonicalSwimClimbGlovesDefinition).join(',')+']';if(obj(value))return '{'+Object.keys(value).sort().map(k=>JSON.stringify(k)+':'+canonicalSwimClimbGlovesDefinition(value[k])).join(',')+'}';return JSON.stringify(value);}
 function printedGloves(row){
  if(!Array.isArray(row)||row[0]!==ITEM||row[3]!==1||typeof row[4]!=='string'||!exact(row[5],['fx'])||!exact(row[5].fx,['climb','swim'])||row[5].fx.climb!=='walk'||row[5].fx.swim!=='walk')return false;

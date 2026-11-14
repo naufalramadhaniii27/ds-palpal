@@ -1,3 +1,4 @@
+import {captureNativeActorIdentity,captureNativeActorFrame} from './lib/native-actor-frame.js';
 import {renderAll,syncHP,hdHeal,used,refreshEntry} from "./00a-reg-late-ports.js";/* Responsibility: one-tap use of Martyr (VSS24), Shifter and Bloodlust features on the sheet. Each button rolls the dice, spends the uses and Hit Point Dice, and changes Hit Points. Hit Point Dice are one pool: the Short Rest dialog and these buttons spend the same dice. */
 import {C,S,save} from "./04-logic-storage.js";
 import {esc,num,ask} from "./05-logic-helpers.js";
@@ -17,18 +18,18 @@ function roll(d){ const q=QUEUE[d]; if(q&&q.length) return q.shift(); return 1+M
 function faces(txt,n,die){ const a=String(txt||"").match(/\d+/g); if(!a) return null; let v=a.map(Number).filter((x) =>{ return x>=1; }); if(!v.length) return null;
   if(v.length===1&&n>1){ const t=Math.max(n,Math.min(n*die,v[0])), base=Math.floor(t/n), o=[]; for(let i=0;i<n;i++) o.push(base+(i<t-base*n?1:0)); return o; }/* one total: split over the dice */
   return v.slice(0,n).map((x) =>{ return Math.min(die,x); }).concat([]).length===n?v.slice(0,n).map((x) =>{ return Math.min(die,x); }):null; }
-function gather(specs,cb){ QUEUE={}; const todo=specs.filter((q) =>{ return q.n>0; }); let i=0;
-  const next=function(){ if(i>=todo.length){ cb(); return; } const q=todo[i++], inp=document.querySelector('[data-mrin="'+q.k+'"]'), man=inp?faces(inp.value,q.n,q.die):null;
+function gather(specs,cb,guard){if(guard&&!guard())return; QUEUE={}; const todo=specs.filter((q) =>{ return q.n>0; }); let i=0;
+  const next=function(){if(guard&&!guard())return; if(i>=todo.length){ cb(); return; } const q=todo[i++], inp=document.querySelector('[data-mrin="'+q.k+'"]'), man=inp?faces(inp.value,q.n,q.die):null;
     if(inp&&inp.value.trim()&&!man){ toastU("Type "+q.n+" number"+(q.n>1?"s":"")+" from 1 to "+q.die+" for "+q.lab+", or one total."); QUEUE={}; return; }
-    const put=function(v){ QUEUE[q.die]=(QUEUE[q.die]||[]).concat(v); next(); };
+    const put=function(v){if(guard&&!guard())return; QUEUE[q.die]=(QUEUE[q.die]||[]).concat(v); next(); };
     if(man){ put(man); return; }
-    if(env.__miRoll&&env.__miRoll.roll){ try{ env.__miRoll.roll({dmg:q.n+"d"+q.die},"",q.lab,(r) =>{ const m=/\[([^\]]*)\]/.exec(r&&r.d||""); put(m?m[1].split(/,\s*/).map(Number):[]); }); return; }catch(er){} }
+    if(env.__miRoll&&env.__miRoll.roll){ try{ env.__miRoll.roll({dmg:q.n+"d"+q.die},"",q.lab,(r) =>{ const m=/\[([^\]]*)\]/.exec(r&&r.d||""); put(m?m[1].split(/,\s*/).map(Number):[]); },guard); return; }catch(er){} }
     put([]); };
   next(); }
 function martyrLv(){ return C.cls==="Martyr"?num(C.level,1):0; }
 function chosen(n){ return (C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: "+n; }); }); }
 export function shiftAc(){ return S.shift&&chosen("Beasthide")?1:0; }
-function done(msg){ save(); try{ renderAll(); }catch(er){} try{ syncHP(); }catch(er){} toastU(msg); }
+function done(msg,guard){if(guard&&!guard())return;save();if(guard&&!guard())return;try{renderAll()}catch(error){}if(guard&&!guard())return;try{syncHP()}catch(error){}if(!guard||guard())toastU(msg)}
 function healRolls(n){ const die=hdDie(), r=[]; let t=0; for(let i=0;i<n;i++){ const v=roll(die); r.push(v); t+=hdHeal(v); } return {r:r,t:t}; }
 function addHp(t){ const b=num(S.hp,0); S.hp=Math.min(D.hpmax,b+t); return S.hp-b; }
 
@@ -47,8 +48,8 @@ const ACT={
   unshift:function(){ undoMark("End Shifting"); S.shift=0; done("Shifting ended."); },
   strike:function(){ undoMark("Sacrificial Strike"); const b=num(S.hp,0); S.hp=Math.max(0,b-5); done("Sacrificial Strike: you take 5 Radiant (not from Temporary Hit Points). The target takes 10 extra Radiant."); },
   skill:function(){ undoMark("Sacrificial Skill"); const b=num(S.hp,0); S.hp=Math.max(0,b-10); done("Sacrificial Skill: you take 10 Radiant and add +5 to the roll."); },
-  undying:function(){ if(left("x-undying")<1){ toastU("Undying is used. A Long Rest restores it."); return; } undoMark("Undying"); spend("x-undying",1); S.hp=Math.max(1,num(S.hp,0)); S.ds=[0,0];
-    const m=mirac(Math.floor(martyrLv()/2),true); done("Undying: you drop to 1 Hit Point instead. "+(m||"No Hit Point Dice left to heal.")); },
+  undying:function(value,guard){if(guard&&!guard())return; if(left("x-undying")<1){ toastU("Undying is used. A Long Rest restores it."); return; } undoMark("Undying");if(guard&&!guard())return;const owner=guard?captureNativeActorIdentity():null; spend("x-undying",1); S.hp=Math.max(1,num(S.hp,0)); S.ds=[0,0];
+    const m=mirac(Math.floor(martyrLv()/2),true);if(owner&&!owner())return;done("Undying: you drop to 1 Hit Point instead. "+(m||"No Hit Point Dice left to heal."),guard?captureNativeActorFrame({allowCharacterClone:true}):undefined); },
   respite:function(){ if(left("x-divine-respite")<1){ toastU("Divine Respite is used. A Long Rest restores it."); return; } const L=martyrLv(), n=L>=17?10:L>=13?6:3, k=hdKey(), u=num(S.used[k],0), g=Math.min(n,u);
     undoMark("Divine Respite"); S.used[k]=u-g; spend("x-divine-respite",1); done("Divine Respite: regained "+g+" Hit Point "+(g===1?"Die":"Dice")+"."); },
   reprisal:function(){ const L=S.lastDmg; if(!L||!L.a){ toastU("Take the damage on the sheet first, then use Reprisal."); return; } const half=Math.floor(L.a/2), lv=martyrLv(), dn=lv>=17?4:lv>=11?3:lv>=5?2:1; let r=0; for(let i=0;i<dn;i++) r+=roll(6);
@@ -85,8 +86,8 @@ function need(a,v){ const n=+v||1, lv=martyrLv(), mx=Math.floor(lv/2), hl=left(h
   if(a==="shift") return [{k:"shift",n:chosen("Beasthide")?1:0,die:6,lab:"Beasthide"}];
   if(a==="reprisal") return [{k:"rep",n:lv>=17?4:lv>=11?3:lv>=5?2:1,die:6,lab:"Reprisal"}];
   return []; }
-function run(a,v){ const f=ACT[a]; if(!f) return; gather(need(a,v),() =>{ f(v); QUEUE={}; document.querySelectorAll("[data-mrin]").forEach((i) =>{ i.value=""; }); try{ refreshEntry(); }catch(er){} }); }
+function run(a,v,guard){const f=ACT[a];if(!f||guard&&!guard())return;gather(need(a,v),()=>{if(guard&&!guard())return;const owner=guard?captureNativeActorIdentity():null;f(v,guard);if(owner&&!owner())return;QUEUE={};document.querySelectorAll("[data-mrin]").forEach(input=>{input.value=""});try{refreshEntry()}catch(error){}},guard)}
 document.addEventListener("click",(e) =>{ const t=e.target.closest&&e.target.closest("[data-mact]"); if(!t||t.disabled) return; e.preventDefault(); e.stopPropagation(); run(t.getAttribute("data-mact"),t.getAttribute("data-mv")); },true);
 /* at 0 Hit Points with Undying left: offer it at once */
-export function martyrZero(){ if(num(S.hp,0)!==0||left("x-undying")<1||!martyrLv()) return; ask("You dropped to 0 Hit Points. Use Undying: drop to 1 Hit Point and heal with Miraculous Healing?","Use Undying",() =>{ run("undying",""); }); }
+export function martyrZero(guard){if(guard&&!guard())return; if(num(S.hp,0)!==0||left("x-undying")<1||!martyrLv()) return; ask("You dropped to 0 Hit Points. Use Undying: drop to 1 Hit Point and heal with Miraculous Healing?","Use Undying",() =>{if(!guard||guard())run("undying","",guard); }); }
 env.__martyr={act:function(a,v){ run(a,v); }, html:martyrActH};/* test hook */

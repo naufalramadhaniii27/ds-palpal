@@ -1,0 +1,687 @@
+{
+  "generatedBy": "Actual native source/selected armor/ATT/resource/RIV producer and25m command with owned opaque receipts and exactlyoneUndo; sole originalS.usedarmorpool and actualpotion B/C quantity consumption",
+  "states": {
+    "armorUnknown": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 1,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "armor-invulnerability",
+          "key": "i-armor-of-invulnerability",
+          "present": true,
+          "wearing": true,
+          "historyKnown": false
+        }
+      ],
+      "effects": [],
+      "dawnEvents": []
+    },
+    "armorReady": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 1,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "armor-invulnerability",
+          "key": "i-armor-of-invulnerability",
+          "present": true,
+          "wearing": true,
+          "historyKnown": true
+        }
+      ],
+      "effects": [],
+      "dawnEvents": []
+    },
+    "armorImmune": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 2,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "armor-invulnerability",
+          "key": "i-armor-of-invulnerability",
+          "present": true,
+          "wearing": true,
+          "historyKnown": true
+        }
+      ],
+      "effects": [
+        {
+          "id": "tde-1",
+          "physicalId": "tdp-1",
+          "kind": "armor-immunity",
+          "active": true,
+          "endReason": null
+        }
+      ],
+      "dawnEvents": []
+    },
+    "armorExpired": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 2,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "armor-invulnerability",
+          "key": "i-armor-of-invulnerability",
+          "present": true,
+          "wearing": true,
+          "historyKnown": true
+        }
+      ],
+      "effects": [
+        {
+          "id": "tde-1",
+          "physicalId": "tdp-1",
+          "kind": "armor-immunity",
+          "active": false,
+          "endReason": "ten-minutes"
+        }
+      ],
+      "dawnEvents": []
+    },
+    "armorDawnStillImmune": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 2,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "armor-invulnerability",
+          "key": "i-armor-of-invulnerability",
+          "present": true,
+          "wearing": true,
+          "historyKnown": true
+        }
+      ],
+      "effects": [
+        {
+          "id": "tde-1",
+          "physicalId": "tdp-1",
+          "kind": "armor-immunity",
+          "active": true,
+          "endReason": null
+        }
+      ],
+      "dawnEvents": [
+        "actual-dawn-1"
+      ]
+    },
+    "armorRemoved": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 2,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "armor-invulnerability",
+          "key": "i-armor-of-invulnerability",
+          "present": false,
+          "wearing": false,
+          "historyKnown": true
+        }
+      ],
+      "effects": [
+        {
+          "id": "tde-1",
+          "physicalId": "tdp-1",
+          "kind": "armor-immunity",
+          "active": false,
+          "endReason": "wear-loss"
+        }
+      ],
+      "dawnEvents": []
+    },
+    "potionFireReady": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 1,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "potion-resistance",
+          "present": true,
+          "availability": true,
+          "damageType": "Fire"
+        }
+      ],
+      "effects": [],
+      "dawnEvents": []
+    },
+    "potionFire": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 2,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "potion-resistance",
+          "present": false,
+          "availability": false,
+          "damageType": "Fire"
+        }
+      ],
+      "effects": [
+        {
+          "id": "tde-1",
+          "physicalId": "tdp-1",
+          "kind": "potion-resistance",
+          "active": true,
+          "endReason": null
+        }
+      ],
+      "dawnEvents": []
+    },
+    "potionExpired": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 2,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "potion-resistance",
+          "present": false,
+          "availability": false,
+          "damageType": "Fire"
+        }
+      ],
+      "effects": [
+        {
+          "id": "tde-1",
+          "physicalId": "tdp-1",
+          "kind": "potion-resistance",
+          "active": false,
+          "endReason": "one-hour"
+        }
+      ],
+      "dawnEvents": []
+    },
+    "potionColdReady": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 1,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "potion-resistance",
+          "present": true,
+          "availability": true,
+          "damageType": "Cold"
+        }
+      ],
+      "effects": [],
+      "dawnEvents": []
+    },
+    "potionCold": {
+      "v": 1,
+      "nextPhysical": 2,
+      "nextEffect": 2,
+      "physical": [
+        {
+          "id": "tdp-1",
+          "kind": "potion-resistance",
+          "present": false,
+          "availability": false,
+          "damageType": "Cold"
+        }
+      ],
+      "effects": [
+        {
+          "id": "tde-1",
+          "physicalId": "tdp-1",
+          "kind": "potion-resistance",
+          "active": true,
+          "endReason": null
+        }
+      ],
+      "dawnEvents": []
+    }
+  },
+  "inventory": {
+    "armorUnknown": [
+      {
+        "n": "Armor of Invulnerability",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-armor-invulnerability",
+          "itemFingerprint": "[\"Armor of Invulnerability\",\"Armor\",\"Legendary\",1,\"While wearing this suit of Plate Armor, you have Resistance to three damage types: Bludgeoning, Piercing, and Slashing.\\n**Metal Shell.** As a Magic action, you can make yourself immune to Bludgeoning, Piercing, and Slashing damage. This Immunity lasts 10 minutes or until you stop wearing the armor. Metal Shell then stays unavailable until the next dawn.\",{\"base\":[\"Plate Armor\"],\"ch\":[1,\"1\",\"dawn\"],\"fx\":{\"res\":[\"Bludgeoning\",\"Piercing\",\"Slashing\"]}}]"
+        }
+      }
+    ],
+    "armorReady": [
+      {
+        "n": "Armor of Invulnerability",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-armor-invulnerability",
+          "itemFingerprint": "[\"Armor of Invulnerability\",\"Armor\",\"Legendary\",1,\"While wearing this suit of Plate Armor, you have Resistance to three damage types: Bludgeoning, Piercing, and Slashing.\\n**Metal Shell.** As a Magic action, you can make yourself immune to Bludgeoning, Piercing, and Slashing damage. This Immunity lasts 10 minutes or until you stop wearing the armor. Metal Shell then stays unavailable until the next dawn.\",{\"base\":[\"Plate Armor\"],\"ch\":[1,\"1\",\"dawn\"],\"fx\":{\"res\":[\"Bludgeoning\",\"Piercing\",\"Slashing\"]}}]"
+        }
+      }
+    ],
+    "armorImmune": [
+      {
+        "n": "Armor of Invulnerability",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-armor-invulnerability",
+          "itemFingerprint": "[\"Armor of Invulnerability\",\"Armor\",\"Legendary\",1,\"While wearing this suit of Plate Armor, you have Resistance to three damage types: Bludgeoning, Piercing, and Slashing.\\n**Metal Shell.** As a Magic action, you can make yourself immune to Bludgeoning, Piercing, and Slashing damage. This Immunity lasts 10 minutes or until you stop wearing the armor. Metal Shell then stays unavailable until the next dawn.\",{\"base\":[\"Plate Armor\"],\"ch\":[1,\"1\",\"dawn\"],\"fx\":{\"res\":[\"Bludgeoning\",\"Piercing\",\"Slashing\"]}}]"
+        }
+      }
+    ],
+    "armorExpired": [
+      {
+        "n": "Armor of Invulnerability",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-armor-invulnerability",
+          "itemFingerprint": "[\"Armor of Invulnerability\",\"Armor\",\"Legendary\",1,\"While wearing this suit of Plate Armor, you have Resistance to three damage types: Bludgeoning, Piercing, and Slashing.\\n**Metal Shell.** As a Magic action, you can make yourself immune to Bludgeoning, Piercing, and Slashing damage. This Immunity lasts 10 minutes or until you stop wearing the armor. Metal Shell then stays unavailable until the next dawn.\",{\"base\":[\"Plate Armor\"],\"ch\":[1,\"1\",\"dawn\"],\"fx\":{\"res\":[\"Bludgeoning\",\"Piercing\",\"Slashing\"]}}]"
+        }
+      }
+    ],
+    "armorDawnStillImmune": [
+      {
+        "n": "Armor of Invulnerability",
+        "q": 1,
+        "eq": true,
+        "attuned": true,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-armor-invulnerability",
+          "itemFingerprint": "[\"Armor of Invulnerability\",\"Armor\",\"Legendary\",1,\"While wearing this suit of Plate Armor, you have Resistance to three damage types: Bludgeoning, Piercing, and Slashing.\\n**Metal Shell.** As a Magic action, you can make yourself immune to Bludgeoning, Piercing, and Slashing damage. This Immunity lasts 10 minutes or until you stop wearing the armor. Metal Shell then stays unavailable until the next dawn.\",{\"base\":[\"Plate Armor\"],\"ch\":[1,\"1\",\"dawn\"],\"fx\":{\"res\":[\"Bludgeoning\",\"Piercing\",\"Slashing\"]}}]"
+        }
+      }
+    ],
+    "armorRemoved": [],
+    "potionFireReady": [
+      {
+        "n": "Potion of Resistance",
+        "q": 1,
+        "eq": false,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-potion-resistance",
+          "itemFingerprint": "[\"Potion of Resistance\",\"Potion\",\"Uncommon\",0,\"Drinking this potion gives you Resistance to one damage type for 1 hour. The Dungeon Master picks the type or rolls a d10 to decide it randomly: Acid on a 1, Cold on a 2, Fire on a 3, Force on a 4, Lightning on a 5, Necrotic on a 6, Poison on a 7, Psychic on an 8, Radiant on a 9, and Thunder on a 10.\"]"
+        }
+      }
+    ],
+    "potionFire": [
+      {
+        "n": "Potion of Resistance",
+        "q": 0,
+        "eq": false,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-potion-resistance",
+          "itemFingerprint": "[\"Potion of Resistance\",\"Potion\",\"Uncommon\",0,\"Drinking this potion gives you Resistance to one damage type for 1 hour. The Dungeon Master picks the type or rolls a d10 to decide it randomly: Acid on a 1, Cold on a 2, Fire on a 3, Force on a 4, Lightning on a 5, Necrotic on a 6, Poison on a 7, Psychic on an 8, Radiant on a 9, and Thunder on a 10.\"]"
+        }
+      }
+    ],
+    "potionExpired": [
+      {
+        "n": "Potion of Resistance",
+        "q": 0,
+        "eq": false,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-potion-resistance",
+          "itemFingerprint": "[\"Potion of Resistance\",\"Potion\",\"Uncommon\",0,\"Drinking this potion gives you Resistance to one damage type for 1 hour. The Dungeon Master picks the type or rolls a d10 to decide it randomly: Acid on a 1, Cold on a 2, Fire on a 3, Force on a 4, Lightning on a 5, Necrotic on a 6, Poison on a 7, Psychic on an 8, Radiant on a 9, and Thunder on a 10.\"]"
+        }
+      }
+    ],
+    "potionColdReady": [
+      {
+        "n": "Potion of Resistance",
+        "q": 1,
+        "eq": false,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-potion-resistance",
+          "itemFingerprint": "[\"Potion of Resistance\",\"Potion\",\"Uncommon\",0,\"Drinking this potion gives you Resistance to one damage type for 1 hour. The Dungeon Master picks the type or rolls a d10 to decide it randomly: Acid on a 1, Cold on a 2, Fire on a 3, Force on a 4, Lightning on a 5, Necrotic on a 6, Poison on a 7, Psychic on an 8, Radiant on a 9, and Thunder on a 10.\"]"
+        }
+      }
+    ],
+    "potionCold": [
+      {
+        "n": "Potion of Resistance",
+        "q": 0,
+        "eq": false,
+        "timedDefenses": {
+          "v": 1,
+          "id": "tdp-1",
+          "nativeProfile": "dmg2024-potion-resistance",
+          "itemFingerprint": "[\"Potion of Resistance\",\"Potion\",\"Uncommon\",0,\"Drinking this potion gives you Resistance to one damage type for 1 hour. The Dungeon Master picks the type or rolls a d10 to decide it randomly: Acid on a 1, Cold on a 2, Fire on a 3, Force on a 4, Lightning on a 5, Necrotic on a 6, Poison on a 7, Psychic on an 8, Radiant on a 9, and Thunder on a 10.\"]"
+        }
+      }
+    ]
+  },
+  "used": {
+    "armorUnknown": {
+      "i-armor-of-invulnerability": 0
+    },
+    "armorReady": {
+      "i-armor-of-invulnerability": 0
+    },
+    "armorImmune": {
+      "i-armor-of-invulnerability": 1
+    },
+    "armorExpired": {
+      "i-armor-of-invulnerability": 1
+    },
+    "armorDawnStillImmune": {
+      "i-armor-of-invulnerability": 0
+    },
+    "armorRemoved": {
+      "i-armor-of-invulnerability": 1
+    },
+    "potionFireReady": {},
+    "potionFire": {},
+    "potionExpired": {},
+    "potionColdReady": {},
+    "potionCold": {}
+  },
+  "defenses": {
+    "armorUnknown": [
+      {
+        "t": "Resistance",
+        "v": "Bludgeoning",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Piercing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Slashing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      }
+    ],
+    "armorReady": [
+      {
+        "t": "Resistance",
+        "v": "Bludgeoning",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Piercing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Slashing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      }
+    ],
+    "armorImmune": [
+      {
+        "t": "Resistance",
+        "v": "Bludgeoning",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Piercing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Slashing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Immunity",
+        "v": "Bludgeoning",
+        "s": "Armor of Invulnerability: Metal Shell",
+        "sourceId": "tdp-1",
+        "effectId": "tde-1"
+      },
+      {
+        "t": "Immunity",
+        "v": "Piercing",
+        "s": "Armor of Invulnerability: Metal Shell",
+        "sourceId": "tdp-1",
+        "effectId": "tde-1"
+      },
+      {
+        "t": "Immunity",
+        "v": "Slashing",
+        "s": "Armor of Invulnerability: Metal Shell",
+        "sourceId": "tdp-1",
+        "effectId": "tde-1"
+      }
+    ],
+    "armorExpired": [
+      {
+        "t": "Resistance",
+        "v": "Bludgeoning",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Piercing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Slashing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      }
+    ],
+    "armorDawnStillImmune": [
+      {
+        "t": "Resistance",
+        "v": "Bludgeoning",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Piercing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Resistance",
+        "v": "Slashing",
+        "s": "Armor of Invulnerability",
+        "sourceId": "tdp-1"
+      },
+      {
+        "t": "Immunity",
+        "v": "Bludgeoning",
+        "s": "Armor of Invulnerability: Metal Shell",
+        "sourceId": "tdp-1",
+        "effectId": "tde-1"
+      },
+      {
+        "t": "Immunity",
+        "v": "Piercing",
+        "s": "Armor of Invulnerability: Metal Shell",
+        "sourceId": "tdp-1",
+        "effectId": "tde-1"
+      },
+      {
+        "t": "Immunity",
+        "v": "Slashing",
+        "s": "Armor of Invulnerability: Metal Shell",
+        "sourceId": "tdp-1",
+        "effectId": "tde-1"
+      }
+    ],
+    "armorRemoved": [],
+    "potionFireReady": [],
+    "potionFire": [
+      {
+        "t": "Resistance",
+        "v": "Fire",
+        "s": "Potion of Resistance",
+        "sourceId": "tdp-1",
+        "effectId": "tde-1"
+      }
+    ],
+    "potionExpired": [],
+    "potionColdReady": [],
+    "potionCold": [
+      {
+        "t": "Resistance",
+        "v": "Cold",
+        "s": "Potion of Resistance",
+        "sourceId": "tdp-1",
+        "effectId": "tde-1"
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "kind": "adopt",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "review-armor",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "activate-armor",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "armor-expiry",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "dawn",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "remove",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "adopt",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "review-potion",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "potion-type",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "drink",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "potion-expiry",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "adopt",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "review-potion",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "potion-type",
+      "accepted": true,
+      "undoDelta": 1
+    },
+    {
+      "kind": "drink",
+      "accepted": true,
+      "undoDelta": 1
+    }
+  ],
+  "deriveDefaults": {
+    "attackTarget": {
+      "type": "",
+      "alignment": "",
+      "hp": null,
+      "maxHp": null,
+      "tags": []
+    },
+    "hp": null,
+    "tmp": 0,
+    "used": {},
+    "insp": false,
+    "ds": [
+      0,
+      0
+    ],
+    "cond": {},
+    "exh": 0,
+    "burn": 1,
+    "jinx": "",
+    "notes": {},
+    "lang": [
+      "Common",
+      "",
+      ""
+    ],
+    "portrait": "",
+    "theme": "",
+    "align": "",
+    "color": "forest",
+    "sym": "star",
+    "skin": "ddb",
+    "coins": null,
+    "coinBase": null,
+    "lifestyle": ""
+  }
+}

@@ -1,3 +1,4 @@
+import {captureNativeActorIdentity,captureNativeActorFrame} from './lib/native-actor-frame.js';
 import {endTattooEffect as endTattooBodyEffect} from '../data/lib/spellwrought-tattoo.js';
 import {bindLive,cmbCast,cmbRe,lateGet,featAll,syncLU,used,renderConds,refreshEntry,showEntry,spPactLv,spRowLv,renderSpells,syncHP,renderAll} from "./00a-reg-late-ports.js";/* Responsibility: class levels, concentration and casting a spell (slots, upcast, quick cast). Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
 import {C,S,save} from "./04-logic-storage.js";import {ask,esc,num,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {UNDO,toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";
@@ -28,14 +29,20 @@ export function hasFeat(n){ return featAll().some((x) =>{ return x.f.n===n; }); 
 export var INCAP=["Incapacitated","Paralyzed","Petrified","Stunned","Unconscious"];
 export function concOf(){ return S.conc&&S.conc.n?S.conc:null; }
 function concSet(x,lv){ const o=concOf();if(o)endTaggedTattooConcentration(o);const m=(o&&o.n!==x.n)?"Concentration on "+o.n+" ended. ":""; S.conc={n:x.n,l:lv||x.l||0}; return m+"Concentrating on "+x.n+"."; }
-export function concEnd(why){ const o=concOf(); if(!o) return ""; endTaggedTattooConcentration(o); delete S.conc; if(o.n==="Shield of Faith") setTimeout(() =>{ try{ renderAll(); }catch(er){} },0); return "Concentration on "+o.n+" ended"+(why?" ("+why+")":"")+"."; }
+export function concEnd(why,guard){if(guard&&!guard())return "";const o=concOf();if(!o)return "";endTaggedTattooConcentration(o);if(guard&&!guard())return "";delete S.conc;const post=guard?captureNativeActorFrame({allowCharacterClone:true}):null;if(o.n==="Shield of Faith")setTimeout(()=>{if(post&&!post())return;try{renderAll()}catch(error){}},0);return "Concentration on "+o.n+" ended"+(why?" ("+why+")":"")+"."}
 export function setTattooConcentration(spell,sourceId,castId){S.conc={n:spell.n,l:spell.l,tattoo:{v:1,sourceId,castId}}}
 function endTaggedTattooConcentration(concentration){const tag=concentration&&concentration.tattoo;if(!tag||tag.v!==1)return;const body=S.spellwroughtTattoos;if(!body||!Array.isArray(body.tattoos)||!body.tattoos.some(row=>row.sourceId===tag.sourceId&&row.castId===tag.castId&&row.phase==='active'))return;const ended=endTattooBodyEffect(body,tag.castId,{actualSpellEnded:true});if(ended.ok&&'body' in ended)S.spellwroughtTattoos=ended.body}
 function concNotes(){ const n=[]; if(hasFeat("War Caster")) n.push("War Caster gives Advantage"); if(hasFeat("Eldritch Mind")) n.push("Eldritch Mind gives Advantage"); if(hasFeat("Bladesong")) n.push("while Bladesong is active, add your Intelligence modifier"); return n; }
 function concDC(d){ return Math.min(30,Math.max(10,Math.floor(d/2))); }
-function concCheck(d){ const o=concOf(); if(!o||!(d>0)) return; const dc=concDC(d), nt=concNotes();
-  ask("Concentration on "+o.n+": make a Constitution saving throw, DC "+dc+" (10 or half the damage, whichever is higher, up to 30). Your bonus is "+sg(D.save.CON)+"."+(nt.length?" "+nt.join(". ")+".":""),"Kept It",() =>{ toastU("Still concentrating on "+o.n+"."); },
-   ["Lost It",function(){ const m=concEnd(); save(); renderConds(); refreshEntry(); if(UNDO) UNDO.A=null; toastU(m); }]); }/* v21 N2: Undo stays, and also brings Concentration back */
+function concentrationPromptCurrent(guard,original){return !guard||guard()&&concOf()===original}
+function loseDamageConcentration(guard,original){
+ if(!concentrationPromptCurrent(guard,original))return;const owner=guard?captureNativeActorIdentity():null,m=concEnd(undefined,owner);if(owner&&!owner())return;const post=guard?captureNativeActorFrame({allowCharacterClone:true}):null;
+ save();if(post&&!post())return;renderConds();if(post&&!post())return;refreshEntry();if(post&&!post())return;if(UNDO)UNDO.A=null;toastU(m);
+}
+export function concCheck(d,guard){const o=concOf();if(!o||!(d>0)||guard&&!guard())return;const dc=concDC(d),nt=concNotes();
+ ask("Concentration on "+o.n+": make a Constitution saving throw, DC "+dc+" (10 or half the damage, whichever is higher, up to 30). Your bonus is "+sg(D.save.CON)+"."+(nt.length?" "+nt.join(". ")+".":""),"Kept It",()=>{if(concentrationPromptCurrent(guard,o))toastU("Still concentrating on "+o.n+".")},['Lost It',()=>loseDamageConcentration(guard,o)]);
+}
+/* Undo also brings Concentration back; guarded HP prompts cannot affect another actor. */
 /* a condition that includes Incapacitated, or 0 Hit Points, ends Concentration */
 function concAuto(){ const o=concOf(); if(!o) return; const why=S.hp===0?"0 Hit Points":INCAP.filter((k) =>{ return S.cond[k]; })[0]; if(!why) return; const m=concEnd(why); save(); toast(m); }
 function spIx(n){ return (C.spells||[]).findIndex((x) =>{ return x.n===n; }); }

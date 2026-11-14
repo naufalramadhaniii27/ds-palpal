@@ -1,0 +1,67 @@
+import {B} from './04-logic-storage.js';
+import {genv,sheetState,fxo} from './00-env.js';
+import {DM14S} from './09c-logic-edition-overlays.js';
+import {effArmor} from './01b-logic-late-ports.js';
+import {attunementState,itemInUse,activeFx} from './03-logic-magic-item-effects.js';
+import {timedDefensesProblems,timedDefenseCapabilities} from '../data/lib/timed-defenses.js';
+import {timedDefensesNativeSources,timedDefensesSource,timedDefensesMarkerSource,reconcileTimedDefensesInventory,canonicalTimedDefenseDefinition} from '../data/lib/timed-defenses-source.js';
+let scope=null;const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),key=row=>own(row,'key')?row.key:row.n,conflicts=row=>['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes'].some(k=>own(row,k));
+export function timedDefensesCatalog(){return timedDefensesNativeSources(DM14S||DMGI)}
+export function withTimedDefensesProjection(state,run){const prev=scope;scope={state};try{return run()}finally{scope=prev}}
+export function timedDefensesSelectedArmorIndex(EA=effArmor()){return (B.inv||[]).findIndex(row=>row.n===EA&&row.eq===true&&(row.q==null?1:row.q)>0)}
+export function timedDefensesWearingIds(EA=effArmor()){const row=B.inv?.[timedDefensesSelectedArmorIndex(EA)],source=row&&timedDefensesMarkerSource(row.timedDefenses,timedDefensesCatalog(),key(row));return source?.kind==='armor-invulnerability'&&!conflicts(row)?[row.timedDefenses.id]:[]}
+export function timedDefensesOwnedState(){const live=sheetState();if(!scope&&(!live?.C||!B.cid||B.cid!==genv.__sheetId?.()))return undefined;const state=scope?scope.state:own(live.C,'timedDefenses')&&timedDefensesProblems(live.C.timedDefenses).length?live.C.timedDefenses:live.state?.timedDefenses;if(state===undefined||timedDefensesProblems(state).length)return state;const plan=reconcileTimedDefensesInventory(live?.C?.inv||[],B.inv||[],state,timedDefensesWearingIds());return plan.ok?plan.authority:state}
+export function timedDefensesProjectionMirror(){const state=timedDefensesOwnedState();return state===undefined?undefined:structuredClone(state)}
+export function timedDefensesInventoryRows(rows){const state=timedDefensesOwnedState(),live=sheetState();if(timedDefensesProblems(state).length)return rows;const plan=reconcileTimedDefensesInventory(live?.C?.inv||[],rows,state,timedDefensesWearingIds());return plan.ok?plan.inventory:rows}
+export function timedDefensesSourceWitness(ATT=attunementState(),EA=effArmor(),inventory=[],AFX=activeFx(ATT)){const future=ownedTimedFuture('timedDefenseSources',timedSourcesSupported);if(future)return structuredClone(future.value);const index=timedDefensesSelectedArmorIndex(EA),row=B.inv?.[index],source=row&&timedDefensesSource(timedDefensesCatalog(),key(row)),status=ATT?.rows?.[index];const armor=source?.kind==='armor-invulnerability'&&!conflicts(row)&&!(B.custLib||[]).some(v=>v.n===key(row))?{index,key:key(row),attuned:status?.requires===true&&status.attuned===true&&itemInUse(row,status)&&timedArmorSourcePermission(row)&&timedArmorOriginalFx(AFX)&&timedArmorOriginalBase(),itemFingerprint:source.itemFingerprint,inventoryFingerprint:canonicalTimedDefenseDefinition(inventory)}:null;return {v:1,wearingIds:timedDefensesWearingIds(EA),armor,inventoryFingerprint:canonicalTimedDefenseDefinition(inventory)}}
+export function timedDefensesAllocatedKeys(){const live=sheetState(),states=[timedDefensesOwnedState(),B.cid===genv.__sheetId?.()?live?.state?.timedDefenses:undefined];return [...new Set(states.flatMap(s=>timedDefensesProblems(s).length?[]:s.physical.filter(p=>p.kind==='armor-invulnerability').map(p=>p.key)))]}
+export function timedDefensesResource(row,index){if(!own(row,'timedDefenses')&&(B.custLib||[]).some(value=>value.n===key(row)))return null;const source=timedDefensesSource(timedDefensesCatalog(),key(row));if(source?.kind!=='armor-invulnerability'&& !own(row,'timedDefenses'))return null;if(!source||conflicts(row))return {managed:true,active:false};if(!own(row,'timedDefenses'))return {managed:true,active:true,untracked:true};const state=timedDefensesOwnedState(),p=!timedDefensesProblems(state).length&&state.physical.find(p=>p.id===row.timedDefenses?.id),valid=timedDefensesMarkerSource(row.timedDefenses,timedDefensesCatalog(),key(row));return {managed:true,active:!!(p&&p.kind==='armor-invulnerability'&&p.present&&valid&&(row.q==null?1:row.q)===1),physical:p,index}}
+export function timedDefensesProjectedRows(state,witness){if(!timedSourcesSupported(witness))return [];const id=witness.armor?.attuned?witness.wearingIds[0]:undefined,result=!timedDefensesProblems(state).length?timedDefenseCapabilities(state,id?[id]:[]):null,rows=result?.ok?result.rows:[];return rows.concat(witness.armor?.attuned&&!id?['Bludgeoning','Piercing','Slashing'].map(v=>({t:'Resistance',v,s:'Armor of Invulnerability'})):[])}
+export {reconcileTimedDefensesInventory};
+function timedWearingIdsSupported(ids){return Reflect.ownKeys(ids).length===ids.length+1&&Object.keys(ids).every((key,index)=>key===String(index))&&ids.every(id=>typeof id==='string'&&/^tdp-[1-9]\d*$/.test(id))&&new Set(ids).size===ids.length;}
+function timedArmorSourcePermission(row){if(!own(row,'timedDefenses'))return true;const state=timedDefensesOwnedState();if(timedDefensesProblems(state).length)return false;const p=state.physical.find(p=>p.id===row.timedDefenses?.id);return !!(p&&p.kind==='armor-invulnerability'&&p.present&&timedDefensesMarkerSource(row.timedDefenses,timedDefensesCatalog(),key(row)));}
+function timedArmorOriginalBase(){const value=fxo()?.['Armor of Invulnerability'];if(value==null)return true;if(typeof value!=='object'||Array.isArray(value))return false;return !own(value,'base')||Array.isArray(value.base)&&value.base.length===1&&value.base[0]==='Plate Armor';}
+function timedArmorOriginalFx(AFX){const matches=Array.isArray(AFX)?AFX.filter(entry=>entry?.n==='Armor of Invulnerability'):[];if(matches.length!==1)return false;const fx=matches[0].fx,bps=['Bludgeoning','Piercing','Slashing'];if(!fx||!Array.isArray(fx.res)||fx.res.length!==3||!bps.every(type=>fx.res.includes(type)))return false;return ['imm','vul'].every(field=>!own(fx,field)||Array.isArray(fx[field])&&fx[field].length===0);}
+function timedSourcesSupported(value){
+ if(!value||typeof value!=='object'||Array.isArray(value)||Reflect.ownKeys(value).length!==4||value.v!==1||!Array.isArray(value.wearingIds)||typeof value.inventoryFingerprint!=='string')return false;
+ if(!['v','wearingIds','armor','inventoryFingerprint'].every(k=>own(value,k))||!timedWearingIdsSupported(value.wearingIds))return false;
+ return timedArmorWitnessSupported(value.armor);
+}
+function timedArmorWitnessSupported(armor){if(armor===null)return true;return !!armor&&typeof armor==='object'&&!Array.isArray(armor)&&Reflect.ownKeys(armor).length===5&&['index','key','attuned','itemFingerprint','inventoryFingerprint'].every(k=>own(armor,k))&&Number.isSafeInteger(armor.index)&&armor.index>=0&&typeof armor.key==='string'&&typeof armor.attuned==='boolean'&&typeof armor.itemFingerprint==='string'&&typeof armor.inventoryFingerprint==='string';}
+function ownedTimedFuture(field,valid){const live=sheetState();return live?.C&&B.cid&&B.cid===genv.__sheetId?.()&&own(live.C,field)&&!valid(live.C[field])?{value:live.C[field]}:null;}
+export function timedDefensesOwnFuture(){return !!ownedTimedFuture('timedDefenses',value=>timedDefensesProblems(value).length===0);}
+export function timedDefenseSourcesOwnFuture(){return !!ownedTimedFuture('timedDefenseSources',timedSourcesSupported);}
+function timedApplyShape(value,top=false){if(value===null)return ['null'];if(typeof value!=='object')return [typeof value,String(value)];const keys=Reflect.ownKeys(value),version=genv.__appVer,native=top&&typeof genv.__lsSave==='function'&&Number.isSafeInteger(version)&&version>=0;if(native&&!keys.includes('_app'))keys.push('_app');return [Array.isArray(value)?'array':'object',keys.map(key=>[typeof key,String(key),timedApplyShape(native&&key==='_app'?Math.max(+value._app||0,version):value[key])])];}
+function timedApplySignature(value){return JSON.stringify(timedApplyShape(value,true));}
+function timedApplySourcesSignature(){return timedApplySignature({catalog:timedDefensesCatalog(),override:fxo()?.['Armor of Invulnerability']});}
+function sameTimedValue(a,b){return JSON.stringify(timedApplyShape(a))===JSON.stringify(timedApplyShape(b));}
+function preserveTimedFuture(character,candidate){for(const field of ['timedDefenses','timedDefenseSources']){const valid=field==='timedDefenses'?timedDefensesProblems(character[field]).length===0:timedSourcesSupported(character[field]);if(own(character,field)&&!valid&&(!own(candidate,field)||!sameTimedValue(character[field],candidate[field])))return false;}return true;}
+function currentTimedSourcesSafe(character,candidate,state){
+ return (character.inv||[]).every(row=>{if(!row||typeof row!=='object')return false;if(!own(row,'timedDefenses'))return true;const item=key(row),p=state.physical.find(p=>p.id===row.timedDefenses?.id),source=timedDefensesMarkerSource(row.timedDefenses,timedDefensesCatalog(),item);if(p&&source?.kind===p.kind)return true;if(!p&&!timedDefensesSource(timedDefensesCatalog(),item))return true;return (candidate.inv||[]).some(next=>next&&key(next)===item&&own(next,'timedDefenses')&&sameTimedValue(next.timedDefenses,row.timedDefenses)&&(next.q==null?1:next.q)===(row.q==null?1:row.q));});
+}
+function spentTimedApplySources(candidate,inventory,state){
+ for(const row of inventory){const p=state.physical.find(p=>p.id===row.timedDefenses?.id);if(p?.kind!=='potion-resistance'||p.availability!==false)continue;const matches=(candidate.inv||[]).filter(value=>value.timedDefenses?.id===p.id);if(matches.length!==1||matches[0].q!==0||!sameTimedValue(matches[0].timedDefenses,row.timedDefenses))return false;}return true;
+}
+function timedDefenseApplyOwner(live,candidate){return !!(live?.C&&candidate&&candidate.name===B.name&&(!own(candidate,'cid')||candidate.cid===B.cid));}
+function timedDefenseApplyPayload(candidate){
+ const live=sheetState(),state=live?.state?.timedDefenses;if(live?.readOnly!==false||!B.cid||B.cid!==genv.__sheetId?.())return {ok:true,changed:false};
+ if(!timedDefenseApplyOwner(live,candidate)||!preserveTimedFuture(live.C,candidate))return {ok:false,reason:'stale-timed-defense-apply-owner'};
+ if(timedDefensesProblems(state).length)return {ok:true,changed:false};
+ if(own(live.C,'timedDefenses')&&timedDefensesProblems(live.C.timedDefenses).length)return {ok:false,reason:'unsupported-current-timed-defense-history'};
+ if(!currentTimedSourcesSafe(live.C,candidate,state)||!timedSourcesSupported(candidate.timedDefenseSources))return {ok:false,reason:'unsupported-current-timed-defense-source'};
+ if(candidate.timedDefenseSources.inventoryFingerprint!==canonicalTimedDefenseDefinition(candidate.inv))return {ok:false,reason:'stale-timed-defense-apply-witness'};
+ const plan=reconcileTimedDefensesInventory(live.C.inv||[],B.inv||[],state,candidate.timedDefenseSources.wearingIds);if(!plan.ok)return plan;
+ if(timedDefensesProblems(candidate.timedDefenses).length||!sameTimedValue(candidate.timedDefenses,plan.authority))return {ok:false,reason:'stale-timed-defense-apply-history'};
+ if(!spentTimedApplySources(candidate,plan.inventory,state))return {ok:false,reason:'consumed-potion-apply-source-required'};
+ const changed=!sameTimedValue(B.inv,plan.inventory),build=changed?{...structuredClone(B),inv:plan.inventory}:B;if(changed&&!sameTimedValue({...B,inv:plan.inventory},build))return {ok:false,reason:'unsupported-build-clone'};return {ok:true,changed,build};
+}
+const TIMED_DEFENSE_APPLY_PLANS=new WeakMap();
+export function timedDefensesApplyPlan(candidate){
+ const live=sheetState(),character=live?.C,state=live?.state,build=B,before={C:timedApplySignature(character),S:timedApplySignature(state),B:timedApplySignature(build),candidate:timedApplySignature(candidate),sources:timedApplySourcesSignature()},plan=timedDefenseApplyPayload(candidate);if(!plan.ok)return plan;const now=sheetState();
+ if(now?.C!==character||now?.state!==state||B!==build||before.C!==timedApplySignature(character)||before.S!==timedApplySignature(state)||before.B!==timedApplySignature(build)||before.candidate!==timedApplySignature(candidate)||before.sources!==timedApplySourcesSignature())return {ok:false,reason:'stale-timed-defense-apply-context'};
+ TIMED_DEFENSE_APPLY_PLANS.set(plan,{character,state,build,after:plan.changed?plan.build:build,before,afterSignature:timedApplySignature(plan.changed?plan.build:build),candidate,cid:genv.__sheetId?.(),readOnly:live?.readOnly});return plan;
+}
+export function timedDefensesApplyCurrent(plan,phase='pending'){
+ const ticket=TIMED_DEFENSE_APPLY_PLANS.get(plan),live=sheetState();if(!ticket||!['pending','committed'].includes(phase))return false;const expected=phase==='committed'?ticket.after:ticket.build,signature=phase==='committed'?ticket.afterSignature:ticket.before.B;
+ return !!(live?.C===ticket.character&&live?.state===ticket.state&&live?.readOnly===ticket.readOnly&&genv.__sheetId?.()===ticket.cid&&B===expected&&timedApplySignature(B)===signature&&timedApplySignature(ticket.character)===ticket.before.C&&timedApplySignature(ticket.state)===ticket.before.S&&timedApplySignature(ticket.candidate)===ticket.before.candidate&&timedApplySourcesSignature()===ticket.before.sources);
+}

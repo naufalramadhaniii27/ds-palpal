@@ -1,3 +1,4 @@
+import {timedDefensesControls} from './21u-ui-timed-defenses.js';
 import {swimClimbGlovesControls} from './21t-ui-swim-climb-gloves.js';
 import {magicRopesControls} from './21s-ui-magic-ropes.js';
 import {birdTokenControls} from './21r-ui-bird-token.js';
@@ -227,7 +228,7 @@ function renderActionsStep3(rowsOf, apa, AH, kinds, feats){
   const tabs='<div class="ifil">'+[["all","All"],["attack","Attack"],["action","Action"],["onhit","On Hit"],["bonus","Bonus Action"],["reaction","Reaction"],["other","Other"],["limited","Limited Use"]].map((f) =>{return '<button type="button" class="ifb'+(actF===f[0]?' on':'')+'" data-actf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
   const show=function(k){return actF==="all"||actF===k};
   let h=tabs, bRows=rowsOf("bonus"), rRows=rowsOf("reaction");
-  h+=swimClimbGlovesControls()+magicRopesControls()+birdTokenControls()+defenderControls()+hornValhallaControls()+bagTricksControls()+studyBooksControls()+pluvennGrappleclawsControls()+necronomiconReadingControls()+slotRecoveryControls()+storedSpellReceiptControls()+spellGemReceiptControls()+spellwroughtTattooControls()+noActH()+turnDamageGuide()+supremeHealingControls()+divineInterventionControls()+ordersWrathControls();/* v22 RU53 */
+  h+=timedDefensesControls()+swimClimbGlovesControls()+magicRopesControls()+birdTokenControls()+defenderControls()+hornValhallaControls()+bagTricksControls()+studyBooksControls()+pluvennGrappleclawsControls()+necronomiconReadingControls()+slotRecoveryControls()+storedSpellReceiptControls()+spellGemReceiptControls()+spellwroughtTattooControls()+noActH()+turnDamageGuide()+supremeHealingControls()+divineInterventionControls()+ordersWrathControls();/* v22 RU53 */
   if(show("attack")||show("action")) h+=sitCardH();/* v103 */
   if(show("attack")||show("action")) h+='<h3 class="fcat">Actions <span class="apa">• Attacks per Action: '+apa+'</span></h3>'+AH+rows+saveCantripRows()+modeXdRows()+sitDiceRows();/* v22 RU43, RU56 */
   if(show("action")) h+=combat(["Attack","Dash","Disengage","Dodge","Grapple","Help","Hide","Improvise","Influence","Magic","Ready","Search","Shove","Study","Utilize"])+kinds.action.map((o) =>{return actOne(o,"")}).join("")+actPlain("Actions",feats);

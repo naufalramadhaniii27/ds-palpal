@@ -29,6 +29,8 @@ import "./18-ui-header-and-more-menu.js";
 import "./19-ui-global-click-delegation.js";
 import "./20-ui-portrait.js";
 import "./21-ui-tabs-pager.js";
+import "./21u-ui-timed-defenses.js";
+import "./21v-ui-typed-player-damage.js";
 import "./22-ui-spell-data-and-slots.js";
 import "./23-ui-uses-items-coins-rest-spell-dc.js";
 import "./23b-ui-items-containers.js";

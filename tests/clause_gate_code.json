@@ -25202,6 +25202,488 @@
     "tests/swim_climb_gloves_provenance.mjs"
    ],
    "note": "U52 exact conditional +5 to actual Strength (Athletics) climbing/swimming, native qualified skill calculation before Customize absolute override. Worn/allocated native source, shared real Rope check composition and native deferred/manual dice; no global Athletics or new actor ledger. Movement sentence already covered remains unchanged. Actual native mobile source/Customize/Rope composition proof passed on43b9f500; FX8 includes24 actual contextual numeric assertions."
+  },
+  {
+   "id": "u53-item-dmg-armor-of-invulnerability-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Armor of Invulnerability",
+   "cls": [
+    "RES"
+   ],
+   "vals": [
+    "3"
+   ],
+   "scopeValues": true,
+   "rx": "^while\\ wearing\\ this\\ suit\\ of\\ plate\\ armor,\\ you\\ have\\ resistance\\ to\\ three\\ damage\\ types:\\ bludgeoning,\\ piercing,\\ and\\ slashing\\.$",
+   "anchor": [
+    "src/data/lib/timed-defenses.js",
+    "export function timedDefenseCapabilities("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function planTimedArmorActivation("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function recordTimedArmorExpiry("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function reconcileTimedArmorWearing("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function planResistancePotionConsumption("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function recordResistancePotionExpiry("
+    ],
+    [
+     "src/data/lib/timed-defenses-source.js",
+     "export function reconcileTimedDefensesInventory("
+    ],
+    [
+     "src/builder/10n-logic-timed-defenses.js",
+     "export function timedDefensesSourceWitness("
+    ],
+    [
+     "src/builder/10n-logic-timed-defenses.js",
+     "export function timedDefensesProjectedRows("
+    ],
+    [
+     "src/builder/12zc-logic-timed-defenses.js",
+     "id:'timed-defense-sources'"
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function validatedRows("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function activatePlan("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function drinkPlan("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function publish("
+    ],
+    [
+     "src/app/32t-logic-timed-defenses.js",
+     "export function requestTimedDefensesCommand("
+    ],
+    [
+     "src/app/21u-ui-timed-defenses.js",
+     "function openTimedDefenses("
+    ],
+    [
+     "src/data/lib/typed-damage.js",
+     "export function collectTypedDamageDefenses("
+    ],
+    [
+     "src/data/lib/typed-damage.js",
+     "export function resolveTypedDamage("
+    ],
+    [
+     "src/app/21v-ui-typed-player-damage.js",
+     "modeledDefenses:info.defenses"
+    ],
+    [
+     "src/app/21v-ui-typed-player-damage.js",
+     "applyNativePlayerDamage(result.total,"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "export function applyNativePlayerDamage("
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "function nativeDamageState("
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "nativeDamageConsequences(record,consequences,options.critical===true)"
+    ]
+   ],
+   "test": "Z3 U53 actual timed defense source ledger armorImmune",
+   "consumerTests": [
+    "tests/timed_defenses_model.mjs",
+    "tests/timed_defenses_backend.mjs",
+    "tests/timed_defenses_native_runtime.mjs",
+    "tests/timed_defenses_ui.mjs",
+    "tests/typed_damage.mjs",
+    "tests/player_damage_native.mjs",
+    "tests/typed_player_damage_controller.mjs",
+    "tests/player_damage_reactive.mjs",
+    "tests/timed_defenses_app17.mjs"
+   ],
+   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
+  },
+  {
+   "id": "u53-item-dmg-armor-of-invulnerability-3",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Armor of Invulnerability",
+   "cls": [
+    "IMM"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^as\\ a\\ magic\\ action,\\ you\\ can\\ make\\ yourself\\ immune\\ to\\ bludgeoning,\\ piercing,\\ and\\ slashing\\ damage\\.$",
+   "anchor": [
+    "src/data/lib/timed-defenses.js",
+    "export function timedDefenseCapabilities("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function planTimedArmorActivation("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function recordTimedArmorExpiry("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function reconcileTimedArmorWearing("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function planResistancePotionConsumption("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function recordResistancePotionExpiry("
+    ],
+    [
+     "src/data/lib/timed-defenses-source.js",
+     "export function reconcileTimedDefensesInventory("
+    ],
+    [
+     "src/builder/10n-logic-timed-defenses.js",
+     "export function timedDefensesSourceWitness("
+    ],
+    [
+     "src/builder/10n-logic-timed-defenses.js",
+     "export function timedDefensesProjectedRows("
+    ],
+    [
+     "src/builder/12zc-logic-timed-defenses.js",
+     "id:'timed-defense-sources'"
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function validatedRows("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function activatePlan("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function drinkPlan("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function publish("
+    ],
+    [
+     "src/app/32t-logic-timed-defenses.js",
+     "export function requestTimedDefensesCommand("
+    ],
+    [
+     "src/app/21u-ui-timed-defenses.js",
+     "function openTimedDefenses("
+    ],
+    [
+     "src/data/lib/typed-damage.js",
+     "export function collectTypedDamageDefenses("
+    ],
+    [
+     "src/data/lib/typed-damage.js",
+     "export function resolveTypedDamage("
+    ],
+    [
+     "src/app/21v-ui-typed-player-damage.js",
+     "modeledDefenses:info.defenses"
+    ],
+    [
+     "src/app/21v-ui-typed-player-damage.js",
+     "applyNativePlayerDamage(result.total,"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "export function applyNativePlayerDamage("
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "function nativeDamageState("
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "nativeDamageConsequences(record,consequences,options.critical===true)"
+    ]
+   ],
+   "test": "Z3 U53 actual timed defense source ledger armorImmune",
+   "consumerTests": [
+    "tests/timed_defenses_model.mjs",
+    "tests/timed_defenses_backend.mjs",
+    "tests/timed_defenses_native_runtime.mjs",
+    "tests/timed_defenses_ui.mjs",
+    "tests/typed_damage.mjs",
+    "tests/player_damage_native.mjs",
+    "tests/typed_player_damage_controller.mjs",
+    "tests/player_damage_reactive.mjs",
+    "tests/timed_defenses_app17.mjs"
+   ],
+   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
+  },
+  {
+   "id": "u53-item-dmg-armor-of-invulnerability-4",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Armor of Invulnerability",
+   "cls": [
+    "IMM"
+   ],
+   "vals": [
+    "10"
+   ],
+   "scopeValues": true,
+   "rx": "^this\\ immunity\\ lasts\\ 10\\ minutes\\ or\\ until\\ you\\ stop\\ wearing\\ the\\ armor\\.$",
+   "anchor": [
+    "src/data/lib/timed-defenses.js",
+    "export function timedDefenseCapabilities("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function planTimedArmorActivation("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function recordTimedArmorExpiry("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function reconcileTimedArmorWearing("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function planResistancePotionConsumption("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function recordResistancePotionExpiry("
+    ],
+    [
+     "src/data/lib/timed-defenses-source.js",
+     "export function reconcileTimedDefensesInventory("
+    ],
+    [
+     "src/builder/10n-logic-timed-defenses.js",
+     "export function timedDefensesSourceWitness("
+    ],
+    [
+     "src/builder/10n-logic-timed-defenses.js",
+     "export function timedDefensesProjectedRows("
+    ],
+    [
+     "src/builder/12zc-logic-timed-defenses.js",
+     "id:'timed-defense-sources'"
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function validatedRows("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function activatePlan("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function drinkPlan("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function publish("
+    ],
+    [
+     "src/app/32t-logic-timed-defenses.js",
+     "export function requestTimedDefensesCommand("
+    ],
+    [
+     "src/app/21u-ui-timed-defenses.js",
+     "function openTimedDefenses("
+    ],
+    [
+     "src/data/lib/typed-damage.js",
+     "export function collectTypedDamageDefenses("
+    ],
+    [
+     "src/data/lib/typed-damage.js",
+     "export function resolveTypedDamage("
+    ],
+    [
+     "src/app/21v-ui-typed-player-damage.js",
+     "modeledDefenses:info.defenses"
+    ],
+    [
+     "src/app/21v-ui-typed-player-damage.js",
+     "applyNativePlayerDamage(result.total,"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "export function applyNativePlayerDamage("
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "function nativeDamageState("
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "nativeDamageConsequences(record,consequences,options.critical===true)"
+    ]
+   ],
+   "test": "Z3 U53 actual timed defense source ledger armorImmune",
+   "consumerTests": [
+    "tests/timed_defenses_model.mjs",
+    "tests/timed_defenses_backend.mjs",
+    "tests/timed_defenses_native_runtime.mjs",
+    "tests/timed_defenses_ui.mjs",
+    "tests/typed_damage.mjs",
+    "tests/player_damage_native.mjs",
+    "tests/typed_player_damage_controller.mjs",
+    "tests/player_damage_reactive.mjs",
+    "tests/timed_defenses_app17.mjs"
+   ],
+   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
+  },
+  {
+   "id": "u53-item-dmg-potion-of-resistance-1",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Potion of Resistance",
+   "cls": [
+    "RES"
+   ],
+   "vals": [
+    "1"
+   ],
+   "scopeValues": true,
+   "rx": "^drinking\\ this\\ potion\\ gives\\ you\\ resistance\\ to\\ one\\ damage\\ type\\ for\\ 1\\ hour\\.$",
+   "anchor": [
+    "src/data/lib/timed-defenses.js",
+    "export function timedDefenseCapabilities("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function planTimedArmorActivation("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function recordTimedArmorExpiry("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function reconcileTimedArmorWearing("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function planResistancePotionConsumption("
+    ],
+    [
+     "src/data/lib/timed-defenses.js",
+     "export function recordResistancePotionExpiry("
+    ],
+    [
+     "src/data/lib/timed-defenses-source.js",
+     "export function reconcileTimedDefensesInventory("
+    ],
+    [
+     "src/builder/10n-logic-timed-defenses.js",
+     "export function timedDefensesSourceWitness("
+    ],
+    [
+     "src/builder/10n-logic-timed-defenses.js",
+     "export function timedDefensesProjectedRows("
+    ],
+    [
+     "src/builder/12zc-logic-timed-defenses.js",
+     "id:'timed-defense-sources'"
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function validatedRows("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function activatePlan("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function drinkPlan("
+    ],
+    [
+     "src/builder/25m-logic-timed-defenses.js",
+     "function publish("
+    ],
+    [
+     "src/app/32t-logic-timed-defenses.js",
+     "export function requestTimedDefensesCommand("
+    ],
+    [
+     "src/app/21u-ui-timed-defenses.js",
+     "function openTimedDefenses("
+    ],
+    [
+     "src/data/lib/typed-damage.js",
+     "export function collectTypedDamageDefenses("
+    ],
+    [
+     "src/data/lib/typed-damage.js",
+     "export function resolveTypedDamage("
+    ],
+    [
+     "src/app/21v-ui-typed-player-damage.js",
+     "modeledDefenses:info.defenses"
+    ],
+    [
+     "src/app/21v-ui-typed-player-damage.js",
+     "applyNativePlayerDamage(result.total,"
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "export function applyNativePlayerDamage("
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "function nativeDamageState("
+    ],
+    [
+     "src/app/32u-logic-player-damage.js",
+     "nativeDamageConsequences(record,consequences,options.critical===true)"
+    ]
+   ],
+   "test": "Z3 U53 actual timed defense source ledger armorImmune",
+   "consumerTests": [
+    "tests/timed_defenses_model.mjs",
+    "tests/timed_defenses_backend.mjs",
+    "tests/timed_defenses_native_runtime.mjs",
+    "tests/timed_defenses_ui.mjs",
+    "tests/typed_damage.mjs",
+    "tests/player_damage_native.mjs",
+    "tests/typed_player_damage_controller.mjs",
+    "tests/player_damage_reactive.mjs",
+    "tests/timed_defenses_app17.mjs"
+   ],
+   "note": "U53 exact clause requires real certified timed source and actual typed player damage controller: source-qualified Plate wearing/allocated attunement, original one-use S.used armor budget and actual dawn, ten-minute OR wear-loss ending; consumed selected-type Potion retained one hour. Typed R/I/V math feeds shared native TempHP\u2192HP/death/concentration transaction; source badges/objectHP alone do not prove this. Actual native proof pending registration authorization."
   }
  ]
 }

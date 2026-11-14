@@ -36,4 +36,5 @@ bind(["__bldMagicRopesInfo", "__bldMagicRopesCapture", "__bldMagicRopesTokenCurr
 bind(["__bldBirdTokenInfo", "__bldBirdTokenCapture", "__bldBirdTokenTokenCurrent", "__bldBirdTokenCommand", "__bldBirdTokenAcceptReceipt", "__bldBirdTokenInventoryOwner", "__birdTokenSave"]);
 bind(["__bldDefenderAttackInfo", "__bldDefenderAttackCurrent", "__bldDefenderCommitAttack", "__bldDefenderInfo", "__bldDefenderCapture", "__bldDefenderTokenCurrent", "__bldDefenderCommand", "__bldDefenderAcceptReceipt", "__bldDefenderInventoryOwner", "__defenderSave", "__defenderAttackSpec"]);
 bind(["__bldHornValhallaInfo", "__bldHornValhallaCapture", "__bldHornValhallaTokenCurrent", "__bldHornValhallaCommand", "__bldHornValhallaAcceptReceipt", "__bldHornValhallaInventoryOwner", "__hornValhallaSave"]);
+bind(["__bldTimedDefensesInfo", "__bldTimedDefensesCapture", "__bldTimedDefensesTokenCurrent", "__bldTimedDefensesCommand", "__bldTimedDefensesAcceptReceipt", "__bldTimedDefensesInventoryOwner", "__timedDefensesSave"]);
 export const ENV_NAMES = Object.keys(env);
