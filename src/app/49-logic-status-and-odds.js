@@ -201,6 +201,6 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
    and the result goes through the same buttons and boxes as a number typed by hand, so the rules code stays one path */
 document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-dsroll],[data-hdroll]"); if(!b||!env.__miRoll||!env.__miRoll.roll) return; e.preventDefault(); if(b.__busy) return; b.__busy=1;
   if(b.hasAttribute("data-dsroll")){ const L=(D.cf&&D.cf.ds)||[], a=L.some((x) =>{ return x.t==="ADV"; }), d=L.some((x) =>{ return x.t==="DIS"; }), mode=a&&!d?"adv":d&&!a?"dis":"";
-    env.__miRoll.roll({bon:0},mode,"Death Saving Throw",(r) =>{ b.__busy=0; const n=r.nat, k=n===20?"20":n===1?"1":n>=10?"s":"f"; setTimeout(() =>{ const t=document.querySelector('#dsGuide [data-dsr="'+k+'"]'); if(t) t.click(); },r.three?900:300); }); return; }
+    env.__miRoll.roll({bon:0},mode,"Death Saving Throw",(r) =>{ b.__busy=0; const n=r.nat, pe=!!(env.__dsPeri&&env.__dsPeri()), k=n===20?"20":pe?"s":n===1?"1":n>=10?"s":"f";/* Periapt: 9 or lower becomes 10 */ setTimeout(() =>{ const t=document.querySelector('#dsGuide [data-dsr="'+k+'"]'); if(t) t.click(); },r.three?900:300); }); return; }
   const k=b.getAttribute("data-hdroll"), i=b.getAttribute("data-hdi"), die=+b.getAttribute("data-die")||8;
   env.__miRoll.roll({dmg:"1d"+die},"","Hit Point Die",(r) =>{ b.__busy=0; const inp=document.querySelector('#restDlg [data-hdv="'+k+'"][data-hdi="'+i+'"]'); if(!inp) return; inp.value=String(r.v); inp.dispatchEvent(new Event("input",{bubbles:true})); }); });
