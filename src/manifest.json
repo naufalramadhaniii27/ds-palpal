@@ -1,1025 +1,1027 @@
 {
- "entries": [
-  {
-   "t": "file",
-   "file": "html/head.html"
-  },
-  {
-   "t": "block",
-   "open": "<script>",
-   "close": "</script>",
-   "files": [
-    "boot/boot-env.js",
-    "boot/trusted-types.js",
-    "boot/store-gate.js"
-   ]
-  },
-  {
-   "t": "block",
-   "open": "<style>",
-   "close": "</style>",
-   "files": [
-    "css/00-fonts.css",
-    "css/01-base-band-layout.css",
-    "css/02-hero.css",
-    "css/03-mobile.css",
-    "css/04-breakdowns-editor.css",
-    "css/05-detail-sheets.css",
-    "css/06-print-sheet.css",
-    "css/07-ddb-skin.css",
-    "css/08-patches-v15-v28.css",
-    "css/09-v29-motion-tokens-glass.css",
-    "css/10-v30-header-playbar-hp-conditions.css",
-    "css/11-v31-tabs-cards-panels.css",
-    "css/12-v32-v34-patches.css",
-    "css/13-v35-v38-high-contrast-cards-print.css",
-    "css/14-combo.css",
-    "css/15-v43-v45-patches.css",
-    "css/16-builder.css",
-    "css/17-caution-recovery-backup.css",
-    "css/18-hold-and-slide-confirm.css",
-    "css/19-fx-micro-interactions.css",
-    "css/20-fx-round6-wow-x-d-packs.css",
-    "css/21-ddb-polish-and-buttons.css",
-    "css/22-design-system-main-page.css",
-    "css/23-fx-w-pack.css",
-    "css/24-fx-y-pack.css",
-    "css/25-fx-z-l-m-packs.css",
-    "css/26-fx-g-pack.css",
-    "css/27-fx-k-pack.css",
-    "css/28-connected-home-sheet.css",
-    "css/29-fx-toggles.css",
-    "css/29-motion-off.css",
-    "css/30-tap-44.css",
-    "css/31-home-hero.css",
-    "css/32-class-art.css",
-    "css/33-store-wait.css",
-    "css/34-cloud-sync.css",
-    "css/35-friends.css",
-    "css/36-tidy.css",
-    "css/37-g0-art.css",
-    "css/38-blend-sheet.css",
-    "css/39-duotone-icons.css",
-    "css/40-dice-roller.css",
-    "css/L-builder.css",
-    "css/L-dice.css",
-    "css/L-learn.css",
-    "css/L-tg.css"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script>",
-   "close": "</script>",
-   "files": [
-    "boot/debug-overlay.js",
-    "boot/err-report.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script>",
-   "close": "</script>",
-   "files": [
-    "boot/reload-helper.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script>",
-   "close": "</script>",
-   "files": [
-    "boot/arrive-flag.js"
-   ]
-  },
-  {
-   "t": "file",
-   "file": "html/sheet-body.html"
-  },
-  {
-   "t": "block",
-   "open": "<script>",
-   "close": "</script>",
-   "files": [
-    "boot/busy-splash.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n<div class=\"ps-wrap\" id=\"psWrap\" aria-hidden=\"true\"><div class=\"ps\" id=\"ps\"></div></div>\n"
-  },
-  {
-   "t": "block",
-   "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
-   "close": "\n}</script>",
-   "files": [
-    "fx/23-class-art-data.js",
-    "app/00-reg.js",
-    "app/00-env.js",
-    "app/00a-reg-late-ports.js",
-    "app/01-logic-boot-flags-builder-loader.js",
-    "app/02-data-default-character.js",
-    "app/03-data-glossary.js",
-    "app/04-logic-storage.js",
-    "app/05-logic-helpers.js",
-    "app/06-logic-derivation.js",
-    "app/06a-logic-ui-registry.js",
-    "app/07-ui-theme-contrast-spring.js",
-    "app/08-ui-render-sheet-and-actions.js",
-    "app/08b-ui-render-summaries-actions.js",
-    "app/08c-ui-render-inventory-features-notes.js",
-    "app/08d-ui-attack-self-damage.js",
-    "app/08e-ui-attack-resource-damage.js",
-    "app/08f-ui-turn-damage.js",
-    "app/08g-ui-supreme-healing.js",
-    "app/08h-ui-divine-intervention.js",
-    "app/08i-ui-orders-wrath.js",
-    "app/08j-ui-cleric-controls.js",
-    "app/08k-ui-spellwrought-body.js",
-    "app/08l-ui-spell-gem-casting.js",
-    "app/08m-ui-stored-spell-casting.js",
-    "app/09-ui-hit-points-playbar-death-saves.js",
-    "app/10-ui-conditions.js",
-    "app/11-ui-breakdown.js",
-    "app/12-ui-bottom-sheet-modal.js",
-    "app/13-ui-detail-cards.js",
-    "app/13b-ui-detail-spell-targets-render.js",
-    "app/14-ui-editor.js",
-    "app/15-logic-roster-backup-files-snapshots.js",
-    "app/15b-logic-backup.js",
-    "app/15c-logic-file-state-compress.js",
-    "app/15d-logic-snapshots-character-files.js",
-    "app/16-logic-import-chat-text-and-build-files.js",
-    "app/16b-data-whats-new.js",
-    "app/16c-ui-whats-new-and-hooks.js",
-    "app/17-logic-tab-sync-and-test-hooks.js",
-    "app/18-ui-header-and-more-menu.js",
-    "app/19-ui-global-click-delegation.js",
-    "app/20-ui-portrait.js",
-    "app/21-ui-tabs-pager.js",
-    "app/21b-ui-weapon-forms.js",
-    "app/21c-ui-wield-minimum.js",
-    "app/21d-logic-wield-refresh.js",
-    "app/21e-ui-carpet-vehicles.js",
-    "app/21f-ui-temporary-cantrip.js",
-    "app/21h-ui-spellwrought-needle.js",
-    "app/21i-ui-spell-gem.js",
-    "app/21j-ui-stored-spells.js",
-    "app/21k-ui-slot-recovery.js",
-    "app/21l-ui-necronomicon-reading.js",
-    "app/21m-ui-pluvenn-grappleclaws.js",
-    "app/21n-ui-study-books.js",
-    "app/21o-ui-bag-tricks.js",
-    "app/21g-ui-ridden-vehicles.js",
-    "app/21a-ui-attunement.js",
-    "app/22-ui-spell-data-and-slots.js",
-    "app/23-ui-uses-items-coins-rest-spell-dc.js",
-    "app/23b-ui-items-containers.js",
-    "app/23c-ui-coins.js",
-    "app/23d-ui-rest.js",
-    "app/23e-ui-spells-dc.js",
-    "app/23f-ui-spell-source-rolls.js",
-    "app/24-ui-manage-spells.js",
-    "app/25-ui-settings-appearance.js",
-    "app/26-ui-customize.js",
-    "app/27-ui-party-search-commands-library.js",
-    "app/27b-ui-library.js",
-    "app/27d-ui-library-search-open.js",
-    "app/27c-ui-report-pins.js",
-    "app/28-ui-bastion.js",
-    "app/29-ui-ddb-look.js",
-    "app/29b-ui-creatures-extras.js",
-    "app/29c-ui-tool-forms.js",
-    "app/29c-data-ddb-icons.js",
-    "app/30-ui-icons.js",
-    "app/31-ui-tour-and-focus.js",
-    "app/32-logic-play-undo-actions.js",
-    "app/32b-logic-play-concentration-casting.js",
-    "app/32c-ui-object-repair.js",
-    "app/32c-logic-play-temp-features-ammo.js",
-    "app/32d-logic-play-hp-rest-recovery.js",
-    "app/32f-logic-divine-intervention.js",
-    "app/32g-logic-spellwrought-tattoo.js",
-    "app/32h-logic-spell-gem.js",
-    "app/32i-logic-stored-spells.js",
-    "app/32j-logic-slot-recovery.js",
-    "app/32k-logic-necronomicon-reading.js",
-    "app/32l-logic-pluvenn-grappleclaws.js",
-    "app/32m-logic-study-books.js",
-    "app/32n-logic-bag-tricks.js",
-    "app/33-logic-play-rage-conditions.js",
-    "app/34-ui-situations.js",
-    "app/34b-ui-combat-effects-modes.js",
-    "app/34c-ui-experience-journal-combat-view.js",
-    "app/35-ui-combo.js",
-    "app/36-ui-printable-sheet.js",
-    "app/37a-ui-pdf-model.js",
-    "app/37-ui-pdf-export-hold-slide-confirm.js",
-    "app/38-boot-init.js",
-    "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",
-    "app/40-ui-segments-notes-swipe-motion-panels.js",
-    "app/40b-ui-notes-description.js",
-    "app/40c-ui-motion-sheet-morph.js",
-    "app/40d-ui-overlays-context-dock.js",
-    "app/40e-ui-reorder-drag.js",
-    "app/40f-ui-tabs-spring.js",
-    "app/41-ui-edit-mode.js",
-    "app/42-logic-pwa-qr-icons-wallet.js",
-    "app/43-logic-cloud-sync.js",
-    "app/44-ui-friends.js",
-    "app/45-learn-bridge.js",
-    "app/46-logic-receipts.js",
-    "app/47-logic-time-machine.js",
-    "app/48-logic-sync-merge.js",
-    "app/49-logic-status-and-odds.js",
-    "app/50-logic-reverse-builder.js",
-    "app/51-ui-table-help.js",
-    "app/52-tg-bridge.js",
-    "app/53-logic-number-map.js",
-    "app/54-dev-fps-probe.js",
-    "app/99-ui-backup-reminder-handlers.js",
-    "app/main.js"
-   ],
-   "pre": [
-    "fx/23-class-art-data.js"
-   ],
-   "entry": "app/main.js"
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
-   "close": "\n}</script>",
-   "files": [
-    "fx/00-fx-env.js",
-    "fx/00b-fx-shared.js",
-    "fx/01-core-router-and-switch.js",
-    "fx/02-micro-interactions.js",
-    "fx/02b-micro-interactions-2.js",
-    "fx/03-f1-card-light-and-morph.js",
-    "fx/04-f2-odometer-hp-bar-scrub.js",
-    "fx/05-f3-indicator-dock-toast.js",
-    "fx/06-f4-reveal-on-scroll.js",
-    "fx/07-f5-moments.js",
-    "fx/08-round6.js",
-    "fx/09-wow-pack.js",
-    "fx/10-x-pack.js",
-    "fx/11-d-pack.js",
-    "fx/12-mini-window-v2.js",
-    "fx/13-class-colour-hp-ring.js",
-    "fx/14-w-pack.js",
-    "fx/15-y-pack.js",
-    "fx/16-z-pack-dice-sound-hover.js",
-    "fx/16b-z-pack-dice-sound-hover-2.js",
-    "fx/16c-z-pack-dice-roller.js",
-    "fx/17-l-pack-webgl-sky.js",
-    "fx/18-m-pack-rolls-concentration.js",
-    "fx/19-g-pack-cinematic.js",
-    "fx/20-k-pack-character-colour-icon.js",
-    "fx/21-connected-home-sheet.js",
-    "fx/22-home-hero.js",
-    "fx/24-class-art.js",
-    "fx/25a-dice3d-bridge.js",
-    "fx/26-tab-notch.js",
-    "fx/27-blend-sheet.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n<script>window.__gateRun&&window.__gateRun();</script>"
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script>",
-   "close": "</script>",
-   "files": [
-    "boot/deferred-loader.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n<div id=\"bld\" hidden>\n<div class=\"top\"><div class=\"brand\"><b><span class=\"bt0\"><span class=\"bt1\">Character </span>Builder</span></b><span>PHB 2024</span><button type=\"button\" class=\"lvhead\" data-lvup=\"1\"><span>Level Up</span></button><button type=\"button\" id=\"b-toSheet\" class=\"tosheet\">Apply to Sheet</button><button type=\"button\" id=\"b-close\" class=\"bclose\" aria-label=\"Close builder\" title=\"Close builder\"></button></div><nav class=\"steps\" id=\"steps\"></nav></div>\n<main><div class=\"bnm\" id=\"nameRow\"><label for=\"nmIn\">Character Name</label><input class=\"btx\" id=\"nmIn\" autocomplete=\"off\"></div><div id=\"body\"></div></main>\n<div class=\"foot\"><button type=\"button\" id=\"prev\"><span>Prev</span></button><button type=\"button\" id=\"next\"><span>Next</span></button></div>\n<div class=\"exp\" id=\"exp\" hidden><div class=\"expb\"><h3>Export to Character Sheet</h3><p class=\"fd\">Copy this text. In the character sheet, open Edit, scroll to Import build, paste, then Apply.</p><textarea id=\"expTxt\" readonly></textarea><div class=\"row\"><button type=\"button\" id=\"expClose\">Close</button><button type=\"button\" class=\"pri\" id=\"expCopy\">Copy</button></div></div></div>\n<div class=\"btoast\" id=\"btoast\" role=\"status\"></div>\n</div>\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"dice3d\">",
-   "close": "</script>",
-   "files": [
-    "fx/25-dice3d-head.js",
-    "fx/25-dice3d.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"db1\">",
-   "close": "</script>",
-   "files": [
-    "data/00-data-env.js",
-    "data/db1-phb-skills-species-backgrounds-feats-weapons.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"db2\">",
-   "close": "</script>",
-   "files": [
-    "data/db2-phb-classes-a.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"db3\">",
-   "close": "</script>",
-   "files": [
-    "data/db3-phb-classes-b.js",
-    "data/fx-B2-subclass.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"cffull\">",
-   "close": "</script>",
-   "files": [
-    "data/cffull-class-feature-text.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"subfull\">",
-   "close": "</script>",
-   "files": [
-    "data/subfull-subclass-feature-text.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"spfull\">",
-   "close": "</script>",
-   "files": [
-    "data/spfull-spell-text.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"spells\">",
-   "close": "</script>",
-   "files": [
-    "data/spells-spell-list.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"dmgi\">",
-   "close": "</script>",
-   "files": [
-    "data/dmgi-magic-items-dmg2024.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"itsp\">",
-   "close": "</script>",
-   "files": [
-    "data/itsp-spells-from-items.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"db4\">",
-   "close": "</script>",
-   "files": [
-    "data/db4/01-languages-auto-spells-grants-prices-gear.js",
-    "data/db4/02-limited-uses-damage-rows-save-notes.js",
-    "data/db4/03-lifestyle-containers-printed-pages.js",
-    "data/db4/04-creature-stat-blocks.js",
-    "data/db4/05-gifts-weights-quick-build-bastions.js",
-    "data/db4/06-tools-proficiencies-packs-kits.js",
-    "data/db4/07-actions.js",
-    "data/db4/08-mpmm-species.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"efa\">",
-   "close": "</script>",
-   "files": [
-    "data/efa-eberron-forge-of-the-artificer.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc1\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc01-sources-2025-feats-boons-spells.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc2\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc02-subclasses-2025.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc3\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc03-magic-items-2025.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc4\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc04-species-lorwyn-ravenloft.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc5\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc05-backgrounds-2025.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc6\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc06-gear-2024.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc7\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc07-feats-2014.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc8\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc08-backgrounds-2014.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc9\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc09-subclasses-2014.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc10\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc10-species-2014.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc11\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc11-magic-items-2014.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc12\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc12-spells-2014.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc13\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc13-creature-stat-blocks.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc14\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc14-gear-2014.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc15\">",
-   "close": "</script>",
-   "files": [
-    "data/wotc15-class-options-2014.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"tp1\">",
-   "close": "</script>",
-   "files": [
-    "data/tp01-tdcsr.js",
-    "data/tp02-tdcg.js",
-    "data/tp03-tvss.js",
-    "data/tp04-tee24.js",
-    "data/tp05-tghp.js",
-    "data/tp06-tsgeh.js",
-    "data/tp07-tsae.js",
-    "data/tp08-tghg.js",
-    "data/tp09-tshl.js",
-    "data/tp10-tssm.js",
-    "data/tp11-tsdd.js",
-    "data/tp12-tsgs.js",
-    "data/tp13-tsdm.js",
-    "data/tp14-tkdm.js",
-    "data/tp15-thhw.js",
-    "data/tp16-tvss14.js",
-    "data/tp17-tdm14.js",
-    "data/tp18-tgh14p.js",
-    "data/tp19-tgh14c.js",
-    "data/tp20-twow.js",
-    "data/tp21-tua24.js",
-    "data/fx-C-feat.js",
-    "data/fx-E-feat.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"q1\">",
-   "close": "</script>",
-   "files": [
-    "data/q00-src.js",
-    "data/q09-hbindex.js",
-    "data/q20-hbnames.js",
-    "data/q21-spellref.js",
-    "data/q22-textfix.js",
-    "data/q01-reward.js",
-    "data/q02-deity.js",
-    "data/q03-loot.js",
-    "data/q04-recipe.js",
-    "data/q05-charopt.js",
-    "data/q05-cult.js",
-    "data/q06-disease.js",
-    "data/q06-language.js",
-    "data/q06-tvss14-monster.js",
-    "data/q06-tdm14-monster.js",
-    "data/q06-tgh14p-monster.js",
-    "data/q06-tgh14c-monster.js",
-    "data/q06-twow-monster.js",
-    "data/q06-tua24-monster.js",
-    "data/q08-deck.js",
-    "data/q08-hazard.js",
-    "data/q08-object.js",
-    "data/q08-psionic.js",
-    "data/q08-table.js",
-    "data/q08-vehicle.js",
-    "data/q08-tdm14-vehicle.js",
-    "data/q10-fluff.js",
-    "data/q11-img.js",
-    "data/q12-crimg.js",
-    "data/q19-img-more.js",
-    "data/q12-rule.js",
-    "data/q13-rule-gaps.js",
-    "data/q15-books.js",
-    "data/q18-life.js",
-    "data/q16-items-gap.js",
-    "data/q17-class-gap.js",
-    "data/q14-optfeat.js",
-    "data/q12-facility.js",
-    "data/q23-gapfill.js",
-    "data/q24-gapfill2.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"q7s\">",
-   "close": "</script>",
-   "files": [
-    "data/q07-lazy-stub.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"q7\" data-lazy=\"1\">",
-   "close": "</script>",
-   "files": [
-    "data/q07-bestiary.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
-   "close": "</script>",
-   "files": [
-    "data/hbpack-builtin-homebrew.js",
-    "data/fx-A-class-species.js",
-    "data/fx-B1-subclass.js",
-    "data/fx-F-sub.js",
-    "data/fx-G-engine.js",
-    "data/fx-H-audit.js",
-    "data/fx-L1.js",
-    "data/fx-L4.js",
-    "data/fx-L5.js",
-    "data/fx-L9.js",
-    "data/fx-L10.js",
-    "data/fx-L11.js",
-    "data/fx-L12.js",
-    "data/fx-L13.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"fxd\">",
-   "close": "</script>",
-   "files": [
-    "data/fx-D-item.js",
-    "data/fx-L2.js",
-    "data/fx-L3.js",
-    "data/fx-L6.js",
-    "data/fx-L7.js",
-    "data/fx-L8.js",
-    "data/fx-M1.js",
-    "data/fx-M2.js",
-    "data/fx-N1.js",
-    "data/fx-Z1.js",
-    "data/fx-Z2.js",
-    "data/fx-Z3.js",
-    "data/fx-Z4.js",
-    "data/fx-Z5.js",
-    "data/fx-Z6.js",
-    "data/fx-Z7.js",
-    "data/fx-Z8.js",
-    "data/fx-Z9.js",
-    "data/fx-Z10.js",
-    "data/fx-Z11.js",
-    "data/fx-Z12.js",
-    "data/fx-Z13.js",
-    "data/fx-Z14.js",
-    "data/fx-Z15.js",
-    "data/fx-Z16.js",
-    "data/fx-Z17.js",
-    "data/fx-Z18.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"builder\">",
-   "close": "</script>",
-   "files": [
-    "builder/00-reg.js",
-    "builder/00-env.js",
-    "builder/01-logic-core-helpers.js",
-    "builder/01a-logic-query-registry.js",
-    "builder/01b-logic-late-ports.js",
-    "builder/02-data-magic-item-summaries.js",
-    "builder/03-logic-magic-item-effects.js",
-    "builder/04-logic-storage.js",
-    "builder/05-logic-choice-model-ruleset.js",
-    "builder/06-data-2014-classes.js",
-    "builder/06a-data-2014-long-text-more.js",
-    "builder/06a2-data-2024-species-long-text.js",
-    "builder/06b-data-2014-long-text.js",
-    "builder/07-data-2014-spells.js",
-    "builder/08-logic-2014-rules.js",
-    "builder/09-logic-feats-and-choices.js",
-    "builder/09c-logic-edition-overlays.js",
-    "builder/09d-logic-wotc-source-gate.js",
-    "builder/09b-logic-choice-stages.js",
-    "builder/10-logic-v17-additions.js",
-    "builder/10a-logic-fx-registry.js",
-    "builder/10b-logic-fx-handlers-entry.js",
-    "builder/10c-logic-fx-handlers-ability.js",
-    "builder/10d-logic-fx-rules-cond-value.js",
-    "builder/10e-logic-fx-schema.js",
-    "builder/10f-logic-necronomicon-reading.js",
-    "builder/10g-logic-study-books.js",
-    "builder/10h-logic-bag-tricks.js",
-    "data/lib/attack-target.js",
-    "data/lib/attack-resources.js",
-    "data/lib/attack-kind.js",
-    "data/lib/weapon-form.js",
-    "data/lib/wield-minimum.js",
-    "data/lib/object-repair.js",
-    "data/lib/tool-form.js",
-    "data/lib/carpet-vehicle.js",
-    "data/lib/ridden-vehicle.js",
-    "data/lib/spellwrought-tattoo.js",
-    "data/lib/tattoo-projection.js",
-    "data/lib/disciple-of-life.js",
-    "data/lib/spell-gem.js",
-    "data/lib/spell-gem-physical.js",
-    "data/lib/spell-gem-authority.js",
-    "data/lib/spell-gem-source.js",
-    "data/lib/spell-gem-casts.js",
-    "data/lib/stored-spell.js",
-    "data/lib/slot-recovery.js",
-    "data/lib/necronomicon-reading.js",
-    "data/lib/pluvenn-grappleclaws.js",
-    "data/lib/study-books.js",
-    "data/lib/bag-tricks.js",
-    "data/lib/bag-tricks-source.js",
-    "data/lib/gem-check-bonuses.js",
-    "data/lib/casting-sources.js",
-    "data/lib/item-spell-damage.js",
-    "data/lib/spell-source.js",
-    "data/lib/turn-damage.js",
-    "data/lib/cleric-maths.js",
-    "data/lib/orders-wrath.js",
-    "data/lib/cleric-capabilities.js",
-    "data/lib/temporary-cantrip.js",
-    "data/lib/temporary-cantrip-projection.js",
-    "data/lib/all-purpose-source.js",
-    "data/lib/attunement.js",
-    "builder/11-logic-derivation.js",
-    "builder/11b-logic-fx-sources.js",
-    "builder/11c-logic-fx-handlers-sheet.js",
-    "builder/12a-logic-sheet-registry.js",
-    "builder/12b-logic-sheet-schema.js",
-    "builder/12c-logic-sheet-handlers-core.js",
-    "builder/12d-logic-sheet-handlers-skills.js",
-    "builder/12e-logic-sheet-handlers-defense.js",
-    "builder/12f-logic-sheet-handlers-movement.js",
-    "builder/12g-logic-sheet-handlers-profs.js",
-    "builder/12h-logic-sheet-handlers-attacks.js",
-    "builder/12i-logic-sheet-handlers-gear-resources.js",
-    "builder/12j-logic-sheet-handlers-features.js",
-    "builder/12k-logic-sheet-handlers-spells.js",
-    "builder/12l-logic-sheet-handlers-late.js",
-    "builder/12m-logic-sheet-handlers-tools.js",
-    "builder/12n-logic-sheet-handlers-turn-damage.js",
-    "builder/12o-logic-sheet-handlers-cleric-powers.js",
-    "builder/12p-logic-sheet-handlers-disciple.js",
-    "builder/12q-logic-sheet-handlers-casting-sources.js",
-    "builder/12r-logic-sheet-handlers-gem-checks.js",
-    "builder/12s-logic-sheet-handlers-item-spell-damage.js",
-    "builder/12t-logic-necronomicon-reading.js",
-    "builder/12u-logic-pluvenn-grappleclaws.js",
-    "builder/12v-logic-study-books.js",
-    "builder/12w-logic-bag-tricks.js",
-    "builder/12-logic-export-to-sheet.js",
-    "builder/13-logic-sources-and-packs.js",
-    "builder/13a-logic-pack-registry.js",
-    "builder/13b-logic-pack-handlers.js",
-    "builder/14-logic-multiclass-hp-shop.js",
-    "builder/15-logic-import-from-sheet.js",
-    "builder/16-logic-feature-numbers.js",
-    "builder/17-ui-step-builder.js",
-    "builder/18-ui-spells.js",
-    "builder/19-ui-steps-sources-class-bg-species-abilities.js",
-    "builder/20-ui-steps-equipment-next.js",
-    "builder/21-ui-rules-reference.js",
-    "builder/22-ui-shell.js",
-    "builder/23-logic-level-up-and-build-files.js",
-    "builder/24-ui-icons.js",
-    "builder/25-logic-hooks-for-the-sheet.js",
-    "builder/25a-logic-tattoo-sources.js",
-    "builder/25b-logic-spell-gem-sources.js",
-    "builder/25c-logic-stored-spell-sources.js",
-    "builder/25d-logic-slot-recovery-sources.js",
-    "builder/25e-logic-necronomicon-reading.js",
-    "builder/25f-logic-study-books.js",
-    "builder/25g-logic-bag-tricks.js",
-    "builder/main.js"
-   ],
-   "entry": "builder/main.js"
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"learn\">",
-   "close": "</script>",
-   "files": [
-    "learn/00-env.js",
-    "learn/00-bridge.js",
-    "learn/45b-data-learn-places-a.js",
-    "learn/45c-data-learn-places-b.js",
-    "learn/45-data-learn.js",
-    "learn/46-logic-learn.js",
-    "learn/47-ui-learn.js"
-   ],
-   "entry": "learn/47-ui-learn.js"
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"tg\">",
-   "close": "</script>",
-   "files": [
-    "tg/00-env.js",
-    "tg/00-bridge.js",
-    "tg/20-engine.js",
-    "tg/25-sim.js",
-    "tg/30-ui-tg.js",
-    "tg/31-ui-tg-field.js"
-   ],
-   "entry": "tg/31-ui-tg-field.js"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"pdfx\">",
-   "close": "</script>",
-   "files": [
-    "pdf/00-env.js",
-    "pdf/01-data-style.js",
-    "pdf/02-logic-markup.js",
-    "pdf/03-logic-typeset.js",
-    "pdf/04-ui-canvas.js",
-    "pdf/05-data-sheet-fields.js",
-    "pdf/06-ui-fields.js",
-    "pdf/07-ui-sheet-pages.js",
-    "pdf/08-ui-flow.js",
-    "pdf/09-ui-blocks.js",
-    "pdf/10-ui-appendix.js",
-    "pdf/11-ui-render.js",
-    "pdf/main.js"
-   ],
-   "entry": "pdf/main.js"
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"rs14\">",
-   "close": "</script>",
-   "files": [
-    "data/rs14-2014-wording.js"
-   ]
-  },
-  {
-   "t": "text",
-   "text": "\n</body>\n</html>\n"
-  }
- ]
+  "entries": [
+    {
+      "t": "file",
+      "file": "html/head.html"
+    },
+    {
+      "t": "block",
+      "open": "<script>",
+      "close": "</script>",
+      "files": [
+        "boot/boot-env.js",
+        "boot/trusted-types.js",
+        "boot/store-gate.js"
+      ]
+    },
+    {
+      "t": "block",
+      "open": "<style>",
+      "close": "</style>",
+      "files": [
+        "css/00-fonts.css",
+        "css/01-base-band-layout.css",
+        "css/02-hero.css",
+        "css/03-mobile.css",
+        "css/04-breakdowns-editor.css",
+        "css/05-detail-sheets.css",
+        "css/06-print-sheet.css",
+        "css/07-ddb-skin.css",
+        "css/08-patches-v15-v28.css",
+        "css/09-v29-motion-tokens-glass.css",
+        "css/10-v30-header-playbar-hp-conditions.css",
+        "css/11-v31-tabs-cards-panels.css",
+        "css/12-v32-v34-patches.css",
+        "css/13-v35-v38-high-contrast-cards-print.css",
+        "css/14-combo.css",
+        "css/15-v43-v45-patches.css",
+        "css/16-builder.css",
+        "css/17-caution-recovery-backup.css",
+        "css/18-hold-and-slide-confirm.css",
+        "css/19-fx-micro-interactions.css",
+        "css/20-fx-round6-wow-x-d-packs.css",
+        "css/21-ddb-polish-and-buttons.css",
+        "css/22-design-system-main-page.css",
+        "css/23-fx-w-pack.css",
+        "css/24-fx-y-pack.css",
+        "css/25-fx-z-l-m-packs.css",
+        "css/26-fx-g-pack.css",
+        "css/27-fx-k-pack.css",
+        "css/28-connected-home-sheet.css",
+        "css/29-fx-toggles.css",
+        "css/29-motion-off.css",
+        "css/30-tap-44.css",
+        "css/31-home-hero.css",
+        "css/32-class-art.css",
+        "css/33-store-wait.css",
+        "css/34-cloud-sync.css",
+        "css/35-friends.css",
+        "css/36-tidy.css",
+        "css/37-g0-art.css",
+        "css/38-blend-sheet.css",
+        "css/39-duotone-icons.css",
+        "css/40-dice-roller.css",
+        "css/41-martyr-actions.css",
+        "css/L-builder.css",
+        "css/L-dice.css",
+        "css/L-learn.css",
+        "css/L-tg.css"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script>",
+      "close": "</script>",
+      "files": [
+        "boot/debug-overlay.js",
+        "boot/err-report.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script>",
+      "close": "</script>",
+      "files": [
+        "boot/reload-helper.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script>",
+      "close": "</script>",
+      "files": [
+        "boot/arrive-flag.js"
+      ]
+    },
+    {
+      "t": "file",
+      "file": "html/sheet-body.html"
+    },
+    {
+      "t": "block",
+      "open": "<script>",
+      "close": "</script>",
+      "files": [
+        "boot/busy-splash.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n<div class=\"ps-wrap\" id=\"psWrap\" aria-hidden=\"true\"><div class=\"ps\" id=\"ps\"></div></div>\n"
+    },
+    {
+      "t": "block",
+      "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
+      "close": "\n}</script>",
+      "files": [
+        "fx/23-class-art-data.js",
+        "app/00-reg.js",
+        "app/00-env.js",
+        "app/00a-reg-late-ports.js",
+        "app/01-logic-boot-flags-builder-loader.js",
+        "app/02-data-default-character.js",
+        "app/03-data-glossary.js",
+        "app/04-logic-storage.js",
+        "app/05-logic-helpers.js",
+        "app/06-logic-derivation.js",
+        "app/06a-logic-ui-registry.js",
+        "app/07-ui-theme-contrast-spring.js",
+        "app/08-ui-render-sheet-and-actions.js",
+        "app/08b-ui-render-summaries-actions.js",
+        "app/08c-ui-render-inventory-features-notes.js",
+        "app/08d-ui-attack-self-damage.js",
+        "app/08e-ui-attack-resource-damage.js",
+        "app/08f-ui-turn-damage.js",
+        "app/08g-ui-supreme-healing.js",
+        "app/08h-ui-divine-intervention.js",
+        "app/08i-ui-orders-wrath.js",
+        "app/08j-ui-cleric-controls.js",
+        "app/08k-ui-spellwrought-body.js",
+        "app/08l-ui-spell-gem-casting.js",
+        "app/08m-ui-stored-spell-casting.js",
+        "app/09-ui-hit-points-playbar-death-saves.js",
+        "app/10-ui-conditions.js",
+        "app/11-ui-breakdown.js",
+        "app/12-ui-bottom-sheet-modal.js",
+        "app/13-ui-detail-cards.js",
+        "app/13b-ui-detail-spell-targets-render.js",
+        "app/14-ui-editor.js",
+        "app/15-logic-roster-backup-files-snapshots.js",
+        "app/15b-logic-backup.js",
+        "app/15c-logic-file-state-compress.js",
+        "app/15d-logic-snapshots-character-files.js",
+        "app/16-logic-import-chat-text-and-build-files.js",
+        "app/16b-data-whats-new.js",
+        "app/16c-ui-whats-new-and-hooks.js",
+        "app/17-logic-tab-sync-and-test-hooks.js",
+        "app/18-ui-header-and-more-menu.js",
+        "app/19-ui-global-click-delegation.js",
+        "app/20-ui-portrait.js",
+        "app/21-ui-tabs-pager.js",
+        "app/21b-ui-weapon-forms.js",
+        "app/21c-ui-wield-minimum.js",
+        "app/21d-logic-wield-refresh.js",
+        "app/21e-ui-carpet-vehicles.js",
+        "app/21f-ui-temporary-cantrip.js",
+        "app/21h-ui-spellwrought-needle.js",
+        "app/21i-ui-spell-gem.js",
+        "app/21j-ui-stored-spells.js",
+        "app/21k-ui-slot-recovery.js",
+        "app/21l-ui-necronomicon-reading.js",
+        "app/21m-ui-pluvenn-grappleclaws.js",
+        "app/21n-ui-study-books.js",
+        "app/21o-ui-bag-tricks.js",
+        "app/21g-ui-ridden-vehicles.js",
+        "app/21a-ui-attunement.js",
+        "app/22-ui-spell-data-and-slots.js",
+        "app/23-ui-uses-items-coins-rest-spell-dc.js",
+        "app/23b-ui-items-containers.js",
+        "app/23c-ui-coins.js",
+        "app/23d-ui-rest.js",
+        "app/23e-ui-spells-dc.js",
+        "app/23f-ui-spell-source-rolls.js",
+        "app/24-ui-manage-spells.js",
+        "app/25-ui-settings-appearance.js",
+        "app/26-ui-customize.js",
+        "app/27-ui-party-search-commands-library.js",
+        "app/27b-ui-library.js",
+        "app/27d-ui-library-search-open.js",
+        "app/27c-ui-report-pins.js",
+        "app/28-ui-bastion.js",
+        "app/29-ui-ddb-look.js",
+        "app/29b-ui-creatures-extras.js",
+        "app/29c-ui-tool-forms.js",
+        "app/29c-data-ddb-icons.js",
+        "app/30-ui-icons.js",
+        "app/31-ui-tour-and-focus.js",
+        "app/32-logic-play-undo-actions.js",
+        "app/32b-logic-play-concentration-casting.js",
+        "app/32c-ui-object-repair.js",
+        "app/32c-logic-play-temp-features-ammo.js",
+        "app/32d-logic-play-hp-rest-recovery.js",
+        "app/32f-logic-divine-intervention.js",
+        "app/32g-logic-spellwrought-tattoo.js",
+        "app/32h-logic-spell-gem.js",
+        "app/32i-logic-stored-spells.js",
+        "app/32j-logic-slot-recovery.js",
+        "app/32k-logic-necronomicon-reading.js",
+        "app/32l-logic-pluvenn-grappleclaws.js",
+        "app/32m-logic-study-books.js",
+        "app/32n-logic-bag-tricks.js",
+        "app/32e-logic-martyr-actions.js",
+        "app/33-logic-play-rage-conditions.js",
+        "app/34-ui-situations.js",
+        "app/34b-ui-combat-effects-modes.js",
+        "app/34c-ui-experience-journal-combat-view.js",
+        "app/35-ui-combo.js",
+        "app/36-ui-printable-sheet.js",
+        "app/37a-ui-pdf-model.js",
+        "app/37-ui-pdf-export-hold-slide-confirm.js",
+        "app/38-boot-init.js",
+        "app/39-ui-exhaustion-keys-hp-drag-pip-wakelock-onehand.js",
+        "app/40-ui-segments-notes-swipe-motion-panels.js",
+        "app/40b-ui-notes-description.js",
+        "app/40c-ui-motion-sheet-morph.js",
+        "app/40d-ui-overlays-context-dock.js",
+        "app/40e-ui-reorder-drag.js",
+        "app/40f-ui-tabs-spring.js",
+        "app/41-ui-edit-mode.js",
+        "app/42-logic-pwa-qr-icons-wallet.js",
+        "app/43-logic-cloud-sync.js",
+        "app/44-ui-friends.js",
+        "app/45-learn-bridge.js",
+        "app/46-logic-receipts.js",
+        "app/47-logic-time-machine.js",
+        "app/48-logic-sync-merge.js",
+        "app/49-logic-status-and-odds.js",
+        "app/50-logic-reverse-builder.js",
+        "app/51-ui-table-help.js",
+        "app/52-tg-bridge.js",
+        "app/53-logic-number-map.js",
+        "app/54-dev-fps-probe.js",
+        "app/99-ui-backup-reminder-handlers.js",
+        "app/main.js"
+      ],
+      "pre": [
+        "fx/23-class-art-data.js"
+      ],
+      "entry": "app/main.js"
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
+      "close": "\n}</script>",
+      "files": [
+        "fx/00-fx-env.js",
+        "fx/00b-fx-shared.js",
+        "fx/01-core-router-and-switch.js",
+        "fx/02-micro-interactions.js",
+        "fx/02b-micro-interactions-2.js",
+        "fx/03-f1-card-light-and-morph.js",
+        "fx/04-f2-odometer-hp-bar-scrub.js",
+        "fx/05-f3-indicator-dock-toast.js",
+        "fx/06-f4-reveal-on-scroll.js",
+        "fx/07-f5-moments.js",
+        "fx/08-round6.js",
+        "fx/09-wow-pack.js",
+        "fx/10-x-pack.js",
+        "fx/11-d-pack.js",
+        "fx/12-mini-window-v2.js",
+        "fx/13-class-colour-hp-ring.js",
+        "fx/14-w-pack.js",
+        "fx/15-y-pack.js",
+        "fx/16-z-pack-dice-sound-hover.js",
+        "fx/16b-z-pack-dice-sound-hover-2.js",
+        "fx/16c-z-pack-dice-roller.js",
+        "fx/17-l-pack-webgl-sky.js",
+        "fx/18-m-pack-rolls-concentration.js",
+        "fx/19-g-pack-cinematic.js",
+        "fx/20-k-pack-character-colour-icon.js",
+        "fx/21-connected-home-sheet.js",
+        "fx/22-home-hero.js",
+        "fx/24-class-art.js",
+        "fx/25a-dice3d-bridge.js",
+        "fx/26-tab-notch.js",
+        "fx/27-blend-sheet.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n<script>window.__gateRun&&window.__gateRun();</script>"
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script>",
+      "close": "</script>",
+      "files": [
+        "boot/deferred-loader.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n<div id=\"bld\" hidden>\n<div class=\"top\"><div class=\"brand\"><b><span class=\"bt0\"><span class=\"bt1\">Character </span>Builder</span></b><span>PHB 2024</span><button type=\"button\" class=\"lvhead\" data-lvup=\"1\"><span>Level Up</span></button><button type=\"button\" id=\"b-toSheet\" class=\"tosheet\">Apply to Sheet</button><button type=\"button\" id=\"b-close\" class=\"bclose\" aria-label=\"Close builder\" title=\"Close builder\"></button></div><nav class=\"steps\" id=\"steps\"></nav></div>\n<main><div class=\"bnm\" id=\"nameRow\"><label for=\"nmIn\">Character Name</label><input class=\"btx\" id=\"nmIn\" autocomplete=\"off\"></div><div id=\"body\"></div></main>\n<div class=\"foot\"><button type=\"button\" id=\"prev\"><span>Prev</span></button><button type=\"button\" id=\"next\"><span>Next</span></button></div>\n<div class=\"exp\" id=\"exp\" hidden><div class=\"expb\"><h3>Export to Character Sheet</h3><p class=\"fd\">Copy this text. In the character sheet, open Edit, scroll to Import build, paste, then Apply.</p><textarea id=\"expTxt\" readonly></textarea><div class=\"row\"><button type=\"button\" id=\"expClose\">Close</button><button type=\"button\" class=\"pri\" id=\"expCopy\">Copy</button></div></div></div>\n<div class=\"btoast\" id=\"btoast\" role=\"status\"></div>\n</div>\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"dice3d\">",
+      "close": "</script>",
+      "files": [
+        "fx/25-dice3d-head.js",
+        "fx/25-dice3d.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"db1\">",
+      "close": "</script>",
+      "files": [
+        "data/00-data-env.js",
+        "data/db1-phb-skills-species-backgrounds-feats-weapons.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"db2\">",
+      "close": "</script>",
+      "files": [
+        "data/db2-phb-classes-a.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"db3\">",
+      "close": "</script>",
+      "files": [
+        "data/db3-phb-classes-b.js",
+        "data/fx-B2-subclass.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"cffull\">",
+      "close": "</script>",
+      "files": [
+        "data/cffull-class-feature-text.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"subfull\">",
+      "close": "</script>",
+      "files": [
+        "data/subfull-subclass-feature-text.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"spfull\">",
+      "close": "</script>",
+      "files": [
+        "data/spfull-spell-text.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"spells\">",
+      "close": "</script>",
+      "files": [
+        "data/spells-spell-list.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"dmgi\">",
+      "close": "</script>",
+      "files": [
+        "data/dmgi-magic-items-dmg2024.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"itsp\">",
+      "close": "</script>",
+      "files": [
+        "data/itsp-spells-from-items.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"db4\">",
+      "close": "</script>",
+      "files": [
+        "data/db4/01-languages-auto-spells-grants-prices-gear.js",
+        "data/db4/02-limited-uses-damage-rows-save-notes.js",
+        "data/db4/03-lifestyle-containers-printed-pages.js",
+        "data/db4/04-creature-stat-blocks.js",
+        "data/db4/05-gifts-weights-quick-build-bastions.js",
+        "data/db4/06-tools-proficiencies-packs-kits.js",
+        "data/db4/07-actions.js",
+        "data/db4/08-mpmm-species.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"efa\">",
+      "close": "</script>",
+      "files": [
+        "data/efa-eberron-forge-of-the-artificer.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc1\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc01-sources-2025-feats-boons-spells.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc2\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc02-subclasses-2025.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc3\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc03-magic-items-2025.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc4\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc04-species-lorwyn-ravenloft.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc5\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc05-backgrounds-2025.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc6\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc06-gear-2024.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc7\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc07-feats-2014.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc8\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc08-backgrounds-2014.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc9\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc09-subclasses-2014.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc10\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc10-species-2014.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc11\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc11-magic-items-2014.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc12\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc12-spells-2014.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc13\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc13-creature-stat-blocks.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc14\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc14-gear-2014.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"wotc15\">",
+      "close": "</script>",
+      "files": [
+        "data/wotc15-class-options-2014.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"tp1\">",
+      "close": "</script>",
+      "files": [
+        "data/tp01-tdcsr.js",
+        "data/tp02-tdcg.js",
+        "data/tp03-tvss.js",
+        "data/tp04-tee24.js",
+        "data/tp05-tghp.js",
+        "data/tp06-tsgeh.js",
+        "data/tp07-tsae.js",
+        "data/tp08-tghg.js",
+        "data/tp09-tshl.js",
+        "data/tp10-tssm.js",
+        "data/tp11-tsdd.js",
+        "data/tp12-tsgs.js",
+        "data/tp13-tsdm.js",
+        "data/tp14-tkdm.js",
+        "data/tp15-thhw.js",
+        "data/tp16-tvss14.js",
+        "data/tp17-tdm14.js",
+        "data/tp18-tgh14p.js",
+        "data/tp19-tgh14c.js",
+        "data/tp20-twow.js",
+        "data/tp21-tua24.js",
+        "data/fx-C-feat.js",
+        "data/fx-E-feat.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"q1\">",
+      "close": "</script>",
+      "files": [
+        "data/q00-src.js",
+        "data/q09-hbindex.js",
+        "data/q20-hbnames.js",
+        "data/q21-spellref.js",
+        "data/q22-textfix.js",
+        "data/q01-reward.js",
+        "data/q02-deity.js",
+        "data/q03-loot.js",
+        "data/q04-recipe.js",
+        "data/q05-charopt.js",
+        "data/q05-cult.js",
+        "data/q06-disease.js",
+        "data/q06-language.js",
+        "data/q06-tvss14-monster.js",
+        "data/q06-tdm14-monster.js",
+        "data/q06-tgh14p-monster.js",
+        "data/q06-tgh14c-monster.js",
+        "data/q06-twow-monster.js",
+        "data/q06-tua24-monster.js",
+        "data/q08-deck.js",
+        "data/q08-hazard.js",
+        "data/q08-object.js",
+        "data/q08-psionic.js",
+        "data/q08-table.js",
+        "data/q08-vehicle.js",
+        "data/q08-tdm14-vehicle.js",
+        "data/q10-fluff.js",
+        "data/q11-img.js",
+        "data/q12-crimg.js",
+        "data/q19-img-more.js",
+        "data/q12-rule.js",
+        "data/q13-rule-gaps.js",
+        "data/q15-books.js",
+        "data/q18-life.js",
+        "data/q16-items-gap.js",
+        "data/q17-class-gap.js",
+        "data/q14-optfeat.js",
+        "data/q12-facility.js",
+        "data/q23-gapfill.js",
+        "data/q24-gapfill2.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"q7s\">",
+      "close": "</script>",
+      "files": [
+        "data/q07-lazy-stub.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"q7\" data-lazy=\"1\">",
+      "close": "</script>",
+      "files": [
+        "data/q07-bestiary.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
+      "close": "</script>",
+      "files": [
+        "data/hbpack-builtin-homebrew.js",
+        "data/fx-A-class-species.js",
+        "data/fx-B1-subclass.js",
+        "data/fx-F-sub.js",
+        "data/fx-G-engine.js",
+        "data/fx-H-audit.js",
+        "data/fx-L1.js",
+        "data/fx-L4.js",
+        "data/fx-L5.js",
+        "data/fx-L9.js",
+        "data/fx-L10.js",
+        "data/fx-L11.js",
+        "data/fx-L12.js",
+        "data/fx-L13.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"fxd\">",
+      "close": "</script>",
+      "files": [
+        "data/fx-D-item.js",
+        "data/fx-L2.js",
+        "data/fx-L3.js",
+        "data/fx-L6.js",
+        "data/fx-L7.js",
+        "data/fx-L8.js",
+        "data/fx-M1.js",
+        "data/fx-M2.js",
+        "data/fx-N1.js",
+        "data/fx-Z1.js",
+        "data/fx-Z2.js",
+        "data/fx-Z3.js",
+        "data/fx-Z4.js",
+        "data/fx-Z5.js",
+        "data/fx-Z6.js",
+        "data/fx-Z7.js",
+        "data/fx-Z8.js",
+        "data/fx-Z9.js",
+        "data/fx-Z10.js",
+        "data/fx-Z11.js",
+        "data/fx-Z12.js",
+        "data/fx-Z13.js",
+        "data/fx-Z14.js",
+        "data/fx-Z15.js",
+        "data/fx-Z16.js",
+        "data/fx-Z17.js",
+        "data/fx-Z18.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"builder\">",
+      "close": "</script>",
+      "files": [
+        "builder/00-reg.js",
+        "builder/00-env.js",
+        "builder/01-logic-core-helpers.js",
+        "builder/01a-logic-query-registry.js",
+        "builder/01b-logic-late-ports.js",
+        "builder/02-data-magic-item-summaries.js",
+        "builder/03-logic-magic-item-effects.js",
+        "builder/04-logic-storage.js",
+        "builder/05-logic-choice-model-ruleset.js",
+        "builder/06-data-2014-classes.js",
+        "builder/06a-data-2014-long-text-more.js",
+        "builder/06a2-data-2024-species-long-text.js",
+        "builder/06b-data-2014-long-text.js",
+        "builder/07-data-2014-spells.js",
+        "builder/08-logic-2014-rules.js",
+        "builder/09-logic-feats-and-choices.js",
+        "builder/09c-logic-edition-overlays.js",
+        "builder/09d-logic-wotc-source-gate.js",
+        "builder/09b-logic-choice-stages.js",
+        "builder/10-logic-v17-additions.js",
+        "builder/10a-logic-fx-registry.js",
+        "builder/10b-logic-fx-handlers-entry.js",
+        "builder/10c-logic-fx-handlers-ability.js",
+        "builder/10d-logic-fx-rules-cond-value.js",
+        "builder/10e-logic-fx-schema.js",
+        "builder/10f-logic-necronomicon-reading.js",
+        "builder/10g-logic-study-books.js",
+        "builder/10h-logic-bag-tricks.js",
+        "data/lib/attack-target.js",
+        "data/lib/attack-resources.js",
+        "data/lib/attack-kind.js",
+        "data/lib/weapon-form.js",
+        "data/lib/wield-minimum.js",
+        "data/lib/object-repair.js",
+        "data/lib/tool-form.js",
+        "data/lib/carpet-vehicle.js",
+        "data/lib/ridden-vehicle.js",
+        "data/lib/spellwrought-tattoo.js",
+        "data/lib/tattoo-projection.js",
+        "data/lib/disciple-of-life.js",
+        "data/lib/spell-gem.js",
+        "data/lib/spell-gem-physical.js",
+        "data/lib/spell-gem-authority.js",
+        "data/lib/spell-gem-source.js",
+        "data/lib/spell-gem-casts.js",
+        "data/lib/stored-spell.js",
+        "data/lib/slot-recovery.js",
+        "data/lib/necronomicon-reading.js",
+        "data/lib/pluvenn-grappleclaws.js",
+        "data/lib/study-books.js",
+        "data/lib/bag-tricks.js",
+        "data/lib/bag-tricks-source.js",
+        "data/lib/gem-check-bonuses.js",
+        "data/lib/casting-sources.js",
+        "data/lib/item-spell-damage.js",
+        "data/lib/spell-source.js",
+        "data/lib/turn-damage.js",
+        "data/lib/cleric-maths.js",
+        "data/lib/orders-wrath.js",
+        "data/lib/cleric-capabilities.js",
+        "data/lib/temporary-cantrip.js",
+        "data/lib/temporary-cantrip-projection.js",
+        "data/lib/all-purpose-source.js",
+        "data/lib/attunement.js",
+        "builder/11-logic-derivation.js",
+        "builder/11b-logic-fx-sources.js",
+        "builder/11c-logic-fx-handlers-sheet.js",
+        "builder/12a-logic-sheet-registry.js",
+        "builder/12b-logic-sheet-schema.js",
+        "builder/12c-logic-sheet-handlers-core.js",
+        "builder/12d-logic-sheet-handlers-skills.js",
+        "builder/12e-logic-sheet-handlers-defense.js",
+        "builder/12f-logic-sheet-handlers-movement.js",
+        "builder/12g-logic-sheet-handlers-profs.js",
+        "builder/12h-logic-sheet-handlers-attacks.js",
+        "builder/12i-logic-sheet-handlers-gear-resources.js",
+        "builder/12j-logic-sheet-handlers-features.js",
+        "builder/12k-logic-sheet-handlers-spells.js",
+        "builder/12l-logic-sheet-handlers-late.js",
+        "builder/12m-logic-sheet-handlers-tools.js",
+        "builder/12n-logic-sheet-handlers-turn-damage.js",
+        "builder/12o-logic-sheet-handlers-cleric-powers.js",
+        "builder/12p-logic-sheet-handlers-disciple.js",
+        "builder/12q-logic-sheet-handlers-casting-sources.js",
+        "builder/12r-logic-sheet-handlers-gem-checks.js",
+        "builder/12s-logic-sheet-handlers-item-spell-damage.js",
+        "builder/12t-logic-necronomicon-reading.js",
+        "builder/12u-logic-pluvenn-grappleclaws.js",
+        "builder/12v-logic-study-books.js",
+        "builder/12w-logic-bag-tricks.js",
+        "builder/12-logic-export-to-sheet.js",
+        "builder/13-logic-sources-and-packs.js",
+        "builder/13a-logic-pack-registry.js",
+        "builder/13b-logic-pack-handlers.js",
+        "builder/14-logic-multiclass-hp-shop.js",
+        "builder/15-logic-import-from-sheet.js",
+        "builder/16-logic-feature-numbers.js",
+        "builder/17-ui-step-builder.js",
+        "builder/18-ui-spells.js",
+        "builder/19-ui-steps-sources-class-bg-species-abilities.js",
+        "builder/20-ui-steps-equipment-next.js",
+        "builder/21-ui-rules-reference.js",
+        "builder/22-ui-shell.js",
+        "builder/23-logic-level-up-and-build-files.js",
+        "builder/24-ui-icons.js",
+        "builder/25-logic-hooks-for-the-sheet.js",
+        "builder/25a-logic-tattoo-sources.js",
+        "builder/25b-logic-spell-gem-sources.js",
+        "builder/25c-logic-stored-spell-sources.js",
+        "builder/25d-logic-slot-recovery-sources.js",
+        "builder/25e-logic-necronomicon-reading.js",
+        "builder/25f-logic-study-books.js",
+        "builder/25g-logic-bag-tricks.js",
+        "builder/main.js"
+      ],
+      "entry": "builder/main.js"
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"learn\">",
+      "close": "</script>",
+      "files": [
+        "learn/00-env.js",
+        "learn/00-bridge.js",
+        "learn/45b-data-learn-places-a.js",
+        "learn/45c-data-learn-places-b.js",
+        "learn/45-data-learn.js",
+        "learn/46-logic-learn.js",
+        "learn/47-ui-learn.js"
+      ],
+      "entry": "learn/47-ui-learn.js"
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"tg\">",
+      "close": "</script>",
+      "files": [
+        "tg/00-env.js",
+        "tg/00-bridge.js",
+        "tg/20-engine.js",
+        "tg/25-sim.js",
+        "tg/30-ui-tg.js",
+        "tg/31-ui-tg-field.js"
+      ],
+      "entry": "tg/31-ui-tg-field.js"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"pdfx\">",
+      "close": "</script>",
+      "files": [
+        "pdf/00-env.js",
+        "pdf/01-data-style.js",
+        "pdf/02-logic-markup.js",
+        "pdf/03-logic-typeset.js",
+        "pdf/04-ui-canvas.js",
+        "pdf/05-data-sheet-fields.js",
+        "pdf/06-ui-fields.js",
+        "pdf/07-ui-sheet-pages.js",
+        "pdf/08-ui-flow.js",
+        "pdf/09-ui-blocks.js",
+        "pdf/10-ui-appendix.js",
+        "pdf/11-ui-render.js",
+        "pdf/main.js"
+      ],
+      "entry": "pdf/main.js"
+    },
+    {
+      "t": "text",
+      "text": "\n"
+    },
+    {
+      "t": "block",
+      "open": "<script type=\"text/x-defer\" data-defer=\"rs14\">",
+      "close": "</script>",
+      "files": [
+        "data/rs14-2014-wording.js"
+      ]
+    },
+    {
+      "t": "text",
+      "text": "\n</body>\n</html>\n"
+    }
+  ]
 }

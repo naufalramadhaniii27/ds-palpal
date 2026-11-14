@@ -44,7 +44,7 @@ document.addEventListener("change",(e) =>{ const t=e.target; if(!t.matches||!t.m
 /* ---------- RU54, RU72, RU44, RU45 rest additions ---------- */
 var restX={};
 function periOn(){ return (C.inv||[]).some((i) =>{ return (i.n==="Periapt of Wound Closure"||i.n==="Blessing of Wound Closure")&&eqOn(i); }); }/* v27 RD23 */
-function hdHeal(v){ return Math.max(1,v+D.mod.CON)*(periOn()?2:1); }
+function hdHeal(v){ if(v<3&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Bloodlust"; }); })) v=3;/* Bloodlust: Powerful Recovery */ return Math.max(1,v+D.mod.CON)*(periOn()?2:1); }
 function recList(){ const o=[]; [["Wizard","Arcane Recovery",/^Arcane Recovery$/],["Druid","Natural Recovery",/^Natural Recovery: recover slots$/]].forEach((q) =>{ const lv=lvOf(q[0]), r=(D.res||[]).filter((x) =>{ return q[2].test(x.n); })[0]; if(!lv||!r) return; o.push({n:q[1],r:r,cap:Math.ceil(lv/2),left:r.max-used(r.k,r.max)}); }); return o; }
 function slotUsed(L){ const s=slotLeft("s"+L); return s?s.r.max-s.left:0; }
 function recSum(i){ let t=0, m=restX.rec&&restX.rec[i]||{}; Object.keys(m).forEach((L) =>{ t+=(+L)*num(m[L],0); }); return t; }

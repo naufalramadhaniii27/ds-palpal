@@ -1,5 +1,5 @@
 import {endTattooEffect as endTattooBodyEffect} from '../data/lib/spellwrought-tattoo.js';
-import {bindLive,cmbCast,cmbRe,lateGet,featAll,syncLU,used,renderConds,refreshEntry,showEntry,spPactLv,spRowLv,renderSpells} from "./00a-reg-late-ports.js";/* Responsibility: class levels, concentration and casting a spell (slots, upcast, quick cast). Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
+import {bindLive,cmbCast,cmbRe,lateGet,featAll,syncLU,used,renderConds,refreshEntry,showEntry,spPactLv,spRowLv,renderSpells,syncHP,renderAll} from "./00a-reg-late-ports.js";/* Responsibility: class levels, concentration and casting a spell (slots, upcast, quick cast). Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */
 import {C,S,save} from "./04-logic-storage.js";import {ask,esc,num,sg,toast} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {UNDO,toastU,undoMark} from "./32-logic-play-undo-actions.js";import {modeOn} from "./33-logic-play-rage-conditions.js";
 import {attActive,eqOn} from "./05-logic-helpers.js";
 import {occOf} from "./00a-reg-late-ports.js";
@@ -28,7 +28,7 @@ export function hasFeat(n){ return featAll().some((x) =>{ return x.f.n===n; }); 
 export var INCAP=["Incapacitated","Paralyzed","Petrified","Stunned","Unconscious"];
 export function concOf(){ return S.conc&&S.conc.n?S.conc:null; }
 function concSet(x,lv){ const o=concOf();if(o)endTaggedTattooConcentration(o);const m=(o&&o.n!==x.n)?"Concentration on "+o.n+" ended. ":""; S.conc={n:x.n,l:lv||x.l||0}; return m+"Concentrating on "+x.n+"."; }
-export function concEnd(why){ const o=concOf(); if(!o) return ""; endTaggedTattooConcentration(o); delete S.conc; return "Concentration on "+o.n+" ended"+(why?" ("+why+")":"")+"."; }
+export function concEnd(why){ const o=concOf(); if(!o) return ""; endTaggedTattooConcentration(o); delete S.conc; if(o.n==="Shield of Faith") setTimeout(() =>{ try{ renderAll(); }catch(er){} },0); return "Concentration on "+o.n+" ended"+(why?" ("+why+")":"")+"."; }
 export function setTattooConcentration(spell,sourceId,castId){S.conc={n:spell.n,l:spell.l,tattoo:{v:1,sourceId,castId}}}
 function endTaggedTattooConcentration(concentration){const tag=concentration&&concentration.tattoo;if(!tag||tag.v!==1)return;const body=S.spellwroughtTattoos;if(!body||!Array.isArray(body.tattoos)||!body.tattoos.some(row=>row.sourceId===tag.sourceId&&row.castId===tag.castId&&row.phase==='active'))return;const ended=endTattooBodyEffect(body,tag.castId,{actualSpellEnded:true});if(ended.ok&&'body' in ended)S.spellwroughtTattoos=ended.body}
 function concNotes(){ const n=[]; if(hasFeat("War Caster")) n.push("War Caster gives Advantage"); if(hasFeat("Eldritch Mind")) n.push("Eldritch Mind gives Advantage"); if(hasFeat("Bladesong")) n.push("while Bladesong is active, add your Intelligence modifier"); return n; }
@@ -80,7 +80,18 @@ function spItemPoolOpts(x,r){ const c=x.itc, o=[]; if(!spFormReady(x,r)) return 
   return o; }
 export function qOk(q){ return q.left>=(q.need||1); }
 export function ckOf(q){ return q.k+(q.need>1?"|"+q.need:""); }
+/* Martyr (VSS24) Hit Point Spellcasting: a level 1+ Martyr spell costs one Spell Use plus Radiant damage by the slot level built
+   (5, 10, 20, 30, 40). Merciful Healing (Burden of Mercy) makes its own spells free of the damage. The highest level is Max Spell Levels */
+const MARTYR_HP=[0,5,10,20,30,40];
+function martyrFeat(n){ return (C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n===n; }); }); }
+export function martyrMax(){ let m=0; (C.features||[]).forEach((g) =>{ (g.items||[]).forEach((i) =>{ if(i.n==="Max Spell Levels"){ const r=/:\s*(\d)/.exec(i.d||""); if(r) m=+r[1]; } }); }); return m; }
+export function martyrCost(x,lv){ if(/Burden of Mercy/.test(String(x.src||""))&&martyrFeat("Merciful Healing")) return 0; return MARTYR_HP[lv]||0; }
+function martyrOpts(x){ const o=[]; if(C.cls!=="Martyr"||!x.l||x.itc) return o; if(!/^(Martyr|Burden of)/.test(String(x.src||""))) return o;
+  const r=slotLeft("r-spell-uses"), mx=martyrMax(); if(!r||!mx) return o;
+  for(let L=x.l;L<=mx;L++){ const hp=martyrCost(x,L); o.push({k:"r-spell-uses",lv:L,lab:"Spell Use, level "+L+(hp?" ("+hp+" Radiant to you)":" (no damage, Merciful Healing)"),left:r.left,free:1}); }
+  return o; }
 export function spCastOpts(x){ const o=[], sc=C.spellcasting||{}; if(spAtWill(x)) return o; if(x.itc) return spItemOpts(x);
+  const mo=martyrOpts(x); if(mo.length) return mo;
   for(let L=x.l;L<=9;L++){ const s=slotLeft("s"+L); if(s) o.push({k:"s"+L,lv:L,lab:"level "+L+" slot",left:s.left}); }
   const p=slotLeft("pact"); if(p&&sc.pact&&spPactLv()>=x.l) o.push({k:"pact",lv:spPactLv(),lab:"Pact slot (level "+spPactLv()+")",left:p.left});
   spUses(x).forEach((r) =>{ o.push({k:r.k,lv:x.l,lab:r.n,left:r.max-used(r.k,r.max),free:1}); });
@@ -121,8 +132,10 @@ function castCurrentSpell(i,k,lv,ok,repair,temporal){ const x=(C.spells||[])[i];
   if(!temporaryCastAllowed(temporal,i,x))return;undoMark("Cast "+x.n); let msg="Cast "+x.n;
   if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
+  if(k==="r-spell-uses"&&C.cls==="Martyr"){ const hp=martyrCost(x,+lv||x.l); if(hp){ S.hp=Math.max(0,num(S.hp,0)-hp); msg+=", level "+(+lv||x.l)+", you take "+hp+" Radiant (not from Temporary Hit Points)"; try{ syncHP(); }catch(er){} } else msg+=", level "+(+lv||x.l)+", no damage"; lateGet("spLvSel")[x.n]=+lv||x.l; }
+  if(x.n==="Magic Weapon"){ const w=(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"&&!/^Cantrip/.test(a.sub||"")&&/^\d+ ft$|^5 ft/.test(a.range||"5 ft"); })[0]||(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"; })[0]; if(w){ S.mw={w:w.n,l:+lv||x.l}; msg+=". "+w.n+" gets +"+((+lv||x.l)>=6?3:(+lv||x.l)>=4?2:1)+" to attack and damage until you rest"; } }
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
-  save(); syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} spRepairCommitted(repair); }
+  save(); if(x.n==="Magic Weapon"||x.conc||k==="r-spell-uses"){ try{ renderAll(); }catch(er){} } syncLU(); renderSpells(); renderConds(); refreshEntry(); toastU(msg); try{ cmbCast(x.n); save(); cmbRe(); }catch(er){} spRepairCommitted(repair); }
 /* the CAST or USE badge in the Spells list: one way to cast it, cast now. Several (slot levels, Pact, free use): open the spell to choose */
 export function quickCast(i){ const x=(C.spells||[])[i]; if(!x) return; if(spAtWill(x)){ castDo(i,"",0); return; }
   const o=spCastOpts(x), av=o.filter(qOk);
