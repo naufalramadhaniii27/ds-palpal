@@ -142,7 +142,7 @@ Resolved in the consumed-effect work: the live speed panel read `C.speeds` but o
 
 ## G1 review: source readings and existing book-score lifecycle
 
-Pluvenn Grappleclaws and both Necronomicon Voidmarked copies remain open, with the conflicting/unspecified readings recorded in rules-notes.md. They need a source ruling before their complete mechanics can be claimed.
+Pluvenn Grappleclaws and both Necronomicon Voidmarked copies were left open in the G1 review. The 2026-11-14 source review now selects the literal readings documented in rules-notes.md, marked belum diputuskan resmi. An official ruling is not a prerequisite under the current user instruction; actual qualified-roll and retained-reading consumers remain required before any closure is claimed.
 
 Existing Necronomicon ability-score data is tied to an active, attuned inventory item: GX adds INT +2 and WIS -2 with no reading-completed or once-only state. The source instead specifies the 19-hour reading and a once-only change. That lifecycle was not changed while the book's broader retained-state reading is unresolved. The new rank-3 company-training flag does not silently migrate it.
 
@@ -171,4 +171,4 @@ The specific Tattoo Material-only policy versus the native dmg14 general no-comp
 
 ## U42 stored-spell catalog guidance
 
-A stored receipt whose original native catalog definition is unavailable or changed correctly supplies no effect permission. Its existing exact concentration instance can still be ended without rewriting the historical ledger. The UI currently gives generic stale-operation guidance instead of identifying the unavailable original definition. Improve that explanation separately while retaining the same fail-closed effect guard and exact-instance End-only path. This presentation limitation does not establish a new casting permission or change the stored original spell.
+A stored receipt whose original native catalog definition is unavailable or changed correctly supplies no effect permission. Its existing exact concentration instance can still be ended without rewriting the historical ledger. Resolved 2026-11-14: a context-bound viewing token now preserves the specific original-definition failure reason. Every effect still revalidates the canonical catalog, and End-only retains its exact-instance guard. Regression tests prove missing, changed and duplicate catalogs cannot calculate or roll an effect and cannot rewrite historical receipts. This presentation limitation does not establish a new casting permission or change the stored original spell.
