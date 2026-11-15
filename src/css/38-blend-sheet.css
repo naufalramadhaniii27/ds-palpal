@@ -61,3 +61,5 @@
 /* the book picture of the entry is replaced by the art above, so it is not shown twice */
 #sheet.blend #sheetBody>img.lib-im,#sheet.blend.bl-im #sheetBody>.info-meta{display:none}
 @media print{#sheet.blend .sh-wm{display:none}}
+/* the ddb skin draws a gradient line under .sh-h; in the blended hero .sh-h covers the whole picture, so that line cut across the card above the meta row */
+:root[data-skin] #sheet.blend.on:not(.bl-compact) .sh-h{border-bottom:0;border-image:none}
