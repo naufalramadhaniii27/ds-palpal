@@ -9,7 +9,14 @@ const LIB_FEATCAT={O:"Origin Feat",G:"General Feat",F:"Fighting Style Feat",E:"E
 export function libCat(id){ for(let i=0;i<LIB_CATS.length;i++) if(LIB_CATS[i][0]===id) return LIB_CATS[i]; return LIB_CATS[0]; }
 export function libReady(){ return typeof SPELLS!=="undefined"&&typeof DMGI!=="undefined"&&typeof ITEMDESC!=="undefined"&&typeof CREATURES!=="undefined"&&(!env.__lazyReady||env.__lazyReady("q7")); }
 /* q7: the monster rows load before the first index */
-document.addEventListener("qrefs",() =>{ LIB.idx=null; LIB.inv=null; });
+let LIB_RT=0, LIB_BLD=0, LIB_OLD=null;
+/* once the builder is open, build the first index while idle, so a click in the builder never pays for it */
+const libPre=() =>{ if(LIB.idx) return; const bd=document.getElementById("bld"); if(!bd||bd.hidden){ setTimeout(libPre,1500); return; } const go=() =>{ if(LIB.idx) return; try{ if(libReady()){ LIB_BLD=1; LIB.idx=libIndex(); LIB.inv=null; LIB_BLD=0; } }catch(er){ LIB_BLD=0; } }; if(typeof requestIdleCallback==="function") requestIdleCallback(go,{timeout:3000}); else go(); };
+setTimeout(libPre,1500);
+document.addEventListener("qrefs",() =>{ if(LIB_BLD) return; if(!LIB.idx){ LIB.inv=null; return; }
+  /* the Library and its search read a fresh index (built on demand). The link checks of the builder (libHas) may use the old one, so a click never waits for a rebuild */
+  LIB_OLD=LIB.idx; LIB.idx=null; LIB.inv=null;
+  clearTimeout(LIB_RT); LIB_RT=setTimeout(() =>{ const go=() =>{ if(LIB.idx) return; try{ LIB_BLD=1; const ix=libIndex(); LIB_BLD=0; LIB.idx=ix; LIB.inv=null; LIB_OLD=null; }catch(er){ LIB_BLD=0; } }; if(typeof requestIdleCallback==="function") requestIdleCallback(go,{timeout:4000}); else go(); },1200); });
 /* spells of books that are off: the rows sit in window.WX.src[].rows (the builder moves them into SPELLS only when the book is on). The Library lists them all as reference */
 let LIB_XSP=null;
 function libXsp(){ if(LIB_XSP) return LIB_XSP; const m={}, have={}; try{ SPELLS.forEach((r) =>{ have[r[0]]=1; }); (env.WX&&env.WX.src||[]).forEach((q) =>{ (q.rows||[]).forEach((r) =>{ if(r&&r[0]&&!have[r[0]]&&!m[r[0]]){ m[r[0]]=r; r.__bk=q.tag||q.id; } }); }); }catch(er){} return (LIB_XSP=m); }
@@ -121,7 +128,7 @@ function libBuyDo(c,k){ const pr=libPrice(c,k); if(pr==null){ toast("This item h
 document.addEventListener("click",(e) =>{ const sh=e.target.closest&&e.target.closest("[data-invshop]"); if(sh){ e.preventDefault(); LIB.q=""; LIB.cur=null; LIB.hist=[]; LIB.cat="gear"; libOpen({}); return; } const bb=e.target.closest&&e.target.closest("[data-libbuy]"); if(bb){ e.preventDefault(); const w=bb.getAttribute("data-libbuy").split("|"); libBuyDo(w[0],w.slice(1).join("|")); return; } const b=e.target.closest&&e.target.closest("[data-libadd]"); if(!b) return; e.preventDefault(); const v=b.getAttribute("data-libadd").split("|"); libAddDo(v[0],v.slice(1).join("|")); });
 function libClean(h){ return typeof h!=="string"?h:h.replace(/\{#itemEntry [^}]*\}\s*/g,"").replace(/([^.\/])\.\.(?![.\/])/g,"$1."); }
 let LIB_IDS=null, LIB_IDSX=null;
-function libHas(c,n){ let ix=LIB.idx||null; if(!ix){ try{ ix=LIB.idx=libIndex(); LIB.inv=null; }catch(er){ return false; } } if(LIB_IDSX!==ix){ LIB_IDSX=ix; LIB_IDS={}; ix.forEach((e) =>{ LIB_IDS[e.c+"|"+e.k]=e.k; const q=e.k.indexOf(" ("); if(q>0&&!LIB_IDS[e.c+"|"+e.k.slice(0,q)]) LIB_IDS[e.c+"|"+e.k.slice(0,q)]=e.k; const nm=e.k.indexOf("|")>0&&e.c==="opt"?e.k.slice(e.k.indexOf("|")+1):e.k; const nk=e.c+"|~"+nm.toLowerCase().replace(/[^a-z0-9]/g,""); if(!LIB_IDS[nk]) LIB_IDS[nk]=e.k; }); } return LIB_IDS[c+"|"+n]||LIB_IDS[c+"|~"+String(n).toLowerCase().replace(/[^a-z0-9]/g,"")]||false; }
+function libHas(c,n){ let ix=LIB.idx||LIB_OLD||null; if(!ix){ try{ ix=LIB.idx=libIndex(); LIB.inv=null; }catch(er){ return false; } } if(LIB_IDSX!==ix){ LIB_IDSX=ix; LIB_IDS={}; ix.forEach((e) =>{ LIB_IDS[e.c+"|"+e.k]=e.k; const q=e.k.indexOf(" ("); if(q>0&&!LIB_IDS[e.c+"|"+e.k.slice(0,q)]) LIB_IDS[e.c+"|"+e.k.slice(0,q)]=e.k; const nm=e.k.indexOf("|")>0&&e.c==="opt"?e.k.slice(e.k.indexOf("|")+1):e.k; const nk=e.c+"|~"+nm.toLowerCase().replace(/[^a-z0-9]/g,""); if(!LIB_IDS[nk]) LIB_IDS[nk]=e.k; }); } return LIB_IDS[c+"|"+n]||LIB_IDS[c+"|~"+String(n).toLowerCase().replace(/[^a-z0-9]/g,"")]||false; }
 /* exact name, name before a bracket, then the name without spaces, hyphens or case */
 /* a name that opens its Library entry when one exists, plain text otherwise */
 function libLnk(label,cands){ for(let i=0;i<cands.length;i++){ const key=cands[i][1]?libHas(cands[i][0],cands[i][1]):false; if(key) return '<button type="button" class="lnk" data-lib-open="'+esc(cands[i][0]+"|"+key)+'">'+esc(label)+'</button>'; } return '<span>'+esc(label)+'</span>'; }
