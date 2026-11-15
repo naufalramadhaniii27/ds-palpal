@@ -65,15 +65,19 @@ DETAIL.add("g", {
   },
   self:function(k){ return ((k) =>k)(k); }
 });
+function render3Num(h, key){
+    const ath14=x14()&&(key==="Grapple"||key==="Shove")?C.skills.findIndex((q) =>{ return q.n==="Athletics"; }):-1;/* 2014: a contest, so the number is Athletics, not a DC */
+    if(ath14>=0){ h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd("Athletics",sg(D.skill[ath14]),"sk-"+ath14)+'</div>'; }
+    else if(NUM_MAP[key]){ const bk=NUM_MAP[key], b=B[bk]; if(b) h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd(b.t.split(":")[0],esc(b.total),bk)+'</div>'; }
+    return h;
+}
 function render3Step1(h, g, key){
     h=meta(g.c,g.s)+'<p class="info-d">'+rich(g.d)+'</p>';
     const ak=ABK.filter((k) =>{return ABN[k]===key})[0];
     if(ak) h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd("Score",D.score[ak],"ab-"+ak)+tileBd("Modifier",sg(D.mod[ak]),"ab-"+ak)+tileBd("Saving throw",sg(D.save[ak]),"save-"+ak)+'</div>';
     let si=-1; C.skills.forEach((sk,ix) =>{ if(sk.n===key) si=ix; });
     if(si>=0){ const sk=C.skills[si]; h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd("Your bonus",sg(D.skill[si]),"sk-"+si)+tileS("Proficiency",["None","Proficient","Expertise"][num(sk.p,0)])+(sk.dis?tileS("Disadvantage",sk.dis):"")+'</div>'+(sk.src?'<p class="bk-f">Proficient from '+esc(sk.src)+'.</p>':'')+(num(sk.misc,0)?'<p class="bk-f">Also '+sg(num(sk.misc,0))+' from '+esc(sk.miscSrc||"another bonus")+'.</p>':''); }/* v35 p08 */
-    const ath14=x14()&&(key==="Grapple"||key==="Shove")?C.skills.findIndex((q) =>{ return q.n==="Athletics"; }):-1;/* 2014: a contest, so the number is Athletics, not a DC */
-    if(ath14>=0){ h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd("Athletics",sg(D.skill[ath14]),"sk-"+ath14)+'</div>'; }
-    else if(NUM_MAP[key]){ const bk=NUM_MAP[key], b=B[bk]; if(b) h+='<div class="info-h">Your numbers</div><div class="info-k">'+tileBd(b.t.split(":")[0],esc(b.total),bk)+'</div>'; }
+    h=render3Num(h, key);
     if(STD_CONDS.indexOf(key)>=0 || HB_CONDS.some((c) =>{return c.k===key})){
       const on=!!S.cond[key]; h+='<div class="info-act"><button type="button" class="btn press" data-condtoggle="'+esc(key)+'">'+(on?'Remove '+esc(key):'Apply '+esc(key))+'</button></div>';
     }
