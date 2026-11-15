@@ -3,6 +3,7 @@ import {agOn,bindLive,choicesBuild,casterParts,clsLv,clsParts,invList,lateGet,pk
 import {activeFx,bgX,spX,featSourceReview} from "./03-logic-magic-item-effects.js";
 import {legacyPactRodBonus} from "./10p-logic-pact-rod.js";
 import {tceSpellItemBonus} from "./10s-logic-tce-spell-bonus.js";
+import {instrumentUnscopedItemBonus} from "./10v-logic-instrument-spells.js";
 import {canonicalTceSpellBonus,ORIGINAL_MI2014_FEAT,ORIGINAL_MI2014_RULE} from "../data/lib/tce-spell-bonus-profiles.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
@@ -27,7 +28,7 @@ choices(true).forEach((c) =>{afChoice(f,c)});
 /* v19 RL42: spell attack and save DC bonuses of active items. cls: only that class's spells (Rod of the Pact Keeper: Warlock) */
 /* fx engine v2: gfx entries add spAtk and spDc (number, "pb", ability key) for the class named in spCls, or for every class when spCls is missing */
 function gxSp(k,cls){return fxList().filter((e) =>{const v=k==="atk"?e.spAtk:e.spDc;return v!=null&&(!e.spCls||e.spCls===cls)})}
-export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k==="atk"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;const pact=legacyPactRodBonus(q,k,cls),original=pact===null?tceSpellItemBonus(q,k,cls,tceSpellClassOrigin(cls)):pact;return t+(original===null?v:original)},0)+gxSp(k,cls).reduce((t,e) =>{return t+fxVal(k==="atk"?e.spAtk:e.spDc,e)},0)}
+export function spItemB(k,cls){return activeFx().reduce((t,q) =>{const f=q.fx,v=k==="atk"?f.spellAtk:f.spellDc;if(!v||(f.spellCls&&f.spellCls!==cls))return t;const limited=instrumentUnscopedItemBonus(q,k,cls),pact=legacyPactRodBonus(q,k,cls),original=limited===null?(pact===null?tceSpellItemBonus(q,k,cls,tceSpellClassOrigin(cls)):pact):limited;return t+(original===null?v:original)},0)+gxSp(k,cls).reduce((t,e) =>{return t+fxVal(k==="atk"?e.spAtk:e.spDc,e)},0)}
 export function spItemSrc(cls){return activeFx().filter((q) =>{return (q.fx.spellAtk||q.fx.spellDc)&&(!q.fx.spellCls||q.fx.spellCls===cls)&&tceSpellItemSource(q,cls)}).map((q) =>{return q.n}).concat(gxSp("atk",cls).concat(gxSp("dc",cls)).map((e) =>{return e.lbl}).filter((x,i,a) =>{return a.indexOf(x)===i}))}
 /* v19 RL41: chosen Elemental Affinity type ("" without Draconic Sorcery 6) */
 export function chOf(cls,key){if(B.cls===cls)return B.ch[key];let i=-1;MCL().forEach((m,j) =>{if(m.cls===cls)i=j});return i<0?undefined:B.ch["m"+i+":"+key]}
@@ -204,7 +205,7 @@ export function subAt(cls,sub){if(B.cls===cls&&B.sub===sub)return B.level;const 
 /* spFxTo steps (SOLID s16): the damage bonuses of spell o for class k. ab(x) = the modifier of ability x */function sfDmgA(o,k,a,f,ab,ty,db,record){ if(f.dmg&&agOn(o.n)){db.push({v:ab(spellAb(k||"Warlock",a.sc)||"CHA"),s:"Agonizing Blast"});if(record)record("agonizing-blast",o.n)}
  const eat=eaType();if(f.dmg&&eat&&ty.split("|").indexOf(eat)>=0)db.push({v:ab("CHA"),s:"Elemental Affinity ("+eat+")"});if(record&&f.dmg&&eat&&ty.split("|").indexOf(eat)>=0)record("elemental-affinity",eat);/* v19 RL41 */}function sfDmgB(o,k,f,ab,ty,db){ if(f.dmg&&!o.l&&(k==="Cleric"||k==="Druid")&&clsLv(k)>=7&&(k===B.cls?B.ch.p7opt:B.ch["m"+MCL().map((m) =>{return m.cls}).indexOf(k)+":p7opt"])==="Potent Spellcasting")db.push({v:ab("WIS"),s:"Potent Spellcasting"});
  if(f.dmg&&k==="Wizard"&&o.sch==="Evocation"&&subAt("Wizard","Evoker")>=10)db.push({v:ab("INT"),s:"Empowered Evocation, one damage roll"});
- if(f.dmg&&k==="Warlock"&&subAt("Warlock","Celestial Patron")>=6&&/Radiant|Fire/.test(ty))db.push({v:ab("CHA"),s:"Radiant Soul, one Radiant or Fire damage roll"});}export function spFxTo(o,k,a){const F=typeof SPELL_FX!=="undefined"&&SPELL_FX[o.n];if(!F)return;const f=clone(F);if(f.mat){o.mat=f.mat;delete f.mat}if(Object.keys(f).length)o.fx=f;
+ if(f.dmg&&k==="Warlock"&&subAt("Warlock","Celestial Patron")>=6&&/Radiant|Fire/.test(ty))db.push({v:ab("CHA"),s:"Radiant Soul, one Radiant or Fire damage roll"});}export function spFxTo(o,k,a,nativeFx=undefined){const F=nativeFx===undefined?(typeof SPELL_FX!=="undefined"&&SPELL_FX[o.n]):nativeFx;if(!F)return;const f=clone(F);if(f.mat){o.mat=f.mat;delete f.mat}if(Object.keys(f).length)o.fx=f;
  const db=[],hb=[],ab=function(x){return mod(a.sc[x])},iv=invList(),ty=(f.dmg||[]).map((p) =>{return p[1]}).join("|");
  sfDmgA(o,k,a,f,ab,ty,db);
  sfDmgB(o,k,f,ab,ty,db);

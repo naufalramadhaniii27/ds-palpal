@@ -8,19 +8,19 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9183 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9219 |
 | Info (tag terdokumentasi) | 27239 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1481, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 975, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 228, STD:ASI 225, NUMONLY:ZERO 172, ROLL:LAST_CHARGE 142, OBJECT:STATS 109, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5690 |
+| Uncovered | 5654 |
 | Uncovered dengan angka | 3312 |
-| Uncovered dengan kelas kata kunci mekanik | 5319 |
+| Uncovered dengan kelas kata kunci mekanik | 5283 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 371 |
 | Angka yang tidak dijelaskan record mana pun | 3123 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4859 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4823 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 262 |
-| Waktu | muat data 14 s, analisis 16 s |
+| Waktu | muat data 15 s, analisis 16 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 170 ditangkap (56.7%). Hapus semua atom kelas yang dibutuhkan: 168 ditangkap (56.0%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 168 ditangkap (56.2%). Hapus semua atom kelas yang dibutuhkan: 174 ditangkap (58.2%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 290 ditangkap (96.7%), semua atom kelas dihapus: 293 ditangkap (97.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -42,7 +42,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | GX | 1940 |
 | wxs | 849 |
 | LU_X | 652 |
-| CODE | 521 |
+| CODE | 557 |
 | AUTO | 467 |
 | species | 440 |
 | ITEM_SPELLS | 370 |
@@ -65,7 +65,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
 | RESOURCE | 7506 | 959 | 12.8% |
-| SPELL | 3208 | 867 | 27.0% |
+| SPELL | 3208 | 831 | 25.9% |
 | DMG | 4548 | 742 | 16.3% |
 | SPEED | 1321 | 473 | 35.8% |
 | ADV | 1750 | 449 | 25.7% |
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 5022 | 11637 | 0 | 2848 |
+| item | 19507 | 5058 | 11637 | 0 | 2812 |
 | species | 1320 | 726 | 365 | 0 | 229 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2769 | 6309 | 1505 | 14.2% |
+| dmg | 10583 | 2791 | 6309 | 1483 | 14.0% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -122,11 +122,11 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | phb14 | 516 | 170 | 261 | 85 | 16.5% |
 | thhw | 395 | 87 | 231 | 77 | 19.5% |
 | tee24 | 464 | 166 | 232 | 66 | 14.2% |
-| dmg14 | 540 | 208 | 269 | 63 | 11.7% |
 | tssm | 275 | 66 | 147 | 62 | 22.5% |
 | rhw | 232 | 57 | 115 | 60 | 25.9% |
 | hof | 253 | 40 | 155 | 58 | 22.9% |
 | EFotA | 137 | 35 | 50 | 52 | 38.0% |
+| dmg14 | 540 | 222 | 269 | 49 | 9.1% |
 | tghg | 288 | 75 | 165 | 48 | 16.7% |
 | misc14 | 327 | 80 | 200 | 47 | 14.4% |
 | xge | 378 | 111 | 221 | 46 | 12.2% |
@@ -192,7 +192,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | Kelas utama | Uncovered | Dengan angka |
 |---|---|---|
 | RESOURCE | 684 | 548 |
-| SPELL | 619 | 90 |
+| SPELL | 583 | 90 |
 | DMG | 547 | 502 |
 | ADV | 442 | 151 |
 | SPEED | 395 | 309 |
@@ -261,7 +261,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Wizard/Gastronomer|Monster Meal#3` Add one monster ingredient (a whole corpse slain in the last 24 hours or kept by Gentle Repose) for a benefit until a Long Rest by type. | no record for RESOURCE; number 24 unexplained
 - `sub|Wizard/Wand Wizard|Craft Wands#4` Charges equal the slot levels spent divided by the spell's level, plus 1. | no record for RESOURCE; number 1 unexplained
 
-### SPELL (619 uncovered)
+### SPELL (583 uncovered)
 
 - `class|Bard|Spellcasting#14` To begin, your list holds four level 1 spells that you pick from the Bard spell list. | no record for SPELL; number 4 unexplained
 - `class|Death Knight|Fighting Style#4` Pick two Cleric cantrips to learn. | no record for SPELL
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- class `item|dmg|Doomhammer#4` A hit deals an extra 1d8 Lightning damage. -> info:ACTIVE:OTHERS
-- record `item|dmg|Potion of Giant Strength (frost)#1` Drinking this potion sets your Strength score to 23 for 1 hour. -> info:NUMONLY:TABLE
-- class `item|dmg|Potion of Giant Strength (frost)#1` Drinking this potion sets your Strength score to 23 for 1 hour. -> info:NUMONLY:TABLE
-- record `sub|Warmage/House of Lancers|Hand-to-Hand Arcana#3` The die becomes d8 at Warmage level 5, d10 at 11 and d12 at 17. -> info:NUMONLY:ROLL
-- class `sub|Warmage/House of Lancers|Hand-to-Hand Arcana#3` The die becomes d8 at Warmage level 5, d10 at 11 and d12 at 17. -> info:NUMONLY:ROLL
+- record `item|dmg|Wave#4` Attack rolls and damage rolls you make with this magic trident gain a +3 bonus. -> info:NUMONLY:ROLL
+- class `item|dmg|Wave#4` Attack rolls and damage rolls you make with this magic trident gain a +3 bonus. -> info:NUMONLY:ROLL
+- record `item|tce|+2 Amulet of the Devout#3` While you wear this amulet, you can use your Channel Divinity feature without expending one of the feature's uses. -> info:REST:NONUM
+- class `item|tce|+2 Amulet of the Devout#3` While you wear this amulet, you can use your Channel Divinity feature without expending one of the feature's uses. -> info:REST:NONUM
 - record `sub|Bard/College of Chronology (Dark Matter)|Reorder Events#3` Long Rest to use again. -> covered
 - class `sub|Bard/College of Chronology (Dark Matter)|Reorder Events#3` Long Rest to use again. -> info:REST:NONUM
-- record `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#7` Stage 1. -> info:NUMONLY:TABLE
-- class `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#7` Stage 1. -> info:NUMONLY:TABLE
-- record `feat|Soul of the Storm Giant|Soul of the Storm Giant#11` You regain all expended uses when you finish a Long Rest. -> info:REST:NONUM
-- class `feat|Soul of the Storm Giant|Soul of the Storm Giant#11` You regain all expended uses when you finish a Long Rest. -> info:REST:NONUM
-- record `feat|Familiar Keeper|Familiar Keeper#6` After you cast it this way, finish a Long Rest to do so again. -> covered
-- class `feat|Familiar Keeper|Familiar Keeper#6` After you cast it this way, finish a Long Rest to do so again. -> info:REST:NONUM
-- record `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
-- class `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
-- record `item|tdcsr|Wraps of Dyamak (Exalted)#4` When you finish a rest, you gain temporary hit points equal to your total ki points. -> info:ACTIVE:TRIGGER
-- class `item|tdcsr|Wraps of Dyamak (Exalted)#4` When you finish a rest, you gain temporary hit points equal to your total ki points. -> info:ACTIVE:TRIGGER
-- class `item|tce|+3 Arcane Grimoire#3` In addition, when you use your Arcane Recovery feature, you can increase the number of spell slot levels you regain by 1 -> info:ACTIVE:TRIGGER
-- record `item|dmg|Khrusor, Spear of Heliod#16` The spear has 1 randomly determined major beneficial property. -> info:NUMONLY:TEXT
-- class `item|dmg|Khrusor, Spear of Heliod#16` The spear has 1 randomly determined major beneficial property. -> info:NUMONLY:TEXT
-- record `item|dmg14|Elemental Gem, Emerald#2` When you use an action to break the gem, a water elemental is summoned as if you had cast the conjure elemental spell, a -> info:ACTIVE:TRIGGER
-- class `item|dmg14|Elemental Gem, Emerald#2` When you use an action to break the gem, a water elemental is summoned as if you had cast the conjure elemental spell, a -> info:ACTIVE:TRIGGER
-- class `item|dmg|Khrusor, Spear of Heliod#6` When you hit with an attack using this spear, the target takes an extra 2d8 radiant damage. -> info:ACTIVE:TRIGGER
-- record `sub|Martyr/Burden of Fame|Burden of Fame Spells#2` They do not count against your prepared spells. -> info:ACTIVE:OTHERS
-- class `sub|Martyr/Burden of Fame|Burden of Fame Spells#2` They do not count against your prepared spells. -> info:ACTIVE:OTHERS
-- record `item|dmg|Nylea's Votary#2` You can cast Speak with Animals a number of times equal to your Wisdom modifier (minimum once), and you regain all uses  -> info:REST:NONUM
-- class `item|dmg|Nylea's Votary#2` You can cast Speak with Animals a number of times equal to your Wisdom modifier (minimum once), and you regain all uses  -> info:REST:NONUM
-- record `sub|Ranger/Big Game Hunter|Special Shots#11` You can use Power Shot a number of times equal to your Proficiency Bonus per Long Rest. -> covered
-- record `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> covered
-- class `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> info:REST:NONUM
+- record `sub|Rogue/Magic Stealer|Occult Shroud#1` After a Long Rest you can cast Nondetection on yourself only, with a 24-hour duration. -> covered
+- record `item|dmg|Axe of the Dwarvish Lords#12` The axe counts as having the Thrown property: its normal range is 20 feet and its long range is 60 feet. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Axe of the Dwarvish Lords#12` The axe counts as having the Thrown property: its normal range is 20 feet and its long range is 60 feet. -> info:NUMONLY:GEOMETRY
+- record `item|dmg14|Instrument of the Bards, Cli Lyre#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
+- class `item|dmg14|Instrument of the Bards, Cli Lyre#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
+- record `sub|Cleric/Shadow Domain|Shadow Spells#1` Always prepared from the listed Cleric levels: 3 Crown of Madness, Dissonant Whispers, Mind Spike, Shadow Word: Pain. -> covered
+- class `sub|Cleric/Shadow Domain|Shadow Spells#1` Always prepared from the listed Cleric levels: 3 Crown of Madness, Dissonant Whispers, Mind Spike, Shadow Word: Pain. -> covered
+- record `feat|Boon of the Furious Storm|Boon of the Furious Storm#4` You have Resistance to Lightning and Thunder damage. -> covered
+- record `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#15` If you end your move with no creature within 5 feet, you must Dash toward the nearest. -> info:NUMONLY:GEOMETRY
+- class `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#15` If you end your move with no creature within 5 feet, you must Dash toward the nearest. -> info:NUMONLY:GEOMETRY
+- record `species|Arisen|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- class `species|Arisen|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- record `sub|Warmage/House of Roulette|Spinning Shield#4` You cannot use this again until you finish a Short or Long Rest. -> covered
+- class `sub|Warmage/House of Roulette|Spinning Shield#4` You cannot use this again until you finish a Short or Long Rest. -> info:REST:NONUM
+- record `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
+- class `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
+- record `item|ggr|Rakdos Riteknife#13` If the target dies, you can't use this property again until you finish a long rest. -> info:REST:NONUM
+- class `item|ggr|Rakdos Riteknife#13` If the target dies, you can't use this property again until you finish a long rest. -> info:REST:NONUM
+- record `item|dmg|Bolt, +1#1` Attack rolls and damage rolls you make with this magic bolt get a +1 bonus. -> info:NUMONLY:ROLL
+- class `item|dmg|Bolt, +1#1` Attack rolls and damage rolls you make with this magic bolt get a +1 bonus. -> info:NUMONLY:ROLL
+- record `class|Barbarian|Rage#4` Finishing a Short Rest restores one expended use, and finishing a Long Rest restores all of them. -> covered
+- class `class|Barbarian|Rage#4` Finishing a Short Rest restores one expended use, and finishing a Long Rest restores all of them. -> info:REST:NONUM
+- record `item|dmg|Boon of Peerless Aim#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
+- class `item|dmg|Boon of Peerless Aim#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM

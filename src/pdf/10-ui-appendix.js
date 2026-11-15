@@ -32,7 +32,7 @@ pxAddPart({id:"tracker", when:(M,ctx) =>{ return !!M.tracker&&!!ctx.F.form; }, t
 pxAddPart({id:"continued", when:(M,ctx) =>{ return ctx.cont.length>0; }, title:"CONTINUED FROM THE SHEET", strip:() =>{ return "What did not fit in the boxes on the first pages"; },
   fill:(F,M,ctx) =>{ ctx.cont.forEach((c) =>{ F.section(c[0].toUpperCase()); F.block(PX_BLOCKS.text(F.T,{text:c[1]},F.CW),8); }); }});
 pxAddPart({id:"spells", when:(M) =>{ return !!M.spellcasting&&(M.spellcasting.levels||[]).some((l) =>{ return l.spells.length; }); }, title:"SPELL DESCRIPTIONS",
-  strip:(M) =>{ const S = M.spellcasting; return "Spellcasting "+S.ability+"   •   Spell Save DC "+S.dc+"   •   Spell Attack "+S.attack; },
+  strip:(M) =>{ const S = M.spellcasting;if(S.instrumentGuidance&&!S.ability&&!S.dc&&!S.attack)return S.instrumentGuidance;return "Spellcasting "+S.ability+"   •   Spell Save DC "+S.dc+"   •   Spell Attack "+S.attack+(S.instrumentGuidance?"   •   Instrument casts choose their own ability.":""); },
   fill:(F,M) =>{ M.spellcasting.levels.forEach((L) =>{ if(!L.spells.length) return;
     const head = L.level===0 ? "CANTRIPS" : "LEVEL "+L.level+(L.slots!=null?"   •   "+L.slots+" SLOTS":"");
     F.section(head, head.split("   ")[0]); L.spells.forEach((sp) =>{ F.block(PX_BLOCKS.spell(F.T,sp,F.CW)); }); }); }});

@@ -1,4 +1,5 @@
 import {slotRecoveryProfile,slotRecoveryAuthorityProblems,assertSlotRecoveryCurrent} from '../data/lib/slot-recovery.js';
+import {instrumentBardRequirementIgnored} from './10v-logic-instrument-spells.js';
 import {spellGemProfile} from "../data/lib/spell-gem.js";
 import {casterParts,clsLv,lateGet,subAt} from "./01b-logic-late-ports.js";import {clone} from "./01-logic-core-helpers.js";
 
@@ -34,7 +35,7 @@ export function byOk(by,attunedKeys){if(!by)return true;const s=String(by),cls=O
  if(/Belt of Dwarvenkind/.test(s)&&beltAttuned(attunedKeys))return true;
  if(cls.length)return cls.some((c) =>{return clsLv(c)>0});if(/Spellcaster/i.test(s))return casterParts().length>0||miFeats().length>0;
  const sp=Object.keys(SPECIES).filter((n) =>{return new RegExp("\\b"+n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","i").test(s)});if(sp.length)return sp.indexOf(lateGet("B").species)>=0;return true}
-export function attunementMeta(n,row){if(row&&rodAbsorptionNonmagicalRow(row))return {requires:false,key:n};const d=DMAP[n];return d?{key:d[0],requires:!!d[3],...(spellGemProfile(d[0])?{optional:true}:{}),by:d[5]&&d[5].by}:{requires:false,key:n,...(spellGemProfile(n)?{optional:true}:{})}}
+export function attunementMeta(n,row){if(row&&rodAbsorptionNonmagicalRow(row))return {requires:false,key:n};const d=DMAP[n];return d?{key:d[0],requires:!!d[3],...(spellGemProfile(d[0])?{optional:true}:{}),by:instrumentBardRequirementIgnored(n,row)?undefined:d[5]&&d[5].by}:{requires:false,key:n,...(spellGemProfile(n)?{optional:true}:{})}}
 export function migrateItemAttunement(x){return migrateAttunement(x,attunementMeta(x.n,x))}
 function formMetadataFor(row,edition){const d=DMAP[row.n];return weaponFormMetadata(d?d[0]:row.n,edition)}
 function canonicalForm(row,formMeta){const f=row.form;if(!f||typeof f!=="object"||Array.isArray(f))return false;if(Object.prototype.hasOwnProperty.call(f,"v")&&f.v!==1)return true;if(f.v!==1||typeof f.active!=="boolean")return false;const l=formMeta.light;return Number.isInteger(f.radius)&&f.radius>=l.min&&f.radius<=l.max&&(l.adjustable?(f.radius-l.min)%l.step===0:f.radius===l.default)}

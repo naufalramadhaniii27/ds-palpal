@@ -35,7 +35,7 @@ export function travelGoatResource(physical,index){
  return {k:physical.budgetKey,n:'Goat of Traveling charges',max:24,reset:'none',f:p.item,item:1,invIndex:index,tag:'Each actual hour or part of an hour in creature form costs one charge. Restore only after the verified seven-day wait.',travelGoat:{v:1,id:physical.id,nativeProfile:p.id,component:'traveling',budgetKey:physical.budgetKey}};
 }
 
-const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption'];
+const foreign=['instrumentSpells','storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption'];
 export function travelGoatPhysicalBinding(row,state,sources,inventory){
  if(travelGoatProblems(state).length||!obj(row)||foreign.some(k=>own(row,k))||(row.q??1)!==1)return null;
  const source=travelGoatMarkerSource(row.travelGoat,sources,key(row));if(!source)return null;

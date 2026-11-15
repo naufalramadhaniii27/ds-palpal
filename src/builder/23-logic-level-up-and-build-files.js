@@ -13,6 +13,7 @@ import {timedDefensesApplyPlan,timedDefensesApplyCurrent} from './10n-logic-time
 import {iounOrbitApplyPlan,iounOrbitApplyCurrent} from './10o-logic-ioun-orbit.js';
 import {rodAbsorptionApplyPlan,rodAbsorptionApplyCurrent} from './10q-logic-rod-absorption.js';
 import {travelGoatApplyPlan,travelGoatApplyCurrent} from './10r-logic-travel-goat.js';
+import {prepareInstrumentSpellsApply} from './23a-logic-instrument-apply.js';
 import {BASE,allPacks,applyPacks,autoSpellList,snap} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,baseOf,itemCost} from "./14-logic-multiclass-hp-shop.js";
 import {fromSheet} from "./15-logic-import-from-sheet.js";
@@ -283,7 +284,7 @@ function prepareTimedDefensesApply(candidate){const plan=timedDefensesApplyPlan(
 function prepareIounOrbitApply(candidate){const plan=iounOrbitApplyPlan(candidate);if(!plan.ok||!iounOrbitApplyCurrent(plan)){toast("Review this character’s Ioun Stone orbit and source history before applying the build.");return false}return true}
 function prepareRodAbsorptionApply(candidate){const plan=rodAbsorptionApplyPlan(candidate);if(!plan.ok||!rodAbsorptionApplyCurrent(plan)){toast("Review this character's Rod of Absorption energy and physical source history before applying the build.");return false}return true}
 function prepareTravelGoatApply(candidate){const plan=travelGoatApplyPlan(candidate);if(!plan.ok||!travelGoatApplyCurrent(plan)){toast("Review this character's Goat of Traveling charge and physical history before applying the build.");return false}return true}
-function preparePhysicalSourcesApply(candidate){return prepareBirdTokenApply(candidate)&&prepareMagicRopesApply(candidate)&&prepareTimedDefensesApply(candidate)&&prepareIounOrbitApply(candidate)&&prepareRodAbsorptionApply(candidate)&&prepareTravelGoatApply(candidate)}
+function preparePhysicalSourcesApply(candidate){return prepareInstrumentSpellsApply(candidate)&&prepareBirdTokenApply(candidate)&&prepareMagicRopesApply(candidate)&&prepareTimedDefensesApply(candidate)&&prepareIounOrbitApply(candidate)&&prepareRodAbsorptionApply(candidate)&&prepareTravelGoatApply(candidate)}
 function toSheetApply(review){const miss=unList();if(miss){toast("Choose your "+miss+" first");return}const C=toSheet(),cur=genv.__sheetName?genv.__sheetName():"",RI=ruleIssues(),imsg=RI.length?" Not finished yet: "+issueText(RI)+". You can Apply now and finish later.":"";
 const go=function(){if(!preparePhysicalSourcesApply(C))return;if(genv.__sheetApply)genv.__sheetApply(C,RI.length?"Sheet updated. Still to check in the builder: "+issueText(RI.slice(0,3))+(RI.length>3?" and "+(RI.length-3)+" more":"")+".":"");if(B.coins&&genv.__coinsPending){const pc=B.coins;delete B.coins;save();genv.__coinsPending(pc)}closeBld()};
  if(review===true&&RI.length){ask("Apply this build to the sheet?"+imsg,"Apply",() =>{toSheetApply(false)});return}

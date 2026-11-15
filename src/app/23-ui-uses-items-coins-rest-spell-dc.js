@@ -1,3 +1,5 @@
+import {instrumentSpellsResourceSummary} from './lib/instrument-spells-inventory.js';
+import {instrumentSpellsResourceControl} from './21z-ui-instrument-spells.js';
 import {bindLive,chMaxH,lateGet,lateSet} from "./00a-reg-late-ports.js";import {exSpd} from "./03-data-glossary.js";
 import {C,S} from "./04-logic-storage.js";
 import {travelGoatResourceSummary} from "./lib/travel-goat-inventory.js";
@@ -58,10 +60,11 @@ export function ico(k,cls,label){ const d=lateGet("ICO")[k]; if(!d) return ""; c
 export function resOf(name){ return (D.res||[]).filter((q) =>{ return q.n===name||q.f===name; }); }
 /* v36 p10: usage pips in the card head (the same .bx boxes), the reset line only when the sentence does not already say it */
 function travelGoatResourceHTML(row){const summary=travelGoatResourceSummary(C,S,row);return summary===null?null:travelGoatResourceControl(row)||'<span class="muted" role="status">'+esc(summary)+'</span>'}
-function resPips(rl){ const p=rl.filter((r) =>{ return !r.pool; }); return p.length?'<span class="hpips">'+p.map((r) =>{ const traveling=travelGoatResourceHTML(r);if(traveling!==null)return traveling;return (p.length>1?'<small class="hpl">'+esc(r.n)+'</small>':'')+'<span class="boxes">'+boxes(used(r.k,r.max),r.max,r.k,r.n)+'</span>'; }).join("")+'</span>':''; }
+function ownedSourceResourceHTML(row){const summary=instrumentSpellsResourceSummary(C,S,row);return summary===null?travelGoatResourceHTML(row):instrumentSpellsResourceControl(row)||'<span class="muted" role="status">'+esc(summary)+'</span>'}
+function resPips(rl){ const p=rl.filter((r) =>{ return !r.pool; }); return p.length?'<span class="hpips">'+p.map((r) =>{ const traveling=ownedSourceResourceHTML(r);if(traveling!==null)return traveling;return (p.length>1?'<small class="hpl">'+esc(r.n)+'</small>':'')+'<span class="boxes">'+boxes(used(r.k,r.max),r.max,r.k,r.n)+'</span>'; }).join("")+'</span>':''; }
 function resTail(rl,so){ const rest=so&&(so.m||[]).some((x) =>{ return /Rest/.test(x); }); return rl.map((r) =>{ if(so&&!r.pool) return rest?'':'<div class="fres">'+resetTxt(r)+'</div>'; return resBoxes([r]); }).join(""); }
-function manCost(rl){ const r=rl.filter((q) =>{ return !q.pool; })[0]; if(!r) return "";const traveling=travelGoatResourceHTML(r);if(traveling!==null)return traveling; const left=r.max-used(r.k,r.max); return '<div class="sum-m"><span class="supd" data-k="'+r.k+'">'+ico("ui-dice","sum-i")+'<span>1 '+esc(String(r.n).replace(/Dice$/,"Die"))+'. <b>'+left+'</b> left</span></span></div>'; }
-function resBoxes(rl){ return rl.map((r) =>{ const traveling=travelGoatResourceHTML(r);if(traveling!==null)return traveling;return '<div class="fuse">'+(rl.length>1||r.n!==r.f?esc(r.n)+': ':'')+(r.pool?'Points:':'Used:')+'</div><div class="boxes">'+boxes(used(r.k,r.max),r.max,r.k,r.n,r.pool)+'</div><div class="fres">'+resetTxt(r)+'</div>'; }).join(""); }
+function manCost(rl){ const r=rl.filter((q) =>{ return !q.pool; })[0]; if(!r) return "";const traveling=ownedSourceResourceHTML(r);if(traveling!==null)return traveling; const left=r.max-used(r.k,r.max); return '<div class="sum-m"><span class="supd" data-k="'+r.k+'">'+ico("ui-dice","sum-i")+'<span>1 '+esc(String(r.n).replace(/Dice$/,"Die"))+'. <b>'+left+'</b> left</span></span></div>'; }
+function resBoxes(rl){ return rl.map((r) =>{ const traveling=ownedSourceResourceHTML(r);if(traveling!==null)return traveling;return '<div class="fuse">'+(rl.length>1||r.n!==r.f?esc(r.n)+': ':'')+(r.pool?'Points:':'Used:')+'</div><div class="boxes">'+boxes(used(r.k,r.max),r.max,r.k,r.n,r.pool)+'</div><div class="fres">'+resetTxt(r)+'</div>'; }).join(""); }
 function itemRes(it){ const rl=resOf(it.n); return rl.length?'<div class="fsub ires">'+resBoxes(rl)+rl.map(chMaxH).join("")+'</div>':''; }
 function resetTxt(r){ return {short:"Resets on a Short or Long Rest",short1:"One use back on a Short Rest, all on a Long Rest",long:"Resets on a Long Rest",none:"Does not reset on a rest"}[r.reset]||""; }
 /* RU35 no. 4: icon of the kind of attack */

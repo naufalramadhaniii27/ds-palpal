@@ -39,6 +39,7 @@ bind(["__bldHornValhallaInfo", "__bldHornValhallaCapture", "__bldHornValhallaTok
 bind(["__bldTimedDefensesInfo", "__bldTimedDefensesCapture", "__bldTimedDefensesTokenCurrent", "__bldTimedDefensesCommand", "__bldTimedDefensesAcceptReceipt", "__bldTimedDefensesInventoryOwner", "__timedDefensesSave"]);
 bind(["__bldIounOrbitInfo", "__bldIounOrbitCapture", "__bldIounOrbitTokenCurrent", "__bldIounOrbitCommand", "__bldIounOrbitAcceptReceipt", "__bldIounOrbitInventoryOwner", "__iounOrbitSave"]);
 bind(["__iounOrbitCheckRoll", "__iounOrbitMathStatus", "__nativePerceptionCheckRoll", "__nativePerceptionItemSourceCurrent"]);
+bind(["__bldInstrumentSpellsInfo", "__bldInstrumentSpellsCapture", "__bldInstrumentSpellsTokenCurrent", "__bldInstrumentSpellsCommand", "__bldInstrumentSpellsAcceptReceipt", "__bldInstrumentSpellsInventoryOwner", "__instrumentSpellsInventoryWriteAllowed", "__bldInstrumentSpellsCastPrepare", "__bldInstrumentSpellsCastCurrent", "__bldInstrumentSpellsCastCommit", "__instrumentSpellsSave"]);
 bind(["__bracersAttackSpec", "__bldBracersAttackInfo", "__bldBracersAttackCapture", "__bldBracersAttackCurrent"]);
 bind(["__bldPactRodSpellInfo", "__bldPactRodSpellCapture", "__bldPactRodSpellCurrent"]);
 bind(["__bldRodAbsorptionCastPrepare", "__bldRodAbsorptionCastCurrent", "__bldRodAbsorptionCastCommit"]);

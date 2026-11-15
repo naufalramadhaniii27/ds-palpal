@@ -1,0 +1,2984 @@
+{
+  "cases": [
+    {
+      "profileId": "current-anstruth",
+      "id": "isp-1",
+      "grantId": "cure-wounds",
+      "otherGrantId": "fly",
+      "key": "i-instrument-1-cure-wounds",
+      "otherKey": "i-instrument-1-fly",
+      "before": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards (Anstruth harp)",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2014",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 2,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "current-anstruth",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards (Anstruth harp)\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Very Rare\"],[\"3\",1],[\"4\",\"This instrument is better than a normal instrument in every respect. There are seven types, and each one bears the name of a bard college. If a creature that isn't attuned to the instrument tries to play it, it takes 2d4 Psychic damage unless it succeeds on a DC 15 Wisdom saving throw. By playing the instrument, you can cast one of its spells. After the instrument casts a given spell, it can't cast that same spell again until the next dawn. These spells use your own spell save DC and spellcasting ability. Every instrument of this kind can cast Fly, Invisibility, Levitate, and Protection from Evil and Good, along with the spells of its own type. **Anstruth Harp.** In addition to the shared spells, this harp can cast Cure Wounds (level 5), Ice Storm, and Wall of Thorns.\"],[\"5\",[\"object\",[[\"by\",\"a Bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",null],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2024\"]]]],[\"1\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2024\"]]]],[\"2\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2024\"]]]],[\"3\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",null],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2024\"]]]],[\"4\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",null],[\"id\",\"ice-storm\"],[\"restriction\",null],[\"spell\",\"Ice Storm\"],[\"spellSource\",\"phb2024\"]]]],[\"5\",[\"object\",[[\"castLevel\",6],[\"castingTimeOverride\",null],[\"id\",\"wall-of-thorns\"],[\"restriction\",null],[\"spell\",\"Wall of Thorns\"],[\"spellSource\",\"phb2024\"]]]],[\"6\",[\"object\",[[\"castLevel\",5],[\"castingTimeOverride\",null],[\"id\",\"cure-wounds\"],[\"restriction\",null],[\"spell\",\"Cure Wounds\"],[\"spellSource\",\"phb2024\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "ice-storm",
+                  "budgetKey": "i-instrument-1-ice-storm"
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "budgetKey": "i-instrument-1-wall-of-thorns"
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "budgetKey": "i-instrument-1-cure-wounds"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "ice-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "used": 0
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-ice-storm": 0,
+          "i-instrument-1-wall-of-thorns": 0,
+          "i-instrument-1-cure-wounds": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Cure Wounds",
+          "l": 1,
+          "ct": "Action",
+          "r": "Touch",
+          "cmp": "None (item)",
+          "dur": "Instantaneous",
+          "conc": 0,
+          "sv": "",
+          "sum": "A creature you touch regains 2d8 + your spellcasting modifier HP.",
+          "fx": {
+            "heal": [
+              "2d8",
+              1,
+              "2d8"
+            ]
+          },
+          "full": "The creature you touch regains 2d8 Hit Points, and you add your spellcasting ability modifier to the amount regained. **Using a Higher-Level Spell Slot.** For each spell slot level above 1, the healing increases by 2d8.",
+          "use": "Item",
+          "src": "Instrument of the Bards (Anstruth harp) [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards (Anstruth harp)",
+            "c": 1,
+            "lv": 5
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "cure-wounds",
+            "budgetKey": "i-instrument-1-cure-wounds"
+          },
+          "instrumentSpellSource": "phb2024",
+          "instrumentCastLevel": 5,
+          "instrumentRestriction": null
+        }
+      },
+      "after": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards (Anstruth harp)",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2014",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 3,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "current-anstruth",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards (Anstruth harp)\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Very Rare\"],[\"3\",1],[\"4\",\"This instrument is better than a normal instrument in every respect. There are seven types, and each one bears the name of a bard college. If a creature that isn't attuned to the instrument tries to play it, it takes 2d4 Psychic damage unless it succeeds on a DC 15 Wisdom saving throw. By playing the instrument, you can cast one of its spells. After the instrument casts a given spell, it can't cast that same spell again until the next dawn. These spells use your own spell save DC and spellcasting ability. Every instrument of this kind can cast Fly, Invisibility, Levitate, and Protection from Evil and Good, along with the spells of its own type. **Anstruth Harp.** In addition to the shared spells, this harp can cast Cure Wounds (level 5), Ice Storm, and Wall of Thorns.\"],[\"5\",[\"object\",[[\"by\",\"a Bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",null],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2024\"]]]],[\"1\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2024\"]]]],[\"2\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2024\"]]]],[\"3\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",null],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2024\"]]]],[\"4\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",null],[\"id\",\"ice-storm\"],[\"restriction\",null],[\"spell\",\"Ice Storm\"],[\"spellSource\",\"phb2024\"]]]],[\"5\",[\"object\",[[\"castLevel\",6],[\"castingTimeOverride\",null],[\"id\",\"wall-of-thorns\"],[\"restriction\",null],[\"spell\",\"Wall of Thorns\"],[\"spellSource\",\"phb2024\"]]]],[\"6\",[\"object\",[[\"castLevel\",5],[\"castingTimeOverride\",null],[\"id\",\"cure-wounds\"],[\"restriction\",null],[\"spell\",\"Cure Wounds\"],[\"spellSource\",\"phb2024\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "ice-storm",
+                  "budgetKey": "i-instrument-1-ice-storm"
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "budgetKey": "i-instrument-1-wall-of-thorns"
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "budgetKey": "i-instrument-1-cure-wounds"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "ice-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "used": 0
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            },
+            {
+              "id": "ise-2",
+              "kind": "cast",
+              "physicalId": "isp-1",
+              "grantId": "cure-wounds",
+              "cast": {
+                "spell": "Cure Wounds",
+                "spellSource": "phb2024",
+                "definitionFingerprint": "[\"object\",[[\"cmp\",\"V, S\"],[\"conc\",0],[\"ct\",\"Action\"],[\"dur\",\"Instantaneous\"],[\"fx\",[\"object\",[[\"heal\",[\"array\",3,[[\"0\",\"2d8\"],[\"1\",1],[\"2\",\"2d8\"]]]]]]],[\"l\",1],[\"n\",\"Cure Wounds\"],[\"r\",\"Touch\"],[\"sum\",\"A creature you touch regains 2d8 + your spellcasting modifier HP.\"],[\"sv\",\"\"]]]",
+                "castLevel": 5,
+                "restriction": null,
+                "ability": "CHA",
+                "channelFingerprint": "[\"object\",[[\"ability\",\"CHA\"],[\"atk\",8],[\"dc\",16],[\"modifier\",4],[\"pb\",4]]]"
+              },
+              "facts": {
+                "actualSourceAndActorCertified": true,
+                "actualBardAttunementAllocated": true,
+                "actualPlayingCompleted": true,
+                "actualPrintedCastingTimeCompleted": true,
+                "actualCanonicalSpellCertified": true,
+                "actualItemAbilityChannelCertified": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-ice-storm": 0,
+          "i-instrument-1-wall-of-thorns": 0,
+          "i-instrument-1-cure-wounds": 1
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Cure Wounds",
+          "l": 1,
+          "ct": "Action",
+          "r": "Touch",
+          "cmp": "None (item)",
+          "dur": "Instantaneous",
+          "conc": 0,
+          "sv": "",
+          "sum": "A creature you touch regains 2d8 + your spellcasting modifier HP.",
+          "fx": {
+            "heal": [
+              "2d8",
+              1,
+              "2d8"
+            ]
+          },
+          "full": "The creature you touch regains 2d8 Hit Points, and you add your spellcasting ability modifier to the amount regained. **Using a Higher-Level Spell Slot.** For each spell slot level above 1, the healing increases by 2d8.",
+          "use": "Item",
+          "src": "Instrument of the Bards (Anstruth harp) [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards (Anstruth harp)",
+            "c": 1,
+            "lv": 5
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "cure-wounds",
+            "budgetKey": "i-instrument-1-cure-wounds"
+          },
+          "instrumentSpellSource": "phb2024",
+          "instrumentCastLevel": 5,
+          "instrumentRestriction": null
+        }
+      },
+      "dawn": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards (Anstruth harp)",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2014",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 4,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "current-anstruth",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards (Anstruth harp)\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Very Rare\"],[\"3\",1],[\"4\",\"This instrument is better than a normal instrument in every respect. There are seven types, and each one bears the name of a bard college. If a creature that isn't attuned to the instrument tries to play it, it takes 2d4 Psychic damage unless it succeeds on a DC 15 Wisdom saving throw. By playing the instrument, you can cast one of its spells. After the instrument casts a given spell, it can't cast that same spell again until the next dawn. These spells use your own spell save DC and spellcasting ability. Every instrument of this kind can cast Fly, Invisibility, Levitate, and Protection from Evil and Good, along with the spells of its own type. **Anstruth Harp.** In addition to the shared spells, this harp can cast Cure Wounds (level 5), Ice Storm, and Wall of Thorns.\"],[\"5\",[\"object\",[[\"by\",\"a Bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",null],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2024\"]]]],[\"1\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2024\"]]]],[\"2\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2024\"]]]],[\"3\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",null],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2024\"]]]],[\"4\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",null],[\"id\",\"ice-storm\"],[\"restriction\",null],[\"spell\",\"Ice Storm\"],[\"spellSource\",\"phb2024\"]]]],[\"5\",[\"object\",[[\"castLevel\",6],[\"castingTimeOverride\",null],[\"id\",\"wall-of-thorns\"],[\"restriction\",null],[\"spell\",\"Wall of Thorns\"],[\"spellSource\",\"phb2024\"]]]],[\"6\",[\"object\",[[\"castLevel\",5],[\"castingTimeOverride\",null],[\"id\",\"cure-wounds\"],[\"restriction\",null],[\"spell\",\"Cure Wounds\"],[\"spellSource\",\"phb2024\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "ice-storm",
+                  "budgetKey": "i-instrument-1-ice-storm"
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "budgetKey": "i-instrument-1-wall-of-thorns"
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "budgetKey": "i-instrument-1-cure-wounds"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "ice-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "used": 0
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            },
+            {
+              "id": "ise-2",
+              "kind": "cast",
+              "physicalId": "isp-1",
+              "grantId": "cure-wounds",
+              "cast": {
+                "spell": "Cure Wounds",
+                "spellSource": "phb2024",
+                "definitionFingerprint": "[\"object\",[[\"cmp\",\"V, S\"],[\"conc\",0],[\"ct\",\"Action\"],[\"dur\",\"Instantaneous\"],[\"fx\",[\"object\",[[\"heal\",[\"array\",3,[[\"0\",\"2d8\"],[\"1\",1],[\"2\",\"2d8\"]]]]]]],[\"l\",1],[\"n\",\"Cure Wounds\"],[\"r\",\"Touch\"],[\"sum\",\"A creature you touch regains 2d8 + your spellcasting modifier HP.\"],[\"sv\",\"\"]]]",
+                "castLevel": 5,
+                "restriction": null,
+                "ability": "CHA",
+                "channelFingerprint": "[\"object\",[[\"ability\",\"CHA\"],[\"atk\",8],[\"dc\",16],[\"modifier\",4],[\"pb\",4]]]"
+              },
+              "facts": {
+                "actualSourceAndActorCertified": true,
+                "actualBardAttunementAllocated": true,
+                "actualPlayingCompleted": true,
+                "actualPrintedCastingTimeCompleted": true,
+                "actualCanonicalSpellCertified": true,
+                "actualItemAbilityChannelCertified": true
+              }
+            },
+            {
+              "id": "ise-3",
+              "kind": "dawn",
+              "dawn": {
+                "occurrenceId": "fx-next-dawn-1",
+                "ordinal": 1
+              },
+              "facts": {
+                "actualDawnOccurred": true,
+                "actualCampaignDawnVerified": true,
+                "actualDawnOccurredAfterAdmissions": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-ice-storm": 0,
+          "i-instrument-1-wall-of-thorns": 0,
+          "i-instrument-1-cure-wounds": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Cure Wounds",
+          "l": 1,
+          "ct": "Action",
+          "r": "Touch",
+          "cmp": "None (item)",
+          "dur": "Instantaneous",
+          "conc": 0,
+          "sv": "",
+          "sum": "A creature you touch regains 2d8 + your spellcasting modifier HP.",
+          "fx": {
+            "heal": [
+              "2d8",
+              1,
+              "2d8"
+            ]
+          },
+          "full": "The creature you touch regains 2d8 Hit Points, and you add your spellcasting ability modifier to the amount regained. **Using a Higher-Level Spell Slot.** For each spell slot level above 1, the healing increases by 2d8.",
+          "use": "Item",
+          "src": "Instrument of the Bards (Anstruth harp) [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards (Anstruth harp)",
+            "c": 1,
+            "lv": 5
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "cure-wounds",
+            "budgetKey": "i-instrument-1-cure-wounds"
+          },
+          "instrumentSpellSource": "phb2024",
+          "instrumentCastLevel": 5,
+          "instrumentRestriction": null
+        }
+      }
+    },
+    {
+      "profileId": "legacy-anstruth",
+      "id": "isp-1",
+      "grantId": "cure-wounds",
+      "otherGrantId": "fly",
+      "key": "i-instrument-1-cure-wounds",
+      "otherKey": "i-instrument-1-fly",
+      "before": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards, Anstruth Harp",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2024",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 2,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "legacy-anstruth",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards, Anstruth Harp\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Very Rare\"],[\"3\",1],[\"4\",\"An instrument of the bards is an exquisite example of its kind, superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a legendary bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a DC 15 Wisdom saving throw or take 2d4 psychic damage.\\nYou can use an action to play the instrument and cast one of its spells. Once the instrument has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC.\\nYou can play the instrument while casting a spell that causes any of its targets to be charmed on a failed saving throw, thereby imposing disadvantage on the save. This effect applies only if the spell has a somatic or a material component.\\nAll instruments of the bards can be used to cast the following spells: fly, invisibility, levitate, and protection from evil and good.\\nIn addition, the Anstruth harp can be used to cast control weather, cure wounds (5th level), and wall of thorns.\"],[\"5\",[\"object\",[[\"by\",\"a bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",\"Action\"],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2014\"]]]],[\"1\",[\"object\",[[\"castLevel\",5],[\"castingTimeOverride\",\"Action\"],[\"id\",\"cure-wounds\"],[\"restriction\",null],[\"spell\",\"Cure Wounds\"],[\"spellSource\",\"phb2014\"]]]],[\"2\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2014\"]]]],[\"3\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2014\"]]]],[\"4\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2014\"]]]],[\"5\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",\"Action\"],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2014\"]]]],[\"6\",[\"object\",[[\"castLevel\",6],[\"castingTimeOverride\",\"Action\"],[\"id\",\"wall-of-thorns\"],[\"restriction\",null],[\"spell\",\"Wall of Thorns\"],[\"spellSource\",\"phb2014\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "budgetKey": "i-instrument-1-cure-wounds"
+                },
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "budgetKey": "i-instrument-1-wall-of-thorns"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "used": 0
+                },
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-control-weather": 0,
+          "i-instrument-1-cure-wounds": 0,
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-wall-of-thorns": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Cure Wounds",
+          "l": 1,
+          "ct": "Action",
+          "r": "Touch",
+          "cmp": "None (item)",
+          "dur": "Instantaneous",
+          "conc": 0,
+          "sv": "",
+          "sum": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier.",
+          "fx": {
+            "heal": [
+              "1d8",
+              1,
+              "1d8"
+            ]
+          },
+          "full": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs. **At Higher Levels.** When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.",
+          "use": "Item",
+          "src": "Instrument of the Bards, Anstruth Harp [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards, Anstruth Harp",
+            "c": 1,
+            "lv": 5
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "cure-wounds",
+            "budgetKey": "i-instrument-1-cure-wounds"
+          },
+          "instrumentSpellSource": "phb2014",
+          "instrumentCastLevel": 5,
+          "instrumentRestriction": null
+        }
+      },
+      "after": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards, Anstruth Harp",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2024",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 3,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "legacy-anstruth",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards, Anstruth Harp\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Very Rare\"],[\"3\",1],[\"4\",\"An instrument of the bards is an exquisite example of its kind, superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a legendary bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a DC 15 Wisdom saving throw or take 2d4 psychic damage.\\nYou can use an action to play the instrument and cast one of its spells. Once the instrument has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC.\\nYou can play the instrument while casting a spell that causes any of its targets to be charmed on a failed saving throw, thereby imposing disadvantage on the save. This effect applies only if the spell has a somatic or a material component.\\nAll instruments of the bards can be used to cast the following spells: fly, invisibility, levitate, and protection from evil and good.\\nIn addition, the Anstruth harp can be used to cast control weather, cure wounds (5th level), and wall of thorns.\"],[\"5\",[\"object\",[[\"by\",\"a bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",\"Action\"],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2014\"]]]],[\"1\",[\"object\",[[\"castLevel\",5],[\"castingTimeOverride\",\"Action\"],[\"id\",\"cure-wounds\"],[\"restriction\",null],[\"spell\",\"Cure Wounds\"],[\"spellSource\",\"phb2014\"]]]],[\"2\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2014\"]]]],[\"3\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2014\"]]]],[\"4\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2014\"]]]],[\"5\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",\"Action\"],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2014\"]]]],[\"6\",[\"object\",[[\"castLevel\",6],[\"castingTimeOverride\",\"Action\"],[\"id\",\"wall-of-thorns\"],[\"restriction\",null],[\"spell\",\"Wall of Thorns\"],[\"spellSource\",\"phb2014\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "budgetKey": "i-instrument-1-cure-wounds"
+                },
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "budgetKey": "i-instrument-1-wall-of-thorns"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "used": 0
+                },
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            },
+            {
+              "id": "ise-2",
+              "kind": "cast",
+              "physicalId": "isp-1",
+              "grantId": "cure-wounds",
+              "cast": {
+                "spell": "Cure Wounds",
+                "spellSource": "phb2014",
+                "definitionFingerprint": "[\"object\",[[\"cmp\",\"V, S\"],[\"conc\",0],[\"ct\",\"Action\"],[\"dur\",\"Instantaneous\"],[\"fx\",[\"object\",[[\"heal\",[\"array\",3,[[\"0\",\"1d8\"],[\"1\",1],[\"2\",\"1d8\"]]]]]]],[\"l\",1],[\"n\",\"Cure Wounds\"],[\"r\",\"Touch\"],[\"sum\",\"A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier.\"],[\"sv\",\"\"]]]",
+                "castLevel": 5,
+                "restriction": null,
+                "ability": "CHA",
+                "channelFingerprint": "[\"object\",[[\"ability\",\"CHA\"],[\"atk\",8],[\"dc\",16],[\"modifier\",4],[\"pb\",4]]]"
+              },
+              "facts": {
+                "actualSourceAndActorCertified": true,
+                "actualBardAttunementAllocated": true,
+                "actualPlayingCompleted": true,
+                "actualPrintedCastingTimeCompleted": true,
+                "actualCanonicalSpellCertified": true,
+                "actualItemAbilityChannelCertified": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-control-weather": 0,
+          "i-instrument-1-cure-wounds": 1,
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-wall-of-thorns": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Cure Wounds",
+          "l": 1,
+          "ct": "Action",
+          "r": "Touch",
+          "cmp": "None (item)",
+          "dur": "Instantaneous",
+          "conc": 0,
+          "sv": "",
+          "sum": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier.",
+          "fx": {
+            "heal": [
+              "1d8",
+              1,
+              "1d8"
+            ]
+          },
+          "full": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs. **At Higher Levels.** When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.",
+          "use": "Item",
+          "src": "Instrument of the Bards, Anstruth Harp [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards, Anstruth Harp",
+            "c": 1,
+            "lv": 5
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "cure-wounds",
+            "budgetKey": "i-instrument-1-cure-wounds"
+          },
+          "instrumentSpellSource": "phb2014",
+          "instrumentCastLevel": 5,
+          "instrumentRestriction": null
+        }
+      },
+      "dawn": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards, Anstruth Harp",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2024",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 4,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "legacy-anstruth",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards, Anstruth Harp\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Very Rare\"],[\"3\",1],[\"4\",\"An instrument of the bards is an exquisite example of its kind, superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a legendary bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a DC 15 Wisdom saving throw or take 2d4 psychic damage.\\nYou can use an action to play the instrument and cast one of its spells. Once the instrument has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC.\\nYou can play the instrument while casting a spell that causes any of its targets to be charmed on a failed saving throw, thereby imposing disadvantage on the save. This effect applies only if the spell has a somatic or a material component.\\nAll instruments of the bards can be used to cast the following spells: fly, invisibility, levitate, and protection from evil and good.\\nIn addition, the Anstruth harp can be used to cast control weather, cure wounds (5th level), and wall of thorns.\"],[\"5\",[\"object\",[[\"by\",\"a bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",\"Action\"],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2014\"]]]],[\"1\",[\"object\",[[\"castLevel\",5],[\"castingTimeOverride\",\"Action\"],[\"id\",\"cure-wounds\"],[\"restriction\",null],[\"spell\",\"Cure Wounds\"],[\"spellSource\",\"phb2014\"]]]],[\"2\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2014\"]]]],[\"3\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2014\"]]]],[\"4\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2014\"]]]],[\"5\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",\"Action\"],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2014\"]]]],[\"6\",[\"object\",[[\"castLevel\",6],[\"castingTimeOverride\",\"Action\"],[\"id\",\"wall-of-thorns\"],[\"restriction\",null],[\"spell\",\"Wall of Thorns\"],[\"spellSource\",\"phb2014\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "budgetKey": "i-instrument-1-cure-wounds"
+                },
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "budgetKey": "i-instrument-1-wall-of-thorns"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "cure-wounds",
+                  "used": 0
+                },
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "wall-of-thorns",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            },
+            {
+              "id": "ise-2",
+              "kind": "cast",
+              "physicalId": "isp-1",
+              "grantId": "cure-wounds",
+              "cast": {
+                "spell": "Cure Wounds",
+                "spellSource": "phb2014",
+                "definitionFingerprint": "[\"object\",[[\"cmp\",\"V, S\"],[\"conc\",0],[\"ct\",\"Action\"],[\"dur\",\"Instantaneous\"],[\"fx\",[\"object\",[[\"heal\",[\"array\",3,[[\"0\",\"1d8\"],[\"1\",1],[\"2\",\"1d8\"]]]]]]],[\"l\",1],[\"n\",\"Cure Wounds\"],[\"r\",\"Touch\"],[\"sum\",\"A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier.\"],[\"sv\",\"\"]]]",
+                "castLevel": 5,
+                "restriction": null,
+                "ability": "CHA",
+                "channelFingerprint": "[\"object\",[[\"ability\",\"CHA\"],[\"atk\",8],[\"dc\",16],[\"modifier\",4],[\"pb\",4]]]"
+              },
+              "facts": {
+                "actualSourceAndActorCertified": true,
+                "actualBardAttunementAllocated": true,
+                "actualPlayingCompleted": true,
+                "actualPrintedCastingTimeCompleted": true,
+                "actualCanonicalSpellCertified": true,
+                "actualItemAbilityChannelCertified": true
+              }
+            },
+            {
+              "id": "ise-3",
+              "kind": "dawn",
+              "dawn": {
+                "occurrenceId": "fx-next-dawn-1",
+                "ordinal": 1
+              },
+              "facts": {
+                "actualDawnOccurred": true,
+                "actualCampaignDawnVerified": true,
+                "actualDawnOccurredAfterAdmissions": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-control-weather": 0,
+          "i-instrument-1-cure-wounds": 0,
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-wall-of-thorns": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Cure Wounds",
+          "l": 1,
+          "ct": "Action",
+          "r": "Touch",
+          "cmp": "None (item)",
+          "dur": "Instantaneous",
+          "conc": 0,
+          "sv": "",
+          "sum": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier.",
+          "fx": {
+            "heal": [
+              "1d8",
+              1,
+              "1d8"
+            ]
+          },
+          "full": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs. **At Higher Levels.** When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.",
+          "use": "Item",
+          "src": "Instrument of the Bards, Anstruth Harp [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards, Anstruth Harp",
+            "c": 1,
+            "lv": 5
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "cure-wounds",
+            "budgetKey": "i-instrument-1-cure-wounds"
+          },
+          "instrumentSpellSource": "phb2014",
+          "instrumentCastLevel": 5,
+          "instrumentRestriction": null
+        }
+      }
+    },
+    {
+      "profileId": "current-ollamh",
+      "id": "isp-1",
+      "grantId": "control-weather",
+      "otherGrantId": "fly",
+      "key": "i-instrument-1-control-weather",
+      "otherKey": "i-instrument-1-fly",
+      "before": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards (Ollamh harp)",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2014",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 2,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "current-ollamh",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards (Ollamh harp)\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Legendary\"],[\"3\",1],[\"4\",\"This instrument is better than an ordinary instrument in every respect. Seven kinds exist, and each one is named after a bard college. If a creature that isn't attuned to the instrument tries to play it, that creature must make a DC 15 Wisdom saving throw. If it fails, it takes 2d4 Psychic damage. By playing the instrument, you can cast one of its spells. After the instrument has cast a particular spell, it can't cast that same spell again until the next dawn. These spells rely on your own spell save DC and spellcasting ability. **Spells.** Every Instrument of the Bards can cast Fly, Invisibility, Levitate, and Protection from Evil and Good. The Ollamh harp can also cast Confusion, Control Weather, and Fire Storm.\"],[\"5\",[\"object\",[[\"by\",\"a Bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",null],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2024\"]]]],[\"1\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2024\"]]]],[\"2\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2024\"]]]],[\"3\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",null],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2024\"]]]],[\"4\",[\"object\",[[\"castLevel\",7],[\"castingTimeOverride\",null],[\"id\",\"fire-storm\"],[\"restriction\",null],[\"spell\",\"Fire Storm\"],[\"spellSource\",\"phb2024\"]]]],[\"5\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",null],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2024\"]]]],[\"6\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",null],[\"id\",\"confusion\"],[\"restriction\",null],[\"spell\",\"Confusion\"],[\"spellSource\",\"phb2024\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "fire-storm",
+                  "budgetKey": "i-instrument-1-fire-storm"
+                },
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "confusion",
+                  "budgetKey": "i-instrument-1-confusion"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "fire-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "confusion",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-fire-storm": 0,
+          "i-instrument-1-control-weather": 0,
+          "i-instrument-1-confusion": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Control Weather",
+          "l": 8,
+          "ct": "10 minutes",
+          "r": "Self",
+          "cmp": "None (item)",
+          "dur": "Up to 8 hours",
+          "conc": 1,
+          "sv": "",
+          "sum": "Change the weather within 5 miles over time.",
+          "fx": {
+            "mat": "burning incense"
+          },
+          "full": "For the duration, you control the weather within 5 miles of you. You must be outdoors to cast this spell, and the spell ends early if you go indoors. As you cast it, you alter the current weather conditions, which the Dungeon Master determines. You can alter precipitation, temperature, and wind. New conditions take 1d4 × 10 minutes to set in, and once they have, you can alter the conditions again. When the spell ends, the weather slowly goes back to normal. To alter a condition, find its current stage on the lists below and move it one stage up or down. When you alter the wind, you can also change which way it blows. **Precipitation.** Stage 1, clear. Stage 2, light clouds. Stage 3, overcast or ground fog. Stage 4, rain, hail, or snow. Stage 5, torrential rain, driving hail, or blizzard. **Temperature.** Stage 1, heat wave. Stage 2, hot. Stage 3, warm. Stage 4, cool. Stage 5, cold. Stage 6, freezing. **Wind.** Stage 1, calm. Stage 2, moderate wind. Stage 3, strong wind. Stage 4, gale. Stage 5, storm.",
+          "use": "Item",
+          "src": "Instrument of the Bards (Ollamh harp) [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards (Ollamh harp)",
+            "c": 1,
+            "lv": 8
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "control-weather",
+            "budgetKey": "i-instrument-1-control-weather"
+          },
+          "instrumentSpellSource": "phb2024",
+          "instrumentCastLevel": 8,
+          "instrumentRestriction": null
+        }
+      },
+      "after": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards (Ollamh harp)",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2014",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 3,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "current-ollamh",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards (Ollamh harp)\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Legendary\"],[\"3\",1],[\"4\",\"This instrument is better than an ordinary instrument in every respect. Seven kinds exist, and each one is named after a bard college. If a creature that isn't attuned to the instrument tries to play it, that creature must make a DC 15 Wisdom saving throw. If it fails, it takes 2d4 Psychic damage. By playing the instrument, you can cast one of its spells. After the instrument has cast a particular spell, it can't cast that same spell again until the next dawn. These spells rely on your own spell save DC and spellcasting ability. **Spells.** Every Instrument of the Bards can cast Fly, Invisibility, Levitate, and Protection from Evil and Good. The Ollamh harp can also cast Confusion, Control Weather, and Fire Storm.\"],[\"5\",[\"object\",[[\"by\",\"a Bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",null],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2024\"]]]],[\"1\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2024\"]]]],[\"2\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2024\"]]]],[\"3\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",null],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2024\"]]]],[\"4\",[\"object\",[[\"castLevel\",7],[\"castingTimeOverride\",null],[\"id\",\"fire-storm\"],[\"restriction\",null],[\"spell\",\"Fire Storm\"],[\"spellSource\",\"phb2024\"]]]],[\"5\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",null],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2024\"]]]],[\"6\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",null],[\"id\",\"confusion\"],[\"restriction\",null],[\"spell\",\"Confusion\"],[\"spellSource\",\"phb2024\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "fire-storm",
+                  "budgetKey": "i-instrument-1-fire-storm"
+                },
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "confusion",
+                  "budgetKey": "i-instrument-1-confusion"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "fire-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "confusion",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            },
+            {
+              "id": "ise-2",
+              "kind": "cast",
+              "physicalId": "isp-1",
+              "grantId": "control-weather",
+              "cast": {
+                "spell": "Control Weather",
+                "spellSource": "phb2024",
+                "definitionFingerprint": "[\"object\",[[\"cmp\",\"V, S, M\"],[\"conc\",1],[\"ct\",\"10 minutes\"],[\"dur\",\"Up to 8 hours\"],[\"fx\",[\"object\",[[\"mat\",\"burning incense\"]]]],[\"l\",8],[\"n\",\"Control Weather\"],[\"r\",\"Self\"],[\"sum\",\"Change the weather within 5 miles over time.\"],[\"sv\",\"\"]]]",
+                "castLevel": 8,
+                "restriction": null,
+                "ability": "CHA",
+                "channelFingerprint": "[\"object\",[[\"ability\",\"CHA\"],[\"atk\",8],[\"dc\",16],[\"modifier\",4],[\"pb\",4]]]"
+              },
+              "facts": {
+                "actualSourceAndActorCertified": true,
+                "actualBardAttunementAllocated": true,
+                "actualPlayingCompleted": true,
+                "actualPrintedCastingTimeCompleted": true,
+                "actualCanonicalSpellCertified": true,
+                "actualItemAbilityChannelCertified": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-fire-storm": 0,
+          "i-instrument-1-control-weather": 1,
+          "i-instrument-1-confusion": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Control Weather",
+          "l": 8,
+          "ct": "10 minutes",
+          "r": "Self",
+          "cmp": "None (item)",
+          "dur": "Up to 8 hours",
+          "conc": 1,
+          "sv": "",
+          "sum": "Change the weather within 5 miles over time.",
+          "fx": {
+            "mat": "burning incense"
+          },
+          "full": "For the duration, you control the weather within 5 miles of you. You must be outdoors to cast this spell, and the spell ends early if you go indoors. As you cast it, you alter the current weather conditions, which the Dungeon Master determines. You can alter precipitation, temperature, and wind. New conditions take 1d4 × 10 minutes to set in, and once they have, you can alter the conditions again. When the spell ends, the weather slowly goes back to normal. To alter a condition, find its current stage on the lists below and move it one stage up or down. When you alter the wind, you can also change which way it blows. **Precipitation.** Stage 1, clear. Stage 2, light clouds. Stage 3, overcast or ground fog. Stage 4, rain, hail, or snow. Stage 5, torrential rain, driving hail, or blizzard. **Temperature.** Stage 1, heat wave. Stage 2, hot. Stage 3, warm. Stage 4, cool. Stage 5, cold. Stage 6, freezing. **Wind.** Stage 1, calm. Stage 2, moderate wind. Stage 3, strong wind. Stage 4, gale. Stage 5, storm.",
+          "use": "Item",
+          "src": "Instrument of the Bards (Ollamh harp) [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards (Ollamh harp)",
+            "c": 1,
+            "lv": 8
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "control-weather",
+            "budgetKey": "i-instrument-1-control-weather"
+          },
+          "instrumentSpellSource": "phb2024",
+          "instrumentCastLevel": 8,
+          "instrumentRestriction": null
+        }
+      },
+      "dawn": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards (Ollamh harp)",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2014",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 4,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "current-ollamh",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards (Ollamh harp)\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Legendary\"],[\"3\",1],[\"4\",\"This instrument is better than an ordinary instrument in every respect. Seven kinds exist, and each one is named after a bard college. If a creature that isn't attuned to the instrument tries to play it, that creature must make a DC 15 Wisdom saving throw. If it fails, it takes 2d4 Psychic damage. By playing the instrument, you can cast one of its spells. After the instrument has cast a particular spell, it can't cast that same spell again until the next dawn. These spells rely on your own spell save DC and spellcasting ability. **Spells.** Every Instrument of the Bards can cast Fly, Invisibility, Levitate, and Protection from Evil and Good. The Ollamh harp can also cast Confusion, Control Weather, and Fire Storm.\"],[\"5\",[\"object\",[[\"by\",\"a Bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",null],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2024\"]]]],[\"1\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2024\"]]]],[\"2\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",null],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2024\"]]]],[\"3\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",null],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2024\"]]]],[\"4\",[\"object\",[[\"castLevel\",7],[\"castingTimeOverride\",null],[\"id\",\"fire-storm\"],[\"restriction\",null],[\"spell\",\"Fire Storm\"],[\"spellSource\",\"phb2024\"]]]],[\"5\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",null],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2024\"]]]],[\"6\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",null],[\"id\",\"confusion\"],[\"restriction\",null],[\"spell\",\"Confusion\"],[\"spellSource\",\"phb2024\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                },
+                {
+                  "grantId": "fire-storm",
+                  "budgetKey": "i-instrument-1-fire-storm"
+                },
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "confusion",
+                  "budgetKey": "i-instrument-1-confusion"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                },
+                {
+                  "grantId": "fire-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "confusion",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            },
+            {
+              "id": "ise-2",
+              "kind": "cast",
+              "physicalId": "isp-1",
+              "grantId": "control-weather",
+              "cast": {
+                "spell": "Control Weather",
+                "spellSource": "phb2024",
+                "definitionFingerprint": "[\"object\",[[\"cmp\",\"V, S, M\"],[\"conc\",1],[\"ct\",\"10 minutes\"],[\"dur\",\"Up to 8 hours\"],[\"fx\",[\"object\",[[\"mat\",\"burning incense\"]]]],[\"l\",8],[\"n\",\"Control Weather\"],[\"r\",\"Self\"],[\"sum\",\"Change the weather within 5 miles over time.\"],[\"sv\",\"\"]]]",
+                "castLevel": 8,
+                "restriction": null,
+                "ability": "CHA",
+                "channelFingerprint": "[\"object\",[[\"ability\",\"CHA\"],[\"atk\",8],[\"dc\",16],[\"modifier\",4],[\"pb\",4]]]"
+              },
+              "facts": {
+                "actualSourceAndActorCertified": true,
+                "actualBardAttunementAllocated": true,
+                "actualPlayingCompleted": true,
+                "actualPrintedCastingTimeCompleted": true,
+                "actualCanonicalSpellCertified": true,
+                "actualItemAbilityChannelCertified": true
+              }
+            },
+            {
+              "id": "ise-3",
+              "kind": "dawn",
+              "dawn": {
+                "occurrenceId": "fx-next-dawn-1",
+                "ordinal": 1
+              },
+              "facts": {
+                "actualDawnOccurred": true,
+                "actualCampaignDawnVerified": true,
+                "actualDawnOccurredAfterAdmissions": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0,
+          "i-instrument-1-fire-storm": 0,
+          "i-instrument-1-control-weather": 0,
+          "i-instrument-1-confusion": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Control Weather",
+          "l": 8,
+          "ct": "10 minutes",
+          "r": "Self",
+          "cmp": "None (item)",
+          "dur": "Up to 8 hours",
+          "conc": 1,
+          "sv": "",
+          "sum": "Change the weather within 5 miles over time.",
+          "fx": {
+            "mat": "burning incense"
+          },
+          "full": "For the duration, you control the weather within 5 miles of you. You must be outdoors to cast this spell, and the spell ends early if you go indoors. As you cast it, you alter the current weather conditions, which the Dungeon Master determines. You can alter precipitation, temperature, and wind. New conditions take 1d4 × 10 minutes to set in, and once they have, you can alter the conditions again. When the spell ends, the weather slowly goes back to normal. To alter a condition, find its current stage on the lists below and move it one stage up or down. When you alter the wind, you can also change which way it blows. **Precipitation.** Stage 1, clear. Stage 2, light clouds. Stage 3, overcast or ground fog. Stage 4, rain, hail, or snow. Stage 5, torrential rain, driving hail, or blizzard. **Temperature.** Stage 1, heat wave. Stage 2, hot. Stage 3, warm. Stage 4, cool. Stage 5, cold. Stage 6, freezing. **Wind.** Stage 1, calm. Stage 2, moderate wind. Stage 3, strong wind. Stage 4, gale. Stage 5, storm.",
+          "use": "Item",
+          "src": "Instrument of the Bards (Ollamh harp) [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards (Ollamh harp)",
+            "c": 1,
+            "lv": 8
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "control-weather",
+            "budgetKey": "i-instrument-1-control-weather"
+          },
+          "instrumentSpellSource": "phb2024",
+          "instrumentCastLevel": 8,
+          "instrumentRestriction": null
+        }
+      }
+    },
+    {
+      "profileId": "legacy-ollamh",
+      "id": "isp-1",
+      "grantId": "control-weather",
+      "otherGrantId": "fly",
+      "key": "i-instrument-1-control-weather",
+      "otherKey": "i-instrument-1-fly",
+      "before": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards, Ollamh Harp",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2024",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 2,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "legacy-ollamh",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards, Ollamh Harp\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Legendary\"],[\"3\",1],[\"4\",\"An instrument of the bards is an exquisite example of its kind, superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a legendary bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a DC 15 Wisdom saving throw or take 2d4 psychic damage.\\nYou can use an action to play the instrument and cast one of its spells. Once the instrument has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC.\\nYou can play the instrument while casting a spell that causes any of its targets to be charmed on a failed saving throw, thereby imposing disadvantage on the save. This effect applies only if the spell has a somatic or a material component.\\nAll instruments of the bards can be used to cast the following spells: fly, invisibility, levitate, and protection from evil and good.\\nIn addition, the Ollamh harp can be used to cast confusion, control weather, and fire storm.\"],[\"5\",[\"object\",[[\"by\",\"a bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",\"Action\"],[\"id\",\"confusion\"],[\"restriction\",null],[\"spell\",\"Confusion\"],[\"spellSource\",\"phb2014\"]]]],[\"1\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",\"Action\"],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2014\"]]]],[\"2\",[\"object\",[[\"castLevel\",7],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fire-storm\"],[\"restriction\",null],[\"spell\",\"Fire Storm\"],[\"spellSource\",\"phb2014\"]]]],[\"3\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2014\"]]]],[\"4\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2014\"]]]],[\"5\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2014\"]]]],[\"6\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",\"Action\"],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2014\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "confusion",
+                  "budgetKey": "i-instrument-1-confusion"
+                },
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "fire-storm",
+                  "budgetKey": "i-instrument-1-fire-storm"
+                },
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "confusion",
+                  "used": 0
+                },
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "fire-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-confusion": 0,
+          "i-instrument-1-control-weather": 0,
+          "i-instrument-1-fire-storm": 0,
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Control Weather",
+          "l": 8,
+          "ct": "Action",
+          "r": "Self",
+          "cmp": "None (item)",
+          "dur": "Up to 8 hours",
+          "conc": 1,
+          "sv": "",
+          "sum": "You take control of the weather within 5 miles of you for the duration.",
+          "fx": {
+            "mat": "burning incense and bits of earth and wood mixed in water"
+          },
+          "full": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early. When you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 × 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal. When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction. **Precipitation.** (Stage / Condition) 1: Clear. 2: Light clouds. 3: Overcast or ground fog. 4: Rain, hail, or snow. 5: Torrential rain, driving hail, or blizzard. **Temperature.** (Stage / Condition) 1: Unbearable heat. 2: Hot. 3: Warm. 4: Cool. 5: Cold. 6: Arctic cold. **Wind.** (Stage / Condition) 1: Calm. 2: Moderate wind. 3: Strong wind. 4: Gale. 5: Storm.",
+          "use": "Item",
+          "src": "Instrument of the Bards, Ollamh Harp [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards, Ollamh Harp",
+            "c": 1,
+            "lv": 8
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "control-weather",
+            "budgetKey": "i-instrument-1-control-weather"
+          },
+          "instrumentSpellSource": "phb2014",
+          "instrumentCastLevel": 8,
+          "instrumentRestriction": null
+        }
+      },
+      "after": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards, Ollamh Harp",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2024",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 3,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "legacy-ollamh",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards, Ollamh Harp\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Legendary\"],[\"3\",1],[\"4\",\"An instrument of the bards is an exquisite example of its kind, superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a legendary bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a DC 15 Wisdom saving throw or take 2d4 psychic damage.\\nYou can use an action to play the instrument and cast one of its spells. Once the instrument has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC.\\nYou can play the instrument while casting a spell that causes any of its targets to be charmed on a failed saving throw, thereby imposing disadvantage on the save. This effect applies only if the spell has a somatic or a material component.\\nAll instruments of the bards can be used to cast the following spells: fly, invisibility, levitate, and protection from evil and good.\\nIn addition, the Ollamh harp can be used to cast confusion, control weather, and fire storm.\"],[\"5\",[\"object\",[[\"by\",\"a bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",\"Action\"],[\"id\",\"confusion\"],[\"restriction\",null],[\"spell\",\"Confusion\"],[\"spellSource\",\"phb2014\"]]]],[\"1\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",\"Action\"],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2014\"]]]],[\"2\",[\"object\",[[\"castLevel\",7],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fire-storm\"],[\"restriction\",null],[\"spell\",\"Fire Storm\"],[\"spellSource\",\"phb2014\"]]]],[\"3\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2014\"]]]],[\"4\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2014\"]]]],[\"5\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2014\"]]]],[\"6\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",\"Action\"],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2014\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "confusion",
+                  "budgetKey": "i-instrument-1-confusion"
+                },
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "fire-storm",
+                  "budgetKey": "i-instrument-1-fire-storm"
+                },
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "confusion",
+                  "used": 0
+                },
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "fire-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            },
+            {
+              "id": "ise-2",
+              "kind": "cast",
+              "physicalId": "isp-1",
+              "grantId": "control-weather",
+              "cast": {
+                "spell": "Control Weather",
+                "spellSource": "phb2014",
+                "definitionFingerprint": "[\"object\",[[\"cmp\",\"V, S, M\"],[\"conc\",1],[\"ct\",\"10 minutes\"],[\"dur\",\"Up to 8 hours\"],[\"fx\",[\"object\",[[\"mat\",\"burning incense and bits of earth and wood mixed in water\"]]]],[\"l\",8],[\"n\",\"Control Weather\"],[\"r\",\"Self\"],[\"sum\",\"You take control of the weather within 5 miles of you for the duration.\"],[\"sv\",\"\"]]]",
+                "castLevel": 8,
+                "restriction": null,
+                "ability": "CHA",
+                "channelFingerprint": "[\"object\",[[\"ability\",\"CHA\"],[\"atk\",8],[\"dc\",16],[\"modifier\",4],[\"pb\",4]]]"
+              },
+              "facts": {
+                "actualSourceAndActorCertified": true,
+                "actualBardAttunementAllocated": true,
+                "actualPlayingCompleted": true,
+                "actualPrintedCastingTimeCompleted": true,
+                "actualCanonicalSpellCertified": true,
+                "actualItemAbilityChannelCertified": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-confusion": 0,
+          "i-instrument-1-control-weather": 1,
+          "i-instrument-1-fire-storm": 0,
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Control Weather",
+          "l": 8,
+          "ct": "Action",
+          "r": "Self",
+          "cmp": "None (item)",
+          "dur": "Up to 8 hours",
+          "conc": 1,
+          "sv": "",
+          "sum": "You take control of the weather within 5 miles of you for the duration.",
+          "fx": {
+            "mat": "burning incense and bits of earth and wood mixed in water"
+          },
+          "full": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early. When you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 × 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal. When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction. **Precipitation.** (Stage / Condition) 1: Clear. 2: Light clouds. 3: Overcast or ground fog. 4: Rain, hail, or snow. 5: Torrential rain, driving hail, or blizzard. **Temperature.** (Stage / Condition) 1: Unbearable heat. 2: Hot. 3: Warm. 4: Cool. 5: Cold. 6: Arctic cold. **Wind.** (Stage / Condition) 1: Calm. 2: Moderate wind. 3: Strong wind. 4: Gale. 5: Storm.",
+          "use": "Item",
+          "src": "Instrument of the Bards, Ollamh Harp [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards, Ollamh Harp",
+            "c": 1,
+            "lv": 8
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "control-weather",
+            "budgetKey": "i-instrument-1-control-weather"
+          },
+          "instrumentSpellSource": "phb2014",
+          "instrumentCastLevel": 8,
+          "instrumentRestriction": null
+        }
+      },
+      "dawn": {
+        "build": {
+          "name": "Actor",
+          "cid": "actor",
+          "inv": [
+            {
+              "n": "Instrument of the Bards, Ollamh Harp",
+              "q": 1,
+              "eq": true,
+              "attuned": true,
+              "instrumentSpells": {
+                "v": 1,
+                "id": "isp-1"
+              }
+            }
+          ],
+          "custLib": [],
+          "cls": "Bard",
+          "sub": "",
+          "level": 5,
+          "rs": "2024",
+          "base": {
+            "STR": 10,
+            "DEX": 10,
+            "CON": 10,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 18
+          },
+          "ch": {},
+          "mc": [
+            {
+              "cls": "Wizard",
+              "sub": "",
+              "lv": 5
+            }
+          ],
+          "pk": {},
+          "sp": [
+            "Charm Person",
+            "Vicious Mockery"
+          ],
+          "spm": {
+            "Wizard": [
+              "Burning Hands",
+              "Fire Bolt"
+            ]
+          },
+          "unset": {
+            "species": true
+          },
+          "src": {
+            "core": true,
+            "phb": true,
+            "phb14": true,
+            "dmg": true,
+            "dmg14": true
+          }
+        },
+        "state": {
+          "v": 1,
+          "nextPhysical": 2,
+          "nextEvent": 4,
+          "physical": [
+            {
+              "id": "isp-1",
+              "admittedAtEvent": 1,
+              "profile": "legacy-ollamh",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Instrument of the Bards, Ollamh Harp\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Legendary\"],[\"3\",1],[\"4\",\"An instrument of the bards is an exquisite example of its kind, superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a legendary bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a DC 15 Wisdom saving throw or take 2d4 psychic damage.\\nYou can use an action to play the instrument and cast one of its spells. Once the instrument has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC.\\nYou can play the instrument while casting a spell that causes any of its targets to be charmed on a failed saving throw, thereby imposing disadvantage on the save. This effect applies only if the spell has a somatic or a material component.\\nAll instruments of the bards can be used to cast the following spells: fly, invisibility, levitate, and protection from evil and good.\\nIn addition, the Ollamh harp can be used to cast confusion, control weather, and fire storm.\"],[\"5\",[\"object\",[[\"by\",\"a bard\"],[\"ch\",[\"array\",4,[[\"0\",7],[\"1\",\"all\"],[\"2\",\"dawn\"],[\"3\",\"One use per spell. Tick one for each spell cast\"]]]]]]]]]",
+              "grantsFingerprint": "[\"array\",7,[[\"0\",[\"object\",[[\"castLevel\",4],[\"castingTimeOverride\",\"Action\"],[\"id\",\"confusion\"],[\"restriction\",null],[\"spell\",\"Confusion\"],[\"spellSource\",\"phb2014\"]]]],[\"1\",[\"object\",[[\"castLevel\",8],[\"castingTimeOverride\",\"Action\"],[\"id\",\"control-weather\"],[\"restriction\",null],[\"spell\",\"Control Weather\"],[\"spellSource\",\"phb2014\"]]]],[\"2\",[\"object\",[[\"castLevel\",7],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fire-storm\"],[\"restriction\",null],[\"spell\",\"Fire Storm\"],[\"spellSource\",\"phb2014\"]]]],[\"3\",[\"object\",[[\"castLevel\",3],[\"castingTimeOverride\",\"Action\"],[\"id\",\"fly\"],[\"restriction\",null],[\"spell\",\"Fly\"],[\"spellSource\",\"phb2014\"]]]],[\"4\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"invisibility\"],[\"restriction\",null],[\"spell\",\"Invisibility\"],[\"spellSource\",\"phb2014\"]]]],[\"5\",[\"object\",[[\"castLevel\",2],[\"castingTimeOverride\",\"Action\"],[\"id\",\"levitate\"],[\"restriction\",null],[\"spell\",\"Levitate\"],[\"spellSource\",\"phb2014\"]]]],[\"6\",[\"object\",[[\"castLevel\",1],[\"castingTimeOverride\",\"Action\"],[\"id\",\"protection-from-evil-and-good\"],[\"restriction\",null],[\"spell\",\"Protection from Evil and Good\"],[\"spellSource\",\"phb2014\"]]]]]]",
+              "parentFingerprint": null,
+              "spells": [
+                {
+                  "grantId": "confusion",
+                  "budgetKey": "i-instrument-1-confusion"
+                },
+                {
+                  "grantId": "control-weather",
+                  "budgetKey": "i-instrument-1-control-weather"
+                },
+                {
+                  "grantId": "fire-storm",
+                  "budgetKey": "i-instrument-1-fire-storm"
+                },
+                {
+                  "grantId": "fly",
+                  "budgetKey": "i-instrument-1-fly"
+                },
+                {
+                  "grantId": "invisibility",
+                  "budgetKey": "i-instrument-1-invisibility"
+                },
+                {
+                  "grantId": "levitate",
+                  "budgetKey": "i-instrument-1-levitate"
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "budgetKey": "i-instrument-1-protection-from-evil-and-good"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "id": "ise-1",
+              "kind": "review",
+              "physicalId": "isp-1",
+              "initialUsed": [
+                {
+                  "grantId": "confusion",
+                  "used": 0
+                },
+                {
+                  "grantId": "control-weather",
+                  "used": 0
+                },
+                {
+                  "grantId": "fire-storm",
+                  "used": 0
+                },
+                {
+                  "grantId": "fly",
+                  "used": 0
+                },
+                {
+                  "grantId": "invisibility",
+                  "used": 0
+                },
+                {
+                  "grantId": "levitate",
+                  "used": 0
+                },
+                {
+                  "grantId": "protection-from-evil-and-good",
+                  "used": 0
+                }
+              ],
+              "lastDawn": {
+                "occurrenceId": "initial",
+                "ordinal": 0
+              },
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEverySpellHistoryVerified": true,
+                "actualLastDawnVerified": true
+              }
+            },
+            {
+              "id": "ise-2",
+              "kind": "cast",
+              "physicalId": "isp-1",
+              "grantId": "control-weather",
+              "cast": {
+                "spell": "Control Weather",
+                "spellSource": "phb2014",
+                "definitionFingerprint": "[\"object\",[[\"cmp\",\"V, S, M\"],[\"conc\",1],[\"ct\",\"10 minutes\"],[\"dur\",\"Up to 8 hours\"],[\"fx\",[\"object\",[[\"mat\",\"burning incense and bits of earth and wood mixed in water\"]]]],[\"l\",8],[\"n\",\"Control Weather\"],[\"r\",\"Self\"],[\"sum\",\"You take control of the weather within 5 miles of you for the duration.\"],[\"sv\",\"\"]]]",
+                "castLevel": 8,
+                "restriction": null,
+                "ability": "CHA",
+                "channelFingerprint": "[\"object\",[[\"ability\",\"CHA\"],[\"atk\",8],[\"dc\",16],[\"modifier\",4],[\"pb\",4]]]"
+              },
+              "facts": {
+                "actualSourceAndActorCertified": true,
+                "actualBardAttunementAllocated": true,
+                "actualPlayingCompleted": true,
+                "actualPrintedCastingTimeCompleted": true,
+                "actualCanonicalSpellCertified": true,
+                "actualItemAbilityChannelCertified": true
+              }
+            },
+            {
+              "id": "ise-3",
+              "kind": "dawn",
+              "dawn": {
+                "occurrenceId": "fx-next-dawn-1",
+                "ordinal": 1
+              },
+              "facts": {
+                "actualDawnOccurred": true,
+                "actualCampaignDawnVerified": true,
+                "actualDawnOccurredAfterAdmissions": true
+              }
+            }
+          ]
+        },
+        "used": {
+          "i-instrument-1-confusion": 0,
+          "i-instrument-1-control-weather": 0,
+          "i-instrument-1-fire-storm": 0,
+          "i-instrument-1-fly": 0,
+          "i-instrument-1-invisibility": 0,
+          "i-instrument-1-levitate": 0,
+          "i-instrument-1-protection-from-evil-and-good": 0
+        },
+        "casting": {
+          "ab": "CHA",
+          "dc": 16,
+          "atk": 8,
+          "mod": 4,
+          "slots": [
+            4,
+            3,
+            3,
+            3,
+            2
+          ],
+          "pact": null,
+          "by": [
+            {
+              "k": "Bard",
+              "n": "Bard",
+              "ab": "CHA",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            },
+            {
+              "k": "Wizard",
+              "n": "Wizard",
+              "ab": "INT",
+              "mod": 4,
+              "atk": 8,
+              "dc": 16
+            }
+          ]
+        },
+        "spell": {
+          "n": "Control Weather",
+          "l": 8,
+          "ct": "Action",
+          "r": "Self",
+          "cmp": "None (item)",
+          "dur": "Up to 8 hours",
+          "conc": 1,
+          "sv": "",
+          "sum": "You take control of the weather within 5 miles of you for the duration.",
+          "fx": {
+            "mat": "burning incense and bits of earth and wood mixed in water"
+          },
+          "full": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early. When you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 × 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal. When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction. **Precipitation.** (Stage / Condition) 1: Clear. 2: Light clouds. 3: Overcast or ground fog. 4: Rain, hail, or snow. 5: Torrential rain, driving hail, or blizzard. **Temperature.** (Stage / Condition) 1: Unbearable heat. 2: Hot. 3: Warm. 4: Cool. 5: Cold. 6: Arctic cold. **Wind.** (Stage / Condition) 1: Calm. 2: Moderate wind. 3: Strong wind. 4: Gale. 5: Storm.",
+          "use": "Item",
+          "src": "Instrument of the Bards, Ollamh Harp [isp-1]",
+          "sourceKey": "@instrument:isp-1",
+          "itc": {
+            "it": "Instrument of the Bards, Ollamh Harp",
+            "c": 1,
+            "lv": 8
+          },
+          "instrumentSpell": {
+            "v": 1,
+            "id": "isp-1",
+            "grantId": "control-weather",
+            "budgetKey": "i-instrument-1-control-weather"
+          },
+          "instrumentSpellSource": "phb2014",
+          "instrumentCastLevel": 8,
+          "instrumentRestriction": null
+        }
+      }
+    }
+  ]
+}

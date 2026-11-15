@@ -2,6 +2,7 @@
    Reads the sheet only (C, S, D and the sheet's own display helpers). Writes nothing and keeps no state.
    Every entry gets a short line the player understands at once, plus the full rules text when there is more to say.
    Model schema: reports/pdfx-model.md */
+import {instrumentSpellNeedsController} from '../data/lib/instrument-spells-source.js';
 import {ABK,ABN} from "./02-data-default-character.js";
 import {gName} from "./03-data-glossary.js";
 import {C,DEF,S,__set_C,__set_S,clsLv} from "./04-logic-storage.js";
@@ -140,25 +141,32 @@ function pxSpellTag(x){ const use=String(x.use||""), sc=C.spellcasting||{};
 function pxSpellLine(x,lv,ed){ const sch=String(x.sch||"");
   const head=!lv?sch+" cantrip":ed==="2014"?ordL(lv).replace(" Level","-level ")+sch.toLowerCase():ordL(lv).replace(" Level"," level ")+sch;
   return head+(x.conc?"  •  Concentration":"")+(x.rit?"  •  Ritual":""); }
-function pxSpellText(x){ const same=x.full&&x.sum&&pxKey(x.full)===pxKey(x.sum);
+const PX_INSTRUMENT_GUIDE='Use the instrument controls to verify its source, choose a spellcasting ability, and check the remaining use before casting.';
+function pxInstrumentPlain(t){return pxUnEsc(String(t==null?'':t)).replace(/\{dc\}/g,'the chosen spell save DC').replace(/\{pb\}/g,'your Proficiency Bonus').replace(/\{level\}/g,'your character level').replace(/\{unarmed\}/g,'your unarmed strike damage').replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,k,l)=>l||k).replace(/<[^>]+>/g,'');}
+function pxSpellText(x){if(instrumentSpellNeedsController(C,x)){const short=pxInstrumentPlain(x.sum||x.full||'').replace(/\s*\n+\s*/g,' ').trim(),body=pxInstrumentPlain(x.full||x.sum||'').split(/\n+/).map(p=>p.trim()).filter(Boolean);return {summary:short.length>230?short.slice(0,227)+'…':short,text:body.length===1&&body[0]===short?[]:body};}const same=x.full&&x.sum&&pxKey(x.full)===pxKey(x.sum);
   const summary=x.full&&x.sum&&!same?pxLine(x.sum):pxBrief(x.sum||x.full||"");
   const body=same&&pxPlain(x.full).length<=230?[]:pxPars(x.full||x.sum||"");
   return {summary:summary, text:body.map((p) =>{ return p.replace(/^(Higher-level slot:|Cantrip upgrade:|Using a Higher-Level Spell Slot\.|At Higher Levels\.)/,"**$1**"); })}; }
-function pxSpellDetails(x,ed){ const s=scOf(x)||{}, use=String(x.use||"");
+function pxInstrumentSpellDetails(x){const details=[['Casting Time',String(x.ct||'')],['Range',x.r||''],['Components',String(x.cmp||'')],['Duration',(x.conc?'Concentration, ':'')+(x.dur||'')],['Attack/Save','Choose a spellcasting ability for this instrument cast.'],['Source',String(x.src||'')],['Instrument casting',PX_INSTRUMENT_GUIDE]];if(Number.isSafeInteger(x.instrumentCastLevel)&&x.instrumentCastLevel>=0&&x.instrumentCastLevel<=9)details.splice(1,0,['Item cast level',String(x.instrumentCastLevel)]);return details;}
+function pxSpellDetails(x,ed){if(instrumentSpellNeedsController(C,x))return pxInstrumentSpellDetails(x);const s=scOf(x)||{}, use=String(x.use||"");
   const hd=x.sv==="ATK"?"Spell attack "+sg(num(s.atk,0)):x.sv?x.sv+" save, DC "+s.dc:"None";
   return [["Casting Time",String(x.ct||"")+(x.rit&&ed!=="2014"?" or Ritual":"")],["Range",x.r||""],["Components",String(x.cmp||"")+(x.mat?" ("+x.mat+")":"")],
     ["Duration",(x.conc?"Concentration, ":"")+(x.dur||"")],[x.sv?"Attack/Save":"Save",hd],["Source",String(x.src||"")+(use?" ("+use+")":"")]]; }
 function pxSpell(x,lv,ed){ const t=pxSpellText(x);
   return {name:cuNm("s:"+x.n,x.n), tag:pxSpellTag(x), prepared:lv>0&&/Prepared|Always/.test(String(x.use||"")), line:pxSpellLine(x,lv,ed),
     summary:t.summary, text:t.text, details:pxSpellDetails(x,ed)}; }
+function pxSpellClasses(L,sc){
+  const own=[...new Set(L.map((x) =>{ return String(x.src||"").split(" (")[0]; }).filter(Boolean))];
+  return Array.isArray(sc.by)&&sc.by.length>1?sc.by.map((b) =>{ return b.n; }).join(" / "):own.length&&own.indexOf(C.cls)<0?own.join(" / "):(sc.n||C.cls||""); }
+function pxSpellHeader(L){
+  const protectedRows=L.some(x=>instrumentSpellNeedsController(C,x)),ordinaryRows=L.some(x=>!instrumentSpellNeedsController(C,x)),sc=C.spellcasting||{},main=ordinaryRows?scOf(null)||{}:{};
+  return {className:ordinaryRows?pxSpellClasses(L,sc):'Instrument spells',ability:ordinaryRows?main.ab||sc.ab||'':'',dc:main.dc!=null?String(main.dc):'',attack:main.atk!=null?sg(main.atk):'',...(protectedRows?{instrumentGuidance:PX_INSTRUMENT_GUIDE}:{})}; }
 function pxSpells(ed){ const L=(C.spells||[]).slice(); if(!L.length) return null;
-  const sc=C.spellcasting||{}, main=scOf(null)||{}, by={}, slots=pxSlots();
+  const by={}, slots=pxSlots();
   L.forEach((x) =>{ const lv=num(x.l,0); (by[lv]=by[lv]||[]).push(x); });
   const levels=Object.keys(by).map(Number).sort((a,b) =>{ return a-b; }).map((lv) =>{
     return {level:lv, slots:slots[lv]?slots[lv].total:null, spells:by[lv].sort((a,b) =>{ return a.n<b.n?-1:1; }).map((x) =>{ return pxSpell(x,lv,ed); })}; });
-  const own=[...new Set(L.map((x) =>{ return String(x.src||"").split(" (")[0]; }).filter(Boolean))];
-  const cls=Array.isArray(sc.by)&&sc.by.length>1?sc.by.map((b) =>{ return b.n; }).join(" / "):own.length&&own.indexOf(C.cls)<0?own.join(" / "):(sc.n||C.cls||"");/* a Fighter with only a species cantrip: "Aasimar" */
-  return {className:cls, ability:main.ab||sc.ab||"", dc:main.dc!=null?String(main.dc):"", attack:main.atk!=null?sg(main.atk):"", slots:slots, levels:levels}; }
+  return {...pxSpellHeader(L),slots,levels}; }
 
 /* ---------- creatures ---------- */
 function pxCrStats(o,env){ const st=[["AC",crExpr(o.ac,env)],["HP",crExpr(o.hp,env)+(o.hd?" ("+crExpr(o.hd,env)+")":"")],["Speed",o.speed||"—"]];

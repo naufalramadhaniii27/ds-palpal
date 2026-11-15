@@ -1,3 +1,4 @@
+import {instrumentSpellNeedsController} from '../data/lib/instrument-spells-source.js';
 import {bindLive,lateGet,scOf} from "./00a-reg-late-ports.js";import {C,S} from "./04-logic-storage.js";
 import {evaluateSupremeHealing} from "../data/lib/cleric-maths.js";
 import {healingSpellOwned} from "../data/lib/tattoo-projection.js";
@@ -61,7 +62,7 @@ export function spCalc(x,lv,cl,smod,healingFacts=undefined){ const f=spFx(x); if
   const supreme=supremeSpellHealing(x,heal,healingFacts);if(supreme&&supreme.applies)heal=supreme.expression;
   const result={parts:parts,heal:heal,n:n,unit:unit,lv:lv,up:!!up,area:f.area||null,bon:spDb(x).concat((x.hb||[]).map((b) =>{ return {v:(+b.v||0)+(b.lv?lv:0),s:b.s+" (healing)"}; }))};return {...result,...(supreme?{supremeHealing:supreme}:{})}; }
 const tattooCalculationSources=new WeakMap();
-function typedBodySource(row){return !!row&&["fixedSpellSource","tattooSource","gemSpellcasting","storedSpellcasting","storedSpellSlotLevel"].some(key=>Object.prototype.hasOwnProperty.call(row,key))}
+function typedBodySource(row){return !!row&&["instrumentSpell","fixedSpellSource","tattooSource","gemSpellcasting","storedSpellcasting","storedSpellSlotLevel"].some(key=>Object.prototype.hasOwnProperty.call(row,key))}
 function supremeSpellHealing(spell,expression,facts){
  const owned=tattooCalculationSources.get(spell),sourceSpell=owned?owned.sourceRow:spell;
  const rule=supremeHealingRuleForCharacter(C);if(!expression||!rule||!(owned&&owned.kind==="stored"?ownedStoredSpellRow(S.storedSpellCasts,sourceSpell,C.rs===undefined?"2024":C.rs,owned.definitions).ok:owned&&owned.kind==="gem"?gemOwnedSpellRow(S.spellGemCasts,owned.definitions,sourceSpell,C.rs===undefined?"2024":C.rs).ok:healingSpellOwned(C,S,owned?owned.definitions:[],sourceSpell)))return null;
@@ -147,7 +148,7 @@ export function spRangeH(r,x){ const f=spFx(x), a=f&&f.area; return esc(String(r
 export function spCompH(cmp,x){ const f=spFx(x), m=(x&&x.mat)||(f&&f.mat); return esc(cmp)+(m&&/M/.test(cmp)?' <span class="spmat">('+esc(m)+')</span>':''); }
 function typedItemSpellGuide(row){if(Object.prototype.hasOwnProperty.call(row,"storedSpellcasting")||Object.prototype.hasOwnProperty.call(row,"storedSpellSlotLevel")||row.fixedSpellSource&&row.fixedSpellSource.kind==="stored-spell")return "Use the stored-spell item controls";return Object.prototype.hasOwnProperty.call(row,"gemSpellcasting")||row.fixedSpellSource&&row.fixedSpellSource.kind==="spell-gem"?"Use the Spell Gem controls":"Use the body tattoo controls";}
 /* Effect cell: count x first damage part with icon, or healing, or the old text summary */
-export function spEffH(x,lv){ if(typedBodySource(x))return '<span class="speff">'+esc(typedItemSpellGuide(x))+'</span>';const c=spCalc(x,lv,D.level,scOf(x).mod); if(c&&c.parts.length){ const p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
+export function spEffH(x,lv){if(instrumentSpellNeedsController(C,x))return '<span class="speff">Original Instrument controls</span>'; if(typedBodySource(x))return '<span class="speff">'+esc(typedItemSpellGuide(x))+'</span>';const c=spCalc(x,lv,D.level,scOf(x).mod); if(c&&c.parts.length){ const p=c.parts[0]; return '<span class="speff">'+(c.n>1?c.n+'× ':'')+esc(p.d)+dtIcon(p.t)+'</span>'; }
   if(c&&c.heal) return '<span class="speff">'+esc(c.heal)+dtIcon("Healing")+'</span>'; return esc(spEffect(x)); }
 /* RU35 no. 2: a Warlock spell is cast with a Pact Magic slot, so its row uses the Pact slot level (Mystic Arcanum keeps its own level) */
 export function spPact(x){ const sc=C.spellcasting||{}; if(!x.l||!sc.pact) return false; if(x.pact!=null) return !!x.pact; if(/Long Rest|At will/.test(x.use||"")) return false; if(C.cls==="Warlock"&&!/\//.test(C.clsLabel||"")) return true; return /^(Warlock|.* Patron)$/.test(String(x.src||""))&&/Warlock/.test(C.clsLabel||""); }/* v31 p95 */
@@ -163,7 +164,8 @@ function spellHealingBlock(calc,key){
  if(calc.supremeHealing)html+='<p class="spfl muted">Supreme Healing: '+esc(calc.supremeHealing.amount)+' Hit Points'+(calc.supremeHealing.requiresCreature?' when this spell restores a creature’s Hit Points':'')+'; dice maximized, fixed bonuses unchanged.</p><button type="button" class="btn press" data-supreme-spell-open="'+esc(key)+'" data-supreme-level="'+calc.lv+'">Record maximized healing</button>';return html;
 }
 function spHealPanel(c,x,lv){const m=env.__martyr;return c.heal&&m&&m.healH?m.healH(c.heal,x.n,x.dur,lv,C.spells.indexOf(x)):""}
-function spFxBlock(x,key){ if(typedBodySource(x))return "";const sc=scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod); if(!c||(!c.parts.length&&!c.heal&&!c.n)) return "";
+function sourceOwnedSpellEffects(x){return instrumentSpellNeedsController(C,x)||typedBodySource(x)}
+function spFxBlock(x,key){if(sourceOwnedSpellEffects(x))return "";const sc=scOf(x), rg=spLvRange(x), lv=clamp(spLvSel[x.n]!=null?spLvSel[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod); if(!c||(!c.parts.length&&!c.heal&&!c.n)) return "";
   let h='<div class="info-h">'+(c.parts.length?"Damage":"Effect")+'</div><div class="spfx">';
   if(c.up&&rg[1]>rg[0]) h+='<div class="splv"><button type="button" class="btn press" data-splv="-1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Lower spell level"'+(c.lv<=rg[0]?' disabled':'')+'>−</button><span>Lvl <b>'+c.lv+'</b></span><button type="button" class="btn press" data-splv="1" data-spn="'+esc(x.n)+'" data-spb="'+rg[0]+'" data-spt="'+rg[1]+'" aria-label="Higher spell level"'+(c.lv>=rg[1]?' disabled':'')+'>+</button></div>';
   else if(x.l) h+='<p class="spfl splvs">Slot level <b>'+c.lv+'</b>'+(spPact(x)?' (Pact Magic)':'')+'</p>';

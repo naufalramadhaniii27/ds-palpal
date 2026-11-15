@@ -1,3 +1,4 @@
+import {instrumentSpellNeedsController} from '../data/lib/instrument-spells-source.js';
 /* Saved spell DCs are verified against the original source; no number is reconstructed here. */
 import {C,FROZEN} from './04-logic-storage.js';
 import {env} from './00-env.js';
@@ -6,7 +7,7 @@ import {captureNativeActorFrame} from './lib/native-actor-frame.js';
 import {nativeSpellBonusItemNames,nativeSpellBonusSourceClaim,nativeSpellBonusAttackClaim,nativeSpellBonusReviewGuidance} from '../data/lib/pact-rod-source.js';
 const rodNames=nativeSpellBonusItemNames(),views=new WeakMap(),guidance=nativeSpellBonusReviewGuidance;
 const own=(value,key)=>value!=null&&Object.prototype.hasOwnProperty.call(value,key);
-function fixed(spell,stat=spell?.sv==='ATK'?'atk':'dc'){return ['fixedSpellSource','tattooSource','gemSpellcasting','storedSpellcasting','storedSpellSlotLevel'].some(key=>own(spell,key))||Number.isFinite(spell?.itc?.[stat])}
+function fixed(spell,stat=spell?.sv==='ATK'?'atk':'dc'){return ['instrumentSpell','fixedSpellSource','tattooSource','gemSpellcasting','storedSpellcasting','storedSpellSlotLevel'].some(key=>own(spell,key))||Number.isFinite(spell?.itc?.[stat])}
 function targetKey(index){if(index&&typeof index==='object'&&Reflect.ownKeys(index).length===1&&own(index,'spellAttack')&&Number.isInteger(index.spellAttack)&&index.spellAttack>=0)return 'spell-attack:'+index.spellAttack;if(index&&typeof index==='object'&&Reflect.ownKeys(index).length===1&&own(index,'sheet')&&index.sheet===true)return 'sheet';if(index===null)return 'main';if(typeof index==='string')return 'channel:'+JSON.stringify(index);if(Number.isInteger(index))return 'spell:'+index;return index&&Reflect.ownKeys(index).length===1&&own(index,'attack')&&Number.isInteger(index.attack)&&index.attack>=0?'attack:'+index.attack:null}
 function attributed(row){return typeof row?.miscSrc==='string'&&rodNames.some(name=>row.miscSrc.includes(name))}
 function spellAttackCandidate(row){return nativeSpellBonusAttackClaim(C,row)||!!row&&/spell attack/i.test(String(row.sub||''))}
@@ -18,6 +19,7 @@ function capture(index,result){try{return typeof env.__bldPactRodSpellCapture===
 export function pactRodSpellReview(index){const result=info(index);return result?.ok||result==null&&!suspect(index)?'':guidance}
 export function pactRodCastCurrent(context,index){if(context===undefined)return true;const view=views.get(context);return !!(view&&view.index===targetKey(index)&&view.frame()&&nativeCurrent(view.native))}
 export function preparePactRodCast(index,previous=undefined){
+ const selected=Number.isInteger(index)?C.spells?.[index]:index&&typeof index==='object'&&Object.prototype.hasOwnProperty.call(index,'spellAttack')?C.spells?.[index.spellAttack]:null;if(selected&&instrumentSpellNeedsController(C,selected))return {ok:false,guidance:'Use the original instrument’s own spell controls and choose its actual ability.'};
  if(previous!==undefined)return pactRodCastCurrent(previous,index)?{ok:true,context:previous}:{ok:false,guidance};
  const result=info(index);if(result==null&&!suspect(index))return {ok:true,context:undefined};if(!result?.ok||FROZEN)return {ok:false,guidance};
  const native=capture(index,result),frame=captureNativeActorFrame();if(!frame()||!nativeCurrent(native))return {ok:false,guidance};

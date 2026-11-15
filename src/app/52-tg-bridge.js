@@ -1,4 +1,5 @@
 import {pactRodSheetReview} from './32x-logic-pact-rod-spell.js';
+import {instrumentSpellNeedsController} from '../data/lib/instrument-spells-source.js';
 import {legacyPactRodInventoryRequiresBuild} from './lib/pact-rod-inventory.js';
 import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {bindLive} from "./00a-reg-late-ports.js";import {C,FROZEN,S,__set_C} from "./04-logic-storage.js";
@@ -28,7 +29,7 @@ function tgSpells(){
  const {row, smod, top}=tgSpellsStep2();
   (C.spells||[]).forEach((x) => tgSpellsFn1(row, top, man, smod, out, x));
   return {list:out,manual:man}; }
-function tgSpellsFn1(row, top, man, smod, out, x){ if(!x||!x.n) return; const r=row[x.n], f=spFx(x); if(!r){ return; }
+function tgSpellsFn1(row, top, man, smod, out, x){ if(!x||!x.n||instrumentSpellNeedsController(C,x)) return; const r=row[x.n], f=spFx(x); if(!r){ return; }
  const {L, kind}=tgSpellsFn1Step1(x, r, f);
     if(!kind){ if(L===0||top>=L) man.push({n:x.n,l:L,t:r[11]||""}); return; }
     const {by, heal, rng, touch, self, area}=tgSpellsFn1Step2(r, f, L, top, x, smod, kind);
@@ -56,7 +57,7 @@ const row={}; SPELLS.forEach((r) =>{ row[r[0]]=r; });
   const sc0=C.spellcasting?(typeof scAdj==="function"?scAdj(C.spellcasting):C.spellcasting):{}, smod=sc0.mod!=null?+sc0.mod:(D.mod&&C.dcAb?D.mod[C.dcAb]:null), top=(sc0.slots||[]).length;
   return /** @type {any} */ ({row, smod, top});
 }
-function tgSpellStatsDiffer(aggregate){return (C.spells||[]).some(spell=>{if(!spell||!spell.n)return false;const stats=scOf(spell);if(!stats)return true;if(spell.sv==='ATK')return stats.atk!==aggregate.atk;if(/^(STR|DEX|CON|INT|WIS|CHA)$/.test(spell.sv||''))return stats.dc!==aggregate.dc;const fx=spFx(spell);return !!(fx&&fx.heal&&stats.mod!==aggregate.mod)})}
+function tgSpellStatsDiffer(aggregate){return (C.spells||[]).some(spell=>{if(!spell||!spell.n||instrumentSpellNeedsController(C,spell))return false;const stats=scOf(spell);if(!stats)return true;if(spell.sv==='ATK')return stats.atk!==aggregate.atk;if(/^(STR|DEX|CON|INT|WIS|CHA)$/.test(spell.sv||''))return stats.dc!==aggregate.dc;const fx=spFx(spell);return !!(fx&&fx.heal&&stats.mod!==aggregate.mod)})}
 function tgSourceReview(){
  if(iounCharacterMathStatus(C,S).reviewRequired)return 'Review the saved Ioun Stone values on this character’s sheet before using it in the Training Ground.';
  const review=pactRodSheetReview();if(review)return review;

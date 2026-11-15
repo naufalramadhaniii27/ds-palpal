@@ -6,7 +6,7 @@ const obj=o=>o!==null&&typeof o==='object'&&!Array.isArray(o);
 const dense=a=>Array.isArray(a)&&Reflect.ownKeys(a).length===a.length+1&&Object.keys(a).every((k,i)=>k===String(i));
 const exact=(o,keys)=>obj(o)&&Reflect.ownKeys(o).length===keys.length&&keys.every(k=>own(o,k));
 const nativePart='Bracers of Defense (no armor or Shield)';
-const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat'];
+const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat','instrumentSpells'];
 export function canonicalBracersInventory(value){
  const seen=new Set();
  function encode(v){

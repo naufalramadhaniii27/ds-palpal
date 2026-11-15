@@ -1,3 +1,4 @@
+import {instrumentSpellNeedsController} from './instrument-spells-source.js';
 import {tattooFixedSourceStats} from './spellwrought-tattoo.js';
 import {spellGemFixedSourceStats} from './spell-gem-casts.js';
 import {storedSpellFixedSourceStats} from './stored-spell.js';
@@ -19,6 +20,7 @@ export function spellChannelsDiffer(channels){
 }
 function spellOverrideNumber(value){return value==null||value===''||!Number.isFinite(+value)?null:+value}
 export function selectSpellSource(spellcasting,spell,overrides,adjustments=undefined){
+ if(instrumentSpellNeedsController(null,spell))return {};
  if(spell&&['storedSpellcasting','storedSpellSlotLevel'].some(key=>own(spell,key))&&(!own(spell,'fixedSpellSource')||!spell.fixedSpellSource||spell.fixedSpellSource.kind!=='stored-spell'))return {};
  if(spell&&own(spell,'gemSpellcasting')&&(!own(spell,'fixedSpellSource')||!spell.fixedSpellSource||spell.fixedSpellSource.kind!=='spell-gem'))return {};
  if(spell&&own(spell,'fixedSpellSource')){
