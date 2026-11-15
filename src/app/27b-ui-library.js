@@ -9,12 +9,13 @@ const LIB_FEATCAT={O:"Origin Feat",G:"General Feat",F:"Fighting Style Feat",E:"E
 export function libCat(id){ for(let i=0;i<LIB_CATS.length;i++) if(LIB_CATS[i][0]===id) return LIB_CATS[i]; return LIB_CATS[0]; }
 export function libReady(){ return typeof SPELLS!=="undefined"&&typeof DMGI!=="undefined"&&typeof ITEMDESC!=="undefined"&&typeof CREATURES!=="undefined"&&(!env.__lazyReady||env.__lazyReady("q7")); }
 /* q7: the monster rows load before the first index */
-let LIB_RT=0;
-/* build the first index while the page is idle, so a click in the builder never pays for it */
-setTimeout(() =>{ const go=() =>{ if(LIB.idx) return; try{ if(libReady()){ LIB.idx=libIndex(); LIB.inv=null; } }catch(er){ } }; if(typeof requestIdleCallback==="function") requestIdleCallback(go,{timeout:6000}); else go(); },2500);
-document.addEventListener("qrefs",() =>{ if(!LIB.idx){ LIB.inv=null; return; }
+let LIB_RT=0, LIB_BLD=0;
+/* once the builder is open, build the first index while idle, so a click in the builder never pays for it */
+const libPre=() =>{ if(LIB.idx) return; if(!document.getElementById("steps")){ setTimeout(libPre,1500); return; } const go=() =>{ if(LIB.idx) return; try{ if(libReady()){ LIB_BLD=1; LIB.idx=libIndex(); LIB.inv=null; LIB_BLD=0; } }catch(er){ LIB_BLD=0; } }; if(typeof requestIdleCallback==="function") requestIdleCallback(go,{timeout:3000}); else go(); };
+setTimeout(libPre,1500);
+document.addEventListener("qrefs",() =>{ if(LIB_BLD) return; if(!LIB.idx){ LIB.inv=null; return; }
   /* an index exists: keep serving it and rebuild once, off the click path, after the last event */
-  clearTimeout(LIB_RT); LIB_RT=setTimeout(() =>{ const go=() =>{ try{ const ix=libIndex(); LIB.idx=ix; LIB.inv=null; }catch(er){ LIB.idx=null; LIB.inv=null; } }; if(typeof requestIdleCallback==="function") requestIdleCallback(go,{timeout:4000}); else go(); },1200); });
+  clearTimeout(LIB_RT); LIB_RT=setTimeout(() =>{ const go=() =>{ try{ LIB_BLD=1; const ix=libIndex(); LIB_BLD=0; LIB.idx=ix; LIB.inv=null; }catch(er){ LIB_BLD=0; LIB.idx=null; LIB.inv=null; } }; if(typeof requestIdleCallback==="function") requestIdleCallback(go,{timeout:4000}); else go(); },1200); });
 /* spells of books that are off: the rows sit in window.WX.src[].rows (the builder moves them into SPELLS only when the book is on). The Library lists them all as reference */
 let LIB_XSP=null;
 function libXsp(){ if(LIB_XSP) return LIB_XSP; const m={}, have={}; try{ SPELLS.forEach((r) =>{ have[r[0]]=1; }); (env.WX&&env.WX.src||[]).forEach((q) =>{ (q.rows||[]).forEach((r) =>{ if(r&&r[0]&&!have[r[0]]&&!m[r[0]]){ m[r[0]]=r; r.__bk=q.tag||q.id; } }); }); }catch(er){} return (LIB_XSP=m); }
