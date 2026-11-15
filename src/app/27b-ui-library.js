@@ -11,7 +11,7 @@ export function libReady(){ return typeof SPELLS!=="undefined"&&typeof DMGI!=="u
 /* q7: the monster rows load before the first index */
 let LIB_RT=0, LIB_BLD=0, LIB_OLD=null;
 /* once the builder is open, build the first index while idle, so a click in the builder never pays for it */
-const libPre=() =>{ if(LIB.idx) return; if(!document.getElementById("steps")){ setTimeout(libPre,1500); return; } const go=() =>{ if(LIB.idx) return; try{ if(libReady()){ LIB_BLD=1; LIB.idx=libIndex(); LIB.inv=null; LIB_BLD=0; } }catch(er){ LIB_BLD=0; } }; if(typeof requestIdleCallback==="function") requestIdleCallback(go,{timeout:3000}); else go(); };
+const libPre=() =>{ if(LIB.idx) return; const bd=document.getElementById("bld"); if(!bd||bd.hidden){ setTimeout(libPre,1500); return; } const go=() =>{ if(LIB.idx) return; try{ if(libReady()){ LIB_BLD=1; LIB.idx=libIndex(); LIB.inv=null; LIB_BLD=0; } }catch(er){ LIB_BLD=0; } }; if(typeof requestIdleCallback==="function") requestIdleCallback(go,{timeout:3000}); else go(); };
 setTimeout(libPre,1500);
 document.addEventListener("qrefs",() =>{ if(LIB_BLD) return; if(!LIB.idx){ LIB.inv=null; return; }
   /* the Library and its search read a fresh index (built on demand). The link checks of the builder (libHas) may use the old one, so a click never waits for a rebuild */
