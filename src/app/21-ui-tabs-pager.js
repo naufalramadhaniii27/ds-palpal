@@ -1,9 +1,9 @@
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 import {vecnaGraftInventoryOwned,vecnaGraftInventoryGuidance} from './lib/vecna-grafts-inventory.js';
 import {instrumentSpellsInventoryRequiresBuild,instrumentSpellsInventoryGuidance} from './lib/instrument-spells-inventory.js';
 import {travelGoatInventoryRequiresBuild,travelGoatInventoryGuidance} from './lib/travel-goat-inventory.js';
 import {rodAbsorptionInventoryRequiresBuild,rodAbsorptionInventoryGuidance} from './lib/rod-absorption-inventory.js';
 import {summonResourceManaged} from "./lib/summon-resource.js";
-import {iounCharacterMathStatus} from "../data/lib/ioun-orbit-source.js";
 import {bracersInventoryRequiresBuild,bracersInventoryGuidance} from "./lib/bracers-inventory.js";
 import {legacyPactRodInventoryRequiresBuild,legacyPactRodInventoryGuidance} from "./lib/pact-rod-inventory.js";
 import {invalidateSlotRecoveryState} from './32j-logic-slot-recovery.js';

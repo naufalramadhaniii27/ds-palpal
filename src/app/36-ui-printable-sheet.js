@@ -1,5 +1,5 @@
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 import {pactRodSheetReview} from './32x-logic-pact-rod-spell.js';
-import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {bindLive} from "./00a-reg-late-ports.js";import {env} from "./00-env.js";import {ABK,ABN,HB_CONDS,HB_SRC} from "./02-data-default-character.js";
 import {exSpd,gName} from "./03-data-glossary.js";
 import {C,S,clsLv} from "./04-logic-storage.js";

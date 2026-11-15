@@ -2,7 +2,7 @@
 import {lateGet} from './01b-logic-late-ports.js';
 import {genv,sheetState,fxo,gx} from './00-env.js';
 import {vecnaGraftProfile,vecnaGraftProfiles,vecnaGraftNativeGx,canonical} from '../data/lib/vecna-graft-profiles.js';
-import {createVecnaGrafts,vecnaGraftsProblems,vecnaGraftsProjection,vecnaGraftMarker} from '../data/lib/vecna-grafts.js';
+import {createVecnaGrafts,vecnaGraftsProblems,vecnaGraftsProjection,vecnaGraftMarker,vecnaGraftsRawState} from '../data/lib/vecna-grafts.js';
 import {vecnaGraftSourcesProblems,vecnaGraftSourcesSupported,vecnaGraftSourceStatus,vecnaGraftCertificateCurrent} from '../data/lib/vecna-graft-source.js';
 export {vecnaGraftSourcesProblems,vecnaGraftSourcesSupported};
 const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),key=row=>own(row,'key')?row.key:row?.n;
@@ -43,3 +43,36 @@ export function nativeVecnaGraftSourceCurrent(C,S=sheetState()?.state){
 }
 export function vecnaGraftsRetainedProjection(C,state){if(!supported(state))return null;const next=copy(C);next.vecnaGrafts=copy(state);next.itemAdv=(next.itemAdv||[]).filter(row=>!(row.k==='Initiative'&&row.s==='Eye and Hand of Vecna'));next.vecnaGraftSources={v:1,inventoryFingerprint:canonical(next.inv),authorityFingerprint:canonical(state),bindings:[]};return next}
 genv.__nativeVecnaGraftSourceCurrent=nativeVecnaGraftSourceCurrent;
+
+/* Production-shaped additive input for the existing native item-set phase. */
+export function vecnaGraftStrengthSource(){
+ const state=vecnaGraftsOwnedState();if(vecnaGraftsProblems(state).length)return null;
+ const view=vecnaGraftsProjection(state,[]),hands=view.ok?view.physical.filter(p=>p.part==='hand'&&p.present&&p.attached===true):[];if(hands.length!==1)return null;
+ const inventory=lateGet('B').inv||[],refs=inventory.map((row,index)=>({row,index})).filter(v=>vecnaGraftMarker(v.row).id===hands[0].id);if(refs.length!==1)return null;
+ const {row,index}=refs[0],source=vecnaGraftSourceForRow(row,index,'current-hand',state);return source.ok&&source.attuned===true?{...source,index,eq:row.eq}:null;
+}
+function handHistoryBlocksUnmarked(){const state=vecnaGraftsOwnedState(),live=owner();if(state!==undefined&&(vecnaGraftsProblems(state).length||state.physical.some(p=>p.part==='hand')))return true;return !!live&&[live.C,live.state].some(value=>{const raw=vecnaGraftsRawState(value);return raw.present&&(!raw.ok||raw.state.physical.some(p=>p.part==='hand'))})}
+function vecnaNegativeStrengthNames(){
+ const state=vecnaGraftsOwnedState(),view=vecnaGraftsProblems(state).length?null:vecnaGraftsProjection(state,[]),blocked=handHistoryBlocksUnmarked();
+ return (lateGet('B').inv||[]).flatMap((row,index)=>{if(!sourceFrame(row,index,'current-hand'))return [];const marker=vecnaGraftMarker(row);if(!marker.present)return blocked?[row.n]:[];const physical=view?.ok?view.physical.find(p=>p.id===marker.id&&p.profile==='current-hand'):null;return marker.ok&&physical?.present&&physical.attached===true?[]:[row.n]});
+}
+export function vecnaGraftAbilitySources(entries){const negative=vecnaNegativeStrengthNames(),filtered=entries.filter(entry=>!negative.includes(entry.n)||canonical(entry.fx?.setsc)!==canonical(['STR',20])),source=vecnaGraftStrengthSource();return source&&source.eq===false?filtered.concat([{n:lateGet('B').inv[source.index].n,mi:source.item,fx:{setsc:['STR',20]}}]):filtered}
+
+export function vecnaGraftsLegacyComparisonActive(){return legacyComparison}
+export function vecnaHandStrengthRelevant(){const state=vecnaGraftsOwnedState();return (build().inv||[]).some(row=>key(row)==='Hand of Vecna')||supported(state)&&state.physical.some(p=>p.part==='hand')}
+function handSourceReceipt(row,index,profile,definitionFingerprint,physicalId=null,custom=null){return {index,inventoryName:row.n,inventoryKey:own(row,'key')?row.key:null,profile,definitionFingerprint,physicalId,custom}}
+function supportedHandSetter(declared,entry,definition){return Array.isArray(declared)&&declared.length===2&&declared[0]==='STR'&&Number.isFinite(declared[1])&&canonical(entry.fx.setsc)===canonical(declared)&&canonical(definition)!==null}
+function customHandProof(row,index,AFX){
+ const p=vecnaGraftProfile('current-hand'),names=[row.n,key(row),p.item],FX=fxo()||{},overrideName=names.find(n=>own(FX,n)),customRow=(build().custLib||[]).find(r=>names.includes(Array.isArray(r)?r[0]:r?.n));
+ if(!overrideName&&!customRow)return null;const definition=overrideName?FX[overrideName]:customRow,kind=overrideName?'fxo':'custom-library',declared=kind==='custom-library'&&Array.isArray(definition)?definition[5]?.fx?.setsc:definition?.fx?.setsc,entry=AFX.find(e=>e.n===row.n&&e.fx?.setsc);
+ if(!entry)return {mode:'inactive',source:null};const marker=vecnaGraftMarker(row);if(!marker.ok||!supportedHandSetter(declared,entry,definition))return {mode:'unverified',source:null};
+ const custom={kind,definition:copy(definition)};return {mode:'custom-explicit',source:handSourceReceipt(row,index,'custom-hand',canonical(definition),marker.id,custom)};
+}
+function legacyHandProof(row,index){const p=vecnaGraftProfile('current-hand'),legacy=genv.DM14?.ov?.['Hand of Vecna'],resolved=lateGet('DMAP')?.[row.n],ATT=lateGet('attunementState')();return unmodifiedNames([row.n,key(row),p.item])&&canonical(legacy)===p.legacyFingerprint&&canonical(resolved)===p.legacyFingerprint&&row.eq===true&&ATT.rows[index]?.attuned===true&&!foreign.some(k=>own(row,k))?{mode:'legacy-original',source:handSourceReceipt(row,index,'legacy-hand',p.legacyFingerprint)}:null}
+function originalHandProof(row,index,AFX){
+ const p=vecnaGraftProfile('current-hand'),state=vecnaGraftsOwnedState(),source=vecnaGraftSourceForRow(row,index,p.id,state),marker=vecnaGraftMarker(row);
+ if(source.ok){if(!source.attuned)return {mode:'inactive',source:null};if(!marker.present)return row.eq===true&&!handHistoryBlocksUnmarked()?{mode:'native-current-existing',source:handSourceReceipt(row,index,p.id,p.itemFingerprint)}:{mode:'inactive',source:null};
+  const view=supported(state)?vecnaGraftsProjection(state,[]):null,physical=view?.ok?view.physical.find(v=>v.id===marker.id):null;if(!physical?.present||physical.attached!==true)return {mode:'inactive',source:null};return {mode:'native-current-graft',source:handSourceReceipt(row,index,p.id,p.itemFingerprint,marker.id)};}
+ return legacyHandProof(row,index)||{mode:AFX.some(e=>e.n===row.n&&e.fx?.setsc)?'unverified':'inactive',source:null};
+}
+export function vecnaHandStrengthProofSource(AFX=[]){const rows=(build().inv||[]).map((row,index)=>({row,index})).filter(v=>key(v.row)==='Hand of Vecna');if(rows.length!==1)return {mode:rows.length?'unverified':'inactive',source:null};const {row,index}=rows[0];return customHandProof(row,index,AFX)||originalHandProof(row,index,AFX)}

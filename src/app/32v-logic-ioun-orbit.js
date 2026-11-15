@@ -1,3 +1,4 @@
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 /* Physical Ioun Stones change native effects only through verified orbit actions. */
 import {C,S,FROZEN} from './04-logic-storage.js';
 import {env} from './00-env.js';
@@ -5,7 +6,7 @@ import {sheetRootActive} from './05-logic-helpers.js';
 import {undoMark} from './32-logic-play-undo-actions.js';
 import {D} from './06-logic-derivation.js';
 import {cfSkill} from './34b-ui-combat-effects-modes.js';
-import {canonicalIounDefinition,iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
+import {canonicalIounDefinition} from '../data/lib/ioun-orbit-source.js';
 import {nativeActorPayload} from './lib/native-actor-frame.js';
 import {iounOrbitAvailability} from '../data/lib/ioun-orbit.js';
 const fail=reason=>({ok:false,reason}),sessions=new WeakMap(),receipts=new WeakMap(),epochs=new WeakMap();

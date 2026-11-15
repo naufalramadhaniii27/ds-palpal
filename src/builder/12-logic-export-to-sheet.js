@@ -3,6 +3,7 @@ import {withRodAbsorptionProjection} from './10q-logic-rod-absorption.js';
 import {withTravelGoatProjection} from './10r-logic-travel-goat.js';
 import {withInstrumentSpellsProjection} from './10v-logic-instrument-spells.js';
 import {withVecnaGraftsProjection} from './10w-logic-vecna-grafts.js';
+import {restoreHandVecnaStrengthFuture} from './10x-logic-hand-vecna-strength.js';
 import {withTimedDefensesProjection,timedDefensesProjectionMirror,timedDefensesOwnFuture,timedDefensesInventoryRows,timedDefensesSourceWitness,timedDefensesProjectedRows} from './10n-logic-timed-defenses.js';
 import {swimClimbGlovesProjection,swimClimbGlovesOwnFuture} from './10m-logic-swim-climb-gloves.js';
 import {withMagicRopesProjection,magicRopesProjectionMirror,magicRopesInventoryRows} from './10l-logic-magic-ropes.js';
@@ -81,6 +82,7 @@ export function toSheet(options={}){
  /* every field group and class rule is a handler registered in 12c-12l (contract in 12a-logic-sheet-registry.js); this function only builds the inputs and runs the phases */
  const render=function(){const T=sheetInputs(options);
  runSheet(T);
+ restoreHandVecnaStrengthFuture(T.C);
  ACM=T.l.acm;/* v27 i2 */
  QRY.setProfc(T.C);/* the profs object of the finished sheet (item texts read it) */
  return T.C};const legacy=()=>options.necronomiconLegacy===true?withNecronomiconLegacy(render):render(),studyLegacy=()=>options.studyBooksLegacy===true?withStudyBooksLegacy(legacy):legacy(),project=()=>options&&options.allPurposeLegacy?withAllPurposeLegacy(studyLegacy):studyLegacy(),reading=()=>Object.prototype.hasOwnProperty.call(options,'necronomiconReading')?withNecronomiconProjection(options.necronomiconReading,project):project();const study=()=>Object.prototype.hasOwnProperty.call(options,'studyBooks')?withStudyBooksProjection(options.studyBooks,reading):reading();const bag=()=>Object.prototype.hasOwnProperty.call(options,'bagTricks')?withBagTricksProjection(options.bagTricks,study):study();const horn=()=>Object.prototype.hasOwnProperty.call(options,'hornValhalla')?withHornValhallaProjection(options.hornValhalla,bag):bag();const defender=()=>Object.prototype.hasOwnProperty.call(options,'defender')?withDefenderProjection(options.defender,horn):horn();const bird=()=>Object.prototype.hasOwnProperty.call(options,'birdToken')?withBirdTokenProjection(options.birdToken,defender):defender();const ropes=()=>Object.prototype.hasOwnProperty.call(options,'magicRopes')?withMagicRopesProjection(options.magicRopes,bird):bird();const timed=()=>Object.prototype.hasOwnProperty.call(options,'timedDefenses')?withTimedDefensesProjection(options.timedDefenses,ropes):ropes();return projectVecnaGrafts(options,()=>projectInstrumentSpells(options,()=>projectTravelGoat(options,()=>projectRodAbsorption(options,()=>projectIounOrbit(options,timed)))))}

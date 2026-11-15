@@ -1,6 +1,6 @@
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 /* Both raw typed damage and already-adjusted entry use this native HP transaction. */
 import {C,S,FROZEN,save} from './04-logic-storage.js';
-import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {D} from './06-logic-derivation.js';
 import {lateGet} from './00a-reg-late-ports.js';
 import {concCheck,concEnd,concOf} from './32b-logic-play-concentration-casting.js';

@@ -1,5 +1,5 @@
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 import {prepareShortRestRecovery,currentShortRestRecovery} from './32aa-logic-arcane-grimoire-recovery.js';
-import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {bindLive,chgApply,chgRows,hasFeat,hdHeal,lateGet,lateSet,longExtraH,periOn,recList,recSum,shortChg,shortExtraH,slotUsed,toastU,undoMark} from "./00a-reg-late-ports.js";/* Responsibility: short and long rest: dialog, recovery, summary and takeRest. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
    Touches page globals only through env: __coinTotal, __coinsFor, __coinsNow, __ico, __icoCls, __icoItem, __icoText, __miRoll, __openRest. Shared names with other modules come from the imports below, late names through __R. */
 import {hdPlan,x14} from "./03-data-glossary.js";

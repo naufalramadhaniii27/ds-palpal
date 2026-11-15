@@ -1,3 +1,4 @@
+import{loadNativeActorFrame}from'./load-native-actor-frame.mjs';
 /* Actual class resources, app recovery list, short-rest transaction and native reset loop. */
 import fs from 'node:fs';import vm from 'node:vm';
 import {createArcaneGrimoireEngine} from './arcane-grimoire-native.mjs';
@@ -12,9 +13,9 @@ export function createArcaneGrimoireRestEngine(options={}){
  Object.defineProperties(c,{C:{get:()=>character},S:{get:()=>state}});vm.createContext(c);
  const helpers=read('app/05-logic-helpers.js');for(const name of ['num','clamp','sg','hpWord','esc'])vm.runInContext(line(helpers,name),c);
  vm.runInContext(line(read('app/08-ui-render-sheet-and-actions.js'),'used'),c);
- const derivation=read('app/06-logic-derivation.js');vm.runInContext(line(derivation,'derivedTravelGoatFields')+'\n'+derivation.slice(derivation.indexOf('function deriveResources('),derivation.indexOf('function deriveSpellAdjust(')),c);c.deriveResources(character.level,6,0);
+ const derivation=read('app/06-logic-derivation.js');vm.runInContext(line(derivation,'derivedTravelGoatFields')+'\n'+derivation.slice(derivation.indexOf('function derivedInstrumentFields('),derivation.indexOf('function deriveResources('))+'\n'+derivation.slice(derivation.indexOf('function deriveResources('),derivation.indexOf('function deriveSpellAdjust(')),c);c.deriveResources(character.level,6,0);
  const cast=read('app/32b-logic-play-concentration-casting.js');for(const name of ['clsLvls','lvOf','slotLeft'])vm.runInContext(line(cast,name),c);
- vm.runInContext(strip(read('app/lib/native-actor-frame.js')),c);
+ loadNativeActorFrame(c);
  vm.runInContext('(function(){'+strip(read('app/32aa-logic-arcane-grimoire-recovery.js'))+';Object.assign(globalThis,{arcaneGrimoireRecoveryBonus,prepareShortRestRecovery,currentShortRestRecovery})})()',c);
  const recovery=read('app/32d-logic-play-hp-rest-recovery.js');for(const name of ['periOn','hdHeal','recList','slotUsed','recSum','chgApply','chgRows','shortChg'])vm.runInContext(line(recovery,name),c);vm.runInContext('var restX={};',c);vm.runInContext(recovery.slice(recovery.indexOf('function shortExtraH('),recovery.indexOf('function chgRows(')),c);
  const global=read('app/19-ui-global-click-delegation.js');vm.runInContext(global.slice(global.indexOf('const slotRecoveryRest='),global.indexOf('/* ================= GLOBAL CLICK')),c);vm.runInContext(strip(global.slice(global.indexOf('export function doRest('),global.indexOf('\ndocument.addEventListener',global.indexOf('export function doRest(')))),c);

@@ -36441,6 +36441,107 @@
    ],
    "test": "U63 actual native paired Vecna Initiative",
    "note": "U63 current original Eye AND Hand require distinct factual physical graft histories, both source-present attached parts, exact original/resolved definitions and actual allocated attunement. Equipped=false is valid. Known exact native Truesight/Icy Touch GX defaults are retained; changed/custom/legacy definitions cannot grant the current property. Actual cfx Initiative consumes the joint-only flag and actual qualified native FX rolls two d20s; ordinary Perception and legacy rows gain nothing. Captured actor/history/source and required live source certificate reject stale or unavailable-provider dice. Actual controller admits/attachments/detach and protected publication preserve authoritative optional history; no automatic death/HP mutation, spellcasting, STR or other Vecna clause is credited. FX actual cfx consumers measure Initiative Advantage attached1/unattuned0/detached0 with no old-capability grant."
+  },
+  {
+   "id": "u64-item-dmg-hand-vecna-native-strength-floor",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Hand of Vecna",
+   "cls": [
+    "ABIL"
+   ],
+   "vals": [
+    "20"
+   ],
+   "scopeValues": true,
+   "rx": "^your\\ strength\\ score\\ becomes\\ 20,\\ unless\\ it\\ is\\ 20\\ or\\ higher\\ already\\.$",
+   "anchor": [
+    "src/builder/11-logic-derivation.js",
+    "runFxPhase(\"ability\",\"item-set\",vecnaGraftAbilitySources(AFX),actx,apply)"
+   ],
+   "extraAnchors": [
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function vecnaGraftStrengthSource("
+    ],
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function vecnaGraftAbilitySources("
+    ],
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function vecnaHandStrengthProofSource("
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "id:\"item-setsc\""
+    ],
+    [
+     "src/builder/10c-logic-fx-handlers-ability.js",
+     "ctx.sc[s[0]]<s[1]"
+    ],
+    [
+     "src/builder/12c-logic-sheet-handlers-core.js",
+     "C.abilities[k]={base:+B.base[k]||10,bonus:a.src[k].map"
+    ],
+    [
+     "src/builder/10x-logic-hand-vecna-strength.js",
+     "export function projectHandVecnaStrength("
+    ],
+    [
+     "src/builder/10x-logic-hand-vecna-strength.js",
+     "export function nativeHandVecnaStrengthCurrent("
+    ],
+    [
+     "src/builder/12zk-logic-hand-vecna-strength.js",
+     "id:'hand-vecna-strength-source'"
+    ],
+    [
+     "src/data/lib/hand-vecna-strength.js",
+     "export function handVecnaStrengthMathStatus("
+    ],
+    [
+     "src/data/lib/hand-vecna-strength.js",
+     "export function handVecnaDependentFingerprint("
+    ],
+    [
+     "src/data/lib/ioun-orbit-source.js",
+     "handVecnaStrengthMathStatus"
+    ],
+    [
+     "src/app/lib/native-actor-frame.js",
+     "export function nativeCharacterMathStatus("
+    ],
+    [
+     "src/app/lib/native-actor-frame.js",
+     "source=handSourceStamp()"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "D.score[k]=sc; D.mod[k]=mod(sc)"
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "function deriveSaves("
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "function deriveSkills("
+    ],
+    [
+     "src/app/06-logic-derivation.js",
+     "function deriveFn1Step1("
+    ]
+   ],
+   "consumerTests": [
+    "tests/vecna_hand_strength_native.mjs",
+    "tests/vecna_hand_strength_consumers.mjs",
+    "tests/vecna_hand_strength_provenance.mjs",
+    "tests/hand_vecna_strength.mjs",
+    "tests/hand_vecna_strength_provider.mjs"
+   ],
+   "test": "U64 actual native attached Hand Strength",
+   "note": "U64 actual original current Hand alone, verified physical attachment and allocated ATT supplies the native item-setsc floor even with Equipped=false. Native11 and10c perform the only arithmetic; actual12c stores the genuine source contribution and actual app06 derives score/modifier/save/skill/attack header and dice. STR14 becomes20; STR20/24 stay unchanged. Known admitted attachment-unknown, missing ATT/history/presence and unsupported sources cannot gain the new floor. Unowned old native Equipped=true behavior, exact legacy and explicit custom sources keep their documented compatibility modes; they are not new closures. A derived final-row proof binds actual inventory/Hand history/STR and baked dependencies; cached and live native actor math review reject stale/missing source certificates before ordinary play. Actual controller-backed FX3 measures unknown14/verified20/ATTloss14 through actual app06 consumers. No new ability patch layer, death/HP writes, Eye requirement, spellcasting or other Vecna property is credited."
   }
  ]
 }

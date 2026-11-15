@@ -1,3 +1,4 @@
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 import {canonicalRodAbsorptionDefinition} from '../data/lib/rod-absorption-source.js';
 import {canonicalTravelGoatDefinition} from '../data/lib/travel-goat-profile.js';
 import {canonicalInstrumentDefinition} from '../data/lib/instrument-spell-profiles.js';
@@ -20,7 +21,7 @@ import {reconcileBagTricksInventory} from "../data/lib/bag-tricks-source.js";
 import {reconcileMagicRopesInventory} from "../data/lib/magic-ropes-source.js";
 import {reconcileTimedDefensesInventory,canonicalTimedDefenseDefinition} from "../data/lib/timed-defenses-source.js";
 import {iounOrbitAvailability,settleIounSourceLoss} from "../data/lib/ioun-orbit.js";
-import {canonicalIounDefinition,iounCharacterMathStatus} from "../data/lib/ioun-orbit-source.js";
+import {canonicalIounDefinition} from "../data/lib/ioun-orbit-source.js";
 import {reconcileBirdTokenInventory} from "../data/lib/bird-token-source.js";
 import {reconcileDefenderInventory} from "../data/lib/defender-source.js";
 import {reconcileHornValhallaInventory} from "../data/lib/horn-valhalla-source.js";

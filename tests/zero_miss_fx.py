@@ -3575,6 +3575,16 @@ for _u63 in U63_FIX:
     _u63_old="(()=>{const n=structuredClone(C);delete n.vecnaGraftSources;return window.__zmPerceptionFlags(n,null,__zmDeriveState).init.filter(f=>f.t==='ADV'&&f.s==='Eye and Hand of Vecna').length})()"
     CASES.append(dict(name="U63 actual native paired Vecna Initiative "+_u63["phase"],b=_u63_b,vecnaGrafts=_u63["state"]["vecnaGrafts"],deriveState=_u63["state"],expect=[(_u63_init,_u63["expectedAdvantage"]),(_u63_skill,0),(_u63_old,0),("C.inv.every(row=>row.eq===false)",True)]))
 
+# U64 follows the actual Hand-only native producer into actual app06 numbers.
+U64_FIX=json.load(open(os.path.join(HERE,"fixtures","vecna-hand-strength-fx.json"),encoding="utf-8"))["cases"]
+for _u64 in U64_FIX:
+    _u64_raw=_u64["build"]
+    _u64_b=dict(rs=_u64_raw["rs"],cls=_u64_raw["cls"],level=_u64_raw["level"],base=_u64_raw["base"],inv=_u64_raw["inv"],extra=_u64_raw)
+    _u64_d="window.__deriveFor(C,__zmDeriveState)"
+    _u64_attack=_u64_d+".atk[C.attacks.findIndex(row=>row.n==='Unarmed Strike')].hit"
+    _u64_skill=_u64_d+".skill[C.skills.findIndex(row=>row.n==='Athletics')]"
+    CASES.append(dict(name="U64 actual native attached Hand Strength "+_u64["phase"],b=_u64_b,vecnaGrafts=_u64["state"]["vecnaGrafts"],deriveState=_u64["state"],expect=[(_u64_d+".score.STR",_u64["score"]),(_u64_d+".mod.STR",_u64["modifier"]),(_u64_d+".save.STR",_u64["save"]),(_u64_skill,_u64["skill"]),("C.skills.find(row=>row.n==='Athletics').p",_u64["skillProficiency"]),("C.skills.find(row=>row.n==='Athletics').src.startsWith('Soldier background')",True),(_u64_attack,_u64["attack"]),("C.inv.length",1),("C.inv[0].eq",False)]))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }

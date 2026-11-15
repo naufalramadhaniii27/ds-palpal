@@ -1,6 +1,6 @@
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 import {instrumentSpellNeedsController} from '../data/lib/instrument-spells-source.js';
 import {preparePactRodCast,pactRodCastCurrent,pactRodSpellReview} from './32x-logic-pact-rod-spell.js';
-import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {captureNativeActorIdentity,captureNativeActorFrame} from './lib/native-actor-frame.js';
 import {endTattooEffect as endTattooBodyEffect} from '../data/lib/spellwrought-tattoo.js';
 import {bindLive,cmbCast,cmbRe,lateGet,featAll,syncLU,used,renderConds,refreshEntry,showEntry,spPactLv,spRowLv,renderSpells,syncHP,renderAll} from "./00a-reg-late-ports.js";/* Responsibility: class levels, concentration and casting a spell (slots, upcast, quick cast). Split out of the former single file 32 in SOLID stage 9 (S); runs in the same order as before. */

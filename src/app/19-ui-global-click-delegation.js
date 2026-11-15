@@ -1,4 +1,4 @@
-import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 import {applyNativePlayerDamage} from './32u-logic-player-damage.js';
 import {summonResourceManaged} from "./lib/summon-resource.js";
 import {env} from "./00-env.js";import {concCheck,concEnd,concOf,hasFeat,lateGet,openRest,renderAll,sitReset,toastU,undoMark} from "./00a-reg-late-ports.js";import {hpWord} from "./05-logic-helpers.js";import {hdPlan,x14} from "./03-data-glossary.js";

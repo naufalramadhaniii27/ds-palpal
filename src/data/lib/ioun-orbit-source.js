@@ -1,3 +1,4 @@
+import {handVecnaStrengthMathStatus} from './hand-vecna-strength.js';
 import {IOUN_PROFILES,IOUN_GENERIC_FINGERPRINT,IOUN_RESERVE_FINGERPRINT} from './ioun-orbit-profiles.js';
 import {createIounOrbit,iounOrbitProblems,iounOrbitAvailability,settleIounSourceLoss} from './ioun-orbit.js';
 const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),obj=v=>v!==null&&typeof v==='object'&&!Array.isArray(v),exact=(v,keys)=>obj(v)&&Reflect.ownKeys(v).length===keys.length&&keys.every(k=>own(v,k)),clone=structuredClone;
@@ -61,6 +62,7 @@ function potentialCurrentIoun(character){
 }
 function qualifiedMathSources(character,namespace,ids){const catalog=iounNativeSources([JSON.parse(IOUN_GENERIC_FINGERPRINT),...NATIVE.map(entry=>entry.row)]);return ids.every(id=>{const stone=namespace.stones.find(stone=>stone.id===id),rows=character.inv.filter(row=>row?.iounOrbit?.id===id);if(!stone||rows.length!==1)return false;const row=rows[0],source=iounMarkerSource(row.iounOrbit,catalog,currentNativeName(row));return !!source&&identityMatches(stone,row.iounOrbit,source)&&!CONFLICTS.some(field=>own(row,field))&&(row.q==null?1:row.q)===1&&row.eq===true&&row.attunedActive===true;});}
 export function iounCharacterMathStatus(character,state){
+ const hand=handVecnaStrengthMathStatus(character,state);if(hand.reviewRequired)return hand;
  if(!obj(character)||!potentialCurrentIoun(character))return {reviewRequired:false,reason:null};
  if(!Array.isArray(character.inv))return {reviewRequired:true,reason:'invalid-ioun-character-inventory'};
  const hasC=own(character,'iounOrbit'),hasS=own(state,'iounOrbit');

@@ -1,7 +1,7 @@
+import {nativeCharacterMathStatus as iounCharacterMathStatus} from './lib/native-actor-frame.js';
 import {pactRodSheetReview} from './32x-logic-pact-rod-spell.js';
 import {instrumentSpellNeedsController} from '../data/lib/instrument-spells-source.js';
 import {legacyPactRodInventoryRequiresBuild} from './lib/pact-rod-inventory.js';
-import {iounCharacterMathStatus} from '../data/lib/ioun-orbit-source.js';
 import {bindLive} from "./00a-reg-late-ports.js";import {C,FROZEN,S,__set_C} from "./04-logic-storage.js";
 import {num,toast} from "./05-logic-helpers.js";
 import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";

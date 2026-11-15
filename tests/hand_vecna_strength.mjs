@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {createVecnaGraftsEngine} from './fixtures/vecna-grafts-native.mjs';
+import {createNativeHandStrengthConsumer} from './fixtures/vecna-hand-strength-consumer-native.mjs';
+import {vecnaGraftProfile,canonical} from '../src/data/lib/vecna-graft-profiles.js';
+import {admitVecnaGraft,recordVecnaAttachment} from '../src/data/lib/vecna-grafts.js';
+import {handVecnaStrengthMathStatus,handVecnaStrengthProblems,handVecnaHistoryFingerprint,handVecnaDependentFingerprint,handVecnaStrengthWitness} from '../src/data/lib/hand-vecna-strength.js';
+let checks=0;const eq=(a,b)=>{assert.deepEqual(a,b);checks++},hand=vecnaGraftProfile('current-hand');
+function sourceFor(f){const C=f.C,source=f.manager.e.c.vecnaGraftStrengthSource(),row=C.inv[source.index];return {index:source.index,inventoryName:row.n,inventoryKey:Object.hasOwn(row,'key')?row.key:null,profile:'current-hand',definitionFingerprint:hand.itemFingerprint,physicalId:source.id,custom:null};}
+function seal(C,S,mode,source){const cap=handVecnaStrengthWitness(C,S,mode,source);assert.ok(cap);checks++;C.handVecnaStrength=cap;eq(handVecnaStrengthProblems(cap),[]);return cap;}
+const f=createNativeHandStrengthConsumer({strength:14}),C=f.C,S=f.manager.e.c.S,source=sourceFor(f);seal(C,S,'native-current-graft',source);eq(handVecnaStrengthMathStatus(C,S).reviewRequired,false);eq(f.c.D.score.STR,20);eq(S.vecnaGrafts.physical.length,1);
+const valid=structuredClone(C),saved=structuredClone(S);
+for(const value of [undefined,null,{v:99,opaque:undefined}]){const altered=structuredClone(valid);altered.handVecnaStrength=value;const before=canonical(altered);eq(handVecnaStrengthMathStatus(altered,saved).reviewRequired,true);eq(canonical(altered),before);}
+const missing=structuredClone(valid);delete missing.handVecnaStrength;eq(handVecnaStrengthMathStatus(missing,saved).reviewRequired,true);
+let reads=0;const getter=structuredClone(valid);Object.defineProperty(getter,'handVecnaStrength',{get(){reads++;return valid.handVecnaStrength},enumerable:true});eq(handVecnaStrengthMathStatus(getter,saved).reviewRequired,true);eq(reads,0);
+const authorityGetter=structuredClone(saved);Object.defineProperty(authorityGetter,'vecnaGrafts',{get(){reads++;return saved.vecnaGrafts},enumerable:true});eq(handVecnaStrengthMathStatus(valid,authorityGetter).reviewRequired,true);eq(reads,0);
+const mirrorGetter=structuredClone(valid);Object.defineProperty(mirrorGetter,'vecnaGrafts',{get(){reads++;return valid.vecnaGrafts},enumerable:true});eq(handVecnaStrengthMathStatus(mirrorGetter,saved).reviewRequired,true);eq(reads,0);
+const nestedGetter=structuredClone(valid);Object.defineProperty(nestedGetter.handVecnaStrength.source,'custom',{get(){reads++;return null},enumerable:true});eq(handVecnaStrengthMathStatus(nestedGetter,saved).reviewRequired,true);eq(reads,0);
+const hidden=structuredClone(valid);Object.defineProperty(hidden,'handVecnaStrength',{value:valid.handVecnaStrength,enumerable:false});eq(handVecnaStrengthMathStatus(hidden,saved).reviewRequired,true);
+const fields=structuredClone(valid);fields.handVecnaStrength.future=undefined;eq(handVecnaStrengthProblems(fields.handVecnaStrength).length>0,true);
+const identity=structuredClone(valid);identity.inv[0].n=identity.inv[0].key='Longsword';identity.handVecnaStrength.inventoryFingerprint=canonical(identity.inv);eq(handVecnaStrengthMathStatus(identity,saved).reviewRequired,true);
+const oldHand=handVecnaHistoryFingerprint(saved);const eye=vecnaGraftProfile('current-eye');let addition=admitVecnaGraft(saved.vecnaGrafts,{profile:eye.id,part:eye.part,itemFingerprint:eye.itemFingerprint},{actualPhysicalArtifactIdentityVerified:true,actualCurrentOriginalSourceVerified:true});assert.ok(addition.ok);checks++;addition=recordVecnaAttachment(addition.state,addition.id,{actualPhysicalIdentityVerified:true,actualEyeFusedIntoThisCharactersSocket:true,printedRemovalConsequenceAcknowledged:true});assert.ok(addition.ok);checks++;const withEye={...saved,vecnaGrafts:addition.state};eq(handVecnaHistoryFingerprint(withEye),oldHand);eq(handVecnaStrengthMathStatus(valid,withEye).reviewRequired,false);
+for(const strength of [20,24]){const above=createNativeHandStrengthConsumer({strength});seal(above.C,above.manager.e.c.S,'native-current-graft',sourceFor(above));eq(handVecnaStrengthMathStatus(above.C,above.manager.e.c.S).reviewRequired,false);eq(above.c.D.score.STR,strength);}
+const custom=createNativeHandStrengthConsumer({strength:10});custom.manager.e.c.S.cust={'n:ab-STR':{o:50}};custom.derive();seal(custom.C,custom.manager.e.c.S,'native-current-graft',sourceFor(custom));eq(handVecnaStrengthMathStatus(custom.C,custom.manager.e.c.S).reviewRequired,false);eq(custom.c.D.score.STR,50);eq(custom.manager.e.c.S.cust['n:ab-STR'].o,50);
+const manual={abilities:{STR:{base:14,bonus:[{s:'Manual source',v:2}]}},inv:[]};const before=canonical(manual);eq(handVecnaStrengthMathStatus(manual,{}).reviewRequired,false);eq(canonical(manual),before);eq(typeof handVecnaDependentFingerprint(valid),'string');
+for(const [ruleset,mode,profile,definitionFingerprint]of [['2024','native-current-existing','current-hand',hand.itemFingerprint],['2014','legacy-original','legacy-hand',hand.legacyFingerprint]]){
+ const e=createVecnaGraftsEngine({actorRuleset:ruleset,inventory:[{n:hand.item,q:1,eq:true,attuned:true}]});const row=e.C.inv[0],source={index:0,inventoryName:row.n,inventoryKey:Object.hasOwn(row,'key')?row.key:null,profile,definitionFingerprint,physicalId:null,custom:null};seal(e.C,e.c.S,mode,source);eq(handVecnaStrengthMathStatus(e.C,e.c.S).reviewRequired,false);eq(e.C.abilities.STR.base+e.C.abilities.STR.bonus.reduce((n,r)=>n+r.v,0),20);
+}
+{
+ const e=createVecnaGraftsEngine({inventory:[{n:hand.item,q:1,eq:true,attuned:true}],mutate:c=>{c.FXO[hand.item]={fx:{setsc:['STR',22]}}}}),row=e.C.inv[0],definition=structuredClone(e.c.FXO[hand.item]),source={index:0,inventoryName:row.n,inventoryKey:Object.hasOwn(row,'key')?row.key:null,profile:'custom-hand',definitionFingerprint:canonical(definition),physicalId:null,custom:{kind:'fxo',definition}};
+ seal(e.C,e.c.S,'custom-explicit',source);eq(handVecnaStrengthMathStatus(e.C,e.c.S).reviewRequired,false);eq(e.C.abilities.STR.base+e.C.abilities.STR.bonus.reduce((n,r)=>n+r.v,0),22);
+ const bad=structuredClone(e.C.handVecnaStrength);bad.source.custom.definition={fx:{}};eq(handVecnaStrengthProblems(bad).length>0,true);
+}
+for(const mutate of [cap=>cap.mode='future',cap=>{cap.mode='legacy-original'},cap=>{cap.mode='custom-explicit';cap.source.profile='custom-hand';cap.source.custom={kind:'future',definition:{fx:{setsc:['STR',20]}}}}]){const bad=structuredClone(valid.handVecnaStrength);mutate(bad);eq(handVecnaStrengthProblems(bad).length>0,true);}
+console.log(`${checks} Hand source proof/status/history/manual score checks PASS`);

@@ -1,3 +1,4 @@
+import{loadNativeActorFrame}from'./load-native-actor-frame.mjs';
 import fs from 'node:fs';import vm from 'node:vm';
 import {createPerceptionItemsEngine} from './perception-items-native.mjs';
 import {perceptionItemFlag,perceptionItemSourceStatus} from '../../src/data/lib/perception-item-source.js';
@@ -12,7 +13,7 @@ export function createActualVecnaInitiativeChecks(engine,{bindings={},consumerSo
  Object.assign(c,bindings);Object.defineProperty(c,'C',{get:()=>engine.C});vm.createContext(c);const helpers=read('app/05-logic-helpers.js');for(const name of ['sg','num','clamp','mod'])vm.runInContext(line(helpers,name),c);
  vm.runInContext(strip(read('app/06-logic-derivation.js')),c);const custom=read('app/26-ui-customize.js');vm.runInContext(strip(custom.slice(custom.indexOf('export function cuK('),custom.indexOf('function cuSpeed('))),c);
  vm.runInContext(strip(featureSource??read('app/34b-ui-combat-effects-modes.js')),c);
- vm.runInContext('(function(){'+strip(read('app/lib/native-actor-frame.js'))+';Object.assign(globalThis,{captureNativeActorFrame,nativeActorPayload})})()',c);
+ loadNativeActorFrame(c);
  vm.runInContext('(function(){'+strip(read('app/32v-logic-ioun-orbit.js'))+';globalThis.iounOrbitCheckRoll=iounOrbitCheckRoll})()',c);
  vm.runInContext(strip(consumerSource??read('app/32ab-logic-perception-item-checks.js')),c);
  const derive=()=>{vm.runInContext('var base=deriveBase();deriveSaves(base.abPart,base.pb,base.exhN,base.exP);var sk=deriveSkills(base.abPart,base.pb,base.exhN,base.exP);derivePassivesAcInit(base.abPart,base.exhN,base.exP,sk.skillByName,base.xr,base.exh);D.cf=cfx();',c);return c};derive();return {engine,c,derive,check:key=>c.nativePerceptionCheckRoll(key),get C(){return engine.C},setC:engine.setC};

@@ -102,3 +102,7 @@ bindG(["__bldTravelGoatInfo", "__bldTravelGoatCapture", "__bldTravelGoatTokenCur
 bindG(["__bldInstrumentSpellsInfo", "__bldInstrumentSpellsCapture", "__bldInstrumentSpellsTokenCurrent", "__bldInstrumentSpellsCommand", "__bldInstrumentSpellsAcceptReceipt", "__bldInstrumentSpellsInventoryOwner", "__instrumentSpellsInventoryWriteAllowed", "__bldInstrumentSpellsCastPrepare", "__bldInstrumentSpellsCastCurrent", "__bldInstrumentSpellsCastCommit", "__instrumentSpellsSave"]);
 
 bindG(["__bldVecnaGraftsInfo", "__bldVecnaGraftsCapture", "__bldVecnaGraftsTokenCurrent", "__bldVecnaGraftsCommand", "__bldVecnaGraftsAcceptReceipt", "__bldVecnaGraftsInventoryOwner", "__vecnaGraftsSave", "__nativeVecnaGraftSourceCurrent", "__vecnaGraftsInventoryWriteAllowed"]);
+
+bindG(["__nativeHandVecnaStrengthCurrent"]);
+
+bindG(["DM14"]);
