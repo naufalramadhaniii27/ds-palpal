@@ -1,3 +1,4 @@
+import {vecnaGraftFlag} from '../data/lib/vecna-graft-source.js';
 import {perceptionItemFlag} from '../data/lib/perception-item-source.js';
 import {bindLive,renderAll} from "./00a-reg-late-ports.js";/* Responsibility: combat effect numbers, condition flags and mode toggles of the Situations panel. Split out of the former single file 34 in SOLID stage 9 (S); runs in the same order as before. */
 import {ABK} from "./02-data-default-character.js";import {x14} from "./03-data-glossary.js";import {C,S,save} from "./04-logic-storage.js";import {ask,eqOn,esc,num} from "./05-logic-helpers.js";import {D} from "./06-logic-derivation.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {refreshEntry} from "./12-ui-bottom-sheet-modal.js";import {dTxt,spCalc,spEffH,spRangeH,svgI} from "./22-ui-spell-data-and-slots.js";import {AK_ICON,akIcon,tyIcon} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {scOf} from "./23e-ui-spells-dc.js";import {INCAP,concEnd,concOf,hasFeat} from "./32b-logic-play-concentration-casting.js";import {tmpApply,tmpFeat} from "./32c-logic-play-temp-features-ammo.js";import {toastU,undoMark} from "./32-logic-play-undo-actions.js";import {HEAVY,MODES,PADV,modeOn,modesAvail,rageDmg} from "./33-logic-play-rage-conditions.js";import {sitFx} from "./34-ui-situations.js";
@@ -31,7 +32,7 @@ function cfxStep2(c, add, o, inc, sv){
     (r.skill||[]).forEach((k) =>{ (o.skill[k]=o.skill[k]||[]).push({t:"ADV",s:src}); });
     if(!(r.noIncap&&inc)) (r.save||[]).forEach((k) =>{ sv(k,"ADV",src); });
     if(r.ds) add(o.ds,"ADV",src); if(r.dsd) add(o.ds,"DIS",src); });
-  (C.itemAdv||[]).forEach((raw) =>{const r=perceptionItemFlag(C,raw);if(!r)return; if(r.k==="Initiative") add(o.init,"ADV",r.s); else (o.skill[r.k]=o.skill[r.k]||[]).push(itemSkillFlag(r)); });/* v65: magic items */
+  (C.itemAdv||[]).forEach((raw) =>{const r=vecnaGraftFlag(C,perceptionItemFlag(C,raw),S);if(!r)return; if(r.k==="Initiative") add(o.init,"ADV",r.s); else (o.skill[r.k]=o.skill[r.k]||[]).push(itemSkillFlag(r)); });/* v65: magic items */
   if(c.Blinded) add(o.atk,"DIS","Blinded");
 }
 function cfxStep3(c, add, o, xr2, sv){

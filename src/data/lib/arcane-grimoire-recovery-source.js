@@ -2,7 +2,7 @@
 import {arcaneGrimoireRecoveryProfile,canonicalArcaneGrimoireDefinition as canonical} from './arcane-grimoire-recovery-profiles.js';
 import {itemQuantity} from './attunement.js';
 const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),object=v=>v!==null&&typeof v==='object'&&!Array.isArray(v),int=(v,min=0)=>Number.isSafeInteger(v)&&v>=min,fail=reason=>({certified:false,bonus:0,reason});
-const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat','arcaneGrimoireRecovery','instrumentSpells'];
+const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat','arcaneGrimoireRecovery','instrumentSpells','vecnaGraft'];
 function data(v,k){const d=Object.getOwnPropertyDescriptor(v,k);return !!d&&d.enumerable&&own(d,'value');}
 function exact(v,keys){return object(v)&&Reflect.ownKeys(v).length===keys.length&&keys.every(k=>data(v,k));}
 function dense(v){return Array.isArray(v)&&Reflect.ownKeys(v).length===v.length+1&&Object.keys(v).every((k,i)=>k===String(i));}

@@ -31021,7 +31021,7 @@
     ],
     [
      "src/app/34b-ui-combat-effects-modes.js",
-     "const r=perceptionItemFlag(C,raw)"
+     "const r=vecnaGraftFlag(C,perceptionItemFlag(C,raw),S)"
     ],
     [
      "src/app/34b-ui-combat-effects-modes.js",
@@ -31057,15 +31057,15 @@
     ],
     [
      "src/app/32ab-logic-perception-item-checks.js",
-     "env.__nativePerceptionItemSourceCurrent(C)"
+     "const value=env[name](C)"
     ],
     [
      "src/app/32ab-logic-perception-item-checks.js",
-     "proof.value?.current===false"
+     "proof.some(value=>value.value?.current===false)"
     ],
     [
      "src/app/32ab-logic-perception-item-checks.js",
-     "canonicalTceSpellBonus([perceptionItemSourceStatus(C),sourceCurrent()])===source"
+     "canonicalTceSpellBonus([perceptionItemSourceStatus(C),key==='init'?vecnaGraftSourceStatus(C,S):null,sourceCurrent(key)])===source"
     ],
     [
      "src/data/lib/perception-item-profiles.js",
@@ -31129,7 +31129,7 @@
     ],
     [
      "src/app/34b-ui-combat-effects-modes.js",
-     "const r=perceptionItemFlag(C,raw)"
+     "const r=vecnaGraftFlag(C,perceptionItemFlag(C,raw),S)"
     ],
     [
      "src/app/34b-ui-combat-effects-modes.js",
@@ -31165,15 +31165,15 @@
     ],
     [
      "src/app/32ab-logic-perception-item-checks.js",
-     "env.__nativePerceptionItemSourceCurrent(C)"
+     "const value=env[name](C)"
     ],
     [
      "src/app/32ab-logic-perception-item-checks.js",
-     "proof.value?.current===false"
+     "proof.some(value=>value.value?.current===false)"
     ],
     [
      "src/app/32ab-logic-perception-item-checks.js",
-     "canonicalTceSpellBonus([perceptionItemSourceStatus(C),sourceCurrent()])===source"
+     "canonicalTceSpellBonus([perceptionItemSourceStatus(C),key==='init'?vecnaGraftSourceStatus(C,S):null,sourceCurrent(key)])===source"
     ],
     [
      "src/data/lib/perception-item-profiles.js",
@@ -36241,6 +36241,206 @@
    ],
    "test": "U62 actual native Instrument per-spell availability",
    "note": "U62 original printed-source14 profiles with one factual physical identity and one canonical native S.used max1 budget per named spell. Actual original item/spell source and allocated attunement, authentic ability choice or proven no-ability0+PB, printed cast level/time/restriction, real native32b payment/concentration and guarded publication enforce one cast of each spell until a verified newer actual dawn. Old shared pools/keys are retained inert and cannot pay; a second spell or physical copy stays independent. Four common spells are actually cast for every specific profile; all7 current generic-parent factual type branches are exercised without inventing an eighth physical type. Actualresource-consumer FX measures canonical max1-used 1→0→1 after real fixed5/8 native casts and dawn; backend/native/browser prove full source and casting permission. No charm-save disadvantage, unattuned-play damage or unrelated Instrument property is credited."
+  },
+  {
+   "id": "u63-item-dmg-eye-of-vecna-joint-initiative",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Eye of Vecna",
+   "cls": [
+    "ADV",
+    "INIT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^your\\ initiative\\ rolls\\ have\\ advantage\\.$",
+   "anchor": [
+    "src/data/lib/vecna-graft-source.js",
+    "export function vecnaGraftFlag("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/vecna-grafts.js",
+     "export function vecnaGraftsProjection("
+    ],
+    [
+     "src/data/lib/vecna-grafts.js",
+     "export function recordVecnaAttachment("
+    ],
+    [
+     "src/data/lib/vecna-grafts.js",
+     "export function recordVecnaDetachment("
+    ],
+    [
+     "src/data/lib/vecna-graft-profiles.js",
+     "export function vecnaGraftProfile("
+    ],
+    [
+     "src/data/lib/vecna-graft-source.js",
+     "export function vecnaGraftSourcesSupported("
+    ],
+    [
+     "src/data/lib/vecna-graft-source.js",
+     "export function vecnaGraftCertificateCurrent("
+    ],
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function vecnaGraftSourceForRow("
+    ],
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function vecnaGraftsSheetProjection("
+    ],
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function nativeVecnaGraftSourceCurrent("
+    ],
+    [
+     "src/builder/12zj-logic-vecna-grafts.js",
+     "id:'vecna-graft-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "const r=vecnaGraftFlag(C,perceptionItemFlag(C,raw),S)"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "export function nativePerceptionCheckRoll("
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "__nativeVecnaGraftSourceCurrent"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "proof[1]?.value?.current!==true"
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.sourceSpec=function"
+    ],
+    [
+     "src/data/lib/vecna-graft-controller.js",
+     "export function createVecnaGraftsController("
+    ],
+    [
+     "src/app/17-logic-tab-sync-and-test-hooks.js",
+     "function vecnaGraftsInventoryProjection("
+    ]
+   ],
+   "consumerTests": [
+    "tests/vecna_graft_builtin_gx.mjs",
+    "tests/vecna_graft_initiative.mjs",
+    "tests/vecna_graft_native_sources.mjs",
+    "tests/vecna_graft_sources.mjs",
+    "tests/vecna_grafts.mjs",
+    "tests/vecna_grafts_app17.mjs",
+    "tests/vecna_grafts_backend.mjs",
+    "tests/vecna_grafts_runtime.mjs",
+    "tests/vecna_grafts_ui.mjs"
+   ],
+   "test": "U63 actual native paired Vecna Initiative",
+   "note": "U63 current original Eye AND Hand require distinct factual physical graft histories, both source-present attached parts, exact original/resolved definitions and actual allocated attunement. Equipped=false is valid. Known exact native Truesight/Icy Touch GX defaults are retained; changed/custom/legacy definitions cannot grant the current property. Actual cfx Initiative consumes the joint-only flag and actual qualified native FX rolls two d20s; ordinary Perception and legacy rows gain nothing. Captured actor/history/source and required live source certificate reject stale or unavailable-provider dice. Actual controller admits/attachments/detach and protected publication preserve authoritative optional history; no automatic death/HP mutation, spellcasting, STR or other Vecna clause is credited. FX actual cfx consumers measure Initiative Advantage attached1/unattuned0/detached0 with no old-capability grant."
+  },
+  {
+   "id": "u63-item-dmg-hand-of-vecna-joint-initiative",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Hand of Vecna",
+   "cls": [
+    "ADV",
+    "INIT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^your\\ initiative\\ rolls\\ have\\ advantage\\.$",
+   "anchor": [
+    "src/data/lib/vecna-graft-source.js",
+    "export function vecnaGraftFlag("
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/vecna-grafts.js",
+     "export function vecnaGraftsProjection("
+    ],
+    [
+     "src/data/lib/vecna-grafts.js",
+     "export function recordVecnaAttachment("
+    ],
+    [
+     "src/data/lib/vecna-grafts.js",
+     "export function recordVecnaDetachment("
+    ],
+    [
+     "src/data/lib/vecna-graft-profiles.js",
+     "export function vecnaGraftProfile("
+    ],
+    [
+     "src/data/lib/vecna-graft-source.js",
+     "export function vecnaGraftSourcesSupported("
+    ],
+    [
+     "src/data/lib/vecna-graft-source.js",
+     "export function vecnaGraftCertificateCurrent("
+    ],
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function vecnaGraftSourceForRow("
+    ],
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function vecnaGraftsSheetProjection("
+    ],
+    [
+     "src/builder/10w-logic-vecna-grafts.js",
+     "export function nativeVecnaGraftSourceCurrent("
+    ],
+    [
+     "src/builder/12zj-logic-vecna-grafts.js",
+     "id:'vecna-graft-sources'"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "const r=vecnaGraftFlag(C,perceptionItemFlag(C,raw),S)"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "export function nativePerceptionCheckRoll("
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "__nativeVecnaGraftSourceCurrent"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "proof[1]?.value?.current!==true"
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.sourceSpec=function"
+    ],
+    [
+     "src/data/lib/vecna-graft-controller.js",
+     "export function createVecnaGraftsController("
+    ],
+    [
+     "src/app/17-logic-tab-sync-and-test-hooks.js",
+     "function vecnaGraftsInventoryProjection("
+    ]
+   ],
+   "consumerTests": [
+    "tests/vecna_graft_builtin_gx.mjs",
+    "tests/vecna_graft_initiative.mjs",
+    "tests/vecna_graft_native_sources.mjs",
+    "tests/vecna_graft_sources.mjs",
+    "tests/vecna_grafts.mjs",
+    "tests/vecna_grafts_app17.mjs",
+    "tests/vecna_grafts_backend.mjs",
+    "tests/vecna_grafts_runtime.mjs",
+    "tests/vecna_grafts_ui.mjs"
+   ],
+   "test": "U63 actual native paired Vecna Initiative",
+   "note": "U63 current original Eye AND Hand require distinct factual physical graft histories, both source-present attached parts, exact original/resolved definitions and actual allocated attunement. Equipped=false is valid. Known exact native Truesight/Icy Touch GX defaults are retained; changed/custom/legacy definitions cannot grant the current property. Actual cfx Initiative consumes the joint-only flag and actual qualified native FX rolls two d20s; ordinary Perception and legacy rows gain nothing. Captured actor/history/source and required live source certificate reject stale or unavailable-provider dice. Actual controller admits/attachments/detach and protected publication preserve authoritative optional history; no automatic death/HP mutation, spellcasting, STR or other Vecna clause is credited. FX actual cfx consumers measure Initiative Advantage attached1/unattuned0/detached0 with no old-capability grant."
   }
  ]
 }

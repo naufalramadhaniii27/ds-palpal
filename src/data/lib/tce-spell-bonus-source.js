@@ -4,7 +4,7 @@ import{itemInUse,itemQuantity}from'./attunement.js';
 const own=(v,k)=>v!=null&&Object.prototype.hasOwnProperty.call(v,k),fail=reason=>({recognized:true,certified:false,bonus:0,reason});
 function data(v,k){const d=Object.getOwnPropertyDescriptor(v,k);return !!d&&d.enumerable&&own(d,'value')}
 function quantityValid(row){if(!own(row,'q'))return true;if(!data(row,'q')||!['number','string'].includes(typeof row.q))return false;const quantity=Number(row.q);return Number.isSafeInteger(quantity)&&quantity>0&&quantity===itemQuantity(row)}
-const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat','instrumentSpells'];
+const foreign=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat','instrumentSpells','vecnaGraft'];
 export function tceSpellBonusCustom(frame,kind){
  try{
   const item=frame?.item,items=Array.isArray(frame?.customItems)?frame.customItems:[],custom=items.find(r=>(Array.isArray(r)?r[0]:r?.n)===item),override=own(frame?.fxOverrides,item)?frame.fxOverrides[item]:null,fx=custom?(Array.isArray(custom)?custom[5]?.fx:custom.fx):override?.fx,field=kind==='atk'?'spellAtk':'spellDc';

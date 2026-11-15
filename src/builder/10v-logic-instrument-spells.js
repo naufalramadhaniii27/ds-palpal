@@ -58,7 +58,7 @@ export function instrumentProjectSpells(C,a){
  return rows;
 }
 function oldPool(row,index,r){return r?.item===1&&!own(r,'instrumentSpell')&&r.invIndex===index&&r.f===row.n&&Number.isSafeInteger(r.max)&&[4,7,8].includes(r.max);}
-const OTHER_ITEM_OWNERS=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat'];
+const OTHER_ITEM_OWNERS=['storedSpells','spellGem','tattoo','slotRecovery','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat','vecnaGraft'];
 function genuineInstrumentRow(row){
  if(!row||OTHER_ITEM_OWNERS.some(field=>own(row,field))||!instrumentSpellsMarker(row).ok||!originalInstrumentDefinition(row.n))return false;const definition=lateGet('DMAP')[row.n],names=[row.n,key(row),definition[0]];
  return !names.some(name=>own(fxo(),name)||own(gx().item,name))&&!(build().custLib||[]).some(value=>names.includes(Array.isArray(value)?value[0]:value?.n));

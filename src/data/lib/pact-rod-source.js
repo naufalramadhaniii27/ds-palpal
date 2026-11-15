@@ -5,7 +5,7 @@ import {assertSlotRecoveryCurrent} from './slot-recovery.js';
 const own=(o,k)=>o!=null&&Object.prototype.hasOwnProperty.call(o,k);
 const obj=o=>o!==null&&typeof o==='object'&&!Array.isArray(o);
 const fail=reason=>({certified:false,bonus:0,reason});
-const foreign=['storedSpells','spellGem','tattoo','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat','instrumentSpells'];
+const foreign=['storedSpells','spellGem','tattoo','studyBook','bagTricks','hornValhalla','defender','birdToken','magicRopes','timedDefenses','iounOrbit','rodAbsorption','travelGoat','instrumentSpells','vecnaGraft'];
 function canonical(value){
  const seen=new Set();
  function encode(v){

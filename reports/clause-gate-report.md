@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9219 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9221 |
 | Info (tag terdokumentasi) | 27239 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1481, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 975, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 228, STD:ASI 225, NUMONLY:ZERO 172, ROLL:LAST_CHARGE 142, OBJECT:STATS 109, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5654 |
+| Uncovered | 5652 |
 | Uncovered dengan angka | 3312 |
-| Uncovered dengan kelas kata kunci mekanik | 5283 |
+| Uncovered dengan kelas kata kunci mekanik | 5281 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 371 |
 | Angka yang tidak dijelaskan record mana pun | 3123 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4823 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4821 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 262 |
 | Waktu | muat data 15 s, analisis 16 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 168 ditangkap (56.2%). Hapus semua atom kelas yang dibutuhkan: 174 ditangkap (58.2%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 189 ditangkap (63.2%). Hapus semua atom kelas yang dibutuhkan: 193 ditangkap (64.5%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 290 ditangkap (96.7%), semua atom kelas dihapus: 293 ditangkap (97.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 291 ditangkap (97.0%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -42,7 +42,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | GX | 1940 |
 | wxs | 849 |
 | LU_X | 652 |
-| CODE | 557 |
+| CODE | 559 |
 | AUTO | 467 |
 | species | 440 |
 | ITEM_SPELLS | 370 |
@@ -68,7 +68,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SPELL | 3208 | 831 | 25.9% |
 | DMG | 4548 | 742 | 16.3% |
 | SPEED | 1321 | 473 | 35.8% |
-| ADV | 1750 | 449 | 25.7% |
+| ADV | 1750 | 447 | 25.5% |
 | PROF | 1048 | 432 | 41.2% |
 | CHOICE | 1598 | 401 | 25.1% |
 | RES | 1294 | 386 | 29.8% |
@@ -84,7 +84,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | HP | 178 | 98 | 55.1% |
 | NUM-DICE | 1446 | 69 | 4.8% |
 | ABIL | 382 | 65 | 17.0% |
-| INIT | 119 | 51 | 42.9% |
+| INIT | 119 | 49 | 41.2% |
 | NUM-DIST | 5100 | 38 | 0.7% |
 | NUM-DUR | 3250 | 32 | 1.0% |
 
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 5058 | 11637 | 0 | 2812 |
+| item | 19507 | 5060 | 11637 | 0 | 2810 |
 | species | 1320 | 726 | 365 | 0 | 229 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2791 | 6309 | 1483 | 14.0% |
+| dmg | 10583 | 2793 | 6309 | 1481 | 14.0% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -194,7 +194,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | RESOURCE | 684 | 548 |
 | SPELL | 583 | 90 |
 | DMG | 547 | 502 |
-| ADV | 442 | 151 |
+| ADV | 440 | 151 |
 | SPEED | 395 | 309 |
 | PROF | 394 | 133 |
 | NUM | 328 | 328 |
@@ -347,7 +347,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Investigator/Inquisitor|Divine Strike#1` Once on each of your turns, when you take the Attack action and hit a creature with a weapon, it takes an extra 1d8 Necrotic or Radiant damage (your choice). | no record for DMG; number 1d8 unexplained
 - `sub|Paladin/Oath of Revelry|Aura of Fraternity#1` While at least one ally is adjacent to you, you and each ally within 5 ft deal extra 1d4 damage on melee attacks. | no record for DMG; number 1d4,5 unexplained
 
-### ADV (442 uncovered)
+### ADV (440 uncovered)
 
 - `class|Rogue|Sneak Attack#2` Once per turn, if you have Advantage on an attack roll that uses a Finesse or Ranged weapon and the attack hits a creature, you can deal an extra 1d6 damage to that creature. | no record for ADV
 - `feat|Convincing Inquisitor|Convincing Inquisitor#6` When you succeed on a Wisdom (Insight) check made with the Search action to detect lies or evasion, you have Advantage on Initiative rolls for combat against that creature for 1 hour. | no record for ADV,INIT; number 1 unexplained
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|dmg|Wave#4` Attack rolls and damage rolls you make with this magic trident gain a +3 bonus. -> info:NUMONLY:ROLL
-- class `item|dmg|Wave#4` Attack rolls and damage rolls you make with this magic trident gain a +3 bonus. -> info:NUMONLY:ROLL
-- record `item|tce|+2 Amulet of the Devout#3` While you wear this amulet, you can use your Channel Divinity feature without expending one of the feature's uses. -> info:REST:NONUM
-- class `item|tce|+2 Amulet of the Devout#3` While you wear this amulet, you can use your Channel Divinity feature without expending one of the feature's uses. -> info:REST:NONUM
-- record `sub|Bard/College of Chronology (Dark Matter)|Reorder Events#3` Long Rest to use again. -> covered
-- class `sub|Bard/College of Chronology (Dark Matter)|Reorder Events#3` Long Rest to use again. -> info:REST:NONUM
-- record `sub|Rogue/Magic Stealer|Occult Shroud#1` After a Long Rest you can cast Nondetection on yourself only, with a 24-hour duration. -> covered
-- record `item|dmg|Axe of the Dwarvish Lords#12` The axe counts as having the Thrown property: its normal range is 20 feet and its long range is 60 feet. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Axe of the Dwarvish Lords#12` The axe counts as having the Thrown property: its normal range is 20 feet and its long range is 60 feet. -> info:NUMONLY:GEOMETRY
-- record `item|dmg14|Instrument of the Bards, Cli Lyre#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
-- class `item|dmg14|Instrument of the Bards, Cli Lyre#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
-- record `sub|Cleric/Shadow Domain|Shadow Spells#1` Always prepared from the listed Cleric levels: 3 Crown of Madness, Dissonant Whispers, Mind Spike, Shadow Word: Pain. -> covered
-- class `sub|Cleric/Shadow Domain|Shadow Spells#1` Always prepared from the listed Cleric levels: 3 Crown of Madness, Dissonant Whispers, Mind Spike, Shadow Word: Pain. -> covered
-- record `feat|Boon of the Furious Storm|Boon of the Furious Storm#4` You have Resistance to Lightning and Thunder damage. -> covered
-- record `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#15` If you end your move with no creature within 5 feet, you must Dash toward the nearest. -> info:NUMONLY:GEOMETRY
-- class `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#15` If you end your move with no creature within 5 feet, you must Dash toward the nearest. -> info:NUMONLY:GEOMETRY
-- record `species|Arisen|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
-- class `species|Arisen|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
-- record `sub|Warmage/House of Roulette|Spinning Shield#4` You cannot use this again until you finish a Short or Long Rest. -> covered
-- class `sub|Warmage/House of Roulette|Spinning Shield#4` You cannot use this again until you finish a Short or Long Rest. -> info:REST:NONUM
+- record `item|dmg|Hacker Hands#5` You cannot do this again until you finish a Long Rest. -> info:REST:NONUM
+- class `item|dmg|Hacker Hands#5` You cannot do this again until you finish a Long Rest. -> info:REST:NONUM
+- record `sub|Cleric/Pestilence Domain|Pestilence Domain Spells#2` 5 Bestow Curse, Remove Curse. -> info:NUMONLY:TABLE
+- class `sub|Cleric/Pestilence Domain|Pestilence Domain Spells#2` 5 Bestow Curse, Remove Curse. -> info:NUMONLY:TABLE
+- record `feat|Fey Transformation: Stage 2|Fey Transformation: Stage 2#3` You also gain the Stage 2 Flaw. -> info:NUMONLY:TABLE
+- class `feat|Fey Transformation: Stage 2|Fey Transformation: Stage 2#3` You also gain the Stage 2 Flaw. -> info:NUMONLY:TABLE
+- record `item|dmg|Figurine of Wondrous Power, Golden Lions#14` Each can become a lion for up to 1 hour. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Figurine of Wondrous Power, Golden Lions#14` Each can become a lion for up to 1 hour. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Rope of Entanglement#9` Its Armor Class is 20, it has 20 Hit Points, and it has Immunity to Poison and Psychic damage. -> info:OBJECT:STATS
+- class `item|dmg|Rope of Entanglement#9` Its Armor Class is 20, it has 20 Hit Points, and it has Immunity to Poison and Psychic damage. -> info:OBJECT:STATS
+- record `sub|Sorcerer/Shadow Magic|Strength of the Grave#2` On a success you drop to 1 Hit Point instead. -> info:NUMONLY:TEXT
+- class `sub|Sorcerer/Shadow Magic|Strength of the Grave#2` On a success you drop to 1 Hit Point instead. -> info:NUMONLY:TEXT
+- class `item|dmg|Tinderstrike#5` When you hit with it, the target takes an extra 2d6 fire damage. -> info:ACTIVE:TRIGGER
+- record `item|dmg|Potion of Giant Strength (frost)#3` If your Strength is already 23 or higher, the potion does nothing for you. -> info:NUMONLY:TEXT
+- class `item|dmg|Potion of Giant Strength (frost)#3` If your Strength is already 23 or higher, the potion does nothing for you. -> info:NUMONLY:TEXT
+- record `sub|Druid/Circle of Blood (2014)|Create Blood Elemental#3` Long Rest to use again. -> covered
+- class `sub|Druid/Circle of Blood (2014)|Create Blood Elemental#3` Long Rest to use again. -> info:REST:NONUM
+- record `item|dmg|Wand of Viscid Globs#12` A wand of viscid globs is destroyed if exposed to sunlight for 1 hour without interruption. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Wand of Viscid Globs#12` A wand of viscid globs is destroyed if exposed to sunlight for 1 hour without interruption. -> info:NUMONLY:GEOMETRY
+- record `class|Witch|Spellcasting#3` You know two Witch cantrips, and you learn more at the levels in the Cantrips column. -> info:TABLE:CLASS
+- class `class|Witch|Spellcasting#3` You know two Witch cantrips, and you learn more at the levels in the Cantrips column. -> info:TABLE:CLASS
+- record `feat|Nimble Physique (GH14C)|Nimble Physique (GH14C)#3` You can do this a number of times equal to your Dexterity modifier (minimum once) per Long Rest. -> info:REST:NONUM
+- class `feat|Nimble Physique (GH14C)|Nimble Physique (GH14C)#3` You can do this a number of times equal to your Dexterity modifier (minimum once) per Long Rest. -> info:REST:NONUM
+- record `sub|Vagabond/Adrenaline Junkie|Live Fast#4` You take no damage from falling 60 feet or less. -> info:NUMONLY:GEOMETRY
+- class `sub|Vagabond/Adrenaline Junkie|Live Fast#4` You take no damage from falling 60 feet or less. -> info:NUMONLY:GEOMETRY
+- record `feat|Aberrant Dragonmark|Aberrant Dragonmark#15` On an odd roll, one other creature within 30 feet takes Force damage equal to the number. -> info:NUMONLY:ROLL
+- class `feat|Aberrant Dragonmark|Aberrant Dragonmark#15` On an odd roll, one other creature within 30 feet takes Force damage equal to the number. -> info:NUMONLY:ROLL
 - record `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
 - class `sub|Artificer/Forceforger|Force Panel#10` When you or an ally within 5 ft of it takes damage from an attack of a type other than Poison or Psychic, the panel can  -> info:NUMONLY:GEOMETRY
-- record `item|ggr|Rakdos Riteknife#13` If the target dies, you can't use this property again until you finish a long rest. -> info:REST:NONUM
-- class `item|ggr|Rakdos Riteknife#13` If the target dies, you can't use this property again until you finish a long rest. -> info:REST:NONUM
-- record `item|dmg|Bolt, +1#1` Attack rolls and damage rolls you make with this magic bolt get a +1 bonus. -> info:NUMONLY:ROLL
-- class `item|dmg|Bolt, +1#1` Attack rolls and damage rolls you make with this magic bolt get a +1 bonus. -> info:NUMONLY:ROLL
-- record `class|Barbarian|Rage#4` Finishing a Short Rest restores one expended use, and finishing a Long Rest restores all of them. -> covered
-- class `class|Barbarian|Rage#4` Finishing a Short Rest restores one expended use, and finishing a Long Rest restores all of them. -> info:REST:NONUM
-- record `item|dmg|Boon of Peerless Aim#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
-- class `item|dmg|Boon of Peerless Aim#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
+- record `sub|Druid/Circle of Configuration|Circle of Configuration Spells#1` Always prepared from the listed Druid levels: 3 Circuit Breaker, Technical Difficulties. -> covered

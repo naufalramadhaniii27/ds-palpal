@@ -45,4 +45,5 @@ bind(["__bldPactRodSpellInfo", "__bldPactRodSpellCapture", "__bldPactRodSpellCur
 bind(["__bldRodAbsorptionCastPrepare", "__bldRodAbsorptionCastCurrent", "__bldRodAbsorptionCastCommit"]);
 bind(["__bldRodAbsorptionInfo", "__bldRodAbsorptionCapture", "__bldRodAbsorptionTokenCurrent", "__bldRodAbsorptionCommand", "__bldRodAbsorptionAcceptReceipt", "__bldRodAbsorptionInventoryOwner", "__rodAbsorptionSave"]);
 bind(["__bldTravelGoatInfo", "__bldTravelGoatCapture", "__bldTravelGoatTokenCurrent", "__bldTravelGoatCommand", "__bldTravelGoatAcceptReceipt", "__bldTravelGoatInventoryOwner", "__travelGoatInventoryWriteAllowed", "__travelGoatSave"]);
+bind(["__bldVecnaGraftsInfo", "__bldVecnaGraftsCapture", "__bldVecnaGraftsTokenCurrent", "__bldVecnaGraftsCommand", "__bldVecnaGraftsAcceptReceipt", "__bldVecnaGraftsInventoryOwner", "__vecnaGraftsSave", "__nativeVecnaGraftSourceCurrent", "__vecnaGraftsInventoryWriteAllowed"]);
 export const ENV_NAMES = Object.keys(env);

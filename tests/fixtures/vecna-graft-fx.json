@@ -1,0 +1,1134 @@
+{
+  "provenance": "actual03 allocatedATT, original10w source and native12j/12zj; actual25t factual admit/attachment/detach commands; actualInitiativeCF/FXdice tested separately",
+  "cases": [
+    {
+      "phase": "attached",
+      "build": {
+        "name": "Actor",
+        "cid": "actor",
+        "inv": [
+          {
+            "n": "Eye of Vecna",
+            "q": 1,
+            "eq": false,
+            "attuned": true,
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-1"
+            }
+          },
+          {
+            "n": "Hand of Vecna",
+            "q": 1,
+            "eq": false,
+            "attuned": true,
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-2"
+            }
+          }
+        ],
+        "custLib": [],
+        "cls": "Fighter",
+        "sub": "",
+        "level": 1,
+        "rs": "2024",
+        "base": {
+          "STR": 10,
+          "DEX": 10,
+          "CON": 10,
+          "INT": 10,
+          "WIS": 10,
+          "CHA": 10
+        },
+        "ch": {},
+        "src": {
+          "core": true,
+          "dmg": true,
+          "dmg14": true
+        },
+        "_app": 134
+      },
+      "state": {
+        "notes": "preserve",
+        "cust": {},
+        "used": {
+          "unrelated": 3
+        },
+        "vecnaGrafts": {
+          "v": 1,
+          "nextPhysical": 3,
+          "nextEvent": 3,
+          "physical": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "part": "eye",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "admittedAtEvent": 1
+            },
+            {
+              "id": "vg-2",
+              "profile": "current-hand",
+              "part": "hand",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Hand of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]],[\"fx\",[\"object\",[[\"setsc\",[\"array\",2,[[\"0\",\"STR\"],[\"1\",20]]]]]]]]]]]]",
+              "admittedAtEvent": 2
+            }
+          ],
+          "events": [
+            {
+              "id": "vge-1",
+              "kind": "attachment",
+              "physicalId": "vg-1",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEyeFusedIntoThisCharactersSocket": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            },
+            {
+              "id": "vge-2",
+              "kind": "attachment",
+              "physicalId": "vg-2",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualHandGraftedOntoThisCharactersLeftStump": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            }
+          ]
+        }
+      },
+      "sheet": {
+        "name": "Actor",
+        "cid": "actor",
+        "level": 1,
+        "abilities": {
+          "STR": {
+            "base": 10,
+            "bonus": []
+          },
+          "DEX": {
+            "base": 10,
+            "bonus": []
+          },
+          "CON": {
+            "base": 10,
+            "bonus": []
+          },
+          "INT": {
+            "base": 10,
+            "bonus": []
+          },
+          "WIS": {
+            "base": 10,
+            "bonus": []
+          },
+          "CHA": {
+            "base": 10,
+            "bonus": []
+          }
+        },
+        "inv": [
+          {
+            "n": "Eye of Vecna",
+            "key": "Eye of Vecna",
+            "q": 1,
+            "w": 0,
+            "eq": false,
+            "attuned": true,
+            "att": 1,
+            "attunedActive": true,
+            "rar": "Artifact",
+            "d": "Artifact magic item. ",
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-1"
+            },
+            "type": "Wondrous Item",
+            "cost": 0,
+            "equippable": true
+          },
+          {
+            "n": "Hand of Vecna",
+            "key": "Hand of Vecna",
+            "q": 1,
+            "w": 0,
+            "eq": false,
+            "attuned": true,
+            "att": 1,
+            "attunedActive": true,
+            "rar": "Artifact",
+            "d": "Artifact magic item. ",
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-2"
+            },
+            "type": "Wondrous Item",
+            "cost": 0,
+            "equippable": true
+          }
+        ],
+        "attacks": [
+          {
+            "n": "Longbow",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          },
+          {
+            "n": "Shortbow",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          },
+          {
+            "n": "Longsword",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          }
+        ],
+        "ac": {
+          "base": 10,
+          "baseSrc": "Unarmored",
+          "dex": "full",
+          "bonus": []
+        },
+        "skills": [
+          {
+            "n": "Acrobatics",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Animal Handling",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Arcana",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Athletics",
+            "ab": "STR",
+            "p": 0
+          },
+          {
+            "n": "Deception",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "History",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Insight",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Intimidation",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Investigation",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Medicine",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Nature",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Perception",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Performance",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Persuasion",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Religion",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Sleight of Hand",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Stealth",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Survival",
+            "ab": "WIS",
+            "p": 0
+          }
+        ],
+        "itemAdv": [
+          {
+            "k": "Initiative",
+            "s": "Eye and Hand of Vecna"
+          }
+        ],
+        "profs": {
+          "armor": "None",
+          "weapons": "",
+          "tools": "None"
+        },
+        "profSrc": {
+          "armor": [],
+          "weapons": [],
+          "tools": []
+        },
+        "speed": 30,
+        "speedSrc": "",
+        "vecnaGrafts": {
+          "v": 1,
+          "nextPhysical": 3,
+          "nextEvent": 3,
+          "physical": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "part": "eye",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "admittedAtEvent": 1
+            },
+            {
+              "id": "vg-2",
+              "profile": "current-hand",
+              "part": "hand",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Hand of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]],[\"fx\",[\"object\",[[\"setsc\",[\"array\",2,[[\"0\",\"STR\"],[\"1\",20]]]]]]]]]]]]",
+              "admittedAtEvent": 2
+            }
+          ],
+          "events": [
+            {
+              "id": "vge-1",
+              "kind": "attachment",
+              "physicalId": "vg-1",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEyeFusedIntoThisCharactersSocket": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            },
+            {
+              "id": "vge-2",
+              "kind": "attachment",
+              "physicalId": "vg-2",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualHandGraftedOntoThisCharactersLeftStump": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            }
+          ]
+        },
+        "vecnaGraftSources": {
+          "v": 1,
+          "inventoryFingerprint": "[\"array\",2,[[\"0\",[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Artifact magic item. \"],[\"eq\",false],[\"equippable\",true],[\"key\",\"Eye of Vecna\"],[\"n\",\"Eye of Vecna\"],[\"q\",1],[\"rar\",\"Artifact\"],[\"type\",\"Wondrous Item\"],[\"vecnaGraft\",[\"object\",[[\"id\",\"vg-1\"],[\"v\",1]]]],[\"w\",0]]]],[\"1\",[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Artifact magic item. \"],[\"eq\",false],[\"equippable\",true],[\"key\",\"Hand of Vecna\"],[\"n\",\"Hand of Vecna\"],[\"q\",1],[\"rar\",\"Artifact\"],[\"type\",\"Wondrous Item\"],[\"vecnaGraft\",[\"object\",[[\"id\",\"vg-2\"],[\"v\",1]]]],[\"w\",0]]]]]]",
+          "authorityFingerprint": "[\"object\",[[\"events\",[\"array\",2,[[\"0\",[\"object\",[[\"facts\",[\"object\",[[\"actualEyeFusedIntoThisCharactersSocket\",true],[\"actualPhysicalIdentityVerified\",true],[\"printedRemovalConsequenceAcknowledged\",true]]]],[\"id\",\"vge-1\"],[\"kind\",\"attachment\"],[\"physicalId\",\"vg-1\"]]]],[\"1\",[\"object\",[[\"facts\",[\"object\",[[\"actualHandGraftedOntoThisCharactersLeftStump\",true],[\"actualPhysicalIdentityVerified\",true],[\"printedRemovalConsequenceAcknowledged\",true]]]],[\"id\",\"vge-2\"],[\"kind\",\"attachment\"],[\"physicalId\",\"vg-2\"]]]]]]],[\"nextEvent\",3],[\"nextPhysical\",3],[\"physical\",[\"array\",2,[[\"0\",[\"object\",[[\"admittedAtEvent\",1],[\"id\",\"vg-1\"],[\"itemFingerprint\",\"[\\\"array\\\",6,[[\\\"0\\\",\\\"Eye of Vecna\\\"],[\\\"1\\\",\\\"Wondrous Item\\\"],[\\\"2\\\",\\\"Artifact\\\"],[\\\"3\\\",1],[\\\"4\\\",\\\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\\\n**Truesight.** You have Truesight with a range of 240 feet.\\\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\\\n**Danger Sense.** Your Initiative rolls have Advantage.\\\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\\\"],[\\\"5\\\",[\\\"object\\\",[[\\\"ch\\\",[\\\"array\\\",3,[[\\\"0\\\",8],[\\\"1\\\",\\\"1d4+4\\\"],[\\\"2\\\",\\\"dawn\\\"]]]]]]]]]\"],[\"part\",\"eye\"],[\"profile\",\"current-eye\"]]]],[\"1\",[\"object\",[[\"admittedAtEvent\",2],[\"id\",\"vg-2\"],[\"itemFingerprint\",\"[\\\"array\\\",6,[[\\\"0\\\",\\\"Hand of Vecna\\\"],[\\\"1\\\",\\\"Wondrous Item\\\"],[\\\"2\\\",\\\"Artifact\\\"],[\\\"3\\\",1],[\\\"4\\\",\\\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\\\n**Danger Sense.** Your Initiative rolls have Advantage.\\\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\\\"],[\\\"5\\\",[\\\"object\\\",[[\\\"ch\\\",[\\\"array\\\",3,[[\\\"0\\\",8],[\\\"1\\\",\\\"1d4+4\\\"],[\\\"2\\\",\\\"dawn\\\"]]]],[\\\"fx\\\",[\\\"object\\\",[[\\\"setsc\\\",[\\\"array\\\",2,[[\\\"0\\\",\\\"STR\\\"],[\\\"1\\\",20]]]]]]]]]]]]\"],[\"part\",\"hand\"],[\"profile\",\"current-hand\"]]]]]]],[\"v\",1]]]",
+          "bindings": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "index": 0,
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "inventoryName": "Eye of Vecna",
+              "inventoryKey": "Eye of Vecna"
+            },
+            {
+              "id": "vg-2",
+              "profile": "current-hand",
+              "index": 1,
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Hand of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]],[\"fx\",[\"object\",[[\"setsc\",[\"array\",2,[[\"0\",\"STR\"],[\"1\",20]]]]]]]]]]]]",
+              "inventoryName": "Hand of Vecna",
+              "inventoryKey": "Hand of Vecna"
+            }
+          ]
+        }
+      },
+      "expectedAdvantage": 1
+    },
+    {
+      "phase": "unattuned",
+      "build": {
+        "name": "Actor",
+        "cid": "actor",
+        "inv": [
+          {
+            "n": "Eye of Vecna",
+            "q": 1,
+            "eq": false,
+            "attuned": true,
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-1"
+            }
+          },
+          {
+            "n": "Hand of Vecna",
+            "q": 1,
+            "eq": false,
+            "attuned": false,
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-2"
+            }
+          }
+        ],
+        "custLib": [],
+        "cls": "Fighter",
+        "sub": "",
+        "level": 1,
+        "rs": "2024",
+        "base": {
+          "STR": 10,
+          "DEX": 10,
+          "CON": 10,
+          "INT": 10,
+          "WIS": 10,
+          "CHA": 10
+        },
+        "ch": {},
+        "src": {
+          "core": true,
+          "dmg": true,
+          "dmg14": true
+        },
+        "_app": 134
+      },
+      "state": {
+        "notes": "preserve",
+        "cust": {},
+        "used": {
+          "unrelated": 3
+        },
+        "vecnaGrafts": {
+          "v": 1,
+          "nextPhysical": 3,
+          "nextEvent": 3,
+          "physical": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "part": "eye",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "admittedAtEvent": 1
+            },
+            {
+              "id": "vg-2",
+              "profile": "current-hand",
+              "part": "hand",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Hand of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]],[\"fx\",[\"object\",[[\"setsc\",[\"array\",2,[[\"0\",\"STR\"],[\"1\",20]]]]]]]]]]]]",
+              "admittedAtEvent": 2
+            }
+          ],
+          "events": [
+            {
+              "id": "vge-1",
+              "kind": "attachment",
+              "physicalId": "vg-1",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEyeFusedIntoThisCharactersSocket": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            },
+            {
+              "id": "vge-2",
+              "kind": "attachment",
+              "physicalId": "vg-2",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualHandGraftedOntoThisCharactersLeftStump": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            }
+          ]
+        }
+      },
+      "sheet": {
+        "name": "Actor",
+        "cid": "actor",
+        "level": 1,
+        "abilities": {
+          "STR": {
+            "base": 10,
+            "bonus": []
+          },
+          "DEX": {
+            "base": 10,
+            "bonus": []
+          },
+          "CON": {
+            "base": 10,
+            "bonus": []
+          },
+          "INT": {
+            "base": 10,
+            "bonus": []
+          },
+          "WIS": {
+            "base": 10,
+            "bonus": []
+          },
+          "CHA": {
+            "base": 10,
+            "bonus": []
+          }
+        },
+        "inv": [
+          {
+            "n": "Eye of Vecna",
+            "key": "Eye of Vecna",
+            "q": 1,
+            "w": 0,
+            "eq": false,
+            "attuned": true,
+            "att": 1,
+            "attunedActive": true,
+            "rar": "Artifact",
+            "d": "Artifact magic item. ",
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-1"
+            },
+            "type": "Wondrous Item",
+            "cost": 0,
+            "equippable": true
+          },
+          {
+            "n": "Hand of Vecna",
+            "key": "Hand of Vecna",
+            "q": 1,
+            "w": 0,
+            "eq": false,
+            "attuned": false,
+            "att": 1,
+            "attunedActive": false,
+            "attuneReason": "off",
+            "rar": "Artifact",
+            "d": "Artifact magic item. ",
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-2"
+            },
+            "type": "Wondrous Item",
+            "cost": 0,
+            "equippable": true
+          }
+        ],
+        "attacks": [
+          {
+            "n": "Longbow",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          },
+          {
+            "n": "Shortbow",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          },
+          {
+            "n": "Longsword",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          }
+        ],
+        "ac": {
+          "base": 10,
+          "baseSrc": "Unarmored",
+          "dex": "full",
+          "bonus": []
+        },
+        "skills": [
+          {
+            "n": "Acrobatics",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Animal Handling",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Arcana",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Athletics",
+            "ab": "STR",
+            "p": 0
+          },
+          {
+            "n": "Deception",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "History",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Insight",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Intimidation",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Investigation",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Medicine",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Nature",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Perception",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Performance",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Persuasion",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Religion",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Sleight of Hand",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Stealth",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Survival",
+            "ab": "WIS",
+            "p": 0
+          }
+        ],
+        "itemAdv": [],
+        "profs": {
+          "armor": "None",
+          "weapons": "",
+          "tools": "None"
+        },
+        "profSrc": {
+          "armor": [],
+          "weapons": [],
+          "tools": []
+        },
+        "speed": 30,
+        "speedSrc": "",
+        "vecnaGrafts": {
+          "v": 1,
+          "nextPhysical": 3,
+          "nextEvent": 3,
+          "physical": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "part": "eye",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "admittedAtEvent": 1
+            },
+            {
+              "id": "vg-2",
+              "profile": "current-hand",
+              "part": "hand",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Hand of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]],[\"fx\",[\"object\",[[\"setsc\",[\"array\",2,[[\"0\",\"STR\"],[\"1\",20]]]]]]]]]]]]",
+              "admittedAtEvent": 2
+            }
+          ],
+          "events": [
+            {
+              "id": "vge-1",
+              "kind": "attachment",
+              "physicalId": "vg-1",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEyeFusedIntoThisCharactersSocket": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            },
+            {
+              "id": "vge-2",
+              "kind": "attachment",
+              "physicalId": "vg-2",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualHandGraftedOntoThisCharactersLeftStump": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            }
+          ]
+        },
+        "vecnaGraftSources": {
+          "v": 1,
+          "inventoryFingerprint": "[\"array\",2,[[\"0\",[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Artifact magic item. \"],[\"eq\",false],[\"equippable\",true],[\"key\",\"Eye of Vecna\"],[\"n\",\"Eye of Vecna\"],[\"q\",1],[\"rar\",\"Artifact\"],[\"type\",\"Wondrous Item\"],[\"vecnaGraft\",[\"object\",[[\"id\",\"vg-1\"],[\"v\",1]]]],[\"w\",0]]]],[\"1\",[\"object\",[[\"att\",1],[\"attuneReason\",\"off\"],[\"attuned\",false],[\"attunedActive\",false],[\"cost\",0],[\"d\",\"Artifact magic item. \"],[\"eq\",false],[\"equippable\",true],[\"key\",\"Hand of Vecna\"],[\"n\",\"Hand of Vecna\"],[\"q\",1],[\"rar\",\"Artifact\"],[\"type\",\"Wondrous Item\"],[\"vecnaGraft\",[\"object\",[[\"id\",\"vg-2\"],[\"v\",1]]]],[\"w\",0]]]]]]",
+          "authorityFingerprint": "[\"object\",[[\"events\",[\"array\",2,[[\"0\",[\"object\",[[\"facts\",[\"object\",[[\"actualEyeFusedIntoThisCharactersSocket\",true],[\"actualPhysicalIdentityVerified\",true],[\"printedRemovalConsequenceAcknowledged\",true]]]],[\"id\",\"vge-1\"],[\"kind\",\"attachment\"],[\"physicalId\",\"vg-1\"]]]],[\"1\",[\"object\",[[\"facts\",[\"object\",[[\"actualHandGraftedOntoThisCharactersLeftStump\",true],[\"actualPhysicalIdentityVerified\",true],[\"printedRemovalConsequenceAcknowledged\",true]]]],[\"id\",\"vge-2\"],[\"kind\",\"attachment\"],[\"physicalId\",\"vg-2\"]]]]]]],[\"nextEvent\",3],[\"nextPhysical\",3],[\"physical\",[\"array\",2,[[\"0\",[\"object\",[[\"admittedAtEvent\",1],[\"id\",\"vg-1\"],[\"itemFingerprint\",\"[\\\"array\\\",6,[[\\\"0\\\",\\\"Eye of Vecna\\\"],[\\\"1\\\",\\\"Wondrous Item\\\"],[\\\"2\\\",\\\"Artifact\\\"],[\\\"3\\\",1],[\\\"4\\\",\\\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\\\n**Truesight.** You have Truesight with a range of 240 feet.\\\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\\\n**Danger Sense.** Your Initiative rolls have Advantage.\\\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\\\"],[\\\"5\\\",[\\\"object\\\",[[\\\"ch\\\",[\\\"array\\\",3,[[\\\"0\\\",8],[\\\"1\\\",\\\"1d4+4\\\"],[\\\"2\\\",\\\"dawn\\\"]]]]]]]]]\"],[\"part\",\"eye\"],[\"profile\",\"current-eye\"]]]],[\"1\",[\"object\",[[\"admittedAtEvent\",2],[\"id\",\"vg-2\"],[\"itemFingerprint\",\"[\\\"array\\\",6,[[\\\"0\\\",\\\"Hand of Vecna\\\"],[\\\"1\\\",\\\"Wondrous Item\\\"],[\\\"2\\\",\\\"Artifact\\\"],[\\\"3\\\",1],[\\\"4\\\",\\\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\\\n**Danger Sense.** Your Initiative rolls have Advantage.\\\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\\\"],[\\\"5\\\",[\\\"object\\\",[[\\\"ch\\\",[\\\"array\\\",3,[[\\\"0\\\",8],[\\\"1\\\",\\\"1d4+4\\\"],[\\\"2\\\",\\\"dawn\\\"]]]],[\\\"fx\\\",[\\\"object\\\",[[\\\"setsc\\\",[\\\"array\\\",2,[[\\\"0\\\",\\\"STR\\\"],[\\\"1\\\",20]]]]]]]]]]]]\"],[\"part\",\"hand\"],[\"profile\",\"current-hand\"]]]]]]],[\"v\",1]]]",
+          "bindings": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "index": 0,
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "inventoryName": "Eye of Vecna",
+              "inventoryKey": "Eye of Vecna"
+            }
+          ]
+        }
+      },
+      "expectedAdvantage": 0
+    },
+    {
+      "phase": "detached",
+      "build": {
+        "name": "Actor",
+        "cid": "actor",
+        "inv": [
+          {
+            "n": "Eye of Vecna",
+            "q": 1,
+            "eq": false,
+            "attuned": true,
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-1"
+            }
+          },
+          {
+            "n": "Hand of Vecna",
+            "q": 1,
+            "eq": false,
+            "attuned": true,
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-2"
+            }
+          }
+        ],
+        "custLib": [],
+        "cls": "Fighter",
+        "sub": "",
+        "level": 1,
+        "rs": "2024",
+        "base": {
+          "STR": 10,
+          "DEX": 10,
+          "CON": 10,
+          "INT": 10,
+          "WIS": 10,
+          "CHA": 10
+        },
+        "ch": {},
+        "src": {
+          "core": true,
+          "dmg": true,
+          "dmg14": true
+        },
+        "_app": 134
+      },
+      "state": {
+        "notes": "preserve",
+        "cust": {},
+        "used": {
+          "unrelated": 3
+        },
+        "vecnaGrafts": {
+          "v": 1,
+          "nextPhysical": 3,
+          "nextEvent": 4,
+          "physical": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "part": "eye",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "admittedAtEvent": 1
+            },
+            {
+              "id": "vg-2",
+              "profile": "current-hand",
+              "part": "hand",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Hand of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]],[\"fx\",[\"object\",[[\"setsc\",[\"array\",2,[[\"0\",\"STR\"],[\"1\",20]]]]]]]]]]]]",
+              "admittedAtEvent": 2
+            }
+          ],
+          "events": [
+            {
+              "id": "vge-1",
+              "kind": "attachment",
+              "physicalId": "vg-1",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEyeFusedIntoThisCharactersSocket": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            },
+            {
+              "id": "vge-2",
+              "kind": "attachment",
+              "physicalId": "vg-2",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualHandGraftedOntoThisCharactersLeftStump": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            },
+            {
+              "id": "vge-3",
+              "kind": "detach",
+              "physicalId": "vg-2",
+              "facts": {
+                "actualPhysicalRemovalVerified": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            }
+          ]
+        }
+      },
+      "sheet": {
+        "name": "Actor",
+        "cid": "actor",
+        "level": 1,
+        "abilities": {
+          "STR": {
+            "base": 10,
+            "bonus": []
+          },
+          "DEX": {
+            "base": 10,
+            "bonus": []
+          },
+          "CON": {
+            "base": 10,
+            "bonus": []
+          },
+          "INT": {
+            "base": 10,
+            "bonus": []
+          },
+          "WIS": {
+            "base": 10,
+            "bonus": []
+          },
+          "CHA": {
+            "base": 10,
+            "bonus": []
+          }
+        },
+        "inv": [
+          {
+            "n": "Eye of Vecna",
+            "key": "Eye of Vecna",
+            "q": 1,
+            "w": 0,
+            "eq": false,
+            "attuned": true,
+            "att": 1,
+            "attunedActive": true,
+            "rar": "Artifact",
+            "d": "Artifact magic item. ",
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-1"
+            },
+            "type": "Wondrous Item",
+            "cost": 0,
+            "equippable": true
+          },
+          {
+            "n": "Hand of Vecna",
+            "key": "Hand of Vecna",
+            "q": 1,
+            "w": 0,
+            "eq": false,
+            "attuned": true,
+            "att": 1,
+            "attunedActive": true,
+            "rar": "Artifact",
+            "d": "Artifact magic item. ",
+            "vecnaGraft": {
+              "v": 1,
+              "id": "vg-2"
+            },
+            "type": "Wondrous Item",
+            "cost": 0,
+            "equippable": true
+          }
+        ],
+        "attacks": [
+          {
+            "n": "Longbow",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          },
+          {
+            "n": "Shortbow",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          },
+          {
+            "n": "Longsword",
+            "ab": "DEX",
+            "die": "1d8",
+            "dmgBonus": 0,
+            "prof": false
+          }
+        ],
+        "ac": {
+          "base": 10,
+          "baseSrc": "Unarmored",
+          "dex": "full",
+          "bonus": []
+        },
+        "skills": [
+          {
+            "n": "Acrobatics",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Animal Handling",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Arcana",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Athletics",
+            "ab": "STR",
+            "p": 0
+          },
+          {
+            "n": "Deception",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "History",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Insight",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Intimidation",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Investigation",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Medicine",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Nature",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Perception",
+            "ab": "WIS",
+            "p": 0
+          },
+          {
+            "n": "Performance",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Persuasion",
+            "ab": "CHA",
+            "p": 0
+          },
+          {
+            "n": "Religion",
+            "ab": "INT",
+            "p": 0
+          },
+          {
+            "n": "Sleight of Hand",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Stealth",
+            "ab": "DEX",
+            "p": 0
+          },
+          {
+            "n": "Survival",
+            "ab": "WIS",
+            "p": 0
+          }
+        ],
+        "itemAdv": [],
+        "profs": {
+          "armor": "None",
+          "weapons": "",
+          "tools": "None"
+        },
+        "profSrc": {
+          "armor": [],
+          "weapons": [],
+          "tools": []
+        },
+        "speed": 30,
+        "speedSrc": "",
+        "vecnaGrafts": {
+          "v": 1,
+          "nextPhysical": 3,
+          "nextEvent": 4,
+          "physical": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "part": "eye",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "admittedAtEvent": 1
+            },
+            {
+              "id": "vg-2",
+              "profile": "current-hand",
+              "part": "hand",
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Hand of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]],[\"fx\",[\"object\",[[\"setsc\",[\"array\",2,[[\"0\",\"STR\"],[\"1\",20]]]]]]]]]]]]",
+              "admittedAtEvent": 2
+            }
+          ],
+          "events": [
+            {
+              "id": "vge-1",
+              "kind": "attachment",
+              "physicalId": "vg-1",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualEyeFusedIntoThisCharactersSocket": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            },
+            {
+              "id": "vge-2",
+              "kind": "attachment",
+              "physicalId": "vg-2",
+              "facts": {
+                "actualPhysicalIdentityVerified": true,
+                "actualHandGraftedOntoThisCharactersLeftStump": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            },
+            {
+              "id": "vge-3",
+              "kind": "detach",
+              "physicalId": "vg-2",
+              "facts": {
+                "actualPhysicalRemovalVerified": true,
+                "printedRemovalConsequenceAcknowledged": true
+              }
+            }
+          ]
+        },
+        "vecnaGraftSources": {
+          "v": 1,
+          "inventoryFingerprint": "[\"array\",2,[[\"0\",[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Artifact magic item. \"],[\"eq\",false],[\"equippable\",true],[\"key\",\"Eye of Vecna\"],[\"n\",\"Eye of Vecna\"],[\"q\",1],[\"rar\",\"Artifact\"],[\"type\",\"Wondrous Item\"],[\"vecnaGraft\",[\"object\",[[\"id\",\"vg-1\"],[\"v\",1]]]],[\"w\",0]]]],[\"1\",[\"object\",[[\"att\",1],[\"attuned\",true],[\"attunedActive\",true],[\"cost\",0],[\"d\",\"Artifact magic item. \"],[\"eq\",false],[\"equippable\",true],[\"key\",\"Hand of Vecna\"],[\"n\",\"Hand of Vecna\"],[\"q\",1],[\"rar\",\"Artifact\"],[\"type\",\"Wondrous Item\"],[\"vecnaGraft\",[\"object\",[[\"id\",\"vg-2\"],[\"v\",1]]]],[\"w\",0]]]]]]",
+          "authorityFingerprint": "[\"object\",[[\"events\",[\"array\",3,[[\"0\",[\"object\",[[\"facts\",[\"object\",[[\"actualEyeFusedIntoThisCharactersSocket\",true],[\"actualPhysicalIdentityVerified\",true],[\"printedRemovalConsequenceAcknowledged\",true]]]],[\"id\",\"vge-1\"],[\"kind\",\"attachment\"],[\"physicalId\",\"vg-1\"]]]],[\"1\",[\"object\",[[\"facts\",[\"object\",[[\"actualHandGraftedOntoThisCharactersLeftStump\",true],[\"actualPhysicalIdentityVerified\",true],[\"printedRemovalConsequenceAcknowledged\",true]]]],[\"id\",\"vge-2\"],[\"kind\",\"attachment\"],[\"physicalId\",\"vg-2\"]]]],[\"2\",[\"object\",[[\"facts\",[\"object\",[[\"actualPhysicalRemovalVerified\",true],[\"printedRemovalConsequenceAcknowledged\",true]]]],[\"id\",\"vge-3\"],[\"kind\",\"detach\"],[\"physicalId\",\"vg-2\"]]]]]]],[\"nextEvent\",4],[\"nextPhysical\",3],[\"physical\",[\"array\",2,[[\"0\",[\"object\",[[\"admittedAtEvent\",1],[\"id\",\"vg-1\"],[\"itemFingerprint\",\"[\\\"array\\\",6,[[\\\"0\\\",\\\"Eye of Vecna\\\"],[\\\"1\\\",\\\"Wondrous Item\\\"],[\\\"2\\\",\\\"Artifact\\\"],[\\\"3\\\",1],[\\\"4\\\",\\\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\\\n**Truesight.** You have Truesight with a range of 240 feet.\\\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\\\n**Danger Sense.** Your Initiative rolls have Advantage.\\\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\\\"],[\\\"5\\\",[\\\"object\\\",[[\\\"ch\\\",[\\\"array\\\",3,[[\\\"0\\\",8],[\\\"1\\\",\\\"1d4+4\\\"],[\\\"2\\\",\\\"dawn\\\"]]]]]]]]]\"],[\"part\",\"eye\"],[\"profile\",\"current-eye\"]]]],[\"1\",[\"object\",[[\"admittedAtEvent\",2],[\"id\",\"vg-2\"],[\"itemFingerprint\",\"[\\\"array\\\",6,[[\\\"0\\\",\\\"Hand of Vecna\\\"],[\\\"1\\\",\\\"Wondrous Item\\\"],[\\\"2\\\",\\\"Artifact\\\"],[\\\"3\\\",1],[\\\"4\\\",\\\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\\\n**Danger Sense.** Your Initiative rolls have Advantage.\\\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\\\"],[\\\"5\\\",[\\\"object\\\",[[\\\"ch\\\",[\\\"array\\\",3,[[\\\"0\\\",8],[\\\"1\\\",\\\"1d4+4\\\"],[\\\"2\\\",\\\"dawn\\\"]]]],[\\\"fx\\\",[\\\"object\\\",[[\\\"setsc\\\",[\\\"array\\\",2,[[\\\"0\\\",\\\"STR\\\"],[\\\"1\\\",20]]]]]]]]]]]]\"],[\"part\",\"hand\"],[\"profile\",\"current-hand\"]]]]]]],[\"v\",1]]]",
+          "bindings": [
+            {
+              "id": "vg-1",
+              "profile": "current-eye",
+              "index": 0,
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Eye of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Eye.** You attune to the eye by pushing it into an empty eye socket. The eye fuses to your head and stays there for the rest of your life. If the eye is ever taken out, you die.\\n**Properties of the Eye.** While attuned to the eye, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Truesight.** You have Truesight with a range of 240 feet.\\n**Spellcasting.** The eye holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the eye (save DC 18), paying the cost listed for that spell: Crown of Madness costs 1 charge, Clairvoyance costs 2, Disintegrate and Eyebite cost 4 each, and Dominate Monster costs 5. Whenever the eye casts a spell for you, roll for a 5 percent chance: on that result, Vecna rips your soul out of your body, devours it, and then controls your body like a puppet. If this happens, you become a character that the Dungeon Master controls.\\n**X-ray Vision.** As a Magic action, you can give yourself X-ray vision out to 30 feet for 1 minute. Within that range, solid objects look transparent to you and let light pass through them. The vision passes through as much as 3 feet of wood or dirt, 1 foot of stone, or 1 inch of common metal. Anything thicker blocks it, and so does a thin sheet of lead.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]]]]]]]",
+              "inventoryName": "Eye of Vecna",
+              "inventoryKey": "Eye of Vecna"
+            },
+            {
+              "id": "vg-2",
+              "profile": "current-hand",
+              "index": 1,
+              "itemFingerprint": "[\"array\",6,[[\"0\",\"Hand of Vecna\"],[\"1\",\"Wondrous Item\"],[\"2\",\"Artifact\"],[\"3\",1],[\"4\",\"Vecna was a powerful wizard who built a dreadful empire through conquest and magic. Despite all his might, he was afraid of death, so he made himself a lich to escape it. Kas, one of his lieutenants, betrayed him and ended his reign in a terrible battle. Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world.\\n**Two Artifacts.** The eye and the hand are two separate Artifacts, which can be found together or apart. The eye looks like a bloodshot organ ripped out of its socket, and the hand is a withered left hand.\\n**Random Properties.** The eye and the hand each have one minor beneficial property, one major beneficial property, and one minor detrimental property, determined as described in the Artifacts section of chapter 7.\\n**Attuning to the Hand.** You attune to the hand by pressing it against the stump where your left hand used to be. The hand fuses to your arm and works as a normal part of your body. If the hand is ever taken off, you die.\\n**Properties of the Hand.** While attuned to the hand, your alignment becomes Neutral Evil, and you gain the benefits below.\\n**Great Strength.** Your Strength score becomes 20, unless it is 20 or higher already.\\n**Icy Touch.** Melee spell attacks you make with the hand, and melee attacks with any weapon the hand holds, deal an extra 2d8 Cold damage when they hit.\\n**Spellcasting.** The hand holds 8 charges, and each day at dawn it regains 1d4 + 4 of the charges spent. You can spend charges to cast a spell from the hand (save DC 18), paying the cost listed for that spell: Sleep costs 1 charge, Slow costs 2, Teleport costs 3, and Finger of Death costs 5. Every time you cast a spell from the hand, the hand targets you with a Suggestion spell that needs no Concentration and has a save DC of 18, ordering you to do something evil. The hand might demand a particular act or let you pick the act yourself.\\n**Properties of the Eye and Hand.** If you are attuned to both the eye and the hand, you also gain the benefits below.\\n**Danger Sense.** Your Initiative rolls have Advantage.\\n**Necrotic Reduction.** As a Magic action, you choose a creature within 5 feet of you that you can see. It makes a DC 18 Constitution saving throw. It takes 7d6 Necrotic damage if it fails, or half that damage if it succeeds. If this damage drops the target to 0 Hit Points, the target turns into green slime (see chapter 3) covering the ground in its space, with each 5-foot square of slime counting as its own patch. The slime destroys any nonmagical objects of metal or organic material that the target was wearing or carrying.\\n**Poison Immunity.** You have Immunity to Poison damage and to the Poisoned condition.\\n**Regeneration.** You regain 1d10 Hit Points when your turn starts, provided you have 1 Hit Point or more at that moment.\\n**Wish.** You can cast Wish. After you use this property, 30 days must pass before it can be used again.\\n**Destroying the Eye and Hand.** When one creature has both the eye and the hand attached and is killed by the Sword of Kas, the eye and the hand both catch fire, burn to ash, and are destroyed. Any other way of destroying the eye or the hand only seems to succeed: the Artifact later turns up again in one of Vecna's many secret vaults, waiting to be found.\"],[\"5\",[\"object\",[[\"ch\",[\"array\",3,[[\"0\",8],[\"1\",\"1d4+4\"],[\"2\",\"dawn\"]]]],[\"fx\",[\"object\",[[\"setsc\",[\"array\",2,[[\"0\",\"STR\"],[\"1\",20]]]]]]]]]]]]",
+              "inventoryName": "Hand of Vecna",
+              "inventoryKey": "Hand of Vecna"
+            }
+          ]
+        }
+      },
+      "expectedAdvantage": 0
+    }
+  ]
+}
