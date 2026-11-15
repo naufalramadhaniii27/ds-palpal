@@ -1,5 +1,10 @@
 /* SOLID stage 14: continuation of fx/16-z-pack-dice-sound-hover.js (state shared through the FXS16 objects). */
 (function(){
+  const hints=new WeakMap();
+  FXS16A.nativeCheckHint=function nativeCheckHint(spec){return spec&&hints.has(spec)?{check:hints.get(spec)}:null};
+  FXS16A.captureNativeCheckSpec=function captureNativeCheckSpec(spec,check){if(check===undefined){hints.set(spec,null);return spec}const previous=spec.sourceGuard,next=Object.assign({},spec,{sourceGuard:function(){return typeof check?.guard==="function"&&check.guard()&&(!Object.prototype.hasOwnProperty.call(check,"bonus")||check.bonus===spec.bon)&&(previous===undefined||typeof previous==="function"&&previous())}});hints.set(next,check);return next};
+})();
+(function(){
   FXS16A.spellSourceSpec=function spellSourceSpec(key,spec){let guard;try{guard=FXENV.__spellSourceGuard&&FXENV.__spellSourceGuard(key,spec.bon)}catch(error){guard=false}if(!/^spatk-source-/.test(key)&&guard===undefined)return spec;return Object.assign({},spec,{sourceGuard:typeof guard==="function"?guard:function(){return false}})};
   FXS16A.bracersSpec=function bracersSpec(key,spec){if(!/^(ah-|ad-)/.test(key)||typeof FXENV.__bracersAttackSpec!=="function")return spec;try{return FXENV.__bracersAttackSpec(key,spec)||spec}catch(error){return Object.assign({},spec,{sourceGuard:function(){return false}})}};
 })();
@@ -7,7 +12,7 @@
   const MI=FXENV.__MI;
   if(!MI||!document.body.animate) return;
   FXS16A.defenderSpec=function defenderSpec(key,spec){if(!/^(ah-|ad-)/.test(key)||typeof FXENV.__defenderAttackSpec!=="function")return spec;try{return FXENV.__defenderAttackSpec(key,spec)||spec}catch(error){return Object.assign({},spec,{sourceGuard:function(){return false}})}};
-  FXS16A.iounCheckSpec=function iounCheckSpec(key,spec){if(!/^(sk-[0-9]+|init)$/.test(key)||typeof FXENV.__iounOrbitCheckRoll!=="function")return spec;try{const check=FXENV.__iounOrbitCheckRoll(key);if(check===undefined)return spec;return Object.assign({},spec,{sourceGuard:typeof check?.guard==="function"?check.guard:function(){return false}})}catch(error){return Object.assign({},spec,{sourceGuard:function(){return false}})}};
+  FXS16A.iounCheckSpec=function iounCheckSpec(key,spec){if(!/^(sk-[0-9]+|init)$/.test(key))return spec;try{return FXS16A.captureNativeCheckSpec(spec,FXENV.__nativePerceptionCheckRoll?.(key)??FXENV.__iounOrbitCheckRoll?.(key))}catch(error){return FXS16A.captureNativeCheckSpec(spec,{guard:function(){return false}})}};
   FXS16A.sourceSpec=function sourceSpec(key,spec){if(!spec)return spec;let guard;if(/^(ah-|ad-)/.test(key)){try{guard=FXENV.__temporaryAttackGuard&&FXENV.__temporaryAttackGuard(key)}catch(error){guard=false}if(guard===undefined)return FXS16A.bracersSpec(key,FXS16A.defenderSpec(key,spec))}else if(/^spatk(?:$|-)/.test(key))return FXS16A.spellSourceSpec(key,spec);else return FXS16A.iounCheckSpec(key,spec);spec.sourceGuard=typeof guard==="function"?guard:function(){return false};return FXS16A.bracersSpec(key,FXS16A.defenderSpec(key,spec))};
 })();
 (function(){

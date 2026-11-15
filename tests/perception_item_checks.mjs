@@ -1,0 +1,36 @@
+import {canonicalPerceptionItemDefinition} from '../src/data/lib/perception-item-profiles.js';import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';import {createNativePerceptionChecks} from './fixtures/perception-check-native.mjs';
+const read=file=>fs.readFileSync(new URL('../src/'+file,import.meta.url),'utf8');let checks=0;const ok=v=>{assert.ok(v);checks++},eq=(a,b)=>{assert.deepEqual(structuredClone(a),structuredClone(b));checks++};
+function dice(f){let release;const requests=[],history=[],c={FXS16A:{calm:()=>false},FXENV:{__dice3d:{roll:faces=>{requests.push(Array.from(faces));return new Promise(resolve=>release=resolve)}},__nativePerceptionCheckRoll:f.check,__iounOrbitCheckRoll:f.c.iounOrbitCheckRoll},d:()=>5};vm.createContext(c);const a=read('fx/16-z-pack-dice-sound-hover.js'),b=read('fx/16b-z-pack-dice-sound-hover-2.js'),h=read('fx/18-m-pack-rolls-concentration.js');c.FXS16A.markCritical=()=>{};vm.runInContext(b.split('\n').find(line=>line.startsWith('FXS16A.finishD20=')),c);vm.runInContext(a.split('\n').find(line=>line.includes('FXS16A.parseDmg=function')).split(' FXS16A.rk=')[0],c);for(const name of ['rollDice','rollAllowed','commitRollResult']){const at=a.indexOf('  FXS16A.'+name+'=');vm.runInContext(a.slice(at,a.indexOf('\n})();',at)),c)}let at=a.indexOf('  FXS16A.doRoll=function');vm.runInContext(a.slice(at,a.indexOf('  (FXENV.__miRoll=',at)),c);c.FXS16A.finish=(spec,mode,label,values)=>{const result={l:label};c.FXS16A.finishD20(result,spec,mode,values);return result};c.FXS16A.after=result=>history.push(result);vm.runInContext(b.slice(b.indexOf('(function(){'),b.indexOf('(function(){',b.indexOf('(function(){')+1)),c);for(const name of ['iounCheckSpec','sourceSpec'])vm.runInContext(b.split('\n').find(line=>line.includes('FXS16A.'+name+'=function')),c);c.FXS18A={MIr:{},conds:()=>({})};at=h.indexOf('  FXS18A.condMode=');vm.runInContext(h.slice(at,h.indexOf('})();',at)),c);at=h.indexOf('  FXS18A.iounCheckHint=');vm.runInContext(h.slice(at,h.indexOf('  /* damage types',at)),c);return {c,requests,history,release:values=>release(values),spec:(key,bonus)=>c.FXS16A.sourceSpec(key,{bon:bonus}),hint:(key,spec)=>c.FXS18A.MIr.hint(key,spec),roll:(spec,mode)=>c.FXS16A.doRoll(spec,mode,'Actual native item check',()=>{},spec.sourceGuard)}}
+for(const item of ['Rod of Alertness','Sentinel Shield'])for(const key of ['init','sk-11'])for(const poisoned of [false,true]){
+ const f=createNativePerceptionChecks({item});if(poisoned)f.c.S.cond={Poisoned:true};f.derive();const check=f.check(key),d=dice(f),spec=d.spec(key,check.bonus),hint=d.hint(key,spec);eq(hint.mode,poisoned?'':'adv');ok(spec.sourceGuard());d.roll(spec,hint.mode);eq(d.requests[0],poisoned?[20]:[20,20]);d.release(poisoned?[3]:[3,18]);await new Promise(setImmediate);eq(d.history.length,1);eq(d.history[0].v,(poisoned?3:18)+check.bonus);
+}
+for(const item of ['Rod of Alertness','Sentinel Shield']){
+ const f=createNativePerceptionChecks({item});f.C.skills[11].ab='CHA';f.C.abilities.CHA.base=18;f.derive();eq(f.check('sk-11').adv,[]);eq(f.check('sk-11').bonus,4);const d=dice(f),spec=d.spec('sk-11',4);eq(d.hint('sk-11',spec).mode,'');d.roll(spec,'adv');eq(d.requests[0],[20,20]);d.release([3,18]);await new Promise(setImmediate);eq(d.history[0].v,22); // Actual manual Advantage remains available.
+}
+for(const mutate of [f=>{f.C.inv[0].eq=false},f=>{f.C.inv[0].q=0},f=>{f.C.inv[0].attunedActive=false},f=>{f.C.skills[11].ab='CHA'},f=>{f.c.S.notes='changed'},f=>{Object.defineProperty(f.C.inv[0],'studyBook',{value:undefined,enumerable:false})}]){
+ const f=createNativePerceptionChecks(),d=dice(f),spec=d.spec('sk-11',f.check('sk-11').bonus),hint=d.hint('sk-11',spec);d.roll(spec,hint.mode);mutate(f);d.release([3,18]);await new Promise(setImmediate);eq(d.history.length,0);ok(!spec.sourceGuard());
+}
+{
+ const f=createNativePerceptionChecks(),d=dice(f),spec=d.spec('sk-11',0);f.C.inv[0].eq=false;f.derive();eq(d.hint('sk-11',spec).mode,'adv');ok(!spec.sourceGuard());d.roll(spec,'adv');eq(d.requests.length,0); // Hint uses the SAME captured permission, never a fresh frame.
+}
+for(const cap of [undefined,null,{v:99}]){
+ const f=createNativePerceptionChecks();f.C.perceptionItemSources=cap;f.derive();eq(f.check('sk-11').adv,[]);eq(f.check('init').adv,[]);const before=structuredClone(f.C),d=dice(f),spec=d.spec('sk-11',0);ok(spec.sourceGuard());d.roll(spec,'');d.release([7]);await new Promise(setImmediate);eq(d.history[0].v,7);eq(f.C,before);
+}
+{
+ const f=createNativePerceptionChecks();f.c.S.cust={'n:sk:Perception':{o:50}};f.derive();eq(f.check('sk-11').bonus,50);const d=dice(f),wrong=d.spec('sk-11',49);ok(!wrong.sourceGuard());const spec=d.spec('sk-11',50);ok(spec.sourceGuard());const prior=d.c.FXS16A.iounCheckSpec('sk-11',{bon:50,sourceGuard:()=>false});ok(!prior.sourceGuard());
+}
+for(const mutate of [f=>{f.engine.c.DMGI.find(row=>row[0]==='Rod of Alertness')[4]+=' Changed';},f=>{f.engine.c.FXO['Rod of Alertness']={};},f=>{f.engine.c.GX.item['Rod of Alertness']=[];}]){
+ const f=createNativePerceptionChecks(),d=dice(f),spec=d.spec('sk-11',0),hint=d.hint('sk-11',spec);ok(spec.sourceGuard());d.roll(spec,hint.mode);mutate(f);d.release([3,18]);await new Promise(setImmediate);eq(d.history.length,0);ok(!spec.sourceGuard());ok(f.c.perceptionItemReview().includes('source changed'));
+}
+{
+ const f=createNativePerceptionChecks(),check=f.check('sk-11');f.engine.c.B={...f.engine.c.B,cid:'foreign',name:'Foreign',custLib:[{n:'Rod of Alertness',fx:{adv:['Perception']}}]};ok(!check.guard());ok(f.check('sk-11').guard());eq(f.c.perceptionItemReview(),'');f.C.perceptionItemSources=undefined;f.derive();ok(f.c.perceptionItemReview().includes('Apply'));ok(f.c.perceptionItemReview().includes('ordinary checks'));
+}
+{
+ const f=createNativePerceptionChecks({mutate:c=>{c.FXO['Rod of Alertness']={fx:{adv:['Perception','Initiative']}}}});f.C.skills[11].ab='CHA';f.derive();eq(f.C.perceptionItemSources.bindings[0].mode,'custom');eq(f.check('sk-11').mode,'adv');eq(f.check('init').mode,'adv');const d=dice(f),spec=d.spec('sk-11',f.check('sk-11').bonus);d.roll(spec,d.hint('sk-11',spec).mode);eq(d.requests[0],[20,20]);d.release([2,17]);await new Promise(setImmediate);eq(d.history.length,1);
+}
+for(const item of ['Rod of Alertness','Sentinel Shield']){
+ const f=createNativePerceptionChecks({item,actorRuleset:'2014'});ok(f.engine.c.DM14ON);eq(f.C.perceptionItemSources.bindings[0].definitionFingerprint,canonicalPerceptionItemDefinition(f.engine.c.DM14.ov[item]));
+ for(const key of ['sk-11','init']){const d=dice(f),spec=d.spec(key,f.check(key).bonus),hint=d.hint(key,spec);eq(hint.mode,'adv');ok(spec.sourceGuard());d.roll(spec,hint.mode);eq(d.requests[0],[20,20]);d.release([3,18]);await new Promise(setImmediate);eq(d.history.length,1);}
+ f.C.skills[11].ab='CHA';f.derive();eq(f.check('sk-11').adv,[]);f.engine.c.B={...f.engine.c.B,cid:'foreign',name:'Foreign',custLib:[{n:item,fx:{adv:['Perception']}}]};ok(f.check('init').guard());const d=dice(f),spec=d.spec('init',f.check('init').bonus);d.roll(spec,d.hint('init',spec).mode);f.engine.c.DM14.ov[item][4]+=' changed';d.release([3,18]);await new Promise(setImmediate);eq(d.history.length,0);ok(!spec.sourceGuard());
+}
+console.log(checks+' actual native flags, dice and stale-permission checks PASS');

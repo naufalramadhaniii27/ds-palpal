@@ -63,6 +63,7 @@ import "./32x-logic-pact-rod-spell.js";
 import "./32y-logic-rod-absorption.js";
 import "./32z-logic-travel-goat.js";
 import "./32aa-logic-arcane-grimoire-recovery.js";
+import "./32ab-logic-perception-item-checks.js";
 import "./33-logic-play-rage-conditions.js";
 import "./34-ui-situations.js";
 import "./34b-ui-combat-effects-modes.js";

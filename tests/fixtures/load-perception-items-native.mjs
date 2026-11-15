@@ -1,0 +1,4 @@
+/* Actual source adapter shared by isolated native source fixtures. */
+import fs from'node:fs';import vm from'node:vm';import{itemInUse}from'../../src/data/lib/attunement.js';import*as profiles from'../../src/data/lib/perception-item-profiles.js';import*as source from'../../src/data/lib/perception-item-source.js';
+const seen=new WeakSet();
+export function loadPerceptionItemsNative(c){if(seen.has(c))return;Object.assign(c,profiles,source,{itemInUse});c.lateGet??=key=>c[key];c.sheetState??=()=>null;c.fxo??=()=>c.FXO||{};c.gx??=()=>c.GX||{item:{}};const text=fs.readFileSync(new URL('../../src/builder/10u-logic-perception-items.js',import.meta.url),'utf8'),names=[...text.matchAll(/export function (\w+)/g)].map(m=>m[1]);vm.runInContext('(function(){'+text.replace(/^import [^\n]*\n/gm,'').replace(/export /g,'')+';Object.assign(globalThis,{'+names.join(',')+'})})()',c);seen.add(c);}

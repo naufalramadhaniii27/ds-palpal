@@ -1,4 +1,4 @@
-# Laporan clause gate (mode laporan, 2026-11-14)
+# Laporan clause gate (mode laporan, 2026-11-15)
 
 Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build. Dijalankan sebagai langkah laporan dengan `continue-on-error`.
 
@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 82585 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 42112 (51.0%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9181 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9183 |
 | Info (tag terdokumentasi) | 27239 (SPELL_TEXT 7740, FORM:ACTIVATE 2973, NUMONLY:GEOMETRY 2530, FORM:ROLL 2146, ACTIVATE 1556, NUMONLY:TEXT 1481, FORM:TABLE 1214, NUMONLY:ROLL 1153, NUMONLY:TABLE 975, ACTIVE:TRIGGER 941, FXO_NULL 834, ACTIVE:OTHERS 761, REST:NONUM 668, BY_DESIGN 430, NUMONLY:FLAVOR 329, COND:PLAY_STATE 228, STD:ASI 225, NUMONLY:ZERO 172, ROLL:LAST_CHARGE 142, OBJECT:STATS 109, DC:REFERENCE 89, ITEM:SENSES 82, TABLE:CLASS 77, COND:ATTACK_ROLL_ADV 76, STD:PICK_TEXT 65, ACTIVE:REACTION 64, MOVE:SPEED_REF 62, ACTIVE:TIMED_IMM 44, TARGET:SPEED 36, FOCUS:SPELLCASTING 14, STD:AC10 9, KNOW:TARGET_DEFENSES 7, STD:SUBCLASS_PICK 5, POOL:SHARED 2) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5692 |
+| Uncovered | 5690 |
 | Uncovered dengan angka | 3312 |
-| Uncovered dengan kelas kata kunci mekanik | 5321 |
+| Uncovered dengan kelas kata kunci mekanik | 5319 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 371 |
 | Angka yang tidak dijelaskan record mana pun | 3123 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4861 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4859 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 262 |
-| Waktu | muat data 17 s, analisis 17 s |
+| Waktu | muat data 14 s, analisis 16 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 181 ditangkap (60.3%). Hapus semua atom kelas yang dibutuhkan: 183 ditangkap (61.0%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 170 ditangkap (56.7%). Hapus semua atom kelas yang dibutuhkan: 168 ditangkap (56.0%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 291 ditangkap (97.0%), semua atom kelas dihapus: 294 ditangkap (98.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 290 ditangkap (96.7%), semua atom kelas dihapus: 293 ditangkap (97.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -38,11 +38,11 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 
 | Sumber | Kalimat covered |
 |---|---|
-| item | 3376 |
+| item | 3378 |
 | GX | 1940 |
 | wxs | 849 |
 | LU_X | 652 |
-| CODE | 519 |
+| CODE | 521 |
 | AUTO | 467 |
 | species | 440 |
 | ITEM_SPELLS | 370 |
@@ -68,7 +68,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SPELL | 3208 | 867 | 27.0% |
 | DMG | 4548 | 742 | 16.3% |
 | SPEED | 1321 | 473 | 35.8% |
-| ADV | 1750 | 451 | 25.8% |
+| ADV | 1750 | 449 | 25.7% |
 | PROF | 1048 | 432 | 41.2% |
 | CHOICE | 1598 | 401 | 25.1% |
 | RES | 1294 | 386 | 29.8% |
@@ -84,7 +84,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | HP | 178 | 98 | 55.1% |
 | NUM-DICE | 1446 | 69 | 4.8% |
 | ABIL | 382 | 65 | 17.0% |
-| INIT | 119 | 53 | 44.5% |
+| INIT | 119 | 51 | 42.9% |
 | NUM-DIST | 5100 | 38 | 0.7% |
 | NUM-DUR | 3250 | 32 | 1.0% |
 
@@ -94,7 +94,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 |---|---|---|---|---|---|
 | class | 1191 | 269 | 654 | 0 | 268 |
 | feat | 2790 | 654 | 1455 | 0 | 681 |
-| item | 19507 | 5020 | 11637 | 0 | 2850 |
+| item | 19507 | 5022 | 11637 | 0 | 2848 |
 | species | 1320 | 726 | 365 | 0 | 229 |
 | spell | 8018 | 278 | 7740 | 0 | 0 |
 | sub | 9286 | 2234 | 5388 | 0 | 1664 |
@@ -103,7 +103,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10583 | 2767 | 6309 | 1507 | 14.2% |
+| dmg | 10583 | 2769 | 6309 | 1505 | 14.2% |
 | tvss | 2815 | 664 | 1643 | 508 | 18.0% |
 | core | 1503 | 393 | 801 | 309 | 20.6% |
 | tvss14 | 1211 | 180 | 749 | 282 | 23.3% |
@@ -194,7 +194,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | RESOURCE | 684 | 548 |
 | SPELL | 619 | 90 |
 | DMG | 547 | 502 |
-| ADV | 444 | 151 |
+| ADV | 442 | 151 |
 | SPEED | 395 | 309 |
 | PROF | 394 | 133 |
 | NUM | 328 | 328 |
@@ -347,7 +347,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Investigator/Inquisitor|Divine Strike#1` Once on each of your turns, when you take the Attack action and hit a creature with a weapon, it takes an extra 1d8 Necrotic or Radiant damage (your choice). | no record for DMG; number 1d8 unexplained
 - `sub|Paladin/Oath of Revelry|Aura of Fraternity#1` While at least one ally is adjacent to you, you and each ally within 5 ft deal extra 1d4 damage on melee attacks. | no record for DMG; number 1d4,5 unexplained
 
-### ADV (444 uncovered)
+### ADV (442 uncovered)
 
 - `class|Rogue|Sneak Attack#2` Once per turn, if you have Advantage on an attack roll that uses a Finesse or Ranged weapon and the attack hits a creature, you can deal an extra 1d6 damage to that creature. | no record for ADV
 - `feat|Convincing Inquisitor|Convincing Inquisitor#6` When you succeed on a Wisdom (Insight) check made with the Search action to detect lies or evasion, you have Advantage on Initiative rolls for combat against that creature for 1 hour. | no record for ADV,INIT; number 1 unexplained
@@ -818,33 +818,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- class `item|dmg|Ashbringer (True State)#4` A hit deals an extra 1d10 Fire damage, or 3d10 against Undead. -> info:ACTIVE:OTHERS
+- class `item|dmg|Doomhammer#4` A hit deals an extra 1d8 Lightning damage. -> info:ACTIVE:OTHERS
+- record `item|dmg|Potion of Giant Strength (frost)#1` Drinking this potion sets your Strength score to 23 for 1 hour. -> info:NUMONLY:TABLE
+- class `item|dmg|Potion of Giant Strength (frost)#1` Drinking this potion sets your Strength score to 23 for 1 hour. -> info:NUMONLY:TABLE
+- record `sub|Warmage/House of Lancers|Hand-to-Hand Arcana#3` The die becomes d8 at Warmage level 5, d10 at 11 and d12 at 17. -> info:NUMONLY:ROLL
+- class `sub|Warmage/House of Lancers|Hand-to-Hand Arcana#3` The die becomes d8 at Warmage level 5, d10 at 11 and d12 at 17. -> info:NUMONLY:ROLL
 - record `sub|Bard/College of Chronology (Dark Matter)|Reorder Events#3` Long Rest to use again. -> covered
 - class `sub|Bard/College of Chronology (Dark Matter)|Reorder Events#3` Long Rest to use again. -> info:REST:NONUM
-- record `item|egw|Verminshroud (Exalted)#13` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant wasp. -> info:ACTIVE:TRIGGER
-- class `item|egw|Verminshroud (Exalted)#13` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant wasp. -> info:ACTIVE:TRIGGER
+- record `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#7` Stage 1. -> info:NUMONLY:TABLE
+- class `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#7` Stage 1. -> info:NUMONLY:TABLE
+- record `feat|Soul of the Storm Giant|Soul of the Storm Giant#11` You regain all expended uses when you finish a Long Rest. -> info:REST:NONUM
+- class `feat|Soul of the Storm Giant|Soul of the Storm Giant#11` You regain all expended uses when you finish a Long Rest. -> info:REST:NONUM
+- record `feat|Familiar Keeper|Familiar Keeper#6` After you cast it this way, finish a Long Rest to do so again. -> covered
+- class `feat|Familiar Keeper|Familiar Keeper#6` After you cast it this way, finish a Long Rest to do so again. -> info:REST:NONUM
 - record `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
 - class `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
-- record `item|egw|Hide of the Feral Guardian (Awakened)#12` - When you cast the polymorph spell using this armor, you can transform into a cave bear. -> info:ACTIVE:TRIGGER
-- class `item|egw|Hide of the Feral Guardian (Awakened)#12` - When you cast the polymorph spell using this armor, you can transform into a cave bear. -> info:ACTIVE:TRIGGER
-- record `item|dmg|Spell Gem (Lapis lazuli)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Spell Gem (Lapis lazuli)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- record `item|tdm14|Shield Module#3` Once used, it cannot be used again until you finish a Long Rest. -> info:REST:NONUM
-- class `item|tdm14|Shield Module#3` Once used, it cannot be used again until you finish a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Boon of the Stormborn#1` You are immune to Lightning and Thunder damage. -> covered
-- record `feat|Fiend Transformation: Level 2|Fiend Transformation: Level 2#11` The brand lasts 1 minute. -> info:NUMONLY:GEOMETRY
-- class `feat|Fiend Transformation: Level 2|Fiend Transformation: Level 2#11` The brand lasts 1 minute. -> info:NUMONLY:GEOMETRY
+- record `item|tdcsr|Wraps of Dyamak (Exalted)#4` When you finish a rest, you gain temporary hit points equal to your total ki points. -> info:ACTIVE:TRIGGER
+- class `item|tdcsr|Wraps of Dyamak (Exalted)#4` When you finish a rest, you gain temporary hit points equal to your total ki points. -> info:ACTIVE:TRIGGER
+- class `item|tce|+3 Arcane Grimoire#3` In addition, when you use your Arcane Recovery feature, you can increase the number of spell slot levels you regain by 1 -> info:ACTIVE:TRIGGER
+- record `item|dmg|Khrusor, Spear of Heliod#16` The spear has 1 randomly determined major beneficial property. -> info:NUMONLY:TEXT
+- class `item|dmg|Khrusor, Spear of Heliod#16` The spear has 1 randomly determined major beneficial property. -> info:NUMONLY:TEXT
+- record `item|dmg14|Elemental Gem, Emerald#2` When you use an action to break the gem, a water elemental is summoned as if you had cast the conjure elemental spell, a -> info:ACTIVE:TRIGGER
+- class `item|dmg14|Elemental Gem, Emerald#2` When you use an action to break the gem, a water elemental is summoned as if you had cast the conjure elemental spell, a -> info:ACTIVE:TRIGGER
+- class `item|dmg|Khrusor, Spear of Heliod#6` When you hit with an attack using this spear, the target takes an extra 2d8 radiant damage. -> info:ACTIVE:TRIGGER
 - record `sub|Martyr/Burden of Fame|Burden of Fame Spells#2` They do not count against your prepared spells. -> info:ACTIVE:OTHERS
 - class `sub|Martyr/Burden of Fame|Burden of Fame Spells#2` They do not count against your prepared spells. -> info:ACTIVE:OTHERS
-- record `sub|Witch/Blue Magic|Cerulean Reflection#7` Once you use this, you cannot use it again until you finish a Long Rest. -> covered
-- class `sub|Witch/Blue Magic|Cerulean Reflection#7` Once you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
+- record `item|dmg|Nylea's Votary#2` You can cast Speak with Animals a number of times equal to your Wisdom modifier (minimum once), and you regain all uses  -> info:REST:NONUM
+- class `item|dmg|Nylea's Votary#2` You can cast Speak with Animals a number of times equal to your Wisdom modifier (minimum once), and you regain all uses  -> info:REST:NONUM
 - record `sub|Ranger/Big Game Hunter|Special Shots#11` You can use Power Shot a number of times equal to your Proficiency Bonus per Long Rest. -> covered
 - record `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> covered
 - class `sub|Cleric/Inquisition Domain (2014)|Witch Hunter's Strike#3` Use it a number of times equal to your Wisdom modifier (minimum 1), regaining all uses on a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Pearl of Wisdom Quiver#6` Works once per dawn. -> info:REST:NONUM
-- class `item|dmg|Pearl of Wisdom Quiver#6` Works once per dawn. -> info:REST:NONUM
-- record `sub|Fighter/Living Crucible|Compound Creator#1` You learn 3 compounds from the Compound Options, plus 2 more at Fighter levels 7, 10 and 15. -> info:NUMONLY:TEXT
-- class `sub|Fighter/Living Crucible|Compound Creator#1` You learn 3 compounds from the Compound Options, plus 2 more at Fighter levels 7, 10 and 15. -> info:NUMONLY:TEXT
-- record `item|pota|Ironfang#12` - You can sense the presence of precious metals and stones within 60 feet of you, but not their exact location. -> info:NUMONLY:GEOMETRY
-- class `item|pota|Ironfang#12` - You can sense the presence of precious metals and stones within 60 feet of you, but not their exact location. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Laser Eyes#3` Ranged weapon, 2d4 Radiant, range 50/200 ft, Vex mastery, Blaster and Firearm properties. -> info:NUMONLY:ROLL

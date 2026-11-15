@@ -26117,7 +26117,7 @@
     ],
     [
      "src/fx/18-m-pack-rolls-concentration.js",
-     "const source=FXS18A.iounCheckHint(k)"
+     "const source=FXS18A.iounCheckHint(k,spec)"
     ]
    ],
    "test": "Z3 U54 actual native orbit awareness",
@@ -27859,7 +27859,7 @@
     ],
     [
      "src/fx/18-m-pack-rolls-concentration.js",
-     "const source=FXS18A.iounCheckHint(k)"
+     "const source=FXS18A.iounCheckHint(k,spec)"
     ]
    ],
    "test": "Z3 U54 actual native orbit awareness",
@@ -30985,6 +30985,222 @@
    ],
    "test": "U60 actual native Arcane Grimoire recovery allowance",
    "note": "U60 only the independent original-TCE Arcane Recovery paragraph. Exact original source and native allocated Wizard attunement authorize a single named +1 to the real rest picker allowance, independent of item magnitude and without an added feature use. Actual native Wizard resource/level and inventory witness bind this modifier. Real short-rest selection validation and the existing S.used standard-slot/Arcane-Recovery debit enforce the extra level, level1–5 integer spent slots, available feature uses, aggregate selection and source/actor/selection revalidation after Undo. No spell-focus or spell-bonus sentence is credited."
+  },
+  {
+   "id": "u61-item-dmg-rod-alertness-wis-perception",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Rod of Alertness",
+   "cls": [
+    "ADV",
+    "INIT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^while\\ you\\ hold\\ the\\ rod,\\ you\\ have\\ advantage\\ on\\ initiative\\ rolls\\ and\\ on\\ wisdom\\ \\(perception\\)\\ checks\\.$",
+   "anchor": [
+    "src/builder/12zh-logic-perception-items.js",
+    "id:'perception-item-sources'"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/perception-item-source.js",
+     "export function perceptionItemSource("
+    ],
+    [
+     "src/data/lib/perception-item-source.js",
+     "export function perceptionItemFlag("
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "export function perceptionItemsProjection("
+    ],
+    [
+     "src/builder/12j-logic-sheet-handlers-features.js",
+     "id:\"item-advantage\""
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "const r=perceptionItemFlag(C,raw)"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "export function cfSkill("
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "export function nativePerceptionCheckRoll("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.captureNativeCheckSpec(spec,FXENV.__nativePerceptionCheckRoll?.(key)"
+    ],
+    [
+     "src/fx/18-m-pack-rolls-concentration.js",
+     "FXENV.__nativePerceptionCheckRoll?.(key)"
+    ],
+    [
+     "src/data/lib/perception-item-source.js",
+     "export function perceptionItemCertificateCurrent("
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "export function nativePerceptionItemSourceCurrent("
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "genv.__nativePerceptionItemSourceCurrent=nativePerceptionItemSourceCurrent"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "env.__nativePerceptionItemSourceCurrent(C)"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "proof.value?.current===false"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "canonicalTceSpellBonus([perceptionItemSourceStatus(C),sourceCurrent()])===source"
+    ],
+    [
+     "src/data/lib/perception-item-profiles.js",
+     "export function perceptionItemDefinition("
+    ],
+    [
+     "src/data/lib/perception-item-source.js",
+     "frame.legacyCatalogRows.filter(row=>Array.isArray(row)&&row[0]===profile.item)"
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "legacyCatalogRows:legacySourceRows()"
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "lateGet('DM14S')||(typeof DMGI!=='undefined'?DMGI:[])"
+    ]
+   ],
+   "consumerTests": [
+    "tests/perception_item_source.mjs",
+    "tests/perception_items_source_projection.mjs",
+    "tests/perception_items_native_sources.mjs",
+    "tests/perception_item_checks.mjs",
+    "tests/ioun_perception_items_legacy_refresh.mjs"
+   ],
+   "test": "U61 actual native Wisdom Perception and Initiative",
+   "note": "U61 exact original core2024 source only, independent of actor edition. Real original 03/allocated attunement/holding source and 12j/12zh projection qualify Wisdom-only Perception flags and preserve Initiative advantage. Actual 34b ability-qualified check flags and the shared native item check port feed real d20 hint/spec/history with source/actor freshness guard. Charisma Perception gains no native Wisdom benefit; old generic, malformed/future or stale source records are inert without mutation until native Apply. Explicit custom source-qualified generic effects retain their scope. Neither Rod protective aura nor casting is credited."
+  },
+  {
+   "id": "u61-item-dmg-sentinel-shield-wis-perception",
+   "kind": "item",
+   "owner": "dmg",
+   "name": "Sentinel Shield",
+   "cls": [
+    "ADV",
+    "INIT"
+   ],
+   "vals": [],
+   "scopeValues": true,
+   "rx": "^as\\ long\\ as\\ you\\ are\\ holding\\ it,\\ you\\ roll\\ initiative\\ with\\ advantage,\\ and\\ your\\ wisdom\\ \\(perception\\)\\ checks\\ also\\ have\\ advantage\\.$",
+   "anchor": [
+    "src/builder/12zh-logic-perception-items.js",
+    "id:'perception-item-sources'"
+   ],
+   "extraAnchors": [
+    [
+     "src/data/lib/perception-item-source.js",
+     "export function perceptionItemSource("
+    ],
+    [
+     "src/data/lib/perception-item-source.js",
+     "export function perceptionItemFlag("
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "export function perceptionItemsProjection("
+    ],
+    [
+     "src/builder/12j-logic-sheet-handlers-features.js",
+     "id:\"item-advantage\""
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "const r=perceptionItemFlag(C,raw)"
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "function skillFlagApplies("
+    ],
+    [
+     "src/app/34b-ui-combat-effects-modes.js",
+     "export function cfSkill("
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "export function nativePerceptionCheckRoll("
+    ],
+    [
+     "src/fx/16b-z-pack-dice-sound-hover-2.js",
+     "FXS16A.captureNativeCheckSpec(spec,FXENV.__nativePerceptionCheckRoll?.(key)"
+    ],
+    [
+     "src/fx/18-m-pack-rolls-concentration.js",
+     "FXENV.__nativePerceptionCheckRoll?.(key)"
+    ],
+    [
+     "src/data/lib/perception-item-source.js",
+     "export function perceptionItemCertificateCurrent("
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "export function nativePerceptionItemSourceCurrent("
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "genv.__nativePerceptionItemSourceCurrent=nativePerceptionItemSourceCurrent"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "env.__nativePerceptionItemSourceCurrent(C)"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "proof.value?.current===false"
+    ],
+    [
+     "src/app/32ab-logic-perception-item-checks.js",
+     "canonicalTceSpellBonus([perceptionItemSourceStatus(C),sourceCurrent()])===source"
+    ],
+    [
+     "src/data/lib/perception-item-profiles.js",
+     "export function perceptionItemDefinition("
+    ],
+    [
+     "src/data/lib/perception-item-source.js",
+     "frame.legacyCatalogRows.filter(row=>Array.isArray(row)&&row[0]===profile.item)"
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "legacyCatalogRows:legacySourceRows()"
+    ],
+    [
+     "src/builder/10u-logic-perception-items.js",
+     "lateGet('DM14S')||(typeof DMGI!=='undefined'?DMGI:[])"
+    ]
+   ],
+   "consumerTests": [
+    "tests/perception_item_source.mjs",
+    "tests/perception_items_source_projection.mjs",
+    "tests/perception_items_native_sources.mjs",
+    "tests/perception_item_checks.mjs",
+    "tests/ioun_perception_items_legacy_refresh.mjs"
+   ],
+   "test": "U61 actual native Wisdom Perception and Initiative",
+   "note": "U61 exact original core2024 source only, independent of actor edition. Real original 03/allocated attunement/holding source and 12j/12zh projection qualify Wisdom-only Perception flags and preserve Initiative advantage. Actual 34b ability-qualified check flags and the shared native item check port feed real d20 hint/spec/history with source/actor freshness guard. Charisma Perception gains no native Wisdom benefit; old generic, malformed/future or stale source records are inert without mutation until native Apply. Explicit custom source-qualified generic effects retain their scope. Neither Rod protective aura nor casting is credited."
   }
  ]
 }

@@ -3542,6 +3542,18 @@ for _u60_n in [1,2,3]:
     _u60_conserved="(()=>{const b=structuredClone(__zmB);b.inv[0].attuned=false;const n=__bldSheetFor(b);return JSON.stringify(C.res)===JSON.stringify(n.res)&&JSON.stringify(C.spellcasting.slots)===JSON.stringify(n.spellcasting.slots)})()"
     CASES.append(dict(name="U60 actual native Arcane Grimoire recovery allowance +%d"%_u60_n,b=_u60_b,expect=[(_u60_row+".cap",4),(_u60_row+".left",1),(_u60_row+".r.max",1),(_u60_negative,3),(_u60_conserved,True)]))
 
+
+# U61 checks actual derived native flags through the real ability-qualified cfSkill consumer.
+for _u61_item in ["Rod of Alertness","Sentinel Shield"]:
+    for _u61_rs in ["2024","2014"]:
+        _u61_b=dict(rs=_u61_rs,cls="Wizard",level=5,unset={},base={"STR":10,"DEX":10,"CON":10,"INT":18,"WIS":18,"CHA":18},extra={"src":{"core":True,"phb":True,"phb14":True,"dmg":True}},inv=[dict(n=_u61_item,q=1,eq=True,attuned=_u61_item=="Rod of Alertness")])
+        _u61_wis="window.__zmPerceptionFlags(C,{n:'Perception',ab:'WIS'}).filter(f=>f.t==='ADV').length"
+        _u61_cha="window.__zmPerceptionFlags(C,{n:'Perception',ab:'CHA'}).filter(f=>f.t==='ADV').length"
+        _u61_init="window.__zmPerceptionFlags(C,null).init.filter(f=>f.t==='ADV').length"
+        _u61_stowed="(()=>{const b=structuredClone(__zmB);b.inv[0].eq=false;const n=__bldSheetFor(b);return window.__zmPerceptionFlags(n,{n:'Perception',ab:'WIS'}).filter(f=>f.t==='ADV').length===0&&window.__zmPerceptionFlags(n,null).init.filter(f=>f.t==='ADV').length===0})()"
+        _u61_old="(()=>{const n=structuredClone(C);delete n.perceptionItemSources;n.itemAdv.forEach(r=>delete r.ab);return window.__zmPerceptionFlags(n,{n:'Perception',ab:'WIS'}).filter(f=>f.t==='ADV').length===0&&window.__zmPerceptionFlags(n,null).init.filter(f=>f.t==='ADV').length===0})()"
+        CASES.append(dict(name="U61 actual native Wisdom Perception and Initiative "+_u61_item+" actor"+_u61_rs,b=_u61_b,expect=[(_u61_wis,1),(_u61_cha,0),(_u61_init,1),(_u61_stowed,True),(_u61_old,True)]))
+
 JS = r"""async (cases)=>{ if(window.__bldNeed) await window.__bldNeed();
  const flat=(o,p,out)=>{ if(o&&typeof o==='object'){ const ks=Object.keys(o); if(!ks.length) out[p]=JSON.stringify(o); ks.forEach(k=>flat(o[k],p?p+'.'+k:k,out)) } else out[p]=o; return out };
  const mk=(s,drop)=>{ const b=window.__bldTestB(); if(s.rs==='2014'){ b.rs='2014'; b.species='Human (2014)'; b.bg='Acolyte (2014)' }
@@ -3585,6 +3597,11 @@ import runpy as _u60_runpy
 _U60_REST_SOURCE=_u60_runpy.run_path(os.path.join(HERE,"fixtures","arcane_grimoire_fx_consumer.py"))["actual_rest_consumer"](ROOT)
 assert JS.count(" const res=[],evaluators=new Map();")==1
 JS=JS.replace(" const res=[],evaluators=new Map();"," window.__zmRecoveryRows=new Function('C','state',"+json.dumps(_U60_REST_SOURCE)+");\n const res=[],evaluators=new Map();")
+
+
+_U61_CHECK_SOURCE=_u60_runpy.run_path(os.path.join(HERE,"fixtures","perception_items_fx_consumer.py"))["actual_perception_consumer"](ROOT)
+assert JS.count(" const res=[],evaluators=new Map();")==1
+JS=JS.replace(" const res=[],evaluators=new Map();"," window.__zmPerceptionFlags=new Function('C','skill','state',"+json.dumps(_U61_CHECK_SOURCE)+");\n const res=[],evaluators=new Map();")
 
 def run(root, cases, errs):
     from playwright.sync_api import sync_playwright
