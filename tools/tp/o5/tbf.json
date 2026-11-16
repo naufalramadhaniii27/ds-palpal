@@ -1,0 +1,541 @@
+{
+ "_meta": {
+  "sources": [
+   {
+    "json": "BFRD",
+    "abbreviation": "BFRD",
+    "full": "Black Flag Reference Document (Mechanist)",
+    "authors": [
+     "Kobold Press"
+    ],
+    "version": "1"
+   }
+  ]
+ },
+ "class": [
+  {
+   "name": "Mechanist",
+   "source": "BFRD",
+   "hd": {
+    "number": 1,
+    "faces": 8
+   },
+   "proficiency": [
+    "con",
+    "int"
+   ],
+   "primaryAbility": [
+    {
+     "int": true
+    }
+   ],
+   "multiclassing": {
+    "requirements": {
+     "int": 13
+    },
+    "proficienciesGained": {
+     "armor": [
+      "light",
+      "medium",
+      "shield"
+     ],
+     "weapons": [
+      "simple",
+      "martial"
+     ]
+    }
+   },
+   "startingProficiencies": {
+    "armor": [
+     "light",
+     "medium",
+     "shield"
+    ],
+    "weapons": [
+     "simple",
+     "martial"
+    ],
+    "tools": [
+     "tinker's tools",
+     "two other tools of your choice"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "arcana",
+        "history",
+        "investigation",
+        "perception",
+        "sleight of hand"
+       ],
+       "count": 2
+      }
+     }
+    ]
+   },
+   "subclassTitle": "Mechanist Subclass",
+   "classFeatures": [
+    "Eyes of the Maker|Mechanist|BFRD|1",
+    "Shard of Creation|Mechanist|BFRD|1",
+    "Augment|Mechanist|BFRD|2",
+    "Efficient Action|Mechanist|BFRD|2",
+    {
+     "classFeature": "Mechanist Subclass|Mechanist|BFRD|3",
+     "gainSubclassFeature": true
+    },
+    "Ability Score Improvement|Mechanist|BFRD|4",
+    "Multiattack|Mechanist|BFRD|5",
+    "Rapid Augment|Mechanist|BFRD|6",
+    {
+     "classFeature": "Subclass Feature|Mechanist|BFRD|7",
+     "gainSubclassFeature": true
+    },
+    "Ability Score Improvement|Mechanist|BFRD|8",
+    "Greater Creation|Mechanist|BFRD|9",
+    "Heroic Boon|Mechanist|BFRD|10",
+    {
+     "classFeature": "Subclass Feature|Mechanist|BFRD|11",
+     "gainSubclassFeature": true
+    },
+    "Ability Score Improvement|Mechanist|BFRD|12",
+    "Engineer's Insight|Mechanist|BFRD|13",
+    "Ranged Augment|Mechanist|BFRD|14",
+    {
+     "classFeature": "Subclass Feature|Mechanist|BFRD|15",
+     "gainSubclassFeature": true
+    },
+    "Ability Score Improvement|Mechanist|BFRD|16",
+    "Always Prepared|Mechanist|BFRD|17",
+    "Perfect Creation|Mechanist|BFRD|18",
+    "Ability Score Improvement|Mechanist|BFRD|19",
+    "Creative Engine|Mechanist|BFRD|20"
+   ],
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "Augment Effects Known",
+      "Augmented Items"
+     ],
+     "rows": [
+      [
+       "0",
+       "0"
+      ],
+      [
+       "2",
+       "3"
+      ],
+      [
+       "3",
+       "3"
+      ],
+      [
+       "3",
+       "3"
+      ],
+      [
+       "4",
+       "4"
+      ],
+      [
+       "4",
+       "4"
+      ],
+      [
+       "5",
+       "4"
+      ],
+      [
+       "5",
+       "4"
+      ],
+      [
+       "6",
+       "5"
+      ],
+      [
+       "6",
+       "5"
+      ],
+      [
+       "6",
+       "5"
+      ],
+      [
+       "7",
+       "5"
+      ],
+      [
+       "7",
+       "6"
+      ],
+      [
+       "7",
+       "6"
+      ],
+      [
+       "8",
+       "6"
+      ],
+      [
+       "8",
+       "6"
+      ],
+      [
+       "8",
+       "7"
+      ],
+      [
+       "9",
+       "7"
+      ],
+      [
+       "9",
+       "7"
+      ],
+      [
+       "9",
+       "7"
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "classFeature": [
+  {
+   "name": "Eyes of the Maker",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 1,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Shard of Creation",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 1,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Augment",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 2,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Efficient Action",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 2,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Multiattack",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 5,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Rapid Augment",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 6,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Greater Creation",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 9,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Heroic Boon",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 10,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Engineer's Insight",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 13,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Ranged Augment",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 14,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Always Prepared",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 17,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Perfect Creation",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 18,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Creative Engine",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "level": 20,
+   "entries": [
+    "x"
+   ]
+  }
+ ],
+ "subclass": [
+  {
+   "name": "Metallurgist",
+   "shortName": "Metallurgist",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD"
+  }
+ ],
+ "subclassFeature": [
+  {
+   "name": "Augment: Absorbing",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "subclassShortName": "Metallurgist",
+   "subclassSource": "BFRD",
+   "level": 3,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Mystic Metal",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "subclassShortName": "Metallurgist",
+   "subclassSource": "BFRD",
+   "level": 3,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Heavy Hitter",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "subclassShortName": "Metallurgist",
+   "subclassSource": "BFRD",
+   "level": 7,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Juggernaut",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "subclassShortName": "Metallurgist",
+   "subclassSource": "BFRD",
+   "level": 11,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Full Metal",
+   "source": "BFRD",
+   "className": "Mechanist",
+   "classSource": "BFRD",
+   "subclassShortName": "Metallurgist",
+   "subclassSource": "BFRD",
+   "level": 15,
+   "entries": [
+    "x"
+   ]
+  }
+ ],
+ "optionalfeature": [
+  {
+   "name": "Adhesive",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Collapsible",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Detecting",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Empowered",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Illusive",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Loading",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Phosphorescent",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Propulsive",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Protean",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Reactive",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Reinforced",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Returning",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Repellant",
+   "source": "BFRD",
+   "featureType": [
+    "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  }
+ ]
+}

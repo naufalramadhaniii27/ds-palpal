@@ -60,7 +60,8 @@ BOOKS = [
  {"id": "tstds", "file": "o5/stds.json", "tag": "STDS", "name": "Spells That Don't Suck", "pub": "somanyrobots", "ed": "2014", "spell": "tstds_spell", "alias": "STDS"},
  {"id": "tkdmx", "file": "o5/dmx.json", "tag": "KPDMX", "name": "Deep Magic Extended", "pub": "Kobold Press", "ed": "2014", "spell": "tkdmx_spell", "alias": "DMX"},
  {"id": "tkp", "file": "o5/tkp.json", "tag": "KPC", "name": "Kobold Press Compilation", "pub": "Kobold Press", "ed": "2014", "spell": "tkp_spell", "alias": "KPC"},
- {"id": "twz", "file": "o5/twz.json", "tag": "WZ", "name": "Warlock Zine", "pub": "Kobold Press", "ed": "2014", "spell": "twz_spell", "alias": "WZ"}
+ {"id": "twz", "file": "o5/twz.json", "tag": "WZ", "name": "Warlock Zine", "pub": "Kobold Press", "ed": "2014", "spell": "twz_spell", "alias": "WZ"},
+ {"id": "tbf", "file": "o5/tbf.json", "tag": "BFR", "name": "Black Flag Reference Document", "pub": "Kobold Press", "ed": "2014", "sub": "tbf_sub", "cls": ["mechanist"], "clspre": "tbfc_", "alias": "Black Flag"}
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
