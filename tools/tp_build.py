@@ -57,7 +57,8 @@ BOOKS = [
   "tag": "UA24", "name": "Unearthed Arcana (2024 rules)", "pub": "Wizards of the Coast", "ed": "2024", "sub": "tua24_sub", "feat": "tua24_feat", "species": "tua24_species", "spell": "tua24_spell", "alias": "UA"},
  {"id": "ttoh", "file": "Kobold Press; Tome of Heroes.json", "tag": "ToH", "name": "Tome of Heroes", "pub": "Kobold Press", "ed": "2014",
   "sub": "ttoh_sub", "spell": "ttoh_spell", "item": "ttoh_item", "feat": "ttoh_feat", "species": "ttoh_species", "bg": "ttoh_bg", "opt": "ttoh_opt", "subsfx": " (ToH)", "subren": ["Pugilist"], "alias": "ToH"},
- {"id": "tstds", "file": "o5/stds.json", "tag": "STDS", "name": "Spells That Don't Suck", "pub": "somanyrobots", "ed": "2014", "spell": "tstds_spell", "alias": "STDS"}
+ {"id": "tstds", "file": "o5/stds.json", "tag": "STDS", "name": "Spells That Don't Suck", "pub": "somanyrobots", "ed": "2014", "spell": "tstds_spell", "alias": "STDS"},
+ {"id": "tkdmx", "file": "o5/dmx.json", "tag": "KPDMX", "name": "Deep Magic Extended", "pub": "Kobold Press", "ed": "2014", "spell": "tkdmx_spell", "alias": "DMX"}
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
