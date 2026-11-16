@@ -19,4 +19,13 @@ add("Oath of Thunder",[{n:"Bonus Proficiency (skills)",l:3,skillProf:["Stealth"]
 add("Beast Trainer",[{n:"Beast Whisperer (skills)",l:3,skillProf:["Animal Handling"]}]);
 add("Scout",[{n:"Survivalist (skills)",l:3,skillProf:["Nature", "Survival"]}]);
 add("Farseer",[{n:"Blood of the Seer (skills)",l:3,skillProf:["History", "Insight"]}]);
+add("Circle of the Deep",[{n:"Aquatic (speed)",l:3,mv:{swim:"speed"}}]);
+add("Path of the Fin (2014)",[{n:"Aquatic (speed)",l:3,mv:{swim:"speed"}}]);
+add("College of the Cat",[{n:"Inspired Pounce (speed)",l:6,mv:{climb:"speed"}}]);
+add("Highwayman",[{n:"Vantage Point (speed)",l:7,mv:{climb:"speed"}}]);
+add("Arachnoid Stalker",[{n:"Wall Crawling (speed)",l:9,mv:{climb:"speed"}}]);
+add("Oath of the Gamma Knight",[{n:"Galactic Knight (speed)",l:20,mv:{fly:"speed"}}]);
+add("Faerzress Sorcery",[{n:"Faerzress Form (speed)",l:18,mv:{fly:"speed"}}]);
+GX.feat=GX.feat||{};
+[["Aquatic","swim"],["Strengthened Wings","fly"],["Child of the Sea (WoW)","swim"]].forEach(function(a){var o={n:a[0]+" (speed)",mv:{}};o.mv[a[1]]="speed";GX.feat[a[0]]=(GX.feat[a[0]]||[]).concat([o])});
 })();
