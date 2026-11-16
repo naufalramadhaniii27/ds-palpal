@@ -434,10 +434,11 @@
  },
  "GX.species|Mapach": {
   "files": [
+   "fx-B7-subskills.js",
    "fx-L9.js",
    "fx-N1.js"
   ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "reason": "fx batch B7 adds a different feature of the same entry (training record); nothing is counted twice.",
   "shared": [
    "advOn"
   ]
@@ -1185,6 +1186,14 @@
    "fx-L10.js"
   ],
   "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Tavern Brawler (2014)": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-L1.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (training record); nothing is counted twice.",
   "shared": []
  }
 }

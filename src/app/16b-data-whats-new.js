@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:145,l:"0.0.43",d:"2026-11-16",n:["Fifteen more subclasses now give their fixed tool, armor, weapon and skill training on the sheet, such as Way of the Bow, Mercy Domain and Enforcer.","Four species and four feats now add their fixed tool or weapon training."]},
 {v:144,l:"0.0.42",d:"2026-11-16",n:["Seventeen subclasses now add their fixed skill proficiencies on the sheet at the right level, such as Hunt Domain, Scout and Arcane Archer.","Swim, climb and fly speed equal to your Speed now count for seven subclasses and three feats."]},
 {v:143,l:"0.0.41",d:"2026-11-16",n:["The charges tracker of 78 staves, wands and similar items now shows the roll you make when the last charge is spent.","Black Flag Vanguard class with the Marshal subclass, 14 stratagems and the War Banner. Mechanist hit die corrected to d10."]},
 {v:142,l:"0.0.40",d:"2026-11-16",n:["Black Flag Mechanist class with the Metallurgist subclass and 13 Augment effects, from the Kobold Press reference document. Source BFR is off until you turn it on."]},
