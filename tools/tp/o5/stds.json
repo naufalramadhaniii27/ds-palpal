@@ -1,0 +1,8715 @@
+{
+ "_meta": {
+  "sources": [
+   {
+    "json": "STDS",
+    "full": "STDS"
+   }
+  ]
+ },
+ "spell": [
+  {
+   "name": "Adaptation",
+   "source": "STDS",
+   "level": 2,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Alter Weather",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "radius",
+    "distance": {
+     "type": "miles",
+     "amount": 1
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Animal Ally",
+   "source": "STDS",
+   "level": 2,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Animal Transformation",
+   "source": "STDS",
+   "level": 4,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Arcane Shelter",
+   "source": "STDS",
+   "level": 3,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "hemisphere",
+    "distance": {
+     "type": "feet",
+     "amount": 10
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 8
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "meta": {
+    "ritual": true
+   }
+  },
+  {
+   "name": "Arcane Wall",
+   "source": "STDS",
+   "level": 5,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Arcanist's Sword",
+   "source": "STDS",
+   "level": 7,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Arctic Breath",
+   "source": "STDS",
+   "level": 1,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Assemble",
+   "source": "STDS",
+   "level": 4,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Aura of Concealment",
+   "source": "STDS",
+   "level": 2,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Aura of Truth",
+   "source": "STDS",
+   "level": 2,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Beast Perception",
+   "source": "STDS",
+   "level": 2,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Befriend Beast",
+   "source": "STDS",
+   "level": 1,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ],
+   "meta": {
+    "ritual": true
+   }
+  },
+  {
+   "name": "Befriend",
+   "source": "STDS",
+   "level": 0,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Benediction",
+   "source": "STDS",
+   "level": 0,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Bewilder",
+   "source": "STDS",
+   "level": 4,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Black Ice",
+   "source": "STDS",
+   "level": 0,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Blade Burst",
+   "source": "STDS",
+   "level": 0,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Blazing Blade",
+   "source": "STDS",
+   "level": 5,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Brilliance",
+   "source": "STDS",
+   "level": 3,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Burst of Flame",
+   "source": "STDS",
+   "level": 2,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Call for Aid",
+   "source": "STDS",
+   "level": 6,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Captivate",
+   "source": "STDS",
+   "level": 2,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Caustic Quarrel",
+   "source": "STDS",
+   "level": 2,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Circle of Protection",
+   "source": "STDS",
+   "level": 3,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 15
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Cold Snap",
+   "source": "STDS",
+   "level": 2,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Command Beast",
+   "source": "STDS",
+   "level": 3,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Command Objects",
+   "source": "STDS",
+   "level": 5,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Cone of Flame",
+   "source": "STDS",
+   "level": 1,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Confinement",
+   "source": "STDS",
+   "level": 7,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 100
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Conjure Beast Pack",
+   "source": "STDS",
+   "level": 3,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Conjure Herald",
+   "source": "STDS",
+   "level": 2,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "special"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "meta": {
+    "ritual": true
+   }
+  },
+  {
+   "name": "Conjure Minor Fiends",
+   "source": "STDS",
+   "level": 3,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Corpse Puppets",
+   "source": "STDS",
+   "level": 5,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Corrosive Burst",
+   "source": "STDS",
+   "level": 4,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 150
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Curse of Weakness",
+   "source": "STDS",
+   "level": 2,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Dazzle",
+   "source": "STDS",
+   "level": 1,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Death Ray",
+   "source": "STDS",
+   "level": 7,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Deflect",
+   "source": "STDS",
+   "level": 1,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "reaction"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Detect Hazards",
+   "source": "STDS",
+   "level": 2,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Detect Otherworldly Influence",
+   "source": "STDS",
+   "level": 1,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     }
+    ]
+   },
+   "meta": {
+    "ritual": true
+   }
+  },
+  {
+   "name": "Devil Binding",
+   "source": "STDS",
+   "level": 5,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Disrupting Smite",
+   "source": "STDS",
+   "level": 5,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Divine Temple",
+   "source": "STDS",
+   "level": 6,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "hour"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 24
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Draining Bolt",
+   "source": "STDS",
+   "level": 0,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Drink Life",
+   "source": "STDS",
+   "level": 5,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "radius",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Dust Cyclone",
+   "source": "STDS",
+   "level": 2,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Earth Forming",
+   "source": "STDS",
+   "level": 5,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "radius",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Earth Leash",
+   "source": "STDS",
+   "level": 2,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 300
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Earth Rumble",
+   "source": "STDS",
+   "level": 1,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "radius",
+    "distance": {
+     "type": "feet",
+     "amount": 10
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Eldritch Armor",
+   "source": "STDS",
+   "level": 1,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Eldritch Rift",
+   "source": "STDS",
+   "level": 1,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "radius",
+    "distance": {
+     "type": "feet",
+     "amount": 10
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Elemental Reflection",
+   "source": "STDS",
+   "level": 1,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "reaction"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Elemental Shield",
+   "source": "STDS",
+   "level": 6,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Enkindle",
+   "source": "STDS",
+   "level": 2,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Erudition",
+   "source": "STDS",
+   "level": 3,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Ethereal Slip",
+   "source": "STDS",
+   "level": 3,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Expose Weakness",
+   "source": "STDS",
+   "level": 4,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Expulsion",
+   "source": "STDS",
+   "level": 4,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "False Death",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 8
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "False Foes",
+   "source": "STDS",
+   "level": 3,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "intelligence"
+   ]
+  },
+  {
+   "name": "Fated Strike",
+   "source": "STDS",
+   "level": 1,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Fearsome Visage",
+   "source": "STDS",
+   "level": 1,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Fiery Blade",
+   "source": "STDS",
+   "level": 2,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Fiery Quiver",
+   "source": "STDS",
+   "level": 3,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Find in Nature",
+   "source": "STDS",
+   "level": 1,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "miles",
+     "amount": 1
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   },
+   "meta": {
+    "ritual": true
+   }
+  },
+  {
+   "name": "Fireblast",
+   "source": "STDS",
+   "level": 3,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Fleeting Portals",
+   "source": "STDS",
+   "level": 6,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 500
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Flickering Strikes",
+   "source": "STDS",
+   "level": 5,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "radius",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Force Weapon",
+   "source": "STDS",
+   "level": 2,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Form of Fire",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Form of Ice",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Form of Stone",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Form of Water",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Form of Wind",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Fortune",
+   "source": "STDS",
+   "level": 2,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "reaction"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Frost Shuriken",
+   "source": "STDS",
+   "level": 1,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Ghost Lights",
+   "source": "STDS",
+   "level": 0,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Ghost Touch",
+   "source": "STDS",
+   "level": 0,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Glacial Orbs",
+   "source": "STDS",
+   "level": 6,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Glyph of Power",
+   "source": "STDS",
+   "level": 7,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "permanent"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Grave Call",
+   "source": "STDS",
+   "level": 0,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Great Wave",
+   "source": "STDS",
+   "level": 8,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 300
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 6
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Hailstorm",
+   "source": "STDS",
+   "level": 4,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 300
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Hallucination",
+   "source": "STDS",
+   "level": 2,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Holy Fire",
+   "source": "STDS",
+   "level": 5,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Imbue Element",
+   "source": "STDS",
+   "level": 3,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Impaling Spires",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Incinerate",
+   "source": "STDS",
+   "level": 5,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Inflict Disease",
+   "source": "STDS",
+   "level": 5,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Injunction",
+   "source": "STDS",
+   "level": 5,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "day",
+      "amount": 30
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Irradiate",
+   "source": "STDS",
+   "level": 4,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Lashing Vine",
+   "source": "STDS",
+   "level": 2,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Life Drain",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Lightning Beam",
+   "source": "STDS",
+   "level": 3,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Lightning Leash",
+   "source": "STDS",
+   "level": 0,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Lightning Tendril",
+   "source": "STDS",
+   "level": 1,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 20
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Luminous Smite",
+   "source": "STDS",
+   "level": 2,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Lunar Beam",
+   "source": "STDS",
+   "level": 2,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Magic Fruit",
+   "source": "STDS",
+   "level": 1,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 24
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Magic Net",
+   "source": "STDS",
+   "level": 1,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 5
+    }
+   },
+   "components": {
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Manipulate Earth",
+   "source": "STDS",
+   "level": 0,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "special"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Manipulate Fire",
+   "source": "STDS",
+   "level": 0,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "special"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Manipulate Water",
+   "source": "STDS",
+   "level": 0,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Manipulate Wind",
+   "source": "STDS",
+   "level": 0,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Martial Transformation",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Mass Freeze",
+   "source": "STDS",
+   "level": 5,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Mind Link",
+   "source": "STDS",
+   "level": 8,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 24
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Minor Drain",
+   "source": "STDS",
+   "level": 1,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Misdirection",
+   "source": "STDS",
+   "level": 5,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Misfortune",
+   "source": "STDS",
+   "level": 1,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "reaction"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Morph Earth",
+   "source": "STDS",
+   "level": 5,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "permanent"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Muddy Servant",
+   "source": "STDS",
+   "level": 2,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Nature's Fury",
+   "source": "STDS",
+   "level": 5,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Nature's Protection",
+   "source": "STDS",
+   "level": 5,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Necromantic Infusion",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Necromantic Storm",
+   "source": "STDS",
+   "level": 5,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Necrotic Sphere",
+   "source": "STDS",
+   "level": 6,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 150
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Oakenhide",
+   "source": "STDS",
+   "level": 2,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Petrify",
+   "source": "STDS",
+   "level": 6,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 3
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Phantasm",
+   "source": "STDS",
+   "level": 2,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Phantasmal Horror",
+   "source": "STDS",
+   "level": 4,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Phantasmal Nightmares",
+   "source": "STDS",
+   "level": 9,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Poison Fang",
+   "source": "STDS",
+   "level": 0,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Power Word Nap",
+   "source": "STDS",
+   "level": 3,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 3
+    }
+   },
+   "components": {
+    "v": true
+   },
+   "duration": [
+    {
+     "type": "special"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Prismatic Bolt",
+   "source": "STDS",
+   "level": 1,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Psychic Skewer",
+   "source": "STDS",
+   "level": 2,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "intelligence"
+   ]
+  },
+  {
+   "name": "Psychokinesis",
+   "source": "STDS",
+   "level": 5,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Rain of Fire",
+   "source": "STDS",
+   "level": 7,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 150
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Reanimation",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 10
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 24
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Reanimation, Greater",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 10
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 24
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Rejuvenation",
+   "source": "STDS",
+   "level": 7,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Riptide",
+   "source": "STDS",
+   "level": 3,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Rot",
+   "source": "STDS",
+   "level": 4,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Sacred Circle",
+   "source": "STDS",
+   "level": 5,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Sacred Strikes",
+   "source": "STDS",
+   "level": 1,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Safekeeping",
+   "source": "STDS",
+   "level": 7,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "permanent"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Scintillant Blast",
+   "source": "STDS",
+   "level": 7,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Seal Away",
+   "source": "STDS",
+   "level": 8,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "permanent"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Secret Missive",
+   "source": "STDS",
+   "level": 1,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "day",
+      "amount": 10
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "meta": {
+    "ritual": true
+   }
+  },
+  {
+   "name": "Shape Winds",
+   "source": "STDS",
+   "level": 5,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 100
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Shatter Mind",
+   "source": "STDS",
+   "level": 8,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "intelligence"
+   ]
+  },
+  {
+   "name": "Siphon Life",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Sky Omen",
+   "source": "STDS",
+   "level": 6,
+   "school": "I",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "miles",
+     "amount": 1
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Sonic Rift",
+   "source": "STDS",
+   "level": 3,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Soul Transfer",
+   "source": "STDS",
+   "level": 7,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "permanent"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "charisma"
+   ]
+  },
+  {
+   "name": "Sparking Shot",
+   "source": "STDS",
+   "level": 3,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Speak with Nature",
+   "source": "STDS",
+   "level": 1,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   },
+   "meta": {
+    "ritual": true
+   }
+  },
+  {
+   "name": "Spectral Champion",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Paladin",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Spell Glyph",
+   "source": "STDS",
+   "level": 3,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "permanent"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Spirit Remnant",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 10
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Spreadshot",
+   "source": "STDS",
+   "level": 3,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Stinging Insects",
+   "source": "STDS",
+   "level": 0,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Stone Pact",
+   "source": "STDS",
+   "level": 3,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "touch"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Stormcloud",
+   "source": "STDS",
+   "level": 4,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 150
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Stream of Flame",
+   "source": "STDS",
+   "level": 2,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "dexterity"
+   ]
+  },
+  {
+   "name": "Summon Animal Spirit",
+   "source": "STDS",
+   "level": 2,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Summon Golem",
+   "source": "STDS",
+   "level": 4,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Summon Grave Spirit",
+   "source": "STDS",
+   "level": 3,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Symbol of Resilience",
+   "source": "STDS",
+   "level": 3,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Synaptic Shockwave",
+   "source": "STDS",
+   "level": 9,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "intelligence"
+   ]
+  },
+  {
+   "name": "Synaptic Spear",
+   "source": "STDS",
+   "level": 4,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "intelligence"
+   ]
+  },
+  {
+   "name": "Tempest",
+   "source": "STDS",
+   "level": 9,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 360
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Thought Wisp",
+   "source": "STDS",
+   "level": 0,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 24
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Thunder Burst",
+   "source": "STDS",
+   "level": 0,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Touch of Filth",
+   "source": "STDS",
+   "level": 2,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Twister",
+   "source": "STDS",
+   "level": 7,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 300
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Unbridled Fury",
+   "source": "STDS",
+   "level": 2,
+   "school": "E",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "wisdom"
+   ]
+  },
+  {
+   "name": "Unearth Legend",
+   "source": "STDS",
+   "level": 5,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "day",
+      "amount": 7
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "meta": {
+    "ritual": true
+   }
+  },
+  {
+   "name": "Unerring Sentry",
+   "source": "STDS",
+   "level": 4,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 8
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Wall of Dust",
+   "source": "STDS",
+   "level": 3,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Warding Sigil",
+   "source": "STDS",
+   "level": 1,
+   "school": "A",
+   "time": [
+    {
+     "number": 1,
+     "unit": "bonus"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Water Wall",
+   "source": "STDS",
+   "level": 3,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Wayfinding",
+   "source": "STDS",
+   "level": 5,
+   "school": "D",
+   "time": [
+    {
+     "number": 1,
+     "unit": "minute"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "self"
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "hour",
+      "amount": 24
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     },
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Wellspring",
+   "source": "STDS",
+   "level": 2,
+   "school": "T",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 30
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Ranger",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Whirling Blades",
+   "source": "STDS",
+   "level": 2,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 10
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Bard",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Warlock",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Whirling Water",
+   "source": "STDS",
+   "level": 4,
+   "school": "C",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 90
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     },
+     {
+      "name": "Sorcerer",
+      "source": "PHB"
+     },
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Whirlpool",
+   "source": "STDS",
+   "level": 5,
+   "school": "V",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "minute",
+      "amount": 1
+     },
+     "concentration": true
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Druid",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "strength"
+   ]
+  },
+  {
+   "name": "Withering Field",
+   "source": "STDS",
+   "level": 8,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 120
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true,
+    "m": true
+   },
+   "duration": [
+    {
+     "type": "timed",
+     "duration": {
+      "type": "round",
+      "amount": 1
+     }
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Wizard",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  },
+  {
+   "name": "Wound",
+   "source": "STDS",
+   "level": 6,
+   "school": "N",
+   "time": [
+    {
+     "number": 1,
+     "unit": "action"
+    }
+   ],
+   "range": {
+    "type": "point",
+    "distance": {
+     "type": "feet",
+     "amount": 60
+    }
+   },
+   "components": {
+    "v": true,
+    "s": true
+   },
+   "duration": [
+    {
+     "type": "instant"
+    }
+   ],
+   "entries": [],
+   "classes": {
+    "fromClassList": [
+     {
+      "name": "Cleric",
+      "source": "PHB"
+     }
+    ]
+   },
+   "savingThrow": [
+    "constitution"
+   ]
+  }
+ ]
+}
