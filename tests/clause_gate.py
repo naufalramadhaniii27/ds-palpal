@@ -559,6 +559,11 @@ def features(D):
         if (D.get("lastch") or {}).get(name): at.append(Atom("RESOURCE", nums_in(D["lastch"][name]), "LASTCH|" + name))
         at += lu_atoms(D, name, name)
         text = r[4]
+        sm = re.search(r"\((Dormant|Awakened|Exalted)\)$", name)
+        if sm:  # a stage row repeats the sections of the earlier stages (Dormant, Awakened); those are counted by their own rows, so they are not read again here
+            order = ["Dormant", "Awakened", "Exalted"]; parts = re.split(r"(?=\*\*(?:Dormant|Awakened|Exalted)\.\*\*)", text)
+            keep = [x for x in parts if not (re.match(r"\*\*(Dormant|Awakened|Exalted)\.\*\*", x) and order.index(re.match(r"\*\*(\w+)\.", x).group(1)) < order.index(sm.group(1)))]
+            text = "".join(keep)
         extra = (D.get("itemDesc") or {}).get(name)
         if isinstance(extra, str) and extra and extra not in text:
             text = text + " " + extra
