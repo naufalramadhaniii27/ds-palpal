@@ -122,7 +122,7 @@ function featList(q){if(Array.isArray(q.list))return q.list;
  if(q.list==="maneuvers")return MANEUVERS.map((x) =>{return [x[0],(genv.__MANSUM||{})[x[0]]||""]});/* v69 */
  if(q.list==="metamagic")return METAMAGIC.map((x) =>{return [x[0],""]});
  if(q.list==="invocations"){const wl=wxCls().indexOf("Warlock")>=0;return INVOCATIONS.filter((x) =>{return wl||!/\*\*Prerequisite\.\*\*/.test(x[1])}).map((x) =>{return [x[0],""]})} if(q.list==="fstyle"&&R14())return fs14List(B.cls).map((n) =>{return [n,""]});
- if(q.list==="fstyle")return ["Archery","Blind Fighting","Defense","Dueling","Great Weapon Fighting","Interception","Protection","Thrown Weapon Fighting","Two-Weapon Fighting","Unarmed Fighting"].filter((n) =>{return FEATS[n]}).map((n) =>{return [n,""]});
+ if(q.list==="fstyle")return ["Archery","Blind Fighting","Defense","Dueling","Great Weapon Fighting","Interception","Protection","Thrown Weapon Fighting","Two-Weapon Fighting","Unarmed Fighting"].concat(Object.keys(FEATS).filter((n) =>{return FEATS[n].fsAll})).filter((n) =>{return FEATS[n]}).map((n) =>{return [n,""]});
  if(q.list==="weapons")return wmKeys().map((n) =>{return [n,""]});if(q.list==="ritual1")return SPELLS.filter((x) =>{return x[1]===1&&x[9]}).map((x) =>{return [x[0],x[11]]});return []}
 /* fx engine v2: entry.pick = [{k, t: skills|tool|lang|multi|cantrip, n ("pb" allowed), title, from|list|cats, cls, school}]. Stored in B.ch["gx-"+k+"-"+kind+"-"+owner(+mc)].
    skills become proficiencies, tool goes to tool proficiencies (toolChoices), lang to languages (XFX.lang), cantrip to the spell list (autoSpells), multi is only stored */

@@ -28,10 +28,10 @@ function c14Notes(){
 function c14Opts(cl){
  if(typeof OPTS!=="undefined")cl.forEach((cn) =>{Object.keys(CLS14[cn].opts||{}).forEach((k) =>{ov14(OPT14S,OPTS,k,CLS14[cn].opts[k])})});}
 function c14Mm(cl){
- cl.forEach((cn) =>{const mm=CLS14[cn].mm;if(mm&&typeof METAMAGIC!=="undefined"){MM14SAVED=METAMAGIC.slice();METAMAGIC.length=0;mm.forEach((x) =>{if(!x[2]||(B.src&&B.src[x[2]]))METAMAGIC.push([x[0],x[1]])})}});}
+ cl.forEach((cn) =>{const mm=CLS14[cn].mm;if(mm&&typeof METAMAGIC!=="undefined"){MM14SAVED=METAMAGIC.slice();METAMAGIC.length=0;mm.forEach((x) =>{if(!x[2]||(B.src&&B.src[x[2]]))METAMAGIC.push([x[0],x[1]])});Object.keys(genv.WXO||{}).forEach((id) =>{if(B.src&&B.src[id])((genv.WXO[id].mm)||[]).forEach((r) =>{if(!METAMAGIC.some((q) =>{return q[0]===r[0]}))METAMAGIC.push(r)})})}});}
 function c14Wl(){
- const wl14=CLS14.Warlock;if(wl14&&wl14.inv&&typeof INVOCATIONS!=="undefined"){const on14=function(s){return !s||(B.src&&B.src[s])};INV14S=INVOCATIONS.slice();INVOCATIONS.length=0;wl14.inv.forEach((x) =>{if(on14(x[4])){const r=[x[0],x[1],x[2]];if(x[3])r.push(x[3]);INVOCATIONS.push(r)}});
-  ISP14S=Object.assign({},INV_SPELLS);Object.keys(INV_SPELLS).forEach((k) =>{delete INV_SPELLS[k]});Object.assign(INV_SPELLS,wl14.invSp||{});
+ const wl14=CLS14.Warlock;if(wl14&&wl14.inv&&typeof INVOCATIONS!=="undefined"){const on14=function(s){return !s||(B.src&&B.src[s])};INV14S=INVOCATIONS.slice();INVOCATIONS.length=0;wl14.inv.forEach((x) =>{if(on14(x[4])){const r=[x[0],x[1],x[2]];if(x[3])r.push(x[3]);INVOCATIONS.push(r)}});Object.keys(genv.WXO||{}).forEach((id) =>{if(B.src&&B.src[id])((genv.WXO[id].inv)||[]).forEach((r) =>{if(!INVOCATIONS.some((q) =>{return q[0]===r[0]}))INVOCATIONS.push(r.slice(0,4))})});/* invocations of a 2014 book that is on */
+  ISP14S=Object.assign({},INV_SPELLS);Object.keys(INV_SPELLS).forEach((k) =>{delete INV_SPELLS[k]});Object.assign(INV_SPELLS,wl14.invSp||{});Object.keys(genv.WXO||{}).forEach((id) =>{if(B.src&&B.src[id])Object.assign(INV_SPELLS,genv.WXO[id].isp||{})});
   IPK14S=Object.assign({},INV_PICK);Object.keys(INV_PICK).forEach((k) =>{delete INV_PICK[k]});PACTB14=(wl14.pact||[]).filter((x) =>{return on14(x[2])}).map((x) =>{return [x[0],x[1]]})}}
 function c14Lu(cl,subN){
  LU14SAVED=LU_X.slice();const keep=LU_X.filter((e) =>{return !((e.src==="class"&&cl.indexOf(e.owner)>=0)||(e.src==="sub"&&subN.indexOf(e.owner)>=0))});LU_X.length=0;keep.forEach((e) =>{LU_X.push(e)});}
@@ -60,7 +60,7 @@ const FS14={PHB:["Archery","Defense","Dueling","Great Weapon Fighting","Protecti
  TCE:{Fighter:["Blind Fighting","Interception","Superior Technique","Thrown Weapon Fighting","Unarmed Fighting"],Paladin:["Blessed Warrior","Blind Fighting","Interception"],Ranger:["Blind Fighting","Druidic Warrior","Thrown Weapon Fighting"]},
  PHBC:{Fighter:1,Paladin:1,Ranger:1}};
 export function fs14List(cls){const o=[];const cc=CLASSES[cls];if(cc&&cc.fs14)return cc.fs14.filter((n) =>{return FEATS[n]});/* a class of a 2014 third party book lists its own styles (Warden, Valda 2014) */if(!FS14.PHBC[cls])return o;FS14.PHB.forEach((n) =>{const ok=cls==="Fighter"||(cls==="Paladin"&&["Defense","Dueling","Great Weapon Fighting","Protection"].indexOf(n)>=0)||(cls==="Ranger"&&["Archery","Defense","Dueling","Two-Weapon Fighting"].indexOf(n)>=0);if(ok)o.push(n)});
- if(B.src&&B.src.tce)(FS14.TCE[cls]||[]).forEach((n) =>{o.push(n)});return o.filter((n) =>{return FEATS[n]})}
+ if(B.src&&B.src.tce)(FS14.TCE[cls]||[]).forEach((n) =>{o.push(n)});Object.keys(FEATS).forEach((n) =>{if(FEATS[n].fsAll&&o.indexOf(n)<0)o.push(n)});/* a book style open to every fighting class (Gunfighting) */return o.filter((n) =>{return FEATS[n]})}
 function cls14Feats(){if(!R14())return;
  FEATS["Great Weapon Fighting"]=Object.assign({},FEATS["Great Weapon Fighting"],{d:"When you roll a 1 or 2 on a damage die for an attack made with a Two-Handed or Versatile melee weapon held in two hands, you reroll the die and must use the new roll."});
  FEATS["Protection"]=Object.assign({},FEATS["Protection"],{d:"Reaction while wielding a Shield: impose Disadvantage on an attack roll against a creature other than you that is within 5 ft of you, if you can see the attacker."});

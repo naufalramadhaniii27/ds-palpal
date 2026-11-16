@@ -20,12 +20,13 @@ function wxWeapons(){const R=genv.WXW;if(!R)return;const own=(B.inv||[]).map((x)
   Object.keys(o.a).forEach((n) =>{const r=o.a[n];if(B.src[id]){if(!ARMOR[n]){ARMOR[n]=Object.assign({sx:1},r.o);PRICE[n]=r.c;if(r.t)ITEMDESC[n]=r.t}}else if(ARMOR[n]&&ARMOR[n].sx){delete ARMOR[n];delete PRICE[n];delete ITEMDESC[n]}})})}
 function wxGear(){const R=genv.WXG;if(!R)return;const own=(B.inv||[]).map((x) =>{return x.n}),chj=JSON.stringify(B.ch||{});Object.keys(R).forEach((id) =>{const rows=R[id];if(!B.src[id]&&rows.some((r) =>{return own.indexOf(r[0])>=0||(r[3]==="Musical Instrument"&&chj.indexOf('"'+r[0]+'"')>=0)}))B.src[id]=true;/* v81: an instrument that a tool pick holds keeps its source on */rows.forEach((r) =>{const i=GEAR.findIndex((g) =>{return g[0]===r[0]});if(B.src[id]){if(i<0)GEAR.push([r[0],r[1],r[2]]);MOUNTT[r[0]]=r[3];ITEMDESC[r[0]]=r[4]}else if(i>=0){GEAR.splice(i,1);delete MOUNTT[r[0]];delete ITEMDESC[r[0]]}if(r[3]==="Musical Instrument"){const k=TOOLS.music.indexOf(r[0]);/* v81: the instruments of an on source join the Musical Instruments list of tool picks */if(B.src[id]&&k<0){TOOLS.music.push(r[0]);TOOLS.music.sort()}else if(!B.src[id]&&k>=0)TOOLS.music.splice(k,1)}})})}
 /* v81: the class options of the WotC sources (invocations, maneuvers, runes, arcane shots, elemental disciplines) are in their lists while the source is on. An option that a character holds keeps the source on */
+function wxOptMore(g,on,put){if(typeof METAMAGIC!=="undefined")(g.mm||[]).forEach((r) =>{put(METAMAGIC,r,on)});if(typeof INV_SPELLS!=="undefined")Object.keys(g.isp||{}).forEach((k) =>{if(on)INV_SPELLS[k]=g.isp[k];else delete INV_SPELLS[k]})}
 function wxOpts(){const R=genv.WXO;if(!R||typeof INVOCATIONS==="undefined")return;const chj=JSON.stringify(B.ch||{});
  const put=function(arr,r,on){let i=-1;arr.forEach((x,j) =>{if(x[0]===r[0])i=j});if(on&&i<0){arr.push(r);arr.sort((a,b) =>{return a[0]<b[0]?-1:a[0]>b[0]?1:0})}else if(!on&&i>=0)arr.splice(i,1)};
  const LN={rn:"Runes"};
  Object.keys(R).forEach((id) =>{const g=R[id],all=[].concat(g.inv||[],g.man||[],g.rn||[]);
   if(!B.src[id]&&all.some((r) =>{return chj.indexOf('"'+r[0]+'"')>=0}))B.src[id]=true;const on=!!B.src[id];
-  if(!R14())(g.inv||[]).forEach((r) =>{put(INVOCATIONS,r,on)});(g.man||[]).forEach((r) =>{put(MANEUVERS,r,on)});
+  if(!R14())(g.inv||[]).forEach((r) =>{put(INVOCATIONS,r,on)});(g.man||[]).forEach((r) =>{put(MANEUVERS,r,on)});wxOptMore(g,on,put);
   Object.keys(LN).forEach((k) =>{(g[k]||[]).forEach((r) =>{OPTS[LN[k]]=OPTS[LN[k]]||[];put(OPTS[LN[k]],r,on)})})})}
 /* v100: spells of Xanathar's and Tasha's that the same book data holds under a later source (2025 and 2026 reprints). They also join the list while the older book is on, so a 2014 build has them */
 let XSP14={xge:["Catnap","Enervation","Illusory Dragon","Invulnerability","Negative Energy Flood","Power Word Pain"],tce:["Blade of Disaster"]},XSP14_DONE=0;

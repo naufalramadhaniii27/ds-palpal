@@ -17,7 +17,7 @@
 })();
 (function(){ const S=BootEnv.ld;
     /* T7: the builder reads saved data and uses the sheet, so its parts wait until the store has loaded IndexedDB and the sheet scripts ran (boot/store-gate.js) */
-  S.run1=function(){ if(!(BootEnv.__gateDone)) return false; const s=S.list()[0]; if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;/* v100: a part whose end tag has not been read yet is cut short, running it would stop with a syntax error */ let u=s.getAttribute("data-src"), n=S.pname(s), t;
+  S.run1=function(){ if(!(BootEnv.__gateDone)) return false; const s=S.list()[0]; if(!s) return false; if(document.readyState==="loading"&&!s.nextSibling) return false;/* v100: a part whose end tag has not been read yet is cut short, running it would stop with a syntax error */ if(!s.getAttribute("data-src")&&document.readyState==="loading"&&s.text.slice(-8)!=="/*@end*/") return false;/* v139: the parser can hand over the text of a big part in pieces while a next sibling already exists (CSP then refuses the cut text); build.py ends every part with this mark */ let u=s.getAttribute("data-src"), n=S.pname(s), t;
     if(u){ S.ask(s); t=S.TXT[n]; if(t==null) return false; delete S.TXT[n]; S.DONE[n]=1; } else t=s.text;
     const H=BootEnv.__deferHook;/* N32: tests/lib/trace.js sets it, nothing else does */ if(H) H(0,n);
     const x=document.createElement("script"); x.text=BootEnv.__ttLoader?BootEnv.__ttLoader.createScript(t):t;/* T11 A1: Trusted Types */ s.parentNode.replaceChild(x,s); if(H) H(1,n); return true; };

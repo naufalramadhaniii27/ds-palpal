@@ -82,6 +82,7 @@ def probe(gaps):
         b = p.chromium.launch(); pg = b.new_page(); pg.set_default_timeout(600000)
         pg.goto("file://" + os.path.join(ROOT, "index.html")); pg.wait_for_timeout(800)
         pg.evaluate("window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("window.__bldSheetFor&&window.__deriveFor", timeout=90000)
+        pg.wait_for_function("window.__deferDone", timeout=120000)  # lazy parts finished, else early probes read half loaded data and flag counted features
         fn = "(" + PROBE_JS.strip() + ")"
         for i in range(0, len(recs), 60):
             for r in pg.evaluate(fn, recs[i:i + 60]):

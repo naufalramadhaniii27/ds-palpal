@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:138,l:"0.0.36",d:"2026-11-16",n:["Tome of Heroes (Kobold Press, 2014 rules): 11 species and 40 subraces, 19 backgrounds, 15 feats, 140 spells, 50 magic items with 91 gear and 35 weapon texts, Metamagic and Eldritch Invocations, 42 draconic runes and the Gunfighting style. Monsters and variant rules stay reference only."]},
 {v:137,l:"0.0.35",d:"2026-11-16",n:["Healer and Summoner classes (2024 rules, Spaghetti0): the spell step now offers the core spells on each class list, not only the spells from their own book."]},
 {v:136,l:"0.0.34",d:"2026-11-16",n:["Arcane Archer (Unearthed Arcana 2025 Arcane Updates): the level 15 feature is now Arcane Burst, which pushes creatures away when you use Indomitable. It replaces Indomitable Teleport."]},
 {v:135,l:"0.0.33",d:"2026-11-15",n:["Picking a class, species or background in the builder is fast again, also with many sources turned on. The Library search index is now built while the page is idle, not during your click."]},
