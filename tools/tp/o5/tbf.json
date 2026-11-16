@@ -18,7 +18,7 @@
    "source": "BFRD",
    "hd": {
     "number": 1,
-    "faces": 8
+    "faces": 10
    },
    "proficiency": [
     "con",
@@ -201,6 +201,163 @@
      ]
     }
    ]
+  },
+  {
+   "name": "Vanguard",
+   "source": "BFRD",
+   "hd": {
+    "number": 1,
+    "faces": 12
+   },
+   "proficiency": [
+    "con",
+    "cha"
+   ],
+   "primaryAbility": [
+    {
+     "cha": true
+    }
+   ],
+   "multiclassing": {
+    "requirements": {
+     "cha": 13
+    }
+   },
+   "startingProficiencies": {
+    "armor": [
+     "light",
+     "medium",
+     "heavy",
+     "shield"
+    ],
+    "weapons": [
+     "simple",
+     "martial"
+    ],
+    "skills": [
+     {
+      "choose": {
+       "from": [
+        "animal handling",
+        "athletics",
+        "history",
+        "insight",
+        "intimidation",
+        "medicine",
+        "persuasion"
+       ],
+       "count": 2
+      }
+     }
+    ]
+   },
+   "subclassTitle": "Vanguard Subclass",
+   "classFeatures": [
+    "Born Leader|Vanguard|BFRD|1",
+    "War Banner|Vanguard|BFRD|1",
+    "Stratagems|Vanguard|BFRD|2",
+    "Support Action|Vanguard|BFRD|2",
+    {
+     "classFeature": "Vanguard Subclass|Vanguard|BFRD|3",
+     "gainSubclassFeature": true
+    },
+    "Ability Score Improvement|Vanguard|BFRD|4",
+    "Multiattack|Vanguard|BFRD|5",
+    "Superior Stratagems|Vanguard|BFRD|5",
+    "War Banner: Lucky Colors|Vanguard|BFRD|6",
+    {
+     "classFeature": "Subclass Feature|Vanguard|BFRD|7",
+     "gainSubclassFeature": true
+    },
+    "Ability Score Improvement|Vanguard|BFRD|8",
+    "Manifold Tactic|Vanguard|BFRD|9",
+    "Heroic Boon|Vanguard|BFRD|10",
+    {
+     "classFeature": "Subclass Feature|Vanguard|BFRD|11",
+     "gainSubclassFeature": true
+    },
+    "Ability Score Improvement|Vanguard|BFRD|12",
+    "Valiant Commander|Vanguard|BFRD|13",
+    "Battlefield Resolve|Vanguard|BFRD|14",
+    {
+     "classFeature": "Subclass Feature|Vanguard|BFRD|15",
+     "gainSubclassFeature": true
+    },
+    "Ability Score Improvement|Vanguard|BFRD|16",
+    "Banner Improvements|Vanguard|BFRD|17",
+    "Stand Together|Vanguard|BFRD|18",
+    "Ability Score Improvement|Vanguard|BFRD|19",
+    "Vanguard Epic Boon|Vanguard|BFRD|20"
+   ],
+   "classTableGroups": [
+    {
+     "colLabels": [
+      "Stratagems Known"
+     ],
+     "rows": [
+      [
+       "0"
+      ],
+      [
+       "2"
+      ],
+      [
+       "2"
+      ],
+      [
+       "3"
+      ],
+      [
+       "3"
+      ],
+      [
+       "4"
+      ],
+      [
+       "4"
+      ],
+      [
+       "5"
+      ],
+      [
+       "5"
+      ],
+      [
+       "5"
+      ],
+      [
+       "6"
+      ],
+      [
+       "6"
+      ],
+      [
+       "7"
+      ],
+      [
+       "7"
+      ],
+      [
+       "8"
+      ],
+      [
+       "8"
+      ],
+      [
+       "9"
+      ],
+      [
+       "9"
+      ],
+      [
+       "10"
+      ],
+      [
+       "10"
+      ]
+     ]
+    }
+   ]
   }
  ],
  "classFeature": [
@@ -333,6 +490,146 @@
    "entries": [
     "x"
    ]
+  },
+  {
+   "name": "Born Leader",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 1,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "War Banner",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 1,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Stratagems",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 2,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Support Action",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 2,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Multiattack",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 5,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Superior Stratagems",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 5,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "War Banner: Lucky Colors",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 6,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Manifold Tactic",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 9,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Heroic Boon",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 10,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Valiant Commander",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 13,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Battlefield Resolve",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 14,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Banner Improvements",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 17,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Stand Together",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 18,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Vanguard Epic Boon",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "level": 20,
+   "entries": [
+    "x"
+   ]
   }
  ],
  "subclass": [
@@ -341,6 +638,13 @@
    "shortName": "Metallurgist",
    "source": "BFRD",
    "className": "Mechanist",
+   "classSource": "BFRD"
+  },
+  {
+   "name": "Marshal",
+   "shortName": "Marshal",
+   "source": "BFRD",
+   "className": "Vanguard",
    "classSource": "BFRD"
   }
  ],
@@ -399,6 +703,66 @@
    "className": "Mechanist",
    "classSource": "BFRD",
    "subclassShortName": "Metallurgist",
+   "subclassSource": "BFRD",
+   "level": 15,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Inspiring Leadership",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "subclassShortName": "Marshal",
+   "subclassSource": "BFRD",
+   "level": 3,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "War Banner: Banner of Coordination",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "subclassShortName": "Marshal",
+   "subclassSource": "BFRD",
+   "level": 3,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "General's Gambit",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "subclassShortName": "Marshal",
+   "subclassSource": "BFRD",
+   "level": 7,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Comrade in Arms",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "subclassShortName": "Marshal",
+   "subclassSource": "BFRD",
+   "level": 11,
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Battlefield Vigor",
+   "source": "BFRD",
+   "className": "Vanguard",
+   "classSource": "BFRD",
+   "subclassShortName": "Marshal",
    "subclassSource": "BFRD",
    "level": 15,
    "entries": [
@@ -532,6 +896,146 @@
    "source": "BFRD",
    "featureType": [
     "MCH:AE"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Bolster",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Charge",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Close Ranks",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Coordinated Strike",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Counterstrike",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Flank Position",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Goading Strike",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Inspiring Bellow",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Marching Orders",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Marshal Tactics",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Raise Guard",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Rally",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Surround",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
+   ],
+   "entries": [
+    "x"
+   ]
+  },
+  {
+   "name": "Tactical Reposition",
+   "source": "BFRD",
+   "featureType": [
+    "VG:ST"
    ],
    "entries": [
     "x"

@@ -72,6 +72,7 @@ def load():
         pg.evaluate("window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("window.__bldData", timeout=90000)
         d = pg.evaluate("window.__bldData()")
         d["gx"] = pg.evaluate("JSON.parse(JSON.stringify(window.GX||{}))")
+        d["lastch"] = pg.evaluate("JSON.parse(JSON.stringify(window.LASTCH||{}))")
         d["gxItem"] = pg.evaluate("()=>Object.keys(window.GX&&window.GX.item||{}).concat(Object.keys(window.FXO||{}))")
         d.update(pg.evaluate(EXTRA_JS)); b.close()
     if errs:
@@ -233,7 +234,7 @@ XCAT = {  # supplements to mech_scan.CAT (which has ac, hp, save, speed, init, s
     "SENSE": R(r"\b(?:darkvision|blindsight|tremorsense|truesight|devil's sight)\b|\bsee in (?:magical )?darkness\b|\bpassive perception\b"),
     "PROF": R(r"\bproficien(?:t|cy)\b(?! bonus)|\bexpertise\b|\blanguages?\b[^.]{0,30}\b(?:learn|know|speak|add)\b"),
     "SLOT": R(r"\bspell slots?\b|\bslot level\b|\bregain[^.]{0,30}\bslots?\b"),
-    "RESOURCE": R(r"\b(?:\d+|one|two|three|four|five|six|no|all|any|remaining|expended|extra|additional|equal to[^.]{0,40}|number of) uses?\b|\buses? (?:remaining|left|per|of)\b|\bcharges?\b|\bexpend(?:s|ed|ing)?\b|\bregains?\b|\brecharge[sd]?\b|\b(?:short|long) rest\b|\bat dawn\b|\bper (?:day|dawn)\b|\b(?:once|twice) per\b|\b(?:focus|sorcery|ki|psi) points?\b"),
+    "RESOURCE": R(r"\b(?:\d+|one|two|three|four|five|six|no|all|any|remaining|expended|extra|additional|equal to[^.]{0,40}|number of) uses?\b|\buses? (?:remaining|left|per|of)\b|\bcharges?\b|\bexpend(?:s|ed|ing)?\b|\bregains?\b|\brecharge[sd]?\b|\b(?:short|long) rest\b|\bat dawn\b|\bper (?:day|dawn)\b|\b(?:once|twice) per (?!turn\b|creature\b|round\b|attack\b|target\b|spell\b)|\b(?:focus|sorcery|ki|psi) points?\b"),
     "ATK": R(r"(?:\+\d+|bonus|add|plus|extra|additional|increase)[^.]{0,40}\battack (?:rolls?|bonus)|\battack (?:rolls?|bonus)[^.]{0,40}(?:\+\d|bonus|increase)|\bextra attack\b|\battack twice\b|\btwo attacks\b|\bspell attack\b|\b(?:to hit|attack modifier)\b"),
     "DMG": R(r"\b\d*d\d+\b[^.]{0,40}\bdamage\b|\bdamage\b[^.]{0,40}\b\d*d\d+\b|(?:\+\d+|extra|additional|bonus)[^.]{0,20}\bdamage\b|\bdamage rolls?\b[^.]{0,30}(?:\+\d|bonus)"),
     "DC": R(r"\bdc\b|\bsave dc\b|\bdifficulty class\b"),
@@ -475,6 +476,11 @@ def features(D):
                     elif isinstance(tbl, dict):
                         for rows in tbl.values():
                             at += spell_atoms([rows], text, src_name)
+                sg = D["subGrant"].get(sn)
+                if isinstance(sg, dict) and sg.get("f") == name:  # SUB_GRANT: the fixed tools, armor, weapons and skills this feature gives (grantTools and the proficiency lines of the sheet)
+                    for k in ("tools", "armor", "weapons", "skills"):
+                        if isinstance(sg.get(k), list) and sg[k]:
+                            at.append(Atom("PROF", nums_in([x[1] for x in sg[k] if isinstance(x, list) and len(x) > 1]), "SUB_GRANT." + k))
                 for r in D["fdmg_by"].get((sn, name), []):
                     at += [Atom("DMG", nums_in(r[3:]), "FDMG"), Atom("RESOURCE", nums_in(r[3:]), "FDMG")]
                 yield mk("sub", "%s/%s" % (cn, sn), name, sbook, text, lvl, at, ("sub|%s|%s" % (sn, name)) in D["acts_set"])
@@ -538,6 +544,10 @@ def features(D):
             at += atoms_from(fx, "FXO|" + name if name in fxo else "item.fx|" + name)
         for k in ("ch", "by", "xd", "wp"):
             if ex.get(k) not in (None, "", [], {}):
+                if k == "ch" and isinstance(ex[k], list):  # [max, regain, reset]: the size and the refill are two sentences, so two atoms (one atom covers one sentence)
+                    at += [Atom("RESOURCE", nums_in(el), "item.ex.ch[%d]" % i) for i, el in enumerate(ex[k]) if el not in (None, "", [], {})]
+                    at.append(Atom("RESOURCE", nums_in(ex[k]), "item.ex.ch"))  # the sentence "has 3 charges and regains 1d3" carries both numbers
+                    continue
                 at += atoms_from({k: ex[k]}, "item.ex|" + name) or [Atom("RESOURCE", nums_in(ex[k]), "item.ex.%s" % k)]
         if ex.get("pick"):
             at.append(Atom("CHOICE", nums_in(ex["pick"]), "item.pick"))
@@ -551,8 +561,14 @@ def features(D):
             for k, v in isp.items():
                 if k not in ("sp", "atk", "dc") and v not in (None, [], {}, ""):
                     at.append(Atom("RESOURCE", nums_in(v), "ITEM_SPELLS.%s" % k))
+        if (D.get("lastch") or {}).get(name): at.append(Atom("RESOURCE", nums_in(D["lastch"][name]), "LASTCH|" + name))
         at += lu_atoms(D, name, name)
         text = r[4]
+        sm = re.search(r"\((Dormant|Awakened|Exalted)\)$", name)
+        if sm:  # a stage row repeats the sections of the earlier stages (Dormant, Awakened); those are counted by their own rows, so they are not read again here
+            order = ["Dormant", "Awakened", "Exalted"]; parts = re.split(r"(?=\*\*(?:Dormant|Awakened|Exalted)\.\*\*)", text)
+            keep = [x for x in parts if not (re.match(r"\*\*(Dormant|Awakened|Exalted)\.\*\*", x) and order.index(re.match(r"\*\*(\w+)\.", x).group(1)) < order.index(sm.group(1)))]
+            text = "".join(keep)
         extra = (D.get("itemDesc") or {}).get(name)
         if isinstance(extra, str) and extra and extra not in text:
             text = text + " " + extra
@@ -585,6 +601,7 @@ REASONS = collections.OrderedDict([
     ("STD:AC10", "'10 + Dex + ability' style base AC: the 10 is the standard base AC constant; the feature has an AC atom that names the ability."),
     ("TABLE:CLASS", "Class tables for spell slots, cantrips and spells known / prepared and the invocation list: read by the slot code and the builder tables from the class row, not by fx records."),
     ("REST:NONUM", "Rest or recharge rule that states no amount ('regains all expended charges at dawn', 'after a Long Rest'): the amount lives in the sentence that has the number; the refill timing is the reset of the pool."),
+    ("REST:LENGTH", "How many hours a Long Rest takes for a trance, dormant or motionless rest (('meditate for 4 hours', 'finish a Long Rest in 4 hours')): a rest-length rule. The sheet records no rest length, and the hour count changes no sheet number."),
     ("DC:REFERENCE", "Sentence only points to the spell save DC / save DC of the feature (no number): the sheet computes the DC from the casting ability."),
     ("OBJECT:STATS", "Stat block of an object, stone, cube or summoned thing (AC, HP, resistance of the thing, not of the character): not a character stat."),
     ("ITEM:SENSES", "Senses of a sentient item ('It has hearing and darkvision out to 120 feet'): belong to the item, not to the wearer."),
@@ -616,6 +633,7 @@ RX_RIDER = R(r"\b(?:extra|additional)\b[^.]{0,40}\d+d\d+[^.]{0,40}\bdamage\b|\bd
 RX_RIDER_HIT = R(r"\byou hit\b|\bhit(?:s|ting)? (?:a creature |it |the target )?with (?:an? |this |the )?(?:weapon |melee |ranged )?(?:attack|weapon)|\bwhen (?:it|the weapon) hits\b|\bon a hit\b|\bweapon attack\b|\bwhen you hit\b")
 RX_PLAY = R(r"\bbloodied\b|\braging\b|\bwhile (?:you are )?(?:prone|mounted|flying|hidden|surprised|concentrating|underwater|transformed|in (?:bright|dim) light|in darkness|flanking|wearing no|incapacitated|unconscious|frightened|charmed)\b|\bwithin \d+ (?:feet|ft)\b[^.]{0,30}\b(?:of|from) (?:you|an ally|a|the|one|another)\b|\bfirst round\b|\bagainst (?:a |an |any )?(?:creature|creatures|undead|fiends?|aberrations?|dragons?|giants?|constructs?|beasts?|humanoids?|monstrosities|oozes|plants?|celestials?|fey|elementals?|aligned|evil|good|spellcasters?|the (?:target|creature|attacker))\b|\bwhile you have cover\b|\bhalf cover\b|\bthree-quarters cover\b|\bnext (?:attack|turn)\b|\bduring that time\b|\bduring this time\b|\bfor the duration\b|\bthat turn\b|\bthis turn\b|\buntil the end\b|\bwhen you are (?:hit|bloodied|targeted|reduced|attacked)\b|\bwhile (?:an? )?(?:ally|creature|enemy|enemies|allies)\b|\bfor the next\b|\bwhen you (?:roll|expend|spend)\b")
 RX_ATKROLL = R(r"\battack rolls?\b[^.]{0,60}\b(?:against|made|by)\b|\bnext attack\b|\bon (?:that|its|the|this|your next) attack\b|\bthe attack\b|\bon the attack\b|\bagainst you\b|\bagainst the\b")
+RX_RESTLEN = R(r"\b(?:meditat\w+|trance|motionless|inactive|light activity|dormant|semiconscious)\b[^.]{0,80}\b\d+ hours?\b|\b(?:finish|complete|gain the benefits? of) (?:a|the) long rest (?:in|after)\b[^.]{0,30}\b\d+ hours?\b|\b\d+ hours?\b[^.]{0,60}\b(?:finish|gain the benefits? of) (?:a|the) long rest\b")
 RX_DCREF = R(r"\b(?:spell )?save dc\b|\bsaving throw dc\b|\buse your\b[^.]{0,20}\bdc\b|\bthe dc\b|\bdifficulty class\b|\bdc is\b")
 RX_STATUS = R(r"\bimmune to (?:the )?(?:frightened|charmed|poisoned|paralyzed|stunned|blinded|deafened|exhaustion|disease|petrified|restrained|prone|grappled|incapacitated)\b")
 RX_OWN_STAT = R(r"\byou (?:have|gain|are|can see|know)\b|\byour\b[^.]{0,30}\b(?:speed|ac|armor class|hit points|score)\b")
@@ -652,6 +670,8 @@ def excuse(r, ctx, atoms):
             return "TABLE:CLASS"
         if need <= {"RESOURCE", "CHOICE"} and not toks and "RESOURCE" in need and RX_REST.search(t) and not RX_SIGNED.search(t):
             return "REST:NONUM"
+        if need <= {"RESOURCE"} and RX_RESTLEN.search(t) and unexpl <= {"4", "6", "8"} and not RX_SIGNED.search(t):
+            return "REST:LENGTH"
         if need <= {"DC", "SAVE"} and not toks and RX_DCREF.search(t):
             return "DC:REFERENCE"
         if need & {"AC", "RES", "IMM", "HP"} and RX_OBJ.search(t) and not re.search(r"\byou (?:have|gain)\b", t):
@@ -932,6 +952,10 @@ def selftest():
     check("9c ASI line with other numbers (2, 22) -> flagged", r["status"] == "uncovered", r["why"])
     r = st("item", "Wand", "The wand regains all its expended charges at dawn.")
     check("9d REST:NONUM -> info", r["status"] == "info" and r["why"] == "REST:NONUM", r["why"])
+    r = st("species", "Trance", "You meditate for 4 hours instead, and finish a Long Rest after that time.")
+    check("9d2 REST:LENGTH -> info", r["status"] == "info" and r["why"] == "REST:LENGTH", r["why"])
+    r = st("species", "Trance", "You meditate for 4 hours and regain 2d6 Hit Points.")
+    check("9d3 trance sentence that adds another number -> flagged", r["status"] == "uncovered", r["why"])
     r = st("item", "Wand", "The wand has 7 charges and regains 1d6 of them at dawn.")
     check("9e rest sentence WITH numbers -> flagged", r["status"] == "uncovered", r["why"])
     r = st("species", "Martial Advantage", "Once per turn you deal an extra 2d6 damage to a creature you hit with a weapon attack if it is within 5 ft of an ally of yours.")
