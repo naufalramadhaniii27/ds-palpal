@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44281 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 8511 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 8528 |
 | Info (tag terdokumentasi) | 29120 (SPELL_TEXT 8952, FORM:ACTIVATE 2841, NUMONLY:GEOMETRY 2689, FORM:ROLL 2081, ACTIVATE 1724, NUMONLY:TEXT 1573, FXO_NULL 1355, NUMONLY:ROLL 1230, NUMONLY:TABLE 1019, FORM:TABLE 979, ACTIVE:TRIGGER 958, ACTIVE:OTHERS 812, BY_DESIGN 670, REST:NONUM 622, NUMONLY:FLAVOR 340, COND:PLAY_STATE 250, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 88, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 73, ACTIVE:TIMED_IMM 38, REST:LENGTH 32, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 6650 |
+| Uncovered | 6633 |
 | Uncovered dengan angka | 3674 |
-| Uncovered dengan kelas kata kunci mekanik | 6255 |
+| Uncovered dengan kelas kata kunci mekanik | 6238 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 395 |
 | Angka yang tidak dijelaskan record mana pun | 3475 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5690 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5673 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 280 |
-| Waktu | muat data 0 s, analisis 11 s |
+| Waktu | muat data 7 s, analisis 9 s |
 
-Uji mutasi pada data nyata (seed 7): 297 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 191 ditangkap (64.3%). Hapus semua atom kelas yang dibutuhkan: 192 ditangkap (64.6%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 297 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 166 ditangkap (55.9%). Hapus semua atom kelas yang dibutuhkan: 166 ditangkap (55.9%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 298 ditangkap (99.3%), semua atom kelas dihapus: 300 ditangkap (100.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 294 ditangkap (98.0%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -39,7 +39,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3344 |
-| GX | 1599 |
+| GX | 1616 |
 | wxs | 904 |
 | LU_X | 722 |
 | species | 510 |
@@ -58,7 +58,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | CLS_AUTO | 7 |
 | sub | 1 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.js 201, fx-L4.js 170, fx-L12.js 147, fx-L2.js 133, fx-L10.js 128, fx-L3.js 113, fx-L1.js 111, fx-N1.js 101, fx-L9.js 94, fx-L11.js 81, fx-L6.js 69, fx-Z2.js 66.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.js 201, fx-L4.js 170, fx-L12.js 148, fx-L2.js 133, fx-L10.js 132, fx-L3.js 113, fx-L1.js 111, fx-N1.js 101, fx-L9.js 94, fx-L11.js 83, fx-L6.js 69, fx-Z2.js 66.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
@@ -67,7 +67,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SPELL | 3255 | 994 | 30.5% |
 | RESOURCE | 7405 | 974 | 13.2% |
 | DMG | 4658 | 755 | 16.2% |
-| PROF | 1124 | 661 | 58.8% |
+| PROF | 1124 | 644 | 57.3% |
 | ADV | 1959 | 620 | 31.6% |
 | SPEED | 1419 | 615 | 43.3% |
 | RES | 1377 | 519 | 37.7% |
@@ -98,33 +98,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | item | 19290 | 4520 | 11654 | 0 | 3116 |
 | species | 1638 | 824 | 492 | 0 | 322 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
-| sub | 10124 | 2131 | 5905 | 0 | 2088 |
+| sub | 10124 | 2148 | 5905 | 0 | 2071 |
 
 ## Per buku
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
 | dmg | 10474 | 2480 | 6316 | 1678 | 16.0% |
-| tvss | 2800 | 630 | 1632 | 538 | 19.2% |
+| tvss | 2800 | 632 | 1632 | 536 | 19.1% |
 | core | 1496 | 348 | 762 | 386 | 25.8% |
-| ttoh | 1470 | 230 | 873 | 367 | 25.0% |
+| ttoh | 1470 | 233 | 873 | 364 | 24.8% |
 | tvss14 | 1206 | 169 | 745 | 292 | 24.2% |
-| tsgs | 1479 | 385 | 834 | 260 | 17.6% |
-| tkdm | 921 | 176 | 495 | 250 | 27.1% |
+| tsgs | 1479 | 386 | 834 | 259 | 17.5% |
+| tkdm | 921 | 181 | 495 | 245 | 26.6% |
 | tsdm | 1063 | 250 | 596 | 217 | 20.4% |
-| tghp | 1116 | 354 | 555 | 207 | 18.5% |
+| tghp | 1116 | 355 | 555 | 206 | 18.5% |
 | tdm14 | 643 | 109 | 380 | 154 | 24.0% |
 | tce | 730 | 125 | 453 | 152 | 20.8% |
-| tua24 | 634 | 152 | 331 | 151 | 23.8% |
-| au | 535 | 107 | 285 | 143 | 26.7% |
+| tua24 | 634 | 153 | 331 | 150 | 23.7% |
+| au | 535 | 108 | 285 | 142 | 26.5% |
 | dmg14 | 540 | 150 | 285 | 105 | 19.4% |
 | tgh14p | 490 | 105 | 282 | 103 | 21.0% |
 | phb14 | 513 | 154 | 258 | 101 | 19.7% |
-| twow | 542 | 134 | 311 | 97 | 17.9% |
+| twow | 542 | 135 | 311 | 96 | 17.7% |
 | thhw | 395 | 82 | 232 | 81 | 20.5% |
 | tee24 | 463 | 170 | 215 | 78 | 16.8% |
 | hof | 249 | 32 | 143 | 74 | 29.7% |
-| xge | 375 | 96 | 208 | 71 | 18.9% |
+| xge | 375 | 97 | 208 | 70 | 18.7% |
 | rhw | 231 | 52 | 115 | 64 | 27.7% |
 | tssm | 275 | 66 | 150 | 59 | 21.5% |
 | egw | 365 | 94 | 214 | 57 | 15.6% |
@@ -133,7 +133,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | misc14 | 326 | 63 | 212 | 51 | 15.6% |
 | tghg | 288 | 75 | 162 | 51 | 17.7% |
 | oota | 87 | 21 | 20 | 46 | 52.9% |
-| tdcsr | 299 | 109 | 148 | 42 | 14.0% |
+| tdcsr | 299 | 110 | 148 | 41 | 13.7% |
 | mot | 292 | 96 | 159 | 37 | 12.7% |
 | tsgeh | 183 | 59 | 88 | 36 | 19.7% |
 | bmt | 489 | 78 | 379 | 32 | 6.5% |
@@ -196,7 +196,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SPELL | 721 | 102 |
 | RESOURCE | 670 | 557 |
 | ADV | 610 | 183 |
-| PROF | 608 | 179 |
+| PROF | 591 | 179 |
 | DMG | 572 | 518 |
 | SPEED | 531 | 410 |
 | RES | 417 | 137 |
@@ -349,7 +349,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Wizard/Mystic Strategist|Arcane Assessment#2` For 1 minute (or until you use this again) you have Advantage on saves against its spells and magical effects. | no record for ADV; number 1 unexplained
 - `sub|Wizard/School of Illumination|Omen of Warning#3` You gain Advantage on up to two Initiative rolls. | no record for ADV,INIT; number 2 unexplained
 
-### PROF (608 uncovered)
+### PROF (591 uncovered)
 
 - `class|Bard|Expertise~2#1` Pick two of your skill proficiencies and gain Expertise in them, which doubles your Proficiency Bonus for ability checks that use those skills. | no record for PROF; number pb unexplained
 - `class|Bard|Expertise~2#2` If you have proficiency in Performance and Persuasion, those two are suggested. | no record for PROF; number 2 unexplained
@@ -820,33 +820,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- class `item|dmg|Windvane#5` When you hit with it, the target takes an extra 1d6 lightning damage. -> info:ACTIVE:TRIGGER
-- record `item|dmg|Jewel of Three Prayers (Exalted)#2` In ancient times, Alyxian the Apotheon bore this amulet as a symbol of his covenant with three Prime Deities: Sehanine t -> info:NUMONLY:TABLE
-- class `item|dmg|Jewel of Three Prayers (Exalted)#2` In ancient times, Alyxian the Apotheon bore this amulet as a symbol of his covenant with three Prime Deities: Sehanine t -> info:NUMONLY:TABLE
-- record `sub|Barbarian/Path of the Beast|Call the Hunt#4` You can use this a number of times equal to your Proficiency Bonus and regain all uses after a Long Rest. -> covered
-- record `item|frafi|Orb of Damara#32` See Invisibility: 1. -> info:NUMONLY:TABLE
-- class `item|frafi|Orb of Damara#32` See Invisibility: 1. -> info:NUMONLY:TABLE
-- record `item|dmg|Figurine of Wondrous Power (obsidian steed)#15` After a use, you must wait 5 days before using it again. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Figurine of Wondrous Power (obsidian steed)#15` After a use, you must wait 5 days before using it again. -> info:NUMONLY:GEOMETRY
-- record `sub|Warlock/Sorcerer-King Patron|Decisive Edict#3` After using this you can't use it again until a Short or Long Rest, or when you use Magical Cunning. -> covered
-- class `sub|Warlock/Sorcerer-King Patron|Decisive Edict#3` After using this you can't use it again until a Short or Long Rest, or when you use Magical Cunning. -> info:REST:NONUM
-- record `sub|Martyr/Burden of Ascension|Demigod Ascendant#6` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- class `sub|Martyr/Burden of Ascension|Demigod Ascendant#6` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `class|Martyr|Undying#2` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- class `class|Martyr|Undying#2` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `sub|Artificer/Magneticist|Magnetic Manipulator#6` The hand is invisible, can only handle metal objects, and can carry triple the weight. -> covered
-- class `sub|Artificer/Magneticist|Magnetic Manipulator#6` The hand is invisible, can only handle metal objects, and can carry triple the weight. -> covered
-- class `item|dmg|Heretic#6` Once per turn when you hit a creature with this weapon, you can expend 1 of its charges to attempt to render the target  -> info:ACTIVE:TRIGGER
-- record `sub|Wizard/White Necromancer|Life Bond#3` Long Rest to use again. -> covered
-- class `sub|Wizard/White Necromancer|Life Bond#3` Long Rest to use again. -> info:REST:NONUM
-- record `sub|Rogue/Arcane Trickster (2014)|Spell Thief#7` You regain use after a Long Rest. -> covered
-- class `sub|Rogue/Arcane Trickster (2014)|Spell Thief#7` You regain use after a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Devlin's Staff of Striking#8` If you attune to this staff, you transform into a goat-humanoid hybrid over the course of 3 days. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Devlin's Staff of Striking#8` If you attune to this staff, you transform into a goat-humanoid hybrid over the course of 3 days. -> info:NUMONLY:GEOMETRY
-- record `species|Mandrake|Entangling Vines#6` Spring lets you target a flying creature within 30 feet of the ground and pulls it safely down. -> info:NUMONLY:GEOMETRY
-- class `species|Mandrake|Entangling Vines#6` Spring lets you target a flying creature within 30 feet of the ground and pulls it safely down. -> info:NUMONLY:GEOMETRY
-- record `class|Warmage|Spellcasting#3` You know four Warmage cantrips and learn more as shown in the Cantrips column. -> info:TABLE:CLASS
-- class `class|Warmage|Spellcasting#3` You know four Warmage cantrips and learn more as shown in the Cantrips column. -> info:TABLE:CLASS
-- record `item|dmg|Amulet of the Inferno#15` The cantrips scale based on your total character level and use Intelligence as a spellcasting modifier if you're normall -> covered
-- record `species|Dragonborn (Gem)|Psionic Mind#1` You can send telepathic messages to any creature you see within 30 ft. It must understand at least one language. -> info:NUMONLY:GEOMETRY
-- class `species|Dragonborn (Gem)|Psionic Mind#1` You can send telepathic messages to any creature you see within 30 ft. It must understand at least one language. -> info:NUMONLY:GEOMETRY
+- record `sub|Warlock/Fiend Patron|Fiend Spells#1` Starting at the Warlock level in parentheses, each of these is always prepared for you: Suggestion, Scorching Ray, Comma -> info:NUMONLY:FLAVOR
+- class `sub|Warlock/Fiend Patron|Fiend Spells#1` Starting at the Warlock level in parentheses, each of these is always prepared for you: Suggestion, Scorching Ray, Comma -> info:NUMONLY:FLAVOR
+- record `item|tkdm|Necronomicon#5` No two copies are the same. -> info:NUMONLY:TABLE
+- class `item|tkdm|Necronomicon#5` No two copies are the same. -> info:NUMONLY:TABLE
+- class `item|dmg|Wand of Pyrotechnics#7` When you expend its last charge, roll 1d20. -> info:COND:PLAY_STATE
+- record `sub|Druid/Circle of the Titan|Circle of the Titan Spells#2` 5 Fear. -> info:NUMONLY:TABLE
+- class `sub|Druid/Circle of the Titan|Circle of the Titan Spells#2` 5 Fear. -> info:NUMONLY:TABLE
+- record `species|Wrothian (DM14)|Telepathy#1` You can speak telepathically to one creature at a time within 30 ft. It understands you only if you share a language. -> info:NUMONLY:GEOMETRY
+- class `species|Wrothian (DM14)|Telepathy#1` You can speak telepathically to one creature at a time within 30 ft. It understands you only if you share a language. -> info:NUMONLY:GEOMETRY
+- record `class|Jaeger|Momentum#4` It is a d6 and grows as shown in the Momentum Die column. -> info:NUMONLY:ROLL
+- class `class|Jaeger|Momentum#4` It is a d6 and grows as shown in the Momentum Die column. -> info:NUMONLY:ROLL
+- record `sub|Bard/College of Masks|Virtuoso Skill#2` Uses equal your Charisma modifier (minimum 1) per Long Rest. -> covered
+- class `sub|Bard/College of Masks|Virtuoso Skill#2` Uses equal your Charisma modifier (minimum 1) per Long Rest. -> info:REST:NONUM
+- record `sub|Summoner/Bond of the Living Armament|Encase#1` Your Eidolon gains the action Encase (cost 2 AP). -> info:NUMONLY:FLAVOR
+- class `sub|Summoner/Bond of the Living Armament|Encase#1` Your Eidolon gains the action Encase (cost 2 AP). -> info:NUMONLY:FLAVOR
+- record `item|dmg|Mythallar Bracelet#1` Three small, crystal beads made from a decommissioned mythallar are strung on this leather bracelet. -> info:NUMONLY:TEXT
+- class `item|dmg|Mythallar Bracelet#1` Three small, crystal beads made from a decommissioned mythallar are strung on this leather bracelet. -> info:NUMONLY:TEXT
+- record `sub|Fighter/Buccaneer|Gun Mastery#8` Long Rest to regain all uses. -> covered
+- class `sub|Fighter/Buccaneer|Gun Mastery#8` Long Rest to regain all uses. -> info:REST:NONUM
+- record `item|dmg|Sling Bullet, +1#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Uncommon sling bullet carries the +1  -> info:NUMONLY:FLAVOR
+- class `item|dmg|Sling Bullet, +1#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Uncommon sling bullet carries the +1  -> info:NUMONLY:FLAVOR
+- record `item|dmg|Making Dragonmark Channel#4` It cannot be used again until you finish a Long Rest. -> covered
+- class `item|dmg|Making Dragonmark Channel#4` It cannot be used again until you finish a Long Rest. -> info:REST:NONUM
+- record `item|tsgs|Omenbringer's Mantle#4` If it drops to 0 HP, it cannot be summoned again until dusk. -> info:NUMONLY:ZERO
+- class `item|tsgs|Omenbringer's Mantle#4` If it drops to 0 HP, it cannot be summoned again until dusk. -> info:NUMONLY:ZERO
+- record `species|Spindrift Dwarf|Spindrift Step#3` You regain this on a rest. -> info:REST:NONUM
+- class `species|Spindrift Dwarf|Spindrift Step#3` You regain this on a rest. -> info:REST:NONUM
+- record `item|dmg|Prehistoric Figurine of Wondrous Power, Carnelian Triceratops#14` Once it has been used, it can't be used again until 10 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Prehistoric Figurine of Wondrous Power, Carnelian Triceratops#14` Once it has been used, it can't be used again until 10 days have passed. -> info:NUMONLY:GEOMETRY
+- record `feat|Boon of Terror|Boon of Terror#8` After you use this, it recharges when you finish a Short or Long Rest. -> info:REST:NONUM
