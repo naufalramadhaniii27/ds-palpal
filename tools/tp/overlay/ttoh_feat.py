@@ -1,5 +1,27 @@
+# draconic runes (own wording). Master runes (Unus to Novem) come free for each spell level you can cast.
+def _dmg(n, t, magic=False):
+    return [n, "Focus: when you cast a damaging spell that does not deal %s damage, change its damage to %s%s. After changing three spells this way, this rune is spent until you finish a rest." % (t, t, " (still magical)" if magic else "")]
+def _sch(n, sc):
+    return [n, "Focus: when you cast a %s spell, raise its save DC and spell attack bonus by 1." % sc]
+RUNES = [
+ _dmg("Acidum", "acid"), _dmg("Cerebrum", "psychic"), _dmg("Frigus", "cold"), _dmg("Ignis", "fire"), _dmg("Impetu", "force"), _dmg("Impulsum", "bludgeoning", True), _dmg("Lux", "radiant"),
+ _dmg("Morbus", "poison"), _dmg("Putredine", "necrotic"), _dmg("Scopum", "slashing", True), _dmg("Tempestas", "lightning"), _dmg("Tumultum", "thunder"), _dmg("Vulnus", "piercing", True),
+ _sch("Alchimia", "transmutation"), _sch("Anima", "necromancy"), _sch("Displodo", "evocation"), _sch("Laporem", "enchantment"), _sch("Pario", "conjuration"), _sch("Prudentia", "divination"), _sch("Tutela", "abjuration"), _sch("Umbra", "illusion"),
+ ["Acies", "Focus: a line spell gets 10 feet longer or 5 feet wider."], ["Globus", "Focus: a circle or sphere spell gets a 5-foot larger radius."], ["Incrementum", "Focus: a cone spell grows 5 feet (levels 1 to 4) or 10 feet (levels 5 to 9)."],
+ ["Quadratum", "Focus: a cube spell grows 5 feet."], ["Statua", "Focus: a cylinder spell gains 10 feet of height or 5 feet of radius."],
+ ["Concentio", "Focus: a spell with a somatic component needs no somatic component."], ["Corporis", "Focus: a spell with material components needs none, unless a component costs more than 50 gp."], ["Orotorem", "Focus: a spell with a verbal component needs no verbal component."],
+ ["Dubito", "Focus: a spell with a duration under 1 minute lasts twice as long. Concentration still applies."], ["Proelium", "Focus: a spell lasting 1 to 10 minutes lasts twice as long. Concentration still applies."],
+ ["Occasus", "Focus: a spell lasting 1 to 8 hours lasts half as long again. Concentration still applies."], ["Solis", "Focus: a spell lasting 9 to 24 hours lasts half as long again. Concentration still applies."],
+ ["Mensis", "Focus: a spell lasting 2 to 30 days lasts half as long again. Concentration still applies."],
+ ["Praxis", "Focus: a spell that lasts until dispelled or triggered costs no spell slot. Once used, wait 24 hours to use it this way again."],
+ ["Subita", "Focus: an instantaneous spell with a casting time of 1 action can be cast as a Bonus Action. Finish a rest to use it again."],
+ ["Proxime", "Focus: a spell with a range of 5 to 30 feet needs no sight of the target, though you must know it is in range."], ["Iuxta", "Focus: a spell with a range of 60 to 90 feet gets half again as much range."],
+ ["Gloria", "Focus: a spell with a range of 120 to 500 feet gets half again as much range."], ["Terra", "Focus: a spell with a range of 1 mile or more gets half again as much range."],
+ ["Sui", "Focus: a spell with a range of Self needs no somatic or verbal components."],
+ ["Tactus", "Focus: a Touch spell may hit one more creature within 5 feet of the target (not you). Roll a d100, and on 51 or higher you choose that creature."],
+]
 # Own-wording feats of Tome of Heroes. Shapes follow tdcsr_feat.py and tdm14_feat_a.py.
-ALSO = []
+ALSO = ["Gunfighting"]
 FEATS = {
  "Boundless Reserves": {"d": "With no ki left at the start of your turn, spend a Hit Die as a Reaction to regain ki.", "pre": "Wisdom 13+, Ki feature", "asi": ["WIS"], "act": "reaction",
    "full": "Raise Wisdom by 1, to a maximum of 20. You can draw on your inner vitality to refill your ki. When you start your turn with no ki points left, you can use a Reaction to spend one Hit Die. Roll it and add your Constitution modifier. You regain ki points equal to up to half that total (minimum 1), never above your maximum. Hit Dice spent this way cannot be used to regain hit points during a rest. You regain spent Hit Dice as normal.",
@@ -9,7 +31,8 @@ FEATS = {
    "fx": {"notes": [["Note", "Diehard: Advantage on death saves and on saves against Exhaustion"]]}},
  "Draconic Rune Casting": {"d": "Learn two draconic runes, gain master runes up to your highest spell level, and empower inscribed runes after a rest.", "pre": "Spellcasting",
    "full": "You have unlocked the basics of draconic rune casting (see the Magic and Spells chapter of the book). You learn two draconic runes of your choice, which cannot be master runes. You automatically learn the master runes for each spell level you can cast, now and as you level up. You can inscribe runes you know on objects and empower them with your magic when you finish a rest. You can have a number of empowered runes at once equal to 1 + your Proficiency Bonus, and use them to replicate spells as the book describes. You can also mark an inscribed rune to use as a spellcasting focus for your spells.",
-   "fx": {"notes": [["Note", "Draconic Rune Casting: empowered runes at once = 1 + Proficiency Bonus. Rules in the book"]]}},
+   "fx": {"notes": [["Note", "Draconic Rune Casting: empowered runes at once = 1 + Proficiency Bonus. Rules in the book"]]},
+   "pick": [{"k": "rn", "t": "multi", "n": 2, "list": RUNES, "title": "Two draconic runes (master runes Unus to Novem come free for each spell level you can cast)"}]},
  "Floriographer": {"d": "Learn Floriography, and gain Advantage on Investigation and Insight checks to spot hidden visual messages.", "pre": "Proficiency in Arcana, History or Nature", "asi": ["INT", "WIS"],
    "full": "Raise Intelligence or Wisdom by 1, to a maximum of 20. You learn Floriography, the language of flowers. Like Druidic and Thieves' Cant, it is a secret language that carries subtle ideas, symbolic meaning and simple messages through the colors, styles and kinds of flowers in bouquets, arrangements and floral drawings, often as gifts. Your fluency gives you a sharp eye for hidden messages elsewhere. You have Advantage on Intelligence (Investigation) and Wisdom (Insight) checks to notice and read hidden visual messages, such as the runes of a magic trap or subtle hand signals between two people.",
    "fx": {"langs": ["Floriography"]}},
@@ -46,4 +69,7 @@ FEATS = {
  "Stunning Sniper": {"d": "On a ranged critical hit, stun the target until your next turn instead of doubling the damage.", "pre": "Proficiency with a ranged weapon",
    "full": "You have mastered ranged weapons to cripple targets from afar. When you score a critical hit with a ranged attack, you can Stun the target until the start of your next turn instead of doubling the damage.",
    "fx": {"notes": [["Note", "Stunning Sniper: ranged critical hit can Stun the target until your next turn instead of doubling damage"]]}},
+ "Gunfighting": {"cat": "F", "fsAll": 1, "d": "When you roll a 1 on a damage die with a gunpowder weapon, reroll it and use the new roll.",
+   "full": "When you roll a 1 on a damage die for an attack with a weapon that has the gunpowder property, you can reroll the die and must use the new roll, even if it is another 1. The weapon must have the gunpowder property.",
+   "fx": {"notes": [["Note", "Gunfighting: reroll a 1 on a damage die with a gunpowder weapon and keep the new roll"]]}},
 }
