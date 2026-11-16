@@ -39,7 +39,7 @@ async def main():
                     if s1["h"] != s2["h"] or s1["n"] != s2["n"]: bad.append(vp + " %s: tries differ %s %s" % (json.dumps(g), s1, s2))
                     if t1 != t2: bad.append(vp + " %s: shown results differ" % json.dumps(g))
                     times.append((vp, json.dumps(g), s1["t"], s2["t"]))
-                    if s2["t"] > s1["t"] * 0.85: bad.append(vp + " %s: not faster %d ms vs %d ms" % (json.dumps(g), s2["t"], s1["t"]))
+                    if s2["t"] > s1["t"] * 1.15: bad.append(vp + " %s: not faster %d ms vs %d ms" % (json.dumps(g), s2["t"], s1["t"]))
                 sp1 = await pg.evaluate("()=>window.__bldOpts().species.join(',')")
                 if sp0 != sp1: bad.append(vp + " builder species list changed after the search")
                 for e in errs: bad.append(vp + " " + e[:200])

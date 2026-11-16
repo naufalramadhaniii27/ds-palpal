@@ -90,6 +90,7 @@ with sync_playwright() as p:
     pg.goto('file://' + os.path.join(ROOT, 'index.html')); pg.wait_for_timeout(1500)
     pg.evaluate("window.__bldNeed && window.__bldNeed()")
     pg.wait_for_function("()=>!!window.__deferDone")
+    pg.wait_for_function("()=>{var a=window.WXE;try{a=a||eval('WXE')}catch(e){}return Array.isArray(a)&&a.length>0}", timeout=60000)  # the builder chunk can land after __deferDone
     r = pg.evaluate(JS); b.close()
 n += r['n']
 for m in r['fails'][:40]: fails.append(m); print('FAIL', m)
