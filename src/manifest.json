@@ -635,7 +635,14 @@
     "data/tp10-tssm.js",
     "data/tp11-tsdd.js",
     "data/tp12-tsgs.js",
-    "data/tp13-tsdm.js",
+    "data/tp13-tsdm.js"
+   ]
+  },
+  {
+   "t": "block",
+   "open": "<script type=\"text/x-defer\" data-defer=\"tp2\">",
+   "close": "</script>",
+   "files": [
     "data/tp14-tkdm.js",
     "data/tp15-thhw.js",
     "data/tp16-tvss14.js",

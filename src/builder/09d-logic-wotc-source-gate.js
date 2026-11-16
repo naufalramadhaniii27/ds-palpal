@@ -25,7 +25,7 @@ function wxOpts(){const R=genv.WXO;if(!R||typeof INVOCATIONS==="undefined")retur
  const LN={rn:"Runes"};
  Object.keys(R).forEach((id) =>{const g=R[id],all=[].concat(g.inv||[],g.man||[],g.rn||[]);
   if(!B.src[id]&&all.some((r) =>{return chj.indexOf('"'+r[0]+'"')>=0}))B.src[id]=true;const on=!!B.src[id];
-  if(!R14())(g.inv||[]).forEach((r) =>{put(INVOCATIONS,r,on)});(g.man||[]).forEach((r) =>{put(MANEUVERS,r,on)});(g.mm||[]).forEach((r) =>{put(METAMAGIC,r,on)});if(typeof INV_SPELLS!=="undefined")Object.keys(g.isp||{}).forEach((k) =>{if(on)INV_SPELLS[k]=g.isp[k];else delete INV_SPELLS[k]});
+  if(!R14())(g.inv||[]).forEach((r) =>{put(INVOCATIONS,r,on)});(g.man||[]).forEach((r) =>{put(MANEUVERS,r,on)});if(typeof METAMAGIC!=="undefined")(g.mm||[]).forEach((r) =>{put(METAMAGIC,r,on)});if(typeof INV_SPELLS!=="undefined")Object.keys(g.isp||{}).forEach((k) =>{if(on)INV_SPELLS[k]=g.isp[k];else delete INV_SPELLS[k]});
   Object.keys(LN).forEach((k) =>{(g[k]||[]).forEach((r) =>{OPTS[LN[k]]=OPTS[LN[k]]||[];put(OPTS[LN[k]],r,on)})})})}
 /* v100: spells of Xanathar's and Tasha's that the same book data holds under a later source (2025 and 2026 reprints). They also join the list while the older book is on, so a 2014 build has them */
 let XSP14={xge:["Catnap","Enervation","Illusory Dragon","Invulnerability","Negative Energy Flood","Power Word Pain"],tce:["Blade of Disaster"]},XSP14_DONE=0;
