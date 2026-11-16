@@ -143,6 +143,9 @@ def bundle(srcdir, entry):
     return "\n" + head + '"use strict";\n' + out[len(head):]
 
 
+DEFER_END = "\n/*@end*/"
+
+
 def assemble(srcdir):
     man = json.loads(read(os.path.join(srcdir, "manifest.json")))
     out = []
@@ -174,6 +177,8 @@ def assemble(srcdir):
                 out.append(read(os.path.join(srcdir, fn)))
             if css and inapp:
                 out.append("\n}\n")
+            if "text/x-defer" in e["open"]:
+                out.append(DEFER_END)  # the loader runs a part only when it sees this (a half read part would run cut short)
             out.append(e["close"])
     return "".join(out)
 
@@ -205,7 +210,7 @@ def minify(html):
                             "--target=esnext", "--charset=utf8", "--legal-comments=none", "--log-level=error"], input=body.encode("utf-8"), capture_output=True)
         if r.returncode:
             raise SystemExit("esbuild failed on a %s block: %s" % (kind, r.stderr.decode()[:400]))
-        return m.group(1) + r.stdout.decode("utf-8").rstrip("\n") + "</%s>" % kind
+        return m.group(1) + r.stdout.decode("utf-8").rstrip("\n") + (DEFER_END if "text/x-defer" in m.group(1) else "") + "</%s>" % kind
     return BLOCK_RE.sub(one, html)
 
 
