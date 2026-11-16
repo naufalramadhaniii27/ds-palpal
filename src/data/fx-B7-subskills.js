@@ -28,4 +28,7 @@ add("Oath of the Gamma Knight",[{n:"Galactic Knight (speed)",l:20,mv:{fly:"speed
 add("Faerzress Sorcery",[{n:"Faerzress Form (speed)",l:18,mv:{fly:"speed"}}]);
 GX.feat=GX.feat||{};
 [["Aquatic","swim"],["Strengthened Wings","fly"],["Child of the Sea (WoW)","swim"]].forEach(function(a){var o={n:a[0]+" (speed)",mv:{}};o.mv[a[1]]="speed";GX.feat[a[0]]=(GX.feat[a[0]]||[]).concat([o])});
+GX.species=GX.species||{};
+[["Rock Gnome","Tinker",{tools:["Tinker's Tools"]}],["Naga","Poison Affinity",{tools:["Poisoner's Kit"]}],["Goblin (Tuktuk Tribe)","Tuktuk Cunning",{tools:["Thieves' Tools"]}],["Mapach","Scroungecraft",{tools:["Tinker's Tools"]}]].forEach(function(a){var o=a[2];o.n=a[1]+" (training)";GX.species[a[0]]=(GX.species[a[0]]||[]).concat([o])});
+[["Tavern Brawler",{weapons:["Improvised weapons"]}],["Tavern Brawler (2014)",{weapons:["Improvised weapons"]}],["Martial Weapon Training",{weapons:["Martial"]}],["Poisoner (2014)",{tools:["Poisoner's Kit"]}]].forEach(function(a){var o=a[1];o.n=a[0]+" (training)";GX.feat[a[0]]=(GX.feat[a[0]]||[]).concat([o])});
 })();

@@ -267,7 +267,7 @@ def classes(text, kind=None):
         for k, rx in M.ITEM_CAT.items():
             if rx.search(t):
                 out.add({"ac": "AC", "save": "SAVE", "hp": "HP", "speed": "SPEED", "init": "INIT", "resist": "RES", "skill": "PROF"}[k])
-    t_slot = re.sub(r"\b(?:without|no need for|instead of)\s+(?:expending |using |spending |needing |a |an |any |one |of |your )*(?:spell )?slots?\b|\b(?:or|and) with (?:a |any |your )?(?:spell )?slots?\b|\bcast (?:it|them|each|that)[^.]{0,30}\b(?:with|using) (?:a |any )?(?:spell )?slots?\b", " ", t)
+    t_slot = re.sub(r"\bwith no (?:spell )?slots?\b|\b(?:without|no need for|instead of)\s+(?:expending |using |spending |needing |a |an |any |one |of |your )*(?:spell )?slots?\b|\b(?:or|and) with (?:a |any |your )?(?:spell )?slots?\b|\bcast (?:it|them|each|that)[^.]{0,30}\b(?:with|using) (?:a |any )?(?:spell )?slots?\b", " ", t)
     for k, rx in XCAT.items():
         if rx.search(t_slot if k == "SLOT" else t):
             out.add("AC" if k == "ACB" else k)
