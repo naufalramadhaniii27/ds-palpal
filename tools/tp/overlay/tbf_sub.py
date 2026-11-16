@@ -10,4 +10,13 @@ SUB = {
  "lu": [{"feature": "Augment: Absorbing", "n": "Absorbing", "lvl": 3, "max": "pb", "reset": "long", "tag": "Reaction"},
         {"feature": "Full Metal", "n": "Full Metal", "lvl": 15, "max": 1, "reset": "long", "tag": "Bonus Action"}],
  "acts": {"Mystic Metal": "bonus", "Full Metal": "bonus"}},
+
+"Marshal": {"spab": "CHA",
+ "f": {
+  "Inspiring Leadership": "When you use a stratagem, you can choose one friendly creature that can see and hear you. It has advantage on the next attack roll it makes before the end of its next turn. You can choose two creatures at level 7, three at level 11, and four at level 15.",
+  "War Banner: Banner of Coordination": "A banner effect that helps allies strike together. A friendly creature that starts its turn in range gets a +1 bonus to attack rolls for each other friendly creature in range, up to your proficiency bonus, until the start of its next turn.",
+  "General's Gambit": "When you or a friendly creature you can see within 30 feet fails an ability check, attack roll, or save, you can spend and roll one of your Vanguard Hit Dice and add the result. You can do this on several checks in a round, but not twice on the same check.",
+  "Comrade in Arms": "When you give a creature advantage with Inspiring Leadership, you also gain advantage on your next attack roll before the end of that turn. Also, when a creature hits with an attack that has advantage from Inspiring Leadership, it deals extra damage of the attack's type equal to your proficiency bonus plus Charisma modifier (minimum 2).",
+  "Battlefield Vigor": "When you start your turn below half your hit point maximum with at least 1 hit point, you regain hit points equal to your proficiency bonus plus Constitution modifier (minimum 2)."},
+ "acts": {"General's Gambit": "reaction"}},
 }
