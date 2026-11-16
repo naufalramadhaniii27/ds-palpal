@@ -56,7 +56,7 @@ BOOKS = [
   "ua/subclass/Unearthed Arcana 2025 - Subclasses Update.json", "ua/subclass/Unearthed Arcana 2025 - Forgotten Realms Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Updates.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Horror Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Apocalyptic Subclasses.json"],
   "tag": "UA24", "name": "Unearthed Arcana (2024 rules)", "pub": "Wizards of the Coast", "ed": "2024", "sub": "tua24_sub", "feat": "tua24_feat", "species": "tua24_species", "spell": "tua24_spell", "alias": "UA"},
  {"id": "ttoh", "file": "Kobold Press; Tome of Heroes.json", "tag": "ToH", "name": "Tome of Heroes", "pub": "Kobold Press", "ed": "2014",
-  "sub": "ttoh_sub", "alias": "ToH"}
+  "sub": "ttoh_sub", "spell": "ttoh_spell", "item": "ttoh_item", "alias": "ToH"}
 ]
 LV = {"1": 1, "2": 2}
 GAP = []

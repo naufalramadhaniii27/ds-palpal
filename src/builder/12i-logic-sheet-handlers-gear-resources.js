@@ -59,7 +59,7 @@ registerSheetGroup({id:"magic-ammunition",group:"actions",phase:"actions",order:
   C.attacks.forEach((t) =>{const bn=Q.baseOf(t.n).b;if(weaponDef(bn)&&weaponDef(bn).k==="R"&&use.test(bn))t.note="With "+x.n+": +"+m[2]+" to attack and damage rolls. "+(t.note||"")})});return ctx.patch()}});
 /* M18: Wraps of Unarmed Power and Wraps of Dyamak add to the Unarmed Strike row */
 registerSheetGroup({id:"item-unarmed-wraps",group:"actions",phase:"actions",order:40,reads:["i.AFX"],writes:["C.attacks"],
- run:function(ctx){const C=ctx.C;ctx.i.AFX.forEach((q) =>{if(/^(Wraps of Unarmed Power|Wraps of Dyamak)/.test(q.n)&&(q.fx.atk||q.fx.dmg)){const u=C.attacks.filter((t) =>{return t.n==="Unarmed Strike"})[0];if(u){u.misc=(u.misc||0)+(q.fx.atk||0);u.miscSrc=(u.miscSrc?u.miscSrc+", ":"")+q.n;u.dmgBonus=(u.dmgBonus||0)+(q.fx.dmg||0)}}});return ctx.patch()}});
+ run:function(ctx){const C=ctx.C;ctx.i.AFX.forEach((q) =>{if(/^(Wraps of Unarmed Power|Wraps of Dyamak|Cestus \+)/.test(q.n)&&(q.fx.atk||q.fx.dmg)){const u=C.attacks.filter((t) =>{return t.n==="Unarmed Strike"})[0];if(u){u.misc=(u.misc||0)+(q.fx.atk||0);u.miscSrc=(u.miscSrc?u.miscSrc+", ":"")+q.n;u.dmgBonus=(u.dmgBonus||0)+(q.fx.dmg||0)}}});return ctx.patch()}});
 /* RU35 no. 5, 6: saving throw notes and damage rows of features */
 registerSheetGroup({id:"save-notes-damage-rows",group:"actions",phase:"actions",order:50,reads:["i.a","i.pb","i.feats","q.saveNotesOf","q.xdmgRows"],writes:["C.saveNotes","C.xdmg"],
  run:function(ctx){const I=ctx.i,C=ctx.C,sno=ctx.q.saveNotesOf(I.feats);if(sno.length)C.saveNotes=sno;const xd=ctx.q.xdmgRows(I.a,I.pb);if(xd.length)C.xdmg=xd;return ctx.patch()}});
