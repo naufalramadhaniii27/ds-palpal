@@ -22,6 +22,7 @@ def merge(ds):
 UA = os.environ.get("UA_DIR", "/home/claude/src-data/ua")
 def _path(n):
     """A name starting with "ua/" is a file of TheGiddyLimit/unearthed-arcana (UA_DIR), anything else is in the homebrew collection."""
+    if n.startswith("o5/"): return os.path.join(os.path.dirname(os.path.abspath(__file__)), n)          # Open5e documents, converted by tools/o5_spells.py
     return os.path.join(UA, n[3:]) if n.startswith("ua/") else os.path.join(HB, n)
 def prune(ds):
     """Unearthed Arcana files repeat an entry in each playtest round. ds is ordered newest first: an entry already seen (same name,
