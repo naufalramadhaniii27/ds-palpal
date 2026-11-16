@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:141,l:"0.0.39",d:"2026-11-16",n:["Kobold Press Compilation (16 spells) and Warlock Zine (26 spells), 2014 rules, via Open5e, with the class lists the sources print. Sources KPC and WZ are off until you turn them on."]},
 {v:140,l:"0.0.38",d:"2026-11-16",n:["Deep Magic Extended (Kobold Press, 2014 rules, via Open5e): 15 spells that the Deep Magic import did not have. Source KPDMX is off until you turn it on."]},
 {v:139,l:"0.0.37",d:"2026-11-16",n:["Spells That Don't Suck (somanyrobots, 2014 rules, via Open5e): 180 spells with full class lists. Source STDS is off until you turn it on."]},
 {v:138,l:"0.0.36",d:"2026-11-16",n:["Tome of Heroes (Kobold Press, 2014 rules): 11 species and 40 subraces, 19 backgrounds, 15 feats, 140 spells, 50 magic items with 91 gear and 35 weapon texts, Metamagic and Eldritch Invocations, 42 draconic runes and the Gunfighting style. Monsters and variant rules stay reference only."]},

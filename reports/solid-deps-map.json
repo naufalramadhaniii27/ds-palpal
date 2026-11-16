@@ -764,625 +764,633 @@
    "layer": "data",
    "order": 190
   },
-  "data/fx-C-feat.js": {
+  "data/tp25-tkp.js": {
    "layer": "data",
    "order": 191
   },
-  "data/fx-E-feat.js": {
+  "data/tp26-twz.js": {
    "layer": "data",
    "order": 192
   },
-  "data/q00-src.js": {
+  "data/fx-C-feat.js": {
    "layer": "data",
    "order": 193
   },
-  "data/q09-hbindex.js": {
+  "data/fx-E-feat.js": {
    "layer": "data",
    "order": 194
   },
-  "data/q20-hbnames.js": {
+  "data/q00-src.js": {
    "layer": "data",
    "order": 195
   },
-  "data/q21-spellref.js": {
+  "data/q09-hbindex.js": {
    "layer": "data",
    "order": 196
   },
-  "data/q22-textfix.js": {
+  "data/q20-hbnames.js": {
    "layer": "data",
    "order": 197
   },
-  "data/q01-reward.js": {
+  "data/q21-spellref.js": {
    "layer": "data",
    "order": 198
   },
-  "data/q02-deity.js": {
+  "data/q22-textfix.js": {
    "layer": "data",
    "order": 199
   },
-  "data/q03-loot.js": {
+  "data/q01-reward.js": {
    "layer": "data",
    "order": 200
   },
-  "data/q04-recipe.js": {
+  "data/q02-deity.js": {
    "layer": "data",
    "order": 201
   },
-  "data/q05-charopt.js": {
+  "data/q03-loot.js": {
    "layer": "data",
    "order": 202
   },
-  "data/q05-cult.js": {
+  "data/q04-recipe.js": {
    "layer": "data",
    "order": 203
   },
-  "data/q06-disease.js": {
+  "data/q05-charopt.js": {
    "layer": "data",
    "order": 204
   },
-  "data/q06-language.js": {
+  "data/q05-cult.js": {
    "layer": "data",
    "order": 205
   },
-  "data/q06-tvss14-monster.js": {
+  "data/q06-disease.js": {
    "layer": "data",
    "order": 206
   },
-  "data/q06-tdm14-monster.js": {
+  "data/q06-language.js": {
    "layer": "data",
    "order": 207
   },
-  "data/q06-tgh14p-monster.js": {
+  "data/q06-tvss14-monster.js": {
    "layer": "data",
    "order": 208
   },
-  "data/q06-tgh14c-monster.js": {
+  "data/q06-tdm14-monster.js": {
    "layer": "data",
    "order": 209
   },
-  "data/q06-twow-monster.js": {
+  "data/q06-tgh14p-monster.js": {
    "layer": "data",
    "order": 210
   },
-  "data/q06-tua24-monster.js": {
+  "data/q06-tgh14c-monster.js": {
    "layer": "data",
    "order": 211
   },
-  "data/q08-deck.js": {
+  "data/q06-twow-monster.js": {
    "layer": "data",
    "order": 212
   },
-  "data/q08-hazard.js": {
+  "data/q06-tua24-monster.js": {
    "layer": "data",
    "order": 213
   },
-  "data/q08-object.js": {
+  "data/q08-deck.js": {
    "layer": "data",
    "order": 214
   },
-  "data/q08-psionic.js": {
+  "data/q08-hazard.js": {
    "layer": "data",
    "order": 215
   },
-  "data/q08-table.js": {
+  "data/q08-object.js": {
    "layer": "data",
    "order": 216
   },
-  "data/q08-vehicle.js": {
+  "data/q08-psionic.js": {
    "layer": "data",
    "order": 217
   },
-  "data/q08-tdm14-vehicle.js": {
+  "data/q08-table.js": {
    "layer": "data",
    "order": 218
   },
-  "data/q10-fluff.js": {
+  "data/q08-vehicle.js": {
    "layer": "data",
    "order": 219
   },
-  "data/q11-img.js": {
+  "data/q08-tdm14-vehicle.js": {
    "layer": "data",
    "order": 220
   },
-  "data/q12-crimg.js": {
+  "data/q10-fluff.js": {
    "layer": "data",
    "order": 221
   },
-  "data/q19-img-more.js": {
+  "data/q11-img.js": {
    "layer": "data",
    "order": 222
   },
-  "data/q12-rule.js": {
+  "data/q12-crimg.js": {
    "layer": "data",
    "order": 223
   },
-  "data/q13-rule-gaps.js": {
+  "data/q19-img-more.js": {
    "layer": "data",
    "order": 224
   },
-  "data/q15-books.js": {
+  "data/q12-rule.js": {
    "layer": "data",
    "order": 225
   },
-  "data/q18-life.js": {
+  "data/q13-rule-gaps.js": {
    "layer": "data",
    "order": 226
   },
-  "data/q16-items-gap.js": {
+  "data/q15-books.js": {
    "layer": "data",
    "order": 227
   },
-  "data/q17-class-gap.js": {
+  "data/q18-life.js": {
    "layer": "data",
    "order": 228
   },
-  "data/q14-optfeat.js": {
+  "data/q16-items-gap.js": {
    "layer": "data",
    "order": 229
   },
-  "data/q12-facility.js": {
+  "data/q17-class-gap.js": {
    "layer": "data",
    "order": 230
   },
-  "data/q23-gapfill.js": {
+  "data/q14-optfeat.js": {
    "layer": "data",
    "order": 231
   },
-  "data/q24-gapfill2.js": {
+  "data/q12-facility.js": {
    "layer": "data",
    "order": 232
   },
-  "data/q07-lazy-stub.js": {
+  "data/q23-gapfill.js": {
    "layer": "data",
    "order": 233
   },
-  "data/q07-bestiary.js": {
+  "data/q24-gapfill2.js": {
    "layer": "data",
    "order": 234
   },
-  "data/hbpack-builtin-homebrew.js": {
+  "data/q07-lazy-stub.js": {
    "layer": "data",
    "order": 235
   },
-  "data/fx-A-class-species.js": {
+  "data/q07-bestiary.js": {
    "layer": "data",
    "order": 236
   },
-  "data/fx-B1-subclass.js": {
+  "data/hbpack-builtin-homebrew.js": {
    "layer": "data",
    "order": 237
   },
-  "data/fx-F-sub.js": {
+  "data/fx-A-class-species.js": {
    "layer": "data",
    "order": 238
   },
-  "data/fx-G-engine.js": {
+  "data/fx-B1-subclass.js": {
    "layer": "data",
    "order": 239
   },
-  "data/fx-H-audit.js": {
+  "data/fx-F-sub.js": {
    "layer": "data",
    "order": 240
   },
-  "data/fx-L1.js": {
+  "data/fx-G-engine.js": {
    "layer": "data",
    "order": 241
   },
-  "data/fx-L4.js": {
+  "data/fx-H-audit.js": {
    "layer": "data",
    "order": 242
   },
-  "data/fx-L5.js": {
+  "data/fx-L1.js": {
    "layer": "data",
    "order": 243
   },
-  "data/fx-L9.js": {
+  "data/fx-L4.js": {
    "layer": "data",
    "order": 244
   },
-  "data/fx-L10.js": {
+  "data/fx-L5.js": {
    "layer": "data",
    "order": 245
   },
-  "data/fx-L11.js": {
+  "data/fx-L9.js": {
    "layer": "data",
    "order": 246
   },
-  "data/fx-L12.js": {
+  "data/fx-L10.js": {
    "layer": "data",
    "order": 247
   },
-  "data/fx-L13.js": {
+  "data/fx-L11.js": {
    "layer": "data",
    "order": 248
   },
-  "data/fx-D-item.js": {
+  "data/fx-L12.js": {
    "layer": "data",
    "order": 249
   },
-  "data/fx-L2.js": {
+  "data/fx-L13.js": {
    "layer": "data",
    "order": 250
   },
-  "data/fx-L3.js": {
+  "data/fx-D-item.js": {
    "layer": "data",
    "order": 251
   },
-  "data/fx-L6.js": {
+  "data/fx-L2.js": {
    "layer": "data",
    "order": 252
   },
-  "data/fx-L7.js": {
+  "data/fx-L3.js": {
    "layer": "data",
    "order": 253
   },
-  "data/fx-L8.js": {
+  "data/fx-L6.js": {
    "layer": "data",
    "order": 254
   },
-  "data/fx-M1.js": {
+  "data/fx-L7.js": {
    "layer": "data",
    "order": 255
   },
-  "data/fx-M2.js": {
+  "data/fx-L8.js": {
    "layer": "data",
    "order": 256
   },
-  "data/fx-N1.js": {
+  "data/fx-M1.js": {
    "layer": "data",
    "order": 257
   },
-  "data/fx-Z1.js": {
+  "data/fx-M2.js": {
    "layer": "data",
    "order": 258
   },
-  "data/fx-Z2.js": {
+  "data/fx-N1.js": {
    "layer": "data",
    "order": 259
   },
-  "data/fx-Z3.js": {
+  "data/fx-Z1.js": {
    "layer": "data",
    "order": 260
   },
-  "data/fx-Z4.js": {
+  "data/fx-Z2.js": {
    "layer": "data",
    "order": 261
   },
+  "data/fx-Z3.js": {
+   "layer": "data",
+   "order": 262
+  },
+  "data/fx-Z4.js": {
+   "layer": "data",
+   "order": 263
+  },
   "builder/00-reg.js": {
    "layer": "-",
-   "order": 262
+   "order": 264
   },
   "builder/00-env.js": {
    "layer": "-",
-   "order": 263
+   "order": 265
   },
   "builder/01-logic-core-helpers.js": {
    "layer": "logic",
-   "order": 264
+   "order": 266
   },
   "builder/01a-logic-query-registry.js": {
    "layer": "logic",
-   "order": 265
+   "order": 267
   },
   "builder/01b-logic-late-ports.js": {
    "layer": "logic",
-   "order": 266
+   "order": 268
   },
   "builder/02-data-magic-item-summaries.js": {
    "layer": "data",
-   "order": 267
+   "order": 269
   },
   "builder/03-logic-magic-item-effects.js": {
    "layer": "logic",
-   "order": 268
+   "order": 270
   },
   "builder/04-logic-storage.js": {
    "layer": "logic",
-   "order": 269
+   "order": 271
   },
   "builder/05-logic-choice-model-ruleset.js": {
    "layer": "logic",
-   "order": 270
+   "order": 272
   },
   "builder/06-data-2014-classes.js": {
    "layer": "data",
-   "order": 271
+   "order": 273
   },
   "builder/06a-data-2014-long-text-more.js": {
    "layer": "data",
-   "order": 272
+   "order": 274
   },
   "builder/06a2-data-2024-species-long-text.js": {
    "layer": "data",
-   "order": 273
+   "order": 275
   },
   "builder/06b-data-2014-long-text.js": {
    "layer": "data",
-   "order": 274
+   "order": 276
   },
   "builder/07-data-2014-spells.js": {
    "layer": "data",
-   "order": 275
+   "order": 277
   },
   "builder/08-logic-2014-rules.js": {
    "layer": "logic",
-   "order": 276
+   "order": 278
   },
   "builder/09-logic-feats-and-choices.js": {
    "layer": "logic",
-   "order": 277
+   "order": 279
   },
   "builder/09c-logic-edition-overlays.js": {
    "layer": "logic",
-   "order": 278
+   "order": 280
   },
   "builder/09d-logic-wotc-source-gate.js": {
    "layer": "logic",
-   "order": 279
+   "order": 281
   },
   "builder/09b-logic-choice-stages.js": {
    "layer": "logic",
-   "order": 280
+   "order": 282
   },
   "builder/10-logic-v17-additions.js": {
    "layer": "logic",
-   "order": 281
+   "order": 283
   },
   "builder/10a-logic-fx-registry.js": {
    "layer": "logic",
-   "order": 282
+   "order": 284
   },
   "builder/10b-logic-fx-handlers-entry.js": {
    "layer": "logic",
-   "order": 283
+   "order": 285
   },
   "builder/10c-logic-fx-handlers-ability.js": {
    "layer": "logic",
-   "order": 284
+   "order": 286
   },
   "builder/10d-logic-fx-rules-cond-value.js": {
    "layer": "logic",
-   "order": 285
+   "order": 287
   },
   "builder/10e-logic-fx-schema.js": {
    "layer": "logic",
-   "order": 286
+   "order": 288
   },
   "builder/11-logic-derivation.js": {
    "layer": "logic",
-   "order": 287
+   "order": 289
   },
   "builder/11b-logic-fx-sources.js": {
    "layer": "logic",
-   "order": 288
+   "order": 290
   },
   "builder/11c-logic-fx-handlers-sheet.js": {
    "layer": "logic",
-   "order": 289
+   "order": 291
   },
   "builder/12a-logic-sheet-registry.js": {
    "layer": "logic",
-   "order": 290
+   "order": 292
   },
   "builder/12b-logic-sheet-schema.js": {
    "layer": "logic",
-   "order": 291
+   "order": 293
   },
   "builder/12c-logic-sheet-handlers-core.js": {
    "layer": "logic",
-   "order": 292
+   "order": 294
   },
   "builder/12d-logic-sheet-handlers-skills.js": {
    "layer": "logic",
-   "order": 293
+   "order": 295
   },
   "builder/12e-logic-sheet-handlers-defense.js": {
    "layer": "logic",
-   "order": 294
+   "order": 296
   },
   "builder/12f-logic-sheet-handlers-movement.js": {
    "layer": "logic",
-   "order": 295
+   "order": 297
   },
   "builder/12g-logic-sheet-handlers-profs.js": {
    "layer": "logic",
-   "order": 296
+   "order": 298
   },
   "builder/12h-logic-sheet-handlers-attacks.js": {
    "layer": "logic",
-   "order": 297
+   "order": 299
   },
   "builder/12i-logic-sheet-handlers-gear-resources.js": {
    "layer": "logic",
-   "order": 298
+   "order": 300
   },
   "builder/12j-logic-sheet-handlers-features.js": {
    "layer": "logic",
-   "order": 299
+   "order": 301
   },
   "builder/12k-logic-sheet-handlers-spells.js": {
    "layer": "logic",
-   "order": 300
+   "order": 302
   },
   "builder/12l-logic-sheet-handlers-late.js": {
    "layer": "logic",
-   "order": 301
+   "order": 303
   },
   "builder/12-logic-export-to-sheet.js": {
    "layer": "logic",
-   "order": 302
+   "order": 304
   },
   "builder/13-logic-sources-and-packs.js": {
    "layer": "logic",
-   "order": 303
+   "order": 305
   },
   "builder/13a-logic-pack-registry.js": {
    "layer": "logic",
-   "order": 304
+   "order": 306
   },
   "builder/13b-logic-pack-handlers.js": {
    "layer": "logic",
-   "order": 305
+   "order": 307
   },
   "builder/14-logic-multiclass-hp-shop.js": {
    "layer": "logic",
-   "order": 306
+   "order": 308
   },
   "builder/15-logic-import-from-sheet.js": {
    "layer": "logic",
-   "order": 307
+   "order": 309
   },
   "builder/16-logic-feature-numbers.js": {
    "layer": "logic",
-   "order": 308
+   "order": 310
   },
   "builder/17-ui-step-builder.js": {
    "layer": "ui",
-   "order": 309
+   "order": 311
   },
   "builder/18-ui-spells.js": {
    "layer": "ui",
-   "order": 310
+   "order": 312
   },
   "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
    "layer": "ui",
-   "order": 311
+   "order": 313
   },
   "builder/20-ui-steps-equipment-next.js": {
    "layer": "ui",
-   "order": 312
+   "order": 314
   },
   "builder/21-ui-rules-reference.js": {
    "layer": "ui",
-   "order": 313
+   "order": 315
   },
   "builder/22-ui-shell.js": {
    "layer": "ui",
-   "order": 314
+   "order": 316
   },
   "builder/23-logic-level-up-and-build-files.js": {
    "layer": "logic",
-   "order": 315
+   "order": 317
   },
   "builder/24-ui-icons.js": {
    "layer": "ui",
-   "order": 316
+   "order": 318
   },
   "builder/25-logic-hooks-for-the-sheet.js": {
    "layer": "logic",
-   "order": 317
+   "order": 319
   },
   "builder/main.js": {
    "layer": "-",
-   "order": 318
+   "order": 320
   },
   "learn/00-env.js": {
    "layer": "-",
-   "order": 319
+   "order": 321
   },
   "learn/00-bridge.js": {
    "layer": "-",
-   "order": 320
+   "order": 322
   },
   "learn/45b-data-learn-places-a.js": {
    "layer": "data",
-   "order": 321
+   "order": 323
   },
   "learn/45c-data-learn-places-b.js": {
    "layer": "data",
-   "order": 322
+   "order": 324
   },
   "learn/45-data-learn.js": {
    "layer": "data",
-   "order": 323
+   "order": 325
   },
   "learn/46-logic-learn.js": {
    "layer": "logic",
-   "order": 324
+   "order": 326
   },
   "learn/47-ui-learn.js": {
    "layer": "ui",
-   "order": 325
+   "order": 327
   },
   "tg/00-env.js": {
    "layer": "-",
-   "order": 326
+   "order": 328
   },
   "tg/00-bridge.js": {
    "layer": "-",
-   "order": 327
+   "order": 329
   },
   "tg/20-engine.js": {
    "layer": "logic",
-   "order": 328
+   "order": 330
   },
   "tg/25-sim.js": {
    "layer": "logic",
-   "order": 329
+   "order": 331
   },
   "tg/30-ui-tg.js": {
    "layer": "ui",
-   "order": 330
+   "order": 332
   },
   "tg/31-ui-tg-field.js": {
    "layer": "ui",
-   "order": 331
+   "order": 333
   },
   "pdf/00-env.js": {
    "layer": "-",
-   "order": 332
+   "order": 334
   },
   "pdf/01-data-style.js": {
    "layer": "data",
-   "order": 333
+   "order": 335
   },
   "pdf/02-logic-markup.js": {
    "layer": "logic",
-   "order": 334
+   "order": 336
   },
   "pdf/03-logic-typeset.js": {
    "layer": "logic",
-   "order": 335
+   "order": 337
   },
   "pdf/04-ui-canvas.js": {
    "layer": "ui",
-   "order": 336
+   "order": 338
   },
   "pdf/05-data-sheet-fields.js": {
    "layer": "data",
-   "order": 337
+   "order": 339
   },
   "pdf/06-ui-fields.js": {
    "layer": "ui",
-   "order": 338
+   "order": 340
   },
   "pdf/07-ui-sheet-pages.js": {
    "layer": "ui",
-   "order": 339
+   "order": 341
   },
   "pdf/08-ui-flow.js": {
    "layer": "ui",
-   "order": 340
+   "order": 342
   },
   "pdf/09-ui-blocks.js": {
    "layer": "ui",
-   "order": 341
+   "order": 343
   },
   "pdf/10-ui-appendix.js": {
    "layer": "ui",
-   "order": 342
+   "order": 344
   },
   "pdf/11-ui-render.js": {
    "layer": "ui",
-   "order": 343
+   "order": 345
   },
   "pdf/main.js": {
    "layer": "-",
-   "order": 344
+   "order": 346
   },
   "data/rs14-2014-wording.js": {
    "layer": "data",
-   "order": 345
+   "order": 347
   }
  },
  "edges": [
@@ -17299,6 +17307,170 @@
   },
   {
    "from": "data/tp24-tkdmx.js",
+   "to": "data/subfull-subclass-feature-text.js",
+   "import": false,
+   "names": [
+    "SUB_FULL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/00-data-env.js",
+   "import": false,
+   "names": [
+    "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/db2-phb-classes-a.js",
+   "import": false,
+   "names": [
+    "CLASSES"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/db3-phb-classes-b.js",
+   "import": false,
+   "names": [
+    "SUBLABEL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/db4/01-languages-auto-spells-grants-prices-gear.js",
+   "import": false,
+   "names": [
+    "AUTO"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/db4/02-limited-uses-damage-rows-save-notes.js",
+   "import": false,
+   "names": [
+    "LU_X",
+    "SAVE_NOTES"
+   ],
+   "count": 2
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/db4/06-tools-proficiencies-packs-kits.js",
+   "import": false,
+   "names": [
+    "SUB_GRANT"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/db4/07-actions.js",
+   "import": false,
+   "names": [
+    "ACTS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/spfull-spell-text.js",
+   "import": false,
+   "names": [
+    "SPELL_FULL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp25-tkp.js",
+   "to": "data/subfull-subclass-feature-text.js",
+   "import": false,
+   "names": [
+    "SUB_FULL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp26-twz.js",
+   "to": "data/00-data-env.js",
+   "import": false,
+   "names": [
+    "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp26-twz.js",
+   "to": "data/db2-phb-classes-a.js",
+   "import": false,
+   "names": [
+    "CLASSES"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp26-twz.js",
+   "to": "data/db3-phb-classes-b.js",
+   "import": false,
+   "names": [
+    "SUBLABEL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp26-twz.js",
+   "to": "data/db4/01-languages-auto-spells-grants-prices-gear.js",
+   "import": false,
+   "names": [
+    "AUTO"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp26-twz.js",
+   "to": "data/db4/02-limited-uses-damage-rows-save-notes.js",
+   "import": false,
+   "names": [
+    "LU_X",
+    "SAVE_NOTES"
+   ],
+   "count": 2
+  },
+  {
+   "from": "data/tp26-twz.js",
+   "to": "data/db4/06-tools-proficiencies-packs-kits.js",
+   "import": false,
+   "names": [
+    "SUB_GRANT"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp26-twz.js",
+   "to": "data/db4/07-actions.js",
+   "import": false,
+   "names": [
+    "ACTS"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp26-twz.js",
+   "to": "data/spfull-spell-text.js",
+   "import": false,
+   "names": [
+    "SPELL_FULL"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/tp26-twz.js",
    "to": "data/subfull-subclass-feature-text.js",
    "import": false,
    "names": [
