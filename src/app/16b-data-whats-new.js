@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:136,l:"0.0.34",d:"2026-11-16",n:["Arcane Archer (Unearthed Arcana 2025 Arcane Updates): the level 15 feature is now Arcane Burst, which pushes creatures away when you use Indomitable. It replaces Indomitable Teleport."]},
 {v:135,l:"0.0.33",d:"2026-11-15",n:["Picking a class, species or background in the builder is fast again, also with many sources turned on. The Library search index is now built while the page is idle, not during your click."]},
 {v:134,l:"0.0.32",d:"2026-11-14",n:["Adamantine Armor (and other magic armor or weapons with a base item): the Base item picker now stays after you choose, so you can pick Half Plate Armor, Plate Armor and the rest. The armor then gives its base AC plus Dex (capped for medium armor) once applied to the sheet."]},
 {v:133,l:"0.0.31",d:"2026-11-13",n:["The name you type in a new character now shows on the sheet at once, and the default name is selected so typing replaces it.","The Equipment step opens much faster: the Add Items catalog starts closed and is drawn only when you open it (it held about 12000 elements)."]},
