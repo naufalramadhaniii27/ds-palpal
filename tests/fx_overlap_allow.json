@@ -670,10 +670,11 @@
  },
  "GX.sub|Occultist Guild": {
   "files": [
+   "fx-B7-subskills.js",
    "fx-L11.js",
    "fx-M2.js"
   ],
-  "reason": "fx-M2 adds the Occult Knowledge pick at level 10; fx-L11 has Magical Aegis (level 15) and the third caster table. spCls is a source key per entry, not additive.",
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
   "shared": [
    "spCls"
   ]
@@ -1120,6 +1121,70 @@
    "fx-Z4.js"
   ],
   "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "shared": []
+ },
+ "GX.sub|Couatl Herald": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-L11.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Courtesan": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-L10.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of Thunder": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-B7-subskills.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Path of Heavy Metal": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-L10.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Prescient Knight": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-M2.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Prophecy Domain": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-L10.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Scout": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Void Domain": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-L10.js"
+  ],
+  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
   "shared": []
  }
 }

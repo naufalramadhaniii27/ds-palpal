@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44281 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 8511 |
-| Info (tag terdokumentasi) | 29120 (SPELL_TEXT 8952, FORM:ACTIVATE 2841, NUMONLY:GEOMETRY 2689, FORM:ROLL 2081, ACTIVATE 1724, NUMONLY:TEXT 1573, FXO_NULL 1355, NUMONLY:ROLL 1230, NUMONLY:TABLE 1019, FORM:TABLE 979, ACTIVE:TRIGGER 958, ACTIVE:OTHERS 812, BY_DESIGN 670, REST:NONUM 622, NUMONLY:FLAVOR 340, COND:PLAY_STATE 250, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 88, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 73, ACTIVE:TIMED_IMM 38, REST:LENGTH 32, STD:AC10 9, STD:SUBCLASS_PICK 7) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 8537 |
+| Info (tag terdokumentasi) | 29119 (SPELL_TEXT 8952, FORM:ACTIVATE 2841, NUMONLY:GEOMETRY 2689, FORM:ROLL 2081, ACTIVATE 1724, NUMONLY:TEXT 1573, FXO_NULL 1355, NUMONLY:ROLL 1230, NUMONLY:TABLE 1019, FORM:TABLE 979, ACTIVE:TRIGGER 958, ACTIVE:OTHERS 812, BY_DESIGN 670, REST:NONUM 622, NUMONLY:FLAVOR 340, COND:PLAY_STATE 249, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 88, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 73, ACTIVE:TIMED_IMM 38, REST:LENGTH 32, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 6650 |
-| Uncovered dengan angka | 3674 |
-| Uncovered dengan kelas kata kunci mekanik | 6255 |
+| Uncovered | 6625 |
+| Uncovered dengan angka | 3675 |
+| Uncovered dengan kelas kata kunci mekanik | 6230 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 395 |
-| Angka yang tidak dijelaskan record mana pun | 3475 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5690 kalimat |
+| Angka yang tidak dijelaskan record mana pun | 3476 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5665 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 280 |
-| Waktu | muat data 0 s, analisis 11 s |
+| Waktu | muat data 7 s, analisis 9 s |
 
-Uji mutasi pada data nyata (seed 7): 297 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 191 ditangkap (64.3%). Hapus semua atom kelas yang dibutuhkan: 192 ditangkap (64.6%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 168 ditangkap (56.2%). Hapus semua atom kelas yang dibutuhkan: 168 ditangkap (56.2%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 298 ditangkap (99.3%), semua atom kelas dihapus: 300 ditangkap (100.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 295 ditangkap (98.3%), semua atom kelas dihapus: 298 ditangkap (99.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -39,7 +39,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3344 |
-| GX | 1599 |
+| GX | 1625 |
 | wxs | 904 |
 | LU_X | 722 |
 | species | 510 |
@@ -58,7 +58,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | CLS_AUTO | 7 |
 | sub | 1 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.js 201, fx-L4.js 170, fx-L12.js 147, fx-L2.js 133, fx-L10.js 128, fx-L3.js 113, fx-L1.js 111, fx-N1.js 101, fx-L9.js 94, fx-L11.js 81, fx-L6.js 69, fx-Z2.js 66.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.js 201, fx-L4.js 170, fx-L12.js 148, fx-L2.js 133, fx-L10.js 132, fx-L3.js 113, fx-L1.js 111, fx-N1.js 101, fx-L9.js 94, fx-L11.js 83, fx-L6.js 69, fx-Z2.js 66.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
@@ -67,9 +67,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SPELL | 3255 | 994 | 30.5% |
 | RESOURCE | 7405 | 974 | 13.2% |
 | DMG | 4658 | 755 | 16.2% |
-| PROF | 1124 | 661 | 58.8% |
+| PROF | 1124 | 644 | 57.3% |
 | ADV | 1959 | 620 | 31.6% |
-| SPEED | 1419 | 615 | 43.3% |
+| SPEED | 1419 | 607 | 42.8% |
 | RES | 1377 | 519 | 37.7% |
 | CHOICE | 1663 | 476 | 28.6% |
 | IMM | 1006 | 403 | 40.1% |
@@ -77,7 +77,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | NUM | 8606 | 347 | 4.0% |
 | DIS | 1221 | 297 | 24.3% |
 | DC | 2903 | 289 | 10.0% |
-| ATK | 1056 | 262 | 24.8% |
+| ATK | 1056 | 263 | 24.9% |
 | SENSE | 650 | 211 | 32.5% |
 | AC | 677 | 168 | 24.8% |
 | SAVE | 278 | 153 | 55.0% |
@@ -94,37 +94,37 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | Jenis | Mekanik | Covered | Info | Allow | Uncovered |
 |---|---|---|---|---|---|
 | class | 1187 | 247 | 632 | 0 | 308 |
-| feat | 2812 | 511 | 1485 | 0 | 816 |
+| feat | 2812 | 514 | 1485 | 0 | 813 |
 | item | 19290 | 4520 | 11654 | 0 | 3116 |
 | species | 1638 | 824 | 492 | 0 | 322 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
-| sub | 10124 | 2131 | 5905 | 0 | 2088 |
+| sub | 10124 | 2154 | 5904 | 0 | 2066 |
 
 ## Per buku
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
 | dmg | 10474 | 2480 | 6316 | 1678 | 16.0% |
-| tvss | 2800 | 630 | 1632 | 538 | 19.2% |
+| tvss | 2800 | 632 | 1632 | 536 | 19.1% |
 | core | 1496 | 348 | 762 | 386 | 25.8% |
-| ttoh | 1470 | 230 | 873 | 367 | 25.0% |
-| tvss14 | 1206 | 169 | 745 | 292 | 24.2% |
-| tsgs | 1479 | 385 | 834 | 260 | 17.6% |
-| tkdm | 921 | 176 | 495 | 250 | 27.1% |
-| tsdm | 1063 | 250 | 596 | 217 | 20.4% |
-| tghp | 1116 | 354 | 555 | 207 | 18.5% |
-| tdm14 | 643 | 109 | 380 | 154 | 24.0% |
+| ttoh | 1470 | 233 | 872 | 365 | 24.8% |
+| tvss14 | 1206 | 173 | 745 | 288 | 23.9% |
+| tsgs | 1479 | 386 | 834 | 259 | 17.5% |
+| tkdm | 921 | 181 | 495 | 245 | 26.6% |
+| tsdm | 1063 | 251 | 596 | 216 | 20.3% |
+| tghp | 1116 | 355 | 555 | 206 | 18.5% |
 | tce | 730 | 125 | 453 | 152 | 20.8% |
-| tua24 | 634 | 152 | 331 | 151 | 23.8% |
-| au | 535 | 107 | 285 | 143 | 26.7% |
+| tdm14 | 643 | 111 | 380 | 152 | 23.6% |
+| tua24 | 634 | 154 | 331 | 149 | 23.5% |
+| au | 535 | 108 | 285 | 142 | 26.5% |
 | dmg14 | 540 | 150 | 285 | 105 | 19.4% |
 | tgh14p | 490 | 105 | 282 | 103 | 21.0% |
 | phb14 | 513 | 154 | 258 | 101 | 19.7% |
-| twow | 542 | 134 | 311 | 97 | 17.9% |
+| twow | 542 | 136 | 311 | 95 | 17.5% |
 | thhw | 395 | 82 | 232 | 81 | 20.5% |
 | tee24 | 463 | 170 | 215 | 78 | 16.8% |
 | hof | 249 | 32 | 143 | 74 | 29.7% |
-| xge | 375 | 96 | 208 | 71 | 18.9% |
+| xge | 375 | 97 | 208 | 70 | 18.7% |
 | rhw | 231 | 52 | 115 | 64 | 27.7% |
 | tssm | 275 | 66 | 150 | 59 | 21.5% |
 | egw | 365 | 94 | 214 | 57 | 15.6% |
@@ -133,7 +133,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | misc14 | 326 | 63 | 212 | 51 | 15.6% |
 | tghg | 288 | 75 | 162 | 51 | 17.7% |
 | oota | 87 | 21 | 20 | 46 | 52.9% |
-| tdcsr | 299 | 109 | 148 | 42 | 14.0% |
+| tdcsr | 299 | 110 | 148 | 41 | 13.7% |
 | mot | 292 | 96 | 159 | 37 | 12.7% |
 | tsgeh | 183 | 59 | 88 | 36 | 19.7% |
 | bmt | 489 | 78 | 379 | 32 | 6.5% |
@@ -196,9 +196,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 | SPELL | 721 | 102 |
 | RESOURCE | 670 | 557 |
 | ADV | 610 | 183 |
-| PROF | 608 | 179 |
+| PROF | 591 | 179 |
 | DMG | 572 | 518 |
-| SPEED | 531 | 410 |
+| SPEED | 523 | 411 |
 | RES | 417 | 137 |
 | SLOT | 354 | 110 |
 | NUM | 347 | 347 |
@@ -349,7 +349,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Wizard/Mystic Strategist|Arcane Assessment#2` For 1 minute (or until you use this again) you have Advantage on saves against its spells and magical effects. | no record for ADV; number 1 unexplained
 - `sub|Wizard/School of Illumination|Omen of Warning#3` You gain Advantage on up to two Initiative rolls. | no record for ADV,INIT; number 2 unexplained
 
-### PROF (608 uncovered)
+### PROF (591 uncovered)
 
 - `class|Bard|Expertise~2#1` Pick two of your skill proficiencies and gain Expertise in them, which doubles your Proficiency Bonus for ability checks that use those skills. | no record for PROF; number pb unexplained
 - `class|Bard|Expertise~2#2` If you have proficiency in Performance and Persuasion, those two are suggested. | no record for PROF; number 2 unexplained
@@ -435,48 +435,48 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `sub|Ranger/Swarmkeeper|Mighty Swarm#1` Gathered Swarm damage becomes 1d8. | no record for DMG; number 1d8 unexplained
 - `sub|Warlock/Undead Patron|Superior Dread#6` You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside one. | no record for DMG; number 1d10 unexplained
 
-### SPEED (531 uncovered)
+### SPEED (523 uncovered)
 
-- `class|Druid|Wild Shape#11` Four Beast forms are known to you for this feature, picked from Beast stat blocks with a Challenge Rating of 1/4 or lower and no Fly Speed (appendix B has stat blocks to choose from). | no record for SPEED; number 1,4 unexplained
-- `feat|Cohort of Chaos|Cohort of Chaos#11` 3, Unbound: when you move, you can use some or all of your Speed to teleport yourself and your gear that distance to an unoccupied space you can see. | no record for SPEED; number 3 unexplained
-- `item|dmg|Carpet of Flying, 3 ft. × 5 ft.#3` A 3 ft. × 5 ft. carpet can carry up to 200 lb. at a fly speed of 80 feet. | no record for SPEED; number 3,5,80 unexplained
-- `item|dmg|Carpet of Flying, 5 ft. × 7 ft.#3` A 5 ft. × 7 ft. carpet can carry up to 600 lb. at a fly speed of 40 feet. | no record for SPEED; number 5,7,40 unexplained
-- `item|dmg|Claws of the Umber Hulk#2` While wearing both claws, you gain a burrowing speed of 20 feet, and you can tunnel through solid rock at a rate of 1 foot per round. | number 1 no record explains
-- `item|dmg|Couatl Herald's Fang#4` On a failure it is Incapacitated with Speed 0 until it takes damage or another creature uses an action to shake it out of the stupor. | no record for SPEED; number 0 unexplained
-- `item|dmg|Doomhammer#6` While your Rage is active your Speed doubles and you can take one extra Attack action on each turn (one attack only). | no record for SPEED; number double unexplained
-- `item|dmg|Figurine of Wondrous Power (ebony fly)#18` Speed 30 feet, Fly 60 feet. | no record for SPEED; number 30,60 unexplained
-- `item|dmg|Hasty Sugarbomb#1` A sweet eaten as a Magic action to raise your Speed by 5 ft for 1 hour. | no record for SPEED; number 5,1 unexplained
-- `item|dmg|Helm of the Scavenger#13` - You can use the helm to propel the vessel through air or space at a maximum speed in miles per hour equal to your highest-level unexpended spell slot × 10. | no record for SLOT,SPEED; number 10 unexplained
-- `item|dmg|Hook of Fisher's Delight#15` The fish uses the quipper stat block, except that it can breathe air and has a flying speed of 30 feet.. | no record for SPEED; number 30 unexplained
-- `item|dmg|Navigation Orb#5` The castle moves at a speed of 1 mph in a straight line, in a direction of your choice, until the castle stops or is made to stop, or until another action is used to change its direction. | no record for CHOICE,SPEED; number 1 unexplained
-- `item|dmg|Servitude Choker#3` It becomes a mindless servant under your control (AC 10, Speed 20 ft) until you remove the necklace or it takes damage. | no record for SPEED; number 20,10 unexplained
-- `item|dmg|Tectonic Gauntlets#17` Your Speed drops by 5 ft and your Intelligence drops by 4 (minimum 7). | number 4 no record explains
-- `item|tftyp|Eagle Whistle#1` While you blow an eagle whistle continuously, you can fly twice as fast as your walking speed. | no record for SPEED; number double unexplained
-- `item|tgh14p|Iridescent Armor#4` They give you a fly speed of 60 ft for 1 hour. | no record for SPEED; number 60 unexplained
-- `item|tsgs|Axe Beak Tomahawk#3` Each failure reduces its Fly Speed by 15 ft for 1 minute. | no record for SPEED; number 15,1 unexplained
-- `item|tsgs|Festerwood Claymore#3` On a natural 20, beetles swarm the target for 1d4 turns, dealing 1d6 Piercing at the start of each of its turns and halving its Speed. | no record for SPEED; number 1d4,1d6,20 unexplained
-- `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#7` 5 Gold: Climb Speed equal to your Speed. | no record for SPEED; number 5 unexplained
-- `species|Mandrake|Entangling Vines#2` Its Speed is 0 and cannot increase until the end of its next turn. | no record for SPEED; number 0 unexplained
-- `species|Tabaxi (2014)|Feline Agility#1` When you move on your turn in combat, you can double your Speed until the end of that turn. | no record for SPEED; number double unexplained
-- `species|Wulven|Heritage Traits#6` If you are Small, you can lower your Speed by 5 feet to gain one extra trait. | no record for SPEED
+- `class|Demon Hunter|Roving#1` Your Speed goes up by 10 feet as long as you aren't wearing Heavy armor. | no record for SPEED; number 10 unexplained
+- `feat|Vampiric Exultation|Vampiric Exultation#4` While transformed you have a flying speed of 30 feet. | no record for SPEED; number 30 unexplained
+- `item|dmg|Aviana's Feather#2` Magic action: grow golden wings that give a Fly Speed of 80 feet. | no record for SPEED; number 80 unexplained
+- `item|dmg|Carpet of Flying, 4 ft. × 6 ft.#4` A carpet can carry up to twice this weight, but it flies at half speed if it carries more than its normal capacity. | no record for SPEED; number half,double unexplained
+- `item|dmg|Clockwork Dog#4` The dog has AC 5, 1 hit point, and a walking speed of 30 feet. | no record for SPEED; number 30,5,1 unexplained
+- `item|dmg|Couatl Herald's Scales#8` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
+- `item|dmg|Figurine of Wondrous Power#25` Speed 30 feet, Fly 60 feet. | no record for SPEED; number 30,60 unexplained
+- `item|dmg|Greaves of Dendallen#9` Once removed, your Speed is 0 and rises by 5 ft every 24 hours until normal. | no record for SPEED; number 5,24,0 unexplained
+- `item|dmg|Pixie Dust#2` The recipient gains a flying speed of 30 feet and the ability to hover for 1 minute. | no record for SPEED; number 30,1 unexplained
+- `item|dmg|Quaal's Feather Token, Swan Boat#6` The boat is self-propelled and moves across water at a speed of 6 miles per hour. | no record for SPEED; number 6 unexplained
+- `item|dmg|Rocborne Rod#3` You can move as if you had a 40 ft Fly Speed but not upward, and you take no fall damage. | no record for SPEED; number 40 unexplained
+- `item|dmg|Tectonic Gauntlets#12` You gain a 30 ft Burrow Speed through nonmagical, unworked earth and stone without disturbing it. | no record for SPEED; number 30 unexplained
+- `item|dmg|Wheel of Wind and Water#2` If a wheel of wind and water is mounted on a mundane sailing ship, a creature with the Mark of Storm who is using the wheel can create an area of ideal conditions around the vessel, increasing its speed by 5 miles per ho | no record for SPEED; number 5 unexplained
+- `item|dmg|Workshop Wrecker#1` When this 3-inch-diameter metal ball is activated as a Magic action, it moves at a rapid speed, bouncing off walls and defying any attempts to capture it. | no record for SPEED; number 3 unexplained
+- `item|mot|Potion of Aqueous Form#5` You have a swimming speed of 30 feet. | no record for SPEED; number 30 unexplained
+- `item|tgh14p|Ardor#4` As a bonus action you can let it hover in an open space within 5 ft. While you see it, a bonus action commands it to fly 50 ft and either attack once or return to your hands. | no record for SPEED; number 5,50 unexplained
+- `item|tsgs|Axe Beak Tomahawk#2` The first time each turn you hit a creature with a Fly Speed, it makes a DC 13 Strength save. | no record for DC,SPEED; number 13 unexplained
+- `item|tsgs|Couatl Herald's Reach#9` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
+- `item|tsgs|Festerwood's Light#5` Magic action with a command word: spores hit all other creatures within 30 ft. An ally can use a Reaction to attack or move up to half Speed without Opportunity Attacks. | no record for SPEED; number 30,half unexplained
+- `species|Aasimar (Protector)|Radiant Soul#1` From level 3, Action, once per Long Rest: for 1 minute you gain a Fly Speed of 30 ft. Once on each of your turns you deal extra Radiant damage equal to your level to one target you damage with an attack or a spell. | no record for DMG
+- `species|Harengon (WBtW)|Rabbit Hop#2` Needs Speed above 0. | no record for SPEED; number 0 unexplained
+- `species|Wechselkind|Heritage Traits#6` You can lower your Speed by 5 feet to gain one extra trait. | no record for SPEED
 - `sub|Bard/College of Dance|Inspiring Movement#2` You then move a distance of up to half your Speed. | no record for SPEED; number half unexplained
 - `sub|Bard/College of Tactics|Setting the Board#1` As a bonus action, command up to three willing allies who see or hear you to use their Reactions to move up to half their speed without provoking opportunity attacks. | no record for SPEED; number 3,half unexplained
 - `sub|Bard/College of Tactics|Song of Strategy#4` Distraction: take Disengage as a bonus action and gain speed of 5 ft times the roll. | no record for SPEED; number 5 unexplained
-- `sub|Cleric/Pestilence Domain|Infection#4` Joint Lock: its Speed drops by 15 ft (minimum 5 ft). | no record for SPEED; number 15 unexplained
-- `sub|Druid/Circle of Mutation|Endless Evolution#4` Tremorsense 30 ft. 2 more points give a Burrow Speed equal to your Speed. | no record for SENSE,SPEED; number 30,2 unexplained
-- `sub|Druid/Circle of the Titan|Dire Impact#2` Shock Wave: once per turn, right after you move at least half your Speed, send a shock wave through a 10-foot Emanation. | no record for SPEED; number 10,half unexplained
-- `sub|Fighter/Couatl Herald|Paragon#2` It gains Temporary Hit Points equal to the roll + your Charisma modifier (minimum 1) and can at once use its Reaction to move up to half its Speed without provoking Opportunity Attacks and make one weapon or Unarmed Stri | no record for SPEED; number half unexplained
-- `sub|Fighter/Psi Warrior|Telekinetic Adept#3` You can take a Bonus Action to gain a Fly Speed that is twice your Speed, lasting until the current turn ends. | number double no record explains
+- `sub|Cleric/Moon Domain|Channel Divinity: Blessing of the Full Moon#1` Action: bless a willing creature within 30 ft with one of several moon blessings, such as +10 ft Speed and tracking by smell for 1 hour, or a pack-tactics style bonus for 10 minutes. | no record for SPEED; number 30,10,1,10 unexplained
+- `sub|Druid/Circle of Mutation|Mutate Shape#9` Fly Speed 30 ft. 2 more points make it 60 ft. Darkvision (1). | no record for SENSE,SPEED; number 30,60,2,1 unexplained
+- `sub|Druid/Circle of the Titan|Titan Form#16` Energizing Pollen: spend a level 1+ slot and move up to half Speed without Opportunity Attacks, healing each creature you pass within 5 feet for 2d6 per slot level, once per creature per turn. | no record for SLOT,SPEED; number 2d6,5,half unexplained
+- `sub|Fighter/Arcane Archer|Masterful Shots#1` When a creature you can see misses you with an attack roll, you can use your Reaction to move up to half your Speed away from the attacker without provoking Opportunity Attacks. | no record for SPEED; number half unexplained
+- `sub|Fighter/Champion|Remarkable Athlete#2` Also, right after you score a Critical Hit, you can move a distance up to half your Speed, and this movement doesn't provoke Opportunity Attacks. | no record for SPEED; number half unexplained
+- `sub|Monk/Warrior of Gravity|Singularity Strike#2` Its Speed is 0 until the start of your next turn unless it takes the Disengage action. | no record for SPEED; number 0 unexplained
+- `sub|Monk/Warrior of Intoxication|Leap to Your Feet#1` Standing up from Prone costs you 5 feet of movement instead of half your Speed. | no record for SPEED; number 5,half unexplained
 - `sub|Monk/Way of Concordant Motion|Cooperative Ki#4` Step of the Wind: spend 1 extra Ki so one ally you see within 30 ft can use a Reaction to move up to half its speed without opportunity attacks. | no record for SPEED; number 30,1,half unexplained
-- `sub|Monk/Way of Concordant Motion|Deflect Strike#1` When an ally you see within 30 ft is hit by a melee attack, spend 2 Ki and use your Reaction to move up to half your speed toward it. | no record for SPEED; number 30,2,half unexplained
-- `sub|Monk/Way of the Four Fists|Grasp of The Monkey#2` You have a climbing speed equal to your walking speed and double your jump distance. | no record for SPEED; number double unexplained
-- `sub|Necromancer/Reanimator|Spell-Stitching#8` The thrall's Speed is doubled. | no record for SPEED; number double unexplained
-- `sub|Paladin/Oath of Vengeance|Relentless Avenger#3` As part of that same Reaction, you can then move a distance of up to half your Speed without provoking Opportunity Attacks. | no record for SPEED; number half unexplained
-- `sub|Paladin/Oath of Winter|Channel Divinity#7` On a failure it takes 2d6 Cold damage per point of your Proficiency Bonus and its speed is halved until the start of your next turn. | no record for DMG,SPEED; number 2d6,pb unexplained
-- `sub|Rogue/Grifter|Cut And Run#2` When you take the Disengage action, you can move up to half your speed. | no record for SPEED; number half unexplained
-- `sub|Sorcerer/Storm Sorcery|Wind Soul#2` As an action you can lower your Fly Speed to 30 feet for 1 hour and give creatures within 30 feet, up to 3 plus your Charisma modifier, a magical Fly Speed of 30 feet for 1 hour. | no record for SPEED; number 30,3 unexplained
-- `sub|Warlock/The Parasite|Physical Specimen#5` Your jumps triple and you gain a climb speed equal to your walking speed. | no record for SPEED; number 3 unexplained
-- `sub|Wizard/Cantrip Adept|Adroit Caster#1` A cantrip you cast that deals no damage, or an added effect of a damaging cantrip such as the speed reduction of ray of frost, lasts twice as long. | no record for SPEED,SPELL; number double unexplained
+- `sub|Necromancer/Crone|Baba Yaga [Lichdom]#7` While you hold it, you have a Fly Speed of 60 feet unless you wear Medium or Heavy armor. | no record for SPEED; number 60 unexplained
+- `sub|Paladin/Oath of Storms|Channel Divinity#6` For 1 hour you gain the benefits of water walk, and your speed doubles while you walk on water. | no record for SPEED; number 1,double unexplained
+- `sub|Paladin/Oath of Vengeance|Relentless Avenger#2` When your Opportunity Attack hits a creature, you can reduce that creature's Speed to 0 until the current turn ends. | no record for SPEED; number 0 unexplained
+- `sub|Rogue/Assassin|Infiltration Expertise#4` Using Steady Aim doesn't reduce your Speed to 0. | no record for SPEED; number 0 unexplained
+- `sub|Sorcerer/Aberrant Mind|Revelation in Flesh#8` A Swim Speed of twice your Speed and underwater breathing. | no record for SPEED; number double unexplained
+- `sub|Warlock/The Parasite Patron|Physical Specimen#6` Triple jump distance and a Climb Speed equal to your Speed. | no record for SPEED; number 3 unexplained
+- `sub|Wizard/Daemonologist|Unearthly Countenance#7` Fly Speed 60 ft. Long Rest to use again, or expend a level 5+ slot (no action). | no record for SPEED; number 60 unexplained
 
 ### RES (417 uncovered)
 
@@ -785,68 +785,68 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-L5.j
 - `species|Hinterfolk Halfling|Highly Mobile#2` In Light armor or none, you have a Climb Speed and a Swim Speed of 20 feet. | angka: 20
 - `species|Avia-Ra|Blessings of the Sun#3` You can cast each of those two once per Long Rest without a spell slot, or with a slot of the right level. | angka: 2
 
-### sub (952)
+### sub (953)
 
-- `sub|Ranger/Drakewarden|Perfected Bond#7` When you or the drake take damage and are within 30 feet of each other, you can use your Reaction to give one of you Resistance to that damage. | angka: 30
-- `sub|Druid/Circle of Configuration (2014)|Construct Form#7` Turret: speed 0, and when you take the Attack action you get one extra attack as a bonus action. | angka: 0
-- `sub|Wizard/Dragon Mage|Invoke Dragon Heart#9` As a Bonus Action, spend another slot to add 2d6 damage and 10 ft of line per slot level to your next breath. | angka: 2d6,10
-- `sub|Ranger/Gloom Stalker|Stalker's Flurry#1` Your Dreadful Strike's Psychic damage increases to 2d8. | angka: 2d8
-- `sub|Druid/Circle of the Moon|Circle Forms#5` Until you leave the form, your Armor Class is 13 + your Wisdom modifier whenever that total beats the Beast's Armor Class. | angka: 13
-- `sub|Sorcerer/Shadow Sorcery|Umbral Form#5` You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside one. | angka: 1d10
-- `sub|Monk/Warrior of Gravity|Singularity Strike#2` Its Speed is 0 until the start of your next turn unless it takes the Disengage action. | angka: 0
-- `sub|Captain/Star-Spangled Banner|Wings of Liberty#6` You have a Fly Speed of 30 feet and can hover. | angka: 30
-- `sub|Paladin/Oath of Zeal|Apocalyptic Revelation#4` See the Truth: Truesight 60 ft. Smite the Heretic: Bonus Action to pick a creature within 60 ft and expose its weaknesses, so you and your allies have Advantage on attack rolls against it. | angka: 60
-- `sub|Cleric/Forge Domain|Blessing of the Forge#3` Armor gives +1 AC and a weapon gives +1 to attack and damage rolls. | angka: 1
-- `sub|Monk/Way of the Tipsy Monkey|Adaptive Fighting#2` Using a magic item as an improvised weapon gives a bonus to attack and damage by rarity: +1 uncommon, +2 rare, +3 very rare. | angka: 1,2,3
-- `sub|Wizard/Plague Doctor|Medicinal Master#2` Bad Medicine deals an extra 2d8 Acid damage. | angka: 2d8
-- `sub|Barbarian/Path of Hellfire|Hellish Aspect#2` While raging you have Resistance to Fire damage, and the first creature you hit on each of your turns with a weapon attack takes 1d6 extra Fire damage, 2d6 from level 10. | angka: 1d6,2d6
+- `sub|Ranger/Winter Walker|Frozen Haunt#9` You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside one. | angka: 1d10
+- `sub|Druid/Circle of Configuration (2014)|Construct Form#6` Mobile: speed 40 ft, opportunity attacks against you have Disadvantage, and you gain 40 ft climbing and swimming speeds (40 ft flying from level 8). | angka: 40
+- `sub|Wizard/Dragon Mage|Invoke Dragon Heart#2` It lasts 3 rounds per slot level and ends early if you are Incapacitated or dismiss or replace it with a Bonus Action. | angka: 3
+- `sub|Ranger/Fey Wanderer|Dreadful Strikes#4` Once you reach Ranger level 11, the extra damage becomes 1d6. | angka: 1d6
+- `sub|Demon Hunter/Demon Hunter|Spectral Sight#1` You have Blindsight out to 10 feet. | angka: 10
+- `sub|Sorcerer/Shadow Sorcery|Umbral Form#3` After you use this, you must finish a Long Rest before using it again, unless you spend 6 Sorcery Points (no action required) to restore it. | angka: 6
 - `sub|Monk/Warrior of the Celestial|Stabilizing Focus#2` It regains 5 Hit Points per point spent, up to half its Hit Point maximum. | angka: 5,half
-- `sub|Wizard/School of Enchantment|Hypnotic Gaze#3` Its Speed drops to 0 and it is Incapacitated and visibly dazed. | angka: 0
-- `sub|Sorcerer/Radiation Freak|Glow Cloud#2` This works like gaseous form, except your flying speed is half your speed, a creature that enters your space or starts its turn there takes 4d10 Radiant damage, and you can cast cantrips in this form. | angka: 4d10,half
-- `sub|Fighter/Hell Knight|Diabolical Gift#1` Devil's Sight: you see normally in Dim Light and Darkness, magical or not, within 120 feet. | angka: 120
-- `sub|Paladin/Oath of The Sun|Sun's Warmth#1` You and friendly creatures within 10 ft have Resistance to Cold and Fire damage and tolerate temperatures from -50 to 300 degrees Fahrenheit. | angka: 10,50,300
-- `sub|Cleric/Winter Domain|Divine Strike#1` Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 cold damage. | angka: 1d8
+- `sub|Captain/Star-Spangled Banner|Shield Fighter#4` Damage: 1d8 Bludgeoning plus the ability modifier used for the attack roll. | angka: 1d8
+- `sub|Paladin/Oath of the Watchers|Mortal Bulwark#2` Truesight to 120 feet. | angka: 120
+- `sub|Cleric/Twilight Domain|Eyes of Night#3` As a Magic action you can share this Darkvision for 1 hour with willing creatures you can see within 10 feet, up to your Wisdom modifier (minimum one). | angka: 10
+- `sub|Monk/Way of the Humble Elephant|Thick Hide#1` As a bonus action, spend 5 Ki to gain Resistance to Bludgeoning, Piercing and Slashing damage for 10 minutes. | angka: 10,5
+- `sub|Wizard/Daemonologist|Unearthly Countenance#7` Fly Speed 60 ft. Long Rest to use again, or expend a level 5+ slot (no action). | angka: 60
+- `sub|Barbarian/Path of Hellfire|Hellish Aspect#2` While raging you have Resistance to Fire damage, and the first creature you hit on each of your turns with a weapon attack takes 1d6 extra Fire damage, 2d6 from level 10. | angka: 1d6,2d6
+- `sub|Monk/Warrior of the Celestial|Soul-Searching Strike#1` When you touch a creature or hit it with an Unarmed Strike, spend 1 Focus Point (no action) to look into its soul. | angka: 1
+- `sub|Wizard/School of Divination|The Third Eye#3` Darkvision out to 60 feet. | angka: 60
+- `sub|Sorcerer/Nanite Host|Reboot#1` When you regain consciousness after dropping to 0 hit points, you immediately regain extra 4d6 + 4 hit points. | angka: 0
+- `sub|Fighter/The Bulwark Warrior|Aggressive Defence#1` Once per turn, when you have temporary hit points and hit with a melee weapon attack, spend up to half your fighter level in temporary hit points to deal that much extra damage. | angka: half
+- `sub|Paladin/Oath of Storms|Channel Divinity#6` For 1 hour you gain the benefits of water walk, and your speed doubles while you walk on water. | angka: 1,double
+- `sub|Cleric/Void Domain|Black Star#5` You and up to three creatures you choose are immune. | angka: 3
 - `sub|Bard/College of Tactics|Song of Strategy#4` Distraction: take Disengage as a bonus action and gain speed of 5 ft times the roll. | angka: 5
-- `sub|Ranger/Swarmkeeper|Mighty Swarm#1` Gathered Swarm damage becomes 1d8. | angka: 1d8
+- `sub|Ranger/Fey Wanderer (2014)|Dreadful Strikes#1` When you hit a creature with a weapon, you can deal an extra 1d4 Psychic damage, once per turn. | angka: 1d4
 - `sub|Barbarian/Path of the Glacier|Frostbite#1` Once per turn while Raging, when you hit with a Strength-based attack, you can release cold into the target for an extra 1d6 Cold damage. | angka: 1d6
-- `sub|Cleric/Eldritch Domain|Sing the Song that Ends the World#2` It is then immune to this damage for 10 minutes. | angka: 10
-- `sub|Warmage/House of Dice|Dice of Fate#3` An expended die goes to the GM, who can spend it on a D20 Test or damage roll for an NPC or monster. | angka: 1d20
+- `sub|Cleric/Eldritch Domain|Eldritch Contagion#8` 4 Disadvantage on attack rolls and Wisdom (Perception) checks. | angka: 4
+- `sub|Warmage/House of Dice|Dice of Fate#2` When you fail a D20 Test or make a damage roll, you can expend a Die of Fate and add it to the roll, which may turn a failed D20 Test into a success. | angka: 1d20
 - `sub|Alchemist/Ionizer|Charged Core#3` When a charged creature deals damage, it can spend the charge to add 1d10 Radiant damage to one target. | angka: 1d10
-- `sub|Cleric/Life Domain (2014)|Channel Divinity: Preserve Life#3` A creature cannot be raised above half its Hit Point maximum this way. | angka: half
-- `sub|Monk/Way of the Ascendant Dragon|Ascendant Aspect#4` You have Blindsight out to 10 feet. | angka: 10
-- `sub|Druid/Circle of the Deep|Davy Jones' Locker#1` When you hit with a melee weapon attack, you can deal extra 1d8 damage. | angka: 1d8
-- `sub|Wizard/Somnomancer|Somnambulist#2` Instead your Speed is halved and you have Disadvantage on D20 Tests. | angka: 1d20
-- `sub|Cleric/Time Domain|Prescient Glimpses#1` You gain proficiency in Insight and Perception, and your proficiency bonus is doubled for any ability check that uses either skill. | angka: double,pb
+- `sub|Cleric/Life Domain (2014)|Channel Divinity: Preserve Life#2` Divide a pool of Hit Points equal to five times your Cleric level among creatures of your choice within 30 feet. | angka: 5
+- `sub|Monk/Warrior of the Mystic Arts|Spellcasting#12` At first you choose three level 1 spells (Jump, Magic Missile, and Shield are good picks). | angka: 3
+- `sub|Druid/Circle of the City|City Shape#5` On each of your turns you can raise up to three low walls (2.5 ft high, 5 ft wide, 1 ft deep, giving a Medium creature cover). | angka: 5,2
+- `sub|Wizard/Mystic Strategist|Supreme Stratagems#3` Sanguine Spell: when a creature fails a save against your spell, Bonus Action and 2 Battle Dice make it vulnerable. | angka: 2
+- `sub|Cleric/Speed Domain|Divine Strike#1` Once on each of your turns when you hit with a weapon attack, deal an extra 1d8 damage of the weapon's type. | angka: 1d8
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- class `item|dmg|Windvane#5` When you hit with it, the target takes an extra 1d6 lightning damage. -> info:ACTIVE:TRIGGER
-- record `item|dmg|Jewel of Three Prayers (Exalted)#2` In ancient times, Alyxian the Apotheon bore this amulet as a symbol of his covenant with three Prime Deities: Sehanine t -> info:NUMONLY:TABLE
-- class `item|dmg|Jewel of Three Prayers (Exalted)#2` In ancient times, Alyxian the Apotheon bore this amulet as a symbol of his covenant with three Prime Deities: Sehanine t -> info:NUMONLY:TABLE
-- record `sub|Barbarian/Path of the Beast|Call the Hunt#4` You can use this a number of times equal to your Proficiency Bonus and regain all uses after a Long Rest. -> covered
-- record `item|frafi|Orb of Damara#32` See Invisibility: 1. -> info:NUMONLY:TABLE
-- class `item|frafi|Orb of Damara#32` See Invisibility: 1. -> info:NUMONLY:TABLE
-- record `item|dmg|Figurine of Wondrous Power (obsidian steed)#15` After a use, you must wait 5 days before using it again. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Figurine of Wondrous Power (obsidian steed)#15` After a use, you must wait 5 days before using it again. -> info:NUMONLY:GEOMETRY
-- record `sub|Warlock/Sorcerer-King Patron|Decisive Edict#3` After using this you can't use it again until a Short or Long Rest, or when you use Magical Cunning. -> covered
-- class `sub|Warlock/Sorcerer-King Patron|Decisive Edict#3` After using this you can't use it again until a Short or Long Rest, or when you use Magical Cunning. -> info:REST:NONUM
-- record `sub|Martyr/Burden of Ascension|Demigod Ascendant#6` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- class `sub|Martyr/Burden of Ascension|Demigod Ascendant#6` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `class|Martyr|Undying#2` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- class `class|Martyr|Undying#2` After you use this, you cannot use it again until you finish a Long Rest. -> info:REST:NONUM
-- record `sub|Artificer/Magneticist|Magnetic Manipulator#6` The hand is invisible, can only handle metal objects, and can carry triple the weight. -> covered
-- class `sub|Artificer/Magneticist|Magnetic Manipulator#6` The hand is invisible, can only handle metal objects, and can carry triple the weight. -> covered
-- class `item|dmg|Heretic#6` Once per turn when you hit a creature with this weapon, you can expend 1 of its charges to attempt to render the target  -> info:ACTIVE:TRIGGER
-- record `sub|Wizard/White Necromancer|Life Bond#3` Long Rest to use again. -> covered
-- class `sub|Wizard/White Necromancer|Life Bond#3` Long Rest to use again. -> info:REST:NONUM
-- record `sub|Rogue/Arcane Trickster (2014)|Spell Thief#7` You regain use after a Long Rest. -> covered
-- class `sub|Rogue/Arcane Trickster (2014)|Spell Thief#7` You regain use after a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Devlin's Staff of Striking#8` If you attune to this staff, you transform into a goat-humanoid hybrid over the course of 3 days. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Devlin's Staff of Striking#8` If you attune to this staff, you transform into a goat-humanoid hybrid over the course of 3 days. -> info:NUMONLY:GEOMETRY
-- record `species|Mandrake|Entangling Vines#6` Spring lets you target a flying creature within 30 feet of the ground and pulls it safely down. -> info:NUMONLY:GEOMETRY
-- class `species|Mandrake|Entangling Vines#6` Spring lets you target a flying creature within 30 feet of the ground and pulls it safely down. -> info:NUMONLY:GEOMETRY
-- record `class|Warmage|Spellcasting#3` You know four Warmage cantrips and learn more as shown in the Cantrips column. -> info:TABLE:CLASS
-- class `class|Warmage|Spellcasting#3` You know four Warmage cantrips and learn more as shown in the Cantrips column. -> info:TABLE:CLASS
-- record `item|dmg|Amulet of the Inferno#15` The cantrips scale based on your total character level and use Intelligence as a spellcasting modifier if you're normall -> covered
-- record `species|Dragonborn (Gem)|Psionic Mind#1` You can send telepathic messages to any creature you see within 30 ft. It must understand at least one language. -> info:NUMONLY:GEOMETRY
-- class `species|Dragonborn (Gem)|Psionic Mind#1` You can send telepathic messages to any creature you see within 30 ft. It must understand at least one language. -> info:NUMONLY:GEOMETRY
+- record `species|Spirithost|Incorporeal Movement#3` If you end your movement in the same space as a solid object or creature, you are shunted to the nearest free space and  -> info:NUMONLY:TEXT
+- class `species|Spirithost|Incorporeal Movement#3` If you end your movement in the same space as a solid object or creature, you are shunted to the nearest free space and  -> info:NUMONLY:TEXT
+- record `sub|Fighter/Echo Knight|Reclaim Potential#1` When an echo of yours is destroyed by taking damage, you can gain Temporary Hit Points equal to 2d6 plus your Constituti -> info:NUMONLY:ROLL
+- class `sub|Fighter/Echo Knight|Reclaim Potential#1` When an echo of yours is destroyed by taking damage, you can gain Temporary Hit Points equal to 2d6 plus your Constituti -> info:NUMONLY:ROLL
+- record `sub|Paladin/Oath of the Hearth (ToH)|Roaring Fire#2` You shed bright light in 20 ft and dim light for 20 ft more. -> covered
+- class `sub|Paladin/Oath of the Hearth (ToH)|Roaring Fire#2` You shed bright light in 20 ft and dim light for 20 ft more. -> covered
+- record `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#7` Stage 1. -> info:NUMONLY:TABLE
+- class `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#7` Stage 1. -> info:NUMONLY:TABLE
+- record `sub|Barbarian/Path of the Fin (2014)|Tsunami#5` Short or Long Rest to use again. -> covered
+- class `sub|Barbarian/Path of the Fin (2014)|Tsunami#5` Short or Long Rest to use again. -> info:REST:NONUM
+- record `item|tsgeh|Sanctified Cannon#1` A Cannon (3d10 Bludgeoning, range 120/240 ft, Artillery, Booming, Two-Handed, Push mastery, uses Cannonballs). -> info:NUMONLY:ROLL
+- class `item|tsgeh|Sanctified Cannon#1` A Cannon (3d10 Bludgeoning, range 120/240 ft, Artillery, Booming, Two-Handed, Push mastery, uses Cannonballs). -> info:NUMONLY:ROLL
+- record `item|dmg|Titanstone Knuckles (Exalted)#3` Your Strength becomes 26. -> info:NUMONLY:TABLE
+- class `item|dmg|Titanstone Knuckles (Exalted)#3` Your Strength becomes 26. -> info:NUMONLY:TABLE
+- class `item|dmg|Macuahuitl#2` It deals an extra 2d6 damage to any creature of the plant type. -> info:ACTIVE:OTHERS
+- record `item|gos|Charm of Plant Command#6` The charm regains all expended charges at dawn each day. -> info:REST:NONUM
+- class `item|gos|Charm of Plant Command#6` The charm regains all expended charges at dawn each day. -> info:REST:NONUM
+- record `item|dmg|Killskull Longbow of Dread#4` On a failure the target is Frightened for 1 minute, repeating the save at the end of each of its turns. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Killskull Longbow of Dread#4` On a failure the target is Frightened for 1 minute, repeating the save at the end of each of its turns. -> info:NUMONLY:GEOMETRY
+- record `sub|Fighter/Living Crucible (2014)|Quick Creation#2` Long Rest to use again. -> covered
+- class `sub|Fighter/Living Crucible (2014)|Quick Creation#2` Long Rest to use again. -> info:REST:NONUM
+- record `sub|Druid/Circle of Configuration|Circle of Configuration Spells#4` 9 Simulation. -> info:NUMONLY:TABLE
+- class `sub|Druid/Circle of Configuration|Circle of Configuration Spells#4` 9 Simulation. -> info:NUMONLY:TABLE
+- record `sub|Paladin/Oath of Conquest|Invincible Conqueror#5` You regain use after a Long Rest. -> covered
+- class `sub|Paladin/Oath of Conquest|Invincible Conqueror#5` You regain use after a Long Rest. -> info:REST:NONUM
+- record `sub|Paladin/Oath of Vengeance|Avenging Angel#9` While it is Frightened this way, attack rolls against it have Advantage. -> info:ACTIVE:OTHERS
+- class `sub|Paladin/Oath of Vengeance|Avenging Angel#9` While it is Frightened this way, attack rolls against it have Advantage. -> info:ACTIVE:OTHERS
+- record `item|dmg|Shield of the Cavalier#13` The Emanation lasts while you maintain Concentration, up to 1 minute, and nothing can pass into or out of it. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Shield of the Cavalier#13` The Emanation lasts while you maintain Concentration, up to 1 minute, and nothing can pass into or out of it. -> info:NUMONLY:GEOMETRY
+- record `sub|Dancer/Dramaturge|Spellcasting#5` When you gain a Dancer level, you can swap one cantrip for another Bard cantrip. -> info:TABLE:CLASS
