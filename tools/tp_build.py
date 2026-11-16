@@ -54,7 +54,9 @@ BOOKS = [
  {"id": "tua24", "ua": True, "monsters": True, "cls": ["psion"], "clspre": "tua24_", "clsspell": True, "file": ["ua/class/Unearthed Arcana 2025 - Psion Update.json", "ua/class/Unearthed Arcana 2025 - The Psion.json", "ua/subclass/Unearthed Arcana 2026 - Villainous Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options 2.json", "ua/collection/Unearthed Arcana 2026 - Underdark Options.json",
   "ua/collection/Unearthed Arcana 2026 - Villainous Options Update.json", "ua/collection/Unearthed Arcana 2026 - Villainous Options.json", "ua/subclass/Unearthed Arcana 2026 - Mystic Subclasses.json",
   "ua/subclass/Unearthed Arcana 2025 - Subclasses Update.json", "ua/subclass/Unearthed Arcana 2025 - Forgotten Realms Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Updates.json", "ua/subclass/Unearthed Arcana 2025 - Arcane Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Horror Subclasses.json", "ua/subclass/Unearthed Arcana 2025 - Apocalyptic Subclasses.json"],
-  "tag": "UA24", "name": "Unearthed Arcana (2024 rules)", "pub": "Wizards of the Coast", "ed": "2024", "sub": "tua24_sub", "feat": "tua24_feat", "species": "tua24_species", "spell": "tua24_spell", "alias": "UA"}
+  "tag": "UA24", "name": "Unearthed Arcana (2024 rules)", "pub": "Wizards of the Coast", "ed": "2024", "sub": "tua24_sub", "feat": "tua24_feat", "species": "tua24_species", "spell": "tua24_spell", "alias": "UA"},
+ {"id": "ttoh", "file": "Kobold Press; Tome of Heroes.json", "tag": "ToH", "name": "Tome of Heroes", "pub": "Kobold Press", "ed": "2014",
+  "sub": "ttoh_sub", "alias": "ToH"}
 ]
 LV = {"1": 1, "2": 2}
 GAP = []
