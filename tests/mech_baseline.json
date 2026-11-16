@@ -1,5 +1,6 @@
 {
 "by_design": {
+"class|Summoner|Shared Resilience": "Bersyarat: hanya saat Eidolon berada dalam 30 kaki. Prof save ada di teks, tidak ada angka statis di sheet.",
 "class|Artificer|Advanced Artifice": "Batch A triage: Batas attunement 5 sudah dihitung (attMax naik di Artificer 14, 03-logic-magic-item-effects.js). Sisanya aturan rest (regain Flash of Genius di Short Rest), tidak ada angka statis.",
 "class|Barbarian|Brutal Strike": "Batch A triage: Efek dipilih per serangan saat bermain, bersyarat Reckless Attack. Tidak ada angka statis di sheet.",
 "class|Captain|Cohort": "Batch A triage: Pilihan stat block cohort dari deskripsi class, tidak mengubah angka sheet.",

@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:137,l:"0.0.35",d:"2026-11-16",n:["Healer and Summoner classes (2024 rules, Spaghetti0): the spell step now offers the core spells on each class list, not only the spells from their own book."]},
 {v:136,l:"0.0.34",d:"2026-11-16",n:["Arcane Archer (Unearthed Arcana 2025 Arcane Updates): the level 15 feature is now Arcane Burst, which pushes creatures away when you use Indomitable. It replaces Indomitable Teleport."]},
 {v:135,l:"0.0.33",d:"2026-11-15",n:["Picking a class, species or background in the builder is fast again, also with many sources turned on. The Library search index is now built while the page is idle, not during your click."]},
 {v:134,l:"0.0.32",d:"2026-11-14",n:["Adamantine Armor (and other magic armor or weapons with a base item): the Base item picker now stays after you choose, so you can pick Half Plate Armor, Plate Armor and the rest. The armor then gives its base AC plus Dex (capped for medium armor) once applied to the sheet."]},
