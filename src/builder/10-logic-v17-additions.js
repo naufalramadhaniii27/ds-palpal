@@ -1,4 +1,4 @@
-import {bindLive,clsLv,clsParts,featsOf,resKey,spLists,spRec} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
+import {bindLive,clsLv,clsParts,featsOf,resKey,spLists,spRec} from "./01b-logic-late-ports.js";import {genv,lastCh} from "./00-env.js";
 import {SRC,mod} from "./01-logic-core-helpers.js";
 import {DMAP,activeFx,spX,un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
@@ -42,7 +42,7 @@ function luItemRow(C,x){const d=DMAP[x.n],ch=d&&d[5]&&d[5].ch;if(!ch)return;if(d
   if(dym){C.res.push({k:resKey("i-",x.n,C.res),n:x.n,tag:"Each use is back after "+dym[1]+" "+dym[2]+". Tick it back when the time has passed."+(ch[3]?" "+ch[3]+".":""),max:mx,reset:"none",f:x.n,item:1});return}/* v56: Figurine of Wondrous Power and other items with a wait in days */
   luItemCharges(C,x,ch,mx,dm,nev,full)}
 function luItemCharges(C,x,ch,mx,dm,nev,full){const when={dawn:"at dawn",dusk:"at dusk",long:"on a Long Rest",short:"on a Short Rest"}[ch[2]]||ch[2];
-  C.res.push({k:resKey("i-",x.n,C.res),n:x.n,tag:(nev?"Charges, not regained":full?"Charges, all back "+when:"Charges, regains "+ch[1]+" "+when+" (type the roll in the rest dialog)")+(ch[3]?". "+ch[3]:""),max:mx,reset:nev?"none":full?(ch[2]==="short"?"short":"long"):"none",f:x.n,item:1,rg:!nev&&!full?String(ch[1]):undefined,when:!nev&&!full?ch[2]:undefined,dmax:dm?String(ch[0]):undefined})}
+  C.res.push({k:resKey("i-",x.n,C.res),n:x.n,tag:(nev?"Charges, not regained":full?"Charges, all back "+when:"Charges, regains "+ch[1]+" "+when+" (type the roll in the rest dialog)")+(ch[3]?". "+ch[3]:"")+(lastCh()[x.n]?" "+lastCh()[x.n]:""),max:mx,reset:nev?"none":full?(ch[2]==="short"?"short":"long"):"none",f:x.n,item:1,rg:!nev&&!full?String(ch[1]):undefined,when:!nev&&!full?ch[2]:undefined,dmax:dm?String(ch[0]):undefined})}
 export function luRows(C,a,pb,feats){const TLv=TL(),iv=invList(),c={TLv:TLv,iv:iv,feats:feats};
  (typeof LU_X!=="undefined"?LU_X:[]).forEach((e) =>{luTableRow(C,e,a,pb,c)});
  /* fx engine v4: lu on any gfx entry = limited-use rows. lu:{n,max,reset,tag?,pool?,die?,f?,short6?} or an array of them. max: number, array by level (index = source level - 1), "pb", "pb2", "lvl", "half", "mod:WIS" (at least 1), or {f:"formula"} (see luMax); the level is the source level (class level for class and subclass, character level otherwise). reset: long, short, dawn, dusk, none, init */

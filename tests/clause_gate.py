@@ -72,6 +72,7 @@ def load():
         pg.evaluate("window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("window.__bldData", timeout=90000)
         d = pg.evaluate("window.__bldData()")
         d["gx"] = pg.evaluate("JSON.parse(JSON.stringify(window.GX||{}))")
+        d["lastch"] = pg.evaluate("JSON.parse(JSON.stringify(window.LASTCH||{}))")
         d["gxItem"] = pg.evaluate("()=>Object.keys(window.GX&&window.GX.item||{}).concat(Object.keys(window.FXO||{}))")
         d.update(pg.evaluate(EXTRA_JS)); b.close()
     if errs:
@@ -538,6 +539,10 @@ def features(D):
             at += atoms_from(fx, "FXO|" + name if name in fxo else "item.fx|" + name)
         for k in ("ch", "by", "xd", "wp"):
             if ex.get(k) not in (None, "", [], {}):
+                if k == "ch" and isinstance(ex[k], list):  # [max, regain, reset]: the size and the refill are two sentences, so two atoms (one atom covers one sentence)
+                    at += [Atom("RESOURCE", nums_in(el), "item.ex.ch[%d]" % i) for i, el in enumerate(ex[k]) if el not in (None, "", [], {})]
+                    at.append(Atom("RESOURCE", nums_in(ex[k]), "item.ex.ch"))  # the sentence "has 3 charges and regains 1d3" carries both numbers
+                    continue
                 at += atoms_from({k: ex[k]}, "item.ex|" + name) or [Atom("RESOURCE", nums_in(ex[k]), "item.ex.%s" % k)]
         if ex.get("pick"):
             at.append(Atom("CHOICE", nums_in(ex["pick"]), "item.pick"))
@@ -551,6 +556,7 @@ def features(D):
             for k, v in isp.items():
                 if k not in ("sp", "atk", "dc") and v not in (None, [], {}, ""):
                     at.append(Atom("RESOURCE", nums_in(v), "ITEM_SPELLS.%s" % k))
+        if (D.get("lastch") or {}).get(name): at.append(Atom("RESOURCE", nums_in(D["lastch"][name]), "LASTCH|" + name))
         at += lu_atoms(D, name, name)
         text = r[4]
         extra = (D.get("itemDesc") or {}).get(name)

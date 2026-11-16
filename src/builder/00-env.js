@@ -4,6 +4,8 @@
 /* registries filled by the data files: GX.<kind>[name] = effect entries, FXO[item] = override of a magic item row */
 export function gx(){return (typeof window!=="undefined"&&window.GX)||{}}
 export function fxo(){return typeof window!=="undefined"&&window.FXO}
+/* window.LASTCH[item] = the last-charge roll note of a charged item (src/data/item-lastcharge.js) */
+export function lastCh(){return (typeof window!=="undefined"&&window.LASTCH)||{}}
 /* the open sheet state (saved toggles S.fxT, previous sheet C), or a falsy value when no sheet is open */
 export function sheetState(){return typeof window!=="undefined"&&window.__sheetState&&window.__sheetState()}
 /* window.THIRD_SUBS[sub]={list,ab,cant} makes a subclass a third caster */
