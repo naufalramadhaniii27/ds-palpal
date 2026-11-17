@@ -392,8 +392,22 @@ def calc_note_names():
         return set()
 
 
+def def_sub_rows():
+    """Rows of defSub() in src/builder/16-logic-feature-numbers.js: {(subclass, feature): [(type, value)]}. The sheet adds these defenses from code, not from a record. Read-only parse."""
+    out = collections.defaultdict(list)
+    try:
+        src = open(os.path.join(ROOT, "src", "builder", "16-logic-feature-numbers.js"), encoding="utf-8").read()
+        i = src.index("function defSub(add,sub,lv){"); j = src.index("function defClass(", i)
+        for m in re.finditer(r'sub==="([^"]+)"&&lv>=\d+\)add\("(Resistance|Immunity)","([^"]+)","([^"]+)"\)', src[i:j]):
+            out[(m.group(1), m.group(4))].append((m.group(2), m.group(3)))
+    except Exception:
+        pass
+    return out
+
+
 def build_index(D):
     D["calc_names"] = calc_note_names()
+    D["def_sub"] = def_sub_rows()
     D["lu_by_owner"] = collections.defaultdict(list)
     for e in D.get("lu") or []:
         D["lu_by_owner"][e.get("owner")].append(e)
@@ -467,6 +481,11 @@ def features(D):
                     for k, v in w.items():
                         if k in ("cls", "name", "src", "alt") or v in ([], {}, "", None):
                             continue
+                        if k == "fx" and isinstance(v, list):  # book rows [level, feature, effect]: the effect of the row that carries this feature's name
+                            for fr in v:
+                                if isinstance(fr, list) and len(fr) > 2 and isinstance(fr[2], dict) and str(fr[1]).lower() == name.lower():
+                                    at += atoms_from(fr[2], "wxs.fx|" + sn)
+                            continue
                         for part in (mentions(v, name) if isinstance(v, (list, dict)) else []):
                             at += atoms_from({k: part}, "wxs." + sn)
                 at += lu_atoms(D, sn, name)
@@ -481,6 +500,9 @@ def features(D):
                     for k in ("tools", "armor", "weapons", "skills"):
                         if isinstance(sg.get(k), list) and sg[k]:
                             at.append(Atom("PROF", nums_in([x[1] for x in sg[k] if isinstance(x, list) and len(x) > 1]), "SUB_GRANT." + k))
+                for ty, val in D["def_sub"].get((sn, name), []):  # defSub(): defenses the sheet adds from code
+                    at.append(Atom("IMM" if ty == "Immunity" else "RES", nums_in([val]), "DEF_SUB|" + sn))
+                    if ty == "Immunity": at.append(Atom("RES", nums_in([val]), "DEF_SUB|" + sn))
                 for r in D["fdmg_by"].get((sn, name), []):
                     at += [Atom("DMG", nums_in(r[3:]), "FDMG"), Atom("RESOURCE", nums_in(r[3:]), "FDMG")]
                 yield mk("sub", "%s/%s" % (cn, sn), name, sbook, text, lvl, at, ("sub|%s|%s" % (sn, name)) in D["acts_set"])
