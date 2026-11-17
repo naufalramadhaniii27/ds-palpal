@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:150,l:"0.0.48",d:"2026-11-17",n:["Twelve more magic items now list their fixed damage Resistance in Defenses, such as Karrek's Bastion, Talons of the Squall and Warding Brooch."]},
 {v:149,l:"0.0.47",d:"2026-11-17",n:["Twenty-five more magic weapons now show their extra damage die on the weapon rows, such as Flayer Slayer, Dawnbringer and Duskcrusher."]},
 {v:148,l:"0.0.46",d:"2026-11-17",n:["Weapon damage riders now show on the weapon rows for Dragon, Hunger, Lust, Vermin and Zeal Domain (Divine Strike), Bounty Hunter and Freerunner."]},
 {v:147,l:"0.0.45",d:"2026-11-17",n:["Eight magic items now list their Advantage rules in Defenses while carried, such as Gamma Pendant and Ring of Truth Telling."]},
