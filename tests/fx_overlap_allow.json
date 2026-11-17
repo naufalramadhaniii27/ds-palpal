@@ -741,18 +741,20 @@
  },
  "GX.sub|Star-Spangled Banner": {
   "files": [
+   "fx-B19-speedmv.js",
    "fx-L10.js",
    "fx-M2.js"
   ],
-  "reason": "fx-M2 adds wmAdd for Patriotism; fx-L10 has Freedom of Movement.",
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Storm Sentinel": {
   "files": [
+   "fx-B19-speedmv.js",
    "fx-H-audit.js",
    "fx-L12.js"
   ],
-  "reason": "fx-H-audit Storm Wings (level 6, fly) and fx-L12 Seafarer (level 3, swim and resistance pick) are different features.",
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
   "shared": [
    "mv"
   ]
@@ -1329,18 +1331,20 @@
  "GX.sub|Faerzress Sorcery": {
   "files": [
    "fx-B7-subskills.js",
-   "fx-B9-advnotes.js"
+   "fx-B9-advnotes.js",
+   "fx-B20-subimm.js"
   ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Freerunner": {
   "files": [
    "fx-B9-advnotes.js",
    "fx-B11-riders.js",
+   "fx-B19-speedmv.js",
    "fx-M2.js"
   ],
-  "reason": "B11 adds the Divine Strike or rider row of a feature the other file does not define; no field is shared, nothing is counted twice.",
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Gourmand": {
@@ -1769,6 +1773,111 @@
    "fx-L1.js"
   ],
   "reason": "L1 holds the Death Saving Throw flaw, B17 the cantrip. No field is shared, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Cloak of the Stygian Bat": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-L3.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Mythallar Cloak": {
+  "files": [
+   "fx-B12-itemriders.js",
+   "fx-B19-speedmv.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Powered Armor": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-L5.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Crone": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Moonwalker": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Mutagenist": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B19-speedmv.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Phantom (2014)": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B19-speedmv.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Sky Magic": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-L13.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|The Genie": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|The Undead": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-B20-subimm.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Boreal Bloodline": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B20-subimm.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Justice Domain": {
+  "files": [
+   "fx-B20-subimm.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Vermin Lord": {
+  "files": [
+   "fx-B20-subimm.js",
+   "fx-M1.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
   "shared": []
  }
 }
