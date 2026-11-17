@@ -52,5 +52,24 @@ with sync_playwright() as p:
         pg.evaluate(CLICK,"bi|g|1");pg.wait_for_timeout(700)
         u1=pg.evaluate(ST)['used']
         chk(name,'bard: a slot buys back the used Bardic Inspiration',u0==1 and u1.get('r-bardic-inspiration')==0 and u1.get('s1')==1)
+        # Druid 5: Wild Resurgence
+        d5=dict(g);d5['cls']='Druid';d5['sub']='';d5['level']=5
+        pg.evaluate("b=>{const C=window.__bldSheetFor(b);window.__sheetSoft(C)}",d5);pg.wait_for_timeout(800)
+        cv=pg.evaluate("()=>(window.__sheetState().C.res||[]).filter(r=>r.cv).map(r=>r.cv)")
+        chk(name,'druid 5 has the conversion flag',cv==['ws:1'])
+        pg.evaluate(CLICK,"ws|m|1");pg.wait_for_timeout(700)
+        st=pg.evaluate(ST);chk(name,'druid: one use makes a level 1 slot',st['used'].get('r-wild-shape')==1 and st['xs'].get('1')==1)
+        pg.evaluate(CLICK,"ws|m|1");pg.wait_for_timeout(700)
+        chk(name,'druid: second level 1 slot refused (once per Long Rest)',pg.evaluate(ST)['xs'].get('1')==1)
+        s1b=pg.evaluate(ST)['used'].get('s1',0)
+        pg.evaluate(CLICK,"ws|g|1");pg.wait_for_timeout(700)
+        st=pg.evaluate(ST);chk(name,'druid: a slot buys back a use',st['used'].get('r-wild-shape')==0 and st['used'].get('s1')==s1b+1)
+        pg.evaluate("()=>window.__sheetRest('long')");pg.wait_for_timeout(700)
+        st=pg.evaluate(ST);chk(name,'druid: Long Rest clears the made slot and the once-per-rest flag',not st.get('xs') and not st.get('wr'))
+        # Druid 20: Archdruid makes a level 4 slot from two uses
+        d20=dict(g);d20['cls']='Druid';d20['sub']='';d20['level']=20
+        pg.evaluate("b=>{const C=window.__bldSheetFor(b);window.__sheetSoft(C)}",d20);pg.wait_for_timeout(800)
+        pg.evaluate(CLICK,"ws|m|4");pg.wait_for_timeout(700)
+        st=pg.evaluate(ST);chk(name,'archdruid: two uses make a level 4 slot',st['used'].get('r-wild-shape')==2 and st['xs'].get('4')==1)
         if errs:print(name,'errors',errs);bad+=1
 print('FAIL' if bad else 'OK');raise SystemExit(1 if bad else 0)
