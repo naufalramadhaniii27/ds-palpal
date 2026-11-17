@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44265 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9174 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9191 |
 | Info (tag terdokumentasi) | 29090 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2686, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1355, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 951, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 6001 |
+| Uncovered | 5984 |
 | Uncovered dengan angka | 3579 |
-| Uncovered dengan kelas kata kunci mekanik | 5609 |
+| Uncovered dengan kelas kata kunci mekanik | 5592 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 392 |
 | Angka yang tidak dijelaskan record mana pun | 3388 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5018 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4999 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 264 |
 | Waktu | muat data 0 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 168 ditangkap (56.4%). Hapus semua atom kelas yang dibutuhkan: 174 ditangkap (58.4%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 170 ditangkap (56.9%). Hapus semua atom kelas yang dibutuhkan: 174 ditangkap (58.2%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 279 ditangkap (93.0%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 278 ditangkap (92.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -38,13 +38,13 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 
 | Sumber | Kalimat covered |
 |---|---|
-| item | 3352 |
-| GX | 1935 |
+| item | 3361 |
+| GX | 1952 |
 | wxs | 1069 |
 | LU_X | 721 |
 | species | 525 |
 | AUTO | 444 |
-| ITEM_SPELLS | 354 |
+| ITEM_SPELLS | 356 |
 | feat | 322 |
 | SPELL_FX | 241 |
 | cls | 169 |
@@ -67,14 +67,14 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
 | RESOURCE | 7405 | 964 | 13.0% |
-| SPELL | 3255 | 961 | 29.5% |
+| SPELL | 3255 | 959 | 29.5% |
 | DMG | 4658 | 703 | 15.1% |
 | SPEED | 1419 | 585 | 41.2% |
 | PROF | 1124 | 493 | 43.9% |
-| RES | 1377 | 441 | 32.0% |
 | CHOICE | 1663 | 435 | 26.2% |
-| ADV | 1959 | 431 | 22.0% |
-| IMM | 1006 | 370 | 36.8% |
+| ADV | 1959 | 425 | 21.7% |
+| RES | 1377 | 424 | 30.8% |
+| IMM | 1006 | 365 | 36.3% |
 | NUM | 8606 | 344 | 4.0% |
 | SLOT | 1425 | 312 | 21.9% |
 | DC | 2903 | 284 | 9.8% |
@@ -97,7 +97,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|---|---|---|
 | class | 1186 | 272 | 631 | 0 | 283 |
 | feat | 2812 | 676 | 1475 | 0 | 661 |
-| item | 19281 | 4596 | 11657 | 0 | 3028 |
+| item | 19281 | 4613 | 11657 | 0 | 3011 |
 | species | 1638 | 892 | 492 | 0 | 254 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
 | sub | 10118 | 2460 | 5883 | 0 | 1775 |
@@ -106,11 +106,11 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10468 | 2521 | 6318 | 1629 | 15.6% |
+| dmg | 10468 | 2530 | 6318 | 1620 | 15.5% |
 | tvss | 2796 | 674 | 1631 | 491 | 17.6% |
 | core | 1495 | 402 | 762 | 331 | 22.1% |
-| ttoh | 1470 | 319 | 870 | 281 | 19.1% |
-| tsgs | 1479 | 403 | 831 | 245 | 16.6% |
+| ttoh | 1470 | 320 | 870 | 280 | 19.0% |
+| tsgs | 1479 | 404 | 831 | 244 | 16.5% |
 | tvss14 | 1201 | 222 | 741 | 238 | 19.8% |
 | tkdm | 921 | 221 | 492 | 208 | 22.6% |
 | tsdm | 1063 | 283 | 592 | 188 | 17.7% |
@@ -123,8 +123,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tgh14p | 490 | 114 | 282 | 94 | 19.2% |
 | twow | 542 | 140 | 311 | 91 | 16.8% |
 | phb14 | 513 | 173 | 256 | 84 | 16.4% |
-| thhw | 395 | 88 | 232 | 75 | 19.0% |
-| tee24 | 463 | 184 | 213 | 66 | 14.3% |
+| thhw | 395 | 91 | 232 | 72 | 18.2% |
+| tee24 | 463 | 185 | 213 | 65 | 14.0% |
 | hof | 249 | 45 | 142 | 62 | 24.9% |
 | xge | 375 | 110 | 208 | 57 | 15.2% |
 | rhw | 231 | 60 | 115 | 56 | 24.2% |
@@ -144,8 +144,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tgh14c | 242 | 39 | 182 | 21 | 8.7% |
 | wbtw | 92 | 18 | 54 | 20 | 21.7% |
 | bdd | 62 | 12 | 30 | 20 | 32.3% |
-| skt | 118 | 28 | 70 | 20 | 16.9% |
 | toa | 116 | 33 | 65 | 18 | 15.5% |
+| skt | 118 | 30 | 70 | 18 | 15.3% |
 | llk | 99 | 9 | 72 | 18 | 18.2% |
 | tsae | 63 | 21 | 25 | 17 | 27.0% |
 | dsotdq | 82 | 19 | 46 | 17 | 20.7% |
@@ -200,9 +200,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | DMG | 528 | 474 |
 | SPEED | 502 | 393 |
 | PROF | 443 | 164 |
-| ADV | 421 | 184 |
-| RES | 347 | 138 |
+| ADV | 415 | 184 |
 | NUM | 344 | 344 |
+| RES | 336 | 138 |
 | SLOT | 294 | 101 |
 | CHOICE | 268 | 77 |
 | IMM | 235 | 79 |
@@ -437,7 +437,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/Necrophage|Memory of Flesh#4` If the target was proficient in any Intelligence skill, you pick one of them and gain proficiency in it, or double your Proficiency Bonus with it if you already have it. | no record for CHOICE,PROF; number double,pb unexplained
 - `sub|Wizard/White Necromancer|Lore of Life and Death#1` You gain proficiency in Medicine and Religion, and your Proficiency Bonus is doubled on Wisdom (Medicine) checks. | number double,pb no record explains
 
-### ADV (421 uncovered)
+### ADV (415 uncovered)
 
 - `feat|Cohort of Chaos|Cohort of Chaos#9` 1, Battle Fury: a creature you can see has Advantage on attack rolls and Disadvantage on ability checks. | number 1 no record explains
 - `feat|Lucky|Lucky#5` You can spend 1 Luck Point on any d20 you roll for a D20 Test, which gives you Advantage on that roll. | number 1d20,1 no record explains
@@ -480,91 +480,91 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/Timekeeper|Temporal Points#6` Option three: Advantage on your next Dexterity check. | no record for ADV; number 3 unexplained
 - `sub|Wizard/Void Caster|Void Affinity#1` You can gather twice the normal amount of Void Taint before it affects you, and you have Advantage on saves against gaining Void Taint. | no record for ADV; number double unexplained
 
-### RES (347 uncovered)
-
-- `feat|Seraph Transformation: Level 4|Seraph Transformation: Level 4#10` When you roll a natural 1 on a save against a magical spell or ability, you take 1d6 Force damage per two class levels, ignoring resistance and immunity. | no record for DMG,IMM,RES; number 1d6,1,2 unexplained
-- `feat|Void Scribe|Void Scribe#3` While the glyph is intact, the object is vulnerable to necrotic damage and takes 1d6 necrotic damage at the end of your turn. | no record for DMG,RES; number 1d6 unexplained
-- `item|dmg|Charm of Cold Resistance#1` As an action, give yourself resistance to Cold damage for 24 hours. | no record for RES; number 24 unexplained
-- `item|dmg|Chillspike#4` When you reduce a Large or smaller creature to 0 Hit Points, you can entomb it in ice for 1 minute (it cannot be Prone and makes no Death Saves, ice AC 12, HP 20, immune to Poison and Psychic, vulnerable to Fire, and it  | no record for IMM,RES; number 0,12,20 unexplained
-- `item|dmg|Flammable Tincture#3` For 1 minute the creature loses any Immunity or Resistance to Fire damage and has Vulnerability to Fire damage instead. | no record for IMM,RES; number 1 unexplained
-- `item|dmg|Frefil's Jolly Oozebean Sugarbombs#10` 8 Yellow: Resistance to Lightning and Immunity to Magic Missile damage. | no record for IMM,RES; number 8 unexplained
-- `item|dmg|Glowing Ember#2` Speak its command word within 60 ft and the ember glows, shedding bright light and heat in a 20 ft radius and dim light for another 20 ft. Creatures within 20 ft feel the heat and have Resistance to cold damage while it  | no record for RES; number 60,20 unexplained
-- `item|dmg|Kindle Egg Sugarbomb#2` For 1 hour you have Resistance to Fire and can endure temperatures down to -50 degrees Fahrenheit without protection. | no record for RES; number 1,50 unexplained
-- `item|dmg|Mudslick Tower#16` The roof, the door, and the walls each have 100 hit points, immunity to damage from nonmagical weapons excluding siege weapons, and resistance to all other damage. | no record for IMM,RES; number 100 unexplained
-- `item|dmg|Scout Scanner#2` As a Bonus Action, spend 1 charge to analyze a creature you see within 60 ft. You learn two of these: its AC, current Hit Points, Immunities, Resistances, Vulnerabilities, or the spells currently affecting it. | no record for RES; number 60,1,2 unexplained
-- `item|dmg|Signet Rings of the Fey Court#6` As a Reaction when you take the matching damage, spend 1 charge for Resistance to it until your next turn starts, including against the triggering hit. | number 1 no record explains
-- `item|egw|Stormgirdle (Dormant)#4` While wearing the Stormgirdle in its dormant state, you have resistance to lightning damage and thunder damage, and your Strength score becomes 21 if it isn't already 21 or higher. | no record for ABIL; number 21 unexplained
-- `item|idrotf|Charm of Cold Resistance#1` As an action, give yourself resistance to Cold damage for 24 hours. | no record for RES; number 24 unexplained
-- `item|pabtso|Mudslick Tower#16` The roof, the door, and the walls each have 100 hit points, immunity to damage from nonmagical weapons excluding siege weapons, and resistance to all other damage. | no record for IMM,RES; number 100 unexplained
-- `item|skt|Claw of the Wyrm Rune#5` The dragon must then succeed on a DC 15 Constitution saving throw or gain vulnerability to all damage types until the end of your next turn. | no record for DC; number 15 unexplained
-- `item|tdcsr|Coat of the Crest#5` When you are the target of an attack, spend 1 charge as a reaction to gain resistance to one damage type of that attack. | no record for RES; number 1 unexplained
-- `item|tsgs|Dragon-Kindled Edge#6` If the breath dealt damage, the blade glows for 1 minute (Bright Light 10 ft, Dim 10 ft more) and the first hit you land with it deals an extra 6d6 of the breath's damage type, ignoring Resistance and Immunity. | no record for DMG,IMM,RES; number 6d6,10 unexplained
-- `item|tsgs|Kindle Egg Sugarbomb#2` For 1 hour you have Resistance to Fire and can endure temperatures down to -50 degrees Fahrenheit without protection. | no record for RES; number 1,50 unexplained
-- `item|wdmm|Blast Scepter#2` Whoever is attuned to the Blast Scepter gains resistance to fire and lightning damage and can, as an action, use it to cast thunderwave as a 4th-level spell (save DC 16) without expending a spell slot. | no record for DC; number 16 unexplained
-- `species|Worgen|Darkflight#3` In the form your Speed rises by 10 feet, you have Resistance to Necrotic damage, and as a Reaction you can move up to 10 feet without Opportunity Attacks when a creature ends its turn within 5 feet of you. | no record for RES,SPEED; number 10,5 unexplained
-- `sub|Bard/College of Fools|Last Laugh#2` For 1 minute you have Resistance to all damage. | no record for RES
-- `sub|Cleric/Shadow Domain|Dispersion#1` Reaction when an attack roll hits you: until the end of your next turn you have Resistance to all damage (including the triggering hit), a 40-foot Fly Speed, and you cannot take actions, Bonus Actions, or Reactions. | no record for RES,SPEED; number 40 unexplained
-- `sub|Cleric/War Domain|Avatar of Battle#1` You gain Resistance against three damage types: Bludgeoning, Piercing, and Slashing. | number 3 no record explains
-- `sub|Druid/Circle of Blood|Blood Lust#1` While your Blood Moon is active: Violent Strikes deal 2d6 Necrotic damage, and you have Resistance to Bludgeoning, Piercing and Slashing damage. | no record for DMG; number 2d6 unexplained
-- `sub|Druid/Circle of Entropy|Catastrophic Power#5` Fail: 1d6 of that type per slot level and Vulnerability to that type for 1 minute (save again at each turn end to end it). | no record for RES,SLOT; number 1d6 unexplained
-- `sub|Investigator/Decommissioner|Trinkets#1` Biodynamic Quadcorder: Bonus Action, point it at a creature you see within 30 ft to learn its type and any Resistance it has. | no record for RES; number 30 unexplained
-- `sub|Investigator/Exterminator|Trinkets#5` You have Resistance to that type for 1 minute. | no record for RES; number 1 unexplained
-- `sub|Monk/Way of the Humble Elephant|Thick Hide#1` As a bonus action, spend 5 Ki to gain Resistance to Bludgeoning, Piercing and Slashing damage for 10 minutes. | no record for RES; number 10,5 unexplained
-- `sub|Monster Hunter/Trapper Guild|Monster-Hide Armor#6` Damage Resistance: Resistance to two of Acid, Cold, Fire, Lightning, Poison, or Thunder. | number 2 no record explains
-- `sub|Paladin/Oath of Winter|Channel Divinity#4` Fire damage reduces them as if you were vulnerable, but if Fire damage drops them to 0, the leftover Fire damage does not carry over to your hit points. | no record for RES; number 0 unexplained
-- `sub|Paladin/Oath of the Hearth (ToH)|Roaring Fire#3` A cold creature that starts its turn within 20 ft takes 2d8 Fire damage, ignoring Fire resistance and immunity. | no record for DMG,IMM,RES; number 2d8 unexplained
-- `sub|Ranger/Monster Slayer|Hunter's Sense#1` As an action you choose a creature you can see within 60 feet and learn any damage Immunities, Resistances, and Vulnerabilities it has. | no record for CHOICE,RES; number 60 unexplained
-- `sub|Sorcerer/Elemental Essence|Elemental Soul#5` You can enter hostile creatures' spaces, move through gaps 1 inch wide, ignore Strong Wind and have Resistance to nonmagical Bludgeoning, Piercing and Slashing damage. | number 1 no record explains
-- `sub|Sorcerer/Elemental Essence|Elemental Soul#8` You can spend 1 Sorcery Point to turn stony until the start of your next turn, gaining Resistance to Piercing and Slashing damage, Immunity to Poison damage, and immunity to being Petrified or Poisoned. | no record for RESOURCE; number 1 unexplained
-- `sub|Sorcerer/Faerzress Sorcery|Faerzress Affinity#1` You have Resistance to Lightning damage and Darkvision 60 feet (or +30 feet if you have it). | no record for SENSE; number 60,30 unexplained
-- `sub|Sorcerer/Resonant Body|Resounding Spellcasting#3` Rest to use again, though using it again before a rest deals you 2d12 Force damage per spell level that ignores any Resistance or immunity. | no record for DMG,IMM,RES; number 2d12 unexplained
-- `sub|Sorcerer/Wretched Bloodline|Terrifying Visage#4` Fey: bonus action to teleport up to 30 ft. Fiend: Resistance to Cold and Fire damage. | no record for RES; number 30 unexplained
-- `sub|Warmage/House of Pawns|Pawn Wall#1` When a Warmage cantrip deals damage, you and up to two Allies within 5 feet of you have Resistance to that damage type until the end of your next turn. | no record for RES,SPELL; number 5,2 unexplained
-- `sub|Wizard/Chaos|Shifting Resistance#1` When you cast a chaos spell, you gain Resistance to a random damage type for 1 plus your Intelligence modifier (minimum 1) rounds. | no record for RES,SPELL; number 1 unexplained
-- `sub|Wizard/White Necromancer|Protect Life#1` Action: you and friendly creatures within 20 ft have Resistance to Necrotic damage for 1 minute. | no record for RES; number 20 unexplained
-
 ### NUM (344 uncovered)
 
-- `feat|Athlete|Athlete#2` Either your Strength or your Dexterity score rises by 1, but not above 20. | number 1,20 no record explains
-- `feat|Elemental Adept|Elemental Adept#2` Choose Intelligence, Wisdom, or Charisma and raise that score by 1, but not above 20. | number 1,20 no record explains
+- `feat|Crossbow Expert|Crossbow Expert#2` Your Dexterity score rises by 1, but not above 20. | number 1,20 no record explains
+- `feat|Heavily Armored|Heavily Armored#2` Pick Constitution or Strength and raise it by 1 (maximum 20). | number 1,20 no record explains
 - `feat|Inscription Adept|Inscription Adept#9` Journeyman (+3): Glyph of Warding. | number 3 no record explains
-- `feat|Martial Weapon Training|Martial Weapon Training#2` Pick Strength or Dexterity and raise it by 1 (maximum 20). | number 1,20 no record explains
+- `feat|Lightly Armored|Lightly Armored#2` Pick Strength or Dexterity and raise it by 1 (maximum 20). | number 1,20 no record explains
+- `feat|Medium Armor Master|Medium Armor Master#2` Pick Strength or Dexterity and raise it by 1 (maximum 20). | number 1,20 no record explains
 - `feat|Observant (2014)|Observant (2014)#6` You get a +5 bonus to passive Wisdom (Perception) and passive Intelligence (Investigation). | number 5 no record explains
-- `item|ai|Orrery of the Wanderer#12` - 2 minor beneficial properties | number 2 no record explains
-- `item|bgg|Adze of Annam#6` - 2 minor detrimental properties | number 2 no record explains
-- `item|coa|Accounting and Valuation of All Things#6` - 1 major beneficial property | number 1 no record explains
-- `item|coa|Scourge of Shadow#10` - 2 minor beneficial properties | number 2 no record explains
-- `item|dmg14|Horn of Valhalla, Iron#6` The iron horn summons 5d4 + 5 berserkers. | number 5d4,5 no record explains
-- `item|dmg|Accounting and Valuation of All Things#21` You gain a passive +5 to Charisma (Persuasion) checks made to barter. | number 5 no record explains
-- `item|dmg|Blade of Avernus#10` - 1 major beneficial property | number 1 no record explains
-- `item|dmg|Crusader's Shortsword#1` The Crusader's Shortsword is a sentient lawful good +1 shortsword (Intelligence 11, Wisdom 13, Charisma 13). | number 11,13 no record explains
-- `item|dmg|Deck of Many Things#18` You can't lower a score that is 5 or less. | number 5 no record explains
+- `feat|Polearm Master|Polearm Master#2` Pick Strength or Dexterity and raise it by 1 (maximum 20). | number 1,20 no record explains
+- `feat|Sentinel|Sentinel#2` Pick Strength or Dexterity and raise it by 1 (maximum 20). | number 1,20 no record explains
+- `item|coa|Ranseur of Torture#9` - 1 minor beneficial property | number 1 no record explains
+- `item|crcotn|Ruidium Shield#14` If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and a ruidium shield becomes a +2 shield. | number 2 no record explains
+- `item|dmg14|Bag of Tricks, Tan#5` The creature vanishes at the next dawn or when it is reduced to 0 hit points. | number 0 no record explains
+- `item|dmg|Accounting and Valuation of All Things#7` - 1 major detrimental property | number 1 no record explains
+- `item|dmg|Daoud's Wondrous Lanthorn#10` - 1 major beneficial property | number 1 no record explains
 - `item|dmg|Figurine of Wondrous Power#24` Hit Points 19 (3d10 + 3). | number 3d10,19,3 no record explains
-- `item|dmg|Figurine of Wondrous Power#29` Challenge Rating 0 (0 experience points, Proficiency Bonus +2). | number 0,2,pb no record explains
-- `item|dmg|Ioun Stone#19` While it circles your head, your Dexterity rises by 2, up to a maximum of 20. | number 2 no record explains
-- `item|dmg|Ioun Stone#25` While it circles your head, your Constitution rises by 2, up to a maximum of 20. | number 2 no record explains
-- `item|dmg|Ioun Stone#32` While it circles your head, your Wisdom rises by 2, up to a maximum of 20. | number 2 no record explains
-- `item|dmg|Ioun Stone#61` While it circles your head, your Strength rises by 2, up to a maximum of 20. | number 2 no record explains
+- `item|dmg|Firecracker Crystals#1` A bag of 1d4 + 8 festival crystals. | number 1d4,8 no record explains
+- `item|dmg|Frostmourne#4` A creature reduced to 0 Hit Points by it dies and its soul is trapped in the sword, so it cannot be raised until the sword is destroyed. | number 0 no record explains
+- `item|dmg|Horn of Valhalla, Bronze#6` A bronze horn summons 4d4 + 4 berserkers. | number 4d4,4 no record explains
 - `item|dmg|Keystone of Creation#5` - 1 beneficial manifestation | number 1 no record explains
-- `item|dmg|Kwark's Wondrous Kernels, Planter#15` 3, Teardrop Brown: A small tree grows with 1d4 + 1 red fruits. | number 1d4,3,1 no record explains
-- `item|dmg|Manual of Quickness of Action#2` If you spend a total of 48 hours studying what the book teaches and practicing its guidelines, over a span of no more than 6 days, you gain 2 points of Dexterity, which can raise that score as high as 30 but not higher. | number 48,6,2,30 no record explains
 - `item|dmg|Mirror of Reflected Pasts#3` It shatters and is destroyed if reduced to 0 hit points. | number 0 no record explains
 - `item|dmg|Pendant of Thieves' Sight#2` You also gain a +5 bonus to Intelligence checks to understand a written or spoken cipher. | number 5 no record explains
 - `item|dmg|Ranseur of Torture#11` - 1 minor detrimental property | number 1 no record explains
-- `item|dmg|Rod of the Pact Keeper, +2#1` This rod comes in three versions: +1 (Uncommon), +2 (Rare), and +3 (Very Rare). | number 3 no record explains
-- `item|dmg|Stone of Creation#9` - 1 major beneficial property | number 1 no record explains
-- `item|dmg|Terraforming Engine#3` Set on a Tier 4 or higher planet and left running for a year to process its water, air and soil, it lowers the planet's Tier by 1. | number 4,1 no record explains
+- `item|dmg|Rod of the Pact Keeper, +3#1` This rod comes in three versions: +1 (Uncommon), +2 (Rare), and +3 (Very Rare). | number 2 no record explains
+- `item|dmg|Scourge of Shadow#11` - 1 major beneficial property | number 1 no record explains
 - `item|dmg|Weapon of Spite#3` Against a creature that has damaged you since the end of your last turn, the bonus is +2. | number 2 no record explains
-- `item|misc14|Daoud's Wondrous Lanthorn#11` - 1 minor detrimental property | number 1 no record explains
-- `item|misc14|Keystone of Creation#4` - 1 minor beneficial property | number 1 no record explains
-- `item|skt|Shard of the Ise Rune#12` The next time within the next minute that the target takes bludgeoning, slashing, or piercing damage, that damage is reduced to 0, and the mantle is destroyed. | number 0 no record explains
+- `item|egw|Grimoire Infinitus (Exalted)#6` - When you prepare wizard spells using the grimoire as your spellbook, the number of spells you can prepare increases by 1 again. | number 1 no record explains
+- `item|llk|Deck of Several Things#60` Reduce your Intelligence by 1d4 + 1 (to a minimum score of 1) for the duration of the adventure. | number 1d4,1 no record explains
+- `item|llk|Powered Armor#25` When the armor is reduced to 0 hit points, its defenses are rendered inert and it can be safely approached. | number 0 no record explains
+- `item|tce|Baba Yaga's Mortar and Pestle#9` - 1 minor detrimental property | number 1 no record explains
+- `item|tdm14|Terraforming Engine#3` Set on a Tier 4 or higher planet and left running for a year to process its water, air and soil, it lowers the planet's Tier by 1. | number 4,1 no record explains
 - `item|thhw|Kwark's Wondrous Kernels, Planter#15` 3, Teardrop Brown: A small tree grows with 1d4 + 1 red fruits. | number 1d4,3,1 no record explains
-- `item|tsgs|Firecracker Crystals#1` A bag of 1d4 + 8 festival crystals. | number 1d4,8 no record explains
-- `item|tvss14|Jax#2` For 1 hour your Strength, Dexterity and Constitution each rise by 4, and their maximum becomes 24. | number 1,4,24 no record explains
-- `sub|Bard/College of Wyrdsingers|Not This Day#3` If the attack would have been fatal, the ally still dies if those Temporary Hit Points run out, unless its Hit Points rise to 1 or higher first. | number 1 no record explains
+- `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#8` 6 Red: 1d8 + 4 Temporary Hit Points. | number 1d8,6,4 no record explains
+- `species|Jhorgun'taal (Half-Orc)|Relentless Endurance#1` When reduced to 0 Hit Points but not killed outright, drop to 1 Hit Point instead. | number 0 no record explains
+- `sub|Bard/College of Sincerity|Entourage#8` The GM may allow a humanoid of Challenge Rating 1/8 or lower for the guard, 1 or lower for the spy, or 3 or lower for the veteran. | number 1 no record explains
+- `sub|Cleric/Black Powder Domain|Channel Divinity: Imbue/Remove Explosivity#2` Either give the Gunpowder Blessing for 1 minute to one weapon of each creature you choose within 30 ft, or curse a number of weapons with Gunpowder Burst, up to your Proficiency Bonus, within 30 ft so they cannot Gunpowd | number 30,1,pb no record explains
+- `sub|Craftsman/Arcane Maesters' Guild|Magic Item Crafting#13` Bag of Holding, Lantern of Revealing, Decanter of Endless Water, Rope of Climbing, Eyes of Minute Seeing, Sending Stones, Goggles of Night, Wand of Magic Detection, Helm of Comprehending Languages, +1 Wand of the War Mag | number 1 no record explains
 - `sub|Druid/Circle of the Shepherd|Faithful Summons#2` It summons four beasts of CR 2 or lower within 20 feet. | number 20,4 no record explains
-- `sub|Paladin/Oath of the Ancients (2014)|Undying Sentinel#1` When you are reduced to 0 Hit Points and not killed outright, you can drop to 1 Hit Point instead. | number 0 no record explains
+- `sub|Fighter/Hell Knight|Advanced Wounds#5` Devil's Luck: creatures that take the Acid damage have -1 AC until the end of your next turn. | number 1 no record explains
+- `sub|Necromancer/Overlord|Charnel Aura#3` The bonus is +1 per 5 points spent, to a maximum of +3. | number 1,5 no record explains
 - `sub|Rogue/Sapper|Breach Defenses#1` Your attacks treat a structure or unattended object's damage threshold as 5 lower, 10 lower at level 13 and 15 lower at level 17. | number 5,10 no record explains
+- `sub|Warmage/House of Cards|Deck of Fate#16` Clubs (any two): +1 to saving throws until the start of your next turn. | number 1,2 no record explains
+
+### RES (336 uncovered)
+
+- `feat|Vampire Transformation: Stage 3|Vampire Transformation: Stage 3#5` If you start your turn in sunlight you take 1d10 Radiant damage, and nothing can give you Resistance or Immunity to it. | no record for DMG,IMM,RES; number 1d10 unexplained
+- `item|coa|Canian Fork#5` You're also vulnerable to radiant damage and each time you receive magical healing, you must make a DC 15 Constitution saving throw. | no record for DC; number 15 unexplained
+- `item|dmg|Armor of Invulnerability#1` While wearing this suit of Plate Armor, you have Resistance to three damage types: Bludgeoning, Piercing, and Slashing. | number 3 no record explains
+- `item|dmg|Canian Fork#5` You're also vulnerable to radiant damage and each time you receive magical healing, you must make a DC 15 Constitution saving throw. | no record for DC; number 15 unexplained
+- `item|dmg|Dragon-Kindled Edge#6` If the breath dealt damage, the blade glows for 1 minute (Bright Light 10 ft, Dim 10 ft more) and the first hit you land with it deals an extra 6d6 of the breath's damage type, ignoring Resistance and Immunity. | no record for DMG,IMM,RES; number 6d6,10 unexplained
+- `item|dmg|Flamefriend Lantern#7` As an action, gain one benefit for 1 hour: resistance to fire damage, or creatures that hit you with a melee attack take fire damage equal to your proficiency bonus, or you can cast Burning Hands from it at 3rd level (sa | no record for RES; number pb unexplained
+- `item|dmg|Flammable Tincture#3` For 1 minute the creature loses any Immunity or Resistance to Fire damage and has Vulnerability to Fire damage instead. | no record for IMM,RES; number 1 unexplained
+- `item|dmg|Glowing Ember#2` Speak its command word within 60 ft and the ember glows, shedding bright light and heat in a 20 ft radius and dim light for another 20 ft. Creatures within 20 ft feel the heat and have Resistance to cold damage while it  | no record for RES; number 60,20 unexplained
+- `item|dmg|Kindle Egg Sugarbomb#2` For 1 hour you have Resistance to Fire and can endure temperatures down to -50 degrees Fahrenheit without protection. | no record for RES; number 1,50 unexplained
+- `item|dmg|Necrolace#3` As a Bonus Action, spend charges to take 1d8 Necrotic damage each (ignores Resistance and Immunity), and a creature you see within 30 ft regains twice that in HP. | no record for DMG,IMM,RES; number 1d8,30,double unexplained
+- `item|dmg|Potion of Invulnerability#1` Drinking this potion gives you Resistance to all damage for 1 minute. | no record for RES; number 1 unexplained
+- `item|dmg|Potion of Resistance#1` Drinking this potion gives you Resistance to one damage type for 1 hour. | no record for RES; number 1 unexplained
+- `item|dmg|Puzzle Ring of Vitality, Life, and Power#5` Band two is DC 10 and gives you and allies Resistance to Necrotic, protects HP maximums, and brings an ally at 0 HP to 1 HP at the start of its turn. | no record for DC,RES; number 10,1,2 unexplained
+- `item|dmg|Scout Scanner#2` As a Bonus Action, spend 1 charge to analyze a creature you see within 60 ft. You learn two of these: its AC, current Hit Points, Immunities, Resistances, Vulnerabilities, or the spells currently affecting it. | no record for RES; number 60,1,2 unexplained
+- `item|dmg|Twin Blades of Azzinoth#3` Each deals an extra 2d8 Psychic damage to a Fiend, ignoring Resistance and Immunity. | no record for IMM,RES
+- `item|tdcsr|Coat of the Crest#5` When you are the target of an attack, spend 1 charge as a reaction to gain resistance to one damage type of that attack. | no record for RES; number 1 unexplained
+- `item|tghg|Flammable Tincture#3` For 1 minute the creature loses any Immunity or Resistance to Fire damage and has Vulnerability to Fire damage instead. | no record for IMM,RES; number 1 unexplained
+- `item|thhw|Glowing Ember#2` Speak its command word within 60 ft and the ember glows, shedding bright light and heat in a 20 ft radius and dim light for another 20 ft. Creatures within 20 ft feel the heat and have Resistance to cold damage while it  | no record for RES; number 60,20 unexplained
+- `item|tsdm|Scout Scanner#2` As a Bonus Action, spend 1 charge to analyze a creature you see within 60 ft. You learn two of these: its AC, current Hit Points, Immunities, Resistances, Vulnerabilities, or the spells currently affecting it. | no record for RES; number 60,1,2 unexplained
+- `item|tsgs|Band of Mirrored Essence#7` Gain one skill or save proficiency, Damage Resistance, Condition Immunity, special sense, language, or water breathing it had, for 8 hours. | no record for IMM,PROF,RES; number 8 unexplained
+- `item|tsgs|Dragon-Kindled Edge#6` If the breath dealt damage, the blade glows for 1 minute (Bright Light 10 ft, Dim 10 ft more) and the first hit you land with it deals an extra 6d6 of the breath's damage type, ignoring Resistance and Immunity. | no record for DMG,IMM,RES; number 6d6,10 unexplained
+- `item|tsgs|Kindle Egg Sugarbomb#2` For 1 hour you have Resistance to Fire and can endure temperatures down to -50 degrees Fahrenheit without protection. | no record for RES; number 1,50 unexplained
+- `item|tsgs|Necrolace#3` As a Bonus Action, spend charges to take 1d8 Necrotic damage each (ignores Resistance and Immunity), and a creature you see within 30 ft regains twice that in HP. | no record for DMG,IMM,RES; number 1d8,30,double unexplained
+- `item|tsgs|Sundersludge Net#7` The Net (AC 10, 5 HP, Immunity to Bludgeoning, Poison and Psychic, Resistance to all other damage) frees the target if destroyed and is then harmless. | no record for IMM,RES; number 10,5 unexplained
+- `item|tvss14|Lady and Lord Rings#3` While within 30 ft of each other both have resistance to all damage, and each time one takes damage the other loses the same number of hit points. | no record for RES; number 30 unexplained
+- `item|twow|Vithrak, Gaze of the Deadman#2` Magic action, 1 charge: learn the Resistances, Vulnerabilities and Immunities of a creature you see within 120 feet. | no record for RES; number 120,1 unexplained
+- `item|wdmm|Blast Scepter#2` Whoever is attuned to the Blast Scepter gains resistance to fire and lightning damage and can, as an action, use it to cast thunderwave as a 4th-level spell (save DC 16) without expending a spell slot. | no record for DC; number 16 unexplained
+- `species|Frostfell Elf|Ice Crafting#4` It has AC 13, hit points as a resilient object of its size, immunity to Cold damage and vulnerability to Fire damage. | no record for IMM,RES; number 13 unexplained
+- `sub|Barbarian/Path of Hellfire|Hellish Aspect#2` While raging you have Resistance to Fire damage, and the first creature you hit on each of your turns with a weapon attack takes 1d6 extra Fire damage, 2d6 from level 10. | no record for DMG,RES; number 1d6,2d6 unexplained
+- `sub|Investigator/Decommissioner|Trinkets#1` Biodynamic Quadcorder: Bonus Action, point it at a creature you see within 30 ft to learn its type and any Resistance it has. | no record for RES; number 30 unexplained
+- `sub|Monster Hunter/Devourer Guild|Transmuting Metabolism#20` Resistance (Construct, Elemental, Undead): 1 minute of Resistance to Bludgeoning, Piercing, and Slashing damage. | no record for RES
+- `sub|Paladin/Oath of the Hearth (ToH)|Roaring Fire#3` A cold creature that starts its turn within 20 ft takes 2d8 Fire damage, ignoring Fire resistance and immunity. | no record for DMG,IMM,RES; number 2d8 unexplained
+- `sub|Ranger/Green Reaper|Toxic Tradecraft#7` Slot level 2+: Debilitate (can't regain HP for 1 minute), Potent (loses Resistance to Poison damage for 1 minute), Suffer (for 1 minute, the first Poison damage it takes each turn is 1d6 higher). | no record for DMG,RES,RESOURCE,SLOT; number 1d6,1 unexplained
+- `sub|Ranger/Monster Slayer|Hunter's Sense#1` As an action you choose a creature you can see within 60 feet and learn any damage Immunities, Resistances, and Vulnerabilities it has. | no record for CHOICE,RES; number 60 unexplained
+- `sub|Sorcerer/Draconic Bloodline|Elemental Affinity#2` At the same time you can spend 1 sorcery point to gain Resistance to that damage type for 1 hour. | no record for RESOURCE
+- `sub|Sorcerer/Faerzress Sorcery|Faerzress Affinity#1` You have Resistance to Lightning damage and Darkvision 60 feet (or +30 feet if you have it). | no record for SENSE; number 60,30 unexplained
+- `sub|Sorcerer/Shadow Magic|Umbral Form#2` You have Resistance to all damage except Force and Radiant, and you move through creatures and objects as Difficult Terrain, taking 5 Force damage if you end your turn inside an object. | no record for RES; number 5 unexplained
+- `sub|Sorcerer/Wretched Bloodline|Terrifying Visage#4` Fey: bonus action to teleport up to 30 ft. Fiend: Resistance to Cold and Fire damage. | no record for RES; number 30 unexplained
+- `sub|Warmage/House of Pawns|Pawn Wall#1` When a Warmage cantrip deals damage, you and up to two Allies within 5 feet of you have Resistance to that damage type until the end of your next turn. | no record for RES,SPELL; number 5,2 unexplained
+- `sub|Wizard/Chaos|Master of Chaos#1` Whenever you cause a chaos magic surge, you regain one use of Long Odds, Twisted Arcana or Shifting Resistance with no rest. | no record for RES,RESOURCE; number 1 unexplained
 
 ### SLOT (294 uncovered)
 
@@ -822,33 +822,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Sorcerer/Shadow Bloodline|Evil Eye#3` Uses equal your Charisma modifier (minimum 1), regained on a Long Rest. -> covered
-- class `sub|Sorcerer/Shadow Bloodline|Evil Eye#3` Uses equal your Charisma modifier (minimum 1), regained on a Long Rest. -> info:REST:NONUM
-- record `feat|Hag Transformation: Stage 4|Hag Transformation: Stage 4#1` Stage 4. -> info:NUMONLY:TABLE
-- class `feat|Hag Transformation: Stage 4|Hag Transformation: Stage 4#1` Stage 4. -> info:NUMONLY:TABLE
-- record `sub|Cleric/War Domain (2014)|Divine Strike#2` It becomes 2d8 at Cleric level 14. -> info:NUMONLY:ROLL
-- class `sub|Cleric/War Domain (2014)|Divine Strike#2` It becomes 2d8 at Cleric level 14. -> info:NUMONLY:ROLL
-- record `item|mot|Akmon, Hammer of Purphoros#12` The hammer has 1 randomly determined major beneficial property. -> info:NUMONLY:TEXT
-- class `item|mot|Akmon, Hammer of Purphoros#12` The hammer has 1 randomly determined major beneficial property. -> info:NUMONLY:TEXT
-- record `class|Wizard|Spellcasting#41` Each level of the spell costs 2 hours of transcription and 50 GP. -> info:NUMONLY:GEOMETRY
-- class `class|Wizard|Spellcasting#41` Each level of the spell costs 2 hours of transcription and 50 GP. -> info:NUMONLY:GEOMETRY
-- record `sub|Sorcerer/Wretched Bloodline Sorcery|Wretched Curse#8` You see normally in Dim Light and Darkness, magical or not, within 120 ft. Plaguebearer. -> info:NUMONLY:GEOMETRY
-- class `sub|Sorcerer/Wretched Bloodline Sorcery|Wretched Curse#8` You see normally in Dim Light and Darkness, magical or not, within 120 ft. Plaguebearer. -> info:NUMONLY:GEOMETRY
-- record `feat|Iron Gut (GH14C)|Iron Gut (GH14C)#7` You can do this a number of times equal to your Constitution modifier (minimum 1) per Long Rest. -> info:REST:NONUM
-- class `feat|Iron Gut (GH14C)|Iron Gut (GH14C)#7` You can do this a number of times equal to your Constitution modifier (minimum 1) per Long Rest. -> info:REST:NONUM
-- record `feat|Seraph Transformation: Stage 2|Seraph Transformation: Stage 2#3` You also gain the Stage 2 Flaw. -> info:NUMONLY:TABLE
-- class `feat|Seraph Transformation: Stage 2|Seraph Transformation: Stage 2#3` You also gain the Stage 2 Flaw. -> info:NUMONLY:TABLE
-- record `item|dmg|Stormstruck Staff#3` When the staff takes Lightning damage, or you do while holding it (from another source), the crystal glows for 1 minute. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Stormstruck Staff#3` When the staff takes Lightning damage, or you do while holding it (from another source), the crystal glows for 1 minute. -> info:NUMONLY:GEOMETRY
-- record `sub|Warlock/The Undead|Spirit Projection#10` You regain use after a Long Rest. -> covered
-- class `sub|Warlock/The Undead|Spirit Projection#10` You regain use after a Long Rest. -> info:REST:NONUM
-- record `sub|Ranger/Beast Trainer|Bestial Flanker#2` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
-- class `sub|Ranger/Beast Trainer|Bestial Flanker#2` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
-- record `sub|Druid/Circle of Blood|Circle of Blood Spells#3` 7 Circle of Scarlet, Dark Sacrament. -> info:NUMONLY:TABLE
-- class `sub|Druid/Circle of Blood|Circle of Blood Spells#3` 7 Circle of Scarlet, Dark Sacrament. -> info:NUMONLY:TABLE
-- record `item|twow|Helm of Domination#14` Animate Dead 1, Speak with Dead 1, Clairvoyance 2, Dream 4, Telepathy 5, Word of Recall 5. -> info:NUMONLY:TEXT
-- class `item|twow|Helm of Domination#14` Animate Dead 1, Speak with Dead 1, Clairvoyance 2, Dream 4, Telepathy 5, Word of Recall 5. -> info:NUMONLY:TEXT
-- record `sub|Bard/College of Tactics|Setting the Board#2` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
-- class `sub|Bard/College of Tactics|Setting the Board#2` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
-- record `sub|Warlock/The Frozen One|Frozen Path#3` Short or Long Rest to use again. -> covered
-- class `sub|Warlock/The Frozen One|Frozen Path#3` Short or Long Rest to use again. -> info:REST:NONUM
+- record `sub|Wizard/School of Transmutation|Master Transmuter#2` You cannot make another until a Long Rest. -> info:REST:NONUM
+- class `sub|Wizard/School of Transmutation|Master Transmuter#2` You cannot make another until a Long Rest. -> info:REST:NONUM
+- record `sub|Warden/Beastblood Guardian|Aspect of the Beast#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> covered
+- class `sub|Warden/Beastblood Guardian|Aspect of the Beast#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> info:REST:NONUM
+- record `sub|Barbarian/Path of the Zealot|Zealous Presence#3` Each of them has Advantage on attack rolls and saving throws until your next turn starts. -> info:ACTIVE:TRIGGER
+- class `sub|Barbarian/Path of the Zealot|Zealous Presence#3` Each of them has Advantage on attack rolls and saving throws until your next turn starts. -> info:ACTIVE:TRIGGER
+- record `sub|Vagabond/Mage Brand|Spellbranding#4` When you gain a Vagabond level, you can swap one for another Sorcerer cantrip. -> info:ACTIVE:TRIGGER
+- class `sub|Vagabond/Mage Brand|Spellbranding#4` When you gain a Vagabond level, you can swap one for another Sorcerer cantrip. -> info:ACTIVE:TRIGGER
+- record `sub|Paladin/Oath of Revelry|Channel Divinity#8` Creatures immune to being Charmed are unaffected. -> info:ACTIVE:OTHERS
+- class `sub|Paladin/Oath of Revelry|Channel Divinity#8` Creatures immune to being Charmed are unaffected. -> info:ACTIVE:OTHERS
+- record `sub|Rogue/Runetagger|Resourceful#1` Whenever you roll Initiative, you regain Rune Points until you have 2, if you have fewer. -> info:ACTIVE:TRIGGER
+- class `sub|Rogue/Runetagger|Resourceful#1` Whenever you roll Initiative, you regain Rune Points until you have 2, if you have fewer. -> info:ACTIVE:TRIGGER
+- record `sub|Fighter/Cavalier|Unwavering Mark#5` You can make this attack a number of times equal to your Strength modifier (minimum one) and regain all uses after a Lon -> covered
+- class `sub|Fighter/Cavalier|Unwavering Mark#5` You can make this attack a number of times equal to your Strength modifier (minimum one) and regain all uses after a Lon -> info:REST:NONUM
+- record `item|misc14|Shard of Xeluan#1` This 1-foot-long shard of obsidian has veins of silver and gold beneath its cold surface. -> info:NUMONLY:GEOMETRY
+- class `item|misc14|Shard of Xeluan#1` This 1-foot-long shard of obsidian has veins of silver and gold beneath its cold surface. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Feather of Diatryma Summoning#4` When the diatryma reverts to feather form, the magic of the feather can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Feather of Diatryma Summoning#4` When the diatryma reverts to feather form, the magic of the feather can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- record `sub|Sorcerer/Faerzress Sorcery|Faerzress Spells#3` 7 Arcane Eye, Stone Shape. -> info:NUMONLY:TABLE
+- class `sub|Sorcerer/Faerzress Sorcery|Faerzress Spells#3` 7 Arcane Eye, Stone Shape. -> info:NUMONLY:TABLE
+- record `item|dmg|Skysail#3` While you touch it, you can use an action to cast Fly on yourself for 1 minute with no concentration. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Skysail#3` While you touch it, you can use an action to cast Fly on yourself for 1 minute with no concentration. -> info:NUMONLY:GEOMETRY
+- record `species|Goblin (Ixalan)|Agile Climber#1` Climb Speed of 25 ft. You cannot use it while wearing Medium or Heavy armor. -> covered
+- record `item|wdmm|Tearulai#4` The weapon's emerald blade can't be damaged or dulled, and the sword can't be teleported anywhere without its wielder wh -> info:NUMONLY:TEXT
+- class `item|wdmm|Tearulai#4` The weapon's emerald blade can't be damaged or dulled, and the sword can't be teleported anywhere without its wielder wh -> info:NUMONLY:TEXT
+- record `sub|Rogue/Misfortune Bringer|Evil Eye#2` The curse lasts 1 minute or until you curse another creature with it. -> info:NUMONLY:GEOMETRY
+- class `sub|Rogue/Misfortune Bringer|Evil Eye#2` The curse lasts 1 minute or until you curse another creature with it. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Purity Spear#7` Moving 20 ft straight at a target before a melee hit adds 2d8 Piercing. -> info:NUMONLY:ROLL
+- class `item|dmg|Purity Spear#7` Moving 20 ft straight at a target before a melee hit adds 2d8 Piercing. -> info:NUMONLY:ROLL
+- record `item|dmg|Mask of the Dragon Queen#4` Below the five masks, a new mask shapes itself, granting the wearer a draconic visage that covers the face, neck, and sh -> info:NUMONLY:TABLE
