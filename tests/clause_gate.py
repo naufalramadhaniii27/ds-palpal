@@ -332,8 +332,10 @@ def atoms_from(e, src, weak=False, extra=()):
             out.append(Atom(c, vals, "%s.%s" % (src, k), weak))
         if k == "pick" and isinstance(v, list):  # a pick of type skills, tool, lang or exp is a proficiency the sheet applies
             for pr in v:
-                if isinstance(pr, dict) and str(pr.get("t")) in ("skills", "tool", "tools", "lang", "exp", "expertise"):
+                if isinstance(pr, dict) and str(pr.get("t")) in ("skills", "tool", "tools", "lang", "exp", "expertise", "weapon", "armor", "wp"):
                     out.append(Atom("PROF", nums_in([pr.get("n")]) if pr.get("n") is not None else {"*"}, "%s.pick" % src, weak))
+                if isinstance(pr, dict) and str(pr.get("t")) in ("cantrip", "spell"):  # a spell pick: the sheet adds the chosen spells to the list
+                    out.append(Atom("SPELL", nums_in([pr.get("n")]) if pr.get("n") is not None else {"*"}, "%s.pick" % src, weak))
     return out
 
 
@@ -677,6 +679,7 @@ def features(D):
 REASONS = collections.OrderedDict([
     ("STD:ASI", "Feat ability score line 'raise X by 1, to a maximum of 20 (30)': the +1 and the cap are the standard ASI rule of the builder; the feat has an ability atom (asi / asiPick) that names the abilities."),
     ("STD:SUBCLASS_PICK", "'Choose a X subclass': the subclass picker of the builder; no fx record."),
+    ("STD:FEAT_PICK", "Class feature that grants one feat of a named kind (Epic Boon, Fighting Style): the feat picker of the builder at that class level; the picked feat carries its own records."),
     ("STD:AC10", "'10 + Dex + ability' style base AC: the 10 is the standard base AC constant; the feature has an AC atom that names the ability."),
     ("TABLE:CLASS", "Class tables for spell slots, cantrips and spells known / prepared and the invocation list: read by the slot code and the builder tables from the class row, not by fx records."),
     ("REST:NONUM", "Rest or recharge rule that states no amount ('regains all expended charges at dawn', 'after a Long Rest'): the amount lives in the sentence that has the number; the refill timing is the reset of the pool."),
@@ -735,6 +738,10 @@ def excuse(r, ctx, atoms):
         return "STD:ASI"
     if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^(?:choose|pick) an? [a-z' -]+ (?:subclass|patron|circle|college|domain|oath|path)\b", t):
         return "STD:SUBCLASS_PICK"
+    if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^at this level you choose one [a-z' -]+ subclass\b", t, re.I):
+        return "STD:SUBCLASS_PICK"
+    if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^(?:choose|pick|gain|you gain) an? (?:epic boon|fighting style) feat\b", t, re.I):
+        return "STD:FEAT_PICK"
     if "AC" in need and not r.get("missing") and unexpl and unexpl <= {"10"} and RX_AC10.search(t) and has("AC"):
         return "STD:AC10"
     if need:
