@@ -665,19 +665,21 @@
  },
  "GX.sub|Marauder Chapter": {
   "files": [
+   "fx-B9-advnotes.js",
    "fx-L11.js",
    "fx-M1.js"
   ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Occultist Guild": {
   "files": [
    "fx-B7-subskills.js",
+   "fx-B9-advnotes.js",
    "fx-L11.js",
    "fx-M2.js"
   ],
-  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": [
    "spCls"
   ]
@@ -712,10 +714,11 @@
  },
  "GX.sub|Phantom": {
   "files": [
+   "fx-B9-advnotes.js",
    "fx-L12.js",
    "fx-N1.js"
   ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Plague Doctor": {
@@ -775,9 +778,10 @@
  "GX.sub|Universalist": {
   "files": [
    "fx-B2-subclass.js",
+   "fx-B9-advnotes.js",
    "fx-M1.js"
   ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Verdant Protector": {
@@ -791,9 +795,10 @@
  "GX.sub|Warrior of the Living Weapon": {
   "files": [
    "fx-B1-subclass.js",
+   "fx-B9-advnotes.js",
    "fx-L11.js"
   ],
-  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Way of the Kensei": {
@@ -1145,9 +1150,10 @@
  "GX.sub|Oath of Thunder": {
   "files": [
    "fx-B2-subclass.js",
-   "fx-B7-subskills.js"
+   "fx-B7-subskills.js",
+   "fx-B9-advnotes.js"
   ],
-  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Path of Heavy Metal": {
@@ -1169,9 +1175,10 @@
  "GX.sub|Prophecy Domain": {
   "files": [
    "fx-B7-subskills.js",
+   "fx-B9-advnotes.js",
    "fx-L10.js"
   ],
-  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Scout": {
@@ -1185,9 +1192,10 @@
  "GX.sub|Void Domain": {
   "files": [
    "fx-B7-subskills.js",
+   "fx-B9-advnotes.js",
    "fx-L10.js"
   ],
-  "reason": "fx batch B7 adds a different feature of the same entry (skill proficiency or speed record); nothing is counted twice.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.feat|Tavern Brawler (2014)": {
@@ -1269,5 +1277,253 @@
   ],
   "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
   "shared": []
+ },
+ "GX.sub|Aristocratic": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Bond of the Spirit Animal": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Burden of Fame": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L11.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Circle of Configuration": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L11.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Detective": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L11.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Diabolist": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Faerzress Sorcery": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Freerunner": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-M2.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Gourmand": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L10.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Labyrinth Domain": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L10.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Lunar Sorcery": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Mage Brand": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Master of Fiends": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L13.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Materializer": {
+  "files": [
+   "fx-B2-subclass.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Mime": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Oath of the Crown": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Oath of the Giving Grave": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Order of Scribes": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L13.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Path of the Fin (2014)": {
+  "files": [
+   "fx-B7-subskills.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Path of the Muscle Wizard": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-N1.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Reanimator": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Runetagger": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|School of Abjuration": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-Z4.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Siegeball Jersey": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Steel Shepherd": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|The Predator": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|The Undying": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Way of the Astral Self": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L11.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Witchbane Hunter": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Wretched Bloodline Sorcery": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L12.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "shared": [
+   "defs"
+  ]
  }
 }

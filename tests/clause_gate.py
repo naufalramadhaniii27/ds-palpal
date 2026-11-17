@@ -318,6 +318,12 @@ def atoms_from(e, src, weak=False, extra=()):
     if not isinstance(e, dict):
         return out
     for k, v in e.items():
+        if k == "notes" and isinstance(v, list):  # rows [type, text] the sheet lists under Defenses; a row that states Advantage or Disadvantage covers that kind of sentence
+            for row in v:
+                tx = str(row[1]) if isinstance(row, list) and len(row) > 1 else ""
+                if re.search(r"(?i)\badvantage\b", tx): out.append(Atom("ADV", nums_in(tx), "%s.notes" % src, weak))
+                if re.search(r"(?i)\bdisadvantage\b", tx): out.append(Atom("DIS", nums_in(tx), "%s.notes" % src, weak))
+            continue
         cl = FIELD_CLS.get(k)
         if not cl or v in (None, False, [], {}, "", 0) and k not in ("ac",):
             continue
