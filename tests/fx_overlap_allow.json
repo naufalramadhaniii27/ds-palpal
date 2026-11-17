@@ -714,6 +714,7 @@
  },
  "GX.sub|Phantom": {
   "files": [
+   "fx-B36-subfree2.js",
    "fx-B9-advnotes.js",
    "fx-L12.js",
    "fx-N1.js"
@@ -843,6 +844,7 @@
  },
  "GX.cls|Bard": {
   "files": [
+   "fx-B37-slotconv.js",
    "fx-L1.js",
    "fx-Z3.js",
    "fx-Z4.js"
@@ -1412,6 +1414,7 @@
  },
  "GX.sub|Mime": {
   "files": [
+   "fx-B36-subfree2.js",
    "fx-B9-advnotes.js",
    "fx-N1.js"
   ],
@@ -2283,6 +2286,49 @@
    "fx-B31-subres.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Danseur Macabre": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same subclass are defined in these files (B36 adds the free spell of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Green Reaper": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same subclass are defined in these files (B36 adds the free spell of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Imaskarcanist": {
+  "files": [
+   "fx-B31-subres.js",
+   "fx-B36-subfree2.js"
+  ],
+  "reason": "Different features of the same subclass are defined in these files (B36 adds the free spell of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Temporal Trickster": {
+  "files": [
+   "fx-B27-subfreecast.js",
+   "fx-B36-subfree2.js"
+  ],
+  "reason": "Different features of the same subclass are defined in these files (B36 adds the free spell of one feature); nothing is counted twice.",
+  "shared": [
+   "spCls",
+   "spells"
+  ]
+ },
+ "GX.cls|Sorcerer": {
+  "files": [
+   "fx-B37-slotconv.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same class are defined in these files (B37 adds the slot trade of Font of Magic or Font of Inspiration); nothing is counted twice.",
   "shared": []
  }
 }

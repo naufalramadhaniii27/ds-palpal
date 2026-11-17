@@ -196,7 +196,7 @@ function deriveRageDamage(){
   (C.attacks||[]).forEach((a,i) =>{ if(D.atk[i]&&D.atk[i].rg&&B["ad-"+i]){ B["ad-"+i].parts.push(part("Rage damage", D.atk[i].rg, "Rage is active, attack with Strength")); B["ad-"+i].total=D.atk[i].dmg; } });
 }
 function deriveResources(lvl, hd, cm){
-  D.res=(C.res||[]).map((r) =>{ let mx = r.auto==="level" ? lvl : Math.max(0,Math.round(num(r.max,0))), mx0=mx; if(r.dmax&&S.chMax&&S.chMax[r.k]!=null) mx=clamp(Math.round(num(S.chMax[r.k],mx)),0,mx);/* v21 RU44 */ return {k:r.k, n:r.n, tag:r.auto==="level" ? ("d"+hd+sg(cm)+" each") : r.die ? ("d"+num(r.die,hd)+sg(cm)+" each") /* N4 */ : (r.tag||""), max:mx, reset:r.reset||"none", pool:!!r.pool, f:r.f||"", die:r.auto==="level"?hd:(r.die?num(r.die,hd):null), own:r.own||"", item:!!r.item, rg:r.rg||"", when:r.when||"", dmax:r.dmax||"", max0:mx0, sr:r.sr||0}; });
+  D.res=(C.res||[]).map((r) =>{ let mx = resMax0(r,lvl), mx0=mx; if(r.dmax&&S.chMax&&S.chMax[r.k]!=null) mx=clamp(Math.round(num(S.chMax[r.k],mx)),0,mx);/* v21 RU44 */ return {k:r.k, n:r.n, tag:r.auto==="level" ? ("d"+hd+sg(cm)+" each") : r.die ? ("d"+num(r.die,hd)+sg(cm)+" each") /* N4 */ : (r.tag||""), max:mx, reset:r.reset||"none", pool:!!r.pool, f:r.f||"", die:r.auto==="level"?hd:(r.die?num(r.die,hd):null), own:r.own||"", item:!!r.item, rg:r.rg||"", when:r.when||"", dmax:r.dmax||"", max0:mx0, sr:r.sr||0, cv:r.cv||""}; }); slotExtras();
   if(S.hp==null || S.hp>D.hpmax) S.hp=Math.min(S.hp==null?D.hpmax:S.hp, D.hpmax);
 }
 function deriveSpellAdjust(){
@@ -213,3 +213,7 @@ export function fill(t){ return String(t||"").replace(/\{dc\}/g,D.dc).replace(/\
 
 export function __set_D(v){ return D=v; }
 export function __set_B(v){ return B=v; }
+/* Font of Magic: slots created with Sorcery Points (S.xs {level: count}) add to the slot rows until a Long Rest; a level with no row gets one */
+function slotExtras(){ const xs=S.xs||{}; Object.keys(xs).forEach((L) =>{ const n=num(xs[L],0); if(!(n>0)) return; const r=D.res.filter((q) =>{ return q.k==="s"+L; })[0]; if(r){ r.max+=n; return; } D.res.push({k:"s"+L, n:"Spell Slots, level "+L, tag:"Created with Font of Magic", max:n, reset:"long", pool:false, f:"", die:null, own:"", item:false, rg:"", when:"", dmax:"", max0:0, sr:0, cv:""}); }); }
+/* the size of a counter before a Long Rest change: the character level for a "level" counter, else its number */
+function resMax0(r,lvl){ return r.auto==="level" ? lvl : Math.max(0,Math.round(num(r.max,0))); }

@@ -89,7 +89,7 @@ export const FX_FIELDS={
  spAtk:"number",
  spDc:"number",
  abDown:"array",
- luBump:"array", srLu:"number",
+ luBump:"array", srLu:"number", slotConv:"string", convMax:"number",
  offHand:"boolean",
  sizeSet:"string",
  dieStep:"array",

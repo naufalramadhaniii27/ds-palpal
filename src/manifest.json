@@ -776,6 +776,8 @@
     "data/fx-B32-itemimm.js",
     "data/fx-B33-speciesmisc.js",
     "data/fx-B35-potent.js",
+    "data/fx-B36-subfree2.js",
+    "data/fx-B37-slotconv.js",
     "data/fx-F-sub.js",
     "data/fx-G-engine.js",
     "data/fx-H-audit.js",
