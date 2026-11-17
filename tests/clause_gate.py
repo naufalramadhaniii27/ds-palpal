@@ -822,6 +822,8 @@ def analyze(ctx, by_design=None, allow=None, atoms=None, today=None):
         w_ = re.findall(r"[A-Za-z']+", s)
         if not toks and (len(w_) <= 3 or (len(w_) <= 9 and all(x[0].isupper() or x.lower() in ("of", "the", "your", "a", "an", "and", "to", "in", "for", "on", "or") for x in w_))):
             ks = set()  # a label such as "Cantrip.", "Cantrip Upgrade." or "Changing Your Prepared Spells."
+        if ctx["kind"] == "item" and re.match(r"Graft \((?:[^)]*, )?donor: ", s):
+            ks, toks = set(), []  # the donor line of a graft names what the donor creature has; the effect on you is the next sentence
         mech = bool(ks) or bool(toks)
         nk = sorted({"NUM-" + k.upper() if k != "num" else "NUM" for t, k in toks})
         res.append({"nk": nk, "sid": "%s#%d" % (key, i + 1), "h": shash(s), "text": s, "K": sorted(ks), "toks": toks, "mech": mech, "need": need, "status": None, "why": "", "unexplained": [], "used": []})
