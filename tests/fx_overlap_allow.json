@@ -1457,9 +1457,10 @@
  "GX.sub|Reanimator": {
   "files": [
    "fx-B9-advnotes.js",
+   "fx-B28-vecna.js",
    "fx-L12.js"
   ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "reason": "Different features of the same owner are defined in these files (B28 adds the Artisan's Tools pick of one feature); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Runetagger": {
@@ -2040,6 +2041,30 @@
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Eye of Vecna": {
+  "files": [
+   "fx-B28-vecna.js",
+   "fx-L4.js"
+  ],
+  "reason": "Different properties of the same item are defined in these files (B28 adds Poison Immunity and Initiative advantage; the other file has Truesight or the Icy Touch dice); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Hand of Vecna": {
+  "files": [
+   "fx-B28-vecna.js",
+   "fx-L4.js"
+  ],
+  "reason": "Different properties of the same item are defined in these files (B28 adds Poison Immunity and Initiative advantage; the other file has Truesight or the Icy Touch dice); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Knowledge Domain": {
+  "files": [
+   "fx-B25-subprof.js",
+   "fx-B28-vecna.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B28 adds the Artisan's Tools pick of one feature); nothing is counted twice.",
   "shared": []
  }
 }
