@@ -686,6 +686,8 @@ REASONS = collections.OrderedDict([
     ("REST:LENGTH", "How many hours a Long Rest takes for a trance, dormant or motionless rest (('meditate for 4 hours', 'finish a Long Rest in 4 hours')): a rest-length rule. The sheet records no rest length, and the hour count changes no sheet number."),
     ("DC:REFERENCE", "Sentence only points to the spell save DC / save DC of the feature (no number): the sheet computes the DC from the casting ability."),
     ("OBJECT:STATS", "Stat block of an object, stone, cube or summoned thing (AC, HP, resistance of the thing, not of the character): not a character stat."),
+    ("ITEM:REQUIREMENT", "Attunement or crafting requirement of an item (\"you must be proficient with it to attune\", \"Requirement: proficiency with all Simple weapons\"): a prerequisite, not a proficiency the item gives."),
+    ("ITEM:SENTIENT", "Languages that a sentient item, spirit or summoned creature understands: they belong to the item, not to the wearer."),
     ("ITEM:SENSES", "Senses of a sentient item ('It has hearing and darkvision out to 120 feet'): belong to the item, not to the wearer."),
     ("ACTIVE:OTHERS", "Effect placed on another creature (target, enemy, ally, 'its next turn') or a timed effect that ends by itself: the sheet tracks the character, not the target or a combat clock."),
     ("ACTIVE:TIMED_IMM", "'A creature that succeeds is immune to this power for 24 hours': immunity of the target to the power, not of the character."),
@@ -764,6 +766,10 @@ def excuse(r, ctx, atoms):
             return "OBJECT:STATS"
         if "SENSE" in need and RX_ITEMSENSE.search(t):
             return "ITEM:SENSES"
+        if kind == "item" and need <= {"PROF"} and re.search(r"(?i)^requirement:|\bmust (?:be|have) proficien|\bto attune\b|\byou must have proficiency", t):
+            return "ITEM:REQUIREMENT"
+        if kind == "item" and need <= {"PROF"} and re.search(r"(?i)\b(?:understands?|knows?|speaks?) (?:every|any|all|the) languages?\b|\bspirit understands\b", t) and not re.search(r"(?i)\byou (?:gain|learn|can speak|can read)\b", t):
+            return "ITEM:SENTIENT"
         if "IMM" in need and RX_24H.search(t):
             return "ACTIVE:TIMED_IMM"
         if need & {"RES", "IMM"} and re.search(r"\bignores? resistance|\bresistance to [a-z]+ damage doesn't apply|\bdoesn't apply to this damage|\bbypass|\bovercom", t):
