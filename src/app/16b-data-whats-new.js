@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:155,l:"0.0.53",d:"2026-11-17",n:["Blood Mage adds Medicine. Chaplain, Legionary and Master of Fiends now let you pick the skill their bonus proficiency gives."]},
 {v:154,l:"0.0.52",d:"2026-11-17",n:["Seventeen feats now give the cantrip or spell they teach in the spell list, such as Light Bringer, Arcane Artist, Touch of Death and Firebrand. Where the feat lets you choose the casting ability, you pick it with the feat."]},
 {v:153,l:"0.0.51",d:"2026-11-17",n:["Twenty-one species and heritages now list Immunity to disease in Defenses, such as the Chassis forms, the Undead heritage traits and the Mushroomfolk."]},
 {v:152,l:"0.0.50",d:"2026-11-17",n:["Stoneborn now adds +1 AC. Exomorph and Revenant Blade add their AC bonus through a toggle."]},
