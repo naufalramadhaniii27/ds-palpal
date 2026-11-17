@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:156,l:"0.0.54",d:"2026-11-17",n:["Fly, Climb and Swim Speeds from about 40 features, items, feats and traits now show on the sheet, with a switch for the ones that only last a while, such as Winged Boots, Wings Unfurled and Elemental Gift.","Immunities of 16 subclass features now count too. Examples are Hand of Justice, Plague Carrier, Faerzress Form and Avatar of Perfect Order, with a switch where the form is optional."]},
 {v:155,l:"0.0.53",d:"2026-11-17",n:["Blood Mage adds Medicine. Chaplain, Legionary and Master of Fiends now let you pick the skill their bonus proficiency gives."]},
 {v:154,l:"0.0.52",d:"2026-11-17",n:["Seventeen feats now give the cantrip or spell they teach in the spell list, such as Light Bringer, Arcane Artist, Touch of Death and Firebrand. Where the feat lets you choose the casting ability, you pick it with the feat."]},
 {v:153,l:"0.0.51",d:"2026-11-17",n:["Twenty-one species and heritages now list Immunity to disease in Defenses, such as the Chassis forms, the Undead heritage traits and the Mushroomfolk."]},
