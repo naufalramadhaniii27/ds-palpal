@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:147,l:"0.0.45",d:"2026-11-17",n:["Eight magic items now list their Advantage rules in Defenses while carried, such as Gamma Pendant and Ring of Truth Telling."]},
 {v:146,l:"0.0.44",d:"2026-11-17",n:["Defenses now list the Advantage and Disadvantage rules of 40 species, 56 feats and 71 subclasses at the right level, such as Sunlight Sensitivity, Ley-Bound and Fearless."]},
 {v:145,l:"0.0.43",d:"2026-11-16",n:["Fifteen more subclasses now give their fixed tool, armor, weapon and skill training on the sheet, such as Way of the Bow, Mercy Domain and Enforcer.","Four species and four feats now add their fixed tool or weapon training."]},
 {v:144,l:"0.0.42",d:"2026-11-16",n:["Seventeen subclasses now add their fixed skill proficiencies on the sheet at the right level, such as Hunt Domain, Scout and Arcane Archer.","Swim, climb and fly speed equal to your Speed now count for seven subclasses and three feats."]},
