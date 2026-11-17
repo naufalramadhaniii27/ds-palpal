@@ -1,4 +1,4 @@
-# Laporan clause gate (mode laporan, 2026-11-17)
+# Laporan clause gate (mode laporan, 2026-11-18)
 
 Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build. Dijalankan sebagai langkah laporan dengan `continue-on-error`.
 
@@ -8,19 +8,19 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9474 |
-| Info (tag terdokumentasi) | 29149 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2685, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 945, ACTIVE:OTHERS 792, BY_DESIGN 670, REST:NONUM 619, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 13, STD:AC10 9) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9479 |
+| Info (tag terdokumentasi) | 29149 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2685, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 945, ACTIVE:OTHERS 790, BY_DESIGN 670, REST:NONUM 619, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 15, STD:AC10 9) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5626 |
+| Uncovered | 5621 |
 | Uncovered dengan angka | 3452 |
-| Uncovered dengan kelas kata kunci mekanik | 5234 |
+| Uncovered dengan kelas kata kunci mekanik | 5229 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 392 |
 | Angka yang tidak dijelaskan record mana pun | 3263 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4648 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4643 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 254 |
 | Waktu | muat data 0 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 201 ditangkap (67.0%). Hapus semua atom kelas yang dibutuhkan: 200 ditangkap (66.7%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 297 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 175 ditangkap (58.9%). Hapus semua atom kelas yang dibutuhkan: 175 ditangkap (58.9%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 269 ditangkap (89.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -39,8 +39,8 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3357 |
-| GX | 2193 |
-| wxs | 1065 |
+| GX | 2198 |
+| wxs | 1066 |
 | LU_X | 730 |
 | species | 545 |
 | AUTO | 444 |
@@ -60,14 +60,14 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | CLS_AUTO | 7 |
 | RULE | 7 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 325, fx-L5.js 201, fx-L12.js 179, fx-L4.js 173, fx-L10.js 167, fx-L2.js 135, fx-L1.js 124, fx-L3.js 113, fx-N1.js 112, fx-L11.js 99, fx-L9.js 99, fx-L6.js 71.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 326, fx-L5.js 201, fx-L12.js 179, fx-L4.js 173, fx-L10.js 167, fx-L2.js 135, fx-L1.js 124, fx-L3.js 113, fx-N1.js 112, fx-L11.js 99, fx-L9.js 99, fx-L6.js 71.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
-| RESOURCE | 7405 | 912 | 12.3% |
-| SPELL | 3255 | 898 | 27.6% |
+| RESOURCE | 7405 | 911 | 12.3% |
+| SPELL | 3255 | 893 | 27.4% |
 | DMG | 4658 | 684 | 14.7% |
 | SPEED | 1411 | 548 | 38.8% |
 | PROF | 1124 | 409 | 36.4% |
@@ -100,7 +100,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | item | 19265 | 4705 | 11687 | 0 | 2873 |
 | species | 1638 | 914 | 492 | 0 | 232 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
-| sub | 10118 | 2558 | 5879 | 0 | 1681 |
+| sub | 10118 | 2563 | 5879 | 0 | 1676 |
 
 ## Per buku
 
@@ -111,12 +111,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | core | 1495 | 406 | 776 | 313 | 20.9% |
 | ttoh | 1470 | 351 | 869 | 250 | 17.0% |
 | tsgs | 1479 | 405 | 831 | 243 | 16.4% |
-| tvss14 | 1201 | 236 | 740 | 225 | 18.7% |
+| tvss14 | 1201 | 240 | 740 | 221 | 18.4% |
 | tkdm | 921 | 241 | 492 | 188 | 20.4% |
 | tsdm | 1063 | 296 | 592 | 175 | 16.5% |
 | tghp | 1116 | 390 | 554 | 172 | 15.4% |
 | tce | 730 | 147 | 452 | 131 | 17.9% |
-| tua24 | 634 | 188 | 327 | 119 | 18.8% |
+| tua24 | 634 | 189 | 327 | 118 | 18.6% |
 | tdm14 | 643 | 150 | 380 | 113 | 17.6% |
 | au | 535 | 141 | 284 | 110 | 20.6% |
 | dmg14 | 540 | 156 | 291 | 93 | 17.2% |
@@ -195,8 +195,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Kelas utama | Uncovered | Dengan angka |
 |---|---|---|
-| SPELL | 670 | 92 |
-| RESOURCE | 614 | 509 |
+| SPELL | 666 | 92 |
+| RESOURCE | 613 | 509 |
 | DMG | 509 | 455 |
 | SPEED | 465 | 371 |
 | ADV | 380 | 183 |
@@ -222,7 +222,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 ## Contoh 40 kalimat per kelas teratas (seed tetap)
 
 
-### SPELL (670 uncovered)
+### SPELL (666 uncovered)
 
 - `class|Healer|Spellcasting#3` You know two cantrips from the Healer spell list. | no record for SPELL; number 2 unexplained
 - `class|Paladin|Fighting Style#4` Pick two Cleric cantrips to learn. | no record for SPELL
@@ -265,7 +265,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/Cantrip Adept|Cantrip Polymath#1` Learn two cantrips from any spell list. | no record for SPELL; number 2 unexplained
 - `sub|Wizard/Gravebinding|Restriction: The Dead Must Rest#1` You can no longer cast spells that animate, conjure or create undead, and copies of them in your spellbook fade within 24 hours. | no record for SPELL; number 24 unexplained
 
-### RESOURCE (614 uncovered)
+### RESOURCE (613 uncovered)
 
 - `feat|Specter Transformation: Stage 2|Specter Transformation: Stage 2#5` Whenever you regain Hit Points, you regain only half as many, rounded down. | number half no record explains
 - `item|cm|Staff of Fate#9` On a roll of 10 or higher, the staff regains 1d6 of its expended charges. | number 1d6 no record explains
@@ -822,33 +822,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- class `item|dmg|Akmon, Hammer of Purphoros#6` When you hit with an attack using it, the target takes an extra 3d10 fire damage. -> info:ACTIVE:TRIGGER
-- record `species|Gnome (Star)|Gnomish Lineage (Star)#1` Spend 1 minute assembling scrap parts into one Tiny device: Binoculars, Comm Set, Flare, Flashlight, Igniter, Interface  -> info:NUMONLY:GEOMETRY
-- class `species|Gnome (Star)|Gnomish Lineage (Star)#1` Spend 1 minute assembling scrap parts into one Tiny device: Binoculars, Comm Set, Flare, Flashlight, Igniter, Interface  -> info:NUMONLY:GEOMETRY
-- class `item|bgdia|Fane-Eater#3` If you attack a creature with this weapon and roll a 20 on the attack roll, the creature takes an extra 2d8 necrotic dam -> info:ACTIVE:TRIGGER
-- record `feat|Cruel|Cruel#9` You regain all spent dice on a rest. -> info:REST:NONUM
-- class `feat|Cruel|Cruel#9` You regain all spent dice on a rest. -> info:REST:NONUM
-- record `sub|Artificer/Forge Adept|Variant Capstone: Weapon of Legend#2` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
-- class `sub|Artificer/Forge Adept|Variant Capstone: Weapon of Legend#2` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
+- record `species|Earth Genasi (2014)|Merge with Stone#1` You can cast Pass without Trace once per Long Rest with no Material components. -> info:REST:NONUM
+- class `species|Earth Genasi (2014)|Merge with Stone#1` You can cast Pass without Trace once per Long Rest with no Material components. -> info:REST:NONUM
+- record `sub|Warlock/The Star|Solar Flare#4` Short or Long Rest to use again. -> covered
+- class `sub|Warlock/The Star|Solar Flare#4` Short or Long Rest to use again. -> info:REST:NONUM
+- record `sub|Artificer/Forge Adept|Perfect Weapon#1` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
+- class `sub|Artificer/Forge Adept|Perfect Weapon#1` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
+- record `sub|Vagabond/Pugilist|Desperate Endurance#2` You can do this once, then you must finish a Long Rest to do it again. -> covered
+- class `sub|Vagabond/Pugilist|Desperate Endurance#2` You can do this once, then you must finish a Long Rest to do it again. -> info:REST:NONUM
+- record `item|cos|Crusader's Shortsword#8` - A lawful good creature can attune itself to the sword in 1 minute. -> info:NUMONLY:GEOMETRY
+- class `item|cos|Crusader's Shortsword#8` - A lawful good creature can attune itself to the sword in 1 minute. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Hurricane Lance#4` Spend a second charge (no action) to extend this to your mount. -> info:REST:NONUM
+- class `item|dmg|Hurricane Lance#4` Spend a second charge (no action) to extend this to your mount. -> info:REST:NONUM
+- record `class|Warden|Font of Life#3` A Short Rest regains one expended use. -> info:REST:NONUM
+- class `class|Warden|Font of Life#3` A Short Rest regains one expended use. -> info:REST:NONUM
+- record `sub|Rogue/Phantom (2014)|Ghost Walk#4` To use it again, finish a Long Rest or destroy a soul trinket as part of activating it. -> covered
+- class `sub|Rogue/Phantom (2014)|Ghost Walk#4` To use it again, finish a Long Rest or destroy a soul trinket as part of activating it. -> info:REST:NONUM
+- record `sub|Witch/Steel Magic|Steel Spells#4` 7 Death Ward, Freedom of Movement. -> info:NUMONLY:TABLE
+- class `sub|Witch/Steel Magic|Steel Spells#4` 7 Death Ward, Freedom of Movement. -> info:NUMONLY:TABLE
 - record `sub|Alchemist/Amorist|Alchemical Romance#6` One creature with the Bomb's Charmed condition stays Charmed for 1 minute or until it takes damage. -> info:NUMONLY:GEOMETRY
 - class `sub|Alchemist/Amorist|Alchemical Romance#6` One creature with the Bomb's Charmed condition stays Charmed for 1 minute or until it takes damage. -> info:NUMONLY:GEOMETRY
-- record `feat|Primordial Transformation: Stage 2|Primordial Transformation: Stage 2#2` Choose one Stage 2 Boon. -> covered
-- record `item|dmg|Boon of Peerless Aim#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
-- class `item|dmg|Boon of Peerless Aim#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
-- record `item|dmg|Figurine of Wondrous Power, Silver Raven#13` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Figurine of Wondrous Power, Silver Raven#13` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|mot|Dekella, Bident of Thassa#6` When you hit with an attack using the bident, the target takes an extra 2d10 cold damage. -> info:ACTIVE:TRIGGER
-- record `item|skt|Gavel of the Venn Rune#10` Once you use this property, you can't use it again until you finish a long rest. -> info:REST:NONUM
-- class `item|skt|Gavel of the Venn Rune#10` Once you use this property, you can't use it again until you finish a long rest. -> info:REST:NONUM
-- record `item|dmg|Draconis Fundamentum#9` Once used, it returns after a Long Rest, or spend the listed Hit Point Dice (no action) to restore it. -> info:REST:NONUM
-- class `item|dmg|Draconis Fundamentum#9` Once used, it returns after a Long Rest, or spend the listed Hit Point Dice (no action) to restore it. -> info:REST:NONUM
-- record `item|dmg|Staff of the Woodlands#15` If the roll is a 1, it loses its properties and becomes a nonmagical Quarterstaff. -> info:NUMONLY:ROLL
-- class `item|dmg|Staff of the Woodlands#15` If the roll is a 1, it loses its properties and becomes a nonmagical Quarterstaff. -> info:NUMONLY:ROLL
-- record `item|bgg|Sanctum Amulet#7` The creature then instead drops to 1 hit point. -> info:NUMONLY:TEXT
-- class `item|bgg|Sanctum Amulet#7` The creature then instead drops to 1 hit point. -> info:NUMONLY:TEXT
-- record `species|Dhakaani Guul'dar (Bugbear)|Long-Limbed#1` When you make a melee attack on your turn, your reach for it is 5 feet greater. -> info:NUMONLY:GEOMETRY
-- class `species|Dhakaani Guul'dar (Bugbear)|Long-Limbed#1` When you make a melee attack on your turn, your reach for it is 5 feet greater. -> info:NUMONLY:GEOMETRY
-- record `species|Khoravar|Lethargy Resilience#2` After using this, you can't do so again until you finish 1d4 Long Rests. -> info:NUMONLY:ROLL
-- class `species|Khoravar|Lethargy Resilience#2` After using this, you can't do so again until you finish 1d4 Long Rests. -> info:NUMONLY:ROLL
-- record `sub|Warmage/House of Kings|Battle Tactics#4` A die is expended when you use it. -> covered
-- class `sub|Warmage/House of Kings|Battle Tactics#4` A die is expended when you use it. -> info:REST:NONUM
+- record `item|mot|Ephara's Votary#4` After using this reroll, you cannot do so again until you finish a Long Rest. -> info:REST:NONUM
+- class `item|mot|Ephara's Votary#4` After using this reroll, you cannot do so again until you finish a Long Rest. -> info:REST:NONUM
+- record `sub|Artificer/Forge Adept|Variant Capstone: Weapon of Legend#2` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
+- class `sub|Artificer/Forge Adept|Variant Capstone: Weapon of Legend#2` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
+- record `item|dmg|Belt of Fire Giant Strength#1` While wearing this belt, your Strength score changes to 25. -> info:NUMONLY:TABLE
+- class `item|dmg|Belt of Fire Giant Strength#1` While wearing this belt, your Strength score changes to 25. -> info:NUMONLY:TABLE
+- record `item|ggr|Sunforger#5` You can't cause it to explode again until you finish a short or long rest. -> info:REST:NONUM
+- class `item|ggr|Sunforger#5` You can't cause it to explode again until you finish a short or long rest. -> info:REST:NONUM
+- record `sub|Warden/Diabolist|Infernal Command#4` A Short Rest regains one expended use. -> covered
+- class `sub|Warden/Diabolist|Infernal Command#4` A Short Rest regains one expended use. -> info:REST:NONUM

@@ -742,11 +742,14 @@
  "GX.sub|Star-Spangled Banner": {
   "files": [
    "fx-B19-speedmv.js",
+   "fx-B27-subfreecast.js",
    "fx-L10.js",
    "fx-M2.js"
   ],
-  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
-  "shared": []
+  "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
+  "shared": [
+   "spells"
+  ]
  },
  "GX.sub|Storm Sentinel": {
   "files": [
@@ -1335,9 +1338,10 @@
   "files": [
    "fx-B7-subskills.js",
    "fx-B9-advnotes.js",
-   "fx-B20-subimm.js"
+   "fx-B20-subimm.js",
+   "fx-B27-subfreecast.js"
   ],
-  "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
+  "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Freerunner": {
@@ -1519,9 +1523,10 @@
  "GX.sub|Witchbane Hunter": {
   "files": [
    "fx-B9-advnotes.js",
+   "fx-B27-subfreecast.js",
    "fx-L12.js"
   ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Wretched Bloodline Sorcery": {
@@ -1983,9 +1988,10 @@
  "GX.sub|Feylost": {
   "files": [
    "fx-B9-advnotes.js",
-   "fx-B24-subriders.js"
+   "fx-B24-subriders.js",
+   "fx-B27-subfreecast.js"
   ],
-  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Mountain Domain": {
@@ -2026,6 +2032,14 @@
    "fx-B24-subriders.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Holy Icon": {
+  "files": [
+   "fx-B27-subfreecast.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
   "shared": []
  }
 }
