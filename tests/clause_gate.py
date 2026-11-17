@@ -689,6 +689,7 @@ REASONS = collections.OrderedDict([
     ("DC:REFERENCE", "Sentence only points to the spell save DC / save DC of the feature (no number): the sheet computes the DC from the casting ability."),
     ("OBJECT:STATS", "Stat block of an object, stone, cube or summoned thing (AC, HP, resistance of the thing, not of the character): not a character stat."),
     ("ITEM:REQUIREMENT", "Attunement or crafting requirement of an item (\"you must be proficient with it to attune\", \"Requirement: proficiency with all Simple weapons\"): a prerequisite, not a proficiency the item gives."),
+    ("SPELL:RIDER", "Rider sentence of a feature that already has its spell record: the spells are also castable with slots, are always prepared, or do not count against the spells known. The spell record gives the spell; the sentence only restates how it is cast or counted."),
     ("ITEM:SENTIENT", "Languages that a sentient item, spirit or summoned creature understands: they belong to the item, not to the wearer."),
     ("ITEM:SENSES", "Senses of a sentient item ('It has hearing and darkvision out to 120 feet'): belong to the item, not to the wearer."),
     ("ACTIVE:OTHERS", "Effect placed on another creature (target, enemy, ally, 'its next turn') or a timed effect that ends by itself: the sheet tracks the character, not the target or a combat clock."),
@@ -705,6 +706,7 @@ REASONS = collections.OrderedDict([
     ("NUMONLY:TEXT", "Number-only sentence with unsigned numbers and no stat word in a sentence that has no sign (+/-) or 'increases by': prose; a signed bonus without a stat word stays flagged."),
 ])
 NONSTAT = {"DMG", "DC", "ATK", "RESOURCE", "SPELL", "CHOICE", "ADV", "DIS", "SAVE_ROLL", "SLOT"}
+RX_SPELL_RIDER = R(r"^(?:you )?(?:can )?(?:also )?cast (?:it|them|that spell|that cantrip|those spells|either one|any of them)[^.]{0,40}\b(?:with|using)\b[^.]{0,20}\bslots?\b|^you always have (?:it|them|[a-z' ]+) prepared|\b(?:does not|do not|doesn't|don't|do|does) count against\b|\bcounts? as (?:a |an )?[a-z]+ spells?\b")
 RX_ASI = R(r"\b(?:raise|increase|add 1 to)\b[^.]{0,90}\b(?:by 1|add 1 to it)\b[^.]{0,40}\bmaximum(?: of)? (?:20|30)\b|\bchoose an ability score and add 1 to it \(maximum (?:20|30)\)")
 RX_AC10 = R(r"\b10 (?:plus|\+)")
 RX_TABLE_NAME = R(r"^(?:spellcasting|pact magic|eldritch invocations?|cantrips?|spell slots?|spells known|prepared spells|the (?:[a-z]+ )?table)$")
@@ -766,6 +768,8 @@ def excuse(r, ctx, atoms):
             return "DC:REFERENCE"
         if need & {"AC", "RES", "IMM", "HP"} and RX_OBJ.search(t) and not re.search(r"\byou (?:have|gain)\b", t):
             return "OBJECT:STATS"
+        if need <= {"SPELL", "SLOT"} and not toks and has("SPELL") and RX_SPELL_RIDER.search(t):
+            return "SPELL:RIDER"
         if "SENSE" in need and RX_ITEMSENSE.search(t):
             return "ITEM:SENSES"
         if kind == "item" and need <= {"PROF"} and re.search(r"(?i)^requirement:|\bmust (?:be|have) proficien|\bto attune\b|\byou must have proficiency", t):

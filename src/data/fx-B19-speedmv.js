@@ -29,6 +29,7 @@ GX.feat["Greater Mark of Storm"]=(GX.feat["Greater Mark of Storm"]||[]).concat([
 GX.feat["Vampiric Exultation"]=(GX.feat["Vampiric Exultation"]||[]).concat([{n:"Transformed (speed)",toggle:{id:"b19-vampiric",label:"Vampiric Exultation: transformed"},mv:{fly:30}}]);
 I("Winged Boots","Flight","b19-winged-boots","Winged Boots: flight (1 hour)",{fly:30});
 I("Potion of Aqueous Form","Aqueous Form","b19-aqueous","Potion of Aqueous Form: active",{swim:30});
+GX.item["Potion of Aqueous Form"][GX.item["Potion of Aqueous Form"].length-1].advOn=["Strength, Dexterity, and Constitution saving throws"];
 I("Stormgirdle (Awakened)","Storm Avatar","b19-stormgirdle","Stormgirdle: Storm Avatar form",{fly:30});
 I("Mythallar Cloak","Cloak active","b19-mythallar-cloak","Mythallar Cloak: magic active",{fly:30});
 I("Powered Armor","Boosters","b19-boosters","Powered Armor: boosters active (1 minute)",{fly:15});
