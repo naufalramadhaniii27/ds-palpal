@@ -4,6 +4,7 @@ from playwright.sync_api import sync_playwright
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 g=json.load(open(ROOT+'/tests/golden/builds/fx_L1_paladin_radiant_strikes.json'))['build']
 g['sub']='Oath of Devotion';g['level']=20
+hb2=json.load(open(ROOT+'/tests/golden/builds/fx_L8_staff_forgotten_one.json'))['build'];hb2['inv']=[{'n':"Sage's Signet (Lion)",'q':1,'eq':True}]
 s=socket.socket();s.bind(('127.0.0.1',0));port=s.getsockname()[1];s.close()
 class Q(http.server.SimpleHTTPRequestHandler):
     def log_message(self,*a):pass
@@ -19,7 +20,12 @@ with sync_playwright() as p:
         pg.evaluate("b=>{const C=window.__bldSheetFor(b);window.__sheetSoft(C)}",g);pg.wait_for_timeout(800)
         st=pg.evaluate("()=>{const D=window.__sheetState();return (D.C.res||[]).filter(r=>r.n==='Holy Nimbus').map(r=>({k:r.k,max:r.max,sr:r.sr}))}")
         ok1=bool(st) and st[0].get('sr')==5
-        print(name,'pool',st,'sr ok',ok1);bad+=0 if ok1 else 1
+        print(name,'pool',st,'sr ok',ok1)
+        pg.evaluate("b=>{const C=window.__bldSheetFor(b);window.__sheetSoft(C)}",hb2);pg.wait_for_timeout(800)
+        d=pg.evaluate("()=>{const C=window.__sheetState().C;return {res:(C.res||[]).filter(r=>/Once per dawn/.test(r.tag||'')).map(r=>r.n),sp:(C.spells||[]).filter(x=>x.itc&&x.itc.dk).map(x=>x.n)}}")
+        ok3=len(d['res'])==3 and len(d['sp'])==3
+        print(name,'dawn',d,'ok',ok3);bad+=0 if ok3 else 1
+        pg.evaluate("b=>{const C=window.__bldSheetFor(b);window.__sheetSoft(C)}",g);pg.wait_for_timeout(800);bad+=0 if ok1 else 1
         pg.evaluate("""()=>{const bt=document.createElement('button'); bt.setAttribute('data-usesr','x-holy-nimbus'); document.body.appendChild(bt); bt.click(); bt.remove();}""")
         pg.wait_for_timeout(1200)
         r=pg.evaluate("""()=>{const o=JSON.parse(__store.getItem('yudhi-kelapa-sheet-v1')||'{}').used||{}; return {nim:o['x-holy-nimbus']||0,s5:o['s5']||0}}""")

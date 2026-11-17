@@ -59,7 +59,7 @@ const src=String(x.src||""), rw=reWord(x.n);
   return /** @type {any} */ ({rows, ex});
 }
 export function spAtWill(x){ return !x.l||/At will/i.test(x.use||""); }
-function spItemOpts(x){ const c=x.itc, r=(D.res||[]).filter((q) =>{ return q.item&&q.f===c.it; })[0], o=[]; if(!r) return o; const left=r.max-used(r.k,r.max), lv0=c.lv;
+function spItemOpts(x){ const c=x.itc, r=(D.res||[]).filter((q) =>{ return q.item&&q.f===c.it; })[0], o=[]; if(!r) return o; let left=r.max-used(r.k,r.max); const lv0=c.lv; if(c.dk){ const od=(D.res||[]).filter((q) =>{ return q.k===c.dk; })[0]; if(od&&od.max-used(od.k,od.max)<1) left=0; }
   if(Array.isArray(c.c)){ for(let n=c.c[0];n<=c.c[1];n++){ const L=lv0+n-c.c[0]; o.push({k:r.k,lv:L,lab:c.it+", "+n+" charge"+(n>1?"s":"")+" (level "+L+")",left:left,free:1,need:n}); } }
   else o.push({k:r.k,lv:lv0,lab:c.it+", "+c.c+" charge"+(c.c===1?"":"s"),left:left,free:1,need:c.c});
   return o; }
@@ -100,11 +100,13 @@ function castMartyrHp(x,k,lv){ let m=""; if(k==="r-spell-uses"&&C.cls==="Martyr"
 /* Magic Weapon: the first melee weapon gets the bonus until a rest (S.mw) */
 function castMagicWeapon(x,lv){ let m=""; if(x.n==="Magic Weapon"){ const w=(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"&&!/^Cantrip/.test(a.sub||"")&&/^\d+ ft$|^5 ft/.test(a.range||"5 ft"); })[0]||(C.attacks||[]).filter((a) =>{ return a.n!=="Unarmed Strike"; })[0]; if(w){ S.mw={w:w.n,l:+lv||x.l}; m+=". "+w.n+" gets +"+((+lv||x.l)>=6?3:(+lv||x.l)>=4?2:1)+" to attack and damage until you rest"; } } return m; }
 function castRefresh(x,k){ if(x.n==="Magic Weapon"||x.conc||k==="r-spell-uses"){ try{ renderAll(); }catch(er){} } }
+/* an item spell that can be cast once each until dawn: mark its own counter */
+function dawnMark(x,k){ if(x.itc&&x.itc.dk&&k&&!/^s\d$|^pact$/.test(k)) S.used[x.itc.dk]=1; }
 export function castDo(i,k,lv,ok){ const x=(C.spells||[])[i]; if(!x) return; let s=null, nd=1; if(k&&k.indexOf("|")>0){ const kp=k.split("|"); k=kp[0]; nd=+kp[1]||1; }
   if(!ok&&modeOn("rage")){ ask("You are raging, and Rage stops you from casting spells. Cast "+x.n+" anyway?","Cast",() =>{ castDo(i,k,lv,true); }); return; }/* v22 i4 */
   if(k&&k!=="rit"){ s=slotLeft(k); if(!s||s.left<nd){ toast("Nothing left to cast "+x.n+" with. A rest restores slots and uses."); return; } }
   undoMark("Cast "+x.n); let msg="Cast "+x.n;
-  if(s){ S.used[k]=num(S.used[k],0)+nd; if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
+  if(s){ S.used[k]=num(S.used[k],0)+nd; dawnMark(x,k); if(k==="pact"){ msg+=" with a Pact slot"; lateGet("spLvSel")[x.n]=+lv; } else if(/^s\d$/.test(k)){ msg+=" with a level "+k.slice(1)+" slot"; lateGet("spLvSel")[x.n]=+lv; } else { msg+=" ("+s.r.n+(nd>1?", "+nd+" charges":"")+")"; if(x.itc) lateGet("spLvSel")[x.n]=+lv; } }
   else if(k==="rit") msg+=" as a Ritual";
   msg+=castMartyrHp(x,k,lv)+castMagicWeapon(x,lv);
   msg+="."; if(x.conc) msg+=" "+concSet(x,+lv||x.l);
