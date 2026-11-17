@@ -437,6 +437,10 @@ def sheet_rule_ids():
 
 def build_index(D):
     D["rule_ids"] = sheet_rule_ids()
+    try:
+        D["mi_code"] = '"Magic Initiate"' in open(os.path.join(ROOT, "src", "builder", "12k-logic-sheet-handlers-spells.js"), encoding="utf-8").read()
+    except Exception:
+        D["mi_code"] = False
     D["calc_names"] = calc_note_names()
     D["def_sub"] = def_sub_rows()
     D["lu_by_owner"] = collections.defaultdict(list)
@@ -587,6 +591,11 @@ def features(D):
         for e in (gx.get("feat") or {}).get(fn, []):
             at += atoms_from(e, "GX.feat|" + fn)
         at += lu_atoms(D, fn, fn) + sn_atoms(D, fn, fn)
+        for pr in (f.get("pick") or []):  # a feat pick of type skills, tool, lang or exp is a proficiency the sheet applies
+            if isinstance(pr, dict) and str(pr.get("t")) in ("skills", "tool", "tools", "lang", "exp", "expertise"):
+                at.append(Atom("PROF", nums_in([pr.get("n")]) if pr.get("n") is not None else {"*"}, "feat.pick"))
+        if fn.startswith("Magic Initiate") and D.get("mi_code"):  # the sheet builds Magic Initiate cantrips, the free level 1 spell and its ability from the build picks (12k, key mi*)
+            at += [Atom(k, {"*"}, "feat.mi") for k in ("SPELL", "SPELL", "SPELL", "CHOICE", "CHOICE", "RESOURCE", "ABIL", "SLOT")]
         text = f.get("full") or f.get("d")
         yield mk("feat", fn, fn, D["srcOf"]["feats"].get(fn) or f.get("hb") or "core", text, None, at, ("feat|" + fn) in D["acts_set"])
     # magic items
