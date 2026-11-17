@@ -602,6 +602,8 @@ def features(D):
                 at.append(Atom("PROF", nums_in([pr.get("n")]) if pr.get("n") is not None else {"*"}, "feat.pick"))
         if fn.startswith("Magic Initiate") and D.get("mi_code"):  # the sheet builds Magic Initiate cantrips, the free level 1 spell and its ability from the build picks (12k, key mi*)
             at += [Atom(k, {"*"}, "feat.mi") for k in ("SPELL", "SPELL", "SPELL", "CHOICE", "CHOICE", "RESOURCE", "ABIL", "SLOT")]
+        if any(isinstance(pr, dict) and pr.get("k") == "dab" for pr in (f.get("pick") or [])):  # the Eberron Dragonmark feats: the sheet builds the free spells, their once per Long Rest counters and the ability from the pick dab (tests/e2e_dragonmark.py)
+            at += [Atom(k, {"*"}, "feat.dab") for k in ("SPELL", "SPELL", "SPELL", "SPELL", "SPELL", "RESOURCE", "ABIL", "SLOT")]
         text = f.get("full") or f.get("d")
         yield mk("feat", fn, fn, D["srcOf"]["feats"].get(fn) or f.get("hb") or "core", text, None, at, ("feat|" + fn) in D["acts_set"])
     # magic items
@@ -690,6 +692,7 @@ REASONS = collections.OrderedDict([
     ("DC:REFERENCE", "Sentence only points to the spell save DC / save DC of the feature (no number): the sheet computes the DC from the casting ability."),
     ("OBJECT:STATS", "Stat block of an object, stone, cube or summoned thing (AC, HP, resistance of the thing, not of the character): not a character stat."),
     ("ITEM:REQUIREMENT", "Attunement or crafting requirement of an item (\"you must be proficient with it to attune\", \"Requirement: proficiency with all Simple weapons\"): a prerequisite, not a proficiency the item gives."),
+    ("SPELL:CANTRIP_DMG", "Sentence that adds an ability modifier to cantrip damage. The attack bonus record of the feature (when spell) does it on the cantrip rows; the sentence names no spell."),
     ("SPELL:RIDER", "Rider sentence of a feature that already has its spell record: the spells are also castable with slots, are always prepared, or do not count against the spells known. The spell record gives the spell; the sentence only restates how it is cast or counted."),
     ("ITEM:SENTIENT", "Languages that a sentient item, spirit or summoned creature understands: they belong to the item, not to the wearer."),
     ("ITEM:SENSES", "Senses of a sentient item ('It has hearing and darkvision out to 120 feet'): belong to the item, not to the wearer."),
@@ -707,6 +710,7 @@ REASONS = collections.OrderedDict([
     ("NUMONLY:TEXT", "Number-only sentence with unsigned numbers and no stat word in a sentence that has no sign (+/-) or 'increases by': prose; a signed bonus without a stat word stays flagged."),
 ])
 NONSTAT = {"DMG", "DC", "ATK", "RESOURCE", "SPELL", "CHOICE", "ADV", "DIS", "SAVE_ROLL", "SLOT"}
+RX_CANTRIP_DMG = R(r"^(?:you )?add(?:ing)? your (?:wisdom|intelligence|charisma) modifier to the damage (?:you deal with |of )?(?:any |all )?(?:[a-z]+ )?cantrips?(?: you cast)?\.?$")
 RX_SPELL_RIDER = R(r"^(?:you )?(?:can )?(?:also )?cast (?:it|them|that spell|that cantrip|those spells|either one|any of them)[^.]{0,40}\b(?:with|using)\b[^.]{0,20}\bslots?\b|^you always have (?:it|them|[a-z' ]+) prepared|\b(?:does not|do not|doesn't|don't|do|does) count against\b|\bcounts? as (?:a |an )?[a-z]+ spells?\b")
 RX_ASI = R(r"\b(?:raise|increase|add 1 to)\b[^.]{0,90}\b(?:by 1|add 1 to it)\b[^.]{0,40}\bmaximum(?: of)? (?:20|30)\b|\bchoose an ability score and add 1 to it \(maximum (?:20|30)\)")
 RX_AC10 = R(r"\b10 (?:plus|\+)")
@@ -771,6 +775,8 @@ def excuse(r, ctx, atoms):
             return "OBJECT:STATS"
         if need <= {"SPELL", "SLOT"} and not toks and has("SPELL") and RX_SPELL_RIDER.search(t):
             return "SPELL:RIDER"
+        if need <= {"SPELL"} and not toks and (has("ATK") or has("DMG")) and RX_CANTRIP_DMG.search(t):
+            return "SPELL:CANTRIP_DMG"
         if "SENSE" in need and RX_ITEMSENSE.search(t):
             return "ITEM:SENSES"
         if kind == "item" and need <= {"PROF"} and re.search(r"(?i)^requirement:|\bmust (?:be|have) proficien|\bto attune\b|\byou must have proficiency", t):

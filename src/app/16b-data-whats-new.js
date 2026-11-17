@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:163,l:"0.0.61",d:"2026-11-18",n:["Fourteen subclass features now give their damage resistances (some on a switch, such as Raging or Starry Form). Cleric domains with Potent Spellcasting add the Wisdom modifier to cantrip damage.","Book of Exalted Deeds, Armor of Invulnerability, Stormgirdle and Gauntlets of Rage give their resistances and immunities. Dwarf Stonecunning, Naga Speed Burst, Tabaxi Feline Agility, Spring Mandrake and the Geppettin species give their speed, tremorsense or disease immunity."]},
 {v:162,l:"0.0.60",d:"2026-11-18",n:["Items whose spells can be cast once each until the next dawn (Instrument of the Bards, Sage's Signet, Idols of Good Fortunes, Necklace of the Beastly Familiar and more) now give one counter per spell, and the cast button stops when that spell is used."]},
 {v:161,l:"0.0.59",d:"2026-11-18",n:["Features that can be refilled by spending a spell slot (Holy Nimbus, Living Legend, Elder Champion, Avenging Angel and about 20 more) now show a Restore button on their card. It spends the lowest slot of the needed level and refills one use."]},
 {v:160,l:"0.0.58",d:"2026-11-18",n:["The Eye and Hand of Vecna now give Poison immunity and Advantage on Initiative. Liquid Courage has a switch for its Frightened immunity.","Blessings of Knowledge, Student of Preservation, Student of War and Reanimator's Skill Set let you pick an Artisan's Tools proficiency. College of Lore lets you pick three skills."]},
