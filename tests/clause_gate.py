@@ -330,6 +330,10 @@ def atoms_from(e, src, weak=False, extra=()):
         vals = nums_in(v) | nums_in(e.get("min")) | set(extra)
         for c in cl:
             out.append(Atom(c, vals, "%s.%s" % (src, k), weak))
+        if k == "pick" and isinstance(v, list):  # a pick of type skills, tool, lang or exp is a proficiency the sheet applies
+            for pr in v:
+                if isinstance(pr, dict) and str(pr.get("t")) in ("skills", "tool", "tools", "lang", "exp", "expertise"):
+                    out.append(Atom("PROF", nums_in([pr.get("n")]) if pr.get("n") is not None else {"*"}, "%s.pick" % src, weak))
     return out
 
 
