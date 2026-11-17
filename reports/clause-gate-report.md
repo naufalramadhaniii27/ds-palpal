@@ -7,16 +7,16 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 | Ukuran | Jumlah |
 |---|---|
 | Kalimat di seluruh teks | 86295 |
-| Kalimat mekanik (kelas kata kunci atau angka) | 44265 (51.3%) |
+| Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
 | Covered (atom engine per kelas dan semua angka terjelaskan) | 9199 |
-| Info (tag terdokumentasi) | 29090 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2686, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1355, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 951, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
+| Info (tag terdokumentasi) | 29086 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2686, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 951, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5976 |
-| Uncovered dengan angka | 3571 |
-| Uncovered dengan kelas kata kunci mekanik | 5584 |
+| Uncovered | 5964 |
+| Uncovered dengan angka | 3567 |
+| Uncovered dengan kelas kata kunci mekanik | 5572 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 392 |
-| Angka yang tidak dijelaskan record mana pun | 3380 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4989 kalimat |
+| Angka yang tidak dijelaskan record mana pun | 3376 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4977 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 264 |
 | Waktu | muat data 0 s, analisis 10 s |
 
@@ -69,18 +69,18 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | RESOURCE | 7405 | 964 | 13.0% |
 | SPELL | 3255 | 959 | 29.5% |
 | DMG | 4658 | 703 | 15.1% |
-| SPEED | 1419 | 585 | 41.2% |
+| SPEED | 1411 | 577 | 40.9% |
 | PROF | 1124 | 493 | 43.9% |
 | CHOICE | 1663 | 435 | 26.2% |
 | ADV | 1959 | 425 | 21.7% |
-| RES | 1377 | 424 | 30.8% |
-| IMM | 1006 | 365 | 36.3% |
-| NUM | 8606 | 344 | 4.0% |
+| RES | 1375 | 422 | 30.7% |
+| IMM | 1004 | 363 | 36.2% |
+| NUM | 8604 | 344 | 4.0% |
 | SLOT | 1425 | 312 | 21.9% |
 | DC | 2903 | 284 | 9.8% |
 | ATK | 1056 | 261 | 24.7% |
 | DIS | 1221 | 239 | 19.6% |
-| SENSE | 650 | 206 | 31.7% |
+| SENSE | 648 | 206 | 31.8% |
 | AC | 677 | 164 | 24.2% |
 | SAVE | 278 | 150 | 54.0% |
 | HP | 206 | 112 | 54.4% |
@@ -97,7 +97,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|---|---|---|
 | class | 1186 | 272 | 631 | 0 | 283 |
 | feat | 2812 | 676 | 1475 | 0 | 661 |
-| item | 19281 | 4621 | 11657 | 0 | 3003 |
+| item | 19265 | 4621 | 11653 | 0 | 2991 |
 | species | 1638 | 892 | 492 | 0 | 254 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
 | sub | 10118 | 2460 | 5883 | 0 | 1775 |
@@ -106,8 +106,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10468 | 2534 | 6318 | 1616 | 15.4% |
-| tvss | 2796 | 674 | 1631 | 491 | 17.6% |
+| dmg | 10460 | 2534 | 6316 | 1610 | 15.4% |
+| tvss | 2788 | 674 | 1629 | 485 | 17.4% |
 | core | 1495 | 402 | 762 | 331 | 22.1% |
 | ttoh | 1470 | 320 | 870 | 280 | 19.0% |
 | tsgs | 1479 | 404 | 831 | 244 | 16.5% |
@@ -198,14 +198,14 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | SPELL | 724 | 96 |
 | RESOURCE | 665 | 553 |
 | DMG | 528 | 474 |
-| SPEED | 502 | 393 |
+| SPEED | 494 | 389 |
 | PROF | 443 | 164 |
 | ADV | 415 | 184 |
 | NUM | 344 | 344 |
-| RES | 336 | 138 |
+| RES | 334 | 138 |
 | SLOT | 294 | 101 |
 | CHOICE | 268 | 77 |
-| IMM | 235 | 79 |
+| IMM | 233 | 79 |
 | DIS | 198 | 107 |
 | SENSE | 180 | 154 |
 | AC | 164 | 129 |
@@ -351,34 +351,34 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Sorcerer/Wild Magic Sorcery|Wild Magic Surge#45` Each takes 4d10 Lightning damage. | no record for DMG; number 4d10 unexplained
 - `sub|Wizard/Necromancer|Undead Thralls#8` When an Undead you control within 60 feet hits a creature with an attack roll, it deals extra Necrotic damage equal to your Intelligence modifier (minimum 1). | no record for DMG; number 60 unexplained
 
-### SPEED (502 uncovered)
+### SPEED (494 uncovered)
 
 - `class|Barbarian|Instinctive Pounce#1` When you take the Bonus Action to enter your Rage, you can also move up to half your Speed as part of that same Bonus Action. | no record for SPEED; number half unexplained
 - `feat|Cannoneer|Cannoneer#4` You can do this only if you have not moved this turn, and your Speed is 0 until the end of the turn afterward. | no record for SPEED; number 0 unexplained
 - `feat|Vampiric Exultation|Vampiric Exultation#4` While transformed you have a flying speed of 30 feet. | no record for SPEED; number 30 unexplained
+- `item|dmg|Axe Beak Tomahawk#2` The first time each turn you hit a creature with a Fly Speed, it makes a DC 13 Strength save. | no record for DC,SPEED; number 13 unexplained
 - `item|dmg|Carpet of Flying#9` A carpet can bear as much as double its listed capacity, but while its load exceeds the normal capacity, its Fly Speed is halved. | no record for SPEED; number double unexplained
 - `item|dmg|Carpet of Flying, 6 ft. × 9 ft.#4` A carpet can carry up to twice this weight, but it flies at half speed if it carries more than its normal capacity. | no record for SPEED; number half,double unexplained
-- `item|dmg|Couatl Herald's Fang#6` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
-- `item|dmg|Couatl Herald's Guard#5` While you are attuned to three items with this property, you gain a Fly Speed of 30 ft, or 30 ft more if you already have one. | number 3 no record explains
 - `item|dmg|Couatl Herald's Mantle#4` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
+- `item|dmg|Couatl Herald's Scales#8` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
 - `item|dmg|Deathwalker's Ward (Exalted)#5` You gain a flying speed of 60 feet for 1 hour. | no record for SPEED; number 60 unexplained
-- `item|dmg|Festerwood Vizard#2` You have Blindsight 10 ft. As a Magic action, beetles pour out as a Swarm of Insects (Fly Speed) that you command, moving and attacking on summoning and then as a Bonus Action each turn. | no record for SPEED
-- `item|dmg|Festerwood's Light#5` Magic action with a command word: spores hit all other creatures within 30 ft. An ally can use a Reaction to attack or move up to half Speed without Opportunity Attacks. | no record for SPEED; number 30,half unexplained
+- `item|dmg|Festerwood Claymore#3` On a natural 20, beetles swarm the target for 1d4 turns, dealing 1d6 Piercing at the start of each of its turns and halving its Speed. | no record for SPEED; number 1d4,1d6,20 unexplained
+- `item|dmg|Frefil's Jolly Oozebean Sugarbombs#7` 5 Gold: Climb Speed equal to your Speed. | no record for SPEED; number 5 unexplained
+- `item|dmg|Greaves of Dendallen#9` Once removed, your Speed is 0 and rises by 5 ft every 24 hours until normal. | no record for SPEED; number 5,24,0 unexplained
 - `item|dmg|Potion of Aqueous Form#5` You have a swimming speed of 30 feet. | no record for SPEED; number 30 unexplained
 - `item|dmg|Potion of Flying#1` Drinking this potion gives you a Fly Speed equal to your Speed for 1 hour, and you can hover. | no record for SPEED; number 1 unexplained
 - `item|dmg|Quaal's Feather Token (bird)#10` Flying at half that speed, it can instead carry up to 1,000 pounds. | no record for SPEED; number half unexplained
-- `item|dmg|Soarsled#1` A crystal disk 5 ft across that carries up to 400 lb. In Sharn or another Syranian manifest zone, stand on it and use a Magic action to make it hover. | no record for SPEED; number 5 unexplained
-- `item|dmg|Tectonic Gauntlets#12` You gain a 30 ft Burrow Speed through nonmagical, unworked earth and stone without disturbing it. | no record for SPEED; number 30 unexplained
+- `item|dmg|Warmind Wand#9` Magic action, 1 charge: an ally who sees or hears you gains 2d4 + 2 Temporary Hit Points and can use its Reaction to move half its Speed without provoking Opportunity Attacks. | no record for SPEED; number 2d4,2,half unexplained
 - `item|dmg|Wings of Flying#2` These wings give you a Fly Speed of 60 feet. | no record for SPEED; number 60 unexplained
 - `item|dmg|Ythryn Mythallar#14` - While you're on the same plane of existence as the Ythryn mythallar, you can use an action to cause it to fly in any direction you choose at a speed of 30 feet. | no record for SPEED; number 30 unexplained
-- `item|mot|Potion of Aqueous Form#5` You have a swimming speed of 30 feet. | no record for SPEED; number 30 unexplained
-- `item|tee24|Soarsled#1` A crystal disk 5 ft across that carries up to 400 lb. In Sharn or another Syranian manifest zone, stand on it and use a Magic action to make it hover. | no record for SPEED; number 5 unexplained
-- `item|tsgs|Couatl Herald's Radiance#6` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
-- `item|tsgs|Festerwood Claymore#3` On a natural 20, beetles swarm the target for 1d4 turns, dealing 1d6 Piercing at the start of each of its turns and halving its Speed. | no record for SPEED; number 1d4,1d6,20 unexplained
-- `item|tsgs|Festerwood Vizard#2` You have Blindsight 10 ft. As a Magic action, beetles pour out as a Swarm of Insects (Fly Speed) that you command, moving and attacking on summoning and then as a Bonus Action each turn. | no record for SPEED
-- `item|tsgs|Tectonic Gauntlets#12` You gain a 30 ft Burrow Speed through nonmagical, unworked earth and stone without disturbing it. | no record for SPEED; number 30 unexplained
-- `item|wbtw|Pixie Dust#2` The recipient gains a flying speed of 30 feet and the ability to hover for 1 minute. | no record for SPEED; number 30,1 unexplained
-- `item|wdh|Paper Bird#5` If the bird's hit points or speed is reduced to 0 or if it is otherwise immobilized, it turns into ash. | no record for SPEED; number 0 unexplained
+- `item|frafi|Mechanical Wonder (Gyrocopter)#11` The gyrocopter wonder is a Huge object that weighs 500 pounds and has the following statistics: AC 14, HP 50, Speed 5 ft., and Fly Speed 20 ft. The gyrocopter can bear up to 2,000 pounds of cargo; if it bears any more th | no record for SPEED; number 5,20,14,50 unexplained
+- `item|mot|Dekella, Bident of Thassa#25` You can cast the true polymorph spell (save DC 18) from the bident, but you must cast it on a creature to turn it into a kind of creature that has an innate swimming speed. | no record for DC,SPEED,SPELL; number 18 unexplained
+- `item|tftyp|Loadstone#6` Until the curse is broken with remove curse or similar magic, your speed is reduced by 5 feet, and your maximum load and maximum lift capacities are halved. | no record for SPEED; number 5 unexplained
+- `item|tsdm|Hoverboard#3` While riding it, your Speed rises by 10 ft, you ignore Difficult Terrain, and you can cross liquids without sinking. | no record for SPEED; number 10 unexplained
+- `item|tsgs|Couatl Herald's Guard#5` While you are attuned to three items with this property, you gain a Fly Speed of 30 ft, or 30 ft more if you already have one. | number 3 no record explains
+- `item|tsgs|Couatl Herald's Reach#9` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
+- `item|tsgs|Greaves of Dendallen#9` Once removed, your Speed is 0 and rises by 5 ft every 24 hours until normal. | no record for SPEED; number 5,24,0 unexplained
+- `item|tsgs|Hasty Sugarbomb#1` A sweet eaten as a Magic action to raise your Speed by 5 ft for 1 hour. | no record for SPEED; number 5,1 unexplained
 - `species|Gnome (Grim Hollow)|Heritage Traits#6` You can lower your Speed by 5 feet to gain one extra trait. | no record for SPEED
 - `species|Kalamer Landwalker (Merfolk)|Blessing of the Sea#3` In landwalker form your Speed rises by 20 feet and your Swim Speed is 0. | number 0 no record explains
 - `species|Skathári|Gliding Wings#2` While falling you can move 10 feet sideways for every 5 feet you fall, up to your Speed. | no record for SPEED; number 10,5 unexplained
@@ -523,7 +523,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Rogue/Sapper|Breach Defenses#1` Your attacks treat a structure or unattended object's damage threshold as 5 lower, 10 lower at level 13 and 15 lower at level 17. | number 5,10 no record explains
 - `sub|Warmage/House of Cards|Deck of Fate#16` Clubs (any two): +1 to saving throws until the start of your next turn. | number 1,2 no record explains
 
-### RES (336 uncovered)
+### RES (334 uncovered)
 
 - `feat|Vampire Transformation: Stage 3|Vampire Transformation: Stage 3#5` If you start your turn in sunlight you take 1d10 Radiant damage, and nothing can give you Resistance or Immunity to it. | no record for DMG,IMM,RES; number 1d10 unexplained
 - `item|coa|Canian Fork#5` You're also vulnerable to radiant damage and each time you receive magical healing, you must make a DC 15 Constitution saving throw. | no record for DC; number 15 unexplained
@@ -721,38 +721,38 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `feat|Inscription Adept|Inscription Adept#9` Journeyman (+3): Glyph of Warding. | angka: 3
 - `feat|Vampire Transformation: Stage 2|Vampire Transformation: Stage 2#4` You have Disadvantage on all D20 Tests while in sunlight. | angka: 1d20
 
-### item (1909)
+### item (1905)
 
-- `item|dmg14|Quaal's Feather Token, Fan#6` The fan floats and creates a wind strong enough to fill the sails of one ship, increasing its speed by 5 miles per hour for 8 hours. | angka: 5,8
-- `item|misc14|Crown of Lies#13` - 1 major beneficial property | angka: 1
-- `item|tsdm|Jax#2` For 1 hour, your Strength and Dexterity each rise by 2, to a maximum of 22. | angka: 1,2
+- `item|dmg14|Ring of Water Elemental Command#5` Spells cast from the ring have a save DC of 17. | angka: 17
+- `item|misc14|Daoud's Wondrous Lanthorn#9` - 2 minor beneficial properties | angka: 2
+- `item|tsdm|Personality Module#3` While it is installed you are proficient in two skills, know two languages and have one personality trait of the original. | angka: 2
 - `item|dmg|Wand of Wonder#9` Roll 1d20 whenever you expend the final charge. | angka: 1d20
 - `item|dmg|Scourge of Shadow#11` - 1 major beneficial property | angka: 1
-- `item|tghg|Stalk Symbiote#3` With Stage 1 of the Aberrant Horror, you also have Blindsight 10 ft. You cannot end attunement, and if the stalk is removed it regrows in 1d4 hours unless Remove Curse is cast on you first. | angka: 1d4,10,1
+- `item|tghg|Arcane Oil#3` For 1 minute, nonmagical coated items grant +2 to attack and damage rolls. | angka: 1,2
 - `item|dmg|Tome of the Dragon#4` To decipher and use the Tome of the Dragon, you must be either a spellcaster with at least two level 5 spell slots or a Dragon. | angka: 2
-- `item|dmg|Life-Staff of the Web Lair#10` You regain Hit Points equal to half the damage. | angka: half
-- `item|dmg|Emperor's Garlic#7` Eat a raw clove as an action to gain Resistance to Poison damage and Advantage on saves against Poisoned for 1 hour, but Disadvantage on all Deception and Persuasion checks for that time. | angka: 1
-- `item|tdm14|Thaumatonic Rifle, +1#1` A standard carbine (2d6 Radiant, range 80/320, Blaster, Automatic, Two-Handed) with a +1 bonus to attack and damage rolls. | angka: 2d6,80,320
-- `item|wbtw|Iggwilv's Cauldron#39` At the same time, all Humanoid creatures within a certain radius of the cauldron fall unconscious for 1 hour, except those that are attuned to the cauldron or immune to being charmed. | angka: 1
-- `item|twow|Ashbringer (True State)#5` The sword is sentient (Int 14, Wis 17, Cha 17, hearing and Darkvision 120 ft, speaks Common and Dwarvish, telepathy with its wielder). | angka: 120,14,17
+- `item|dmg|Sulfuras, Hand of Ragnaros#4` It takes 1d10 Fire damage at the start of each of its turns instead of the normal burning damage. | angka: 1d10
+- `item|dmg|Fiery Snapdragon#13` You and the target stay in the heat for 10 minutes, and at the end the target's Strength score becomes 25 for 1 hour. | angka: 10,1,25
+- `item|tdm14|Blaster Prototype#6` Lock-On: use an action to deal 2d6 Radiant damage to a creature you see within 30 ft with no attack roll. | angka: 2d6,30
+- `item|wbtw|Ornithopter of Flying#2` The ornithopter has a flying speed of 30 feet, and it moves according to your spoken directions while you are riding it. | angka: 30
+- `item|twow|Experimental Goblin Jetpack#3` They give a Fly Speed of 60 feet. | angka: 60
 - `item|dmg|Rope of Climbing#8` Every 5 minutes, provided it still has 1 Hit Point or more, it regains 1 Hit Point. | angka: 5,1
-- `item|tvss14|Switch Amalgam#4` Once on two weapons, both become magical with +1 to attack and damage rolls (not if already magical with a bonus), and both gain the Switch property: two forms, swap between them at any time, even bet | angka: 1,2
-- `item|thhw|Potion of Rest#2` Drink it before a short or long rest and you wake with 1d10 + 5 Temporary Hit Points and with one level of exhaustion removed. | angka: 1d10,5
-- `item|dmg|Coil of Strength Storing#5` Stored charges vanish 1 minute after being stored. | angka: 1
-- `item|tsgs|Necrolace#3` As a Bonus Action, spend charges to take 1d8 Necrotic damage each (ignores Resistance and Immunity), and a creature you see within 30 ft regains twice that in HP. | angka: 1d8,30,double
-- `item|dmg|Skitterlegs#5` Eliminate: they move to the nearest hostile and make two melee attacks at +7, dealing 1d8 + 2 Piercing each. | angka: 1d8,7,2
-- `item|dmg|Hungry Weapon#3` If you are attuned and another creature tries to wield it, thorns deal it 1d4 Piercing damage each turn. | angka: 1d4
+- `item|tdm14|Wings#4` Deployed, you have a flying speed equal to your walking speed, for 10 minutes total until you finish a short or long rest. | angka: 10
+- `item|thhw|Whistle of Freedom#2` When blown, every creature within 100 ft that can hear it has Advantage on its next saving throw against a spell or effect currently affecting it. | angka: 100
+- `item|dmg|Cure-All#2` As an action, drink a dose to cure any disease, end the Poisoned condition and become immune to it for 1 hour. | angka: 1
+- `item|tsgs|Otyugh Cloak#4` As a Bonus Action with eyes closed, you see through it and gain Darkvision 60 ft. | angka: 60
+- `item|dmg|Weapon Charms#6` Blade (Uncommon): +1 to attack and damage rolls (not if the weapon already has a bonus). | angka: 1
+- `item|dmg|Bliss#2` A Humanoid who swallows it feels calm and happy for 1d4 hours, gaining Immunity to the Frightened condition and 3d10 Temporary Hit Points. | angka: 1d4,3d10
 - `item|dmg|Wheel of Wind and Water#2` If a wheel of wind and water is mounted on a mundane sailing ship, a creature with the Mark of Storm who is using the wheel can create an area of ideal conditions around the vessel, increasing its spe | angka: 5
 - `item|dmg|Diamond Staff#13` Detect Magic (Charge Cost 0). | angka: 0
-- `item|dmg|Sulfuras, Hand of Ragnaros#4` It takes 1d10 Fire damage at the start of each of its turns instead of the normal burning damage. | angka: 1d10
+- `item|dmg|Vithrak, Gaze of the Deadman#2` Magic action, 1 charge: learn the Resistances, Vulnerabilities and Immunities of a creature you see within 120 feet. | angka: 120,1
 - `item|dmg|Defender#4` For example, you could keep only +1 on your attack and damage rolls and take +2 to Armor Class. | angka: 1,2
 - `item|dmg|Titanstone Knuckles (Dormant)#3` Your Strength score becomes 22 while you wear them. | angka: 22
-- `item|erlw|Docent#14` If a docent knows fewer than six languages, it can learn a new language after it hears or reads the language through your senses. | angka: 6
+- `item|erlw|Wheel of Wind and Water#2` If a wheel of wind and water is mounted on a mundane sailing ship, a creature with the Mark of Storm who is using the wheel can create an area of ideal conditions around the vessel, increasing its spe | angka: 5
 - `item|dmg|Manual of Flesh Golems#5` To create a flesh golem, you must spend 60 days, working without interruption with the manual at hand and resting no more than 8 hours per day. | angka: 60,8
 - `item|dmg|Wand of Viscid Globs#10` If you expend the wands last charge, roll a d20. | angka: 1d20
-- `item|tsgs|Knight's Standard of Virtue#3` You and allies within 10 ft add Proficiency Bonus to saves against or to end Charmed if not already proficient. | angka: 10,pb
+- `item|tsgs|Locksmith's Bane#2` You get +3 to Dexterity (Sleight of Hand) checks to pick a lock with it. | angka: 3
 - `item|dmg|Professor Orb#9` When making an Intelligence check to recall lore from any of its areas of expertise, the orb has a +9 bonus to its roll (including its Intelligence modifier). | angka: 9
-- `item|cm|Radiance#2` In addition, you ignore 3 when making a spell attack. | angka: 3
+- `item|cm|Staff of Fate#9` On a roll of 10 or higher, the staff regains 1d6 of its expended charges. | angka: 1d6
 
 ### species (139)
 
