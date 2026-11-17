@@ -922,10 +922,11 @@
  },
  "GX.sub|Gloom Stalker": {
   "files": [
+   "fx-B23-savewis.js",
    "fx-L12.js",
    "fx-Z2.js"
   ],
-  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
+  "reason": "Different features of the same owner are defined in these files (B23 adds the Wisdom save proficiency of one feature); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Great Old One Patron": {
@@ -1878,6 +1879,78 @@
    "fx-M1.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Changeling Metamorphosis": {
+  "files": [
+   "fx-B21-staticsense.js",
+   "fx-L1.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B21 adds a sense a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Infernum": {
+  "files": [
+   "fx-B21-staticsense.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B21 adds a sense a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Twilight Domain": {
+  "files": [
+   "fx-B21-staticsense.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B21 adds a sense a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Way of the Ascendant Dragon": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-B21-staticsense.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B21 adds a sense a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Baba Yaga's Mortar and Pestle": {
+  "files": [
+   "fx-B12-itemriders.js",
+   "fx-B22-staticadv.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B22 adds an advantage note a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Doomsayer": {
+  "files": [
+   "fx-B22-staticadv.js",
+   "fx-L13.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B22 adds an advantage note a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Smuggler": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B22-staticadv.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B22 adds an advantage note a feature gives); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Gloom Stalker (2014)": {
+  "files": [
+   "fx-B23-savewis.js",
+   "fx-Z2.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B23 adds the Wisdom save proficiency of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Samurai": {
+  "files": [
+   "fx-B23-savewis.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B23 adds the Wisdom save proficiency of one feature); nothing is counted twice.",
   "shared": []
  }
 }
