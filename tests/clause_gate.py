@@ -318,6 +318,12 @@ def atoms_from(e, src, weak=False, extra=()):
     if not isinstance(e, dict):
         return out
     for k, v in e.items():
+        if k == "notes" and isinstance(v, list):  # rows [type, text] the sheet lists under Defenses; a row that states Advantage or Disadvantage covers that kind of sentence
+            for row in v:
+                tx = str(row[1]) if isinstance(row, list) and len(row) > 1 else ""
+                if re.search(r"(?i)\badvantage\b", tx): out.append(Atom("ADV", nums_in(tx), "%s.notes" % src, weak))
+                if re.search(r"(?i)\bdisadvantage\b", tx): out.append(Atom("DIS", nums_in(tx), "%s.notes" % src, weak))
+            continue
         cl = FIELD_CLS.get(k)
         if not cl or v in (None, False, [], {}, "", 0) and k not in ("ac",):
             continue
@@ -517,6 +523,8 @@ def features(D):
                 own += atoms_from({k: v}, "species." + sn, weak=True)
         for e in (s.get("fx") or []) if isinstance(s.get("fx"), list) else []:
             own += atoms_from(e, "species.fx|" + sn, weak=True)
+        if isinstance(s.get("fx"), dict) and s["fx"]:  # the species' own effect record as one object
+            own += atoms_from(s["fx"], "species.fx|" + sn, weak=True)
         for x in (D.get("defSp") or {}).get(sn, []):  # DEF_SP (src/data/db4/01-...): the species Defenses table read by defenses() in 16-logic-feature-numbers.js
             if isinstance(x, list) and x and x[0] in ("Resistance", "Immunity", "Vulnerability"):
                 own.append(Atom("RES" if x[0] != "Immunity" else "IMM", nums_in(x[1:]), "species.DEF_SP|" + sn, True))
@@ -539,7 +547,7 @@ def features(D):
         keys = {k: v for k, v in f.items() if (k not in M.STRUCT_SKIP or k in ("asi",)) and k not in ("hb", "cat", "d", "full", "pre", "preSp", "preBg", "kind", "rep", "cls", "dt", "pas", "fi", "resBy") and v not in ([], {}, "", None)}
         at = []
         for k, v in keys.items():
-            at += atoms_from({k: v}, "feat." + fn)
+            at += atoms_from(v, "feat.fx|" + fn) if (k == "fx" and isinstance(v, dict)) else atoms_from({k: v}, "feat." + fn)  # the feat's own effect record sits under "fx"
         for e in (gx.get("feat") or {}).get(fn, []):
             at += atoms_from(e, "GX.feat|" + fn)
         at += lu_atoms(D, fn, fn) + sn_atoms(D, fn, fn)
