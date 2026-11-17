@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:153,l:"0.0.51",d:"2026-11-17",n:["Twenty-one species and heritages now list Immunity to disease in Defenses, such as the Chassis forms, the Undead heritage traits and the Mushroomfolk."]},
 {v:152,l:"0.0.50",d:"2026-11-17",n:["Stoneborn now adds +1 AC. Exomorph and Revenant Blade add their AC bonus through a toggle."]},
 {v:151,l:"0.0.49",d:"2026-11-17",n:["The five Feather Robes now add +1 to saving throws. Ingot of the Skold Rune, Orrery of the Wanderer, Knifewing Cape and Jewel of Three Prayers add +1 AC. Blindfold of True Darkness and Helm of Domination add their sense."]},
 {v:150,l:"0.0.48",d:"2026-11-17",n:["Twelve more magic items now list their fixed damage Resistance in Defenses, such as Karrek's Bastion, Talons of the Squall and Warding Brooch."]},
