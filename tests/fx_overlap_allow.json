@@ -1525,5 +1525,21 @@
   "shared": [
    "defs"
   ]
+ },
+ "GX.item|Gamma Pendant": {
+  "files": [
+   "fx-B10-items.js",
+   "fx-L4.js"
+  ],
+  "reason": "fx batch B10 adds an Advantage row for another sentence of the same item; each row is counted once.",
+  "shared": []
+ },
+ "GX.item|Necronomicon": {
+  "files": [
+   "fx-B10-items.js",
+   "fx-L8.js"
+  ],
+  "reason": "fx batch B10 adds an Advantage row for another sentence of the same item; each row is counted once.",
+  "shared": []
  }
 }

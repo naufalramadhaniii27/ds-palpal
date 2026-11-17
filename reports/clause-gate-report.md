@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44265 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9002 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9021 |
 | Info (tag terdokumentasi) | 29098 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2689, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1355, NUMONLY:ROLL 1230, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 954, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 6165 |
+| Uncovered | 6146 |
 | Uncovered dengan angka | 3671 |
-| Uncovered dengan kelas kata kunci mekanik | 5771 |
+| Uncovered dengan kelas kata kunci mekanik | 5752 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 394 |
 | Angka yang tidak dijelaskan record mana pun | 3477 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5179 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 5160 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 268 |
 | Waktu | muat data 7 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 295 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 167 ditangkap (56.6%). Hapus semua atom kelas yang dibutuhkan: 170 ditangkap (57.6%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 294 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 162 ditangkap (55.1%). Hapus semua atom kelas yang dibutuhkan: 163 ditangkap (55.4%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 282 ditangkap (94.0%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 280 ditangkap (93.3%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -38,8 +38,8 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 
 | Sumber | Kalimat covered |
 |---|---|
-| item | 3344 |
-| GX | 1856 |
+| item | 3346 |
+| GX | 1875 |
 | wxs | 1060 |
 | LU_X | 717 |
 | species | 511 |
@@ -59,7 +59,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | CLS_AUTO | 7 |
 | sub | 1 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 291, fx-L5.js 201, fx-L4.js 170, fx-L12.js 169, fx-L10.js 143, fx-L2.js 133, fx-L1.js 115, fx-L3.js 113, fx-N1.js 104, fx-L9.js 99, fx-L11.js 90, fx-L6.js 69.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 291, fx-L5.js 201, fx-L4.js 173, fx-L12.js 169, fx-L10.js 143, fx-L2.js 133, fx-L1.js 115, fx-L3.js 113, fx-N1.js 104, fx-L9.js 99, fx-L11.js 90, fx-L6.js 69.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
@@ -71,21 +71,21 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | SPEED | 1419 | 602 | 42.4% |
 | PROF | 1124 | 553 | 49.2% |
 | CHOICE | 1663 | 470 | 28.3% |
-| ADV | 1959 | 448 | 22.9% |
 | RES | 1377 | 441 | 32.0% |
+| ADV | 1959 | 431 | 22.0% |
 | IMM | 1006 | 370 | 36.8% |
 | NUM | 8606 | 346 | 4.0% |
 | SLOT | 1425 | 315 | 22.1% |
 | DC | 2903 | 284 | 9.8% |
 | ATK | 1056 | 263 | 24.9% |
-| DIS | 1221 | 241 | 19.7% |
+| DIS | 1221 | 239 | 19.6% |
 | SENSE | 650 | 210 | 32.3% |
 | AC | 677 | 168 | 24.8% |
 | SAVE | 278 | 153 | 55.0% |
 | HP | 206 | 112 | 54.4% |
 | NUM-DICE | 1628 | 77 | 4.7% |
 | ABIL | 383 | 74 | 19.3% |
-| INIT | 129 | 64 | 49.6% |
+| INIT | 129 | 62 | 48.1% |
 | NUM-DIST | 5577 | 43 | 0.8% |
 | NUM-DUR | 3526 | 38 | 1.1% |
 | NUM-PCT | 74 | 1 | 1.4% |
@@ -96,7 +96,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|---|---|---|
 | class | 1186 | 249 | 632 | 0 | 305 |
 | feat | 2812 | 641 | 1476 | 0 | 695 |
-| item | 19281 | 4528 | 11661 | 0 | 3092 |
+| item | 19281 | 4547 | 11661 | 0 | 3073 |
 | species | 1638 | 879 | 492 | 0 | 267 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
 | sub | 10118 | 2427 | 5885 | 0 | 1806 |
@@ -105,19 +105,19 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10468 | 2487 | 6320 | 1661 | 15.9% |
+| dmg | 10468 | 2496 | 6320 | 1652 | 15.8% |
 | tvss | 2796 | 674 | 1631 | 491 | 17.6% |
 | core | 1495 | 363 | 763 | 369 | 24.7% |
 | ttoh | 1470 | 314 | 870 | 286 | 19.5% |
-| tsgs | 1479 | 395 | 832 | 252 | 17.0% |
+| tsgs | 1479 | 398 | 832 | 249 | 16.8% |
 | tvss14 | 1201 | 222 | 741 | 238 | 19.8% |
-| tkdm | 921 | 213 | 493 | 215 | 23.3% |
-| tsdm | 1063 | 278 | 593 | 192 | 18.1% |
+| tkdm | 921 | 214 | 493 | 214 | 23.2% |
+| tsdm | 1063 | 279 | 593 | 191 | 18.0% |
 | tghp | 1116 | 380 | 554 | 182 | 16.3% |
 | tce | 730 | 137 | 452 | 141 | 19.3% |
 | au | 535 | 114 | 285 | 136 | 25.4% |
 | tua24 | 634 | 179 | 327 | 128 | 20.2% |
-| tdm14 | 643 | 146 | 380 | 117 | 18.2% |
+| tdm14 | 643 | 147 | 380 | 116 | 18.0% |
 | dmg14 | 540 | 153 | 288 | 99 | 18.3% |
 | tgh14p | 490 | 114 | 282 | 94 | 19.2% |
 | twow | 542 | 137 | 311 | 94 | 17.3% |
@@ -131,8 +131,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tssm | 275 | 71 | 150 | 54 | 19.6% |
 | coa | 158 | 44 | 60 | 54 | 34.2% |
 | EFotA | 137 | 35 | 50 | 52 | 38.0% |
-| misc14 | 326 | 63 | 212 | 51 | 15.6% |
-| tghg | 288 | 75 | 162 | 51 | 17.7% |
+| misc14 | 326 | 64 | 212 | 50 | 15.3% |
+| tghg | 288 | 76 | 162 | 50 | 17.4% |
 | oota | 87 | 21 | 20 | 46 | 52.9% |
 | tdcsr | 299 | 110 | 148 | 41 | 13.7% |
 | mot | 292 | 96 | 159 | 37 | 12.7% |
@@ -151,9 +151,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | dsotdq | 82 | 19 | 46 | 17 | 20.7% |
 | abh | 53 | 13 | 23 | 17 | 32.1% |
 | idrotf | 134 | 32 | 86 | 16 | 11.9% |
-| wdh | 95 | 26 | 53 | 16 | 16.8% |
 | wdmm | 79 | 14 | 49 | 16 | 20.3% |
 | crcotn | 96 | 34 | 46 | 16 | 16.7% |
+| wdh | 95 | 27 | 53 | 15 | 15.8% |
 | ggr | 186 | 35 | 137 | 14 | 7.5% |
 | scag | 67 | 25 | 29 | 13 | 19.4% |
 | ai | 164 | 24 | 127 | 13 | 7.9% |
@@ -175,9 +175,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | psk | 38 | 21 | 11 | 6 | 15.8% |
 | tftyp | 71 | 26 | 39 | 6 | 8.5% |
 | psx | 18 | 8 | 5 | 5 | 27.8% |
-| efa | 28 | 9 | 15 | 4 | 14.3% |
 | nf | 25 | 9 | 12 | 4 | 16.0% |
 | psz | 38 | 33 | 2 | 3 | 7.9% |
+| efa | 28 | 10 | 15 | 3 | 10.7% |
 | imr | 186 | 2 | 181 | 3 | 1.6% |
 | eepc | 9 | 7 | 0 | 2 | 22.2% |
 | mtf | 64 | 49 | 13 | 2 | 3.1% |
@@ -199,13 +199,13 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | DMG | 572 | 518 |
 | SPEED | 519 | 409 |
 | PROF | 501 | 179 |
-| ADV | 438 | 184 |
+| ADV | 421 | 184 |
 | RES | 347 | 138 |
 | NUM | 346 | 346 |
 | SLOT | 297 | 101 |
 | CHOICE | 268 | 77 |
 | IMM | 235 | 79 |
-| DIS | 200 | 107 |
+| DIS | 198 | 107 |
 | SENSE | 184 | 158 |
 | AC | 168 | 133 |
 | ATK | 165 | 128 |
@@ -436,7 +436,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/White Necromancer|Lore of Life and Death#1` You gain proficiency in Medicine and Religion, and your Proficiency Bonus is doubled on Wisdom (Medicine) checks. | number double,pb no record explains
 - `sub|Wizard/White Necromancer|White Necromancy#2` When you cast it, an undead with Intelligence 5 or lower gets Intelligence 6 and understands and speaks one language you speak. | no record for PROF; number 5,6 unexplained
 
-### ADV (438 uncovered)
+### ADV (421 uncovered)
 
 - `class|Rogue|Sneak Attack#2` Once per turn, if you have Advantage on an attack roll that uses a Finesse or Ranged weapon and the attack hits a creature, you can deal an extra 1d6 damage to that creature. | no record for ADV
 - `feat|Cohort of Chaos|Cohort of Chaos#9` 1, Battle Fury: a creature you can see has Advantage on attack rolls and Disadvantage on ability checks. | number 1 no record explains
@@ -821,33 +821,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Rogue/Phantom|Voice of Death#2` You regain it after a Short or Long Rest. -> covered
-- class `sub|Rogue/Phantom|Voice of Death#2` You regain it after a Short or Long Rest. -> info:REST:NONUM
-- record `item|dmg|Spire of Conflux (Exalted)#5` New spells: chain lightning (6) and fire storm (7). -> info:NUMONLY:TABLE
-- class `item|dmg|Spire of Conflux (Exalted)#5` New spells: chain lightning (6) and fire storm (7). -> info:NUMONLY:TABLE
-- record `sub|Fighter/Psi Warrior (2014)|Telekinetic Master#3` You regain use after a Long Rest or by spending a Psionic Energy die. -> info:REST:NONUM
-- class `sub|Fighter/Psi Warrior (2014)|Telekinetic Master#3` You regain use after a Long Rest or by spending a Psionic Energy die. -> info:REST:NONUM
-- record `sub|Warden/Drake-Blooded|Aspect of the Greatwyrm#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> covered
-- class `sub|Warden/Drake-Blooded|Aspect of the Greatwyrm#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> info:REST:NONUM
-- record `species|Drow|Drow Magic#2` At level 3 you can cast Faerie Fire and at level 5 Darkness, each once per Long Rest. -> info:REST:NONUM
-- class `species|Drow|Drow Magic#2` At level 3 you can cast Faerie Fire and at level 5 Darkness, each once per Long Rest. -> info:REST:NONUM
-- record `item|wdh|Stone of Golorr#13` It also knows that three keys are needed to open the vault and that a gold dragon named Aurinax inhabits the vault and g -> info:NUMONLY:TEXT
-- class `item|wdh|Stone of Golorr#13` It also knows that three keys are needed to open the vault and that a gold dragon named Aurinax inhabits the vault and g -> info:NUMONLY:TEXT
-- record `sub|Druid/Circle of Wildfire|Blazing Revival#3` You regain use after a Long Rest. -> covered
-- class `sub|Druid/Circle of Wildfire|Blazing Revival#3` You regain use after a Long Rest. -> info:REST:NONUM
-- record `item|idrotf|Charm of Bounty#3` When the charges run out, the charm vanishes. -> info:REST:NONUM
-- class `item|idrotf|Charm of Bounty#3` When the charges run out, the charm vanishes. -> info:REST:NONUM
-- record `species|Human (Mark of Passage)|Magical Passage#1` You can cast Misty Step once per Long Rest. -> info:REST:NONUM
-- class `species|Human (Mark of Passage)|Magical Passage#1` You can cast Misty Step once per Long Rest. -> info:REST:NONUM
-- record `sub|Witch/Gingerbread Magic|Gingerbread Spells#2` 3 Arcane Lock, Enhance Ability, Hex: Sweet Tooth, Tasha's Hideous Laughter, Sleep. -> covered
-- class `sub|Witch/Gingerbread Magic|Gingerbread Spells#2` 3 Arcane Lock, Enhance Ability, Hex: Sweet Tooth, Tasha's Hideous Laughter, Sleep. -> covered
-- record `feat|Mark of Warding|Mark of Warding#9` Each free cast returns after a Long Rest. -> info:REST:NONUM
-- class `feat|Mark of Warding|Mark of Warding#9` Each free cast returns after a Long Rest. -> info:REST:NONUM
-- record `species|Shade (ToH)|Ghostly Flesh#5` You regain this on a rest. -> info:REST:NONUM
-- class `species|Shade (ToH)|Ghostly Flesh#5` You regain this on a rest. -> info:REST:NONUM
-- record `sub|Sorcerer/Clockwork Sorcery|Trance of Order#3` During that time, attack rolls made against you can't benefit from Advantage, and each time you make a D20 Test, you can -> info:COND:ATTACK_ROLL_ADV
-- class `sub|Sorcerer/Clockwork Sorcery|Trance of Order#3` During that time, attack rolls made against you can't benefit from Advantage, and each time you make a D20 Test, you can -> info:COND:ATTACK_ROLL_ADV
-- record `sub|Paladin/Oath of the Sepulcher|Galactic Knight#4` Long Rest after either option. -> covered
-- class `sub|Paladin/Oath of the Sepulcher|Galactic Knight#4` Long Rest after either option. -> info:REST:NONUM
-- record `sub|Sorcerer/Haunted Sorcery|Become Death#4` Long Rest to use again. -> covered
-- class `sub|Sorcerer/Haunted Sorcery|Become Death#4` Long Rest to use again. -> info:REST:NONUM
+- record `sub|Rogue/Soulknife|Psychic Veil#5` After using this feature, you regain the use when you finish a Long Rest, or earlier by expending one Psionic Energy Die -> info:REST:NONUM
+- class `sub|Rogue/Soulknife|Psychic Veil#5` After using this feature, you regain the use when you finish a Long Rest, or earlier by expending one Psionic Energy Die -> info:REST:NONUM
+- record `sub|Cleric/Machine Domain|Machine Domain Spells#4` 9 Animate Objects, Simulation. -> info:NUMONLY:TABLE
+- class `sub|Cleric/Machine Domain|Machine Domain Spells#4` 9 Animate Objects, Simulation. -> info:NUMONLY:TABLE
+- record `item|tdcsr|Titanstone Knuckles (Awakened)#5` Finish a long rest to use that again. -> info:REST:NONUM
+- class `item|tdcsr|Titanstone Knuckles (Awakened)#5` Finish a long rest to use that again. -> info:REST:NONUM
+- record `item|dmg|Rod of the Pack Master#4` With Stage 1 of the Lycanthrope you can use it in your teeth in hybrid or kindred form. -> info:NUMONLY:TEXT
+- class `item|dmg|Rod of the Pack Master#4` With Stage 1 of the Lycanthrope you can use it in your teeth in hybrid or kindred form. -> info:NUMONLY:TEXT
+- record `item|dmg|Amulet of Equilibrium#3` When you deal Cold, Fire or Lightning damage to only one creature, spend any number of charges to reroll that many damag -> info:REST:NONUM
+- class `item|dmg|Amulet of Equilibrium#3` When you deal Cold, Fire or Lightning damage to only one creature, spend any number of charges to reroll that many damag -> info:REST:NONUM
+- record `item|skt|Pennant of the Vind Rune#11` Once you use this property, you can't use it again until you finish a short or long rest. -> info:REST:NONUM
+- class `item|skt|Pennant of the Vind Rune#11` Once you use this property, you can't use it again until you finish a short or long rest. -> info:REST:NONUM
+- record `item|oota|Spell Gem (Amber)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
+- class `item|oota|Spell Gem (Amber)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
+- record `species|Khoravar|Lethargy Resilience#2` After using this, you can't do so again until you finish 1d4 Long Rests. -> info:NUMONLY:ROLL
+- class `species|Khoravar|Lethargy Resilience#2` After using this, you can't do so again until you finish 1d4 Long Rests. -> info:NUMONLY:ROLL
+- record `item|dmg|Memento of the Shapeless#14` After 12 hours you can use this again. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Memento of the Shapeless#14` After 12 hours you can use this again. -> info:NUMONLY:GEOMETRY
+- record `sub|Bard/College of Glamour (2014)|Unbreakable Majesty#6` You regain use after a Short or Long Rest. -> covered
+- class `sub|Bard/College of Glamour (2014)|Unbreakable Majesty#6` You regain use after a Short or Long Rest. -> info:REST:NONUM
+- record `item|tvss|Draconis Fundamentum#9` Once used, it returns after a Long Rest, or spend the listed Hit Point Dice (no action) to restore it. -> info:REST:NONUM
+- class `item|tvss|Draconis Fundamentum#9` Once used, it returns after a Long Rest, or spend the listed Hit Point Dice (no action) to restore it. -> info:REST:NONUM
+- record `sub|Warlock/The Great Machine|Indestructible Life#4` Short or Long Rest to use again. -> covered
+- class `sub|Warlock/The Great Machine|Indestructible Life#4` Short or Long Rest to use again. -> info:REST:NONUM
+- record `sub|Rogue/House Agent|House Insignia#8` If you lose the insignia, your house delivers a new one by the time you finish a Long Rest. -> covered
+- class `sub|Rogue/House Agent|House Insignia#8` If you lose the insignia, your house delivers a new one by the time you finish a Long Rest. -> info:REST:NONUM
+- record `class|Monk|Uncanny Metabolism#1` As you roll Initiative, you can choose to regain every expended Focus Point. -> info:REST:NONUM
+- class `class|Monk|Uncanny Metabolism#1` As you roll Initiative, you can choose to regain every expended Focus Point. -> info:REST:NONUM
+- record `item|tftyp|Bracelet of Rock Magic#2` Once the spell has been cast three times, the bracelet can no longer cast it. -> info:NUMONLY:TEXT
+- class `item|tftyp|Bracelet of Rock Magic#2` Once the spell has been cast three times, the bracelet can no longer cast it. -> info:NUMONLY:TEXT
