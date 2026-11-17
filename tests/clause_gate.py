@@ -332,8 +332,10 @@ def atoms_from(e, src, weak=False, extra=()):
             out.append(Atom(c, vals, "%s.%s" % (src, k), weak))
         if k == "pick" and isinstance(v, list):  # a pick of type skills, tool, lang or exp is a proficiency the sheet applies
             for pr in v:
-                if isinstance(pr, dict) and str(pr.get("t")) in ("skills", "tool", "tools", "lang", "exp", "expertise"):
+                if isinstance(pr, dict) and str(pr.get("t")) in ("skills", "tool", "tools", "lang", "exp", "expertise", "weapon", "armor", "wp"):
                     out.append(Atom("PROF", nums_in([pr.get("n")]) if pr.get("n") is not None else {"*"}, "%s.pick" % src, weak))
+                if isinstance(pr, dict) and str(pr.get("t")) in ("cantrip", "spell"):  # a spell pick: the sheet adds the chosen spells to the list
+                    out.append(Atom("SPELL", nums_in([pr.get("n")]) if pr.get("n") is not None else {"*"}, "%s.pick" % src, weak))
     return out
 
 
@@ -677,12 +679,15 @@ def features(D):
 REASONS = collections.OrderedDict([
     ("STD:ASI", "Feat ability score line 'raise X by 1, to a maximum of 20 (30)': the +1 and the cap are the standard ASI rule of the builder; the feat has an ability atom (asi / asiPick) that names the abilities."),
     ("STD:SUBCLASS_PICK", "'Choose a X subclass': the subclass picker of the builder; no fx record."),
+    ("STD:FEAT_PICK", "Class feature that grants one feat of a named kind (Epic Boon, Fighting Style): the feat picker of the builder at that class level; the picked feat carries its own records."),
     ("STD:AC10", "'10 + Dex + ability' style base AC: the 10 is the standard base AC constant; the feature has an AC atom that names the ability."),
     ("TABLE:CLASS", "Class tables for spell slots, cantrips and spells known / prepared and the invocation list: read by the slot code and the builder tables from the class row, not by fx records."),
     ("REST:NONUM", "Rest or recharge rule that states no amount ('regains all expended charges at dawn', 'after a Long Rest'): the amount lives in the sentence that has the number; the refill timing is the reset of the pool."),
     ("REST:LENGTH", "How many hours a Long Rest takes for a trance, dormant or motionless rest (('meditate for 4 hours', 'finish a Long Rest in 4 hours')): a rest-length rule. The sheet records no rest length, and the hour count changes no sheet number."),
     ("DC:REFERENCE", "Sentence only points to the spell save DC / save DC of the feature (no number): the sheet computes the DC from the casting ability."),
     ("OBJECT:STATS", "Stat block of an object, stone, cube or summoned thing (AC, HP, resistance of the thing, not of the character): not a character stat."),
+    ("ITEM:REQUIREMENT", "Attunement or crafting requirement of an item (\"you must be proficient with it to attune\", \"Requirement: proficiency with all Simple weapons\"): a prerequisite, not a proficiency the item gives."),
+    ("ITEM:SENTIENT", "Languages that a sentient item, spirit or summoned creature understands: they belong to the item, not to the wearer."),
     ("ITEM:SENSES", "Senses of a sentient item ('It has hearing and darkvision out to 120 feet'): belong to the item, not to the wearer."),
     ("ACTIVE:OTHERS", "Effect placed on another creature (target, enemy, ally, 'its next turn') or a timed effect that ends by itself: the sheet tracks the character, not the target or a combat clock."),
     ("ACTIVE:TIMED_IMM", "'A creature that succeeds is immune to this power for 24 hours': immunity of the target to the power, not of the character."),
@@ -735,6 +740,10 @@ def excuse(r, ctx, atoms):
         return "STD:ASI"
     if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^(?:choose|pick) an? [a-z' -]+ (?:subclass|patron|circle|college|domain|oath|path)\b", t):
         return "STD:SUBCLASS_PICK"
+    if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^at this level you choose one [a-z' -]+ subclass\b", t, re.I):
+        return "STD:SUBCLASS_PICK"
+    if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^(?:choose|pick|gain|you gain) an? (?:epic boon|fighting style) feat\b", t, re.I):
+        return "STD:FEAT_PICK"
     if "AC" in need and not r.get("missing") and unexpl and unexpl <= {"10"} and RX_AC10.search(t) and has("AC"):
         return "STD:AC10"
     if need:
@@ -757,6 +766,10 @@ def excuse(r, ctx, atoms):
             return "OBJECT:STATS"
         if "SENSE" in need and RX_ITEMSENSE.search(t):
             return "ITEM:SENSES"
+        if kind == "item" and need <= {"PROF"} and re.search(r"(?i)^requirement:|\bmust (?:be|have) proficien|\bto attune\b|\byou must have proficiency", t):
+            return "ITEM:REQUIREMENT"
+        if kind == "item" and need <= {"PROF"} and re.search(r"(?i)\b(?:understands?|knows?|speaks?) (?:every|any|all|the) languages?\b|\bspirit understands\b", t) and not re.search(r"(?i)\byou (?:gain|learn|can speak|can read)\b", t):
+            return "ITEM:SENTIENT"
         if "IMM" in need and RX_24H.search(t):
             return "ACTIVE:TIMED_IMM"
         if need & {"RES", "IMM"} and re.search(r"\bignores? resistance|\bresistance to [a-z]+ damage doesn't apply|\bdoesn't apply to this damage|\bbypass|\bovercom", t):
