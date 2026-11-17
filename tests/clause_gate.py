@@ -294,8 +294,8 @@ reg("SPEED", "speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv", "m
 reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "darkHave", "noSurprise")
 reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "chkBonusNp", "skillPE", "skillAb", "langs", "tools", "weapons", "armor", "toolExpert", "toolPE",
     "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf")
-reg("SLOT", "slotAdd", "nslot", "smax", "arcRec", "srLu")
-reg("RESOURCE", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
+reg("SLOT", "slotAdd", "nslot", "smax", "arcRec", "srLu", "slotConv", "convMax")
+reg("RESOURCE", "slotConv", "convMax", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
 reg("ATK", "atk", "atkBonus", "atkDice", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
 reg("DMG", "dmg", "atkDice", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")
 reg("DC", "spDc", "dcAdd", "spellDc", "dc", "setsc")
@@ -487,6 +487,8 @@ def features(D):
             at = []
             for e in gx_match((gx.get("cls") or {}).get(cn), name, text):
                 at += atoms_from(e, "GX.cls|" + cn)
+                if e.get("slotConv"):  # Font of Magic and Font of Inspiration: the card trades slots and points both ways, makes slots that a Long Rest removes (tests/e2e_font_convert.py)
+                    at += [Atom(k, {"*"}, "cls.slotConv") for k in ("RESOURCE", "SLOT", "RESOURCE", "SLOT")]
             for k, v in st.items():
                 for part in mentions(v, name):
                     at += atoms_from({k: part}, "cls." + cn)

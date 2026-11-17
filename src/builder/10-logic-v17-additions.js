@@ -50,7 +50,9 @@ export function luRows(C,a,pb,feats){const TLv=TL(),iv=invList(),c={TLv:TLv,iv:i
  ensureInv().forEach((x) =>{luItemRow(C,x)});
  /* srLu on a gfx entry: the pools of that feature can also be refilled by spending a spell slot of that level or higher (sr = lowest slot level) */
  fxList().forEach((e) =>{if(e.srLu)C.res.forEach((r) =>{if(r.f===e.n&&!r.sr)r.sr=e.srLu})});
- luArc(C)}
+ luConv(C);luArc(C)}
+/* slotConv on a gfx entry: the pool converts to or from spell slots ("sp" Sorcery Points, "bi" Bardic Inspiration); the card shows the buttons */
+function luConv(C){const key={sp:"r-sorcery-points",bi:"r-bardic-inspiration"};fxList().forEach((e) =>{if(e.slotConv&&key[e.slotConv])C.res.forEach((r) =>{if(r.k===key[e.slotConv])r.cv=e.slotConv+":"+(e.convMax||5)})})}
 function luArc(C){
  activeFx().forEach((q) =>{const n=q.fx&&q.fx.arcRec;if(n)C.res.forEach((r) =>{if(r.n==='Arcane Recovery'&&r.max<n){r.max=n;r.tag=(r.tag?r.tag+'. ':'')+q.n+': '+n+' uses between Long Rests'}})})/* v100: Grimoire Infinitus (Exalted) */}
 /* v21 RU44: highest result of a dice expression such as "1d6+3" or "2d8+4" (0 when it is not one) */
