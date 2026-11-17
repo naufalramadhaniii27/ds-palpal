@@ -386,10 +386,11 @@
  },
  "GX.species|Deep One Dwarf": {
   "files": [
+   "fx-B9-advnotes.js",
    "fx-L9.js",
    "fx-N1.js"
   ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
   "shared": [
    "advOn"
   ]
@@ -454,9 +455,10 @@
  "GX.species|Pluvenn": {
   "files": [
    "fx-A-class-species.js",
+   "fx-B9-advnotes.js",
    "fx-L9.js"
   ],
-  "reason": "Different features of the same species are defined in the two files (no field shared); nothing is counted twice.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
   "shared": []
  },
  "GX.species|Raptor": {
@@ -1194,6 +1196,78 @@
    "fx-L1.js"
   ],
   "reason": "fx batch B7 adds a different feature of the same entry (training record); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Aberrant Spawn": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L1.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
+  "shared": []
+ },
+ "GX.feat|Beastperson": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L1.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
+  "shared": []
+ },
+ "GX.feat|Fey Transformation: Stage 4": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-H-audit.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
+  "shared": []
+ },
+ "GX.feat|Fiend Transformation: Stage 1": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-C-feat.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
+  "shared": []
+ },
+ "GX.feat|Green-Skin": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L1.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
+  "shared": []
+ },
+ "GX.feat|Proto-Man": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L1.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
+  "shared": []
+ },
+ "GX.feat|Seraph Transformation: Stage 3": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L1.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
+  "shared": []
+ },
+ "GX.species|Kuo-Toa": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L9.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
+  "shared": []
+ },
+ "GX.species|Manyhorn": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-L9.js"
+  ],
+  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
   "shared": []
  }
 }
