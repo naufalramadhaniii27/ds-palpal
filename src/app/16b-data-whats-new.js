@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:165,l:"0.0.63",d:"2026-11-18",n:["Druid: Wild Resurgence and Archdruid now trade Wild Shape uses and spell slots on the Wild Shape card. Spend a slot to regain a use, or spend uses to make a slot that a Long Rest removes."]},
 {v:164,l:"0.0.62",d:"2026-11-18",n:["Font of Magic now trades slots and points on its card: spend a slot to gain points, or spend points to make a slot of level 1 to 5. Made slots vanish after a Long Rest. Font of Inspiration lets a Bard spend a slot to recover a Bardic Inspiration use.","Ten more subclass features give their free spell with the right spellcasting ability."]},
 {v:163,l:"0.0.61",d:"2026-11-18",n:["Fourteen subclass features now give their damage resistances (some on a switch, such as Raging or Starry Form). Cleric domains with Potent Spellcasting add the Wisdom modifier to cantrip damage.","Book of Exalted Deeds, Armor of Invulnerability, Stormgirdle and Gauntlets of Rage give their resistances and immunities. Dwarf Stonecunning, Naga Speed Burst, Tabaxi Feline Agility, Spring Mandrake and the Geppettin species give their speed, tremorsense or disease immunity."]},
 {v:162,l:"0.0.60",d:"2026-11-18",n:["Items whose spells can be cast once each until the next dawn (Instrument of the Bards, Sage's Signet, Idols of Good Fortunes, Necklace of the Beastly Familiar and more) now give one counter per spell, and the cast button stops when that spell is used."]},

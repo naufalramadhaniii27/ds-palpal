@@ -9,6 +9,7 @@
  },
  "GX.cls|Druid": {
   "files": [
+   "fx-B37-slotconv.js",
    "fx-L1.js",
    "fx-L5.js"
   ],

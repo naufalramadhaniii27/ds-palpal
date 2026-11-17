@@ -257,7 +257,13 @@ document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.clo
 function srBtn(r,left){ return r.sr&&left<r.max?'<button type="button" class="btn press" data-usesr="'+esc(r.k)+'">Restore with a level '+r.sr+'+ slot</button>':''; }
 /* Font of Magic and Font of Inspiration: chips that trade spell slots and the pool (cv "sp": slot to points, points to slot; cv "bi": slot to one Bardic Inspiration use) */
 const FONT_COST=[0,2,3,5,6,7];
+/* Druid: Wild Resurgence (a use for a slot, or one use for one level 1 slot once per Long Rest) and Archdruid (each use counts as 2 slot levels, from level 20) */
+const WS_COST={1:1,2:1,4:2};
+function wsBtns(r,top,sl,left){ let a="", b=""; for(let L=1;L<=5;L++){ const ok=sl(L)>0&&left<r.max; a+='<button type="button" class="btn press'+(ok?'':' off')+'" data-conv="ws|g|'+L+'"'+(ok?'':' disabled')+'>Slot '+L+' <small>+1 use</small></button>'; }
+  [1,2,4].forEach((L) =>{ if(L>top&&L>1) return; const ok=left>=WS_COST[L]&&!(L===1&&S.wr); b+='<button type="button" class="btn press'+(ok?'':' off')+'" data-conv="ws|m|'+L+'"'+(ok?'':' disabled')+'>Make slot '+L+' <small>'+WS_COST[L]+(WS_COST[L]>1?' uses':' use')+'</small></button>'; });
+  return '<div class="spcast">'+a+'</div><div class="spcast">'+b+'</div><p class="muted spcn">No action. Expend a spell slot to regain one Wild Shape use. Expend one use to make a level 1 slot (once per Long Rest).'+(top>=4?' At level 20, each use counts as 2 slot levels. Made slots vanish when you finish a Long Rest.':' The made slot vanishes when you finish a Long Rest.')+'</p>'; }
 function convBtns(r){ if(!r.cv) return ""; const cvk=r.cv.split(":")[0], top=+r.cv.split(":")[1]||5, sl=(L) =>{ const q=(D.res||[]).filter((x) =>{ return x.k==="s"+L; })[0]; return q?q.max-used(q.k,q.max):0; }, left=r.max-used(r.k,r.max); let a="", b="";
+  if(cvk==="ws") return wsBtns(r,top,sl,left);
   for(let L=1;L<=top;L++){ const ok=sl(L)>0&&left<r.max; a+='<button type="button" class="btn press'+(ok?'':' off')+'" data-conv="'+cvk+'|g|'+L+'"'+(ok?'':' disabled')+'>Slot '+L+' <small>'+(cvk==="sp"?'+'+L+' points':'+1 use')+'</small></button>';
     if(cvk==="sp"){ const ok2=left>=FONT_COST[L]; b+='<button type="button" class="btn press'+(ok2?'':' off')+'" data-conv="sp|m|'+L+'"'+(ok2?'':' disabled')+'>Make slot '+L+' <small>'+FONT_COST[L]+' points</small></button>'; } }
   return '<div class="spcast">'+a+'</div>'+(b?'<div class="spcast">'+b+'</div>':'')+'<p class="muted spcn">'+(cvk==="sp"?'Bonus Action. Spend a slot to gain points (never above your maximum), or spend points to make a slot of level 1 to 5. Made slots vanish when you finish a Long Rest.':'No action. Expend a spell slot to recover one expended use.')+'</p>'; }

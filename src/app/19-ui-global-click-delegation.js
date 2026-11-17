@@ -30,18 +30,23 @@ document.addEventListener("click",(e) =>{
 });
 /* Font of Magic and Font of Inspiration: "sp|g|L" slot of level L to points, "sp|m|L" points to a slot of level L, "bi|g|L" slot to a Bardic Inspiration use */
 const FONT_COST=[0,2,3,5,6,7];
+const WS_COST={1:1,2:1,4:2};
+function convDone(){ save(); syncLU(); try{ renderAll(); }catch(er){} refreshEntry(); }
+/* make a slot of level L from the pool (cost in points or uses); r is the pool row, u its used count */
+function convMake(r,u,L,cost,okNow,msg){ if(!okNow){ toast(msg); return; } S.used[r.k]=u+cost; S.xs=S.xs||{}; S.xs[L]=num(S.xs[L],0)+1; if(r.cv.indexOf("ws")===0&&L===1) S.wr=1; toast("Made a level "+L+" slot. It vanishes after a Long Rest"); convDone(); }
+function convGive(r,u,sl,L,per){ if(!sl||sl.max-used(sl.k,sl.max)<1||u<1){ toast("Nothing to convert."); return; } S.used[sl.k]=used(sl.k,sl.max)+1; S.used[r.k]=Math.max(0,u-per); toast("Spent a level "+L+" slot. "+esc(r.n)+": "+(r.max-used(r.k,r.max))+" left"); convDone(); }
 function convDo(spec){ const p=spec.split("|"), L=+p[2], r=(D.res||[]).filter((q) =>{ return String(q.cv).split(":")[0]===p[0]; })[0], sl=(D.res||[]).filter((q) =>{ return q.k==="s"+L; })[0]; if(!r) return;
-  const u=used(r.k,r.max); undoMark("Limited Use",1);
-  if(p[1]==="g"){ if(!sl||sl.max-used(sl.k,sl.max)<1||u<1){ toast("Nothing to convert."); return; } S.used[sl.k]=used(sl.k,sl.max)+1; S.used[r.k]=Math.max(0,u-(p[0]==="sp"?L:1)); toast("Spent a level "+L+" slot. "+esc(r.n)+": "+(r.max-used(r.k,r.max))+" left"); }
-  else { if(r.max-u<FONT_COST[L]||L>(+String(r.cv).split(":")[1]||5)){ toast("Not enough points, or the slot level is too high."); return; } S.used[r.k]=u+FONT_COST[L]; S.xs=S.xs||{}; S.xs[L]=num(S.xs[L],0)+1; toast("Made a level "+L+" slot. It vanishes after a Long Rest"); }
-  save(); syncLU(); try{ renderAll(); }catch(er){} refreshEntry(); }
+  const u=used(r.k,r.max), top=+String(r.cv).split(":")[1]; undoMark("Limited Use",1);
+  if(p[1]==="g") return convGive(r,u,sl,L,p[0]==="sp"?L:1);
+  if(p[0]==="ws"){ const c=WS_COST[L]; return convMake(r,u,L,c,!!c&&r.max-u>=c&&!(L>1&&L>top)&&!(L===1&&S.wr),"Not enough uses, or no longer available."); }
+  convMake(r,u,L,FONT_COST[L],r.max-u>=FONT_COST[L]&&L<=(top||5),"Not enough points, or the slot level is too high."); }
 export function doRest(kind,quiet){
  const {ex0}=doRestStep1(kind);
   doRestStep2(kind, ex0, quiet);
 }
 env.__sheetRest=function(kind){ doRest(kind,true); renderAll(); };/* test hook: take a rest without the dialog */
 function doRestStep1(kind){
-sitReset(kind==='short'?'short':'long'); if(kind!=='short') delete S.xs; const ex0=num(S.exh,0), hp14=(kind!=="short"&&x14())?hdPlan():null;/* v94 */ if(S.mode){ if(kind==="short"){ ["rage","sacred","wings","radiance","shroud"].forEach((k) =>{ delete S.mode[k]; }); } else delete S.mode; }/* v22: Rage, Sacred Weapon, and Celestial Revelation last minutes, Wild Shape hours */
+sitReset(kind==='short'?'short':'long'); if(kind!=='short'){ delete S.xs; delete S.wr; } const ex0=num(S.exh,0), hp14=(kind!=="short"&&x14())?hdPlan():null;/* v94 */ if(S.mode){ if(kind==="short"){ ["rage","sacred","wings","radiance","shroud"].forEach((k) =>{ delete S.mode[k]; }); } else delete S.mode; }/* v22: Rage, Sacred Weapon, and Celestial Revelation last minutes, Wild Shape hours */
   D.res.forEach((r) =>{
     let u=num(S.used[r.k],0);
     if(kind==="short"){ if(r.reset==="short") u=0; else if(r.reset==="short1") u=Math.max(0,u-1); }    else if(hp14&&hp14[r.k]!=null) u=Math.max(0,u-hp14[r.k]);/* v94: 2014, half of the Hit Dice come back */
