@@ -3,7 +3,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};
 (function(){
 var G=DataEnv.slot.GX.item=DataEnv.slot.GX.item||{};
 var add=function(n,e){e.n=n;(G[n]=G[n]||[]).push(e)};
-add("Helm of Awareness",{"initAdv": 1});
+add("Helm of Awareness",{"initAdv": true});
 add("Ring of Truth Telling",{"defs": [["Advantage", "Ring of Truth Telling: Advantage on Wisdom (Insight) checks to tell whether someone is lying to you"]]});
 add("Eyes of the Impossible",{"defs": [["Advantage", "Eyes of the Impossible: Advantage on Charisma (Persuasion) checks to deal with evil creatures"]]});
 add("Ring of Veracity",{"defs": [["Advantage", "Ring of Veracity: Advantage on Wisdom (Insight) checks made with the Search action"]]});
