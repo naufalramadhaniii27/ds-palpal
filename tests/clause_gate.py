@@ -637,6 +637,8 @@ def features(D):
         isp = (D.get("itemSpells") or {}).get(name)
         if isinstance(isp, dict):
             at += atoms_from({"sp": isp.get("sp")}, "ITEM_SPELLS") if isp.get("sp") else []
+            for ent in (isp.get("sp") or []):  # the line "Spell (Charge Cost N)" is one sentence per spell: one atom each
+                if isinstance(ent, list) and len(ent) > 1 and isinstance(ent[1], (int, float)): at.append(Atom("RESOURCE", nums_in(ent[1]), "ITEM_SPELLS.cost|" + str(ent[0])))
             if isp.get("atk") is not None: at.append(Atom("ATK", nums_in(isp["atk"]), "ITEM_SPELLS.atk"))
             if isp.get("dc") is not None: at.append(Atom("DC", nums_in(isp["dc"]), "ITEM_SPELLS.dc"))
             for k, v in isp.items():
