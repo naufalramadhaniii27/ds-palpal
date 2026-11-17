@@ -6,4 +6,5 @@ var ds=function(n,t){add(n,[{n:"Divine Strike (rider)",l:8,atkDice:[{when:"weapo
 ds("Dragon Domain","Fire");ds("Hunger Domain","Necrotic");ds("Lust Domain","Psychic");ds("Vermin Domain","Poison");ds("Zeal Domain (PSA)","weapon type");
 add("Bounty Hunter",[{n:"Cornered Quarry (rider)",l:3,atkDice:[{when:"weapon",d:"1d8",t:"weapon type",note:"Cornered Quarry, once per turn, when no ally of the target is within 5 ft"}]}]);
 add("Freerunner",[{n:"Momentum (rider)",l:3,atkDice:[{when:"weapon",d:"1d6",t:"extra",note:"Momentum, next weapon attack after moving through a hostile space, leaving reach or moving 15 ft"}]}]);
+GX.item=GX.item||{};GX.item["Flayer Slayer"]=(GX.item["Flayer Slayer"]||[]).concat([{n:"Flayer Slayer (rider)",atkDice:[{when:"Flayer Slayer",d:"1d12",t:"Slashing",note:"against an Aberration"}]}]);
 })();
