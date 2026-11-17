@@ -1614,5 +1614,145 @@
   ],
   "reason": "B9 holds the Advantage note, B15 the +1 AC. No field is shared, nothing is counted twice.",
   "shared": []
+ },
+ "GX.species|Derro Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Dragonborn Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Drow Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Dwarf Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Elf/Shadow Fey Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Fever-Bit Drow": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Gnome Chassis": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Gnome Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Halfling Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Human and Half-Elf Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Kobold Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Ravenfolk Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Tiefling Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Trollkin Heritage": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B16-speciesimm.js"
+  ],
+  "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
+  "shared": [
+   "defs"
+  ]
  }
 }

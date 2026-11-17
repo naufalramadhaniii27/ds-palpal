@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9201 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9223 |
 | Info (tag terdokumentasi) | 29086 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2686, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 951, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5962 |
+| Uncovered | 5940 |
 | Uncovered dengan angka | 3565 |
-| Uncovered dengan kelas kata kunci mekanik | 5570 |
+| Uncovered dengan kelas kata kunci mekanik | 5548 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 392 |
 | Angka yang tidak dijelaskan record mana pun | 3374 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4974 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4952 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 264 |
 | Waktu | muat data 0 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 169 ditangkap (56.5%). Hapus semua atom kelas yang dibutuhkan: 167 ditangkap (55.9%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 176 ditangkap (58.9%). Hapus semua atom kelas yang dibutuhkan: 180 ditangkap (60.2%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 269 ditangkap (89.7%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 277 ditangkap (92.3%), semua atom kelas dihapus: 294 ditangkap (98.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -39,10 +39,10 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3361 |
-| GX | 1966 |
+| GX | 1988 |
 | wxs | 1069 |
 | LU_X | 721 |
-| species | 525 |
+| species | 545 |
 | AUTO | 444 |
 | ITEM_SPELLS | 356 |
 | feat | 322 |
@@ -60,7 +60,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | CLS_AUTO | 7 |
 | RULE | 7 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 294, fx-L5.js 201, fx-L4.js 173, fx-L12.js 169, fx-L10.js 147, fx-L2.js 133, fx-L1.js 116, fx-L3.js 113, fx-N1.js 104, fx-L9.js 99, fx-L11.js 90, fx-L6.js 69.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 308, fx-L5.js 201, fx-L4.js 173, fx-L12.js 169, fx-L10.js 147, fx-L2.js 133, fx-L1.js 116, fx-L3.js 113, fx-N1.js 104, fx-L9.js 99, fx-L11.js 90, fx-L6.js 69.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
@@ -72,10 +72,10 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | SPEED | 1411 | 577 | 40.9% |
 | PROF | 1124 | 493 | 43.9% |
 | CHOICE | 1663 | 435 | 26.2% |
-| ADV | 1959 | 425 | 21.7% |
-| RES | 1375 | 422 | 30.7% |
-| IMM | 1004 | 363 | 36.2% |
+| ADV | 1959 | 405 | 20.7% |
+| RES | 1375 | 402 | 29.2% |
 | NUM | 8604 | 344 | 4.0% |
+| IMM | 1004 | 342 | 34.1% |
 | SLOT | 1425 | 312 | 21.9% |
 | DC | 2903 | 284 | 9.8% |
 | ATK | 1056 | 261 | 24.7% |
@@ -98,7 +98,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | class | 1186 | 272 | 631 | 0 | 283 |
 | feat | 2812 | 678 | 1475 | 0 | 659 |
 | item | 19265 | 4621 | 11653 | 0 | 2991 |
-| species | 1638 | 892 | 492 | 0 | 254 |
+| species | 1638 | 914 | 492 | 0 | 232 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
 | sub | 10118 | 2460 | 5883 | 0 | 1775 |
 
@@ -109,7 +109,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | dmg | 10460 | 2534 | 6316 | 1610 | 15.4% |
 | tvss | 2788 | 674 | 1629 | 485 | 17.4% |
 | core | 1495 | 402 | 762 | 331 | 22.1% |
-| ttoh | 1470 | 320 | 870 | 280 | 19.0% |
+| ttoh | 1470 | 340 | 870 | 260 | 17.7% |
 | tsgs | 1479 | 404 | 831 | 244 | 16.5% |
 | tvss14 | 1201 | 224 | 741 | 236 | 19.7% |
 | tkdm | 921 | 221 | 492 | 208 | 22.6% |
@@ -120,7 +120,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tua24 | 634 | 179 | 327 | 128 | 20.2% |
 | tdm14 | 643 | 148 | 380 | 115 | 17.9% |
 | dmg14 | 540 | 155 | 288 | 97 | 18.0% |
-| tgh14p | 490 | 114 | 282 | 94 | 19.2% |
+| tgh14p | 490 | 116 | 282 | 92 | 18.8% |
 | twow | 542 | 141 | 311 | 90 | 16.6% |
 | phb14 | 513 | 173 | 256 | 84 | 16.4% |
 | thhw | 395 | 91 | 232 | 72 | 18.2% |
@@ -200,12 +200,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | DMG | 528 | 474 |
 | SPEED | 494 | 389 |
 | PROF | 443 | 164 |
-| ADV | 415 | 184 |
+| ADV | 395 | 184 |
 | NUM | 344 | 344 |
 | RES | 334 | 138 |
 | SLOT | 294 | 101 |
 | CHOICE | 268 | 77 |
-| IMM | 233 | 79 |
+| IMM | 231 | 79 |
 | DIS | 198 | 107 |
 | SENSE | 180 | 154 |
 | ATK | 163 | 126 |
@@ -437,7 +437,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/Necrophage|Memory of Flesh#4` If the target was proficient in any Intelligence skill, you pick one of them and gain proficiency in it, or double your Proficiency Bonus with it if you already have it. | no record for CHOICE,PROF; number double,pb unexplained
 - `sub|Wizard/White Necromancer|Lore of Life and Death#1` You gain proficiency in Medicine and Religion, and your Proficiency Bonus is doubled on Wisdom (Medicine) checks. | number double,pb no record explains
 
-### ADV (415 uncovered)
+### ADV (395 uncovered)
 
 - `feat|Cohort of Chaos|Cohort of Chaos#9` 1, Battle Fury: a creature you can see has Advantage on attack rolls and Disadvantage on ability checks. | number 1 no record explains
 - `feat|Lucky|Lucky#5` You can spend 1 Luck Point on any d20 you roll for a D20 Test, which gives you Advantage on that roll. | number 1d20,1 no record explains
@@ -822,33 +822,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Sorcerer/Apocalypse Sorcery|Arcane Apocrypha#1` After a Long Rest you can create one Spell Scroll for free, of a level 5 or lower spell you can cast. -> covered
-- class `sub|Sorcerer/Apocalypse Sorcery|Arcane Apocrypha#1` After a Long Rest you can create one Spell Scroll for free, of a level 5 or lower spell you can cast. -> info:REST:NONUM
-- record `sub|Wizard/School of Liminality|Otherworldly Sense#4` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
-- class `sub|Wizard/School of Liminality|Otherworldly Sense#4` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
-- record `feat|Mark of Hospitality|Mark of Hospitality#6` Each is free once per Long Rest. -> info:REST:NONUM
-- class `feat|Mark of Hospitality|Mark of Hospitality#6` Each is free once per Long Rest. -> info:REST:NONUM
-- record `item|tsgs|Gibberbox#6` Then wait 24 hours. -> info:NUMONLY:GEOMETRY
-- class `item|tsgs|Gibberbox#6` Then wait 24 hours. -> info:NUMONLY:GEOMETRY
-- record `sub|Wizard/Blood Magic|Bond of Mutual Suffering#3` Once, recharging on a rest; twice from level 14. -> info:NUMONLY:TABLE
-- class `sub|Wizard/Blood Magic|Bond of Mutual Suffering#3` Once, recharging on a rest; twice from level 14. -> info:NUMONLY:TABLE
-- record `sub|Paladin/Oath of Revelry|Party Animal#4` Long Rest to use again. -> covered
-- class `sub|Paladin/Oath of Revelry|Party Animal#4` Long Rest to use again. -> info:REST:NONUM
-- record `item|tce|Crystalline Chronicle#7` You can use the charges in the following ways while holding it: -> info:REST:NONUM
-- class `item|tce|Crystalline Chronicle#7` You can use the charges in the following ways while holding it: -> info:REST:NONUM
-- record `item|pabtso|Blessing of the Solipsistic Mind#5` You regain the ability to focus after a Long Rest. -> info:REST:NONUM
-- class `item|pabtso|Blessing of the Solipsistic Mind#5` You regain the ability to focus after a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Figurine of Wondrous Power, Ebony Fly#14` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Figurine of Wondrous Power, Ebony Fly#14` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
-- record `sub|Warden/Diabolist|Infernal Command#4` A Short Rest regains one expended use. -> covered
-- class `sub|Warden/Diabolist|Infernal Command#4` A Short Rest regains one expended use. -> info:REST:NONUM
-- record `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
-- class `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
-- record `sub|Warlock/Primordial Patron|Elemental Spells#21` 9 Cone of Cold. -> info:NUMONLY:TABLE
-- class `sub|Warlock/Primordial Patron|Elemental Spells#21` 9 Cone of Cold. -> info:NUMONLY:TABLE
-- record `feat|Fey Teleportation|Fey Teleportation#9` You regain the use when you finish a Short or Long Rest. -> info:REST:NONUM
-- class `feat|Fey Teleportation|Fey Teleportation#9` You regain the use when you finish a Short or Long Rest. -> info:REST:NONUM
-- record `sub|Craftsman/Luminaries' Guild|Hardlight Wall#3` The wall is translucent and lasts 1 minute or until you dismiss it (no action). -> info:NUMONLY:GEOMETRY
-- class `sub|Craftsman/Luminaries' Guild|Hardlight Wall#3` The wall is translucent and lasts 1 minute or until you dismiss it (no action). -> info:NUMONLY:GEOMETRY
-- record `item|egw|Verminshroud (Exalted)#10` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant scorpion. -> info:ACTIVE:TRIGGER
-- class `item|egw|Verminshroud (Exalted)#10` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant scorpion. -> info:ACTIVE:TRIGGER
+- record `sub|Rogue/Infiltrator (2014)|Infiltration Rig#5` At level 9 you can also cast invisibility on yourself once per Long Rest. -> covered
+- class `sub|Rogue/Infiltrator (2014)|Infiltration Rig#5` At level 9 you can also cast invisibility on yourself once per Long Rest. -> info:REST:NONUM
+- record `feat|Mark of Finding|Mark of Finding#8` Each free cast returns after a Long Rest. -> info:REST:NONUM
+- class `feat|Mark of Finding|Mark of Finding#8` Each free cast returns after a Long Rest. -> info:REST:NONUM
+- record `sub|Rogue/Infiltrator|Electromagical Burst#2` Long Rest to use again. -> covered
+- class `sub|Rogue/Infiltrator|Electromagical Burst#2` Long Rest to use again. -> info:REST:NONUM
+- record `feat|Background Talents (Aristocrat)|Background Talents (Aristocrat)#3` Pick one talent from this list when you choose the profession, and one more each time you rank up. -> info:ACTIVE:TRIGGER
+- class `feat|Background Talents (Aristocrat)|Background Talents (Aristocrat)#3` Pick one talent from this list when you choose the profession, and one more each time you rank up. -> info:ACTIVE:TRIGGER
+- record `item|dmg|Gauntlets of Ogre Power#1` While you wear these gauntlets, your Strength score is 19. -> info:NUMONLY:TEXT
+- class `item|dmg|Gauntlets of Ogre Power#1` While you wear these gauntlets, your Strength score is 19. -> info:NUMONLY:TEXT
+- record `item|dmg|Horn of the Endless Maze#5` Once you use the horn, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Horn of the Endless Maze#5` Once you use the horn, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Visage of Delight and Disaster#2` You gain two d10 Bardic Inspiration dice that work as the level 1 Bard feature and add to any you already have. -> info:NUMONLY:ROLL
+- class `item|dmg|Visage of Delight and Disaster#2` You gain two d10 Bardic Inspiration dice that work as the level 1 Bard feature and add to any you already have. -> info:NUMONLY:ROLL
+- record `sub|Paladin/Oath of Devotion (2014)|Holy Nimbus#5` You regain use after a Long Rest. -> covered
+- class `sub|Paladin/Oath of Devotion (2014)|Holy Nimbus#5` You regain use after a Long Rest. -> info:REST:NONUM
+- record `sub|Barbarian/Path of the Fin (2014)|Tsunami#5` Short or Long Rest to use again. -> covered
+- class `sub|Barbarian/Path of the Fin (2014)|Tsunami#5` Short or Long Rest to use again. -> info:REST:NONUM
+- record `item|tee24|Bane Weapon#3` When you finish a Long Rest, choose Aberration, Beast, Celestial, Dragon, Fiend, Giant or Undead. -> info:REST:NONUM
+- class `item|tee24|Bane Weapon#3` When you finish a Long Rest, choose Aberration, Beast, Celestial, Dragon, Fiend, Giant or Undead. -> info:REST:NONUM
+- record `species|Mystic Laneshi|Beast Whisperers#2` Long Rest to use again. -> info:REST:NONUM
+- class `species|Mystic Laneshi|Beast Whisperers#2` Long Rest to use again. -> info:REST:NONUM
+- record `sub|Warlock/Singularity Patron|Microsingularity#6` Long Rest to use again, or spend a Pact Magic slot (no action). -> covered
+- class `sub|Warlock/Singularity Patron|Microsingularity#6` Long Rest to use again, or spend a Pact Magic slot (no action). -> info:REST:NONUM
+- record `sub|Witch/Green Magic|Green Magic Spells#5` 9 Awaken, Tree Stride. -> info:NUMONLY:TABLE
+- class `sub|Witch/Green Magic|Green Magic Spells#5` 9 Awaken, Tree Stride. -> info:NUMONLY:TABLE
+- record `sub|Artificer/Cartographer|Mapping Magic#4` A Long Rest restores all uses. -> info:REST:NONUM
+- class `sub|Artificer/Cartographer|Mapping Magic#4` A Long Rest restores all uses. -> info:REST:NONUM
+- record `feat|Cult of the Dragon Initiate|Cult of the Dragon Initiate#11` Once used, it returns after a Short or Long Rest. -> info:REST:NONUM
+- class `feat|Cult of the Dragon Initiate|Cult of the Dragon Initiate#11` Once used, it returns after a Short or Long Rest. -> info:REST:NONUM
