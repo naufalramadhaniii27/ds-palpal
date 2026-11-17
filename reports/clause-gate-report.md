@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9199 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9201 |
 | Info (tag terdokumentasi) | 29086 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2686, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 951, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5964 |
-| Uncovered dengan angka | 3567 |
-| Uncovered dengan kelas kata kunci mekanik | 5572 |
+| Uncovered | 5962 |
+| Uncovered dengan angka | 3565 |
+| Uncovered dengan kelas kata kunci mekanik | 5570 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 392 |
-| Angka yang tidak dijelaskan record mana pun | 3376 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4977 kalimat |
+| Angka yang tidak dijelaskan record mana pun | 3374 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4974 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 264 |
 | Waktu | muat data 0 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 168 ditangkap (56.2%). Hapus semua atom kelas yang dibutuhkan: 169 ditangkap (56.5%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 169 ditangkap (56.5%). Hapus semua atom kelas yang dibutuhkan: 167 ditangkap (55.9%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 272 ditangkap (90.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 269 ditangkap (89.7%), semua atom kelas dihapus: 296 ditangkap (98.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -39,7 +39,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3361 |
-| GX | 1964 |
+| GX | 1966 |
 | wxs | 1069 |
 | LU_X | 721 |
 | species | 525 |
@@ -60,7 +60,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | CLS_AUTO | 7 |
 | RULE | 7 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 293, fx-L5.js 201, fx-L4.js 173, fx-L12.js 169, fx-L10.js 147, fx-L2.js 133, fx-L1.js 116, fx-L3.js 113, fx-N1.js 104, fx-L9.js 99, fx-L11.js 90, fx-L6.js 69.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 294, fx-L5.js 201, fx-L4.js 173, fx-L12.js 169, fx-L10.js 147, fx-L2.js 133, fx-L1.js 116, fx-L3.js 113, fx-N1.js 104, fx-L9.js 99, fx-L11.js 90, fx-L6.js 69.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
@@ -81,7 +81,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | ATK | 1056 | 261 | 24.7% |
 | DIS | 1221 | 239 | 19.6% |
 | SENSE | 648 | 206 | 31.8% |
-| AC | 677 | 164 | 24.2% |
+| AC | 677 | 162 | 23.9% |
 | SAVE | 278 | 150 | 54.0% |
 | HP | 206 | 112 | 54.4% |
 | NUM-DICE | 1628 | 77 | 4.7% |
@@ -96,7 +96,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | Jenis | Mekanik | Covered | Info | Allow | Uncovered |
 |---|---|---|---|---|---|
 | class | 1186 | 272 | 631 | 0 | 283 |
-| feat | 2812 | 676 | 1475 | 0 | 661 |
+| feat | 2812 | 678 | 1475 | 0 | 659 |
 | item | 19265 | 4621 | 11653 | 0 | 2991 |
 | species | 1638 | 892 | 492 | 0 | 254 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
@@ -111,9 +111,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | core | 1495 | 402 | 762 | 331 | 22.1% |
 | ttoh | 1470 | 320 | 870 | 280 | 19.0% |
 | tsgs | 1479 | 404 | 831 | 244 | 16.5% |
-| tvss14 | 1201 | 223 | 741 | 237 | 19.7% |
+| tvss14 | 1201 | 224 | 741 | 236 | 19.7% |
 | tkdm | 921 | 221 | 492 | 208 | 22.6% |
-| tsdm | 1063 | 283 | 592 | 188 | 17.7% |
+| tsdm | 1063 | 284 | 592 | 187 | 17.6% |
 | tghp | 1116 | 383 | 554 | 179 | 16.0% |
 | tce | 730 | 143 | 452 | 135 | 18.5% |
 | au | 535 | 117 | 285 | 133 | 24.9% |
@@ -208,8 +208,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | IMM | 233 | 79 |
 | DIS | 198 | 107 |
 | SENSE | 180 | 154 |
-| AC | 164 | 129 |
 | ATK | 163 | 126 |
+| AC | 162 | 127 |
 | SAVE | 144 | 120 |
 | DC | 129 | 123 |
 | HP | 112 | 85 |
@@ -688,26 +688,26 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `class|Healer|Combat Supporter#3` The bonus becomes +2 at level 11 and +3 at level 17. | angka: 2,3
 - `class|Bard|Superior Inspiration#1` When you roll Initiative and have fewer than two uses of Bardic Inspiration left, you regain expended uses until you have two. | angka: 2
 
-### feat (271)
+### feat (269)
 
 - `feat|Durable|Durable#2` Your Constitution score rises by 1, but not above 20. | angka: 1,20
-- `feat|Magitechnician (Dark Matter)|Magitechnician (Dark Matter)#3` If one of your magic items calls for a saving throw, it uses this DC when it is higher: 8 plus the modifier of the ability this feat raised plus your Proficiency Bonus. | angka: 8,pb
-- `feat|Coalition War Training|Coalition War Training#4` When you attack with a carbine held in two hands without firing it automatically, its damage becomes 2d8. | angka: 2d8,2
+- `feat|Mechanic|Mechanic#4` When you use it through this feat, the extra damage equals twice your Proficiency Bonus and the weapon stays Overheated until you finish a Short Rest or Long Rest. | angka: double,pb
+- `feat|Depth Module|Depth Module#6` Your swimming speed rises to 60 ft. | angka: 60
 - `feat|Observant|Observant#2` Pick Intelligence or Wisdom and raise it by 1 (maximum 20). | angka: 20
 - `feat|Watchers|Watchers#10` Immediately after you make a D20 Test and roll a 1 on the d20, you make a Wisdom saving throw against DC 13 plus your Proficiency Bonus. | angka: 1d20,13,pb
-- `feat|Vampire Transformation: Level 1|Vampire Transformation: Level 1#19` A Short or Long Rest resets them to 0. | angka: 0
+- `feat|Vampire Transformation: Level 1|Vampire Transformation: Level 1#28` You gain darkvision 60 ft if you lack it. | angka: 60
 - `feat|Shadow Touched|Shadow Touched#6` You can cast each of the two once with no spell slot. | angka: 2
 - `feat|Boon of Skill|Boon of Skill#2` Choose an ability score and add 1 to it (maximum 30). | angka: 30
-- `feat|Insectoid|Insectoid#2` Your antennae give you blindsight 10 feet. | angka: 10
-- `feat|Chief Engineer (2014)|Chief Engineer (2014)#8` A repaired system or weapon regains 5 mega hit points instead of 1. | angka: 5,1
-- `feat|Mantle of the Sun|Mantle of the Sun#8` Wings: luminous wings and a sunlike disk appear, giving you a flying speed of 30 ft. | angka: 30
+- `feat|Iron Hero|Iron Hero#1` When a creature with a Challenge Rating higher than your level attacks you, you have +2 AC. | angka: 2
+- `feat|Coalition War Training|Coalition War Training#4` When you attack with a carbine held in two hands without firing it automatically, its damage becomes 2d8. | angka: 2d8,2
+- `feat|Thick-Shelled|Thick-Shelled#3` While you wear no armor, your AC is 13 + your Dexterity modifier. | angka: 13
 - `feat|Actor|Actor#2` Your Charisma score rises by 1, but not above 20. | angka: 1,20
 - `feat|Keen Mind|Keen Mind#2` Raise your Intelligence by 1 (maximum 20). | angka: 1,20
-- `feat|Depth Module|Depth Module#8` You gain blindsight 5 ft, which extends to 20 ft underwater. | angka: 5,20
-- `feat|Arcane Charger|Arcane Charger#4` If you moved at least 10 feet in a straight line and the cantrip hits, you can either add +5 to its damage roll or push the target 10 feet away from you. | angka: 10,5
-- `feat|Infernal Dragoon|Infernal Dragoon#9` Once per Long Rest, after making a D20 Test roll, you can add +2 to it. | angka: 1d20,2
-- `feat|Archon (DM14)|Archon (DM14)#9` You gain +1 to it. | angka: 1
-- `feat|Nocturnal (GH14C)|Nocturnal (GH14C)#2` You gain darkvision out to 60 ft. If you already have it, its range rises by 30 ft, to a maximum of 120 ft. | angka: 60,30
+- `feat|Green Skin|Green Skin#5` While you wear no armor, your AC is 12 + your Dexterity modifier. | angka: 12
+- `feat|Mist Walker|Mist Walker#10` Each time you finish a Short Rest there, you make a Constitution saving throw against DC 13 plus your Proficiency Bonus. | angka: 13,pb
+- `feat|Boon of Energy Resistance|Boon of Energy Resistance#8` That creature attempts a Dexterity saving throw against a DC of 8 plus your Proficiency Bonus plus your Constitution modifier, and on a failure it takes damage of that type equal to 2d12 plus your Con | angka: 2d12,8,pb
+- `feat|Chief Engineer (2014)|Chief Engineer (2014)#8` A repaired system or weapon regains 5 mega hit points instead of 1. | angka: 5,1
+- `feat|Vampire Transformation: Level 1|Vampire Transformation: Level 1#10` Dexterity rises by 2 and Charisma by 1, to a maximum of 16 from this. | angka: 2
 - `feat|Polearm Master|Polearm Master#2` Pick Strength or Dexterity and raise it by 1 (maximum 20). | angka: 1,20
 - `feat|Living Shadow|Living Shadow#6` You can do this a number of times equal to your Proficiency Bonus and regain all uses after a Long Rest. | angka: pb
 - `feat|Greater Mark of Healing|Greater Mark of Healing#2` One ability score of your choice +1 (max 20). | angka: 1
@@ -822,8 +822,6 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|idrotf|Charm of Snowball Strike#4` You need a free hand or the charge is wasted. -> info:REST:NONUM
-- class `item|idrotf|Charm of Snowball Strike#4` You need a free hand or the charge is wasted. -> info:REST:NONUM
 - record `sub|Sorcerer/Apocalypse Sorcery|Arcane Apocrypha#1` After a Long Rest you can create one Spell Scroll for free, of a level 5 or lower spell you can cast. -> covered
 - class `sub|Sorcerer/Apocalypse Sorcery|Arcane Apocrypha#1` After a Long Rest you can create one Spell Scroll for free, of a level 5 or lower spell you can cast. -> info:REST:NONUM
 - record `sub|Wizard/School of Liminality|Otherworldly Sense#4` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
@@ -834,21 +832,23 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - class `item|tsgs|Gibberbox#6` Then wait 24 hours. -> info:NUMONLY:GEOMETRY
 - record `sub|Wizard/Blood Magic|Bond of Mutual Suffering#3` Once, recharging on a rest; twice from level 14. -> info:NUMONLY:TABLE
 - class `sub|Wizard/Blood Magic|Bond of Mutual Suffering#3` Once, recharging on a rest; twice from level 14. -> info:NUMONLY:TABLE
-- record `item|tsgeh|Moongold Weapon#3` It guides in the dark, so creatures holding or wearing it have Advantage on saves against the Frightened condition and a -> info:ACTIVE:OTHERS
-- class `item|tsgeh|Moongold Weapon#3` It guides in the dark, so creatures holding or wearing it have Advantage on saves against the Frightened condition and a -> info:ACTIVE:OTHERS
 - record `sub|Paladin/Oath of Revelry|Party Animal#4` Long Rest to use again. -> covered
 - class `sub|Paladin/Oath of Revelry|Party Animal#4` Long Rest to use again. -> info:REST:NONUM
-- record `item|tee24|Houseward (Legendary)#2` A 1-cubic-foot lead block with a Siberys dragonshard, usually set into a floor. -> info:NUMONLY:FLAVOR
-- class `item|tee24|Houseward (Legendary)#2` A 1-cubic-foot lead block with a Siberys dragonshard, usually set into a floor. -> info:NUMONLY:FLAVOR
-- record `item|dmg|Figurine of Wondrous Power, Golden Lions#14` Each can become a lion for up to 1 hour. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Figurine of Wondrous Power, Golden Lions#14` Each can become a lion for up to 1 hour. -> info:NUMONLY:GEOMETRY
+- record `item|tce|Crystalline Chronicle#7` You can use the charges in the following ways while holding it: -> info:REST:NONUM
+- class `item|tce|Crystalline Chronicle#7` You can use the charges in the following ways while holding it: -> info:REST:NONUM
+- record `item|pabtso|Blessing of the Solipsistic Mind#5` You regain the ability to focus after a Long Rest. -> info:REST:NONUM
+- class `item|pabtso|Blessing of the Solipsistic Mind#5` You regain the ability to focus after a Long Rest. -> info:REST:NONUM
+- record `item|dmg|Figurine of Wondrous Power, Ebony Fly#14` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Figurine of Wondrous Power, Ebony Fly#14` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
 - record `sub|Warden/Diabolist|Infernal Command#4` A Short Rest regains one expended use. -> covered
 - class `sub|Warden/Diabolist|Infernal Command#4` A Short Rest regains one expended use. -> info:REST:NONUM
-- record `item|dmg14|Figurine of Wondrous Power, Ivory Goats#17` While it has charges, you can use it as often as you wish. -> info:REST:NONUM
-- class `item|dmg14|Figurine of Wondrous Power, Ivory Goats#17` While it has charges, you can use it as often as you wish. -> info:REST:NONUM
 - record `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
 - class `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
 - record `sub|Warlock/Primordial Patron|Elemental Spells#21` 9 Cone of Cold. -> info:NUMONLY:TABLE
 - class `sub|Warlock/Primordial Patron|Elemental Spells#21` 9 Cone of Cold. -> info:NUMONLY:TABLE
 - record `feat|Fey Teleportation|Fey Teleportation#9` You regain the use when you finish a Short or Long Rest. -> info:REST:NONUM
 - class `feat|Fey Teleportation|Fey Teleportation#9` You regain the use when you finish a Short or Long Rest. -> info:REST:NONUM
+- record `sub|Craftsman/Luminaries' Guild|Hardlight Wall#3` The wall is translucent and lasts 1 minute or until you dismiss it (no action). -> info:NUMONLY:GEOMETRY
+- class `sub|Craftsman/Luminaries' Guild|Hardlight Wall#3` The wall is translucent and lasts 1 minute or until you dismiss it (no action). -> info:NUMONLY:GEOMETRY
+- record `item|egw|Verminshroud (Exalted)#10` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant scorpion. -> info:ACTIVE:TRIGGER
+- class `item|egw|Verminshroud (Exalted)#10` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant scorpion. -> info:ACTIVE:TRIGGER

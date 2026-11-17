@@ -1606,5 +1606,13 @@
   ],
   "reason": "fx-L5.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
   "shared": []
+ },
+ "GX.feat|Stoneborn": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B15-featac.js"
+  ],
+  "reason": "B9 holds the Advantage note, B15 the +1 AC. No field is shared, nothing is counted twice.",
+  "shared": []
  }
 }
