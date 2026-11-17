@@ -8,19 +8,19 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9449 |
-| Info (tag terdokumentasi) | 29145 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2685, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 945, ACTIVE:OTHERS 792, BY_DESIGN 670, REST:NONUM 619, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, STD:AC10 9, SPELL:RIDER 9) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9474 |
+| Info (tag terdokumentasi) | 29149 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2685, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 945, ACTIVE:OTHERS 792, BY_DESIGN 670, REST:NONUM 619, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 13, STD:AC10 9) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5655 |
+| Uncovered | 5626 |
 | Uncovered dengan angka | 3452 |
-| Uncovered dengan kelas kata kunci mekanik | 5263 |
+| Uncovered dengan kelas kata kunci mekanik | 5234 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 392 |
 | Angka yang tidak dijelaskan record mana pun | 3263 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4677 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4648 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 254 |
-| Waktu | muat data 8 s, analisis 10 s |
+| Waktu | muat data 0 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 184 ditangkap (61.3%). Hapus semua atom kelas yang dibutuhkan: 187 ditangkap (62.3%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 300 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 201 ditangkap (67.0%). Hapus semua atom kelas yang dibutuhkan: 200 ditangkap (66.7%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 269 ditangkap (89.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -39,9 +39,9 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3357 |
-| GX | 2167 |
+| GX | 2193 |
 | wxs | 1065 |
-| LU_X | 724 |
+| LU_X | 730 |
 | species | 545 |
 | AUTO | 444 |
 | ITEM_SPELLS | 403 |
@@ -66,8 +66,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
-| SPELL | 3255 | 927 | 28.5% |
-| RESOURCE | 7405 | 918 | 12.4% |
+| RESOURCE | 7405 | 912 | 12.3% |
+| SPELL | 3255 | 898 | 27.6% |
 | DMG | 4658 | 684 | 14.7% |
 | SPEED | 1411 | 548 | 38.8% |
 | PROF | 1124 | 409 | 36.4% |
@@ -96,7 +96,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | Jenis | Mekanik | Covered | Info | Allow | Uncovered |
 |---|---|---|---|---|---|
 | class | 1186 | 276 | 666 | 0 | 244 |
-| feat | 2812 | 718 | 1469 | 0 | 625 |
+| feat | 2812 | 743 | 1473 | 0 | 596 |
 | item | 19265 | 4705 | 11687 | 0 | 2873 |
 | species | 1638 | 914 | 492 | 0 | 232 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
@@ -116,9 +116,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tsdm | 1063 | 296 | 592 | 175 | 16.5% |
 | tghp | 1116 | 390 | 554 | 172 | 15.4% |
 | tce | 730 | 147 | 452 | 131 | 17.9% |
-| tua24 | 634 | 180 | 327 | 127 | 20.0% |
+| tua24 | 634 | 188 | 327 | 119 | 18.8% |
 | tdm14 | 643 | 150 | 380 | 113 | 17.6% |
-| au | 535 | 139 | 283 | 113 | 21.1% |
+| au | 535 | 141 | 284 | 110 | 20.6% |
 | dmg14 | 540 | 156 | 291 | 93 | 17.2% |
 | tgh14p | 490 | 118 | 282 | 90 | 18.4% |
 | phb14 | 513 | 173 | 256 | 84 | 16.4% |
@@ -128,12 +128,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | egw | 365 | 97 | 214 | 54 | 14.8% |
 | tssm | 275 | 73 | 148 | 54 | 19.6% |
 | xge | 375 | 115 | 208 | 52 | 13.9% |
-| hof | 249 | 53 | 144 | 52 | 20.9% |
 | coa | 158 | 46 | 60 | 52 | 32.9% |
-| EFotA | 137 | 36 | 50 | 51 | 37.2% |
-| rhw | 231 | 66 | 116 | 49 | 21.2% |
 | tghg | 288 | 77 | 162 | 49 | 17.0% |
+| hof | 249 | 56 | 145 | 48 | 19.3% |
+| EFotA | 137 | 40 | 50 | 47 | 34.3% |
 | misc14 | 326 | 66 | 213 | 47 | 14.4% |
+| rhw | 231 | 68 | 117 | 46 | 19.9% |
 | oota | 87 | 22 | 21 | 44 | 50.6% |
 | tdcsr | 299 | 111 | 148 | 40 | 13.4% |
 | mot | 292 | 98 | 159 | 35 | 12.0% |
@@ -143,26 +143,25 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | ftd | 159 | 37 | 100 | 22 | 13.8% |
 | tgh14c | 242 | 39 | 182 | 21 | 8.7% |
 | wbtw | 92 | 18 | 54 | 20 | 21.7% |
-| bdd | 62 | 13 | 30 | 19 | 30.6% |
 | toa | 116 | 33 | 65 | 18 | 15.5% |
 | skt | 118 | 30 | 70 | 18 | 15.3% |
 | llk | 99 | 9 | 72 | 18 | 18.2% |
 | tsae | 63 | 21 | 25 | 17 | 27.0% |
+| bdd | 62 | 15 | 30 | 17 | 27.4% |
 | psa | 67 | 27 | 24 | 16 | 23.9% |
 | dsotdq | 82 | 20 | 46 | 16 | 19.5% |
-| abh | 53 | 15 | 23 | 15 | 28.3% |
 | wdh | 95 | 28 | 52 | 15 | 15.8% |
 | wdmm | 79 | 14 | 50 | 15 | 19.0% |
 | ggr | 186 | 35 | 137 | 14 | 7.5% |
 | idrotf | 134 | 33 | 87 | 14 | 10.4% |
 | scag | 67 | 25 | 29 | 13 | 19.4% |
 | ai | 164 | 25 | 127 | 12 | 7.3% |
+| abh | 53 | 17 | 24 | 12 | 22.6% |
 | frafi | 81 | 23 | 46 | 12 | 14.8% |
 | crcotn | 96 | 38 | 46 | 12 | 12.5% |
 | pota | 110 | 26 | 73 | 11 | 10.0% |
 | cos | 66 | 21 | 34 | 11 | 16.7% |
 | pabtso | 69 | 26 | 32 | 11 | 15.9% |
-| lfl | 33 | 18 | 5 | 10 | 30.3% |
 | erlw | 127 | 59 | 58 | 10 | 7.9% |
 | scc | 57 | 11 | 36 | 10 | 17.5% |
 | vgm | 64 | 32 | 22 | 10 | 15.6% |
@@ -170,6 +169,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tshl | 68 | 19 | 40 | 9 | 13.2% |
 | vrgr | 86 | 26 | 52 | 8 | 9.3% |
 | tsdd | 69 | 27 | 34 | 8 | 11.6% |
+| lfl | 33 | 20 | 5 | 8 | 24.2% |
 | cm | 60 | 12 | 40 | 8 | 13.3% |
 | aag | 40 | 19 | 14 | 7 | 17.5% |
 | sato | 38 | 9 | 22 | 7 | 18.4% |
@@ -195,8 +195,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Kelas utama | Uncovered | Dengan angka |
 |---|---|---|
-| SPELL | 693 | 92 |
-| RESOURCE | 620 | 509 |
+| SPELL | 670 | 92 |
+| RESOURCE | 614 | 509 |
 | DMG | 509 | 455 |
 | SPEED | 465 | 371 |
 | ADV | 380 | 183 |
@@ -222,7 +222,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 ## Contoh 40 kalimat per kelas teratas (seed tetap)
 
 
-### SPELL (693 uncovered)
+### SPELL (670 uncovered)
 
 - `class|Healer|Spellcasting#3` You know two cantrips from the Healer spell list. | no record for SPELL; number 2 unexplained
 - `class|Paladin|Fighting Style#4` Pick two Cleric cantrips to learn. | no record for SPELL
@@ -265,7 +265,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/Cantrip Adept|Cantrip Polymath#1` Learn two cantrips from any spell list. | no record for SPELL; number 2 unexplained
 - `sub|Wizard/Gravebinding|Restriction: The Dead Must Rest#1` You can no longer cast spells that animate, conjure or create undead, and copies of them in your spellbook fade within 24 hours. | no record for SPELL; number 24 unexplained
 
-### RESOURCE (620 uncovered)
+### RESOURCE (614 uncovered)
 
 - `feat|Specter Transformation: Stage 2|Specter Transformation: Stage 2#5` Whenever you regain Hit Points, you regain only half as many, rounded down. | number half no record explains
 - `item|cm|Staff of Fate#9` On a roll of 10 or higher, the staff regains 1d6 of its expended charges. | number 1d6 no record explains
@@ -822,33 +822,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|tce|Protective Verses#7` You can use the charges in the following ways while holding it: -> info:REST:NONUM
-- class `item|tce|Protective Verses#7` You can use the charges in the following ways while holding it: -> info:REST:NONUM
-- record `sub|Warlock/The First Vampire|Creature of the Night#2` Use it a number of times equal to your Charisma modifier, regained on a Long Rest. -> covered
-- class `sub|Warlock/The First Vampire|Creature of the Night#2` Use it a number of times equal to your Charisma modifier, regained on a Long Rest. -> info:REST:NONUM
-- record `sub|Witch/Sky Magic|Sky Spells#4` 7 Hallucinatory Terrain, Ice Storm. -> info:NUMONLY:TABLE
-- class `sub|Witch/Sky Magic|Sky Spells#4` 7 Hallucinatory Terrain, Ice Storm. -> info:NUMONLY:TABLE
-- record `species|Gnome (Grim Hollow)|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
-- class `species|Gnome (Grim Hollow)|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
-- record `species|Half-Elf (Mark of Storm)|Headwinds#2` From level 3 you can cast Gust of Wind once per Long Rest. -> info:REST:NONUM
-- class `species|Half-Elf (Mark of Storm)|Headwinds#2` From level 3 you can cast Gust of Wind once per Long Rest. -> info:REST:NONUM
-- record `sub|Martyr/Burden of Truth|Compelling Message#1` You gain proficiency in Persuasion. -> covered
-- record `sub|Witch/Fragrant Magic|Fragrant Spells#4` 7 Compulsion, Hallucinatory Terrain. -> info:NUMONLY:TABLE
-- class `sub|Witch/Fragrant Magic|Fragrant Spells#4` 7 Compulsion, Hallucinatory Terrain. -> info:NUMONLY:TABLE
-- record `item|oota|Spell Gem (Lapis lazuli)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- class `item|oota|Spell Gem (Lapis lazuli)#14` Casting the spell must require either 1 action or 1 minute or longer, and the spell's level must be no higher than the g -> info:NUMONLY:GEOMETRY
-- record `item|crcotn|Ring of Red Fury#10` You can't use this property of the ring again until you finish a long rest. -> info:REST:NONUM
-- class `item|crcotn|Ring of Red Fury#10` You can't use this property of the ring again until you finish a long rest. -> info:REST:NONUM
-- record `item|skt|Shard of the Ise Rune#8` You have resistance to fire damage. -> covered
-- record `sub|Druid/Circle of Spores|Fungal Infestation#3` You can use this a number of times equal to your Wisdom modifier (minimum one) and regain all uses after a Long Rest. -> covered
-- class `sub|Druid/Circle of Spores|Fungal Infestation#3` You can use this a number of times equal to your Wisdom modifier (minimum one) and regain all uses after a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Hand of Vecna#4` Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world. -> info:NUMONLY:FLAVOR
-- class `item|dmg|Hand of Vecna#4` Only one eye and one hand of Vecna were left, two gruesome Artifacts that still try to carry out his will in the world. -> info:NUMONLY:FLAVOR
-- record `sub|Artificer/Forge Adept|Perfect Weapon#1` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
-- class `sub|Artificer/Forge Adept|Perfect Weapon#1` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
-- record `item|tsgs|Visage of Delight and Disaster#3` You regain them after a Short or Long Rest. -> covered
-- class `item|tsgs|Visage of Delight and Disaster#3` You regain them after a Short or Long Rest. -> info:REST:NONUM
-- record `item|scc|Cuddly Strixhaven Mascot#6` If the save succeeds, you can't use the toy in this way until you finish a long rest. -> info:REST:NONUM
-- class `item|scc|Cuddly Strixhaven Mascot#6` If the save succeeds, you can't use the toy in this way until you finish a long rest. -> info:REST:NONUM
-- record `item|dmg|Heliod's Votary#2` You can cast daylight once, then you must finish a long rest before doing so again. -> covered
-- class `item|dmg|Heliod's Votary#2` You can cast daylight once, then you must finish a long rest before doing so again. -> info:REST:NONUM
+- class `item|dmg|Akmon, Hammer of Purphoros#6` When you hit with an attack using it, the target takes an extra 3d10 fire damage. -> info:ACTIVE:TRIGGER
+- record `species|Gnome (Star)|Gnomish Lineage (Star)#1` Spend 1 minute assembling scrap parts into one Tiny device: Binoculars, Comm Set, Flare, Flashlight, Igniter, Interface  -> info:NUMONLY:GEOMETRY
+- class `species|Gnome (Star)|Gnomish Lineage (Star)#1` Spend 1 minute assembling scrap parts into one Tiny device: Binoculars, Comm Set, Flare, Flashlight, Igniter, Interface  -> info:NUMONLY:GEOMETRY
+- class `item|bgdia|Fane-Eater#3` If you attack a creature with this weapon and roll a 20 on the attack roll, the creature takes an extra 2d8 necrotic dam -> info:ACTIVE:TRIGGER
+- record `feat|Cruel|Cruel#9` You regain all spent dice on a rest. -> info:REST:NONUM
+- class `feat|Cruel|Cruel#9` You regain all spent dice on a rest. -> info:REST:NONUM
+- record `sub|Artificer/Forge Adept|Variant Capstone: Weapon of Legend#2` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
+- class `sub|Artificer/Forge Adept|Variant Capstone: Weapon of Legend#2` While you wield your Ghaal'Shaarat you gain three benefits. -> info:NUMONLY:TEXT
+- record `sub|Alchemist/Amorist|Alchemical Romance#6` One creature with the Bomb's Charmed condition stays Charmed for 1 minute or until it takes damage. -> info:NUMONLY:GEOMETRY
+- class `sub|Alchemist/Amorist|Alchemical Romance#6` One creature with the Bomb's Charmed condition stays Charmed for 1 minute or until it takes damage. -> info:NUMONLY:GEOMETRY
+- record `feat|Primordial Transformation: Stage 2|Primordial Transformation: Stage 2#2` Choose one Stage 2 Boon. -> covered
+- record `item|dmg|Boon of Peerless Aim#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
+- class `item|dmg|Boon of Peerless Aim#2` After you use this boon, you can't use it again until you finish a Short Rest. -> info:REST:NONUM
+- record `item|dmg|Figurine of Wondrous Power, Silver Raven#13` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Figurine of Wondrous Power, Silver Raven#13` Once it has been used, it can't be used again until 2 days have passed. -> info:NUMONLY:GEOMETRY
+- class `item|mot|Dekella, Bident of Thassa#6` When you hit with an attack using the bident, the target takes an extra 2d10 cold damage. -> info:ACTIVE:TRIGGER
+- record `item|skt|Gavel of the Venn Rune#10` Once you use this property, you can't use it again until you finish a long rest. -> info:REST:NONUM
+- class `item|skt|Gavel of the Venn Rune#10` Once you use this property, you can't use it again until you finish a long rest. -> info:REST:NONUM
+- record `item|dmg|Draconis Fundamentum#9` Once used, it returns after a Long Rest, or spend the listed Hit Point Dice (no action) to restore it. -> info:REST:NONUM
+- class `item|dmg|Draconis Fundamentum#9` Once used, it returns after a Long Rest, or spend the listed Hit Point Dice (no action) to restore it. -> info:REST:NONUM
+- record `item|dmg|Staff of the Woodlands#15` If the roll is a 1, it loses its properties and becomes a nonmagical Quarterstaff. -> info:NUMONLY:ROLL
+- class `item|dmg|Staff of the Woodlands#15` If the roll is a 1, it loses its properties and becomes a nonmagical Quarterstaff. -> info:NUMONLY:ROLL
+- record `item|bgg|Sanctum Amulet#7` The creature then instead drops to 1 hit point. -> info:NUMONLY:TEXT
+- class `item|bgg|Sanctum Amulet#7` The creature then instead drops to 1 hit point. -> info:NUMONLY:TEXT
+- record `species|Dhakaani Guul'dar (Bugbear)|Long-Limbed#1` When you make a melee attack on your turn, your reach for it is 5 feet greater. -> info:NUMONLY:GEOMETRY
+- class `species|Dhakaani Guul'dar (Bugbear)|Long-Limbed#1` When you make a melee attack on your turn, your reach for it is 5 feet greater. -> info:NUMONLY:GEOMETRY
+- record `species|Khoravar|Lethargy Resilience#2` After using this, you can't do so again until you finish 1d4 Long Rests. -> info:NUMONLY:ROLL
+- class `species|Khoravar|Lethargy Resilience#2` After using this, you can't do so again until you finish 1d4 Long Rests. -> info:NUMONLY:ROLL
+- record `sub|Warmage/House of Kings|Battle Tactics#4` A die is expended when you use it. -> covered
+- class `sub|Warmage/House of Kings|Battle Tactics#4` A die is expended when you use it. -> info:REST:NONUM
