@@ -816,6 +816,7 @@
  },
  "GX.sub|White Necromancer": {
   "files": [
+   "fx-B31-subres.js",
    "fx-L13.js",
    "fx-N1.js"
   ],
@@ -1063,6 +1064,7 @@
  },
  "GX.sub|Knowledge Domain (2014)": {
   "files": [
+   "fx-B35-potent.js",
    "fx-L10.js",
    "fx-Z4.js"
   ],
@@ -2035,7 +2037,8 @@
  "GX.sub|Winter Walker": {
   "files": [
    "fx-B20-subimm.js",
-   "fx-B24-subriders.js"
+   "fx-B24-subriders.js",
+   "fx-B31-subres.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
   "shared": []
@@ -2124,7 +2127,8 @@
  "GX.sub|Oath of the Ebon Blade": {
   "files": [
    "fx-B24-subriders.js",
-   "fx-B29-srlu.js"
+   "fx-B29-srlu.js",
+   "fx-B31-subres.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
   "shared": []
@@ -2151,6 +2155,134 @@
    "fx-L13.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Book of Exalted Deeds": {
+  "files": [
+   "fx-B32-itemimm.js",
+   "fx-L3.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.species|Bisque Geppettin": {
+  "files": [
+   "fx-B33-speciesmisc.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.species|Naga": {
+  "files": [
+   "fx-B33-speciesmisc.js",
+   "fx-B7-subskills.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.species|Raggedy Geppettin": {
+  "files": [
+   "fx-B33-speciesmisc.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": [
+   "defs"
+  ]
+ },
+ "GX.sub|Arcana Domain (2014)": {
+  "files": [
+   "fx-B35-potent.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Circle of Mutation": {
+  "files": [
+   "fx-B31-subres.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Circle of Stars": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-B31-subres.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Circle of the Forged": {
+  "files": [
+   "fx-B20-subimm.js",
+   "fx-B31-subres.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Grave Domain (2014)": {
+  "files": [
+   "fx-B35-potent.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": [
+   "atkBonus"
+  ]
+ },
+ "GX.sub|Knowledge Domain (PSA)": {
+  "files": [
+   "fx-B35-potent.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Madness Domain": {
+  "files": [
+   "fx-B35-potent.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of the Sun": {
+  "files": [
+   "fx-B31-subres.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Path of the Fractured": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-B31-subres.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Peace Domain": {
+  "files": [
+   "fx-B35-potent.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": [
+   "atkBonus"
+  ]
+ },
+ "GX.sub|Undead Patron": {
+  "files": [
+   "fx-B20-subimm.js",
+   "fx-B31-subres.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
   "shared": []
  }
 }
