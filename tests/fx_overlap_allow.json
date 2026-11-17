@@ -191,7 +191,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|D\u00e4mglesvir (Adept)": {
+ "GX.item|Dämglesvir (Adept)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -199,7 +199,7 @@
   "reason": "Different features of the same item are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.item|D\u00e4mglesvir (Master)": {
+ "GX.item|Dämglesvir (Master)": {
   "files": [
    "fx-L3.js",
    "fx-L8.js"
@@ -469,7 +469,7 @@
   "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
- "GX.species|Skath\u00e1ri": {
+ "GX.species|Skathári": {
   "files": [
    "fx-A-class-species.js",
    "fx-L9.js"
@@ -1337,9 +1337,10 @@
  "GX.sub|Freerunner": {
   "files": [
    "fx-B9-advnotes.js",
+   "fx-B11-riders.js",
    "fx-M2.js"
   ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "reason": "B11 adds the Divine Strike or rider row of a feature the other file does not define; no field is shared, nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Gourmand": {
@@ -1540,6 +1541,30 @@
    "fx-L8.js"
   ],
   "reason": "fx batch B10 adds an Advantage row for another sentence of the same item; each row is counted once.",
+  "shared": []
+ },
+ "GX.sub|Bounty Hunter": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B11-riders.js"
+  ],
+  "reason": "B11 adds the Divine Strike or rider row of a feature the other file does not define; no field is shared, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Hunger Domain": {
+  "files": [
+   "fx-B11-riders.js",
+   "fx-L10.js"
+  ],
+  "reason": "B11 adds the Divine Strike or rider row of a feature the other file does not define; no field is shared, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Lust Domain": {
+  "files": [
+   "fx-B11-riders.js",
+   "fx-L10.js"
+  ],
+  "reason": "B11 adds the Divine Strike or rider row of a feature the other file does not define; no field is shared, nothing is counted twice.",
   "shared": []
  }
 }
