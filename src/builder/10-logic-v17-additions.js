@@ -48,6 +48,8 @@ export function luRows(C,a,pb,feats){const TLv=TL(),iv=invList(),c={TLv:TLv,iv:i
  /* fx engine v4: lu on any gfx entry = limited-use rows. lu:{n,max,reset,tag?,pool?,die?,f?,short6?} or an array of them. max: number, array by level (index = source level - 1), "pb", "pb2", "lvl", "half", "mod:WIS" (at least 1), or {f:"formula"} (see luMax); the level is the source level (class level for class and subclass, character level otherwise). reset: long, short, dawn, dusk, none, init */
  fxList().forEach((e) =>{if(!e.lu)return;(Array.isArray(e.lu)?e.lu:[e.lu]).forEach((q) =>{luFxRow(C,e,q,a,pb)})});
  ensureInv().forEach((x) =>{luItemRow(C,x)});
+ /* srLu on a gfx entry: the pools of that feature can also be refilled by spending a spell slot of that level or higher (sr = lowest slot level) */
+ fxList().forEach((e) =>{if(e.srLu)C.res.forEach((r) =>{if(r.f===e.n&&!r.sr)r.sr=e.srLu})});
  luArc(C)}
 function luArc(C){
  activeFx().forEach((q) =>{const n=q.fx&&q.fx.arcRec;if(n)C.res.forEach((r) =>{if(r.n==='Arcane Recovery'&&r.max<n){r.max=n;r.tag=(r.tag?r.tag+'. ':'')+q.n+': '+n+' uses between Long Rests'}})})/* v100: Grimoire Infinitus (Exalted) */}

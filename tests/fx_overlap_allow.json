@@ -943,8 +943,10 @@
  "GX.sub|Oath of Glory": {
   "files": [
    "fx-B2-subclass.js",
+   "fx-B29-srlu.js",
    "fx-Z3.js",
-   "fx-Z4.js"
+   "fx-Z4.js",
+   "fx-Z4.js  (shared effect fields: defs)"
   ],
   "reason": "fx-B2 Aura of Alacrity, Z3 Living Legend and Z4 Inspiring Smite are three different features, each with its own Note.",
   "shared": [
@@ -953,8 +955,10 @@
  },
  "GX.sub|Oath of Vengeance": {
   "files": [
+   "fx-B29-srlu.js",
    "fx-Z2.js",
-   "fx-Z3.js"
+   "fx-Z3.js",
+   "fx-Z3.js  (shared effect fields: defs)"
   ],
   "reason": "Both rows share one toggle (avenging-angel). fx-Z2 gives the flying speed and hover, fx-Z3 gives only a note about Frightful Aura, so the shared defs field holds different notes. Nothing is counted twice.",
   "shared": [
@@ -1843,6 +1847,7 @@
  "GX.sub|Sky Magic": {
   "files": [
    "fx-B19-speedmv.js",
+   "fx-B29-srlu.js",
    "fx-L13.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
@@ -2062,9 +2067,90 @@
  "GX.sub|Knowledge Domain": {
   "files": [
    "fx-B25-subprof.js",
-   "fx-B28-vecna.js"
+   "fx-B28-vecna.js",
+   "fx-B29-srlu.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B28 adds the Artisan's Tools pick of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Bond of the Aberrant Psion": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Bond of the Living Armament": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Circle of the Moon": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|College of Glamour": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of Devotion": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of the Ancients": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-Z3.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of the Ebon Blade": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-B29-srlu.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Oath of the Noble Genies": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-N1.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Overlord": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Technicolor Magic": {
+  "files": [
+   "fx-B29-srlu.js",
+   "fx-L13.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
   "shared": []
  }
 }

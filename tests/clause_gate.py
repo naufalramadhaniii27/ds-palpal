@@ -294,7 +294,7 @@ reg("SPEED", "speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv", "m
 reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "darkHave", "noSurprise")
 reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "chkBonusNp", "skillPE", "skillAb", "langs", "tools", "weapons", "armor", "toolExpert", "toolPE",
     "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf")
-reg("SLOT", "slotAdd", "nslot", "smax", "arcRec")
+reg("SLOT", "slotAdd", "nslot", "smax", "arcRec", "srLu")
 reg("RESOURCE", "lu", "luBump", "cdAdd", "pbAdd", "ch", "by", "luckN", "resK", "res", "track", "resSub", "lg")
 reg("ATK", "atk", "atkBonus", "atkDice", "atkAb", "spAtk", "spellAtk", "attackRow", "extraAttack", "dieReplace", "unarmed", "reach", "attacks", "rngHit", "meleeDmg1h", "thrownDmg", "grappler", "mw", "wmAdd", "wm")
 reg("DMG", "dmg", "atkDice", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")

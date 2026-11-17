@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:161,l:"0.0.59",d:"2026-11-18",n:["Features that can be refilled by spending a spell slot (Holy Nimbus, Living Legend, Elder Champion, Avenging Angel and about 20 more) now show a Restore button on their card. It spends the lowest slot of the needed level and refills one use."]},
 {v:160,l:"0.0.58",d:"2026-11-18",n:["The Eye and Hand of Vecna now give Poison immunity and Advantage on Initiative. Liquid Courage has a switch for its Frightened immunity.","Blessings of Knowledge, Student of Preservation, Student of War and Reanimator's Skill Set let you pick an Artisan's Tools proficiency. College of Lore lets you pick three skills."]},
 {v:159,l:"0.0.57",d:"2026-11-18",n:["Five more subclass features now give their spell in the spell list: Street Art, Swindle, Moment To Act, Cup Floweth Over and Faerzress Step."]},
 {v:158,l:"0.0.56",d:"2026-11-17",n:["Seventeen more feats now give the cantrip or spell they teach in the spell list, such as Familiar Friend, Shadow Weaver, Dread Authority and Tadpole Host. Where the feat lets you choose the casting ability, you pick it with the feat."]},
