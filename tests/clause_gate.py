@@ -411,7 +411,32 @@ def def_sub_rows():
     return out
 
 
+SHEET_RULES = {
+    ("Barbarian", "Fast Movement"): [("barbarian-5-fast-movement", ("SPEED",))],
+    ("Ranger", "Roving"): [("ranger-6-roving", ("SPEED",)), ("ranger-6-roving-speeds", ("SPEED",))],
+    ("Monk", "Unarmored Movement"): [("monk-2-unarmored-movement", ("SPEED",))],
+    ("Bard", "Jack of All Trades"): [("bard-2-jack", ("PROF",))],
+    ("Paladin", "Aura of Protection"): [("paladin-6-aura", ("SAVE",))],
+    ("Rogue", "Slippery Mind"): [("rogue-15-saves", ("SAVE", "PROF"))],
+    ("Monk", "Disciplined Survivor"): [("monk-14-saves", ("SAVE", "PROF"))],
+    ("Monk", "Diamond Soul"): [("monk-14-saves", ("SAVE", "PROF"))],
+}
+
+
+def sheet_rule_ids():
+    ids = set()
+    try:
+        d = os.path.join(ROOT, "src", "builder")
+        for f in os.listdir(d):
+            if f.startswith("12") and f.endswith(".js"):
+                ids |= set(re.findall(r'registerSheetRule\(\{id:"([^"]+)"', open(os.path.join(d, f), encoding="utf-8").read()))
+    except Exception:
+        pass
+    return ids
+
+
 def build_index(D):
+    D["rule_ids"] = sheet_rule_ids()
     D["calc_names"] = calc_note_names()
     D["def_sub"] = def_sub_rows()
     D["lu_by_owner"] = collections.defaultdict(list)
@@ -458,6 +483,9 @@ def features(D):
             if c.get("fs") and "fighting style" in name.lower(): at.append(Atom("CHOICE", nums_in(c.get("fs")), "cls.fs"))
             if c.get("wm") and "weapon mastery" in name.lower(): at += [Atom("CHOICE", nums_in(c["wm"]), "cls.wm"), Atom("ATK", nums_in(c["wm"]), "cls.wm"), Atom("PROF", nums_in(c["wm"]), "cls.wm")]
             at += lu_atoms(D, cn, name)
+            for rid, cls_k in SHEET_RULES.get((cn, name), []):  # registerSheetRule(): class rules the sheet runs from code
+                if rid in D["rule_ids"]:
+                    at += [Atom(k, {"*"}, "RULE|" + rid) for k in cls_k]
             if name.lower() in ("spellcasting", "pact magic") and (c.get("cast") or c.get("caster")):  # slots, prepared spells and cantrip counts are class tables, read by the slot code
                 at += [Atom(k, {"*"}, "cls.cast") for k in ("SLOT", "SPELL", "CHOICE", "RESOURCE", "DC", "ATK", "ABIL")]
             ca = D["clsAuto"].get(cn)
