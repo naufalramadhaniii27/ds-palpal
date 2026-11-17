@@ -290,7 +290,7 @@ reg("ADV", "advOn", "initAdv", "saveNote", "noSurprise", "def", "defs", "adv")
 reg("DIS", "saveNote", "def", "defs")
 reg("RES", "res", "imm", "vul", "resToImm", "def", "defs", "condImm", "linRes", "saveNote", "resBy")
 reg("IMM", "imm", "condImm", "resToImm", "def", "defs")
-reg("SPEED", "speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv", "fly", "swim", "climb", "burrow", "movesNote", "linFx")
+reg("SPEED", "speed", "speedAdd", "speedSet", "speedMul", "speedAddIf", "mv", "moves", "fly", "swim", "climb", "burrow", "movesNote", "linFx")
 reg("SENSE", "sense", "senseAdd", "dark", "darkAdd", "darkTo", "darkNone", "darkHave", "noSurprise")
 reg("PROF", "skillProf", "skillExpert", "skillProfPlus", "skillBonus", "chkBonus", "chkBonusNp", "skillPE", "skillAb", "langs", "tools", "weapons", "armor", "toolExpert", "toolPE",
     "skills", "skillPick", "toolPick", "allSk", "skTools", "wpPick", "wp", "tool", "saveProf")
@@ -480,6 +480,9 @@ def features(D):
             for k, v in st.items():
                 for part in mentions(v, name):
                     at += atoms_from({k: part}, "cls." + cn)
+            for pr in mentions(c.get("pick"), name):  # a pick of kind expertise or skills is a proficiency choice the sheet applies
+                if isinstance(pr, dict) and str(pr.get("k")) in ("expertise", "skills", "skill", "tools", "languages"):
+                    at.append(Atom("PROF", nums_in([pr.get("n")]) if pr.get("n") is not None else {"*"}, "cls.pick"))
             if c.get("fs") and "fighting style" in name.lower(): at.append(Atom("CHOICE", nums_in(c.get("fs")), "cls.fs"))
             if c.get("wm") and "weapon mastery" in name.lower(): at += [Atom("CHOICE", nums_in(c["wm"]), "cls.wm"), Atom("ATK", nums_in(c["wm"]), "cls.wm"), Atom("PROF", nums_in(c["wm"]), "cls.wm")]
             at += lu_atoms(D, cn, name)
@@ -511,6 +514,11 @@ def features(D):
                     if isinstance(c.get(k), dict) and sn in c[k]:
                         for part in mentions(c[k][sn], name):
                             at += atoms_from({k: part}, "sub." + sn)
+                        if k == "pickSub":
+                            for pr in mentions(c[k][sn], name):
+                                for q in (pr if isinstance(pr, list) else [pr]):
+                                    if isinstance(q, dict) and str(q.get("k")) in ("expertise", "skills", "skill", "tools", "languages"):
+                                        at.append(Atom("PROF", nums_in([q.get("n")]) if q.get("n") is not None else {"*"}, "sub.pick"))
                 if w:
                     for k, v in w.items():
                         if k in ("cls", "name", "src", "alt") or v in ([], {}, "", None):
