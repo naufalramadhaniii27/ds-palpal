@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:160,l:"0.0.58",d:"2026-11-18",n:["The Eye and Hand of Vecna now give Poison immunity and Advantage on Initiative. Liquid Courage has a switch for its Frightened immunity.","Blessings of Knowledge, Student of Preservation, Student of War and Reanimator's Skill Set let you pick an Artisan's Tools proficiency. College of Lore lets you pick three skills."]},
 {v:159,l:"0.0.57",d:"2026-11-18",n:["Five more subclass features now give their spell in the spell list: Street Art, Swindle, Moment To Act, Cup Floweth Over and Faerzress Step."]},
 {v:158,l:"0.0.56",d:"2026-11-17",n:["Seventeen more feats now give the cantrip or spell they teach in the spell list, such as Familiar Friend, Shadow Weaver, Dread Authority and Tadpole Host. Where the feat lets you choose the casting ability, you pick it with the feat."]},
 {v:157,l:"0.0.55",d:"2026-11-17",n:["Darkvision and Blindsight from 12 more subclass features and feats now count on the sheet, such as Eyes of Night, Abyssal Eyes, Impaired Vision and Shadow Pact. Divine Strike of 13 more domains now shows its extra damage die.","Advantage notes from 10 more features and items now show up, for example Danger Sense of the Dungeoneer and Morose Monocle. Elegant Courtier and Iron Mind now give Wisdom save proficiency."]},
