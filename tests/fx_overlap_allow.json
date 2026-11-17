@@ -1196,9 +1196,10 @@
   "files": [
    "fx-B7-subskills.js",
    "fx-B9-advnotes.js",
+   "fx-B24-subriders.js",
    "fx-L10.js"
   ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
   "shared": []
  },
  "GX.feat|Tavern Brawler (2014)": {
@@ -1308,9 +1309,10 @@
  "GX.sub|Circle of Configuration": {
   "files": [
    "fx-B9-advnotes.js",
+   "fx-B24-subriders.js",
    "fx-L11.js"
   ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Detective": {
@@ -1868,9 +1870,10 @@
  "GX.sub|Justice Domain": {
   "files": [
    "fx-B20-subimm.js",
+   "fx-B24-subriders.js",
    "fx-L10.js"
   ],
-  "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Vermin Lord": {
@@ -1951,6 +1954,78 @@
    "fx-L11.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B23 adds the Wisdom save proficiency of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Apocalypse Domain": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Beer Domain": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Darkness Domain": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Feylost": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B24-subriders.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Mountain Domain": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Ocean Domain": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-L10.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Shadow Dancer": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Winter Domain": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B24-subriders.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Winter Walker": {
+  "files": [
+   "fx-B20-subimm.js",
+   "fx-B24-subriders.js"
+  ],
+  "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
   "shared": []
  }
 }

@@ -5,7 +5,6 @@ var S=function(k,e){GX.sub[k]=(GX.sub[k]||[]).concat(e)};
 var F=function(k,e){GX.feat[k]=(GX.feat[k]||[]).concat([e])};
 S("Demon Hunter",[{"n": "Spectral Sight (sense)", "sense": [["Blindsight", 10, ""]], "l": 3}]);
 S("Infernum",[{"n": "Infernal Bargain (sense)", "sense": [["Blindsight", 30, ""]], "l": 6}]);
-S("Lunar Magic",[{"n": "Moonsight (sense)", "darkAdd": 60, "l": 3}]);
 S("Shadow Magic",[{"n": "Eyes of the Dark (sense)", "darkTo": 120, "l": 3}]);
 S("Shadow Master",[{"n": "Abyssal Eyes (sense)", "darkAdd": 60, "l": 3}]);
 S("The First Vampire",[{"n": "Nocturnal Predator (sense)", "darkAdd": 60, "l": 3}]);
