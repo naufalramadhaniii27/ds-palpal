@@ -8,19 +8,19 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9223 |
-| Info (tag terdokumentasi) | 29086 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2686, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 951, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9243 |
+| Info (tag terdokumentasi) | 29083 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2686, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1351, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 948, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5940 |
-| Uncovered dengan angka | 3565 |
-| Uncovered dengan kelas kata kunci mekanik | 5548 |
+| Uncovered | 5923 |
+| Uncovered dengan angka | 3567 |
+| Uncovered dengan kelas kata kunci mekanik | 5531 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 392 |
-| Angka yang tidak dijelaskan record mana pun | 3374 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4952 kalimat |
+| Angka yang tidak dijelaskan record mana pun | 3376 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4934 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 264 |
-| Waktu | muat data 0 s, analisis 10 s |
+| Waktu | muat data 0 s, analisis 11 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 176 ditangkap (58.9%). Hapus semua atom kelas yang dibutuhkan: 180 ditangkap (60.2%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 166 ditangkap (55.5%). Hapus semua atom kelas yang dibutuhkan: 170 ditangkap (56.9%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 277 ditangkap (92.3%), semua atom kelas dihapus: 294 ditangkap (98.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -39,9 +39,9 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3361 |
-| GX | 1988 |
+| GX | 2008 |
 | wxs | 1069 |
-| LU_X | 721 |
+| LU_X | 722 |
 | species | 545 |
 | AUTO | 444 |
 | ITEM_SPELLS | 356 |
@@ -60,18 +60,18 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | CLS_AUTO | 7 |
 | RULE | 7 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 308, fx-L5.js 201, fx-L4.js 173, fx-L12.js 169, fx-L10.js 147, fx-L2.js 133, fx-L1.js 116, fx-L3.js 113, fx-N1.js 104, fx-L9.js 99, fx-L11.js 90, fx-L6.js 69.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 310, fx-L5.js 201, fx-L4.js 173, fx-L12.js 169, fx-L10.js 147, fx-L2.js 133, fx-L1.js 117, fx-L3.js 113, fx-N1.js 104, fx-L9.js 99, fx-L11.js 90, fx-L6.js 69.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
-| RESOURCE | 7405 | 964 | 13.0% |
-| SPELL | 3255 | 959 | 29.5% |
-| DMG | 4658 | 703 | 15.1% |
+| RESOURCE | 7405 | 963 | 13.0% |
+| SPELL | 3255 | 942 | 28.9% |
+| DMG | 4658 | 704 | 15.1% |
 | SPEED | 1411 | 577 | 40.9% |
 | PROF | 1124 | 493 | 43.9% |
-| CHOICE | 1663 | 435 | 26.2% |
+| CHOICE | 1663 | 433 | 26.0% |
 | ADV | 1959 | 405 | 20.7% |
 | RES | 1375 | 402 | 29.2% |
 | NUM | 8604 | 344 | 4.0% |
@@ -96,7 +96,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | Jenis | Mekanik | Covered | Info | Allow | Uncovered |
 |---|---|---|---|---|---|
 | class | 1186 | 272 | 631 | 0 | 283 |
-| feat | 2812 | 678 | 1475 | 0 | 659 |
+| feat | 2812 | 698 | 1472 | 0 | 642 |
 | item | 19265 | 4621 | 11653 | 0 | 2991 |
 | species | 1638 | 914 | 492 | 0 | 232 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
@@ -111,12 +111,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | core | 1495 | 402 | 762 | 331 | 22.1% |
 | ttoh | 1470 | 340 | 870 | 260 | 17.7% |
 | tsgs | 1479 | 404 | 831 | 244 | 16.5% |
-| tvss14 | 1201 | 224 | 741 | 236 | 19.7% |
+| tvss14 | 1201 | 228 | 740 | 233 | 19.4% |
 | tkdm | 921 | 221 | 492 | 208 | 22.6% |
 | tsdm | 1063 | 284 | 592 | 187 | 17.6% |
 | tghp | 1116 | 383 | 554 | 179 | 16.0% |
 | tce | 730 | 143 | 452 | 135 | 18.5% |
-| au | 535 | 117 | 285 | 133 | 24.9% |
+| au | 535 | 122 | 283 | 130 | 24.3% |
 | tua24 | 634 | 179 | 327 | 128 | 20.2% |
 | tdm14 | 643 | 148 | 380 | 115 | 17.9% |
 | dmg14 | 540 | 155 | 288 | 97 | 18.0% |
@@ -125,12 +125,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | phb14 | 513 | 173 | 256 | 84 | 16.4% |
 | thhw | 395 | 91 | 232 | 72 | 18.2% |
 | tee24 | 463 | 185 | 213 | 65 | 14.0% |
-| hof | 249 | 45 | 142 | 62 | 24.9% |
+| hof | 249 | 48 | 142 | 59 | 23.7% |
 | xge | 375 | 110 | 208 | 57 | 15.2% |
-| rhw | 231 | 60 | 115 | 56 | 24.2% |
 | egw | 365 | 96 | 214 | 55 | 15.1% |
 | tssm | 275 | 71 | 150 | 54 | 19.6% |
 | coa | 158 | 45 | 60 | 53 | 33.5% |
+| rhw | 231 | 64 | 115 | 52 | 22.5% |
 | EFotA | 137 | 35 | 50 | 52 | 38.0% |
 | tghg | 288 | 76 | 162 | 50 | 17.4% |
 | misc14 | 326 | 66 | 212 | 48 | 14.7% |
@@ -149,9 +149,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | llk | 99 | 9 | 72 | 18 | 18.2% |
 | tsae | 63 | 21 | 25 | 17 | 27.0% |
 | dsotdq | 82 | 19 | 46 | 17 | 20.7% |
-| abh | 53 | 13 | 23 | 17 | 32.1% |
 | psa | 67 | 27 | 24 | 16 | 23.9% |
 | wdmm | 79 | 14 | 49 | 16 | 20.3% |
+| abh | 53 | 15 | 23 | 15 | 28.3% |
 | idrotf | 134 | 33 | 86 | 15 | 11.2% |
 | wdh | 95 | 27 | 53 | 15 | 15.8% |
 | ggr | 186 | 35 | 137 | 14 | 7.5% |
@@ -159,11 +159,11 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | scag | 67 | 25 | 29 | 13 | 19.4% |
 | ai | 164 | 24 | 127 | 13 | 7.9% |
 | frafi | 81 | 22 | 46 | 13 | 16.0% |
-| lfl | 33 | 16 | 5 | 12 | 36.4% |
 | pota | 110 | 25 | 73 | 12 | 10.9% |
 | vrgr | 86 | 23 | 52 | 11 | 12.8% |
 | cos | 66 | 21 | 34 | 11 | 16.7% |
 | pabtso | 69 | 26 | 32 | 11 | 15.9% |
+| lfl | 33 | 18 | 5 | 10 | 30.3% |
 | erlw | 127 | 59 | 58 | 10 | 7.9% |
 | scc | 57 | 11 | 36 | 10 | 17.5% |
 | vgm | 64 | 32 | 22 | 10 | 15.6% |
@@ -195,9 +195,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Kelas utama | Uncovered | Dengan angka |
 |---|---|---|
-| SPELL | 724 | 96 |
-| RESOURCE | 665 | 553 |
-| DMG | 528 | 474 |
+| SPELL | 707 | 97 |
+| RESOURCE | 664 | 553 |
+| DMG | 529 | 475 |
 | SPEED | 494 | 389 |
 | PROF | 443 | 164 |
 | ADV | 395 | 184 |
@@ -222,7 +222,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 ## Contoh 40 kalimat per kelas teratas (seed tetap)
 
 
-### SPELL (724 uncovered)
+### SPELL (707 uncovered)
 
 - `class|Death Knight|Fighting Style#4` Pick two Cleric cantrips to learn. | no record for SPELL
 - `class|Healer|Spellcasting#3` You know two cantrips from the Healer spell list. | no record for SPELL; number 2 unexplained
@@ -230,23 +230,23 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `class|Warlock|Pact Magic#24` For instance, at level 6 you learn a new Warlock spell, and it can be of level 1, 2, or 3. | no record for SPELL; number 3 unexplained
 - `class|Warmage|Arcane Initiation#2` Each Initiation gives you two cantrips and a skill, as listed in its entry. | number 2 no record explains
 - `class|Witch|Hexes#2` You know two Hexes from the Witch spell list, and they do not count against your cantrips known. | no record for SPELL; number 2 unexplained
+- `feat|Arcane Artist|Arcane Artist#5` When you cast an Illusion spell, you can grant Heroic Inspiration to one ally within 30 feet of you who can see you. | number 30 no record explains
 - `feat|Arcane Preparation|Arcane Preparation#4` For example, a level 3 wizard assigns four 1st-level slots and two 2nd-level slots, and also has one bonus 1st-level and one bonus 2nd-level slot that can cast any spell in the spellbook. | no record for SPELL; number 4,2 unexplained
-- `feat|Cantrip Specialist|Cantrip Specialist#1` You learn two Warmage tricks from this list: Blasting Cantrip, Corrosive Cantrip, Draining Cantrip, Explosive Cantrip, Icy Cantrip, Severe Cantrip, Silent Cantrip, Static Cantrip. | no record for SPELL; number 2 unexplained
+- `feat|Chronomancy Initiate|Chronomancy Initiate#3` You learn four chronomancy spells that you cast with this feat. | no record for SPELL; number 4 unexplained
 - `feat|Gun-Mage Adept|Gun-Mage Adept#4` You learn four renaissance spells you cast with this feat. | no record for SPELL; number 4 unexplained
 - `feat|Mystic Conflux|Mystic Conflux#1` You attune to up to four magic items at once instead of three, and you can cast Identify without a spell slot or material components. | no record for SPELL; number 4,3 unexplained
 - `feat|Spell Sniper (2014)|Spell Sniper (2014)#3` When you cast a spell that requires an attack roll, its range is doubled. | no record for SPELL; number double unexplained
-- `feat|Spellblade|Spellblade#3` You learn two of these cantrips: Arc Blade, Burning Blade, Frigid Blade or True Strike. | no record for SPELL; number 2 unexplained
 - `feat|Spelldriver|Spelldriver#2` If you cast two or more spells in one turn, only one of them can be level 3 or higher. | no record for SPELL; number 2 unexplained
-- `feat|Strixhaven Initiate|Strixhaven Initiate#3` You learn two cantrips and one 1st-level spell from the lists for that college: | no record for SPELL; number 2 unexplained
-- `item|dmg|+2 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | no record for SPELL; number 8 unexplained
+- `item|bgg|Mistral Mantle#9` When you use the mantle to cast the spell, the area of the spell isn't 3 for you, and you can see through the storm, ignoring the normal penalties of a 2 area. | number 3,2 no record explains
+- `item|dmg|+1 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | no record for SPELL; number 8 unexplained
 - `item|dmg|Battle Rod#1` Held in two hands, it lets you cast cantrips at up to twice their range. | no record for SPELL; number 2,double unexplained
 - `item|dmg|Dagger of the Ogre Mage#6` When a damage cantrip is cast this way, the sword's damage type becomes the cantrip's for 1 minute or until you end it. | no record for SPELL
 - `item|dmg|Occultant Abacus#20` While holding your occultant abacus within 5 feet of a creature killed within the past 24 hours, you can cast the augury spell. | number 5,24 no record explains
-- `item|dmg|Spellburrow#4` If you have Spellcasting or Pact Magic, you cast the other two as if prepared, without counting against your prepared spells. | no record for SPELL; number 2 unexplained
-- `item|dmg|Sword of the Spelldrinker#5` Spend 1 to cast Counterspell. | no record for SPELL; number 1 unexplained
+- `item|dmg|War Staff#2` Cantrips cast through it have up to four times their normal range. | no record for SPELL; number 4 unexplained
+- `item|dmg|Witchlight Watch#14` After the watch's invisibility spell is cast, roll a d8; on a roll of 3 or 8, the watch can't be used to cast this spell again until the next dawn. | no record for SPELL; number 1d8,8 unexplained
+- `item|tce|+1 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | no record for SPELL; number 8 unexplained
 - `item|tce|+2 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | no record for SPELL; number 8 unexplained
 - `item|tee24|War Staff#2` Cantrips cast through it have up to four times their normal range. | no record for SPELL; number 4 unexplained
-- `item|tsgs|Sword of the Spelldrinker#5` Spend 1 to cast Counterspell. | no record for SPELL; number 1 unexplained
 - `item|wbtw|Witchlight Vane#19` After the vane's polymorph spell is cast, roll a d8; on a roll of 3 or 8, the vane can't be used to cast this spell again until the next dawn. | number 1d8,8 no record explains
 - `sub|Artificer/Mutagenist|Master Mutagenist#2` If you cast a third spell with Concoction Casting, you choose which of the two active spells ends. | no record for SPELL; number 2 unexplained
 - `sub|Barbarian/Path of Spellfury|Spellcasting#3` You know two Sorcerer cantrips (a third at level 10) and prepare level 1+ Sorcerer spells, starting with three of level 1. | number 2,3 no record explains
@@ -265,7 +265,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/Gravebinding|Restriction: The Dead Must Rest#1` You can no longer cast spells that animate, conjure or create undead, and copies of them in your spellbook fade within 24 hours. | no record for SPELL; number 24 unexplained
 - `sub|Wizard/White Necromancer|Life Bond#2` You can cast it once without a slot or its Material component, and its duration becomes 4 hours. | number 4 no record explains
 
-### RESOURCE (665 uncovered)
+### RESOURCE (664 uncovered)
 
 - `class|Martyr|Divine Respite#3` The number of dice you regain becomes 6 at level 13 and 10 at level 17. | no record for RESOURCE; number 6 unexplained
 - `class|Necromancer|Thralls#4` Perform a 10 minute ritual, which can be done during a Short Rest. | number 10 no record explains
@@ -308,32 +308,32 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Sorcerer/Shadow Sorcery|Umbral Form#3` After you use this, you must finish a Long Rest before using it again, unless you spend 6 Sorcery Points (no action required) to restore it. | number 6 no record explains
 - `sub|Wizard/School of Evocation|Overchannel#3` Each use after that before a Long Rest deals 2d12 Necrotic damage per spell level to you right after the cast, and the damage per level rises by 1d12 for each further use. | no record for DMG; number 2d12,1d12 unexplained
 
-### DMG (528 uncovered)
+### DMG (529 uncovered)
 
-- `feat|Circle Spellcaster|Circle Spellcaster#10` If both fail, you both lose concentration on all spells you maintain and each take 2d6 psychic damage. | no record for DMG; number 2d6 unexplained
-- `feat|Hulking Figure|Hulking Figure#3` Once per turn, you can deal an extra 1d4 Bludgeoning damage to a target you hit with an Unarmed Strike. | no record for DMG; number 1d4 unexplained
-- `item|bgdia|Shatterstick#3` When the effects ends, the shatterstick breaks apart, becoming useless, and all structures within 20 feet of it take 35 (10d6) bludgeoning damage. | no record for DMG; number 10d6,20,35 unexplained
-- `item|coa|Scourge of Shadow#5` You have a +3 bonus to attack and damage rolls made with this weapon, and it does 3d4 slashing damage instead of its regular damage. | number 3d4 no record explains
-- `item|dmg|Arcane Warhead#9` Within a 10-mile-radius Sphere, each creature and object takes 10d10 + 200 Mega Radiant damage. | no record for DMG; number 10d10,10,200 unexplained
-- `item|dmg|Bolt#2` You gain +1 to attack and damage rolls, and it deals 1d12 Lightning instead of 1d10 Piercing. | number 1d12,1d10 no record explains
-- `item|dmg|Brass Repeater#4` At character level 5 you gain a +1 bonus to attack and damage rolls with it, rising to +2 at level 11 and +3 at level 17. | no record for DMG; number 1,2,3 unexplained
+- `feat|Changeling Metamorphosis|Changeling Metamorphosis#13` Your Unarmed Strike with that growth deals 1d6 damage of the listed type instead of its normal damage, and you can use Dexterity instead of Strength for its attack and damage rolls. | no record for DMG; number 1d6 unexplained
+- `feat|Latent Psionics|Latent Psionics#4` Your Psionic Blast deals an extra 1d10 Psychic damage. | no record for DMG; number 1d10 unexplained
+- `item|cm|Nether Scroll of Azumar#4` If this check fails, you take 16d10 psychic damage, and you can attempt the check again after another 30 days of concentrated study. | no record for DMG; number 16d10,30 unexplained
+- `item|coa|Ruby Rod of Asmodeus#6` If a creature uses the special abilities of the rod without Asmodeus's permission, they take 2d12 necrotic damage each use, doubled if they're good aligned. | no record for DMG; number 2d12,double unexplained
+- `item|dmg|Ballistic Sledge#6` At character level 5 you gain a +1 bonus to attack and damage rolls with it, rising to +2 at level 11 and +3 at level 17. | no record for DMG; number 1,2,3 unexplained
+- `item|dmg|Battlechef's Splendid Saucepan#2` It works as a Mace with +1 to attack and damage rolls and deals an extra 1d4 Thunder to a target in metal armor or made of metal or stone. | number 1 no record explains
+- `item|dmg|Book of Exalted Deeds#12` A Fiend or an Undead that tries to read the book, or any servant of a god of the Lower Planes that does so, takes 24d6 Radiant damage. | no record for DMG; number 24d6 unexplained
+- `item|dmg|Cloak of Spines#5` A hedge doing this reduces the damage by 4d4 and deals 4d4 instead. | no record for DMG; number 4d4 unexplained
 - `item|dmg|Dagger of Venom#6` If it fails, it takes 2d10 Poison damage and is Poisoned for 1 minute. | no record for DMG; number 2d10 unexplained
-- `item|dmg|Deck of Many Things#92` Incorporeal Movement: it can pass through other creatures and objects as though they were Difficult Terrain, and if its turn ends while it is inside an object, it takes 5 (1d10) Force damage. | no record for DMG; number 1d10,5 unexplained
-- `item|dmg|Glowing Ember#6` If you move more than 20 ft from the hovering crystal, it follows you by the shortest path, avoiding obstacles if it can, until it is within 20 ft. If it is lit and cannot reach the creature it follows within 3 rounds, i | no record for DMG; number 8d6,20,3 unexplained
+- `item|dmg|Forgemaster's Might#10` It deals an extra 2d8 Bludgeoning damage to Constructs and structures. | no record for DMG; number 2d8 unexplained
+- `item|dmg|Peppermince Sugarbomb#3` For 1 minute, your weapon and Unarmed Strike hits that deal Piercing or Slashing damage deal 2 extra damage. | no record for DMG; number 1,2 unexplained
 - `item|dmg|Phase Axe#1` A near-transparent Battleaxe with +1 to attack and damage rolls and the Thrown property (20/60 ft). | number 60,20 no record explains
-- `item|dmg|Ruby Rod of Asmodeus#6` If a creature uses the special abilities of the rod without Asmodeus's permission, they take 2d12 necrotic damage each use, doubled if they're good aligned. | no record for DMG; number 2d12,double unexplained
-- `item|dmg|Scourge of Shadow#7` Whenever an unattuned creature attacks with the weapon, it deals 2d4 necrotic damage, ignoring resistances and immunities, to them, but otherwise functions normally. | no record for DMG; number 2d4 unexplained
-- `item|dmg|Silver Eagle Weapon#4` Instead, when both damage dice show the same number, roll 1d6 and add it. | number 1d6 no record explains
-- `item|dmg|Smash Potatoes#3` For that time, your Unarmed Strike with a hand can deal 1d4 instead of its normal damage. | no record for DMG; number 1d4 unexplained
-- `item|misc14|Dragontooth Dagger#6` Against enemies of the Cult of the Dragon, the dagger's bonus to attack and damage rolls increases to 2, and the extra acid damage increases to 2d6. | number 2d6,2 no record explains
-- `item|tghg|Iron Fangs#2` You gain a +2 bonus to attack and damage rolls with your Bite attacks, and they deal your choice of Force or Piercing damage. | no record for DMG; number 2 unexplained
-- `item|thhw|Shroud of Ending#6` While attuned, you deal 1d6 necrotic damage to any plant you touch that is not a creature, plant and beast creatures within 30 ft become hostile to you, and you stop aging and need no food or sleep. | no record for DMG; number 1d6,30 unexplained
-- `item|tsgs|Grass Whistle Blade#7` A second success deals 3d8 Psychic damage. | no record for DMG; number 3d8 unexplained
-- `item|tsgs|Starmetal Solar Axe#5` Each Battleaxe has +1 and an extra 1d6 Cold damage. | number 1 no record explains
-- `item|tsgs|Sundersludge Net#5` Another creature that touches the Net takes 1d6 Acid damage. | no record for DMG; number 1d6 unexplained
-- `item|tsgs|Trident of the Hydra#4` Each deals 1d6 Piercing damage and gets no ability modifier unless it is negative. | no record for DMG; number 1d6 unexplained
-- `item|tvss14|Treant's Bane#2` A plant creature you hit takes an extra 2d6 damage of the weapon's type. | no record for DMG; number 2d6 unexplained
-- `item|twow|Sulfuras, Hand of Ragnaros#8` Boiling Point: water in a container or body within 1 mile boils for 1 minute, and a creature that enters or starts its turn there takes 2d10 Fire damage. | no record for DMG; number 2d10,1,1 unexplained
+- `item|dmg|Ruby Rod of Asmodeus#3` All damage dealt with it is converted to necrotic, and when you hit a good aligned creature, that creature takes an extra 2d12 necrotic damage. | no record for DMG; number 2d12 unexplained
+- `item|dmg|Scourge of Shadow#6` When you hit a good aligned creature with it, that creatures takes an extra 4d4 necrotic damage. | no record for DMG; number 4d4 unexplained
+- `item|dmg|Sling of the Tiny Giant#3` A ranged hit deals an extra 1d4 Force damage per size category the target is larger than you, up to 3d4. | number 3d4 no record explains
+- `item|pota|Tinderstrike#2` Its handle is always warm to the touch, and the blade smolders for 1d4 minutes after it is used to deal damage. | no record for DMG; number 1d4 unexplained
+- `item|tghg|Heaven's Herald#4` A Fiend or Undead who blows it takes 8d6 Radiant damage. | no record for DMG; number 8d6 unexplained
+- `item|thhw|Glowing Ember#6` If you move more than 20 ft from the hovering crystal, it follows you by the shortest path, avoiding obstacles if it can, until it is within 20 ft. If it is lit and cannot reach the creature it follows within 3 rounds, i | no record for DMG; number 8d6,20,3 unexplained
+- `item|tsgs|Flesh of Dendallen#10` Removing it deals 4d10 Necrotic damage. | no record for DMG; number 4d10 unexplained
+- `item|tsgs|Starmetal Solar Axe#3` +1 to attack and damage, an extra 2d6 Fire damage, and flames shed Bright Light in a 20 ft radius and Dim Light for 20 ft more, as sunlight. | number 20 no record explains
+- `item|tsgs|Stormstruck Staff#5` While glowing it sheds Bright Light in a 10 ft radius and Dim Light for 10 ft more, and the extra Lightning damage becomes 1d6. | number 1d6,10 no record explains
+- `item|tsgs|Tome of Dreams#4` On 10 or lower, you take 2d4 Psychic damage from terrors. | no record for DMG; number 2d4,10 unexplained
+- `item|tvss14|Weapon Charms#6` Blade (Uncommon): +1 to attack and damage rolls (not if the weapon already has a bonus). | no record for DMG; number 1 unexplained
+- `item|twow|Sulfuras, Hand of Ragnaros#4` It takes 1d10 Fire damage at the start of each of its turns instead of the normal burning damage. | no record for DMG; number 1d10 unexplained
 - `species|Gnome Heritage|Powerful Jaw#1` Your bite is a natural weapon for Unarmed Strikes and deals 1d4 + Strength modifier Piercing damage instead of Bludgeoning. | no record for DMG; number 1d4 unexplained
 - `species|Halfling Heritage|Powerful Jaw#1` Your bite is a natural weapon for Unarmed Strikes and deals 1d4 + Strength modifier Piercing damage instead of Bludgeoning. | no record for DMG; number 1d4 unexplained
 - `species|Raptor|Talons#1` Your claws make Unarmed Strikes that deal 1d4 Piercing damage. | no record for DMG; number 1d4 unexplained
@@ -688,38 +688,38 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `class|Healer|Combat Supporter#3` The bonus becomes +2 at level 11 and +3 at level 17. | angka: 2,3
 - `class|Bard|Superior Inspiration#1` When you roll Initiative and have fewer than two uses of Bardic Inspiration left, you regain expended uses until you have two. | angka: 2
 
-### feat (269)
+### feat (271)
 
 - `feat|Durable|Durable#2` Your Constitution score rises by 1, but not above 20. | angka: 1,20
-- `feat|Mechanic|Mechanic#4` When you use it through this feat, the extra damage equals twice your Proficiency Bonus and the weapon stays Overheated until you finish a Short Rest or Long Rest. | angka: double,pb
-- `feat|Depth Module|Depth Module#6` Your swimming speed rises to 60 ft. | angka: 60
+- `feat|Leviathan Suit|Leviathan Suit#6` While you wear your Aqua Suit, you have Blindsight out to 10 feet, or 30 feet when you are underwater. | angka: 10,30
+- `feat|Coalition War Training|Coalition War Training#4` When you attack with a carbine held in two hands without firing it automatically, its damage becomes 2d8. | angka: 2d8,2
 - `feat|Observant|Observant#2` Pick Intelligence or Wisdom and raise it by 1 (maximum 20). | angka: 20
-- `feat|Watchers|Watchers#10` Immediately after you make a D20 Test and roll a 1 on the d20, you make a Wisdom saving throw against DC 13 plus your Proficiency Bonus. | angka: 1d20,13,pb
-- `feat|Vampire Transformation: Level 1|Vampire Transformation: Level 1#28` You gain darkvision 60 ft if you lack it. | angka: 60
+- `feat|Mist Walker|Mist Walker#10` Each time you finish a Short Rest there, you make a Constitution saving throw against DC 13 plus your Proficiency Bonus. | angka: 13,pb
+- `feat|Vampire Transformation: Level 1|Vampire Transformation: Level 1#19` A Short or Long Rest resets them to 0. | angka: 0
 - `feat|Shadow Touched|Shadow Touched#6` You can cast each of the two once with no spell slot. | angka: 2
 - `feat|Boon of Skill|Boon of Skill#2` Choose an ability score and add 1 to it (maximum 30). | angka: 30
-- `feat|Iron Hero|Iron Hero#1` When a creature with a Challenge Rating higher than your level attacks you, you have +2 AC. | angka: 2
-- `feat|Coalition War Training|Coalition War Training#4` When you attack with a carbine held in two hands without firing it automatically, its damage becomes 2d8. | angka: 2d8,2
-- `feat|Thick-Shelled|Thick-Shelled#3` While you wear no armor, your AC is 13 + your Dexterity modifier. | angka: 13
+- `feat|Artillerist (Dark Matter)|Artillerist (Dark Matter)#2` You can use the mastery property of two kinds of ship weapons of your choice, provided you are proficient with them. | angka: 2
+- `feat|Chief Engineer (2014)|Chief Engineer (2014)#8` A repaired system or weapon regains 5 mega hit points instead of 1. | angka: 5,1
+- `feat|Mantle of the Sun|Mantle of the Sun#8` Wings: luminous wings and a sunlike disk appear, giving you a flying speed of 30 ft. | angka: 30
 - `feat|Actor|Actor#2` Your Charisma score rises by 1, but not above 20. | angka: 1,20
 - `feat|Keen Mind|Keen Mind#2` Raise your Intelligence by 1 (maximum 20). | angka: 1,20
-- `feat|Green Skin|Green Skin#5` While you wear no armor, your AC is 12 + your Dexterity modifier. | angka: 12
-- `feat|Mist Walker|Mist Walker#10` Each time you finish a Short Rest there, you make a Constitution saving throw against DC 13 plus your Proficiency Bonus. | angka: 13,pb
-- `feat|Boon of Energy Resistance|Boon of Energy Resistance#8` That creature attempts a Dexterity saving throw against a DC of 8 plus your Proficiency Bonus plus your Constitution modifier, and on a failure it takes damage of that type equal to 2d12 plus your Con | angka: 2d12,8,pb
-- `feat|Chief Engineer (2014)|Chief Engineer (2014)#8` A repaired system or weapon regains 5 mega hit points instead of 1. | angka: 5,1
-- `feat|Vampire Transformation: Level 1|Vampire Transformation: Level 1#10` Dexterity rises by 2 and Charisma by 1, to a maximum of 16 from this. | angka: 2
+- `feat|Depth Module|Depth Module#8` You gain blindsight 5 ft, which extends to 20 ft underwater. | angka: 5,20
+- `feat|Void Scribe|Void Scribe#3` While the glyph is intact, the object is vulnerable to necrotic damage and takes 1d6 necrotic damage at the end of your turn. | angka: 1d6
+- `feat|Fey Sentinel|Fey Sentinel#8` When you take the Dash action, you can forgo the extra movement and instead teleport to an unoccupied space you can see within half your Speed. | angka: half
+- `feat|Archon (DM14)|Archon (DM14)#9` You gain +1 to it. | angka: 1
+- `feat|Nocturnal (GH14C)|Nocturnal (GH14C)#2` You gain darkvision out to 60 ft. If you already have it, its range rises by 30 ft, to a maximum of 120 ft. | angka: 60,30
 - `feat|Polearm Master|Polearm Master#2` Pick Strength or Dexterity and raise it by 1 (maximum 20). | angka: 1,20
-- `feat|Living Shadow|Living Shadow#6` You can do this a number of times equal to your Proficiency Bonus and regain all uses after a Long Rest. | angka: pb
+- `feat|Echoing Soul|Echoing Soul#8` Immediately after you make a D20 Test and roll a 1 on the d20, you make a Constitution saving throw against DC 13 plus your Proficiency Bonus. | angka: 1d20,13,pb
 - `feat|Greater Mark of Healing|Greater Mark of Healing#2` One ability score of your choice +1 (max 20). | angka: 1
-- `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#17` It has AC 18, Hit Points equal to 10 times your character level and Speed 0. | angka: 18,10,0
+- `feat|Witch Hunter|Witch Hunter#10` You have Advantage on saving throws against all Shadowsteel curses and against spells with a duration longer than 10 minutes. | angka: 10
 - `feat|Hedgecraft|Hedgecraft#5` You gain two magic plants of your choice, each kept in a small pot, pouch or similar container you carry. | angka: 2
 - `feat|Elemental Adept|Elemental Adept#2` Choose Intelligence, Wisdom, or Charisma and raise that score by 1, but not above 20. | angka: 1,20
-- `feat|Observant (2014)|Observant (2014)#6` You get a +5 bonus to passive Wisdom (Perception) and passive Intelligence (Investigation). | angka: 5
-- `feat|Cannoneer|Cannoneer#4` You can do this only if you have not moved this turn, and your Speed is 0 until the end of the turn afterward. | angka: 0
-- `feat|Aberrant Anatomy|Aberrant Anatomy#5` You also gain Blindsight with a range of 15 feet. | angka: 15
-- `feat|Spell Resistant|Spell Resistant#7` You can do this a number of times equal to your Proficiency Bonus and regain all uses when you finish a Long Rest. | angka: pb
+- `feat|Martial Adept|Martial Adept#2` A maneuver that forces a saving throw has a DC of 8 + your Proficiency Bonus + your Strength or Dexterity modifier (your choice). | angka: 8,pb
+- `feat|Vampire Transformation: Stage 3|Vampire Transformation: Stage 3#5` If you start your turn in sunlight you take 1d10 Radiant damage, and nothing can give you Resistance or Immunity to it. | angka: 1d10
+- `feat|Infernal Dragoon|Infernal Dragoon#9` Once per Long Rest, after making a D20 Test roll, you can add +2 to it. | angka: 1d20,2
+- `feat|Tireless Reveler|Tireless Reveler#3` You can do this a number of times equal to your Proficiency Bonus, and regain all expended uses after a Short or Long Rest. | angka: pb
 - `feat|Inscription Adept|Inscription Adept#9` Journeyman (+3): Glyph of Warding. | angka: 3
-- `feat|Vampire Transformation: Stage 2|Vampire Transformation: Stage 2#4` You have Disadvantage on all D20 Tests while in sunlight. | angka: 1d20
+- `feat|Specter Transformation: Stage 2|Specter Transformation: Stage 2#5` Whenever you regain Hit Points, you regain only half as many, rounded down. | angka: half
 
 ### item (1905)
 
@@ -822,33 +822,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Rogue/Infiltrator (2014)|Infiltration Rig#5` At level 9 you can also cast invisibility on yourself once per Long Rest. -> covered
-- class `sub|Rogue/Infiltrator (2014)|Infiltration Rig#5` At level 9 you can also cast invisibility on yourself once per Long Rest. -> info:REST:NONUM
-- record `feat|Mark of Finding|Mark of Finding#8` Each free cast returns after a Long Rest. -> info:REST:NONUM
-- class `feat|Mark of Finding|Mark of Finding#8` Each free cast returns after a Long Rest. -> info:REST:NONUM
-- record `sub|Rogue/Infiltrator|Electromagical Burst#2` Long Rest to use again. -> covered
-- class `sub|Rogue/Infiltrator|Electromagical Burst#2` Long Rest to use again. -> info:REST:NONUM
-- record `feat|Background Talents (Aristocrat)|Background Talents (Aristocrat)#3` Pick one talent from this list when you choose the profession, and one more each time you rank up. -> info:ACTIVE:TRIGGER
-- class `feat|Background Talents (Aristocrat)|Background Talents (Aristocrat)#3` Pick one talent from this list when you choose the profession, and one more each time you rank up. -> info:ACTIVE:TRIGGER
-- record `item|dmg|Gauntlets of Ogre Power#1` While you wear these gauntlets, your Strength score is 19. -> info:NUMONLY:TEXT
-- class `item|dmg|Gauntlets of Ogre Power#1` While you wear these gauntlets, your Strength score is 19. -> info:NUMONLY:TEXT
-- record `item|dmg|Horn of the Endless Maze#5` Once you use the horn, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Horn of the Endless Maze#5` Once you use the horn, it can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Visage of Delight and Disaster#2` You gain two d10 Bardic Inspiration dice that work as the level 1 Bard feature and add to any you already have. -> info:NUMONLY:ROLL
-- class `item|dmg|Visage of Delight and Disaster#2` You gain two d10 Bardic Inspiration dice that work as the level 1 Bard feature and add to any you already have. -> info:NUMONLY:ROLL
-- record `sub|Paladin/Oath of Devotion (2014)|Holy Nimbus#5` You regain use after a Long Rest. -> covered
-- class `sub|Paladin/Oath of Devotion (2014)|Holy Nimbus#5` You regain use after a Long Rest. -> info:REST:NONUM
-- record `sub|Barbarian/Path of the Fin (2014)|Tsunami#5` Short or Long Rest to use again. -> covered
-- class `sub|Barbarian/Path of the Fin (2014)|Tsunami#5` Short or Long Rest to use again. -> info:REST:NONUM
-- record `item|tee24|Bane Weapon#3` When you finish a Long Rest, choose Aberration, Beast, Celestial, Dragon, Fiend, Giant or Undead. -> info:REST:NONUM
-- class `item|tee24|Bane Weapon#3` When you finish a Long Rest, choose Aberration, Beast, Celestial, Dragon, Fiend, Giant or Undead. -> info:REST:NONUM
-- record `species|Mystic Laneshi|Beast Whisperers#2` Long Rest to use again. -> info:REST:NONUM
-- class `species|Mystic Laneshi|Beast Whisperers#2` Long Rest to use again. -> info:REST:NONUM
-- record `sub|Warlock/Singularity Patron|Microsingularity#6` Long Rest to use again, or spend a Pact Magic slot (no action). -> covered
-- class `sub|Warlock/Singularity Patron|Microsingularity#6` Long Rest to use again, or spend a Pact Magic slot (no action). -> info:REST:NONUM
-- record `sub|Witch/Green Magic|Green Magic Spells#5` 9 Awaken, Tree Stride. -> info:NUMONLY:TABLE
-- class `sub|Witch/Green Magic|Green Magic Spells#5` 9 Awaken, Tree Stride. -> info:NUMONLY:TABLE
-- record `sub|Artificer/Cartographer|Mapping Magic#4` A Long Rest restores all uses. -> info:REST:NONUM
-- class `sub|Artificer/Cartographer|Mapping Magic#4` A Long Rest restores all uses. -> info:REST:NONUM
-- record `feat|Cult of the Dragon Initiate|Cult of the Dragon Initiate#11` Once used, it returns after a Short or Long Rest. -> info:REST:NONUM
-- class `feat|Cult of the Dragon Initiate|Cult of the Dragon Initiate#11` Once used, it returns after a Short or Long Rest. -> info:REST:NONUM
+- record `sub|Sorcerer/Resonant Body|Reverberating Quintessence#2` From level 3, spend 3 sorcery points to cast shatter or silence with no slot or components. -> covered
+- record `sub|Ranger/Vermin Lord|Vermin Lord Spells#4` 13 Freedom of Movement. -> info:NUMONLY:TABLE
+- class `sub|Ranger/Vermin Lord|Vermin Lord Spells#4` 13 Freedom of Movement. -> info:NUMONLY:TABLE
+- record `item|dmg|Charm of Electromancy#3` When the last charge is gone, the Charm leaves you. -> info:REST:NONUM
+- class `item|dmg|Charm of Electromancy#3` When the last charge is gone, the Charm leaves you. -> info:REST:NONUM
+- record `item|dmg|Clockwork Amulet#4` This property then recharges at the next dawn. -> info:REST:NONUM
+- class `item|dmg|Clockwork Amulet#4` This property then recharges at the next dawn. -> info:REST:NONUM
+- record `sub|Warlock/Hexblade Patron|Hexblade Spells#1` Spells always prepared from the listed Warlock levels: 3 Arcane Vigor, Hex, Shield, Wrathful Smite. -> covered
+- class `sub|Warlock/Hexblade Patron|Hexblade Spells#1` Spells always prepared from the listed Warlock levels: 3 Arcane Vigor, Hex, Shield, Wrathful Smite. -> covered
+- record `item|misc14|Ruinstone#4` Each use of the artifact has a terrible side effect: someone known to the wielder is also erased from reality. -> info:REST:NONUM
+- class `item|misc14|Ruinstone#4` Each use of the artifact has a terrible side effect: someone known to the wielder is also erased from reality. -> info:REST:NONUM
+- record `sub|Rogue/Scout|Survivalist#1` You gain proficiency in Nature and Survival. -> covered
+- record `item|dmg|Rod of Seven Parts#36` The only way to destroy the Rod of Seven Parts is to immerse the assembled rod in lava in the Abyss. -> info:NUMONLY:TEXT
+- class `item|dmg|Rod of Seven Parts#36` The only way to destroy the Rod of Seven Parts is to immerse the assembled rod in lava in the Abyss. -> info:NUMONLY:TEXT
+- record `item|mot|Iroas's Votary#2` You can cast crusader's mantle once, then you must finish a long rest before doing so again. -> info:REST:NONUM
+- class `item|mot|Iroas's Votary#2` You can cast crusader's mantle once, then you must finish a long rest before doing so again. -> info:REST:NONUM
+- record `item|dmg|Moongold Weapon#3` It guides in the dark, so creatures holding or wearing it have Advantage on saves against the Frightened condition and a -> info:ACTIVE:OTHERS
+- class `item|dmg|Moongold Weapon#3` It guides in the dark, so creatures holding or wearing it have Advantage on saves against the Frightened condition and a -> info:ACTIVE:OTHERS
+- record `sub|Rogue/Phantom|Tokens of the Departed#2` You gain two soul trinkets. -> info:NUMONLY:TABLE
+- class `sub|Rogue/Phantom|Tokens of the Departed#2` You gain two soul trinkets. -> info:NUMONLY:TABLE
+- record `item|dmg|Mythallar Bracelet#1` Three small, crystal beads made from a decommissioned mythallar are strung on this leather bracelet. -> info:NUMONLY:TEXT
+- class `item|dmg|Mythallar Bracelet#1` Three small, crystal beads made from a decommissioned mythallar are strung on this leather bracelet. -> info:NUMONLY:TEXT
+- record `feat|The Cabal: Soul Broker|The Cabal: Soul Broker#8` After you use this, finish a Short Rest or Long Rest to do so again. -> info:REST:NONUM
+- class `feat|The Cabal: Soul Broker|The Cabal: Soul Broker#8` After you use this, finish a Short Rest or Long Rest to do so again. -> info:REST:NONUM
+- record `item|dmg14|Boon of the Stormborn#1` You are immune to Lightning and Thunder damage. -> covered
+- record `sub|Wizard/Spellsmith|Spell Transformation#4` Long Rest to regain all uses. -> covered
+- class `sub|Wizard/Spellsmith|Spell Transformation#4` Long Rest to regain all uses. -> info:REST:NONUM
+- record `sub|Cleric/Eldritch Domain|Eldritch Domain Spells#1` Spells that are always prepared from the listed Cleric level: 3 Detect Thoughts, Tasha's Hideous Laughter, See Invisibil -> covered
+- class `sub|Cleric/Eldritch Domain|Eldritch Domain Spells#1` Spells that are always prepared from the listed Cleric level: 3 Detect Thoughts, Tasha's Hideous Laughter, See Invisibil -> covered
+- record `sub|Witch/Sky Magic|Vortex#2` It lasts 1 minute, until you are Incapacitated, or until you dismiss it (no action required). -> info:NUMONLY:GEOMETRY

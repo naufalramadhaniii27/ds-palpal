@@ -1754,5 +1754,21 @@
   "shared": [
    "defs"
   ]
+ },
+ "GX.feat|Gathered Whispers": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B17-featcantrips.js"
+  ],
+  "reason": "B9 holds an Advantage note, B17 the cantrip. No field is shared, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.feat|Touch of Death": {
+  "files": [
+   "fx-B17-featcantrips.js",
+   "fx-L1.js"
+  ],
+  "reason": "L1 holds the Death Saving Throw flaw, B17 the cantrip. No field is shared, nothing is counted twice.",
+  "shared": []
  }
 }
