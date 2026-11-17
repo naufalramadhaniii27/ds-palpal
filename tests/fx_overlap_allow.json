@@ -1566,5 +1566,45 @@
   ],
   "reason": "B11 adds the Divine Strike or rider row of a feature the other file does not define; no field is shared, nothing is counted twice.",
   "shared": []
+ },
+ "GX.item|Corvum Feather Robe": {
+  "files": [
+   "fx-B14-itemsense.js",
+   "fx-L3.js"
+  ],
+  "reason": "fx-L3.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Gallus Feather Robe": {
+  "files": [
+   "fx-B14-itemsense.js",
+   "fx-L4.js"
+  ],
+  "reason": "fx-L4.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Luma Feather Robe": {
+  "files": [
+   "fx-B14-itemsense.js",
+   "fx-L4.js"
+  ],
+  "reason": "fx-L4.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Raptor Feather Robe": {
+  "files": [
+   "fx-B14-itemsense.js",
+   "fx-L5.js"
+  ],
+  "reason": "fx-L5.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
+  "shared": []
+ },
+ "GX.item|Strig Feather Robe": {
+  "files": [
+   "fx-B14-itemsense.js",
+   "fx-L5.js"
+  ],
+  "reason": "fx-L5.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
+  "shared": []
  }
 }

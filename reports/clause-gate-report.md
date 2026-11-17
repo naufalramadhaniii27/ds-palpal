@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44265 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9191 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9199 |
 | Info (tag terdokumentasi) | 29090 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2686, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1573, FXO_NULL 1355, NUMONLY:ROLL 1228, NUMONLY:TABLE 1018, FORM:TABLE 979, ACTIVE:TRIGGER 951, ACTIVE:OTHERS 798, BY_DESIGN 670, REST:NONUM 621, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 216, NUMONLY:ZERO 196, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 79, ACTIVE:REACTION 71, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:AC10 9, STD:SUBCLASS_PICK 7) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5984 |
-| Uncovered dengan angka | 3579 |
-| Uncovered dengan kelas kata kunci mekanik | 5592 |
+| Uncovered | 5976 |
+| Uncovered dengan angka | 3571 |
+| Uncovered dengan kelas kata kunci mekanik | 5584 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 392 |
-| Angka yang tidak dijelaskan record mana pun | 3388 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4999 kalimat |
+| Angka yang tidak dijelaskan record mana pun | 3380 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4989 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 264 |
 | Waktu | muat data 0 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 170 ditangkap (56.9%). Hapus semua atom kelas yang dibutuhkan: 174 ditangkap (58.2%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 168 ditangkap (56.2%). Hapus semua atom kelas yang dibutuhkan: 169 ditangkap (56.5%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 278 ditangkap (92.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 272 ditangkap (90.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -39,7 +39,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3361 |
-| GX | 1952 |
+| GX | 1964 |
 | wxs | 1069 |
 | LU_X | 721 |
 | species | 525 |
@@ -80,8 +80,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | DC | 2903 | 284 | 9.8% |
 | ATK | 1056 | 261 | 24.7% |
 | DIS | 1221 | 239 | 19.6% |
-| SENSE | 650 | 210 | 32.3% |
-| AC | 677 | 168 | 24.8% |
+| SENSE | 650 | 206 | 31.7% |
+| AC | 677 | 164 | 24.2% |
 | SAVE | 278 | 150 | 54.0% |
 | HP | 206 | 112 | 54.4% |
 | NUM-DICE | 1628 | 77 | 4.7% |
@@ -97,7 +97,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|---|---|---|
 | class | 1186 | 272 | 631 | 0 | 283 |
 | feat | 2812 | 676 | 1475 | 0 | 661 |
-| item | 19281 | 4613 | 11657 | 0 | 3011 |
+| item | 19281 | 4621 | 11657 | 0 | 3003 |
 | species | 1638 | 892 | 492 | 0 | 254 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
 | sub | 10118 | 2460 | 5883 | 0 | 1775 |
@@ -106,12 +106,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10468 | 2530 | 6318 | 1620 | 15.5% |
+| dmg | 10468 | 2534 | 6318 | 1616 | 15.4% |
 | tvss | 2796 | 674 | 1631 | 491 | 17.6% |
 | core | 1495 | 402 | 762 | 331 | 22.1% |
 | ttoh | 1470 | 320 | 870 | 280 | 19.0% |
 | tsgs | 1479 | 404 | 831 | 244 | 16.5% |
-| tvss14 | 1201 | 222 | 741 | 238 | 19.8% |
+| tvss14 | 1201 | 223 | 741 | 237 | 19.7% |
 | tkdm | 921 | 221 | 492 | 208 | 22.6% |
 | tsdm | 1063 | 283 | 592 | 188 | 17.7% |
 | tghp | 1116 | 383 | 554 | 179 | 16.0% |
@@ -121,7 +121,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tdm14 | 643 | 148 | 380 | 115 | 17.9% |
 | dmg14 | 540 | 155 | 288 | 97 | 18.0% |
 | tgh14p | 490 | 114 | 282 | 94 | 19.2% |
-| twow | 542 | 140 | 311 | 91 | 16.8% |
+| twow | 542 | 141 | 311 | 90 | 16.6% |
 | phb14 | 513 | 173 | 256 | 84 | 16.4% |
 | thhw | 395 | 91 | 232 | 72 | 18.2% |
 | tee24 | 463 | 185 | 213 | 65 | 14.0% |
@@ -152,10 +152,10 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | abh | 53 | 13 | 23 | 17 | 32.1% |
 | psa | 67 | 27 | 24 | 16 | 23.9% |
 | wdmm | 79 | 14 | 49 | 16 | 20.3% |
-| crcotn | 96 | 34 | 46 | 16 | 16.7% |
 | idrotf | 134 | 33 | 86 | 15 | 11.2% |
 | wdh | 95 | 27 | 53 | 15 | 15.8% |
 | ggr | 186 | 35 | 137 | 14 | 7.5% |
+| crcotn | 96 | 36 | 46 | 14 | 14.6% |
 | scag | 67 | 25 | 29 | 13 | 19.4% |
 | ai | 164 | 24 | 127 | 13 | 7.9% |
 | frafi | 81 | 22 | 46 | 13 | 16.0% |
@@ -207,8 +207,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | CHOICE | 268 | 77 |
 | IMM | 235 | 79 |
 | DIS | 198 | 107 |
-| SENSE | 184 | 158 |
-| AC | 168 | 133 |
+| SENSE | 180 | 154 |
+| AC | 164 | 129 |
 | ATK | 163 | 126 |
 | SAVE | 144 | 120 |
 | DC | 129 | 123 |
@@ -721,38 +721,38 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `feat|Inscription Adept|Inscription Adept#9` Journeyman (+3): Glyph of Warding. | angka: 3
 - `feat|Vampire Transformation: Stage 2|Vampire Transformation: Stage 2#4` You have Disadvantage on all D20 Tests while in sunlight. | angka: 1d20
 
-### item (1917)
+### item (1909)
 
-- `item|dmg14|Manual of Iron Golems#3` To decipher and use the manual, you must be a spellcaster with at least two 5th-level spell slots. | angka: 2
-- `item|misc14|Constantori's Portrait#6` It can hear within a range of 120 feet and has darkvision within a range of 60 feet, but it can't see anything behind itself. | angka: 120,60
-- `item|tsdm|Gamma Pendant#10` Any weapon you wield gets +2 to attack and damage (or its higher bonus) and can deal Force damage or its normal type. | angka: 2
+- `item|dmg14|Quaal's Feather Token, Fan#6` The fan floats and creates a wind strong enough to fill the sails of one ship, increasing its speed by 5 miles per hour for 8 hours. | angka: 5,8
+- `item|misc14|Crown of Lies#13` - 1 major beneficial property | angka: 1
+- `item|tsdm|Jax#2` For 1 hour, your Strength and Dexterity each rise by 2, to a maximum of 22. | angka: 1,2
 - `item|dmg|Wand of Wonder#9` Roll 1d20 whenever you expend the final charge. | angka: 1d20
 - `item|dmg|Scourge of Shadow#11` - 1 major beneficial property | angka: 1
-- `item|tghg|Iron Fangs#2` You gain a +2 bonus to attack and damage rolls with your Bite attacks, and they deal your choice of Force or Piercing damage. | angka: 2
+- `item|tghg|Stalk Symbiote#3` With Stage 1 of the Aberrant Horror, you also have Blindsight 10 ft. You cannot end attunement, and if the stalk is removed it regrows in 1d4 hours unless Remove Curse is cast on you first. | angka: 1d4,10,1
 - `item|dmg|Tome of the Dragon#4` To decipher and use the Tome of the Dragon, you must be either a spellcaster with at least two level 5 spell slots or a Dragon. | angka: 2
-- `item|dmg|Flask of the Titans#1` Drink: your Hit Point maximum and current Hit Points rise by 30 for 1 hour. | angka: 1,30
-- `item|dmg|Deadbane Heartglow Lantern#5` A creature touching it can use an action to infuse it, lowering that creature's hit point maximum by its Proficiency Bonus until it finishes a rest, and the lantern gains charges equal to that amount. | angka: pb
-- `item|tdm14|Wings#4` Deployed, you have a flying speed equal to your walking speed, for 10 minutes total until you finish a short or long rest. | angka: 10
-- `item|wbtw|Dust of Corrosion#5` There is enough dust in each packet for one use. | angka: 1
-- `item|tgh14c|Aether Blood#5` You must drink it again every 24 hours or have Disadvantage on Constitution checks and saves. | angka: 24
+- `item|dmg|Life-Staff of the Web Lair#10` You regain Hit Points equal to half the damage. | angka: half
+- `item|dmg|Emperor's Garlic#7` Eat a raw clove as an action to gain Resistance to Poison damage and Advantage on saves against Poisoned for 1 hour, but Disadvantage on all Deception and Persuasion checks for that time. | angka: 1
+- `item|tdm14|Thaumatonic Rifle, +1#1` A standard carbine (2d6 Radiant, range 80/320, Blaster, Automatic, Two-Handed) with a +1 bonus to attack and damage rolls. | angka: 2d6,80,320
+- `item|wbtw|Iggwilv's Cauldron#39` At the same time, all Humanoid creatures within a certain radius of the cauldron fall unconscious for 1 hour, except those that are attuned to the cauldron or immune to being charmed. | angka: 1
+- `item|twow|Ashbringer (True State)#5` The sword is sentient (Int 14, Wis 17, Cha 17, hearing and Darkvision 120 ft, speaks Common and Dwarvish, telepathy with its wielder). | angka: 120,14,17
 - `item|dmg|Rope of Climbing#8` Every 5 minutes, provided it still has 1 Hit Point or more, it regains 1 Hit Point. | angka: 5,1
-- `item|tvss14|Pentacle of Woe (rare)#1` A medallion that gives +2 to spell attack rolls and the save DCs of your Witch hexes and spells. | angka: 2
-- `item|thhw|Fangs of Guile#7` If the necklace has no charges at dusk, roll 1d6. | angka: 1d6
-- `item|dmg|Brawling Gloves (very rare)#2` You are proficient with all improvised weapons and gain +3 to attack and damage rolls made with them. | angka: 3
-- `item|tsgs|Mageplate Cap#4` Your base AC becomes 15 + Dexterity modifier instead of the normal spell value. | angka: 15
-- `item|dmg|Potion of Mirrored Eyes#1` For 1 minute you are immune to any effect that can be avoided by looking away, such as a medusa's petrifying gaze, and can look at such creatures safely. | angka: 1
-- `item|dmg|Grieving Tree#4` When a prisoner would be left at 0 Hit Points alive, it heals 1d4 + 1 from the pool. | angka: 1d4,1
+- `item|tvss14|Switch Amalgam#4` Once on two weapons, both become magical with +1 to attack and damage rolls (not if already magical with a bonus), and both gain the Switch property: two forms, swap between them at any time, even bet | angka: 1,2
+- `item|thhw|Potion of Rest#2` Drink it before a short or long rest and you wake with 1d10 + 5 Temporary Hit Points and with one level of exhaustion removed. | angka: 1d10,5
+- `item|dmg|Coil of Strength Storing#5` Stored charges vanish 1 minute after being stored. | angka: 1
+- `item|tsgs|Necrolace#3` As a Bonus Action, spend charges to take 1d8 Necrotic damage each (ignores Resistance and Immunity), and a creature you see within 30 ft regains twice that in HP. | angka: 1d8,30,double
+- `item|dmg|Skitterlegs#5` Eliminate: they move to the nearest hostile and make two melee attacks at +7, dealing 1d8 + 2 Piercing each. | angka: 1d8,7,2
+- `item|dmg|Hungry Weapon#3` If you are attuned and another creature tries to wield it, thorns deal it 1d4 Piercing damage each turn. | angka: 1d4
 - `item|dmg|Wheel of Wind and Water#2` If a wheel of wind and water is mounted on a mundane sailing ship, a creature with the Mark of Storm who is using the wheel can create an area of ideal conditions around the vessel, increasing its spe | angka: 5
 - `item|dmg|Diamond Staff#13` Detect Magic (Charge Cost 0). | angka: 0
-- `item|dmg|Helm of Domination#10` Truesight 120 feet. | angka: 120
+- `item|dmg|Sulfuras, Hand of Ragnaros#4` It takes 1d10 Fire damage at the start of each of its turns instead of the normal burning damage. | angka: 1d10
 - `item|dmg|Defender#4` For example, you could keep only +1 on your attack and damage rolls and take +2 to Armor Class. | angka: 1,2
-- `item|dmg|Circlet of Barbed Vision (Awakened)#4` You can use the +5 attack bonus twice between rests. | angka: 5,double
-- `item|egw|Wreath of the Prism (Exalted)#5` - The save DC of the wreath's spell increases to 17. | angka: 17
+- `item|dmg|Titanstone Knuckles (Dormant)#3` Your Strength score becomes 22 while you wear them. | angka: 22
+- `item|erlw|Docent#14` If a docent knows fewer than six languages, it can learn a new language after it hears or reads the language through your senses. | angka: 6
 - `item|dmg|Manual of Flesh Golems#5` To create a flesh golem, you must spend 60 days, working without interruption with the manual at hand and resting no more than 8 hours per day. | angka: 60,8
 - `item|dmg|Wand of Viscid Globs#10` If you expend the wands last charge, roll a d20. | angka: 1d20
-- `item|tsgs|Helm of Heroes#3` While it glimmers, you gain Temporary Hit Points equal to half your level (rounded down) at the start of each of your turns, and you and allies within 10 ft are Immune to Frightened. | angka: 10,half
+- `item|tsgs|Knight's Standard of Virtue#3` You and allies within 10 ft add Proficiency Bonus to saves against or to end Charmed if not already proficient. | angka: 10,pb
 - `item|dmg|Professor Orb#9` When making an Intelligence check to recall lore from any of its areas of expertise, the orb has a +9 bonus to its roll (including its Intelligence modifier). | angka: 9
-- `item|scc|Murgaxor's Elixir of Life#1` Whoever drinks this concoction gains advantage on death saving throws for 24 hours. | angka: 24
+- `item|cm|Radiance#2` In addition, you ignore 3 when making a spell attack. | angka: 3
 
 ### species (139)
 
@@ -822,33 +822,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Wizard/School of Transmutation|Master Transmuter#2` You cannot make another until a Long Rest. -> info:REST:NONUM
-- class `sub|Wizard/School of Transmutation|Master Transmuter#2` You cannot make another until a Long Rest. -> info:REST:NONUM
-- record `sub|Warden/Beastblood Guardian|Aspect of the Beast#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> covered
-- class `sub|Warden/Beastblood Guardian|Aspect of the Beast#3` After you use this, you cannot use it again until you finish a Short or Long Rest. -> info:REST:NONUM
-- record `sub|Barbarian/Path of the Zealot|Zealous Presence#3` Each of them has Advantage on attack rolls and saving throws until your next turn starts. -> info:ACTIVE:TRIGGER
-- class `sub|Barbarian/Path of the Zealot|Zealous Presence#3` Each of them has Advantage on attack rolls and saving throws until your next turn starts. -> info:ACTIVE:TRIGGER
-- record `sub|Vagabond/Mage Brand|Spellbranding#4` When you gain a Vagabond level, you can swap one for another Sorcerer cantrip. -> info:ACTIVE:TRIGGER
-- class `sub|Vagabond/Mage Brand|Spellbranding#4` When you gain a Vagabond level, you can swap one for another Sorcerer cantrip. -> info:ACTIVE:TRIGGER
-- record `sub|Paladin/Oath of Revelry|Channel Divinity#8` Creatures immune to being Charmed are unaffected. -> info:ACTIVE:OTHERS
-- class `sub|Paladin/Oath of Revelry|Channel Divinity#8` Creatures immune to being Charmed are unaffected. -> info:ACTIVE:OTHERS
-- record `sub|Rogue/Runetagger|Resourceful#1` Whenever you roll Initiative, you regain Rune Points until you have 2, if you have fewer. -> info:ACTIVE:TRIGGER
-- class `sub|Rogue/Runetagger|Resourceful#1` Whenever you roll Initiative, you regain Rune Points until you have 2, if you have fewer. -> info:ACTIVE:TRIGGER
-- record `sub|Fighter/Cavalier|Unwavering Mark#5` You can make this attack a number of times equal to your Strength modifier (minimum one) and regain all uses after a Lon -> covered
-- class `sub|Fighter/Cavalier|Unwavering Mark#5` You can make this attack a number of times equal to your Strength modifier (minimum one) and regain all uses after a Lon -> info:REST:NONUM
-- record `item|misc14|Shard of Xeluan#1` This 1-foot-long shard of obsidian has veins of silver and gold beneath its cold surface. -> info:NUMONLY:GEOMETRY
-- class `item|misc14|Shard of Xeluan#1` This 1-foot-long shard of obsidian has veins of silver and gold beneath its cold surface. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Feather of Diatryma Summoning#4` When the diatryma reverts to feather form, the magic of the feather can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Feather of Diatryma Summoning#4` When the diatryma reverts to feather form, the magic of the feather can't be used again until 7 days have passed. -> info:NUMONLY:GEOMETRY
-- record `sub|Sorcerer/Faerzress Sorcery|Faerzress Spells#3` 7 Arcane Eye, Stone Shape. -> info:NUMONLY:TABLE
-- class `sub|Sorcerer/Faerzress Sorcery|Faerzress Spells#3` 7 Arcane Eye, Stone Shape. -> info:NUMONLY:TABLE
-- record `item|dmg|Skysail#3` While you touch it, you can use an action to cast Fly on yourself for 1 minute with no concentration. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Skysail#3` While you touch it, you can use an action to cast Fly on yourself for 1 minute with no concentration. -> info:NUMONLY:GEOMETRY
-- record `species|Goblin (Ixalan)|Agile Climber#1` Climb Speed of 25 ft. You cannot use it while wearing Medium or Heavy armor. -> covered
-- record `item|wdmm|Tearulai#4` The weapon's emerald blade can't be damaged or dulled, and the sword can't be teleported anywhere without its wielder wh -> info:NUMONLY:TEXT
-- class `item|wdmm|Tearulai#4` The weapon's emerald blade can't be damaged or dulled, and the sword can't be teleported anywhere without its wielder wh -> info:NUMONLY:TEXT
-- record `sub|Rogue/Misfortune Bringer|Evil Eye#2` The curse lasts 1 minute or until you curse another creature with it. -> info:NUMONLY:GEOMETRY
-- class `sub|Rogue/Misfortune Bringer|Evil Eye#2` The curse lasts 1 minute or until you curse another creature with it. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Purity Spear#7` Moving 20 ft straight at a target before a melee hit adds 2d8 Piercing. -> info:NUMONLY:ROLL
-- class `item|dmg|Purity Spear#7` Moving 20 ft straight at a target before a melee hit adds 2d8 Piercing. -> info:NUMONLY:ROLL
-- record `item|dmg|Mask of the Dragon Queen#4` Below the five masks, a new mask shapes itself, granting the wearer a draconic visage that covers the face, neck, and sh -> info:NUMONLY:TABLE
+- record `item|idrotf|Charm of Snowball Strike#4` You need a free hand or the charge is wasted. -> info:REST:NONUM
+- class `item|idrotf|Charm of Snowball Strike#4` You need a free hand or the charge is wasted. -> info:REST:NONUM
+- record `sub|Sorcerer/Apocalypse Sorcery|Arcane Apocrypha#1` After a Long Rest you can create one Spell Scroll for free, of a level 5 or lower spell you can cast. -> covered
+- class `sub|Sorcerer/Apocalypse Sorcery|Arcane Apocrypha#1` After a Long Rest you can create one Spell Scroll for free, of a level 5 or lower spell you can cast. -> info:REST:NONUM
+- record `sub|Wizard/School of Liminality|Otherworldly Sense#4` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- class `sub|Wizard/School of Liminality|Otherworldly Sense#4` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- record `feat|Mark of Hospitality|Mark of Hospitality#6` Each is free once per Long Rest. -> info:REST:NONUM
+- class `feat|Mark of Hospitality|Mark of Hospitality#6` Each is free once per Long Rest. -> info:REST:NONUM
+- record `item|tsgs|Gibberbox#6` Then wait 24 hours. -> info:NUMONLY:GEOMETRY
+- class `item|tsgs|Gibberbox#6` Then wait 24 hours. -> info:NUMONLY:GEOMETRY
+- record `sub|Wizard/Blood Magic|Bond of Mutual Suffering#3` Once, recharging on a rest; twice from level 14. -> info:NUMONLY:TABLE
+- class `sub|Wizard/Blood Magic|Bond of Mutual Suffering#3` Once, recharging on a rest; twice from level 14. -> info:NUMONLY:TABLE
+- record `item|tsgeh|Moongold Weapon#3` It guides in the dark, so creatures holding or wearing it have Advantage on saves against the Frightened condition and a -> info:ACTIVE:OTHERS
+- class `item|tsgeh|Moongold Weapon#3` It guides in the dark, so creatures holding or wearing it have Advantage on saves against the Frightened condition and a -> info:ACTIVE:OTHERS
+- record `sub|Paladin/Oath of Revelry|Party Animal#4` Long Rest to use again. -> covered
+- class `sub|Paladin/Oath of Revelry|Party Animal#4` Long Rest to use again. -> info:REST:NONUM
+- record `item|tee24|Houseward (Legendary)#2` A 1-cubic-foot lead block with a Siberys dragonshard, usually set into a floor. -> info:NUMONLY:FLAVOR
+- class `item|tee24|Houseward (Legendary)#2` A 1-cubic-foot lead block with a Siberys dragonshard, usually set into a floor. -> info:NUMONLY:FLAVOR
+- record `item|dmg|Figurine of Wondrous Power, Golden Lions#14` Each can become a lion for up to 1 hour. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Figurine of Wondrous Power, Golden Lions#14` Each can become a lion for up to 1 hour. -> info:NUMONLY:GEOMETRY
+- record `sub|Warden/Diabolist|Infernal Command#4` A Short Rest regains one expended use. -> covered
+- class `sub|Warden/Diabolist|Infernal Command#4` A Short Rest regains one expended use. -> info:REST:NONUM
+- record `item|dmg14|Figurine of Wondrous Power, Ivory Goats#17` While it has charges, you can use it as often as you wish. -> info:REST:NONUM
+- class `item|dmg14|Figurine of Wondrous Power, Ivory Goats#17` While it has charges, you can use it as often as you wish. -> info:REST:NONUM
+- record `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
+- class `sub|Druid/Circle of the Stars|Starry Form#17` On an Intelligence check, a Wisdom check, or a Constitution saving throw made to keep Concentration, you can count any d -> info:NUMONLY:ROLL
+- record `sub|Warlock/Primordial Patron|Elemental Spells#21` 9 Cone of Cold. -> info:NUMONLY:TABLE
+- class `sub|Warlock/Primordial Patron|Elemental Spells#21` 9 Cone of Cold. -> info:NUMONLY:TABLE
+- record `feat|Fey Teleportation|Fey Teleportation#9` You regain the use when you finish a Short or Long Rest. -> info:REST:NONUM
+- class `feat|Fey Teleportation|Fey Teleportation#9` You regain the use when you finish a Short or Long Rest. -> info:REST:NONUM
