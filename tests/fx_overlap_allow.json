@@ -898,6 +898,7 @@
  },
  "GX.sub|Circle of the Stars": {
   "files": [
+   "fx-B54-subcantrips.js",
    "fx-Z2.js",
    "fx-Z3.js",
    "fx-Z4.js"
@@ -2250,7 +2251,8 @@
  "GX.sub|Circle of Stars": {
   "files": [
    "fx-B19-speedmv.js",
-   "fx-B31-subres.js"
+   "fx-B31-subres.js",
+   "fx-B54-subcantrips.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
   "shared": []

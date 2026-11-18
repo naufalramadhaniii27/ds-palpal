@@ -8,8 +8,8 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 10225 |
-| Info (tag terdokumentasi) | 29178 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2679, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 924, ACTIVE:OTHERS 781, BY_DESIGN 670, REST:NONUM 607, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 245, NUMONLY:ZERO 193, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 15, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 10226 |
+| Info (tag terdokumentasi) | 29177 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2679, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 924, ACTIVE:OTHERS 781, BY_DESIGN 670, REST:NONUM 606, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 245, NUMONLY:ZERO 193, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 15, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
 | Allow (tests/clause_gate_allow.json) | 0 |
 | Uncovered | 4846 |
 | Uncovered dengan angka | 3155 |
@@ -18,9 +18,9 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 | Angka yang tidak dijelaskan record mana pun | 3018 kalimat |
 | Kelas tanpa atom (record tidak ada untuk kelas itu) | 3953 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 247 |
-| Waktu | muat data 7 s, analisis 10 s |
+| Waktu | muat data 8 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 197 ditangkap (65.9%). Hapus semua atom kelas yang dibutuhkan: 209 ditangkap (69.9%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 297 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 199 ditangkap (67.0%). Hapus semua atom kelas yang dibutuhkan: 205 ditangkap (69.0%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 275 ditangkap (91.7%), semua atom kelas dihapus: 298 ditangkap (99.3%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -39,12 +39,12 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3435 |
-| GX | 2466 |
-| wxs | 1074 |
-| LU_X | 770 |
+| GX | 2470 |
+| wxs | 1073 |
+| LU_X | 769 |
 | species | 555 |
 | ITEM_SPELLS | 498 |
-| AUTO | 444 |
+| AUTO | 443 |
 | feat | 440 |
 | SPELL_FX | 241 |
 | ITEM_PICK | 185 |
@@ -101,7 +101,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | item | 19265 | 5125 | 11728 | 0 | 2412 |
 | species | 1638 | 953 | 492 | 0 | 193 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
-| sub | 10118 | 2663 | 5885 | 0 | 1570 |
+| sub | 10118 | 2664 | 5884 | 0 | 1570 |
 
 ## Per buku
 
@@ -109,7 +109,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|---|---|---|
 | dmg | 10460 | 2803 | 6358 | 1299 | 12.4% |
 | tvss | 2788 | 727 | 1639 | 422 | 15.1% |
-| core | 1495 | 435 | 793 | 267 | 17.9% |
+| core | 1495 | 436 | 792 | 267 | 17.9% |
 | tsgs | 1479 | 406 | 831 | 242 | 16.4% |
 | ttoh | 1470 | 378 | 870 | 222 | 15.1% |
 | tvss14 | 1201 | 256 | 740 | 205 | 17.1% |
@@ -823,33 +823,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Paladin/Oath of Winter|Father Winter#6` Long Rest to use again. -> covered
-- class `sub|Paladin/Oath of Winter|Father Winter#6` Long Rest to use again. -> info:REST:NONUM
+- record `item|dmg|Big Bertha#1` A Cannon inlaid with moongold (3d10 Bludgeoning, range 120/240 ft, Artillery, Booming, Two-Handed, Push mastery, uses Ca -> info:NUMONLY:ROLL
+- class `item|dmg|Big Bertha#1` A Cannon inlaid with moongold (3d10 Bludgeoning, range 120/240 ft, Artillery, Booming, Two-Handed, Push mastery, uses Ca -> info:NUMONLY:ROLL
 - record `item|tsdm|Finger Gun Glove#2` A fingerless glove that lets you cast the Finger Guns cantrip with your spellcasting ability. -> covered
-- record `species|Kobold Chassis|Resourceful#1` If you have at least one set of tools, you can cobble together a makeshift set of a different kind with 1 minute of work -> info:NUMONLY:GEOMETRY
-- class `species|Kobold Chassis|Resourceful#1` If you have at least one set of tools, you can cobble together a makeshift set of a different kind with 1 minute of work -> info:NUMONLY:GEOMETRY
-- record `feat|Flamewoken|Flamewoken#7` Short or Long Rest to use again. -> info:REST:NONUM
-- class `feat|Flamewoken|Flamewoken#7` Short or Long Rest to use again. -> info:REST:NONUM
-- record `sub|Summoner/Bond of the Living Armament|Encase#1` Your Eidolon gains the action Encase (cost 2 AP). -> info:NUMONLY:FLAVOR
-- class `sub|Summoner/Bond of the Living Armament|Encase#1` Your Eidolon gains the action Encase (cost 2 AP). -> info:NUMONLY:FLAVOR
-- record `item|dmg|Ruby Rod of Asmodeus#12` - 2 major detrimental properties -> info:ITEM:ARTIFACT_PROPS
-- class `item|dmg|Ruby Rod of Asmodeus#12` - 2 major detrimental properties -> info:ITEM:ARTIFACT_PROPS
-- record `feat|Treacherous Allure|Treacherous Allure#4` You always have Charm Person prepared. -> covered
-- record `item|dmg|Verminshroud (Awakened)#7` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant wasp. -> info:ACTIVE:TRIGGER
-- class `item|dmg|Verminshroud (Awakened)#7` - When you cast the polymorph spell using the Verminshroud, you can transform into a giant wasp. -> info:ACTIVE:TRIGGER
-- record `species|Frostfell Elf|Cold Dweller#1` Resistance to Cold damage. -> covered
+- record `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#7` Stage 1. -> info:NUMONLY:TABLE
+- class `feat|Lich Transformation: Stage 1|Lich Transformation: Stage 1#7` Stage 1. -> info:NUMONLY:TABLE
+- record `feat|Aberrant Horror Transformation: Stage 4|Aberrant Horror Transformation: Stage 4#1` Stage 4. -> info:NUMONLY:TABLE
+- class `feat|Aberrant Horror Transformation: Stage 4|Aberrant Horror Transformation: Stage 4#1` Stage 4. -> info:NUMONLY:TABLE
 - class `item|dmg|Shalamayne (Ellemayne)#4` A hit deals an extra 2d12 Force damage. -> info:ACTIVE:OTHERS
-- record `sub|Sorcerer/Resonant Body|Sound and Fury#4` Long Rest to regain all uses. -> covered
-- class `sub|Sorcerer/Resonant Body|Sound and Fury#4` Long Rest to regain all uses. -> info:REST:NONUM
-- record `item|dmg|Helm of Perfect Potential#7` - 1 minor detrimental property -> info:ITEM:ARTIFACT_PROPS
-- class `item|dmg|Helm of Perfect Potential#7` - 1 minor detrimental property -> info:ITEM:ARTIFACT_PROPS
-- record `species|Wrothian (DM14)|Telepathy#1` You can speak telepathically to one creature at a time within 30 ft. It understands you only if you share a language. -> info:NUMONLY:GEOMETRY
-- class `species|Wrothian (DM14)|Telepathy#1` You can speak telepathically to one creature at a time within 30 ft. It understands you only if you share a language. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Rod of Resurrection#4` When you spend its final charge, roll 1d20. -> info:COND:PLAY_STATE
-- record `item|dmg|Mask of the Beast#3` The mask regains all expended charges at dawn. -> info:REST:NONUM
-- class `item|dmg|Mask of the Beast#3` The mask regains all expended charges at dawn. -> info:REST:NONUM
-- record `sub|Summoner/Bond of the Shambling Plant|Natural Spellcasting#4` When you gain a level in this class, you can replace the cantrip with another Druid cantrip, and the spell with another  -> info:TABLE:CLASS
-- class `sub|Summoner/Bond of the Shambling Plant|Natural Spellcasting#4` When you gain a level in this class, you can replace the cantrip with another Druid cantrip, and the spell with another  -> info:TABLE:CLASS
-- record `item|dmg|Yuan-Ti Pureblood Transformation#5` Innate Spellcasting: you know Poison Spray, can cast Animal Friendship at will (snakes only), and from 3rd level can cas -> covered
-- class `item|dmg|Yuan-Ti Pureblood Transformation#5` Innate Spellcasting: you know Poison Spray, can cast Animal Friendship at will (snakes only), and from 3rd level can cas -> info:REST:NONUM
+- record `sub|Sorcerer/Resonant Body|Sound and Fury#3` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- class `sub|Sorcerer/Resonant Body|Sound and Fury#3` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- record `item|dmg|Helm of Perfect Potential#6` - 1 major beneficial property -> info:ITEM:ARTIFACT_PROPS
+- class `item|dmg|Helm of Perfect Potential#6` - 1 major beneficial property -> info:ITEM:ARTIFACT_PROPS
+- record `species|Wrothian (DM14)|Neural Lock#3` Long Rest to use again. -> info:REST:NONUM
+- class `species|Wrothian (DM14)|Neural Lock#3` Long Rest to use again. -> info:REST:NONUM
+- record `item|dmg|Rod of Resurrection#3` Each day at dawn, the rod recovers 1 spent charge. -> covered
+- record `sub|Summoner/Bond of the Shambling Plant|Natural Spellcasting#3` You learn the cantrip without it counting against your cantrips known, and you always have the level 1 spell prepared. -> info:TABLE:CLASS
+- class `sub|Summoner/Bond of the Shambling Plant|Natural Spellcasting#3` You learn the cantrip without it counting against your cantrips known, and you always have the level 1 spell prepared. -> info:TABLE:CLASS
+- record `item|dmg|Helm of the Gods#2` Whenever you finish a long rest while wearing the helm, you can pray to one of the gods listed on the Helm of the Gods t -> info:REST:NONUM
+- class `item|dmg|Helm of the Gods#2` Whenever you finish a long rest while wearing the helm, you can pray to one of the gods listed on the Helm of the Gods t -> info:REST:NONUM
+- record `item|dmg|Leather Golem Armor#14` If you take fire damage, you have disadvantage on attack rolls and ability checks until the end of your next turn. -> info:ACTIVE:TRIGGER
+- class `item|dmg|Leather Golem Armor#14` If you take fire damage, you have disadvantage on attack rolls and ability checks until the end of your next turn. -> info:ACTIVE:TRIGGER
 - record `sub|Barbarian/Path of Spellfury|Spellcasting#2` Casting a spell extends your Rage by 1 round. -> info:NUMONLY:GEOMETRY
+- class `sub|Barbarian/Path of Spellfury|Spellcasting#2` Casting a spell extends your Rage by 1 round. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Horn of Valhalla (iron)#6` Once the horn has been blown, 7 days must pass before it works again. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Horn of Valhalla (iron)#6` Once the horn has been blown, 7 days must pass before it works again. -> info:NUMONLY:GEOMETRY
+- record `sub|Cleric/Purification Domain|Purification Domain Spells#2` 5 Fear, Flash Fever. -> info:NUMONLY:TABLE
+- class `sub|Cleric/Purification Domain|Purification Domain Spells#2` 5 Fear, Flash Fever. -> info:NUMONLY:TABLE
+- record `item|tdcsr|Titanstone Knuckles (Awakened)#5` Finish a long rest to use that again. -> covered
+- class `item|tdcsr|Titanstone Knuckles (Awakened)#5` Finish a long rest to use that again. -> info:REST:NONUM
+- record `item|wdmm|Tearulai#4` The weapon's emerald blade can't be damaged or dulled, and the sword can't be teleported anywhere without its wielder wh -> info:NUMONLY:TEXT
