@@ -34,12 +34,14 @@ const XL_GEARC=/(?:^|\s)(?:weapon|armor)$|^Gear|pack$|^Ammunition|^Gaming set/i;
 const XL_TRIG=/^ (?:actions?|propert(?:y|ies)|mastery|masteries|conditions?|rules?)\b/;
 const XL_LANG={"Celestial":1,"Giant":1};/* v-measure: also a creature type ("Aberration, Celestial, Fey"): a language only when "language" follows */
 const XL_LANGT=/^ languages?\b/;
-const XL_SHAPE={"Cone":1,"Cube":1,"Sphere":1,"Cylinder":1,"Emanation":1,"Line":1};/* v-measure: an area shape after a size ("a 10-foot Cube") */
+const XL_SHAPE={"Cone":1,"Cube":1,"Sphere":1,"Cylinder":1,"Emanation":1,"Line":1,"Cones":1,"Cubes":1,"Spheres":1,"Cylinders":1};const XL_SHAPEC={"Cube":1,"Sphere":1,"Cylinder":1,"Emanation":1,"Cubes":1,"Spheres":1,"Cylinders":1};const XL_SHAPEC2=/\b(?:(?:in|within|inside|of|from|into|leaves|enters|entering|leaving) the|every|each|another|other) $/;/* v-measure: an area shape after a size ("a 10-foot Cube") */
 const XL_SHAPEB=/\d-(?:foot|feet)(?:-[a-z]+)*,? (?:\d+-foot(?:-[a-z]+)* )?$/;
+const XL_ATT={"Friendly":1,"Hostile":1,"Indifferent":1};const XL_ATTP=/\b(?:is|are|be|being|becomes?|remains?|stays?|turns?) $/;const XL_ATTN=/^ (?:to|toward|towards)\b/;/* B56: the attitude of a creature: Friendly after "is", or before "to" or "toward" */
+const XL_SPDP=/\b(?:your|its|their|his|her|the target's|creature's) $/;/* B56: "your Speed" is the Speed rule */
 const XL_PROP={"Finesse":1,"Heavy":1,"Light":1,"Thrown":1,"Versatile":1,"Reach":1,"Two-Handed":1};/* v-measure: weapon properties named before "weapon" or in a list that ends with "property" */
 const XL_LC={"saving throw":"Saving Throw","saving throws":"Saving Throw","death saving throw":"Death Saving Throw","death saving throws":"Death Saving Throw","attack roll":"Attack Roll","attack rolls":"Attack Roll","ability check":"Ability Check","ability checks":"Ability Check","spell attack":"Spell Attack","opportunity attack":"Opportunity Attack","opportunity attacks":"Opportunity Attack"};/* v-measure: rule phrases in running text are lowercase; short labels such as "long rest" are left alone */
 const XL_LCF={"saving":1,"death":1,"attack":1,"ability":1,"spell":1,"opportunity":1};
-const XL_PROPT=/^ (?:weapons?\b|(?:or|and) [A-Z][A-Za-z-]+ propert)/;/* the word after a level 2 name that makes it a term */
+const XL_PROPT=/^ (?:weapons?\b|(?:or|and) [A-Z][A-Za-z-]+ (?:propert|weapon))/;/* the word after a level 2 name that makes it a term */
 function xlRules(){ return typeof lateGet("LIB_RULES")!=="undefined"?lateGet("LIB_RULES"):{}; }
 let XL_KT=0; const XL_DIRTY=/[\[('’]|[^\S ]|\s\s|^\s|\s$/;/* a name that needs cleaning; most do not */
 function xlClean(n){ n=String(n); return /[\[(']|[^\S ]|\s\s|^\s|\s$/.test(n)?n.replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n; }/* the same cleaning, without making copies of a name that is already clean */
@@ -95,7 +97,14 @@ function xlIdxStep4(ftk, sp, crs, mi, m, key, put){
   sp.forEach((x) =>{ const n0=String(x[0]), k0=XL_DIRTY.test(n0)?n0.replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n0, old=m[k0]; put(x[0],["spn",x[0]],1); if(old&&m[k0]&&m[k0][0]==="spn") m[k0][3]=old; });
   crs.forEach((c) =>{ put(c.n,["cr",c.n],1); });
   mi.forEach((r) =>{ if(r&&r[0]) put(r[0],["mi",r[0]],1); });
+  xlAlias(m);
   const again=!!XL_KEY; XL_IDX=m; XL_KEY=key; if(again&&typeof xlQueue==="function"&&XL_OBS){ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); }/* the data changed (a source was switched): link the page again */
+}
+/* B56: names that are written another way in the text and point at the same entry: Half Cover and Total Cover open Cover, Hit Point opens Hit Points, and the plural area shapes open their shape */
+function xlAlias(m){
+  const F=m.__f, reg=(n,lv) =>{ const w=n.split(" ")[0], c=n.split(" ").length; if(!(F[w]>=c)) F[w]=c; };
+  [["Half Cover","Cover",0],["Three-Quarters Cover","Cover",0],["Total Cover","Cover",0],["Hit Point","Hit Points",0],["Cubes","Cube",2],["Spheres","Sphere",2],["Cones","Cone",2],["Cylinders","Cylinder",2]].forEach((a) =>{
+    const k=m[a[1]]; if(!k||m[a[0]]) return; m[a[0]]=[k[0],k[1],a[2]]; reg(a[0]); });
 }
 export let XL_SELF="", XL_CM=null, XL_CK=-1;
 export function __set_XL_SELF(v){ return XL_SELF=v; }
@@ -121,12 +130,12 @@ function xlMapStep2(m, fs, key){
 }
 /* B56: lowercase rule words of the 2014 books. Conditions, Darkvision, Advantage and Disadvantage (only in a rule-like place), Bonus Action, Hit Points and Damage Roll link like their capitalised forms. A lowercase spell name links only where the text shows it is a spell: right before "spell" or "(2 charges)", or after "cast", "casts" or "casting" (a spell of several words also after "by") */
 const XL_LC1={blinded:"Blinded",charmed:"Charmed",deafened:"Deafened",frightened:"Frightened",grappled:"Grappled",incapacitated:"Incapacitated",invisible:"Invisible",paralyzed:"Paralyzed",petrified:"Petrified",poisoned:"Poisoned",prone:"Prone",restrained:"Restrained",stunned:"Stunned",unconscious:"Unconscious",darkvision:"Darkvision",advantage:"Advantage",disadvantage:"Disadvantage"};
-const XL_LC2={"bonus action":"Bonus Action","bonus actions":"Bonus Action","hit points":"Hit Points","hit point":"Hit Points","damage roll":"Damage Roll","damage rolls":"Damage Roll"};
+const XL_LC2={"bonus action":"Bonus Action","bonus actions":"Bonus Action","hit points":"Hit Points","hit point":"Hit Points","damage roll":"Damage Roll","damage rolls":"Damage Roll","bright light":"Bright Light","dim light":"Dim Light"};
 const XL_LCW={of:1,the:1,and:1,to:1,in:1,on:1,from:1,with:1};
 function xlTitle(ph){return ph.split(" ").map((w,n) =>{return n>0&&XL_LCW[w]===1?w:w.charAt(0).toUpperCase()+w.slice(1)}).join(" ")}
 function xlScanLcMore(t, i, a, ta, tb, m, selfK, mode){
   const w1=t.slice(a,tb[i]);
-  const pre=t.slice(Math.max(0,a-12),a), prevW=i>0&&t.slice(tb[i-1],a)===" "?t.slice(ta[i-1],tb[i-1]):"";
+  const pre=t.slice(Math.max(0,a-22),a), prevW=i>0&&t.slice(tb[i-1],a)===" "?t.slice(ta[i-1],tb[i-1]):"";
   const nextW=i+1<ta.length&&t.slice(tb[i],ta[i+1])===" "?t.slice(ta[i+1],tb[i+1]):"";
   const put=(cn,L) =>{ if(!cn||cn===selfK) return null; let k=m[cn]; if(!k) return null; if(mode==="b"){ if(k[0]==="spn") return null; if(k[0]==="g") k=["lib","rule|"+k[1]]; } return [k,L]; };
   if(XL_LC1[w1]){
@@ -137,6 +146,8 @@ function xlScanLcMore(t, i, a, ta, tb, m, selfK, mode){
     if(t.slice(tb[i],ta[i+1])!==" ") break;
     const c2=XL_LC2[w1+" "+t.slice(ta[i+1],tb[i+1])]; if(c2){ const r=put(c2,2); if(r) return r; }
   }
+  /* a creature named in lowercase: "statistics for a shadow", "a rat appears" */
+  if(/^[a-z]+$/.test(w1)){ const ck=m[xlTitle(w1)]; if(ck&&ck[0]==="cr"&&(/^ appears\b/.test(t.slice(tb[i],tb[i]+9))||/statistics for an? $/.test(pre+""))){ const r=put(xlTitle(w1),1); if(r) return r; } }
   /* a spell name of one to four words, written in lowercase */
   for(let L=Math.min(4,ta.length-i);L>=1;L--){
     let ok=true; for(let j=i+1;j<i+L;j++){ if(t.slice(tb[j-1],ta[j])!==" "){ ok=false; break; } }
@@ -144,7 +155,7 @@ function xlScanLcMore(t, i, a, ta, tb, m, selfK, mode){
     const ph=t.slice(a,tb[i+L-1]); if(!/^[a-z' \u0001-]+$/.test(ph)) continue;
     const k=m[xlTitle(ph)]; if(!k||k[0]!=="spn") continue;
     const after=t.slice(tb[i+L-1],tb[i+L-1]+16);
-    const isSpell=/^ spell\b/.test(after)||/^ \(\d+ charges?\)/.test(after)||/(^|\W)(cast|casts|casting)\s$/.test(pre)||(L>=2&&/\bby\s$/.test(pre));
+    const isSpell=/^ spell\b/.test(after)||/^ or [a-z' -]+ spell\b/.test(t.slice(tb[i+L-1],tb[i+L-1]+40))||/\blevel of the $/.test(pre)||/^ \(\d+ charges?\)/.test(after)||/(^|\W)(cast|casts|casting)\s$/.test(pre)||(L>=2&&/\bby\s$/.test(pre));
     if(!isSpell) continue;
     const r=put(xlTitle(ph),L); if(r) return r;
   }
@@ -200,7 +211,7 @@ function xlScanTokens(t, n0, p, ta, tb){
 const XL_DT="(?:Cold|Fire|Force|Lightning|Necrotic|Poison|Psychic|Radiant|Thunder)";
 const XL_DTA=new RegExp("^,? (?:or |and )?"+XL_DT+"\\b"), XL_DTB=new RegExp("\\b"+XL_DT+",? (?:or |and )?$");
 function xlDmgList(t, a, e0){ return XL_DTA.test(t.slice(e0,e0+14))||XL_DTB.test(t.slice(Math.max(0,a-14),a)); }
-function xlTrig2(k, t, a, e0){ const w=t.slice(a,e0); return !!((XL_LANG[w]&&k[1].indexOf("language|")===0&&XL_LANGT.test(t.slice(e0,e0+11)))||(XL_SHAPE[w]&&XL_SHAPEB.test(t.slice(Math.max(0,a-40),a)))||(XL_PROP[w]&&XL_PROPT.test(t.slice(e0,e0+40)))); }
+function xlTrig2(k, t, a, e0){ const w=t.slice(a,e0); return !!((XL_LANG[w]&&k[1].indexOf("language|")===0&&XL_LANGT.test(t.slice(e0,e0+11)))||(XL_SHAPE[w]&&XL_SHAPEB.test(t.slice(Math.max(0,a-40),a)))||(XL_SHAPEC[w]&&XL_SHAPEC2.test(t.slice(Math.max(0,a-16),a)))||(XL_ATT[w]&&(XL_ATTP.test(t.slice(Math.max(0,a-12),a))||XL_ATTN.test(t.slice(e0,e0+12))))||(w==="Speed"&&XL_SPDP.test(t.slice(Math.max(0,a-10),a)))||(XL_PROP[w]&&XL_PROPT.test(t.slice(e0,e0+40)))); }
 function xlScanGate(k, t, a, i, L, tb, atStart){
           if(k[1]==="gear|Acid"&&(/^ damage\b/.test(t.slice(tb[i+L-1],tb[i+L-1]+8))||xlDmgList(t, a, tb[i+L-1]))) return null;/* "Acid damage" and "Acid, Cold, Fire" are damage types, not the Acid item */
           const e0=tb[i+L-1], pw=/([A-Za-z][A-Za-z\u0001-]*) $/.exec(t.slice(Math.max(0,a-30),a));
@@ -214,13 +225,13 @@ function xlScanGate(k, t, a, i, L, tb, atStart){
             if(xlScanPart7(k, t, e0)) return null;/* followed by a capital: part of a longer name */
           }
           if(k[0]==="lib"&&k[1].indexOf("feat|")===0){ const sf=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\bfeats?\b/i.test(sf)) return null; }
-          if(k[0]==="spn"&&!/^: Used/.test(t.slice(e0,e0+7))){ const sent=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(sent)) return null; }
+          if(k[0]==="spn"&&!/^: Used/.test(t.slice(e0,e0+7))&&!/^ spells?\b/.test(t.slice(e0,e0+8))){ const sent=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(sent)) return null; }
           return k;
 }
 function xlScanPart1(c){ return ((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45); }
 function xlScanPart2(c){ return ((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45); }
 function xlScanPart3(pw){ return (pw&&/^[A-Z]/.test(pw[1])&&!XL_STOP[pw[1]]); }
-function xlScanPart4(k, t, e0, a){ return (k[0]==="spn"&&k[3]&&!/^: Used/.test(t.slice(e0,e0+7))&&!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(t.slice(0,a).split(/[.!?:]\s/).pop())); }
+function xlScanPart4(k, t, e0, a){ return (k[0]==="spn"&&k[3]&&!/^: Used/.test(t.slice(e0,e0+7))&&!/^ spells?\b/.test(t.slice(e0,e0+8))&&!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(t.slice(0,a).split(/[.!?:]\s/).pop())); }
 function xlScanPart5(k){ return (k[2]===1&&k[0]!=="spn"&&k[1].indexOf("feat|")!==0); }
 function xlScanPart6(ss, t, e0){ return (ss&&t.slice(e0).replace(/[\s.,:;)]+$/,"")!==""&&!/^\s*,\s+[A-Z]/.test(t.slice(e0,e0+40))); }
 function xlScanPart7(k, t, e0){ return (k[0]==="lib"&&/^(?:gear|bg|class|sub|species)\|/.test(k[1])&&/^ [A-Z]/.test(t.slice(e0,e0+2))); }
