@@ -1,4 +1,4 @@
-# Laporan clause gate (mode laporan, 2026-11-18)
+# Laporan clause gate (mode laporan, 2026-11-19)
 
 Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build. Dijalankan sebagai langkah laporan dengan `continue-on-error`.
 

@@ -1124,441 +1124,457 @@
    "layer": "data",
    "order": 280
   },
-  "data/fx-F-sub.js": {
+  "data/fx-B51-primers.js": {
    "layer": "data",
    "order": 281
   },
-  "data/fx-G-engine.js": {
+  "data/fx-B52-speed3.js": {
    "layer": "data",
    "order": 282
   },
-  "data/fx-H-audit.js": {
+  "data/fx-B53-itemadv.js": {
    "layer": "data",
    "order": 283
   },
-  "data/fx-L1.js": {
+  "data/fx-B54-subcantrips.js": {
    "layer": "data",
    "order": 284
   },
-  "data/fx-L4.js": {
+  "data/fx-F-sub.js": {
    "layer": "data",
    "order": 285
   },
-  "data/fx-L5.js": {
+  "data/fx-G-engine.js": {
    "layer": "data",
    "order": 286
   },
-  "data/fx-L9.js": {
+  "data/fx-H-audit.js": {
    "layer": "data",
    "order": 287
   },
-  "data/fx-L10.js": {
+  "data/fx-L1.js": {
    "layer": "data",
    "order": 288
   },
-  "data/fx-L11.js": {
+  "data/fx-L4.js": {
    "layer": "data",
    "order": 289
   },
-  "data/fx-L12.js": {
+  "data/fx-L5.js": {
    "layer": "data",
    "order": 290
   },
-  "data/fx-L13.js": {
+  "data/fx-L9.js": {
    "layer": "data",
    "order": 291
   },
-  "data/fx-D-item.js": {
+  "data/fx-L10.js": {
    "layer": "data",
    "order": 292
   },
-  "data/item-lastcharge.js": {
+  "data/fx-L11.js": {
    "layer": "data",
    "order": 293
   },
-  "data/fx-L2.js": {
+  "data/fx-L12.js": {
    "layer": "data",
    "order": 294
   },
-  "data/fx-L3.js": {
+  "data/fx-L13.js": {
    "layer": "data",
    "order": 295
   },
-  "data/fx-L6.js": {
+  "data/fx-D-item.js": {
    "layer": "data",
    "order": 296
   },
-  "data/fx-L7.js": {
+  "data/item-lastcharge.js": {
    "layer": "data",
    "order": 297
   },
-  "data/fx-L8.js": {
+  "data/fx-L2.js": {
    "layer": "data",
    "order": 298
   },
-  "data/fx-M1.js": {
+  "data/fx-L3.js": {
    "layer": "data",
    "order": 299
   },
-  "data/fx-M2.js": {
+  "data/fx-L6.js": {
    "layer": "data",
    "order": 300
   },
-  "data/fx-N1.js": {
+  "data/fx-L7.js": {
    "layer": "data",
    "order": 301
   },
-  "data/fx-Z1.js": {
+  "data/fx-L8.js": {
    "layer": "data",
    "order": 302
   },
-  "data/fx-Z2.js": {
+  "data/fx-M1.js": {
    "layer": "data",
    "order": 303
   },
-  "data/fx-Z3.js": {
+  "data/fx-M2.js": {
    "layer": "data",
    "order": 304
   },
-  "data/fx-Z4.js": {
+  "data/fx-N1.js": {
    "layer": "data",
    "order": 305
   },
+  "data/fx-Z1.js": {
+   "layer": "data",
+   "order": 306
+  },
+  "data/fx-Z2.js": {
+   "layer": "data",
+   "order": 307
+  },
+  "data/fx-Z3.js": {
+   "layer": "data",
+   "order": 308
+  },
+  "data/fx-Z4.js": {
+   "layer": "data",
+   "order": 309
+  },
   "builder/00-reg.js": {
    "layer": "-",
-   "order": 306
+   "order": 310
   },
   "builder/00-env.js": {
    "layer": "-",
-   "order": 307
+   "order": 311
   },
   "builder/01-logic-core-helpers.js": {
    "layer": "logic",
-   "order": 308
+   "order": 312
   },
   "builder/01a-logic-query-registry.js": {
    "layer": "logic",
-   "order": 309
+   "order": 313
   },
   "builder/01b-logic-late-ports.js": {
    "layer": "logic",
-   "order": 310
+   "order": 314
   },
   "builder/02-data-magic-item-summaries.js": {
    "layer": "data",
-   "order": 311
+   "order": 315
   },
   "builder/03-logic-magic-item-effects.js": {
    "layer": "logic",
-   "order": 312
+   "order": 316
   },
   "builder/04-logic-storage.js": {
    "layer": "logic",
-   "order": 313
+   "order": 317
   },
   "builder/05-logic-choice-model-ruleset.js": {
    "layer": "logic",
-   "order": 314
+   "order": 318
   },
   "builder/06-data-2014-classes.js": {
    "layer": "data",
-   "order": 315
+   "order": 319
   },
   "builder/06a-data-2014-long-text-more.js": {
    "layer": "data",
-   "order": 316
+   "order": 320
   },
   "builder/06a2-data-2024-species-long-text.js": {
    "layer": "data",
-   "order": 317
+   "order": 321
   },
   "builder/06b-data-2014-long-text.js": {
    "layer": "data",
-   "order": 318
+   "order": 322
   },
   "builder/07-data-2014-spells.js": {
    "layer": "data",
-   "order": 319
+   "order": 323
   },
   "builder/08-logic-2014-rules.js": {
    "layer": "logic",
-   "order": 320
+   "order": 324
   },
   "builder/09-logic-feats-and-choices.js": {
    "layer": "logic",
-   "order": 321
+   "order": 325
   },
   "builder/09c-logic-edition-overlays.js": {
    "layer": "logic",
-   "order": 322
+   "order": 326
   },
   "builder/09d-logic-wotc-source-gate.js": {
    "layer": "logic",
-   "order": 323
+   "order": 327
   },
   "builder/09b-logic-choice-stages.js": {
    "layer": "logic",
-   "order": 324
+   "order": 328
   },
   "builder/10-logic-v17-additions.js": {
    "layer": "logic",
-   "order": 325
+   "order": 329
   },
   "builder/10a-logic-fx-registry.js": {
    "layer": "logic",
-   "order": 326
+   "order": 330
   },
   "builder/10b-logic-fx-handlers-entry.js": {
    "layer": "logic",
-   "order": 327
+   "order": 331
   },
   "builder/10c-logic-fx-handlers-ability.js": {
    "layer": "logic",
-   "order": 328
+   "order": 332
   },
   "builder/10d-logic-fx-rules-cond-value.js": {
    "layer": "logic",
-   "order": 329
+   "order": 333
   },
   "builder/10e-logic-fx-schema.js": {
    "layer": "logic",
-   "order": 330
+   "order": 334
   },
   "builder/11-logic-derivation.js": {
    "layer": "logic",
-   "order": 331
+   "order": 335
   },
   "builder/11b-logic-fx-sources.js": {
    "layer": "logic",
-   "order": 332
+   "order": 336
   },
   "builder/11c-logic-fx-handlers-sheet.js": {
    "layer": "logic",
-   "order": 333
+   "order": 337
   },
   "builder/12a-logic-sheet-registry.js": {
    "layer": "logic",
-   "order": 334
+   "order": 338
   },
   "builder/12b-logic-sheet-schema.js": {
    "layer": "logic",
-   "order": 335
+   "order": 339
   },
   "builder/12c-logic-sheet-handlers-core.js": {
    "layer": "logic",
-   "order": 336
+   "order": 340
   },
   "builder/12d-logic-sheet-handlers-skills.js": {
    "layer": "logic",
-   "order": 337
+   "order": 341
   },
   "builder/12e-logic-sheet-handlers-defense.js": {
    "layer": "logic",
-   "order": 338
+   "order": 342
   },
   "builder/12f-logic-sheet-handlers-movement.js": {
    "layer": "logic",
-   "order": 339
+   "order": 343
   },
   "builder/12g-logic-sheet-handlers-profs.js": {
    "layer": "logic",
-   "order": 340
+   "order": 344
   },
   "builder/12h-logic-sheet-handlers-attacks.js": {
    "layer": "logic",
-   "order": 341
+   "order": 345
   },
   "builder/12i-logic-sheet-handlers-gear-resources.js": {
    "layer": "logic",
-   "order": 342
+   "order": 346
   },
   "builder/12j-logic-sheet-handlers-features.js": {
    "layer": "logic",
-   "order": 343
+   "order": 347
   },
   "builder/12k-logic-sheet-handlers-spells.js": {
    "layer": "logic",
-   "order": 344
+   "order": 348
   },
   "builder/12l-logic-sheet-handlers-late.js": {
    "layer": "logic",
-   "order": 345
+   "order": 349
   },
   "builder/12-logic-export-to-sheet.js": {
    "layer": "logic",
-   "order": 346
+   "order": 350
   },
   "builder/13-logic-sources-and-packs.js": {
    "layer": "logic",
-   "order": 347
+   "order": 351
   },
   "builder/13a-logic-pack-registry.js": {
    "layer": "logic",
-   "order": 348
+   "order": 352
   },
   "builder/13b-logic-pack-handlers.js": {
    "layer": "logic",
-   "order": 349
+   "order": 353
   },
   "builder/14-logic-multiclass-hp-shop.js": {
    "layer": "logic",
-   "order": 350
+   "order": 354
   },
   "builder/15-logic-import-from-sheet.js": {
    "layer": "logic",
-   "order": 351
+   "order": 355
   },
   "builder/16-logic-feature-numbers.js": {
    "layer": "logic",
-   "order": 352
+   "order": 356
   },
   "builder/17-ui-step-builder.js": {
    "layer": "ui",
-   "order": 353
+   "order": 357
   },
   "builder/18-ui-spells.js": {
    "layer": "ui",
-   "order": 354
+   "order": 358
   },
   "builder/19-ui-steps-sources-class-bg-species-abilities.js": {
    "layer": "ui",
-   "order": 355
+   "order": 359
   },
   "builder/20-ui-steps-equipment-next.js": {
    "layer": "ui",
-   "order": 356
+   "order": 360
   },
   "builder/21-ui-rules-reference.js": {
    "layer": "ui",
-   "order": 357
+   "order": 361
   },
   "builder/22-ui-shell.js": {
    "layer": "ui",
-   "order": 358
+   "order": 362
   },
   "builder/23-logic-level-up-and-build-files.js": {
    "layer": "logic",
-   "order": 359
+   "order": 363
   },
   "builder/24-ui-icons.js": {
    "layer": "ui",
-   "order": 360
+   "order": 364
   },
   "builder/25-logic-hooks-for-the-sheet.js": {
    "layer": "logic",
-   "order": 361
+   "order": 365
   },
   "builder/main.js": {
    "layer": "-",
-   "order": 362
+   "order": 366
   },
   "learn/00-env.js": {
    "layer": "-",
-   "order": 363
+   "order": 367
   },
   "learn/00-bridge.js": {
    "layer": "-",
-   "order": 364
+   "order": 368
   },
   "learn/45b-data-learn-places-a.js": {
    "layer": "data",
-   "order": 365
+   "order": 369
   },
   "learn/45c-data-learn-places-b.js": {
    "layer": "data",
-   "order": 366
+   "order": 370
   },
   "learn/45-data-learn.js": {
    "layer": "data",
-   "order": 367
+   "order": 371
   },
   "learn/46-logic-learn.js": {
    "layer": "logic",
-   "order": 368
+   "order": 372
   },
   "learn/47-ui-learn.js": {
    "layer": "ui",
-   "order": 369
+   "order": 373
   },
   "tg/00-env.js": {
    "layer": "-",
-   "order": 370
+   "order": 374
   },
   "tg/00-bridge.js": {
    "layer": "-",
-   "order": 371
+   "order": 375
   },
   "tg/20-engine.js": {
    "layer": "logic",
-   "order": 372
+   "order": 376
   },
   "tg/25-sim.js": {
    "layer": "logic",
-   "order": 373
+   "order": 377
   },
   "tg/30-ui-tg.js": {
    "layer": "ui",
-   "order": 374
+   "order": 378
   },
   "tg/31-ui-tg-field.js": {
    "layer": "ui",
-   "order": 375
+   "order": 379
   },
   "pdf/00-env.js": {
    "layer": "-",
-   "order": 376
+   "order": 380
   },
   "pdf/01-data-style.js": {
    "layer": "data",
-   "order": 377
+   "order": 381
   },
   "pdf/02-logic-markup.js": {
    "layer": "logic",
-   "order": 378
+   "order": 382
   },
   "pdf/03-logic-typeset.js": {
    "layer": "logic",
-   "order": 379
+   "order": 383
   },
   "pdf/04-ui-canvas.js": {
    "layer": "ui",
-   "order": 380
+   "order": 384
   },
   "pdf/05-data-sheet-fields.js": {
    "layer": "data",
-   "order": 381
+   "order": 385
   },
   "pdf/06-ui-fields.js": {
    "layer": "ui",
-   "order": 382
+   "order": 386
   },
   "pdf/07-ui-sheet-pages.js": {
    "layer": "ui",
-   "order": 383
+   "order": 387
   },
   "pdf/08-ui-flow.js": {
    "layer": "ui",
-   "order": 384
+   "order": 388
   },
   "pdf/09-ui-blocks.js": {
    "layer": "ui",
-   "order": 385
+   "order": 389
   },
   "pdf/10-ui-appendix.js": {
    "layer": "ui",
-   "order": 386
+   "order": 390
   },
   "pdf/11-ui-render.js": {
    "layer": "ui",
-   "order": 387
+   "order": 391
   },
   "pdf/main.js": {
    "layer": "-",
-   "order": 388
+   "order": 392
   },
   "data/rs14-2014-wording.js": {
    "layer": "data",
-   "order": 389
+   "order": 393
   }
  },
  "edges": [
@@ -14388,6 +14404,42 @@
   },
   {
    "from": "data/fx-B50-darakhul.js",
+   "to": "data/00-data-env.js",
+   "import": false,
+   "names": [
+    "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-B51-primers.js",
+   "to": "data/fx-B44-itempick.js",
+   "import": false,
+   "names": [
+    "ITEM_PICK"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-B52-speed3.js",
+   "to": "data/00-data-env.js",
+   "import": false,
+   "names": [
+    "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-B53-itemadv.js",
+   "to": "data/00-data-env.js",
+   "import": false,
+   "names": [
+    "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-B54-subcantrips.js",
    "to": "data/00-data-env.js",
    "import": false,
    "names": [
