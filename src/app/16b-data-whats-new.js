@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:169,l:"0.0.67",d:"2026-11-18",n:["Divine Strike now shows on your weapon rows for sixteen more Cleric domains, including the 2d8 version from level 14."]},
 {v:168,l:"0.0.66",d:"2026-11-18",n:["The ten Potions of Resistance now have a switch that adds their Resistance for 1 hour."]},
 {v:167,l:"0.0.65",d:"2026-11-18",n:["Wings of Flying and Broom of Flying now show their Fly Speed. Cloak of the Bat, Potion of Flying and Potion of Climbing add a switch for their movement."]},
 {v:166,l:"0.0.64",d:"2026-11-18",n:["Telepathic now adds Detect Thoughts to your spells, cast with the ability the feat raised.","Seven more subclass features give their free spell: Spectrum Analyzer, Chemical Mastery, Superior Atlas, Consult the Spirits, Misty Pathways, Raise Cohort and Patriotism."]},

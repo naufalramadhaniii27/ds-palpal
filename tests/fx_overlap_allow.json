@@ -650,6 +650,7 @@
  },
  "GX.sub|Hunting Domain": {
   "files": [
+   "fx-B42-divinestrike.js",
    "fx-F-sub.js",
    "fx-L10.js"
   ],
@@ -1190,6 +1191,7 @@
  },
  "GX.sub|Prophecy Domain": {
   "files": [
+   "fx-B42-divinestrike.js",
    "fx-B7-subskills.js",
    "fx-B9-advnotes.js",
    "fx-L10.js"
@@ -1376,6 +1378,7 @@
  },
  "GX.sub|Labyrinth Domain": {
   "files": [
+   "fx-B42-divinestrike.js",
    "fx-B9-advnotes.js",
    "fx-L10.js"
   ],
@@ -1889,10 +1892,13 @@
   "files": [
    "fx-B20-subimm.js",
    "fx-B24-subriders.js",
+   "fx-B42-divinestrike.js",
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
-  "shared": []
+  "shared": [
+   "atkDice"
+  ]
  },
  "GX.sub|Vermin Lord": {
   "files": [
@@ -1977,26 +1983,35 @@
  "GX.sub|Apocalypse Domain": {
   "files": [
    "fx-B24-subriders.js",
+   "fx-B42-divinestrike.js",
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
-  "shared": []
+  "shared": [
+   "atkDice"
+  ]
  },
  "GX.sub|Beer Domain": {
   "files": [
    "fx-B24-subriders.js",
+   "fx-B42-divinestrike.js",
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
-  "shared": []
+  "shared": [
+   "atkDice"
+  ]
  },
  "GX.sub|Darkness Domain": {
   "files": [
    "fx-B24-subriders.js",
+   "fx-B42-divinestrike.js",
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
-  "shared": []
+  "shared": [
+   "atkDice"
+  ]
  },
  "GX.sub|Feylost": {
   "files": [
@@ -2349,6 +2364,54 @@
    "fx-L10.js"
   ],
   "reason": "B36 adds the free-cast spell of a different feature; the other files hold other features of the same subclass",
+  "shared": []
+ },
+ "GX.sub|Hunt Domain": {
+  "files": [
+   "fx-B42-divinestrike.js",
+   "fx-B7-subskills.js"
+  ],
+  "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
+  "shared": []
+ },
+ "GX.sub|Pestilence Domain (2014)": {
+  "files": [
+   "fx-B20-subimm.js",
+   "fx-B42-divinestrike.js"
+  ],
+  "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
+  "shared": []
+ },
+ "GX.sub|Rum Domain": {
+  "files": [
+   "fx-B27-subfreecast.js",
+   "fx-B42-divinestrike.js"
+  ],
+  "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
+  "shared": []
+ },
+ "GX.sub|Speed Domain": {
+  "files": [
+   "fx-B42-divinestrike.js",
+   "fx-L10.js"
+  ],
+  "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
+  "shared": []
+ },
+ "GX.sub|Strength Domain (PSA)": {
+  "files": [
+   "fx-B42-divinestrike.js",
+   "fx-L10.js"
+  ],
+  "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
+  "shared": []
+ },
+ "GX.sub|Travel Domain": {
+  "files": [
+   "fx-B42-divinestrike.js",
+   "fx-L10.js"
+  ],
+  "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
   "shared": []
  }
 }
