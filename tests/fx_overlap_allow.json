@@ -745,6 +745,7 @@
   "files": [
    "fx-B19-speedmv.js",
    "fx-B27-subfreecast.js",
+   "fx-B36-subfree2.js",
    "fx-L10.js",
    "fx-M2.js"
   ],
@@ -1999,9 +2000,10 @@
  },
  "GX.sub|Feylost": {
   "files": [
-   "fx-B9-advnotes.js",
    "fx-B24-subriders.js",
-   "fx-B27-subfreecast.js"
+   "fx-B27-subfreecast.js",
+   "fx-B36-subfree2.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
   "shared": []
@@ -2050,6 +2052,7 @@
  "GX.sub|Holy Icon": {
   "files": [
    "fx-B27-subfreecast.js",
+   "fx-B36-subfree2.js",
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
@@ -2330,6 +2333,22 @@
    "fx-Z3.js"
   ],
   "reason": "Different features of the same class are defined in these files (B37 adds the slot trade of Font of Magic or Font of Inspiration); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Alchemist": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L10.js"
+  ],
+  "reason": "B36 adds the free-cast spell of a different feature; the other files hold other features of the same subclass",
+  "shared": []
+ },
+ "GX.sub|Cartographer": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L10.js"
+  ],
+  "reason": "B36 adds the free-cast spell of a different feature; the other files hold other features of the same subclass",
   "shared": []
  }
 }

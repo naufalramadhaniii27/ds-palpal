@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:166,l:"0.0.64",d:"2026-11-18",n:["Telepathic now adds Detect Thoughts to your spells, cast with the ability the feat raised.","Seven more subclass features give their free spell: Spectrum Analyzer, Chemical Mastery, Superior Atlas, Consult the Spirits, Misty Pathways, Raise Cohort and Patriotism."]},
 {v:165,l:"0.0.63",d:"2026-11-18",n:["Druid: Wild Resurgence and Archdruid now trade Wild Shape uses and spell slots on the Wild Shape card. Spend a slot to regain a use, or spend uses to make a slot that a Long Rest removes."]},
 {v:164,l:"0.0.62",d:"2026-11-18",n:["Font of Magic now trades slots and points on its card: spend a slot to gain points, or spend points to make a slot of level 1 to 5. Made slots vanish after a Long Rest. Font of Inspiration lets a Bard spend a slot to recover a Bardic Inspiration use.","Ten more subclass features give their free spell with the right spellcasting ability."]},
 {v:163,l:"0.0.61",d:"2026-11-18",n:["Fourteen subclass features now give their damage resistances (some on a switch, such as Raging or Starry Form). Cleric domains with Potent Spellcasting add the Wisdom modifier to cantrip damage.","Book of Exalted Deeds, Armor of Invulnerability, Stormgirdle and Gauntlets of Rage give their resistances and immunities. Dwarf Stonecunning, Naga Speed Burst, Tabaxi Feline Agility, Spring Mandrake and the Geppettin species give their speed, tremorsense or disease immunity."]},

@@ -1,0 +1,78 @@
+{
+"Boon of Misty Escape": [
+"Gaseous Form"
+],
+"Boon of Revelry": [
+"Otto's Irresistible Dance"
+],
+"Child of the Sun": [
+"Faerie Fire"
+],
+"Cloying Mists": [
+"Fog Cloud"
+],
+"Cosmos Touched": [
+"Alter Self"
+],
+"Drow High Magic": [
+"Levitate",
+"Dispel Magic"
+],
+"Fey Sentinel": [
+"Entangle"
+],
+"Fey Teleportation": [
+"Misty Step"
+],
+"Fey Tormentor": [
+"Hex"
+],
+"Fey Touched": [
+"Misty Step"
+],
+"Gathered Whispers": [
+"Augury"
+],
+"Infernal Bulwark": [
+"Armor of Agathys"
+],
+"Infernal Dragoon": [
+"Magic Weapon"
+],
+"Outlands Envoy": [
+"Misty Step",
+"Tongues"
+],
+"Rune Shaper": [
+"Comprehend Languages"
+],
+"Second Skin": [
+"Alter Self"
+],
+"Shadow Touched": [
+"Invisibility"
+],
+"Shadow Weaver": [
+"Darkness"
+],
+"Shadowmoor Hexer": [
+"Hex"
+],
+"Svirfneblin Magic": [
+"Blur",
+"Disguise Self"
+],
+"Telepathic": [
+"Detect Thoughts"
+],
+"Treacherous Allure": [
+"Charm Person"
+],
+"Warlike Familiar": [
+"Battle Familiar"
+],
+"Watchers": [
+"Beast Sense",
+"Speak with Animals"
+]
+}
