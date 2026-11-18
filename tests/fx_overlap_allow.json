@@ -1194,6 +1194,7 @@
  "GX.sub|Prophecy Domain": {
   "files": [
    "fx-B42-divinestrike.js",
+   "fx-B49-subspeed.js",
    "fx-B7-subskills.js",
    "fx-B9-advnotes.js",
    "fx-L10.js"
@@ -1647,8 +1648,9 @@
  },
  "GX.species|Derro Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1657,8 +1659,9 @@
  },
  "GX.species|Dragonborn Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1667,8 +1670,9 @@
  },
  "GX.species|Drow Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1677,8 +1681,9 @@
  },
  "GX.species|Dwarf Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1687,8 +1692,9 @@
  },
  "GX.species|Elf/Shadow Fey Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1717,8 +1723,9 @@
  },
  "GX.species|Gnome Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1727,8 +1734,9 @@
  },
  "GX.species|Halfling Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1737,8 +1745,9 @@
  },
  "GX.species|Human and Half-Elf Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1747,8 +1756,9 @@
  },
  "GX.species|Kobold Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1757,8 +1767,9 @@
  },
  "GX.species|Ravenfolk Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1767,8 +1778,9 @@
  },
  "GX.species|Tiefling Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -1777,8 +1789,9 @@
  },
  "GX.species|Trollkin Heritage": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B16-speciesimm.js"
+   "fx-B16-speciesimm.js",
+   "fx-B50-darakhul.js",
+   "fx-B9-advnotes.js"
   ],
   "reason": "B9 holds the Advantage notes of other traits of the same species, B16 the Immunity row (and the Advantage line) of a different trait. No sentence is covered twice.",
   "shared": [
@@ -2396,10 +2409,13 @@
  "GX.sub|Speed Domain": {
   "files": [
    "fx-B42-divinestrike.js",
+   "fx-B49-subspeed.js",
    "fx-L10.js"
   ],
   "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
-  "shared": []
+  "shared": [
+   "speedAdd"
+  ]
  },
  "GX.sub|Strength Domain (PSA)": {
   "files": [
@@ -2412,6 +2428,7 @@
  "GX.sub|Travel Domain": {
   "files": [
    "fx-B42-divinestrike.js",
+   "fx-B49-subspeed.js",
    "fx-L10.js"
   ],
   "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
@@ -2489,6 +2506,14 @@
    "fx-L1.js"
   ],
   "reason": "B48 adds the spells a feat keeps prepared; fx-L1 holds its other mechanics",
+  "shared": []
+ },
+ "GX.sub|Fey Ballerina": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-B49-subspeed.js"
+  ],
+  "reason": "B49 adds the toggled speed of a subclass feature; other files hold different features of the same subclass",
   "shared": []
  }
 }
