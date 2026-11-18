@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:172,l:"0.0.70",d:"2026-11-18",n:["Nine more subclass features now give their free spells: Portal Master, Arcane Relics, Benediction, Innate Necromancy, Nature's Emissary, Arcane Rebuke, Covert Magic, Arcane Assassin and Natural Disruption."]},
 {v:171,l:"0.0.69",d:"2026-11-18",n:["Six more subclass features now give their cantrips: Heavenly Voice, House Insignia, Madcap Magic, Nano-Repair, Abracadabra and Nova."]},
 {v:170,l:"0.0.68",d:"2026-11-18",n:["Checker update: artifact property count lines and feat ability score lines no longer count as missing rules."]},
 {v:169,l:"0.0.67",d:"2026-11-18",n:["Divine Strike now shows on your weapon rows for sixteen more Cleric domains, including the 2d8 version from level 14."]},

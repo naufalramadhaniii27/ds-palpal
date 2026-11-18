@@ -38,6 +38,15 @@ CURATED = [
  ("Nanite Host", "Nano-Repair", ["Mending"], None, None),
  ("The Magician", "Abracadabra", ["Prestidigitation"], None, None),
  ("The Star", "Nova", ["Light", "Produce Flame"], None, None),
+ ("Portalweaver", "Portal Master", ["Arcane Gate", "Plane Shift", "Scatter", "Teleport"], "INT", None),
+ ("Antiquarian", "Arcane Relics", ["Counterspell", "Dispel Magic"], None, None),
+ ("Godsworn", "Benediction", ["Daylight", "Lesser Restoration", "Sanctuary", "Zone of Truth"], None, None),
+ ("Nightgaunt", "Innate Necromancy", ["Darkness", "False Life", "Gentle Repose", "Speak with Dead"], None, None),
+ ("Verdant Protector", "Nature's Emissary", ["Goodberry", "Plant Growth", "Spike Growth", "Speak with Plants"], None, None),
+ ("Witchbane Hunter", "Arcane Rebuke", ["Counterspell"], None, None),
+ ("House of Rooks", "Covert Magic", ["Feather Fall", "Invisibility", "Knock", "Silence", "Spider Climb"], None, None),
+ ("House of Rooks", "Arcane Assassin", ["Greater Invisibility"], None, None),
+ ("Leyline Magic", "Natural Disruption", ["Counterspell", "Dispel Magic"], None, None),
 ]
 LVL = {("Alchemist", "Chemical Mastery"): 15, ("Cartographer", "Superior Atlas"): 15, ("College of Cantors", "Heavenly Voice"): 3, ("The Magician", "Abracadabra"): 1}  # features whose level the data lists in the efa file only
 rows = {}
