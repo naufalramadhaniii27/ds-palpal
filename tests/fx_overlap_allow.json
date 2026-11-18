@@ -2539,5 +2539,45 @@
   ],
   "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
   "shared": []
+ },
+ "GX.item|Chattering Staff of Skulls": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-L2.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
+ },
+ "GX.item|Ominous Staff of Skulls": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-L5.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
+ },
+ "GX.item|Pulverizing Staff of Skulls": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-L5.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
+ },
+ "GX.item|Wave": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-Z1.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
+ },
+ "GX.item|Weapon of Warning": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-L6.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
  }
 }
