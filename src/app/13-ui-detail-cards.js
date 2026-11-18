@@ -119,8 +119,39 @@ function xlMapStep2(m, fs, key){
   XL_CM=o; XL_CK=key;
   return /** @type {any} */ ({o});
 }
+/* B56: lowercase rule words of the 2014 books. Conditions, Darkvision, Advantage and Disadvantage (only in a rule-like place), Bonus Action, Hit Points and Damage Roll link like their capitalised forms. A lowercase spell name links only where the text shows it is a spell: right before "spell" or "(2 charges)", or after "cast", "casts" or "casting" (a spell of several words also after "by") */
+const XL_LC1={blinded:"Blinded",charmed:"Charmed",deafened:"Deafened",frightened:"Frightened",grappled:"Grappled",incapacitated:"Incapacitated",invisible:"Invisible",paralyzed:"Paralyzed",petrified:"Petrified",poisoned:"Poisoned",prone:"Prone",restrained:"Restrained",stunned:"Stunned",unconscious:"Unconscious",darkvision:"Darkvision",advantage:"Advantage",disadvantage:"Disadvantage"};
+const XL_LC2={"bonus action":"Bonus Action","bonus actions":"Bonus Action","hit points":"Hit Points","hit point":"Hit Points","damage roll":"Damage Roll","damage rolls":"Damage Roll"};
+const XL_LCW={of:1,the:1,and:1,to:1,in:1,on:1,from:1,with:1};
+function xlTitle(ph){return ph.split(" ").map((w,n) =>{return n>0&&XL_LCW[w]===1?w:w.charAt(0).toUpperCase()+w.slice(1)}).join(" ")}
+function xlScanLcMore(t, i, a, ta, tb, m, selfK, mode){
+  const w1=t.slice(a,tb[i]);
+  const pre=t.slice(Math.max(0,a-12),a), prevW=i>0&&t.slice(tb[i-1],a)===" "?t.slice(ta[i-1],tb[i-1]):"";
+  const nextW=i+1<ta.length&&t.slice(tb[i],ta[i+1])===" "?t.slice(ta[i+1],tb[i+1]):"";
+  const put=(cn,L) =>{ if(!cn||cn===selfK) return null; let k=m[cn]; if(!k) return null; if(mode==="b"){ if(k[0]==="spn") return null; if(k[0]==="g") k=["lib","rule|"+k[1]]; } return [k,L]; };
+  if(XL_LC1[w1]){
+    if(w1==="advantage"||w1==="disadvantage"){ if(!/^(on|against)$/.test(nextW)&&!/^(have|has|having|gain|gains|impose|imposes|grant|grants|give|gives|giving|with)$/.test(prevW)) return [null,0]; }
+    const r=put(XL_LC1[w1],1); if(r) return r;
+  }
+  for(let L=Math.min(2,ta.length-i);L>=2;L--){
+    if(t.slice(tb[i],ta[i+1])!==" ") break;
+    const c2=XL_LC2[w1+" "+t.slice(ta[i+1],tb[i+1])]; if(c2){ const r=put(c2,2); if(r) return r; }
+  }
+  /* a spell name of one to four words, written in lowercase */
+  for(let L=Math.min(4,ta.length-i);L>=1;L--){
+    let ok=true; for(let j=i+1;j<i+L;j++){ if(t.slice(tb[j-1],ta[j])!==" "){ ok=false; break; } }
+    if(!ok) continue;
+    const ph=t.slice(a,tb[i+L-1]); if(!/^[a-z' \u0001-]+$/.test(ph)) continue;
+    const k=m[xlTitle(ph)]; if(!k||k[0]!=="spn") continue;
+    const after=t.slice(tb[i+L-1],tb[i+L-1]+16);
+    const isSpell=/^ spell\b/.test(after)||/^ \(\d+ charges?\)/.test(after)||/(^|\W)(cast|casts|casting)\s$/.test(pre)||(L>=2&&/\bby\s$/.test(pre));
+    if(!isSpell) continue;
+    const r=put(xlTitle(ph),L); if(r) return r;
+  }
+  return [null,0];
+}
 function xlScanLc(t, i, a, ta, tb, m, selfK, mode){
-  if(XL_LCF[t.slice(a,tb[i])]!==1) return [null,0];
+  if(XL_LCF[t.slice(a,tb[i])]!==1) return xlScanLcMore(t, i, a, ta, tb, m, selfK, mode);
   for(let L=Math.min(3,ta.length-i);L>=2;L--){
     let ok=true; for(let j=i+1;j<i+L;j++){ if(t.slice(tb[j-1],ta[j])!==" "){ ok=false; break; } }
     if(!ok) continue;
@@ -129,7 +160,7 @@ function xlScanLc(t, i, a, ta, tb, m, selfK, mode){
     if(mode==="b"){ if(k[0]!=="g"&&k[0]!=="lib") continue; if(k[0]==="g") k=["lib","rule|"+k[1]]; }
     return [k,L];
   }
-  return [null,0];
+  return xlScanLcMore(t, i, a, ta, tb, m, selfK, mode);
 }
 /* the matcher: finds the names in one run of text. t holds apostrophes as \u0001. Returns [start,end,[type,key]] for each name, longest first, left to right */
 function xlScan(t,atStart,selfK,mode,m){
