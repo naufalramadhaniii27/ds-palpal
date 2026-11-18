@@ -88,13 +88,13 @@ registerSheetGroup({id:"item-spells",group:"spells",phase:"spells",order:90,read
     if(it.dc!=null)o.itc.dc=it.dc;if(it.atk!=null)o.itc.atk=it.atk;Q.spFxTo(o,"",a);ISL.push(o)})});
   if(ISL.length){C.spells=(C.spells||[]).concat(ISL);C.spells.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:p.n>q.n?1:0)})}return ctx.patch()}});
 /* B44: a magic item that holds one spell the wearer picked (x.pk, set in the builder). A single-use item gets a counter that never resets */
-function itemPickSpellRow(C,Q,SM,a,x,P,n){const sp=SM[n];if(!sp)return null;const o={n:n,l:sp[1],sch:sp[2],ct:sp[4],r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:spellFullText(n)||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:P.once?"Item":"At will",src:x.n,itc:{it:x.n,c:0,lv:sp[1]}};
+function itemPickSpellRow(C,Q,SM,a,x,P,n,j){const sp=SM[n];if(!sp)return null;const lv=P.cap?(+(x.pl||[])[j]||sp[1]):sp[1],o={n:n,l:sp[1],sch:sp[2],ct:sp[4],r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:spellFullText(n)||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:P.once?"Item":"At will",src:x.n,itc:{it:x.n,c:0,lv:lv}};
  if(P.once){const rk=Q.resKey("x-",x.n+" "+n,C.res);C.res.push({k:rk,n:x.n+": "+n,tag:"Single use",max:1,reset:"none",f:x.n});o.itc.dk=rk}
- if(P.dc!=null)o.itc.dc=P.dc;if(P.atk!=null)o.itc.atk=P.atk;Q.spFxTo(o,"",a);return o}
+ const dc=P.cap?(x.pd||[])[j]:P.dc,at=P.cap?(x.pa||[])[j]:P.atk;if(dc)o.itc.dc=dc;if(at!=null&&at!=="")o.itc.atk=at;Q.spFxTo(o,"",a);return o}
 registerSheetGroup({id:"item-pick-spells",group:"spells",phase:"spells",order:91,reads:["i.a","i.SM","q.ensureInv","q.dmapRow","q.spFxTo","q.resKey"],writes:["C.spells","C.res"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,out=[];
   Q.ensureInv().forEach((x) =>{const P=itemPickRow(x.n),d=Q.dmapRow(x.n);if(!P||!d||!x.pk||!x.pk.length)return;if(P.att&&d[3]&&!x.eq)return;
-   const o=itemPickSpellRow(C,Q,I.SM,I.a,x,P,x.pk[0]);if(o)out.push(o)});
+   x.pk.forEach((n,j) =>{const o=itemPickSpellRow(C,Q,I.SM,I.a,x,P,n,j);if(o)out.push(o)})});
   if(out.length){C.spells=(C.spells||[]).concat(out);C.spells.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:p.n>q.n?1:0)})}return ctx.patch()}});
 /* v21 M2: Mystic Arcanum and Contact Patron, once per Long Rest without a slot. v23 m1-r3: the shared "Mystic Arcanum" row only counts the arcana that have no own row yet */
 registerSheetRule({id:"warlock-arcanum-patron-counters",group:"spells",about:"Warlock: Mystic Arcanum and Contact Patron spells get their own once-per-Long-Rest counters",phase:"spells",order:100,reads:["C.spells","q.resKey"],writes:["C.res"],
