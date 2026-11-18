@@ -2515,5 +2515,29 @@
   ],
   "reason": "B49 adds the toggled speed of a subclass feature; other files hold different features of the same subclass",
   "shared": []
+ },
+ "GX.item|Claws of the Umber Hulk": {
+  "files": [
+   "fx-B52-speed3.js",
+   "fx-M1.js"
+  ],
+  "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
+  "shared": []
+ },
+ "GX.item|Tectonic Gauntlets": {
+  "files": [
+   "fx-B52-speed3.js",
+   "fx-L9.js"
+  ],
+  "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
+  "shared": []
+ },
+ "GX.sub|Cat Burglar": {
+  "files": [
+   "fx-B52-speed3.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
+  "shared": []
  }
 }
