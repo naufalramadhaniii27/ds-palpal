@@ -285,7 +285,7 @@ def reg(cls, *keys):
 
 reg("AC", "ac", "acAdd", "acBase", "acDexAb", "acMw", "acArmAb", "acOver", "shAc", "acNoDex", "acAb", "acMin", "acCap", "acDexMax", "natAc", "acBonus", "dwAC", "unarmoredAC", "med3", "acSub", "ua", "mw")
 reg("HP", "hp", "hpLvl", "hpFlat", "hpPerLevel", "hpSub")
-reg("SAVE", "saveBonus", "saveBonusNp", "saveBonusAb", "saveFrom", "saveProf", "saveFromAsi", "saveNote", "save", "advOn")
+reg("SAVE", "saveBonus", "saveBonusNp", "saveBonusAb", "saveFrom", "saveProf", "saveFromAsi", "saveNote", "save", "advOn", "spellDc", "spDc")  # "saving throw DCs of your spells" is the spell save DC bonus
 reg("ADV", "advOn", "initAdv", "saveNote", "noSurprise", "def", "defs", "adv")
 reg("DIS", "saveNote", "def", "defs")
 reg("RES", "res", "imm", "vul", "resToImm", "def", "defs", "condImm", "linRes", "saveNote", "resBy")
@@ -717,7 +717,7 @@ REASONS = collections.OrderedDict([
 NONSTAT = {"DMG", "DC", "ATK", "RESOURCE", "SPELL", "CHOICE", "ADV", "DIS", "SAVE_ROLL", "SLOT"}
 RX_CANTRIP_DMG = R(r"^(?:you )?add(?:ing)? your (?:wisdom|intelligence|charisma) modifier to the damage (?:you deal with |of )?(?:any |all )?(?:[a-z]+ )?cantrips?(?: you cast)?\.?$")
 RX_SPELL_RIDER = R(r"^(?:you )?(?:can )?(?:also )?cast (?:it|them|that spell|that cantrip|those spells|either one|any of them)[^.]{0,40}\b(?:with|using)\b[^.]{0,20}\bslots?\b|^you always have (?:it|them|[a-z' ]+) prepared|\b(?:does not|do not|doesn't|don't|do|does) count against\b|\bcounts? as (?:a |an )?[a-z]+ spells?\b")
-RX_ASI = R(r"\b(?:raise|increase|add 1 to)\b[^.]{0,90}\b(?:by 1|add 1 to it)\b[^.]{0,40}\bmaximum(?: of)? (?:20|30)\b|\bchoose an ability score and add 1 to it \(maximum (?:20|30)\)")
+RX_ASI = R(r"\b(?:raise|increase|add 1 to)\b[^.]{0,90}\b(?:by 1|add 1 to it)\b[^.]{0,40}\bmaximum(?: of)? (?:20|30)\b|\bchoose an ability score and add 1 to it \(maximum (?:20|30)\)|\b(?:one|an|any) ability scores? of your choice \+1 \(max(?:imum)? (?:20|30)\)|\b(?:pick|choose) [a-z]+ (?:or|and) [a-z]+ and raise it by 1 \(maximum (?:20|30)\)|\bpick one ability score and raise it by 1 \(maximum (?:20|30)\)")
 RX_AC10 = R(r"\b10 (?:plus|\+)")
 RX_TABLE_NAME = R(r"^(?:spellcasting|pact magic|eldritch invocations?|cantrips?|spell slots?|spells known|prepared spells|the (?:[a-z]+ )?table)$")
 RX_TABLE_SENT = R(r"\b(?:swap|replace|exchange)\b[^.]{0,40}\b(?:cantrip|spell)\b|\brules below\b|\bspell list\b|\bspell slots? (?:of|per|at) (?:each|every|a new)|\b(?:new|higher) level of spell slots\b|\bchoose (?:two|three|four|five|six|\d+) (?:level \d+ )?[a-z]+ (?:cantrips|spells)\b|\byou know (?:two|three|four|five|\d+) [a-z]+ cantrips\b|\bpick one invocation\b|\binvocations?\b[^.]{0,40}\b(?:known|table|list|learn|swap|replace)\b|\bcantrips? (?:known|column)\b|\bprepared spells? (?:column|table)\b|\byour list holds\b|\bspellbook\b|\bto start\b|\bat higher levels\b|\bupcast|\bhigher-level slot")
@@ -750,7 +750,7 @@ def excuse(r, ctx, atoms):
     has = lambda c: any(a.cls == c for a in atoms)
     own_rider = bool(RX_RIDER.search(t) and RX_RIDER_HIT.search(t) and not re.search(r"\bsaving throw\b|\bsave\b|\b(?:target|creature) (?:takes|must)\b", t))
     # standard constants explained by an atom of the same class (the class atom must exist, only the standard number is missing)
-    if "ABIL" in need and not r.get("missing") and unexpl and unexpl <= {"1"} and RX_ASI.search(t) and has("ABIL"):
+    if "ABIL" in need and not r.get("missing") and unexpl and unexpl <= {"1", "20", "30"} and RX_ASI.search(t) and has("ABIL"):
         return "STD:ASI"
     if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^(?:choose|pick) an? [a-z' -]+ (?:subclass|patron|circle|college|domain|oath|path)\b", t):
         return "STD:SUBCLASS_PICK"

@@ -1,0 +1,70 @@
+{
+ "why": "Psionic Rod of the Honed Mind on a Warlock 5: +1 to spell DC (15) and spell attack (7).",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Warlock",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Psionic Rod of the Honed Mind",
+    "q": 1,
+    "eq": true,
+    "att": true
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spellcasting.dc",
+   "eq": 15
+  },
+  {
+   "path": "spellcasting.atk",
+   "eq": 7
+  }
+ ]
+}
