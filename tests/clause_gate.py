@@ -312,6 +312,7 @@ class Atom:
         self.cls, self.vals, self.src, self.weak, self.i = cls, set(vals), src, weak, 0
 
 
+FEAT_FREE = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "feat_free_spells.json")))  # feat name: the spells it prepares with one free cast
 def atoms_from(e, src, weak=False, extra=()):
     """One atom per (class, field) of a record dict (a GX entry, a fx dict, a structured field). Value numbers = numbers inside that field and the entry's `min`."""
     out = []
@@ -606,6 +607,8 @@ def features(D):
             at += [Atom(k, {"*"}, "feat.mi") for k in ("SPELL", "SPELL", "SPELL", "CHOICE", "CHOICE", "RESOURCE", "ABIL", "SLOT")]
         if any(isinstance(pr, dict) and pr.get("k") == "dab" for pr in (f.get("pick") or [])):  # the Eberron Dragonmark feats: the sheet builds the free spells, their once per Long Rest counters and the ability from the pick dab (tests/e2e_dragonmark.py)
             at += [Atom(k, {"*"}, "feat.dab") for k in ("SPELL", "SPELL", "SPELL", "SPELL", "SPELL", "RESOURCE", "ABIL", "SLOT")]
+        for sp_n in FEAT_FREE.get(fn, []):  # feats that prepare a spell and give one free cast: the spell is on the sheet and its counter exists (tests/e2e_feat_free_spells.py proves each one); the sentences are: always prepared, free cast, also with slots
+            at += [Atom("SPELL", {"*"}, "feat.free")] * 3
         text = f.get("full") or f.get("d")
         yield mk("feat", fn, fn, D["srcOf"]["feats"].get(fn) or f.get("hb") or "core", text, None, at, ("feat|" + fn) in D["acts_set"])
     # magic items
