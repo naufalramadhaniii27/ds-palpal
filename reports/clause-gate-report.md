@@ -8,19 +8,19 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9912 |
-| Info (tag terdokumentasi) | 29204 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2682, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 937, ACTIVE:OTHERS 789, BY_DESIGN 670, REST:NONUM 607, NUMONLY:FLAVOR 340, STD:ASI 247, COND:PLAY_STATE 245, NUMONLY:ZERO 194, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 14, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9998 |
+| Info (tag terdokumentasi) | 29198 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2682, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 937, ACTIVE:OTHERS 783, BY_DESIGN 670, REST:NONUM 607, NUMONLY:FLAVOR 340, STD:ASI 247, COND:PLAY_STATE 245, NUMONLY:ZERO 194, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 14, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5133 |
+| Uncovered | 5053 |
 | Uncovered dengan angka | 3251 |
-| Uncovered dengan kelas kata kunci mekanik | 4818 |
+| Uncovered dengan kelas kata kunci mekanik | 4738 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 315 |
 | Angka yang tidak dijelaskan record mana pun | 3117 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4253 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4115 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 252 |
-| Waktu | muat data 0 s, analisis 10 s |
+| Waktu | muat data 9 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 189 ditangkap (63.4%). Hapus semua atom kelas yang dibutuhkan: 194 ditangkap (65.1%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 170 ditangkap (57.0%). Hapus semua atom kelas yang dibutuhkan: 180 ditangkap (60.4%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 272 ditangkap (90.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -50,6 +50,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | cls | 177 |
 | LASTCH | 145 |
 | SAVE_NOTES | 88 |
+| ITEM_PICK | 86 |
 | SUB_GRANT | 70 |
 | FXO | 50 |
 | SPELLS | 37 |
@@ -67,13 +68,13 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
 | RESOURCE | 7405 | 867 | 11.7% |
-| SPELL | 3255 | 676 | 20.8% |
 | DMG | 4658 | 661 | 14.2% |
+| SPELL | 3255 | 596 | 18.3% |
 | SPEED | 1411 | 542 | 38.4% |
 | PROF | 1124 | 404 | 35.9% |
 | ADV | 1959 | 388 | 19.8% |
 | RES | 1375 | 365 | 26.5% |
-| CHOICE | 1663 | 347 | 20.9% |
+| CHOICE | 1663 | 341 | 20.5% |
 | IMM | 1004 | 318 | 31.7% |
 | DC | 2903 | 282 | 9.7% |
 | SLOT | 1425 | 280 | 19.6% |
@@ -97,7 +98,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|---|---|---|
 | class | 1186 | 296 | 657 | 0 | 233 |
 | feat | 2812 | 866 | 1469 | 0 | 477 |
-| item | 19265 | 4886 | 11749 | 0 | 2630 |
+| item | 19265 | 4972 | 11743 | 0 | 2550 |
 | species | 1638 | 929 | 492 | 0 | 217 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
 | sub | 10118 | 2657 | 5885 | 0 | 1576 |
@@ -106,20 +107,20 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10460 | 2676 | 6369 | 1415 | 13.5% |
+| dmg | 10460 | 2719 | 6366 | 1375 | 13.1% |
 | tvss | 2788 | 726 | 1639 | 423 | 15.2% |
 | core | 1495 | 435 | 793 | 267 | 17.9% |
 | ttoh | 1470 | 353 | 870 | 247 | 16.8% |
 | tsgs | 1479 | 405 | 831 | 243 | 16.4% |
-| tvss14 | 1201 | 249 | 743 | 209 | 17.4% |
+| tvss14 | 1201 | 255 | 740 | 206 | 17.2% |
 | tkdm | 921 | 256 | 488 | 177 | 19.2% |
 | tsdm | 1063 | 297 | 592 | 174 | 16.4% |
 | tghp | 1116 | 395 | 553 | 168 | 15.1% |
 | tua24 | 634 | 194 | 331 | 109 | 17.2% |
 | tdm14 | 643 | 153 | 382 | 108 | 16.8% |
-| tce | 730 | 170 | 458 | 102 | 14.0% |
 | au | 535 | 165 | 279 | 91 | 17.0% |
 | tgh14p | 490 | 121 | 282 | 87 | 17.8% |
+| tce | 730 | 186 | 458 | 86 | 11.8% |
 | phb14 | 513 | 176 | 258 | 79 | 15.4% |
 | twow | 542 | 153 | 314 | 75 | 13.8% |
 | thhw | 395 | 95 | 232 | 68 | 17.2% |
@@ -129,7 +130,6 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | xge | 375 | 120 | 206 | 49 | 13.1% |
 | tghg | 288 | 77 | 162 | 49 | 17.0% |
 | tssm | 275 | 79 | 148 | 48 | 17.5% |
-| oota | 87 | 22 | 21 | 44 | 50.6% |
 | hof | 249 | 66 | 141 | 42 | 16.9% |
 | tdcsr | 299 | 111 | 148 | 40 | 13.4% |
 | coa | 158 | 46 | 72 | 40 | 25.3% |
@@ -137,6 +137,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | misc14 | 326 | 68 | 222 | 36 | 11.0% |
 | mot | 292 | 99 | 159 | 34 | 11.6% |
 | tsgeh | 183 | 65 | 89 | 29 | 15.8% |
+| oota | 87 | 43 | 21 | 23 | 26.4% |
 | tgh14c | 242 | 39 | 182 | 21 | 8.7% |
 | wbtw | 92 | 18 | 54 | 20 | 21.7% |
 | bgg | 207 | 67 | 121 | 19 | 9.2% |
@@ -197,8 +198,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|
 | RESOURCE | 596 | 506 |
 | DMG | 492 | 438 |
-| SPELL | 464 | 88 |
 | SPEED | 459 | 365 |
+| SPELL | 384 | 88 |
 | ADV | 378 | 183 |
 | PROF | 359 | 150 |
 | RES | 297 | 138 |
@@ -308,91 +309,91 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Ranger/Gloom Stalker|Stalker's Flurry#1` Your Dreadful Strike's Psychic damage increases to 2d8. | no record for DMG; number 2d8 unexplained
 - `sub|Wizard/Plague Doctor|Medicinal Master#2` Bad Medicine deals an extra 2d8 Acid damage. | no record for DMG; number 2d8 unexplained
 
-### SPELL (464 uncovered)
-
-- `class|Artificer|Spellcasting#8` You know two Artificer cantrips. | no record for SPELL; number 2 unexplained
-- `class|Bard|Spellcasting#14` To begin, your list holds four level 1 spells that you pick from the Bard spell list. | no record for SPELL; number 4 unexplained
-- `class|Healer|Spellcasting#3` You know two cantrips from the Healer spell list. | no record for SPELL; number 2 unexplained
-- `class|Ranger|Fighting Style#4` Pick two Druid cantrips to learn. | no record for SPELL
-- `feat|Arcane Preparation|Arcane Preparation#4` For example, a level 3 wizard assigns four 1st-level slots and two 2nd-level slots, and also has one bonus 1st-level and one bonus 2nd-level slot that can cast any spell in the spellbook. | no record for SPELL; number 4,2 unexplained
-- `feat|Downcaster|Downcaster#1` If you learn spells, you learn four spells of 3rd level or lower from your class list, of levels you have slots for. | no record for SPELL; number 4 unexplained
-- `feat|Mystic Conflux|Mystic Conflux#1` You attune to up to four magic items at once instead of three, and you can cast Identify without a spell slot or material components. | no record for SPELL; number 4,3 unexplained
-- `feat|Spelldriver|Spelldriver#2` If you cast two or more spells in one turn, only one of them can be level 3 or higher. | no record for SPELL; number 2 unexplained
-- `item|dmg|+1 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | no record for SPELL; number 8 unexplained
-- `item|dmg|+3 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | no record for SPELL; number 8 unexplained
-- `item|dmg|Gamma Pendant#9` You can also cast Greater Spells: Hardlight Frame 7, Orbital Hardlight Cannon 13, Wall of Force 7. | no record for SPELL; number 7,13 unexplained
-- `item|dmg|Occultant Abacus#20` While holding your occultant abacus within 5 feet of a creature killed within the past 24 hours, you can cast the augury spell. | number 5,24 no record explains
-- `item|dmg|Wand of Wonder#12` On 01 to 20, you cast a spell from the chosen point. | no record for SPELL; number 01,20 unexplained
-- `item|dmg|Witchlight Vane#19` After the vane's polymorph spell is cast, roll a d8; on a roll of 3 or 8, the vane can't be used to cast this spell again until the next dawn. | number 1d8,8 no record explains
-- `item|dmg|Witchlight Watch#14` After the watch's invisibility spell is cast, roll a d8; on a roll of 3 or 8, the watch can't be used to cast this spell again until the next dawn. | no record for SPELL; number 1d8,8 unexplained
-- `item|tce|+2 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | no record for SPELL; number 8 unexplained
-- `item|tee24|Battle Rod#1` Held in two hands, it lets you cast cantrips at up to twice their range. | no record for SPELL; number 2,double unexplained
-- `item|tee24|Spellburrow#4` If you have Spellcasting or Pact Magic, you cast the other two as if prepared, without counting against your prepared spells. | no record for SPELL; number 2 unexplained
-- `item|tee24|War Staff#2` Cantrips cast through it have up to four times their normal range. | no record for SPELL; number 4 unexplained
-- `item|tsgs|Sword of the Spelldrinker#5` Spend 1 to cast Counterspell. | no record for SPELL; number 1 unexplained
-- `item|wbtw|Witchlight Watch#14` After the watch's invisibility spell is cast, roll a d8; on a roll of 3 or 8, the watch can't be used to cast this spell again until the next dawn. | no record for SPELL; number 1d8,8 unexplained
-- `sub|Artificer/Mutagenist|Master Mutagenist#2` If you cast a third spell with Concoction Casting, you choose which of the two active spells ends. | no record for SPELL; number 2 unexplained
-- `sub|Barbarian/Path of the Rage Mage|Spellcasting#8` You know three 1st-level sorcerer spells, two of which are evocation or transmutation. | no record for SPELL; number 3,2 unexplained
-- `sub|Bard/College of Lore (2014)|Additional Magical Secrets#1` You learn two spells of your choice from any class. | no record for CHOICE,SPELL; number 2 unexplained
-- `sub|Bard/College of Requiems (2014)|Chilling Melody#1` Learn two necromancy cantrips from any class list. | no record for SPELL; number 2 unexplained
-- `sub|Bard/College of Spirits|Channeler#3` You know the Guidance cantrip, and it has a range of 60 feet when you cast it. | number 60 no record explains
-- `sub|Cleric/Arcana Domain|Magical Mastery#1` You learn four Wizard spells, one each of level 6, 7, 8, and 9. | number 4 no record explains
-- `sub|Cleric/War Domain|War God's Blessing#3` It lasts for 1 minute instead, but ends sooner if you cast that same spell again, have the Incapacitated condition, or die. | number 1 no record explains
-- `sub|Druid/Circle of Stars|Star Map#2` While you hold it you know Guidance, you always have Guiding Bolt prepared, and you can cast Guiding Bolt without a slot a number of times equal to your Proficiency Bonus. | number pb no record explains
-- `sub|Fighter/Prescient Knight|Spellcasting#7` You learn three level 1 spells at level 3 and more as you advance. | no record for SPELL; number 3 unexplained
-- `sub|Jaeger/Heretic Chapter|Heretic Magic#3` Learn two Warlock cantrips, and a third at level 10. | no record for SPELL; number 2 unexplained
-- `sub|Monster Hunter/Devourer Guild|Transmuting Metabolism#16` Invisibility (Fey, Fiend, Undead): 10 minutes of the Invisible condition, ending early if you dismiss it, attack, or cast a spell. | no record for SPELL; number 10 unexplained
-- `sub|Rogue/Arcane Trickster (2014)|Spellcasting#7` You know three 1st-level Wizard spells, two of which must be Enchantment or Illusion. | number 2 no record explains
-- `sub|Rogue/Arcane Trickster|Spellcasting#2` You know three cantrips: Mage Hand and two more of your choice taken from the Wizard spell list (suggested picks are Mind Sliver and Minor Illusion). | number 2 no record explains
-- `sub|Rogue/Sanguine Thief|Spellcasting#2` You know three cantrips from the Wizard list and the Sangromancy school. | no record for SPELL; number 3 unexplained
-- `sub|Rogue/Smuggler|Smuggler's Legerdemain#1` Learn two cantrips, and a 1st-level spell at level 7, all illusion or transmutation spells from the wizard list. | no record for SPELL; number 2 unexplained
-- `sub|Rogue/Underfoot|Spellcasting#2` You learn shillelagh and two other druid cantrips, and another at level 10. | no record for SPELL; number 2 unexplained
-- `sub|Sorcerer/Reincarnated Hero|Heroic Magic#1` You learn two cantrips from this list: arc blade, burning blade, caustic blade, force weapon, frigid blade. | no record for SPELL; number 2 unexplained
-- `sub|Warlock/Hexblade Patron|Hexblade's Curse#4` When you cast a spell with a slot that curses a target, you can apply this curse to that target as part of the cast, and its duration is 1 minute or the spell's duration, whichever is longer. | number 1 no record explains
-- `sub|Warlock/The Parasite Patron|Spell Siphon#2` On a fail it cannot cast a spell for 8 hours, and if the spell was level 1+ and of a level you can cast, you have it prepared for that time. | no record for SPELL; number 8 unexplained
-
 ### SPEED (459 uncovered)
 
 - `class|Dancer|Dance#3` It ends early if you are Incapacitated, your Speed is 0, or you choose to stop (no action). | no record for SPEED; number 0 unexplained
-- `feat|Boon of Misty Escape|Boon of Misty Escape#5` When cast this way, you can target only yourself, your Fly Speed is 20 feet, you regain 10 Hit Points at the start of each of your turns for the spell's duration, and the spell's spellcasting ability is the ability this  | no record for SPEED
-- `item|dmg14|Quaal's Feather Token, Fan#6` The fan floats and creates a wind strong enough to fill the sails of one ship, increasing its speed by 5 miles per hour for 8 hours. | no record for SPEED; number 5,8 unexplained
-- `item|dmg|Apparatus of Kwalish#20` Down: the legs retract, its Speed and Swim Speed drop to 0, and it can't benefit from bonuses to speed. | no record for SPEED; number 0 unexplained
-- `item|dmg|Bead of Force#11` A trapped creature can take a Utilize action to push on the wall and move the sphere up to half that creature's Speed. | no record for SPEED; number half unexplained
-- `item|dmg|Broom of Flying#4` It can bear a load of up to 400 pounds, though while it carries more than 200 pounds its Fly Speed falls to 30 feet. | no record for SPEED; number 30 unexplained
-- `item|dmg|Carpet of Flying, 3 ft. × 5 ft.#4` A carpet can carry up to twice this weight, but it flies at half speed if it carries more than its normal capacity. | no record for SPEED; number half,double unexplained
-- `item|dmg|Carpet of Flying, 5 ft. × 7 ft.#4` A carpet can carry up to twice this weight, but it flies at half speed if it carries more than its normal capacity. | no record for SPEED; number half,double unexplained
-- `item|dmg|Couatl Herald's Lash#7` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
-- `item|dmg|Couatl Herald's Scales#8` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
-- `item|dmg|Doomhammer#6` While your Rage is active your Speed doubles and you can take one extra Attack action on each turn (one attack only). | no record for SPEED; number double unexplained
-- `item|dmg|Helm of the Scavenger#13` - You can use the helm to propel the vessel through air or space at a maximum speed in miles per hour equal to your highest-level unexpended spell slot × 10. | no record for SLOT,SPEED; number 10 unexplained
-- `item|dmg|Paper Bird#5` If the bird's hit points or speed is reduced to 0 or if it is otherwise immobilized, it turns into ash. | no record for SPEED; number 0 unexplained
-- `item|dmg|Quaal's Feather Token (bird)#9` It can carry up to 500 pounds while it flies at its top speed, which is 16 miles per hour for no more than 144 miles per day, resting 1 hour after every 3 hours of flight. | no record for RESOURCE,SPEED; number 16,144,1,3 unexplained
-- `item|dmg|Quaal's Feather Token#17` That top speed is 16 miles per hour, for no more than 144 miles per day, and it must rest 1 hour after every 3 hours of flight. | no record for RESOURCE,SPEED; number 16,144,1,3 unexplained
-- `item|dmg|Spell-Slinger's Puppet#1` As a Bonus Action while holding this ventriloquist's doll, you can pull the cord on the doll's back to cause the doll to levitate to an unoccupied space you can see within 30 feet of yourself and hover there. | no record for SPEED; number 30 unexplained
-- `item|dmg|Wyrmskull Throne#18` The throne gains a flying speed of 30 feet and can hover and flies where the creature wills. | no record for SPEED; number 30 unexplained
-- `item|egw|Grovelthrash (Exalted)#14` You can burrow through solid rock at half your burrowing speed and leave a 5-foot-diameter tunnel in your wake. | number 5,half no record explains
-- `item|erlw|Wheel of Wind and Water#2` If a wheel of wind and water is mounted on a mundane sailing ship, a creature with the Mark of Storm who is using the wheel can create an area of ideal conditions around the vessel, increasing its speed by 5 miles per ho | no record for SPEED; number 5 unexplained
+- `class|Jaeger|Hunter's Pursuit#1` At the start of your turn, you can spend 1 Adrenaline Point to move up to half your Speed without using any of your movement and without provoking Opportunity Attacks. | no record for SPEED; number 1,half unexplained
+- `item|crcotn|Jewel of Three Prayers (Exalted)#44` - Each of your allies within 30 feet of you gains the ability to breathe water and gains a swimming speed equal to its walking speed. | no record for SPEED; number 30 unexplained
+- `item|dmg|Couatl Herald's Fang#6` Attuned to three such items, you gain a Fly Speed of 30 ft (or +30 ft). | number 3 no record explains
+- `item|dmg|Ionbreaker, the Tempest's Reach#15` Fly Speed equal to Speed, hovering within 20 ft of the ground. | number 20 no record explains
+- `item|dmg|Mechanical Wonder (Mobility)#10` While active, the mobility wonder increases your Speed to 30 feet. | no record for SPEED; number 30 unexplained
+- `item|dmg|Quaal's Feather Token#24` That wind can fill the sails of a single ship and add 5 miles per hour to that ship's speed for 8 hours. | no record for SPEED; number 5,8 unexplained
+- `item|dmg|Ranseur of Torture#22` This penalty stacks, though movement speed can't be reduced below 0. | no record for SPEED; number 0 unexplained
+- `item|dmg|Warmind Wand#9` Magic action, 1 charge: an ally who sees or hears you gains 2d4 + 2 Temporary Hit Points and can use its Reaction to move half its Speed without provoking Opportunity Attacks. | no record for SPEED; number 2d4,2,half unexplained
+- `item|dmg|Wave#14` While you carry the trident, you can spend 1 charge to target a Beast that has a Swim Speed with the Dominate Beast spell cast from the trident (save DC 20). | no record for SPEED
+- `item|dmg|Wheel of Wind and Water#2` If a wheel of wind and water is mounted on a mundane sailing ship, a creature with the Mark of Storm who is using the wheel can create an area of ideal conditions around the vessel, increasing its speed by 5 miles per ho | no record for SPEED; number 5 unexplained
+- `item|frafi|Mechanical Wonder (Mobility)#10` While active, the mobility wonder increases your Speed to 30 feet. | no record for SPEED; number 30 unexplained
+- `item|idrotf|Ythryn Mythallar#14` - While you're on the same plane of existence as the Ythryn mythallar, you can use an action to cause it to fly in any direction you choose at a speed of 30 feet. | no record for SPEED; number 30 unexplained
 - `item|skt|Clockwork Dog#4` The dog has AC 5, 1 hit point, and a walking speed of 30 feet. | no record for SPEED; number 30,5,1 unexplained
-- `item|tsgs|Axe Beak Tomahawk#2` The first time each turn you hit a creature with a Fly Speed, it makes a DC 13 Strength save. | no record for DC,SPEED; number 13 unexplained
-- `item|tsgs|Festerwood Claymore#3` On a natural 20, beetles swarm the target for 1d4 turns, dealing 1d6 Piercing at the start of each of its turns and halving its Speed. | no record for SPEED; number 1d4,1d6,20 unexplained
-- `item|tsgs|Hasty Sugarbomb#1` A sweet eaten as a Magic action to raise your Speed by 5 ft for 1 hour. | no record for SPEED; number 5,1 unexplained
-- `item|tsgs|Warmind Wand#9` Magic action, 1 charge: an ally who sees or hears you gains 2d4 + 2 Temporary Hit Points and can use its Reaction to move half its Speed without provoking Opportunity Attacks. | no record for SPEED; number 2d4,2,half unexplained
-- `item|twow|Figurine of Wondrous Power (Jeweled Panther)#2` Magic action: throw it at a point on the ground within 60 feet and it becomes a Large Panther with a Fly Speed of 30 feet for up to 12 hours. | no record for SPEED; number 60,30,12 unexplained
+- `item|tdm14|Wings#4` Deployed, you have a flying speed equal to your walking speed, for 10 minutes total until you finish a short or long rest. | no record for RESOURCE; number 10 unexplained
+- `item|tsgeh|Sanctified Cannon#5` You can do this only if you have not moved this turn, and your Speed is 0 until the end of the turn after you do. | no record for SPEED; number 0 unexplained
+- `item|tsgs|Couatl Herald's Guard#5` While you are attuned to three items with this property, you gain a Fly Speed of 30 ft, or 30 ft more if you already have one. | number 3 no record explains
+- `item|tsgs|Rocborne Rod#3` You can move as if you had a 40 ft Fly Speed but not upward, and you take no fall damage. | no record for SPEED; number 40 unexplained
+- `item|tsgs|Tectonic Gauntlets#17` Your Speed drops by 5 ft and your Intelligence drops by 4 (minimum 7). | number 4 no record explains
+- `item|twow|Experimental Goblin Jetpack#3` They give a Fly Speed of 60 feet. | no record for SPEED; number 60 unexplained
+- `species|Amoeboid (DM14)|Flexible Form#6` You can speak and understand its language, and if it has a burrowing, climbing or swimming speed you gain it, up to 40 ft. You can make the same actions that creature could, other than ones needing special features. | no record for SPEED; number 40 unexplained
 - `species|Gallus|Wing Flap#1` As a Bonus Action you launch yourself upward a distance equal to half your Speed. | no record for SPEED; number half unexplained
-- `species|Gnome (Grim Hollow)|Heritage Traits#6` You can lower your Speed by 5 feet to gain one extra trait. | no record for SPEED
-- `sub|Artificer/Reanimator|Macabre Modifications#9` The companion's Speed becomes 45 feet, and it gains a Climb Speed equal to its Speed. | no record for SPEED; number 45 unexplained
-- `sub|Barbarian/Path of the World Tree|Branches of the Tree#4` Once the target has teleported, you can lower its Speed to 0 until the current turn ends. | no record for SPEED; number 0 unexplained
+- `species|Harengon (WBtW)|Rabbit Hop#2` Needs Speed above 0. | no record for SPEED; number 0 unexplained
+- `species|Mandrake|Entangling Vines#2` Its Speed is 0 and cannot increase until the end of its next turn. | no record for SPEED; number 0 unexplained
+- `sub|Captain/Dragon Banner|Rampage [Maneuver]#1` Once on each of your turns, right after you reduce an enemy to 0 Hit Points or score a Critical Hit with a melee attack roll, expend one Battle Die to move up to your Speed and make a melee attack (no action required). | no record for RESOURCE,SPEED; number 0 unexplained
+- `sub|Captain/Gourmand|Monster Meal#14` Speed increases by 10 feet. | no record for SPEED; number 10 unexplained
 - `sub|Captain/Siegeball Jersey|Game Plan#3` Go Long: move up to twice its Speed. | no record for SPEED; number double unexplained
-- `sub|Cleric/Pestilence Domain|Infection#4` Joint Lock: its Speed drops by 15 ft (minimum 5 ft). | no record for SPEED; number 15 unexplained
+- `sub|Cleric/Prophecy Domain|Channel Divinity: One Move Ahead#1` Use Channel Divinity to add 20 ft to your Speed for rounds equal to your cleric level. | no record for SPEED; number 20 unexplained
+- `sub|Craftsman/Mechanauts' Guild|Magitech Upgrade#14` Until the end of your turn, the apparatus's Speed doubles, it has a Fly Speed equal to its Speed, and you can attack three times when you take the Attack action with it. | no record for SPEED; number 3,double unexplained
+- `sub|Craftsman/Mechanauts' Guild|Mechanaut's Apparatus#5` Doing so costs movement equal to half its Speed, rounded down. | no record for SPEED; number half unexplained
+- `sub|Druid/Circle of Mutation|Mutate Shape#9` Fly Speed 30 ft. 2 more points make it 60 ft. Darkvision (1). | no record for SENSE,SPEED; number 30,60,2,1 unexplained
 - `sub|Druid/Circle of the Fist|Primal Infusion#3` While you have them, your walking Speed rises by 10 ft. | no record for SPEED; number 10 unexplained
-- `sub|Fighter/Couatl Herald|Paragon#2` It gains Temporary Hit Points equal to the roll + your Charisma modifier (minimum 1) and can at once use its Reaction to move up to half its Speed without provoking Opportunity Attacks and make one weapon or Unarmed Stri | no record for SPEED; number half unexplained
-- `sub|Jaeger/Sanguine Chapter|Blood Frenzy#1` While Bloodied, your Speed increases by 20 feet, the Attack action gives you three attacks, and all Hit Points you regain from Jaeger abilities are doubled. | no record for RESOURCE; number 3,double unexplained
-- `sub|Necromancer/Reanimator|Spell-Stitching#8` The thrall's Speed is doubled. | no record for SPEED; number double unexplained
-- `sub|Sorcerer/Aberrant Sorcery|Revelation in Flesh#5` You gain a Swim Speed of twice your Speed, and you can breathe underwater. | number double no record explains
-- `sub|Warden/Grey Watchman|Maneuver Options#17` Once on each of your turns, right after you reduce an enemy to 0 Hit Points or score a Critical Hit with a melee attack, you can expend one die to move up to your Speed and make a melee attack with no action. | no record for RESOURCE,SPEED; number 0 unexplained
-- `sub|Wizard/Enchanter|Hypnotic Presence#4` While Charmed this way, the target is Incapacitated and has a Speed of 0. | no record for SPEED; number 0 unexplained
-- `sub|Wizard/Gastronomer|Monster Meal#7` Elemental: +10 ft Speed. | no record for SPEED; number 10 unexplained
-- `sub|Wizard/Transmuter|Transmuter's Stone#10` Speed increases by 10 feet. | no record for SPEED; number 10 unexplained
+- `sub|Monk/Way of the Humble Elephant|Unyielding Step#2` Your speed cannot drop below 15 ft. If grappled, the grappler can use its Reaction to move with you, otherwise the grapple ends. | no record for SPEED; number 15 unexplained
+- `sub|Necromancer/Blood Ascendant|Vampiric Transformation#9` You have a 20 foot Fly Speed with hover and can enter other creatures' spaces. | no record for SPEED; number 20 unexplained
+- `sub|Rogue/Grifter|Cut And Run#2` When you take the Disengage action, you can move up to half your speed. | no record for SPEED; number half unexplained
+- `sub|Warden/Diabolist|Soul Broker#13` Your Speed rises by 15 feet. | no record for SPEED; number 15 unexplained
+- `sub|Warlock/Hexblade Patron|Malign Brutality#3` Inescapable Hex: when the cursed target ends its turn 30 feet or more from you, you can move up to your Speed straight toward it. | no record for SPEED; number 30 unexplained
+- `sub|Warlock/The Parasite Patron|Physical Specimen#6` Triple jump distance and a Climb Speed equal to your Speed. | no record for SPEED; number 3 unexplained
+- `sub|Wizard/Fumaturge|Smoke Animals#3` The smoke familiar has 1 HP and a Fly Speed of 60 ft whatever the Beast form. | no record for SPEED; number 60,1 unexplained
+- `sub|Wizard/School of Enchantment|Hypnotic Gaze#3` Its Speed drops to 0 and it is Incapacitated and visibly dazed. | no record for SPEED; number 0 unexplained
+
+### SPELL (384 uncovered)
+
+- `class|Bard|Spellcasting#14` To begin, your list holds four level 1 spells that you pick from the Bard spell list. | no record for SPELL; number 4 unexplained
+- `class|Necromancer|Spellcasting#3` You know three Necromancer cantrips, with a fourth at level 4 and a fifth at level 10. | no record for SPELL; number 3 unexplained
+- `class|Paladin|Fighting Style#4` Pick two Cleric cantrips to learn. | no record for SPELL
+- `class|Ranger|Fighting Style#4` Pick two Druid cantrips to learn. | no record for SPELL
+- `class|Warlock|Pact Magic#24` For instance, at level 6 you learn a new Warlock spell, and it can be of level 1, 2, or 3. | no record for SPELL; number 3 unexplained
+- `class|Warmage|Arcane Initiation#2` Each Initiation gives you two cantrips and a skill, as listed in its entry. | number 2 no record explains
+- `class|Warmage|Spellcasting#13` For Dispel Magic, a Warmage cantrip counts as a spell whose level is half your Warmage level, to a maximum of 9. | no record for SPELL; number half unexplained
+- `feat|Arcane Preparation|Arcane Preparation#4` For example, a level 3 wizard assigns four 1st-level slots and two 2nd-level slots, and also has one bonus 1st-level and one bonus 2nd-level slot that can cast any spell in the spellbook. | no record for SPELL; number 4,2 unexplained
+- `feat|Mystic Conflux|Mystic Conflux#1` You attune to up to four magic items at once instead of three, and you can cast Identify without a spell slot or material components. | no record for SPELL; number 4,3 unexplained
+- `feat|Spellblade (2014)|Spellblade (2014)#3` You learn two cantrips from Arc Blade, Burning Blade, Caustic Blade and Frigid Blade, using Intelligence. | no record for SPELL; number 2 unexplained
+- `feat|Spelldriver|Spelldriver#2` If you cast two or more spells in one turn, only one of them can be level 3 or higher. | no record for SPELL; number 2 unexplained
+- `item|ai|Occultant Abacus#20` While holding your occultant abacus within 5 feet of a creature killed within the past 24 hours, you can cast the augury spell. | number 5,24 no record explains
+- `item|bgg|Mistral Mantle#9` When you use the mantle to cast the spell, the area of the spell isn't 3 for you, and you can see through the storm, ignoring the normal penalties of a 2 area. | number 3,2 no record explains
+- `item|dmg|+1 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | number 8 no record explains
+- `item|dmg|+2 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | number 8 no record explains
+- `item|dmg|Occultant Abacus#20` While holding your occultant abacus within 5 feet of a creature killed within the past 24 hours, you can cast the augury spell. | number 5,24 no record explains
+- `item|dmg|Witchlight Vane#19` After the vane's polymorph spell is cast, roll a d8; on a roll of 3 or 8, the vane can't be used to cast this spell again until the next dawn. | number 1d8,8 no record explains
+- `item|tce|+2 All-Purpose Tool#6` For 8 hours, you can cast that cantrip, and it counts as an artificer cantrip for you. | number 8 no record explains
+- `item|tee24|Battle Rod#1` Held in two hands, it lets you cast cantrips at up to twice their range. | no record for SPELL; number 2,double unexplained
+- `item|tee24|Spellburrow#4` If you have Spellcasting or Pact Magic, you cast the other two as if prepared, without counting against your prepared spells. | no record for SPELL; number 2 unexplained
+- `item|tee24|War Staff#2` Cantrips cast through it have up to four times their normal range. | no record for SPELL; number 4 unexplained
+- `item|tsdm|Gamma Pendant#9` You can also cast Greater Spells: Hardlight Frame 7, Orbital Hardlight Cannon 13, Wall of Force 7. | no record for SPELL; number 7,13 unexplained
+- `item|wbtw|Witchlight Vane#19` After the vane's polymorph spell is cast, roll a d8; on a roll of 3 or 8, the vane can't be used to cast this spell again until the next dawn. | number 1d8,8 no record explains
+- `item|wbtw|Witchlight Watch#14` After the watch's invisibility spell is cast, roll a d8; on a roll of 3 or 8, the watch can't be used to cast this spell again until the next dawn. | no record for SPELL; number 1d8,8 unexplained
+- `sub|Artificer/Artillerist|Arcane Firearm#4` When you cast an Artificer spell through it, roll 1d8 and add the result to one of the spell's damage rolls. | number 1d8 no record explains
+- `sub|Artificer/Mutagenist|Master Mutagenist#2` If you cast a third spell with Concoction Casting, you choose which of the two active spells ends. | no record for SPELL; number 2 unexplained
+- `sub|Barbarian/Path of Spellfury|Spellcasting#3` You know two Sorcerer cantrips (a third at level 10) and prepare level 1+ Sorcerer spells, starting with three of level 1. | number 3 no record explains
+- `sub|Bard/College of Requiems (2014)|Chilling Melody#1` Learn two necromancy cantrips from any class list. | no record for SPELL; number 2 unexplained
+- `sub|Cleric/Eldritch Domain|Eldritch Contagion#5` 1 Can't speak or cast spells with Verbal components. | no record for SPELL; number 1 unexplained
+- `sub|Cleric/Madness Domain|Channel Divinity: Temporary Insanity#3` Roll a d20: 1-5 Aphasia, it cannot speak, cast spells or understand others. | no record for SPELL; number 1d20,1,5 unexplained
+- `sub|Druid/Circle of Stars|Star Map#2` While you hold it you know Guidance, you always have Guiding Bolt prepared, and you can cast Guiding Bolt without a slot a number of times equal to your Proficiency Bonus. | number pb no record explains
+- `sub|Fighter/Prescient Knight|Spellcasting#7` You learn three level 1 spells at level 3 and more as you advance. | no record for SPELL; number 3 unexplained
+- `sub|Jaeger/Heretic Chapter|Heretic Magic#3` Learn two Warlock cantrips, and a third at level 10. | no record for SPELL; number 2 unexplained
+- `sub|Ranger/Wasteland Strider|Dimensional Step#1` Cast dimension door without a spell slot, a number of times equal to your Proficiency Bonus. | number pb no record explains
+- `sub|Rogue/Arcane Trickster (2014)|Spellcasting#7` You know three 1st-level Wizard spells, two of which must be Enchantment or Illusion. | number 2 no record explains
+- `sub|Rogue/Soulspy|Spellcasting#2` You learn three cantrips from the cleric list and a fourth at level 10. | no record for SPELL; number 3 unexplained
+- `sub|Rogue/Temporal Trickster|Chrono-Master#1` You cast chronomancy spells using a pool of chronomancy points equal to twice your Proficiency Bonus. | no record for SPELL; number double,pb unexplained
+- `sub|Sorcerer/Shadow Sorcery|Beasts of Ill Omen#5` If you do, the duration is 1 minute for that casting, and it ends early if you cast the spell again. | no record for SPELL; number 1 unexplained
+- `sub|Wizard/Cantrip Adept|Cantrip Polymath#1` Learn two cantrips from any spell list. | no record for SPELL; number 2 unexplained
+- `sub|Wizard/White Necromancer|Life Bond#2` You can cast it once without a slot or its Material component, and its duration becomes 4 hours. | number 4 no record explains
 
 ### ADV (378 uncovered)
 
@@ -412,20 +413,20 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `item|dmg|Murgaxor's Elixir of Life#1` Whoever drinks this concoction gains advantage on death saving throws for 24 hours. | no record for ADV; number 24 unexplained
 - `item|dmg|Potion of Psionic Fortitude#1` When you drink this potion, you have advantage for 1 hour on saving throws you make to avoid or end the charmed or stunned condition on yourself. | no record for ADV; number 1 unexplained
 - `item|pabtso|Potion of Psionic Fortitude#1` When you drink this potion, you have advantage for 1 hour on saving throws you make to avoid or end the charmed or stunned condition on yourself. | no record for ADV; number 1 unexplained
-- `item|tgh14c|Full Moon Extract#2` For 1 hour after you take it, your Strength is 19 (if lower) and you have Advantage on Strength checks and saves. | number 1,19 no record explains
+- `item|tgh14c|Greatsword of the Craven#2` While attuned you gain 5 ft of speed and Advantage on initiative. | no record for ADV,INIT,SPEED; number 5 unexplained
 - `item|tghg|Bliss#3` Your Speed drops by 15 ft, you have Disadvantage on D20 Tests, and creatures you force to save have Advantage. | no record for ADV,DIS,SPEED; number 1d20,15 unexplained
 - `item|tghg|Ectoplasmic Whip#2` You gain a +1 bonus to attack and damage rolls with it, and attack rolls with it against non-Undead creatures have Advantage. | no record for ADV
-- `item|thhw|Whistle of Freedom#2` When blown, every creature within 100 ft that can hear it has Advantage on its next saving throw against a spell or effect currently affecting it. | no record for ADV; number 100 unexplained
-- `item|tsdm|Blaster Mod (Aimbot)#5` With Advantage or Disadvantage, the 10 replaces only one of the two dice and you roll the other normally. | no record for ADV,DIS; number 10,2 unexplained
+- `item|tsdm|Ghost Suit#3` If you moved 15 ft or less on your turn, you have Advantage on Dexterity (Stealth) checks made for the Hide action. | no record for ADV; number 15 unexplained
+- `item|tsgs|+1 Dragon Edge Weapon#2` The first time each turn you hit with an attack roll you had Advantage on, it deals an extra 1d6 damage of the type of the dragon's breath weapon. | no record for ADV
 - `item|tsgs|Dragon Tamer Lance#9` Moving 20 ft in a line toward a Medium or smaller target within 5 ft gives Advantage on the melee attack, and a hit allows an extra attack against a different target directly behind it within 5 ft and not behind Cover. | no record for ADV; number 20,5 unexplained
 - `item|tsgs|Frefil's Jolly Oozebean Sugarbombs#9` 7 Green: Resistance to Poison and Advantage on checks to end Grappled or Restrained. | no record for ADV,RES; number 7 unexplained
-- `item|ttoh|Emperor's Garlic#7` Eat a raw clove as an action to gain Resistance to Poison damage and Advantage on saves against Poisoned for 1 hour, but Disadvantage on all Deception and Persuasion checks for that time. | no record for ADV,DIS,RES; number 1 unexplained
+- `item|ttoh|Far Traveler's Freesia#11` Each has Advantage on ability checks and saves against Exhaustion and gains 1d6 temporary hit points for 8 hours. | no record for ADV; number 1d6,8 unexplained
+- `item|tvss14|Ankh of Anubis#2` While you have 10 hit points or fewer, you have Advantage on attack rolls, ability checks and saving throws. | no record for ADV; number 10 unexplained
 - `species|Elf/Shadow Fey Heritage|Supernatural Senses#2` Proficiency in Perception, and Advantage on Perception checks to notice or find a creature within 30 feet that lacks some of its hit points. | no record for ADV,PROF
 - `sub|Artificer/Armorer|Perfected Armor#4` Giant Stature adds 10 feet of reach, can make you Large or Huge, and gives Advantage on Strength checks and saves while it lasts. | no record for ADV; number 10 unexplained
 - `sub|Bard/College of Cantors|Minor Miracles#3` Divine Insight: a creature in range has Advantage on attack rolls for 1 minute, ending when it hits. | no record for ADV; number 1 unexplained
 - `sub|Cleric/Trickery Domain (2014)|Blessing of the Trickster#2` It has Advantage on Dexterity (Stealth) checks for 1 hour or until you use this again. | number 1 no record explains
 - `sub|Cleric/Trickery Domain (2014)|Channel Divinity: Invoke Duplicity#5` When you and the illusion are both within 5 feet of a creature that can see the illusion, you have Advantage on attack rolls against that creature. | number 5 no record explains
-- `sub|Cleric/Trickery Domain|Improved Duplicity#3` Attack rolls made by you and your allies against any creature within 5 feet of the illusion have Advantage. | number 5 no record explains
 - `sub|Druid/Circle of Blood (2014)|Rite of the Blood Moon#2` It gains Resistance to nonmagical Bludgeoning, Piercing and Slashing damage, darkvision 60 ft, Advantage on Wisdom (Perception) checks, a d8 for unarmed strike damage, a bonus-action unarmed strike after taking the Attac | no record for ADV,DMG,RES,SENSE,SPEED; number 1d8,60,10 unexplained
 - `sub|Paladin/Oath of Radiance|Aura of Resolve#1` You and allies within 10 ft have Advantage on saves against spells and effects from undead and from creatures native to the Shadow Realm or with levels of shadow corruption. | no record for ADV; number 10 unexplained
 - `sub|Paladin/Oath of Safeguarding|Channel Divinity#3` For 1 minute each friendly creature within 30 ft that sees or hears you has Advantage on saves against spells and abilities that deal damage. | no record for ADV; number 30,1 unexplained
@@ -822,33 +823,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `sub|Druid/Circle of Roses|Lingering Perfume#3` Bittersweet Perfume now lasts 1 hour or until you use Wild Shape again. -> info:NUMONLY:GEOMETRY
-- class `sub|Druid/Circle of Roses|Lingering Perfume#3` Bittersweet Perfume now lasts 1 hour or until you use Wild Shape again. -> info:NUMONLY:GEOMETRY
-- record `sub|Warlock/Hunter in Darkness|Avatar of Death#2` On a failure it is Frightened of you for 1 minute or until it takes damage. -> info:NUMONLY:GEOMETRY
-- class `sub|Warlock/Hunter in Darkness|Avatar of Death#2` On a failure it is Frightened of you for 1 minute or until it takes damage. -> info:NUMONLY:GEOMETRY
-- record `species|Kobold Chassis|Resourceful#1` If you have at least one set of tools, you can cobble together a makeshift set of a different kind with 1 minute of work -> info:NUMONLY:GEOMETRY
-- class `species|Kobold Chassis|Resourceful#1` If you have at least one set of tools, you can cobble together a makeshift set of a different kind with 1 minute of work -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Shield of the Hidden Lord#13` The shield regains all expended charges daily at dawn. -> covered
-- class `item|dmg|Shield of the Hidden Lord#13` The shield regains all expended charges daily at dawn. -> info:REST:NONUM
-- record `item|dmg|Belt of the Raid Leader#4` Usable once per dawn. -> covered
-- class `item|dmg|Belt of the Raid Leader#4` Usable once per dawn. -> info:REST:NONUM
-- record `sub|Barbarian/Path of the Beast|Call the Hunt#4` You can use this a number of times equal to your Proficiency Bonus and regain all uses after a Long Rest. -> covered
-- record `item|dmg|Ring of Hidden Desire#5` It works once and recharges at midnight. -> info:REST:NONUM
-- class `item|dmg|Ring of Hidden Desire#5` It works once and recharges at midnight. -> info:REST:NONUM
-- record `species|Spirithost|Incorporeal Movement#3` If you end your movement in the same space as a solid object or creature, you are shunted to the nearest free space and  -> info:NUMONLY:TEXT
-- class `species|Spirithost|Incorporeal Movement#3` If you end your movement in the same space as a solid object or creature, you are shunted to the nearest free space and  -> info:NUMONLY:TEXT
-- record `item|dmg|Planecaller's Codex#6` You can use the charges in the following ways while holding it: -> info:REST:NONUM
-- class `item|dmg|Planecaller's Codex#6` You can use the charges in the following ways while holding it: -> info:REST:NONUM
-- record `feat|Sharp Eye|Sharp Eye#4` Expended uses return after a Long Rest. -> info:REST:NONUM
-- class `feat|Sharp Eye|Sharp Eye#4` Expended uses return after a Long Rest. -> info:REST:NONUM
-- record `item|frafi|Calimemnon Crystal#32` - 1 major detrimental property -> info:ITEM:ARTIFACT_PROPS
-- class `item|frafi|Calimemnon Crystal#32` - 1 major detrimental property -> info:ITEM:ARTIFACT_PROPS
-- record `sub|Witch/Steel Magic|Extra Attack#1` You attack twice when you take the Attack action. -> info:ACTIVE:TRIGGER
-- class `sub|Witch/Steel Magic|Extra Attack#1` You attack twice when you take the Attack action. -> info:ACTIVE:TRIGGER
-- record `feat|Strike of the Giants|Strike of the Giants#19` You regain all expended uses when you finish a Long Rest. -> info:REST:NONUM
-- class `feat|Strike of the Giants|Strike of the Giants#19` You regain all expended uses when you finish a Long Rest. -> info:REST:NONUM
-- record `item|tsdm|Lazarus Unit#3` If you are dead or at 0 Hit Points at the start of your turn, it shocks you back with 1 Hit Point. -> info:NUMONLY:ZERO
-- class `item|tsdm|Lazarus Unit#3` If you are dead or at 0 Hit Points at the start of your turn, it shocks you back with 1 Hit Point. -> info:NUMONLY:ZERO
-- record `sub|Summoner/Bond of the Aberrant Psion|Mind Blast#1` Your Eidolon gains the action Mind Blast (cost 2 AP). -> info:NUMONLY:FLAVOR
-- class `sub|Summoner/Bond of the Aberrant Psion|Mind Blast#1` Your Eidolon gains the action Mind Blast (cost 2 AP). -> info:NUMONLY:FLAVOR
-- record `item|dmg|Ephixis, Bow of Nylea#13` If you aren't a worshiper of Nylea, the bow has 1 randomly determined major detrimental property. -> info:NUMONLY:TEXT
+- record `item|dmg|Rod of Seven Parts#8` The rod thus became known as the Rod of Seven Parts. -> info:NUMONLY:TABLE
+- class `item|dmg|Rod of Seven Parts#8` The rod thus became known as the Rod of Seven Parts. -> info:NUMONLY:TABLE
+- record `item|dmg|Blackrazor#29` The sword's hunger must be fed often: if 3 or more days pass without it devouring a soul, it comes into conflict with it -> info:NUMONLY:TEXT
+- class `item|dmg|Blackrazor#29` The sword's hunger must be fed often: if 3 or more days pass without it devouring a soul, it comes into conflict with it -> info:NUMONLY:TEXT
+- record `item|dmg|Horn of Beckoning Death#10` Once you use the horn's property, it can't be used again for 1 year. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Horn of Beckoning Death#10` Once you use the horn's property, it can't be used again for 1 year. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Opal of the Ild Rune#8` You have resistance to cold damage. -> covered
+- record `item|dmg|Gem of Brightness#14` Once the gem has no charges left, it turns into a nonmagical jewel worth 50 GP. -> info:REST:NONUM
+- class `item|dmg|Gem of Brightness#14` Once the gem has no charges left, it turns into a nonmagical jewel worth 50 GP. -> info:REST:NONUM
+- record `feat|Mark of Making|Mark of Making#9` You can also cast them with spell slots. -> covered
+- record `feat|Mark of Storm|Mark of Storm#8` Each free cast returns after a Long Rest. -> covered
+- class `feat|Mark of Storm|Mark of Storm#8` Each free cast returns after a Long Rest. -> info:REST:NONUM
+- record `item|dmg|Belt of Giant Strength (hill)#1` While you wear this belt, your Strength score changes to 21, the score granted by a belt tied to hill giants. -> info:NUMONLY:TABLE
+- class `item|dmg|Belt of Giant Strength (hill)#1` While you wear this belt, your Strength score changes to 21, the score granted by a belt tied to hill giants. -> info:NUMONLY:TABLE
+- record `feat|Death Knight Initiate|Death Knight Initiate#8` You can cast it by spending 1 Death Point instead of a slot, or with slots. -> info:NUMONLY:TEXT
+- class `feat|Death Knight Initiate|Death Knight Initiate#8` You can cast it by spending 1 Death Point instead of a slot, or with slots. -> info:NUMONLY:TEXT
+- record `sub|Paladin/Oath of the Gamma Knight|Gamma Knight Spells#5` 17 Hold Monster, Wall of Force. -> info:NUMONLY:TABLE
+- class `sub|Paladin/Oath of the Gamma Knight|Gamma Knight Spells#5` 17 Hold Monster, Wall of Force. -> info:NUMONLY:TABLE
+- record `item|dmg|Wyrmskull Throne#19` This property doesn't expend any charges. -> covered
+- class `item|dmg|Wyrmskull Throne#19` This property doesn't expend any charges. -> info:REST:NONUM
+- record `species|Tiefling (Mephistopheles)|Legacy of Cania#2` At level 3 you can cast Burning Hands as a level 2 spell and at level 5 Flame Blade, each once per Long Rest. -> info:REST:NONUM
+- class `species|Tiefling (Mephistopheles)|Legacy of Cania#2` At level 3 you can cast Burning Hands as a level 2 spell and at level 5 Flame Blade, each once per Long Rest. -> info:REST:NONUM
+- record `item|wdh|Stone of Golorr#13` It also knows that three keys are needed to open the vault and that a gold dragon named Aurinax inhabits the vault and g -> info:NUMONLY:TEXT
+- class `item|wdh|Stone of Golorr#13` It also knows that three keys are needed to open the vault and that a gold dragon named Aurinax inhabits the vault and g -> info:NUMONLY:TEXT
+- record `item|dmg|Staff of the Python#11` If the snake turns back into a staff while it still has some Hit Points, it regains every one of them. -> info:REST:NONUM
+- class `item|dmg|Staff of the Python#11` If the snake turns back into a staff while it still has some Hit Points, it regains every one of them. -> info:REST:NONUM
+- record `species|Dragonborn (Grim Hollow)|Age#2` They walk hours after hatching, look like a 10-year-old human child at 3, and are adults at 15. -> info:NUMONLY:GEOMETRY
+- class `species|Dragonborn (Grim Hollow)|Age#2` They walk hours after hatching, look like a 10-year-old human child at 3, and are adults at 15. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Helm of Devil Command#9` If a devil can see you when you cast this spell on it, the devil knows you tried to charm it. -> info:ACTIVE:TRIGGER
+- class `item|dmg|Helm of Devil Command#9` If a devil can see you when you cast this spell on it, the devil knows you tried to charm it. -> info:ACTIVE:TRIGGER

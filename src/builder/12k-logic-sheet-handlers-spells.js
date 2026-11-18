@@ -1,5 +1,5 @@
 import {mod,chJoin} from "./01-logic-core-helpers.js";
-import {featDef,invocationRows,invPickRow,invSpellRow,itemSpellRow,metamagicRows,spellFullText} from "./00-env.js";
+import {featDef,invocationRows,invPickRow,invSpellRow,itemPickRow,itemSpellRow,metamagicRows,spellFullText} from "./00-env.js";
 import {registerSheetGroup,registerSheetRule} from "./12a-logic-sheet-registry.js";
 import {defineLocals} from "./12b-logic-sheet-schema.js";
 /* Sheet handlers, part 9 (contract in 12a-logic-sheet-registry.js): spells (phase "spells"). The spell list is built by several SOURCE handlers, each one
@@ -87,6 +87,15 @@ registerSheetGroup({id:"item-spells",group:"spells",phase:"spells",order:90,read
     itemDawn(C,Q,x,q,o);
     if(it.dc!=null)o.itc.dc=it.dc;if(it.atk!=null)o.itc.atk=it.atk;Q.spFxTo(o,"",a);ISL.push(o)})});
   if(ISL.length){C.spells=(C.spells||[]).concat(ISL);C.spells.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:p.n>q.n?1:0)})}return ctx.patch()}});
+/* B44: a magic item that holds one spell the wearer picked (x.pk, set in the builder). A single-use item gets a counter that never resets */
+function itemPickSpellRow(C,Q,SM,a,x,P,n){const sp=SM[n];if(!sp)return null;const o={n:n,l:sp[1],sch:sp[2],ct:sp[4],r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:spellFullText(n)||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:P.once?"Item":"At will",src:x.n,itc:{it:x.n,c:0,lv:sp[1]}};
+ if(P.once){const rk=Q.resKey("x-",x.n+" "+n,C.res);C.res.push({k:rk,n:x.n+": "+n,tag:"Single use",max:1,reset:"none",f:x.n});o.itc.dk=rk}
+ if(P.dc!=null)o.itc.dc=P.dc;if(P.atk!=null)o.itc.atk=P.atk;Q.spFxTo(o,"",a);return o}
+registerSheetGroup({id:"item-pick-spells",group:"spells",phase:"spells",order:91,reads:["i.a","i.SM","q.ensureInv","q.dmapRow","q.spFxTo","q.resKey"],writes:["C.spells","C.res"],
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,out=[];
+  Q.ensureInv().forEach((x) =>{const P=itemPickRow(x.n),d=Q.dmapRow(x.n);if(!P||!d||!x.pk||!x.pk.length)return;if(P.att&&d[3]&&!x.eq)return;
+   const o=itemPickSpellRow(C,Q,I.SM,I.a,x,P,x.pk[0]);if(o)out.push(o)});
+  if(out.length){C.spells=(C.spells||[]).concat(out);C.spells.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:p.n>q.n?1:0)})}return ctx.patch()}});
 /* v21 M2: Mystic Arcanum and Contact Patron, once per Long Rest without a slot. v23 m1-r3: the shared "Mystic Arcanum" row only counts the arcana that have no own row yet */
 registerSheetRule({id:"warlock-arcanum-patron-counters",group:"spells",about:"Warlock: Mystic Arcanum and Contact Patron spells get their own once-per-Long-Rest counters",phase:"spells",order:100,reads:["C.spells","q.resKey"],writes:["C.res"],
  run:function(ctx){const C=ctx.C,Q=ctx.q,spells=ctx.C.spells;const maN=(spells||[]).filter((s) =>{return s.src==="Mystic Arcanum"}).length;if(maN)C.res=C.res.filter((r) =>{if(r.n==="Mystic Arcanum"&&+r.max>=1){r.max=+r.max-maN;return r.max>0}return true});/* m1-r4: the arcana not chosen yet keep a shared row */
