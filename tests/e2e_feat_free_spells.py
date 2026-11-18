@@ -18,6 +18,9 @@ with sync_playwright() as p:
         pg.evaluate("b=>{const C=window.__bldSheetFor(b);window.__sheetSoft(C)}",a);pg.wait_for_timeout(700)
         sp=pg.evaluate("()=>(window.__sheetState().C.spells||[]).map(s=>s.n)")
         miss=[n for n in names if n and not n.startswith('level') and n.lower() not in [x.lower() for x in sp]]
+        rs=pg.evaluate("()=>(window.__sheetState().C.res||[]).map(r=>r.n)")
+        nocount=[n for n in names if n and not n.startswith('level') and not any(n.lower() in x.lower() for x in rs)]
+        miss=miss+['no counter: '+n for n in nocount]
         print(f,'missing' if miss else 'ok',miss)
         if miss: bad+=1
 

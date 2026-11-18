@@ -2474,5 +2474,21 @@
   ],
   "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
   "shared": []
+ },
+ "GX.feat|Psionic-Awakened": {
+  "files": [
+   "fx-B48-widetalent.js",
+   "fx-L1.js"
+  ],
+  "reason": "B48 adds the spells a feat keeps prepared; fx-L1 holds its other mechanics",
+  "shared": []
+ },
+ "GX.feat|Technopath": {
+  "files": [
+   "fx-B48-widetalent.js",
+   "fx-L1.js"
+  ],
+  "reason": "B48 adds the spells a feat keeps prepared; fx-L1 holds its other mechanics",
+  "shared": []
  }
 }

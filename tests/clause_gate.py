@@ -302,7 +302,7 @@ reg("DC", "spDc", "dcAdd", "spellDc", "dc", "setsc")
 reg("INIT", "init", "initAdv", "initDie")
 reg("SPELL", "spells", "spListAdd", "prepAdd", "cantAdd", "spCls", "spellCls", "bookAdd", "sp", "cantrips", "sfree", "xlists", "spAbTrait", "preSp", "cantrip")
 reg("ABIL", "abUp", "abDown", "abSet", "abCut", "abPick", "abUpPick", "abil", "asi", "asi2", "asiPick", "asiFlex", "asiX")
-reg("CHOICE", "pick", "pickLv", "fsPick", "opts", "lin", "featPick", "fs", "wm", "needs", "cantrip")  # a species fx cantrip: the builder shows a cantrip pick from that class list
+reg("CHOICE", "pick", "pickLv", "fsPick", "opts", "lin", "featPick", "fs", "wm", "needs", "cantrip", "abPick")  # a species fx cantrip: the builder shows a cantrip pick from that class list
 
 
 class Atom:
@@ -654,12 +654,12 @@ def features(D):
                     at.append(Atom("RESOURCE", nums_in(v), "ITEM_SPELLS.%s" % k))
         ip = (D.get("itemPick") or {}).get(name)
         if isinstance(ip, dict):  # B44: the item holds one spell the player picks (x.pk); the sheet shows it with the item's own DC and attack, tests/golden/builds/fx_B44_*
-            at += [Atom("SPELL", [8] if ip.get("att") else [], "ITEM_PICK") for _ in range(5)] + [Atom("CHOICE", [], "ITEM_PICK.pick")]
+            at += [Atom("SPELL", ["8"] if ip.get("att") else [], "ITEM_PICK") for _ in range(5)] + [Atom("CHOICE", [], "ITEM_PICK.pick")]
             if ip.get("cap"):  # a storing item: slot level, DC and attack of the caster are typed per stored spell in the builder (x.pl, x.pd, x.pa)
-                at += [Atom("SLOT", [], "ITEM_PICK.slot") for _ in range(3)] + [Atom("DC", [10], "ITEM_PICK.dc") for _ in range(2)] + [Atom("ATK", [], "ITEM_PICK.atk")]
+                at += [Atom("SLOT", [], "ITEM_PICK.slot") for _ in range(3)] + [Atom("DC", ["10"], "ITEM_PICK.dc") for _ in range(2)] + [Atom("ATK", [], "ITEM_PICK.atk")]
             if ip.get("dc") is not None:
                 md = (ip["dc"] - 7) // 2
-                at += [Atom("DC", [10, ip["dc"], ip["atk"], md], "ITEM_PICK.dc") for _ in range(2)] + [Atom("ATK", [ip["atk"], ip["dc"], md], "ITEM_PICK.atk")]
+                at += [Atom("DC", [str(v) for v in (10, ip["dc"], ip["atk"], md)], "ITEM_PICK.dc") for _ in range(2)] + [Atom("ATK", [str(v) for v in (ip["atk"], ip["dc"], md)], "ITEM_PICK.atk")]
         if (D.get("lastch") or {}).get(name): at.append(Atom("RESOURCE", nums_in(D["lastch"][name]), "LASTCH|" + name))
         at += lu_atoms(D, name, name)
         text = r[4]
