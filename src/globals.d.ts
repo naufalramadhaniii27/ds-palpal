@@ -33,6 +33,7 @@ declare var INV_PICK: any;
 declare var INV_SPELLS: any;
 declare var ITEMDESC: any;
 declare var ITEM_SPELLS: any;
+declare var ITEM_PICK: any;
 declare var LAND: any;
 declare var LANGS: any;
 declare var LIFESTYLE: any;
