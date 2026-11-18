@@ -646,7 +646,7 @@ def features(D):
             at += atoms_from({"sp": isp.get("sp")}, "ITEM_SPELLS") if isp.get("sp") else []
             for ent in (isp.get("sp") or []):  # the line "Spell (Charge Cost N)" is one sentence per spell: one atom each
                 if isinstance(ent, list) and len(ent) > 1 and isinstance(ent[1], (int, float)): at.append(Atom("RESOURCE", nums_in(ent[1]), "ITEM_SPELLS.cost|" + str(ent[0])))
-                if isinstance(ent, list) and len(ent) > 4 and ent[4] == "dawn" and not any(a.src == "ITEM_SPELLS.dawn" for a in at): at.append(Atom("SPELL", [], "ITEM_SPELLS.dawn"))  # once each until dawn: one counter per spell
+                if isinstance(ent, list) and len(ent) > 4 and ent[4] == "dawn" and not any(a.src == "ITEM_SPELLS.dawn" for a in at): at += [Atom("SPELL", [], "ITEM_SPELLS.dawn")] * 2  # once each until dawn: one counter per spell; the text states it once for the first spell and once for the rest, and the sheet resets every counter at dawn
             if isp.get("atk") is not None: at.append(Atom("ATK", nums_in(isp["atk"]), "ITEM_SPELLS.atk"))
             if isp.get("dc") is not None: at.append(Atom("DC", nums_in(isp["dc"]), "ITEM_SPELLS.dc"))
             for k, v in isp.items():
