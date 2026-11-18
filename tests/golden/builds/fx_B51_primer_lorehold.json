@@ -1,0 +1,77 @@
+{
+ "why": "Lorehold Primer holding Shield shows Shield on the sheet with a 1/Long Rest counter.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true,
+   "scc": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Lorehold Primer",
+    "q": 1,
+    "eq": true,
+    "pk": [
+     "Shield"
+    ]
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "in": "\"src\": \"Lorehold Primer\""
+  },
+  {
+   "path": "res",
+   "in": "Lorehold Primer: Shield"
+  },
+  {
+   "path": "res",
+   "in": "\"reset\": \"long\""
+  }
+ ]
+}

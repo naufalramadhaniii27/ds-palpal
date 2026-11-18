@@ -898,6 +898,7 @@
  },
  "GX.sub|Circle of the Stars": {
   "files": [
+   "fx-B54-subcantrips.js",
    "fx-Z2.js",
    "fx-Z3.js",
    "fx-Z4.js"
@@ -2250,7 +2251,8 @@
  "GX.sub|Circle of Stars": {
   "files": [
    "fx-B19-speedmv.js",
-   "fx-B31-subres.js"
+   "fx-B31-subres.js",
+   "fx-B54-subcantrips.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
   "shared": []
@@ -2514,6 +2516,70 @@
    "fx-B49-subspeed.js"
   ],
   "reason": "B49 adds the toggled speed of a subclass feature; other files hold different features of the same subclass",
+  "shared": []
+ },
+ "GX.item|Claws of the Umber Hulk": {
+  "files": [
+   "fx-B52-speed3.js",
+   "fx-M1.js"
+  ],
+  "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
+  "shared": []
+ },
+ "GX.item|Tectonic Gauntlets": {
+  "files": [
+   "fx-B52-speed3.js",
+   "fx-L9.js"
+  ],
+  "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
+  "shared": []
+ },
+ "GX.sub|Cat Burglar": {
+  "files": [
+   "fx-B52-speed3.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
+  "shared": []
+ },
+ "GX.item|Chattering Staff of Skulls": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-L2.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
+ },
+ "GX.item|Ominous Staff of Skulls": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-L5.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
+ },
+ "GX.item|Pulverizing Staff of Skulls": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-L5.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
+ },
+ "GX.item|Wave": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-Z1.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
+  "shared": []
+ },
+ "GX.item|Weapon of Warning": {
+  "files": [
+   "fx-B53-itemadv.js",
+   "fx-L6.js"
+  ],
+  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
   "shared": []
  }
 }
