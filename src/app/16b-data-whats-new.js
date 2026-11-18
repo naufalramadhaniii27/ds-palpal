@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:174,l:"0.0.72",d:"2026-11-18",n:["Ring of Spell Storing, Ioun Stone Reserve and Spell Bottle now hold spells you store. Pick each spell, its slot level, and the DC and attack of the caster on the item in the Builder, with the level budget shown. Book of Vile Darkness, Blackrazor, Whelm and Crown of Horns now list their spells with once-per-dawn counters."]},
 {v:173,l:"0.0.71",d:"2026-11-18",n:["Spell Gems, Spellwrought Tattoos, All-Purpose Tools and Gauntlets of the Grandmaster now hold a spell you pick. Choose it on the item in the Builder, and the spell shows on your sheet with the item's own save DC and attack bonus. Gems and tattoos get a single-use counter."]},
 {v:172,l:"0.0.70",d:"2026-11-18",n:["Nine more subclass features now give their free spells: Portal Master, Arcane Relics, Benediction, Innate Necromancy, Nature's Emissary, Arcane Rebuke, Covert Magic, Arcane Assassin and Natural Disruption."]},
 {v:171,l:"0.0.69",d:"2026-11-18",n:["Six more subclass features now give their cantrips: Heavenly Voice, House Insignia, Madcap Magic, Nano-Repair, Abracadabra and Nova."]},

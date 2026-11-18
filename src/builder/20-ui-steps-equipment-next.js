@@ -50,8 +50,21 @@ export function itemDetail(n,x){const fullN=n,BO=baseOf(n),rr=rarityOf(x||{n:n})
 /* V16-1: pick the base weapon or armor of a named magic item (renames the item "Name (Base)"). V16-8: attunement limited to some classes */
 function basePick(x,i){const dm=DMAP[x.n]||DMAP[x.n.replace(/ \([^()]*\)$/,"")],mb=dm&&dm[5]&&dm[5].base;if(!mb||mb.length<2)return "";const cur=baseOf(x.n).b;return '<div class="iact"><span>Base item</span><select class="dd" data-ibase="'+i+'">'+mb.map((o) =>{return '<option'+(o===cur?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select></div>'}
 /* B44: pick the spell a Spell Gem, Spellwrought Tattoo, All-Purpose Tool or Gauntlet of the Grandmaster holds */
-function itemSpellPick(x,i){const P=itemPickRow(x.n);if(!P)return "";const seen={},L=spellRows().filter((s) =>{if(seen[s[0]]||s[0].indexOf("fx:")===0)return false;const ok=P.from?P.from.indexOf(s[0])>=0:s[1]>=P.lo&&s[1]<=P.hi;if(ok)seen[s[0]]=1;return ok}).map((s) =>{return s[0]}).sort(),cur=(x.pk||[])[0]||"";
- return '<div class="iact"><span>'+(P.hi===0?"Cantrip":"Spell")+'</span><select class="dd" data-ipick="'+i+'"><option value="">None</option>'+L.map((n) =>{return '<option'+(n===cur?" selected":"")+'>'+esc(n)+'</option>'}).join("")+'</select></div>'}
+function ipNames(P,lo,hi){const seen={};return spellRows().filter((s) =>{if(seen[s[0]]||s[0].indexOf("fx:")===0)return false;const ok=P.from?P.from.indexOf(s[0])>=0:s[1]>=lo&&s[1]<=hi;if(ok)seen[s[0]]=1;return ok}).map((s) =>{return s[0]}).sort()}
+function ipOpts(L,cur){return '<option value="">None</option>'+L.map((n) =>{return '<option'+(n===cur?" selected":"")+'>'+esc(n)+'</option>'}).join("")}
+/* B44: a storing item (Ring of Spell Storing, Ioun Stone Reserve, Spell Bottle) holds spells up to a total of P.cap levels. Each stored spell has its slot level and the DC and attack of whoever cast it */
+function itemStoreRows(x,i,P){const pk=x.pk||[],pl=x.pl||[],pd=x.pd||[],pa=x.pa||[],lv={};spellRows().forEach((s) =>{lv[s[0]]=s[1]});
+ const cost=(j) =>{return Math.max(+pl[j]||0,lv[pk[j]]||0)};let used=0;pk.forEach((n,j) =>{used+=cost(j)});
+ const rows=pk.concat((!P.n||pk.length<P.n)&&used<P.cap?[""]:[]);
+ return rows.map((cur,j) =>{const room=P.cap-(used-(cur?cost(j):0)),top=Math.min(P.hi,room),at=' data-ipj="'+j+'"';
+  let h='<div class="iact"><span>Stored spell</span><select class="dd" data-ipick="'+i+'"'+at+'>'+ipOpts(ipNames(P,P.lo,top),cur)+'</select>';
+  if(cur){const base=lv[cur]||P.lo,sl=[];for(let k=base;k<=top;k++)sl.push(k);
+   h+='<select class="dd" data-ipl="'+i+'"'+at+' aria-label="Slot level">'+sl.map((k) =>{return '<option value="'+k+'"'+(k===(+pl[j]||base)?" selected":"")+'>Slot '+k+'</option>'}).join("")+'</select>'
+    +'<input class="dd" type="number" data-ipd="'+i+'"'+at+' placeholder="DC" aria-label="Save DC of the caster" value="'+(pd[j]||"")+'" style="width:4.5em"><input class="dd" type="number" data-ipa="'+i+'"'+at+' placeholder="Atk" aria-label="Attack bonus of the caster" value="'+(pa[j]||"")+'" style="width:4.5em">'}
+  return h+'</div>'}).join("")+'<div class="fd bhint">'+used+" of "+P.cap+" levels used.</div>"}
+/* B44: pick the spell a Spell Gem, Spellwrought Tattoo, All-Purpose Tool or Gauntlet of the Grandmaster holds */
+function itemSpellPick(x,i){const P=itemPickRow(x.n);if(!P)return "";if(P.cap)return itemStoreRows(x,i,P);
+ return '<div class="iact"><span>'+(P.hi===0?"Cantrip":"Spell")+'</span><select class="dd" data-ipick="'+i+'">'+ipOpts(ipNames(P,P.lo,P.hi),(x.pk||[])[0]||"")+'</select></div>'}
 function attWarn(x){const dm=DMAP[x.n],by=dm&&dm[3]&&dm[5]&&dm[5].by;if(!by)return "";const cl=[B.cls].concat(MCL().map((m) =>{return m.cls})),need=Object.keys(CLASSES).filter((c) =>{return by.indexOf(c)>=0});if(!need.length||need.some((c) =>{return cl.indexOf(c)>=0}))return "";return '<div class="caution">\u26a0 Only '+esc(by)+' can attune to this item.</div>'}
 function badge(x,i){const bb=baseOf(x.n).b,dm=DMAP[x.n];if(dm&&dm[1]!=="Potion"&&dm[1]!=="Scroll"&&!WEAPONS[bb]&&!ARMOR[bb]&&bb!=="Shield")return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(dm[3]?(x.eq?"Attuned":"Attune"):(x.eq?"In Use":"Use"))+'</button>';if(ARMOR[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wearing":"Wear")+'</button>';
  if(bb==="Shield"||WEAPONS[bb])return '<button type="button" class="bdg'+(x.eq?" on":"")+'" data-ieq="'+i+'">'+(x.eq?"Wielding":"Wield")+'</button>';

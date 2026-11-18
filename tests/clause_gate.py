@@ -655,6 +655,8 @@ def features(D):
         ip = (D.get("itemPick") or {}).get(name)
         if isinstance(ip, dict):  # B44: the item holds one spell the player picks (x.pk); the sheet shows it with the item's own DC and attack, tests/golden/builds/fx_B44_*
             at += [Atom("SPELL", [8] if ip.get("att") else [], "ITEM_PICK") for _ in range(5)] + [Atom("CHOICE", [], "ITEM_PICK.pick")]
+            if ip.get("cap"):  # a storing item: slot level, DC and attack of the caster are typed per stored spell in the builder (x.pl, x.pd, x.pa)
+                at += [Atom("SLOT", [], "ITEM_PICK.slot") for _ in range(3)] + [Atom("DC", [10], "ITEM_PICK.dc") for _ in range(2)] + [Atom("ATK", [], "ITEM_PICK.atk")]
             if ip.get("dc") is not None:
                 md = (ip["dc"] - 7) // 2
                 at += [Atom("DC", [10, ip["dc"], ip["atk"], md], "ITEM_PICK.dc") for _ in range(2)] + [Atom("ATK", [ip["atk"], ip["dc"], md], "ITEM_PICK.atk")]
