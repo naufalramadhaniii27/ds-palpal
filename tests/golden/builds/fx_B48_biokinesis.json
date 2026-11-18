@@ -1,0 +1,71 @@
+{
+ "why": "Biokinesis on a Wizard 5 with Wisdom as the casting ability: Spare the Dying, Healing Word and Arcane Vigor are on the sheet.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Wizard",
+  "sub": "",
+  "level": 5,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {
+   "feat4": {
+    "feat": "Biokinesis"
+   }
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": []
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "in": "\"n\": \"Healing Word\""
+  },
+  {
+   "path": "spells",
+   "in": "\"n\": \"Arcane Vigor\""
+  },
+  {
+   "path": "spells",
+   "in": "\"n\": \"Spare the Dying\""
+  }
+ ]
+}
