@@ -50,7 +50,7 @@ export function itemDetail(n,x){const fullN=n,BO=baseOf(n),rr=rarityOf(x||{n:n})
 /* V16-1: pick the base weapon or armor of a named magic item (renames the item "Name (Base)"). V16-8: attunement limited to some classes */
 function basePick(x,i){const dm=DMAP[x.n]||DMAP[x.n.replace(/ \([^()]*\)$/,"")],mb=dm&&dm[5]&&dm[5].base;if(!mb||mb.length<2)return "";const cur=baseOf(x.n).b;return '<div class="iact"><span>Base item</span><select class="dd" data-ibase="'+i+'">'+mb.map((o) =>{return '<option'+(o===cur?" selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select></div>'}
 /* B44: pick the spell a Spell Gem, Spellwrought Tattoo, All-Purpose Tool or Gauntlet of the Grandmaster holds */
-function ipNames(P,lo,hi){const seen={};return spellRows().filter((s) =>{if(seen[s[0]]||s[0].indexOf("fx:")===0)return false;const ok=P.from?P.from.indexOf(s[0])>=0:s[1]>=lo&&s[1]<=hi;if(ok)seen[s[0]]=1;return ok}).map((s) =>{return s[0]}).sort()}
+function ipNames(P,lo,hi){const seen={};return spellRows().filter((s) =>{if(seen[s[0]]||s[0].indexOf("fx:")===0)return false;const ok=P.from?P.from.indexOf(s[0])>=0:s[1]>=lo&&s[1]<=hi&&(!P.cl||s[3].some((c) =>{return P.cl.indexOf(c)>=0}));if(ok)seen[s[0]]=1;return ok}).map((s) =>{return s[0]}).sort()}
 function ipOpts(L,cur){return '<option value="">None</option>'+L.map((n) =>{return '<option'+(n===cur?" selected":"")+'>'+esc(n)+'</option>'}).join("")}
 /* B44: a storing item (Ring of Spell Storing, Ioun Stone Reserve, Spell Bottle) holds spells up to a total of P.cap levels. Each stored spell has its slot level and the DC and attack of whoever cast it */
 function itemStoreRows(x,i,P){const pk=x.pk||[],pl=x.pl||[],pd=x.pd||[],pa=x.pa||[],lv={};spellRows().forEach((s) =>{lv[s[0]]=s[1]});

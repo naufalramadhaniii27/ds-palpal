@@ -89,7 +89,7 @@ registerSheetGroup({id:"item-spells",group:"spells",phase:"spells",order:90,read
   if(ISL.length){C.spells=(C.spells||[]).concat(ISL);C.spells.sort((p,q) =>{return p.l-q.l||(p.n<q.n?-1:p.n>q.n?1:0)})}return ctx.patch()}});
 /* B44: a magic item that holds one spell the wearer picked (x.pk, set in the builder). A single-use item gets a counter that never resets */
 function itemPickSpellRow(C,Q,SM,a,x,P,n,j){const sp=SM[n];if(!sp)return null;const lv=P.cap?(+(x.pl||[])[j]||sp[1]):sp[1],o={n:n,l:sp[1],sch:sp[2],ct:sp[4],r:sp[5],cmp:sp[6],dur:sp[7],conc:sp[8],rit:sp[9],sv:sp[10],sum:sp[11]||"",full:spellFullText(n)||"",cls:sp[3].filter((c) =>{return c.indexOf("fx:")!==0}).join(", "),use:P.once?"Item":"At will",src:x.n,itc:{it:x.n,c:0,lv:lv}};
- if(P.once){const rk=Q.resKey("x-",x.n+" "+n,C.res);C.res.push({k:rk,n:x.n+": "+n,tag:"Single use",max:1,reset:"none",f:x.n});o.itc.dk=rk}
+ if(P.once){const rk=Q.resKey("x-",x.n+" "+n,C.res);C.res.push({k:rk,n:x.n+": "+n,tag:P.reset==="long"?"1/Long Rest spell":"Single use",max:1,reset:P.reset||"none",f:x.n});o.itc.dk=rk}
  const dc=P.cap?(x.pd||[])[j]:P.dc,at=P.cap?(x.pa||[])[j]:P.atk;if(dc)o.itc.dc=dc;if(at!=null&&at!=="")o.itc.atk=at;Q.spFxTo(o,"",a);return o}
 registerSheetGroup({id:"item-pick-spells",group:"spells",phase:"spells",order:91,reads:["i.a","i.SM","q.ensureInv","q.dmapRow","q.spFxTo","q.resKey"],writes:["C.spells","C.res"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,out=[];

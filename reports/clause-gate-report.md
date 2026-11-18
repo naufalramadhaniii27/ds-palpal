@@ -8,19 +8,19 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 10193 |
-| Info (tag terdokumentasi) | 29188 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2679, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 934, ACTIVE:OTHERS 781, BY_DESIGN 670, REST:NONUM 607, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 245, NUMONLY:ZERO 193, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 15, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 10213 |
+| Info (tag terdokumentasi) | 29178 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2679, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 924, ACTIVE:OTHERS 781, BY_DESIGN 670, REST:NONUM 607, NUMONLY:FLAVOR 340, COND:PLAY_STATE 245, STD:ASI 245, NUMONLY:ZERO 193, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 15, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 4868 |
+| Uncovered | 4858 |
 | Uncovered dengan angka | 3159 |
-| Uncovered dengan kelas kata kunci mekanik | 4553 |
+| Uncovered dengan kelas kata kunci mekanik | 4543 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 315 |
 | Angka yang tidak dijelaskan record mana pun | 3022 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 3976 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 3966 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 251 |
-| Waktu | muat data 8 s, analisis 10 s |
+| Waktu | muat data 8 s, analisis 9 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 185 ditangkap (61.9%). Hapus semua atom kelas yang dibutuhkan: 191 ditangkap (63.9%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 179 ditangkap (60.1%). Hapus semua atom kelas yang dibutuhkan: 188 ditangkap (63.1%). Selftest sintetis: lulus.
 
 Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 267 ditangkap (89.0%), semua atom kelas dihapus: 299 ditangkap (99.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
@@ -38,7 +38,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 
 | Sumber | Kalimat covered |
 |---|---|
-| item | 3410 |
+| item | 3430 |
 | GX | 2454 |
 | wxs | 1074 |
 | LU_X | 770 |
@@ -47,8 +47,8 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | AUTO | 444 |
 | feat | 440 |
 | SPELL_FX | 241 |
+| ITEM_PICK | 185 |
 | cls | 177 |
-| ITEM_PICK | 165 |
 | LASTCH | 145 |
 | SAVE_NOTES | 88 |
 | SUB_GRANT | 70 |
@@ -67,10 +67,10 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
-| RESOURCE | 7405 | 860 | 11.6% |
+| RESOURCE | 7405 | 850 | 11.5% |
 | DMG | 4658 | 649 | 13.9% |
 | SPEED | 1411 | 535 | 37.9% |
-| SPELL | 3255 | 509 | 15.6% |
+| SPELL | 3255 | 499 | 15.3% |
 | PROF | 1124 | 404 | 35.9% |
 | ADV | 1959 | 388 | 19.8% |
 | RES | 1375 | 365 | 26.5% |
@@ -98,7 +98,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|---|---|---|
 | class | 1186 | 296 | 657 | 0 | 233 |
 | feat | 2812 | 910 | 1464 | 0 | 438 |
-| item | 19265 | 5094 | 11738 | 0 | 2433 |
+| item | 19265 | 5114 | 11728 | 0 | 2423 |
 | species | 1638 | 953 | 492 | 0 | 193 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
 | sub | 10118 | 2662 | 5885 | 0 | 1571 |
@@ -107,7 +107,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10460 | 2785 | 6363 | 1312 | 12.5% |
+| dmg | 10460 | 2795 | 6358 | 1307 | 12.5% |
 | tvss | 2788 | 727 | 1639 | 422 | 15.1% |
 | core | 1495 | 435 | 793 | 267 | 17.9% |
 | tsgs | 1479 | 405 | 831 | 243 | 16.4% |
@@ -167,7 +167,6 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | vrgr | 86 | 26 | 52 | 8 | 9.3% |
 | tsdd | 69 | 27 | 34 | 8 | 11.6% |
 | lfl | 33 | 22 | 3 | 8 | 24.2% |
-| scc | 57 | 19 | 30 | 8 | 14.0% |
 | cm | 60 | 12 | 40 | 8 | 13.3% |
 | bgdia | 114 | 29 | 77 | 8 | 7.0% |
 | aag | 40 | 19 | 14 | 7 | 17.5% |
@@ -175,6 +174,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tftyp | 71 | 26 | 39 | 6 | 8.5% |
 | sato | 38 | 12 | 21 | 5 | 13.2% |
 | psk | 38 | 23 | 11 | 4 | 10.5% |
+| scc | 57 | 29 | 25 | 3 | 5.3% |
 | efa | 28 | 10 | 15 | 3 | 10.7% |
 | oota | 87 | 63 | 21 | 3 | 3.4% |
 | mtf | 64 | 49 | 13 | 2 | 3.1% |
@@ -196,7 +196,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Kelas utama | Uncovered | Dengan angka |
 |---|---|---|
-| RESOURCE | 589 | 506 |
+| RESOURCE | 579 | 506 |
 | DMG | 480 | 426 |
 | SPEED | 452 | 358 |
 | ADV | 378 | 183 |
@@ -223,7 +223,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 ## Contoh 40 kalimat per kelas teratas (seed tetap)
 
 
-### RESOURCE (589 uncovered)
+### RESOURCE (579 uncovered)
 
 - `class|Monk|Superior Defense#1` At the start of your turn, you can spend 3 Focus Points to brace against harm. | number 3 no record explains
 - `feat|Draconic Rune Casting|Draconic Rune Casting#5` You can have a number of empowered runes at once equal to 1 + your Proficiency Bonus, and use them to replicate spells as the book describes. | no record for RESOURCE; number 1,pb unexplained
@@ -823,33 +823,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|dmg|Eagle Whistle#3` A use of the whistle also ends if you land. -> info:REST:NONUM
-- class `item|dmg|Eagle Whistle#3` A use of the whistle also ends if you land. -> info:REST:NONUM
-- record `sub|Warlock/The Archfey (2014)|Dark Delirium#6` You regain use after a Short or Long Rest. -> covered
-- class `sub|Warlock/The Archfey (2014)|Dark Delirium#6` You regain use after a Short or Long Rest. -> info:REST:NONUM
-- record `item|dmg14|Instrument of the Bards, Cli Lyre#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
-- class `item|dmg14|Instrument of the Bards, Cli Lyre#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
-- record `item|dmg|Love's Embrace#1` A greatsword made of two scimitars, one cold and one fire. -> info:NUMONLY:TABLE
-- class `item|dmg|Love's Embrace#1` A greatsword made of two scimitars, one cold and one fire. -> info:NUMONLY:TABLE
-- record `feat|Warzone Nomad|Warzone Nomad#7` After you use this, finish a Long Rest to do so again. -> info:REST:NONUM
-- class `feat|Warzone Nomad|Warzone Nomad#7` After you use this, finish a Long Rest to do so again. -> info:REST:NONUM
-- record `sub|Vagabond/Pugilist|Desperate Endurance#2` You can do this once, then you must finish a Long Rest to do it again. -> covered
-- class `sub|Vagabond/Pugilist|Desperate Endurance#2` You can do this once, then you must finish a Long Rest to do it again. -> info:REST:NONUM
-- record `item|tsdm|Shield Module#3` Once used, it cannot be used again until you finish a Long Rest. -> info:REST:NONUM
-- class `item|tsdm|Shield Module#3` Once used, it cannot be used again until you finish a Long Rest. -> info:REST:NONUM
-- record `feat|Treacherous Allure|Treacherous Allure#6` You can also cast it with spell slots of the appropriate level. -> info:SPELL:RIDER
-- record `sub|Monk/Warrior of the Warped|Spring Knees#4` Opportunity Attacks against you have Disadvantage. -> info:ACTIVE:OTHERS
-- class `sub|Monk/Warrior of the Warped|Spring Knees#4` Opportunity Attacks against you have Disadvantage. -> info:ACTIVE:OTHERS
-- record `item|dmg|Scalehide Cream#2` The scales give you a natural AC of 15 + your Constitution modifier. -> info:NUMONLY:TABLE
-- class `item|dmg|Scalehide Cream#2` The scales give you a natural AC of 15 + your Constitution modifier. -> info:NUMONLY:TABLE
-- record `feat|Seraph Transformation: Level 4|Seraph Transformation: Level 4#5` You emit a 20-ft aura of firm conviction while you are conscious. -> info:NUMONLY:GEOMETRY
-- class `feat|Seraph Transformation: Level 4|Seraph Transformation: Level 4#5` You emit a 20-ft aura of firm conviction while you are conscious. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Purity Spear#7` Moving 20 ft straight at a target before a melee hit adds 2d8 Piercing. -> info:NUMONLY:ROLL
-- class `item|dmg|Purity Spear#7` Moving 20 ft straight at a target before a melee hit adds 2d8 Piercing. -> info:NUMONLY:ROLL
-- record `sub|Fighter/Psi Warrior|Bulwark of Force#5` After you use this feature, it stays unavailable to you until you finish a Long Rest, though spending a Psionic Energy D -> info:REST:NONUM
-- class `sub|Fighter/Psi Warrior|Bulwark of Force#5` After you use this feature, it stays unavailable to you until you finish a Long Rest, though spending a Psionic Energy D -> info:REST:NONUM
-- record `item|dmg|Favor of the Heroic Steed#1` Two heroic steeds judge you worthy and agree to serve you. -> info:NUMONLY:TABLE
-- class `item|dmg|Favor of the Heroic Steed#1` Two heroic steeds judge you worthy and agree to serve you. -> info:NUMONLY:TABLE
-- record `sub|Warlock/Hexblade Patron|Masterful Hex#4` After using it you can't do so again until a Long Rest, or until you spend a Pact Magic slot (no action). -> info:REST:NONUM
-- class `sub|Warlock/Hexblade Patron|Masterful Hex#4` After using it you can't do so again until a Long Rest, or until you spend a Pact Magic slot (no action). -> info:REST:NONUM
-- record `sub|Ranger/Primordial Archer|Elemental Arrows#5` Uses equal your Wisdom modifier (minimum 1) per Long Rest. -> covered
+- record `sub|Ranger/Freerunner|Freerunning#4` In your favored terrain a technique does not use up a charge. -> info:REST:NONUM
+- class `sub|Ranger/Freerunner|Freerunning#4` In your favored terrain a technique does not use up a charge. -> info:REST:NONUM
+- class `item|twow|Sulfuras, Hand of Ragnaros#3` A hit deals an extra 1d10 Fire damage and sets the target burning. -> info:ACTIVE:OTHERS
+- record `item|dmg14|Instrument of the Bards, Canaith Mandolin#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
+- class `item|dmg14|Instrument of the Bards, Canaith Mandolin#2` Seven types of these instruments exist, each named after a legendary bard college. -> info:NUMONLY:FLAVOR
+- record `sub|Sorcerer/Lunar Sorcery|Lunar Embodiment#12` When you finish a Long Rest, choose a lunar phase: Full Moon, New Moon, or Crescent Moon. -> info:REST:NONUM
+- class `sub|Sorcerer/Lunar Sorcery|Lunar Embodiment#12` When you finish a Long Rest, choose a lunar phase: Full Moon, New Moon, or Crescent Moon. -> info:REST:NONUM
+- record `sub|Wizard/School of Black Powder|Arcane Arms#2` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- class `sub|Wizard/School of Black Powder|Arcane Arms#2` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- record `sub|Paladin/Oath of Slaughter|Oath of Slaughter Spells#1` Always prepared from the listed Paladin levels: 3 Crimson Lash, Inflict Wounds. -> covered
+- class `sub|Paladin/Oath of Slaughter|Oath of Slaughter Spells#1` Always prepared from the listed Paladin levels: 3 Crimson Lash, Inflict Wounds. -> covered
+- record `item|dmg|Crook of Rao#12` - 1 minor detrimental property -> info:ITEM:ARTIFACT_PROPS
+- class `item|dmg|Crook of Rao#12` - 1 minor detrimental property -> info:ITEM:ARTIFACT_PROPS
+- record `item|dmg|Inescapable Lash#3` Its reach is 20 feet. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Inescapable Lash#3` Its reach is 20 feet. -> info:NUMONLY:GEOMETRY
+- record `sub|Wizard/Graviturgy Magic|Violent Attraction#3` You can do this a number of times equal to your Intelligence modifier (minimum one) and regain all uses after a Long Res -> covered
+- class `sub|Wizard/Graviturgy Magic|Violent Attraction#3` You can do this a number of times equal to your Intelligence modifier (minimum one) and regain all uses after a Long Res -> info:REST:NONUM
+- record `sub|Warlock/The Future You|I Could Do With Fewer Scars#2` Short or Long Rest to use again. -> covered
+- class `sub|Warlock/The Future You|I Could Do With Fewer Scars#2` Short or Long Rest to use again. -> info:REST:NONUM
+- record `sub|Wizard/Diviner|The Third Eye#3` It lasts until you start a Short or Long Rest. -> info:REST:NONUM
+- class `sub|Wizard/Diviner|The Third Eye#3` It lasts until you start a Short or Long Rest. -> info:REST:NONUM
+- record `item|dmg|Planecaller's Codex#6` You can use the charges in the following ways while holding it: -> info:REST:NONUM
+- class `item|dmg|Planecaller's Codex#6` You can use the charges in the following ways while holding it: -> info:REST:NONUM
+- record `species|Wulven|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- class `species|Wulven|Heritage Traits#1` Pick eight traits from the Heritage Traits list. -> info:NUMONLY:TEXT
+- record `item|dmg|Orrery of the Wanderer#25` If attuned to an individual component, a creature must hold the component to make use of its features. -> covered
+- class `item|dmg|Orrery of the Wanderer#25` If attuned to an individual component, a creature must hold the component to make use of its features. -> info:REST:NONUM
+- record `sub|Rogue/Shadow Master|Gloaming Black#3` Short or Long Rest to use again. -> covered
+- class `sub|Rogue/Shadow Master|Gloaming Black#3` Short or Long Rest to use again. -> info:REST:NONUM
+- record `sub|Sorcerer/Wastelander|Aberrant Physiology#2` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
