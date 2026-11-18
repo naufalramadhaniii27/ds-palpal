@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:170,l:"0.0.68",d:"2026-11-18",n:["Checker update: artifact property count lines and feat ability score lines no longer count as missing rules."]},
 {v:169,l:"0.0.67",d:"2026-11-18",n:["Divine Strike now shows on your weapon rows for sixteen more Cleric domains, including the 2d8 version from level 14."]},
 {v:168,l:"0.0.66",d:"2026-11-18",n:["The ten Potions of Resistance now have a switch that adds their Resistance for 1 hour."]},
 {v:167,l:"0.0.65",d:"2026-11-18",n:["Wings of Flying and Broom of Flying now show their Fly Speed. Cloak of the Bat, Potion of Flying and Potion of Climbing add a switch for their movement."]},

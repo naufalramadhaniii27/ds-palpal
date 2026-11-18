@@ -695,6 +695,7 @@ REASONS = collections.OrderedDict([
     ("REST:NONUM", "Rest or recharge rule that states no amount ('regains all expended charges at dawn', 'after a Long Rest'): the amount lives in the sentence that has the number; the refill timing is the reset of the pool."),
     ("REST:LENGTH", "How many hours a Long Rest takes for a trance, dormant or motionless rest (('meditate for 4 hours', 'finish a Long Rest in 4 hours')): a rest-length rule. The sheet records no rest length, and the hour count changes no sheet number."),
     ("DC:REFERENCE", "Sentence only points to the spell save DC / save DC of the feature (no number): the sheet computes the DC from the casting ability."),
+    ("ITEM:ARTIFACT_PROPS", "Count line of the random properties of an artifact ('- 2 minor beneficial properties'): the DM rolls or picks them in the DMG tables, so there is no fixed property to put on the sheet."),
     ("OBJECT:STATS", "Stat block of an object, stone, cube or summoned thing (AC, HP, resistance of the thing, not of the character): not a character stat."),
     ("ITEM:REQUIREMENT", "Attunement or crafting requirement of an item (\"you must be proficient with it to attune\", \"Requirement: proficiency with all Simple weapons\"): a prerequisite, not a proficiency the item gives."),
     ("SPELL:CANTRIP_DMG", "Sentence that adds an ability modifier to cantrip damage. The attack bonus record of the feature (when spell) does it on the cantrip rows; the sentence names no spell."),
@@ -750,7 +751,7 @@ def excuse(r, ctx, atoms):
     has = lambda c: any(a.cls == c for a in atoms)
     own_rider = bool(RX_RIDER.search(t) and RX_RIDER_HIT.search(t) and not re.search(r"\bsaving throw\b|\bsave\b|\b(?:target|creature) (?:takes|must)\b", t))
     # standard constants explained by an atom of the same class (the class atom must exist, only the standard number is missing)
-    if "ABIL" in need and not r.get("missing") and unexpl and unexpl <= {"1", "20", "30"} and RX_ASI.search(t) and has("ABIL"):
+    if ("ABIL" in need or not need) and not r.get("missing") and unexpl and unexpl <= {"1", "20", "30"} and RX_ASI.search(t) and has("ABIL"):
         return "STD:ASI"
     if need <= {"CHOICE"} and kind == "class" and not toks and re.match(r"^(?:choose|pick) an? [a-z' -]+ (?:subclass|patron|circle|college|domain|oath|path)\b", t):
         return "STD:SUBCLASS_PICK"
@@ -760,6 +761,8 @@ def excuse(r, ctx, atoms):
         return "STD:FEAT_PICK"
     if "AC" in need and not r.get("missing") and unexpl and unexpl <= {"10"} and RX_AC10.search(t) and has("AC"):
         return "STD:AC10"
+    if kind == "item" and re.match(r"^- \d+ (?:major|minor) (?:beneficial|detrimental) propert(?:y|ies)$", t):
+        return "ITEM:ARTIFACT_PROPS"
     if need:
         # number conservation is not loosened: a feature that HAS an atom of a needed class but whose numbers disagree with the text stays flagged
         if unexpl and any(a.cls in need for a in atoms):
@@ -1086,6 +1089,10 @@ def selftest():
     check("9l class table sentence -> info TABLE:CLASS", r["status"] == "info" and r["why"] == "TABLE:CLASS", r["why"])
     r = st("item", "Stone", "A stone has AC 24, 10 hit points, and resistance to all damage.")
     check("9m object stat block -> info OBJECT:STATS", r["status"] == "info" and r["why"] == "OBJECT:STATS", r["why"])
+    r = st("item", "Relic", "- 2 minor beneficial properties")
+    check("9m2 artifact property count -> info ITEM:ARTIFACT_PROPS", r["status"] == "info" and r["why"] == "ITEM:ARTIFACT_PROPS", r["why"])
+    r = st("feat", "Odd", "- 2 minor beneficial properties")
+    check("9m3 the property count rule is for items only", r["status"] == "uncovered", r["why"])
     r = st("item", "Ring", "While wearing the ring you gain a +1 bonus to AC.")
     check("9n equip-state AC bonus without a record -> flagged", r["status"] == "uncovered", r["why"])
     r = st("sub", "Resilience", "While you wear no armor, your base Armor Class equals 10 + your Dexterity modifier + your Charisma modifier.", [Atom("AC", {"CHA"}, "sub.ua")])
