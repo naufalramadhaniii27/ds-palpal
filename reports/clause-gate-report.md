@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 9888 |
-| Info (tag terdokumentasi) | 29203 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2682, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 937, ACTIVE:OTHERS 789, BY_DESIGN 670, REST:NONUM 607, NUMONLY:FLAVOR 340, STD:ASI 247, COND:PLAY_STATE 245, NUMONLY:ZERO 194, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 13, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 9903 |
+| Info (tag terdokumentasi) | 29204 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2682, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 937, ACTIVE:OTHERS 789, BY_DESIGN 670, REST:NONUM 607, NUMONLY:FLAVOR 340, STD:ASI 247, COND:PLAY_STATE 245, NUMONLY:ZERO 194, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 14, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 5158 |
+| Uncovered | 5142 |
 | Uncovered dengan angka | 3251 |
-| Uncovered dengan kelas kata kunci mekanik | 4843 |
+| Uncovered dengan kelas kata kunci mekanik | 4827 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 315 |
 | Angka yang tidak dijelaskan record mana pun | 3117 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4278 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 4262 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 252 |
-| Waktu | muat data 7 s, analisis 11 s |
+| Waktu | muat data 7 s, analisis 10 s |
 
-Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 194 ditangkap (65.1%). Hapus semua atom kelas yang dibutuhkan: 194 ditangkap (65.1%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 178 ditangkap (59.5%). Hapus semua atom kelas yang dibutuhkan: 196 ditangkap (65.6%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 279 ditangkap (93.0%), semua atom kelas dihapus: 299 ditangkap (99.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 272 ditangkap (90.7%), semua atom kelas dihapus: 297 ditangkap (99.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -39,10 +39,10 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3410 |
-| GX | 2345 |
-| wxs | 1073 |
+| GX | 2350 |
+| wxs | 1074 |
 | LU_X | 767 |
-| species | 545 |
+| species | 555 |
 | ITEM_SPELLS | 495 |
 | AUTO | 444 |
 | feat | 419 |
@@ -60,20 +60,20 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | CLS_AUTO | 7 |
 | RULE | 7 |
 
-Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 338, fx-L5.js 206, fx-L12.js 188, fx-L10.js 187, fx-L4.js 177, fx-L2.js 135, fx-L1.js 132, fx-N1.js 115, fx-L3.js 114, fx-L11.js 100, fx-L9.js 99, fx-Z2.js 71.
+Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-advnotes.js 339, fx-L5.js 206, fx-L12.js 188, fx-L10.js 187, fx-L4.js 177, fx-L2.js 135, fx-L1.js 132, fx-N1.js 115, fx-L3.js 114, fx-L11.js 100, fx-L9.js 99, fx-Z2.js 71.
 
 ## Hitungan per kelas (kalimat bisa masuk beberapa kelas)
 
 | Kelas | Mekanik | Uncovered | Uncovered % |
 |---|---|---|---|
 | RESOURCE | 7405 | 867 | 11.7% |
-| SPELL | 3255 | 700 | 21.5% |
+| SPELL | 3255 | 685 | 21.0% |
 | DMG | 4658 | 661 | 14.2% |
 | SPEED | 1411 | 542 | 38.4% |
-| PROF | 1124 | 405 | 36.0% |
+| PROF | 1124 | 404 | 35.9% |
 | ADV | 1959 | 388 | 19.8% |
 | RES | 1375 | 365 | 26.5% |
-| CHOICE | 1663 | 356 | 21.4% |
+| CHOICE | 1663 | 347 | 20.9% |
 | IMM | 1004 | 318 | 31.7% |
 | DC | 2903 | 282 | 9.7% |
 | SLOT | 1425 | 280 | 19.6% |
@@ -98,9 +98,9 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | class | 1186 | 296 | 657 | 0 | 233 |
 | feat | 2812 | 866 | 1469 | 0 | 477 |
 | item | 19265 | 4886 | 11749 | 0 | 2630 |
-| species | 1638 | 919 | 492 | 0 | 227 |
+| species | 1638 | 929 | 492 | 0 | 217 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
-| sub | 10118 | 2643 | 5884 | 0 | 1591 |
+| sub | 10118 | 2648 | 5885 | 0 | 1585 |
 
 ## Per buku
 
@@ -111,18 +111,18 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | core | 1495 | 435 | 793 | 267 | 17.9% |
 | ttoh | 1470 | 353 | 870 | 247 | 16.8% |
 | tsgs | 1479 | 405 | 831 | 243 | 16.4% |
-| tvss14 | 1201 | 247 | 743 | 211 | 17.6% |
+| tvss14 | 1201 | 249 | 743 | 209 | 17.4% |
 | tkdm | 921 | 256 | 488 | 177 | 19.2% |
 | tsdm | 1063 | 297 | 592 | 174 | 16.4% |
 | tghp | 1116 | 395 | 553 | 168 | 15.1% |
-| tdm14 | 643 | 151 | 381 | 111 | 17.3% |
-| tua24 | 634 | 193 | 331 | 110 | 17.4% |
+| tua24 | 634 | 194 | 331 | 109 | 17.2% |
+| tdm14 | 643 | 153 | 382 | 108 | 16.8% |
 | tce | 730 | 170 | 458 | 102 | 14.0% |
 | au | 535 | 165 | 279 | 91 | 17.0% |
 | tgh14p | 490 | 121 | 282 | 87 | 17.8% |
-| phb14 | 513 | 174 | 258 | 81 | 15.8% |
+| phb14 | 513 | 176 | 258 | 79 | 15.4% |
 | twow | 542 | 153 | 314 | 75 | 13.8% |
-| thhw | 395 | 93 | 232 | 70 | 17.7% |
+| thhw | 395 | 94 | 232 | 69 | 17.5% |
 | dmg14 | 540 | 183 | 291 | 66 | 12.2% |
 | tee24 | 463 | 189 | 216 | 58 | 12.5% |
 | egw | 365 | 98 | 214 | 53 | 14.5% |
@@ -150,10 +150,10 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | wdmm | 79 | 14 | 50 | 15 | 19.0% |
 | ggr | 186 | 35 | 137 | 14 | 7.5% |
 | idrotf | 134 | 33 | 87 | 14 | 10.4% |
-| scag | 67 | 25 | 30 | 12 | 17.9% |
 | dsotdq | 82 | 26 | 44 | 12 | 14.6% |
 | frafi | 81 | 23 | 46 | 12 | 14.8% |
 | crcotn | 96 | 38 | 46 | 12 | 12.5% |
+| scag | 67 | 26 | 30 | 11 | 16.4% |
 | psa | 67 | 32 | 24 | 11 | 16.4% |
 | ai | 164 | 25 | 128 | 11 | 6.7% |
 | pota | 110 | 26 | 73 | 11 | 10.0% |
@@ -173,10 +173,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | aag | 40 | 19 | 14 | 7 | 17.5% |
 | bdd | 62 | 31 | 24 | 7 | 11.3% |
 | tftyp | 71 | 26 | 39 | 6 | 8.5% |
-| psk | 38 | 22 | 11 | 5 | 13.2% |
 | sato | 38 | 12 | 21 | 5 | 13.2% |
-| psx | 18 | 10 | 5 | 3 | 16.7% |
-| psz | 38 | 33 | 2 | 3 | 7.9% |
+| psk | 38 | 23 | 11 | 4 | 10.5% |
 | efa | 28 | 10 | 15 | 3 | 10.7% |
 | mtf | 64 | 49 | 13 | 2 | 3.1% |
 | nf | 25 | 11 | 12 | 2 | 8.0% |
@@ -184,11 +182,13 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | eepc | 9 | 8 | 0 | 1 | 11.1% |
 | ttp | 5 | 2 | 2 | 1 | 20.0% |
 | psd | 5 | 4 | 0 | 1 | 20.0% |
+| psx | 18 | 12 | 5 | 1 | 5.6% |
 | tdcg | 9 | 4 | 4 | 1 | 11.1% |
 | imr | 186 | 3 | 182 | 1 | 0.5% |
 | oga | 5 | 2 | 3 | 0 | 0.0% |
 | lr | 5 | 4 | 1 | 0 | 0.0% |
 | psi | 6 | 6 | 0 | 0 | 0.0% |
+| psz | 38 | 36 | 2 | 0 | 0.0% |
 | spells | 9230 | 278 | 8952 | 0 | 0.0% |
 
 ## Kalimat numerik uncovered, urut per kelas (kelas utama = urutan prioritas AC, HP, SAVE ...)
@@ -197,14 +197,14 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|
 | RESOURCE | 596 | 506 |
 | DMG | 492 | 438 |
-| SPELL | 487 | 88 |
+| SPELL | 473 | 88 |
 | SPEED | 459 | 365 |
 | ADV | 378 | 183 |
-| PROF | 360 | 150 |
+| PROF | 359 | 150 |
 | RES | 297 | 138 |
 | NUM | 267 | 267 |
 | SLOT | 262 | 96 |
-| CHOICE | 234 | 76 |
+| CHOICE | 233 | 76 |
 | IMM | 212 | 79 |
 | DIS | 198 | 107 |
 | SENSE | 168 | 142 |
@@ -308,7 +308,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Ranger/Gloom Stalker|Stalker's Flurry#1` Your Dreadful Strike's Psychic damage increases to 2d8. | no record for DMG; number 2d8 unexplained
 - `sub|Wizard/Plague Doctor|Medicinal Master#2` Bad Medicine deals an extra 2d8 Acid damage. | no record for DMG; number 2d8 unexplained
 
-### SPELL (487 uncovered)
+### SPELL (473 uncovered)
 
 - `class|Artificer|Spellcasting#8` You know two Artificer cantrips. | no record for SPELL; number 2 unexplained
 - `class|Bard|Spellcasting#14` To begin, your list holds four level 1 spells that you pick from the Bard spell list. | no record for SPELL; number 4 unexplained
@@ -437,7 +437,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/Mystic Strategist|Arcane Assessment#2` For 1 minute (or until you use this again) you have Advantage on saves against its spells and magical effects. | no record for ADV; number 1 unexplained
 - `sub|Wizard/School of Illumination|Omen of Warning#3` You gain Advantage on up to two Initiative rolls. | no record for ADV,INIT; number 2 unexplained
 
-### PROF (360 uncovered)
+### PROF (359 uncovered)
 
 - `class|Jaeger|Eldritch Hunter#2` If you are already proficient in the check, add double your Proficiency Bonus instead. | no record for PROF; number double,pb unexplained
 - `feat|Artillerist (Dark Matter)|Artillerist (Dark Matter)#2` You can use the mastery property of two kinds of ship weapons of your choice, provided you are proficient with them. | no record for CHOICE,PROF; number 2 unexplained
@@ -609,7 +609,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/Evoker|Overchannel#4` A second use before you finish a Long Rest deals 2d12 Necrotic damage to you per level of the spell slot, right after you cast the spell. | no record for DMG,RESOURCE,SLOT,SPELL; number 2d12 unexplained
 - `sub|Wizard/Necromancer|Necromancy Spellbook#10` When you cast a Necromancy spell with a spell slot, you can pick an Undead creature you can see within 60 feet. | no record for SLOT; number 60 unexplained
 
-### CHOICE (234 uncovered)
+### CHOICE (233 uncovered)
 
 - `class|Artificer|Spell-Storing Item#2` Choose a level 1, 2, or 3 Artificer spell with an action casting time and no consumed Material component. | no record for CHOICE; number 3 unexplained
 - `class|Craftsman|Masterwork Armor#4` If the armor already gives such a bonus, such as +2 Half Plate Armor, you pick one bonus and cannot combine them. | no record for CHOICE; number 2,half unexplained
@@ -822,33 +822,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|dmg|Wand of Smiles#4` The wand regains all expended charges daily at dawn. -> info:REST:NONUM
-- class `item|dmg|Wand of Smiles#4` The wand regains all expended charges daily at dawn. -> info:REST:NONUM
-- record `sub|Druid/Circle of Stars|Star Map#3` You regain all uses after a Long Rest. -> covered
-- class `sub|Druid/Circle of Stars|Star Map#3` You regain all uses after a Long Rest. -> info:REST:NONUM
-- record `sub|Druid/Circle of the Titan|Circle of the Titan Spells#2` 5 Fear. -> info:NUMONLY:TABLE
-- class `sub|Druid/Circle of the Titan|Circle of the Titan Spells#2` 5 Fear. -> info:NUMONLY:TABLE
-- record `sub|Warmage/Coalition Arcanist|Precision Hardlight Strike#4` Long Rest to use again. -> covered
-- class `sub|Warmage/Coalition Arcanist|Precision Hardlight Strike#4` Long Rest to use again. -> info:REST:NONUM
-- record `class|Necromancer|Undying Servitude#2` Once used, it returns after a Long Rest. -> info:REST:NONUM
-- class `class|Necromancer|Undying Servitude#2` Once used, it returns after a Long Rest. -> info:REST:NONUM
-- record `feat|Purple Dragon Rook|Purple Dragon Rook#6` Once used, it returns after a Long Rest. -> info:REST:NONUM
-- class `feat|Purple Dragon Rook|Purple Dragon Rook#6` Once used, it returns after a Long Rest. -> info:REST:NONUM
-- record `sub|Warlock/Undead Patron|Form of Dread#2` You can do this a number of times equal to your Charisma modifier (minimum of once) and regain all uses after a Long Res -> covered
-- class `sub|Warlock/Undead Patron|Form of Dread#2` You can do this a number of times equal to your Charisma modifier (minimum of once) and regain all uses after a Long Res -> info:REST:NONUM
-- record `item|tsgs|Eye of the Bookwurm#4` After the first use you can change the phrase freely for 1 hour. -> info:NUMONLY:GEOMETRY
-- class `item|tsgs|Eye of the Bookwurm#4` After the first use you can change the phrase freely for 1 hour. -> info:NUMONLY:GEOMETRY
-- record `item|dmg|Somniferous Blossom Rod#4` Once the rod has been used to cast Plant Growth, it can't be used to cast this spell again until the next dawn. -> covered
-- record `item|frafi|Crown of Horns#47` - 1 minor detrimental property -> info:ITEM:ARTIFACT_PROPS
-- class `item|frafi|Crown of Horns#47` - 1 minor detrimental property -> info:ITEM:ARTIFACT_PROPS
-- record `item|dmg14|+1 Rod of the Pact Keeper#3` You can't use this property again until you finish a long rest. -> info:REST:NONUM
-- class `item|dmg14|+1 Rod of the Pact Keeper#3` You can't use this property again until you finish a long rest. -> info:REST:NONUM
-- class `item|dmg|Wrought-Iron Tower#15` When you make an attack, you may spend 1 or more charges. -> info:ACTIVE:TRIGGER
-- record `item|coa|True-Ice Shards (Dagger)#18` Once you use this feature, you may not use it again until after you have finished a long rest. -> covered
-- class `item|coa|True-Ice Shards (Dagger)#18` Once you use this feature, you may not use it again until after you have finished a long rest. -> info:REST:NONUM
-- record `species|Khoravar|Fey Gift#1` You know the Friends cantrip. -> covered
-- record `sub|Ranger/Beast Trainer|Primal Whirlwind#3` Long Rest to regain all uses. -> covered
-- class `sub|Ranger/Beast Trainer|Primal Whirlwind#3` Long Rest to regain all uses. -> info:REST:NONUM
-- record `sub|Dancer/Danseur Macabre|Dance with the Dead#6` After you use this, you cannot use it again until you finish a Short or Long Rest. -> covered
-- class `sub|Dancer/Danseur Macabre|Dance with the Dead#6` After you use this, you cannot use it again until you finish a Short or Long Rest. -> info:REST:NONUM
-- record `sub|Warmage/House of Kings|Battle Tactics#5` You regain all expended Battle Dice when you roll Initiative or finish a Short or Long Rest. -> info:REST:NONUM
+- record `feat|Arcane Artist|Arcane Artist#2` You learn the Minor Illusion cantrip. -> covered
+- record `feat|Vampire's Plaything|Vampire's Plaything#2` When you finish a Long Rest, you can create one Potion of Healing or one Antitoxin, provided you have an empty vial or f -> info:REST:NONUM
+- class `feat|Vampire's Plaything|Vampire's Plaything#2` When you finish a Long Rest, you can create one Potion of Healing or one Antitoxin, provided you have an empty vial or f -> info:REST:NONUM
+- record `item|dmg|Visage of Delight and Disaster#6` When it uses the die, it gains Temporary Hit Points equal to twice the roll. -> info:NUMONLY:ROLL
+- class `item|dmg|Visage of Delight and Disaster#6` When it uses the die, it gains Temporary Hit Points equal to twice the roll. -> info:NUMONLY:ROLL
+- record `feat|Mark of Making|Mark of Making#9` You can also cast them with spell slots. -> covered
+- record `item|dmg|Needle, +1#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Uncommon needle carries the +1 bonus. -> info:NUMONLY:FLAVOR
+- class `item|dmg|Needle, +1#2` A piece of magic ammunition of this kind takes its bonus from its rarity, and this Uncommon needle carries the +1 bonus. -> info:NUMONLY:FLAVOR
+- record `species|Demidritch|Unleash Infinity#3` After you transform, finish a Long Rest to do so again. -> info:REST:NONUM
+- class `species|Demidritch|Unleash Infinity#3` After you transform, finish a Long Rest to do so again. -> info:REST:NONUM
+- record `feat|Primordial Transformation: Stage 2|Primordial Transformation: Stage 2#1` Stage 2. -> info:NUMONLY:TABLE
+- class `feat|Primordial Transformation: Stage 2|Primordial Transformation: Stage 2#1` Stage 2. -> info:NUMONLY:TABLE
+- record `item|dmg|Quarterstaff of the Acrobat#1` Attack rolls and damage rolls you make with this magic weapon gain a +2 bonus. -> info:NUMONLY:ROLL
+- class `item|dmg|Quarterstaff of the Acrobat#1` Attack rolls and damage rolls you make with this magic weapon gain a +2 bonus. -> info:NUMONLY:ROLL
+- record `feat|Mark of Scribing|Mark of Scribing#6` Comprehend Languages is always prepared and free once per Long Rest. -> covered
+- class `feat|Mark of Scribing|Mark of Scribing#6` Comprehend Languages is always prepared and free once per Long Rest. -> info:REST:NONUM
+- record `item|dmg|Light Drinker#4` It returns after a Short or Long Rest. -> info:REST:NONUM
+- class `item|dmg|Light Drinker#4` It returns after a Short or Long Rest. -> info:REST:NONUM
+- record `sub|Fighter/Psi Warrior|Psionic Power#5` Some powers expend a die, as their descriptions say, and a power that needs a die can't be used once all your Psionic En -> info:REST:NONUM
+- class `sub|Fighter/Psi Warrior|Psionic Power#5` Some powers expend a die, as their descriptions say, and a power that needs a die can't be used once all your Psionic En -> info:REST:NONUM
+- record `item|dmg|Gallus Feather Robe#5` You can do this up to three times a day. -> info:NUMONLY:TEXT
+- class `item|dmg|Gallus Feather Robe#5` You can do this up to three times a day. -> info:NUMONLY:TEXT
+- record `sub|Fighter/Couatl Herald|Agent of Mercy#2` You have 3 d6 at level 3, 4 d6 at level 7, 4 d8 at level 10, 5 d8 at level 15 and 5 d10 at level 18. -> info:NUMONLY:ROLL
+- class `sub|Fighter/Couatl Herald|Agent of Mercy#2` You have 3 d6 at level 3, 4 d6 at level 7, 4 d8 at level 10, 5 d8 at level 15 and 5 d10 at level 18. -> info:NUMONLY:ROLL
+- record `sub|Cleric/Pestilence Domain|Pestilence Domain Spells#1` Always prepared from the listed Cleric levels: 3 Blindness/Deafness, Detect Poison and Disease, Poison Spray, Ray of Enf -> covered
+- class `sub|Cleric/Pestilence Domain|Pestilence Domain Spells#1` Always prepared from the listed Cleric levels: 3 Blindness/Deafness, Detect Poison and Disease, Poison Spray, Ray of Enf -> covered
+- record `item|tsgs|Memento of the Shapeless#14` After 12 hours you can use this again. -> info:NUMONLY:GEOMETRY
+- class `item|tsgs|Memento of the Shapeless#14` After 12 hours you can use this again. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Lazarus Unit#5` After it works, it cannot work again until you finish a Long Rest. -> info:REST:NONUM
+- class `item|dmg|Lazarus Unit#5` After it works, it cannot work again until you finish a Long Rest. -> info:REST:NONUM

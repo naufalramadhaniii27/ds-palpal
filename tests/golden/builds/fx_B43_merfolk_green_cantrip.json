@@ -1,0 +1,63 @@
+{
+ "why": "Merfolk (Ixalan, Green) picks a cantrip: Druidcraft is on the sheet.",
+ "build": {
+  "name": "Golden",
+  "species": "Merfolk (Ixalan, Green)",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 1,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {
+   "spcan": [
+    "Druidcraft"
+   ]
+  },
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": []
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "in": "\"n\": \"Druidcraft\""
+  }
+ ]
+}

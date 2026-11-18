@@ -300,9 +300,9 @@ reg("ATK", "atk", "atkBonus", "atkDice", "atkAb", "spAtk", "spellAtk", "attackRo
 reg("DMG", "dmg", "atkDice", "dieReplace", "attackRow", "unarmed", "meleeDmg1h", "thrownDmg", "xd")
 reg("DC", "spDc", "dcAdd", "spellDc", "dc", "setsc")
 reg("INIT", "init", "initAdv", "initDie")
-reg("SPELL", "spells", "spListAdd", "prepAdd", "cantAdd", "spCls", "spellCls", "bookAdd", "sp", "cantrips", "sfree", "xlists", "spAbTrait", "preSp")
+reg("SPELL", "spells", "spListAdd", "prepAdd", "cantAdd", "spCls", "spellCls", "bookAdd", "sp", "cantrips", "sfree", "xlists", "spAbTrait", "preSp", "cantrip")
 reg("ABIL", "abUp", "abDown", "abSet", "abCut", "abPick", "abUpPick", "abil", "asi", "asi2", "asiPick", "asiFlex", "asiX")
-reg("CHOICE", "pick", "pickLv", "fsPick", "opts", "lin", "featPick", "fs", "wm", "needs")
+reg("CHOICE", "pick", "pickLv", "fsPick", "opts", "lin", "featPick", "fs", "wm", "needs", "cantrip")  # a species fx cantrip: the builder shows a cantrip pick from that class list
 
 
 class Atom:
