@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:173,l:"0.0.71",d:"2026-11-18",n:["Spell Gems, Spellwrought Tattoos, All-Purpose Tools and Gauntlets of the Grandmaster now hold a spell you pick. Choose it on the item in the Builder, and the spell shows on your sheet with the item's own save DC and attack bonus. Gems and tattoos get a single-use counter."]},
 {v:172,l:"0.0.70",d:"2026-11-18",n:["Nine more subclass features now give their free spells: Portal Master, Arcane Relics, Benediction, Innate Necromancy, Nature's Emissary, Arcane Rebuke, Covert Magic, Arcane Assassin and Natural Disruption."]},
 {v:171,l:"0.0.69",d:"2026-11-18",n:["Six more subclass features now give their cantrips: Heavenly Voice, House Insignia, Madcap Magic, Nano-Repair, Abracadabra and Nova."]},
 {v:170,l:"0.0.68",d:"2026-11-18",n:["Checker update: artifact property count lines and feat ability score lines no longer count as missing rules."]},

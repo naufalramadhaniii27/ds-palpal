@@ -1,0 +1,68 @@
+{
+ "why": "Spellwrought Tattoo (Cantrip) holding Light shows Light on the sheet.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Fighter",
+  "sub": "",
+  "level": 3,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": [
+   {
+    "n": "Spellwrought Tattoo (Cantrip)",
+    "q": 1,
+    "eq": true,
+    "pk": [
+     "Light"
+    ]
+   }
+  ]
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "in": "\"src\": \"Spellwrought Tattoo (Cantrip)\""
+  }
+ ]
+}

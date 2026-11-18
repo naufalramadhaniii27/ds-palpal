@@ -48,6 +48,7 @@ export function invPickRow(n){return typeof INV_PICK!=="undefined"?INV_PICK[n]:u
 export function spellRows(){return SPELLS}
 export function spellFullText(n){return SPELL_FULL[n]}
 export function itemSpellRow(n){return typeof ITEM_SPELLS!=="undefined"?ITEM_SPELLS[n]:undefined}
+export function itemPickRow(n){return typeof ITEM_PICK!=="undefined"?ITEM_PICK[n]:undefined}
 export function toolOneName(c){return TOOL_ONE[c]}
 export function priceOf(n){return PRICE[n]}
 export function actsTable(){return typeof ACTS!=="undefined"?ACTS:undefined}

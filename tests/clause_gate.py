@@ -58,7 +58,7 @@ MBASE = os.path.join(HERE, "mech_baseline.json")
 
 # ---------------------------------------------------------------------------------------------------------------- loading
 EXTRA_JS = """()=>{const J=o=>JSON.parse(JSON.stringify(o===undefined?null:o));const o={};
- const names={spellFull:'SPELL_FULL',spellFx:'SPELL_FX',spellRows:'SPELLS',itemDesc:'ITEMDESC',fxo:'FXO',fdmg:'FDMG',itemSpells:'ITEM_SPELLS',defSp:'DEF_SP'};
+ const names={spellFull:'SPELL_FULL',spellFx:'SPELL_FX',spellRows:'SPELLS',itemDesc:'ITEMDESC',fxo:'FXO',fdmg:'FDMG',itemSpells:'ITEM_SPELLS',itemPick:'ITEM_PICK',defSp:'DEF_SP'};
  for(const k in names){try{o[k]=J(eval(names[k]))}catch(e){o[k]=null}}return o}"""
 
 
@@ -652,6 +652,12 @@ def features(D):
             for k, v in isp.items():
                 if k not in ("sp", "atk", "dc") and v not in (None, [], {}, ""):
                     at.append(Atom("RESOURCE", nums_in(v), "ITEM_SPELLS.%s" % k))
+        ip = (D.get("itemPick") or {}).get(name)
+        if isinstance(ip, dict):  # B44: the item holds one spell the player picks (x.pk); the sheet shows it with the item's own DC and attack, tests/golden/builds/fx_B44_*
+            at += [Atom("SPELL", [8] if ip.get("att") else [], "ITEM_PICK") for _ in range(5)] + [Atom("CHOICE", [], "ITEM_PICK.pick")]
+            if ip.get("dc") is not None:
+                md = (ip["dc"] - 7) // 2
+                at += [Atom("DC", [10, ip["dc"], ip["atk"], md], "ITEM_PICK.dc") for _ in range(2)] + [Atom("ATK", [ip["atk"], ip["dc"], md], "ITEM_PICK.atk")]
         if (D.get("lastch") or {}).get(name): at.append(Atom("RESOURCE", nums_in(D["lastch"][name]), "LASTCH|" + name))
         at += lu_atoms(D, name, name)
         text = r[4]
