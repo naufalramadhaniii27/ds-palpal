@@ -2413,5 +2413,21 @@
   ],
   "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
   "shared": []
+ },
+ "GX.sub|College of Cantors": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L10.js"
+  ],
+  "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
+  "shared": []
+ },
+ "GX.sub|Toon Magic": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
+  "shared": []
  }
 }

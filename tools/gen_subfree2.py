@@ -32,11 +32,17 @@ CURATED = [
  ("Feylost", "Misty Pathways", ["Misty Step"], None, None),
  ("Holy Icon", "Raise Cohort", ["Raise Dead"], None, None),
  ("Star-Spangled Banner", "Patriotism", ["Heroism"], None, None),
+ ("College of Cantors", "Heavenly Voice", ["Thaumaturgy"], None, None),
+ ("House Agent", "House Insignia", ["Friends"], None, None),
+ ("Toon Magic", "Madcap Magic", ["Vicious Mockery"], None, None),
+ ("Nanite Host", "Nano-Repair", ["Mending"], None, None),
+ ("The Magician", "Abracadabra", ["Prestidigitation"], None, None),
+ ("The Star", "Nova", ["Light", "Produce Flame"], None, None),
 ]
-LVL = {("Alchemist", "Chemical Mastery"): 15, ("Cartographer", "Superior Atlas"): 15}  # features whose level the data lists in the efa file only
+LVL = {("Alchemist", "Chemical Mastery"): 15, ("Cartographer", "Superior Atlas"): 15, ("College of Cantors", "Heavenly Voice"): 3, ("The Magician", "Abracadabra"): 1}  # features whose level the data lists in the efa file only
 rows = {}
 for owner, feat, sps, ab, pool in CURATED:
-    lv = levels(owner, feat) or ({LVL[(owner, feat)]} if (owner, feat) in LVL else set())
+    lv = {LVL[(owner, feat)]} if (owner, feat) in LVL else levels(owner, feat)
     if len(lv) != 1: print("skip level", owner, feat, lv); continue
     l = min(lv); names = [SPELLS.get(s.lower()) for s in sps]
     if not all(names): print("skip spell", owner, feat, names); continue
