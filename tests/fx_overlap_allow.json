@@ -643,6 +643,7 @@
  "GX.sub|House of Rooks": {
   "files": [
    "fx-B2-subclass.js",
+   "fx-B36-subfree2.js",
    "fx-L13.js"
   ],
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
@@ -795,6 +796,7 @@
  },
  "GX.sub|Verdant Protector": {
   "files": [
+   "fx-B36-subfree2.js",
    "fx-L12.js",
    "fx-N1.js"
   ],
@@ -1537,8 +1539,9 @@
  },
  "GX.sub|Witchbane Hunter": {
   "files": [
-   "fx-B9-advnotes.js",
    "fx-B27-subfreecast.js",
+   "fx-B36-subfree2.js",
+   "fx-B9-advnotes.js",
    "fx-L12.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
@@ -2426,6 +2429,48 @@
   "files": [
    "fx-B36-subfree2.js",
    "fx-B9-advnotes.js"
+  ],
+  "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
+  "shared": []
+ },
+ "GX.sub|Antiquarian": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L11.js"
+  ],
+  "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
+  "shared": []
+ },
+ "GX.sub|Godsworn": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L12.js"
+  ],
+  "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
+  "shared": []
+ },
+ "GX.sub|Leyline Magic": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L13.js"
+  ],
+  "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
+  "shared": [
+   "spells"
+  ]
+ },
+ "GX.sub|Nightgaunt": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L12.js"
+  ],
+  "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
+  "shared": []
+ },
+ "GX.sub|Portalweaver": {
+  "files": [
+   "fx-B36-subfree2.js",
+   "fx-L10.js"
   ],
   "reason": "B36 adds the spell a subclass feature gives; the other files hold other features of the same subclass",
   "shared": []

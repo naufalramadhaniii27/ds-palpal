@@ -1,0 +1,63 @@
+{
+ "why": "Portalweaver Artificer 15: Portal Master gives Teleport and Plane Shift.",
+ "build": {
+  "name": "Golden",
+  "species": "Human",
+  "bg": "Soldier",
+  "bgMode": "21",
+  "bg2": "STR",
+  "bg1": "CON",
+  "cls": "Artificer",
+  "sub": "Portalweaver",
+  "level": 15,
+  "base": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "ch": {},
+  "src": {
+   "core": true,
+   "dmg": true,
+   "tsdm": true,
+   "tghg": true,
+   "tsgs": true,
+   "thhw": true,
+   "tkdm": true,
+   "toa": true,
+   "tftyp": true,
+   "tee24": true
+  },
+  "method": "array",
+  "arr": {
+   "STR": 15,
+   "DEX": 14,
+   "CON": 13,
+   "INT": 12,
+   "WIS": 10,
+   "CHA": 16
+  },
+  "hb": false,
+  "armor": "",
+  "shield": false,
+  "weps": [],
+  "eqC": "A",
+  "eqB": "B",
+  "size": "Medium",
+  "inv": []
+ },
+ "expect": {},
+ "expectC": [
+  {
+   "path": "spells",
+   "in": "\"n\": \"Teleport\""
+  },
+  {
+   "path": "spells",
+   "in": "\"n\": \"Plane Shift\""
+  }
+ ]
+}
