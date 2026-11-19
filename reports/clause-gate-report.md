@@ -8,21 +8,21 @@ Alat: `tests/clause_gate.py`. Tidak mengubah src/ dan data fx. Tidak gagal build
 |---|---|
 | Kalimat di seluruh teks | 86295 |
 | Kalimat mekanik (kelas kata kunci atau angka) | 44249 (51.3%) |
-| Covered (atom engine per kelas dan semua angka terjelaskan) | 10262 |
+| Covered (atom engine per kelas dan semua angka terjelaskan) | 10272 |
 | Info (tag terdokumentasi) | 29176 (SPELL_TEXT 8952, FORM:ACTIVATE 2848, NUMONLY:GEOMETRY 2679, FORM:ROLL 2085, ACTIVATE 1725, NUMONLY:TEXT 1569, FXO_NULL 1351, NUMONLY:ROLL 1217, NUMONLY:TABLE 1009, FORM:TABLE 979, ACTIVE:TRIGGER 924, ACTIVE:OTHERS 781, BY_DESIGN 670, REST:NONUM 606, NUMONLY:FLAVOR 340, STD:ASI 245, COND:PLAY_STATE 244, NUMONLY:ZERO 193, OBJECT:STATS 111, DC:REFERENCE 94, COND:ATTACK_ROLL_ADV 83, ITEM:SENSES 82, TABLE:CLASS 74, ACTIVE:REACTION 71, ITEM:ARTIFACT_PROPS 62, ACTIVE:TIMED_IMM 37, REST:LENGTH 31, STD:SUBCLASS_PICK 20, STD:FEAT_PICK 20, ITEM:REQUIREMENT 19, ITEM:SENTIENT 18, SPELL:RIDER 15, SPELL:CANTRIP_DMG 13, STD:AC10 9) |
 | Allow (tests/clause_gate_allow.json) | 0 |
-| Uncovered | 4811 |
+| Uncovered | 4801 |
 | Uncovered dengan angka | 3130 |
-| Uncovered dengan kelas kata kunci mekanik | 4496 |
+| Uncovered dengan kelas kata kunci mekanik | 4486 |
 | Uncovered hanya angka (tanpa kelas kata kunci; sering flavor atau efek aktif) | 315 |
 | Angka yang tidak dijelaskan record mana pun | 2995 kalimat |
-| Kelas tanpa atom (record tidak ada untuk kelas itu) | 3914 kalimat |
+| Kelas tanpa atom (record tidak ada untuk kelas itu) | 3904 kalimat |
 | Uncovered yang fiturnya sudah ada di `gaps` mech_baseline | 247 |
-| Waktu | muat data 8 s, analisis 10 s |
+| Waktu | muat data 33 s, analisis 33 s |
 
-Uji mutasi pada data nyata (seed 7): 299 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 194 ditangkap (64.9%). Hapus semua atom kelas yang dibutuhkan: 199 ditangkap (66.6%). Selftest sintetis: lulus.
+Uji mutasi pada data nyata (seed 7): 298 kalimat covered diuji. Hapus record yang dipakai kalimat (dan saudaranya dari sumber yang sama): 175 ditangkap (58.7%). Hapus semua atom kelas yang dibutuhkan: 180 ditangkap (60.4%). Selftest sintetis: lulus.
 
-Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 270 ditangkap (90.0%), semua atom kelas dihapus: 299 ditangkap (99.7%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
+Uji mutasi hanya untuk kalimat berkelas stat (AC, HP, SAVE, SPEED, SENSE, PROF, SLOT, INIT, ABIL, RES, IMM; seed 7): 300 diuji, record dihapus: 276 ditangkap (92.0%), semua atom kelas dihapus: 300 ditangkap (100.0%). Kalimat covered tanpa kelas stat (aturan istirahat, durasi, jarak) tetap lolos sebagai info sesudah record dihapus, itu disengaja.
 
 Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dilaporkan). Kalimat seperti "treat the Shield as part of your armor" lolos. Atom yang menjelaskan angka mencocokkan nilai, bukan makna.
 
@@ -39,7 +39,7 @@ Batas: kalimat tanpa angka dan tanpa kata kunci kelas dianggap inert (tidak dila
 | Sumber | Kalimat covered |
 |---|---|
 | item | 3443 |
-| GX | 2506 |
+| GX | 2516 |
 | wxs | 1073 |
 | LU_X | 769 |
 | species | 555 |
@@ -74,8 +74,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | PROF | 1124 | 404 | 35.9% |
 | ADV | 1959 | 366 | 18.7% |
 | RES | 1375 | 365 | 26.5% |
-| IMM | 1004 | 318 | 31.7% |
 | CHOICE | 1663 | 311 | 18.7% |
+| IMM | 1004 | 308 | 30.7% |
 | SLOT | 1425 | 273 | 19.2% |
 | NUM | 8604 | 267 | 3.1% |
 | DIS | 1221 | 227 | 18.6% |
@@ -98,7 +98,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 |---|---|---|---|---|---|
 | class | 1186 | 296 | 657 | 0 | 233 |
 | feat | 2812 | 910 | 1464 | 0 | 438 |
-| item | 19265 | 5161 | 11727 | 0 | 2377 |
+| item | 19265 | 5171 | 11727 | 0 | 2367 |
 | species | 1638 | 953 | 492 | 0 | 193 |
 | spell | 9230 | 278 | 8952 | 0 | 0 |
 | sub | 10118 | 2664 | 5884 | 0 | 1570 |
@@ -107,7 +107,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 | Buku | Mekanik | Covered | Info | Uncovered | Uncovered % |
 |---|---|---|---|---|---|
-| dmg | 10460 | 2821 | 6358 | 1281 | 12.2% |
+| dmg | 10460 | 2826 | 6358 | 1276 | 12.2% |
 | tvss | 2788 | 727 | 1639 | 422 | 15.1% |
 | core | 1495 | 436 | 792 | 267 | 17.9% |
 | tsgs | 1479 | 409 | 831 | 239 | 16.2% |
@@ -124,12 +124,12 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | tce | 730 | 202 | 454 | 74 | 10.1% |
 | twow | 542 | 154 | 314 | 74 | 13.7% |
 | thhw | 395 | 95 | 232 | 68 | 17.2% |
-| dmg14 | 540 | 188 | 289 | 63 | 11.7% |
+| dmg14 | 540 | 189 | 289 | 62 | 11.5% |
 | tee24 | 463 | 190 | 216 | 57 | 12.3% |
 | xge | 375 | 120 | 206 | 49 | 13.1% |
 | egw | 365 | 103 | 214 | 48 | 13.2% |
 | tssm | 275 | 79 | 148 | 48 | 17.5% |
-| tghg | 288 | 78 | 162 | 48 | 16.7% |
+| tghg | 288 | 79 | 162 | 47 | 16.3% |
 | hof | 249 | 66 | 141 | 42 | 16.9% |
 | coa | 158 | 47 | 72 | 39 | 24.7% |
 | rhw | 231 | 80 | 113 | 38 | 16.5% |
@@ -149,7 +149,7 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | wdh | 95 | 28 | 52 | 15 | 15.8% |
 | wdmm | 79 | 14 | 50 | 15 | 19.0% |
 | ggr | 186 | 35 | 137 | 14 | 7.5% |
-| idrotf | 134 | 33 | 87 | 14 | 10.4% |
+| idrotf | 134 | 34 | 87 | 13 | 9.7% |
 | dsotdq | 82 | 26 | 44 | 12 | 14.6% |
 | crcotn | 96 | 38 | 46 | 12 | 12.5% |
 | scag | 67 | 26 | 30 | 11 | 16.4% |
@@ -166,11 +166,11 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | EFotA | 137 | 70 | 58 | 9 | 6.6% |
 | vrgr | 86 | 26 | 52 | 8 | 9.3% |
 | tsdd | 69 | 27 | 34 | 8 | 11.6% |
-| lfl | 33 | 22 | 3 | 8 | 24.2% |
 | cm | 60 | 12 | 40 | 8 | 13.3% |
 | bgdia | 114 | 29 | 77 | 8 | 7.0% |
 | aag | 40 | 19 | 14 | 7 | 17.5% |
 | bdd | 62 | 31 | 24 | 7 | 11.3% |
+| lfl | 33 | 24 | 3 | 6 | 18.2% |
 | sato | 38 | 12 | 21 | 5 | 13.2% |
 | tftyp | 71 | 27 | 39 | 5 | 7.0% |
 | psk | 38 | 23 | 11 | 4 | 10.5% |
@@ -205,8 +205,8 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 | RES | 297 | 138 |
 | NUM | 267 | 267 |
 | SLOT | 255 | 96 |
-| IMM | 212 | 79 |
 | CHOICE | 203 | 76 |
+| IMM | 202 | 79 |
 | DIS | 186 | 95 |
 | SENSE | 168 | 142 |
 | AC | 162 | 127 |
@@ -610,48 +610,48 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 - `sub|Wizard/School of Black Powder|Improved Arcane Arms#1` Arcane Arms gains new options, and you can spend a spell slot of 2nd level or higher to regain Arcane Arms uses equal to half the slot level. | no record for RESOURCE,SLOT; number half unexplained
 - `sub|Wizard/Somnomancer|Deep Sleep#4` With a level 2+ slot, the Sphere radius grows 5 ft per slot level above 1. | no record for SLOT; number 5,1 unexplained
 
-### IMM (212 uncovered)
+### CHOICE (203 uncovered)
 
-- `feat|Lycanthrope Transformation: Level 4|Lycanthrope Transformation: Level 4#11` At the start of your turn, if you see, hear or smell a hostile or helpless nonplayer creature, make a DC 10 Wisdom save or turn into hybrid form, and a success makes you immune until dawn. | no record for DC,IMM; number 10 unexplained
-- `item|bgdia|Soul Coin#25` A soul coin has AC 19, 1 hit point for each charge it has remaining, and immunity to all damage except that which is dealt by a hellfire weapon or an infernal war machine's furnace (see "11"). | no record for IMM; number 19,1,11 unexplained
-- `item|coa|Wrought-Iron Tower#22` This property costs 3 charges to use, though a creature that successfully saves against one of its uses is immune to future uses for 24 hours. | no record for IMM; number 24,3 unexplained
-- `item|dmg|Armor of Invulnerability#4` This Immunity lasts 10 minutes or until you stop wearing the armor. | no record for IMM; number 10 unexplained
-- `item|dmg|Bliss#2` A Humanoid who swallows it feels calm and happy for 1d4 hours, gaining Immunity to the Frightened condition and 3d10 Temporary Hit Points. | no record for IMM; number 1d4,3d10 unexplained
-- `item|dmg|Cure-All#2` As an action, drink a dose to cure any disease, end the Poisoned condition and become immune to it for 1 hour. | no record for IMM; number 1 unexplained
-- `item|dmg|Hearthfire Breastplate (Master)#10` When a creature you see within 30 ft takes damage, use a Reaction to give it Immunity to all damage until the start of your next turn, once per Long Rest. | no record for IMM; number 30 unexplained
-- `item|dmg|Hunter's Mutagen#2` When you drink it, you are immune to Poison damage and disease for 1 hour. | no record for IMM; number 1 unexplained
-- `item|dmg|Iggwilv's Cauldron#39` At the same time, all Humanoid creatures within a certain radius of the cauldron fall unconscious for 1 hour, except those that are attuned to the cauldron or immune to being charmed. | no record for IMM; number 1 unexplained
-- `item|dmg|Joho's Charm#3` Joho is a Tiny construct with 1 hit point, speed 10 feet, and immunity to poison and the poisoned condition. | no record for IMM,SPEED; number 10,1 unexplained
-- `item|dmg|Nightstalker's Kanabo#3` On a natural 20, the target makes a DC 16 Constitution save or is Unconscious until the end of your next turn (damage or a shake ends it, and creatures that do not sleep or are immune to Exhaustion pass). | no record for DC,IMM; number 20,16 unexplained
-- `item|dmg|Oathbound Ring#10` The ring is immune to Psychic, Poison, Bludgeoning, Piercing, and Slashing damage, and has AC 20, a damage threshold of 30, and 50 hit points. | number 20,30,50 no record explains
-- `item|dmg|Orb of Damara#17` A creature that succeeds on this save is immune to the aura's effects for 24 hours. | number 24 no record explains
-- `item|dmg|Ring of Winter#27` - You can cast one of the following spells from the ring (spell save DC 17) by expending the necessary number of charges: Bigby's hand (2 charges; the hand is made of ice, is immune to cold damage, and deals bludgeoning  | no record for DC,IMM; number 17 unexplained
-- `item|dmg|Rope of Climbing#7` The rope has Armor Class 20, 20 Hit Points, and Immunity to Poison and Psychic damage. | number 20 no record explains
-- `item|dmg|Sandstone Solution#4` On mud, sand or quicksand, a 10-ft-deep, 10-ft-radius area turns to solid stone for 1 hour, with AC 17, 75 hit points and immunity to Psychic and Poison. | no record for IMM; number 10,1,17,75 unexplained
-- `item|dmg|Strawbundle's Charm#3` The doll is a Tiny construct with 1 hit point, immune to poison and the poisoned condition. | no record for IMM; number 1 unexplained
-- `item|frafi|Orb of Damara#17` A creature that succeeds on this save is immune to the aura's effects for 24 hours. | number 24 no record explains
-- `item|tee24|Final Messenger#2` A Tiny Construct homunculus with AC 20, 6 Hit Points and a Fly Speed of 60 ft. It is immune to Poison and Psychic damage and to all conditions except Unconscious, treats ability scores as 10, has Darkvision 60 ft, and ca | no record for IMM,SENSE,SPEED; number 60,20,6,10 unexplained
-- `item|tee24|Ghaal'duur, the Mighty Dirge#2` It has 2 minor beneficial and 1 minor detrimental random artifact properties (a goblinoid is immune to the detrimental one). | no record for IMM; number 2,1 unexplained
-- `item|tgh14p|Hunter's Mutagen#2` When you drink it, you are immune to Poison damage and disease for 1 hour. | no record for IMM; number 1 unexplained
-- `item|tkdm|Oathbound Ring#10` The ring is immune to Psychic, Poison, Bludgeoning, Piercing, and Slashing damage, and has AC 20, a damage threshold of 30, and 50 hit points. | number 20,30,50 no record explains
-- `item|toa|Ring of Winter#27` - You can cast one of the following spells from the ring (spell save DC 17) by expending the necessary number of charges: Bigby's hand (2 charges; the hand is made of ice, is immune to cold damage, and deals bludgeoning  | no record for DC,IMM; number 17 unexplained
-- `item|tsgs|Ferryman's Take#6` A conscious one enters a death-like state for 1 hour, with Immunity to Psychic damage (once per 24 hours). | no record for IMM,RESOURCE; number 1,24 unexplained
-- `item|tsgs|Helm of Heroes#3` While it glimmers, you gain Temporary Hit Points equal to half your level (rounded down) at the start of each of your turns, and you and allies within 10 ft are Immune to Frightened. | no record for IMM; number 10,half unexplained
-- `item|tsgs|Nightstalker's Kanabo#3` On a natural 20, the target makes a DC 16 Constitution save or is Unconscious until the end of your next turn (damage or a shake ends it, and creatures that do not sleep or are immune to Exhaustion pass). | no record for DC,IMM; number 20,16 unexplained
-- `item|tsgs|Plaguebane Mask#5` Each creature makes a DC 15 Constitution save, taking 2d8 Poison and having its Speed halved until the end of its next turn on a fail (not if immune to Poisoned), or half damage only on a pass. | no record for DC,IMM,SPEED; number 2d8,15,half unexplained
-- `item|tsgs|Winter's Embrace#3` You can cast the level 6 Ice Storm (save DC 16) from it, centered on a point within 5 ft of you, and you are immune to its effects. | no record for DC,IMM; number 5,16 unexplained
-- `item|tvss14|Sandstone Solution#4` On mud, sand or quicksand, a 10-ft-deep, 10-ft-radius area turns to solid stone for 1 hour, with AC 17, 75 hit points and immunity to Psychic and Poison. | no record for IMM; number 10,1,17,75 unexplained
-- `item|tvss|Liquid Courage#3` You gain Heroic Inspiration and Immunity to the Frightened condition for 10 minutes. | number 10 no record explains
-- `item|wbtw|Iggwilv's Cauldron#39` At the same time, all Humanoid creatures within a certain radius of the cauldron fall unconscious for 1 hour, except those that are attuned to the cauldron or immune to being charmed. | no record for IMM; number 1 unexplained
-- `sub|Cleric/Void Domain|Black Star#5` You and up to three creatures you choose are immune. | no record for IMM; number 3 unexplained
-- `sub|Druid/Circle of Sand|Sandstorm#4` You are immune, and so are up to your Proficiency Bonus creatures you see within 120 ft. Rest to use again. | no record for IMM; number 120,pb unexplained
-- `sub|Investigator/Decommissioner|Reprogrammer#6` Sleep Mode: it is Unconscious for 1 minute even if normally immune, ending early if it takes damage. | no record for IMM; number 1 unexplained
-- `sub|Necromancer/Cyberghoul|Cyber Lich (Lichdom)#9` A Construct that passes the save is immune for 24 hours. | no record for IMM; number 24 unexplained
-- `sub|Paladin/Oath of Thunder|Child of the Storm#9` A creature that succeeds is immune to the war cry for 24 hours. | number 24 no record explains
-- `sub|Ranger/Green Reaper (2014)|3rd-Level Effects#3` Supernatural: a weapon hit with this toxin removes its immunity to Poisoned, and it stays Poisoned for 1 minute, saving at the end of each turn to end it. | no record for IMM; number 1 unexplained
-- `sub|Rogue/Infiltrator (2014)|Hacking Spike#2` When you hit a construct with a melee Sneak Attack, it makes a Wisdom save (DC 8 + Proficiency Bonus + Intelligence modifier) or is Stunned until the start of your next turn, even if normally immune. | no record for DC,IMM; number 8,pb unexplained
-- `sub|Summoner/Bond of the Dragon Herald|Draconic Realisation#1` Your Eidolon is Immune to the Frightened condition and has a Fly Speed of 60 feet. | no record for IMM,SPEED; number 60 unexplained
-- `sub|Warlock/The Undying|Undying Nature#2` For every 10 years that pass you age only 1 year, and you are immune to magical aging. | no record for IMM; number 1 unexplained
+- `class|Cleric|Spellcasting#14` To begin, your list holds four level 1 Cleric spells of your choice. | no record for CHOICE; number 4 unexplained
+- `class|Craftsman|Masterwork Armor#4` If the armor already gives such a bonus, such as +2 Half Plate Armor, you pick one bonus and cannot combine them. | no record for CHOICE; number 2,half unexplained
+- `class|Martyr|Armor of Faith#1` Choose one of two benefits. | number 2 no record explains
+- `class|Sorcerer|Spellcasting#13` To begin, pick two level 1 Sorcerer spells. | no record for CHOICE; number 2 unexplained
+- `class|Wizard|Spellcasting#13` At first, it has six level 1 Wizard spells of your choice. | no record for CHOICE; number 6 unexplained
+- `class|Wizard|Spellcasting#15` With every Wizard level you gain after level 1, you write two more Wizard spells of your choice into your spellbook. | no record for CHOICE; number 2 unexplained
+- `feat|Greater Aberrant Mark|Greater Aberrant Mark#9` One other creature of your choice within 30 feet takes Force damage equal to the total rolled. | number 30 no record explains
+- `feat|Greater Mark of Detection|Greater Mark of Detection#6` When you cast See Invisibility with Magical Detection (no slot), pick one creature you can see within 30 feet. | no record for CHOICE; number 30 unexplained
+- `feat|Greater Mark of Hospitality|Greater Mark of Hospitality#7` Each creature of your choice within 30 feet is refreshed. | no record for CHOICE; number 30 unexplained
+- `feat|Hedgecraft|Hedgecraft#5` You gain two magic plants of your choice, each kept in a small pot, pouch or similar container you carry. | no record for CHOICE; number 2 unexplained
+- `feat|Inventor|Inventor#3` You gain two Gadgets of your choice from the Gadget Options of the Gadgeteer class. | no record for CHOICE; number 2 unexplained
+- `feat|Lycanthrope Transformation: Stage 1|Lycanthrope Transformation: Stage 1#7` Choose one Stage 1 Boon (your hybrid form) and gain the Stage 1 Flaw. | no record for CHOICE; number 1 unexplained
+- `feat|Purple Dragon Rook|Purple Dragon Rook#4` When you roll Initiative and don't have the Incapacitated condition, you choose a number of creatures equal to your Proficiency Bonus that you can see within 30 feet of you. | number 30 no record explains
+- `feat|Rune Knowledge|Rune Knowledge#6` Each time, you learn the benefit and powers of two more runes of your choice. | no record for CHOICE; number 2 unexplained
+- `item|dmg|Harper Pin#1` When you attune to this pin, choose a Harper persona (see the 6 for examples), including an alignment and a creature type. | no record for CHOICE; number 6 unexplained
+- `item|dmg|Robe of Useful Items#16` 76 to 83: a Spell Scroll holding one spell of level 1, 2, or 3, of your choice. | no record for CHOICE; number 76,83,3 unexplained
+- `item|tdm14|Un's Codex#3` Spending 10 hours of experiment unlocks one trait of your choice. | no record for CHOICE; number 10 unexplained
+- `item|tgh14p|Rod of the Pack Master#2` While holding it, choose any number of willing creatures you see within 30 ft. You can hold it in your teeth, and it works in hybrid or kindred form. | no record for CHOICE; number 30 unexplained
+- `item|tsgs|Sheer Cold#3` On a roll of 20 on the attack, choose a 15 ft Cone or a 30 ft long, 5 ft wide Line toward the target. | no record for CHOICE; number 15,30,5 unexplained
+- `species|Eladrin (2014)|Fey Step#5` Spring: you can touch a willing creature within 5 ft and it teleports instead of you, to a space you choose within 30 ft. Summer: after Fey Step, creatures of your choice within 5 ft take Fire damage equal to your Charis | no record for CHOICE; number 5 unexplained
+- `species|Near-Human (DM14)|Ability Score Increase#1` Two different ability scores of your choice rise by 1. | no record for CHOICE; number 1,2 unexplained
+- `species|Ogresh (GH14)|Languages#1` You speak, read and write three languages of your choice. | no record for CHOICE; number 3 unexplained
+- `species|Simic Hybrid|Animal Enhancement#1` Choose one enhancement from the first three at level 1. | no record for CHOICE; number 3 unexplained
+- `species|Simic Hybrid|Animal Enhancement#2` Choose a second at level 5, from the ones left or from the three marked level 5. | no record for CHOICE; number 3 unexplained
+- `species|Vect (DM14)|Reconfigurable Ability Score Increase#1` One ability score of your choice other than Constitution rises by 1. | no record for CHOICE; number 1 unexplained
+- `sub|Artificer/Alchemist|Experimental Elixir#17` 6 You choose any other row. | no record for CHOICE; number 6 unexplained
+- `sub|Barbarian/Path of the Beast|Call the Hunt#1` When you enter your Rage, you can choose a number of willing creatures you can see within 30 feet, up to your Constitution modifier (minimum of one). | no record for CHOICE; number 30 unexplained
+- `sub|Barbarian/Path of the Storm Herald|Storm Aura#11` Creatures of your choice in the aura gain 2 Temporary Hit Points, rising to 3 at level 5, 4 at 10, 5 at 15, and 6 at 20. | number 2,5,6 no record explains
+- `sub|Bard/College of Chronology|Chronomantic Secrets#4` Pick two Chronomancy spells you have slots for. | no record for CHOICE; number 2 unexplained
+- `sub|Cleric/Angelic Scribe|Seal Scribe#1` You learn Celestial if you do not know it, and you learn two angelic seals of your choice. | no record for CHOICE; number 2 unexplained
+- `sub|Cleric/Life Domain (2014)|Channel Divinity: Preserve Life#2` Divide a pool of Hit Points equal to five times your Cleric level among creatures of your choice within 30 feet. | no record for CHOICE; number 5 unexplained
+- `sub|Druid/Circle of the Obelisk|Evolutionary#3` One ability score of your choice on that creature rises by the roll, to a maximum of 20, for 1 minute. | no record for CHOICE; number 1 unexplained
+- `sub|Fighter/Battle Master|Combat Superiority#7` When you reach Fighter levels 7, 10, and 15, you learn two more maneuvers of your choice. | no record for CHOICE; number 2 unexplained
+- `sub|Investigator/Infernum|Infernal Bargain#11` Choose two of Acid, Cold, Fire, Lightning, Poison, Psychic, and Thunder. | no record for CHOICE; number 2 unexplained
+- `sub|Martyr/Burden of Ascension|Relics of Legend#1` Choose three pieces of your equipment as your Aegis, Oracle, and Xiphos. | no record for CHOICE; number 3 unexplained
+- `sub|Paladin/Oath of Vengeance (2014)|Channel Divinity: Abjure Enemy#2` Choose a creature you can see within 60 feet. | no record for CHOICE; number 60 unexplained
+- `sub|Rogue/Mastermind|Insightful Manipulator#1` If you spend 1 minute observing or talking with a creature outside combat, the DM tells you whether it is your equal, superior, or inferior in two traits of your choice: Intelligence, Wisdom, Charisma, or class levels. | no record for CHOICE; number 1,2 unexplained
+- `sub|Summoner/Bond of the Elemental Spirit|Twin Eidolons#7` Your magic sustains both for 10 minutes, then one of your choice dissipates. | no record for CHOICE
+- `sub|Summoner/Bond of the Fiendish Chain|Dark Versatility#1` Your Eidolon gains two Evolutions of your choice that it qualifies for. | no record for CHOICE; number 2 unexplained
+- `sub|Wizard/Transmuter|Transmutation Savant#1` Choose two Wizard spells from the Transmutation school, each of level 2 or lower, and add them to your spellbook for free. | number 2 no record explains
 
 ## Kalimat dengan angka yang tidak dijelaskan record mana pun (30 contoh per jenis, daftar penuh ada di baseline)
 
@@ -823,33 +823,33 @@ Berkas fx (lewat tests/fx_overlap_loader.js) yang menutup paling banyak: fx-B9-a
 
 ## Mutasi yang lolos (record dihapus tetapi kalimat masih lolos; 30 contoh)
 
-- record `item|dmg14|Figurine of Wondrous Power, Bronze Griffon#14` Once it has been used, it can't be used again until 5 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|dmg14|Figurine of Wondrous Power, Bronze Griffon#14` Once it has been used, it can't be used again until 5 days have passed. -> info:NUMONLY:GEOMETRY
-- class `item|dmg|Shalamayne (Ellemayne)#4` A hit deals an extra 2d12 Force damage. -> info:ACTIVE:OTHERS
-- record `item|dmg|Ephara's Disciple#3` Once you cast it this way, you cannot do so again until you finish a Long Rest. -> covered
-- class `item|dmg|Ephara's Disciple#3` Once you cast it this way, you cannot do so again until you finish a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Eagle Whistle#3` A use of the whistle also ends if you land. -> info:REST:NONUM
-- class `item|dmg|Eagle Whistle#3` A use of the whistle also ends if you land. -> info:REST:NONUM
-- record `item|dmg|Spire of Conflux (Awakened)#6` When you cast a spell that deals bludgeoning, cold, fire, lightning or thunder damage and roll a 1 on a damage die, you  -> info:ACTIVE:TRIGGER
-- class `item|dmg|Spire of Conflux (Awakened)#6` When you cast a spell that deals bludgeoning, cold, fire, lightning or thunder damage and roll a 1 on a damage die, you  -> info:ACTIVE:TRIGGER
-- record `item|idrotf|Charm of Snowball Strike#9` When the last charge is spent, the Charm vanishes. -> info:REST:NONUM
-- class `item|idrotf|Charm of Snowball Strike#9` When the last charge is spent, the Charm vanishes. -> info:REST:NONUM
-- record `item|mot|Ephixis, Bow of Nylea#10` The bow has 1 randomly determined minor beneficial property. -> info:NUMONLY:TEXT
-- class `item|mot|Ephixis, Bow of Nylea#10` The bow has 1 randomly determined minor beneficial property. -> info:NUMONLY:TEXT
-- record `sub|Bard/College of Eloquence|Infectious Inspiration#2` You can do this a number of times equal to your Charisma modifier (minimum one) and regain all uses after a Long Rest. -> covered
-- class `sub|Bard/College of Eloquence|Infectious Inspiration#2` You can do this a number of times equal to your Charisma modifier (minimum one) and regain all uses after a Long Rest. -> info:REST:NONUM
-- record `item|dmg|Arm Cannon#5` Martial Ranged weapon, 2d8 Radiant, range 30/120, Blaster, Firearm and Recoil, Push mastery. -> info:NUMONLY:ROLL
-- class `item|dmg|Arm Cannon#5` Martial Ranged weapon, 2d8 Radiant, range 30/120, Blaster, Firearm and Recoil, Push mastery. -> info:NUMONLY:ROLL
-- record `item|dmg14|+1 Rod of the Pact Keeper#3` You can't use this property again until you finish a long rest. -> info:REST:NONUM
-- class `item|dmg14|+1 Rod of the Pact Keeper#3` You can't use this property again until you finish a long rest. -> info:REST:NONUM
-- record `sub|Death Knight/Oath of the Ebon Blade|Oath of the Ebon Blade Spells#18` 5 Ray of Enfeeblement. -> info:NUMONLY:TABLE
-- class `sub|Death Knight/Oath of the Ebon Blade|Oath of the Ebon Blade Spells#18` 5 Ray of Enfeeblement. -> info:NUMONLY:TABLE
-- record `item|dmg|Doomhammer#12` Cast Wind Walk from it once per dawn. -> covered
-- class `item|dmg|Doomhammer#12` Cast Wind Walk from it once per dawn. -> info:REST:NONUM
-- record `item|coa|Amulet of the Inferno#7` - 3 major beneficial properties -> info:ITEM:ARTIFACT_PROPS
-- class `item|coa|Amulet of the Inferno#7` - 3 major beneficial properties -> info:ITEM:ARTIFACT_PROPS
-- record `species|Air Genasi (2014)|Mingle with the Wind#1` You can cast Levitate once per Long Rest with no Material components. -> info:REST:NONUM
-- class `species|Air Genasi (2014)|Mingle with the Wind#1` You can cast Levitate once per Long Rest with no Material components. -> info:REST:NONUM
-- record `sub|Paladin/Oath of the Giving Grave|Improved Unholy Smite#3` When you hit with a melee weapon, the target takes an extra 1d8 Necrotic damage. -> info:ACTIVE:TRIGGER
-- class `sub|Paladin/Oath of the Giving Grave|Improved Unholy Smite#3` When you hit with a melee weapon, the target takes an extra 1d8 Necrotic damage. -> info:ACTIVE:TRIGGER
-- record `sub|Monster Hunter/Trapper Guild|Rapid Tinkerer#1` You can spend 1 minute to make a Trapper Gadget without spending GP or components. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Belt of Fire Giant Strength#1` While wearing this belt, your Strength score changes to 25. -> info:NUMONLY:TABLE
+- class `item|dmg|Belt of Fire Giant Strength#1` While wearing this belt, your Strength score changes to 25. -> info:NUMONLY:TABLE
+- record `sub|Summoner/Bond of the Grave Caller|Undead Eidolon#11` A Short Rest restores one use and a Long Rest restores all. -> covered
+- record `item|tvss14|Lady and Lord Rings#2` Two creatures attune, one ring each. -> info:NUMONLY:TABLE
+- class `item|tvss14|Lady and Lord Rings#2` Two creatures attune, one ring each. -> info:NUMONLY:TABLE
+- record `item|dmg|Pennant of the Vind Rune#14` Once you use this property, you can't use it again until you finish a short or long rest. -> covered
+- class `item|dmg|Pennant of the Vind Rune#14` Once you use this property, you can't use it again until you finish a short or long rest. -> info:REST:NONUM
+- record `item|toa|Ring of Winter#30` The ice creature must be modeled after a beast with a challenge rating of 2 or less. -> info:NUMONLY:TEXT
+- class `item|toa|Ring of Winter#30` The ice creature must be modeled after a beast with a challenge rating of 2 or less. -> info:NUMONLY:TEXT
+- record `item|dmg|Dark Fathom Armor#5` Usable once per dusk. -> covered
+- record `sub|Fighter/Battle Master (2014)|Combat Superiority#7` You have four d8 Superiority Dice. -> info:NUMONLY:ROLL
+- class `sub|Fighter/Battle Master (2014)|Combat Superiority#7` You have four d8 Superiority Dice. -> info:NUMONLY:ROLL
+- record `sub|Warden/Nightgaunt|Innate Necromancy#3` A Long Rest regains your ability to cast each one this way. -> covered
+- class `sub|Warden/Nightgaunt|Innate Necromancy#3` A Long Rest regains your ability to cast each one this way. -> info:REST:NONUM
+- record `item|dmg|Wrought-Iron Tower#17` Charges are still consumed if the attack misses. -> info:REST:NONUM
+- class `item|dmg|Wrought-Iron Tower#17` Charges are still consumed if the attack misses. -> info:REST:NONUM
+- record `sub|Ranger/Haunted Warden|Beyond the Pale#3` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- class `sub|Ranger/Haunted Warden|Beyond the Pale#3` Use it a number of times equal to your Proficiency Bonus. -> info:NUMONLY:TEXT
+- record `item|dmg|Horn of Valhalla (silver)#7` Once you have blown the horn, it stays inert until 7 days pass. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Horn of Valhalla (silver)#7` Once you have blown the horn, it stays inert until 7 days pass. -> info:NUMONLY:GEOMETRY
+- record `item|dmg|Ceratopper#4` You can also cast Polymorph from it to become a Triceratops, then not again for 2 days. -> info:NUMONLY:GEOMETRY
+- class `item|dmg|Ceratopper#4` You can also cast Polymorph from it to become a Triceratops, then not again for 2 days. -> info:NUMONLY:GEOMETRY
+- record `sub|Martyr/Burden of the End|Spell Recovery#1` When you take a Short Rest, you can regain spent spell uses equal to your Wisdom modifier (minimum 1). -> covered
+- class `sub|Martyr/Burden of the End|Spell Recovery#1` When you take a Short Rest, you can regain spent spell uses equal to your Wisdom modifier (minimum 1). -> info:REST:NONUM
+- record `sub|Druid/Circle of the Titan|Circle of the Titan Spells#3` 7 Fire Shield. -> info:NUMONLY:TABLE
+- class `sub|Druid/Circle of the Titan|Circle of the Titan Spells#3` 7 Fire Shield. -> info:NUMONLY:TABLE
+- record `class|Jaeger|Momentum#3` Each time you spend an Adrenaline Point, you gain 1 Momentum die. -> info:NUMONLY:ROLL
+- class `class|Jaeger|Momentum#3` Each time you spend an Adrenaline Point, you gain 1 Momentum die. -> info:NUMONLY:ROLL
+- class `item|dmg|Mace of Smiting#3` If you roll a 20 on an attack roll with the mace, the target takes an extra 7 Bludgeoning damage, or an extra 14 Bludgeo -> info:ACTIVE:TRIGGER
+- record `item|dmg|Gauntlet of the Grandmaster (uncommon)#5` You can change the choice after each Long Rest. -> info:REST:NONUM
