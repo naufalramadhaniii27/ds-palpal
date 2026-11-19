@@ -11,7 +11,7 @@ import {FX_FIELDS,fxEntryProblems} from "./10e-logic-fx-schema.js";
 import {allFxHandlers,fxPhases,fxSources,registerFxHandler,fxRuleTables} from "./10a-logic-fx-registry.js";
 import {allSheetHandlers,SHEET_PHASES,registerSheetGroup,registerSheetRule,makeCtx,applyPatch} from "./12a-logic-sheet-registry.js";
 import {SHEET_C,SHEET_L,patchProblems} from "./12b-logic-sheet-schema.js";
-import {toSheet} from "./12-logic-export-to-sheet.js";
+import {toSheet,SHEET_RUNS} from "./12-logic-export-to-sheet.js";
 import {BASE,applyPacks,autoSpellList,snap} from "./13-logic-sources-and-packs.js";
 import {allPackSteps,registerPackStep,PACK_PHASES,PACK_TABLES} from "./13a-logic-pack-registry.js";
 import {queryNames} from "./01a-logic-query-registry.js";
@@ -42,6 +42,7 @@ function bdJf(x){return bdJ((x||[]).filter((g) =>{return !/^Species/.test(g.g)})
 function bdField(k,P,N,lost,oth){if(k==="v"||k==="_app"||k==="bv")return;/* v27 RU28: C.bv is the builder version */if((+P._app||0)>(genv.__appVer||0)&&!(k in N))return;/* v18 RL47: fields of a newer version stay on Apply */const l=DIFFL[k]||k;if(oth.indexOf(l)>=0)return;if((k==="attacks"&&lost.attacks.length)||(k==="res"&&lost.res.length))return;if(k==="features"?bdJf(P[k])!==bdJf(N[k]):bdJ(P[k])!==bdJ(N[k]))oth.push(l)}
 genv.__bldDiff=function(P){if(!P||!own(P.name))return [];const N=toSheet(),lost=manualLost(P,N),out=[],oth=[];/* V14-8 */if(lost.attacks.length)out.push("Attacks: "+lost.attacks.join(", "));if(lost.res.length)out.push("Limited Use: "+lost.res.join(", "));Object.keys(P).concat(Object.keys(N)).forEach((k) =>{bdField(k,P,N,lost,oth)});if(oth.length)out.push("Other changes: "+oth.join(", "));return out};
 /* v18 RU74: the build was saved in another tab: load it here */
+/* test hook: how many times toSheet() ran since the page loaded (tests/builder_cost.py) */genv.__bldSheetRuns=function(){return SHEET_RUNS};
 genv.__bldReload=function(){__set_B(loadB());applyPacks();if(!document.getElementById("bld").hidden)render()};
 /* v25 RU38 no. 3: Manage Spells on the sheet. The caster parts of the build that belongs to the open character (null: no such build) */
 function bldMine(){const st=genv.__sheetState&&genv.__sheetState();return !!(st&&st.C&&savedRaw()!=null&&own(st.C.name))}

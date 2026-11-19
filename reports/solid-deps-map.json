@@ -4686,6 +4686,15 @@
   },
   {
    "from": "app/27d-ui-library-search-open.js",
+   "to": "app/06-logic-derivation.js",
+   "import": false,
+   "names": [
+    "part"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/27d-ui-library-search-open.js",
    "to": "app/12-ui-bottom-sheet-modal.js",
    "import": false,
    "names": [
@@ -4717,9 +4726,10 @@
     "libCat",
     "libFeatBlock",
     "libIndex",
+    "libIndexJobs",
     "libReady"
    ],
-   "count": 8
+   "count": 9
   },
   {
    "from": "app/27d-ui-library-search-open.js",
@@ -13297,8 +13307,10 @@
    "from": "builder/25-logic-hooks-for-the-sheet.js",
    "to": "builder/12-logic-export-to-sheet.js",
    "import": true,
-   "names": [],
-   "count": 0
+   "names": [
+    "SHEET_RUNS"
+   ],
+   "count": 1
   },
   {
    "from": "builder/25-logic-hooks-for-the-sheet.js",

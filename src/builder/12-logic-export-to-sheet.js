@@ -45,8 +45,11 @@ function sheetInputs(){
  const EA=effArmor(),ESH=effShield(),EW0=effWeps(),BO=baseOf(EA),EAp=BO.p,ar=armorDef(BO.b),mcl=MCL(),AFX=activeFx(),SFX=spOptFx(),XT=toolChoices(CH).concat(grantTools(feats)),wmSet=wmAll(),cfList=classFeatures().filter((x) =>{return !(R14()&&x[1]==="Weapon Mastery")}),slotsForNow=slotsFor();
  const SM={};spellRows().forEach((x) =>{SM[x[0]]=x});
  return {i:{SM:SM,invs:chJoin(B.ch,/invocation$/),B:B,c:c,L:L,TLv:TLv,a:a,pb:pb,sp:sp,custom:custom,spName:spName,subName:subName,bg:bg,feats:feats,hpList:hpList,appVer:appVer(),SRC:SRC,r14:R14(),G:G,CH:CH,SG:SG,parts:parts,packSkills:packSkills(),xsk:xsk(),EA:EA,ESH:ESH,EW0:EW0,EAp:EAp,ar:ar,mcl:mcl,AFX:AFX,SFX:SFX,attMax:attMax(),XT:XT,wmSet:wmSet,cfList:cfList,slotsFor:slotsForNow},q:QRY,C:{},l:{},parts:parts}}
+/* SHEET_RUNS counts toSheet() calls. tests/builder_cost.py reads it through genv.__bldSheetRuns to catch a builder screen that recomputes the sheet too often */
+export let SHEET_RUNS=0;
 /* solid:orchestrator toSheet */
 export function toSheet(){
+ SHEET_RUNS++;
  /* every field group and class rule is a handler registered in 12c-12l (contract in 12a-logic-sheet-registry.js); this function only builds the inputs and runs the phases */
  const T=sheetInputs();
  runSheet(T);

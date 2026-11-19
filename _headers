@@ -1,4 +1,4 @@
-# Cloudflare Pages headers (same rules as vercel.json). The app checks for a new version itself, so nothing is cached without asking the server.
+# Cloudflare Pages headers. The app checks for a new version itself, so nothing is cached without asking the server.
 /*
   Cache-Control: no-cache
   Content-Security-Policy: frame-ancestors 'none'

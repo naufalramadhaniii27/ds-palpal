@@ -1,5 +1,5 @@
 /* Library, part d: hidden pages, search, list, key handling, open (split from 27b, SOLID stage 12) */
-import {bindLive,icoSp,lateGet,lateSet} from "./00a-reg-late-ports.js";import {GLOSS} from "./03-data-glossary.js";import {C} from "./04-logic-storage.js";import {esc,toast} from "./05-logic-helpers.js";import {sheetIco,wmClass,wmHd} from "./12-ui-bottom-sheet-modal.js";import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";import {ico,icoCls} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {env} from "./00-env.js";import {fzD,fzMax,fzScore} from "./27-ui-party-search-commands-library.js";import {LIB,LIB_CATS,LIB_RULES,__set_libDetail,libAddBtn,libBook,libCat,libDetail,libFeatBlock,libIndex,libReady} from "./27b-ui-library.js";
+import {bindLive,icoSp,lateGet,lateSet} from "./00a-reg-late-ports.js";import {GLOSS} from "./03-data-glossary.js";import {C} from "./04-logic-storage.js";import {esc,toast} from "./05-logic-helpers.js";import {sheetIco,wmClass,wmHd} from "./12-ui-bottom-sheet-modal.js";import {closeSheet} from "./13b-ui-detail-spell-targets-render.js";import {ico,icoCls} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {env} from "./00-env.js";import {fzD,fzMax,fzScore} from "./27-ui-party-search-commands-library.js";import {LIB,LIB_CATS,LIB_RULES,__set_libDetail,libAddBtn,libBook,libCat,libDetail,libFeatBlock,libIndex,libIndexJobs,libReady} from "./27b-ui-library.js";
 bindLive("libOpen",{get:function(){return libOpen;}});
 function libRecent(add){ let a=[]; try{ a=JSON.parse(__store.getItem("cs-lib-recent")||"[]"); if(!Array.isArray(a)) a=[]; }catch(er){ a=[]; } if(add){ a=[add].concat(a.filter((x) =>{ return x!==add; })).slice(0,8); try{ __store.setItem("cs-lib-recent",JSON.stringify(a)); }catch(er){} } return a; }
 function libHi(n,q){ const i=q?n.toLowerCase().indexOf(q):-1; return i<0?esc(n):esc(n.slice(0,i))+'<mark>'+esc(n.slice(i,i+q.length))+'</mark>'+esc(n.slice(i+q.length)); }
@@ -8,21 +8,53 @@ const LIB_ICO={spell:"spell",gear:"item",item:"item",feat:"feat",feature:"featur
 const LIB_CATIC={sub:"subclass",bg:"background",opt:"option",homebrew:"homebrew"};
 function libCatIc(c){ const A=env.__ART, k=LIB_CATIC[c]||c; try{ if(!A||!A.icon||!A.icon.cat||A.icon.cat.indexOf(k)<0||localStorage.getItem("mi-clsart")==="off") return ""; }catch(er){ return ""; } return '<img class="art-ic" src="img/icon/cat/'+k+'.avif" alt="" loading="lazy" decoding="async">'; }
 function libRow(e,q,showCat){ const ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((env.__artIc&&LIB_ICO[e.c]&&env.__artIc(LIB_ICO[e.c],e.n))||libCatIc(e.c)||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+(function(){ const b=libBook(e); return b&&String(e.s).toUpperCase().indexOf(b)<0?(e.s?' • ':'')+esc(b):''; })()+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
-function libInv(){ if(LIB.inv||!LIB.idx) return; const inv={}, voc=[];
-  LIB.idx.forEach((e,i) =>{ const seen={}; (e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t).split(/[^a-z0-9']+/).forEach((w) =>{ if(w.length<4||w.length>24||seen[w]) return; seen[w]=1; if(!inv[w]){ inv[w]=[]; voc.push(w); } inv[w].push(i); }); }); LIB.inv=inv; LIB.voc=voc; LIB.fz={}; }
+/* word -> entries. Resumable (INVP), no prototype (indexes "constructor") */
+let INVP=null;
+function invStep(stop){ const ix=LIB.idx; if(!ix||LIB.inv){ INVP=null; return 1; }
+  if(!INVP||INVP.x!==ix) INVP={x:ix,v:Object.create(null),w:[],i:0};
+  const P=INVP, re=/[a-z0-9']{4,}/g; let i,e,m,w,a;
+  while(P.i<ix.length){ i=P.i++; e=ix[i]; const s=e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t; re.lastIndex=0;
+    while((m=re.exec(s))){ w=m[0]; if(w.length>24) continue; a=P.v[w]; if(!a){ a=P.v[w]=[]; P.w.push(w); } if(a[a.length-1]!==i) a.push(i); }
+    if(stop&&!(P.i&63)&&stop()) return 0; }
+  LIB.inv=P.v; LIB.voc=P.w; LIB.fz={}; INVP=null; return 1; }
+function libInv(){ if(LIB.inv||!LIB.idx) return; invStep(null); }
+/* Search focus: build index and words in background slices of 38 ms; new data (qrefs) restarts */
+let WARM=null, LIBGEN=0;
+const warmNext=(f) =>{ const g=() =>{ const t0=performance.now(); f(() =>{ return performance.now()-t0>38; }); }; if(env.scheduler&&env.scheduler.postTask) env.scheduler.postTask(g,{priority:"background"}); else setTimeout(g,0); };
+function libWarm(){ if(WARM||LIB.inv) return; const W=WARM={g:LIBGEN,n:0,j:null};
+  const tick=(stop) =>{ if(WARM!==W||W.g!==LIBGEN) return; try{
+      if(!LIB.idx){ if(!W.j){ if(!libReady()){ if(++W.n<100) setTimeout(() =>{ warmNext(tick); },100); else WARM=null; return; } W.j=libIndexJobs(); }
+        const r=W.j.shift()(); if(!W.j.length) LIB.idx=r; }
+      else if(invStep(stop)){ WARM=null; if(LIB.part){ LIB.part=0; if(LIB.on){ libSearch(); libPaint(); } } return; } warmNext(tick); }catch(er){ WARM=null; } };
+  warmNext(tick); }
+document.addEventListener("qrefs",() =>{ LIBGEN++; if(WARM){ WARM=null; setTimeout(libWarm,50); } });
+["focusin","input"].forEach((v) =>{ document.addEventListener(v,(e) =>{ if(e.target&&e.target.id==="gsQ") libWarm(); }); });
 /* typo help for a word of 4 letters or more: the entries that hold a word within one or two edits of it */
-function libFz(t){ if(LIB.fz[t]) return LIB.fz[t]; let m=fzMax(t), set={}, voc=LIB.voc, k, w, d; for(k=0;k<voc.length;k++){ w=voc[k]; if(Math.abs(w.length-t.length)>m) continue; d=fzD(t,w,m); if(d<=m) LIB.inv[w].forEach((i) =>{ set[i]=1; }); } LIB.fz[t]=set; return set; }
+function libFz(t){ if(!LIB.inv) return {}; if(LIB.fz[t]) return LIB.fz[t]; let m=fzMax(t), set={}, voc=LIB.voc, k, w, d; for(k=0;k<voc.length;k++){ w=voc[k]; if(Math.abs(w.length-t.length)>m) continue; d=fzD(t,w,m); if(d<=m) LIB.inv[w].forEach((i) =>{ set[i]=1; }); } LIB.fz[t]=set; return set; }
 function libSearch(){
  const {q, toks}=libSearchStep1(); if(q.length<2||!LIB.idx) return;
  libSearchStep2();
   LIB.idx.forEach((e, i) => libSearchFn1(q, toks, e, i));
   libSearchStep3(); }
-function libSearchFn1(q, toks, e,i){ let v=fzScore(q,e.n); if(e.c==="homebrew"&&v>=3) v=-1;/* a homebrew name must contain the query: no typo matches among 43,000 rows */ if(e.p&&(v<0||v>1.5)&&e.p.indexOf(q)>=0) v=/^Class /.test(e.s)?1.3:/^Subclass /.test(e.s)?1.4:/^(Race|Species|Background|Feat) /.test(e.s)?1.5:1.7;/* the pack or publisher holds the query: Valda, Mage Hand Press */ if(v<0){ const hay=(e.n+" "+e.s).toLowerCase(); if(toks.length>1&&toks.every((t) =>{ return hay.indexOf(t)>=0; })) v=3; else if(toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0; })) v=7; else if(e.c!=="homebrew"&&toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0||(t.length>=4&&libFz(t)[i]); })) v=8; } if(v>=0) LIB.res.push([v,e]); }
+/* fzScore(q,e.n) with the word candidates from one regex walk (same lists). Nothing cached on entries (heap budget) */
+function libNameC(s,n){ const r=s.match(/[a-z0-9']+/g)||[], w=r.filter((x) =>{ return x.length>=3; }); let c=[r.join(" ")];
+  if(n>1){ for(let k=0;k+n<=w.length;k++) c.push(w.slice(k,k+n).join(" ")); } else c=c.concat(w); return c; }
+/* letters of q (not spaces) missing from s: every candidate is built from the letters of s, so more than m missing means no typo match (exact) */
+const QA=new Int32Array(65536); let QK="";
+let QN=0;
+function qMiss(q,s){ let i,c; if(QK!==q){ for(c of QK) QA[c.charCodeAt(0)]=0; QN=0; for(c of q) if(c!==" "){ QA[c.charCodeAt(0)]++; QN++; } QK=q; }
+  const u=[]; for(i=0;i<s.length;i++){ c=s.charCodeAt(i); if(QA[c]>0){ QA[c]--; u.push(c); } } for(c of u) QA[c]++; return QN-u.length; }
+function libFzScore(q,e){ const s=String(e.n||"").toLowerCase(); if(!s||!q) return -1; const i=s.indexOf(q); if(i>=0) return i===0?0:/[^a-z0-9]/.test(s.charAt(i-1))?1:2;
+  const m=fzMax(q); if(!m||qMiss(q,s)>m) return -1; const c=libNameC(s,q.split(" ").length); let best=m+1;
+  for(let j=0;j<c.length&&best>0;j++){ let x=c[j], d=fzD(q,x,m); if(x.length>q.length) d=Math.min(d,fzD(q,x.slice(0,q.length),m)); if(d<best) best=d; }
+  return best<=m?3+best:-1; }
+function libSearchFn1(q, toks, e,i){ let v=libFzScore(q,e); if(e.c==="homebrew"&&v>=3) v=-1;/* a homebrew name must contain the query: no typo matches among 43,000 rows */ if(e.p&&(v<0||v>1.5)&&e.p.indexOf(q)>=0) v=/^Class /.test(e.s)?1.3:/^Subclass /.test(e.s)?1.4:/^(Race|Species|Background|Feat) /.test(e.s)?1.5:1.7;/* the pack or publisher holds the query: Valda, Mage Hand Press */ if(v<0){ const hay=(e.n+" "+e.s).toLowerCase(); if(toks.length>1&&toks.every((t) =>{ return hay.indexOf(t)>=0; })) v=3; else if(toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0; })) v=7; else if(e.c!=="homebrew"&&toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0||(t.length>=4&&libFz(t)[i]); })) v=8; } if(v>=0) LIB.res.push([v,e]); }
 function libSearchStep1(){
 const q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), toks=q.split(" ").filter(Boolean); LIB.res=[];
   return /** @type {any} */ ({q, toks});
 }
 function libSearchStep2(){
+if(WARM&&LIB.idx&&!LIB.inv){ LIB.part=1; return; }/* word list still building: paint now, again when it is done */
 libInv();
 }
 function libSearchStep3(){
@@ -63,6 +95,13 @@ function libWm(w,d){ let m=document.getElementById("libWm"); if(!m){ m=document.
   m.innerHTML=wmHd(h); }
 /* a failing icon or helper must never leave the result list blank: retry with plain rows */
 function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); const a=lateGet("askHTML"); lateSet("askHTML",null); const ai=env.__artIc; env.__artIc=null; try{ return libListHTML(); } finally{ lateSet("askHTML",a); env.__artIc=ai; } }catch(e2){ return '<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>'; } } }
+/* skeleton made of the real row and tile classes (same size as the results); shimmer is a transform, it keeps moving while the index is built. libPaint replaces it */
+function libBusy(t){ const d=document.getElementById("libBd"); if(!d) return; const q=LIB.q.trim(), n=[],
+    E=(g,c,k) =>{ const e=document.createElement(g); e.className=c||""; if(k) e.append(...k); return e; };
+  for(let i=0;i<8;i++) n.push(q?E("div","lib-r lib-sk",[E("i","lib-ri"),E("span","lib-rt",[E("b"),E("small")])]):E("span","lib-tile lib-sk"));
+  const w=E("div",q?"":"lib-tiles",n); w.setAttribute("role","status"); w.setAttribute("aria-label",t); d.replaceChildren(E("div","info-h",[E("b","sk-h")]),w); }
+/* slow first search: skeleton first, the work one frame later */
+function libLater(run){ if(!LIB.idx||(!LIB.inv&&!WARM&&LIB.q.trim().length>1)){ libBusy(LIB.q.trim()?"Searching the library":"Opening the library"); requestAnimationFrame(() =>{ setTimeout(run,0); }); } else run(); }
 function libPaint(){ const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
@@ -109,7 +148,8 @@ export function libOpen(o){ o=o||{}; const w=libDom(), first=!LIB.idx;
   w.hidden=false; LIB.on=1; if(o.q!=null){ LIB.q=o.q; LIB.cur=null; LIB.hist=[]; LIB.cat="all"; }
   const {qi}=libOpenStep1(w);
   const go=function(){ LIB.idx=libIndex(); LIB.inv=null; libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); };
-  if(LIB.idx){ libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); } else { LIB.tries=0; const t=function(){ if(libReady()||LIB.tries>150){ go(); return; } LIB.tries++; setTimeout(t,80); }; try{ if(env.__bldNeed) env.__bldNeed(); }catch(er){} t(); }
+  const run=() =>{ if(LIB.idx){ libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); } else { LIB.tries=0; const t=function(){ if(libReady()||LIB.tries>150){ go(); return; } LIB.tries++; setTimeout(t,80); }; try{ if(env.__bldNeed) env.__bldNeed(); }catch(er){} t(); } };
+  libLater(run);
   setTimeout(() =>{ try{ qi.focus({preventScroll:true}); if(env.innerWidth>=760) qi.select(); }catch(er){} },60); }
 function libOpenStep1(w){
   if(env.innerWidth>=760&&!w.style.left){ let p=null; try{ p=JSON.parse(__store.getItem("cs-lib-pos")||"null"); }catch(er){} if(p&&p.length===2&&p[0]>-400&&p[0]<env.innerWidth-100&&p[1]>=0&&p[1]<env.innerHeight-50){ w.style.left=p[0]+"px"; w.style.top=p[1]+"px"; } else { w.style.left=Math.max(12,env.innerWidth-w.offsetWidth-28)+"px"; w.style.top="84px"; } w.style.right="auto"; }
