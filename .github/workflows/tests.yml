@@ -2,7 +2,7 @@
 # When it runs: pushes to main (and nilai-98/*), pull requests that are not a draft, the nightly schedule, and by hand (Actions, Run workflow).
 # Work on a branch runs nothing. Open the pull request as a draft while the work goes on, then "Ready for review" runs the tests once.
 # A new push to a pull request cancels the run that is still going for it.
-# Three jobs run side by side (A fast and required, B layout, C features), then the score job compares the numbers with the last accepted ones (N43).
+# The jobs run side by side (A fast and required with its four browser parts, B layout, B chaos, C features, C2 cloud), then the score job compares the numbers with the last accepted ones (N43).
 # Branch protection on main must list the three jobs and "score" as required checks (done in the repository settings by the owner).
 # No secrets and no server: everything opens index.html from the checkout.
 name: tests
@@ -52,15 +52,6 @@ jobs:
         run: node tests/tg_engine.js 300
       - name: API sign-in guard (node)
         run: node tests/api_dev_guard.mjs
-      - name: Browser tests
-        run: |
-          fail=0
-          for t in names_lint csp_check scenarios golden_rules golden_builds fx_engine fx_overlap solid_contract solid_data_contract solid_ui_contract mech_scan coverage_gate dup_check invariants e2e_fx_toggle version_label split_dist fonts_dist lazy_parts edition_isolation metamorphic; do
-            echo "::group::$t"
-            python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
-            echo "::endgroup::"
-          done
-          exit $fail
       - name: "SOLID guards (window, dispatch, deps, size, dup; fails only on NEW violations over tests/guard_baseline, see reports/solid-guards.md)"
         run: python3 tests/guard_all.py --enforce
       - name: Performance budget (bytes and heap only, the stable measures)
@@ -72,6 +63,47 @@ jobs:
         if: always()
         continue-on-error: true
         with: { name: clause-gate-report, path: "reports/clause-gate-report.md", if-no-files-found: ignore }
+
+  # The browser tests of Job A, split in four parts that run side by side (about 6 minutes instead of 21 in one row).
+  # Parts are balanced by the times of run 44526409049. Every test of the old list is in exactly one part.
+  a-browser:
+    name: "Job A browser (${{ matrix.part }})"
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - part: "1 invariants"
+            tests: "invariants split_dist fonts_dist"
+          - part: "2 contracts"
+            tests: "solid_contract metamorphic lazy_parts"
+          - part: "3 golden and page"
+            tests: "golden_builds csp_check scenarios"
+          - part: "4 rules and lint"
+            tests: "names_lint golden_rules fx_engine fx_overlap solid_data_contract solid_ui_contract mech_scan coverage_gate dup_check e2e_fx_toggle version_label edition_isolation"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install build tools
+        run: npm ci --prefix tools/build
+      - name: Install Playwright
+        run: |
+          pip install playwright==$PLAYWRIGHT_VERSION brotli
+          python -m playwright install --with-deps chromium
+      - name: Browser tests
+        run: |
+          fail=0
+          for t in ${{ matrix.tests }}; do
+            echo "::group::$t"
+            python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit $fail
 
   b-layout:
     name: "Job B: layout and storage"
@@ -95,6 +127,21 @@ jobs:
             echo "::endgroup::"
           done
           exit $fail
+
+  # Storage chaos was the second half of Job B. It runs on its own runner now, side by side with Job B.
+  b-chaos:
+    name: "Job B chaos: storage, 50 seeds"
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install Playwright
+        run: |
+          pip install playwright==$PLAYWRIGHT_VERSION brotli
+          python -m playwright install --with-deps chromium
       - name: Storage chaos, 50 seeds (a failing seed is repeated with --seed N, see reports/chaos-gagal.json)
         run: python3 tests/chaos_storage.py --seeds 50
       - uses: actions/upload-artifact@v4
@@ -148,7 +195,7 @@ jobs:
 
   score:
     name: "Score: no measure may get worse (N43)"
-    needs: [a-fast, b-layout, c-features, c-cloud]
+    needs: [a-fast, a-browser, b-layout, b-chaos, c-features, c-cloud]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
