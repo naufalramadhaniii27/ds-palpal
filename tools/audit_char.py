@@ -4,7 +4,8 @@
   python3 tools/audit_char.py FILE.json      FILE is a build (the builder's B object, or {"build": B}) or a finished sheet (has "features")
   python3 tools/audit_char.py --tigor        the Tigor build of tests/valda14_tigor.py
   python3 tools/audit_char.py --selftest     the checks must flag a sheet with the old Tigor mistakes put in by hand
-  python3 tools/audit_char.py --sweep        every class and subclass of both rule sets at levels 3, 10 and 20 (builder __bldFuzz)
+  python3 tools/audit_char.py --sweep        every class and subclass of both rule sets and of every third-party book, levels 3, 10, 20 (__bldFuzz);
+                                             also flags a sheet with under 3 features and a missing subclass group at level 10+
 
 Checks on the sheet (C.features and labels), the same for every character:
   group     2014 rules: Ability Score Improvement or a Fighting Style listed under Feats (it is a class feature in 2014)
@@ -132,6 +133,33 @@ def sweep():
                     if o["rs"] == "2014": r["c"]["rs"] = "2014"
                     for k, w, m in audit(r["c"], tp):
                         found.setdefault((k, w.split(" / ", 1)[-1] + ": " + m), []).append(who)
+        # third-party books: every class of the book with each of its subclasses, and the book's subclasses of other classes
+        TP = r"""()=>{const out=[];((window.WX&&WX.src)||[]).filter(q=>q.tp&&((q.classes||[]).length||(q.subs||[]).length)).forEach(q=>{
+          const rs=/14$/.test(q.tag||'')?'2014':'2024', src={}; src[q.id]=true; if(rs==='2014'){src.phb14=true;src.dmg14=true;}
+          const base={sp:rs==='2014'?'Human (2014)':'Human',bg:rs==='2014'?'Soldier (2014)':'Soldier',arr:[15,14,13,12,10,8],b2:0,b1:0,rs:rs,src:src};
+          const probe=Object.assign({},base,{cls:(q.classes||[])[0]||(rs==='2014'?'Fighter':'Fighter'),sub:'',lv:3}); try{window.__bldFuzz(probe)}catch(e){}
+          const pairs=[]; (q.classes||[]).forEach(c=>{const S=Object.keys(((window.CLASSES||{})[c]||{}).subs||{}); (S.length?S:['']).forEach(sb=>pairs.push([c,sb]))});
+          Object.keys(window.CLASSES||{}).forEach(c=>{if((q.classes||[]).includes(c))return; Object.keys(CLASSES[c].subs||{}).forEach(sb=>{if((q.subs||[]).includes(sb))pairs.push([c,sb])})});
+          if(!pairs.length)(q.classes||[]).forEach(c=>pairs.push([c,'']));
+          pairs.forEach(pr=>[3,10,20].forEach(lv=>out.push(Object.assign({},base,{cls:pr[0],sub:pr[1],lv:lv,book:q.tag||q.id}))))});return out}"""
+        os_ = pg.evaluate(TP)
+        books = {}
+        for o in os_: books[o["book"]] = books.get(o["book"], 0) + 1
+        print("third-party builds:", books)
+        for i in range(0, len(os_), 40):
+            rows = pg.evaluate("os=>os.map(o=>{try{const r=window.__bldFuzz(o);return r&&r.c?{o:o,c:{rs:r.c.rs,features:r.c.features}}:{o:o,err:String(r&&r.err)}}catch(e){return {o:o,err:String(e)}}})", os_[i:i + 40])
+            for r in rows:
+                o = r["o"]; n += 1; who = "%s %s %s / %s %d" % (o["book"], o["rs"], o["cls"], o["sub"] or "-", o["lv"])
+                if r.get("err"):
+                    found.setdefault(("builder", r["err"][:80]), []).append(who); continue
+                if o["rs"] == "2014": r["c"]["rs"] = "2014"
+                items = sum(len(g.get("items") or []) for g in r["c"].get("features") or [])
+                if items < 3:
+                    found.setdefault(("empty", "sheet has %d features" % items), []).append(who)
+                if o["sub"] and o["lv"] >= 10 and not any(o["sub"] in (g.get("g") or "") for g in r["c"].get("features") or []):
+                    found.setdefault(("nosub", "subclass group missing at level 10+"), []).append(who)
+                for k, w, m in audit(r["c"], tp):
+                    found.setdefault((k, w.split(" / ", 1)[-1] + ": " + m), []).append(who)
         br.close()
     print("audit_char sweep: %d characters, %d kinds of finding" % (n, len(found)))
     for (k, what), whos in sorted(found.items(), key=lambda x: -len(x[1])):
