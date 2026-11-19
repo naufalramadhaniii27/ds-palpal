@@ -10,13 +10,13 @@ function libCatIc(c){ const A=env.__ART, k=LIB_CATIC[c]||c; try{ if(!A||!A.icon|
 function libRow(e,q,showCat){ const ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((env.__artIc&&LIB_ICO[e.c]&&env.__artIc(LIB_ICO[e.c],e.n))||libCatIc(e.c)||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+(function(){ const b=libBook(e); return b&&String(e.s).toUpperCase().indexOf(b)<0?(e.s?' • ':'')+esc(b):''; })()+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
 /* word -> entries. Resumable (INVP), no prototype (indexes "constructor") */
 let INVP=null;
-function invStep(stop){ const ix=LIB.idx; if(!ix||LIB.inv){ INVP=null; return true; }
-  if(!INVP||INVP.ix!==ix) INVP={ix:ix,inv:Object.create(null),voc:[],i:0};
-  const P=INVP, inv=P.inv, voc=P.voc, re=/[a-z0-9']{4,}/g;
-  while(P.i<ix.length){ const i=P.i++, e=ix[i], s=e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t; let m; re.lastIndex=0;
-    while((m=re.exec(s))){ const w=m[0]; if(w.length>24) continue; let a=inv[w]; if(!a){ a=inv[w]=[]; voc.push(w); } if(a[a.length-1]!==i) a.push(i); }
-    if(stop&&(P.i&63)===0&&stop()) return false; }
-  LIB.inv=inv; LIB.voc=voc; LIB.fz={}; INVP=null; return true; }
+function invStep(stop){ const ix=LIB.idx; if(!ix||LIB.inv){ INVP=null; return 1; }
+  if(!INVP||INVP.x!==ix) INVP={x:ix,v:Object.create(null),w:[],i:0};
+  const P=INVP, re=/[a-z0-9']{4,}/g; let i,e,m,w,a;
+  while(P.i<ix.length){ i=P.i++; e=ix[i]; const s=e.n.toLowerCase()+" "+e.s.toLowerCase()+" "+e.t; re.lastIndex=0;
+    while((m=re.exec(s))){ w=m[0]; if(w.length>24) continue; a=P.v[w]; if(!a){ a=P.v[w]=[]; P.w.push(w); } if(a[a.length-1]!==i) a.push(i); }
+    if(stop&&!(P.i&63)&&stop()) return 0; }
+  LIB.inv=P.v; LIB.voc=P.w; LIB.fz={}; INVP=null; return 1; }
 function libInv(){ if(LIB.inv||!LIB.idx) return; invStep(null); }
 /* Search focus: build index and words in background slices of 38 ms; new data (qrefs) restarts */
 let WARM=null, LIBGEN=0;
@@ -25,12 +25,12 @@ function libWarm(){ if(WARM||LIB.inv) return; const W=WARM={g:LIBGEN,n:0,j:null}
   const tick=(stop) =>{ if(WARM!==W||W.g!==LIBGEN) return; try{
       if(!LIB.idx){ if(!W.j){ if(!libReady()){ if(++W.n<100) setTimeout(() =>{ warmNext(tick); },100); else WARM=null; return; } W.j=libIndexJobs(); }
         const r=W.j.shift()(); if(!W.j.length) LIB.idx=r; }
-      else if(invStep(stop)){ WARM=null; return; } warmNext(tick); }catch(er){ WARM=null; } };
+      else if(invStep(stop)){ WARM=null; if(LIB.part){ LIB.part=0; if(LIB.on){ libSearch(); libPaint(); } } return; } warmNext(tick); }catch(er){ WARM=null; } };
   warmNext(tick); }
 document.addEventListener("qrefs",() =>{ LIBGEN++; if(WARM){ WARM=null; setTimeout(libWarm,50); } });
 ["focusin","input"].forEach((v) =>{ document.addEventListener(v,(e) =>{ if(e.target&&e.target.id==="gsQ") libWarm(); }); });
 /* typo help for a word of 4 letters or more: the entries that hold a word within one or two edits of it */
-function libFz(t){ if(LIB.fz[t]) return LIB.fz[t]; let m=fzMax(t), set={}, voc=LIB.voc, k, w, d; for(k=0;k<voc.length;k++){ w=voc[k]; if(Math.abs(w.length-t.length)>m) continue; d=fzD(t,w,m); if(d<=m) LIB.inv[w].forEach((i) =>{ set[i]=1; }); } LIB.fz[t]=set; return set; }
+function libFz(t){ if(!LIB.inv) return {}; if(LIB.fz[t]) return LIB.fz[t]; let m=fzMax(t), set={}, voc=LIB.voc, k, w, d; for(k=0;k<voc.length;k++){ w=voc[k]; if(Math.abs(w.length-t.length)>m) continue; d=fzD(t,w,m); if(d<=m) LIB.inv[w].forEach((i) =>{ set[i]=1; }); } LIB.fz[t]=set; return set; }
 function libSearch(){
  const {q, toks}=libSearchStep1(); if(q.length<2||!LIB.idx) return;
  libSearchStep2();
@@ -39,8 +39,13 @@ function libSearch(){
 /* fzScore(q,e.n) with the word candidates from one regex walk (same lists). Nothing cached on entries (heap budget) */
 function libNameC(s,n){ const r=s.match(/[a-z0-9']+/g)||[], w=r.filter((x) =>{ return x.length>=3; }); let c=[r.join(" ")];
   if(n>1){ for(let k=0;k+n<=w.length;k++) c.push(w.slice(k,k+n).join(" ")); } else c=c.concat(w); return c; }
+/* letters of q (not spaces) missing from s: every candidate is built from the letters of s, so more than m missing means no typo match (exact) */
+const QA=new Int32Array(65536); let QK="";
+let QN=0;
+function qMiss(q,s){ let i,c; if(QK!==q){ for(c of QK) QA[c.charCodeAt(0)]=0; QN=0; for(c of q) if(c!==" "){ QA[c.charCodeAt(0)]++; QN++; } QK=q; }
+  const u=[]; for(i=0;i<s.length;i++){ c=s.charCodeAt(i); if(QA[c]>0){ QA[c]--; u.push(c); } } for(c of u) QA[c]++; return QN-u.length; }
 function libFzScore(q,e){ const s=String(e.n||"").toLowerCase(); if(!s||!q) return -1; const i=s.indexOf(q); if(i>=0) return i===0?0:/[^a-z0-9]/.test(s.charAt(i-1))?1:2;
-  const m=fzMax(q); if(!m) return -1; const c=libNameC(s,q.split(" ").length); let best=m+1;
+  const m=fzMax(q); if(!m||qMiss(q,s)>m) return -1; const c=libNameC(s,q.split(" ").length); let best=m+1;
   for(let j=0;j<c.length&&best>0;j++){ let x=c[j], d=fzD(q,x,m); if(x.length>q.length) d=Math.min(d,fzD(q,x.slice(0,q.length),m)); if(d<best) best=d; }
   return best<=m?3+best:-1; }
 function libSearchFn1(q, toks, e,i){ let v=libFzScore(q,e); if(e.c==="homebrew"&&v>=3) v=-1;/* a homebrew name must contain the query: no typo matches among 43,000 rows */ if(e.p&&(v<0||v>1.5)&&e.p.indexOf(q)>=0) v=/^Class /.test(e.s)?1.3:/^Subclass /.test(e.s)?1.4:/^(Race|Species|Background|Feat) /.test(e.s)?1.5:1.7;/* the pack or publisher holds the query: Valda, Mage Hand Press */ if(v<0){ const hay=(e.n+" "+e.s).toLowerCase(); if(toks.length>1&&toks.every((t) =>{ return hay.indexOf(t)>=0; })) v=3; else if(toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0; })) v=7; else if(e.c!=="homebrew"&&toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0||(t.length>=4&&libFz(t)[i]); })) v=8; } if(v>=0) LIB.res.push([v,e]); }
@@ -49,6 +54,7 @@ const q=LIB.q.trim().toLowerCase().replace(/\s+/g," "), toks=q.split(" ").filter
   return /** @type {any} */ ({q, toks});
 }
 function libSearchStep2(){
+if(WARM&&LIB.idx&&!LIB.inv){ LIB.part=1; return; }/* word list still building: paint now, again when it is done */
 libInv();
 }
 function libSearchStep3(){
