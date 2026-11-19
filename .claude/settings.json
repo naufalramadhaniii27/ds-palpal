@@ -13,6 +13,7 @@
   },
   "enabledPlugins": {
     "feature-dev@anthropic-plugin-directory": true,
-    "cloudflare@anthropic-plugin-directory": true
+    "cloudflare@anthropic-plugin-directory": true,
+    "superpowers@anthropic-plugin-directory": true
   }
 }
