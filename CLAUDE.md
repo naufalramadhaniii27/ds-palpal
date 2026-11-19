@@ -73,6 +73,10 @@ Semua tes jalan dari root repo dan membuka `index.html` lokal. Build dulu sebelu
 
 Daftar lengkap tes yang dipakai CI ada di `.github/workflows/tests.yml` (Job A wajib).
 
+## CI
+
+CI tidak jalan untuk push ke branch kerja, dan tidak jalan untuk PR draft. CI jalan untuk push ke main, PR yang bukan draft, jadwal malam, dan Run workflow manual. Buka PR sebagai draft selama kerja masih berlangsung. Tandai "Ready for review" saat semua perubahan sudah masuk. Selama draft, uji lokal dengan `tests/quick.py`.
+
 ## Rujukan
 
 - `SOURCE-NOTES.md`: peta file lengkap, fx schema, checklist fitur baru. Baca per bagian dengan `grep -n '^## '` lalu `sed -n`, jangan seluruhnya.

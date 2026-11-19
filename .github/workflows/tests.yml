@@ -1,16 +1,25 @@
-# Tests before the merge, not after. Runs on every push and pull request (not on art or notes only).
+# Tests before the merge, not after. Not on art or notes only.
+# When it runs: pushes to main (and nilai-98/*), pull requests that are not a draft, the nightly schedule, and by hand (Actions, Run workflow).
+# Work on a branch runs nothing. Open the pull request as a draft while the work goes on, then "Ready for review" runs the tests once.
+# A new push to a pull request cancels the run that is still going for it.
 # Three jobs run side by side (A fast and required, B layout, C features), then the score job compares the numbers with the last accepted ones (N43).
 # Branch protection on main must list the three jobs and "score" as required checks (done in the repository settings by the owner).
 # No secrets and no server: everything opens index.html from the checkout.
 name: tests
 on:
   push:
+    branches: [main, "nilai-98/**"]
     paths-ignore: ["art/**", "art-tasks/**", "reports/**", "*.md"]
   pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
     paths-ignore: ["art/**", "art-tasks/**", "reports/**", "*.md"]
   workflow_dispatch:
   schedule:
     - cron: "17 19 * * *"   # nightly: the long runs (1001 characters per edition, 500 chaos seeds, full score)
+
+concurrency:
+  group: tests-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   PLAYWRIGHT_VERSION: "1.63.0"
@@ -18,6 +27,7 @@ env:
 jobs:
   a-fast:
     name: "Job A: fast and required"
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -65,6 +75,7 @@ jobs:
 
   b-layout:
     name: "Job B: layout and storage"
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -92,6 +103,7 @@ jobs:
 
   c-features:
     name: "Job C: features"
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -116,6 +128,7 @@ jobs:
 
   c-cloud:
     name: "Job C2: cloud sync and error reports (local D1)"
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
