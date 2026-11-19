@@ -21,5 +21,5 @@ Tujuan: aplikasi lebih cepat dan lebih sedikit bug, dengan bukti angka untuk tia
 | 2 | Tap Build pertama di bawah 3 detik di HP lambat | selesai | bentuk hosting (dist): build_first 2613 ms, build_warm 523 ms (390x844 cpu4x) |
 | 3 | Jaga biaya builder di CI | selesai | `tests/builder_cost.py`: jumlah toSheet per layar builder, batas di `tests/builder-cost.json`. Bug 0.0.80 memberi 68, batas 11 |
 | 4 | Audit per karakter (`tools/audit_char.py`) | selesai | `--selftest` menangkap 4 jenis kesalahan Tigor lama. `--sweep` 2229 karakter (inti dan 19 buku pihak ketiga) bersih, 1 menit 43 detik. Jalan di CI Job A |
-| 6 | Semua respon di bawah 1 detik (`tests/resp_budget.py`, dist, 390x844 CPU 4x) | berjalan | 0.0.82: Library search berikutnya 917 ms (dari 6542), pertama sesudah 3 detik 1469 sampai 1697 ms. CPU 1x semua di bawah 220 ms |
+| 6 | Semua respon di bawah 1 detik (`tests/resp_budget.py`, dist, 390x844 CPU 4x) | berjalan | Library search berikutnya 822 sampai 853 ms (dari 6542). Pertama, 3 detik sesudah Search dibuka: 1487 sampai 1588 ms (persiapan butuh sekitar 3,5 detik: q7 4,8 MB, indeks, kata). CPU 1x semua di bawah 220 ms. Sisa: hanya pencarian pustaka pertama di CPU 4x |
 | 5 | Tes karakter Tono Bakrie | butuh ekspor JSON dari pemilik | |

@@ -20,19 +20,23 @@ function invStep(stop){ const ix=LIB.idx; if(!ix||LIB.inv){ INVP=null; return tr
     if(stop&&(P.i&63)===0&&stop()) return false; }
   LIB.inv=inv; LIB.voc=voc; LIB.fz={}; INVP=null; return true; }
 function libInv(){ if(LIB.inv||!LIB.idx) return; invStep(null); }
-/* Search opened (300 ms after focus) or typed in (600 ms after the last key): build the Library index (four jobs) and its word list (slices of 64 entries) in idle time,
+/* Search opened (on focus) or typed in (600 ms after the last key): build the Library index (four jobs) and its word list (slices of 64 entries) in idle time,
    so "Search the whole library" does not wait for them. A change of books (qrefs) drops the half-built work */
 let WARM=null, WARMT=0;
-function libWarm(){ if(WARM||LIB.inv||typeof requestIdleCallback!=="function") return; const W=WARM={jobs:null,gen:LIBGEN};
+/* background slices: scheduler.postTask (priority background, 40 ms of work: under the 50 ms of a long task, then the browser handles taps and frames) where the browser has it, idle callbacks elsewhere */
+const warmNext=(typeof scheduler!=="undefined"&&scheduler&&typeof scheduler.postTask==="function")?function(f){ scheduler.postTask(() =>{ const t0=performance.now(); f({timeRemaining:function(){ return 40-(performance.now()-t0); }}); },{priority:"background"}); }
+  :(typeof requestIdleCallback==="function"?function(f){ requestIdleCallback(f); }:null);
+function libWarm(){ if(WARM||LIB.inv||!warmNext) return; const W=WARM={jobs:null,gen:LIBGEN,wait:0};
   const tick=function(d){ if(WARM!==W) return; try{
       if(W.gen!==LIBGEN){ WARM=null; return; }
-      if(!LIB.idx){ if(!W.jobs){ if(!libReady()){ WARM=null; return; } W.jobs=libIndexJobs(); }
-        const r=W.jobs.shift()(); if(!W.jobs.length){ if(!LIB.idx&&W.gen===LIBGEN){ LIB.idx=r; LIB.inv=null; } } requestIdleCallback(tick); return; }
-      if(invStep(() =>{ return d.timeRemaining()<2; })){ WARM=null; return; } requestIdleCallback(tick); }catch(er){ WARM=null; } };
-  requestIdleCallback(tick); }
-let LIBGEN=0; document.addEventListener("qrefs",() =>{ LIBGEN++; WARM=null; });
+      if(!LIB.idx){ if(!W.jobs){ if(!libReady()){ if(++W.wait>100){ WARM=null; return; } setTimeout(() =>{ warmNext(tick); },100); return; } W.jobs=libIndexJobs(); }/* libReady asks for the lazy q7 rows: wait for them (up to 10 s) */
+        const r=W.jobs.shift()(); if(!W.jobs.length){ if(!LIB.idx&&W.gen===LIBGEN){ LIB.idx=r; LIB.inv=null; } } warmNext(tick); return; }
+      if(invStep(() =>{ return d.timeRemaining()<2; })){ WARM=null; return; } warmNext(tick); }catch(er){ WARM=null; } };
+  warmNext(tick); }
+/* new data (the lazy q7 rows, a book turned on): the half-built work is dropped and, if it was running, starts again on the new data once 27b has reset LIB.idx */
+let LIBGEN=0; document.addEventListener("qrefs",() =>{ LIBGEN++; if(WARM){ WARM=null; setTimeout(libWarm,50); } });
 document.addEventListener("input",(e) =>{ const t=e.target; if(t&&t.id==="gsQ"&&String(t.value||"").trim().length>=2){ clearTimeout(WARMT); WARMT=setTimeout(libWarm,600); } });
-document.addEventListener("focusin",(e) =>{ const t=e.target; if(t&&t.id==="gsQ"){ clearTimeout(WARMT); WARMT=setTimeout(libWarm,300); } });/* Search opened: start in idle time right away, a library search usually follows the quick results */
+document.addEventListener("focusin",(e) =>{ const t=e.target; if(t&&t.id==="gsQ"){ clearTimeout(WARMT); libWarm(); } });/* Search opened: start in idle time right away, a library search usually follows the quick results */
 /* typo help for a word of 4 letters or more: the entries that hold a word within one or two edits of it */
 function libFz(t){ if(LIB.fz[t]) return LIB.fz[t]; let m=fzMax(t), set={}, voc=LIB.voc, k, w, d; for(k=0;k<voc.length;k++){ w=voc[k]; if(Math.abs(w.length-t.length)>m) continue; d=fzD(t,w,m); if(d<=m) LIB.inv[w].forEach((i) =>{ set[i]=1; }); } LIB.fz[t]=set; return set; }
 function libSearch(){

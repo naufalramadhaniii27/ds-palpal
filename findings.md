@@ -7,3 +7,5 @@
 - Search the whole library: 6,2 s di CPU 4x. libInv (pecah kata 16 MB teks) 4,4 s, skor nama fzScore 66 ribu entri, libIndex, muat q7. Indeks dibuat ulang tiap halaman.
 - Cache per entri (_nl, _fc) melanggar heap_tools 70 MB (86,7). Tanpa cache: 68,5 MB sama dengan dasar.
 - libInv lama melewatkan kata "constructor" (bentrok Object.prototype).
+- Persiapan idle 0.0.82 tidak pernah jalan: event qrefs (data q7 datang) membatalkannya. Diperbaiki: dimulai ulang sesudah qrefs. Urutan di CPU 4x: mulai 0, q7 siap +0,75 s, 4 job indeks +1,4 s, kata selesai +3,5 s.
+- Mengambil q7 lebih awal untuk semua orang menaikkan heap_home (31,35 dari batas 32 MB): tidak dipakai.
