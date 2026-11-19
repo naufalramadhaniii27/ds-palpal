@@ -2,7 +2,8 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
-{v:181,l:"0.0.79",d:"2026-11-19",n:["Bob, Ankh of Anubis, Ghost Suit, Rope of Climbing, Goggles of Object Reading and 9 more items show their conditional Advantage as lines on the sheet."]},
+{v:182,l:"0.0.80",d:"2026-11-19",n:["Ring of Nightmares, Boon of Immortality, Charm of the Snow Walker and the Reliquaries of Dawn and Twilight show their immunities as lines on the sheet."]},
+{v:181,l:"0.0.79",d:"2026-11-19",n:["Bob, Ankh of Anubis, Ghost Suit, Rope of Climbing, Goggles of Object Reading and 6 more items show their conditional Advantage as lines on the sheet."]},
 {v:180,l:"0.0.78",d:"2026-11-19",n:["Absolute Chapter (Unencumbered Movement) and Metamorph (Mutable Form) have switches that add their Speed bonus."]},
 {v:179,l:"0.0.77",d:"2026-11-19",n:["Eldritch Staff, Cabal's Ruin, Lightbringer, Quiver of Energy, Treant's Bane and Battlebrew Maul show their extra damage dice on the attack row. Wings has a 10 minute flight counter."]},
 {v:178,l:"0.0.76",d:"2026-11-19",n:["Links in the text now also work for the lowercase words of the 2014 books, such as conditions, Advantage, Bonus Action and spell names. Cover, Hit Point, Friendly, Speed and the plural area shapes link too. Ebonbane and the Ruby Rod of Asmodeus show their extra damage dice."]},
