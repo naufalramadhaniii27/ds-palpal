@@ -95,7 +95,11 @@ function libWm(w,d){ let m=document.getElementById("libWm"); if(!m){ m=document.
   m.innerHTML=wmHd(h); }
 /* a failing icon or helper must never leave the result list blank: retry with plain rows */
 function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); const a=lateGet("askHTML"); lateSet("askHTML",null); const ai=env.__artIc; env.__artIc=null; try{ return libListHTML(); } finally{ lateSet("askHTML",a); env.__artIc=ai; } }catch(e2){ return '<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>'; } } }
-function libPaint(){ const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
+let LBZ="";
+function libBusy(t){ const b=document.getElementById("busy"), s=b&&b.querySelector("div span:last-child"); if(!s) return; LBZ=s.textContent; s.textContent=t; b.classList.add("on"); }
+/* slow first search: show the busy spinner first (CSS transform, it keeps turning while the index is built), libPaint hides it */
+function libLater(run){ if(!LIB.idx||(!LIB.inv&&!WARM&&LIB.q.trim().length>1)){ libBusy(LIB.q.trim()?"Searching the library":"Opening the library"); requestAnimationFrame(() =>{ setTimeout(run,0); }); } else run(); }
+function libPaint(){ if(LBZ){ const b=document.getElementById("busy"); b.classList.remove("on"); b.querySelector("div span:last-child").textContent=LBZ; LBZ=""; } const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
   libWm(w,d);/* T10: the entry's icon as a faint watermark */
@@ -141,7 +145,8 @@ export function libOpen(o){ o=o||{}; const w=libDom(), first=!LIB.idx;
   w.hidden=false; LIB.on=1; if(o.q!=null){ LIB.q=o.q; LIB.cur=null; LIB.hist=[]; LIB.cat="all"; }
   const {qi}=libOpenStep1(w);
   const go=function(){ LIB.idx=libIndex(); LIB.inv=null; libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); };
-  if(LIB.idx){ libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); } else { LIB.tries=0; const t=function(){ if(libReady()||LIB.tries>150){ go(); return; } LIB.tries++; setTimeout(t,80); }; try{ if(env.__bldNeed) env.__bldNeed(); }catch(er){} t(); }
+  const run=() =>{ if(LIB.idx){ libSearch(); libPaint(); if(o.spec) libGo(o.spec,false); } else { LIB.tries=0; const t=function(){ if(libReady()||LIB.tries>150){ go(); return; } LIB.tries++; setTimeout(t,80); }; try{ if(env.__bldNeed) env.__bldNeed(); }catch(er){} t(); } };
+  libLater(run);
   setTimeout(() =>{ try{ qi.focus({preventScroll:true}); if(env.innerWidth>=760) qi.select(); }catch(er){} },60); }
 function libOpenStep1(w){
   if(env.innerWidth>=760&&!w.style.left){ let p=null; try{ p=JSON.parse(__store.getItem("cs-lib-pos")||"null"); }catch(er){} if(p&&p.length===2&&p[0]>-400&&p[0]<env.innerWidth-100&&p[1]>=0&&p[1]<env.innerHeight-50){ w.style.left=p[0]+"px"; w.style.top=p[1]+"px"; } else { w.style.left=Math.max(12,env.innerWidth-w.offsetWidth-28)+"px"; w.style.top="84px"; } w.style.right="auto"; }

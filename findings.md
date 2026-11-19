@@ -13,3 +13,4 @@
 - Library: hasil bertahap. Saat indeks kata masih dibangun, hasil digambar tanpa jenis salah ketik di teks isi, lalu dihitung ulang otomatis. Dicek: 'heling' 53 lalu 293, sama dengan hitungan lengkap 293.
 - Penyaring huruf tingkat nama (qMiss): tepat, 0 beda pada 33 kueri x 66.247 nama, 3,7x lebih cepat.
 - dist/index.html sisa 15 byte di bawah 2 MiB. Rilis berikutnya wajib memangkas kode app dulu.
+- Tap Library atau search pustaka seketika (indeks belum siap): hasil 1,5 sampai 4,2 s di CPU 4x. Sekarang spinner #busy muncul 28 sampai 43 ms sesudah tap (animasi transform, tetap berputar saat main thread sibuk).
