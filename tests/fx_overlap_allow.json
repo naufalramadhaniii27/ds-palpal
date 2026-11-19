@@ -2589,5 +2589,13 @@
   ],
   "reason": "B55 adds the Necrotic rider dice; fx-L2 holds the other traits of the Ruby Rod",
   "shared": []
+ },
+ "GX.item|Wings": {
+  "files": [
+   "fx-B19-speedmv.js",
+   "fx-B56-weaponriders2.js"
+  ],
+  "reason": "Wings: B19 has the flight speed, B56 has the 10 minute counter (different fields)",
+  "shared": []
  }
 }
