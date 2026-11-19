@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:180,l:"0.0.78",d:"2026-11-19",n:["Absolute Chapter (Unencumbered Movement) and Metamorph (Mutable Form) have switches that add their Speed bonus."]},
 {v:179,l:"0.0.77",d:"2026-11-19",n:["Eldritch Staff, Cabal's Ruin, Lightbringer, Quiver of Energy, Treant's Bane and Battlebrew Maul show their extra damage dice on the attack row. Wings has a 10 minute flight counter."]},
 {v:178,l:"0.0.76",d:"2026-11-19",n:["Links in the text now also work for the lowercase words of the 2014 books, such as conditions, Advantage, Bonus Action and spell names. Cover, Hit Point, Friendly, Speed and the plural area shapes link too. Ebonbane and the Ruby Rod of Asmodeus show their extra damage dice."]},
 {v:177,l:"0.0.75",d:"2026-11-18",n:["The Lorehold, Prismari, Quandrix, Silverquill and Witherbloom Primers hold a 1st-level spell you pick from their class lists, with a once-per-Long-Rest counter. Cat Burglar, Solar Knight, Claws of the Umber Hulk and the Loadstone and Shield of the Tortoise curses change your speeds. Rod of Alertness, Sentinel Shield and similar items add Advantage lines. Star Map and Guiding Whispers add their spells."]},
