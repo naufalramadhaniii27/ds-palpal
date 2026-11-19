@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:184,l:"0.0.82",d:"2026-11-19",n:["Library search is faster: the index gets ready while Search is open, and each search scores names in about two thirds of the time."]},
 {v:183,l:"0.0.81",d:"2026-11-19",n:["The builder opens about ten times faster once it has loaded, and the first open is about three seconds faster on a slow phone."]},
 {v:182,l:"0.0.80",d:"2026-11-19",n:["Ring of Nightmares, Boon of Immortality, Charm of the Snow Walker and the Reliquaries of Dawn and Twilight show their immunities as lines on the sheet."]},
 {v:181,l:"0.0.79",d:"2026-11-19",n:["Bob, Ankh of Anubis, Ghost Suit, Rope of Climbing, Goggles of Object Reading and 6 more items show their conditional Advantage as lines on the sheet."]},
