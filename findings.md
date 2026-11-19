@@ -9,3 +9,4 @@
 - libInv lama melewatkan kata "constructor" (bentrok Object.prototype).
 - Persiapan idle 0.0.82 tidak pernah jalan: event qrefs (data q7 datang) membatalkannya. Diperbaiki: dimulai ulang sesudah qrefs. Urutan di CPU 4x: mulai 0, q7 siap +0,75 s, 4 job indeks +1,4 s, kata selesai +3,5 s.
 - Mengambil q7 lebih awal untuk semua orang menaikkan heap_home (31,35 dari batas 32 MB): tidak dipakai.
+- dist/index.html wajib di bawah 2 MiB (tests/fonts_dist.py). Sesudah 0.0.82 sisa sekitar 200 byte: setiap kode app baru (termasuk catatan What's New di 16b) harus diimbangi. Komentar dibuang esbuild, tidak dihitung.\n

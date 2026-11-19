@@ -8,9 +8,7 @@ const LIB_ICO={spell:"spell",gear:"item",item:"item",feat:"feat",feature:"featur
 const LIB_CATIC={sub:"subclass",bg:"background",opt:"option",homebrew:"homebrew"};
 function libCatIc(c){ const A=env.__ART, k=LIB_CATIC[c]||c; try{ if(!A||!A.icon||!A.icon.cat||A.icon.cat.indexOf(k)<0||localStorage.getItem("mi-clsart")==="off") return ""; }catch(er){ return ""; } return '<img class="art-ic" src="img/icon/cat/'+k+'.avif" alt="" loading="lazy" decoding="async">'; }
 function libRow(e,q,showCat){ const ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((env.__artIc&&LIB_ICO[e.c]&&env.__artIc(LIB_ICO[e.c],e.n))||libCatIc(e.c)||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+(function(){ const b=libBook(e); return b&&String(e.s).toUpperCase().indexOf(b)<0?(e.s?' • ':'')+esc(b):''; })()+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
-/* words of 4 to 24 letters, digits or apostrophes -> the entries that hold them. One regex walk per entry instead of split + filter: same words in the same order, about 2x faster on 66,000 entries.
-   inv has no prototype, so a word like "constructor" is indexed (before, it hit Object.prototype and was skipped).
-   The walk can stop and go on later (INVP keeps its place), so libWarm() runs it in idle time while the player types in Search; libInv() finishes what is left at once */
+/* word -> entries. Resumable (INVP), no prototype (indexes "constructor") */
 let INVP=null;
 function invStep(stop){ const ix=LIB.idx; if(!ix||LIB.inv){ INVP=null; return true; }
   if(!INVP||INVP.ix!==ix) INVP={ix:ix,inv:Object.create(null),voc:[],i:0};
@@ -20,23 +18,17 @@ function invStep(stop){ const ix=LIB.idx; if(!ix||LIB.inv){ INVP=null; return tr
     if(stop&&(P.i&63)===0&&stop()) return false; }
   LIB.inv=inv; LIB.voc=voc; LIB.fz={}; INVP=null; return true; }
 function libInv(){ if(LIB.inv||!LIB.idx) return; invStep(null); }
-/* Search opened (on focus) or typed in (600 ms after the last key): build the Library index (four jobs) and its word list (slices of 64 entries) in idle time,
-   so "Search the whole library" does not wait for them. A change of books (qrefs) drops the half-built work */
-let WARM=null, WARMT=0;
-/* background slices: scheduler.postTask (priority background, 40 ms of work: under the 50 ms of a long task, then the browser handles taps and frames) where the browser has it, idle callbacks elsewhere */
-const warmNext=(typeof scheduler!=="undefined"&&scheduler&&typeof scheduler.postTask==="function")?function(f){ scheduler.postTask(() =>{ const t0=performance.now(); f({timeRemaining:function(){ return 40-(performance.now()-t0); }}); },{priority:"background"}); }
-  :(typeof requestIdleCallback==="function"?function(f){ requestIdleCallback(f); }:null);
-function libWarm(){ if(WARM||LIB.inv||!warmNext) return; const W=WARM={jobs:null,gen:LIBGEN,wait:0};
-  const tick=function(d){ if(WARM!==W) return; try{
-      if(W.gen!==LIBGEN){ WARM=null; return; }
-      if(!LIB.idx){ if(!W.jobs){ if(!libReady()){ if(++W.wait>100){ WARM=null; return; } setTimeout(() =>{ warmNext(tick); },100); return; } W.jobs=libIndexJobs(); }/* libReady asks for the lazy q7 rows: wait for them (up to 10 s) */
-        const r=W.jobs.shift()(); if(!W.jobs.length){ if(!LIB.idx&&W.gen===LIBGEN){ LIB.idx=r; LIB.inv=null; } } warmNext(tick); return; }
-      if(invStep(() =>{ return d.timeRemaining()<2; })){ WARM=null; return; } warmNext(tick); }catch(er){ WARM=null; } };
+/* Search focus: build index and words in background slices of 38 ms; new data (qrefs) restarts */
+let WARM=null, LIBGEN=0;
+const warmNext=(f) =>{ const g=() =>{ const t0=performance.now(); f(() =>{ return performance.now()-t0>38; }); }; if(env.scheduler&&env.scheduler.postTask) env.scheduler.postTask(g,{priority:"background"}); else setTimeout(g,0); };
+function libWarm(){ if(WARM||LIB.inv) return; const W=WARM={g:LIBGEN,n:0,j:null};
+  const tick=(stop) =>{ if(WARM!==W||W.g!==LIBGEN) return; try{
+      if(!LIB.idx){ if(!W.j){ if(!libReady()){ if(++W.n<100) setTimeout(() =>{ warmNext(tick); },100); else WARM=null; return; } W.j=libIndexJobs(); }
+        const r=W.j.shift()(); if(!W.j.length) LIB.idx=r; }
+      else if(invStep(stop)){ WARM=null; return; } warmNext(tick); }catch(er){ WARM=null; } };
   warmNext(tick); }
-/* new data (the lazy q7 rows, a book turned on): the half-built work is dropped and, if it was running, starts again on the new data once 27b has reset LIB.idx */
-let LIBGEN=0; document.addEventListener("qrefs",() =>{ LIBGEN++; if(WARM){ WARM=null; setTimeout(libWarm,50); } });
-document.addEventListener("input",(e) =>{ const t=e.target; if(t&&t.id==="gsQ"&&String(t.value||"").trim().length>=2){ clearTimeout(WARMT); WARMT=setTimeout(libWarm,600); } });
-document.addEventListener("focusin",(e) =>{ const t=e.target; if(t&&t.id==="gsQ"){ clearTimeout(WARMT); libWarm(); } });/* Search opened: start in idle time right away, a library search usually follows the quick results */
+document.addEventListener("qrefs",() =>{ LIBGEN++; if(WARM){ WARM=null; setTimeout(libWarm,50); } });
+["focusin","input"].forEach((v) =>{ document.addEventListener(v,(e) =>{ if(e.target&&e.target.id==="gsQ") libWarm(); }); });
 /* typo help for a word of 4 letters or more: the entries that hold a word within one or two edits of it */
 function libFz(t){ if(LIB.fz[t]) return LIB.fz[t]; let m=fzMax(t), set={}, voc=LIB.voc, k, w, d; for(k=0;k<voc.length;k++){ w=voc[k]; if(Math.abs(w.length-t.length)>m) continue; d=fzD(t,w,m); if(d<=m) LIB.inv[w].forEach((i) =>{ set[i]=1; }); } LIB.fz[t]=set; return set; }
 function libSearch(){
@@ -44,27 +36,12 @@ function libSearch(){
  libSearchStep2();
   LIB.idx.forEach((e, i) => libSearchFn1(q, toks, e, i));
   libSearchStep3(); }
-/* fzScore(q, e.n) without the second toLowerCase and String calls (same steps, same result). Nothing is kept on the entries: 66,000 cached names or word lists cost 3 to 20 MB (heap budget) */
-/* the typo candidates of fzScore for a lower-case name, in one pass instead of split + two replace: the cleaned name is every run of a-z 0-9 ' joined by one space,
-   the words are the runs of 3 or more. Same lists as fzScore builds */
-function libNameC(s,n){ const runs=[]; let st=-1;
-  for(let i=0;i<=s.length;i++){ const c=i<s.length?s.charCodeAt(i):32, ok=(c>=97&&c<=122)||(c>=48&&c<=57)||c===39;
-    if(ok){ if(st<0) st=i; } else if(st>=0){ runs.push(s.slice(st,i)); st=-1; } }
-  const w=runs.filter((x) =>{ return x.length>=3; }); let c=[runs.join(" ")];
+/* fzScore(q,e.n) with the word candidates from one regex walk (same lists). Nothing cached on entries (heap budget) */
+function libNameC(s,n){ const r=s.match(/[a-z0-9']+/g)||[], w=r.filter((x) =>{ return x.length>=3; }); let c=[r.join(" ")];
   if(n>1){ for(let k=0;k+n<=w.length;k++) c.push(w.slice(k,k+n).join(" ")); } else c=c.concat(w); return c; }
-/* bag distance: max(letters of a not in b, letters of b not in a), counted with repeats. It is never more than the edit distance (a swap keeps the letters),
-   so a word whose bag distance is over m cannot be a typo match and skips the edit distance table. Same result, fewer tables */
-const BAGQ=new Int32Array(65536); let BAGK="";
-function bagOver(q,x,m){ if(BAGK!==q){ if(BAGK) for(let i=0;i<BAGK.length;i++) BAGQ[BAGK.charCodeAt(i)]=0; for(let i=0;i<q.length;i++) BAGQ[q.charCodeAt(i)]++; BAGK=q; }
-  let miss=0; const used=[];
-  for(let i=0;i<x.length;i++){ const c=x.charCodeAt(i); if(BAGQ[c]>0){ BAGQ[c]--; used.push(c); } else miss++; }
-  for(let i=0;i<used.length;i++) BAGQ[used[i]]++;
-  const extraQ=q.length-used.length; return Math.max(miss,extraQ)>m; }
 function libFzScore(q,e){ const s=String(e.n||"").toLowerCase(); if(!s||!q) return -1; const i=s.indexOf(q); if(i>=0) return i===0?0:/[^a-z0-9]/.test(s.charAt(i-1))?1:2;
   const m=fzMax(q); if(!m) return -1; const c=libNameC(s,q.split(" ").length); let best=m+1;
-  for(let j=0;j<c.length&&best>0;j++){ const x=c[j], long=x.length>q.length, px=long?x.slice(0,q.length):null;
-    const skipX=bagOver(q,x,best-1), skipP=!long||bagOver(q,px,best-1); if(skipX&&skipP) continue;
-    let d=skipX?best:fzD(q,x,m); if(long&&!skipP) d=Math.min(d,fzD(q,px,m)); if(d<best) best=d; }
+  for(let j=0;j<c.length&&best>0;j++){ let x=c[j], d=fzD(q,x,m); if(x.length>q.length) d=Math.min(d,fzD(q,x.slice(0,q.length),m)); if(d<best) best=d; }
   return best<=m?3+best:-1; }
 function libSearchFn1(q, toks, e,i){ let v=libFzScore(q,e); if(e.c==="homebrew"&&v>=3) v=-1;/* a homebrew name must contain the query: no typo matches among 43,000 rows */ if(e.p&&(v<0||v>1.5)&&e.p.indexOf(q)>=0) v=/^Class /.test(e.s)?1.3:/^Subclass /.test(e.s)?1.4:/^(Race|Species|Background|Feat) /.test(e.s)?1.5:1.7;/* the pack or publisher holds the query: Valda, Mage Hand Press */ if(v<0){ const hay=(e.n+" "+e.s).toLowerCase(); if(toks.length>1&&toks.every((t) =>{ return hay.indexOf(t)>=0; })) v=3; else if(toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0; })) v=7; else if(e.c!=="homebrew"&&toks.every((t) =>{ return e.t.indexOf(t)>=0||hay.indexOf(t)>=0||(t.length>=4&&libFz(t)[i]); })) v=8; } if(v>=0) LIB.res.push([v,e]); }
 function libSearchStep1(){

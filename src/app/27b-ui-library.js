@@ -51,7 +51,7 @@ document.addEventListener("qrefs",() =>{ LIB_BK=null; });
 /* Middle Finger of Vecna is the Mage Hand Press blog, so its packs are Mage Hand Press work. The book is named where it is known. */
 const LIB_HBO={"mfov-wd-4638":"Valda's Spire of Secrets","mfov-wm-e748":"Valda's Spire of Secrets","mfov-a-0657":"Valda's Spire of Secrets","mfovc-c79c":"Valda's Spire of Secrets","mfovw-a524":"Valda's Spire of Secrets","mfov-car-1c94":"Valda's Spire of Secrets","mfovbinder-467e":"Complete Binder","mfovbinderfoundry-c305":"Complete Binder"};
 function libHbBy(q){ let d=String(q.desc||"").replace(/\s*\(\d+ entries\)/,"").replace(/Mage Hand Press,\s*/,""); if(d.indexOf("Middle Finger of Vecna")>=0) d=d.replace("Middle Finger of Vecna","Middle Finger of Vecna (Mage Hand Press)"); const b=LIB_HBO[q.id]; return b?d+", book: "+b:d; }
-/* the same index as libIndex(), as separate jobs for idle slices (27d libWarm). The last job returns the index */
+/* libIndex as jobs (27d) */
 export function libIndexJobs(){ if(env.__noLibIdx) return [() =>{ return []; }]; let st=null;
   return [() =>{ st=libIndexStep1(); }, () =>{ libIndexStep2(st.g, st.add); }, () =>{ libIndexStep3(st.g, st.add); }, () =>{ libIndexStep4(st.g, st.add, st.o); return st.o; }]; }
 export function libIndex(){ if(env.__noLibIdx) return [];
