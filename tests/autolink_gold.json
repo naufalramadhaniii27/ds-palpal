@@ -1866,7 +1866,8 @@
    "self": "Sacrifice Foe",
    "text": "When an attack or damage roll improved by Sacrifice reduces an enemy to 0 Hit Points, you take no Radiant damage from using that feature.",
    "want": [
-    "Hit Points"
+    "Hit Points",
+    "damage roll"
    ],
    "no": [],
    "set": "dev"
@@ -1997,7 +1998,10 @@
    "kind": "spell",
    "self": "Disintegrate",
    "text": "The creature can be restored to life only by means of a true resurrection or a wish spell.",
-   "want": [],
+   "want": [
+    "true resurrection",
+    "wish"
+   ],
    "no": [],
    "set": "dev"
   },
@@ -2918,7 +2922,8 @@
    "want": [
     "Dexterity",
     "Strength",
-    "Unarmed Strikes"
+    "Unarmed Strikes",
+    "damage rolls"
    ],
    "no": [],
    "set": "dev"

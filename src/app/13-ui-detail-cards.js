@@ -1,4 +1,4 @@
-import {bindLive,ico,lateGet,svgI} from "./00a-reg-late-ports.js";import {STD_CONDS} from "./02-data-default-character.js";import {GLOSS} from "./03-data-glossary.js";import {C} from "./04-logic-storage.js";import {$,esc} from "./05-logic-helpers.js";import {D,richP} from "./06-logic-derivation.js";import {env} from "./00-env.js";import {infoHTML} from "./00a-reg-late-ports.js";
+import {bindLive,ico,lateGet,svgI} from "./00a-reg-late-ports.js";import {xlAlias,xlScanLcMore,xlSpnPlain,xlTrig3} from "./13c-ui-xlink-lowercase.js";import {STD_CONDS} from "./02-data-default-character.js";import {GLOSS} from "./03-data-glossary.js";import {C} from "./04-logic-storage.js";import {$,esc} from "./05-logic-helpers.js";import {D,richP} from "./06-logic-derivation.js";import {env} from "./00-env.js";import {infoHTML} from "./00a-reg-late-ports.js";
 bindLive("featSpec",{get:function(){return featSpec;}});
 bindLive("grpSpec",{get:function(){return grpSpec;}});
 bindLive("resSpec",{get:function(){return resSpec;}});
@@ -34,12 +34,12 @@ const XL_GEARC=/(?:^|\s)(?:weapon|armor)$|^Gear|pack$|^Ammunition|^Gaming set/i;
 const XL_TRIG=/^ (?:actions?|propert(?:y|ies)|mastery|masteries|conditions?|rules?)\b/;
 const XL_LANG={"Celestial":1,"Giant":1};/* v-measure: also a creature type ("Aberration, Celestial, Fey"): a language only when "language" follows */
 const XL_LANGT=/^ languages?\b/;
-const XL_SHAPE={"Cone":1,"Cube":1,"Sphere":1,"Cylinder":1,"Emanation":1,"Line":1};/* v-measure: an area shape after a size ("a 10-foot Cube") */
+const XL_SHAPE={"Cone":1,"Cube":1,"Sphere":1,"Cylinder":1,"Emanation":1,"Line":1,"Cones":1,"Cubes":1,"Spheres":1,"Cylinders":1};/* v-measure: an area shape after a size ("a 10-foot Cube") */
 const XL_SHAPEB=/\d-(?:foot|feet)(?:-[a-z]+)*,? (?:\d+-foot(?:-[a-z]+)* )?$/;
 const XL_PROP={"Finesse":1,"Heavy":1,"Light":1,"Thrown":1,"Versatile":1,"Reach":1,"Two-Handed":1};/* v-measure: weapon properties named before "weapon" or in a list that ends with "property" */
 const XL_LC={"saving throw":"Saving Throw","saving throws":"Saving Throw","death saving throw":"Death Saving Throw","death saving throws":"Death Saving Throw","attack roll":"Attack Roll","attack rolls":"Attack Roll","ability check":"Ability Check","ability checks":"Ability Check","spell attack":"Spell Attack","opportunity attack":"Opportunity Attack","opportunity attacks":"Opportunity Attack"};/* v-measure: rule phrases in running text are lowercase; short labels such as "long rest" are left alone */
 const XL_LCF={"saving":1,"death":1,"attack":1,"ability":1,"spell":1,"opportunity":1};
-const XL_PROPT=/^ (?:weapons?\b|(?:or|and) [A-Z][A-Za-z-]+ propert)/;/* the word after a level 2 name that makes it a term */
+const XL_PROPT=/^ (?:weapons?\b|(?:or|and) [A-Z][A-Za-z-]+ (?:propert|weapon))/;/* the word after a level 2 name that makes it a term */
 function xlRules(){ return typeof lateGet("LIB_RULES")!=="undefined"?lateGet("LIB_RULES"):{}; }
 let XL_KT=0; const XL_DIRTY=/[\[('’]|[^\S ]|\s\s|^\s|\s$/;/* a name that needs cleaning; most do not */
 function xlClean(n){ n=String(n); return /[\[(']|[^\S ]|\s\s|^\s|\s$/.test(n)?n.replace(/\s*[\[(].*$/,"").replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n; }/* the same cleaning, without making copies of a name that is already clean */
@@ -95,7 +95,7 @@ function xlIdxStep4(ftk, sp, crs, mi, m, key, put){
   sp.forEach((x) =>{ const n0=String(x[0]), k0=XL_DIRTY.test(n0)?n0.replace(/\s+/g," ").trim().replace(/'/g,"\u0001"):n0, old=m[k0]; put(x[0],["spn",x[0]],1); if(old&&m[k0]&&m[k0][0]==="spn") m[k0][3]=old; });
   crs.forEach((c) =>{ put(c.n,["cr",c.n],1); });
   mi.forEach((r) =>{ if(r&&r[0]) put(r[0],["mi",r[0]],1); });
-  const again=!!XL_KEY; XL_IDX=m; XL_KEY=key; if(again&&typeof xlQueue==="function"&&XL_OBS){ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); }/* the data changed (a source was switched): link the page again */
+  xlAlias(m); const again=!!XL_KEY; XL_IDX=m; XL_KEY=key; if(again&&typeof xlQueue==="function"&&XL_OBS){ ["app","sheetBody"].forEach((i) =>{ const ap=document.getElementById(i); if(ap) xlQueue(ap); }); }/* the data changed (a source was switched): link the page again */
 }
 export let XL_SELF="", XL_CM=null, XL_CK=-1;
 export function __set_XL_SELF(v){ return XL_SELF=v; }
@@ -120,7 +120,7 @@ function xlMapStep2(m, fs, key){
   return /** @type {any} */ ({o});
 }
 function xlScanLc(t, i, a, ta, tb, m, selfK, mode){
-  if(XL_LCF[t.slice(a,tb[i])]!==1) return [null,0];
+  if(XL_LCF[t.slice(a,tb[i])]!==1) return xlScanLcMore(t, i, a, ta, tb, m, selfK, mode);
   for(let L=Math.min(3,ta.length-i);L>=2;L--){
     let ok=true; for(let j=i+1;j<i+L;j++){ if(t.slice(tb[j-1],ta[j])!==" "){ ok=false; break; } }
     if(!ok) continue;
@@ -129,7 +129,7 @@ function xlScanLc(t, i, a, ta, tb, m, selfK, mode){
     if(mode==="b"){ if(k[0]!=="g"&&k[0]!=="lib") continue; if(k[0]==="g") k=["lib","rule|"+k[1]]; }
     return [k,L];
   }
-  return [null,0];
+  return xlScanLcMore(t, i, a, ta, tb, m, selfK, mode);
 }
 /* the matcher: finds the names in one run of text. t holds apostrophes as \u0001. Returns [start,end,[type,key]] for each name, longest first, left to right */
 function xlScan(t,atStart,selfK,mode,m){
@@ -169,7 +169,7 @@ function xlScanTokens(t, n0, p, ta, tb){
 const XL_DT="(?:Cold|Fire|Force|Lightning|Necrotic|Poison|Psychic|Radiant|Thunder)";
 const XL_DTA=new RegExp("^,? (?:or |and )?"+XL_DT+"\\b"), XL_DTB=new RegExp("\\b"+XL_DT+",? (?:or |and )?$");
 function xlDmgList(t, a, e0){ return XL_DTA.test(t.slice(e0,e0+14))||XL_DTB.test(t.slice(Math.max(0,a-14),a)); }
-function xlTrig2(k, t, a, e0){ const w=t.slice(a,e0); return !!((XL_LANG[w]&&k[1].indexOf("language|")===0&&XL_LANGT.test(t.slice(e0,e0+11)))||(XL_SHAPE[w]&&XL_SHAPEB.test(t.slice(Math.max(0,a-40),a)))||(XL_PROP[w]&&XL_PROPT.test(t.slice(e0,e0+40)))); }
+function xlTrig2(k, t, a, e0){ const w=t.slice(a,e0); return !!((XL_LANG[w]&&k[1].indexOf("language|")===0&&XL_LANGT.test(t.slice(e0,e0+11)))||(XL_SHAPE[w]&&XL_SHAPEB.test(t.slice(Math.max(0,a-40),a)))||xlTrig3(w, t, a, e0)||(XL_PROP[w]&&XL_PROPT.test(t.slice(e0,e0+40)))); }
 function xlScanGate(k, t, a, i, L, tb, atStart){
           if(k[1]==="gear|Acid"&&(/^ damage\b/.test(t.slice(tb[i+L-1],tb[i+L-1]+8))||xlDmgList(t, a, tb[i+L-1]))) return null;/* "Acid damage" and "Acid, Cold, Fire" are damage types, not the Acid item */
           const e0=tb[i+L-1], pw=/([A-Za-z][A-Za-z\u0001-]*) $/.exec(t.slice(Math.max(0,a-30),a));
@@ -183,13 +183,13 @@ function xlScanGate(k, t, a, i, L, tb, atStart){
             if(xlScanPart7(k, t, e0)) return null;/* followed by a capital: part of a longer name */
           }
           if(k[0]==="lib"&&k[1].indexOf("feat|")===0){ const sf=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\bfeats?\b/i.test(sf)) return null; }
-          if(k[0]==="spn"&&!/^: Used/.test(t.slice(e0,e0+7))){ const sent=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(sent)) return null; }
+          if(k[0]==="spn"&&xlSpnPlain(t, e0)){ const sent=t.slice(0,a).split(/[.!?:]\s/).pop(); if(!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(sent)) return null; }
           return k;
 }
 function xlScanPart1(c){ return ((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45); }
 function xlScanPart2(c){ return ((c>=65&&c<=90)||(c>=97&&c<=122)||(c>=48&&c<=57)||c===43||c===1||c===0x2019||c===45); }
 function xlScanPart3(pw){ return (pw&&/^[A-Z]/.test(pw[1])&&!XL_STOP[pw[1]]); }
-function xlScanPart4(k, t, e0, a){ return (k[0]==="spn"&&k[3]&&!/^: Used/.test(t.slice(e0,e0+7))&&!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(t.slice(0,a).split(/[.!?:]\s/).pop())); }
+function xlScanPart4(k, t, e0, a){ return (k[0]==="spn"&&k[3]&&xlSpnPlain(t, e0)&&!/\b(?:spells?|cast|casts|casting|cantrips?)\b/i.test(t.slice(0,a).split(/[.!?:]\s/).pop())); }
 function xlScanPart5(k){ return (k[2]===1&&k[0]!=="spn"&&k[1].indexOf("feat|")!==0); }
 function xlScanPart6(ss, t, e0){ return (ss&&t.slice(e0).replace(/[\s.,:;)]+$/,"")!==""&&!/^\s*,\s+[A-Z]/.test(t.slice(e0,e0+40))); }
 function xlScanPart7(k, t, e0){ return (k[0]==="lib"&&/^(?:gear|bg|class|sub|species)\|/.test(k[1])&&/^ [A-Z]/.test(t.slice(e0,e0+2))); }

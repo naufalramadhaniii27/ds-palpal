@@ -2581,5 +2581,13 @@
   ],
   "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
   "shared": []
+ },
+ "GX.item|Ruby Rod of Asmodeus": {
+  "files": [
+   "fx-B55-weaponriders.js",
+   "fx-L2.js"
+  ],
+  "reason": "B55 adds the Necrotic rider dice; fx-L2 holds the other traits of the Ruby Rod",
+  "shared": []
  }
 }
