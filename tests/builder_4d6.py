@@ -15,9 +15,9 @@ async def main():
             await pg.goto(url); await pg.evaluate("([v,f])=>{localStorage.clear(); localStorage.setItem('yudhi-kelapa-build-v3', v); localStorage.setItem('mi-fx',f);}", [FIX, fx]); await pg.reload()
             await pg.wait_for_selector("[data-hview]", state="attached", timeout=30000)
             await pg.evaluate("()=>{ if(window.__bldNeed) window.__bldNeed(); }"); await pg.wait_for_function("()=>typeof window.__bldOpen==='function'", timeout=30000)
-            await pg.evaluate("window.__bldOpen()"); await pg.wait_for_timeout(800); await pg.click('#steps [data-step="abil"]'); await pg.wait_for_timeout(600)
+            await pg.evaluate("window.__bldOpen()"); await pg.wait_for_timeout(800); await pg.click('#steps [data-step="abil"]'); await pg.wait_for_selector("#bld select[data-method]", timeout=30000)
             await pg.select_option("#bld select[data-method]", "manual"); await pg.wait_for_timeout(600)
-            await pg.wait_for_timeout(800); await pg.screenshot(path="/tmp/claude-0/-home-claude/860d5bec-8c32-5f79-85dc-ccbf8d67ca67/scratchpad/b4.png"); await pg.evaluate("()=>document.querySelector('.mi-4d6').click()"); before = await pg.evaluate(GET)
+            await pg.wait_for_selector(".mi-4d6", state="visible", timeout=30000); await pg.evaluate("()=>document.querySelector('.mi-4d6').click()"); before = await pg.evaluate(GET)  # waits for the 4d6 button: a fixed pause was too short on CI
             three = False
             for _ in range(120):
                 await pg.wait_for_timeout(250)
