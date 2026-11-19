@@ -85,4 +85,4 @@ CI tidak jalan untuk push ke branch kerja, dan tidak jalan untuk PR draft. CI ja
 
 ## Plugin project
 
-Aktif lewat `.claude/settings.json`: superpowers (TDD, systematic-debugging, verification-before-completion), feature-dev (/feature-dev), pr-review-toolkit (/review-pr, silent-failure-hunter), typescript-lsp (definisi dan referensi di `src/`, server dipasang hook sesi), frontend-design (kerja UI), Cloudflare (Workers, D1, R2, web-perf).
+Aktif lewat `.claude/settings.json`: superpowers (TDD, systematic-debugging, verification-before-completion), feature-dev (/feature-dev), pr-review-toolkit (/review-pr, silent-failure-hunter), typescript-lsp (definisi dan referensi di `src/`, server dipasang hook sesi), frontend-design (kerja UI), Cloudflare (Workers, D1, R2, web-perf), ponytail (perubahan terkecil yang lengkap, dari DietrichGebert/ponytail, dikunci ke commit 96608e0 di `extraKnownMarketplaces`. Naikkan ref hanya sesudah membaca isi versi baru).
