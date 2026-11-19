@@ -8,6 +8,11 @@ fi
 
 cd "${CLAUDE_PROJECT_DIR:-.}"
 
+# typescript-language-server for the typescript-lsp plugin (code intelligence in src/)
+if ! command -v typescript-language-server >/dev/null; then
+  npm install -g --no-audit --no-fund typescript-language-server typescript
+fi
+
 # esbuild, eslint, typescript untuk build.py
 hashes=tools/build/node_modules/.session-start.sha256
 if ! sha256sum --check --status "$hashes" 2>/dev/null; then

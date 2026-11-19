@@ -82,3 +82,7 @@ CI tidak jalan untuk push ke branch kerja, dan tidak jalan untuk PR draft. CI ja
 - `SOURCE-NOTES.md`: peta file lengkap, fx schema, checklist fitur baru. Baca per bagian dengan `grep -n '^## '` lalu `sed -n`, jangan seluruhnya.
 - `reports/solid-guards.md`, `reports/solid-deps-map.md`: penjaga SOLID dan peta dependensi.
 - Versi rilis tercatat di judul commit (contoh `0.0.80: ...`).
+
+## Plugin project
+
+Aktif lewat `.claude/settings.json`: superpowers (TDD, systematic-debugging, verification-before-completion), feature-dev (/feature-dev), pr-review-toolkit (/review-pr, silent-failure-hunter), typescript-lsp (definisi dan referensi di `src/`, server dipasang hook sesi), frontend-design (kerja UI), Cloudflare (Workers, D1, R2, web-perf).
