@@ -33,9 +33,12 @@ AREAS = {
         ("golden_builds", [PY, "tests/golden_builds.py"]),
         ("invariants_quick", [PY, "tests/invariants.py", "--quick"]),
         ("builder_cost", [PY, "tests/builder_cost.py"]),
+        ("audit_sweep", [PY, "tools/audit_char.py", "--sweep"]),
     ],
     "sheet": [
         ("solid_contract", [PY, "tests/solid_contract.py"]),
+        ("audit_selftest", [PY, "tools/audit_char.py", "--selftest"]),
+        ("audit_sweep", [PY, "tools/audit_char.py", "--sweep"]),
         ("golden_builds", [PY, "tests/golden_builds.py"]),
     ],
     "modules": [

@@ -52,6 +52,8 @@ jobs:
         run: node tests/tg_engine.js 300
       - name: API sign-in guard (node)
         run: node tests/api_dev_guard.mjs
+      - name: "Character audit (tools/audit_char.py: feature groups, book labels, edition text, empty and double features; selftest, then every class and subclass)"
+        run: python3 tools/audit_char.py --selftest && python3 tools/audit_char.py --sweep
       - name: "SOLID guards (window, dispatch, deps, size, dup; fails only on NEW violations over tests/guard_baseline, see reports/solid-guards.md)"
         run: python3 tests/guard_all.py --enforce
       - name: Performance budget (bytes and heap only, the stable measures)

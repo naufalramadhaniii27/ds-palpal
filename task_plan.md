@@ -20,5 +20,5 @@ Tujuan: aplikasi lebih cepat dan lebih sedikit bug, dengan bukti angka untuk tia
 | 1 | Builder lebih cepat saat dibuka | selesai (0.0.81) | build_warm 3748 -> 412 ms |
 | 2 | Tap Build pertama di bawah 3 detik di HP lambat | selesai | bentuk hosting (dist): build_first 2613 ms, build_warm 523 ms (390x844 cpu4x) |
 | 3 | Jaga biaya builder di CI | selesai | `tests/builder_cost.py`: jumlah toSheet per layar builder, batas di `tests/builder-cost.json`. Bug 0.0.80 memberi 68, batas 11 |
-| 4 | Audit per karakter (`tools/audit_char.py`) | berjalan | menangkap 3 masalah Tigor lama (ASI di grup Feats, Fighting Style di grup Feats, label PHB-2014) pada versi lama |
+| 4 | Audit per karakter (`tools/audit_char.py`) | selesai | `--selftest` menangkap 4 jenis kesalahan Tigor lama. `--sweep` 270 karakter bersih, 19 detik. Jalan di CI Job A |
 | 5 | Tes karakter Tono Bakrie | butuh ekspor JSON dari pemilik | |

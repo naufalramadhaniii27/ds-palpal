@@ -55,6 +55,8 @@ Banyak file data berisi satu tabel dalam satu baris (`07-data-2014-spells.js` sa
 - `python3 tests/quick.py engine`: fx_engine, golden_rules, golden_builds, invariants --quick (sekitar 4,5 menit, golden_builds paling lama)
 - `python3 tests/quick.py --list`: daftar area
 - `python3 tests/quick.py --changed --dry`: lihat tes yang akan jalan tanpa menjalankannya
+- `python3 tools/audit_char.py FILE.json`: audit satu karakter (build atau sheet ekspor). `--sweep` semua class dan subclass, `--selftest` bukti aturannya bekerja. Jalankan sebelum bilang fitur karakter selesai.
+- `python3 tests/builder_cost.py`: jumlah hitung ulang sheet per layar builder, batas di `tests/builder-cost.json`.
 
 ## Tes minimum per jenis perubahan
 
