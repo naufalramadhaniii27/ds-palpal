@@ -18,7 +18,9 @@
     "pr-review-toolkit@anthropic-plugin-directory": true,
     "typescript-lsp@anthropic-plugin-directory": true,
     "frontend-design@anthropic-plugin-directory": true,
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "planning-with-files@planning-with-files": true,
+    "application-performance@claude-code-workflows": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -26,6 +28,20 @@
         "source": "github",
         "repo": "DietrichGebert/ponytail",
         "ref": "96608e078b2d5ea607c5c3b8b5a54d1c1fba6846"
+      }
+    },
+    "planning-with-files": {
+      "source": {
+        "source": "github",
+        "repo": "OthmanAdi/planning-with-files",
+        "ref": "51bf62def62d1cb317d37936929b4ef97cf862c3"
+      }
+    },
+    "claude-code-workflows": {
+      "source": {
+        "source": "github",
+        "repo": "wshobson/agents",
+        "ref": "42203085cfc5736204bf0f6d436dff7e1da0bf3f"
       }
     }
   }
