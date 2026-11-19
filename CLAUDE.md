@@ -4,7 +4,7 @@ Pembuat dan sheet karakter D&D 5e (aturan 2014 dan 2024). PWA satu halaman. Tanp
 
 ## Aturan keras
 
-- JANGAN baca, grep, atau edit `index.html` dan `--help`. `index.html` hasil build (28 MB). Semua kode ada di `src/`.
+- JANGAN baca, grep, atau edit `index.html`. `index.html` hasil build (28 MB). Semua kode ada di `src/`.
 - Alur edit: ubah `src/`, jalankan `python3 build.py`, lalu `python3 build.py --check`. Commit `src/`, `index.html`, dan `sw.js` bersama.
 - File baru wajib didaftarkan di `src/manifest.json` pada blok dan posisi yang benar. Urutan manifest = urutan eksekusi.
 - Modul hanya boleh mengimpor file yang lebih awal di manifest. Nama dari file yang lebih akhir lewat port akhir (`builder/01b-logic-late-ports.js`, `app/00a-reg-late-ports.js`). Cek: `node tools/esm_codemod.js <blok>`.
@@ -39,9 +39,26 @@ Menambah aturan sheet: satu `registerSheetGroup()` atau `registerSheetRule()` de
 
 `src/app` sheet dan Home. `src/fx` efek UI (IIFE klasik). `src/data` data buku (blok tertunda). `src/pdf` renderer PDF. `src/learn` modul belajar. `src/boot` skrip awal. `functions/` dan `workers/` API Cloudflare. `tools/` generator data dan gerbang CI. `reports/` catatan desain.
 
+## Mencari data
+
+Banyak file data berisi satu tabel dalam satu baris (`07-data-2014-spells.js` satu baris 431 KB, `q07-bestiary.js` 4,9 MB). Jangan grep file itu. Pakai `tools/peek.py`:
+
+- `python3 tools/peek.py "Fireball"`: semua entri bernama Fireball, dengan file, baris, kolom, dan tabelnya (contoh `SP14.ov`)
+- `python3 tools/peek.py "Fireball" -f 07-data`: hanya file yang path-nya memuat teks itu
+- `python3 tools/peek.py "ring of prot" -i --where`: cari tanpa beda huruf besar kecil, hanya lokasi
+- `python3 tools/peek.py --keys src/builder/07-data-2014-spells.js`: struktur tabel di satu file
+
+## Tes cepat
+
+`python3 tests/quick.py --changed`: pilih area dari file yang berubah terhadap `origin/main`, jalankan `build.py --check`, lalu tes area itu secara paralel. Log ada di `tests/out/quick/`.
+
+- `python3 tests/quick.py engine`: fx_engine, golden_rules, golden_builds, invariants --quick (sekitar 4,5 menit, golden_builds paling lama)
+- `python3 tests/quick.py --list`: daftar area
+- `python3 tests/quick.py --changed --dry`: lihat tes yang akan jalan tanpa menjalankannya
+
 ## Tes minimum per jenis perubahan
 
-Semua tes jalan dari root repo dan membuka `index.html` lokal. Build dulu sebelum tes.
+Semua tes jalan dari root repo dan membuka `index.html` lokal. Build dulu sebelum tes. `tests/quick.py` menjalankan daftar ini per area.
 
 | Perubahan | Tes |
 |---|---|
