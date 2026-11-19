@@ -32,6 +32,7 @@ AREAS = {
         ("golden_rules", [PY, "tests/golden_rules.py"]),
         ("golden_builds", [PY, "tests/golden_builds.py"]),
         ("invariants_quick", [PY, "tests/invariants.py", "--quick"]),
+        ("builder_cost", [PY, "tests/builder_cost.py"]),
     ],
     "sheet": [
         ("solid_contract", [PY, "tests/solid_contract.py"]),
@@ -51,6 +52,7 @@ AREAS = {
         ("tg_engine", ["node", "tests/tg_engine.js", "50"]),
     ],
     "ui": [
+        ("builder_cost", [PY, "tests/builder_cost.py"]),
         ("html_gate", [PY, "tools/html_gate.py"]),
         ("scenarios", [PY, "tests/scenarios.py"]),
     ],

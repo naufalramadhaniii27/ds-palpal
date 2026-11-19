@@ -82,7 +82,7 @@ jobs:
           - part: "3 golden and page"
             tests: "golden_builds csp_check scenarios"
           - part: "4 rules and lint"
-            tests: "names_lint golden_rules fx_engine fx_overlap solid_data_contract solid_ui_contract mech_scan coverage_gate dup_check e2e_fx_toggle version_label edition_isolation"
+            tests: "names_lint golden_rules fx_engine fx_overlap solid_data_contract solid_ui_contract mech_scan coverage_gate dup_check e2e_fx_toggle version_label edition_isolation builder_cost"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
