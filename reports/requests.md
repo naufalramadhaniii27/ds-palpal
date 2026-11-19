@@ -126,3 +126,8 @@ Seen in the builder at Rules edition 2014 with Retromistika on (Sorcerer 7, Mist
 | Dari | Ke | Perubahan | Catatan |
 |---|---|---|---|
 | Logic/UI (auto-link) | Checker | `tests/link_sweep.py` gagal dengan 56 miss, 5 nama. Gagal juga di main 0.0.75, jadi bukan dari perubahan 0.0.76. Daftar `STOP` di sweep tidak sama dengan gerbang di `src/app/13-ui-detail-cards.js`. | Celestial (x8): app sengaja menautkannya hanya bila "language" mengikuti (`XL_LANG`), karena "Celestial, Fey, or Fiend" adalah tipe makhluk. Acid (x2): gerbang jenis damage ("Acid, Fire, and Cold damage"). Healer (x18): feat dan class bernama sama, feat hanya tertaut dengan kata "feat" di kalimat. Psion (x16) dan Summoner (x12): nama class dari sumber yang mati muncul di daftar class spell, indeks tidak memuatnya (di halaman `m["Psion"]` kosong). Saya tidak mengubah tes ini (aturan: Checker hanya melapor). Perlu keputusan: perbarui `STOP` sweep, atau ubah app. |
+
+## 2026-11-19, clause_gate: handler kode subclass 2014 tidak terbaca (untuk Checker)
+- Gate tidak melihat handler kode di src/builder/12*.js untuk subclass dengan akhiran (2014), contoh Oath of Glory (2014) Aura of Alacrity (+10 Speed lewat 12f-logic-sheet-handlers-movement.js).
+- Akibat: kalimat seperti itu tetap terhitung belum tercakup (positif palsu). Jumlahnya belum diukur.
+- Usul: baca handler yang menyebut nama subclass (2014) sebagai atom per kelas, atau daftarkan lewat reg.
