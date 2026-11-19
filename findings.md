@@ -14,3 +14,4 @@
 - Penyaring huruf tingkat nama (qMiss): tepat, 0 beda pada 33 kueri x 66.247 nama, 3,7x lebih cepat.
 - dist/index.html sisa 15 byte di bawah 2 MiB. Rilis berikutnya wajib memangkas kode app dulu.
 - Tap Library atau search pustaka seketika (indeks belum siap): hasil 1,5 sampai 4,2 s di CPU 4x. Sekarang spinner #busy muncul 28 sampai 43 ms sesudah tap (animasi transform, tetap berputar saat main thread sibuk).
+- Loading Library sekarang skeleton (8 baris abu-abu dengan kilau transform, mati bila prefers-reduced-motion), dibangun dengan DOM (html_gate). Tampil 43 sampai 53 ms sesudah tap.\n

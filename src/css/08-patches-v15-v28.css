@@ -267,3 +267,8 @@ svg.ist{width:.95em;height:.95em;margin:0 0 0 .3em;opacity:.75;vertical-align:-.
 /* v28 p08 */
 #pinsBox:empty,#oldNote:empty{display:none}
 
+
+.lib-sk i{display:block;height:40px;margin:10px 6px;border-radius:8px;background:var(--line);position:relative;overflow:hidden}
+.lib-sk i:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-100%);animation:lsk 1.2s infinite}
+@keyframes lsk{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.lib-sk i:after{animation:none}}
