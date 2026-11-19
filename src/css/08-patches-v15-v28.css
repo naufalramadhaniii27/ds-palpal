@@ -268,7 +268,14 @@ svg.ist{width:.95em;height:.95em;margin:0 0 0 .3em;opacity:.75;vertical-align:-.
 #pinsBox:empty,#oldNote:empty{display:none}
 
 
-.lib-sk i{display:block;height:40px;margin:10px 6px;border-radius:8px;background:var(--line);position:relative;overflow:hidden}
-.lib-sk i:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-100%);animation:lsk 1.2s infinite}
+.lib-sk{position:relative;overflow:hidden;pointer-events:none}
+.lib-sk:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:translateX(-100%);animation:lsk 1.2s infinite}
 @keyframes lsk{to{transform:translateX(100%)}}
-@media (prefers-reduced-motion:reduce){.lib-sk i:after{animation:none}}
+.lib-sk .lib-ri{height:22px;border-radius:50%;background:var(--line)}
+.lib-sk .lib-rt{flex:1}
+.lib-sk b,.lib-sk small,.sk-h{display:block;background:var(--line);background-clip:content-box;border-radius:6px}
+.lib-sk b{height:23px;padding:5px 0;width:60%}
+.lib-sk small{height:18px;padding:4px 0;width:35%}
+.sk-h{width:90px;height:21px;padding:4px 0}
+.lib-tile.lib-sk{height:81px}
+@media (prefers-reduced-motion:reduce){.lib-sk:after{animation:none}}

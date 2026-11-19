@@ -95,8 +95,11 @@ function libWm(w,d){ let m=document.getElementById("libWm"); if(!m){ m=document.
   m.innerHTML=wmHd(h); }
 /* a failing icon or helper must never leave the result list blank: retry with plain rows */
 function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); const a=lateGet("askHTML"); lateSet("askHTML",null); const ai=env.__artIc; env.__artIc=null; try{ return libListHTML(); } finally{ lateSet("askHTML",a); env.__artIc=ai; } }catch(e2){ return '<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>'; } } }
-/* skeleton rows in the result list while the index is built (the shimmer is a transform, it keeps moving); libPaint replaces them */
-function libBusy(t){ const d=document.getElementById("libBd"), p=document.createElement("p"); if(!d) return; p.className="lib-sk"; p.setAttribute("role","status"); p.setAttribute("aria-label",t); for(let i=0;i<8;i++) p.appendChild(document.createElement("i")); d.replaceChildren(p); }
+/* skeleton made of the real row and tile classes (same size as the results); shimmer is a transform, it keeps moving while the index is built. libPaint replaces it */
+function libBusy(t){ const d=document.getElementById("libBd"); if(!d) return; const q=LIB.q.trim(), n=[],
+    E=(g,c,k) =>{ const e=document.createElement(g); e.className=c||""; if(k) e.append(...k); return e; };
+  for(let i=0;i<8;i++) n.push(q?E("div","lib-r lib-sk",[E("i","lib-ri"),E("span","lib-rt",[E("b"),E("small")])]):E("span","lib-tile lib-sk"));
+  const w=E("div",q?"":"lib-tiles",n); w.setAttribute("role","status"); w.setAttribute("aria-label",t); d.replaceChildren(E("div","info-h",[E("b","sk-h")]),w); }
 /* slow first search: skeleton first, the work one frame later */
 function libLater(run){ if(!LIB.idx||(!LIB.inv&&!WARM&&LIB.q.trim().length>1)){ libBusy(LIB.q.trim()?"Searching the library":"Opening the library"); requestAnimationFrame(() =>{ setTimeout(run,0); }); } else run(); }
 function libPaint(){ const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
