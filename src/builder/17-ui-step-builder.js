@@ -127,7 +127,9 @@ const CB_TYPES={
 export function choiceBody(c){const v=B.ch[c.key];
  if(Object.prototype.hasOwnProperty.call(CB_TYPES,c.t))return CB_TYPES[c.t](c,v);
  return ""}
-function redundant(n){const p=toSheet().profs,ar=p.armor,wp=p.weapons;
+/* only these four feats can be redundant. Other names return at once, so the feat list does not compute the whole sheet once per option */
+const RED_FEATS={"Lightly Armored":1,"Moderately Armored":1,"Heavily Armored":1,"Martial Weapon Training":1};
+function redundant(n){if(!RED_FEATS[n])return "";const p=toSheet().profs,ar=p.armor,wp=p.weapons;
  if(n==="Lightly Armored"&&/Light/.test(ar)&&/Shield/.test(ar))return "you already have Light armor and Shield training";
  if(n==="Moderately Armored"&&/Medium/.test(ar))return "you already have Medium armor training";
  if(n==="Heavily Armored"&&/Heavy/.test(ar))return "you already have Heavy armor training";

@@ -2,6 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
+{v:183,l:"0.0.81",d:"2026-11-19",n:["The builder opens about ten times faster once it has loaded, and the first open is about three seconds faster on a slow phone."]},
 {v:182,l:"0.0.80",d:"2026-11-19",n:["Ring of Nightmares, Boon of Immortality, Charm of the Snow Walker and the Reliquaries of Dawn and Twilight show their immunities as lines on the sheet."]},
 {v:181,l:"0.0.79",d:"2026-11-19",n:["Bob, Ankh of Anubis, Ghost Suit, Rope of Climbing, Goggles of Object Reading and 6 more items show their conditional Advantage as lines on the sheet."]},
 {v:180,l:"0.0.78",d:"2026-11-19",n:["Absolute Chapter (Unencumbered Movement) and Metamorph (Mutable Form) have switches that add their Speed bonus."]},

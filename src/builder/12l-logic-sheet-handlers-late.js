@@ -241,10 +241,12 @@ registerSheetGroup({id:"edition-2014-book-names",group:"late",phase:"post",order
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {r14}=I; if(I.r14)(function w(o){if(!o||typeof o!=="object")return;Object.keys(o).forEach((k) =>{const v=o[k];if(typeof v==="string"){if(v.indexOf("PHB-2024")>=0)o[k]=v.replace(/PHB-2024/g,"PHB-2014")}else w(v)})})(C);/* v85: the book of the 2014 rules */
   return ctx.patch()}});
 /* a feature from a third party book names that book, not the core rulebook: "PHB-2024, Martyr 1" becomes "VSS24, Martyr 1". The book comes from the book's own list of classes, subclasses, species and feats */
-function tpBookOf(n){const W=(genv.WX&&genv.WX.src)||[];for(let i=0;i<W.length;i++){const q=W[i];if(!q.tp)continue;if([].concat(q.classes||[],q.subs||[],q.species||[],q.feats||[]).indexOf(n)>=0)return q.tag||q.id}return ""}
-function tpRelabel(s){const m=/^(PHB-20(?:14|24)), (.+?)( \d+| table)?$/.exec(String(s||""));if(!m)return s;const tag=tpBookOf(m[2])||tpBookOf(m[2].replace(/ \(2014\)$/,""));return tag?tag+", "+m[2]+(m[3]||""):s}
+/* tpBookMap: name -> tag of the first third party book in WX.src that lists it. Built once per sheet run, not once per feature */
+function tpBookMap(){const W=(genv.WX&&genv.WX.src)||[],M=new Map();for(let i=0;i<W.length;i++){const q=W[i];if(!q.tp)continue;const t=q.tag||q.id;[].concat(q.classes||[],q.subs||[],q.species||[],q.feats||[]).forEach((n) =>{if(!M.has(n))M.set(n,t)})}return M}
+function tpBookOf(n,M){if(M)return M.get(n)||"";return tpBookMap().get(n)||""}
+function tpRelabel(s,M){const m=/^(PHB-20(?:14|24)), (.+?)( \d+| table)?$/.exec(String(s||""));if(!m)return s;M=M||tpBookMap();const tag=tpBookOf(m[2],M)||tpBookOf(m[2].replace(/ \(2014\)$/,""),M);return tag?tag+", "+m[2]+(m[3]||""):s}
 registerSheetGroup({id:"third-party-book-names",group:"late",phase:"post",order:55,reads:["C.features"],writes:["C.features"],
- run:function(ctx){(ctx.C.features||[]).forEach((g) =>{(g.items||[]).forEach((it) =>{it.s=tpRelabel(it.s);const F=g.g==="Feats"&&featDef(it.n);if(F&&F.hb&&/^PHB-20(14|24), /.test(it.s||""))it.s=String(it.s).replace(/^PHB-20(14|24)/,F.hb)})});return ctx.patch()}});
+ run:function(ctx){const M=tpBookMap();(ctx.C.features||[]).forEach((g) =>{(g.items||[]).forEach((it) =>{it.s=tpRelabel(it.s,M);const F=g.g==="Feats"&&featDef(it.n);if(F&&F.hb&&/^PHB-20(14|24), /.test(it.s||""))it.s=String(it.s).replace(/^PHB-20(14|24)/,F.hb)})});return ctx.patch()}});
 registerSheetGroup({id:"pb-add",group:"late",phase:"post",order:60,reads:["q.getPbAdd", "C.pbAdd"],writes:["C.pbAdd"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C; if(Q.getPbAdd())C.pbAdd=Q.getPbAdd();/* fx engine v5: Proficiency Bonus added by pbAdd entries */
   return ctx.patch()}});
