@@ -4717,9 +4717,10 @@
     "libCat",
     "libFeatBlock",
     "libIndex",
+    "libIndexJobs",
     "libReady"
    ],
-   "count": 8
+   "count": 9
   },
   {
    "from": "app/27d-ui-library-search-open.js",
