@@ -19,5 +19,8 @@ rep("Technical",[],[{n:"Mind Over Matter",pick:[{k:"mom",t:"multi",n:1,title:"Mi
 /* fx engine v3a: "if you already have" rules, extra damage dice */
 rep("Specter Transformation: Stage 1",["Spectral Form"],[{n:"Spectral Form",resToImm:["Necrotic"]}]);/* Resistance to Necrotic damage, or Immunity if you already had that Resistance */
 rep(HAG,["The Sea Sisterhood"],[{n:"The Sea Sisterhood",when:{key:"trHag1",val:"The Sea Sisterhood"},mv:{swim:"speed"},speedAddIf:{swim:10}}]);/* Swim Speed equal to your Speed (or +10 feet if you already have one) */
+/* 0.0.85 (tools/sheet_gaps.py feat): Ulitharid's Might Telepathy 10 ft or +10 ft; Hulking Figure (GHPG24) Brutal, once per turn +1d4 Bludgeoning on an Unarmed Strike hit */
+rep("Ulitharid's Might",[],[{n:"Telepathy",senseAdd:[["Telepathy",10,"Telepathy 10 ft, or +10 ft if you already have it"]]}]);
+rep("Hulking Figure",[],[{n:"Brutal",atkDice:[{when:"unarmed",d:"1d4",t:"Bludgeoning",note:"Hulking Figure, once per turn"}]}]);
 rep("Multiscale",[],[{n:"Improved Breath Weapon",atkDice:[{when:"Breath Weapon",d:"1d10",t:"damage of the type set by your Draconic Ancestry",note:"Breath Weapon (Improved Breath Weapon)"}]}]);/* no attack row for the Breath Weapon, so a Defenses note */
 })();

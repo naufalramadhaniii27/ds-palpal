@@ -19,5 +19,12 @@ with sync_playwright() as p:
     for n, want, got in res:
         ok = want.lower() in got.lower(); bad += not ok
         print("%s %s gives %s%s" % ("ok  " if ok else "FAIL", n, want, "" if ok else " (sheet: %s)" % got[:200]))
+    # 0.0.85: Ulitharid's Might Telepathy 10 ft, Hulking Figure +1d4 Bludgeoning on an Unarmed Strike
+    w = pg.evaluate("""()=>{const all={};(window.WX.src||[]).forEach(x=>all[x.id]=true);const b1=window.__bldFuzz({sp:'Human',bg:'Acolyte',rs:'2024',src:all,cls:'Fighter',sub:'',lv:8,arr:[15,14,13,12,10,8],b2:0,b1:0}).b;
+      const one=f=>{const b=structuredClone(b1);b.src=all;b.ch.feat4={feat:f,a1:'STR'};const t=window.__bldTestB();Object.assign(t,b);delete t.unset;return window.__bldSheetFor(t)};
+      const U=one("Ulitharid's Might"),H=one('Hulking Figure');const u=H.attacks.find(a=>a.n==='Unarmed Strike')||{};
+      return {tel:(U.senses||[]).filter(x=>x.n==='Telepathy').map(x=>x.v),hx:(u.xdice||[]).map(x=>x.d+' '+x.t)}}""")
+    for lab, ok in (("Ulitharid's Might Telepathy 10 ft", w["tel"] == [10]), ("Hulking Figure Unarmed Strike +1d4 Bludgeoning", w["hx"] == ["1d4 Bludgeoning"])):
+        bad += not ok; print("%s %s %s" % ("ok  " if ok else "FAIL", lab, "" if ok else w))
     br.close()
 print("%d failed" % bad); sys.exit(1 if bad else 0)
