@@ -16,3 +16,6 @@
 - Tap Library atau search pustaka seketika (indeks belum siap): hasil 1,5 sampai 4,2 s di CPU 4x. Sekarang spinner #busy muncul 28 sampai 43 ms sesudah tap (animasi transform, tetap berputar saat main thread sibuk).
 - Loading Library sekarang skeleton (8 baris abu-abu dengan kilau transform, mati bila prefers-reduced-motion), dibangun dengan DOM (html_gate). Tampil 43 sampai 53 ms sesudah tap.\n
 - 0.0.84: loading tanpa kedip. #busy bertahan 0,45 s lalu memudar (tap langsung bebas), teks dikembalikan sesudah 800 ms. Skeleton Library minimal 600 ms lalu hasil fade in. Diukur CPU 1x: skeleton 614 ms, overlay 100 ms tetap terlihat sampai sekitar 750 ms.\n
+- Tombol atas Home melompat dari 5 kolom ke 3x2 saat tombol Friends datang (sesudah syApi me). Sekarang akun cloud tersimpan (cs-sync-v1 u) memberi html.sy-acct dan grid 3x2 sejak frame pertama.
+- Transisi Home ke sheet lama (salinan potret dan nama di atas tirai) tertahan setengah jadi di HP sibuk. Diganti View Transition (vt-go, vt-back), reload karakter lain memakai mi-arrive. tests/flow_home_sheet.py diperbarui ke perilaku baru.
+- tests/back_home.py gagal juga di main (klik elemen tidak terlihat), tidak ada di CI: masalah lama, belum dikerjakan.

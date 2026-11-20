@@ -4,7 +4,7 @@ import {applyLook} from "./07-ui-theme-contrast-spring.js";
 import {renderNotes} from "./08c-ui-render-inventory-features-notes.js";
 import {syncPortrait} from "./20-ui-portrait.js";
 import {renderAll} from "./35-ui-combo.js";
-import {SY,__set_syIcon,syApi,syIcon,syPicIn} from "./43-logic-cloud-sync.js";import {env} from "./00-env.js";
+import {SY,SYKEY,__set_syIcon,syApi,syIcon,syPicIn} from "./43-logic-cloud-sync.js";import {env} from "./00-env.js";
 /* T8 stage 3b: Friends. Profile with name, @username and friend code, mutual follow, block, view-only sharing per character,
    copy requests, a simple feed of friends' characters, and an Admin tab for the owner of the app. Only when cloud backup is on.
    No popups for social events: a small dot on the Friends button marks new followers, requests and shares. */
@@ -146,7 +146,9 @@ function frAsk(owner,id,name,btn){ const w=document.createElement("div"); w.clas
 function frDots(){ const s=(SY.me||{}).social||{}, any=(s.newFollowers||0)+(s.newRequests||0)+(s.newShares||0)>0;
   document.querySelectorAll(".fr-b .fr-dot").forEach((d) =>{ d.hidden=!any; });
   if(FR.w){ const set=function(k,on){ const d=FR.w.querySelector('[data-dot="'+k+'"]'); if(d) d.hidden=!on; }; set("friends",(s.newFollowers||0)>0); set("requests",(s.newRequests||0)>0); set("shared",(s.newShares||0)>0); } }
-function frButton(){ const on=SY.on&&SY.st!=="off", hb=document.querySelector("#homeV .hbtns"); if(!hb) return; let b=hb.querySelector(".fr-b");
+/* a stored cloud account means Friends will come: the Home row takes its 3 x 2 layout from the start, so the button does not reshape it when it arrives */
+try{ document.documentElement.classList.toggle("sy-acct",!!(JSON.parse(__store.getItem(SYKEY)||"null")||{}).u); }catch(x){}
+function frButton(){ const on=SY.on&&SY.st!=="off", hb=document.querySelector("#homeV .hbtns"); if(on) document.documentElement.classList.add("sy-acct"); if(!hb) return; let b=hb.querySelector(".fr-b");
   if(!on){ if(b) b.remove(); return; } if(b) return;
   b=document.createElement("button"); b.type="button"; b.className="hbk fr-b"; b.setAttribute("data-friends","1");
   b.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M16 11h6M19 8v6"/></svg><span class="hbt">Friends</span><i class="fr-dot" hidden></i>';

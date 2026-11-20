@@ -96,14 +96,15 @@ function libWm(w,d){ let m=document.getElementById("libWm"); if(!m){ m=document.
 /* a failing icon or helper must never leave the result list blank: retry with plain rows */
 function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("lib list",er); const a=lateGet("askHTML"); lateSet("askHTML",null); const ai=env.__artIc; env.__artIc=null; try{ return libListHTML(); } finally{ lateSet("askHTML",a); env.__artIc=ai; } }catch(e2){ return '<p class="info-d lib-empty">This list could not be drawn. Close the Library and open it again.</p>'; } } }
 /* skeleton made of the real row and tile classes (same size as the results); shimmer is a transform, it keeps moving while the index is built. libPaint replaces it */
-function libBusy(t){ const d=document.getElementById("libBd"); if(!d) return; const q=LIB.q.trim(), n=[],
+function libBusy(t){ const d=document.getElementById("libBd"), cb=document.getElementById("libC"); if(!d) return; const q=LIB.q.trim(), rec=!q&&libRecent().length, n=[],
     E=(g,c,k) =>{ const e=document.createElement(g); e.className=c||""; if(k) e.append(...k); return e; };
-  for(let i=0;i<8;i++) n.push(q?E("div","lib-r lib-sk",[E("i","lib-ri"),E("span","lib-rt",[E("b"),E("small")])]):E("span","lib-tile lib-sk"));
-  const w=E("div",q?"":"lib-tiles",n); w.setAttribute("role","status"); w.setAttribute("aria-label",t); d.replaceChildren(E("div","info-h",[E("b","sk-h")]),w); LSK=performance.now(); }
+  for(let i=0;i<(rec?Math.min(rec,8):8);i++) n.push(q||rec?E("div","lib-r lib-sk",[E("i","lib-ri"),E("span","lib-rt",[E("b"),E("small")])].concat(rec?[E("span","lib-rc")]:[])):E("span","lib-tile lib-sk"));
+  if(cb) cb.replaceChildren(...[83,98,137].map((w) =>{ const c=E("span","lib-chip lib-sk"); c.style.width=w+"px"; return c; }));
+  const w=E("div",q||rec?"":"lib-tiles",n); w.setAttribute("role","status"); w.setAttribute("aria-label",t); d.replaceChildren(E("div","info-h",[E("b","sk-h")]),w); if(rec) d.append(E("div","info-h",[E("b","sk-h")]),E("div","lib-tiles",[0,1,2,3,4,5].map(() =>{ return E("span","lib-tile lib-sk"); })));/* recent rows, then the category tiles, as the real list */ LSK=performance.now(); }
 let LSK=0;
 /* slow first search: skeleton first, the work one frame later */
 function libLater(run){ if(!LIB.idx||(!LIB.inv&&!WARM&&LIB.q.trim().length>1)){ libBusy(LIB.q.trim()?"Searching the library":"Opening the library"); requestAnimationFrame(() =>{ setTimeout(run,0); }); } else run(); }
-function libPaint(){ if(LSK){ const n=LSK+600-performance.now(); if(n>0){ setTimeout(libPaint,n); return; } LSK=0; const d=document.getElementById("libBd"); d.classList.add("lib-in"); setTimeout(() =>{ d.classList.remove("lib-in"); },400); }/* skeleton stays 600 ms at least, then the results fade in: no blink */
+function libPaint(){ if(LSK){ const n=LSK+500-performance.now(); if(n>0){ setTimeout(libPaint,n); return; } LSK=0; const d=document.getElementById("libBd"); d.classList.add("lib-in"); setTimeout(() =>{ d.classList.remove("lib-in"); },400); }/* skeleton stays 500 ms at least, then the results fade in: no blink, no wait */
   const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);

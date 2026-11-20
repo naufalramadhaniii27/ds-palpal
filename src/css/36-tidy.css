@@ -30,7 +30,7 @@
 :is(.ifil,#tabs,.bnav,.fr-tabs).ovf-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px);mask-image:linear-gradient(90deg,transparent,#000 32px)}
 :is(.ifil,#tabs,.bnav,.fr-tabs).ovf-l.ovf-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent)}
 /* Phone: with the Friends button there are six buttons, so three per row instead of five and one left over */
-@media (max-width:759px){#homeV .hbtns:has(.fr-b){grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:759px){#homeV .hbtns:has(.fr-b),html.sy-acct #homeV .hbtns{grid-template-columns:repeat(3,minmax(0,1fr))}}
 /* Dialog buttons made with .btn had no padding (Versions touched its own border) */
 .bkpb .btn,.sy-dlg .btn,.fr-dlg .btn{min-height:44px;padding:0 16px}
 .bkpb .btn.fr-sm,.fr-dlg .btn.fr-sm{min-height:34px;padding:0 10px}

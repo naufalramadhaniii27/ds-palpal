@@ -2,7 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
-{v:186,l:"0.0.84",d:"2026-11-20",n:["A smoother loading card for the builder and PDF."]},
+{v:186,l:"0.0.84",d:"2026-11-20",n:["New Home to sheet transition, smoother loading."]},
 {v:185,l:"0.0.83",d:"2026-11-19",n:["The Library shows placeholder rows while it loads."]},
 {v:184,l:"0.0.82",d:"2026-11-19",n:["Faster Library search."]},
 {v:183,l:"0.0.81",d:"2026-11-19",n:["The builder opens much faster."]},
