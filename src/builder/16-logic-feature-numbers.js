@@ -35,13 +35,20 @@ function cnTB(L,c,m,dc,rv,pb){return {
   "Clairvoyant Combatant":function(){return "Wisdom save DC "+dc("CHA")},
   "Combat Superiority":function(){return rv("Superiority Dice","Battle Master")+" Superiority Dice ("+(L>=18?"d12":L>=10?"d10":"d8")+"), save DC "+(8+pb+Math.max(m("STR"),m("DEX")))},
   "Psionic Power":function(){return rv("Psionic Energy Dice","Psi Warrior")+" Psionic Energy Dice"},
-  "Breath Weapon":function(){return "Dexterity save DC "+dc("CON")+", "+(L>=17?4:L>=11?3:L>=5?2:1)+"d10, "+pb+" uses"},
-  "Healing Hands":function(){return pb+"d4 Hit Points"},
   "Bloodlust":function(){const h=hdHeal((c&&c.hd)||8,m("CON"));return "Sanguine Feast: "+pb+" uses per Long Rest, heals "+h.t+", about "+h.avg},
-  "Shifting":function(){return pb+" uses per Long Rest, "+(2*pb)+" Temporary Hit Points each time"},/* Shifter */
   "Relentless Rage":function(){return "Drops to "+(2*L)+" Hit Points on success"},
   "Divine Intervention":function(){return "Once per Long Rest"},
   "Mystic Arcanum":function(){return L>=17?"Level 6, 7, 8, 9 spells":L>=15?"Level 6, 7, 8 spells":L>=13?"Level 6, 7 spells":"Level 6 spell"}}}
+/* species trait notes: one trait name means different numbers per book, so each note names its species. A species not listed gets no note, never a wrong number */
+const SPN_24=["Dragonborn","Dragonborn (Chromatic)","Dragonborn (Gem)","Dragonborn (Metallic)"],SPN_14=["Dragonborn (2014)","Draconblood Dragonborn","Ravenite Dragonborn"],SPN_NAMES=["Breath Weapon","Healing Hands","Shifting"];
+function cnTS(sp,L,m,dc,pb){const T={};
+ if(SPN_24.indexOf(sp)>=0)T["Breath Weapon"]=function(){return "Dexterity save DC "+dc("CON")+", "+(L>=17?4:L>=11?3:L>=5?2:1)+"d10, "+pb+" uses"};/* PHB 2024, Fizban's */
+ if(SPN_14.indexOf(sp)>=0)T["Breath Weapon"]=function(){return "Save DC "+dc("CON")+", "+(L>=16?5:L>=11?4:L>=6?3:2)+"d6, 1 use per Short Rest"};/* PHB 2014, Wildemount */
+ if(sp==="Aasimar")T["Healing Hands"]=function(){return pb+"d4 Hit Points"};
+ if(/^Aasimar \((Protector|Scourge|Fallen)\)$/.test(sp))T["Healing Hands"]=function(){return L+" Hit Points"};/* Volo's: HP equal to your level */
+ if(sp==="Shifter"||sp==="Shifter (EFotA)")T["Shifting"]=function(){return pb+" uses per Long Rest, "+(2*pb)+" Temporary Hit Points each time"};
+ if(/^Shifter \((Beasthide|Longtooth|Swiftstride|Wildhunt)\)$/.test(sp))T["Shifting"]=function(){return "1 use per Short Rest, "+Math.max(1,L+m("CON"))+(sp==="Shifter (Beasthide)"?" + 1d6":"")+" Temporary Hit Points"};/* Eberron 2014: level + CON (min 1) */
+ return T}
 /* Healing from one Hit Point Die: Periapt of Wound Closure (equipped) doubles it, Bloodlust (Powerful Recovery) treats 1 and 2 as 3 */
 function hdHeal(die,con){const per=((B.inv||[]).some((i) =>{return i&&i.n==="Periapt of Wound Closure"&&i.eq!==false}));const pr=allFeats().some((f) =>{return f&&f.n==="Bloodlust"});
  let a=0;for(let r=1;r<=die;r++)a+=(pr&&r<3?3:r);a=a/die+con;const cs=(con>=0?"+ ":"- ")+Math.abs(con);
@@ -63,11 +70,12 @@ function cnT14(L,c,m,dc,rv,pb){return {
    "Divine Intervention":function(){return L>=20?"Succeeds automatically":"Succeeds on a d100 roll of "+L+" or lower, then 7 days before you can try again"},
    "Relentless Rage":function(){return "At 0 Hit Points while raging, Con save DC 10 (+5 per use until a rest). On success you drop to 1 Hit Point instead"}
   }}
-function calcNote(name,cls,L,a){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=fxVal(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
+function calcNote(name,cls,L,a,sp){const dcB=function(n){let t=0;try{classFx().forEach((e) =>{if(e.dcAdd&&e.dcAdd[n]!=null)t+=fxVal(e.dcAdd[n],e)})}catch(er){}return t};const pb=pbOf(TL()),m=function(k){return mod(a.sc[k])},c=CLASSES[cls],dc=function(k){return 8+pb+m(k)+dcB(name)};/* fx engine v4: dcAdd {"Feature name": value} on any entry adds to the save DC shown in that feature note (Monk's Focus, Ki, Breath Weapon) */
  /* uses come from the resource with this name, not from its position in res/resSub (L2). Missing resource: no note, never a wrong number */
  const rv=function(n,sub){const l=sub?((c.resSub||{})[sub]||[]):(c.res||[]),r=l.filter((x) =>{return x.n===n})[0];if(!r)throw new Error("no resource "+n);return mcResMax(r,a,L)};
  const T=Object.assign(cnTA(L,c,m,dc,rv,pb),cnTB(L,c,m,dc,rv,pb),cnTC(L,cls,m)),T14=cnT14(L,c,m,dc,rv,pb);
-  const f=(R14()&&T14[name])||T[name];if(!f)return "";try{const s=f();return s?" **At your level:** "+s+".":""}catch(e){return ""}}
+  const TS=sp?cnTS(sp,L,m,dc,pb):{};if(!TS[name]&&SPN_NAMES.indexOf(name)>=0)return "";
+  const f=TS[name]||(R14()&&T14[name])||T[name];if(!f)return "";try{const s=f();return s?" **At your level:** "+s+".":""}catch(e){return ""}}
 /* defenses() in parts (SOLID stage 13C): one function per source, in the same order. Each adds rows with add(type,value,source) */
 function defSpecies(add){const sp=SPECIES[B.species];
  (un("species")?[]:DEF_SP[B.species]||[]).forEach((x) =>{add(x[0],x[1],B.species)});

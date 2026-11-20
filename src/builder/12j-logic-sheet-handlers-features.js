@@ -14,7 +14,7 @@ registerSheetGroup({id:"species-features",group:"features",phase:"features",orde
   const spItems=I.custom?[{n:"Homebrew species",s:"Homebrew",d:"Fill in the traits from your setting."}]:sp.traits.map((t) =>{return Object.assign({n:t[0],s:(sp.hb||SRC)+", "+B.species,d:Q.spTraitText(sp,t)},full14(B.rs,"Species: "+B.species,t[0]))});
   if(!I.custom&&/or/.test(sp.size))spItems.push({n:"Size",s:(sp.hb||SRC)+", "+B.species,d:"You can be Medium or Small, chosen when you create the character. **Your choice.** "+(B.size||"Medium")+(Q.htText(B.species,B.size||"Medium")?", "+Q.htText(B.species,B.size||"Medium"):"")+"."});
   if(B.ch.lin&&!(sp&&sp.lin&&(Q.spLinTrait(sp)||sp.traits.some((t) =>{return /ancestr|lineage|legacy/i.test(t[1])}))))spItems.push({n:"Chosen: "+B.ch.lin,s:(sp&&sp.hb||SRC)+", "+B.species,d:(sp&&sp.hb&&sp.linText&&sp.linText[B.ch.lin])||"Your lineage or ancestry choice."});
-  spItems.forEach((it) =>{it.d+=Q.calcNote(it.n,B.cls,I.TLv,I.a)});ctx.C.features.push({g:"Species: "+I.spName,items:spItems});return ctx.patch()}});
+  spItems.forEach((it) =>{it.d+=Q.calcNote(it.n,B.cls,I.TLv,I.a,B.species)});ctx.C.features.push({g:"Species: "+I.spName,items:spItems});return ctx.patch()}});
 registerSheetGroup({id:"defenses-base",group:"defenses",phase:"features",order:20,reads:["i.a","q.defenses"],writes:["C.defenses"],run:function(ctx){ctx.C.defenses=ctx.q.defenses(ctx.i.a);return ctx.patch()}});
 /* v65: Advantage from items on Initiative and skills, read by cfx. Advantage on saves goes to the saving throw notes */
 registerSheetGroup({id:"item-advantage",group:"defenses",phase:"features",order:30,reads:["i.AFX"],writes:["C.itemAdv","C.saveNotes"],
