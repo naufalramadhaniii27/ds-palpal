@@ -1,7 +1,7 @@
 {
- "commit": "66e41e08a",
+ "commit": "0df692078",
  "branch": "main",
- "date": "2026-11-20 00:06",
+ "date": "2026-11-20 06:30",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -519,7 +519,7 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1511,
+     "value": 1508,
      "base": 1099,
      "target": 0,
      "credit": 0.0,
@@ -555,7 +555,7 @@
     },
     {
      "id": "then_calls",
-     "value": 169,
+     "value": 170,
      "base": 152,
      "target": 10,
      "credit": 0.0,
@@ -582,7 +582,7 @@
     },
     {
      "id": "mutation_observer",
-     "value": 79,
+     "value": 77,
      "base": 76,
      "target": 0,
      "credit": 0.0,
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.28,
- "secs": 44
+ "secs": 48
 }
