@@ -107,9 +107,9 @@ registerSheetGroup({id:"fx-speed-add-if",group:"late",phase:"late",order:120,sco
     else if(e.mv&&e.mv[k]!=null){const v=e.mv[k];C.speeds=C.speeds||{};C.speeds[k]={v:v==="speed"?"walk":+v,s:e.lbl};(C.moves=C.moves||[]).push({m:k,v:v==="speed"?C.speed:+v,s:e.lbl})}
     if(sk||mv)C.speedSrc+=", +"+n+" ft "+spdTxt(k)+" ("+e.lbl+", you already have it)";else if(e.mv&&e.mv[k]!=null)C.speedSrc+=", "+spdTxt(k)+" "+(e.mv[k]==="speed"?"equal to your Speed ("+C.speed+" ft)":e.mv[k]+" ft")+" ("+e.lbl+")"});
   return ctx.patch()}});
-registerSheetGroup({id:"fx-atk-ability",group:"late",phase:"late",order:130,scope:"each",over:"i.G",loop:"late-fx",reads:["i.a", "i.pb", "i.ar", "i.ESH", "i.EA", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
- run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {a,pb,ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkAb {kind, ab, opt, note, prof}: that ability for the attack and damage modifier when higher. opt:1 = only a note on the row (the text allows it for some strikes) */
-   if(e.atkAb){const q=e.atkAb;rowsPick(q.kind).forEach(function(r){if(!q.ab||a.sc[q.ab]==null||(q.prof&&!r.prof))return;/* prof:1 = only rows the character is proficient with */const bt=pb+mod(a.sc[q.ab]),dm=mod(a.sc[q.ab]);
+registerSheetGroup({id:"fx-atk-ability",group:"late",phase:"late",order:130,scope:"each",over:"i.G",loop:"late-fx",reads:["i.a", "i.pb", "i.ar", "i.ESH", "i.EA", "C.attacks", "q.baseOf", "q.fxOk", "q.spellAb"],writes:["C.attacks"],
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {a,pb,ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkAb {kind, ab, opt, note, prof} (ab "spell" = spellcasting ability of the entry class): that ability for the attack and damage modifier when higher. opt:1 = only a note on the row (the text allows it for some strikes) */
+   if(e.atkAb){const q=Object.assign({},e.atkAb);if(q.ab==="spell")q.ab=Q.spellAb(e.ocls,a.sc);/* "spell": the spellcasting ability of the entry class */rowsPick(q.kind).forEach(function(r){if(!q.ab||a.sc[q.ab]==null||(q.prof&&!r.prof))return;/* prof:1 = only rows the character is proficient with */const bt=pb+mod(a.sc[q.ab]),dm=mod(a.sc[q.ab]);
      if(q.opt){r.note=(r.note?r.note+" ":"")+(q.note||e.n+": you can use "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for the attack and damage of this attack")+" (attack +"+bt+", damage modifier "+(dm>=0?"+":"")+dm+")."}
      else if(mod(a.sc[q.ab])>mod(a.sc[r.ab])){r.note=(r.note?r.note+" ":"")+e.lbl+": "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for attack and damage.";r.ab=q.ab;r.abSrc=e.lbl}})}
   return ctx.patch()}});
@@ -123,9 +123,11 @@ registerSheetGroup({id:"fx-save-notes",group:"late",phase:"late",order:150,scope
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const pushSN=function(t,s){C.saveNotes=C.saveNotes||[];if(!C.saveNotes.some(function(y){return y.t===t&&y.s===s}))C.saveNotes.push({t:t,s:s})};   /* fx engine v4: saveNote [text] = a line under Saving Throws (death save bonus, "Advantage on saves against being Frightened"); advOn texts that mention saves are copied there too, next to the Defenses note */
    (e.saveNote||[]).forEach(function(t){pushSN(t,e.lbl)});(e.advOn||[]).forEach(function(t){if(/sav(e|ing)/i.test(t))pushSN("Advantage on "+t,e.lbl)});
   return ctx.patch()}});
-registerSheetGroup({id:"fx-atk-bonus",group:"late",phase:"late",order:160,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "q.fxv", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
+/* a class or subclass bonus to "spell" rows reaches only that class's cantrips (2014 Potent Spellcasting: Cleric cantrips) */
+function abClsOk(C,e,x,r){return x.when!=="spell"||(e.kind!=="cls"&&e.kind!=="sub")||(C.spells||[]).some(function(s){return s.n===r.n&&s.src===e.ocls})}
+registerSheetGroup({id:"fx-atk-bonus",group:"late",phase:"late",order:160,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "q.fxv", "C.attacks", "C.spells", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkBonus [{when,atk,dmg,crit,note}]: a flat bonus to the attack roll and/or damage of the matching attack rows (when as for atkDice: weapon, spell, unarmed, melee, ranged, natural, any, a name, or an array). atk and dmg take a number, "pb", an ability key, or [[level, value]] steps (level = the source level). crit N = note "Critical hit on N-20" */
-   (e.atkBonus?(Array.isArray(e.atkBonus)?e.atkBonus:[e.atkBonus]):[]).forEach(function(x){rowsPick(x.when||"weapon").forEach(function(r){const av=x.atk!=null?Q.fxv(x.atk,e):0,dv=x.dmg!=null?Q.fxv(x.dmg,e):0,sg=function(v){return (v>0?"+":"")+v};
+   (e.atkBonus?(Array.isArray(e.atkBonus)?e.atkBonus:[e.atkBonus]):[]).forEach(function(x){rowsPick(x.when||"weapon").filter(function(r){return abClsOk(C,e,x,r)}).forEach(function(r){const av=x.atk!=null?Q.fxv(x.atk,e):0,dv=x.dmg!=null?Q.fxv(x.dmg,e):0,sg=function(v){return (v>0?"+":"")+v};
      if(av){r.misc=(r.misc||0)+av;r.miscSrc=(r.miscSrc?r.miscSrc+"; ":"")+e.lbl+": "+sg(av)+" to hit"}if(dv){r.dmgBonus=(r.dmgBonus||0)+dv;r.miscSrc=(r.miscSrc?r.miscSrc+"; ":"")+e.lbl+": "+sg(dv)+" damage"}
      if(x.crit)r.note=(r.note?r.note+" ":"")+"Critical hit on "+x.crit+"-20 ("+e.lbl+").";if(x.note)r.note=(r.note?r.note+" ":"")+x.note})});
   return ctx.patch()}});
@@ -135,7 +137,7 @@ registerSheetGroup({id:"fx-unarmed",group:"late",phase:"late",order:170,scope:"e
      if(d&&(q.force||dieAvg(d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=d}
      if(q.t)r.type=q.t;if(q.magic)r.note=(r.note?r.note+" ":"")+"Counts as magical ("+e.lbl+")."})}
   return ctx.patch()}});
-function drDice(e,x,r){if(x.d&&(!x.up||dieAvg(x.d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=x.d}
+function drDice(e,x,r){if(Array.isArray(x.d)){let v=null;x.d.forEach(function(st){if(e.lv>=st[0])v=st[1]});x=Object.assign({},x,{d:v})}/* d: [[level, die], ...] steps by the source level */if(x.d&&(!x.up||dieAvg(x.d)>dieAvg(r.die))){r.dieSrc=e.lbl+(r.die&&r.die!=="1"?" (instead of "+r.die+")":"");r.die=x.d}
      if(x.t){r.typeSrc=e.lbl+(r.type?" (instead of "+r.type+")":"");r.type=x.t}}
 function drFinesse(a,e,x,r){if(x.finesse&&(r.ab==="STR"||r.ab==="DEX")&&!/Finesse/.test(r.sub||"")){r.sub=(r.sub?r.sub+" \u2022 ":"")+"Finesse";if(a.sc.DEX>a.sc.STR&&r.ab==="STR"){r.ab="DEX";r.abSrc=e.lbl}}}
 function drRow(a,Q,e,x,r){if(x.from&&r.die!==x.from)return;if(x.cat){const w0=weaponDef(Q.baseOf(r.n).b);if(!w0||w0.cat!==x.cat)return}
