@@ -8,4 +8,9 @@ add("Blindfold of True Darkness","Blindsight",10);
 (G["Titan Frame"]=G["Titan Frame"]||[]).push({n:"Titan Frame",acAdd:2,speedSet:30,size:"Large"});
 (G["Boots of Striding and Springing"]=G["Boots of Striding and Springing"]||[]).push({n:"Boots of Striding and Springing",speedSet:30});
 add("Helm of Domination","Truesight",120);
+/* worn or carried proficiencies and DCs the item text states plainly */
+["uncommon","rare","very rare"].forEach(function(r){var n="Brawling Gloves ("+r+")";(G[n]=G[n]||[]).push({n:n,weapons:["Improvised weapons"]})});
+(G["Stone of Creation"]=G["Stone of Creation"]||[]).push({n:"Stone of Creation",tools:["Mason's Tools"]});
+(G["Travel Alchemical Kit"]=G["Travel Alchemical Kit"]||[]).push({n:"Travel Alchemical Kit",tools:["Poisoner's Kit"]});
+(G["Deepstone Cestus"]=G["Deepstone Cestus"]||[]).push({n:"Deepstone Cestus",dcAdd:{"Monk's Focus":2,"Ki":2}});
 })();

@@ -11,6 +11,8 @@
  W.FXO["Deck of Many More Things"]={fx:null};  /* row had Fire vulnerability and a climb speed: both come from single cards */
  W.FXO["Teeth of Dahlver-Nar"]={fx:null};      /* row had +2 AC and fly 30: both come from single teeth rolled on a table */
  W.FXO["Shield of Yggdrasil"]={fx:{ac:1}};     /* "+1 AC on top of a normal Shield" (row counted +3) */
+ /* Thaumatonic Rifle: its bonus also goes to spell attack rolls and save DCs while held (row had only atk and dmg) */
+ [1,2,3].forEach(function(n){W.FXO["Thaumatonic Rifle, +"+n]={fx:{atk:n,dmg:n,spellAtk:n,spellDc:n}}});
 
  /* Soulbind Chains: +N to spell attack rolls and to the save DCs of Summoner spells */
  [1,2,3].forEach(function(n){add("+"+n+" Soulbind Chains",{n:"Soulbind Chains",spAtk:n,spDc:n,spCls:"Summoner"})});
