@@ -30,6 +30,8 @@ AREAS = {
     "engine": [
         ("fx_engine", [PY, "tests/fx_engine.py"]),
         ("golden_rules", [PY, "tests/golden_rules.py"]),
+        ("weapon_items", [PY, "tests/weapon_items.py"]),
+        ("armor_items", [PY, "tests/armor_items.py"]),
         ("golden_builds", [PY, "tests/golden_builds.py"]),
         ("invariants_quick", [PY, "tests/invariants.py", "--quick"]),
         ("fx_overlap", [PY, "tests/fx_overlap.py"]),
@@ -45,6 +47,7 @@ AREAS = {
         ("class_resources", [PY, "tests/class_resources.py"]),
         ("subclass_resources", [PY, "tests/subclass_resources.py"]),
         ("subclass_resources14", [PY, "tests/subclass_resources14.py"]),
+        ("subclass_resources_tp", [PY, "tests/subclass_resources_tp.py"]),
         ("subclass_traits", [PY, "tests/subclass_traits.py"]),
         ("builder_cost", [PY, "tests/builder_cost.py"]),
         ("audit_sweep", [PY, "tools/audit_char.py", "--sweep"]),
