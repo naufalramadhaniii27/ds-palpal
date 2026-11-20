@@ -49,7 +49,7 @@ function doRestStep1(kind){
 sitReset(kind==='short'?'short':'long'); if(kind!=='short'){ delete S.xs; delete S.wr; } const ex0=num(S.exh,0), hp14=(kind!=="short"&&x14())?hdPlan():null;/* v94 */ if(S.mode){ if(kind==="short"){ ["rage","sacred","wings","radiance","shroud"].forEach((k) =>{ delete S.mode[k]; }); } else delete S.mode; }/* v22: Rage, Sacred Weapon, and Celestial Revelation last minutes, Wild Shape hours */
   D.res.forEach((r) =>{
     let u=num(S.used[r.k],0);
-    if(kind==="short"){ if(r.reset==="short") u=0; else if(r.reset==="short1") u=Math.max(0,u-1); }    else if(hp14&&hp14[r.k]!=null) u=Math.max(0,u-hp14[r.k]);/* v94: 2014, half of the Hit Dice come back */
+    if(kind==="short"){ if(r.reset==="short") u=0; else if(r.reset==="short1"||r.srN) u=Math.max(0,u-(r.srN||1)); }    else if(hp14&&hp14[r.k]!=null) u=Math.max(0,u-hp14[r.k]);/* v94: 2014, half of the Hit Dice come back */
     else { if(r.reset!=="none") u=0; }
     S.used[r.k]=u;
   });

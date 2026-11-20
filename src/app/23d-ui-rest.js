@@ -17,7 +17,7 @@ bindLive("openRest",{get:function(){return openRest;}});
 /* RU41: rest dialogs like D&D Beyond. Hit Dice: a box per die left. Each picked box asks for the number rolled (no dice rolling in the app) */
 let restSel={}, restAuto=true;
 function hdRows(){ return (D.res||[]).filter((r) =>{ return r.k==="hd"||/^hd-d/.test(r.k); }); }
-function shortList(){ return (D.res||[]).filter((r) =>{ return r.reset==="short"||r.reset==="short1"; }); }
+function shortList(){ return (D.res||[]).filter((r) =>{ return r.reset==="short"||r.reset==="short1"||r.srN; }); }
 function restHTML(kind){
  const _restHTML2Step1=restHTML2Step1(kind);
  const {hp1}=_restHTML2Step1;
@@ -50,7 +50,7 @@ function restHTML2Step2(h, hp1){
   ({h}=restHTMLStep2(h, hp1));
   return /** @type {any} */ ({h});
 }
-function restHTMLFn1(r){ const u=used(r.k,r.max); return [r.n+(r.reset==="short1"?" (one use)":"")+(u?"":" (already full)"),!u]; }
+function restHTMLFn1(r){ const u=used(r.k,r.max); return [r.n+(r.reset==="short1"?" (one use)":r.srN?" ("+r.srN+")":"")+(u?"":" (already full)"),!u]; }
 function restHTMLStep1(kind){
 let hp1=S.hp!=null&&S.hp<1, h='<div id="restDlg" data-kind="'+kind+'">';
   return /** @type {any} */ ({hp1, h});
@@ -82,7 +82,7 @@ if(hasFeat("Resourceful")&&!S.insp) rec.push("Heroic Inspiration (Resourceful)")
 function hdLeft(){ return hdRows().reduce((t,r) =>{ return t+Math.max(0,r.max-used(r.k,r.max)); },0); }
 function shortRec(){ const o=[], miss=Math.max(0,D.hpmax-num(S.hp==null?D.hpmax:S.hp,0)), hl=hdLeft();
   if(miss&&hl) o.push("Spend up to "+hl+" Hit "+(hl>1?"Dice":"Die")+" to heal ("+miss+" "+hpWord(miss)+" missing)"); else if(!hl) o.push(["No Hit Dice left to spend",1]); else o.push(["Hit Points are full",1]);
-  shortList().forEach((r) =>{ if(used(r.k,r.max)) o.push(r.n+(r.reset==="short1"?" (one use)":"")); });
+  shortList().forEach((r) =>{ if(used(r.k,r.max)) o.push(r.n+(r.reset==="short1"?" (one use)":r.srN?" ("+r.srN+")":"")); });
   if(o.length===1&&typeof o[0]!=="string"&&!shortList().some((r) =>{ return used(r.k,r.max); })) o.push(["No uses to get back",1]);
   return o; }
 function recUL(L){ return '<div class="rlist" role="list">'+L.map((x) =>{ const off=Array.isArray(x)&&x[1], t=Array.isArray(x)?x[0]:x; return '<span class="rli'+(off?' off':'')+'" role="listitem">'+ico(off?"ui-minus":"ui-check","rli-i")+'<span>'+esc(t)+'</span></span>'; }).join("")+'</div>'; }
