@@ -15,3 +15,4 @@
 - dist/index.html sisa 15 byte di bawah 2 MiB. Rilis berikutnya wajib memangkas kode app dulu.
 - Tap Library atau search pustaka seketika (indeks belum siap): hasil 1,5 sampai 4,2 s di CPU 4x. Sekarang spinner #busy muncul 28 sampai 43 ms sesudah tap (animasi transform, tetap berputar saat main thread sibuk).
 - Loading Library sekarang skeleton (8 baris abu-abu dengan kilau transform, mati bila prefers-reduced-motion), dibangun dengan DOM (html_gate). Tampil 43 sampai 53 ms sesudah tap.\n
+- 0.0.84: loading tanpa kedip. #busy bertahan 0,45 s lalu memudar (tap langsung bebas), teks dikembalikan sesudah 800 ms. Skeleton Library minimal 600 ms lalu hasil fade in. Diukur CPU 1x: skeleton 614 ms, overlay 100 ms tetap terlihat sampai sekitar 750 ms.\n

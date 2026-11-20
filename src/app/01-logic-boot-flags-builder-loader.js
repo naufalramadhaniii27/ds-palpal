@@ -19,7 +19,7 @@ function bldTapWait(e, t){ if(!t||!t.click) return; e.preventDefault(); e.stopIm
       const bz0=document.getElementById("busy"), sp0=bz0&&bz0.querySelector("div span:last-child"), old0=sp0?sp0.textContent:"";
       if(sp0) sp0.textContent="Opening the builder"; if(bz0){ bz0.style.transition="none"; bz0.classList.add("on"); }
       let n0=0, again=function(){ if(!env.__bldNeed&&document.readyState==="loading"&&n0++<600){ setTimeout(again,30); return; }
-        if(bz0){ bz0.classList.remove("on"); bz0.style.transition=""; } if(sp0) sp0.textContent=old0; try{ t.click(); }catch(x){} };
+        if(bz0){ bz0.classList.remove("on"); bz0.style.transition=""; } if(sp0) setTimeout(() =>{ sp0.textContent=old0; },800); try{ t.click(); }catch(x){} };
       setTimeout(again,30); }
 /* v100: the first tap that needs the builder shows "Opening the builder" at once, then loads it and repeats the tap. Before, the screen stood still until the load ended */
 function bldTapOpen(e, t){
@@ -39,7 +39,7 @@ function anonFn1Step1(e){
 function anonFn1Step2(){
     needStep2();
 }
-function needFn1(bz, sp, old, t){ let p; try{ p=env.__bldNeed(); }catch(x){ p=null; } Promise.resolve(p).catch(() =>{}).then(() =>{ if(bz){ bz.classList.remove("on"); bz.style.transition=""; } if(sp) sp.textContent=old; try{ t.click(); }catch(x){} }); }
+function needFn1(bz, sp, old, t){ let p; try{ p=env.__bldNeed(); }catch(x){ p=null; } Promise.resolve(p).catch(() =>{}).then(() =>{ if(bz){ bz.classList.remove("on"); bz.style.transition=""; } if(sp) setTimeout(() =>{ sp.textContent=old; },800); try{ t.click(); }catch(x){} }); }
 function logicBootFlagsBuilderLoaderAnonStep1(need){
   ["click","input","change","keydown","submit"].forEach((n) =>{ document.addEventListener(n,need,true); });
 }

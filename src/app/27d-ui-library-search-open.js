@@ -99,10 +99,12 @@ function libSafe(){ try{ return libListHTML(); }catch(er){ try{ console.error("l
 function libBusy(t){ const d=document.getElementById("libBd"); if(!d) return; const q=LIB.q.trim(), n=[],
     E=(g,c,k) =>{ const e=document.createElement(g); e.className=c||""; if(k) e.append(...k); return e; };
   for(let i=0;i<8;i++) n.push(q?E("div","lib-r lib-sk",[E("i","lib-ri"),E("span","lib-rt",[E("b"),E("small")])]):E("span","lib-tile lib-sk"));
-  const w=E("div",q?"":"lib-tiles",n); w.setAttribute("role","status"); w.setAttribute("aria-label",t); d.replaceChildren(E("div","info-h",[E("b","sk-h")]),w); }
+  const w=E("div",q?"":"lib-tiles",n); w.setAttribute("role","status"); w.setAttribute("aria-label",t); d.replaceChildren(E("div","info-h",[E("b","sk-h")]),w); LSK=performance.now(); }
+let LSK=0;
 /* slow first search: skeleton first, the work one frame later */
 function libLater(run){ if(!LIB.idx||(!LIB.inv&&!WARM&&LIB.q.trim().length>1)){ libBusy(LIB.q.trim()?"Searching the library":"Opening the library"); requestAnimationFrame(() =>{ setTimeout(run,0); }); } else run(); }
-function libPaint(){ const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
+function libPaint(){ if(LSK){ const n=LSK+600-performance.now(); if(n>0){ setTimeout(libPaint,n); return; } LSK=0; const d=document.getElementById("libBd"); d.classList.add("lib-in"); setTimeout(() =>{ d.classList.remove("lib-in"); },400); }/* skeleton stays 600 ms at least, then the results fade in: no blink */
+  const w=document.getElementById("lib"); if(!w) return; const d=LIB.cur, bk=w.querySelector('[data-lib-x="back"]'), bd=document.getElementById("libBd");
   bk.hidden=!d; document.getElementById("libT").textContent=d?d.t:"Library"; document.getElementById("libS").textContent=d?d.sub:((C&&C.rs==="2014")?"Rules 2014":"Rules 2024");
   w.classList.toggle("det",!!d);
   libWm(w,d);/* T10: the entry's icon as a faint watermark */

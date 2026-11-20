@@ -278,4 +278,14 @@ svg.ist{width:.95em;height:.95em;margin:0 0 0 .3em;opacity:.75;vertical-align:-.
 .lib-sk small{height:18px;padding:4px 0;width:35%}
 .sk-h{width:90px;height:21px;padding:4px 0}
 .lib-tile.lib-sk{height:81px}
-@media (prefers-reduced-motion:reduce){.lib-sk:after{animation:none}}
+.lib-in>*{animation:lfi .3s ease-out}
+@keyframes lfi{from{opacity:0;transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.lib-sk:after,.lib-in>*{animation:none}}
+.busy{background:radial-gradient(circle at 50% 45%,rgba(6,12,10,.35),rgba(6,12,10,.72));-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:opacity .3s .45s,visibility 0s .75s}
+.busy.on{transition:opacity .25s}
+.busy div{position:relative;overflow:hidden;border-radius:18px;padding:18px 24px;box-shadow:0 18px 50px rgba(0,0,0,.45),inset 0 0 0 1px var(--line);transform:scale(.94);opacity:0;transition:transform .3s .45s,opacity .3s .45s}
+.busy.on div{transform:none;opacity:1;transition:transform .35s cubic-bezier(.2,.9,.3,1.2),opacity .25s}
+.busy div:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:40%;background:linear-gradient(90deg,transparent,var(--stamp),transparent);animation:bzl 1.3s ease-in-out infinite}
+@keyframes bzl{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+.busy:not(.on) div:after,html.mi-off .busy div:after{animation:none}
+@media (prefers-reduced-motion:reduce){.busy div,.busy div:after{transition:none;animation:none}}
