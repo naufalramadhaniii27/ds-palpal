@@ -63,19 +63,32 @@ CASES += [
     ("2024", "Warlock", "", 3, {}, {"Hex": ["1d6 Necrotic"]}, {}), ("2014", "Warlock", "", 3, {}, {"Hex": ["1d6 Necrotic"]}, {}),
     ("2024", "Ranger", "", 19, {"arr": WIS}, {"Hunter's Mark": ["1d6 Force"]}, {}), ("2024", "Ranger", "", 20, {"arr": WIS}, {"Hunter's Mark": ["1d10 Force"]}, {}),
     ("2014", "Ranger", "", 20, {"arr": WIS}, {"Hunter's Mark": ["1d6 Weapon"]}, {}),
+    # 2014 Potent Spellcasting reaches only Cleric cantrips: a Wizard cantrip row of a Cleric/Wizard gets no Wis (2024 Potent the same)
+    ("2014", "Cleric", "Grave Domain (2014)", 8, {"arr": WIS, "mc": [{"cls": "Wizard", "lv": 2, "sub": ""}]}, {"Sacred Flame": ["2d8+m Radiant"], "Fire Bolt": ["2d10 Fire"]}, {"Fire Bolt": ("2d10", 0, 0)}),
+    ("2024", "Cleric", "", 7, {"arr": WIS, "ch": {"p7opt": "Potent Spellcasting"}, "mc": [{"cls": "Wizard", "lv": 2, "sub": ""}]}, {"Sacred Flame": ["2d8+m Radiant"], "Fire Bolt": ["2d10 Fire"]}, {"Fire Bolt": ("2d10", 0, 0)}),
 ]
+# Shillelagh toggle (fx toggle "shillelagh"): Club and Quarterstaff rows (die, ability, type). Off, or without the spell, the rows stay as they are
+SH = lambda d, ab, t: {"Club": (d, ab, t), "Quarterstaff": (d, ab, t)}
+for lv in (1, 5, 11, 17):
+    CASES.append(("2024", "Druid", "", lv, {"arr": WIS, "tg": {"shillelagh": True}, "wrow": SH(["1d8", "1d10", "1d12", "2d6"][T(lv) - 1], "WIS", "Force or Bludgeoning")}, {"Shillelagh": None}, {}))
+    CASES.append(("2014", "Druid", "", lv, {"arr": WIS, "tg": {"shillelagh": True}, "wrow": SH("1d8", "WIS", "Bludgeoning"), "magic": 1}, {"Shillelagh": None}, {}))
+for rs in ("2024", "2014"):
+    CASES.append((rs, "Druid", "", 5, {"arr": WIS, "tg": {"shillelagh": False}, "wrow": {"Club": ("1d4", "STR", "Bludgeoning"), "Quarterstaff": ("1d6", "STR", "Bludgeoning")}}, {"Shillelagh": None}, {}))
+    CASES.append((rs, "Druid", "", 5, {"arr": WIS, "tg": {"shillelagh": True}, "wrow": {"Club": ("1d4", "STR", "Bludgeoning")}}, {"Produce Flame": None}, {}))
 
 JS = """(cases)=>{const md=s=>Math.floor((s-10)/2);return cases.map(([rs,cls,sub,lv,o,sps,rows])=>{try{
   const e=rs==='2014'?{sp:'Human (2014)',bg:'Soldier (2014)',src:{phb14:true,dmg14:true,tce:true,xge:true,scag:true}}:{sp:'Human',bg:'Soldier',src:{tce:true,xge:true,scag:true}};
   const b=window.__bldFuzz({rs,cls,sub,lv,arr:o.arr||[8,14,13,12,10,15],b2:0,b1:0,sp:e.sp,bg:e.bg,src:e.src}).b;b.src=Object.assign({},b.src,e.src);
   if(o.ch)b.ch=Object.assign({},b.ch,o.ch);if(o.mc)b.mc=o.mc;b.sp=Object.keys(sps);
-  const t=window.__bldTestB();Object.assign(t,b);delete t.unset;const C=window.__bldSheetFor(t),sc=C.spellcasting||{},pb=Math.ceil(C.level/4)+1;
+  const t=window.__bldTestB();Object.assign(t,b);delete t.unset;if(o.wrow){t.inv=(b.inv||[]).map(x=>Object.assign({},x,{eq:false}));Object.keys(o.wrow).forEach(n=>t.inv.push({n,q:1,eq:true}))}
+  const C=window.__bldSheetFor(t,o.tg),sc=C.spellcasting||{},pb=Math.ceil(C.level/4)+1;
   const M={};Object.keys(C.abilities).forEach(k=>{const A=C.abilities[k];M[k]=md(A.base+(A.bonus||[]).reduce((s,x)=>s+x.v,0))});
   const by=sc.by||[{ab:sc.ab,dc:sc.dc,atk:sc.atk}],sp={};
   (C.spells||[]).forEach(s=>{if(!(s.n in sps))return;const ab=s.ab||sc.ab,f=lv2=>{const c=window.__spCalc(s,lv2,C.level,M[ab]);return c?[c.parts.map(p=>p.d+' '+p.t),c.n]:[[],0]};
    sp[s.n]={ab,m:M[ab],at:f(s.l),up:s.l?f(s.l+1):null}});
   const at={};C.attacks.forEach(r=>{if(r.n in rows)at[r.n]={die:r.die,nomod:!!r.nomod,b:r.dmgBonus||0,ab:r.ab,m:M[r.ab],sub:r.sub||''}});
-  return {lvl:C.level,pb,M,by,sp,at}}catch(err){return {err:String(err.stack||err)}}})}"""
+  const wr={};C.attacks.forEach(r=>{if(o.wrow&&r.n in o.wrow)wr[r.n]={v:[r.die,r.ab,r.type],mg:/magical/.test(r.note||'')}});
+  return {lvl:C.level,pb,M,by,sp,at,wr}}catch(err){return {err:String(err.stack||err)}}})}"""
 
 def fill(parts, m): return [p.replace("+m", "%+d" % m if m else "").replace("m ", "%d " % m) if "m" in p.split(" ")[0] else p for p in parts]
 
@@ -96,7 +109,13 @@ def main():
         if "err" in r: bad.append(tag + ": build error " + r["err"][:300]); continue
         for b in r["by"]:  # the casting numbers the rows use
             m = r["M"][b["ab"]]; chk(tag + " DC " + b["ab"], 8 + r["pb"] + m, b["dc"]); chk(tag + " attack " + b["ab"], r["pb"] + m, b["atk"])
+        for name, want in o.get("wrow", {}).items():
+            w = r["wr"].get(name)
+            if not w: bad.append("%s %s: no attack row" % (tag, name)); continue
+            chk(tag + " " + name + " row (die, ability, type)" + (" toggle " + str(o["tg"]) if "tg" in o else ""), list(want), w["v"])
+            if "magic" in o: chk(tag + " " + name + " magical", True, w["mg"])
         for name, want in sps.items():
+            if want is None: continue
             s = r["sp"].get(name)
             if not s: bad.append("%s %s: not on the spell list" % (tag, name)); continue
             w = want if isinstance(want, tuple) else (want, None, None, None)

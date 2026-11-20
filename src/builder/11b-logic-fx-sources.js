@@ -1,11 +1,11 @@
 import {B} from "./04-logic-storage.js";
 import {activeFx,bgX,un} from "./03-logic-magic-item-effects.js";
 import {allFeats} from "./09-logic-feats-and-choices.js";
-import {clsParts} from "./11-logic-derivation.js";
+import {clsParts,spLists} from "./11-logic-derivation.js";
 import {registerFxSource} from "./10a-logic-fx-registry.js";
 /* Effect sources (SOLID stage 1). One source per place that holds effect entries. collect(ctx) returns descriptors
    {list, kind, owner, lv, pre, lblOf, okey, ocls, alias} (see 10a). ctx = {TL: character level, G: the GX registry, noItem}.
-   A new source is one registerFxSource() call here, the gfx() loop is not touched. Run order = order of the calls below (class and subclass, species, background, feats, items). */
+   A new source is one registerFxSource() call here, the gfx() loop is not touched. Run order = order of the calls below (class and subclass, species, background, feats, items, spells). */
 /* CLASSES[cls].fx and GX.cls[cls] at the class level; GX.sub[sub] at the same level. A multiclass part gets the key prefix "m<i>:" */
 registerFxSource({id:"class",items:false,collect:function(ctx){const out=[],G=ctx.G;let mi=0;clsParts().forEach((q) =>{const pre=q.mc?"m"+(mi++)+":":"",c=CLASSES[q.cls];
  out.push({list:((c&&c.fx)||[]).concat((G.cls&&G.cls[q.cls])||[]),kind:"cls",owner:q.cls,lv:q.lv,pre:pre,lblOf:(n) =>{return n+" ("+q.cls+" "+q.lv+")"},okey:undefined,ocls:q.cls});
@@ -20,3 +20,5 @@ registerFxSource({id:"feats",items:false,collect:function(ctx){const G=ctx.G,out
 /* equipped (and attuned when needed) magic items: row gx and GX.item[name] */
 registerFxSource({id:"items",items:true,collect:function(ctx){const G=ctx.G;return activeFx().map((q) =>{
  return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
+/* GX.spell[name]: entries of a spell the character has picked (per caster class, spLists); ocls = that class, so atkAb ab "spell" uses its spellcasting ability */
+registerFxSource({id:"spells",items:false,collect:function(ctx){const G=ctx.G.spell||{},L=spLists(),out=[];Object.keys(L).forEach((k) =>{L[k].forEach((n) =>{if(G[n])out.push({list:G[n],kind:"spell",owner:n,lv:ctx.TL,pre:"",lblOf:(x) =>{return x+" (spell)"},okey:undefined,ocls:k})})});return out}});
