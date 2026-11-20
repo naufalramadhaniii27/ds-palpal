@@ -77,5 +77,10 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};
  ["Monstrous Bite","Monstrous Weapon"].forEach(function(g){add("Xenoalchemist",[{n:"Mad Scientist: "+g,l:3,when:{key:"gx-graft-sub-Xenoalchemist",val:g},atkAb:{kind:"unarmed",ab:"INT",opt:1,note:"Intelligent Grafts ("+g+"): you can use Intelligence instead of Strength or Dexterity for the attack and damage of Unarmed Strikes that this graft improves"}}])});
  /* Vagabond, Experiment X (also Captain and Gunslinger by cross-compatibility, same subclass name). Bloody Rampage: learn Rampage, or another maneuver if you already know it. Stored choice only.
     Using Rampage when damage makes a creature Bloodied is a play-time trigger, text only. */
+ /* 0.0.85 (tools/sheet_gaps.py ttoh): fixed traits of Tome of Heroes subclasses that left no trace on the sheet */
+ add("Shadow Domain (ToH)",[{n:"Cover of Night",l:3,skillProf:["Stealth"],darkNone:60,darkHave:{add:30}}]);
+ add("Dawn Blade",[{n:"Eyes of the Dawn",l:3,darkNone:60,darkHave:{add:30}}]);
+ add("Smuggler",[{n:"Slippery as an Eel",l:17,speedAdd:10,initAdv:true}]);
+ add("Buccaneer",[{n:"Black Powder and Sailcloth",l:3,tools:["Gunsmith's Tools","Vehicles (Water)"]}]);
  add("Experiment X",[{n:"Bloody Rampage",l:3,pick:[{k:"rampage",t:"multi",n:1,yc:1,list:MANEUVERS,title:"Rampage, or another maneuver if you already know Rampage"}]}]);
 })();

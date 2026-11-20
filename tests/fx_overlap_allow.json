@@ -1975,10 +1975,11 @@
  },
  "GX.sub|Smuggler": {
   "files": [
+   "fx-B22-staticadv.js",
    "fx-B9-advnotes.js",
-   "fx-B22-staticadv.js"
+   "fx-F-sub.js"
   ],
-  "reason": "Different features of the same owner are defined in these files (B22 adds an advantage note a feature gives); nothing is counted twice.",
+  "reason": "Different features of the same owner are defined in these files (B22 adds an advantage note a feature gives); nothing is counted twice. fx-F-sub.js holds Slippery as an Eel (Speed +10, Initiative Advantage) since 0.0.85; no field shared.",
   "shared": []
  },
  "GX.sub|Gloom Stalker (2014)": {
@@ -2604,6 +2605,22 @@
    "fx-B9-advnotes.js"
   ],
   "reason": "Different traits: B9 (generated) holds the Wooly Advantage note, B33 the Horns Unarmed Strike; no field shared, nothing counted twice.",
+  "shared": []
+ },
+ "GX.sub|Dawn Blade": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-F-sub.js"
+  ],
+  "reason": "B24 (generated) holds the extra damage note, fx-F-sub.js Eyes of the Dawn darkvision. Different features: the generated batch holds another feature of the subclass, fx-F-sub.js the 0.0.85 entry; no field shared, nothing counted twice.",
+  "shared": []
+ },
+ "GX.sub|Shadow Domain (ToH)": {
+  "files": [
+   "fx-B35-potent.js",
+   "fx-F-sub.js"
+  ],
+  "reason": "B35 (generated) holds Potent Spellcasting, fx-F-sub.js Cover of Night (Stealth, darkvision). Different features: the generated batch holds another feature of the subclass, fx-F-sub.js the 0.0.85 entry; no field shared, nothing counted twice.",
   "shared": []
  }
 }
