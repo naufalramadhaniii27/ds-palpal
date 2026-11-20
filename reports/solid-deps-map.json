@@ -7017,12 +7017,13 @@
    "to": "app/43-logic-cloud-sync.js",
    "import": true,
    "names": [
+    "SYKEY",
     "__set_syIcon",
     "syApi",
     "syIcon",
     "syPicIn"
    ],
-   "count": 4
+   "count": 5
   },
   {
    "from": "app/44-ui-friends.js",
@@ -12537,10 +12538,11 @@
    "to": "builder/17-ui-step-builder.js",
    "import": true,
    "names": [
+    "expTaken",
     "profSkills",
     "stepCard"
    ],
-   "count": 2
+   "count": 3
   },
   {
    "from": "builder/21-ui-rules-reference.js",
@@ -14609,6 +14611,15 @@
    "import": false,
    "names": [
     "DataEnv"
+   ],
+   "count": 1
+  },
+  {
+   "from": "data/fx-F-sub.js",
+   "to": "builder/00-env.js",
+   "import": false,
+   "names": [
+    "skillAb"
    ],
    "count": 1
   },
@@ -19362,15 +19373,6 @@
     "parse"
    ],
    "count": 2
-  },
-  {
-   "from": "fx/21-connected-home-sheet.js",
-   "to": "tg/30-ui-tg.js",
-   "import": false,
-   "names": [
-    "rect"
-   ],
-   "count": 1
   },
   {
    "from": "fx/24-class-art.js",

@@ -8,9 +8,9 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 
 | reader \ provider | data | logic | ui | unclassified |
 |---|---|---|---|---|
-| data | 523 | 0 | 0 | 6 |
+| data | 523 | 0 | 0 | 7 |
 | logic | 121 | 340 | 0 | 69 |
-| ui | 136 | 285 | 277 | 85 |
+| ui | 136 | 285 | 276 | 85 |
 | - | 23 | 74 | 82 | 22 |
 
 ## Back-edges (baseline in tests/guard_baseline/guard_deps.json)
@@ -32,7 +32,7 @@ Direction rule: data -> builder logic -> UI. data may not read logic or UI, logi
 | app/04-logic-storage.js | logic | 59 |
 | data/db1-phb-skills-species-backgrounds-feats-weapons.js | data | 53 |
 | data/db4/06-tools-proficiencies-packs-kits.js | data | 50 |
-| builder/00-env.js | - | 46 |
+| builder/00-env.js | - | 47 |
 | data/db3-phb-classes-b.js | data | 46 |
 | data/db4/02-limited-uses-damage-rows-save-notes.js | data | 46 |
 | app/00-env.js | - | 45 |
