@@ -1,7 +1,7 @@
 {
- "commit": "673d09497",
+ "commit": "3e7c9b686",
  "branch": "main",
- "date": "2026-11-20 21:58",
+ "date": "2026-11-20 22:36",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -519,7 +519,7 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1520,
+     "value": 1521,
      "base": 1099,
      "target": 0,
      "credit": 0.0,
@@ -751,5 +751,5 @@
   }
  },
  "average": 6.28,
- "secs": 52
+ "secs": 50
 }
