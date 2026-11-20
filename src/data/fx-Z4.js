@@ -15,7 +15,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.cls
  function except(list){return ALLX.filter(function(t){return list.indexOf(t)<0})}
  /* ---- class ---- */
  C("Paladin",{n:"Paladin's Smite",l:2,ed:"2024",defs:[["Note","Divine Smite, as a Bonus Action right after a melee weapon or Unarmed Strike hit: 2d8 Radiant damage, plus 1d8 against a Fiend or an Undead, plus 1d8 for each spell slot level above 1"]]});
- C("Ranger",{n:"Foe Slayer",l:20,ed:"2024",defs:[["Note","Hunter's Mark uses a d10 for its damage die instead of a d6"]]});
+ C("Ranger",{n:"Foe Slayer",l:20,ed:"2024",defs:[["Note","Hunter's Mark uses a d10 for its damage die instead of a d6"]],spDie:[{n:"Hunter's Mark",d:"1d10"}]});
  C("Ranger",{n:"Tireless",l:10,ed:"2024",defs:[["Note","Magic action: roll 1d8 and add your Wisdom modifier, then gain that many Temporary Hit Points (minimum of 1)"],["Note","Each Short Rest you finish lowers your Exhaustion level by 1"]]});
  C("Rogue",{n:"Reliable Talent",l:7,ed:"2024",defs:[["Note","Ability check with a skill or tool you are proficient with: a d20 roll of 9 or lower counts as a 10"]]});
  C("Rogue",{n:"Reliable Talent",l:11,ed:"2014",defs:[["Note","Ability check with a skill or tool you are proficient with: a d20 roll of 9 or lower counts as a 10"]]});

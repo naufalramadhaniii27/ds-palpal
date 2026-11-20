@@ -52,9 +52,13 @@ const L=x.l||0; lv=Math.max(L,lv||L); const ex=L?Math.max(0,lv-(f.upAt||L)):0, t
   const bon=(spDb(x)).reduce((s,b) =>{ return s+(+b.v||0); },0);
   return /** @type {any} */ ({L, ex, tier, bon, lv});
 }
+/* dice of one damage part. dmg[5]: dice per tier (array) or a tier offset (Booming Blade on a hit: one tier less); null when the part is not there yet */
+function spDice(p, f, ex, L, tier, smod){ let d=p[0], z=false; const tq=tier+(+p[5]||0);
+  if(!L&&Array.isArray(p[5])) d=p[5][tier-1]||d; else if(f.cs&&!L&&tq<1){ if(!p[4]||smod==null) return null; d=String(smod); z=true; } else if(f.cs&&!L) d=dMul(d,tq);
+  if(p[2]&&ex) d=dAdd(d,p[2],ex); if(p[4]&&smod!=null&&!z) d=dPlus(d,smod); return d; }
 function spCalcStep2(f, ex, L, tier, smod, bon, x){
-  const parts=(f.dmg||[]).map((p,i) =>{ let d=p[0]; if(f.cs&&!L) d=dMul(d,tier); if(p[2]&&ex) d=dAdd(d,p[2],ex); if(p[4]&&smod!=null) d=dPlus(d,smod); if(i===0&&bon) d=dPlus(d,bon);
-    let t=p[1]; if(x.tx&&String(t).split("|").indexOf(x.tx)<0) t=t+"|"+x.tx; return {d:d,t:t,lab:p[3]||""}; });
+  const parts=(f.dmg||[]).map((p,i) =>{ let d=spDice(p,f,ex,L,tier,smod); if(d==null) return null; if((i===0||/^if /.test(p[3]||""))&&bon) d=dPlus(d,bon);/* "if ..." is the other value of the first roll (Toll the Dead 1d12) */
+    let t=p[1]; if(x.tx&&String(t).split("|").indexOf(x.tx)<0) t=t+"|"+x.tx; return {d:d,t:t,lab:p[3]||""}; }).filter(Boolean);
   if(f.upx&&ex){ const um=/^(\d+)d(\d+)$/.exec(f.upx[0]); if(um) parts.push({d:(um[1]*ex)+"d"+um[2],t:f.upx[1],lab:f.upx[2]||""}); }/* v19 RD21 */
   let heal=null;
   return /** @type {any} */ ({parts, heal});
