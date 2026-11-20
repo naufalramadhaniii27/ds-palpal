@@ -33,7 +33,7 @@ function fromCreature(c,id,pos,side){ side=side||"foe"; const sv={}; ABL.forEach
 /* a player character: {name, ac, hp, max, speed, ini, saves:{dex:2...}, attacks:[{n, hit, reach, rng, dmg:[[avg,"1d8+3","Slashing"]]}]} */
 function fromSheet(p,id,pos){ const sv={}; ABL.forEach((k) =>{ sv[k]=p.saves&&p.saves[k]!=null?p.saves[k]:0; });
   return Object.assign({id:id,side:"pc",name:p.name||"Hero",kind:"pc",ac:p.ac||10,hp:p.hp!=null?p.hp:p.max,max:p.max||p.hp||1,tmp:p.tmp||0,sp:{walk:p.speed||30},ini:p.ini||0,sv:sv,size:1,
-    pos:pos?pos.slice():[0,0],res:lc(p.res),imm:lc(p.imm),vul:lc(p.vul),ci:"",acts:(p.attacks||[]).map((a) =>{ return Object.assign({k:"atk",mr:a.rng?(a.reach?"mr":"r"):"m"},a,{xd:pcXd(a.xd),str:a.str||(a.ab==="STR"?1:undefined),fin:a.fin||(/Finesse|Ammunition/.test(a.sub||"")?1:undefined)}); }),
+    pos:pos?pos.slice():[0,0],res:lc(p.res),imm:lc(p.imm),vul:lc(p.vul),ci:"",acts:(p.attacks||[]).map(pcAct),
     bonus:[],reacts:[],cond:{},used:{},dead:false,down:false,ds:{s:0,f:0},turn:fresh(),
     /* TG5 spells of tier B: {n, l, k "atk"|"save"|"heal"|"auto", time "a"|"b", c concentration, rng feet, sv, half, n rays or darts, by:{slot level:[[avg,dice,type],...]}, heal:{lvl:dice}} */
     spells:(p.spells||[]).map((x) =>{ return structuredClone(x); }),slots:(p.slots||[]).slice(),satk:p.satk||0,sdc:p.sdc||10},pcRiders(p)); }
@@ -42,14 +42,18 @@ const DTY=/^(acid|bludgeoning|cold|fire|force|lightning|necrotic|piercing|poison
 /* p.rx: the sheet's raw rows (xd C.xdmg, df C.defenses, rg Rage damage when Rage can be switched on here), parsed in this deferred part to keep the first download small */
 /* weapon extra dice (Flame Tongue +2d6 Fire): raw sheet rows {d, t} or ready [0, dice, type] */
 function pcXd(xd){ const o=(xd||[]).map((x) =>{ return Array.isArray(x)?x:[0,String(x.d||"").replace(/\s+/g,""),String(x.t||"").split(" ")[0]]; }).filter((q) =>{ return /^\d*d\d+$/.test(q[1])&&DTY.test(q[2]); }); return o.length?o:undefined; }
-function pcRiders(p){ const rx=p.rx||{}, out=[], ty=(t) =>{ return DTY.test(t)?t:""; };
-  (rx.xd||[]).forEach((x) =>{ const d=String(x.dmg||"").replace(/\s+/g,""), note=String(x.note||""); if(x.save||!/^\d*d\d+$/.test(d)) return;
-    if(/expend a spell slot/i.test(note)){ const mx=/max (\d+)d/i.exec(note); out.push({n:x.n,dmg:d,type:ty(x.type),slot:1,max:mx?+mx[1]:0}); }
-    else if(/^Once per turn/i.test(note)) out.push({n:x.n,dmg:d,type:ty(x.type),once:1}); });
-  (rx.df||[]).forEach((x) =>{ const m=/(\d+d\d+) (\w+) damage/.exec(String(x.v||"")); if(x.t!=="Note"||!m||!/spell slot/i.test(x.v)||out.some((r) =>{ return r.slot; })) return;
-    const mx=/\((\d+)d\d+ at most\)/.exec(x.v); out.push({n:String(x.v).split(",")[0],dmg:m[1],type:ty(m[2]),slot:1,b:/Bonus Action/.test(x.v)?1:0,max:mx?+mx[1]:0}); });
-  let rage=null; if(rx.rg!=null){ const res=[]; (rx.df||[]).forEach((x) =>{ if(x.t==="Resistance"&&/while raging/i.test(x.v)) String(x.v).replace(/\s*\(.*\)/,"").split(/\s*,\s*(?:and\s+)?|\s+and\s+/).forEach((v) =>{ if(DTY.test(v)) res.push(v); }); }); rage={dmg:rx.rg||0,res:lc(res)}; }
-  return {riders:p.riders?p.riders.map((x) =>{ return Object.assign({},x); }):out,rage:p.rage?{dmg:p.rage.dmg||0,res:lc(p.rage.res)}:rage}; }
+function pcAct(a){ return Object.assign({k:"atk",mr:a.rng?(a.reach?"mr":"r"):"m"},a,{xd:pcXd(a.xd),str:a.str||(a.ab==="STR"?1:undefined),fin:a.fin||(/Finesse|Ammunition/.test(a.sub||"")?1:undefined)}); }
+const pcTy=(t) =>{ return DTY.test(t)?t:""; };
+function pcXdmg(x,out){ const d=String(x.dmg||"").replace(/\s+/g,""), note=String(x.note||""); if(x.save||!/^\d*d\d+$/.test(d)) return;
+  if(/expend a spell slot/i.test(note)){ const mx=/max (\d+)d/i.exec(note); out.push({n:x.n,dmg:d,type:pcTy(x.type),slot:1,max:mx?+mx[1]:0}); }
+  else if(/^Once per turn/i.test(note)) out.push({n:x.n,dmg:d,type:pcTy(x.type),once:1}); }
+function pcSmite(x,out){ const m=/(\d+d\d+) (\w+) damage/.exec(String(x.v||"")); if(x.t!=="Note"||!m||!/spell slot/i.test(x.v)||out.some((r) =>{ return r.slot; })) return;
+  const mx=/\((\d+)d\d+ at most\)/.exec(x.v); out.push({n:String(x.v).split(",")[0],dmg:m[1],type:pcTy(m[2]),slot:1,b:/Bonus Action/.test(x.v)?1:0,max:mx?+mx[1]:0}); }
+function pcRage(rx){ if(rx.rg==null) return null; const res=[];
+  (rx.df||[]).forEach((x) =>{ if(x.t==="Resistance"&&/while raging/i.test(x.v)) String(x.v).replace(/\s*\(.*\)/,"").split(/\s*,\s*(?:and\s+)?|\s+and\s+/).forEach((v) =>{ if(DTY.test(v)) res.push(v); }); });
+  return {dmg:rx.rg||0,res:lc(res)}; }
+function pcRiders(p){ const rx=p.rx||{}, out=[]; (rx.xd||[]).forEach((x) =>{ pcXdmg(x,out); }); (rx.df||[]).forEach((x) =>{ pcSmite(x,out); });
+  return {riders:p.riders?p.riders.map((x) =>{ return Object.assign({},x); }):out,rage:p.rage?{dmg:p.rage.dmg||0,res:lc(p.rage.res)}:pcRage(rx)}; }
 function fresh(){ return {a:1,b:1,r:1,move:0,dash:0,dis:0,dodge:0,ma:null,oaLeft:[],leveled:0,once:{}}; }
 
 /* ---------- the fight ---------- */
