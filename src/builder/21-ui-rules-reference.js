@@ -1,6 +1,6 @@
 import {bindLive,commit,render,sid} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {ABK,esc,toast} from "./01-logic-core-helpers.js";
-import {DMAP,NEWB,un} from "./03-logic-magic-item-effects.js";
+import {DMAP,NEWB,bgX,spX,un} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {fs14List} from "./08-logic-2014-rules.js";
@@ -121,7 +121,7 @@ function qbNames(L){return (L||[]).map((o) =>{return Array.isArray(o)?o[0]:(o&&t
 function qbPickFill(pref,list,n,skip){const out=[];pref.concat(list).forEach((x) =>{if(out.length<n&&list.indexOf(x)>=0&&out.indexOf(x)<0&&(!skip||skip.indexOf(x)<0))out.push(x)});list.forEach((x) =>{if(out.length<n&&out.indexOf(x)<0)out.push(x)});return out}
 function qbPkSkills(c,Q,have){const from=Array.isArray(c.from)?c.from:ALLSK;return qbPickFill(Q.sk||[],from,c.n,have)}
 function qbPkExp(c,Q,have){const tk=expTaken(c.key),ef=(c.from||have).filter((n) =>{return tk.indexOf(n)<0});return qbPickFill(Q.exp||[],ef,c.n)}
-function qbPkLang(c){let used=[];choices().forEach((o) =>{if(o.t==="lang"&&o.key!==c.key&&Array.isArray(B.ch[o.key]))used=used.concat(B.ch[o.key])});return qbPickFill(["Elvish","Dwarvish","Halfling","Giant","Gnomish","Draconic","Orc","Goblin"],qbNames(c.from),c.n,used.concat(["Common"]))}
+function qbPkLang(c){let used=[];choices().forEach((o) =>{if(o.t==="lang"&&o.key!==c.key&&Array.isArray(B.ch[o.key]))used=used.concat(B.ch[o.key])});const sx=spX(),bx=bgX();used=used.concat((sx&&sx.lgf)||[],(bx&&bx.lgf)||[]);/* a language the species or background already gives is not a new pick */return qbPickFill(["Elvish","Dwarvish","Halfling","Giant","Gnomish","Draconic","Orc","Goblin"],qbNames(c.from),c.n,used.concat(["Common"]))}
 function qbPkWm(c,Q){const kitW=(B.inv||[]).map((x) =>{return baseOf(x.n).b}).filter((n) =>{return WEAPONS[n]&&!WEAPONS[n].xw&&!WEAPONS[n].nm}),okW=wmKeys().filter((n) =>{return B.cls!=="Barbarian"||WEAPONS[n].k==="M"});return qbPickFill((Q.wm||[]).concat(kitW),okW,c.n)}
 function qbPkMulti(c,Q){if(c.opt)return null;/* v32: optional choices stay empty */const L=qbNames(c.list);let ou=[];if(/invocation$/.test(c.key))choices().forEach((o) =>{if(o.key!==c.key&&/invocation$/.test(o.key)&&Array.isArray(B.ch[o.key]))ou=ou.concat(B.ch[o.key])});/* a Repeatable invocation is not repeated by the fill */return qbPickFill(/invocation$/.test(c.key)?(Q.inv||[]):[],L,c.n,ou)}
 function qbPkOpt(c,Q){const O=qbNames(OPTS[c.list]);return Q.opt&&O.indexOf(Q.opt[c.list])>=0?Q.opt[c.list]:(c.key==="spab"?({INT:"Intelligence",WIS:"Wisdom",CHA:"Charisma"}[CLASSES[B.cls].cast]||O[0]):O[0])||""}

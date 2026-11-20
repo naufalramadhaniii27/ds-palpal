@@ -18647,10 +18647,11 @@
    "to": "data/db4/02-limited-uses-damage-rows-save-notes.js",
    "import": false,
    "names": [
+    "FDMG",
     "LU_X",
     "SAVE_NOTES"
    ],
-   "count": 2
+   "count": 3
   },
   {
    "from": "data/wotc10-species-2014.js",

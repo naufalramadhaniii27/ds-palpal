@@ -31,6 +31,7 @@ AREAS = {
         ("fx_engine", [PY, "tests/fx_engine.py"]),
         ("golden_rules", [PY, "tests/golden_rules.py"]),
         ("feat_numbers", [PY, "tests/feat_numbers.py"]),
+        ("background_numbers", [PY, "tests/background_numbers.py"]),
         ("species_numbers", [PY, "tests/species_numbers.py"]),
         ("core_numbers", [PY, "tests/core_numbers.py"]),
         ("weapon_items", [PY, "tests/weapon_items.py"]),
