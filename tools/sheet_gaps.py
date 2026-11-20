@@ -123,7 +123,7 @@ for kind, owner, feat, K, why, text in rows:
 R14 = BOOK.endswith("14")
 BASE = {"sp": "Human (2014)", "bg": "Soldier (2014)", "rs": "2014", "src": {"phb14": True, "dmg14": True}} if R14 else {"sp": "Human", "bg": "Soldier", "rs": "2024"}
 # Quick Build fills the choices (Expertise, Fighting Style, a resistance type), so a rule that needs a choice is on the sheet
-SHEET = """([b])=>{const r=window.__bldFuzz(b);if(!r||!r.c)return "";const o=Object.assign({},r.c);delete o.features;delete o.inv;delete o.equipNote;return JSON.stringify(o)}"""
+SHEET = """([b])=>{const all={};(window.WX&&WX.src||[]).forEach(x=>all[x.id]=true);b.src=Object.assign({},b.src||{},all);window.__bldFuzz(Object.assign({},b,{lv:1}));const r=window.__bldFuzz(b);if(!r||!r.c)return "";if(b.sub&&r.b.sub!==b.sub)return "NOSUB";const o=Object.assign({},r.c);delete o.features;delete o.inv;delete o.equipNote;return JSON.stringify(o)}"""
 mech = {}
 with sync_playwright() as p:
     br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(120000)
@@ -139,8 +139,11 @@ gaps = defaultdict(list)
 for kind, owner, feat, K, why, text in rows:
     cls, sub = (owner.split("/", 1) + [""])[:2]
     s = mech.get((cls, sub), "")
+    if s == "NOSUB": continue
     if s and feat.strip() not in s:
         gaps[owner + " | " + feat.strip()].append((K.strip(), text))
+nosub = sorted(set("%s/%s" % k for k, v in mech.items() if v == "NOSUB"))
+if nosub: print("subclass could not be built (not counted): " + ", ".join(nosub[:30]))
 n = sum(len(v) for v in gaps.values())
 print("%s: %d uncovered class/subclass sentences, %d in %d features have no trace on the level 20 sheet" % (BOOK, len(rows), n, len(gaps)))
 for k in sorted(gaps):
