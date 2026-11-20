@@ -186,9 +186,12 @@ export function renderActions(){
   let {h}=_renderActionsStep3;
   ({h}=renderActionsStep4(show, h, bRows, AH, kinds, feats, rRows));
 }
+/* attacks per Attack action: the best of the features, never added up (Extra Attack and Thirsting Blade do not stack). The Training Ground reads it too */
+const APA={"Extra Attack":2,"Two Extra Attacks":3,"Three Extra Attacks":4,"Extra Attack (2)":3,"Extra Attack (3)":4,"Thirsting Blade":2,"Devouring Blade":3};
+export function apaOf(feats){ let apa=1; (feats||featAll()).forEach((x) =>{ apa=Math.max(apa,APA[x.f.n]||1); }); return apa; }
 function renderActionsStep1(){
   const feats=featAll(), kinds=actSplit(feats);
-  let apa=1; feats.forEach((x) =>{ if(x.f.n==="Extra Attack") apa=Math.max(apa,2); if(x.f.n==="Two Extra Attacks") apa=Math.max(apa,3); if(x.f.n==="Three Extra Attacks") apa=Math.max(apa,4); if(x.f.n==="Extra Attack (2)") apa=Math.max(apa,3); if(x.f.n==="Extra Attack (3)") apa=Math.max(apa,4); if(x.f.n==="Thirsting Blade") apa=Math.max(apa,2); if(x.f.n==="Devouring Blade") apa=Math.max(apa,3); });
+  const apa=apaOf(feats);
   const aprIco=function(t){ return ico(/Ammunition/i.test(t)?"item-ammo":/Two-Handed|Versatile/i.test(t)?"ui-hand":/Reach|Thrown/i.test(t)?"ui-range":/Heavy/i.test(t)?"ui-weight":/Bonus Action/i.test(t)?"time-bonus":/Loading/i.test(t)?"ui-pause":/Finesse|Light/i.test(t)?"item-weapon":"ui-info","apr-i"); };/* v36 p12 */
   return /** @type {any} */ ({feats, kinds, apa, aprIco});
 }

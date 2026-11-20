@@ -12,6 +12,7 @@ import {langText} from "./08-ui-render-sheet-and-actions.js";
 import {coinsNow} from "./23c-ui-coins.js";
 import {ordL,scOf} from "./23e-ui-spells-dc.js";
 import {cuNm} from "./26-ui-customize.js";
+import {dTxt,spCalc,spEffH} from "./22-ui-spell-data-and-slots.js";
 import {crEnv,crExpr,crList,crOf,crStat,crText} from "./29b-ui-creatures-extras.js";
 
 const PX_SKILLS = ["Acrobatics","Animal Handling","Arcana","Athletics","Deception","History","Insight","Intimidation","Investigation","Medicine","Nature","Perception","Performance","Persuasion","Religion","Sleight of Hand","Stealth","Survival"];
@@ -67,6 +68,14 @@ function pxNoteClean(t){ const seen={}, out=[];
   return out.join(" "); }
 function pxAtkNotes(W){ return W.filter((w) =>{ return w.a.m||w.a.note||w.a.range; }).map((w) =>{
   return "**"+w.n+".** "+[w.a.range,pxNoteClean(w.a.note)].filter(Boolean).join(". ")+(w.a.m?" {{Mastery: "+w.a.m+"}}":""); }); }
+/* the rows the Actions tab shows under the weapons: extra damage (Sneak Attack, Divine Smite, Breath Weapon), save cantrips, active modes, once-per-turn dice */
+function pxXdNotes(){ const noIco=(h) =>{ return pxPlain(String(h||"").replace(/<svg[\s\S]*?<\/svg>/g,"")); };
+  const xd=(C.xdmg||[]).map((x) =>{ return "**"+pxPlain(x.n)+".** "+[String(x.dmg||"")+(x.type?" "+x.type:""),x.save?x.save+" save, DC "+x.dc:""].filter(Boolean).join(", "); });
+  const sv=(C.spells||[]).filter((x) =>{ return !x.l&&x.sv&&x.sv!=="ATK"; }).map((x) =>{ const sc=scOf(x)||{}, cc=spCalc(x,0,D.level,sc.mod), ty=cc&&cc.parts.length?cc.parts[0].t:"";
+    return "**"+cuNm("s:"+x.n,x.n)+".** "+x.sv+" save, DC "+sc.dc+", "+noIco(spEffH(x,0))+(ty?" "+dTxt(ty):""); });
+  const md=((D.cf||{}).xd||[]).map((x) =>{ return "**"+pxPlain(x.n)+".** "+String(x.dmg||"")+(x.type?" "+x.type:"")+" {{active}}"; });
+  const dc=((D.cf||{}).dice||[]).map((x) =>{ return "**"+pxPlain(x.n)+".** "+String(x.dmg||"")+(x.type?" "+x.type:"")+" {{once per turn}}"; });
+  return xd.concat(sv,md,dc); }
 function pxCoins(){ const c=coinsNow(), o={}; ["cp","sp","ep","gp","pp"].forEach((k) =>{ if(c[k]) o[k.toUpperCase()]=String(c[k]); }); return o; }
 function pxProfs(ed){ const p=C.profs||{}, sv=ABK.filter((k) =>{ return C.saves&&C.saves[k]; }).map((k) =>{ return ABN[k]; });
   const sk=(C.skills||[]).filter((s) =>{ return num(s.p,0)>0; }).map((s) =>{ return s.n+(num(s.p,0)>1?" (expertise)":""); });
@@ -200,7 +209,7 @@ function pxCombat(){ const hd=pxHitDice(); return {abilities:pxAbilities(), prof
   deathSaves:Array.isArray(S.ds)?S.ds:[0,0], passive:String(D.pas_per), saves:pxSaves(), skills:pxSkills()}; }
 export function pdfModel(){ const ed=C.rs==="2014"?"2014":"2024", W=pxWeapons(), n=S.notes||{}, lim=pxLimited();
   return Object.assign(pxHeader(ed),pxCombat(),{
-    weapons:W.map((w) =>{ return [w.n,w.hit,w.dmg]; }), attackNotes:pxAtkNotes(W), coins:pxCoins(), boxes:pxBoxes(ed,W),
+    weapons:W.map((w) =>{ return [w.n,w.hit,w.dmg]; }), attackNotes:pxAtkNotes(W).concat(pxXdNotes()), coins:pxCoins(), boxes:pxBoxes(ed,W),
     proficiencies:pxProfs(ed), equipment:(C.inv||[]).map(pxInvLine), features:pxFeatureNames(),
     looks:pxLooks(n), portrait:pxPortrait(), factionName:"", allies:pxAllies(n), backstory:pxBackstory(ed),
     moreFeatures:pxMore(ed,lim), treasure:pxTreasure(),
@@ -220,6 +229,7 @@ function pxMore(ed,lim){ const d=ed==="2014"?pxDefenses():[], out=lim.length?["#
 /* the token picture (S.portrait, a JPEG data URL) for the Character Appearance box; other formats are left out */
 function pxPortrait(){ const p=String(S.portrait||""); return /^data:image\/(jpe?g|png);base64,/i.test(p)?p:""; }
 
+env.__pdfModelNow=pdfModel;/* test hook (tests/pdf_numbers.py): the model of the open sheet, as Export PDF makes it */
 /* test hook (tests/pdfx_sweep.py): the print model of another character, without saving it. The open sheet is restored */
 env.__pdfModelFor=function(c){ const C0=C, S0=S, D0=D; let out=null;
   try{ __set_C(structuredClone(c)); __set_S(structuredClone(DEF)); derive(); out=pdfModel(); }catch(e){ out={err:String(e&&e.stack||e)}; }

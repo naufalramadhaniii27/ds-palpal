@@ -134,7 +134,7 @@ var CMD={
   /* a save effect from the stat block: every target rolls, Failure takes the damage, Success takes half when the text says so */
   save:function(st,c){ const u=U(st,c.lg?c.by:now(st)), a=c.lg?lgAct(u,c.lg):findAct(u,c.act); if(!a||a.k!=="save") return fail(st,"not a save"); if(!active(u)) return fail(st,"cannot act");
     const e=saveSpend(st,c,u,a); if(e) return fail(st,e);
-    if(a.rc) u.used[a.n]=1; ev(st,{t:"save-use",u:u.id,act:a.n,dc:a.dc,sv:a.sv});
+    if(a.rc||a.once) u.used[a.n]=1; ev(st,{t:"save-use",u:u.id,act:a.n,dc:a.dc,sv:a.sv});
     const dm=(a.dmg||[]).map((q) =>{ return {x:rollExpr(st,q[1],false).t,type:q[2]}; });
     (c.targets||[]).forEach((tid) =>{ saveTarget(st,a,dm,tid); });
     checkOver(st); return st; },
@@ -189,7 +189,7 @@ function atkRoll(st,adv,bon,tgt,d,ranged){ const r20=d20(st,adv); let crit=r20.v
   return {rolls:r20.rolls,v:r20.v,hit:hit,crit:crit}; }
 function saveSpend(st,c,u,a){
   if(c.lg){ const lr2=lgUse(st,u,c.lg); if(lr2) return lr2; }
-  else { const slot=c.bonus?"b":"a"; if(!u.turn[slot]) return "no action left"; if(a.rc&&u.used[a.n]) return "recharging"; u.turn[slot]=0; }
+  else { const slot=c.bonus?"b":"a"; if(!u.turn[slot]) return "no action left"; if((a.rc||a.once)&&u.used[a.n]) return a.rc?"recharging":"already used"; u.turn[slot]=0; }
   return ""; }
 function saveTarget(st,a,dm,tid){ const t=U(st,tid); if(t.dead) return; let adv=(a.sv==="dex"&&t.turn.dodge)?1:0;
   if((t.cond.paralyzed||t.cond.stunned||t.cond.unconscious||t.down)&&(a.sv==="str"||a.sv==="dex")){ ev(st,{t:"save",u:tid,act:a.n,auto:"fail",ok:false}); dm.forEach((q) =>{ hurt(st,t,q.x,q.type,false,a.n); }); return; }

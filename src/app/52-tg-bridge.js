@@ -8,6 +8,7 @@ import {spCalc,spFx} from "./22-ui-spell-data-and-slots.js";
 import {scAdj} from "./23e-ui-spells-dc.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
 import {env} from "./00-env.js";
+import {apaOf} from "./08b-ui-render-summaries-actions.js";
 bindLive("tgPcFor",{get:function(){return tgPcFor;}});
 bindLive("tgPcNow",{get:function(){return tgPcNow;}});
 /* T11 G7 TG1: what the Training Ground needs from the sheet, through window.__app (the Training Ground is a deferred part, src/tg).
@@ -55,15 +56,28 @@ const row={}; SPELLS.forEach((r) =>{ row[r[0]]=r; });
 }
 function tgPcNow(){
  const {at, sv, sp, sl, sca}=tgPcNowStep1();
-  return {name:C.name||"Hero",ac:D.ac,hp:D.hpmax,max:D.hpmax,speed:num(D.speed,30)||30,ini:D.init,saves:sv,attacks:at,level:D.level,spells:sp.list,slots:sl,satk:sca.atk!=null?+sca.atk:D.dc-8,sdc:sca.dc!=null?+sca.dc:D.dc,manual:sp.manual,cls:C.clsLabel||C.cls||"",species:String(C.species||"").split(" (")[0],por:typeof S.portrait==="string"&&/^data:image\//.test(S.portrait)?S.portrait:""}; }
+  const dt=tgDefs(); tgActs(at);
+  return {name:C.name||"Hero",res:dt.Resistance,imm:dt.Immunity,vul:dt.Vulnerability,ac:D.ac,hp:D.hpmax,max:D.hpmax,speed:num(D.speed,30)||30,ini:D.init,saves:sv,attacks:at,level:D.level,spells:sp.list,slots:sl,satk:sca.atk!=null?+sca.atk:D.dc-8,sdc:sca.dc!=null?+sca.dc:D.dc,manual:sp.manual,cls:C.clsLabel||C.cls||"",species:String(C.species||"").split(" (")[0],por:typeof S.portrait==="string"&&/^data:image\//.test(S.portrait)?S.portrait:""}; }
+function tgRow(a,d,at,beams){ if(!d||!isFinite(d.hit)) return; const dm=String(d.dmg||"").replace(/−/g,"-").replace(/\s+/g,""); if(!/\d*d\d+|^\d+/.test(dm)) return;
+    const r=tgRange(a.range), dice=(/^[\d+d-]+/.exec(dm)||[""])[0].replace(/[+-]+$/,"");/* the dice in front; letters ("cold") never leak in */
+    at.push({n:a.n,hit:d.hit,reach:r.reach||undefined,rng:r.rng||undefined,dmg:[[0,dice,String(a.type||"").split(/[ ,]/)[0]||""]],cantrip:/^Cantrip/.test(a.sub||"")?1:undefined});
+    const bm=/(\d+) beams/.exec(a.sub||""); if(bm&&+bm[1]>1) beams.push({k:"multi",n:a.n+" ("+bm[1]+" beams)",ma:[[a.n,+bm[1]]]});/* Eldritch Blast: one action, one attack roll per beam */ }
+/* the Attack action (Extra Attack) and save actions such as Breath Weapon, after the attack rows */
+function tgActs(at){
+  const apa=apaOf(), names=at.filter((a) =>{ return !a.k&&!a.cantrip; }).map((a) =>{ return a.n; }).join("|");
+  if(apa>1&&names) at.push({k:"multi",n:"Attack ("+apa+" attacks)",ma:[[names,apa]]});/* Extra Attack: one Attack action, apa weapon attacks */
+  (C.xdmg||[]).forEach((x) =>{ const dc=+x.dc, d=String(x.dmg||"").replace(/\s+/g,""); if(!x.save||!dc||!/^Action/.test(x.note||"")||!/^\d*d\d+([+-]\d+)?$/.test(d)) return;
+    at.push({k:"save",n:x.n,dc:dc,sv:String(x.save).toLowerCase(),dmg:[[0,d,x.type||""]],half:/half/i.test(x.note||""),once:1}); });/* Breath Weapon and the like: an action with a save, one use in the fight */
+}
 function tgPcNowStep1(){
-const at=[]; (C.attacks||[]).forEach((a,i) =>{ const d=D.atk&&D.atk[i]; if(!d||!isFinite(d.hit)) return; const dm=String(d.dmg||"").replace(/−/g,"-").replace(/\s+/g,""); if(!/\d*d\d+|^\d+/.test(dm)) return;
-    const r=tgRange(a.range), dice=(/^[\d+d-]+$/.test(dm)?dm:dm.replace(/[^\dd+-]/g,""));
-    at.push({n:a.n,hit:d.hit,reach:r.reach||undefined,rng:r.rng||undefined,dmg:[[0,dice,String(a.type||"").split(/[ ,]/)[0]||""]]}); });
+const at=[], beams=[]; (C.attacks||[]).forEach((a,i) =>{ tgRow(a,D.atk&&D.atk[i],at,beams); });
   const sv={}; ["STR","DEX","CON","INT","WIS","CHA"].forEach((k) =>{ if(D.save&&D.save[k]!=null) sv[k.toLowerCase()]=D.save[k]; });
   const sp=tgSpells(), sl=((C.spellcasting||{}).slots||[]).map((n) =>{ return +n||0; }), sca=C.spellcasting?(typeof scAdj==="function"?scAdj(C.spellcasting):C.spellcasting):{};
-  return /** @type {any} */ ({at, sv, sp, sl, sca});
+  return /** @type {any} */ ({at:at.concat(beams), sv, sp, sl, sca});
 }
+/* damage types the sheet lists under Defenses ("Bludgeoning, Piercing, and Slashing" is three); conditions stay out */
+const DTYPES=/^(acid|bludgeoning|cold|fire|force|lightning|necrotic|piercing|poison|psychic|radiant|slashing|thunder)$/i;
+function tgDefs(){ const o={Resistance:[],Immunity:[],Vulnerability:[]}; (C.defenses||[]).forEach((x) =>{ if(!o[x.t]) return; String(x.v||"").split(/\s*,\s*(?:and\s+)?|\s+and\s+|\s+or\s+/).forEach((v) =>{ if(DTYPES.test(v)&&o[x.t].indexOf(v)<0) o[x.t].push(v); }); }); return o; }
 /* c: a character object (C). Swaps it in, derives, reads, puts the open one back */
 function tgPcFor(c){ if(!c||!c.abilities) return null; let kC=C, kD=D, kB=B, kCU=CU0, out=null; try{ __set_C(c); derive(); out=tgPcNow(); out.por=""; } catch(e){ out=null; } finally{ __set_C(kC); __set_D(kD); __set_B(kB); __set_CU0(kCU); } return out; }
 function tgRoster(){ const r=rGet(), out=[]; if(!r||!r.chars) return out; Object.keys(r.chars).forEach((id) =>{ const e=r.chars[id]; if(!e||e.ph) return;
@@ -73,4 +87,4 @@ function tgRoster(){ const r=rGet(), out=[]; if(!r||!r.chars) return out; Object
 /* a class to try: the builder makes a level N character with its first choices (Human, Soldier, standard scores) */
 function tgTry(cls,level,sub){ if(!env.__bldSheetFor) return null; const lv=Math.max(1,Math.min(20,level|0||1)), nb=(env.__bldQuickFor&&env.__bldQuickFor(cls,lv))||{cls:cls,level:lv,sub:sub||"",species:"Human",bg:"Soldier",unset:[]}; nb.name="Trial "+cls;
   let c2=null; try{ c2=env.__bldSheetFor(nb); }catch(e){ c2=null; } const p=tgPcFor(c2); if(p){ p.name=cls+" "+nb.level; p.trial=1; } return p; }
-env.__app.tgRoster=tgRoster; env.__app.tgTry=tgTry; env.__app.uiGet=uiGet; env.__app.uiSet=uiSet; env.__app.toast=toast;
+env.__app.tgPcFor=tgPcFor;/* tests/tg_numbers.py */ env.__app.tgRoster=tgRoster; env.__app.tgTry=tgTry; env.__app.uiGet=uiGet; env.__app.uiSet=uiSet; env.__app.toast=toast;

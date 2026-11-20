@@ -167,7 +167,7 @@ const t=u.turn, left=TGE.speedLeft(u);
   return /** @type {any} */ ({t, left});
 }
 function panelHtmlStep2(u){
-  const acts=(u.acts||[]).map((a,i) =>{ const lab=a.k==="atk"?a.n+" "+(a.hit>=0?"+":"")+a.hit:a.k==="save"?a.n+" (DC "+a.dc+")":a.n; const used=a.rc&&u.used[a.n];
+  const acts=(u.acts||[]).map((a,i) =>{ const lab=a.k==="atk"?a.n+" "+(a.hit>=0?"+":"")+a.hit:a.k==="save"?a.n+" (DC "+a.dc+")":a.n; const used=(a.rc||a.once)&&u.used[a.n];
     return '<button type="button" class="btn press tg-a k-'+a.k+(TG.act===a.n?' on':'')+'" data-tga="'+i+'"'+(used?' disabled':'')+' title="'+esc(a.t||"")+'">'+esc(lab)+(a.rc?' <small>'+(used?'recharging':'recharge '+a.rc+'-6')+'</small>':'')+'</button>'; }).join("");
   const bon=(u.bonus||[]).map((a,i) =>{ return '<button type="button" class="btn press tg-a" data-tgb="'+i+'" title="'+esc(a.t||"")+'">'+esc(a.n)+'</button>'; }).join("");
   const ORD=["1st","2nd","3rd","4th","5th","6th","7th","8th","9th"], slotsTxt=(u.slots||[]).map((n,i) =>{ return n>0?ORD[i]+" "+n:""; }).filter(Boolean).join(", ");

@@ -22,7 +22,7 @@ function pilotWalk(P){ if(P.atks.some((a) =>{ return inR(P,a); })||!(TGE.speedLe
 /* Multiattack: the listed attacks one by one, on the next foe when the target fell */
 function pilotMulti(P){ let g=0;
   while(me(P).turn.ma&&me(P).turn.ma.length&&g++<8&&!P.st.over){ if(P.st.units[P.tg.id].dead){ const nf=TGE.foes(P.st,me(P)).filter((x) =>{ return !x.dead; }); if(!nf.length) break; nf.sort((a,b) =>{ return TGE.udist(me(P),a)-TGE.udist(me(P),b); }); P.tg=nf[0]; }
-    var want=me(P).turn.ma[0].split("|"), a=P.atks.filter((x) =>{ return want.indexOf(x.n)>=0&&inR(P,x); })[0]; if(!a||!go(P,{t:"attack",target:P.tg.id,act:a.n})) break; } }
+    var want=me(P).turn.ma[0].split("|"), a=P.atks.filter((x) =>{ return want.indexOf(x.n)>=0&&inR(P,x); }).sort((x,y) =>{ return (TGE.odds(P.st,P.id,P.tg.id,y.n)||{avg:0}).avg-(TGE.odds(P.st,P.id,P.tg.id,x.n)||{avg:0}).avg; })[0];/* a character's Attack action lists every weapon: take the best one */ if(!a||!go(P,{t:"attack",target:P.tg.id,act:a.n})) break; } }
 function pilotSingle(P,spell,save){ const id=P.id, a2=P.atks.filter((a) =>{ return inR(P,a); }).sort((x,y) =>{ return (TGE.odds(P.st,id,P.tg.id,y.n)||{avg:0}).avg-(TGE.odds(P.st,id,P.tg.id,x.n)||{avg:0}).avg; })[0];
   if(!(a2&&go(P,{t:"attack",target:P.tg.id,act:a2.n}))){ if(spell) go(P,{t:"cast",sp:spell.n,targets:[P.tg.id]}); else if(save&&TGE.udist(me(P),P.st.units[P.tg.id])<=30) go(P,{t:"save",act:save.n,targets:[P.tg.id]}); else go(P,{t:"dodge"}); } }
 function pilotStrike(P){ const u=P.u;
