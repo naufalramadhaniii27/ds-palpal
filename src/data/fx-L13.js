@@ -56,12 +56,12 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};
  /* Bladesong */
  var BS={id:"bladesong",label:"Bladesong"};
  add("Bladesinger",[
-  {l:3,n:"Bladesong",toggle:BS,acAdd:"INT",min:1,speedAdd:10,cond:"noArmor",advOn:["Dexterity (Acrobatics) checks"]},
+  {l:3,n:"Bladesong",toggle:BS,acAdd:"INT",min:1,speedAdd:10,cond:"noArmor",advOn:["Dexterity (Acrobatics) checks"],atkAb:{kind:"weapon",ab:"INT",prof:1}},/* 2024 Bladework */
   {l:6,n:"Extra Attack",extraAttack:2}]);
  add("Bladesinging",[
-  {l:3,n:"Bladesong",toggle:BS,acAdd:"INT",min:1,speedAdd:10,cond:"noMedHeavy",advOn:["Dexterity (Acrobatics) checks"]},
+  {l:3,n:"Bladesong",toggle:BS,acAdd:"INT",min:1,speedAdd:10,cond:"lightNoShield",advOn:["Dexterity (Acrobatics) checks"]},
   {l:6,n:"Extra Attack",extraAttack:2},
-  {l:14,n:"Song of Victory",toggle:BS,min:1,atkBonus:[{when:"melee",dmg:"INT"}]}]);
+  {l:14,n:"Song of Victory",toggle:BS,cond:"lightNoShield",min:1,atkBonus:[{when:"melee",dmg:"INT"}]}]);
  wxs("Bladesinging","Wizard").forEach(function(x){x.fx=(x.fx||[]).filter(function(r){return r[1]!=="Bladesong"})});/* the always-on note is now the toggle */
  add("Doomsayer",[{l:14,n:"Power from Darkness",atkBonus:[{when:"spell",crit:19}]}]);
  /* Dragon Mage invocations */

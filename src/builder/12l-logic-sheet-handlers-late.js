@@ -108,8 +108,8 @@ registerSheetGroup({id:"fx-speed-add-if",group:"late",phase:"late",order:120,sco
     if(sk||mv)C.speedSrc+=", +"+n+" ft "+spdTxt(k)+" ("+e.lbl+", you already have it)";else if(e.mv&&e.mv[k]!=null)C.speedSrc+=", "+spdTxt(k)+" "+(e.mv[k]==="speed"?"equal to your Speed ("+C.speed+" ft)":e.mv[k]+" ft")+" ("+e.lbl+")"});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-atk-ability",group:"late",phase:"late",order:130,scope:"each",over:"i.G",loop:"late-fx",reads:["i.a", "i.pb", "i.ar", "i.ESH", "i.EA", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
- run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {a,pb,ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkAb {kind, ab, opt, note}: that ability for the attack and damage modifier when higher. opt:1 = only a note on the row (the text allows it for some strikes) */
-   if(e.atkAb){const q=e.atkAb;rowsPick(q.kind).forEach(function(r){if(!q.ab||a.sc[q.ab]==null)return;const bt=pb+mod(a.sc[q.ab]),dm=mod(a.sc[q.ab]);
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {a,pb,ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkAb {kind, ab, opt, note, prof}: that ability for the attack and damage modifier when higher. opt:1 = only a note on the row (the text allows it for some strikes) */
+   if(e.atkAb){const q=e.atkAb;rowsPick(q.kind).forEach(function(r){if(!q.ab||a.sc[q.ab]==null||(q.prof&&!r.prof))return;/* prof:1 = only rows the character is proficient with */const bt=pb+mod(a.sc[q.ab]),dm=mod(a.sc[q.ab]);
      if(q.opt){r.note=(r.note?r.note+" ":"")+(q.note||e.n+": you can use "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for the attack and damage of this attack")+" (attack +"+bt+", damage modifier "+(dm>=0?"+":"")+dm+")."}
      else if(mod(a.sc[q.ab])>mod(a.sc[r.ab])){r.note=(r.note?r.note+" ":"")+e.lbl+": "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for attack and damage.";r.ab=q.ab;r.abSrc=e.lbl}})}
   return ctx.patch()}});

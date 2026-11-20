@@ -3,7 +3,9 @@ import {un} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {XFX,allFeats,eaType} from "./09-logic-feats-and-choices.js";
-import {classFx,clsInh,clsParts,fxList,fxVal} from "./11-logic-derivation.js";
+import {classFx,clsInh,clsParts,fxList,fxOk,fxVal} from "./11-logic-derivation.js";
+import {baseOf,effArmor,effShield} from "./01b-logic-late-ports.js";
+import {armorDef} from "./00-env.js";
 import {subChoicesFor} from "./13-logic-sources-and-packs.js";
 import {MCL,TL,mcResMax} from "./14-logic-multiclass-hp-shop.js";
 
@@ -114,7 +116,7 @@ function defItems(add){(B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Ring
 function defFeats(add){const eat=eaType();if(eat)add("Resistance",eat,"Elemental Affinity (Draconic Sorcery 6)");/* v19 RL41 */
  allFeats().forEach((f) =>{if(f.n==="Boon of Energy Resistance"){const bt=B.ch["ber-"+(f.key||f.s)];if(Array.isArray(bt)&&bt.length)bt.forEach((t) =>{add("Resistance",t,"Boon of Energy Resistance")});else add("Resistance","Two damage types, not chosen yet","Boon of Energy Resistance")}/* v32 RL49 no. 18 */if(f.n==="Heavy Armor Master")add("Note","Reduce Bludgeoning, Piercing, Slashing damage by your Proficiency Bonus in Heavy armor","Heavy Armor Master")});
 }
-function defFx(add){fxList().forEach((e) =>{if(e.def)add(e.def[0],e.def[1],e.lbl);(e.defs||[]).forEach((r) =>{add(r[0],r[1],e.lbl)});(e.res||[]).forEach((t) =>{add("Resistance",t,e.lbl)});(e.imm||[]).forEach((t) =>{add("Immunity",t,e.lbl)});(e.vul||[]).forEach((t) =>{add("Vulnerability",t,e.lbl)});(e.advOn||[]).forEach((t) =>{add("Note","Advantage on "+t,e.lbl)});if(e.initAdv)add("Note","Advantage on Initiative rolls",e.lbl);/* fx engine v4: condImm [conditions] (Immunity rows like item condImm), noSurprise true or text, initDie "1d10" (note) */(e.condImm||[]).forEach((t) =>{add("Immunity",t+" (condition)",e.lbl)});if(e.noSurprise)add("Note",typeof e.noSurprise==="string"?e.noSurprise:"Cannot be surprised",e.lbl);if(e.initDie)add("Note","Add "+e.initDie+" to Initiative rolls",e.lbl)});/* fx engine v2: def [type,text], defs [[type,text]], res, imm, vul (damage types), advOn (texts), initAdv *//* generic: class fx.def = [type, text] (Resistance, Immunity, Note) */}
+function defFx(add){const EA=effArmor(),ESH=effShield(),ar=armorDef(baseOf(EA).b);fxList().forEach((e) =>{if(!fxOk(e,ar,ESH,EA))return;/* armor cond (Bladesong) gates its Defenses lines too */if(e.def)add(e.def[0],e.def[1],e.lbl);(e.defs||[]).forEach((r) =>{add(r[0],r[1],e.lbl)});(e.res||[]).forEach((t) =>{add("Resistance",t,e.lbl)});(e.imm||[]).forEach((t) =>{add("Immunity",t,e.lbl)});(e.vul||[]).forEach((t) =>{add("Vulnerability",t,e.lbl)});(e.advOn||[]).forEach((t) =>{add("Note","Advantage on "+t,e.lbl)});if(e.initAdv)add("Note","Advantage on Initiative rolls",e.lbl);/* fx engine v4: condImm [conditions] (Immunity rows like item condImm), noSurprise true or text, initDie "1d10" (note) */(e.condImm||[]).forEach((t) =>{add("Immunity",t+" (condition)",e.lbl)});if(e.noSurprise)add("Note",typeof e.noSurprise==="string"?e.noSurprise:"Cannot be surprised",e.lbl);if(e.initDie)add("Note","Add "+e.initDie+" to Initiative rolls",e.lbl)});/* fx engine v2: def [type,text], defs [[type,text]], res, imm, vul (damage types), advOn (texts), initAdv *//* generic: class fx.def = [type, text] (Resistance, Immunity, Note) */}
 function defenses(a){const o=[],L=B.level;function add(t,v,s){o.push({t:t,v:v,s:s})}
  defSpecies(add);
  defClass(add,B.cls,L,B.sub);MCL().forEach((m) =>{defClass(add,m.cls,m.lv,m.sub)});
