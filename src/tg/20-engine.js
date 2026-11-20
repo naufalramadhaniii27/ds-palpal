@@ -1,4 +1,5 @@
 // @ts-check
+import {lc,pcAct,pcRiders,pcDefs,pcSlots} from "./19-pc-sheet.js";
 /* G7 TG0 Training Ground engine, without any screen. Pure rules: the same seed and the same list of commands always give the same fight.
    Plan: claude/rencana-kerja-training-ground.md parts 5 and 6 (tier A: attacks, damage types, saves, basic conditions, movement on a grid,
    Dash, Disengage, Dodge, opportunity attacks, End Turn, Hit Points, death saves, Recharge). No enemy AI: the player gives every command.
@@ -21,7 +22,6 @@ function rollExpr(st,expr,crit){ let t=0, dice=[]; parse(expr).forEach((q) =>{ i
 const ABL=["str","dex","con","int","wis","cha"];
 function mod(v){ return Math.floor((v-10)/2); }
 function sizeSq(sz){ return {T:1,S:1,M:1,L:2,H:3,G:4}[sz]||1; }
-function lc(a){ return (a||[]).map((x) =>{ return String(x).toLowerCase(); }).join(" | "); }
 /* a creature from the Training Ground data (TG_CREATURES). side "foe" (default), "ally" (fights with the player) */
 function fromCreature(c,id,pos,side){ side=side||"foe"; const sv={}; ABL.forEach((k,i) =>{ sv[k]=(c.sv&&c.sv[k]!=null)?c.sv[k]:mod(c.ab[i]); });
   const acts=[].concat(c.act||[]).map((a) =>{ return Object.assign({},a); });
@@ -33,27 +33,10 @@ function fromCreature(c,id,pos,side){ side=side||"foe"; const sv={}; ABL.forEach
 /* a player character: {name, ac, hp, max, speed, ini, saves:{dex:2...}, attacks:[{n, hit, reach, rng, dmg:[[avg,"1d8+3","Slashing"]]}]} */
 function fromSheet(p,id,pos){ const sv={}; ABL.forEach((k) =>{ sv[k]=p.saves&&p.saves[k]!=null?p.saves[k]:0; });
   return Object.assign({id:id,side:"pc",name:p.name||"Hero",kind:"pc",ac:p.ac||10,hp:p.hp!=null?p.hp:p.max,max:p.max||p.hp||1,tmp:p.tmp||0,sp:{walk:p.speed||30},ini:p.ini||0,sv:sv,size:1,
-    pos:pos?pos.slice():[0,0],res:lc(p.res),imm:lc(p.imm),vul:lc(p.vul),ci:"",acts:(p.attacks||[]).map(pcAct),
+    pos:pos?pos.slice():[0,0],res:lc(p.res||pcDefs(p,"Resistance")),imm:lc(p.imm||pcDefs(p,"Immunity")),vul:lc(p.vul||pcDefs(p,"Vulnerability")),ci:"",acts:(p.attacks||[]).map(pcAct),
     bonus:[],reacts:[],cond:{},used:{},dead:false,down:false,ds:{s:0,f:0},turn:fresh(),
     /* TG5 spells of tier B: {n, l, k "atk"|"save"|"heal"|"auto", time "a"|"b", c concentration, rng feet, sv, half, n rays or darts, by:{slot level:[[avg,dice,type],...]}, heal:{lvl:dice}} */
-    spells:(p.spells||[]).map((x) =>{ return structuredClone(x); }),slots:(p.slots||[]).slice(),satk:p.satk||0,sdc:p.sdc||10},pcRiders(p)); }
-/* TG6 damage riders the sheet shows: [{n, dmg dice, type ("" = the weapon's), once (first Finesse or ranged hit each turn), slot (smite: spends a slot after a melee hit), b (needs the Bonus Action), max dice}]; rage {dmg, res} */
-const DTY=/^(acid|bludgeoning|cold|fire|force|lightning|necrotic|piercing|poison|psychic|radiant|slashing|thunder)$/i;
-/* p.rx: the sheet's raw rows (xd C.xdmg, df C.defenses, rg Rage damage when Rage can be switched on here), parsed in this deferred part to keep the first download small */
-/* weapon extra dice (Flame Tongue +2d6 Fire): raw sheet rows {d, t} or ready [0, dice, type] */
-function pcXd(xd){ const o=(xd||[]).map((x) =>{ return Array.isArray(x)?x:[0,String(x.d||"").replace(/\s+/g,""),String(x.t||"").split(" ")[0]]; }).filter((q) =>{ return /^\d*d\d+$/.test(q[1])&&DTY.test(q[2]); }); return o.length?o:undefined; }
-function pcAct(a){ return Object.assign({k:"atk",mr:a.rng?(a.reach?"mr":"r"):"m"},a,{xd:pcXd(a.xd),str:a.str||(a.ab==="STR"?1:undefined),fin:a.fin||(/Finesse|Ammunition/.test(a.sub||"")?1:undefined)}); }
-const pcTy=(t) =>{ return DTY.test(t)?t:""; };
-function pcXdmg(x,out){ const d=String(x.dmg||"").replace(/\s+/g,""), note=String(x.note||""); if(x.save||!/^\d*d\d+$/.test(d)) return;
-  if(/expend a spell slot/i.test(note)){ const mx=/max (\d+)d/i.exec(note); out.push({n:x.n,dmg:d,type:pcTy(x.type),slot:1,max:mx?+mx[1]:0}); }
-  else if(/^Once per turn/i.test(note)) out.push({n:x.n,dmg:d,type:pcTy(x.type),once:1}); }
-function pcSmite(x,out){ const m=/(\d+d\d+) (\w+) damage/.exec(String(x.v||"")); if(x.t!=="Note"||!m||!/spell slot/i.test(x.v)||out.some((r) =>{ return r.slot; })) return;
-  const mx=/\((\d+)d\d+ at most\)/.exec(x.v); out.push({n:String(x.v).split(",")[0],dmg:m[1],type:pcTy(m[2]),slot:1,b:/Bonus Action/.test(x.v)?1:0,max:mx?+mx[1]:0}); }
-function pcRage(rx){ if(rx.rg==null) return null; const res=[];
-  (rx.df||[]).forEach((x) =>{ if(x.t==="Resistance"&&/while raging/i.test(x.v)) String(x.v).replace(/\s*\(.*\)/,"").split(/\s*,\s*(?:and\s+)?|\s+and\s+/).forEach((v) =>{ if(DTY.test(v)) res.push(v); }); });
-  return {dmg:rx.rg||0,res:lc(res)}; }
-function pcRiders(p){ const rx=p.rx||{}, out=[]; (rx.xd||[]).forEach((x) =>{ pcXdmg(x,out); }); (rx.df||[]).forEach((x) =>{ pcSmite(x,out); });
-  return {riders:p.riders?p.riders.map((x) =>{ return Object.assign({},x); }):out,rage:p.rage?{dmg:p.rage.dmg||0,res:lc(p.rage.res)}:pcRage(rx)}; }
+    spells:(p.spells||[]).map((x) =>{ return structuredClone(x); }),slots:pcSlots(p),satk:p.satk||0,sdc:p.sdc||10},pcRiders(p)); }
 function fresh(){ return {a:1,b:1,r:1,move:0,dash:0,dis:0,dodge:0,ma:null,oaLeft:[],leveled:0,once:{}}; }
 
 /* ---------- the fight ---------- */
@@ -117,7 +100,7 @@ function hurt(st,u,amt,type,crit,why){ amt=adjust(u,amt,type); const took=amt;
   if(u.hp===0){
     if(u.kind==="pc"){ if(u.down){ u.ds.f+=crit?2:1; ev(st,{t:"dsf",u:u.id,f:u.ds.f}); if(u.ds.f>=3){ u.dead=true; ev(st,{t:"dead",u:u.id}); } }
       else if(amt-before>=u.max){ u.dead=true; ev(st,{t:"dead",u:u.id,why:"massive"}); }
-      else { u.down=true; delete u.cond.raging; u.cond.unconscious=1; u.cond.prone=1; u.ds={s:0,f:0}; ev(st,{t:"down",u:u.id}); } }
+      else { u.down=true; delete u.cond.raging; delete u.cond.concentrating; u.cond.unconscious=1; u.cond.prone=1; u.ds={s:0,f:0}; ev(st,{t:"down",u:u.id}); } }
     else if(!u.dead){ u.dead=true; ev(st,{t:"dead",u:u.id}); } }
   if(u.cond.concentrating&&took>0&&!u.dead){ const dc=Math.min(30,Math.max(10,Math.floor(took/2))), r=d20(st,0), ok=r.v+u.sv.con>=dc; ev(st,{t:"conc",u:u.id,dc:dc,roll:r.v,ok:ok}); if(!ok) delete u.cond.concentrating; } }
 
@@ -153,6 +136,14 @@ var CMD={
     u.slots[lv-1]--; if(r.b){ u.turn.b=0; u.turn.leveled=1; } st.hit=null;
     const q=parse(r.dmg)[0], n=Math.min(r.max||99,q.n+lv-1), x=rollExpr(st,n+"d"+q.f,h.crit);
     ev(st,{t:"rider",u:u.id,n:r.n,lvl:lv,v:x.t,dice:x.dice}); hurt(st,t,x.t,r.type,h.crit,r.n); checkOver(st); return st; },
+  /* TG7 a mark spell: a Bonus Action and a slot, Concentration, one marked target. While Concentration holds, every hit of this unit on that
+     target adds the die. When the marked target died, moving the mark to a new one is a Bonus Action without a slot */
+  mark:function(st,c){ const u=U(st,now(st)), m=(u.marks||[]).filter((x) =>{ return !c.n||x.n===c.n; })[0], t=U(st,c.target); if(!m) return fail(st,"no mark");
+    if(!active(u)) return fail(st,"cannot act"); if(!u.turn.b) return fail(st,"no bonus action left"); if(t.dead) return fail(st,"target is dead"); if(m.rng&&udist(u,t)>m.rng) return fail(st,"out of range");
+    const moved=markOn(u)&&u.mark.n===m.n&&U(st,u.mark.tg).dead;
+    if(!moved){ if(u.turn.leveled) return fail(st,"one spell slot per turn"); const lv=castLevel(u,{l:m.l||1},c); if(lv===null) return fail(st,"no spell slot"); castSpend(st,u,{n:m.n,l:m.l||1,c:1},"b",lv,[t]); }
+    else u.turn.b=0;
+    u.mark={n:m.n,tg:t.id,dmg:m.dmg,type:m.type||"",wpn:m.wpn?1:0}; ev(st,{t:"mark",u:u.id,n:m.n,tg:t.id,moved:moved?1:0}); return st; },
   /* TG6 Rage: a Bonus Action, then Rage damage on Strength melee hits and Resistance to its damage types until the unit drops */
   rage:function(st){ const u=U(st,now(st)); if(!u.rage) return fail(st,"no rage"); if(u.cond.raging) return fail(st,"already raging"); if(!u.turn.b) return fail(st,"no bonus action left");
     u.turn.b=0; u.cond.raging=1; ev(st,{t:"rage",u:u.id}); return st; },
@@ -206,6 +197,7 @@ var CMD={
 function atkDamage(st,att,tgt,a,crit,ranged){ const by=/** @type {Record<string,number>} */({}), base=String(((a.dmg||[])[0]||[])[2]||""), add=function(t,v){ t=t||""; by[t]=(by[t]||0)+v; };
   (a.dmg||[]).forEach((q) =>{ add(q[2],rollExpr(st,q[1],crit).t); });
   const extra=(a.xd||[]).slice(); if(att.rage&&att.cond.raging&&a.str&&!ranged) extra.push([0,String(att.rage.dmg),base,"Rage"]);
+  markRider(att,tgt,a,base,extra);
   (att.riders||[]).forEach((r) =>{ if(r.once&&!r.slot&&a.fin&&!att.turn.once[r.n]){ att.turn.once[r.n]=1; extra.push([0,r.dmg,r.type||base,r.n]); } });
   extra.forEach((q) =>{ const x=rollExpr(st,q[1],crit); ev(st,{t:"rider",u:att.id,n:q[3]||q[2],v:x.t,dice:x.dice}); add(q[2]||base,x.t); });
   Object.keys(by).forEach((t) =>{ hurt(st,tgt,by[t],t,crit,a.n); }); }
@@ -248,7 +240,11 @@ function castEffect(st,u,sp,lv,tg){ const dm=(sp.by&&(sp.by[lv]||sp.by[sp.l]))||
   else if(sp.k==="heal") castHeal(st,sp,lv,tg); }
 function castHit(st,u,sp,dm,t){ if(t.dead) return; let hit=true, crit=false;
   if(sp.k==="atk"){ const ranged=(sp.rng||5)>5, adv=advOf(st,u,t,ranged), r20=d20(st,adv); crit=r20.v===20; hit=crit||(r20.v!==1&&r20.v+u.satk>=t.ac); ev(st,{t:"atk",u:u.id,tg:t.id,act:sp.n,roll:r20.rolls,adv:adv,bon:u.satk,tot:r20.v+u.satk,ac:t.ac,hit:hit,crit:crit}); }
-  if(hit) dm.forEach((q) =>{ hurt(st,t,rollExpr(st,q[1],crit).t,q[2],crit,sp.n); }); }
+  if(hit) dm.forEach((q) =>{ hurt(st,t,rollExpr(st,q[1],crit).t,q[2],crit,sp.n); });
+  if(hit&&sp.k==="atk"&&markOn(u,t)&&!u.mark.wpn&&u.mark.type){ const x=rollExpr(st,u.mark.dmg,crit); ev(st,{t:"rider",u:u.id,n:u.mark.n,v:x.t,dice:x.dice}); hurt(st,t,x.t,u.mark.type,crit,u.mark.n); } }
+function markRider(att,tgt,a,base,extra){ if(markOn(att,tgt)&&!(att.mark.wpn&&a.cantrip)) extra.push([0,att.mark.dmg,att.mark.type||base,att.mark.n]); }
+/* the unit's mark holds while its Concentration is on that spell (a failed Constitution save, dropping to 0 or another Concentration spell ends it) */
+function markOn(u,t){ return !!(u.mark&&u.cond.concentrating&&u.conc===u.mark.n&&(!t||t.id===u.mark.tg)); }
 function castSave(st,u,sp,dm,tg){ const rolled=dm.map((q) =>{ return {x:rollExpr(st,q[1],false).t,type:q[2]}; });
   tg.forEach((t) =>{ if(t.dead) return; const b=t.sv[sp.sv]||0, adv=(sp.sv==="dex"&&t.turn.dodge)?1:0, auto=(t.cond.paralyzed||t.cond.stunned||t.cond.unconscious||t.down)&&(sp.sv==="str"||sp.sv==="dex");
     let ok=false; if(auto) ev(st,{t:"save",u:t.id,act:sp.n,auto:"fail",ok:false}); else { const r=d20(st,adv); ok=r.v+b>=u.sdc; ev(st,{t:"save",u:t.id,act:sp.n,roll:r.rolls,tot:r.v+b,dc:u.sdc,ok:ok}); }

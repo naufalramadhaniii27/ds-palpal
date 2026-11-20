@@ -6,7 +6,7 @@ Checked against the sheet: AC, Hit Point maximum, Initiative, Speed, saves, ever
 save DC and spell attack. Checked against the rules (fixed numbers below): attacks per Attack action (Extra Attack and Thirsting Blade never
 add up), cantrip dice by character level, Eldritch Blast beams, damage Resistances, a 2014 Dragonborn Breath Weapon as a save action.
 Damage riders (TG6): Sneak Attack (once per turn), Divine Smite (a slot; 2024 a Bonus Action), Rage (damage and "(while raging)" Resistances,
-not permanent ones), weapon extra dice such as Flame Tongue +2d6 Fire. Engine behaviour of the riders: tests/tg_engine.js. Exit 1 on any difference."""
+not permanent ones), weapon extra dice such as Flame Tongue +2d6 Fire. Marks (TG7): Hex, Hunter's Mark (2014 the weapon's type), Foe Slayer's d10. Engine behaviour of the riders: tests/tg_engine.js. Exit 1 on any difference."""
 import json, os, subprocess, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +27,9 @@ J = [
  ["Paladin 5 Dragonborn", "2014", "Paladin", 5, "Oath of Devotion (2014)", [], "Dragonborn (2014)", ["Flame Tongue (Longsword)", "Shield, +1", "Plate Armor"], dict(apa=2, res=["Acid"], save={"Breath Weapon": [12, "dex", "2d6"]}, xd={"Flame Tongue (Longsword)": [[0, "2d6", "Fire"]]}, riders=[{"n": "Divine Smite", "dmg": "2d8", "type": "Radiant", "slot": 1, "max": 5}])],
  ["Warlock 5 Agonizing", "2024", "Warlock", 5, "Fiend Patron", [], "", None, dict(apa=1, ag=1, eb=2, arr=[8, 14, 13, 12, 10, 15])],
  ["Warlock 5", "2014", "Warlock", 5, "The Fiend (2014)", [], "", None, dict(apa=1, ag=1, eb=2, arr=[8, 14, 13, 12, 10, 15])],
+ ["Warlock 5 Hex", "2024", "Warlock", 5, "Fiend Patron", [], "", None, dict(apa=1, addsp=["Hex"], slots=[0, 0, 2], marks=[{"n": "Hex", "l": 1, "dmg": "1d6", "type": "Necrotic", "wpn": 0, "rng": 90}])],
+ ["Ranger 20 Foe Slayer", "2024", "Ranger", 20, "Hunter", [], "", None, dict(apa=2, marks=[{"n": "Hunter's Mark", "l": 1, "dmg": "1d10", "type": "Force", "wpn": 0, "rng": 90}])],
+ ["Ranger 5 Hunter's Mark", "2014", "Ranger", 5, "Hunter (2014)", [], "", None, dict(apa=2, addsp=["Hunter's Mark"], marks=[{"n": "Hunter's Mark", "l": 1, "dmg": "1d6", "type": "", "wpn": 1, "rng": 90}])],
  ["Wizard 5", "2024", "Wizard", 5, "Evoker", [], "", None, dict(apa=1, spell={"Fire Bolt": "2d10"})],
  ["Cleric 5", "2014", "Cleric", 5, "Life Domain (2014)", [], "", None, dict(apa=1, spell={"Sacred Flame": "2d8"})],
  ["Fighter 5 / Warlock 5", "2024", "Fighter", 5, "Champion", [("Warlock", "Fiend Patron", 5)], "", None, dict(apa=2)],
@@ -39,7 +42,7 @@ const R={'2014':['Human (2014)','Soldier (2014)'],'2024':['Human','Soldier']};
 return J.map(([lab,rs,cls,lv,sub,mc,sp,inv,e])=>{try{const b=window.__bldFuzz({sp:sp||R[rs][0],bg:R[rs][1],rs,src:all,cls,sub,lv,arr:e.arr||[15,14,13,12,10,8],b2:0,b1:0}).b;if(!b)return {err:'no build'};
  if(rs==='2024')b.ch.spfeat='Crafter';b.mc=mc.map(([c,s,l])=>({cls:c,sub:s,lv:l}));if(inv)b.inv=inv.map(n=>({n,q:1,eq:true}));
  if(e.ag){const k=Object.keys(b.ch).filter(k=>/invocation$/.test(k)&&Array.isArray(b.ch[k])&&b.ch[k].length)[0];if(k&&b.ch[k].indexOf('Agonizing Blast')<0)b.ch[k][0]='Agonizing Blast';b.ch.invab=['Eldritch Blast'];}
- const t=window.__bldTestB();Object.assign(t,b);delete t.unset;const C=window.__bldSheetFor(t);window.__sheetApply(C,false);const D=JSON.parse(JSON.stringify(window.__D()));
+ const t=window.__bldTestB();Object.assign(t,b);delete t.unset;const C=window.__bldSheetFor(t);window.__sheetApply(C,false);(e.addsp||[]).forEach(n=>{C.spells=C.spells||[];if(!C.spells.some(x=>x.n===n))C.spells.push({n,l:1})});const D=JSON.parse(JSON.stringify(window.__D()));
  const sc=C.spellcasting?(window.__scAdj?window.__scAdj(C.spellcasting):C.spellcasting):null;
  return {D:{ac:D.ac,hp:D.hpmax,init:D.init,speed:D.speed,save:D.save,atk:D.atk,mod:D.mod},att:(C.attacks||[]).map(a=>({n:a.n,type:a.type,sub:a.sub||''})),sc,def:C.defenses||[],xdmg:C.xdmg||[],pc:window.__app.tgPcFor(C)}}catch(x){return {err:String(x&&x.stack||x)}}})}"""
 
@@ -84,6 +87,8 @@ for j, g, u in zip(J, out, units):
         a = acts.get(k); rows.append((lab + " save action " + k, v, a and [a["dc"], a["sv"], a["dmg"][0][1]]))
     if "ac" in e: rows.append((lab + " rules AC", e["ac"], u["ac"]))
     if "riders" in e: rows.append((lab + " damage riders", e["riders"], u["riders"]))
+    if "marks" in e: rows.append((lab + " marks", e["marks"], u["marks"]))
+    if "slots" in e: rows.append((lab + " spell slots (Pact Magic at its level)", e["slots"], u["slots"]))
     if "rage" in e: rows.append((lab + " Rage", [e["rage"]["dmg"], " | ".join(x.lower() for x in e["rage"]["res"])], u["rage"] and [u["rage"]["dmg"], u["rage"]["res"]]))
     for k, v in e.get("xd", {}).items(): rows.append((lab + " weapon riders " + k, v, acts.get(k, {}).get("xd")))
 for lab, want, got in rows:
