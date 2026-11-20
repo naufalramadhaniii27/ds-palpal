@@ -80,6 +80,7 @@ AREAS = {
     ],
     "tg": [
         ("tg_engine", ["node", "tests/tg_engine.js", "50"]),
+        ("tg_numbers", [PY, "tests/tg_numbers.py"]),
     ],
     "ui": [
         ("builder_cost", [PY, "tests/builder_cost.py"]),
@@ -104,6 +105,7 @@ PATHS = [
     ("src/css/", ["ui"]),
     ("src/html/", ["ui"]),
     ("src/fx/", ["ui"]),
+    ("src/app/52-tg-bridge", ["tg"]),
     ("src/app/", ["ui"]),
     ("src/data/", ["items"]),
     ("src/manifest.json", ["modules"]),
