@@ -34,6 +34,7 @@ AREAS = {
         ("background_numbers", [PY, "tests/background_numbers.py"]),
         ("species_numbers", [PY, "tests/species_numbers.py"]),
         ("core_numbers", [PY, "tests/core_numbers.py"]),
+        ("multiclass_numbers", [PY, "tests/multiclass_numbers.py"]),
         ("state_numbers", [PY, "tests/state_numbers.py"]),
         ("bladesong_numbers", [PY, "tests/bladesong_numbers.py"]),
         ("weapon_items", [PY, "tests/weapon_items.py"]),
