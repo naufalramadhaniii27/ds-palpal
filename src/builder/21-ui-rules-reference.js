@@ -10,7 +10,7 @@ import {clsLv} from "./11-logic-derivation.js";
 import {ACM,toSheet} from "./12-logic-export-to-sheet.js";
 import {applyPacks,autoSpellList,miFeats} from "./13-logic-sources-and-packs.js";
 import {baseOf,dbCat,dbItems,dbQ,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
-import {__set_pickCls,__set_pickSp,__set_step,ask,stepCard,pickCls,pickSp,profSkills,step} from "./17-ui-step-builder.js";
+import {__set_pickCls,__set_pickSp,__set_step,ask,stepCard,pickCls,pickSp,profSkills,expTaken,step} from "./17-ui-step-builder.js";
 import {SMAP,issueText,plural,ruleIssues,spInfo} from "./18-ui-spells.js";
 bindLive("ctFree",{get:function(){return ctFree;}});bindLive("invFind",{get:function(){return invFind;}});bindLive("qbBook",{get:function(){return qbBook;}});bindLive("qbFill",{get:function(){return qbFill;}});bindLive("qbMI",{get:function(){return qbMI;}});bindLive("qbSpells",{get:function(){return qbSpells;}});bindLive("quickBuild",{get:function(){return quickBuild;}});bindLive("unpackAt",{get:function(){return unpackAt;}});
 bindLive("acModeCard",{get:function(){return acModeCard;}});
@@ -120,7 +120,7 @@ function qbNames(L){return (L||[]).map((o) =>{return Array.isArray(o)?o[0]:(o&&t
 /* qbPick steps (SOLID s16): one function per choice type (c.t). Q = the Quick Build table of the class, have = the skills already known */
 function qbPickFill(pref,list,n,skip){const out=[];pref.concat(list).forEach((x) =>{if(out.length<n&&list.indexOf(x)>=0&&out.indexOf(x)<0&&(!skip||skip.indexOf(x)<0))out.push(x)});list.forEach((x) =>{if(out.length<n&&out.indexOf(x)<0)out.push(x)});return out}
 function qbPkSkills(c,Q,have){const from=Array.isArray(c.from)?c.from:ALLSK;return qbPickFill(Q.sk||[],from,c.n,have)}
-function qbPkExp(c,Q,have){const ef=c.from||have;return qbPickFill(Q.exp||[],ef,c.n)}
+function qbPkExp(c,Q,have){const tk=expTaken(c.key),ef=(c.from||have).filter((n) =>{return tk.indexOf(n)<0});return qbPickFill(Q.exp||[],ef,c.n)}
 function qbPkLang(c){let used=[];choices().forEach((o) =>{if(o.t==="lang"&&o.key!==c.key&&Array.isArray(B.ch[o.key]))used=used.concat(B.ch[o.key])});return qbPickFill(["Elvish","Dwarvish","Halfling","Giant","Gnomish","Draconic","Orc","Goblin"],qbNames(c.from),c.n,used.concat(["Common"]))}
 function qbPkWm(c,Q){const kitW=(B.inv||[]).map((x) =>{return baseOf(x.n).b}).filter((n) =>{return WEAPONS[n]&&!WEAPONS[n].xw&&!WEAPONS[n].nm}),okW=wmKeys().filter((n) =>{return B.cls!=="Barbarian"||WEAPONS[n].k==="M"});return qbPickFill((Q.wm||[]).concat(kitW),okW,c.n)}
 function qbPkMulti(c,Q){if(c.opt)return null;/* v32: optional choices stay empty */const L=qbNames(c.list);let ou=[];if(/invocation$/.test(c.key))choices().forEach((o) =>{if(o.key!==c.key&&/invocation$/.test(o.key)&&Array.isArray(B.ch[o.key]))ou=ou.concat(B.ch[o.key])});/* a Repeatable invocation is not repeated by the fill */return qbPickFill(/invocation$/.test(c.key)?(Q.inv||[]):[],L,c.n,ou)}

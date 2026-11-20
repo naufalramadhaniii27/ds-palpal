@@ -24,6 +24,8 @@ genv.__bldAsk=function(m,o,c){ return ask(m,o,c); };/* v35 p01: test hook */expo
  w.addEventListener("click",(e) =>{const b=e.target.closest("button");if(e.target===w||(b&&b.dataset.no)){close();return}if(b&&b.dataset.yes){close();cb()}})}
 export function fmtGp(p){return p>=1?p+' GP':p>=0.1?Math.round(p*10)+' SP':Math.round(p*100)+' CP'}
 export function ord(n){const s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0])}
+/* skills that already have Expertise from another choice (Rogue 1 and Rogue 6, Bard 2 and Bard 9): a later Expertise pick must not repeat them */
+export function expTaken(key){let s=[];choices().forEach((c) =>{if(c.key!==key&&c.t==="exp"&&Array.isArray(B.ch[c.key]))s=s.concat(B.ch[c.key])});return s}
 export function profSkills(){let s=[],bg=bgX();if(bg)s=s.concat(bg.sk);choices().forEach((c) =>{if(c.t==="skills"&&Array.isArray(B.ch[c.key]))s=s.concat(B.ch[c.key])});return s.filter((x,i) =>{return s.indexOf(x)===i&&(SKILLS[x]||packSkills().some((p) =>{return p.n===x}))})}
 /* v32 RL49: tools the character has from somewhere else (name -> source), for the overlap mark on tool chips */
 function toolTaken(key){const o={},c=CL(),bg=bgX(),add=function(t,s){String(t||"").split(/,\s*/).forEach((n) =>{if(n&&!o[n])o[n]=s})};
@@ -102,7 +104,7 @@ const CB_TYPES={
  skills:function(c,v){const mine=v||[];const cl=(c.from||ALLSK).map((n) =>{const s=skillSrcOther(n,c.key);return s?{n:n,lab:s}:n});const dup=mine.map((n) =>{const s=skillSrcOther(n,c.key);return s?n+' (also from '+s+')':''}).filter(Boolean);
   if(c.tools)return chips(c,cl).replace('<p class="pick">','<p class="wgrp">Skills</p><p class="pick">')+toolChips(c,["art","music","game","other"])+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(", "))+'.</div>':"");/* v32 RL49: Skilled, any mix of skills and tools */
   return chips(c,cl)+(dup.length?'<div class="caution">\u26a0 Overlap: '+esc(dup.join(', '))+'. A skill proficiency doesn\'t stack, so this pick is wasted. Choose a different skill.</div>':'')},
- exp:function(c,v){return chips(c,c.from||profSkills());},
+ exp:function(c,v){const tk=expTaken(c.key),cur=v||[];return chips(c,(c.from||profSkills()).filter((n) =>{return tk.indexOf(n)<0||cur.indexOf(n)>=0}));},
  pe:function(c,v){const pk0=profSkills(),pv=v||[];return chips(c,c.from)+'<p class="fd bhint">Proficiency, or Expertise if you already have it.'+(pv.length?" "+pv.map((n) =>{return esc(n)+": "+(pk0.indexOf(n)>=0?"Expertise":"proficiency")}).join(", ")+".":"")+'</p>'}/* v32 RL49 no. 12, 13 */,
  tool:function(c,v){const tv=B.ch[c.key]||[];return '<p class="pick">Choose '+c.n+' ('+tv.length+'/'+c.n+')</p>'+toolChips(c,c.cats)}/* v32 RL49 */,
  wm:function(c,v){const sel=v||[],G=[["S","M","Simple Melee"],["S","R","Simple Ranged"],["M","M","Martial Melee"],["M","R","Martial Ranged"]];
