@@ -16,10 +16,18 @@ FXS21A.leave=function(go){ try{ sessionStorage.setItem("mi-sw","1"); }catch(e){}
   const hv=document.getElementById("homeV"), a=hv&&hv.animate([{opacity:1},{opacity:0,transform:"scale(.97)"}],{duration:180,easing:"ease-in",fill:"forwards"});
   let went=false; const g=() =>{ if(went) return; went=true; go(); }; if(a) a.onfinish=g; setTimeout(g,260); };
 /* View or Edit on a Home card (fx/02 calls this with the card and the real tap) */
-FXENV.__miFlyOut=function(card,go){ if(FXS21A.off()){ go(); return; }
+/* the sheet drawn before the deferred data is in shows stand-ins (GEAR, --) and changes about 0.7 s later. Keep the loader up until the data is in */
+FXS21A.ready=function(go){ if(FXENV.__deferDone||!FXENV.__bldNeed){ go(); return; }
+  const bz=document.getElementById("busy"), sp=bz&&bz.querySelector("div span:last-child"), old=sp?sp.textContent:"";
+  if(sp) sp.textContent="Opening the sheet"; if(bz) bz.classList.add("on");
+  const done=function(){ requestAnimationFrame(() =>{ if(bz) bz.classList.remove("on"); if(sp) setTimeout(() =>{ sp.textContent=old; },650); go(); }); };
+  /* load after the loader is painted: __bldNeed runs the remaining parts in one task */
+  requestAnimationFrame(() =>{ setTimeout(() =>{ let p; try{ p=FXENV.__bldNeed(); }catch(e){ p=null; } Promise.resolve(p).catch(() =>{}).then(done); },0); }); };
+FXENV.__miFlyOut=function(card,go0){ const go=function(){ FXS21A.ready(go0); };
+  if(FXS21A.off()){ go(); return; }
   const b=card&&card.querySelector("[data-hview]");
-  if(b&&b.getAttribute("data-hview")===FXS21A.active()){ if(FXS21A.vt("vt-go",go)) FXENV.__miFlyN=(FXENV.__miFlyN||0)+1; return; }
-  FXS21A.leave(go); };
+  if(b&&b.getAttribute("data-hview")===FXS21A.active()){ FXS21A.ready(() =>{ if(FXS21A.vt("vt-go",go0)) FXENV.__miFlyN=(FXENV.__miFlyN||0)+1; }); return; }
+  FXS21A.leave(go0); };
 /* Home from the sheet: the Home button inside a View Transition. The tap is repeated inside it, once */
 FXS21A.again=false;
 FXS21A.home=function(e){ const b=e.target.closest&&e.target.closest("#rosterBtn"); if(!b||FXS21A.again||FXS21A.off()||!document.startViewTransition) return;

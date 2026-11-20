@@ -19,3 +19,5 @@
 - Tombol atas Home melompat dari 5 kolom ke 3x2 saat tombol Friends datang (sesudah syApi me). Sekarang akun cloud tersimpan (cs-sync-v1 u) memberi html.sy-acct dan grid 3x2 sejak frame pertama.
 - Transisi Home ke sheet lama (salinan potret dan nama di atas tirai) tertahan setengah jadi di HP sibuk. Diganti View Transition (vt-go, vt-back), reload karakter lain memakai mi-arrive. tests/flow_home_sheet.py diperbarui ke perilaku baru.
 - tests/back_home.py gagal juga di main (klik elemen tidak terlihat), tidak ada di CI: masalah lama, belum dikerjakan.
+- Loading hilang tapi sheet belum siap: Continue sebelum data tertunda masuk menggambar sheet dengan pengganti (GEAR, --), lalu berganti 0,7 s sesudah transisi selesai. Sekarang #busy tampil (143 ms sesudah tap) sampai __bldNeed selesai, baru transisi. tests/early_continue.py gagal tanpa perbaikan, lulus dengan perbaikan.
+- Pelajaran cara kerja: loading diatur timer tetap, bukan tanda siap. Tes lama hanya mengukur keadaan sesudah semua data masuk, jadi tap awal tidak pernah diuji.
