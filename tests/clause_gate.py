@@ -8,6 +8,7 @@
   python3 tests/clause_gate.py --audit N SEED  print N flagged and N unflagged mechanical sentences (stratified, fixed seed) for a manual check
   python3 tests/clause_gate.py --root DIR      another checkout (same as mech_scan.py)
   python3 tests/clause_gate.py --no-write      do not write the report and the baseline
+  python3 tests/clause_gate.py --list core     print every uncovered sentence of one book or kind (class, sub, species, feat, item)
 
 Why: tests/mech_scan.py asks "does this FEATURE have a way to count" (by name and by keyword). A feature with two mechanical sentences passes when one of them
 has a record. This gate asks the question per SENTENCE. Steps:
@@ -1364,6 +1365,11 @@ def main():
     rt = {"load": t_load, "scan": time.time() - t1}
     if "--audit" in args:
         i = args.index("--audit"); audit(results, int(args[i + 1]), int(args[i + 2]))
+    lb = opt("--list", 1)
+    if lb:  # every uncovered sentence of one book (or kind), for working through a group
+        for r in results:
+            if r["status"] == "uncovered" and lb[0] in (r.get("book"), r["kind"]):
+                print("[%s] K=%s | %s | %s" % (r["sid"], ",".join(r["K"]), r["why"], r["text"][:400]))
     print("sentences %d, mechanical %d, covered %d, info %d, allow %d, uncovered %d (with numbers %d, numbers unexplained %d)" % (
         S["total"], S["mechanical"], S["covered"], sum(S["info"].values()), S["allow"], S["uncovered"], len(S["unc_num"]), len(S["unc_unexplained"])))
     print("mutation on real data: %d tested, record-level caught %d, class-level caught %d" % (mut[0], mut[1], mut[2]))

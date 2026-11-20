@@ -39,14 +39,16 @@ function c14Acts(cl){
  ACT14SAVED={};cl.forEach((cn) =>{Object.keys(ACTS).forEach((k) =>{if((k.indexOf("cls|"+cn+"|")===0||Object.keys(CLS14[cn].subs||{}).some((s) =>{return k.indexOf("sub|"+s+"|")===0}))&&!(k in ACT14SAVED)){ACT14SAVED[k]=ACTS[k];delete ACTS[k]}})});}
 function c14SubFull(d){
   if(d.subs){Object.keys(SUB_FULL).forEach((k) =>{if(Object.keys(d.subs).indexOf(k.split("|")[0])>=0)ov14(SF14S,SUB_FULL,k,undefined)});Object.keys(d.subFull||{}).forEach((k) =>{ov14(SF14S,SUB_FULL,k,d.subFull[k])})}}
-function c14Fdmg(d){
+function c14Fdmg(d,cn){
+  /* the class rows of FDMG are 2024 features (Divine Spark, Brutal Strike ...): under 2014 rules keep only those the 2014 class also has (Sneak Attack) */
+  if(typeof FDMG!=="undefined"){const has={};(d.f||[]).forEach((x) =>{has[x[1]]=1});for(let fi=FDMG.length-1;fi>=0;fi--){if(FDMG[fi][0]==="cls"&&FDMG[fi][1]===cn&&!has[FDMG[fi][2]]){if(!FD14S)FD14S=FDMG.slice();FDMG.splice(fi,1)}}}
   if(d.fdmg&&typeof FDMG!=="undefined"){if(!FD14S)FD14S=FDMG.slice();for(let fi=FDMG.length-1;fi>=0;fi--){if(FDMG[fi][0]==="sub"&&Object.keys(d.subs||{}).indexOf(FDMG[fi][1])>=0)FDMG.splice(fi,1)}d.fdmg.forEach((r) =>{FDMG.push(r)})}}
 function c14Class(cn){const d=CLS14[cn];Object.keys(d.acts||{}).forEach((n) =>{const k="cls|"+cn+"|"+n;if(!(k in ACT14SAVED))ACT14SAVED[k]=undefined;ACTS[k]=d.acts[n]});
   (d.lu||[]).forEach((e) =>{LU_X.push(Object.assign({src:"class",owner:cn},e))});(d.subLU||[]).forEach((e) =>{LU_X.push(e)});
   Object.keys(d.subActs||{}).forEach((k) =>{if(!(k in ACT14SAVED))ACT14SAVED[k]=undefined;ACTS[k]=d.subActs[k]});
   Object.keys(d.subAuto||{}).forEach((s) =>{ov14(AU14S,AUTO,s,d.subAuto[s])});Object.keys(d.subGrant||{}).forEach((s) =>{ov14(SG14S,SUB_GRANT,s,d.subGrant[s])});
   c14SubFull(d);
-  c14Fdmg(d)}
+  c14Fdmg(d,cn)}
 function cls14Tabs(on){ c14Undo(); if(!on)return;
  c14Notes(); const cl=Object.keys(CLS14);
  c14Opts(cl);
