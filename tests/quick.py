@@ -37,6 +37,7 @@ AREAS = {
         ("item_fx_once", [PY, "tests/item_fx_once.py"]),
         ("species_fx", [PY, "tests/species_fx.py"]),
         ("feat_profs", [PY, "tests/feat_profs.py"]),
+        ("quickbuild_rules", [PY, "tests/quickbuild_rules.py"]),
         ("builder_cost", [PY, "tests/builder_cost.py"]),
         ("audit_sweep", [PY, "tools/audit_char.py", "--sweep"]),
     ],

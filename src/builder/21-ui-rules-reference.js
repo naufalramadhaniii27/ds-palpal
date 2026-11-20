@@ -6,7 +6,7 @@ import {R14} from "./05-logic-choice-model-ruleset.js";
 import {fs14List} from "./08-logic-2014-rules.js";
 import {allFeats,choices} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOwn,isDone,wizLv} from "./10-logic-v17-additions.js";
-import {clsLv} from "./11-logic-derivation.js";
+import {clsLv,isThird3} from "./11-logic-derivation.js";
 import {ACM,toSheet} from "./12-logic-export-to-sheet.js";
 import {applyPacks,autoSpellList,miFeats} from "./13-logic-sources-and-packs.js";
 import {baseOf,dbCat,dbItems,dbQ,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
@@ -142,7 +142,9 @@ function qbsFirst(Q,L,I,auto){
  (Q.sp||[]).concat(L.filter((x) =>{return x[1]===1}).map((x) =>{return x[0]})).forEach((n) =>{const x=SMAP[n];if(x&&x[1]&&qbsNp()<I.pr&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});}
 function qbsRest(L,I,auto){
  const byL={};L.forEach((x) =>{if(x[1])(byL[x[1]]=byL[x[1]]||[]).push(x[0])});for(let g=0;g<400&&qbsNp()<I.pr;g++){let put=false;for(let lv=I.max;lv>=1&&qbsNp()<I.pr;lv--){const q=byL[lv]||[];while(q.length){const n=q.shift();if(B.sp.indexOf(n)<0&&auto.indexOf(n)<0){B.sp.push(n);put=true;break}}}if(!put)break}}
-export function qbSpells(){const I=spInfo();if(!I)return;const Q=QUICK[B.cls]||{},L=SPELLS.filter((x) =>{return I.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=I.max});B.sp=[];
+export function qbSpells(){const I=spInfo();if(!I)return;let Q=QUICK[B.cls]||{},L=SPELLS.filter((x) =>{return I.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=I.max});B.sp=[];
+ /* 2014 Eldritch Knight and Arcane Trickster learn most spells from two schools: those spells come first, so a spell from another school is taken only when the schools run out (before 0.0.85 Quick Build broke the rule) */
+ if(R14()&&isThird3(B.sub)){const sch=B.cls==="Fighter"?["Abjuration","Evocation"]:["Enchantment","Illusion"],inS=(x) =>{return !x[1]||sch.indexOf(x[2])>=0};L=L.filter(inS).concat(L.filter((x) =>{return !inS(x)}));Q={ct:Q.ct}}
  const auto=autoSpellList().map((a) =>{return a.n});
  qbsFirst(Q,L,I,auto);
  /* T11 N6: when the level 1 spells run out (or the list is short), the rest come from higher levels in turn, so no prepared spell stays empty */
