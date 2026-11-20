@@ -95,5 +95,6 @@ Pihak ketiga, dikunci ke commit yang sudah dibaca lewat `ref` di `extraKnownMark
 - ponytail (DietrichGebert/ponytail, 96608e0): perubahan terkecil yang lengkap.
 - planning-with-files (OthmanAdi/planning-with-files, 51bf62d): rencana kerja di file `task_plan.md`, `findings.md`, `progress.md` di root repo. Commit file itu supaya sesi berikutnya melanjutkan dari sana.
 - application-performance (wshobson/agents, 4220308): agen performance-engineer dan frontend-developer, perintah /performance-optimization.
+- ui-ux-pro-max (nextlevelbuilder/ui-ux-pro-max-skill, 2de1134): basis data lokal gaya, palet, pasangan font, aksesibilitas untuk kerja UI. Tanpa hook, tanpa akses jaringan.
 
 Naikkan `ref` hanya sesudah membaca isi versi baru.

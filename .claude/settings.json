@@ -20,7 +20,8 @@
     "frontend-design@anthropic-plugin-directory": true,
     "ponytail@ponytail": true,
     "planning-with-files@planning-with-files": true,
-    "application-performance@claude-code-workflows": true
+    "application-performance@claude-code-workflows": true,
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -42,6 +43,13 @@
         "source": "github",
         "repo": "wshobson/agents",
         "ref": "42203085cfc5736204bf0f6d436dff7e1da0bf3f"
+      }
+    },
+    "ui-ux-pro-max-skill": {
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+        "ref": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
       }
     }
   }
