@@ -3,5 +3,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};
 (function(){
 var S=function(k,e){GX.sub[k]=(GX.sub[k]||[]).concat(e)};
 S("College of Spirits",[{n:"Guiding Whispers (spell)",l:3,spCls:"Bard",spells:[[3,"Guidance"]]}]);
-["Circle of the Stars","Circle of Stars"].forEach(function(k){S(k,[{n:"Star Map (spells)",l:3,spCls:"Druid",spells:[[3,"Guidance,Guiding Bolt"]],lu:{n:"Star Map: Guiding Bolt",max:"pb",reset:"long"}}])});
+/* free Guiding Bolt casts: PB in TCE (Circle of Stars), WIS mod in 2024 (Circle of the Stars, LU_X row) */
+["Circle of the Stars","Circle of Stars"].forEach(function(k){S(k,[Object.assign({n:"Star Map (spells)",l:3,spCls:"Druid",spells:[[3,"Guidance,Guiding Bolt"]]},k==="Circle of Stars"?{lu:{n:"Star Map: Guiding Bolt",max:"pb",reset:"long"}}:{})])});
 })();
