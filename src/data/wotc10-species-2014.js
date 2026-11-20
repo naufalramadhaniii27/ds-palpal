@@ -7,6 +7,11 @@ var NEW=[{"id":"vgm","tag":"VGM","name":"Volo's Guide to Monsters","desc":"Speci
 DataEnv.slot.WX=DataEnv.slot.WX||{src:[]};NEW.forEach(function(s){if(!DataEnv.slot.WX.src.some(function(x){return x.id===s.id}))DataEnv.slot.WX.src.push(s)});
 DataEnv.slot.WXSP=DataEnv.slot.WXSP||{};Object.keys(R).forEach(function(id){DataEnv.slot.WXSP[id]=Object.assign(DataEnv.slot.WXSP[id]||{},R[id])});
 TOOLS.dwarf14=["Smith's Tools","Brewer's Supplies","Mason's Tools"];TOOL_CAT.dwarf14="Dwarven artisan tools";TOOL_ONE.dwarf14="Dwarven artisan tool";
+/* 2014 Breath Weapon as a damage row: 2d6 to 5d6 at levels 1/6/11/16, DC 8 + Con + PB, save by ancestry (Dex: lines and fire cones; Con: Green, Silver, White) */
+var BW14=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(function(l){return (l>=16?5:l>=11?4:l>=6?3:2)+"d6"});
+["Dragonborn (2014)","Draconblood Dragonborn","Ravenite Dragonborn"].forEach(function(n){
+ FDMG.push(["sp",n,"Breath Weapon",1,BW14,"lin","Action: 5 by 30 ft line (Black, Blue, Brass, Bronze, Copper) or 15 ft cone. Half damage on a success. 1 use per Short or Long Rest.","DEX","CON","","lin:Black|Blue|Brass|Bronze|Copper|Gold|Red"]);
+ FDMG.push(["sp",n,"Breath Weapon",1,BW14,"lin","Action: 15 ft cone. Half damage on a success. 1 use per Short or Long Rest.","CON","CON","","lin:Green|Silver|White"])});
 LU_X.push.apply(LU_X,LU);Object.assign(ACTS,AC);Object.assign(SP_AUTO,SPA);Object.assign(DEF_SP,DEF);
 SN.forEach(function(r){if(!SAVE_NOTES.some(function(x){return x[1]===r[1]}))SAVE_NOTES.push(r)});
 DataEnv.slot.WX.src.forEach(function(q){if(!R[q.id])return;var ks=Object.keys(R[q.id]);q.species=(q.species||[]).concat(ks.filter(function(k){return (q.species||[]).indexOf(k)<0}));q.desc=q.desc.replace(/\.$/,"")+(/species\.$/.test(q.desc)?"":", plus "+ks.length+" species.")});

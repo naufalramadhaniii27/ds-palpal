@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 JS = r"""()=>{const all={};(window.WX.src||[]).forEach(x=>all[x.id]=true);all.mom=true;all.efa=true;
-const mk=(sp,rs,lv)=>{const b=window.__bldFuzz({sp,bg:rs==='2014'?'Soldier (2014)':'Soldier',rs,src:all,cls:'Fighter',sub:'',lv,arr:[15,14,13,12,10,8],b2:0,b1:0}).b;b.src=all;
+const mk=(sp,rs,lv,ch)=>{const b=window.__bldFuzz({sp,bg:rs==='2014'?'Soldier (2014)':'Soldier',rs,src:all,cls:'Fighter',sub:'',lv,arr:[15,14,13,12,10,8],b2:0,b1:0}).b;b.src=all;if(ch)b.ch=Object.assign({},b.ch,ch);
  b.inv.forEach(x=>{if(/Mail|Shield|Armor|Plate|Leather/.test(x.n))x.eq=false});const t=window.__bldTestB();Object.assign(t,b);delete t.unset;return window.__bldSheetFor(t)};
 const sum=a=>(a||[]).reduce((x,y)=>x+y.v,0),pb=l=>2+Math.floor((l-1)/4);
 const res=(C,n)=>{const r=(C.res||[]).find(x=>x.own&&x.n===n);return r?r.max+'/'+r.reset:'none'};
@@ -30,13 +30,18 @@ for(const lv of LV){const L='L'+lv;let C;
  C=mk('Elf','2024',lv);const es=spl(C);eq('2024 Drow darkvision '+L,120,C.darkvision);eq('2024 Drow spells '+L,lv>=5?3:lv>=3?2:1,['Dancing Lights','Faerie Fire','Darkness'].filter(n=>es.includes(n)).length);
  C=mk('Shifter','2024',lv);eq('2024 Shifter Shifting '+L,pb(lv)+' uses per Long Rest, '+2*pb(lv)+' Temporary Hit Points each time',note(C,'Shifting'));
  C=mk('Dragonborn (Metallic)','2014',lv);eq('Fizban Dragonborn breath '+L,'Dexterity save DC '+(8+pb(lv)+1)+', '+d10(lv)+', '+pb(lv)+' uses',note(C,'Breath Weapon'));eq('Fizban Dragonborn uses '+L,pb(lv)+'/long',res(C,'Breath Weapon'));
- C=mk('Dragonborn (2014)','2014',lv);eq('PHB14 Dragonborn breath '+L,'Save DC '+(8+pb(lv)+1)+', '+d6(lv)+', 1 use per Short Rest',note(C,'Breath Weapon'));eq('PHB14 Dragonborn uses '+L,'1/short',res(C,'Breath Weapon'));eq('PHB14 Dragonborn darkvision '+L,0,C.darkvision);
- C=mk('Draconblood Dragonborn','2014',lv);eq('EGW Draconblood breath dice '+L,d6(lv),(note(C,'Breath Weapon').match(/\d+d6/)||['none'])[0]);
+ C=mk('Dragonborn (2014)','2014',lv);eq('PHB14 Dragonborn breath '+L,'Save DC '+(8+pb(lv)+1)+', '+d6(lv)+', 1 use per Short Rest',note(C,'Breath Weapon'));eq('PHB14 Dragonborn uses '+L,'1/short',res(C,'Breath Weapon'));eq('PHB14 Dragonborn darkvision '+L,0,C.darkvision);eq('PHB14 Dragonborn breath row '+L,d6(lv)+' DC'+(8+pb(lv)+1),xd(C,'Breath Weapon'));
+ C=mk('Draconblood Dragonborn','2014',lv);eq('EGW Draconblood breath dice '+L,d6(lv),(note(C,'Breath Weapon').match(/\d+d6/)||['none'])[0]);eq('EGW Draconblood breath row '+L,d6(lv),(xd(C,'Breath Weapon').split(' ')[0]));
+ C=mk('Ravenite Dragonborn','2014',lv);eq('EGW Ravenite breath row '+L,d6(lv),(xd(C,'Breath Weapon').split(' ')[0]));
  C=mk('Aasimar (Protector)','2014',lv);eq('VGM Aasimar Healing Hands '+L,lv+' Hit Points',note(C,'Healing Hands'));
  C=mk('Shifter (Beasthide)','2014',lv);eq('ERLW Beasthide Shifting '+L,'1 use per Short Rest, '+(lv+2)+' + 1d6 Temporary Hit Points',note(C,'Shifting'));
  C=mk('Hill Dwarf','2014',lv);eq('PHB14 Hill Dwarf HP '+L,lv,sum(C.hpBonus));eq('PHB14 Hill Dwarf darkvision+speed '+L,'60 25',C.darkvision+' '+C.speed);
  C=mk('Tiefling (2014)','2014',lv);const t14=spl(C);eq('PHB14 Tiefling spells '+L,lv>=5?'3,5':lv>=3?'3':'',[t14.includes('Hellish Rebuke')?'3':'',t14.includes('Darkness')?'5':''].filter(Boolean).join(','));
  C=mk('Goliath (2014)','2014',lv);eq('VGM Goliath Stone\'s Endurance '+L,'1/short',res(C,"Stone's Endurance"))}
+const bw=(sp,rs,lin)=>{const C=mk(sp,rs,5,{lin}),r=(C.xdmg||[]).filter(x=>x.n==='Breath Weapon');return r.map(x=>x.dmg+' '+x.type+' '+x.save).join(';')};
+eq('PHB14 Dragonborn Red breath','2d6 Fire DEX',bw('Dragonborn (2014)','2014','Red (Fire)'));eq('PHB14 Dragonborn Blue breath','2d6 Lightning DEX',bw('Dragonborn (2014)','2014','Blue (Lightning)'));
+eq('PHB14 Dragonborn White breath','2d6 Cold CON',bw('Dragonborn (2014)','2014','White (Cold)'));eq('PHB14 Dragonborn Green breath','2d6 Poison CON',bw('Dragonborn (2014)','2014','Green (Poison)'));
+eq('EGW Ravenite Silver breath','2d6 Cold CON',bw('Ravenite Dragonborn','2014','Silver (Cold)'));
 let C=mk('Wood Elf','2014',5);eq('PHB14 Wood Elf speed',35,C.speed);
 C=mk('Drow','2014',5);eq('PHB14 Drow darkvision',120,C.darkvision);
 C=mk('Deep Gnome','2024',5);eq('MotM Deep Gnome darkvision',120,C.darkvision);
@@ -53,6 +58,7 @@ C=mk('Warforged (2014)','2014',5);eq('ERLW Warforged AC +1',1,sum(C.ac.bonus));
 C=mk('Loxodon','2014',5);eq('GGR Loxodon AC base',12,C.ac.base);
 C=mk('Centaur','2024',5);eq('MotM Centaur speed + hooves','40 1d6 Bludgeoning',C.speed+' '+att(C,'Hooves'));
 C=mk('Minotaur','2024',5);eq('MotM Minotaur horns','1d6 Piercing',att(C,'Horns'));
+for(const [sp,n,w] of [['Minotaur (2014)','Horns','1d6 Piercing'],['Tabaxi (2014)',"Cat's Claws",'1d4 Slashing'],['Lizardfolk (2014)','Bite','1d6 Piercing'],['Centaur (2014)','Hooves','1d4 Bludgeoning'],['Aarakocra (2014)','Talons','1d4 Slashing'],['Tortle (2014)','Claws','1d4 Slashing'],['Leonin','Claws','1d4 Slashing'],['Satyr (2014)','Ram','1d4 Bludgeoning']]){C=mk(sp,'2014',5);eq('2014 '+sp+' '+n,w,att(C,n))}
 C=mk('Githyanki','2024',5);eq('MotM Githyanki spells L5',3,['Mage Hand','Jump','Misty Step'].filter(n=>spl(C).includes(n)).length);
 C=mk('Firbolg (2014)','2014',5);eq('VGM Firbolg Hidden Step','1/short',res(C,'Hidden Step'));
 C=mk('Orc (MoM)','2024',5);eq('MotM Orc Adrenaline Rush',pb(5)+'/long',res(C,'Adrenaline Rush'));
