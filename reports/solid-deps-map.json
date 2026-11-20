@@ -1532,77 +1532,81 @@
    "layer": "-",
    "order": 382
   },
-  "tg/20-engine.js": {
-   "layer": "logic",
+  "tg/19-pc-sheet.js": {
+   "layer": "-",
    "order": 383
   },
-  "tg/25-sim.js": {
+  "tg/20-engine.js": {
    "layer": "logic",
    "order": 384
   },
-  "tg/30-ui-tg.js": {
-   "layer": "ui",
+  "tg/25-sim.js": {
+   "layer": "logic",
    "order": 385
   },
-  "tg/31-ui-tg-field.js": {
+  "tg/30-ui-tg.js": {
    "layer": "ui",
    "order": 386
   },
+  "tg/31-ui-tg-field.js": {
+   "layer": "ui",
+   "order": 387
+  },
   "pdf/00-env.js": {
    "layer": "-",
-   "order": 387
+   "order": 388
   },
   "pdf/01-data-style.js": {
    "layer": "data",
-   "order": 388
+   "order": 389
   },
   "pdf/02-logic-markup.js": {
    "layer": "logic",
-   "order": 389
+   "order": 390
   },
   "pdf/03-logic-typeset.js": {
    "layer": "logic",
-   "order": 390
+   "order": 391
   },
   "pdf/04-ui-canvas.js": {
    "layer": "ui",
-   "order": 391
+   "order": 392
   },
   "pdf/05-data-sheet-fields.js": {
    "layer": "data",
-   "order": 392
+   "order": 393
   },
   "pdf/06-ui-fields.js": {
    "layer": "ui",
-   "order": 393
+   "order": 394
   },
   "pdf/07-ui-sheet-pages.js": {
    "layer": "ui",
-   "order": 394
+   "order": 395
   },
   "pdf/08-ui-flow.js": {
    "layer": "ui",
-   "order": 395
+   "order": 396
   },
   "pdf/09-ui-blocks.js": {
    "layer": "ui",
-   "order": 396
+   "order": 397
   },
   "pdf/10-ui-appendix.js": {
    "layer": "ui",
-   "order": 397
+   "order": 398
   },
   "pdf/11-ui-render.js": {
    "layer": "ui",
-   "order": 398
+   "order": 399
   },
   "pdf/main.js": {
    "layer": "-",
-   "order": 399
+   "order": 400
   },
   "data/rs14-2014-wording.js": {
    "layer": "data",
-   "order": 400
+   "order": 401
   }
  },
  "edges": [
@@ -20005,6 +20009,18 @@
    "import": true,
    "names": [],
    "count": 0
+  },
+  {
+   "from": "tg/20-engine.js",
+   "to": "tg/19-pc-sheet.js",
+   "import": true,
+   "names": [
+    "pcAct",
+    "pcDefs",
+    "pcRiders",
+    "pcSlots"
+   ],
+   "count": 4
   },
   {
    "from": "tg/25-sim.js",
