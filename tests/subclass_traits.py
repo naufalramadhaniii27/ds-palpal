@@ -16,6 +16,12 @@ CASES = [c + TOH for c in CASES] + [(c + ("2024", {"twow": True})) for c in [  #
     ("Shaman", "", 19, "C.abilities.STR.bonus.filter(b=>/Primal Champion/.test(b.s)).length", 0),
     ("Demon Hunter", "Demon Hunter", 18, "((C.senses||[]).find(s=>s.n==='Truesight')||{}).v||0", 30),
     ("Demon Hunter", "Demon Hunter", 17, "((C.senses||[]).find(s=>s.n==='Truesight')||{}).v||0", 0)]]
+B14 = lambda b: ("2014", {"phb14": True, "dmg14": True, b: True})
+CASES += [  # small third-party 2014 books (fx-F-sub.js, fx-L12.js)
+    ("Cleric", "Sun Above Domain", 3, "/Laser Sword/.test(C.profs.weapons)?1:0", 1) + B14("tdm14"), ("Cleric", "Sun Above Domain", 2, "/Laser Sword/.test(C.profs.weapons)?1:0", 0) + B14("tdm14"),
+    ("Fighter", "Living Crucible (2014)", 3, "((C.toolExp||[]).find(t=>t.n===\"Alchemist's Supplies\")||{}).v||0", 4) + B14("tgh14p"),
+    ("Ranger", "Green Reaper (2014)", 3, "((C.toolExp||[]).find(t=>t.n===\"Poisoner's Kit\")||{}).v||0", 4) + B14("tgh14p"),
+    ("Warlock", "The Predator", 3, "(C.skills.find(s=>s.n==='Survival')||{}).p||0", 2) + B14("thhw"), ("Warlock", "The Predator", 2, "(C.skills.find(s=>s.n==='Survival')||{}).p||0", 0) + B14("thhw")]
 bad = 0
 with sync_playwright() as p:
     br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(300000)

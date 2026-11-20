@@ -77,6 +77,10 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};
  ["Monstrous Bite","Monstrous Weapon"].forEach(function(g){add("Xenoalchemist",[{n:"Mad Scientist: "+g,l:3,when:{key:"gx-graft-sub-Xenoalchemist",val:g},atkAb:{kind:"unarmed",ab:"INT",opt:1,note:"Intelligent Grafts ("+g+"): you can use Intelligence instead of Strength or Dexterity for the attack and damage of Unarmed Strikes that this graft improves"}}])});
  /* Vagabond, Experiment X (also Captain and Gunslinger by cross-compatibility, same subclass name). Bloody Rampage: learn Rampage, or another maneuver if you already know it. Stored choice only.
     Using Rampage when damage makes a creature Bloodied is a play-time trigger, text only. */
+ /* 0.0.85 (tools/sheet_gaps.py tdm14, tgh14p): fixed proficiencies */
+ add("Sun Above Domain",[{n:"Emissary of the Sun",l:3,weapons:["Sunstaff","Laser Halfsword","Laser Sword","Photonic Lash","Thermal Lance"]}]);/* Dex for melee non-Heavy weapons stays text */
+ add("Living Crucible (2014)",[{n:"Student of Alchemy",l:3,tools:["Alchemist's Supplies"],toolExpert:["Alchemist's Supplies"]}]);
+ add("Green Reaper (2014)",[{n:"Toxic Tradecraft",l:3,tools:["Poisoner's Kit"],toolExpert:["Poisoner's Kit"]}]);
  /* 0.0.85 (tools/sheet_gaps.py tvss14): Valda's Spire 2014 subclass proficiencies */
  add("Path of the Rage Mage",[{n:"Arcane Intuition",l:3,skillProf:["Arcana"],skillAb:[["Arcana","CON"]]}]);
  add("College of Masks (2014)",[{n:"Bonus Proficiencies",l:3,skillProf:["Performance"]}]);
