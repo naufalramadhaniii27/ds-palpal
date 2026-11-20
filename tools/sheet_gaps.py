@@ -9,7 +9,7 @@ What is left is a real gap candidate, still to be read by a person.
   python3 tools/sheet_gaps.py [BOOK]        BOOK = a clause-gate book tag (default core). Uses the cached tables at tests/out/cg.json
                                             (made on first run, about 75 s).
   python3 tools/sheet_gaps.py item          magic items: a level 10 Fighter wears the item (equipped; a variant name such as "(Plate)" is used
-                                            when the plain name is not an item), and the item name must show in the mechanical fields.
+                                            when the plain name is not an item), and the item name must show in the mechanical fields of a level 10 Fighter, Wizard or Cleric.
 Read only."""
 import json, os, re, subprocess, sys
 from collections import defaultdict
@@ -22,14 +22,17 @@ os.makedirs(os.path.dirname(CACHE), exist_ok=True)
 cmd = [sys.executable, "tests/clause_gate.py", "--no-write", "--list", BOOK] + (["--data", CACHE] if os.path.exists(CACHE) else ["--save-data", CACHE])
 out = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True).stdout
 if BOOK == "item":
-    items = defaultdict(list)
+    items = defaultdict(list); book = {}
     for line in out.splitlines():
         m = re.match(r"\[item\|([^|]+)\|([^#\]]+?)#\d+\] K=([^|]*)\| ([^|]*)\| (.*)", line)
-        if m: items[m.group(2).strip()].append((m.group(3).strip(), m.group(5)))
-    ITEM = """(names)=>{window.__ik=window.__ik||window.__bldData().dmgi.map(x=>x[0]);const keys=window.__ik;return names.map(n=>{const k=keys.indexOf(n)>=0?n:keys.find(x=>x.indexOf(n+' (')===0);if(!k)return [n,null,''];
-      const r=window.__bldFuzz({sp:'Human',bg:'Soldier',rs:'2024',cls:'Fighter',sub:'',lv:10,arr:[15,14,13,12,10,8],b2:0,b1:0});if(!r||!r.b)return [n,k,''];
-      const b=r.b;b.inv=[{n:k,q:1,eq:true}];const t=window.__bldTestB();Object.assign(t,b);delete t.unset;let C;try{C=window.__bldSheetFor(t)}catch(e){return [n,k,'CRASH '+String(e).slice(0,160)]}
-      const o=Object.assign({},C);delete o.features;delete o.inv;delete o.equipNote;return [n,k,JSON.stringify(o)]})}"""
+        if m: items[m.group(2).strip()].append((m.group(3).strip(), m.group(5))); book[m.group(2).strip()] = m.group(1)
+    # a 2014 book's item is read under 2014 rules (the edition gate turns it off under 2024), every book on
+    ITEM = """([names,r14])=>{window.__ik=window.__ik||window.__bldData().dmgi.map(x=>x[0]);const keys=window.__ik;
+      if(!window.__gb){window.__gb={};for(const rs of ['2024','2014'])for(const cls of ['Fighter','Wizard','Cleric']){const o=rs==='2014'?{sp:'Human (2014)',bg:'Soldier (2014)',src:{phb14:true,dmg14:true}}:{sp:'Human',bg:'Soldier'};
+        const r=window.__bldFuzz(Object.assign({rs,cls,sub:'',lv:10,arr:[15,14,13,12,10,8],b2:0,b1:0},o));const b=r.b;b.src=Object.assign({},b.src);(window.WX&&WX.src||[]).forEach(x=>b.src[x.id]=true);window.__gb[rs+cls]=b}}
+      return names.map(n=>{const k=keys.indexOf(n)>=0?n:keys.find(x=>x.indexOf(n+' (')===0);if(!k)return [n,null,''];let all='';
+      for(const cls of ['Fighter','Wizard','Cleric']){const b=structuredClone(window.__gb[(r14[n]?'2014':'2024')+cls]);b.inv=[{n:k,q:1,eq:true}];const t=window.__bldTestB();Object.assign(t,b);delete t.unset;let C;try{C=window.__bldSheetFor(t)}catch(e){return [n,k,'CRASH '+String(e).slice(0,160)]}
+      const o=Object.assign({},C);delete o.features;delete o.inv;delete o.equipNote;all+=JSON.stringify(o)}return [n,k,all]})}"""
     with sync_playwright() as p:
         br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(600000)
         pg.goto("file://" + ROOT + "/index.html"); pg.wait_for_timeout(1500); pg.evaluate("()=>window.__bldNeed()")
@@ -37,7 +40,8 @@ if BOOK == "item":
             if pg.evaluate("()=>typeof window.__bldFuzz==='function'"): break
             pg.wait_for_timeout(100)
         names = sorted(items); res = []
-        for i in range(0, len(names), 50): res += pg.evaluate(ITEM, names[i:i + 50])
+        r14 = {n: 1 for n in names if str(book.get(n, "")).endswith("14")}
+        for i in range(0, len(names), 50): res += pg.evaluate(ITEM, [names[i:i + 50], r14])
         br.close()
     gone = [n for n, k, s in res if k and s and not s.startswith("CRASH") and n not in s and k not in s]
     nokey = [n for n, k, s in res if not k]

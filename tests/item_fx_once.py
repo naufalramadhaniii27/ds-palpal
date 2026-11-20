@@ -24,5 +24,13 @@ with sync_playwright() as p:
         else: ok = sv == [1]; got = "save %s" % sv
         bad += not ok
         print("%s %s: %s" % ("ok  " if ok else "FAIL", n, got))
+    # worn effects added in 0.0.85: Titan Frame (Armor with no base armor: +2 AC, Str 23, Large) and Boots of Striding and Springing (Speed at least 30)
+    w = pg.evaluate("""()=>{const r=window.__bldFuzz({sp:'Hill Dwarf',bg:'Soldier (2014)',rs:'2014',src:{phb14:true,dmg14:true,tdm14:true},sub:'',arr:[15,14,13,12,10,8],b2:0,b1:0,cls:'Fighter',lv:10});
+      const one=n=>{const b=structuredClone(r.b);b.inv=[{n:n,q:1,eq:true}];const t=window.__bldTestB();Object.assign(t,b);delete t.unset;return window.__bldSheetFor(t)};
+      const T=one('Titan Frame'),S=one('Boots of Striding and Springing');const sc=C=>C.abilities.STR.base+C.abilities.STR.bonus.reduce((a,x)=>a+x.v,0);
+      return {tAc:T.ac.bonus.filter(x=>/Titan Frame/.test(x.s)).map(x=>x.v),tStr:sc(T),tSize:T.size,tSp:T.speed,bSp:S.speed}}""")
+    for lab, ok in (("Titan Frame +2 AC once", w["tAc"] == [2]), ("Titan Frame Strength 23", w["tStr"] == 23), ("Titan Frame Large", w["tSize"] == "Large"),
+                    ("Titan Frame Speed 30 on a 25 ft Dwarf", w["tSp"] == 30), ("Boots of Striding and Springing Speed 30 on a 25 ft Dwarf", w["bSp"] == 30)):
+        bad += not ok; print("%s %s %s" % ("ok  " if ok else "FAIL", lab, "" if ok else w))
     br.close()
 print("%d failed" % bad); sys.exit(1 if bad else 0)

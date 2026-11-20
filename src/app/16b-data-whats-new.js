@@ -2,7 +2,7 @@
 
 /* RU59: version and what changed */
 export const WHATSNEW=[
-{v:187,l:"0.0.85",d:"2026-11-20",n:["Quick Build no longer gives Expertise twice to one skill (Rogue 6, Bard 9 now get four). The builder flags a repeated Expertise pick.","Knifewing Cape, Orrery of the Wanderer, Ingot of the Skold Rune and the Jewel of Three Prayers no longer break the sheet when worn, and give their AC bonus once. The Feather Robes give +1 to saves once."]},
+{v:187,l:"0.0.85",d:"2026-11-20",n:["Quick Build no longer gives Expertise twice to one skill (Rogue 6, Bard 9 now get four). The builder flags a repeated Expertise pick.","Knifewing Cape, Orrery of the Wanderer, Ingot of the Skold Rune and the Jewel of Three Prayers no longer break the sheet when worn, and give their AC bonus once. The Feather Robes give +1 to saves once.","Titan Frame gives +2 AC, Strength 23, Large size and Speed 30. Boots of Striding and Springing raise a lower Speed to 30."]},
 {v:186,l:"0.0.84",d:"2026-11-20",n:["New Home to sheet transition, smoother loading.","The loader stays until the sheet is ready.","Rogue: Cunning Strike and Devious Strikes show their save and DC on the Actions page.","2014 rules: the Cleric and Barbarian no longer list 2024-only damage rows (Divine Spark, Sear Undead, Brutal Strike)."]},
 {v:185,l:"0.0.83",d:"2026-11-19",n:["The Library shows placeholder rows while it loads."]},
 {v:184,l:"0.0.82",d:"2026-11-19",n:["Faster Library search."]},
