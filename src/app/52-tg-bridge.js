@@ -29,7 +29,7 @@ function tgSpells(){
   return {list:out,manual:man}; }
 function tgSpellsFn1(row, top, man, smod, out, x){ if(!x||!x.n) return; const r=row[x.n], f=spFx(x); if(!r){ return; }
  const {L, kind}=tgSpellsFn1Step1(x, r, f);
-    if(!kind){ if(L===0||top>=L) man.push({n:x.n,l:L,t:r[11]||""}); return; }
+    if(!kind){ if(L===0||top>=L) man.push({n:x.n,l:L,t:r[11]||"",r:r.slice(4,9),d:f&&f.dmg&&f.dmg[0]}); return; }
     const {by, heal, rng, touch, self, area}=tgSpellsFn1Step2(r, f, L, top, x, smod, kind);
     tgSpellsFn1Step3(out, x, L, kind, r, touch, rng, self, area, f, by, heal); }
 function tgSpellsFn1Step1(x, r, f){
@@ -52,13 +52,13 @@ const out=[], man=[];
 }
 function tgSpellsStep2(){
 const row={}; SPELLS.forEach((r) =>{ row[r[0]]=r; });
-  const sc0=C.spellcasting?(typeof scAdj==="function"?scAdj(C.spellcasting):C.spellcasting):{}, smod=sc0.mod!=null?+sc0.mod:(D.mod&&C.dcAb?D.mod[C.dcAb]:null), top=(sc0.slots||[]).length;
+  const sc0=C.spellcasting?(typeof scAdj==="function"?scAdj(C.spellcasting):C.spellcasting):{}, smod=sc0.mod!=null?+sc0.mod:(D.mod&&C.dcAb?D.mod[C.dcAb]:null), top=(sc0.slots||[]).length||(sc0.pact?9:0);
   return /** @type {any} */ ({row, smod, top});
 }
 function tgPcNow(){
  const {at, sv, sp, sl, sca}=tgPcNowStep1();
-  const dt=tgDefs(); tgActs(at);
-  return {name:C.name||"Hero",rx:{xd:C.xdmg||[],df:C.defenses||[],rg:modesAvail().some((m) =>{ return m.k==="rage"; })&&!modeOn("rage")?rageDmg():null},res:dt.Resistance,imm:dt.Immunity,vul:dt.Vulnerability,ac:D.ac,hp:D.hpmax,max:D.hpmax,speed:num(D.speed,30)||30,ini:D.init,saves:sv,attacks:at,level:D.level,spells:sp.list,slots:sl,satk:sca.atk!=null?+sca.atk:D.dc-8,sdc:sca.dc!=null?+sca.dc:D.dc,manual:sp.manual,cls:C.clsLabel||C.cls||"",species:String(C.species||"").split(" (")[0],por:typeof S.portrait==="string"&&/^data:image\//.test(S.portrait)?S.portrait:""}; }
+  tgActs(at);
+  return {name:C.name||"Hero",rx:{xd:C.xdmg||[],df:C.defenses||[],rg:modesAvail().some((m) =>{ return m.k==="rage"; })&&!modeOn("rage")?rageDmg():null},ac:D.ac,hp:D.hpmax,max:D.hpmax,speed:num(D.speed,30)||30,ini:D.init,saves:sv,attacks:at,level:D.level,spells:sp.list,slots:sl,pact:sca.pact,satk:sca.atk!=null?+sca.atk:D.dc-8,sdc:sca.dc!=null?+sca.dc:D.dc,manual:sp.manual,cls:C.clsLabel||C.cls||"",species:String(C.species||"").split(" (")[0],por:typeof S.portrait==="string"&&/^data:image\//.test(S.portrait)?S.portrait:""}; }
 function tgRow(a,d,at,beams){ if(!d||!isFinite(d.hit)) return; const dm=String(d.dmg||"").replace(/−/g,"-").replace(/\s+/g,""); if(!/\d*d\d+|^\d+/.test(dm)) return;
     const r=tgRange(a.range), dice=(/^[\d+d-]+/.exec(dm)||[""])[0].replace(/[+-]+$/,"");/* the dice in front; letters ("cold") never leak in */
     at.push({n:a.n,hit:d.hit,reach:r.reach||undefined,rng:r.rng||undefined,dmg:[[0,dice,String(a.type||"").split(/[ ,]/)[0]||""]],xd:a.xdice&&a.xdice.length?a.xdice:undefined,ab:a.ab,sub:a.sub,cantrip:/^Cantrip/.test(a.sub||"")?1:undefined});
@@ -76,9 +76,6 @@ const at=[], beams=[]; (C.attacks||[]).forEach((a,i) =>{ tgRow(a,D.atk&&D.atk[i]
   const sp=tgSpells(), sl=((C.spellcasting||{}).slots||[]).map((n) =>{ return +n||0; }), sca=C.spellcasting?(typeof scAdj==="function"?scAdj(C.spellcasting):C.spellcasting):{};
   return /** @type {any} */ ({at:at.concat(beams), sv, sp, sl, sca});
 }
-/* damage types the sheet lists under Defenses ("Bludgeoning, Piercing, and Slashing" is three); conditions stay out */
-const DTYPES=/^(acid|bludgeoning|cold|fire|force|lightning|necrotic|piercing|poison|psychic|radiant|slashing|thunder)$/i;
-function tgDefs(){ const o={Resistance:[],Immunity:[],Vulnerability:[]}; (C.defenses||[]).forEach((x) =>{ if(!o[x.t]||/while raging/i.test(x.v)) return; String(x.v||"").split(/\s*,\s*(?:and\s+)?|\s+and\s+|\s+or\s+/).forEach((v) =>{ if(DTYPES.test(v)&&o[x.t].indexOf(v)<0) o[x.t].push(v); }); }); return o; }
 /* c: a character object (C). Swaps it in, derives, reads, puts the open one back */
 function tgPcFor(c){ if(!c||!c.abilities) return null; let kC=C, kD=D, kB=B, kCU=CU0, out=null; try{ __set_C(c); derive(); out=tgPcNow(); out.por=""; } catch(e){ out=null; } finally{ __set_C(kC); __set_D(kD); __set_B(kB); __set_CU0(kCU); } return out; }
 function tgRoster(){ const r=rGet(), out=[]; if(!r||!r.chars) return out; Object.keys(r.chars).forEach((id) =>{ const e=r.chars[id]; if(!e||e.ph) return;

@@ -145,7 +145,19 @@ for(var f=1;f<=N;f++){
   st=TGE.step(st,{t:"smite"}); var sm=rd(st,"Divine Smite"); ok(!st.err&&st.units.h.slots[0]===3&&sm.length===1&&sm[0].dice.length===(cr?4:2)&&st.log.some(function(e){ return e.t==="dmg"&&e.type==="Radiant"; }),"Divine Smite spends a slot for 2d8 "+st.err+JSON.stringify(sm));
   ok(TGE.step(st,{t:"smite"}).err==="no melee hit to smite","one smite per hit");
   var p24=Object.assign({},pal,{riders:[{n:"Divine Smite",dmg:"2d8",type:"Radiant",slot:1,b:1,max:0}]}); st=TGE.step(T(p24,6),{t:"attack",target:"o",act:"Longsword"}); st=TGE.step(st,{t:"smite",lvl:2});
-  ok(!st.err&&st.units.h.slots[1]===1&&!st.units.h.turn.b&&rd(st,"Divine Smite")[0].dice.length>=3,"2024 smite: Bonus Action, level 2 slot 3d8 "+st.err); })();
+  ok(!st.err&&st.units.h.slots[1]===1&&!st.units.h.turn.b&&rd(st,"Divine Smite")[0].dice.length>=3,"2024 smite: Bonus Action, level 2 slot 3d8 "+st.err);
+  /* TG7 marks: Hex adds 1d6 Necrotic only against the marked target, ends with Concentration; Foe Slayer's Hunter's Mark rolls a d10 of the weapon's type */
+  var M=function(p,seed){ var st=fight(seed,[TGE.fromSheet(p,"h",[2,2]),TGE.fromCreature(ogre,"o",[3,2]),TGE.fromCreature(ogre,"p",[3,4])]); ["o","p"].forEach(function(k){ st.units[k].ac=1; st.units[k].hp=st.units[k].max=999; }); return turnOf(TGE.step(st,{t:"start"}),"h"); };
+  var wl=Object.assign({},HERO,{slots:[0,2],marks:[{n:"Hex",l:1,dmg:"1d6",type:"Necrotic",rng:90}],attacks:[{n:"Pact Blade",hit:20,reach:5,dmg:[[0,"1d8+3","Slashing"]]}]});
+  st=M(wl,8); ok(TGE.step(st,{t:"mark",target:"o"}).err===undefined,"mark ok"); st=TGE.step(st,{t:"mark",target:"o"}); ok(st.units.h.slots[1]===1&&!st.units.h.turn.b&&st.units.h.cond.concentrating&&st.units.h.conc==="Hex","Hex: Bonus Action, slot, Concentration "+JSON.stringify(st.units.h.slots));
+  st=TGE.step(st,{t:"attack",target:"o",act:"Pact Blade"}); ok(rd(st,"Hex").length===1&&st.log.some(function(e){ return e.t==="dmg"&&e.u==="o"&&e.type==="Necrotic"; }),"Hex adds Necrotic on the marked target");
+  st=turnOf(TGE.step(st,{t:"end"}),"h"); var n0=rd(st,"Hex").length; st=TGE.step(st,{t:"attack",target:"p",act:"Pact Blade"}); ok(rd(st,"Hex").length===n0&&!st.log.some(function(e){ return e.t==="dmg"&&e.u==="p"&&e.type==="Necrotic"; }),"no Hex on another target");
+  st.units.h.sv.con=-30; st=TGE.step(st,{t:"damage",u:"h",amt:4}); ok(!st.units.h.cond.concentrating&&st.log.some(function(e){ return e.t==="conc"&&!e.ok&&e.dc===10; }),"failed Con save DC 10 ends Hex");
+  st=turnOf(TGE.step(st,{t:"end"}),"h"); st=TGE.step(st,{t:"attack",target:"o",act:"Pact Blade"}); ok(rd(st,"Hex").length===n0,"no Hex after Concentration is lost");
+  st=TGE.step(M(wl,9),{t:"mark",target:"o"}); st=TGE.step(st,{t:"damage",u:"h",amt:30}); ok(st.units.h.down&&!st.units.h.cond.concentrating,"dropping to 0 ends Hex");
+  var rg=Object.assign({},HERO,{slots:[4],marks:[{n:"Hunter's Mark",l:1,dmg:"1d10",type:"",wpn:1,rng:90}]}), top=0, dt="";
+  for(var sd2=1;sd2<=40;sd2++){ var s3=TGE.step(TGE.step(M(rg,sd2),{t:"mark",target:"o"}),{t:"attack",target:"o",act:"Longsword"}); rd(s3,"Hunter's Mark").forEach(function(e){ top=Math.max(top,Math.max.apply(null,e.dice)); }); s3.log.forEach(function(e){ if(e.t==="dmg"&&e.u==="o") dt+=e.type+" "; }); }
+  ok(top>6&&top<=10&&!/Force|undefined/.test(dt),"Foe Slayer Hunter's Mark d10 of the weapon's type: top "+top+" "+dt.slice(0,40)); })();
 /* N22 and N30: the build duel gives the same totals twice, the quick estimate stays between 0 and 1 and grows with the hero's Hit Points */
 (function(){ global.TGE=TGE; require(path.join(ROOT,"src/tg/25-sim.js")); var S=TGE.sim, gw=TG_CREATURES.filter(function(c){ return c.n==="Goblin Warrior"; })[0];
   var pc={name:"Duelist",ac:16,hp:30,max:30,speed:30,ini:2,level:3,saves:{str:5,con:4},attacks:[{n:"Longsword",hit:5,reach:5,dmg:[[0,"1d8+3","Slashing"]]}]};
