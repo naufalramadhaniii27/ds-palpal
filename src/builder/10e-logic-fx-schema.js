@@ -110,7 +110,7 @@ export const FX_FIELDS={
  exhLock:"number",
  ed:"string",
  hp:"string",
- /* fields of the magic item rows */setsc:"array",atk:"number",dmg:"number",dark:"number",abil:"array",adv:"array",climb:"string",save:"number",swim:"number|string",spellAtk:"number",spellDc:"number",spellCls:"string",
+ /* fields of the magic item rows */setsc:"array",atk:"number",dmg:"number",dark:"number",abil:"array",adv:"array",climb:"string",save:"number",swim:"number|string",spellAtk:"number",spellDc:"number",spellCls:"string",ua:"number",
  speedSet:"number",off:"number|boolean?",lv:"number?",lbl:"string",kind:"string",owner:"string?",okey:"string?",pre:"string?",idx:"number?",ocls:"string?",tgOn:"boolean?",fx:"object?"};
 export function fxEntryProblems(e){const bad=[];
  if(!e||typeof e!=="object"||Array.isArray(e)){bad.push("entry is not a plain object");return bad}
