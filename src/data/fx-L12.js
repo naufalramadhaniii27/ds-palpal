@@ -131,6 +131,7 @@ xl("The Great Machine","Pendulum, Tireless (Deep Magic), Armored Heart, Lock Arm
 xl("The Great Old One (2014)","Dissonant Whispers, Tasha's Hideous Laughter, Detect Thoughts, Phantasmal Force, Clairvoyance, Sending, Dominate Beast, Evard's Black Tentacles, Dominate Person, Telekinesis");
 xl("The Hexblade","Shield, Wrathful Smite, Blur, Branding Smite, Blink, Elemental Weapon, Phantasmal Killer, Staggering Smite, Banishing Smite, Cone of Cold");
 xl("The Predator","Hunter's Mark, Jump, Alter Self, Ambush Prey, Blink, Slow, Dominate Beast, Freedom of Movement, Contagion, Mislead");
+add("The Predator",[{n:"Bonus Proficiencies",l:3,skillProf:["Survival"],skillExpert:["Survival"]}]);/* 0.0.85: "You gain Expertise in Survival" (Expertise needs the proficiency, so both) */
 xl("The Sibyl","Alarm, Seer's Reaction, Augury, Blindness/Deafness, Bestow Curse, Clairvoyance, Confusion, Divination, Eidetic Memory, Legend Lore");
 xl("The Undead","Bane, False Life, Blindness/Deafness, Phantasmal Force, Phantom Steed, Speak with Dead, Death Ward, Greater Invisibility, Antilife Shell, Cloudkill");
 xl("The Undying","False Life, Ray of Sickness, Blindness/Deafness, Silence, Feign Death, Speak with Dead, Aura of Life, Death Ward, Contagion, Legend Lore");

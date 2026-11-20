@@ -2622,5 +2622,13 @@
   ],
   "reason": "B35 (generated) holds Potent Spellcasting, fx-F-sub.js Cover of Night (Stealth, darkvision). Different features: the generated batch holds another feature of the subclass, fx-F-sub.js the 0.0.85 entry; no field shared, nothing counted twice.",
   "shared": []
+ },
+ "GX.sub|Sun Above Domain": {
+  "files": [
+   "fx-B24-subriders.js",
+   "fx-F-sub.js"
+  ],
+  "reason": "B24 (generated) holds a damage rider note, fx-F-sub.js Emissary of the Sun weapon proficiencies (0.0.85); no field shared, nothing counted twice.",
+  "shared": []
  }
 }
