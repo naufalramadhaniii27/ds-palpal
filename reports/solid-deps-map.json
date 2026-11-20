@@ -11457,6 +11457,15 @@
   },
   {
    "from": "builder/16-logic-feature-numbers.js",
+   "to": "builder/00-env.js",
+   "import": true,
+   "names": [
+    "armorDef"
+   ],
+   "count": 1
+  },
+  {
+   "from": "builder/16-logic-feature-numbers.js",
    "to": "builder/01-logic-core-helpers.js",
    "import": true,
    "names": [
@@ -11472,6 +11481,13 @@
     "provideQueries"
    ],
    "count": 1
+  },
+  {
+   "from": "builder/16-logic-feature-numbers.js",
+   "to": "builder/01b-logic-late-ports.js",
+   "import": true,
+   "names": [],
+   "count": 0
   },
   {
    "from": "builder/16-logic-feature-numbers.js",
@@ -11510,9 +11526,10 @@
    "import": true,
    "names": [
     "classFx",
-    "clsInh"
+    "clsInh",
+    "fxOk"
    ],
-   "count": 2
+   "count": 3
   },
   {
    "from": "builder/16-logic-feature-numbers.js",

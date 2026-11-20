@@ -108,8 +108,8 @@ registerSheetGroup({id:"fx-speed-add-if",group:"late",phase:"late",order:120,sco
     if(sk||mv)C.speedSrc+=", +"+n+" ft "+spdTxt(k)+" ("+e.lbl+", you already have it)";else if(e.mv&&e.mv[k]!=null)C.speedSrc+=", "+spdTxt(k)+" "+(e.mv[k]==="speed"?"equal to your Speed ("+C.speed+" ft)":e.mv[k]+" ft")+" ("+e.lbl+")"});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-atk-ability",group:"late",phase:"late",order:130,scope:"each",over:"i.G",loop:"late-fx",reads:["i.a", "i.pb", "i.ar", "i.ESH", "i.EA", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
- run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {a,pb,ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkAb {kind, ab, opt, note}: that ability for the attack and damage modifier when higher. opt:1 = only a note on the row (the text allows it for some strikes) */
-   if(e.atkAb){const q=e.atkAb;rowsPick(q.kind).forEach(function(r){if(!q.ab||a.sc[q.ab]==null)return;const bt=pb+mod(a.sc[q.ab]),dm=mod(a.sc[q.ab]);
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {a,pb,ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* atkAb {kind, ab, opt, note, prof}: that ability for the attack and damage modifier when higher. opt:1 = only a note on the row (the text allows it for some strikes) */
+   if(e.atkAb){const q=e.atkAb;rowsPick(q.kind).forEach(function(r){if(!q.ab||a.sc[q.ab]==null||(q.prof&&!r.prof))return;/* prof:1 = only rows the character is proficient with */const bt=pb+mod(a.sc[q.ab]),dm=mod(a.sc[q.ab]);
      if(q.opt){r.note=(r.note?r.note+" ":"")+(q.note||e.n+": you can use "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for the attack and damage of this attack")+" (attack +"+bt+", damage modifier "+(dm>=0?"+":"")+dm+")."}
      else if(mod(a.sc[q.ab])>mod(a.sc[r.ab])){r.note=(r.note?r.note+" ":"")+e.lbl+": "+ABN[q.ab]+" instead of "+ABN[r.ab]+" for attack and damage.";r.ab=q.ab;r.abSrc=e.lbl}})}
   return ctx.patch()}});
@@ -166,6 +166,11 @@ registerSheetGroup({id:"fx-exhaustion-lock",group:"late",phase:"late",order:220,
 registerSheetGroup({id:"fx-die-step",group:"late",phase:"late",order:230,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* fx engine v6: dieStep [{when,n}] moves the weapon die n steps on the ladder d4 d6 d8 d10 d12 (n -1 = one step down, 2d6 counts as d12, minimum d4). Other dice are not changed */
    (e.dieStep?(Array.isArray(e.dieStep)?e.dieStep:[e.dieStep]):[]).forEach(function(x){const LD=["1d4","1d6","1d8","1d10","1d12"];rowsPick(x.when||"weapon").forEach(function(r){if(r.n==="Unarmed Strike"&&!x.unarmed)return;const d0=r.die==="2d6"?"1d12":r.die,i=LD.indexOf(d0);if(i<0)return;const j=Math.max(0,Math.min(4,i+(x.n||-1)));if(j===i&&d0===r.die)return;r.dieSrc=e.lbl+" ("+(x.n<0||x.n==null?"one step down":"steps "+x.n)+" from "+r.die+")";r.die=LD[j]})});
+  return ctx.patch()}});
+/* spDie [{n,d}]: the first damage dice of spell n on the spell list become d (Foe Slayer: Hunter's Mark d10) */
+registerSheetGroup({id:"fx-spell-die",group:"late",phase:"late",order:235,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.spells", "q.fxOk"],writes:["C.spells"],
+ run:function(ctx){const I=ctx.i,Q=ctx.q,e=ctx.p;if(!e.spDie||(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA)))return null;
+  e.spDie.forEach(function(x){(ctx.C.spells||[]).forEach(function(s){if(s.n===x.n&&s.fx&&s.fx.dmg&&s.fx.dmg[0]){s.fx.dmg[0]=s.fx.dmg[0].slice();s.fx.dmg[0][0]=x.d;s.fx.dmg[0][3]=(s.fx.dmg[0][3]?s.fx.dmg[0][3]+", ":"")+e.lbl}})});
   return ctx.patch()}});
 registerSheetGroup({id:"fx-off-hand",group:"late",phase:"late",order:240,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.attacks", "q.baseOf", "q.fxOk"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const rowsPick=function(k){return pickRowsOf(C,Q,k)};   /* fx engine v6: offHand:true = a row "(off-hand)" for each Light melee weapon row. The off-hand attack adds the ability modifier to its damage (Two-Weapon Fighting). C.attacks gets the extra rows, rows already named so are not doubled */

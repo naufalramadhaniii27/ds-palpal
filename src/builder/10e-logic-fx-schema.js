@@ -93,6 +93,7 @@ export const FX_FIELDS={
  offHand:"boolean",
  sizeSet:"string",
  dieStep:"array",
+ spDie:"array",
  ac:"array|number",
  _L5:"number",
  acNoDex:"boolean",

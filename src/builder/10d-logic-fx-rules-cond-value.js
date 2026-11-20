@@ -13,6 +13,8 @@ registerFxCond("medium",function(ar){return !!ar&&ar.cat==="Medium"});
 registerFxCond("light",function(ar){return !!ar&&ar.cat==="Light"});
 registerFxCond("lightNone",function(ar){return !ar||ar.cat==="Light"});
 registerFxCond("noMedHeavy",function(ar){return !ar||ar.cat==="Light"});
+/* lightNoShield: no armor or Light armor, and no Shield (2014 Bladesong) */
+registerFxCond("lightNoShield",function(ar,sh){return !sh&&(!ar||ar.cat==="Light")});
 registerFxCond("mwArmor",function(ar,sh,EA,inv){return !!ar&&!!EA&&(/, Masterwork/.test(EA)||(inv||[]).some((x) =>{return x.eq&&x.mw&&x.n===EA}))});
 /* value words. "pb" Proficiency Bonus. "rage" Rage Damage bonus of the Barbarian levels. "halfPb" half the Proficiency Bonus, rounded down, "halfPbUp" rounded up (Remarkable Athlete). "lvl" and "halfLvl" the entry level. Ability keys (STR...) are read from the scores in fxv() */
 registerFxValue("pb",function(e,env){return env.pb});
