@@ -47,6 +47,7 @@ AREAS = {
         ("class_resources", [PY, "tests/class_resources.py"]),
         ("subclass_resources", [PY, "tests/subclass_resources.py"]),
         ("subclass_resources14", [PY, "tests/subclass_resources14.py"]),
+        ("subclass_resources_tp", [PY, "tests/subclass_resources_tp.py"]),
         ("subclass_traits", [PY, "tests/subclass_traits.py"]),
         ("builder_cost", [PY, "tests/builder_cost.py"]),
         ("audit_sweep", [PY, "tools/audit_char.py", "--sweep"]),

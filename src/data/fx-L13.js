@@ -37,6 +37,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};
   if(typeof LU_X!=="undefined"){luFind("House of Rooks","Covert Magic").forEach(function(e){LU_X.splice(LU_X.indexOf(e),1)})}
   add("House of Rooks",[{l:7,n:"Covert Magic",lu:CM.map(function(s){return {n:"Covert Magic: "+s,max:1,reset:"long",tag:"Free cast, no Verbal"+(s==="Knock"?", silent":"")}})}]);
   wxs("House of Rooks","Warmage").forEach(function(x){x.sfree=(x.sfree||[]).concat(CM.map(function(s){return [7,s,"INT","1/Long Rest free, no Verbal component (Arcane Surge restores)"]}))})})();
+ /* ---------- Gunslinger (Valda's Spire of Secrets 2014) ---------- */
+ add("Storm Gunner",[{l:10,n:"Running Riot",speedAdd:10}]);/* "Your base walking Speed increases by 10 feet." */
  /* ---------- Witch ---------- */
  add("Blood Magic",[{l:6,n:"Deathseeker",sense:[["Deathseeker",60,"Creatures missing Hit Points, even Invisible ones"]],advOn:["ability checks to track creatures you or your familiar damaged in the last 24 hours"]}]);
  add("Blue Magic",[{l:6,n:"Turquoise Efficiency",advOn:["saves against any spell you have prepared"]}]);
