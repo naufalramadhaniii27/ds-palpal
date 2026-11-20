@@ -60,6 +60,10 @@ add("species","Skathári",[{n:"Gliding Wings",def:["Resistance","Falling damage"
 /* Ruinbound (EE24) Unnatural Resilience */
 add("species","Ruinbound",[{n:"Unnatural Resilience",res:["Poison"],advOn:["saving throws to avoid or end the Poisoned condition"]}]);
 
+/* World of Warcraft (twow): Shaman 20 Primal Champion, Str and Con +4 (max 25); Demon Hunter 18 Improved Spectral Sight, Truesight 30 ft */
+add("cls","Shaman",[{n:"Primal Champion",l:20,abUp:[["STR",4,25],["CON",4,25]]}]);
+add("cls","Demon Hunter",[{n:"Improved Spectral Sight",l:18,sense:[["Truesight",30,""]]}]);
+
 /* Orc (Dark Matter) Follow Through: the use counter in tp13-tsdm.js is owned by "Orc", but the species is "Orc (Dark Matter)", so the counter never showed */
 if(typeof LU_X!=="undefined")LU_X.forEach(function(e){if(e.src==="species"&&e.owner==="Orc"&&e.feature==="Follow Through")e.owner="Orc (Dark Matter)"});
 })();
