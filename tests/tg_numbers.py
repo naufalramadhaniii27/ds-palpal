@@ -5,7 +5,8 @@ player character (window.__app.tgPcFor, src/app/52-tg-bridge.js) and into a comb
 Checked against the sheet: AC, Hit Point maximum, Initiative, Speed, saves, every attack row (bonus, damage dice, damage type), spell
 save DC and spell attack. Checked against the rules (fixed numbers below): attacks per Attack action (Extra Attack and Thirsting Blade never
 add up), cantrip dice by character level, Eldritch Blast beams, damage Resistances, a 2014 Dragonborn Breath Weapon as a save action.
-Riders the Training Ground does not run (Sneak Attack, Divine Smite, Rage damage, weapon riders such as Flame Tongue) stay out. Exit 1 on any difference."""
+Damage riders (TG6): Sneak Attack (once per turn), Divine Smite (a slot; 2024 a Bonus Action), Rage (damage and "(while raging)" Resistances,
+not permanent ones), weapon extra dice such as Flame Tongue +2d6 Fire. Engine behaviour of the riders: tests/tg_engine.js. Exit 1 on any difference."""
 import json, os, subprocess, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,12 +19,12 @@ J = [
  ["Fighter 5 Dragon Scale Mail 4th", "2024", "Fighter", 5, "Champion", [], "", FILL + ["Dragon Scale Mail"], dict(apa=2, res=[])],
  ["Monk 5", "2024", "Monk", 5, "Warrior of the Open Hand", [], "", None, dict(apa=2, row={"Unarmed Strike": [6, "1d8+3"]})],
  ["Monk 5", "2014", "Monk", 5, "Way of Shadow", [], "", None, dict(apa=2, row={"Unarmed Strike": [6, "1d6+3"]})],
- ["Barbarian 5", "2024", "Barbarian", 5, "Path of the Berserker", [], "", None, dict(apa=2, ac=13)],
+ ["Barbarian 5", "2024", "Barbarian", 5, "Path of the Berserker", [], "", None, dict(apa=2, ac=13, res=[], rage={"dmg": 2, "res": ["Bludgeoning", "Piercing", "Slashing"]}, riders=[])],
  ["Barbarian 3", "2014", "Barbarian", 3, "Path of the Berserker (2014)", [], "", None, dict(apa=1)],
- ["Rogue 5", "2024", "Rogue", 5, "Thief", [], "", None, dict(apa=1)],
+ ["Rogue 5", "2024", "Rogue", 5, "Thief", [], "", None, dict(apa=1, riders=[{"n": "Sneak Attack", "dmg": "3d6", "type": "", "once": 1}])],
  ["Rogue 3", "2014", "Rogue", 3, "Thief (2014)", [], "", None, dict(apa=1)],
- ["Paladin 5 Holy Avenger", "2024", "Paladin", 5, "Oath of Devotion", [], "", ["Holy Avenger (Longsword)", "Plate Armor"], dict(apa=2, row={"Holy Avenger (Longsword)": [9, "1d8+6"]})],
- ["Paladin 5 Dragonborn", "2014", "Paladin", 5, "Oath of Devotion (2014)", [], "Dragonborn (2014)", ["Flame Tongue (Longsword)", "Shield, +1", "Plate Armor"], dict(apa=2, res=["Acid"], save={"Breath Weapon": [12, "dex", "2d6"]})],
+ ["Paladin 5 Holy Avenger", "2024", "Paladin", 5, "Oath of Devotion", [], "", ["Holy Avenger (Longsword)", "Plate Armor"], dict(apa=2, row={"Holy Avenger (Longsword)": [9, "1d8+6"]}, riders=[{"n": "Divine Smite", "dmg": "2d8", "type": "Radiant", "slot": 1, "b": 1, "max": 0}])],
+ ["Paladin 5 Dragonborn", "2014", "Paladin", 5, "Oath of Devotion (2014)", [], "Dragonborn (2014)", ["Flame Tongue (Longsword)", "Shield, +1", "Plate Armor"], dict(apa=2, res=["Acid"], save={"Breath Weapon": [12, "dex", "2d6"]}, xd={"Flame Tongue (Longsword)": [[0, "2d6", "Fire"]]}, riders=[{"n": "Divine Smite", "dmg": "2d8", "type": "Radiant", "slot": 1, "max": 5}])],
  ["Warlock 5 Agonizing", "2024", "Warlock", 5, "Fiend Patron", [], "", None, dict(apa=1, ag=1, eb=2, arr=[8, 14, 13, 12, 10, 15])],
  ["Warlock 5", "2014", "Warlock", 5, "The Fiend (2014)", [], "", None, dict(apa=1, ag=1, eb=2, arr=[8, 14, 13, 12, 10, 15])],
  ["Wizard 5", "2024", "Wizard", 5, "Evoker", [], "", None, dict(apa=1, spell={"Fire Bolt": "2d10"})],
@@ -82,6 +83,9 @@ for j, g, u in zip(J, out, units):
     for k, v in e.get("save", {}).items():
         a = acts.get(k); rows.append((lab + " save action " + k, v, a and [a["dc"], a["sv"], a["dmg"][0][1]]))
     if "ac" in e: rows.append((lab + " rules AC", e["ac"], u["ac"]))
+    if "riders" in e: rows.append((lab + " damage riders", e["riders"], u["riders"]))
+    if "rage" in e: rows.append((lab + " Rage", [e["rage"]["dmg"], " | ".join(x.lower() for x in e["rage"]["res"])], u["rage"] and [u["rage"]["dmg"], u["rage"]["res"]]))
+    for k, v in e.get("xd", {}).items(): rows.append((lab + " weapon riders " + k, v, acts.get(k, {}).get("xd")))
 for lab, want, got in rows:
     ok = want == got; bad += not ok; n += 1
     if not ok or "-v" in sys.argv: print(("ok   " if ok else "DIFF ") + lab + ": sheet/rules " + json.dumps(want) + ", Training Ground " + json.dumps(got))

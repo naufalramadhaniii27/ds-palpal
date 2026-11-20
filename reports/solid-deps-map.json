@@ -7622,6 +7622,17 @@
   },
   {
    "from": "app/52-tg-bridge.js",
+   "to": "app/33-logic-play-rage-conditions.js",
+   "import": true,
+   "names": [
+    "modeOn",
+    "modesAvail",
+    "rageDmg"
+   ],
+   "count": 3
+  },
+  {
+   "from": "app/52-tg-bridge.js",
    "to": "app/41-ui-edit-mode.js",
    "import": true,
    "names": [],

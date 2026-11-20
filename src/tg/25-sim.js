@@ -22,9 +22,11 @@ function pilotWalk(P){ if(P.atks.some((a) =>{ return inR(P,a); })||!(TGE.speedLe
 /* Multiattack: the listed attacks one by one, on the next foe when the target fell */
 function pilotMulti(P){ let g=0;
   while(me(P).turn.ma&&me(P).turn.ma.length&&g++<8&&!P.st.over){ if(P.st.units[P.tg.id].dead){ const nf=TGE.foes(P.st,me(P)).filter((x) =>{ return !x.dead; }); if(!nf.length) break; nf.sort((a,b) =>{ return TGE.udist(me(P),a)-TGE.udist(me(P),b); }); P.tg=nf[0]; }
-    var want=me(P).turn.ma[0].split("|"), a=P.atks.filter((x) =>{ return want.indexOf(x.n)>=0&&inR(P,x); }).sort((x,y) =>{ return (TGE.odds(P.st,P.id,P.tg.id,y.n)||{avg:0}).avg-(TGE.odds(P.st,P.id,P.tg.id,x.n)||{avg:0}).avg; })[0];/* a character's Attack action lists every weapon: take the best one */ if(!a||!go(P,{t:"attack",target:P.tg.id,act:a.n})) break; } }
+    var want=me(P).turn.ma[0].split("|"), a=P.atks.filter((x) =>{ return want.indexOf(x.n)>=0&&inR(P,x); }).sort((x,y) =>{ return (TGE.odds(P.st,P.id,P.tg.id,y.n)||{avg:0}).avg-(TGE.odds(P.st,P.id,P.tg.id,x.n)||{avg:0}).avg; })[0];/* a character's Attack action lists every weapon: take the best one */ if(!a||!go(P,{t:"attack",target:P.tg.id,act:a.n})) break; pilotSmite(P); } }
+/* TG6 a smite rider: after every melee hit while slots last (a refused smite changes nothing) */
+function pilotSmite(P){ if((me(P).riders||[]).some((r) =>{ return r.slot; })) go(P,{t:"smite"}); }
 function pilotSingle(P,spell,save){ const id=P.id, a2=P.atks.filter((a) =>{ return inR(P,a); }).sort((x,y) =>{ return (TGE.odds(P.st,id,P.tg.id,y.n)||{avg:0}).avg-(TGE.odds(P.st,id,P.tg.id,x.n)||{avg:0}).avg; })[0];
-  if(!(a2&&go(P,{t:"attack",target:P.tg.id,act:a2.n}))){ if(spell) go(P,{t:"cast",sp:spell.n,targets:[P.tg.id]}); else if(save&&TGE.udist(me(P),P.st.units[P.tg.id])<=30) go(P,{t:"save",act:save.n,targets:[P.tg.id]}); else go(P,{t:"dodge"}); } }
+  if(a2&&go(P,{t:"attack",target:P.tg.id,act:a2.n})) pilotSmite(P); else { if(spell) go(P,{t:"cast",sp:spell.n,targets:[P.tg.id]}); else if(save&&TGE.udist(me(P),P.st.units[P.tg.id])<=30) go(P,{t:"save",act:save.n,targets:[P.tg.id]}); else go(P,{t:"dodge"}); } }
 function pilotStrike(P){ const u=P.u;
   const multi=u.acts.filter((a) =>{ return a.k==="multi"&&a.ma&&a.ma.length; })[0], save=u.acts.filter((a) =>{ return a.k==="save"&&!u.used[a.n]; })[0];
   const spell=(u.spells||[]).filter((x) =>{ return (x.k==="atk"||x.k==="save")&&x.l===0&&(!x.rng||TGE.udist(me(P),P.st.units[P.tg.id])<=x.rng); })[0];
@@ -32,6 +34,7 @@ function pilotStrike(P){ const u=P.u;
 function pilot(st,id){ const P={st:st,cmds:[],id:id,u:st.units[id],tg:null,atks:[]};
   if(!TGE.active(P.u)){ go(P,{t:"end"}); return P.st; }
   if(P.u.cond.prone) go(P,{t:"stand"});
+  if(P.u.rage&&!P.u.cond.raging) go(P,{t:"rage"});
   if(!pickTarget(P)){ go(P,{t:"end"}); return P.st; }
   pilotWalk(P);
   if(P.st.over||!TGE.active(me(P))){ if(!P.st.over) go(P,{t:"end"}); return P.st; }
