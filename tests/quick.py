@@ -89,6 +89,7 @@ AREAS = {
     ],
     "pdf": [
         ("pdfx_export", [PY, "tests/pdfx_export.py"]),
+        ("pdf_numbers", [PY, "tests/pdf_numbers.py"]),
     ],
 }
 
