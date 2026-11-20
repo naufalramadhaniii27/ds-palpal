@@ -47,6 +47,7 @@ AREAS = {
         ("subclass_editions", [PY, "tests/subclass_editions.py"]),
         ("vss14_traits", [PY, "tests/vss14_traits.py"]),
         ("class_resources", [PY, "tests/class_resources.py"]),
+        ("spell_numbers", [PY, "tests/spell_numbers.py"]),
         ("subclass_resources", [PY, "tests/subclass_resources.py"]),
         ("subclass_resources14", [PY, "tests/subclass_resources14.py"]),
         ("subclass_resources_tp", [PY, "tests/subclass_resources_tp.py"]),
