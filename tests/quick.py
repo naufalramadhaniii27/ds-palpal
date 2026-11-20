@@ -35,6 +35,7 @@ AREAS = {
         ("xdmg_edition", [PY, "tests/xdmg_edition.py"]),
         ("expertise_picks", [PY, "tests/expertise_picks.py"]),
         ("item_fx_once", [PY, "tests/item_fx_once.py"]),
+        ("species_fx", [PY, "tests/species_fx.py"]),
         ("builder_cost", [PY, "tests/builder_cost.py"]),
         ("audit_sweep", [PY, "tools/audit_char.py", "--sweep"]),
     ],

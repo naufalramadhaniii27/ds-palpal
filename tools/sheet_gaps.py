@@ -52,6 +52,35 @@ if BOOK == "item":
         print("== " + n)
         for K, t in items[n]: print("   [%s] %s" % (K, t[:200]))
     sys.exit(0)
+if BOOK == "species":
+    sp = defaultdict(list)
+    for line in out.splitlines():
+        m = re.match(r"\[species\|([^|]+)\|([^#\]]+?)(?:~\d+)?#\d+\] K=([^|]*)\| ([^|]*)\| (.*)", line)
+        if m: sp[m.group(1).strip()].append((m.group(2).strip(), m.group(3).strip(), m.group(5)))
+    SP = """(names)=>{const all={};(window.WX&&WX.src||[]).forEach(x=>all[x.id]=true);return names.map(n=>{let txt='';
+      for(const rs of ['2024','2014']){const o=rs==='2014'?{bg:'Soldier (2014)',src:Object.assign({phb14:true,dmg14:true},all)}:{bg:'Soldier',src:all};
+        for(const lv of [5,20]){let r;try{r=window.__bldFuzz(Object.assign({rs,sp:n,cls:'Fighter',sub:'',lv,arr:[15,14,13,12,10,8],b2:0,b1:0},o))}catch(e){continue}
+          if(!r||!r.c||r.b.species!==n)continue;const c=Object.assign({},r.c);delete c.features;delete c.inv;delete c.equipNote;txt+=JSON.stringify(c)}}return [n,txt]})}"""
+    with sync_playwright() as p:
+        br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(600000)
+        pg.goto("file://" + ROOT + "/index.html"); pg.wait_for_timeout(1500); pg.evaluate("()=>window.__bldNeed()")
+        for _ in range(600):
+            if pg.evaluate("()=>typeof window.__bldFuzz==='function'"): break
+            pg.wait_for_timeout(100)
+        names = sorted(sp); res = []
+        for i in range(0, len(names), 40): res += pg.evaluate(SP, names[i:i + 40])
+        br.close()
+    gaps = defaultdict(list); nob = []
+    for n, txt in res:
+        if not txt: nob.append(n); continue
+        for trait, K, t in sp[n]:
+            if trait not in txt: gaps[n + " | " + trait].append((K, t))
+    print("species: %d species with uncovered sentences, %d traits leave no trace on a level 5 or 20 sheet, %d species could not be built" % (len(names), len(gaps), len(nob)))
+    if nob: print("not built:", ", ".join(nob[:40]))
+    for k in sorted(gaps):
+        print("== " + k)
+        for K, t in gaps[k][:3]: print("   [%s] %s" % (K, t[:200]))
+    sys.exit(0)
 rows = []
 for line in out.splitlines():
     m = re.match(r"\[(class|sub)\|([^|]+)\|([^#\]]+?)(?:~\d+)?#\d+\] K=([^|]*)\| ([^|]*)\| (.*)", line)
