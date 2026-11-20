@@ -9,6 +9,7 @@ import {scAdj} from "./23e-ui-spells-dc.js";
 import {CU0,__set_CU0} from "./41-ui-edit-mode.js";
 import {env} from "./00-env.js";
 import {apaOf} from "./08b-ui-render-summaries-actions.js";
+import {modeOn,modesAvail,rageDmg} from "./33-logic-play-rage-conditions.js";
 bindLive("tgPcFor",{get:function(){return tgPcFor;}});
 bindLive("tgPcNow",{get:function(){return tgPcNow;}});
 /* T11 G7 TG1: what the Training Ground needs from the sheet, through window.__app (the Training Ground is a deferred part, src/tg).
@@ -57,10 +58,10 @@ const row={}; SPELLS.forEach((r) =>{ row[r[0]]=r; });
 function tgPcNow(){
  const {at, sv, sp, sl, sca}=tgPcNowStep1();
   const dt=tgDefs(); tgActs(at);
-  return {name:C.name||"Hero",res:dt.Resistance,imm:dt.Immunity,vul:dt.Vulnerability,ac:D.ac,hp:D.hpmax,max:D.hpmax,speed:num(D.speed,30)||30,ini:D.init,saves:sv,attacks:at,level:D.level,spells:sp.list,slots:sl,satk:sca.atk!=null?+sca.atk:D.dc-8,sdc:sca.dc!=null?+sca.dc:D.dc,manual:sp.manual,cls:C.clsLabel||C.cls||"",species:String(C.species||"").split(" (")[0],por:typeof S.portrait==="string"&&/^data:image\//.test(S.portrait)?S.portrait:""}; }
+  return {name:C.name||"Hero",riders:tgRiders(),rage:tgRage(),res:dt.Resistance,imm:dt.Immunity,vul:dt.Vulnerability,ac:D.ac,hp:D.hpmax,max:D.hpmax,speed:num(D.speed,30)||30,ini:D.init,saves:sv,attacks:at,level:D.level,spells:sp.list,slots:sl,satk:sca.atk!=null?+sca.atk:D.dc-8,sdc:sca.dc!=null?+sca.dc:D.dc,manual:sp.manual,cls:C.clsLabel||C.cls||"",species:String(C.species||"").split(" (")[0],por:typeof S.portrait==="string"&&/^data:image\//.test(S.portrait)?S.portrait:""}; }
 function tgRow(a,d,at,beams){ if(!d||!isFinite(d.hit)) return; const dm=String(d.dmg||"").replace(/−/g,"-").replace(/\s+/g,""); if(!/\d*d\d+|^\d+/.test(dm)) return;
     const r=tgRange(a.range), dice=(/^[\d+d-]+/.exec(dm)||[""])[0].replace(/[+-]+$/,"");/* the dice in front; letters ("cold") never leak in */
-    at.push({n:a.n,hit:d.hit,reach:r.reach||undefined,rng:r.rng||undefined,dmg:[[0,dice,String(a.type||"").split(/[ ,]/)[0]||""]],cantrip:/^Cantrip/.test(a.sub||"")?1:undefined});
+    at.push({n:a.n,hit:d.hit,reach:r.reach||undefined,rng:r.rng||undefined,dmg:[[0,dice,String(a.type||"").split(/[ ,]/)[0]||""]],xd:tgXd(a),str:a.ab==="STR"?1:undefined,fin:/Finesse|Ammunition/.test(a.sub||"")?1:undefined,cantrip:/^Cantrip/.test(a.sub||"")?1:undefined});
     const bm=/(\d+) beams/.exec(a.sub||""); if(bm&&+bm[1]>1) beams.push({k:"multi",n:a.n+" ("+bm[1]+" beams)",ma:[[a.n,+bm[1]]]});/* Eldritch Blast: one action, one attack roll per beam */ }
 /* the Attack action (Extra Attack) and save actions such as Breath Weapon, after the attack rows */
 function tgActs(at){
@@ -77,7 +78,21 @@ const at=[], beams=[]; (C.attacks||[]).forEach((a,i) =>{ tgRow(a,D.atk&&D.atk[i]
 }
 /* damage types the sheet lists under Defenses ("Bludgeoning, Piercing, and Slashing" is three); conditions stay out */
 const DTYPES=/^(acid|bludgeoning|cold|fire|force|lightning|necrotic|piercing|poison|psychic|radiant|slashing|thunder)$/i;
-function tgDefs(){ const o={Resistance:[],Immunity:[],Vulnerability:[]}; (C.defenses||[]).forEach((x) =>{ if(!o[x.t]) return; String(x.v||"").split(/\s*,\s*(?:and\s+)?|\s+and\s+|\s+or\s+/).forEach((v) =>{ if(DTYPES.test(v)&&o[x.t].indexOf(v)<0) o[x.t].push(v); }); }); return o; }
+function tgDefs(){ const o={Resistance:[],Immunity:[],Vulnerability:[]}; (C.defenses||[]).forEach((x) =>{ if(!o[x.t]||/while raging/i.test(x.v)) return; String(x.v||"").split(/\s*,\s*(?:and\s+)?|\s+and\s+|\s+or\s+/).forEach((v) =>{ if(DTYPES.test(v)&&o[x.t].indexOf(v)<0) o[x.t].push(v); }); }); return o; }
+/* TG6 damage riders from the sheet rows: weapon extra dice (attack row xdice, such as Flame Tongue +2d6 Fire), once-per-turn riders of C.xdmg
+   (Sneak Attack), spell-slot smites (C.xdmg 2014, the Defenses note of Paladin's Smite 2024, a Bonus Action), Rage (damage, "(while raging)" Resistances) */
+function tgXd(a){ const o=(a.xdice||[]).map((x) =>{ return [0,String(x.d||"").replace(/\s+/g,""),String(x.t||"").split(" ")[0]]; }).filter((q) =>{ return /^\d*d\d+$/.test(q[1])&&DTYPES.test(q[2]); }); return o.length?o:undefined; }
+function tgRiders(){ const out=[], ty=function(t){ return DTYPES.test(t)?t:""; };
+  (C.xdmg||[]).forEach((x) =>{ const d=String(x.dmg||"").replace(/\s+/g,""), note=String(x.note||""); if(x.save||!/^\d*d\d+$/.test(d)) return;
+    if(/expend a spell slot/i.test(note)){ const mx=/max (\d+)d/i.exec(note); out.push({n:x.n,dmg:d,type:ty(x.type),slot:1,max:mx?+mx[1]:0}); }
+    else if(/^Once per turn/i.test(note)) out.push({n:x.n,dmg:d,type:ty(x.type),once:1}); });
+  (C.defenses||[]).forEach((x) =>{ const m=/(\d+d\d+) (\w+) damage/.exec(String(x.v||"")); if(x.t!=="Note"||!m||!/spell slot/i.test(x.v)||out.some((r) =>{ return r.slot; })) return;
+    const mx=/\((\d+)d\d+ at most\)/.exec(x.v); out.push({n:String(x.v).split(",")[0],dmg:m[1],type:ty(m[2]),slot:1,b:/Bonus Action/.test(x.v)?1:0,max:mx?+mx[1]:0}); });
+  return out; }
+/* shortcut: with Rage already on in the sheet its damage sits in the rows, so the Training Ground offers no second Rage then */
+function tgRage(){ if(!modesAvail().some((m) =>{ return m.k==="rage"; })||modeOn("rage")) return null; const res=[];
+  (C.defenses||[]).forEach((x) =>{ if(x.t==="Resistance"&&/while raging/i.test(x.v)) String(x.v).replace(/\s*\(.*\)/,"").split(/\s*,\s*(?:and\s+)?|\s+and\s+/).forEach((v) =>{ if(DTYPES.test(v)) res.push(v); }); });
+  return {dmg:rageDmg(),res:res}; }
 /* c: a character object (C). Swaps it in, derives, reads, puts the open one back */
 function tgPcFor(c){ if(!c||!c.abilities) return null; let kC=C, kD=D, kB=B, kCU=CU0, out=null; try{ __set_C(c); derive(); out=tgPcNow(); out.por=""; } catch(e){ out=null; } finally{ __set_C(kC); __set_D(kD); __set_B(kB); __set_CU0(kCU); } return out; }
 function tgRoster(){ const r=rGet(), out=[]; if(!r||!r.chars) return out; Object.keys(r.chars).forEach((id) =>{ const e=r.chars[id]; if(!e||e.ph) return;

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* G7 TG0 and TG0b headless tests: node tests/tg_engine.js [fights=1000]
    1. Data: 503 creatures, srd 330 and 173, every required field present, numbers are numbers, every attack has a bonus and damage dice.
-   2. Rules units: advantage and disadvantage, natural 20 doubles dice, Resistance, Immunity, Vulnerability, death saves, Disengage, Opportunity Attack,
+   2. Rules units: damage riders (Sneak Attack, Rage, Flame Tongue, Divine Smite), advantage and disadvantage, natural 20 doubles dice, Resistance, Immunity, Vulnerability, death saves, Disengage, Opportunity Attack,
       Multiattack budget, Recharge, Difficult Terrain, a refused command changes nothing.
    3. Fights: N fights with a fixed seed each (player characters and allies against random creatures). A test pilot gives the commands
       (it lives only here: the app has no enemy AI). Each fight must end, hold no NaN, keep HP between 0 and the maximum, match the damage log,
@@ -127,6 +127,25 @@ for(var f=1;f<=N;f++){
     var lost=u.max-u.hp, wasDown=st.log.some(function(e){ return e.t==="down"&&e.u===k; }); ok(u.hp>0&&!wasDown?lost===dmg-heal:dmg>=lost,"hp log "+f+" "+k+" lost "+lost+" log "+dmg+" heal "+heal); });
   var again=TGE.replay(start,all); ok(TGE.hash(again)===TGE.hash(st),"replay differs in fight "+f);
 }
+/* TG6 damage riders: Sneak Attack once per turn, Rage +2 and B/P/S Resistance, Flame Tongue +2d6 Fire, Divine Smite spends a slot for 2d8 */
+(function(){ var ogre=C("Ogre"), T=function(p,seed){ var st=fight(seed,[TGE.fromSheet(p,"h",[2,2]),TGE.fromCreature(ogre,"o",[3,2])]); st.units.o.ac=1; st.units.o.hp=st.units.o.max=999; return turnOf(TGE.step(st,{t:"start"}),"h"); };
+  var rd=function(st,n){ return st.log.filter(function(e){ return e.t==="rider"&&e.n===n; }); };
+  var rogue=Object.assign({},HERO,{riders:[{n:"Sneak Attack",dmg:"3d6",type:"",once:1}],attacks:[{n:"Rapier",hit:20,reach:5,fin:1,dmg:[[0,"1d8+3","Piercing"]]},{k:"multi",n:"Attack (2 attacks)",ma:[["Rapier",2]]}]});
+  var st=T(rogue,3); st=TGE.step(st,{t:"multi",act:"Attack (2 attacks)"}); st=TGE.step(st,{t:"attack",target:"o",act:"Rapier"}); st=TGE.step(st,{t:"attack",target:"o",act:"Rapier"});
+  var sa=rd(st,"Sneak Attack"), crit=st.log.some(function(e){ return e.t==="atk"&&e.crit; }); ok(sa.length===1&&sa[0].dice.length===(crit?6:3),"Sneak Attack once per turn, 3d6: "+JSON.stringify(sa));
+  st=turnOf(TGE.step(st,{t:"end"}),"h"); st=TGE.step(st,{t:"attack",target:"o",act:"Rapier"}); ok(rd(st,"Sneak Attack").length===2,"Sneak Attack again next turn");
+  var barb=Object.assign({},HERO,{rage:{dmg:2,res:["Bludgeoning","Piercing","Slashing"]},attacks:[{n:"Greataxe",hit:20,reach:5,str:1,dmg:[[0,"1d12+3","Slashing"]]}]});
+  st=T(barb,4); var u0=st.units.h; ok(TGE.adjust(u0,10,"Slashing")===10,"no Resistance before Rage"); st=TGE.step(st,{t:"rage"}); ok(!st.err&&st.units.h.cond.raging&&!st.units.h.turn.b,"Rage is a Bonus Action "+st.err);
+  ok(TGE.adjust(st.units.h,11,"Piercing")===5&&TGE.adjust(st.units.h,11,"Fire")===11,"raging halves B/P/S only"); st=TGE.step(st,{t:"attack",target:"o",act:"Greataxe"});
+  var rg=rd(st,"Rage"), dm=st.log.filter(function(e){ return e.t==="dmg"&&e.u==="o"; })[0]; ok(rg.length===1&&rg[0].v===2&&dm&&dm.amt>=(st.log.some(function(e){ return e.t==="atk"&&e.crit; })?7:6),"Rage +2 on the hit "+JSON.stringify(rg));
+  var ft=Object.assign({},HERO,{attacks:[{n:"Flame Tongue",hit:20,reach:5,xd:[[0,"2d6","Fire"]],dmg:[[0,"1d8+3","Slashing"]]}]});
+  st=T(ft,5); st=TGE.step(st,{t:"attack",target:"o",act:"Flame Tongue"}); var fe=rd(st,"Fire"); ok(fe.length===1&&fe[0].dice.length>=2&&st.log.some(function(e){ return e.t==="dmg"&&e.type==="Fire"; }),"Flame Tongue +2d6 Fire "+JSON.stringify(fe));
+  var pal=Object.assign({},HERO,{slots:[4,2],riders:[{n:"Divine Smite",dmg:"2d8",type:"Radiant",slot:1,max:5}],attacks:[{n:"Longsword",hit:20,reach:5,dmg:[[0,"1d8+3","Slashing"]]}]});
+  st=T(pal,6); ok(TGE.step(st,{t:"smite"}).err==="no melee hit to smite","no smite before a hit"); st=TGE.step(st,{t:"attack",target:"o",act:"Longsword"}); var cr=st.log.some(function(e){ return e.t==="atk"&&e.crit; });
+  st=TGE.step(st,{t:"smite"}); var sm=rd(st,"Divine Smite"); ok(!st.err&&st.units.h.slots[0]===3&&sm.length===1&&sm[0].dice.length===(cr?4:2)&&st.log.some(function(e){ return e.t==="dmg"&&e.type==="Radiant"; }),"Divine Smite spends a slot for 2d8 "+st.err+JSON.stringify(sm));
+  ok(TGE.step(st,{t:"smite"}).err==="no melee hit to smite","one smite per hit");
+  var p24=Object.assign({},pal,{riders:[{n:"Divine Smite",dmg:"2d8",type:"Radiant",slot:1,b:1,max:0}]}); st=TGE.step(T(p24,6),{t:"attack",target:"o",act:"Longsword"}); st=TGE.step(st,{t:"smite",lvl:2});
+  ok(!st.err&&st.units.h.slots[1]===1&&!st.units.h.turn.b&&rd(st,"Divine Smite")[0].dice.length>=3,"2024 smite: Bonus Action, level 2 slot 3d8 "+st.err); })();
 /* N22 and N30: the build duel gives the same totals twice, the quick estimate stays between 0 and 1 and grows with the hero's Hit Points */
 (function(){ global.TGE=TGE; require(path.join(ROOT,"src/tg/25-sim.js")); var S=TGE.sim, gw=TG_CREATURES.filter(function(c){ return c.n==="Goblin Warrior"; })[0];
   var pc={name:"Duelist",ac:16,hp:30,max:30,speed:30,ini:2,level:3,saves:{str:5,con:4},attacks:[{n:"Longsword",hit:5,reach:5,dmg:[[0,"1d8+3","Slashing"]]}]};
