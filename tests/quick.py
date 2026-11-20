@@ -30,6 +30,7 @@ AREAS = {
     "engine": [
         ("fx_engine", [PY, "tests/fx_engine.py"]),
         ("golden_rules", [PY, "tests/golden_rules.py"]),
+        ("feat_numbers", [PY, "tests/feat_numbers.py"]),
         ("weapon_items", [PY, "tests/weapon_items.py"]),
         ("armor_items", [PY, "tests/armor_items.py"]),
         ("golden_builds", [PY, "tests/golden_builds.py"]),
@@ -37,6 +38,7 @@ AREAS = {
         ("fx_overlap", [PY, "tests/fx_overlap.py"]),
         ("xdmg_edition", [PY, "tests/xdmg_edition.py"]),
         ("xdmg14", [PY, "tests/xdmg14.py"]),
+        ("gaps14", [PY, "tests/gaps14.py"]),
         ("expertise_picks", [PY, "tests/expertise_picks.py"]),
         ("item_fx_once", [PY, "tests/item_fx_once.py"]),
         ("species_fx", [PY, "tests/species_fx.py"]),
@@ -45,6 +47,7 @@ AREAS = {
         ("subclass_editions", [PY, "tests/subclass_editions.py"]),
         ("vss14_traits", [PY, "tests/vss14_traits.py"]),
         ("class_resources", [PY, "tests/class_resources.py"]),
+        ("spell_numbers", [PY, "tests/spell_numbers.py"]),
         ("subclass_resources", [PY, "tests/subclass_resources.py"]),
         ("subclass_resources14", [PY, "tests/subclass_resources14.py"]),
         ("subclass_resources_tp", [PY, "tests/subclass_resources_tp.py"]),
