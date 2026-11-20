@@ -67,7 +67,7 @@ function xdLv(kind,own,iv,TLv){let lv=0;
  return lv}
 function xdGate(g){const gp=g.split(":");if(/^p\d+opt$/.test(gp[0])&&B.ch[gp[0]]!==gp[1])return true;if(gp[0]==="lin"&&(B.ch.lin||"").indexOf(gp[1])!==0)return true;return false}
 function xdDice(r,lv,SA,a){let dice=r[4]==="smite"?(SA.pact?(1+SA.pact.lvl)+"d8":""):r[4][lv-1]||"";if(!dice)return "";
-  dice=dice.replace(/^([A-Z]{3})d(\d+)/,(_,k,dd) =>{return Math.max(1,mod(a.sc[k]))+"d"+dd});if(r[9])dice+=(mod(a.sc[r[9]])<0?"":"+")+mod(a.sc[r[9]]);
+  dice=dice.replace(/^([A-Z]{3})d(\d+)/,(_,k,dd) =>{return Math.max(1,mod(a.sc[k]))+"d"+dd});if(r[9]){const m=mod(a.sc[r[9]]);dice=/^\d+$/.test(dice)?String(+dice+m):dice+(m<0?"":"+")+m}/* flat rows (Holy Nimbus: PB + CHA) show the sum */
  return dice}
 function xdRow(r,a,pb,TLv,iv,SA,out){let kind=r[0],own=r[1];const lv=xdLv(kind,own,iv,TLv);if(lv===null)return;
   if(!lv||lv<r[3])return;const g=r[10];if(g&&xdGate(g))return;
