@@ -9,7 +9,5 @@ P("Spring Mandrake",{n:"Sprightly Movement (speed)",speedAdd:5});
 /* 0.0.85: horns as natural weapons for Unarmed Strikes, 1d6 + Strength, damage type as the trait text says */
 ["Bhain Kwai Minotaur","Boghaid Minotaur","Tauren"].forEach(function(n){P(n,{n:"Horns",unarmed:{die:"1d6",t:"Piercing"}})});
 P("Minotaur (Amonkhet)",{n:"Natural Weapon (horns)",unarmed:{die:"1d6",t:"Bludgeoning"}});
-/* Vect (DM24) Embedded Armor: base AC 13 + Dex; armor worn over it may be used instead (acOver keeps the better one) */
-P("Vect",{n:"Embedded Armor",acBase:[13,"full"],acOver:true});
 ["Bisque Geppettin","Raggedy Geppettin"].forEach(function(n){P(n,{n:"Construct Anatomy (immunity)",defs:[["Immunity","Disease (nonmagical)"]]})});
 })();

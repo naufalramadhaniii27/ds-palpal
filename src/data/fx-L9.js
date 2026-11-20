@@ -136,6 +136,7 @@ DataEnv.slot.FXO=DataEnv.slot.FXO||{};
  addS("Tortle (2014)",{n:"Shell Defense",toggle:{id:"tortle-shell",label:"In your shell (Shell Defense)",default:false},acAdd:4,advOn:["Strength and Constitution saves"],defs:[["Note","In the shell: Prone, Speed 0, Disadvantage on Dexterity saves, no Reactions"]]});
  addS("Vect",{n:"Inflexible Mind",advOn:["saves to avoid or end the Charmed condition"]});
  addS("Vect",{n:"Thermalsight",sense:[["Thermalsight",60,""]]});
+addS("Vect",{n:"Embedded Armor",acBase:[13,"full"],acOver:true});/* 0.0.85: base AC 13 + Dex; armor worn over it is used when better (acOver) */
  addS("Vulpin",{n:"Evasive",saveBonusAb:[["DEX","INT"]]});
  addS("Warforged (2014)",{n:"Constructed Resilience",defs:[["Immunity","Disease"]]});
  addS("Wrothian",{n:"Psychic Resistance",res:["Psychic"]});

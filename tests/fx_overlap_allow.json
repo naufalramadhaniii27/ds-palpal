@@ -2597,5 +2597,13 @@
   ],
   "reason": "Wings: B19 has the flight speed, B56 has the 10 minute counter (different fields)",
   "shared": []
+ },
+ "GX.species|Boghaid Minotaur": {
+  "files": [
+   "fx-B33-speciesmisc.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "Different traits: B9 (generated) holds the Wooly Advantage note, B33 the Horns Unarmed Strike; no field shared, nothing counted twice.",
+  "shared": []
  }
 }
