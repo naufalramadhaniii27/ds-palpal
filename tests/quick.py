@@ -31,6 +31,7 @@ AREAS = {
         ("fx_engine", [PY, "tests/fx_engine.py"]),
         ("golden_rules", [PY, "tests/golden_rules.py"]),
         ("weapon_items", [PY, "tests/weapon_items.py"]),
+        ("armor_items", [PY, "tests/armor_items.py"]),
         ("golden_builds", [PY, "tests/golden_builds.py"]),
         ("invariants_quick", [PY, "tests/invariants.py", "--quick"]),
         ("fx_overlap", [PY, "tests/fx_overlap.py"]),

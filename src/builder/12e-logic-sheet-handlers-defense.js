@@ -86,16 +86,19 @@ registerSheetGroup({id:"attunement-max",group:"attunement",phase:"savebonus",ord
 /* ---------- more AC (phase "acbonus") ---------- */
 registerSheetGroup({id:"item-bracers",group:"armorClass",phase:"acbonus",order:10,reads:["i.B","i.EA","i.ESH"],writes:["C.ac"],
  run:function(ctx){const I=ctx.i,C=ctx.C;(I.B.inv||[]).forEach((x) =>{if(!x.eq)return;if(x.n==="Bracers of Defense"&&!I.EA&&!I.ESH)C.ac.bonus.push({s:"Bracers of Defense (no armor or Shield)",v:2})});return ctx.patch()}});
-registerSheetGroup({id:"shield-ac",group:"armorClass",phase:"acbonus",order:20,reads:["i.ESH","i.SRC","q.baseOf"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i;if(I.ESH)ctx.C.ac.bonus.push({s:I.ESH+" ("+I.SRC+")",v:2+ctx.q.baseOf(I.ESH).p});return ctx.patch()}});
+/* the +N of a Shield or armor that needs attunement counts only while attuned (i.AFX: within the limit and the "by" rule met), as weapon-row-magic does */
+function attP(ctx,n,p){const d=p&&ctx.q.dmapRow(n);return d&&d[3]&&!ctx.i.AFX.some((q) =>{return q.n===n})?0:p}
+function attNote(ctx,n,p){const d=ctx.q.dmapRow(n);return ", not attuned: its +"+p+" bonus needs attunement"+(d[5]&&d[5].by?" ("+d[5].by+")":"")}
+registerSheetGroup({id:"shield-ac",group:"armorClass",phase:"acbonus",order:20,reads:["i.ESH","i.SRC","i.AFX","q.baseOf","q.dmapRow"],writes:["C.ac"],
+ run:function(ctx){const I=ctx.i;if(I.ESH){const p=ctx.q.baseOf(I.ESH).p,P=attP(ctx,I.ESH,p);ctx.C.ac.bonus.push({s:I.ESH+" ("+I.SRC+(P<p?attNote(ctx,I.ESH,p):"")+")",v:2+P})}return ctx.patch()}});
 /* generic: fx.shAc, extra AC while a Shield is held (Warden Tower Shield) */
 registerSheetGroup({id:"fx-shield-ac",group:"armorClass",phase:"acbonus",order:30,reads:["i.ESH","i.G"],writes:["C.ac"],
  run:function(ctx){const C=ctx.C;if(ctx.i.ESH)ctx.i.G.forEach((e) =>{if(!e.shAc)return;let ex=0;e.shAc.forEach((r) =>{if(e.lv>=r[0])ex=r[1]});if(ex)C.ac.bonus.push({s:e.lbl,v:ex})});return ctx.patch()}});
 /* generic: class fx.ac [[class level, bonus]] and fx.acAb (add an ability modifier), cond armor or noArmor. fx engine v5: acCap = the entry adds at most this much AC (Wooden Chain: Wisdom modifier, max +2) */
 registerSheetGroup({id:"fx-ac-bonus",group:"armorClass",phase:"acbonus",order:40,reads:["i.G","i.ar","i.ESH","i.EA","i.a","q.fxOk","q.fxv"],writes:["C.ac"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C,a=I.a;I.G.forEach((e) =>{if(!e.ac&&!e.acAb&&e.acAdd==null&&!e.acMw)return;if(!Q.fxOk(e,I.ar,I.ESH,I.EA))return;let v=0;(typeof e.ac==="number"?[[0,e.ac]]:e.ac||[]).forEach((r) =>{if(e.lv>=r[0])v=r[1]});/* the schema allows ac as a flat number (fx-B14: Knifewing Cape +1); it crashed the sheet */if(e.acAb)v+=Math.max(e.acMin||0,mod(a.sc[e.acAb]));if(e.acAdd!=null)v+=Q.fxv(e.acAdd,e);if(e.acMw&&/Masterwork/.test(I.EA||""))v+=e.acMw;if(e.acCap!=null&&v>e.acCap)v=e.acCap;if(v)C.ac.bonus.push({s:e.lbl,v:v})});return ctx.patch()}});
-registerSheetGroup({id:"armor-magic-bonus",group:"armorClass",phase:"acbonus",order:50,reads:["i.EAp","i.EA"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i;if(I.EAp)ctx.C.ac.bonus.push({s:I.EA+" (magic bonus)",v:I.EAp});return ctx.patch()}});
+registerSheetGroup({id:"armor-magic-bonus",group:"armorClass",phase:"acbonus",order:50,reads:["i.EAp","i.EA","i.AFX","q.dmapRow"],writes:["C.ac"],
+ run:function(ctx){const I=ctx.i;if(!I.EAp)return null;const P=attP(ctx,I.EA,I.EAp);if(P)ctx.C.ac.bonus.push({s:I.EA+" (magic bonus)",v:P});else ctx.C.ac.baseSrc+=attNote(ctx,I.EA,I.EAp);return ctx.patch()}});
 /* v69: Dual Wielder, +1 AC with a melee weapon in each hand and no Shield */
 registerSheetGroup({id:"feat-dual-wielder-ac",group:"armorClass",phase:"acbonus",order:60,reads:["i.feats","i.ESH","l.EW","q.baseOf"],writes:["C.ac"],
  run:function(ctx){const I=ctx.i,C=ctx.C,EW=ctx.l.EW;I.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.dwAC&&!I.ESH&&EW.filter((n) =>{const w=weaponDef(ctx.q.baseOf(n).b);return w&&w.k==="M"}).length>=2)C.ac.bonus.push({s:f.n+" (melee weapon in each hand)",v:1})});return ctx.patch()}});
