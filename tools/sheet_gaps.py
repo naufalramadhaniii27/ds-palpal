@@ -52,6 +52,37 @@ if BOOK == "item":
         print("== " + n)
         for K, t in items[n]: print("   [%s] %s" % (K, t[:200]))
     sys.exit(0)
+if BOOK == "feat":
+    ft = defaultdict(list)
+    for line in out.splitlines():
+        m = re.match(r"\[feat\|([^|]+)\|([^#\]]+?)(?:~\d+)?#\d+\] K=([^|]*)\| ([^|]*)\| (.*)", line)
+        if m: ft[m.group(1).strip()].append((m.group(3).strip(), m.group(5)))
+    FT = """(names)=>{const all={};(window.WX&&WX.src||[]).forEach(x=>all[x.id]=true);
+      if(!window.__fb){window.__fb={};for(const rs of ['2024','2014'])for(const cls of ['Fighter','Wizard']){const o=rs==='2014'?{sp:'Human (2014)',bg:'Soldier (2014)',src:Object.assign({phb14:true,dmg14:true},all)}:{sp:'Human',bg:'Soldier',src:all};
+        window.__fb[rs+cls]=window.__bldFuzz(Object.assign({rs,cls,sub:'',lv:8,arr:[15,14,13,12,10,8],b2:0,b1:0},o)).b}}
+      return names.map(n=>{let txt='',took=0;for(const rs of ['2024','2014'])for(const cls of ['Fighter','Wizard']){const b0=structuredClone(window.__fb[rs+cls]);b0.ch=Object.assign({},b0.ch,{feat4:{feat:n}});
+        /* the feat's own ability increase (a1): the first ability that makes the choice complete */
+        for(const a of ['','STR','DEX','CON','INT','WIS','CHA']){if(a)b0.ch.feat4={feat:n,a1:a};const c=window.__bldChoiceList(b0).find(x=>x.key==='feat4');if(!c||c.done)break}
+        const b=window.__bldFillFor(b0)||b0;const t=window.__bldTestB();Object.assign(t,b);delete t.unset;let C;try{C=window.__bldSheetFor(t)}catch(e){txt+='CRASH '+e;continue}
+        if(!JSON.stringify(C.features).includes(n))continue;took++;const o=Object.assign({},C);delete o.features;delete o.inv;delete o.equipNote;txt+=JSON.stringify(o)}return [n,took,txt]})}"""
+    with sync_playwright() as p:
+        br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(900000)
+        pg.goto("file://" + ROOT + "/index.html"); pg.wait_for_timeout(1500); pg.evaluate("()=>window.__bldNeed()")
+        for _ in range(600):
+            if pg.evaluate("()=>typeof window.__bldFillFor==='function'"): break
+            pg.wait_for_timeout(100)
+        names = sorted(ft); res = []
+        for i in range(0, len(names), 30): res += pg.evaluate(FT, names[i:i + 30])
+        br.close()
+    gone = [n for n, took, txt in res if took and n not in txt]
+    crash = [n for n, took, txt in res if "CRASH" in txt]
+    nott = [n for n, took, txt in res if not took]
+    print("feat: %d feats with uncovered sentences, %d leave no trace on the sheet, %d crash, %d could not be taken at level 4" % (len(names), len(gone), len(crash), len(nott)))
+    for n in crash: print("CRASH", n)
+    for n in gone:
+        print("== " + n)
+        for K, t in ft[n][:3]: print("   [%s] %s" % (K, t[:200]))
+    sys.exit(0)
 if BOOK == "species":
     sp = defaultdict(list)
     for line in out.splitlines():
