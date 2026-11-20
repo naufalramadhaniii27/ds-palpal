@@ -38,6 +38,7 @@ AREAS = {
         ("fx_overlap", [PY, "tests/fx_overlap.py"]),
         ("xdmg_edition", [PY, "tests/xdmg_edition.py"]),
         ("xdmg14", [PY, "tests/xdmg14.py"]),
+        ("gaps14", [PY, "tests/gaps14.py"]),
         ("expertise_picks", [PY, "tests/expertise_picks.py"]),
         ("item_fx_once", [PY, "tests/item_fx_once.py"]),
         ("species_fx", [PY, "tests/species_fx.py"]),

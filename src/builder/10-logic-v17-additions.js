@@ -72,7 +72,7 @@ function xdDice(r,lv,SA,a){let dice=r[4]==="smite"?(SA.pact?(1+SA.pact.lvl)+"d8"
 function xdRow(r,a,pb,TLv,iv,SA,out){let kind=r[0],own=r[1];const lv=xdLv(kind,own,iv,TLv);if(lv===null)return;
   if(!lv||lv<r[3])return;const g=r[10];if(g&&xdGate(g))return;
   const dice=xdDice(r,lv,SA,a);if(!dice)return;
-  let ty=r[5];if(ty==="lin"){const mm=/\(([A-Za-z]+)\)/.exec(B.ch.lin||"");ty=mm?mm[1]:"ancestry type"}else if(ty==="weapon")ty="Weapon type";
+  let ty=r[5];if(ty==="lin"||/^p\d+opt$/.test(ty)){const mm=/\(([A-Za-z]+)\)/.exec(B.ch[ty]||"");ty=mm?mm[1]:"ancestry type"}/* lin: species lineage; p3opt: 2014 Dragon Ancestor pick "Red (Fire)" */else if(ty==="weapon")ty="Weapon type";
   out.push({n:r[2],sub:kind==="inv"?"Eldritch Invocation":kind==="sp"?B.species:own,dmg:dice,type:ty.split("|").join(" or "),note:r[6],save:r[7]||"",dc:r[7]?8+mod(a.sc[r[8]])+pb:null,lv:lv})}
 export function xdmgRows(a,pb){const out=[],TLv=TL(),iv=invList(),SA=slotsAll();
  (typeof FDMG!=="undefined"?FDMG:[]).forEach((r) =>{xdRow(r,a,pb,TLv,iv,SA,out)});
