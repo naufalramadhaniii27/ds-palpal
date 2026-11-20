@@ -5938,6 +5938,15 @@
   },
   {
    "from": "app/37a-ui-pdf-model.js",
+   "to": "app/22-ui-spell-data-and-slots.js",
+   "import": true,
+   "names": [
+    "spEffH"
+   ],
+   "count": 1
+  },
+  {
+   "from": "app/37a-ui-pdf-model.js",
    "to": "app/23c-ui-coins.js",
    "import": true,
    "names": [],
