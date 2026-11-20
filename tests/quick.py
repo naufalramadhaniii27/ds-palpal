@@ -40,6 +40,7 @@ AREAS = {
         ("feat_profs", [PY, "tests/feat_profs.py"]),
         ("quickbuild_rules", [PY, "tests/quickbuild_rules.py"]),
         ("subclass_editions", [PY, "tests/subclass_editions.py"]),
+        ("vss14_traits", [PY, "tests/vss14_traits.py"]),
         ("subclass_traits", [PY, "tests/subclass_traits.py"]),
         ("builder_cost", [PY, "tests/builder_cost.py"]),
         ("audit_sweep", [PY, "tools/audit_char.py", "--sweep"]),
