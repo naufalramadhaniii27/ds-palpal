@@ -88,7 +88,11 @@ function c14SubRl(cn,c,sn,rl){c.subs[sn]=c.subs[sn].map((a,i) =>{const b=a.slice
     if(cn==="Cleric"&&AUTO[sn]&&AUTO[sn][0]&&AUTO[sn][0][0]===3){const sp=String(AUTO[sn][0][1]).split(",");if(sp.length>=4)AUTO[sn]=[[1,sp.slice(0,sp.length-2).join(",")],[3,sp.slice(sp.length-2).join(",")]].concat(AUTO[sn].slice(1))}}
 function c14Sub(cn,c,sn,nb,xs){const key=cn+"|"+sn,rl=RL14[key],x=xs[key];
    if(rl){c14SubRl(cn,c,sn,rl);return}
-   if(nb[sn]||(x&&SRC14.indexOf(x.src)<0))delete c.subs[sn]}
+   if(x&&src14(x.src))return;/* a subclass of a 2014 book stays (the base snapshot nb also lists third-party subclasses, so nb alone removed them) */
+   if(nb[sn]||x)delete c.subs[sn]}
+/* a book of the 2014 rules: the WotC list, or a third-party book whose data says ed 2014 (Dark Matter 2014, Tome of Heroes, ...). Before 0.0.85 only the
+   WotC list counted, so under the 2014 rules every subclass of those books was removed (Gadgeteer and Mechanist had none at all, a Wizard none of Kobold Press) */
+function src14(id){return SRC14.indexOf(id)>=0||((genv.WX&&genv.WX.src)||[]).some((s) =>{return s.id===id&&s.ed==="2014"})}
 function c14ApplyCls(cn,b0,xs){const c=CLASSES[cn],d=CLS14[cn];
   if(d)c14Base(cn,c,d);
   if(!c.subs)return;const nb=c.a14?{}:(b0[cn]||{});

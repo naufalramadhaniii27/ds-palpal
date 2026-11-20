@@ -170,6 +170,8 @@ function ruleIssues0(){const out=spellCounts();
  const bgo=bgX();if(bgo&&!R14()&&B.bgMode!=="111")[["bg2","+2"],["bg1","+1"]].forEach((q) =>{const k=B[q[0]];if(k&&bgo.ab.indexOf(k)<0)out.push({step:"bg",m:B.bg+" can raise "+bgo.ab.join(", ")+", not "+k+". The "+q[1]+" is not counted"})});/* v22 P1 */
  hbSpellPicks().forEach((o) =>{const v=B.ch[o.key];if(Array.isArray(v)&&v[0]&&!o.list.some((x) =>{return x[0]===v[0]}))out.push({step:"class",m:o.feature+": "+v[0]+" no longer fits this choice, so the sheet leaves it out. Choose again"})});/* v20 N1 */
  choices().forEach((c) =>{const v=B.ch[c.key];if(c.n&&Array.isArray(v)&&v.length>c.n)out.push({step:stepOfKey(c.key),m:c.title+(c.lvl>1?" (level "+c.lvl+")":"")+": "+v.length+" chosen, only "+c.n+" allowed"})});
+ /* Expertise picked twice for one skill (Quick Build did this before 0.0.85): the second pick adds nothing */
+ const exSeen={},exWho=function(c){return c.title+(c.src?" ("+c.src+")":"")};choices().forEach((c) =>{const v=B.ch[c.key];if(c.t!=="exp"||!Array.isArray(v))return;v.forEach((n) =>{if(exSeen[n])out.push({step:stepOfKey(c.key),m:exWho(c)+": "+n+" already has Expertise from "+exSeen[n]+". Choose another skill"});else exSeen[n]=exWho(c)})});
  const s0=scoreAt(1,"");ABK.forEach((k) =>{if(s0[k]>20)out.push({step:"abil",m:ABN[k]+" is "+s0[k]+" after the background increase, but 20 is the maximum. The extra points are not counted"})});/* v19 idea */
  featViol().forEach((x) =>{out.push({step:stepOfKey(x.k),m:x.m})});
  /* RL45: PHB 2024 Multiclassing, Prerequisites: 13 in the primary ability of the class you have and of the new class. Caution only (the DM can waive it) */
