@@ -635,9 +635,10 @@
  "GX.sub|House of Pawns": {
   "files": [
    "fx-B2-subclass.js",
+   "fx-B60-subgaps.js",
    "fx-L13.js"
   ],
-  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
+  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
   "shared": []
  },
  "GX.sub|House of Rooks": {
@@ -717,12 +718,13 @@
  },
  "GX.sub|Phantom": {
   "files": [
-   "fx-B36-subfree2.js",
    "fx-B9-advnotes.js",
+   "fx-B36-subfree2.js",
+   "fx-B60-subgaps.js",
    "fx-L12.js",
    "fx-N1.js"
   ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
   "shared": []
  },
  "GX.sub|Plague Doctor": {
@@ -1145,10 +1147,11 @@
  },
  "GX.sub|Wild Magic Sorcery": {
   "files": [
+   "fx-B60-subgaps.js",
    "fx-Z3.js",
    "fx-Z4.js"
   ],
-  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
+  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
   "shared": []
  },
  "GX.sub|Couatl Herald": {
@@ -1345,9 +1348,10 @@
  "GX.sub|Diabolist": {
   "files": [
    "fx-B9-advnotes.js",
+   "fx-B60-subgaps.js",
    "fx-L12.js"
   ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
+  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
   "shared": []
  },
  "GX.sub|Faerzress Sorcery": {
@@ -1850,9 +1854,10 @@
  "GX.sub|Moonwalker": {
   "files": [
    "fx-B19-speedmv.js",
+   "fx-B60-subgaps.js",
    "fx-L11.js"
   ],
-  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
   "shared": []
  },
  "GX.sub|Mutagenist": {
@@ -1866,9 +1871,10 @@
  "GX.sub|Phantom (2014)": {
   "files": [
    "fx-B9-advnotes.js",
-   "fx-B19-speedmv.js"
+   "fx-B19-speedmv.js",
+   "fx-B60-subgaps.js"
   ],
-  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
+  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
   "shared": []
  },
  "GX.sub|Sky Magic": {
@@ -2629,6 +2635,46 @@
    "fx-F-sub.js"
   ],
   "reason": "B24 (generated) holds a damage rider note, fx-F-sub.js Emissary of the Sun weapon proficiencies (0.0.85); no field shared, nothing counted twice.",
+  "shared": []
+ },
+ "GX.sub|College of Birdsong": {
+  "files": [
+   "fx-B1-subclass.js",
+   "fx-B60-subgaps.js"
+  ],
+  "reason": "Different features of the same sub are defined in the files (no field shared); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
+  "shared": []
+ },
+ "GX.sub|Conspiracy Theorist": {
+  "files": [
+   "fx-B60-subgaps.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same sub are defined in the files (no field shared); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
+  "shared": []
+ },
+ "GX.sub|Medium": {
+  "files": [
+   "fx-B60-subgaps.js",
+   "fx-L11.js"
+  ],
+  "reason": "Different features of the same sub are defined in the files (no field shared); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
+  "shared": []
+ },
+ "GX.sub|Rōnin": {
+  "files": [
+   "fx-B60-subgaps.js",
+   "fx-L12.js"
+  ],
+  "reason": "Different features of the same sub are defined in the files (no field shared); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
+  "shared": []
+ },
+ "GX.sub|Transmuter": {
+  "files": [
+   "fx-B9-advnotes.js",
+   "fx-B60-subgaps.js"
+  ],
+  "reason": "Different features of the same sub are defined in the files (no field shared); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
   "shared": []
  }
 }
