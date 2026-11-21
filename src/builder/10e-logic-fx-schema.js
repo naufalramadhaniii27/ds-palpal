@@ -74,6 +74,7 @@ export const FX_FIELDS={
  saveProf:"array",
  speedAddIf:"object",
  hpFlat:"number",
+ hpMul:"number",
  carryBump:"boolean",
  darkTo:"number",
  acDexAb:"string",
