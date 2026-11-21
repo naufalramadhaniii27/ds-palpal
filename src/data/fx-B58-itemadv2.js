@@ -12,5 +12,6 @@ A("Defias Leather","Advantage on Dexterity (Stealth) checks to hide against ston
 A("Ankh of Anubis","Advantage on attack rolls, ability checks and saving throws while you have 10 Hit Points or fewer");
 A("Ghost Suit","Advantage on Dexterity (Stealth) checks for the Hide action if you moved 15 ft or less on your turn");
 A("Rope of Climbing","Advantage on ability checks made to climb with the rope");
-A("Candle of Invocation","Advantage on D20 Tests while you are inside the candle's light");
+/* 2014 DMG limits it to creatures whose alignment matches the candle; 2024 gives it to anyone in the light */
+(GX.item["Candle of Invocation"]=GX.item["Candle of Invocation"]||[]).push({n:"Candle of Invocation (advantage)",ed:"2024",defs:[["Advantage","Candle of Invocation: Advantage on D20 Tests while you are inside the candle's light"]]},{n:"Candle of Invocation (advantage)",ed:"2014",defs:[["Advantage","Candle of Invocation: Advantage on attack rolls, saving throws and ability checks while you are inside the candle's light, if your alignment matches the candle's"]]});
 })();

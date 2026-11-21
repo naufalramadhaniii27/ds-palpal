@@ -3,7 +3,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};
 (function(){
 function R(n,d,t,w){(GX.item[n]=GX.item[n]||[]).push({n:n+" (extra damage)",atkDice:[{when:n,d:d,t:t+" "+w}]})}
 R("Eldritch Staff","1d8","Lightning","for each charge spent on a melee hit (up to 3 charges)");
-R("Cabal's Ruin (Dormant)","1d6","Lightning","for each charge spent on a hit");
+/* Cabal's Ruin is a cloak with no attack row of its own: the rider goes on every attack row, all three states repeat the Dormant text */
+["Dormant","Awakened","Exalted"].forEach(function(st){var n="Cabal's Ruin ("+st+")";(GX.item[n]=GX.item[n]||[]).push({n:n+" (extra damage)",atkDice:[{when:"any",d:"1d6",t:"Lightning for each charge spent on a hit"}]})});
 R("Lightbringer","1d6","Radiant","against Undead while the mace glows");
 R("Quiver of Energy","1d6","of the quiver's damage type","first hit each turn with its ammunition");
 R("Treant's Bane","2d6","of the weapon's type","against a plant creature");
