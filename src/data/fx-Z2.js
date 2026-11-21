@@ -27,8 +27,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  S("Warrior of the Elements",{n:"Elemental Epitome (Step of the Wind)",l:17,toggle:{id:"epitome-step",label:"Step of the Wind used this turn"},speedAdd:20});
  S("Circle of the Stars",{n:"Twinkling Constellations (Dragon)",l:10,toggle:{id:"stars-dragon",label:"Dragon is the active constellation"},mv:{fly:20},defs:[["Note","You can hover"]]});
  F("Charger",{n:"Charger (Dash)",toggle:{id:"charger-dash",label:"Taking the Dash action"},speedAdd:10});
- SP("Dragonborn",{n:"Draconic Flight",l:5,toggle:{id:"draconic-flight",label:"Spectral wings out (10 minutes)"},mv:{fly:"speed"}});
- SP("Goliath",{n:"Large Form",l:5,toggle:{id:"large-form",label:"Large Form (10 minutes)"},speedAdd:10,advOn:["Strength checks"]});
+ SP("Dragonborn",{n:"Draconic Flight",l:5,ed:"2024",toggle:{id:"draconic-flight",label:"Spectral wings out (10 minutes)"},mv:{fly:"speed"}});
+ SP("Goliath",{n:"Large Form",l:5,ed:"2024",toggle:{id:"large-form",label:"Large Form (10 minutes)"},speedAdd:10,advOn:["Strength checks"]});
  /* ---- RESOURCE ---- */
  /* Relentless Rage: the Constitution save DC starts at 10 and rises by 5 for every use since the last rest. One pip per use, so the DC to roll is 10 + 5 x pips already spent. */
  C("Barbarian",{n:"Relentless Rage",l:11,lu:[{n:"Relentless Rage",max:4,reset:"short",tag:"Con save DC 10, +5 for each use since a rest (tick one per use)"}]});

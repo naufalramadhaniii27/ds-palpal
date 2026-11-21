@@ -84,7 +84,7 @@ AREAS = {
         ("mech_scan", [PY, "tests/mech_scan.py"]),
         ("item_numbers_more", [PY, "tests/item_numbers_more.py"]),
         ("itemfeat_gap_numbers", [PY, "tests/itemfeat_gap_numbers.py"]),
-        ("situational_misc_numbers", [PY, "tests/situational_misc_numbers.py"]),
+        ("situational_misc_numbers", "review_r4", [PY, "tests/situational_misc_numbers.py"]),
         ("review_r3a", [PY, "tests/review_r3a.py"]),
         ("review_r3b", [PY, "tests/review_r3b.py"]),
         ("review_r3c", [PY, "tests/review_r3c.py"]),
