@@ -252,8 +252,8 @@ registerSheetGroup({id:"edition-2014-book-names",group:"late",phase:"post",order
 function tpBookMap(){const W=(genv.WX&&genv.WX.src)||[],M=new Map();for(let i=0;i<W.length;i++){const q=W[i];if(!q.tp)continue;const t=q.tag||q.id;[].concat(q.classes||[],q.subs||[],q.species||[],q.feats||[]).forEach((n) =>{if(!M.has(n))M.set(n,t)})}return M}
 function tpBookOf(n,M){if(M)return M.get(n)||"";return tpBookMap().get(n)||""}
 function tpRelabel(s,M){const m=/^(PHB-20(?:14|24)), (.+?)( \d+| table)?$/.exec(String(s||""));if(!m)return s;M=M||tpBookMap();const tag=tpBookOf(m[2],M)||tpBookOf(m[2].replace(/ \(2014\)$/,""),M);return tag?tag+", "+m[2]+(m[3]||""):s}
-registerSheetGroup({id:"third-party-book-names",group:"late",phase:"post",order:55,reads:["C.features"],writes:["C.features"],
- run:function(ctx){const M=tpBookMap();(ctx.C.features||[]).forEach((g) =>{(g.items||[]).forEach((it) =>{it.s=tpRelabel(it.s,M);const F=g.g==="Feats"&&featDef(it.n);if(F&&F.hb&&/^PHB-20(14|24), /.test(it.s||""))it.s=String(it.s).replace(/^PHB-20(14|24)/,F.hb)})});return ctx.patch()}});
+registerSheetGroup({id:"third-party-book-names",group:"late",phase:"post",order:55,reads:["i.feats", "C.features"],writes:["C.features"],
+ run:function(ctx){const M=tpBookMap();(ctx.C.features||[]).forEach((g) =>{(g.items||[]).forEach((it) =>{it.s=tpRelabel(it.s,M);const F=g.g==="Feats"&&featDef(it.n,(ctx.i.feats||[]).find((f) =>{return f.n===it.n}));if(F&&F.hb&&/^PHB-20(14|24), /.test(it.s||""))it.s=String(it.s).replace(/^PHB-20(14|24)/,F.hb)})});return ctx.patch()}});
 registerSheetGroup({id:"pb-add",group:"late",phase:"post",order:60,reads:["q.getPbAdd", "C.pbAdd"],writes:["C.pbAdd"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C; if(Q.getPbAdd())C.pbAdd=Q.getPbAdd();/* fx engine v5: Proficiency Bonus added by pbAdd entries */
   return ctx.patch()}});
