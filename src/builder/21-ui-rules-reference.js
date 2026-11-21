@@ -139,7 +139,7 @@ function qbsNc(){return B.sp.filter((n) =>{return SMAP[n]&&!SMAP[n][1]}).length}
 function qbsNp(){return B.sp.filter((n) =>{return SMAP[n]&&SMAP[n][1]}).length}
 function qbsFirst(Q,L,I,auto){
  (Q.ct||[]).concat(L.filter((x) =>{return !x[1]}).map((x) =>{return x[0]})).forEach((n) =>{const x=SMAP[n];if(x&&!x[1]&&qbsNc()<I.ct&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});
- (Q.sp||[]).concat(L.filter((x) =>{return x[1]===1}).map((x) =>{return x[0]})).forEach((n) =>{const x=SMAP[n];if(x&&x[1]&&qbsNp()<I.pr&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});}
+ (Q.sp||[]).forEach((n) =>{const x=SMAP[n];if(x&&x[1]&&qbsNp()<I.pr&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});}
 function qbsRest(L,I,auto){
  const byL={};L.forEach((x) =>{if(x[1])(byL[x[1]]=byL[x[1]]||[]).push(x[0])});for(let g=0;g<400&&qbsNp()<I.pr;g++){let put=false;for(let lv=I.max;lv>=1&&qbsNp()<I.pr;lv--){const q=byL[lv]||[];while(q.length){const n=q.shift();if(B.sp.indexOf(n)<0&&auto.indexOf(n)<0){B.sp.push(n);put=true;break}}}if(!put)break}}
 export function qbSpells(){const I=spInfo();if(!I)return;let Q=QUICK[B.cls]||{},L=SPELLS.filter((x) =>{return I.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=I.max});B.sp=[];
@@ -147,7 +147,7 @@ export function qbSpells(){const I=spInfo();if(!I)return;let Q=QUICK[B.cls]||{},
  if(R14()&&isThird3(B.sub)){const sch=B.cls==="Fighter"?["Abjuration","Evocation"]:["Enchantment","Illusion"],inS=(x) =>{return !x[1]||sch.indexOf(x[2])>=0};L=L.filter(inS).concat(L.filter((x) =>{return !inS(x)}));Q={ct:Q.ct}}
  const auto=autoSpellList().map((a) =>{return a.n});
  qbsFirst(Q,L,I,auto);
- /* T11 N6: when the level 1 spells run out (or the list is short), the rest come from higher levels in turn, so no prepared spell stays empty */
+ /* after the class picks (QUICK sp), the prepared spells come from every level the caster can cast in turn, highest first, so a high level caster is not left with only level 1 spells */
  qbsRest(L,I,auto);
  qbArc()}
 /* T11 N6: Mystic Arcanum picks (Warlock 11, 13, 15, 17): the first Warlock spell of that level not already known */

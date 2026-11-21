@@ -3,7 +3,7 @@
   python3 tests/sense_mastery_numbers.py
 Divine Sense: 1 + Charisma modifier per Long Rest with no minimum (PHB 2014 p. 84), so Cha 9 or lower gives no uses.
 Cleansing Touch: Charisma modifier, minimum once (PHB 2014 p. 85).
-Spell Mastery (PHB 2014 p. 118): a Quick Build Wizard 18 has a level 2 spell in its spellbook, and both mastery spells show At will.
+Spell Mastery (PHB 2014 p. 118): a Quick Build Wizard 18 has a level 2 spell in its spellbook, and both mastery spells show At will, and its prepared spells reach level 9.
 Exit 1 on any difference."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JS = r"""()=>{const R=['Human (2014)','Soldier (2014)',{phb14:true,dmg14:true}],o={pal:{}};
 let b=window.__bldFillFor(window.__bldFuzz({sp:R[0],bg:R[1],rs:'2014',src:R[2],cls:'Wizard',sub:'',lv:18,arr:[15,14,13,12,10,8],b2:0,b1:0}).b);
 o.sm=window.__bldChoiceList(b).filter(c=>/^p18sm[12]$/.test(c.key)).map(c=>[c.key,(c.list||[]).length,(b.ch[c.key]||[]).length]);
-o.free=(window.__bldSheetFor(b).spells||[]).filter(s=>/At will/.test(JSON.stringify(s))).map(s=>s.l);
+o.top=Math.max(...(b.sp||[]).map(n=>(SPELLS.find(x=>x[0]===n)||[0,0])[1]));o.free=(window.__bldSheetFor(b).spells||[]).filter(s=>/At will/.test(JSON.stringify(s))).map(s=>s.l);
 for(const cha of [6,8,9,10,12,16]){const p=window.__bldFuzz({sp:R[0],bg:R[1],rs:'2014',src:R[2],cls:'Paladin',sub:'',lv:14,arr:[15,14,13,12,10,8],b2:0,b1:0}).b;
  p.method='manual';p.base={STR:15,DEX:10,CON:14,INT:10,WIS:10,CHA:cha};window.__sheetApply(window.__bldSheetFor(p),false);
  const r={};(window.__D().res||[]).forEach(x=>{if(/^(Divine Sense|Cleansing Touch)$/.test(x.n))r[x.n]=x.max});o.pal[cha]=r}
@@ -30,6 +30,7 @@ for cha, r in o["pal"].items():
 for k, n, picked in o["sm"]:
     if not n or picked != 1: bad.append("%s: %d choices, %d picked" % (k, n, picked))
 if sorted(o["free"]) != [1, 2]: bad.append("At will spell levels %s, expected [1, 2]" % o["free"])
+if o["top"] != 9: bad.append("Wizard 18 highest prepared spell level %s, expected 9" % o["top"])
 for b in bad: print("FAIL", b)
-print("sense_mastery_numbers: %d checks, %d failed" % (2 * len(o["pal"]) + 3, len(bad)))
+print("sense_mastery_numbers: %d checks, %d failed" % (2 * len(o["pal"]) + 4, len(bad)))
 sys.exit(1 if bad else 0)
