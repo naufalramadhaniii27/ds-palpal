@@ -1,5 +1,5 @@
 {
- "why": "Ironskin Armor: base AC 17 + WIS mod (0) = 17, + Shield 2 = 19 (Leather 11 + DEX 2 + 2 = 15 otherwise)",
+ "why": "Ironskin Armor: base AC 17 + WIS mod (minimum +1) = 18, + Shield 2 = 20 (Leather 11 + DEX 2 + 2 = 15 otherwise)",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -57,7 +57,7 @@
   "size": "Medium"
  },
  "expect": {
-  "ac": 19
+  "ac": 20
  },
  "fxT": {
   "ruin-incarnate": true

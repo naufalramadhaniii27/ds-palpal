@@ -47,5 +47,8 @@
   "defenses": {
    "in": "Advantage on saves against spells and other magical effects"
   }
+ },
+ "fxT": {
+  "lichdom": true
  }
 }

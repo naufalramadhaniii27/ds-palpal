@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Review g14 fixes on the computed sheet (fx-L6, fx-L8).
-Vicious Weapon: the 2d6 is natural-20 only, so it is a row note and no extra hit dice. Overdrive Module: one use pool (tsdm row, Long Rest), not a row pool plus a GX pool.
+Vicious Weapon (2014 build): the 2d6 is natural-20 only, so it is a row note and no extra hit dice (2024: 2d6 every hit, golden fx_L6_bib_vicious_longsword). Overdrive Module: one use pool (tsdm row, Long Rest), not a row pool plus a GX pool.
 python3 tests/review_g14.py"""
 import os, sys
 from playwright.sync_api import sync_playwright

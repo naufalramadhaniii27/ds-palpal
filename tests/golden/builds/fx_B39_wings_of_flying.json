@@ -52,5 +52,8 @@
  },
  "expectC": {
   "moves.fly.v": 60
+ },
+ "fxT": {
+  "b39-wings-of-flying": true
  }
 }
