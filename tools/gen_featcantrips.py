@@ -6,6 +6,10 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 D = json.load(open(sys.argv[1]))
 FX = "".join(open(f, encoding="utf8").read() for f in glob.glob(os.path.join(ROOT, "src", "data", "fx-*.js")) if "fx-B17" not in f)
 SKIP = {"Arcane Overload"}  # the Crucible Storm Chaser background already gives Fire Bolt, so the spell list would show Fire Bolt twice (tests/invariants.py dup-attack)
+DM = "".join(open(f, encoding="utf8").read() for f in glob.glob(os.path.join(ROOT, "src", "data", "*.js")) if "/fx-" not in f)
+def dm_sp(n):
+    """True when the feat has a DM_SP row (D.dm): dmSpells() already lists its spell with its own ability pick."""
+    return re.search(re.escape(json.dumps(n)) + r':\{"(?:can|free|will|ritual|siberys|aberrant)"', DM) is not None
 rows = {}
 for n, f in D["feats"].items():
     t = f.get("full") or f.get("d") or ""
@@ -14,7 +18,7 @@ for n, f in D["feats"].items():
     asi = bool(re.search(r"ability (?:raised|increased) by this feat", t))
     ch = bool(re.search(r"(?:[Cc]hoose|pick) Intelligence, Wisdom,? or Charisma as", t))
     if not (asi or ch): continue
-    if n in SKIP: continue
+    if n in SKIP or dm_sp(n): continue
     q = re.escape(json.dumps(n))
     if re.search(q + r"[^\n]{0,400}spells\s*:", FX) or re.search(r"\{n:" + q + r"[^\n]{0,300}spells", FX): continue
     e = {"n": n + " (spell)", "spells": [[1, m[0]]]}

@@ -3,16 +3,4 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};
 (function(){
 var G=DataEnv.slot.GX.item=DataEnv.slot.GX.item||{};
 var add=function(n,t){(G[n]=G[n]||[]).push({n:n+" (resistance)",defs:t.map(function(x){return ["Resistance",x]})})};
-add("Boots of the Winterlands",["Cold"]);
-add("Borealus",["Fire"]);
-add("Brooch of Shielding",["Force"]);
-add("Gazing Hydrangea",["Psychic"]);
-add("Karrek's Bastion",["Necrotic"]);
-add("Kwark's Wondrous Kernels, Planter",["Fire"]);
-add("Opal of the Ild Rune",["Cold"]);
-add("Psionic Piercing",["Psychic"]);
-add("Shard of the Ise Rune",["Fire"]);
-add("Talons of the Squall",["Lightning"]);
-add("Tempest Griffon Feather Cape",["Lightning"]);
-add("Warding Brooch",["Force"]);
 })();

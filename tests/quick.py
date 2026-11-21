@@ -101,6 +101,7 @@ AREAS = {
         ("hpmul_numbers", [PY, "tests/hpmul_numbers.py"]),
         ("review_fix_c", [PY, "tests/review_fix_c.py"]),
         ("review_g09", [PY, "tests/review_g09.py"]),
+        ("review_g01", [PY, "tests/review_g01.py"]),
         ("fx_engine", [PY, "tests/fx_engine.py"]),
     ],
     "ui": [
