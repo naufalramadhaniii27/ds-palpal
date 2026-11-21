@@ -146,6 +146,7 @@
     "app/12-ui-bottom-sheet-modal.js",
     "app/13c-ui-xlink-lowercase.js",
     "app/13-ui-detail-cards.js",
+    "app/13d-ui-detail-summary.js",
     "app/13b-ui-detail-spell-targets-render.js",
     "app/14-ui-editor.js",
     "app/15-logic-roster-backup-files-snapshots.js",

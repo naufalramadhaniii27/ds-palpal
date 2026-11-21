@@ -1,4 +1,4 @@
-import {bindLive,crBlock,crOf,fmtN,renderAll,toastU,undoMark} from "./00a-reg-late-ports.js";import {GLOSS} from "./03-data-glossary.js";import {C,saveC} from "./04-logic-storage.js";import {esc,num,rich,toast} from "./05-logic-helpers.js";import {richP} from "./06-logic-derivation.js";import {sheetMode} from "./12-ui-bottom-sheet-modal.js";import {meta,tileH,tileS} from "./13-ui-detail-cards.js";import {coinCp,coinList,coinPay,coinRefresh,coinSet,coinsNow,priceTxt} from "./23c-ui-coins.js";import {ordL} from "./23e-ui-spells-dc.js";import {spClsJ,spnHTML} from "./24-ui-manage-spells.js";import {env} from "./00-env.js";import {libOpen} from "./00a-reg-late-ports.js";
+import {bindLive,crBlock,crOf,fmtN,renderAll,toastU,undoMark} from "./00a-reg-late-ports.js";import {GLOSS} from "./03-data-glossary.js";import {C,saveC} from "./04-logic-storage.js";import {esc,num,rich,toast} from "./05-logic-helpers.js";import {richP} from "./06-logic-derivation.js";import {sheetMode} from "./12-ui-bottom-sheet-modal.js";import {meta,tileH,tileS} from "./13-ui-detail-cards.js";import {featSumH} from "./13d-ui-detail-summary.js";import {coinCp,coinList,coinPay,coinRefresh,coinSet,coinsNow,priceTxt} from "./23c-ui-coins.js";import {ordL} from "./23e-ui-spells-dc.js";import {spClsJ,spnHTML} from "./24-ui-manage-spells.js";import {env} from "./00-env.js";import {libOpen} from "./00a-reg-late-ports.js";
 bindLive("LIBR",{get:function(){return LIBR;},set:function(v){LIBR=v;}});
 bindLive("LIB_RULES",{get:function(){return LIB_RULES;},set:function(v){LIB_RULES=v;}});
 bindLive("libDetail",{get:function(){return libDetail;}});
@@ -230,7 +230,7 @@ function libDetailRawSub(c, k){ let h="", sub=""; let own=null, xs=libXs()[k]; O
 function libDetailRawFeature(c, k){ const m=/^(cls|sub|sp):([^|]+)\|(.+)$/.exec(k); if(!m) return null;
     if(m[1]==="cls"){ const cf=(CLASSES[m[2]].f||[]).filter((f) =>{ return f[1]===m[3]; })[0]; if(!cf) return null; return libDetailRawPart20(m, cf); }
     if(m[1]==="sub"){ let sf=null, oc=""; Object.keys(CLASSES).forEach((cn) =>{ const l=(CLASSES[cn].subs||{})[m[2]]; if(l){ oc=cn; l.forEach((f) =>{ if(f[1]===m[3]) sf=f; }); } }); if(!sf&&libXs()[m[2]]) libXs()[m[2]].arr.forEach((f) =>{ if(f[1]===m[3]) sf=f; }); if(!sf) return null; return libDetailRawPart21(m, sf); }
-    const tr=libDetailRawPart22(m); if(!tr) return null; return {t:m[3],sub:m[2]+" trait",h:meta(m[2]+" Trait","")+'<p class="info-d">'+richP(tr[1])+'</p><p class="bk-f"><button type="button" class="lk" data-lib-open="species|'+esc(m[2])+'">See the whole species</button></p>'}; 
+    const tr=libDetailRawPart22(m); if(!tr) return null; return {t:m[3],sub:m[2]+" trait",h:meta(m[2]+" Trait","")+libFeatSum(tr[1],"")+'<p class="bk-f"><button type="button" class="lk" data-lib-open="species|'+esc(m[2])+'">See the whole species</button></p>'}; 
 }
 function libDetailRawHomebrew(c, k){ const hp=k.indexOf("|"), hid=k.slice(0,hp), hn=k.slice(hp+1), hs=(env.HBIDX||[]).filter((q) =>{ return q.id===hid; })[0]; if(!hs) return null;
     const hh='<div class="info-k">'+tileH("Pack",esc(hs.name))+tileH("Source",esc((hs.tag||"")+" • "+libHbBy(hs)))+'</div><div id="libHb"><p class="info-d">Loading the entry.</p></div>';
@@ -250,7 +250,7 @@ function libDetailRawPart7(w, wt){ return (libTiles([["Damage",w.d+" "+w.t],["Ma
 function libDetailRawPart8(k, a, wt){ return (libTiles([["Armor Class",k==="Shield"?"+"+a.ac:a.ac+(a.dex==="full"?" + Dex":a.dex==="max2"?" + Dex (max 2)":"")],["Stealth",a.dis?"Disadvantage":""],["Strength",a.str?a.str:""],["Weight",wt?wt+" lb":""]])); }
 function libDetailRawPart9(c, k){ return (c==="feat"&&(FEATS[k]||(env.WXF_ALL&&env.WXF_ALL[k]&&env.WXF_ALL[k].f))); }
 function libDetailRawPart10(k){ return (FEATS[k]||(env.WXF_ALL&&env.WXF_ALL[k]&&env.WXF_ALL[k].f)); }
-function libDetailRawPart11(k, f){ return ({t:k,sub:LIB_FEATCAT[f.cat]||"Feat",h:meta(LIB_FEATCAT[f.cat]||"Feat","")+'<p class="info-d">'+richP((typeof FEAT_FULL!=="undefined"&&FEAT_FULL[k])||f.d)+'</p>'}); }
+function libDetailRawPart11(k, f){ const ff=(typeof FEAT_FULL!=="undefined"&&FEAT_FULL[k])||f.full||"", tx=ff||f.d; return ({t:k,sub:LIB_FEATCAT[f.cat]||"Feat",h:meta(LIB_FEATCAT[f.cat]||"Feat","")+featSumH(tx,ff?f.d:"",[f.pre?["Prerequisite: "+f.pre,"t-pre"]:null,f.rep?["Repeatable","t-rit"]:null])+'<p class="info-d">'+richP(tx)+'</p>'}); }
 function libDetailRawPart12(c, k){ return (c==="species"&&(SPECIES[k]||(libX("s")[k]&&libX("s")[k].r))); }
 function libDetailRawPart13(k){ return (SPECIES[k]||(libX("s")[k]&&libX("s")[k].r)); }
 function libDetailRawPart14(c, k){ return (c==="bg"&&(BACKGROUNDS[k]||(libX("b")[k]&&libX("b")[k].r))); }
@@ -259,8 +259,9 @@ function libDetailRawPart16(b){ return (libTiles([["Ability Scores",(b.ab||[]).j
 function libDetailRawPart17(cl){ return (libTiles([["Hit Die","d"+cl.hd],["Primary Ability",cl.prim],["Saving Throws",(cl.saves||[]).join(", ")],["Armor",cl.armor||"None"],["Weapons",cl.weapons||""],["Tools",cl.tools||""]])); }
 function libDetailRawPart18(xs, own, k){ return (xs&&!((CLASSES[own]||{}).subs||{})[k]?xs.arr:CLASSES[own].subs[k]); }
 function libDetailRawPart19(k, f){ return ((typeof SUB_FULL!=="undefined"&&SUB_FULL[k+"|"+f[1]])||f[2]); }
-function libDetailRawPart20(m, cf){ return ({t:m[3],sub:m[2]+", level "+cf[0],h:meta(m[2]+" Feature","Level "+cf[0])+'<p class="info-d">'+richP((typeof CF_FULL!=="undefined"&&CF_FULL[m[2]+"|"+m[3]])||cf[2])+'</p>'}); }
-function libDetailRawPart21(m, sf){ return ({t:m[3],sub:m[2]+", level "+sf[0],h:meta(m[2],"Level "+sf[0])+'<p class="info-d">'+richP((typeof SUB_FULL!=="undefined"&&SUB_FULL[m[2]+"|"+m[3]])||sf[2])+'</p>'+'<p class="bk-f"><button type="button" class="lk" data-lib-open="sub|'+esc(m[2])+'">See the whole subclass</button></p>'}); }
+function libDetailRawPart20(m, cf){ return ({t:m[3],sub:m[2]+", level "+cf[0],h:meta(m[2]+" Feature","Level "+cf[0])+libFeatSum((typeof CF_FULL!=="undefined"&&CF_FULL[m[2]+"|"+m[3]]),cf[2])}); }
+function libFeatSum(full,short){ const tx=full||short||""; return featSumH(tx,full?short:"",[])+'<p class="info-d">'+richP(tx)+'</p>'; }
+function libDetailRawPart21(m, sf){ return ({t:m[3],sub:m[2]+", level "+sf[0],h:meta(m[2],"Level "+sf[0])+libFeatSum((typeof SUB_FULL!=="undefined"&&SUB_FULL[m[2]+"|"+m[3]]),sf[2])+'<p class="bk-f"><button type="button" class="lk" data-lib-open="sub|'+esc(m[2])+'">See the whole subclass</button></p>'}); }
 function libDetailRawPart22(m){ return (((SPECIES[m[2]]||(libX("s")[m[2]]&&libX("s")[m[2]].r)||{}).traits||[]).filter((q) =>{ return q[0]===m[3]; })[0]); }
 function libDetailRawPart23(qr){ return ((qr.tl||[]).some((x) => libDetailRawFn3(x))?libStat(qr.tl):libTiles(qr.tl||[])); }
 function libDetailRawPart24(p){ return (p[0]==="man"?MANEUVERS:p[0]==="inv"?INVOCATIONS:METAMAGIC); }

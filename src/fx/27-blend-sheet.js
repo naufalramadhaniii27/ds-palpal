@@ -93,7 +93,7 @@ const BLEND={};
 })(BLEND.K);
 /* 8. scroll parallax and the settle step: the line under the hero, the title bits, the tint once the picture is measured, the cascade index and the entrance */
 (function(K){ if(!K) return; const D=K.D, RM=K.RM, sh=K.sh, body=K.body; let raf=0, heroH=0;
-  function sync(){ raf=0; const y=body.scrollTop, h=heroH||1; sh.style.setProperty("--bl-py",(RM.matches?0:Math.round(y*.35))+"px"); sh.style.setProperty("--bl-op",String(Math.max(0,1-y/(h*1.1)).toFixed(2))); sh.classList.toggle("bl-compact",y>h*.72); }
+  function sync(){ raf=0; const y=body.scrollTop, h=heroH||1; sh.style.setProperty("--bl-py",(RM.matches?0:Math.round(y*.35))+"px"); sh.style.setProperty("--bl-op",String(Math.max(0,1-y/(h*1.1)).toFixed(2))); sh.style.setProperty("--bl-y",(-y)+"px"); sh.classList.toggle("bl-compact",y>Math.max(8,Math.min(h*.72,h-140))); }/* the hero title rides with the text (--bl-y) and docks before it reaches the close button, so it never sits over the tiles */
   body.addEventListener("scroll",() =>{ if(!sh.classList.contains("blend")||raf) return; raf=requestAnimationFrame(sync); },{passive:true});
   K.settle=function(wm,img,keep){ heroH=0;
     const ln=D.createElement("div"); ln.className="bl-line"; ln.setAttribute("aria-hidden","true"); wm.after(ln); K.titleBits(); sh.style.setProperty("--bl-hero",wm.offsetHeight+"px"); sh.style.setProperty("--bl-hh",(D.getElementById("sheetHead").offsetHeight||81)+"px");
@@ -104,7 +104,7 @@ const BLEND={};
 })(BLEND.K);
 /* 9. the entry point the detail sheet calls */
 (function(K){ if(!K) return; const D=K.D, sh=K.sh, body=K.body;
-  function off(){ sh.classList.remove("blend","bl-compact","bl-in","bl-scn","bl-ico","bl-im"); ["--bl-c","--bl-py","--bl-op","--bl-hero","--bl-pw"].forEach((k) =>{ sh.style.removeProperty(k); }); sh.querySelectorAll(".bl-meta,.bl-price,.bl-line").forEach((e) =>{ e.remove(); }); }
+  function off(){ sh.classList.remove("blend","bl-compact","bl-in","bl-scn","bl-ico","bl-im"); ["--bl-c","--bl-py","--bl-op","--bl-hero","--bl-pw","--bl-y"].forEach((k) =>{ sh.style.removeProperty(k); }); sh.querySelectorAll(".bl-meta,.bl-price,.bl-line").forEach((e) =>{ e.remove(); }); }
   FXENV.__blendSheet=function(mode,title,keep){ off(); if(mode!=="info"||K.ls("mi-clsart")==="off") return; const wm=D.getElementById("shWm"); if(!wm||!wm.parentNode||wm.parentNode!==body) return;
     const hero=K.heroOf(wm,title); if(!hero) return;
     wm.classList.remove("bl-s","bl-i"); wm.querySelectorAll(".bl-bg,.bl-glow,.bl-grain,.bl-sc").forEach((e) =>{ e.remove(); });

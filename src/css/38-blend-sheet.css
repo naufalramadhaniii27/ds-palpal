@@ -63,3 +63,12 @@
 @media print{#sheet.blend .sh-wm{display:none}}
 /* the ddb skin draws a gradient line under .sh-h; in the blended hero .sh-h covers the whole picture, so that line cut across the card above the meta row */
 :root[data-skin] #sheet.blend.on:not(.bl-compact) .sh-h{border-bottom:0;border-image:none}
+/* spells, feats and features: the art is a short banner so the summary is above the fold. The title moves with the text until it docks (--bl-y), so it never covers the tiles */
+#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) #sheetBody>.sh-wm{height:150px}
+#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]).bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){left:auto;right:64px;width:auto;height:104px;max-width:34%;object-fit:contain;translate:0 calc(-50% + var(--bl-py,0px)*.2)}
+#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]).bl-ico #sheetBody>.sh-wm .bl-glow{left:auto;right:-6%;width:46%}
+#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) .sh-h>h2{right:calc(40% + 12px);font-size:calc(26px*var(--tz,1));font-weight:800;letter-spacing:.02em}
+#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) .swp-b{top:4px;width:40px;height:40px;font-size:20px}
+#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) .swp-b[data-swp="-1"]{left:calc(50% - 132px)}
+#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) .swp-b[data-swp="1"]{right:calc(50% - 132px)}
+#sheet.blend:not(.bl-compact) .sh-h>:is(h2,.bl-meta,.bl-price){translate:0 var(--bl-y,0px)}

@@ -76,7 +76,7 @@ export function spSum(x){
   if(!o.k.length) return "";
   spSumStep2(x, o, c, full);
   return '<div class="sum-sp">'+sumPill(o.p)+sumH(o,"")+'</div>'; }
-function spSumStep1(x){
+export function spSumStep1(x){
 const sc=scOf(x), rg=spLvRange(x), lv=clamp(lateGet("spLvSel")[x.n]!=null?lateGet("spLvSel")[x.n]:spRowLv(x),rg[0],rg[1]), c=spCalc(x,lv,D.level,sc.mod), o={p:"",k:[],o:[],m:[]}, full=String(x.full||x.sum||"");
   o.p=/^Bonus/.test(x.ct)?"Bonus Action":/^Reaction/.test(x.ct)?"Reaction":/^Action/.test(x.ct)?"Action":"";
   if(x.sv==="ATK") o.k.push({l:"To hit",n:sg(sc.atk)}); else if(x.sv) o.k.push({l:"Save",n:x.sv+" "+sc.dc,ab:x.sv});
