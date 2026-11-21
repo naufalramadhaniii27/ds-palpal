@@ -2676,5 +2676,13 @@
   ],
   "reason": "Different features of the same sub are defined in the files (no field shared); nothing is counted twice. fx-B60-subgaps.js adds only mech_scan gap features of this sub (other n, no field shared).",
   "shared": []
+ },
+ "GX.species|Uncorrupted Derro": {
+  "files": [
+   "fx-B61-situational-misc.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "Different traits of the same species are defined in the two files (no field shared); nothing is counted twice.",
+  "shared": []
  }
 }

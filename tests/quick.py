@@ -82,6 +82,7 @@ AREAS = {
         ("mech_scan", [PY, "tests/mech_scan.py"]),
         ("item_numbers_more", [PY, "tests/item_numbers_more.py"]),
         ("itemfeat_gap_numbers", [PY, "tests/itemfeat_gap_numbers.py"]),
+        ("situational_misc_numbers", [PY, "tests/situational_misc_numbers.py"]),
         ("fx_engine", [PY, "tests/fx_engine.py"]),
     ],
     "ui": [
