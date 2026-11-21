@@ -25,7 +25,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  /* Nightbringer: the immunity is one chosen type, and every benefit needs an evil alignment */
  W("Nightbringer",{atk:3,dmg:3});
  (function(n){var tg={id:"nightbringer-evil",label:"Evil alignment (Nightbringer benefits)"};
-  add(n,{n:n,toggle:tg,condImm:["Charmed","Frightened"],darkNone:60,darkHave:{add:60},atkDice:[{when:"Nightbringer",d:"4d4",t:"radiant"}],pick:[{k:"imm",t:"multi",n:1,title:"Damage immunity (choose when you attune)",list:["Acid","Cold","Fire","Lightning","Poison"].map(function(t){return [t,""]})}]});
+  add(n,{n:n,atkDice:[{when:"Nightbringer",d:"4d4",t:"radiant"}]});/* the 4d4 radiant needs no alignment */
+  add(n,{n:n,toggle:tg,condImm:["Charmed","Frightened"],darkNone:60,darkHave:{add:60},pick:[{k:"imm",t:"multi",n:1,title:"Damage immunity (choose when you attune)",list:["Acid","Cold","Fire","Lightning","Poison"].map(function(t){return [t,""]})}]});
   ["Acid","Cold","Fire","Lightning","Poison"].forEach(function(t){add(n,{n:n,toggle:tg,when:{key:"gx-imm-item-"+n,val:t},imm:[t]})})})("Nightbringer");
  W("Niko's Mace",null);
  W("Nimbus Coronet",null);
@@ -98,8 +99,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  (function(n){var T=["Aberration","Celestial","Dragon","Elemental","Fey","Fiend","Undead"];
   add(n,{n:n,pick:[{k:"ct",t:"multi",n:1,title:"Creature type (choose when you attune)",list:T.map(function(t){return [t,""]})}]});
   T.forEach(function(t){add(n,{n:n,when:{key:"gx-ct-item-"+n,val:t},advOn:["saves against being Charmed or Frightened by a "+t]})})})("Ring of Seething");
- adv("Ring of Spell Turning",["saving throws against spells"]);
- add("Robe of Eyes",{n:"Robe of Eyes",sense:[["Truesight",120,""]],advOn:["Wisdom (Perception) checks that rely on sight"]});
+ reg("Ring of Spell Turning");add("Ring of Spell Turning",{n:"Ring of Spell Turning",ed:"2024",advOn:["saving throws against spells"]});add("Ring of Spell Turning",{n:"Ring of Spell Turning",ed:"2014",advOn:["saving throws against spells that target only you (not area of effect)"]});
+ add("Robe of Eyes",{n:"Robe of Eyes",ed:"2024",sense:[["Truesight",120,""]]});add("Robe of Eyes",{n:"Robe of Eyes",ed:"2014",defs:[["Note","See invisible creatures and objects, and into the Ethereal Plane, out to 120 ft"]]});add("Robe of Eyes",{n:"Robe of Eyes",advOn:["Wisdom (Perception) checks that rely on sight"]});
  adv("Robe of the Archmagi",["saving throws against spells and other magical effects"]);
  adv("Rod of Wild Dominion",["Wisdom (Animal Handling) and Wisdom (Survival) checks"]);
  /* fx-int: Rogue's Mantle is already defined in fx-L2 */
@@ -120,7 +121,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  add("Shield of the Blazing Dreadnought",{n:"Blazing Soul",toggle:{id:"dreadnought-active",label:"Shield active (1 minute)"},imm:["Fire"]});
  add("Shield of the Hidden Lord",{n:"Shield of the Hidden Lord",res:["Fire"]});
  W("Shield of the Uven Rune",{imm:["Cold"]});
- add("Shoulder Cannon",{n:"Shoulder Cannon",lu:{n:"Shoulder Cannon",max:1,reset:"dawn"}});
+ add("Shoulder Cannon",{n:"Shoulder Cannon",ed:"2024",lu:{n:"Shoulder Cannon",max:1,reset:"dawn"}});
  add("Shroud of Ending",{n:"Blessings of Tyton",saveNote:["Advantage on death saving throws and on saves against effects that would kill you outright"],def:["Immunity","Disease"],defs:[["Note","You see in darkness as if it were bright light"]]});
 
  /* ---------- shard 14 ---------- */
@@ -137,13 +138,13 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  add("Spellguard Shield",{n:"Spellguard Shield",toggle:{id:"spellguard-held",label:"Holding the Spellguard Shield",default:true},advOn:["saving throws against spells and other magical effects"],defs:[["Note","Spell attack rolls against you have Disadvantage"]]});
  RIDER("Spider Staff","1d6","Poison","Weapon hit with the staff");
  add("Spirit Pike",{n:"Spirit Pike",weapons:["Pike"]});
- W("Splitter",{atk:3,dmg:3});add("Splitter",{n:"Split Splitter",toggle:{id:"splitter-split",label:"Split into Handaxe and Quarterstaff (one in each hand)"},acAdd:1});
+ W("Splitter",{atk:3,dmg:3});add("Splitter",{n:"Split Splitter",toggle:{id:"splitter-split",label:"Split into Handaxe and Quarterstaff (one in each hand)"},acAdd:1,atkBonus:[{when:"Splitter",atk:-2,dmg:-2}]});
  GX.cls.Druid=(GX.cls.Druid||[]).filter(function(e){return !e._L5});GX.cls.Druid.push({_L5:1,n:"Squasher",atkAb:{kind:"Squasher",ab:"WIS"}});
  add("Staff of Thunder and Lightning",{n:"Staff of Thunder and Lightning",lu:["Lightning","Thunder","Thunder and Lightning","Lightning Strike","Thunderclap"].map(function(x){return {n:x+" (Staff of Thunder and Lightning)",max:1,reset:"dawn"}})});
  add("Staff of the Forgotten One",{n:"Staff of the Forgotten One",skillExpert:["Arcana","History"],atkDice:[{when:"Staff of the Forgotten One",d:"3d6",t:"Necrotic",note:"Hit with the staff"}]});
  adv("Staff of the Magi",["saving throws against spells"]);
  add("Staff of the Sorcerer King",{n:"Staff of the Sorcerer King",weapons:["Spear"],advOn:["saving throws against spells that target only you"]});
- add("Star Metal Ring",{n:"Star Metal Ring",unarmed:{t:"Force",magic:true}});
+ add("Star Metal Ring",{n:"Star Metal Ring",ed:"2024",unarmed:{t:"Force",magic:true}});add("Star Metal Ring",{n:"Star Metal Ring",ed:"2014",unarmed:{magic:true}});/* same-named items in a 2024 book (tp08, tp13) and a 2014 book (tp18, tp17): ed gates by book edition */
  RIDER("Starbreaker","1d4","Radiant","Hit with the morningstar");
  W("Starmetal Shield",{ac:-1});
  (function(n){add(n,{n:n,pick:[{k:"md",t:"multi",n:1,title:"Form of the axe",list:[["Fused (Greataxe)",""],["Fissioned (two Battleaxes)",""]]}]});
@@ -155,7 +156,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  add("Stonemaker War Pick",{n:"Stonemaker War Pick",lu:{n:"Petrification charges (roll 1d6 + 1 when found)",max:7,reset:"none"}});
  adv("Stonespeaker Crystal",["Intelligence (Investigation) checks"]);
  add("Storm Sickle",{n:"Storm Sickle",weapons:["Sickle"],atkDice:[{when:"Storm Sickle",d:"1d4",t:"Lightning",note:"Hit with the sickle"}]});
- add("Straitjacket",{n:"Straitjacket",acAdd:"INT",cond:"noArmor",defs:[["Note","Disadvantage on weapon and Unarmed Strike attack rolls while wearing it"]]});
+ add("Straitjacket",{n:"Straitjacket",ed:"2024",acAdd:"INT",cond:"noArmor",defs:[["Note","Disadvantage on weapon and Unarmed Strike attack rolls while wearing it"]]});
  add("Strig Feather Robe",{n:"Strig Feather Robe",abPick:{k:"a",from:["INT","CHA"],set:22}});
  RIDER("Sun Staff","1d8","Fire","Hit with the staff");
  add("Sword of Kas",{n:"Spirit of Kas",initDie:"1d10",atkBonus:[{when:"Sword of Kas",crit:19}]});
