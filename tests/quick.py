@@ -85,6 +85,7 @@ AREAS = {
         ("item_numbers_more", [PY, "tests/item_numbers_more.py"]),
         ("itemfeat_gap_numbers", [PY, "tests/itemfeat_gap_numbers.py"]),
         ("situational_misc_numbers", [PY, "tests/situational_misc_numbers.py"]),
+        ("book_choice_round", [PY, "tests/book_choice_round.py"]),
         ("book_choice_numbers", [PY, "tests/book_choice_numbers.py"]),
         ("review_r4", [PY, "tests/review_r4.py"]),
         ("lmax_numbers", [PY, "tests/lmax_numbers.py"]),
