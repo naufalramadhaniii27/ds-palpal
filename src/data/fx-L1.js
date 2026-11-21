@@ -122,10 +122,6 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
   Object.keys(ELE).forEach(function(e){r.push({n:label+" ("+e+")",when:{key:key,val:e},res:[ELE[e]]})});return r}
  var ASK=[["Strength",""],["Dexterity",""],["Constitution",""],["Intelligence",""],["Wisdom",""],["Charisma",""]];
 
- /* Unarmed Strike with Dexterity (Aberrant Spawn, Beastperson, Cyberfiend: "use Dexterity instead of Strength") */
- ["Beastperson","Cyberfiend"].forEach(function(n){addF(n,[{n:"Dexterity Unarmed Strike",atkAb:{kind:"unarmed",ab:"DEX"}}])});
- /* Aberrant Spawn: only the DM24 (2024) feat allows Dex; the VSS14 (2014) tentacle is Strength */
- addF("Aberrant Spawn",[{n:"Dexterity Unarmed Strike",ed:"2024",atkAb:{kind:"unarmed",ab:"DEX"}}]);
  ["Aberrant Spawn","Beastperson","Cyberfiend"].forEach(function(n){addF(n,[{n:"Dexterity Unarmed Strike",atkAb:{kind:"unarmed",ab:"DEX"},fromBk:["tsdm"]}])});/* tsdm only: the tvss14 Aberrant Spawn tentacle uses Strength */
  addF("Adamantine Clan",[{n:"Adamantine Skin",acBase:[10,"full","CON"],cond:"noBody"}]);
  addF("Android",[{n:"Technical Expertise",pick:[{k:"sk",t:"multi",n:1,title:"Skill",list:[["Data",""],["Piloting",""],["Technology",""]]}]},

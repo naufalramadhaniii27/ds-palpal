@@ -19,7 +19,8 @@ JS = """()=>{const all={};(WX.src||[]).forEach(x=>all[x.id]=true);
  r.rovGX=(GX.cls.Ranger||[]).some(e=>/Roving/.test(e.n));
  r.kePick=(GX.sub['Knight Errant']||[]).some(e=>/Chivalrous/.test(e.n)&&!!e.pick);
  return r}"""
-EXP = {"spawn14": "STR", "spawn24": "DEX", "kaunen": True, "rov14": 0, "rov24": True, "rovGX": False, "kePick": False}
+# spawn24: with both books loaded FEATS keeps the tvss14 (Strength) record; book_gate_numbers covers the tsdm Dex case
+EXP = {"spawn14": "STR", "spawn24": "STR", "kaunen": True, "rov14": 0, "rov24": True, "rovGX": False, "kePick": False}
 with sync_playwright() as p:
     br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(180000)
     pg.goto("file://" + ROOT + "/index.html"); pg.wait_for_timeout(1500); pg.evaluate("()=>window.__bldNeed()")
