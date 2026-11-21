@@ -12,7 +12,7 @@
 .mi-sig{position:absolute;right:-34px;bottom:-40px;width:210px;height:210px;pointer-events:none;z-index:0;color:rgb(var(--pl-rgb,214,69,59));opacity:.09;transform:rotate(-12deg)}
 .mi-sig svg{width:100%;height:100%;display:block}
 html:not([data-skin="ddb"]) .mi-sig{display:none}
-:root[data-skin="ddb"] #app .idcard>:not(.mi-sig):not(.mi-glare):not(.mi-motif):not(.mi-crest){position:relative;z-index:1}
+:root[data-skin="ddb"] #app .idcard>:not(.mi-sig):not(.mi-glare):not(.mi-motif):not(.mi-crest):not(.sr){position:relative;z-index:1}
 /* W2 portrait frame with corner pieces */
 :root[data-skin="ddb"] .idcard .photo{box-shadow:0 0 0 2px rgba(var(--pl-rgb),.75),0 0 0 6px rgba(var(--pl-rgb),.12),0 0 24px -6px rgba(var(--pl-rgb),.6),0 12px 28px -8px rgba(0,0,0,.7)!important}
 :root[data-skin="ddb"] .idcard .photo{outline:1.5px solid rgba(242,212,138,.55);outline-offset:5px}

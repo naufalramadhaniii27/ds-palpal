@@ -7,7 +7,9 @@ Spells: every row has a Duration cell; a Concentration spell shows the CONC badg
 Detail leftover: feat bullets fold the sub-headed paragraphs behind Full text.
 Round 4: tab titles at most 40 px tall; the first card of Actions and Features in the top half and the first spell row in the top 40 percent;
 search folded behind an icon and Reorder as an icon in the filter row; casting times as short words (no 1A codes); no dash cells on spell rows;
-no links inside the feature one-liner or badge row; attack cells and spell cells stay aligned without overlap in the light and high-contrast skins."""
+no links inside the feature one-liner or badge row; attack cells and spell cells stay aligned without overlap in the light and high-contrast skins.
+Round 5: the pager lands exactly on a page after 5 jumps to Features (and others); the identity card ends right under its last row;
+Inventory Manage and Shop share one row; the weight column header is not shown over the item names on phones."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,10 +37,23 @@ ACT = r"""async ()=>{ const rows=[...document.querySelectorAll('#actBody .arow:n
   rows[0].scrollIntoView({block:'start'}); await new Promise(r=>setTimeout(r,250));
   out.fit=rows.filter(r=>{ const b=r.getBoundingClientRect(); return b.top>=-1&&b.bottom<=dock+1; }).length; return out; }""" % DOCK
 with sync_playwright() as p:
-    b = p.chromium.launch(); ctx = b.new_context(viewport={"width": 390, "height": 844}); ctx.add_init_script(SEED); pg = ctx.new_page(); errs = []
+    b = p.chromium.launch(); ctx = b.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2); ctx.add_init_script(SEED); pg = ctx.new_page(); errs = []
     pg.on("pageerror", lambda e: errs.append(str(e)))
     pg.goto("file://" + os.path.join(ROOT, "index.html")); pg.wait_for_timeout(3000)
     pg.click("[data-hview]"); pg.wait_for_selector("#dmgBtn", state="attached", timeout=30000); pg.wait_for_timeout(1500)
+    # pager snap: every jump lands on a page edge (a page slide on the page itself once moved the snap 36 px)
+    off = []
+    for t in ["2", "5", "0", "5", "3", "5", "4", "5", "1", "5"]:
+        tab(pg, t); pg.wait_for_timeout(500); sl = pg.evaluate("()=>{const p=document.getElementById('pager'); return [p.scrollLeft,p.clientWidth]}")
+        if abs(sl[0] - int(t) * sl[1]) > 1: off.append((t, sl[0]))
+    check("pager snap lands on the page after 10 jumps (5 to Features)", not off, off)
+    tab(pg, "0")
+    gap = pg.evaluate("()=>{const c=document.querySelector('.idcard').getBoundingClientRect(), x=document.getElementById('xpBox').getBoundingClientRect(); return Math.round(c.bottom-x.bottom)}")
+    check("identity card ends right under its last row", gap <= 20, gap)
+    tab(pg, "4")
+    iv = pg.evaluate("()=>{const b=[...document.querySelectorAll('#invBody .ihero .ibtn')].map(e=>e.getBoundingClientRect()); const h=document.querySelector('#invBody .ihead>span:nth-child(2)'); return {n:b.length, row:b.length===2&&Math.abs(b[0].top-b[1].top)<2, w:h?getComputedStyle(h).visibility:'none'}}")
+    check("Inventory Manage and Shop on one row", iv["row"], iv)
+    check("no weight header over the item names", iv["w"] != "visible", iv)
     # Actions
     tab(pg, "2"); o = pg.evaluate(ACT)
     check("Actions has attack cards", o["n"] >= 3, o)

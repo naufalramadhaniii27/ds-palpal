@@ -15,6 +15,8 @@ html.g0-art:root[data-skin="ddb"] #sheet{background-image:var(--g0p),linear-grad
   background-size:256px 256px,100% 100%;background-position:0 0,0 0;background-repeat:repeat,no-repeat}
 /* section line: the wooden divider in four pieces (two end caps, the centre knot, a rod stretched to the full width), so it spans any card without distorting the knot */
 html.g0-art:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero)::before{height:14px;top:-7px;border-radius:0;opacity:1;background-image:url("img/g0/divider-wood-l.avif"),url("img/g0/divider-wood-r.avif"),url("img/g0/divider-wood-c.avif"),url("img/g0/divider-wood-rod.avif");background-size:auto 100%,auto 100%,auto 100%,100% 100%;background-position:left center,right center,center,center;background-repeat:no-repeat}
+/* a card inside a card (Inventory hero, Extras, Notes) does not get a second divider right under the first */
+html.g0-art:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero) :is(.card,.xcard,.nsec,.ihero)::before{display:none}
 /* section headings in a detail sheet: the wooden divider takes the place of the old gold rule under the heading, one line only */
 html.g0-art:root[data-skin="ddb"] :is(.fgh,.sp-lv,.noteh,.info-h){background-image:url("img/g0/divider-wood-l.avif"),url("img/g0/divider-wood-r.avif"),url("img/g0/divider-wood-c.avif"),url("img/g0/divider-wood-rod.avif");background-size:auto 10px,auto 10px,auto 10px,100% 10px;background-position:left bottom,right bottom,center bottom,center bottom;background-repeat:no-repeat}
 /* level badge on the portrait */
