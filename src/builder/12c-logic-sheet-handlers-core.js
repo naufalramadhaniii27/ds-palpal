@@ -36,4 +36,4 @@ registerSheetGroup({id:"fx-save-prof",group:"saves",phase:"saves",order:50,reads
  run:function(ctx){const C=ctx.C;ctx.i.G.forEach((e) =>{(e.saveProf||[]).forEach((k) =>{if(ABK.indexOf(k)>=0&&!C.saves[k])C.saves[k]=e.lbl})});return ctx.patch()}});
 /* M17: FEATS.saveFromAsi = the feat's chosen ability gives a saving throw proficiency */
 registerSheetGroup({id:"feat-save-asi",group:"saves",phase:"saves",order:60,reads:["i.feats"],writes:["C.saves"],
- run:function(ctx){const C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.saveFromAsi&&f.asi&&f.asi.a1)C.saves[f.asi.a1]=f.n+" feat ("+f.s+")"});return ctx.patch()}});
+ run:function(ctx){const C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.saveFromAsi&&f.asi&&f.asi.a1)C.saves[f.asi.a1]=f.n+" feat ("+f.s+")"});return ctx.patch()}});

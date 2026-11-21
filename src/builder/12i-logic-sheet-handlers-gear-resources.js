@@ -26,7 +26,7 @@ registerSheetGroup({id:"res-class",group:"resources",phase:"resources",order:10,
   rs.forEach((r) =>{const m=Q.resMax(r,I.a);if(m>0){const o={k:Q.resKey("r-",r.n,C.res),n:r.n,tag:r.tag,max:m,reset:(r.short5&&I.L>=5)?"short":r.reset};if(r.pool)o.pool=1;if(r.srN&&I.L>=r.srN[0])o.srN=r.srN[1];C.res.push(o)}});return ctx.patch()}});
 /* M17: FEATS.res */
 registerSheetGroup({id:"res-feat-luck",group:"resources",phase:"resources",order:20,reads:["i.feats","i.pb"],writes:["C.res"],
- run:function(ctx){const C=ctx.C,pb=ctx.i.pb;ctx.i.feats.forEach((f) =>{const F=featDef(f.n);if(F&&(F.res==="luck"||F.luckN))C.res.push({k:"luck",n:"Luck Points",tag:f.n,max:F.luckN||pb,reset:"long",f:f.n})});return ctx.patch()}});
+ run:function(ctx){const C=ctx.C,pb=ctx.i.pb;ctx.i.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&(F.res==="luck"||F.luckN))C.res.push({k:"luck",n:"Luck Points",tag:f.n,max:F.luckN||pb,reset:"long",f:f.n})});return ctx.patch()}});
 /* RU40: limited use rows of the LU_X table (feats, species, backgrounds, class and subclass features, magic items) */
 registerSheetGroup({id:"res-limited-use",group:"resources",phase:"resources",order:30,reads:["i.a","i.pb","i.feats","q.luRows"],writes:["C.res"],
  run:function(ctx){ctx.q.luRows(ctx.C,ctx.i.a,ctx.i.pb,ctx.i.feats);return ctx.patch()}});

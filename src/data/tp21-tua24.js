@@ -29,7 +29,7 @@ var CSP={"Psion":["Animal Friendship","Animal Messenger","Animate Objects","Anti
 if(typeof SPELLS!=="undefined")Object.keys(CSP).forEach(function(c){var h={};CSP[c].forEach(function(n){h[n]=1});SPELLS.forEach(function(x){if(h[x[0]]&&x[3].indexOf(c)<0)x[3].push(c)})});
 DataEnv.slot.DM_SP=DataEnv.slot.DM_SP||{};Object.keys(FDM).forEach(function(k){DataEnv.slot.DM_SP[k]=FDM[k]});
 Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(function(e){LU_X.push(e)});Object.keys(FTA).forEach(function(k){ACTS[k]=FTA[k]});
-SRC.feats=Object.keys(FT);
+SRC.feats=Object.keys(FT);SRC.ft=FT;
 SRC.rows=SPR;Object.keys(SPF).forEach(function(k){SPELL_FULL[k]=SPF[k]});
 DataEnv.slot.WXC=DataEnv.slot.WXC||{};
 Object.keys(CL).forEach(function(n){var k=CL[n],r=k.rec;DataEnv.slot.WXC[n]={book:SRC.id,rec:r,ed:SRC.ed,tw:k.tw,inh:k.inh,cfa:k.cfa};

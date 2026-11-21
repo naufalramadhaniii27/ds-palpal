@@ -24,7 +24,7 @@ registerSheetGroup({id:"skill-pe-choices",group:"skills",phase:"skills",order:50
  run:function(ctx){const B=ctx.i.B,prof=ctx.l.prof,exp=ctx.l.exp;ctx.i.CH.forEach((ch) =>{const v=B.ch[ch.key];if(ch.t==="pe"&&Array.isArray(v))v.forEach((n) =>{if(prof[n])exp[n]=ch.feature+" ("+ch.src+")";else addProf(prof,n,ch.title+", "+ch.src)})});return ctx.patch()}});
 /* Boon of Skill: every skill */
 registerSheetGroup({id:"skill-feat-all",group:"skills",phase:"skills",order:60,reads:["i.feats"],writes:["l.prof"],
- run:function(ctx){const prof=ctx.l.prof;ctx.i.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.allSk)allSkillNames().forEach((n) =>{addProf(prof,n,f.n+" ("+f.s+")")})});return ctx.patch()}});
+ run:function(ctx){const prof=ctx.l.prof;ctx.i.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.allSk)allSkillNames().forEach((n) =>{addProf(prof,n,f.n+" ("+f.s+")")})});return ctx.patch()}});
 /* v62: FEATS[].fx.skills and exp, and the same of third party subclasses */
 registerSheetGroup({id:"skill-feat-fx",group:"skills",phase:"skills",order:70,reads:["i.feats","q.xfxSkills"],writes:["l.prof","l.exp"],
  run:function(ctx){const prof=ctx.l.prof,exp=ctx.l.exp;ctx.q.xfxSkills(ctx.i.feats,function(n,s){addProf(prof,n,s)},prof,exp);return ctx.patch()}});

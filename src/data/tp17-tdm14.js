@@ -30,7 +30,7 @@ Object.keys(TL).forEach(function(k){TOOLS[k]=TL[k].list;TOOL_CAT[k]=TL[k].cat;TO
 SRC.backgrounds=Object.keys(BG);
 DataEnv.slot.DM_SP=DataEnv.slot.DM_SP||{};Object.keys(FDM).forEach(function(k){DataEnv.slot.DM_SP[k]=FDM[k]});
 Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(function(e){LU_X.push(e)});Object.keys(FTA).forEach(function(k){ACTS[k]=FTA[k]});
-SRC.feats=Object.keys(FT);
+SRC.feats=Object.keys(FT);SRC.ft=FT;
 DataEnv.slot.WXI=DataEnv.slot.WXI||{};DataEnv.slot.WXI[SRC.id]=IT;
 DataEnv.slot.WXWP=(DataEnv.slot.WXWP||[]).concat(WPN);
 Object.keys(ISP).forEach(function(k){if(typeof ITEM_SPELLS!=="undefined")ITEM_SPELLS[k]=ISP[k]});

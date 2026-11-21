@@ -1,7 +1,7 @@
 import {casterParts,clsLv,lateGet,subAt} from "./01b-logic-late-ports.js";import {clone} from "./01-logic-core-helpers.js";
 
 import {baseOf,fxListBase,miFeats} from "./01b-logic-late-ports.js";
-import {gx,fxo} from "./00-env.js";
+import {genv,gx,fxo} from "./00-env.js";
 export var DMAP={};/* DBK: row -> id of the book (WXI key) it came from, set by wxItems (09d) when the row joins DMAP */export const DBK=new WeakMap();DMGI.forEach((x) =>{DMAP[x[0]]=x});
 /* M18 (v16): constant numbers of a magic item (DMGI[5].fx) while it is used, and attuned when it needs attunement. Only 3 attuned items count
    (a creature can be attuned to at most 3 magic items). Armor and Shield bonuses (+N) come from the item name as before */
@@ -18,7 +18,14 @@ export function byOk(by){if(!by)return true;const s=String(by),cls=Object.keys(C
  if(/Belt of Dwarvenkind/.test(s)&&(lateGet("B").inv||[]).some((x) =>{return x.eq&&x.n==="Belt of Dwarvenkind"}))return true;
  if(cls.length)return cls.some((c) =>{return clsLv(c)>0});if(/Spellcaster/i.test(s))return casterParts().length>0||miFeats().length>0;
  const sp=Object.keys(SPECIES).filter((n) =>{return new RegExp("\\b"+n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","i").test(s)});/* a subrace counts as its race ("Hill Dwarf" is a Dwarf), a hyphenated name does not ("Half-Elf" is not an Elf) */const me=String(lateGet("B").species||"");if(sp.length)return sp.some((n) =>{return me===n||new RegExp("(^|\\s)"+n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"( \\(|$)","i").test(me)});return true}
-export function activeFx(){let out=[],att=0,am=attMax();(lateGet("B").inv||[]).forEach((x) =>{if(!x.eq)return;const d=DMAP[x.n];if(!d)return;if(d[3]){if(att>=am||!byOk(d[5]&&d[5].by))return;att++}const f=ovFx(d),g=(d[5]&&d[5].gx)||null,bb=baseOf(x.n).b,GXI=gx().item,gi=GXI&&(GXI[x.n]||GXI[d[0]]);/* zero-miss-1: a variant ("Flame Tongue (Rapier)") reads the rows of its item */if(f||g||gi)out.push({n:x.n,mi:d[0],bk:DBK.get(d)||"",fx:f||{},gx:g,att:!!d[3],arm:!!(ARMOR[bb]||bb==="Shield"),t:d[1]})});return out}
+/* bk on an inv row (or feat choice): the book the player picked when two enabled books share the name. dmapOf = that book's WXI row, else DMAP (old saves) */
+export function dmapOf(x){const r=x&&x.bk&&((genv.WXI||{})[x.bk]||[]).find((q) =>{return q[0]===x.n});return r||DMAP[x.n]}
+function bkTag(id){const s=((genv.WX&&genv.WX.src)||[]).find((q) =>{return q.id===id});return (s&&s.tag)||id}
+/* [{id,tag}] of the enabled books that hold item n; length > 1 means the picker shows one Add per book */
+export function itemBooks(n){const S=lateGet("B").src||{},R=genv.WXI||{};return Object.keys(R).filter((id) =>{return S[id]&&R[id].some((r) =>{return r[0]===n})}).map((id) =>{return {id:id,tag:bkTag(id)}})}
+/* the same for feat n (WX.src[].ft holds every book's record) */
+export function featBooks(n){const S=lateGet("B").src||{};return ((genv.WX&&genv.WX.src)||[]).filter((s) =>{return S[s.id]&&s.ft&&s.ft[n]}).map((s) =>{return {id:s.id,tag:s.tag||s.id}})}
+export function activeFx(){let out=[],att=0,am=attMax();(lateGet("B").inv||[]).forEach((x) =>{if(!x.eq)return;const d=dmapOf(x);if(!d)return;if(d[3]){if(att>=am||!byOk(d[5]&&d[5].by))return;att++}const f=ovFx(d),g=(d[5]&&d[5].gx)||null,bb=baseOf(x.n).b,GXI=gx().item,gi=GXI&&(GXI[x.n]||GXI[d[0]]);/* zero-miss-1: a variant ("Flame Tongue (Rapier)") reads the rows of its item */if(f||g||gi)out.push({n:x.n,mi:d[0],bk:DBK.get(d)||x.bk||"",fx:f||{},gx:g,att:!!d[3],arm:!!(ARMOR[bb]||bb==="Shield"),t:d[1]})});return out}
 export function htText(sp,size){const h=HEIGHT[sp]&&HEIGHT[sp][size];if(!h)return "";return "about "+h[0]+"\u2013"+h[1]+" ft tall (\u2248"+Math.round(h[0]*30.48)+"\u2013"+Math.round(h[1]*30.48)+" cm)"}
 export var BLANK={name:"New Hero",camp:"",species:"Human",cSpecies:{name:"",speed:30,dark:0,size:"Medium"},bg:"Soldier",bgMode:"21",bg2:"",bg1:"",cls:"Fighter",sub:"",cSub:"",level:1,
  base:{STR:15,DEX:14,CON:13,INT:12,WIS:10,CHA:8},armor:"",shield:false,weps:[],ch:{},method:"manual",eqC:"A",eqB:"A",size:""};

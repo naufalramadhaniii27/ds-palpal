@@ -30,7 +30,7 @@ registerSheetGroup({id:"unarmed-strike-row",group:"unarmed",phase:"attacks",orde
    (a Shield is allowed). B.duelMode "on" applies Dueling to every one-handed melee weapon, "off" never; missing or "auto" = the rule */
 registerSheetGroup({id:"fighting-style-state",group:"fightingStyles",phase:"attacks",order:70,reads:["i.B","i.feats","l.EW","q.baseOf"],writes:["l.fsb","l.fss","l.duelOn","l.hasGWF","l.hasTWF"],
  run:function(ctx){const I=ctx.i,l=ctx.l,B=I.B,FSB={},FSS={},FSseen={},EW=l.EW;
-  I.feats.forEach((f) =>{const F=featDef(f.n);if(!F||FSseen[f.n])return;FSseen[f.n]=1;["rngHit","meleeDmg1h","thrownDmg"].forEach((k) =>{if(F[k]){FSB[k]=(FSB[k]||0)+F[k];FSS[k]=(FSS[k]?FSS[k]+"; ":"")+"Fighting Style: "+f.n+" ("+f.s+")"}})});
+  I.feats.forEach((f) =>{const F=featDef(f.n,f);if(!F||FSseen[f.n])return;FSseen[f.n]=1;["rngHit","meleeDmg1h","thrownDmg"].forEach((k) =>{if(F[k]){FSB[k]=(FSB[k]||0)+F[k];FSS[k]=(FSS[k]?FSS[k]+"; ":"")+"Fighting Style: "+f.n+" ("+f.s+")"}})});
   const duelW=weaponDef(ctx.q.baseOf(EW[0]||"").b),duelAuto=EW.length===1&&!!duelW&&duelW.k==="M"&&!/Two-Handed/.test(duelW.p);
   l.fsb=FSB;l.fss=FSS;l.duelOn=!!FSB.meleeDmg1h&&(B.duelMode==="on"||(B.duelMode!=="off"&&duelAuto));
   l.hasGWF=I.feats.some((f) =>{return f.n==="Great Weapon Fighting"});l.hasTWF=I.feats.some((f) =>{return f.n==="Two-Weapon Fighting"});return ctx.patch()}});
