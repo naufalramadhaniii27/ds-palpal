@@ -39,7 +39,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  A("Shagambi",{n:"Shagambi",extraAttack:2,defs:[["Note","Shagambi: one extra attack when you take the Attack action (on top of any Extra Attack you have)"]]});
 
  /* ---- Grim Hollow (tghg) ---- */
- /* the old row counted Hide Armor 12 + 2 with Dex capped at +2; the text gives AC 14 + Dexterity modifier, nothing else */
+ /* the old row counted Hide Armor 12 + 2 with Dex capped at +2; the text makes it light armor: base Studded Leather, AC 12 + full Dexterity modifier */
  A("Pigskin Armor",{n:"Pigskin Armor",acBase:[12,"full"],acOver:true});
  A("Dämglesvir (Adept)",{n:"Dämglesvir (Adept)",lu:{n:"Dämglesvir: sweeping strike",max:"pb",reset:"long"}});
  A("Dämglesvir (Master)",{n:"Dämglesvir (Master)",lu:[{n:"Dämglesvir: sweeping strike",max:"pb",reset:"long"},{n:"Dämglesvir: slay (100 HP or less)",max:1,reset:"long"}]});
@@ -71,7 +71,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  A("Golem Arms",{n:"Golem Arms",advOn:["Strength checks","Strength saving throws"]});/* reach: fx-M1.js */
  A("Hacker Hands",{n:"Hacker Hands",lu:{n:"Hacker Hands: hacking reroll",max:1,reset:"long"}});
  DataEnv.slot.FXO["Jetpack"]={fx:null};
- A("Overdrive Module",{n:"Overdrive Module",lu:{n:"Overdrive Module",max:1,reset:"long"}});
+ /* Overdrive Module: tdm14 has the same name (row ch, Short Rest); GX is keyed by name only, so the tsdm Long Rest use goes on the tsdm row */
+ (DataEnv.slot.WXI&&DataEnv.slot.WXI.tsdm||[]).forEach(function(r){if(r&&r[0]==="Overdrive Module"&&!(r[5]&&r[5].ch))r[5]=Object.assign({},r[5]||{},{ch:[1,"1","long"]})});
  A("Personality Module",{n:"Personality Module",pick:[{k:"sk",t:"skills",n:2,title:"Skills of the module"},{k:"lg",t:"lang",n:2,title:"Languages of the module"}]});
  A("Un's Codex",{n:"Magic Resistance",toggle:{id:"un-codex-magic-res",label:"Un's Codex: Magic Resistance unlocked",default:false},advOn:["saves against spells and other magical effects"]});
  sp("Finger Gun Glove",[["Finger Guns",0]]);
