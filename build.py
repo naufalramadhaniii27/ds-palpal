@@ -146,6 +146,20 @@ def bundle(srcdir, entry):
 DEFER_END = "\n/*@end*/"
 
 
+def css_inject(srcdir, files):
+    """A deferred part's own CSS (manifest key "css"): minified and added as a <style> in @layer app when the part runs,
+    so it stays out of the first paint. The CSP allows inline styles ('unsafe-inline' in style-src)."""
+    css = "".join(read(os.path.join(srcdir, fn)) for fn in files)
+    if os.path.exists(ESBUILD):
+        r = subprocess.run([ESBUILD, "--loader=css", "--minify-whitespace", "--minify-syntax", "--target=esnext", "--charset=utf8",
+                            "--legal-comments=none", "--log-level=error"], input=css.encode("utf-8"), capture_output=True)
+        if r.returncode:
+            raise SystemExit("esbuild failed on " + ", ".join(files) + ": " + r.stderr.decode()[:400])
+        css = r.stdout.decode("utf-8")
+    return '(function(){var s=document.createElement("style");s.setAttribute("data-part-css","1");s.textContent=' + json.dumps("@layer app{" + css + "}") + ';document.head.appendChild(s)})();\n'
+
+
+
 def assemble(srcdir):
     man = json.loads(read(os.path.join(srcdir, "manifest.json")))
     out = []
@@ -156,6 +170,8 @@ def assemble(srcdir):
             out.append(read(os.path.join(srcdir, e["file"])))
         else:
             out.append(e["open"])
+            if e.get("css"):
+                out.append(css_inject(srcdir, e["css"]))
             if e.get("entry"):
                 # ES module block: esbuild bundles the entry and its imports into one IIFE (strict), the block keeps its tags
                 if e.get("pre"):

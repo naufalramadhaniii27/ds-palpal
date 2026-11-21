@@ -62,9 +62,6 @@ html.mi-off .mi-w,html.mi-off .mi-flash,html.mi-lite .mi-w,html.mi-lite .mi-flas
 .mi-shield{border-radius:14px;box-shadow:0 0 0 3px rgba(124,182,255,.9),0 0 26px rgba(124,182,255,.6),inset 0 0 22px rgba(124,182,255,.35)}
 .mi-shard{width:5px;height:14px;margin:-8px 0 0 -4px;border-radius:2px;background:linear-gradient(#cfe3ff,#7cb6ff)}
 @supports (view-timeline-name:--x){
-  html.mi-par:not(.mi-off):not(.mi-lite) #pager>[id^="p-"]{view-timeline:--mipg inline}
-  html.mi-par:not(.mi-off):not(.mi-lite) #pager .ptitle{animation:miPar linear both;animation-timeline:--mipg;animation-range:cover}
-  html.mi-par:not(.mi-off):not(.mi-lite) #pager .ptitle.mi-hd{animation:miHd .5s var(--ease-out) both,miPar linear both;animation-timeline:auto,--mipg;animation-range:normal,cover}
 }
 @keyframes miPar{from{translate:70px 0}50%{translate:0 0}to{translate:-70px 0}}
 

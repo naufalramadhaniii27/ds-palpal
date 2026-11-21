@@ -21,7 +21,7 @@
   .detail>.tabs{display:none}
   .panel[hidden]{display:block}
   .panel.enter{animation:none}
-  .ptitle{display:block;margin:4px 4px 12px;font-weight:800;font-size:calc(24px*var(--tz,1));line-height:1.1;font-variation-settings:"wdth" 112}
+  .ptitle{display:block;margin:0 4px 6px;font-weight:800;font-size:calc(18px*var(--tz,1));line-height:1.1;font-variation-settings:"wdth" 112}
   .panel>.inner{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
   #p-skills .side{display:grid;gap:12px;margin-bottom:12px}
   .hero{grid-template-columns:minmax(0,1fr);gap:12px}

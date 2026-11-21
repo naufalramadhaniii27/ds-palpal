@@ -9,7 +9,9 @@ const BLEND={};
   const D=document, A=FXENV.__ART||{}, RM=matchMedia("(prefers-reduced-motion:reduce)"), sh=D.getElementById("sheet"), body=D.getElementById("sheetBody"); if(!sh||!body) return;
   BLEND.K={D:D,A:A,RM:RM,sh:sh,body:body,
     pic:function(c,u){ const i=D.createElement("img"); i.className=c; i.src=u; i.alt=""; i.decoding="async"; return i; },
-    ls:function(k){ try{ return __store.getItem(k); }catch(e){ return null; } }};
+    ls:function(k){ try{ return __store.getItem(k); }catch(e){ return null; } },
+    /* the card meta line (its .dc-head copy is hidden once it moves under the title), else the first line of the card */
+    cardSub:function(dc){ const ds=dc&&dc.querySelector(".dc-head .dc-sub"); if(ds) return (ds.textContent||"").replace(/\s+/g," ").replace(/\(\s+/g,"(").replace(/\s+\)/g,")").trim(); return dc?((dc.innerText||"").split("\n")[0]||"").trim():""; }};
 })();
 /* 2. main colour: a 24 px copy, saturated and opaque pixels count most. A picture from another origin cannot be read, then the caller falls back */
 (function(K){ if(!K) return; const D=K.D, sh=K.sh;
@@ -68,12 +70,12 @@ const BLEND={};
     [].some.call(body.querySelectorAll("small"),(e) =>{ if(/^(cost|price)$/i.test(e.textContent.trim())){ cost=(e.parentNode.textContent||"").replace(e.textContent,"").trim(); return true; } return false; });
     if(cost&&cost.length<18){ const p=D.createElement("span"); p.className="bl-price"; p.textContent=cost; hd.appendChild(p); sh.style.setProperty("--bl-pw",(Math.ceil(p.offsetWidth)+12)+"px"); } }
   /* [subtitle, rarity chip or null]. Library entries: "Uncommon Wondrous Item" gives the chip and the subtitle */
-  function subAndRarity(){ const dc=body.querySelector(".dc"), ic=body.querySelector(".info-meta .info-cat"); let sub=dc?((dc.innerText||"").split("\n")[0]||"").trim():"", rl=body.querySelector(".rline");
+  function subAndRarity(){ const dc=body.querySelector(".dc"), ic=body.querySelector(".info-meta .info-cat"); let sub=K.cardSub(dc), rl=body.querySelector(".rline");
     if(!rl&&ic){ const rm=/^(Common|Uncommon|Rare|Very Rare|Legendary|Artifact)\b\s*(.*)$/i.exec((ic.textContent||"").trim()); if(rm){ rl=D.createElement("span"); rl.className="rline r-"+rm[1].toLowerCase().replace(/\s+/g,""); rl.textContent=rm[1]; if(!sub) sub=rm[2];
       sh.classList.add("bl-im"); } }
     return [sub,rl]; }
   K.titleBits=function(){ const hd=D.getElementById("sheetHead"); priceChip(hd); const sr=subAndRarity(), sub=sr[0], rl=sr[1];
-    if((sub&&sub.length<42)||rl){ const m=D.createElement("div"); m.className="bl-meta"; if(sub&&sub.length<42){ const t=D.createElement("span"); t.textContent=sub; m.appendChild(t); } if(rl){ const c=rl.cloneNode(true); c.removeAttribute("id"); m.appendChild(c); } hd.appendChild(m); } };
+    if((sub&&sub.length<42)||rl){ const m=D.createElement("div"); m.className="bl-meta"; if(sub&&sub.length<42){ const t=D.createElement("span"); t.textContent=sub; m.appendChild(t); sh.classList.toggle("bl-dch",!!body.querySelector(".dc-head .dc-sub")); } if(rl){ const c=rl.cloneNode(true); c.removeAttribute("id"); m.appendChild(c); } hd.appendChild(m); } };
 })(BLEND.K);
 /* 7. the hero picture: the Codex icon of an item or spell, the scene or the icon, and the backdrop layers */
 (function(K){ if(!K) return; const D=K.D, sh=K.sh;
@@ -104,11 +106,11 @@ const BLEND={};
 })(BLEND.K);
 /* 9. the entry point the detail sheet calls */
 (function(K){ if(!K) return; const D=K.D, sh=K.sh, body=K.body;
-  function off(){ sh.classList.remove("blend","bl-compact","bl-in","bl-scn","bl-ico","bl-im"); ["--bl-c","--bl-py","--bl-op","--bl-hero","--bl-pw","--bl-y"].forEach((k) =>{ sh.style.removeProperty(k); }); sh.querySelectorAll(".bl-meta,.bl-price,.bl-line").forEach((e) =>{ e.remove(); }); }
+  function off(){ sh.classList.remove("blend","bl-compact","bl-in","bl-scn","bl-ico","bl-im","bl-dch","bl-short"); ["--bl-c","--bl-py","--bl-op","--bl-hero","--bl-pw","--bl-y"].forEach((k) =>{ sh.style.removeProperty(k); }); sh.querySelectorAll(".bl-meta,.bl-price,.bl-line").forEach((e) =>{ e.remove(); }); }
   FXENV.__blendSheet=function(mode,title,keep){ off(); if(mode!=="info"||K.ls("mi-clsart")==="off") return; const wm=D.getElementById("shWm"); if(!wm||!wm.parentNode||wm.parentNode!==body) return;
     const hero=K.heroOf(wm,title); if(!hero) return;
     wm.classList.remove("bl-s","bl-i"); wm.querySelectorAll(".bl-bg,.bl-glow,.bl-grain,.bl-sc").forEach((e) =>{ e.remove(); });
     const bd=K.backdrop(wm,hero);
     if(!hero.sc&&bd.img.classList.contains("lib-im")&&/bestiary\//.test(bd.src)) K.monSwap(wm,bd.img,title,bd.src);
-    sh.classList.add("blend"); K.settle(wm,bd.img,keep); };
+    sh.classList.add("blend"); sh.classList.toggle("bl-short",/^(spn:|sp:|f:|lib:(feat|feature|spell)\|)/.test(sh.dataset.spec||"")); K.settle(wm,bd.img,keep); };
 })(BLEND.K);

@@ -2,8 +2,8 @@ import {bindLive,clsLvls,renderAll,srcPg,toastU,undoMark} from "./00a-reg-late-p
 import {$,esc,num,toast} from "./05-logic-helpers.js";
 import {D,richP} from "./06-logic-derivation.js";
 import {__set_navStack,navStack,openSheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";
-import {dcSum,sumFirst} from "./13d-ui-detail-summary.js";
-import {spCompH,spRangeH} from "./22-ui-spell-data-and-slots.js";
+import {dcSum,dmgH,durH,spChips,sumFirst} from "./13d-ui-detail-summary.js";
+import {spCompH} from "./22-ui-spell-data-and-slots.js";
 import {ico} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {ordL} from "./23e-ui-spells-dc.js";
 import {env} from "./00-env.js";
 bindLive("spmCls",{get:function(){return spmCls;},set:function(v){spmCls=v;}});
@@ -127,12 +127,10 @@ export function spmRefresh(){ if(sheetMode!=="spman") return; const b=$("#sheetB
   b.innerHTML=spmHTML(); b.scrollTop=st; if(qf){ const q=$("#spmQ"); if(q){ q.focus({preventScroll:true}); q.setSelectionRange(sel,sel); } } }
 export function openSpMan(){ spmQ=""; spmLv="all"; __set_navStack([{type:"spman"}]); openSheet("Manage Spells", spmHTML(), "spman", true); }
 /* spell summary: row [n,l,sch,cls,time,range,comp,dur,conc,rit,save,short], o.fx.dmg [[dice,type,..]] */
-function spSumH(x,o){ const dmg=(o.fx&&o.fx.dmg)||[], sv=String(x[10]||""), dt=(t) =>{ return "dt-"+String(t||"").toLowerCase().split(/[ ,]/)[0]; }, sm=(v) =>{ return String(v).replace(/<[^>]*>/g,"").length>8?"sm":""; };
-  const dur=String(x[7]||"").replace(/^Up to /i,""), rng=spRangeH(x[5],o), d0=dmg[0];
-  const nums=[["Casting time",esc(x[4]),sm(x[4])],["Duration",esc(dur),sm(dur)],["Range",rng,sm(rng)],sv==="ATK"?["Attack","Roll","sm"]:sv?["Save",esc(sv.toUpperCase()),""]:null,d0?["Damage",'<span class="'+dt(d0[1])+'">'+esc(d0[0])+'</span>',""]:null];
-  const chips=[x[8]?["Concentration","t-conc"]:null,x[9]?["Ritual","t-rit"]:null,/^Bonus/i.test(x[4])?["Bonus Action","t-time"]:null,/^Reaction/i.test(x[4])?["Reaction","t-time"]:null,sv&&sv!=="ATK"?[sv.toUpperCase()+" save","t-save"]:null,sv==="ATK"?["Spell attack","t-save"]:null]
-    .concat(dmg.map((q) =>{ return [q[0]+" "+q[1],"t-dmg "+dt(q[1])]; }));
-  return dcSum(x[11]||sumFirst(o.full),nums,chips,[]); }
+function spSumH(x,o){ const dmg=(o.fx&&o.fx.dmg)||[], sv=String(x[10]||""), sm=(v) =>{ return String(v).replace(/<[^>]*>/g,"").length>8?"sm":""; };
+  const dur=String(x[7]||"").replace(/^Up to /i,""), rng=esc(String(x[5]||"").replace(/ ft$/," ft.")), d0=dmg[0], ct=String(x[4]||"").split(/,/)[0];
+  const nums=[["Casting time",esc(ct),sm(ct)],["Duration",durH(dur,x[8]),sm(dur+(x[8]?"xxxxx":""))],["Range",rng,sm(rng)],sv==="ATK"?["Attack","Roll","sm"]:sv?["Save",esc(sv.toUpperCase()),""]:null,d0?["Damage",dmgH(d0[0],d0[1]),""]:null];
+  return dcSum(x[11]||sumFirst(o.full),nums,spChips({rit:x[9],ct:x[4],full:o.full,mat:o.mat||(o.fx||{}).mat,sv:sv}),[]); }
 /* a spell that is not on the sheet yet: the rules text and the basic lines */
 export function spnHTML(n){ const x=spmRec(n)||(env.__wxSpRow&&env.__wxSpRow(n)); if(!x) return {t:n, h:'<p class="info-d">Not found.</p>'};
   const o=spmEntry(x,""), full=o.full||o.sum;

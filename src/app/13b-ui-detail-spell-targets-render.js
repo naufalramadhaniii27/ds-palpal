@@ -1,6 +1,6 @@
 /* Detail cards, part b: spell targets, info card renderers, close and sheet width (split from 13, SOLID stage 12) */
 import {ammoFor,ammoH,ammoPickH,bindLive,clsOfG,crBlock,crOf,ctH,dockOff,fch,featNums,featSpL,hpSpellNote,ico,itemRes,lateGet,libDetail,morphStop,moveCtl,occOf,ordL,packH,pgGuess,pinSpBtn,renderAll,resOf,scOf,shClosed,shDragEnd,spCastH,spFx,spFxBlock,spRowLv,spnHTML,spxBody,srcPg,svgI,tmpFeatH,tmpSpellH,tyIcon,undoMark,useH} from "./00a-reg-late-ports.js";import {ABK,ABN,HB_CONDS,STD_CONDS} from "./02-data-default-character.js";import {GLOSS,gName,x14} from "./03-data-glossary.js";import {C,S,saveC} from "./04-logic-storage.js";import {$,atkOn,eqOn,esc,fmtW,invAt,itemHtml,num,qtyCtl,rich,sg,toast} from "./05-logic-helpers.js";import {B,D,fill,richB,richP} from "./06-logic-derivation.js";import {aylH,aylSplit,spSumStep1} from "./08b-ui-render-summaries-actions.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";import {__set_SWP,__set_navStack,__set_sheetMode,lastFocus,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";import {env} from "./00-env.js";import {DETAIL} from "./06a-logic-ui-registry.js";import {NUM_MAP,XL_SELF,__set_XL_SELF,dcFoot,dcHead,dcItem,dcStrip,fKind,fKindIco,kwChips,linkify,meta,miHTML,tileBd,tileH,tileS,wCell,xlink} from "./13-ui-detail-cards.js";
-import {dcSum,fSumH} from "./13d-ui-detail-summary.js";
+import {dcSum,dmgH,durH,fSumH,featLine,spChips,sumDetail,sumDice,sumRest} from "./13d-ui-detail-summary.js";
 import {martyrActH} from "./32e-logic-martyr-actions.js";
 bindLive("closeSheet",{get:function(){return closeSheet;}});bindLive("closeSheetIfOn",{get:function(){return closeSheetIfOn;}});
 bindLive("infoHTML",{get:function(){return infoHTML;}});
@@ -116,11 +116,9 @@ DETAIL.add("sp", {
   self:function(k){ return ((k) =>((C.spells||[])[+k]||{}).n||"")(k); }
 });
 /* sheet spell summary: the character's own numbers (save DC, to hit, damage at the chosen slot) from spSumStep1 */
-function spSheetSumH(x){ const st=spSumStep1(x), c=st.c, dt=(t) =>{ return "dt-"+String(t||"").toLowerCase().split(/[ ,|]/)[0]; }, sm=(v) =>{ return String(v).replace(/<[^>]*>/g,"").length>8?"sm":""; }, dur=String(x.dur||"").replace(/^Up to /i,""), rng=esc(String(x.r||"").replace(/ ft$/," ft."));
-  const nums=[["Casting time",esc(x.ct),sm(x.ct)],["Duration",esc(dur),sm(dur)],["Range",rng,sm(rng)]].concat(st.o.k.map((q) =>{ return q.l==="Save"?["Save","DC "+esc(String(q.n).split(" ").pop())+" "+esc(String(q.ab||"").toUpperCase()),"sm"]:q.l==="Damage"?["Damage",'<span class="'+dt(q.t)+'">'+esc(q.n)+'</span>',sm(q.n)]:[q.l,esc(q.n),sm(q.n)]; }));
-  const parts=(c&&c.parts)||[], chips=[x.conc?["Concentration","t-conc"]:null,x.rit?["Ritual","t-rit"]:null,/^Bonus/i.test(x.ct)?["Bonus Action","t-time"]:null,/^Reaction/i.test(x.ct)?["Reaction","t-time"]:null,x.sv&&x.sv!=="ATK"?[String(x.sv).toUpperCase()+" save","t-save"]:null,x.sv==="ATK"?["Spell attack","t-save"]:null]
-    .concat(parts.map((p) =>{ return [p.d+" "+String(p.t).split("|").join(" or "),"t-dmg "+dt(p.t)]; }));
-  return dcSum(x.sum||"",nums,chips,[]); }
+function spSheetSumH(x){ const st=spSumStep1(x), c=st.c, parts=(c&&c.parts)||[], sm=(v) =>{ return String(v).replace(/<[^>]*>/g,"").length>8?"sm":""; }, dur=String(x.dur||"").replace(/^Up to /i,""), rng=esc(String(x.r||"").replace(/ ft$/," ft.")), ct=String(x.ct||"").split(/,/)[0];
+  const nums=[["Casting time",esc(ct),sm(ct)],["Duration",durH(dur,x.conc),sm(dur+(x.conc?"xxxxx":""))],["Range",rng,sm(rng)]].concat(st.o.k.map((q) =>{ return q.l==="Save"?["Save","DC "+esc(String(q.n).split(" ").pop())+" "+esc(String(q.ab||"").toUpperCase()),"sm"]:q.l==="Damage"?["Damage",dmgH(q.n,parts[0]&&parts[0].t),sm(q.n)]:[q.l,esc(q.n),sm(q.n)]; }));
+  return dcSum(sumDice(x.sum||"",parts.map((p) =>[p.d,p.t])),nums,spChips({rit:x.rit,ct:x.ct,full:x.full||x.sum,mat:x.mat||(spFx(x)||{}).mat,sv:x.sv}),[]); }
 function renderPart1(x, sch){ return ('<div class="dc dc-sp">'+dcHead(x.l?'<b>'+x.l+'</b><small>LVL</small>':ico("school-"+sch,"isch"),ico("school-"+sch,"isch")+'<i>'+(x.l?ordL(x.l)+" ":"")+esc(x.sch)+(x.l?"":" cantrip")+'</i> \u2022 '+esc(x.use)+' ('+esc(x.src||"")+')')+
       spSheetSumH(x)+dcStrip([spTgtCell(x),[/^V/.test(x.cmp)?"comp-v":"comp-s","Components",esc(x.cmp)]],"dc-s2")+'<div class="dc-body"><p class="info-d">'+kwChips(richP(x.full||x.sum))+'</p>'+((x.mat||(spFx(x)||{}).mat)&&/M/.test(x.cmp)?'<p class="info-d dc-mat"><b>Material:</b> '+esc(x.mat||spFx(x).mat)+'</p>':'')+'</div>'); }
 function render4Step1(key){
@@ -147,16 +145,22 @@ DETAIL.add("spx", {
   return {t:"Spells cast on you", h:spxBody()};
   }
 });
+/* a sheet feature's summary and its detail text (after the line, folded when bullets show it) */
+function fDet(f,fk,r0,sf,sd,cl0){ const raw=f.full?sf.t:sd.t, rest=sumRest(raw,featLine(raw,f.full?f.d:""));
+  return sumDetail(fSumH(f,fNums(fk,r0),fk==="Passive"?[["Passive","t-time"]]:[]),raw,rest?'<div class="dc-body">'+kwChips('<p class="info-d'+(f.full?' info-full':'')+'">'+fch(featNums((f.full?richP:richB)(fill(rest)),cl0))+'</p>')+'</div>':''); }
+/* a sheet feature's big values: the action it takes (Passive is a chip instead) and the uses left with the rest that restores them */
+function fNums(fk,r0){ const rs=r0&&{short:"Short Rest",short1:"1 per Short Rest",long:"Long Rest",none:"never back"}[r0.reset];
+  return [fk!=="Passive"?["Time",esc(fk),fk.length>8?"sm":""]:null,r0?["Uses",esc((r0.max-used(r0.k,r0.max))+"/"+r0.max)+(rs?'<small class="dsum-u">'+esc(rs)+'</small>':''),""]:null]; }
 DETAIL.add("f", {
   render:function(key){ let h="";
   const ix=key.split("."), gr=(C.features||[])[+ix[0]], f=gr&&(gr.items||[])[+ix[1]];
     if(!f) return {t:"Feature", h:'<p class="info-d">This feature was removed.</p>'};
     const cl0=clsOfG(gr.g), sd=aylSplit(f.d,cl0), sf=aylSplit(f.full,cl0), ay=sf.a||sd.a;/* v35 p15 (RU129): full text, then the summary, then At your level */
     const fk=fKind(f), rl0=resOf(f.n), r0=rl0[0];
-    h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+fSumH(f)+dcStrip([[fKindIco(fk),"Time",esc(fk)],["ui-uses","Uses",r0?esc((r0.max-used(r0.k,r0.max))+" of "+r0.max):"At will"],[r0&&/short/.test(r0.reset)?"rest-short":r0&&r0.reset==="none"?"ui-reset":"rest-long","Resets",r0?esc({short:"Short or Long Rest",short1:"1 per Short Rest",long:"Long Rest",none:"Never"}[r0.reset]||"\u2014"):"\u2014"]],"dc-s3")+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+fch(featNums(richP(fill(sf.t)),cl0))+'</p>'+(sd.t?'<p class="info-sum">'+featNums(richB(fill(sd.t.split(/\s*\*\*Your choice\.\*\*/)[0])),cl0)+'</p>':''):'<p class="info-d">'+fch(featNums(richB(fill(sd.t)),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+featSpL(gr,f);
+    h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+fDet(f,fk,r0,sf,sd,cl0)+aylH(ay,cl0)+featSpL(gr,f);
     if(r0){ const lf0=r0.max-used(r0.k,r0.max); h+='<div class="dc-use"><div class="spcast"><button type="button" class="btn pri press'+(lf0?'':' off')+'" data-usef="'+esc(r0.k)+'|-1"'+(lf0?'':' disabled')+'>Use '+esc(f.n)+' <small>'+lf0+' left</small></button>'+(lf0<r0.max?'<button type="button" class="btn press" data-usef="'+esc(r0.k)+'|1">Give back one use <small>undo</small></button>':'')+srBtn(r0,lf0)+'</div>'+convBtns(r0)+(lf0?'':'<p class="muted spcn">No uses left. '+esc({short:"A Short or Long Rest restores them.",short1:"A Short Rest restores one use.",long:"A Long Rest restores them.",none:"They do not come back."}[r0.reset]||"")+'</p>')+'</div>'; }/* v36 p17 */
     h+=tmpFeatH(f);/* v21 RU55 */ h+=martyrActH(f);
-    h+=dcFoot('<button type="button" class="lk" data-info="grp:'+ix[0]+'">See everything from '+esc(gName(gr.g))+'</button>',esc(srcPg(f.s,pgGuess(gr,f))))+'</div>';
+    h+=dcFoot('<button type="button" class="lk" data-info="grp:'+ix[0]+'">See the whole list</button>',esc(srcPg(f.s,pgGuess(gr,f))))+'</div>';
     return {t:f.n, h:h};
   },
   self:function(k){ return ((k) =>{ const q=k.split("."), g_=(C.features||[])[+q[0]]; return ((g_&&g_.items||[])[+q[1]]||{}).n||""; })(k); }

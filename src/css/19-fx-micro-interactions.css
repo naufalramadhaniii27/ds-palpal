@@ -23,7 +23,7 @@ html.mi-themevt::view-transition-old(root),html.mi-themevt::view-transition-new(
 html.mi-themevt::view-transition-new(root){animation:miReveal .6s var(--mi-ease)}
 @keyframes miReveal{from{clip-path:circle(0 at var(--vtx,50%) var(--vty,50%))}to{clip-path:circle(150vmax at var(--vtx,50%) var(--vty,50%))}}
 /* a number that changed (ability, AC, initiative, speed...) bumps and glows */
-.mi-bump{animation:miBump .6s var(--mi-ease)}
+
 @keyframes miBump{0%{transform:scale(1)}25%{transform:scale(1.35);color:var(--stamp)}100%{transform:scale(1)}}
 /* low Hit Points: the heart beats (not at 0, that has its own pulse) */
 #vbHp:not(.hp0):has(#vbBar[data-lv="low"]) .vb-hi,#hpBox:not(.hp0):has(#hpBar[data-lv="low"]) .hp-h svg{animation:miBeat 1.05s ease-in-out infinite;color:var(--bad,#e5534b)}
@@ -119,7 +119,6 @@ html.mi-arrive body{animation:miArrive .45s ease-out both}
 #miAmb .p.ash{width:var(--s);height:var(--s);border-radius:50%;background:rgba(var(--pc),.7)}
 #miAmb .p.link{width:var(--s);height:calc(var(--s)*.62);border-radius:40%;border:2px solid rgba(var(--pc),.75)}
 #miAmb .p.leaf{top:-24px;width:var(--s);height:calc(var(--s)*.6);border-radius:0 80% 0 80%;background:linear-gradient(135deg,rgba(var(--pc),.9),rgba(var(--pc),.5));animation-name:miALeafL;animation-timing-function:linear}
-#miAmb.mi-top{z-index:var(--z-amb-top)}
 #miAmb .p.wave{top:50%;width:60px;height:60px;margin:-28px;border-radius:50%;border:2px solid rgba(var(--pc),.7);animation-name:miAWave;animation-timing-function:ease-out}
 @keyframes miAPulse{0%,100%{opacity:.45}50%{opacity:1}}
 @keyframes miABeat{0%,100%{opacity:.3}14%{opacity:1}28%{opacity:.45}42%{opacity:.85}70%{opacity:.3}}

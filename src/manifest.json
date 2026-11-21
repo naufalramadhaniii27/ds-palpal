@@ -62,6 +62,7 @@
     "css/39-duotone-icons.css",
     "css/40-dice-roller.css",
     "css/41-martyr-actions.css",
+    "css/42-front-cards.css",
     "css/L-builder.css",
     "css/L-dice.css",
     "css/L-learn.css"
@@ -911,6 +912,7 @@
     "builder/25-logic-hooks-for-the-sheet.js",
     "builder/main.js"
    ],
+   "css": ["css/bld-builder.css"],
    "entry": "builder/main.js"
   },
   {

@@ -186,6 +186,8 @@ export function renderActions(){
   let {h}=_renderActionsStep3;
   ({h}=renderActionsStep4(show, h, bRows, AH, kinds, feats, rRows));
 }
+/* damage-type colour class: "Fire" -> dt-fire, "slashing or piercing" -> dt-slashing */
+export function dtC(t){ return "dt-"+String(t||"").toLowerCase().split(/[^a-z]/)[0]; }
 /* attacks per Attack action: the best of the features, never added up (Extra Attack and Thirsting Blade do not stack).*/
 const APA={"Extra Attack":2,"Two Extra Attacks":3,"Three Extra Attacks":4,"Extra Attack (2)":3,"Extra Attack (3)":4,"Thirsting Blade":2,"Devouring Blade":3};
 export function apaOf(feats){ let apa=1; (feats||featAll()).forEach((x) =>{ apa=Math.max(apa,APA[x.f.n]||1); }); return apa; }
@@ -199,9 +201,9 @@ function renderActionsStep2(aprIco){
   const pactNow=function(){ try{ return env.__bldPactInfo?env.__bldPactInfo():null; }catch(e){ return null; } };
   const aprChips=function(a){ const L=String(a.sub||"").split(/\s*[,\u2022]\s*/).filter(Boolean).map((t) =>{ return '<span class="apc">'+aprIco(t)+'<span>'+esc(t)+'</span></span>'; }); if(a.m) L.push('<span class="apc ap-m">'+ico("item-weapon","apr-i")+'<span>Mastery: '+esc(a.m)+'</span></span>'); const amq=ammoBonus(a); if(amq) L.push(amq.on?'<span class="apc ap-m"><span>'+sg(amq.on.n)+' ammo</span></span>':((S.ammoAct||{})[amq.kd]==="none"?'<span class="apc"><span>No magic ammo</span></span>':'<span class="apc ap-w"><span>Pick ammo</span></span>'));/* v102 */ const pi=pactNow(); if(pi&&pi.melee.indexOf(a.n)>=0&&pi.cur!==a.n) L.push('<button type="button" class="apc ap-w" data-pactset="'+esc(a.n)+'"><span>Make Pact Weapon</span></button>');/* Pact of the Blade: bond this weapon */ return L.length?'<span class="apr">'+L.join("")+'</span>':""; };
   const atkRow=function(a,i){ const d=D.atk[i];
-    return '<div class="arow"'+(a.act?' data-act="'+esc(a.act)+'"':'')+'><div class="an">'+akIcon(atkKind(a))+'<button type="button" class="tx" data-info="w:'+i+'">'+esc(cuNm("a:"+a.n,a.n))+'</button>'+aprChips(a)+cfFlags(sitAtk(a))+'<span class="arng">'+ico("ui-range","apr-i")+esc(a.range||"--")+'</span></div><button type="button" class="abox bd" data-bd="ah-'+i+'">'+sg(d.hit)+'</button><button type="button" class="abox wide bd" data-bd="ad-'+i+'">'+esc(d.dmg)+'<small>'+tyIcon(a.type)+esc(a.type||"")+'</small></button></div>'; };
+    return '<div class="arow"'+(a.act?' data-act="'+esc(a.act)+'"':'')+'><div class="an">'+akIcon(atkKind(a))+'<button type="button" class="tx" data-info="w:'+i+'">'+esc(cuNm("a:"+a.n,a.n))+'</button>'+aprChips(a)+cfFlags(sitAtk(a))+'</div><button type="button" class="abox bd" data-l="To hit" data-bd="ah-'+i+'">'+sg(d.hit)+'</button><button type="button" class="abox wide bd" data-l="Damage" data-bd="ad-'+i+'"><span class="'+dtC(a.type)+'">'+esc(d.dmg)+'</span><small class="'+dtC(a.type)+'">'+tyIcon(a.type)+esc(a.type||"")+'</small></button><span class="arng" data-l="Range">'+esc(a.range||"--")+'</span></div>'; };
   const rowsOf=function(act){ return (C.attacks||[]).map((a,i) =>{ if(!atkOn(a)) return ""; if(act!=="*"&&(a.act||"")!==act) return ""; return atkRow(a,i); }).join(""); };
-  const AH='<div class="ahead"><span>Range</span><span>Hit/DC</span><span>Damage</span></div>';
+  const AH="";/* the labels sit in each cell (data-l), so the column header row is gone */
   return /** @type {any} */ ({rowsOf, AH});
 }
 function renderActionsStep3(rowsOf, apa, AH, kinds, feats){

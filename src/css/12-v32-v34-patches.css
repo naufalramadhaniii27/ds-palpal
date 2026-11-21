@@ -66,7 +66,7 @@ button.ieq.ict[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 .rli{display:flex;align-items:flex-start;gap:8px;font-size:calc(14px*var(--tz,1));line-height:1.35;color:var(--ink)}.rli.off{color:var(--muted)}
 .rli-i{flex:0 0 16px;width:16px;height:16px;margin-top:2px;color:var(--good)}.rli.off .rli-i{color:var(--muted)}
 #restDlg .ck{min-height:44px}#restDlg .ck input{width:22px;height:22px;margin:0;flex:none}
-@media (max-width:759px){#restDlg .rgo{min-height:48px}}
+@media (max-width:759px){}
 .rhint{display:flex;gap:10px;align-items:flex-start;margin:0 0 12px;padding:10px 12px;border:1px solid var(--line-2);border-left:3px solid var(--info);border-radius:var(--r1);background:var(--panel-2);font-size:calc(14px*var(--tz,1));line-height:1.4}
 .rh-i{flex:0 0 18px;width:18px;height:18px;color:var(--info);margin-top:1px}
 #restSum .rsum{display:flex;flex-direction:column;border-top:1px solid var(--line)}

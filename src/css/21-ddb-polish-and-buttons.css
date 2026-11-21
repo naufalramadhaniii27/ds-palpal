@@ -65,7 +65,7 @@
 :root[data-skin="ddb"] .fcat{position:relative;padding:2px 0 10px;margin-bottom:6px;border:0;letter-spacing:.04em}
 :root[data-skin="ddb"] .fcat::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:3px;border-radius:4px;background:linear-gradient(90deg,rgb(var(--pl-rgb)),rgba(var(--pl-rgb),.2));box-shadow:0 0 10px rgba(var(--pl-rgb),.55)}
 :root[data-skin="ddb"] .fcat svg{color:rgb(var(--pl-rgb))}
-:root[data-skin="ddb"] .ahead{padding:0 12px;border:0;margin-bottom:6px;font-size:11px;letter-spacing:.14em;color:var(--muted);opacity:.85}
+
 :root[data-skin="ddb"] .abox:not(.wide){color:#fff!important;background-image:linear-gradient(180deg,rgba(124,182,255,.18),rgba(124,182,255,.02))!important;border-color:rgba(124,182,255,.35)!important}
 :root[data-skin="ddb"] .abox.wide{background-image:linear-gradient(180deg,rgba(var(--pl-rgb),.2),rgba(var(--pl-rgb),.03))!important;border-color:rgba(var(--pl-rgb),.4)!important}
 :root[data-skin="ddb"] .bnav{border-radius:20px 20px 0 0!important;border-top:1px solid rgba(255,255,255,.1)}
