@@ -109,7 +109,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.species=GX.species||{};
   {l:3,n:"Tongues of the Mountains",pick:[{k:"lang",t:"multi",n:1,title:"Language",list:[["Dwarvish",""],["Giant",""]]}]},
   {l:3,n:"Tongues of the Mountains",when:{key:"gx-lang-sub-Mountain Domain",val:"Dwarvish"},langs:["Dwarvish"]},
   {l:3,n:"Tongues of the Mountains",when:{key:"gx-lang-sub-Mountain Domain",val:"Giant"},langs:["Giant"]}]);
- add("Night Domain",[{l:3,n:"Eye of Twilight",sense:[["Darkvision",60,"gray only"]]},{l:6,n:"Eye of Twilight (120 ft)",sense:[["Darkvision",120,"gray only"]]},
+ add("Night Domain",[{l:3,lMax:5,n:"Eye of Twilight",sense:[["Darkvision",60,"gray only"]]},{l:6,n:"Eye of Twilight (120 ft)",sense:[["Darkvision",120,"gray only"]]},
   {l:3,n:"Ward of Shadows",lu:{n:"Ward of Shadows",max:"mod:WIS",reset:"long",tag:"Reaction"}}]);
  add("Ocean Domain",[{l:6,n:"At Home in the Waves",mv:{swim:30},darkHave:{add:30}},{l:3,n:"Envoy to the Waves",langs:["Aquan"],weapons:["Trident","Net"]},
   {l:17,n:"Scales of the Sea",toggle:{id:"ocean-scales",label:"Scaled"},def:["Resistance","Bludgeoning, Piercing and Slashing damage from nonmagical weapons"]}]);
