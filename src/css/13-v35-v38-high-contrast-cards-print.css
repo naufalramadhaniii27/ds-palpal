@@ -412,3 +412,12 @@ button.dc-cell{font:inherit;color:inherit;text-align:left;width:100%}
 .dsum-p b{font-weight:800}
 .dsum-dh{margin:4px 0 6px;font-size:calc(11px*var(--tz,1));letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 :root[data-hc] .dsum-c dt,:root[data-hc] .dsum-dh{color:var(--ink)}
+/* Duration tile CONC badge, the damage-type word under the dice, chip tones (text stays the ink colour for contrast) */
+.dsum-b{display:inline-block;vertical-align:middle;margin-left:4px;padding:2px 7px;border-radius:6px;font-size:calc(11px*var(--tz,1));font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;color:var(--ink);border:1px solid #b197fc;background:color-mix(in srgb,#b197fc 22%,transparent)}
+.dsum-c .dsum-u{display:block;margin-top:2px;font-size:calc(12px*var(--tz,1));font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb,currentColor 45%,var(--ink))}
+.dsum-c dd>.dsum-u:not([class*=dt-]){color:var(--muted)}
+.dsum-t{color:var(--ink)}
+.dsum-t.t-mat{border-color:#f59f00;background:color-mix(in srgb,#f59f00 14%,transparent)}
+.dsum-t.t-area,.dsum-t.t-up{border-color:#4dabf7;background:color-mix(in srgb,#4dabf7 12%,transparent)}
+.dsum-t.t-asi{border-color:var(--pl-acc,#d6a24a);background:color-mix(in srgb,var(--pl-acc,#d6a24a) 16%,transparent)}
+.dsum-t.t-save{border-color:#ff8787;background:color-mix(in srgb,#ff8787 12%,transparent)}
