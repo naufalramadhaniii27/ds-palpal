@@ -2564,10 +2564,17 @@
  "GX.sub|Travel Domain": {
   "files": [
    "fx-B42-divinestrike.js",
-   "fx-B49-subspeed.js",
    "fx-L10.js"
   ],
-  "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
+  "reason": "Kobold Press Travel Domain: B42 adds the Lightning Divine Strike rider rows; L10 holds other features of the same domain",
+  "shared": []
+ },
+ "GX.sub|Travel Domain (2014)": {
+  "files": [
+   "fx-B42-divinestrike.js",
+   "fx-B49-subspeed.js"
+  ],
+  "reason": "Valda's Spire Travel Domain: B42 adds the Force Divine Strike rider rows, B49 the Godspeed switch; no field shared",
   "shared": []
  },
  "GX.sub|Trickery Domain (2014)": {
