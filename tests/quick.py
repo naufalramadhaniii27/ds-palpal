@@ -47,6 +47,7 @@ AREAS = {
         ("golden_builds", [PY, "tests/golden_builds.py"]),
         ("invariants_quick", [PY, "tests/invariants.py", "--quick"]),
         ("fx_overlap", [PY, "tests/fx_overlap.py"]),
+        ("fx_names_exist", [PY, "tests/fx_names_exist.py"]),
         ("xdmg_edition", [PY, "tests/xdmg_edition.py"]),
         ("xdmg14", [PY, "tests/xdmg14.py"]),
         ("gaps14", [PY, "tests/gaps14.py"]),

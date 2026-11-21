@@ -82,4 +82,5 @@ def main():
     print('fx_overlap OK: %d names in %d fx files, %d documented overlaps' % (len(data['owners']), len(fx_files()), len(over)))
 
 
-main()
+if __name__ == '__main__':
+    main()
