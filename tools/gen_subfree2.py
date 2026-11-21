@@ -39,7 +39,7 @@ CURATED = [
  ("The Magician", "Abracadabra", ["Prestidigitation"], None, None),
  ("The Star", "Nova", ["Light", "Produce Flame"], None, None),
  ("Portalweaver", "Portal Master", ["Arcane Gate", "Plane Shift", "Scatter", "Teleport"], "INT", None),
- ("Antiquarian", "Arcane Relics", ["Counterspell", "Dispel Magic"], None, None),
+ ("Antiquarian", "Arcane Relics", ["Animate Dead", "Counterspell", "Dispel Magic", "Fireball", "Lightning Bolt", "Revivify"], None, None),
  ("Godsworn", "Benediction", ["Daylight", "Lesser Restoration", "Sanctuary", "Zone of Truth"], None, None),
  ("Nightgaunt", "Innate Necromancy", ["Darkness", "False Life", "Gentle Repose", "Speak with Dead"], None, None),
  ("Verdant Protector", "Nature's Emissary", ["Goodberry", "Plant Growth", "Spike Growth", "Speak with Plants"], None, None),
@@ -49,6 +49,7 @@ CURATED = [
  ("Leyline Magic", "Natural Disruption", ["Counterspell", "Dispel Magic"], None, None),
 ]
 LVL = {("Alchemist", "Chemical Mastery"): 15, ("Cartographer", "Superior Atlas"): 15, ("College of Cantors", "Heavenly Voice"): 3, ("The Magician", "Abracadabra"): 1}  # features whose level the data lists in the efa file only
+ED = {("Alchemist", "Chemical Mastery"): "2024"}  # the 2014 TCoE Alchemist has the same name and a different Chemical Mastery
 rows = {}
 for owner, feat, sps, ab, pool in CURATED:
     lv = {LVL[(owner, feat)]} if (owner, feat) in LVL else levels(owner, feat)
@@ -57,6 +58,7 @@ for owner, feat, sps, ab, pool in CURATED:
     if not all(names): print("skip spell", owner, feat, names); continue
     e = {"n": feat + " (spell)", "l": l, "spells": [[l, ",".join(names)]]}
     if ab: e["spCls"] = "@sub:" + ab
+    if (owner, feat) in ED: e["ed"] = ED[(owner, feat)]
     es = [e]
     if pool and (owner, feat) not in LUOWN:
         es.append({"n": feat + " (free cast)", "l": l, "lu": {"n": feat + ": " + ", ".join(names) + " without a slot", "max": pool[0], "reset": pool[1]}})
