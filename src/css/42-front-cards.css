@@ -73,7 +73,6 @@
 #app .fitem{padding-top:8px!important;padding-bottom:8px!important}
 #app .fitem>h4{margin:0}
 /* --- Inventory: the hero card sits inside an ornamented panel, so its own ornament doubled the line; the second ornament is dropped --- */
-#app .inner>.ihero::before,#app .inner>.ihero::after{display:none!important}
 /* --- filter row: folded search (icon), chips, Reorder (icon) on one line --- */
 #app .filrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 6px}
 #app .filrow>.ifil{flex:1 1 0;min-width:0;margin:0}
@@ -81,6 +80,7 @@
 #app .filrow>.qd[open]{flex:1 1 100%;order:-1;display:flex;align-items:center;gap:6px}
 #app .qd>summary{list-style:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;cursor:pointer;color:var(--ink);border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);background:color-mix(in srgb,var(--ink) 6%,transparent)}
 #app .qd>summary::-webkit-details-marker{display:none}
+#app .qd:not([open])>input{display:none}
 #app .qd>summary .ibt{margin:0;width:20px;height:20px}
 #app .qd>input{flex:1 1 auto;min-width:0;min-height:44px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);font:inherit}
 #app .filrow>.ordbar{flex:0 0 auto;margin:0;gap:0}
@@ -108,3 +108,4 @@
 #app #saves .row .bonus{font-size:calc(22px*var(--tz,1));font-weight:800;min-width:48px}
 @media (max-width:359px){#app #saves .row .nm .tx>svg{display:none}}
 @media (max-width:759px){ #app #spBody>.sp-lv{margin:2px 0}#app #spBody>.filrow{margin-bottom:2px} }
+@media (max-width:759px){#app .ihead>span:nth-child(2){visibility:hidden}}/* weight sits under the item name on phones, so its column header would stand over the name */

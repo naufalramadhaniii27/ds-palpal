@@ -211,9 +211,9 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 /* D2: the new tab slides in from the side of the tab that was tapped, 200 ms, transform only */
 @keyframes v31psr{from{translate:36px 0}to{translate:0 0}}/* P3 frame rate: the translate property costs less than transform in this animation, same look */
 @keyframes v31psl{from{translate:-36px 0}to{translate:0 0}}
-/* the page (HP) or panel (PC) itself moves: it is already a layer, so nothing new is drawn for the slide */
-.psl-r,.panel.psl-r{animation:v31psr .2s var(--ease-out)}
-.psl-l,.panel.psl-l{animation:v31psl .2s var(--ease-out)}
+/* the slide moves the page content; the page itself stays put as the scroll-snap area of the pager */
+.psl-r>*{animation:v31psr .2s var(--ease-out)}/* the children move, not the page: a translated page is a moved scroll-snap area, and the pager snapped 36 px off when the slide was still running */
+.psl-l>*{animation:v31psl .2s var(--ease-out)}
 @media (min-width:760px){.detail>.panels{overflow-x:clip}}
 @media (prefers-reduced-motion:reduce){.psl-r,.psl-l,.panel.psl-r,.panel.psl-l{animation:none}}
 
@@ -276,7 +276,8 @@ textarea.nsec-t::placeholder{color:var(--faint)}
  .ihead,.irow,:root[data-skin="ddb"] .ihead,:root[data-skin="ddb"] .irow{grid-template-columns:44px minmax(0,1fr) 36px 64px}
  .ihead span{white-space:nowrap}
  .ihero .icoins{gap:2px}
- :root[data-skin="ddb"] .ihero .ibtn{grid-row:3;grid-column:1 / -1;justify-self:stretch;justify-content:center;white-space:nowrap}
+ :root[data-skin="ddb"] .ihero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}:root[data-skin="ddb"] .ihero>:not(.ibtn){grid-column:1 / -1}
+ :root[data-skin="ddb"] .ihero .ibtn{grid-row:3;grid-column:1;justify-self:stretch;justify-content:center;white-space:nowrap;padding-inline:8px}
 }
 @container v31c (min-width:381px) and (max-width:599px){.lu{grid-template-columns:minmax(0,1fr)}}
 @container v31c (min-width:500px){
