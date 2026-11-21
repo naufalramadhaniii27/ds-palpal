@@ -67,6 +67,7 @@ S("Familiar Master (2014)",P("sub","Familiar Master (2014)","Servitor's Gift",6,
  {Bat:null,Cat:null,Crab:{acBase:[12,"DEX"],cond:"noArmor"},Frog:null,Hawk:{advOn:["sight-based Wisdom (Perception) checks"]},Lizard:{res:["Poison"]},Octopus:null,Owl:{darkTo:30},"Poisonous Snake":null,Quipper:{mv:{swim:30}},Rat:{advOn:["saves against poison and disease"]},Raven:null})
  .concat(P("sub","Familiar Master (2014)","Servitor's Greater Gift",14,"servgreat","Servitor's Greater Gift: familiar type",
  {Aberration:{res:["Psychic"]},Celestial:{res:["Radiant"]},Construct:{acAdd:1},Elemental:{langs:["Primordial"]},Fey:{advOn:["saves against being Charmed or Frightened"]},Fiend:null})));
+S("School of Sangromancy",[{n:"Sanguine Vigor",l:6,hpFlat:6,hpLvl:1}]);/* 2014 (tp18): +6 and +1 more each wizard level; the 2024 Sangromancer is in fx-L13 */
 S("Wretched Bloodline",P("sub","Wretched Bloodline","Wretched Curse",3,"wcurse","Wretched Curse",
  {Hulking:{hpFlat:1,hpLvl:1,carryBump:true},Nocturnal:{darkTo:120},Plaguebearer:{res:["Necrotic"],def:["Immunity","Disease"]}}));/* 2014 book (tp18-tgh14p); the 2024 Wretched Bloodline Sorcery is in fx-L12 */
 S("Snake Speaker",P("sub","Snake Speaker","Scaly Transition",3,"scaly","Scaly Transition feature (until your next rest)",
