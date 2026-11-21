@@ -9,7 +9,8 @@ registerFxHandler("sheet",{id:"speed-add",group:"speed",phase:"speed",fields:["c
  if(e.speedSet&&spd<e.speedSet){spd=e.speedSet;src+=", set to "+e.speedSet+" "+e.lbl}
  return src?{spd:spd,srcAdd:src}:null}});
 /* fx batch H: speedMul = Speed multiplied (Nosferatu: doubled). After the additions and the armor cut */
-registerFxHandler("sheet",{id:"speed-mul",group:"speed",phase:"speed-mul",fields:["cond","speedMul","lbl"],uses:["ok", "spd"],run:function(e,ctx){if(!e.speedMul||!ctx.ok(e)||!ctx.spd)return null;return {spd:Math.floor(ctx.spd*e.speedMul),srcAdd:", ×"+e.speedMul+" "+e.lbl}}});
+/* speedTo = Speed becomes at most this (0 allowed: Barricade Shield planted, Boots of the Hare curse 15), in place of speedMul */
+registerFxHandler("sheet",{id:"speed-mul",group:"speed",phase:"speed-mul",fields:["cond","speedMul","speedTo","lbl"],uses:["ok", "spd"],run:function(e,ctx){if(e.speedTo!=null&&ctx.ok(e))return ctx.spd>e.speedTo?{spd:e.speedTo,srcAdd:", Speed "+e.speedTo+" "+e.lbl}:null;if(!e.speedMul||!ctx.ok(e)||!ctx.spd)return null;return {spd:Math.floor(ctx.spd*e.speedMul),srcAdd:", ×"+e.speedMul+" "+e.lbl}}});
 /* darkAdd: more feet on top. darkTo: raised to that range. darkNone N: only when you have none yet. darkHave {add:N} or {to:N}: when you already have it (the check uses the value before this entry) */
 registerFxHandler("sheet",{id:"darkvision",group:"senses",phase:"darkvision",fields:["darkAdd","darkTo","darkNone","darkHave","lbl"],uses:["dark"],run:function(e,ctx){
  if(!(e.darkAdd||e.darkTo||e.darkNone||e.darkHave))return null;

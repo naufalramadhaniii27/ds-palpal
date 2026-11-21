@@ -15,7 +15,7 @@ S("Oath of Glory",[{"n": "Living Legend", "l": 20, "srLu": 5}]);
 S("Oath of Glory (2014)",[{"n": "Living Legend", "l": 20, "srLu": 5}]);
 S("Oath of Vengeance",[{"n": "Avenging Angel", "l": 20, "srLu": 5}]);
 S("Oath of the Ancients",[{"n": "Elder Champion", "l": 20, "srLu": 5}]);
-S("Oath of the Ebon Blade",[{"n": "Aspect of the Horsemen", "l": 20, "srLu": 4}]);
+S("Oath of the Ebon Blade",[{"n": "Aspect of the Horsemen", "l": 20, "srLu": 5}]);
 S("Oath of the Holy",[{"n": "Holy Deliverance", "l": 20, "srLu": 5}]);
 S("Oath of the Noble Genies",[{"n": "Noble Scion", "l": 20, "srLu": 5}]);
 S("Overlord",[{"n": "Sacrificial Thralls", "l": 10, "srLu": 2}]);

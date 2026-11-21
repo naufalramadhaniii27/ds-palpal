@@ -4,6 +4,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};
 var P=function(k,e){GX.item[k]=(GX.item[k]||[]).concat([e])};
 P("Book of Exalted Deeds",{n:"Book of Exalted Deeds (protection)",res:["Psychic"],condImm:["Charmed","Frightened"]});
 P("Armor of Invulnerability",{n:"Armor of Invulnerability (immunity)",toggle:{id:"b32-armor-of-invulnerability",label:"Invulnerable: active (10 minutes)"},imm:["Bludgeoning","Piercing","Slashing"]});
-P("Stormgirdle (Dormant)",{n:"Stormgirdle (immunity)",imm:["Lightning","Thunder"]});
+P("Stormgirdle (Dormant)",{n:"Stormgirdle (resistance)",res:["Lightning","Thunder"]});
+P("Stormgirdle (Dormant)",{n:"Stormgirdle (immunity)",toggle:{id:"b32-storm-avatar",label:"Storm Avatar (1 minute)"},imm:["Lightning","Thunder"]});
 P("Gauntlets of Rage",{n:"Gauntlets of Rage (furious)",toggle:{id:"b32-gauntlets-of-rage",label:"Furious"},condImm:["Charmed","Frightened"]});
 })();

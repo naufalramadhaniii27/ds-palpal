@@ -78,8 +78,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
 
  /* ---- Extra damage ---- */
  add("Wand of Orcus",{n:"Wand of Orcus",atkDice:[{when:"Wand of Orcus",d:"2d12",t:"necrotic"}]});
- /* Vicious Weapon: the base-weapon aliases are separate inventory names */
- ["Vicious Weapon"].concat(["Longsword","Battleaxe","Blowgun","Club","Dagger","Dart","Flail","Glaive","Greataxe","Greatclub","Greatsword","Halberd","Hand Crossbow","Handaxe","Heavy Crossbow","Javelin","Lance","Light Crossbow","Light Hammer","Longbow","Mace","Maul","Morningstar","Musket","Pike","Pistol","Quarterstaff","Rapier","Scimitar","Shortbow","Shortsword","Sickle","Sling","Spear","Trident","War Pick","Warhammer","Whip"].map(function(b){return "Vicious Weapon ("+b+")"})).forEach(function(n){add(n,{n:n,atkDice:[{when:n,d:"2d6",t:"(same type as the weapon)"}]})});
+ /* Vicious Weapon: the base-weapon aliases are separate inventory names. DMG 2024: +2d6 on every hit. DMG 2014 (DM14 overlay): 2d6 only on a natural 20, and the engine has no crit-only damage field, so a row note */
+ ["Vicious Weapon"].concat(["Longsword","Battleaxe","Blowgun","Club","Dagger","Dart","Flail","Glaive","Greataxe","Greatclub","Greatsword","Halberd","Hand Crossbow","Handaxe","Heavy Crossbow","Javelin","Lance","Light Crossbow","Light Hammer","Longbow","Mace","Maul","Morningstar","Musket","Pike","Pistol","Quarterstaff","Rapier","Scimitar","Shortbow","Shortsword","Sickle","Sling","Spear","Trident","War Pick","Warhammer","Whip"].map(function(b){return "Vicious Weapon ("+b+")"})).forEach(function(n){add(n,{n:n,ed:"2024",atkDice:[{when:n,d:"2d6",t:"(same type as the weapon)"}]});add(n,{n:n,ed:"2014",atkBonus:[{when:n,note:"Vicious: +2d6 damage of the weapon's type only when the d20 shows 20 (not on every hit)."}]})});
 
  /* ---- Limited use ---- */
  add("Tankard of Plenty",{n:"Tankard of Plenty",lu:{n:"Tankard of Plenty",max:3,reset:"dawn"}});

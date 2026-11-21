@@ -4,7 +4,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.spe
 var S=function(k,l,n,id,label,mv){GX.sub[k]=(GX.sub[k]||[]).concat([{l:l,n:n+" (speed)",toggle:{id:id,label:label},mv:mv}])};
 var A=function(k,l,n,mv){GX.sub[k]=(GX.sub[k]||[]).concat([{l:l,n:n+" (speed)",mv:mv}])};
 var I=function(k,n,id,label,mv){GX.item[k]=(GX.item[k]||[]).concat([{n:n+" (speed)",toggle:{id:id,label:label},mv:mv}])};
-A("Storm Sentinel (2014)",17,"Stormlord",{fly:"speed"});
 S("Mutagenist",10,"Advanced Mutation","b19-mutagen-climb","Mutation: you chose the climbing mutation",{climb:"speed"});
 S("Mutagenist (2014)",10,"Advanced Mutation","b19-mutagen-climb","Mutation: you chose the climbing mutation",{climb:"speed"});
 S("Star-Spangled Banner",14,"Wings of Liberty","b19-liberty","Wings of Liberty active",{fly:30});
@@ -24,10 +23,10 @@ S("The Genie",6,"Elemental Gift","b19-genie-fly","Elemental Gift: flight (10 min
 S("The Parasite",3,"Physical Specimen","b19-parasite-climb","Physical Specimen: climbing benefit chosen",{climb:"speed"});
 S("House of Darts",7,"Dagger Climb","b19-dagger-climb","Dagger Climb (10 minutes)",{climb:"speed"});
 S("Sky Magic",3,"Feathered Heels","b19-feathered-heels","Feathered Heels (until the end of your turn)",{fly:"speed"});
-GX.species["Dracthyr"]=(GX.species["Dracthyr"]||[]).concat([{n:"Draconic Flight (speed)",toggle:{id:"b19-draconic-flight",label:"Draconic Flight (10 minutes)"},mv:{fly:"speed"}}]);
+GX.species["Dracthyr"]=(GX.species["Dracthyr"]||[]).concat([{n:"Draconic Flight (speed)",l:5,toggle:{id:"b19-draconic-flight",label:"Draconic Flight (10 minutes)"},mv:{fly:"speed"}}]);
 GX.feat["Greater Mark of Storm"]=(GX.feat["Greater Mark of Storm"]||[]).concat([{n:"Improved Storm (Gust of Wind flight)",toggle:{id:"b19-mark-storm",label:"Gust of Wind cast with Storm Magic: flying"},mv:{fly:60}}]);
 GX.feat["Vampiric Exultation"]=(GX.feat["Vampiric Exultation"]||[]).concat([{n:"Transformed (speed)",toggle:{id:"b19-vampiric",label:"Vampiric Exultation: transformed"},mv:{fly:30}}]);
-I("Winged Boots","Flight","b19-winged-boots","Winged Boots: flight (1 hour)",{fly:30});
+I("Winged Boots","Flight","b19-winged-boots","Winged Boots: flight (1 hour)",{fly:30});GX.item["Winged Boots"][GX.item["Winged Boots"].length-1].ed="2024";I("Winged Boots","Flight","b19-winged-boots","Winged Boots: flight (up to 4 hours)",{fly:"speed"});GX.item["Winged Boots"][GX.item["Winged Boots"].length-1].ed="2014";
 I("Potion of Aqueous Form","Aqueous Form","b19-aqueous","Potion of Aqueous Form: active",{swim:30});
 GX.item["Potion of Aqueous Form"][GX.item["Potion of Aqueous Form"].length-1].advOn=["Strength, Dexterity, and Constitution saving throws"];
 I("Stormgirdle (Awakened)","Storm Avatar","b19-stormgirdle","Stormgirdle: Storm Avatar form",{fly:30});
@@ -36,7 +35,7 @@ I("Powered Armor","Boosters","b19-boosters","Powered Armor: boosters active (1 m
 I("Deathwalker's Ward (Exalted)","Flight","b19-deathwalker","Deathwalker's Ward: flight (1 hour)",{fly:60});
 I("Stormrider Boots","Boosted stride","b19-stormrider","Stormrider Boots: active until the end of your turn",{fly:90});
 I("Cloak of the Stygian Bat","Bat form","b19-stygian","Cloak of the Stygian Bat: active (1 minute)",{fly:30});
-I("Ring of Spacewalking","Zero gravity","b19-spacering","In zero gravity",{fly:"speed"});
+I("Ring of Spacewalking","Zero gravity","b19-spacering","In zero gravity",{fly:"speed"});GX.item["Ring of Spacewalking"][GX.item["Ring of Spacewalking"].length-1].ed="2024";I("Ring of Spacewalking","Zero gravity","b19-spacering","In zero gravity",{fly:15});GX.item["Ring of Spacewalking"][GX.item["Ring of Spacewalking"].length-1].ed="2014";
 I("Spacewalkers","Zero gravity","b19-spacewalkers","In zero gravity",{fly:"speed"});
 I("Solar Wings of Ra","Solar flight","b19-solar-wings","Solar Wings of Ra: in Bright Light",{fly:60});
 I("Wings","Deployed","b19-wings","Wings deployed (10 minutes)",{fly:"speed"});

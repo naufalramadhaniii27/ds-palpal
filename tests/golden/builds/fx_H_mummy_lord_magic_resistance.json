@@ -41,11 +41,14 @@
   "size": "Medium"
  },
  "expect": {
-  "C:defenses.0.t": "Note"
+  "C:defenses.0.t": "Immunity"
  },
  "expectC": {
   "defenses": {
    "in": "Advantage on saves against spells and other magical effects"
   }
+ },
+ "fxT": {
+  "lichdom": true
  }
 }

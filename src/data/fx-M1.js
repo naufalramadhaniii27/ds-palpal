@@ -54,7 +54,9 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  I("Storm Sickle",{n:"Storm Sickle: Wind Blade",attackRow:[{n:"Wind Blade (Storm Sickle)",ab:"STR",die:"1d4",type:"Slashing",range:"20/60 ft",prof:true,sub:"Storm Sickle",xd:[{d:"1d4",t:"Lightning"}]}]});
  I("Boomerang Shield",{n:"Boomerang Shield: throw",attackRow:[{n:"Boomerang Shield (thrown)",ab:"best",die:"1d6",type:"Slashing",range:"20/60 ft",prof:"armor:Shields",sub:"Boomerang Shield"}]});
  I("Starmetal Shield",{n:"Starmetal Shield: Shooting Star",attackRow:[{n:"Shooting Star (Starmetal Shield)",ab:"best",die:"2d8",type:"Slashing",range:"30 ft",prof:true,k:"R",sub:"Starmetal Shield"}]});
- I("Staff of the Adder",{n:"Staff of the Adder: snake head",attackRow:[{n:"Snake Head (Staff of the Adder)",ab:"WIS",die:"1d6",type:"Piercing",prof:true,sub:"Staff of the Adder",xd:[{d:"3d6",t:"Poison"}]}]});
+ /* 2014: Proficiency Bonus only (no ability named, so the default melee STR row); the 3d6 Poison needs a failed DC 15 CON save */
+ I("Staff of the Adder",{n:"Staff of the Adder: snake head",ed:"2014",attackRow:[{n:"Snake Head (Staff of the Adder)",ab:"STR",die:"1d6",type:"Piercing",prof:true,sub:"Staff of the Adder",note:"Proficiency Bonus only on the attack roll (2014 text). On a hit the target makes a DC 15 Constitution save or takes 3d6 Poison damage."}]});
+ I("Staff of the Adder",{n:"Staff of the Adder: snake head",ed:"2024",attackRow:[{n:"Snake Head (Staff of the Adder)",ab:"WIS",die:"1d6",type:"Piercing",prof:true,sub:"Staff of the Adder",xd:[{d:"3d6",t:"Poison"}]}]});
  I("Claws of the Umber Hulk",{n:"Claws of the Umber Hulk: claw",attackRow:[{n:"Claw (Claws of the Umber Hulk)",ab:"STR",die:"1d8",type:"Slashing",prof:true,sub:"Claws of the Umber Hulk"}]});
 
  /* ---- Proficiency Bonus +1 ---- */

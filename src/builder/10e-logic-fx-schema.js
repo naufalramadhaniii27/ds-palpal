@@ -20,6 +20,7 @@ export const FX_FIELDS={
  armor:"array",
  acArmAb:"string",
  speedMul:"number",
+ speedTo:"number",
  condImm:"array",
  defs:"array",
  speedAdd:"number|string",
@@ -73,6 +74,7 @@ export const FX_FIELDS={
  saveProf:"array",
  speedAddIf:"object",
  hpFlat:"number",
+ hpMul:"number",
  carryBump:"boolean",
  darkTo:"number",
  acDexAb:"string",
@@ -109,6 +111,7 @@ export const FX_FIELDS={
  pbAdd:"number",
  exhLock:"number",
  ed:"string",
+ forCls:"array",
  hp:"string",
  /* fields of the magic item rows */setsc:"array",atk:"number",dmg:"number",dark:"number",abil:"array",adv:"array",climb:"string",save:"number",swim:"number|string",spellAtk:"number",spellDc:"number",spellCls:"string",ua:"number",
  speedSet:"number",off:"number|boolean?",lv:"number?",lbl:"string",kind:"string",owner:"string?",okey:"string?",pre:"string?",idx:"number?",ocls:"string?",tgOn:"boolean?",fx:"object?"};

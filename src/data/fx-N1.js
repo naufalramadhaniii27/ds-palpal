@@ -46,7 +46,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  SP("Aven (Hawk-Headed)",{n:"Flight",mv:{fly:30},cond:"noMedHeavy"});
  /* ---- subclasses ---- */
  S("White Necromancer",{n:"Lore of Life and Death",l:3,skillProf:["Medicine","Religion"],skillExpert:["Medicine"],advOn:["Intelligence (Religion) checks to recall lore about death gods, burial customs and the afterlife"]});
- S("Plague Doctor",{n:"Physician",l:3,skillProf:["Medicine"],skillExpert:["Medicine"]});
+ S("Plague Doctor",{n:"Physician",l:3,forCls:["Vagabond","Captain","Gunslinger"],skillProf:["Medicine"],skillExpert:["Medicine"]});
  S("Cavalier",{n:"Born to the Saddle",l:3,advOn:["saves to avoid falling off your mount"]});
  S("Path of the Dad",{n:"Paternal Proficiencies",l:3,advOn:["checks to grill food, make minor repairs, or assert authority over something unimportant"]});
  S("Path of the Muscle Wizard",{n:"Unarguable Wizardry",l:3,advOn:["Intimidation checks to convince others you are a wizard"]});

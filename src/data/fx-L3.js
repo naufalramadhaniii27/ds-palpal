@@ -15,8 +15,9 @@
  var TB={id:"book-exalted-studied",label:"Book of Exalted Deeds: finished the 80 hours of study",default:true};
  add("Book of Exalted Deeds",{n:"Divine Wisdom",toggle:TB,abUp:[["WIS",2,24]]});
  var TV={id:"book-vile-studied",label:"Book of Vile Darkness: finished the 80 hours of study",default:true};
- add("Book of Vile Darkness",{n:"Adjusted Ability Scores",toggle:TV,condImm:["Exhaustion"],abPick:{k:"up",from:AB6,up:2,max:24,title:"Ability score to raise by 2 (maximum 24)"},
+ add("Book of Vile Darkness",{n:"Adjusted Ability Scores",toggle:TV,abPick:{k:"up",from:AB6,up:2,max:24,title:"Ability score to raise by 2 (maximum 24)"},
   pick:[{k:"dn",t:"multi",n:1,title:"Ability score to lower by 2 (minimum 3)",list:AB6.map(function(a){return [ABN[a],""]})}]});
+ add("Book of Vile Darkness",{n:"Tireless Form",ed:"2024",condImm:["Exhaustion"]});   /* 2024: while you carry it, not tied to the study; the 2014 book has none */
  AB6.forEach(function(a){add("Book of Vile Darkness",{n:"Adjusted Ability Scores ("+a+" lowered)",toggle:TV,when:{key:"gx-dn-item-Book of Vile Darkness",val:ABN[a]},abDown:[[a,-2,3]]})});
  [["Affliction","DEX","WIS"],["Deception","DEX","CHA"],["Destiny","STR","WIS"],["Harvests","CON","WIS"],["Horizons","CON","INT"],["Slaughter","STR","CON"],["Storms","INT","WIS"],["Victory","STR","CHA"],["the Dead","CON","WIS"],["the Forge","STR","INT"],["the Hunt","DEX","WIS"],["the Passage","INT","WIS"],["the Polis","INT","CHA"],["the Sea","DEX","INT"],["the Sun","STR","WIS"]].forEach(function(c){
   add("Champion of "+c[0],{abPick:{k:"a",from:[c[1],c[2]],up:2,max:22,title:"Ability score to raise by 2 (maximum 22)"}})});

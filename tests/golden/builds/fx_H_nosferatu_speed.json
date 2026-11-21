@@ -45,5 +45,8 @@
  },
  "expectC": {
   "moves.climb.v": 60
+ },
+ "fxT": {
+  "lichdom": true
  }
 }

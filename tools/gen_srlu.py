@@ -12,12 +12,14 @@ LU = {}
 for x in D["lu"]: LU.setdefault((x.get("owner"), x.get("feature")), []).append(x)
 RX = re.compile(r"(?:expend|spend)\w*\s+(?:a |an )?(?:spell slot of |slot of )?(?:level\s+)?(\d)(?:st|nd|rd|th)?(?:\+| level or higher|-level or higher| or higher)?\s*(?:level )?(?:spell )?slot[^.]{0,80}?(?:restor|regain|again|recover)|(?:restor|regain|recover)[^.]{0,60}(?:expend|spend)\w*\s+(?:a |an )?(?:level\s+)?(\d)", re.I)
 RX2 = re.compile(r"(?:restor|regain|recover)\w*\s+(?:your use of it|use of it|one use|a use)[^.]{0,60}\b(?:level )?(\d)\+?(?:st|nd|rd|th)? ?(?:level )?(?:or higher )?(?:spell )?slot|\bagain by spending a level (\d) spell slot", re.I)
+FIX = {("Oath of the Ebon Blade", "Aspect of the Horsemen"): 5}  # the level 4 slot in that text restores Runic Mastery, not this pool
 rows = {}
 for r in res:
     if r["status"] != "uncovered" or r["kind"] != "sub" or "SLOT" not in r["why"]: continue
     t = r["text"]; m = RX.search(t) or RX2.search(t)
     if not m: continue
     lvl = int([x for x in m.groups() if x][0])
+    lvl = FIX.get((r["owner"].split("/", 1)[1], r["name"]), lvl)
     owner = r["owner"].split("/", 1)[1]
     lus = LU.get((owner, r["name"])) or []
     if not lus: continue

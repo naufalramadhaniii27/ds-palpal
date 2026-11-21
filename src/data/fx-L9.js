@@ -37,7 +37,7 @@ DataEnv.slot.FXO=DataEnv.slot.FXO||{};
  addI("Thunderous Flail",{n:"Thunderous Flail",atkDice:[{when:"Thunderous Flail",d:"1d6",t:"Lightning"}],atkBonus:[{when:"Thunderous Flail",note:"The extra Lightning damage is for the first target you hit each turn and needs at least 1 charge."}]});
  addI("Visage of Delight and Disaster",{n:"Visage of Delight and Disaster",lu:{n:"Bardic Inspiration (Visage)",max:2,reset:"short",tag:"d10 dice",die:"d10"}});
  addI("Voltedge",{n:"Voltedge",atkDice:[{when:"Voltedge",d:"1d6",t:"Lightning"}]});
- addI("Wooden Chain of the Unbroken Circle",{n:"Wooden Chain of the Unbroken Circle",armor:["Medium"]});
+ /* Wooden Chain of the Unbroken Circle: training covers only this Chain Shirt, not Medium armor in general, so no armor:["Medium"] (AC part is in fx-M1) */
  /* tvss grafts */
  addI("Burrowing Adaptation",{n:"Burrowing Adaptation",mv:{burrow:"speedHalf"}});
  addI("Heavy Legs",{n:"Heavy Legs",carryBump:true});

@@ -68,7 +68,7 @@ S("Familiar Master (2014)",P("sub","Familiar Master (2014)","Servitor's Gift",6,
  .concat(P("sub","Familiar Master (2014)","Servitor's Greater Gift",14,"servgreat","Servitor's Greater Gift: familiar type",
  {Aberration:{res:["Psychic"]},Celestial:{res:["Radiant"]},Construct:{acAdd:1},Elemental:{langs:["Primordial"]},Fey:{advOn:["saves against being Charmed or Frightened"]},Fiend:null})));
 S("Wretched Bloodline",P("sub","Wretched Bloodline","Wretched Curse",3,"wcurse","Wretched Curse",
- {Hulking:{hpLvl:1},Nocturnal:{darkTo:120},Plaguebearer:{res:["Necrotic"],def:["Immunity","Disease"]}}));
+ {Hulking:{hpFlat:1,hpLvl:1,carryBump:true},Nocturnal:{darkTo:120},Plaguebearer:{res:["Necrotic"],def:["Immunity","Disease"]}}));/* 2014 book (tp18-tgh14p); the 2024 Wretched Bloodline Sorcery is in fx-L12 */
 S("Snake Speaker",P("sub","Snake Speaker","Scaly Transition",3,"scaly","Scaly Transition feature (until your next rest)",
  {Bite:null,"Keen Smell":null,"Poison Resistance":{res:["Poison"]},Scales:{acBase:[13,"DEX"],cond:"noBody"},"Serpentine Movement":{mv:{climb:30,swim:30}}}));
 S("Ancient Dragons",P("sub","Ancient Dragons","Wyrmling Blessing",3,"wyrmbless","Wyrmling Blessing (until your next rest)",

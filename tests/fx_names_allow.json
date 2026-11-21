@@ -1,0 +1,3 @@
+{
+  "sub|Circle of the Feathers": "Subclass of the built-in homebrew pack (src/data/hbpack-builtin-homebrew.js); it registers only when the pack is enabled, so __bldData() does not list it. Name matches the pack."
+}

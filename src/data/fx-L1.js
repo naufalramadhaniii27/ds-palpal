@@ -11,7 +11,7 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
 
  /* ===== 1. Classes ===== */
  /* Bard 20 Words of Creation: Power Word Heal and Power Word Kill are always prepared */
- add("cls","Bard",[{n:"Words of Creation",l:20,spells:[[20,"Power Word Heal,Power Word Kill"]],spCls:"Bard"}]);
+ add("cls","Bard",[{n:"Words of Creation",l:20,ed:"2024",spells:[[20,"Power Word Heal,Power Word Kill"]],spCls:"Bard"}]);
 
  /* Cleric. Blessed Strikes (pick p7opt): Divine Strike 1d8 Necrotic or Radiant once per turn, 2d8 with Improved (14); Potent Spellcasting adds Wisdom to Cleric cantrip damage.
     Divine Order (pick p1opt): Thaumaturge adds the Wisdom modifier (minimum +1) to Arcana and Religion checks */
@@ -26,7 +26,7 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
  /* Druid. Elemental Fury (pick p7opt): Primal Strike 1d8 (2d8 with Improved, 15), Potent Spellcasting adds Wisdom to Druid cantrip damage and, improved, +300 ft range.
     Primal Order (pick p1opt): Magician adds the Wisdom modifier (minimum +1) to Arcana and Nature checks. Druidic: the language and Speak with Animals */
  add("cls","Druid",[
-  {n:"Druidic",l:1,langs:["Druidic"],spells:[[1,"Speak with Animals"]],spCls:"Druid"},
+  {n:"Druidic",l:1,langs:["Druidic"]},{n:"Druidic",l:1,ed:"2024",spells:[[1,"Speak with Animals"]],spCls:"Druid"},
   {n:"Elemental Fury",l:7,when:{key:"p7opt",val:"Primal Strike"},atkDice:[{when:"weapon",d:"1d8",t:"Cold, Fire, Lightning or Thunder",note:"Primal Strike, once per turn"}]},
   {n:"Improved Elemental Fury",l:15,when:{key:"p7opt",val:"Primal Strike"},atkDice:[{when:"weapon",d:"1d8",t:"Cold, Fire, Lightning or Thunder",note:"Improved Primal Strike (a second 1d8, 2d8 in all), once per turn"}]},
   {n:"Elemental Fury",l:7,when:{key:"p7opt",val:"Potent Spellcasting"},atkBonus:[{when:"spell",dmg:"WIS",note:"Potent Spellcasting: Wisdom modifier added to Druid cantrip damage."}]},
@@ -64,10 +64,11 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
  add("cls","Necromancer",[{n:"Lichdom",l:20,toggle:{id:"lichdom",label:"Lichdom rite done",default:false},sense:[["Truesight",120,"Truesight 120 ft from Lichdom"]],imm:["Necrotic","Poison"],condImm:["Exhaustion","Poisoned"]}]);
 
  /* Paladin 11 Radiant Strikes: +1d8 Radiant on Melee weapon and Unarmed Strike hits */
- add("cls","Paladin",[{n:"Radiant Strikes",l:11,atkDice:[{when:"melee",d:"1d8",t:"Radiant",note:"Melee weapon"},{when:"unarmed",d:"1d8",t:"Radiant"}]}]);
+ add("cls","Paladin",[{n:"Radiant Strikes",l:11,ed:"2024",atkDice:[{when:"melee",d:"1d8",t:"Radiant",note:"Melee weapon"},{when:"unarmed",d:"1d8",t:"Radiant"}]},
+  {n:"Improved Divine Smite",l:11,ed:"2014",atkDice:[{when:"melee",d:"1d8",t:"Radiant",note:"Melee weapon"}]}]);/* 2014: melee weapon hits only, an unarmed strike is not a weapon */
 
  /* Ranger 18 Feral Senses: Blindsight 30 ft */
- add("cls","Ranger",[{n:"Feral Senses",l:18,senseAdd:[["Blindsight",30,"Blindsight 30 ft from Feral Senses"]]}]);
+ add("cls","Ranger",[{n:"Feral Senses",l:18,ed:"2024",senseAdd:[["Blindsight",30,"Blindsight 30 ft from Feral Senses"]]}]);
 
  /* Investigator. Supernatural Resolve: Advantage on saves against spells and other magical effects (lost while Incapacitated). (Enigma Arcane already has native limited-use rows, checked on the sheet, so nothing is added for it) */
  add("cls","Investigator",[
@@ -140,17 +141,17 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
  addF("Forest Sage",[{n:"Dual Mind",skillAb:[["Animal Handling","INT"],["Arcana","WIS"],["Nature","WIS"],["Survival","INT"]]}]);
  addF("Green-Skin",[{n:"Natural Armor",acBase:[13,"full"],cond:"noBody"}]);
  addF("Ironwood Dryad",[{n:"Barkflesh",acBase:[15,""],cond:"noBody"}]);
- addF("Grue",[{n:"Swirl of Shadows",l:5,lu:{n:"Swirl of Shadows: Invisibility",max:1,reset:"long",tag:"Invisibility on yourself in Dim Light or Darkness"}}]);
+ addF("Grue",[{n:"Swirl of Shadows",l:5,ed:"2024",lu:{n:"Swirl of Shadows: Invisibility",max:1,reset:"long",tag:"Invisibility on yourself in Dim Light or Darkness"}}]);
  addF("Heavy Gunner",[{n:"Strong Attacks",atkAb:{kind:"ranged",ab:"STR",opt:1,note:"Heavy Gunner: for a Ranged weapon with the Heavy or Two-Handed property you can use Strength instead of Dexterity"}}]);
  addF("Porterling",[{n:"Flexible",advOn:["checks to end the Grappled condition or to escape nonmagical restraints"]}]);
  addF("Vampire Hunter",[{n:"Adroit Escape",advOn:["checks to escape nonmagical restraints or the Grappled condition"]}]);
- addF("Precognitive",[{n:"Augury",lu:{n:"Augury (free cast)",max:1,reset:"long",tag:"No slot and no components"}}]);
- addF("Proto-Man",[{n:"Primal Toughness",hpFlat:1,hpLvl:1}]);
+ addF("Precognitive",[{n:"Augury",ed:"2024",lu:{n:"Augury (free cast)",max:1,reset:"long",tag:"No slot and no components"}}]);
+ addF("Proto-Man",[{n:"Primal Toughness",ed:"2024",hpFlat:1,hpLvl:1}]);
  addF("Psionic-Awakened",[{n:"Unseen Servant",l:3,lu:{n:"Unseen Servant (free cast)",max:1,reset:"long"}},{n:"Levitate",l:5,lu:{n:"Levitate (free cast)",max:1,reset:"long"}}]);
  ["Pyromaniac","Pyromaniac (Dark Matter)"].forEach(function(n){addF(n,[{n:"Firestarter Magic",lu:[{n:"Burning Hands (free cast)",max:1,reset:"long"},{n:"Scorching Ray (free cast)",max:1,reset:"long"}]}])});
  addF("Technopath",[{n:"Technical Difficulties",l:3,lu:{n:"Technical Difficulties (free cast)",max:1,reset:"long"}},{n:"Circuit Breaker",l:5,lu:{n:"Circuit Breaker (free cast)",max:1,reset:"long"}}]);
  addF("Plantmender",[{n:"Growth Spell",lu:{n:"Growth Spell (Barkskin or Spike Growth)",max:1,reset:"long",tag:"Cast one of them with no slot"}},
-  {n:"Plant Memory",lu:{n:"Plant Memory",max:{f:"2*mod:WIS",min:2},reset:"long",tag:"Twice your Wisdom modifier, minimum 1"}}]);
+  {n:"Plant Memory",lu:{n:"Plant Memory",max:{f:"2*mod:WIS",min:1},reset:"long",tag:"Twice your Wisdom modifier, minimum 1"}}]);
  addF("Sangromantic Initiate",[{n:"Sanguine Potency",lu:{n:"Sanguine Potency (d12 pool)",max:2,reset:"long",pool:1,die:"d12",tag:"Spend instead of Hit Point Dice on Sangromancy spells"}}]);
  addF("Simian",[{n:"Climb Speed",mv:{climb:"speed"}}]);
  addF("Tavern Brawler (2014)",[{n:"Unarmed Strike",unarmed:{die:"1d4"}}]);
@@ -162,8 +163,8 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
  addF("Touch of Death",[{n:"Flaw",saveNote:["Disadvantage on Death Saving Throws"]}]);
  addF("Showman",[{n:"Showman",skillPE:["Performance"]}]);
  addF("Showman (Dark Matter)",[{n:"Showman",skillPE:["Performance"]}]);
- addF("Reptiloid",[{n:"Reptilian Resistance",pick:[{k:"rr",t:"multi",n:1,title:"Resistance",list:[["Acid",""],["Fire",""],["Poison",""]]}]},
-  {n:"Reptilian Resistance (Acid)",when:{key:"rr",val:"Acid"},res:["Acid"]},{n:"Reptilian Resistance (Fire)",when:{key:"rr",val:"Fire"},res:["Fire"]},{n:"Reptilian Resistance (Poison)",when:{key:"rr",val:"Poison"},res:["Poison"]}]);
+ addF("Reptiloid",[{n:"Reptilian Resistance",ed:"2024",pick:[{k:"rr",t:"multi",n:1,title:"Resistance",list:[["Acid",""],["Fire",""],["Poison",""]]}]},
+  {n:"Reptilian Resistance (Acid)",ed:"2024",when:{key:"rr",val:"Acid"},res:["Acid"]},{n:"Reptilian Resistance (Fire)",ed:"2024",when:{key:"rr",val:"Fire"},res:["Fire"]},{n:"Reptilian Resistance (Poison)",ed:"2024",when:{key:"rr",val:"Poison"},res:["Poison"]}]);
  addF("Shadowsteel Adept",[{n:"Shadowsteel's Bite",toggle:{id:"shadowsteel-focus",label:"Holding your Shadowsteel Focus",default:false},spAtk:1,spDc:1,defs:[["Note","Shadowsteel Weapon: if the Focus is also a weapon it has +1 to attack and damage rolls"]]}]);
 
  /* Transformation feats. Uses "equal to your Transformation Stage" are shown for the stage of the feat that grants the boon. A stage feat cannot read the boon pick of another stage feat, so the growth of a stage 1 boon at later stages is not added */

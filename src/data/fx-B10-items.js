@@ -9,6 +9,7 @@ add("Eyes of the Impossible",{"defs": [["Advantage", "Eyes of the Impossible: Ad
 add("Ring of Veracity",{"defs": [["Advantage", "Ring of Veracity: Advantage on Wisdom (Insight) checks made with the Search action"]]});
 add("Catnip Amulet",{"defs": [["Advantage", "Catnip Amulet: Advantage on ability checks to find or call Tiny domestic cats and on Wisdom (Animal Handling) checks to deal with them"]]});
 add("Sharkrazor Mantle",{"defs": [["Advantage", "Sharkrazor Mantle: Advantage on Wisdom (Perception or Survival) checks to find or track a creature missing Hit Points"]]});
-add("Gamma Pendant",{"defs": [["Advantage", "Gamma Pendant: Advantage on saves against spells"]]});
+add("Gamma Pendant",{"ed": "2014", "defs": [["Advantage", "Gamma Pendant: Advantage on saves against spells"]]});
+add("Gamma Pendant",{"ed": "2024", "toggle": {"id": "gamma-pendant-complete", "label": "Gamma Pendant complete (3 or more Gamma Fragments)"}, "defs": [["Advantage", "Gamma Pendant: Advantage on saves against spells"]]});/* DM24 (tsdm): only the Complete pendant; DM14 (tdm14): always. Gated by edition, the two books share the item name */
 add("Necronomicon",{"defs": [["Advantage", "Necronomicon: Advantage on Charisma (Persuasion) checks against aberrations and on Charisma (Intimidation) checks against non-aberrations"]]});
 })();

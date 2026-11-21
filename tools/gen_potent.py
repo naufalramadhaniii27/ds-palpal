@@ -15,6 +15,10 @@ def levels(sub, feat):
             seg = t[m.end():m.end() + 40000]; n = seg.find('"name":"'); seg = seg[:n] if n > 0 else seg
             for h in re.finditer(r'\[(\d+),"' + re.escape(feat) + '"', seg): lv.add(int(h.group(1)))
     return lv
+def has_potent(owner):
+    """another fx file already gives this domain its Potent Spellcasting (fx-L10: Grave Domain (2014), Peace Domain): a second row would add Wisdom twice"""
+    rx = re.compile(r'(?:add|S)\("' + re.escape(owner) + r'",\[[^\n]*Potent Spellcasting')
+    return any(rx.search(t) for f, t in ALLF.items() if os.path.basename(f).startswith("fx-"))
 RX = re.compile(r"^(?:You )?add(?:ing)? your Wisdom modifier to the damage (?:you deal with )?(?:of )?(?:any |all )?(?:Cleric|cleric) cantrips?(?: you cast)?\.?$", re.I)
 rows = {}
 for r in res:
@@ -22,6 +26,7 @@ for r in res:
     t = re.sub(r"^[-\s]+", "", r["text"].strip())
     if not (RX.match(t) or re.match(r"^Add your Wisdom modifier to the damage of cleric cantrips\.?$", t, re.I)): continue
     owner = r["owner"].split("/", 1)[1]
+    if has_potent(owner): print("skip, has Potent Spellcasting", owner); continue
     lv = levels(owner, "Potent Spellcasting")
     if not lv and re.search(r"\((?:2014|PSA|DM14|ToH)\)$", owner): lv = {8}  # the 2014 domains give Potent Spellcasting at Cleric level 8 (listed as [8,"Potent Spellcasting",...] in the 2014 subclass files)
     if len(lv) != 1: print("skip level", owner, lv); continue

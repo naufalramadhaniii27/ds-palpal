@@ -51,5 +51,8 @@
  },
  "expectC": {
   "moves.fly.v": 50
+ },
+ "fxT": {
+  "b39-broom-of-flying": true
  }
 }

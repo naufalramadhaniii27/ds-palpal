@@ -51,12 +51,12 @@
  "expect": {},
  "expectC": [
   {
-   "path": "defenses",
-   "in": "Advantage on Initiative rolls"
+   "path": "itemAdv",
+   "in": "Initiative"
   },
   {
-   "path": "defenses",
-   "in": "Wisdom (Perception) checks"
+   "path": "itemAdv",
+   "in": "Perception"
   }
  ]
 }

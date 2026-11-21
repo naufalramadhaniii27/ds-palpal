@@ -111,7 +111,7 @@
  },
  "expect": {},
  "expectC": {
-  "moves.burrow.v": 20
+  "speeds.burrow.v": 20
  },
  "fxT": {}
 }

@@ -166,11 +166,15 @@ function acBuffParts(acParts){
   if(S.conc&&S.conc.n==="Shield of Faith"&&S.conc.self!==false&&(C.spells||[]).some((x) =>{ return x.n==="Shield of Faith"; })) acParts.push(part("Shield of Faith", 2, "Your concentration, cast on yourself"));
   if(S.shift&&(C.features||[]).some((g) =>{ return (g.items||[]).some((i) =>{ return i.n==="Chosen: Beasthide"; }); })) acParts.push(part("Shifting (Beasthide)", 1, "While shifted"));
 }
+/* C.hpBonus rows; a row with mul (fx hpMul, 14 hpBonusList) multiplies the total after every other source instead */
+function hpBonusParts(hpParts){ (C.hpBonus||[]).forEach((b) =>{ if(!b.mul) hpParts.push(part(b.s||"Bonus", num(b.v))); }); }
+function hpMulParts(hpParts){ (C.hpBonus||[]).forEach((b) =>{ const m=num(b.mul,0); if(m>1){ const hs=hpParts.reduce((a,q) =>{return a+q.v},0); hpParts.push(part(b.s||"Multiplier", Math.round(hs*(m-1)), "Hit Point maximum \u00d7 "+m)); } }); }
 function deriveHpDcCarry(lvl, hpl, hpParts, avg, hd, cm, xr, exh, abPart, pb){
   if(lvl>1 && hpl.length===lvl-1){ hpl.forEach((e,i) =>{ const v=typeof e==="object"?num(e.v):num(e); hpParts.push(part("Level "+(i+2)+(e&&e.c?" ("+e.c+")":"")+(e&&e.r?": rolled":": fixed"), v, e&&e.n?e.n:"")); }); }
   else if(lvl>1) hpParts.push(part("Levels 2 to "+lvl+": fixed "+avg+" each", avg*(lvl-1), (lvl-1)+" \u00d7 "+avg+" (average of d"+hd+", rounded up)"));
   hpParts.push(part("Constitution modifier \u00d7 "+lvl+" levels", cm*lvl, "Con "+D.score.CON+" gives "+sg(cm)+" per level"));
-  (C.hpBonus||[]).forEach((b) =>{ hpParts.push(part(b.s||"Bonus", num(b.v))); });  if(num(S.hpMod,0)) hpParts.push(part("Max HP modifier", Math.round(num(S.hpMod,0)), "Set on the sheet"));/* v21 RU45 */
+  hpBonusParts(hpParts);  if(num(S.hpMod,0)) hpParts.push(part("Max HP modifier", Math.round(num(S.hpMod,0)), "Set on the sheet"));/* v21 RU45 */
+  hpMulParts(hpParts);/* fx hpMul: after every other source */
   if(xr&&exh>=4){ const hs0=Math.max(1,hpParts.reduce((a,q) =>{return a+q.v},0)); hpParts.push(part("Exhaustion level "+exh+": maximum halved",-Math.floor(hs0/2),"Level 4: your Hit Point maximum is half of "+hs0)); }/* v94 */
   D.hpmax=Math.max(1,hpParts.reduce((a,p) =>{return a+p.v},0)); const hpOv=Math.round(num(S.hpOver,0)); lateGet("CU0").hp=D.hpmax; if(hpOv>0){ hpParts.push({l:"Set by you",v:String(hpOv),note:"Calculated value: "+D.hpmax+". Your number replaces it.",raw:true}); D.hpmax=hpOv; }/* v34 RU85 */
   B.hp={t:"Hit Point Maximum", parts:hpParts, total:String(D.hpmax), f:"Uses the fixed-value option for every level after the first."+(hpOv>0?" Override set on the sheet: "+hpOv+".":"")};
