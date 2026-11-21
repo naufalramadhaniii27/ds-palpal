@@ -36,6 +36,7 @@ AREAS = {
         ("core_numbers", [PY, "tests/core_numbers.py"]),
         ("multiclass_numbers", [PY, "tests/multiclass_numbers.py"]),
         ("levelup_numbers", [PY, "tests/levelup_numbers.py"]),
+        ("sense_mastery_numbers", [PY, "tests/sense_mastery_numbers.py"]),
         ("state_numbers", [PY, "tests/state_numbers.py"]),
         ("rest_numbers", [PY, "tests/rest_numbers.py"]),
         ("bladesong_numbers", [PY, "tests/bladesong_numbers.py"]),

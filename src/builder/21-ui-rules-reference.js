@@ -139,7 +139,7 @@ function qbsNc(){return B.sp.filter((n) =>{return SMAP[n]&&!SMAP[n][1]}).length}
 function qbsNp(){return B.sp.filter((n) =>{return SMAP[n]&&SMAP[n][1]}).length}
 function qbsFirst(Q,L,I,auto){
  (Q.ct||[]).concat(L.filter((x) =>{return !x[1]}).map((x) =>{return x[0]})).forEach((n) =>{const x=SMAP[n];if(x&&!x[1]&&qbsNc()<I.ct&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});
- (Q.sp||[]).concat(L.filter((x) =>{return x[1]===1}).map((x) =>{return x[0]})).forEach((n) =>{const x=SMAP[n];if(x&&x[1]&&qbsNp()<I.pr&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});}
+ (Q.sp||[]).forEach((n) =>{const x=SMAP[n];if(x&&x[1]&&qbsNp()<I.pr&&B.sp.indexOf(n)<0&&auto.indexOf(n)<0&&L.indexOf(x)>=0)B.sp.push(n)});}
 function qbsRest(L,I,auto){
  const byL={};L.forEach((x) =>{if(x[1])(byL[x[1]]=byL[x[1]]||[]).push(x[0])});for(let g=0;g<400&&qbsNp()<I.pr;g++){let put=false;for(let lv=I.max;lv>=1&&qbsNp()<I.pr;lv--){const q=byL[lv]||[];while(q.length){const n=q.shift();if(B.sp.indexOf(n)<0&&auto.indexOf(n)<0){B.sp.push(n);put=true;break}}}if(!put)break}}
 export function qbSpells(){const I=spInfo();if(!I)return;let Q=QUICK[B.cls]||{},L=SPELLS.filter((x) =>{return I.lists.some((l) =>{return x[3].indexOf(l)>=0})&&x[1]<=I.max});B.sp=[];
@@ -147,7 +147,7 @@ export function qbSpells(){const I=spInfo();if(!I)return;let Q=QUICK[B.cls]||{},
  if(R14()&&isThird3(B.sub)){const sch=B.cls==="Fighter"?["Abjuration","Evocation"]:["Enchantment","Illusion"],inS=(x) =>{return !x[1]||sch.indexOf(x[2])>=0};L=L.filter(inS).concat(L.filter((x) =>{return !inS(x)}));Q={ct:Q.ct}}
  const auto=autoSpellList().map((a) =>{return a.n});
  qbsFirst(Q,L,I,auto);
- /* T11 N6: when the level 1 spells run out (or the list is short), the rest come from higher levels in turn, so no prepared spell stays empty */
+ /* after the class picks (QUICK sp), the prepared spells come from every level the caster can cast in turn, highest first, so a high level caster is not left with only level 1 spells */
  qbsRest(L,I,auto);
  qbArc()}
 /* T11 N6: Mystic Arcanum picks (Warlock 11, 13, 15, 17): the first Warlock spell of that level not already known */
@@ -160,10 +160,10 @@ export function qbMI(){B.pk=B.pk||{};miFeats().forEach((m) =>{const v=B.pk[m.key
  /* T11 N6: a Cleric or Druid of high level can already know every level 1 spell of the list. Then Magic Initiate takes one of them again */
  if(!ss.length)ss=L.filter((x) =>{return x[1]===1}).map((x) =>{return x[0]}).slice(0,1);if(cs.length<2)L.filter((x) =>{return !x[1]&&cs.indexOf(x[0])<0}).forEach((x) =>{if(cs.length<2)cs.push(x[0])});
  B.pk[m.key]={c:cs,s:ss,ab:["INT","WIS","CHA"].indexOf(cast)>=0?cast:"WIS"}})}
-/* v32 p22: a Wizard spellbook filled with level 1 Wizard spells (the Magic Initiate picks first) */
-export function qbBook(){const need=bookNeed();if(!need)return;B.pk=B.pk||{};const bk=B.pk.book=B.pk.book||[];(QB_MI.Wizard.s.concat(SPELLS.filter((x) =>{return x[1]===1&&x[3].indexOf("Wizard")>=0}).map((x) =>{return x[0]}))).forEach((n) =>{if(bookOwn().length<need&&bookOwn().indexOf(n)<0)bk.push(n)});
- /* T11 N6: higher Wizard levels need more spells than there are level 1 Wizard spells, so the rest come from the levels the Wizard can cast, highest first */
- const mx=Math.min(9,Math.ceil(wizLv()/2));for(var lv=mx;lv>=2&&bookOwn().length<need;lv--)SPELLS.filter((x) =>{return x[1]===lv&&x[3].indexOf("Wizard")>=0}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])});
+/* v32 p22: a Wizard spellbook filled the way a Wizard grows it: 6 level 1 spells at level 1 (the Magic Initiate picks first), then 2 spells per Wizard level of the highest level it can cast (PHB 2014 p. 114, PHB 2024 p. 168). A level with no spell left falls back to the next lower level */
+export function qbBook(){const need=bookNeed();if(!need)return;B.pk=B.pk||{};const bk=B.pk.book=B.pk.book||[],wl=wizLv(),of=(lv) =>{return SPELLS.filter((x) =>{return x[1]===lv&&x[3].indexOf("Wizard")>=0}).map((x) =>{return x[0]})};
+ const add=(n,lv) =>{for(let l=lv;l>=1&&n>0;l--)(l===1?QB_MI.Wizard.s.concat(of(1)):of(l)).forEach((s) =>{if(n>0&&bookOwn().length<need&&bookOwn().indexOf(s)<0){bk.push(s);n--}})};
+ for(let L=1;L<=Math.max(1,wl)&&bookOwn().length<need;L++)add(L===1?6:2,Math.min(9,Math.ceil(L/2)));add(need-bookOwn().length,Math.min(9,Math.ceil(wl/2)));
  if(!bk.length)delete B.pk.book}
 export function quickBuild(cls,sp){const Q=QUICK[cls];if(!Q){toast("Choose a class first.");return}
  const go=function(){const keep={name:B.name,cid:B.cid,src:B.src,packs:B.packs,rs:B.rs};__set_B(NEWB());if(keep.rs==="2014")B.rs="2014";if(keep.name&&keep.name!=="New Hero")B.name=keep.name;if(keep.cid)B.cid=keep.cid;if(keep.src)B.src=keep.src;if(keep.packs)B.packs=keep.packs;applyPacks();

@@ -66,7 +66,7 @@ function cnTC(L,cls,m){if(cls!=="Martyr")return {};const hd=Math.floor(L/2),con=
 function cnT14(L,c,m,dc,rv,pb){return {
    "Rage":function(){return (L>=20?"Unlimited uses":rv("Rage")+" uses per Long Rest")+", +"+c.track["Rage Damage"][L-1]+" Rage Damage"},
    "Indomitable":function(){return "Reroll a failed save, "+rv("Indomitable")+" use"+(rv("Indomitable")>1?"s":"")+" per Long Rest, you must keep the new roll"},  "Ki":function(){return L+" ki points, ki save DC "+dc("WIS")},
-   "Divine Sense":function(){return Math.max(1,1+m("CHA"))+" uses per Long Rest"},
+   "Divine Sense":function(){const n=Math.max(0,1+m("CHA"));return n+" use"+(n===1?"":"s")+" per Long Rest"}/* PHB 2014 p. 84: 1 + Cha modifier, no minimum, so Cha 9 or lower gives 0 */,
    "Cleansing Touch":function(){return Math.max(1,m("CHA"))+" uses per Long Rest"},
    "Wild Shape":function(){const lim=L>=8?"CR 1":L>=4?"CR 1/2, no flying speed":"CR 1/4, no flying or swimming speed";return (L>=20?"Unlimited uses":rv("Wild Shape")+" uses per Short Rest")+", "+lim+", lasts "+Math.floor(L/2)+" hour"+(Math.floor(L/2)>1?"s":"")},
    "Divine Intervention":function(){return L>=20?"Succeeds automatically":"Succeeds on a d100 roll of "+L+" or lower, then 7 days before you can try again"},
