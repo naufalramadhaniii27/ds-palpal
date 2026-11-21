@@ -94,7 +94,7 @@ function renderFeatStep2(h, head){
 }
 export function renderNotes(){/* v23 RU36 no. 9, RU38 no. 5: Notes like D&D Beyond. Background and Characteristics are on the Description tab */
   const nf=function(k){ return NOTE_FIELDS.filter((f) =>{ return f.k===k; })[0]; };
-  let html='<h3 class="noteh">Notes</h3><div class="nsecs">'+lateGet("NOTE_MORE").map(noteSec).join("")+noteSec(nf("backstory"))+noteSec({k:"other",l:"Other",h:"Anything else worth keeping",rows:3})+noteSec(nf("session"))+'</div>';/* v31 B9 */
+  let html='<div class="nsecs">'+lateGet("NOTE_MORE").map(noteSec).join("")+noteSec(nf("backstory"))+noteSec({k:"other",l:"Other",h:"Anything else worth keeping",rows:3})+noteSec(nf("session"))+'</div>';/* v31 B9 */
   html += jrnH();/* v22 RU70 */
   html += '<div class="saved">Saved on this device as you type.</div>';
   $("#notesBody").innerHTML = html; renderDesc();
