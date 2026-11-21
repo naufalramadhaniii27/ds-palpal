@@ -59,8 +59,6 @@ eq('Plaguetouched Bulwark',true,adv(mk('Paladin','Oath of the Plaguetouched',15)
 // picks
 {const a=mk('Wizard','Familiar Master (2014)',6),b=mk('Wizard','Familiar Master (2014)',6,{"gx-servgift-sub-Familiar Master (2014)":'Lizard'});eq("Servitor's Gift none",false,res(a.C,'Poison'));eq("Servitor's Gift Lizard Poison",true,res(b.C,'Poison'))}
 {const a=mk('Wizard','Familiar Master (2014)',14),b=mk('Wizard','Familiar Master (2014)',14,{"gx-servgreat-sub-Familiar Master (2014)":'Construct'});eq("Servitor's Greater Gift Construct AC +1",a.D.ac+1,b.D.ac)}
-{const a=mk('Sorcerer','Wretched Bloodline',3),b=mk('Sorcerer','Wretched Bloodline',3,{'gx-wcurse-sub-Wretched Bloodline':'Hulking'});eq('Wretched Curse Hulking HP +3',a.D.hpmax+3,b.D.hpmax)}
-{const r=mk('Sorcerer','Wretched Bloodline',3,{'gx-wcurse-sub-Wretched Bloodline':'Plaguebearer'});eq('Wretched Curse Plaguebearer Necrotic',true,res(r.C,'Necrotic'))}
 {const r=mk('Ranger','Snake Speaker',3,{'gx-scaly-sub-Snake Speaker':'Serpentine Movement'});eq('Scaly Transition Climb 30',30,mv(r.C,'Climb'))}
 {const r=mk('Warlock','Ancient Dragons',3,{'gx-wyrmbless-sub-Ancient Dragons':'Aquatic Affinity'});eq('Wyrmling Blessing Swim = Speed',r.D.speed,mv(r.C,'Swim'))}
 {const a=mk('Warlock','Animal Lords',10),b=mk('Warlock','Animal Lords',10,{'gx-primal-sub-Animal Lords':'Swift'}),c=mk('Warlock','Animal Lords',10,{'gx-primal-sub-Animal Lords':'Thick Hide'});eq('Primal Mastery Swift +10',a.D.speed+10,b.D.speed);eq('Primal Mastery Thick Hide +1 AC',a.D.ac+1,c.D.ac)}

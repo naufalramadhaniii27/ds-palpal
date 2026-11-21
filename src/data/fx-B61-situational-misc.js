@@ -10,7 +10,7 @@ F("Lich Transformation: Level 3",{n:"Lich Transformation: Level 3 (Enhanced Phyl
 F("Lycanthrope Transformation: Level 1",{n:"Lycanthrope Transformation: Level 1 (Hybrid Transformation)",toggle:{id:"b61-lycan-hybrid",label:"Hybrid form, no armor or shield: AC 10 + Con + Dex"},acBase:[10,"full","CON"],cond:"noArmor"});
 F("Tauran",{n:"Tauran (Rush)",toggle:{id:"b61-tauran-rush",label:"Moving only in a straight line this turn: Speed +10 ft"},speedAdd:10});
 I("Esquire's Rowels",{n:"Esquire's Rowels (riding)",toggle:{id:"b61-esquire-rowels",label:"Riding a mount: Initiative +1"},init:1});
-I("Adamantine Plating",{n:"Adamantine Plating",acBase:[17,""],acOver:true});
+I("Adamantine Plating",{n:"Adamantine Plating",acBase:[17,""]});/* no acOver: the text forbids conventional armor with it */
 I("Mithral Plating",{n:"Mithral Plating",acBase:[14,"full"],acOver:true,res:["Lightning"]});
 I("Spiked Plating",{n:"Spiked Plating",acBase:[14,"full"],acDexMax:2,acOver:true});
 I("Personal Shield Emitter",{n:"Personal Shield Emitter",acBase:[13,"full"]});
