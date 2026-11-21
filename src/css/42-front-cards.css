@@ -106,4 +106,5 @@
 #app #saves .row{min-height:48px;align-items:center}
 #app #saves .row .nm{border:0;background:none;box-shadow:none;padding:0 4px;min-height:44px;height:auto;display:flex;align-items:center}
 #app #saves .row .bonus{font-size:calc(22px*var(--tz,1));font-weight:800;min-width:48px}
+@media (max-width:359px){#app #saves .row .nm .tx>svg{display:none}}
 @media (max-width:759px){ #app #spBody>.sp-lv{margin:2px 0}#app #spBody>.filrow{margin-bottom:2px} }
