@@ -3,8 +3,11 @@ import {activeFx,bgX,un} from "./03-logic-magic-item-effects.js";
 import {allFeats} from "./09-logic-feats-and-choices.js";
 import {clsParts,spLists} from "./11-logic-derivation.js";
 import {registerFxSource} from "./10a-logic-fx-registry.js";
+import {genv} from "./00-env.js";
+/* the book id of a feat: FEATS[n].hb holds the book tag (DM24), WX.src maps it to the id (tsdm) */
+function featBk(F){const t=F&&F.hb,s=t&&(genv.WX&&genv.WX.src||[]).find((q) =>{return q.tag===t});return s?s.id:(t||"")}
 /* Effect sources (SOLID stage 1). One source per place that holds effect entries. collect(ctx) returns descriptors
-   {list, kind, owner, lv, pre, lblOf, okey, ocls, alias} (see 10a). ctx = {TL: character level, G: the GX registry, noItem}.
+   {list, kind, owner, lv, pre, lblOf, okey, ocls, alias, bk} (see 10a). ctx = {TL: character level, G: the GX registry, noItem}.
    A new source is one registerFxSource() call here, the gfx() loop is not touched. Run order = order of the calls below (class and subclass, species, background, feats, items, spells). */
 /* CLASSES[cls].fx and GX.cls[cls] at the class level; GX.sub[sub] at the same level. A multiclass part gets the key prefix "m<i>:" */
 registerFxSource({id:"class",items:false,collect:function(ctx){const out=[],G=ctx.G;let mi=0;clsParts().forEach((q) =>{const pre=q.mc?"m"+(mi++)+":":"",c=CLASSES[q.cls];
@@ -16,9 +19,9 @@ registerFxSource({id:"background",items:false,collect:function(ctx){const bg=bgX
  return [{list:(bg.gx||[]).concat((ctx.G.bg&&ctx.G.bg[B.bg])||[]),kind:"bg",owner:B.bg,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+B.bg+" background)"}}]}});
 /* spCls "@asi": the ability the feat raised. "@abpick": the ability picked with pick k "ab" */
 registerFxSource({id:"feats",items:false,collect:function(ctx){const G=ctx.G,out=[];allFeats().forEach((f) =>{const F=FEATS[f.n],fok=f.key||f.s,fab=(f.asi&&f.asi.a1)||"CHA",fpa=(B.ch["gx-ab-feat-"+fok]||[])[0]||"INT";
- out.push({list:((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),kind:"feat",owner:f.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+f.n+" feat)"},okey:f.key||f.s,alias:{"@asi":"@sub:"+fab,"@abpick":"@sub:"+fpa}})});return out}});
+ out.push({list:((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),kind:"feat",owner:f.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+f.n+" feat)"},okey:f.key||f.s,bk:featBk(F),alias:{"@asi":"@sub:"+fab,"@abpick":"@sub:"+fpa}})});return out}});
 /* equipped (and attuned when needed) magic items: row gx and GX.item[name] */
 registerFxSource({id:"items",items:true,collect:function(ctx){const G=ctx.G;return activeFx().map((q) =>{
- return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]),kind:"item",owner:q.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
+ return {list:(q.gx||[]).concat((G.item&&(G.item[q.n]||G.item[q.mi]))||[]),kind:"item",owner:q.n,bk:q.bk,lv:ctx.TL,pre:"",lblOf:(n) =>{return (n===q.n?n:n+" ("+q.n+")")+" (magic item"+(q.att?", attuned":"")+")"},alias:{"@abpick":"@sub:"+((B.ch["gx-ab-item-"+q.n]||[])[0]||"INT")}}})}});
 /* GX.spell[name]: entries of a spell the character has picked (per caster class, spLists); ocls = that class, so atkAb ab "spell" uses its spellcasting ability */
 registerFxSource({id:"spells",items:false,collect:function(ctx){const G=ctx.G.spell||{},L=spLists(),out=[];Object.keys(L).forEach((k) =>{L[k].forEach((n) =>{if(G[n])out.push({list:G[n],kind:"spell",owner:n,lv:ctx.TL,pre:"",lblOf:(x) =>{return x+" (spell)"},okey:undefined,ocls:k})})});return out}});

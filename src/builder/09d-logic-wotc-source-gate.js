@@ -1,5 +1,5 @@
 import {lateGet} from "./01b-logic-late-ports.js";
-import {DMAP,dmapAlias} from "./03-logic-magic-item-effects.js";
+import {DBK,DMAP,dmapAlias} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {R14} from "./05-logic-choice-model-ruleset.js";
 import {cls14Inject} from "./08-logic-2014-rules.js";
@@ -8,7 +8,7 @@ function wxRows(s,on){s.rows.forEach((x) =>{const w=on||!!(x[14]&&x[14].some((id
 /* v65: magic items of the WotC sources. An item is in the list while its source is on. A character that owns one keeps the source on */
 function wxItems(){const R=genv.WXI;if(!R||typeof DMGI==='undefined')return;const own=(B.inv||[]).map((x) =>{return x.n});
  Object.keys(R).forEach((id) =>{const rows=R[id];if(!B.src[id]&&rows.some((r) =>{return own.some((n) =>{return n===r[0]||n.indexOf(r[0]+" (")===0})}))B.src[id]=true;
-  if((B.src[id]||id==="dmg14"&&R14())&&B.src.dmg!==false)rows.forEach((r) =>{if(!DMAP[r[0]]){DMGI.push(r);DMAP[r[0]]=r}})/* v93: in a 2014 build the Dungeon Master's Guide row brings its variant items too */});(genv.WXWP||[]).forEach((n) =>{const r=DMAP[n],w=r&&r[5]&&r[5].wp;if(own.indexOf(n)>=0){if(w&&!WEAPONS[n])WEAPONS[n]=Object.assign({},w)}else if(WEAPONS[n]&&WEAPONS[n].xw)delete WEAPONS[n]});dmapAlias()}
+  if((B.src[id]||id==="dmg14"&&R14())&&B.src.dmg!==false)rows.forEach((r) =>{if(!DMAP[r[0]]){DMGI.push(r);DMAP[r[0]]=r;DBK.set(r,id)}})/* v93: in a 2014 build the Dungeon Master's Guide row brings its variant items too */});(genv.WXWP||[]).forEach((n) =>{const r=DMAP[n],w=r&&r[5]&&r[5].wp;if(own.indexOf(n)>=0){if(w&&!WEAPONS[n])WEAPONS[n]=Object.assign({},w)}else if(WEAPONS[n]&&WEAPONS[n].xw)delete WEAPONS[n]});dmapAlias()}
 /* v66: species of the WotC sources. SPECIES is rebuilt on every applyPacks, so they are added again here. A character that uses one keeps the source on */
 function wxSpecies(){const R=genv.WXSP;if(!R)return;Object.keys(R).forEach((id) =>{if(R[id][B.species])B.src[id]=true;if(B.src[id])Object.keys(R[id]).forEach((k) =>{SPECIES[k]=R[id][k]})})}
 /* v67: backgrounds of the WotC sources. BACKGROUNDS is rebuilt on every applyPacks, so they are added again here. A character that uses one keeps its source on */

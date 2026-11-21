@@ -121,7 +121,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  add("Shield of the Blazing Dreadnought",{n:"Blazing Soul",toggle:{id:"dreadnought-active",label:"Shield active (1 minute)"},imm:["Fire"]});
  add("Shield of the Hidden Lord",{n:"Shield of the Hidden Lord",res:["Fire"]});
  W("Shield of the Uven Rune",{imm:["Cold"]});
- add("Shoulder Cannon",{n:"Shoulder Cannon",ed:"2024",lu:{n:"Shoulder Cannon",max:1,reset:"dawn"}});
+ add("Shoulder Cannon",{n:"Shoulder Cannon",fromBk:["tsdm"],lu:{n:"Shoulder Cannon",max:1,reset:"dawn"}});
  add("Shroud of Ending",{n:"Blessings of Tyton",saveNote:["Advantage on death saving throws and on saves against effects that would kill you outright"],def:["Immunity","Disease"],defs:[["Note","You see in darkness as if it were bright light"]]});
 
  /* ---------- shard 14 ---------- */
@@ -144,7 +144,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  add("Staff of the Forgotten One",{n:"Staff of the Forgotten One",skillExpert:["Arcana","History"],atkDice:[{when:"Staff of the Forgotten One",d:"3d6",t:"Necrotic",note:"Hit with the staff"}]});
  adv("Staff of the Magi",["saving throws against spells"]);
  add("Staff of the Sorcerer King",{n:"Staff of the Sorcerer King",weapons:["Spear"],advOn:["saving throws against spells that target only you"]});
- add("Star Metal Ring",{n:"Star Metal Ring",ed:"2024",unarmed:{t:"Force",magic:true}});add("Star Metal Ring",{n:"Star Metal Ring",ed:"2014",unarmed:{magic:true}});/* same-named items in a 2024 book (tp08, tp13) and a 2014 book (tp18, tp17): ed gates by book edition */
+ add("Star Metal Ring",{n:"Star Metal Ring",fromBk:["tghg"],unarmed:{t:"Force",magic:true}});add("Star Metal Ring",{n:"Star Metal Ring",fromBk:["tgh14p"],unarmed:{magic:true}});/* same-named items in two books: fromBk gates by the book the row came from */
  RIDER("Starbreaker","1d4","Radiant","Hit with the morningstar");
  W("Starmetal Shield",{ac:-1});
  (function(n){add(n,{n:n,pick:[{k:"md",t:"multi",n:1,title:"Form of the axe",list:[["Fused (Greataxe)",""],["Fissioned (two Battleaxes)",""]]}]});
@@ -156,7 +156,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.cls=GX.cls||{};DataEn
  add("Stonemaker War Pick",{n:"Stonemaker War Pick",lu:{n:"Petrification charges (roll 1d6 + 1 when found)",max:7,reset:"none"}});
  adv("Stonespeaker Crystal",["Intelligence (Investigation) checks"]);
  add("Storm Sickle",{n:"Storm Sickle",weapons:["Sickle"],atkDice:[{when:"Storm Sickle",d:"1d4",t:"Lightning",note:"Hit with the sickle"}]});
- add("Straitjacket",{n:"Straitjacket",ed:"2024",acAdd:"INT",cond:"noArmor",defs:[["Note","Disadvantage on weapon and Unarmed Strike attack rolls while wearing it"]]});
+ add("Straitjacket",{n:"Straitjacket",fromBk:["tghg"],acAdd:"INT",cond:"noArmor",defs:[["Note","Disadvantage on weapon and Unarmed Strike attack rolls while wearing it"]]});
  add("Strig Feather Robe",{n:"Strig Feather Robe",abPick:{k:"a",from:["INT","CHA"],set:22}});
  RIDER("Sun Staff","1d8","Fire","Hit with the staff");
  add("Sword of Kas",{n:"Spirit of Kas",initDie:"1d10",atkBonus:[{when:"Sword of Kas",crit:19}]});

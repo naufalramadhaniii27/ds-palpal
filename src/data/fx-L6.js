@@ -62,7 +62,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  FXO["Tasha's Creeping Keelboat"]={fx:null};
  FXO["The Infernal Machine of Lum the Mad"]={fx:null};
  FXO["Platinum Scarf"]={fx:null};add("Platinum Scarf",{n:"Platinum Scarf",lu:{n:"Platinum Scarf scales",max:3,reset:"dawn"}});
- FXO["Toadstool Toddy"]={fx:null};add("Toadstool Toddy",{n:"Toadstool Toddy",toggle:{id:"toadstool-toddy",label:"Toadstool Toddy active (1 hour)"},imm:["Fire","Cold"]});
+ FXO["Toadstool Toddy"]={fx:null};add("Toadstool Toddy",{n:"Toadstool Toddy",fromBk:["tghg"],toggle:{id:"toadstool-toddy",label:"Toadstool Toddy active (1 hour)"},imm:["Fire","Cold"]});
  FXO["Wingwear"]={fx:null};add("Wingwear",{n:"Wingwear",toggle:{id:"wingwear-glide",label:"Gliding on Wingwear (flying speed 30 ft until you land)"},mv:{fly:30}});
  FXO["Infiltrator's Key (Dormant)"]={fx:null};FXO["Infiltrator's Key (Awakened)"]={fx:null};FXO["Infiltrator's Key (Exalted)"]={fx:null};
  [1,2,3].forEach(function(n,i){var t=["Dormant","Awakened","Exalted"][i];

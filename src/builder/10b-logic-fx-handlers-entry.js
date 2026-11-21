@@ -1,5 +1,5 @@
 import {registerFxHandler,chPick,ABFULL} from "./10a-logic-fx-registry.js";
-/* Entry handlers (registry "entry", contract in 10a). ctx = {src:{kind,owner,lv,pre,okey,alias,ocls}, ch:(the pick map, read only), fxT:(toggle state map)}.
+/* Entry handlers (registry "entry", contract in 10a). ctx = {src:{kind,owner,lv,pre,okey,alias,ocls,bk}, ch:(the pick map, read only), fxT:(toggle state map)}.
    gate and prepare handlers get the raw source entry e, post handlers get the built entry o. One handler per field group. */
 /* l: the entry counts from this level (class level for cls and sub entries, character level for the rest) */
 registerFxHandler("entry",{id:"gate-level",group:"gate",phase:"gate",fields:["l"],uses:["src"],run:function(e,ctx){return e.l&&ctx.src.lv<e.l?{skip:true}:null}});
@@ -7,6 +7,8 @@ registerFxHandler("entry",{id:"gate-level",group:"gate",phase:"gate",fields:["l"
 registerFxHandler("entry",{id:"gate-edition",group:"gate",phase:"gate",fields:["ed"],uses:["rs"],run:function(e,ctx){return (e.ed==="2024"&&ctx.rs==="2014")||(e.ed==="2014"&&ctx.rs!=="2014")?{skip:true}:null}});
 /* forCls [class]: the entry counts only under these owner classes (ctx.src.ocls). For a subclass name two books share under different classes (Reanimator: tvss Necromancer, rhw Artificer) */
 registerFxHandler("entry",{id:"gate-class",group:"gate",phase:"gate",fields:["forCls"],uses:["src"],run:function(e,ctx){return e.forCls&&e.forCls.indexOf(ctx.src.ocls)<0?{skip:true}:null}});
+/* fromBk [book id]: the entry counts only when its item or feat record came from one of these books (ctx.src.bk, the WXI key or the feat hb mapped to the id). For a name two books share (Star Metal Ring: tghg, tgh14p) */
+registerFxHandler("entry",{id:"gate-book",group:"gate",phase:"gate",fields:["fromBk"],uses:["src"],run:function(e,ctx){return e.fromBk&&e.fromBk.indexOf(ctx.src.bk)<0?{skip:true}:null}});
 /* when {key,val,any}: only while the pick named in key holds val */
 registerFxHandler("entry",{id:"gate-when",group:"gate",phase:"gate",fields:["when"],uses:["ch", "src"],run:function(e,ctx){if(!e.when)return null;const s=ctx.src,ok=function(w){const v=chPick(ctx.ch,w.key,s.pre,s.kind,s.okey,w.any),a=Array.isArray(v)?v:(v?[v]:[]);return a.indexOf(w.val)>=0&&(!w.and||ok(w.and))};return ok(e.when)?null:{skip:true}}});/* when.and: a second pick that must also hold (Fiend Stage 4 Abyssal Resistance) */
 /* spCls "@asi" / "@abpick": the source names the ability, the entry gets the "@sub:AB" form (src.alias is {"@asi":"@sub:CHA",...}) */

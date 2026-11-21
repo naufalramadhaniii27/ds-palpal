@@ -126,6 +126,7 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
  ["Beastperson","Cyberfiend"].forEach(function(n){addF(n,[{n:"Dexterity Unarmed Strike",atkAb:{kind:"unarmed",ab:"DEX"}}])});
  /* Aberrant Spawn: only the DM24 (2024) feat allows Dex; the VSS14 (2014) tentacle is Strength */
  addF("Aberrant Spawn",[{n:"Dexterity Unarmed Strike",ed:"2024",atkAb:{kind:"unarmed",ab:"DEX"}}]);
+ ["Aberrant Spawn","Beastperson","Cyberfiend"].forEach(function(n){addF(n,[{n:"Dexterity Unarmed Strike",atkAb:{kind:"unarmed",ab:"DEX"},fromBk:["tsdm"]}])});/* tsdm only: the tvss14 Aberrant Spawn tentacle uses Strength */
  addF("Adamantine Clan",[{n:"Adamantine Skin",acBase:[10,"full","CON"],cond:"noBody"}]);
  addF("Android",[{n:"Technical Expertise",pick:[{k:"sk",t:"multi",n:1,title:"Skill",list:[["Data",""],["Piloting",""],["Technology",""]]}]},
   {n:"Technical Expertise",when:{key:"sk",val:"Data"},skillProf:["Data"]},{n:"Technical Expertise",when:{key:"sk",val:"Piloting"},skillProf:["Piloting"]},{n:"Technical Expertise",when:{key:"sk",val:"Technology"},skillProf:["Technology"]}]);

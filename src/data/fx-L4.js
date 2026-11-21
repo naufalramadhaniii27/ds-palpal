@@ -20,7 +20,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  add("Eyes of the Eagle",{n:"Eyes of the Eagle",advOn:["Wisdom (Perception) checks that depend on sight"]});
  add("Fangs of Guile",{n:"Fangs of Guile",advOn:["Deception, Insight and Persuasion checks"]});
  add("Festerwood Vizard",{n:"Festerwood Vizard",sense:[["Blindsight",10,""]]});
- add("Fin Symbiote",{n:"Fin Symbiote",ed:"2024",advOn:["Constitution saving throws"]});
+ add("Fin Symbiote",{n:"Fin Symbiote",fromBk:["tghg"],advOn:["Constitution saving throws"]});
  add("Ghallanda Cauldron",{n:"Ghallanda Cauldron",advOn:["ability checks with Cook's Utensils"]});
  add("Greater Silver Sword",{n:"Greater Silver Sword",advOn:["Intelligence, Wisdom and Charisma saving throws (while held)"]});
  add("Helm of Perfect Potential",{n:"Master of Guile",advOn:["Charisma (Deception) checks","Wisdom (Insight) checks"]});
@@ -131,7 +131,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
 
  /* Spells and proficiencies. Same-name rows of a 2024-rules and a 2014-rules book (tghg/tgh14p, tsdm/tdm14) are told apart by ed. Hat of Disguise and Flamefriend Lantern spells come from ITEM_SPELLS only. */
  add("Finger Gun Glove",{n:"Finger Gun Glove",spells:[[1,"Finger Guns"]]});
- add("Finger Picks",{n:"Finger Picks",ed:"2024",toolPE:["Thieves' Tools"]}); add("Finger Picks",{n:"Finger Picks",ed:"2014",defs:[["Note","Finger Picks: +2 to ability checks with Thieves' Tools if you are proficient with them"]]});/* fx engine v5: proficiency, or Expertise when already proficient */
+ add("Finger Picks",{n:"Finger Picks",fromBk:["tsdm"],toolPE:["Thieves' Tools"]}); add("Finger Picks",{n:"Finger Picks",fromBk:["tdm14"],defs:[["Note","Finger Picks: +2 to ability checks with Thieves' Tools if you are proficient with them"]]});/* fx engine v5: proficiency, or Expertise when already proficient */
  add("Fireweaver Gloves",{n:"Fireweaver Gloves",spells:[[1,"Produce Flame"]],defs:[["Note","Produce Flame from the gloves: +5 to hit, 1-hour duration"]]});
  add("Forgemaster's Might",{n:"Forgemaster's Might",spells:[[1,"Mending"]],lu:[{n:"Creation (Forgemaster's Might)",max:1,reset:"dawn"},{n:"Fabricate (Forgemaster's Might)",max:1,reset:"dawn"}]});
  add("Glove of the Grim Fandango",{n:"Glove of the Grim Fandango",tools:["Musical Instruments (all)"]});
@@ -162,7 +162,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
 
  /* Ironfang, Iron Fangs */
  add("Ironfang",{n:"Earth Mastery",langs:["Terran"],sense:[["Tremorsense",60,""]]});
- add("Iron Fangs",{n:"Iron Fangs",ed:"2024",atkBonus:[{when:["Bite"],atk:2,dmg:2}]});
+ add("Iron Fangs",{n:"Iron Fangs",fromBk:["tghg"],atkBonus:[{when:["Bite"],atk:2,dmg:2}]});
  add("Ionbreaker, the Tempest's Reach",{n:"A Storm Is Coming",initDie:"1d10"});
  /* Graft unarmed strikes */
  add("Monstrous Bite",{n:"Monstrous Bite",unarmed:{die:"1d6",t:"Piercing",force:1},atkAb:{kind:"unarmed",ab:"DEX"}});
