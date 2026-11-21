@@ -9,7 +9,8 @@ Round 4: tab titles at most 40 px tall; the first card of Actions and Features i
 search folded behind an icon and Reorder as an icon in the filter row; casting times as short words (no 1A codes); no dash cells on spell rows;
 no links inside the feature one-liner or badge row; attack cells and spell cells stay aligned without overlap in the light and high-contrast skins.
 Round 5: the pager lands exactly on a page after 5 jumps to Features (and others); the identity card ends right under its last row;
-Inventory Manage and Shop share one row; the weight column header is not shown over the item names on phones."""
+Inventory Manage and Shop share one row; the weight column header is not shown over the item names on phones.
+Round 6: the Home continue card portrait is top-aligned with its text column."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,6 +41,8 @@ with sync_playwright() as p:
     b = p.chromium.launch(); ctx = b.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2); ctx.add_init_script(SEED); pg = ctx.new_page(); errs = []
     pg.on("pageerror", lambda e: errs.append(str(e)))
     pg.goto("file://" + os.path.join(ROOT, "index.html")); pg.wait_for_timeout(3000)
+    hp = pg.evaluate("()=>{const a=document.querySelector('#hxHero .hhpor'), t=document.querySelector('#hxHero .hhtx'); return a&&t?Math.round(a.getBoundingClientRect().top-t.getBoundingClientRect().top):null}")
+    check("Home continue card portrait starts at the top of its text (no empty space above)", hp is not None and abs(hp) <= 8, hp)
     pg.click("[data-hview]"); pg.wait_for_selector("#dmgBtn", state="attached", timeout=30000); pg.wait_for_timeout(1500)
     # pager snap: every jump lands on a page edge (a page slide on the page itself once moved the snap 36 px)
     off = []

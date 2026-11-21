@@ -4,7 +4,7 @@
   background:linear-gradient(180deg,rgba(8,10,12,.35),rgba(8,10,12,.55)),linear-gradient(120deg,var(--hc1,#264b40),var(--hc2,#1c3a31));border:1px solid rgba(255,255,255,.14);overflow:hidden;isolation:isolate}
 .hhero[hidden]{display:none}
 .hheb{grid-area:eb;font-size:calc(12px*var(--tz,1));letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:.9}
-.hhpor{grid-area:por;position:relative;width:88px;height:88px;border-radius:50%;background:rgba(0,0,0,.35) center/cover no-repeat;border:3px solid rgba(255,255,255,.9);box-shadow:0 0 0 4px rgba(255,255,255,.18);display:grid;place-items:center;overflow:hidden}
+.hhpor{grid-area:por;align-self:start;position:relative;width:88px;height:88px;border-radius:50%;background:rgba(0,0,0,.35) center/cover no-repeat;border:3px solid rgba(255,255,255,.9);box-shadow:0 0 0 4px rgba(255,255,255,.18);display:grid;place-items:center;overflow:hidden}
 .hhpor svg,.hhpor .hpor-ci{width:46px;height:46px;opacity:.85}
 .hhtx{grid-area:tx;min-width:0}
 .hhname{margin:0;font-family:var(--f-display,inherit);font-size:clamp(24px,7vw,40px);line-height:1.1;font-weight:900;letter-spacing:-.01em;overflow-wrap:anywhere}

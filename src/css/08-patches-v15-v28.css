@@ -268,10 +268,10 @@ svg.ist{width:.95em;height:.95em;margin:0 0 0 .3em;opacity:.75;vertical-align:-.
 @keyframes lsk{to{transform:translateX(100%)}}
 .lib-sk .lib-ri{height:22px;border-radius:50%;background:var(--line)}
 .lib-sk .lib-rt{flex:1}
-.lib-sk b,.lib-sk small,.sk-h{display:block;background:var(--line);background-clip:content-box;border-radius:6px}
+.lib-sk b,.lib-sk small,b.sk-h{display:block;background:var(--line);background-clip:content-box;border-radius:6px}
 .lib-sk b{height:23px;padding:5px 0;width:60%}
 .lib-sk small{height:18px;padding:4px 0;width:35%}
-.sk-h{width:90px;height:21px;padding:4px 0}
+b.sk-h{width:90px;height:21px;padding:4px 0}
 .lib-tile.lib-sk{height:81px}
 .lib-sk .lib-rc{width:48px;height:23px;padding:0;border:0;background:var(--line)}
 .lib-chip.lib-sk{background:var(--line);border-color:transparent}
