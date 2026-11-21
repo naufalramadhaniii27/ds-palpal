@@ -14,7 +14,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};DataEnv.slot.THIRD_SUBS=Da
  /* Druid */
  A("Circle of Blood",[{n:"Rite of the Blood Moon",l:3,toggle:BM,speedAdd:10},{n:"Blood Lust",l:10,toggle:BM,res:["Bludgeoning","Piercing","Slashing"]}]);
  A("Circle of Configuration",[{n:"Machine Code",l:3,langs:["Machine Code"],spCls:"Druid",spells:[[3,"Technomancy"]]}]);
- A("Circle of Entropy",[{n:"Ruin Incarnate",l:3,toggle:{id:"ruin-incarnate",label:"Ruin Incarnate active"},acBase:[17,"","WIS"],acOver:true}]);
+ A("Circle of Entropy",[{n:"Ruin Incarnate",l:3,toggle:{id:"ruin-incarnate",label:"Ruin Incarnate active"},acBase:[17,"","WIS"],acOver:true},{n:"Ruin Incarnate",l:3,toggle:{id:"ruin-incarnate",label:"Ruin Incarnate active"},acBase:[18,""],acOver:true}]);
  A("Circle of Owls",[{n:"Bonus Proficiency",l:3,pick:[{k:"owlskill",t:"skills",n:1,from:["Deception","Stealth"],title:"Bonus Proficiency"}]}]);
  A("Circle of Roses",[{n:"Bonus Proficiency",l:3,pick:[{k:"rosesskill",t:"skills",n:1,from:["Deception","Intimidation","Persuasion"],title:"Bonus Proficiency"}]},
   {n:"Circle Spells",l:3,spCls:"Druid",spells:[[3,"Friends"]]},

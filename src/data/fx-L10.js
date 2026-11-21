@@ -78,7 +78,6 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.species=GX.species||{};
  add("Greenleaf College",[{l:3,n:"Expanded Spell List",spListAdd:{cls:"Bard",spells:["Entangle","Goodberry","Pass without Trace","Spike Growth","Conjure Animals","Daylight","Conjure Woodland Beings","Dominate Beast","Commune with Nature","Tree Stride"]}},
   {l:6,n:"Land's Stride",advOn:["saves against plants magically made or shaped to hinder movement"],defs:[["Note","Nonmagical Difficult Terrain costs no extra movement"]]}]);
  /* Captain (names shared with Vagabond, same text) */
- add("Adrenaline Junkie",[{l:6,n:"Live Fast",defs:[["Note","No damage from falls of 60 ft or less"]]}]);
  add("Demon Brand",[{l:6,n:"Blindsight",sense:[["Blindsight",30,""]]}]);
  add("Gourmand",[{l:3,n:"Fine Cuisine",spCls:"@sub:WIS",spells:[[3,"Gentle Repose"]],defs:[["Note","Gentle Repose can be cast only as a Ritual"]]}]);
  add("Holy Icon",[{l:3,n:"Theological Studies",spCls:"@sub:CHA",skillBonus:[["Religion","CHA",1]],pick:[{k:"c",t:"cantrip",n:2,cls:"Cleric",title:"Two Cleric cantrips"}]}]);
@@ -112,14 +111,14 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.species=GX.species||{};
   {l:3,n:"Tongues of the Mountains",when:{key:"gx-lang-sub-Mountain Domain",val:"Giant"},langs:["Giant"]}]);
  add("Night Domain",[{l:3,n:"Eye of Twilight",sense:[["Darkvision",60,"gray only"]]},{l:6,n:"Eye of Twilight (120 ft)",sense:[["Darkvision",120,"gray only"]]},
   {l:3,n:"Ward of Shadows",lu:{n:"Ward of Shadows",max:"mod:WIS",reset:"long",tag:"Reaction"}}]);
- add("Ocean Domain",[{l:6,n:"At Home in the Waves",mv:{swim:30},darkNone:60,darkHave:{add:30}},{l:3,n:"Envoy to the Waves",langs:["Aquan"],weapons:["Trident","Net"]},
+ add("Ocean Domain",[{l:6,n:"At Home in the Waves",mv:{swim:30},darkHave:{add:30}},{l:3,n:"Envoy to the Waves",langs:["Aquan"],weapons:["Trident","Net"]},
   {l:17,n:"Scales of the Sea",toggle:{id:"ocean-scales",label:"Scaled"},def:["Resistance","Bludgeoning, Piercing and Slashing damage from nonmagical weapons"]}]);
  add("Prophecy Domain",[{l:3,n:"A Path Foretold",pick:[{k:"lang",t:"lang",n:1,title:"Exotic language"}]}]);
  add("Purification Domain",[{l:3,n:"Cleanse with Fire",lu:{n:"Cleanse with Fire",max:{f:"mod:WIS+pb",min:1},reset:"short"}},{l:6,n:"Ward Against Corruption",advOn:["saves to avoid or end diseases","saves against effects that change your form"]}]);
  add("Speed Domain",[{l:3,n:"Celerity in Thought and Action",speedAdd:5},{l:6,n:"Quickness of the Gods",speedAdd:5}]);
  add("Strength Domain (PSA)",[{l:17,n:"Avatar of Battle",def:["Resistance","Bludgeoning, Piercing and Slashing damage from nonmagical attacks"]}]);
  add("War Domain (2014)",[{l:17,n:"Avatar of Battle",def:["Resistance","Bludgeoning, Piercing and Slashing damage from nonmagical attacks"]}]);
- add("Tempest Domain",[{l:17,n:"Stormborn",mv:{fly:"speed"}}]);
+ add("Tempest Domain",[{l:17,n:"Stormborn",toggle:{id:"tempest-outdoors",label:"Outdoors, not underground"},mv:{fly:"speed"}}]);
  add("Time Domain",[{l:17,n:"Master of Time",spListAdd:{cls:"Cleric",spells:["Foresight","Time Stop"]}}]);
  add("Travel Domain",[{l:3,n:"Bonus Proficiency",tools:["Cartographer's Tools"],pick:[{k:"lang",t:"lang",n:2,title:"Two languages"}]},{l:3,n:"Born to the Road",pick:[{k:"skill",t:"skills",n:1,from:["Insight","Nature","Survival"],title:"Born to the Road skill"}]}]);
  add("Void Domain",[{l:3,n:"Bonus Proficiency",tools:["Navigator's Tools"]}]);
