@@ -120,6 +120,7 @@ AREAS = {
         ("builder_cost", [PY, "tests/builder_cost.py"]),
         ("html_gate", [PY, "tools/html_gate.py"]),
         ("scenarios", [PY, "tests/scenarios.py"]),
+        ("detail_summary", [PY, "tests/detail_summary.py"]),
     ],
     "pdf": [
         ("pdfx_export", [PY, "tests/pdfx_export.py"]),

@@ -64,7 +64,7 @@ html:not([data-skin="ddb"]) .mi-hpg,html:not([data-skin="ddb"]) .mi-hpi{display:
 :root[data-skin="ddb"] .bd.bonus{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:0!important;line-height:1}
 :root[data-skin="ddb"] #sheet{background-color:color-mix(in srgb,var(--panel) 90%,#9fb4c8 10%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px);border-color:rgba(255,255,255,.1)!important;box-shadow:0 -10px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)!important}
 /* detail panels: a four-up strip is too tight in a side panel or on a phone, so it goes two by two there (this was cramped in the original too) */
-#sheet:not(.wide) .dc-strip:not(.dc-s1):not(.dc-s2){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+#sheet:not(.wide) .dc-strip:not(.dc-s1):not(.dc-s2):not(.dc-s3){grid-template-columns:repeat(2,minmax(0,1fr))!important}
 :root[data-skin="ddb"] #sheet .dc-cell{background-color:color-mix(in srgb,var(--panel) 84%,#9fb4c8 16%)!important;background-image:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0) 70%)!important;border:1px solid rgba(255,255,255,.1)!important;box-shadow:0 8px 18px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)!important}
 :root[data-skin="ddb"] #sheet .dc-cell b{font-size:1.05em}
 /* the left column was a tall dark box stretched to the height of the Actions list: now its cards stand on their own */
