@@ -21,7 +21,7 @@ SUB = {
   "Sudden Illumination": "When you hit with Radiant Beam, the target makes a Constitution save or is Blinded until the end of its next turn. The save DC is 8 + Dexterity modifier + Proficiency Bonus.",
   "Dawn Flare": "When you use Dawn Strike to deal Radiant damage to a creature that cannot see you, it makes a Constitution save. On a failure it takes 10d6 Radiant damage and cannot regain hit points until the start of your next turn. A creature hit this way is immune for 24 hours. The save DC is 8 + Dexterity modifier + Proficiency Bonus.",
  },
- "lu": [], "fx": [[3, "Eyes of the Dawn", {"darkAdd": 30}]], "acts": {"Radiant Beam": "bonus"}},
+ "lu": [], "fx": [], "acts": {"Radiant Beam": "bonus"}},
 "Sapper": {"spab": "",
  "f": {
   "Combat Engineer": "Gain proficiency with alchemist's supplies, carpenter's tools, mason's tools and tinker's tools. Alchemical Bomb: as an action, throw a bomb at a point you see within 30 ft. Creatures within 10 ft make a Dexterity save, taking 1d6 Force on a failure or half on a success, with the damage rising to 2d6 at level 5, 3d6 at 11 and 4d6 at 17. A bomb goes inert after 1 minute. If a construct fails, or you hit a structure or unattended object, the bomb also deals your Sneak Attack damage. The save DC is 8 + Dexterity modifier + Proficiency Bonus. Jury Rig Fortification: with 1 minute of work, build a low wall giving Cover to a Medium creature, dig a trench 5 ft long, 3 ft wide and 3 ft deep, or build a ladder 5 ft long and 3 ft wide, adding 5 ft per extra minute and sturdy enough to bridge. Hastily Trap an Area: set traps quickly. Collapsing roof takes 5 minutes per 5-ft square. Falling net takes 1 minute and a set takes 1 action. Bear trap takes 1 minute and a set takes 1 bonus action. A simple pit takes 5 minutes, a hidden pit 15 minutes and a locking pit 1 hour, with 1 extra minute for spikes. Resetting takes a bonus action for simple or locking pits and an action for hidden pits.",
@@ -41,7 +41,7 @@ SUB = {
   "Improved Smuggler's Legerdemain": "Learn a second spell from nystul's magic aura, blur, darkvision, enlarge/reduce, invisibility, knock, levitate, magic mouth, mirror image, rope trick or spider climb. Cast it once at its lowest level per rest, or with slots of 2nd level or higher. You can swap it for another from this list when you gain a level. Your 1st-level Legerdemain spells are cast as 2nd level unless you choose another slot.",
   "Slippery as an Eel": "Your speed rises by 10 ft, you ignore difficult terrain, and you have Advantage on Initiative rolls.",
  },
- "lu": [], "fx": [[3, "Dab-handed Dealer", {"tools": [[3, "Land vehicles"], [3, "Water vehicles"]]}], [9, "Hypervigilance", {"advOn": ["Perception that relies on sight or hearing"]}], [17, "Slippery as an Eel", {"mv": 10}]],
+ "lu": [], "fx": [[3, "Dab-handed Dealer", {"tools": [[3, "Land vehicles"], [3, "Water vehicles"]]}], [9, "Hypervigilance", {"advOn": ["Perception that relies on sight or hearing"]}]],
  "acts": {}},
 "Soulspy": {"spab": "WIS", "third": {"list": "Cleric", "ab": "WIS", "cant": 3},
  "f": {
