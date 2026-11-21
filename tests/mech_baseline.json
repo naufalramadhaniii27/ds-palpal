@@ -113,6 +113,7 @@
   "species|Vampire (Zendikar)|Blood Thirst": "Batch A triage: Aksi menghisap darah. Resistance Necrotic sudah terhitung. Spesies 2014 saja.",
   "sub|Alchemist/Pigmentist|Paint Bombs": "Sub gap triage: the choice is made per use during play (target, effect or die), no static number on the sheet.",
   "sub|Artificer/Reanimator|Macabre Modifications": "Sub gap triage: the number belongs to a companion, familiar, thrall or summon, not to the character sheet.",
+  "sub|Artificer/Reanimator|Strange Modifications": "The choice is an option of the companion, not of the character sheet.",
   "sub|Barbarian/Path of Heavy Metal (2014)|Bonus Proficiencies": "Valda 2014 triage: pilihan atau opsi bersyarat di dalam fitur. Teks lengkap ada di fitur, tidak ada field yang bisa dihitung sheet.",
   "sub|Barbarian/Path of Tranquility (2014)|Zen State": "Valda 2014 triage: AC bersyarat (bentuk, aura, atau keadaan). Teks ada di fitur, tidak masuk AC statis.",
   "sub|Barbarian/Path of the Beast|Form of the Beast": "Sub gap triage: Tail adds a 1d8 roll to AC as a Reaction against one attack, no static AC.",

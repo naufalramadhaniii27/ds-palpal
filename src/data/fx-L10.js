@@ -121,6 +121,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.species=GX.species||{};
  add("Tempest Domain",[{l:17,n:"Stormborn",toggle:{id:"tempest-outdoors",label:"Outdoors, not underground"},mv:{fly:"speed"}}]);
  add("Time Domain",[{l:17,n:"Master of Time",spListAdd:{cls:"Cleric",spells:["Foresight","Time Stop"]}}]);
  add("Travel Domain",[{l:3,n:"Bonus Proficiency",tools:["Cartographer's Tools"],pick:[{k:"lang",t:"lang",n:2,title:"Two languages"}]},{l:3,n:"Born to the Road",pick:[{k:"skill",t:"skills",n:1,from:["Insight","Nature","Survival"],title:"Born to the Road skill"}]}]);
+ add("Travel Domain (2014)",[{l:1,n:"Well-Traveled",pick:[{k:"wp",t:"weapon",n:4,title:"Four finesse or ranged weapons"},{k:"lang",t:"lang",n:2,title:"Two languages"}]}]);
  add("Void Domain",[{l:3,n:"Bonus Proficiency",tools:["Navigator's Tools"]}]);
  /* Craftsman */
  add("Courtiers' Guild",["Deception","Insight","Performance","Persuasion"].map(function(s){return {l:3,n:"Fashionable",when:{key:"courtier_elegant",val:s},skillProf:[s]}}));

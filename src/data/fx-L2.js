@@ -27,9 +27,6 @@
  W.FXO["Hammer of Runic Focus"]={fx:null};                /* row had +3 always: only inside the rune circle */
  W.FXO["Moon Card"]={fx:null};                            /* row had four resistances always: Bludgeoning, Piercing, Slashing in wolf form only (Force was never a resistance) */
  W.FXO["Amethyst Lodestone"]={fx:null};                   /* row had Fly always: 1 charge, 10 minutes */
- W.FXO["Ring of Air Elemental Command"]={fx:null};        /* row had Fly and Lightning resistance always: only after helping slay an air elemental */
- W.FXO["Ring of Earth Elemental Command"]={fx:null};      /* row had Acid resistance always: only after helping slay an earth elemental */
- W.FXO["Ring of Fire Elemental Command"]={fx:{res:["Fire"]}};  /* Fire resistance is the base ring, Fire immunity needs the slain elemental (toggle below) */
  W.FXO["Armor of Zombie Flesh"]={fx:null};                /* row had Hide Armor plus 2 (Dex capped at 2): the text says AC 14 + Dexterity modifier (acBase below; the 2014 Grim Hollow row says 16 + Dexterity modifier) */
  /* Deck of Wonder and Deck of Many More Things: fx:null already in fx-D-item.js (random card results). Verified again in tests/golden/builds/fx_L2_*.json */
 
@@ -124,10 +121,4 @@
  add("Amethyst Lodestone",{n:"Amethyst Lodestone",advOn:["Strength saving throws"]});
  add("Amethyst Lodestone",{n:"Flight",toggle:{id:"lodestone-flight",label:"Amethyst Lodestone: flight (10 minutes)"},mv:{fly:"speed"}});
  add("Warrior's Passkey",{n:"Sword Form",toggle:{id:"passkey-sword",label:"Warrior's Passkey: sword form"},defs:[["Note","Sword form: magic longsword, you are proficient, +1 to attack and damage rolls, a hit deals 1d10 Force damage (instead of a longsword's)"]]});
- /* Rings of Elemental Command (2014): the extra properties after helping slay that elemental */
- function ring(e,id,x){add("Ring of "+e+" Elemental Command",Object.assign({n:e+" Elemental Slain",toggle:{id:id,label:"Ring of "+e+" Elemental Command: slew or helped slay "+(e==="Air"||e==="Earth"?"an ":"a ")+e.toLowerCase()+" elemental"}},x))}
- ring("Air","air-elemental-slain",{res:["Lightning"],mv:{fly:"speed"},defs:[["Note","Ring of Air Elemental Command: you can hover"]]});
- ring("Earth","earth-elemental-slain",{res:["Acid"]});
- ring("Fire","fire-elemental-slain",{imm:["Fire"]});
- ring("Water","water-elemental-slain",{mv:{swim:"speed"},defs:[["Note","Ring of Water Elemental Command: you can breathe underwater"]]});
 })();

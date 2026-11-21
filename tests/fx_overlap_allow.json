@@ -35,8 +35,10 @@
    "fx-L1.js",
    "fx-L5.js"
   ],
-  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
+  "reason": "Different features of the same cls are defined in the two files (no field shared); nothing is counted twice. ed is only the edition gate, not an effect.",
+  "shared": [
+   "ed"
+  ]
  },
  "GX.cls|Investigator": {
   "files": [
@@ -333,8 +335,10 @@
    "fx-L2.js",
    "fx-Z1.js"
   ],
-  "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice.",
-  "shared": []
+  "reason": "fx-Z1.js adds only the atkDice rider for the DMG 2024 weapon text. The other file defines different fields of the same item (no field shared), so nothing is counted twice. ed is only the edition gate, not an effect.",
+  "shared": [
+   "ed"
+  ]
  },
  "GX.item|Baba Yaga's Mortar and Pestle": {
   "files": [
