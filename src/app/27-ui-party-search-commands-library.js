@@ -7,7 +7,7 @@ import {featAll} from "./08b-ui-render-summaries-actions.js";
 import {__set_navStack,openSheet,sheet,sheetMode,showEntry} from "./12-ui-bottom-sheet-modal.js";
 import {closeSheet,closeSheetIfOn} from "./13b-ui-detail-spell-targets-render.js";
 import {BKEY,RKEY,rEnsure,rSave} from "./14-ui-editor.js";
-import {cOf,zUnpack} from "./15c-logic-file-state-compress.js";import {learnGo,rSnap,tgGo} from "./15-logic-roster-backup-files-snapshots.js";
+import {cOf,zUnpack} from "./15c-logic-file-state-compress.js";import {learnGo,rSnap} from "./15-logic-roster-backup-files-snapshots.js";
 import {chCheck,jsonLoose} from "./16-logic-import-chat-text-and-build-files.js";
 import {mq} from "./21-ui-tabs-pager.js";
 import {ico,icoItem} from "./23-ui-uses-items-coins-rest-spell-dc.js";import {invKey} from "./23b-ui-items-containers.js";import {openRest} from "./23d-ui-rest.js";import {ordL,scAdj} from "./23e-ui-spells-dc.js";
@@ -141,8 +141,6 @@ PALWORD.add("exhaustion", {words:function(){ return [
   {k:["exhaustion"],f:function(){ return palNeed("exh"); }}]; }});
 PALWORD.add("history", {words:function(){ return [
   {k:["history","time machine","go back","versions"],f:function(){ return {i:"ui-undo",t:"History",s:"Your character at earlier moments",run:function(){ tmOpen(); }}; }}]; }});
-PALWORD.add("training ground", {words:function(){ return [
-  {k:["training ground","train","practice fight","combat practice","monsters"],f:function(){ return {i:"ui-shield",t:"Training Ground",s:"Practice fights against monsters",run:function(){ closeSheetIfOn(); tgGo(); }}; }}]; }});
 PALWORD.add("which die", {words:function(){ return [
   {k:["which die","what do i roll","dice"],f:function(){ return {i:"ui-dice",t:"Which die do I roll?",s:"The die and bonus for what you are doing",run:function(){ wdOpen(); }}; }}]; }});
 PALWORD.add("cheat sheet", {words:function(){ return [

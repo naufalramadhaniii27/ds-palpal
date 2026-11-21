@@ -42,7 +42,7 @@ for f in files:
     for nm in sorted(used - declared): ok(False, '%s uses the slot %s but never declares it (DataEnv.declare("%s") on its first line)' % (f, nm, nm))
     ok(True, 'declared ok')
 # 3 other modules do not name the door
-for d in ('app', 'builder', 'fx', 'boot', 'learn', 'tg'):
+for d in ('app', 'builder', 'fx', 'boot', 'learn'):
     base = os.path.join(ROOT, 'src', d)
     if not os.path.isdir(base): continue
     for r, _, fs in os.walk(base):

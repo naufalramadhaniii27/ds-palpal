@@ -39,8 +39,9 @@ function mcSubPicks(out,m,i,c,p,src){
  if(m.sub)subChoicesFor(m.sub).forEach((q) =>{if(m.lv>=q.l)out.push(q.kind==="opt"?{key:p+"sc"+q.k,mc:i,lvl:q.l,t:"multi",n:q.n,list:q.list,title:q.title,src:m.sub+" "+q.l,feature:q.feature}:{key:p+"sc"+q.k,mc:i,lvl:q.l,t:"skills",n:q.n,from:q.from,title:q.title,src:m.sub+" "+q.l,feature:q.feature})});/* v20 M2 */
  /* fx engine: fsPick on a subclass of a multiclass part, key "m<i>:sfs<l>" (same as the main class "sfs<l>") */if(m.sub&&gx().sub)(gx().sub[m.sub]||[]).forEach((e) =>{if(e.fsPick&&m.lv>=(e.l||1))out.push({key:p+"sfs"+(e.l||1),mc:i,lvl:e.l||1,t:"fs",cls:m.cls,xopt:1,title:"Fighting Style",src:m.sub+" "+(e.l||1),feature:e.n||"Fighting Style"})});}
 function mcFeats(out,m,i,c,p,src){
- [4,8,12,16].concat(c.asiX||[]).forEach((l) =>{if(m.lv>=l)out.push({key:p+"feat"+l,mc:i,lvl:l,t:"feat",cat:"G",title:"Ability Score Improvement or feat",src:SRC+", General Feat ("+m.cls+" "+l+")"})});
- if(m.lv>=19)out.push({key:p+"feat19",mc:i,lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+m.cls+" 19)"})}
+ [4,8,12,16].concat(R14()?[19]:[],c.asiX||[]).forEach((l) =>{if(m.lv>=l)out.push({key:p+"feat"+l,mc:i,lvl:l,t:"feat",cat:"G",title:"Ability Score Improvement or feat",src:SRC+", General Feat ("+m.cls+" "+l+")"})});
+ /* 2014: level 19 is an Ability Score Improvement, no Epic Boon (PHB 2014) */
+ if(m.lv>=19&&!R14())out.push({key:p+"feat19",mc:i,lvl:19,t:"feat",cat:"E",title:"Epic Boon",src:SRC+", Epic Boon ("+m.cls+" 19)"})}
 function mcChoices(){const out=[];MCL().forEach((m,i) =>{const c=CLASSES[m.cls],p="m"+i+":",src=function(l){return SRC+", "+m.cls+" "+l+" (multiclass)"};
  mcGrant(out,m,i,c,p,src);mcStyle(out,m,i,c,p,src);mcPicks(out,m,i,c,p,src);mcSubPicks(out,m,i,c,p,src);mcFeats(out,m,i,c,p,src)});
  return out}

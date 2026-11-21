@@ -21,14 +21,14 @@ function dom(){ let w=document.getElementById("learn"); if(w) return w;
   w.innerHTML='<header class="lrn-h"><button type="button" class="lrn-ib" data-l="back" id="lrnBk">'+ic("ui-chev-l")+'</button><div class="lrn-tt"><b id="lrnT"></b><small id="lrnS"></small></div><span class="lrn-xp" id="lrnXp"></span><div class="lrn-lang" role="group" id="lrnLg"><button type="button" data-llang="en" lang="en">EN</button><button type="button" data-llang="id" lang="id">ID</button></div><button type="button" class="lrn-ib" data-l="close" id="lrnX">'+ic("ui-close")+'</button></header>'
     +'<div class="lrn-b" id="lrnB"></div><p class="lrn-live sr" id="lrnLive" aria-live="polite"></p><div class="lrn-pop" id="lrnPop" role="dialog" aria-modal="false"></div>';
   document.body.appendChild(w); wire(w); return w; }
-function head(){ let t="",s=""; if(V.view==="forge"){ t=lrnL(LEARN.places[V.p].name); s=lrnL(LEARN.places[V.p].goal); } else if(V.view==="map"){ t=U("learn"); s=lrnCoreDone()+" / "+lrnCore().length+" · "+U("core"); } else if(V.view==="place"){ const p=LEARN.places[V.p]; t=lrnL(p.name); s=V.fin?U("finishPlace"):U("step")+" "+(V.i+1)+" "+U("of")+" "+p.steps.length; } else { t=V.recap?U("recap"):V.exam!=null?lrnL(LEARN.places[V.exam].name):U("quiz"); s=V.qd?U("done"):(V.qi+1)+" "+U("of")+" "+V.Q.length; }
+function lrnHead(){ let t="",s=""; if(V.view==="forge"){ t=lrnL(LEARN.places[V.p].name); s=lrnL(LEARN.places[V.p].goal); } else if(V.view==="map"){ t=U("learn"); s=lrnCoreDone()+" / "+lrnCore().length+" · "+U("core"); } else if(V.view==="place"){ const p=LEARN.places[V.p]; t=lrnL(p.name); s=V.fin?U("finishPlace"):U("step")+" "+(V.i+1)+" "+U("of")+" "+p.steps.length; } else { t=V.recap?U("recap"):V.exam!=null?lrnL(LEARN.places[V.exam].name):U("quiz"); s=V.qd?U("done"):(V.qi+1)+" "+U("of")+" "+V.Q.length; }
   document.getElementById("lrnT").textContent=t; document.getElementById("lrnS").textContent=s; document.getElementById("lrnXp").textContent=LRN.xp+" "+U("xp");
   document.getElementById("lrnBk").setAttribute("aria-label",V.view==="map"?U("close"):U("back")); document.getElementById("lrnX").setAttribute("aria-label",U("close"));
   document.getElementById("lrnLg").setAttribute("aria-label",U("lang"));
   Array.prototype.forEach.call(document.querySelectorAll("[data-llang]"),(b) =>{ b.setAttribute("aria-pressed",b.getAttribute("data-llang")===LRN.lang); });
   const w=document.getElementById("learn"); w.setAttribute("lang",LRN.lang); w.setAttribute("data-view",V.view); }
 function say(html){ const b=document.getElementById("lrnSay"); if(b){ b.innerHTML=html; } const l=document.getElementById("lrnLive"); if(l){ l.textContent=""; l.textContent=(b?b.textContent:""); } }
-function paint(focus){ const go=function(){ head(); const b=document.getElementById("lrnB"); b.innerHTML=V.view==="map"?mapHtml():V.view==="quiz"?quizHtml():V.view==="forge"?forgeHtml():placeHtml(); lrnAfter(); if(focus!==false){ const h=b.querySelector("h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } } b.scrollTop=0; };
+function paint(focus){ const go=function(){ lrnHead(); const b=document.getElementById("lrnB"); b.innerHTML=V.view==="map"?mapHtml():V.view==="quiz"?quizHtml():V.view==="forge"?forgeHtml():placeHtml(); lrnAfter(); if(focus!==false){ const h=b.querySelector("h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } } b.scrollTop=0; };
   /* a new view or a new step moves with a View Transition, a change inside a step (paint(false)) draws at once */
   if(focus===undefined&&document.startViewTransition&&!lrnReduce()&&!document.getElementById("learn").hidden){ try{ document.startViewTransition(go); return; }catch(e){} } go(); }
 function lrnAfter(){ const p=V.view==="place"&&!V.fin?LEARN.places[V.p]:null, st=p&&p.steps[V.i]; if(st&&st.t==="show") drawFrame(); if(st&&st.t==="grid") gridPaint(); }
@@ -119,8 +119,8 @@ function drawFrame(){ const st=LEARN.places[V.p].steps[V.i], fr=st.frames[V.s.f|
 function frameMod(fr){ let h, row=""; for(let sc=6;sc<=20;sc++){ const md=Math.floor((sc-10)/2); row+='<div class="lrn-mc'+(sc===fr.score?" on":"")+'"><b>'+sc+'</b><small>'+(md<0?"−"+(-md):"+"+md)+'</small></div>'; } const mm=Math.floor((fr.score-10)/2);
   h='<div class="lrn-sum"><div class="lrn-tot">'+fr.score+'</div><span class="lrn-plus">→</span><div class="lrn-chip in">'+(mm<0?"−"+(-mm):"+"+mm)+'</div></div><div class="lrn-mods" aria-hidden="true">'+row+'</div><p class="sr">'+esc(U("score"))+' '+fr.score+', '+(mm<0?"−"+(-mm):"+"+mm)+'</p>'; return h; }
 function frameTalk(fr){ return '<div class="lrn-talk who-'+fr.who+'"><span class="lrn-tk">'+(fr.who==="die"?'<span class="lrn-die sm">'+D20S+'<b>?</b></span>':fr.who==="dm"?ic("ui-book"):ic("ui-users"))+'</span><b>'+esc(fr.who==="dm"?lrnL(LEARN.terms.dm.name):fr.who==="you"?U("you"):"d20")+'</b></div>'; }
-function frameGrid(fr){ return '<div class="lrn-grid demo" aria-hidden="true">'+cells(6,(x,y) =>{ let c=""; if(fr.path&&fr.path.some((q) =>{ return q[0]===x&&q[1]===y; })) c+=" path"; if(fr.hero[0]===x&&fr.hero[1]===y) return '<i class="hero'+c+'">'+ic("ui-users")+'</i>'; if(fr.foe[0]===x&&fr.foe[1]===y) return '<i class="foe">'+ic("ui-shield")+'</i>'; return '<i class="'+c+'"></i>'; })+'</div>'+(fr.act?'<p class="lrn-lbl"><b>'+esc(fr.act)+'</b>'+(fr.over?' · '+esc(U("turnOver")):'')+'</p>':''); }
-function cells(n,f){ let h=""; for(let y=0;y<n;y++) for(let x=0;x<n;x++) h+=f(x,y); return h; }
+function frameGrid(fr){ return '<div class="lrn-grid demo" aria-hidden="true">'+lrnCells(6,(x,y) =>{ let c=""; if(fr.path&&fr.path.some((q) =>{ return q[0]===x&&q[1]===y; })) c+=" path"; if(fr.hero[0]===x&&fr.hero[1]===y) return '<i class="hero'+c+'">'+ic("ui-users")+'</i>'; if(fr.foe[0]===x&&fr.foe[1]===y) return '<i class="foe">'+ic("ui-shield")+'</i>'; return '<i class="'+c+'"></i>'; })+'</div>'+(fr.act?'<p class="lrn-lbl"><b>'+esc(fr.act)+'</b>'+(fr.over?' · '+esc(U("turnOver")):'')+'</p>':''); }
+function lrnCells(n,f){ let h=""; for(let y=0;y<n;y++) for(let x=0;x<n;x++) h+=f(x,y); return h; }
 /* the turn on a grid: the hero walks up to Speed squares (each square 5 feet), then picks one main action */
 function gridPaint(){ const st=LEARN.places[V.p].steps[V.i], S=V.s, g=document.getElementById("lrnGrid"); if(!g) return; if(!S.pos) S.pos=st.hero.slice(); if(S.left==null) S.left=st.speed;
   let h=""; for(let y=0;y<6;y++){ h+='<div role="row" class="lrn-gr">'; for(let x=0;x<6;x++){ const d=Math.max(Math.abs(x-S.pos[0]),Math.abs(y-S.pos[1])), hero=x===S.pos[0]&&y===S.pos[1], foe=x===st.foe[0]&&y===st.foe[1], can=!hero&&!foe&&d<=S.left&&!S.act;
@@ -148,7 +148,7 @@ function forgeHtml(){ const FD=LEARN.forge, S=V.s, card=function(kind,x){ const 
    +'<div class="lrn-foot"><button type="button" class="btn press" data-l="surprise">'+ic("ui-dice")+esc(U("surprise"))+'</button><button type="button" class="btn pri press" data-l="forge">'+ic("ui-build")+esc(U("forgeBtn"))+'</button></div></div>'; }
 function forgeGo(){ const S=V.s; if(!S.cls||!S.sp){ S.msg=U("forgeNeed"); paint(false); return; } lrnFinish("forge",false);
   try{ sessionStorage.setItem("cs-forge",JSON.stringify({cls:S.cls,sp:S.sp,name:(S.name||"").trim()})); }catch(e){}
-  close(); if(typeof showHome==="function") showHome(); const n=document.querySelector("#homeV [data-hnew]"); if(n) n.click(); }
+  lrnClose(); if(typeof showHome==="function") showHome(); const n=document.querySelector("#homeV [data-hnew]"); if(n) n.click(); }
 
 /* ===== final check ===== */
 function quizHtml(){ const Q=V.Q;
@@ -171,12 +171,12 @@ function lrnNext(){ const p=LEARN.places[V.p], st=p.steps[V.i];
   if(st.t==="show"&&(V.s.f||0)<st.frames.length-1){ V.s.f=(V.s.f||0)+1; paint(); return; }
   if(V.i<p.steps.length-1){ V.i++; V.s={}; okInit(); paint(); return; }
   V.fin=lrnFinish(p.id,false)||-1; paint(); }
-function back(){ if(V.view==="place"&&!V.fin&&V.i>0){ V.i--; V.s={}; okInit(); paint(); return; } if(V.view!=="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; } close(); }
+function lrnBack(){ if(V.view==="place"&&!V.fin&&V.i>0){ V.i--; V.s={}; okInit(); paint(); return; } if(V.view!=="map"){ V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return; } lrnClose(); }
 function pre(t){ return t==="map"?0:1; }
-function open(o){ const w=dom(); OPENER=document.activeElement; refreshLRN(); if(o&&o.place!=null){ let k=-1; LEARN.places.forEach((p,j) =>{ if(p.id===o.place) k=j; }); if(k>=0){ if(LEARN.places[k].kind==='tour'){ runTour(k); return; } w.hidden=false; goPlace(k); lrnShow(w); return; } }
+function lrnOpen(o){ const w=dom(); OPENER=document.activeElement; refreshLRN(); if(o&&o.place!=null){ let k=-1; LEARN.places.forEach((p,j) =>{ if(p.id===o.place) k=j; }); if(k>=0){ if(LEARN.places[k].kind==='tour'){ runTour(k); return; } w.hidden=false; goPlace(k); lrnShow(w); return; } }
   if(!V.view||w.hidden) V={view:"map",p:0,i:0,ok:false,s:{}}; w.hidden=false; paint("instant"); lrnShow(w); }
 function lrnShow(w){ requestAnimationFrame(() =>{ w.classList.add("on"); }); if(typeof ovQueue==="function") ovQueue(); try{ w.focus({preventScroll:true}); }catch(e){} const h=w.querySelector("#lrnB h2,[data-lfocus]"); if(h){ h.tabIndex=-1; h.style.setProperty("outline","none","important"); h.style.setProperty("box-shadow","none","important"); try{ h.focus({preventScroll:true}); }catch(e){} } }
-function close(){ const w=document.getElementById("learn"); if(!w) return; popHide(); w.classList.remove("on"); w.hidden=true; if(typeof ovQueue==="function") ovQueue(); if(typeof homeInert==="function") try{ homeInert(); }catch(e){} if(OPENER&&OPENER.focus&&OPENER.isConnected) try{ OPENER.focus({preventScroll:true}); }catch(e){} if(A.learnBand){ const hb=document.getElementById("hlearnB"); if(hb) hb.outerHTML=A.learnBand(); } }
+function lrnClose(){ const w=document.getElementById("learn"); if(!w) return; popHide(); w.classList.remove("on"); w.hidden=true; if(typeof ovQueue==="function") ovQueue(); if(typeof homeInert==="function") try{ homeInert(); }catch(e){} if(OPENER&&OPENER.focus&&OPENER.isConnected) try{ OPENER.focus({preventScroll:true}); }catch(e){} if(A.learnBand){ const hb=document.getElementById("hlearnB"); if(hb) hb.outerHTML=A.learnBand(); } }
 /* glossary card: a popover in the top layer, placed under the word with anchor positioning when the browser has it */
 let POPB=null;
 function popShow(btn){ const k=btn.getAttribute("data-lterm"), t=LEARN.terms[k], p=document.getElementById("lrnPop"); if(!t||!p) return; popHide();
@@ -205,16 +205,16 @@ function clk08(t,d,st,S){ if(!(d.ldot)) return false; V.s.dot=d.ldot; const nm4=
 function clk09(t,d,st,S){ if(!(d.l==="forge")) return false; const nm3=document.getElementById("lrnFn"); if(nm3) V.s.name=nm3.value; forgeGo(); return true; return true; }
 function clk10(t,d,st,S){ if(!(d.lrecap)) return false; V={view:"quiz",qi:0,qok:0,s:{},Q:lrnRecap(),recap:1}; paint(); return true; return true; }
 function clk11(t,d,st,S){ if(!(d.lquiz)) return false; if(lrnCoreDone()<lrnCore().length) { say(esc(U("quizLock"))); const c=t.querySelector("small"); if(c) c.classList.add("lrn-pulse"); return true; } V={view:"quiz",qi:0,qok:0,s:{},Q:LEARN.quiz}; paint(); return true; return true; }
-function clk12(t,d,st,S){ if(!(d.l==="tool")) return false; const tk=d.tool; close(); const hv=document.getElementById("homeV"); if(hv&&!hv.hidden){ hv.hidden=true; document.body.style.overflow=""; if(typeof homeInert==="function") try{ homeInert(); }catch(er){} } setTimeout(() =>{ if(tk==="wd") env.__whichDie(); else if(env.__cheatOpen) env.__cheatOpen(); },60); return true; return true; }
-function clk13(t,d,st,S){ if(!(d.l==="close")) return false; close(); return true; return true; }
-function clk14(t,d,st,S){ if(!(d.l==="back")) return false; back(); return true; return true; }
+function clk12(t,d,st,S){ if(!(d.l==="tool")) return false; const tk=d.tool; lrnClose(); const hv=document.getElementById("homeV"); if(hv&&!hv.hidden){ hv.hidden=true; document.body.style.overflow=""; if(typeof homeInert==="function") try{ homeInert(); }catch(er){} } setTimeout(() =>{ if(tk==="wd") env.__whichDie(); else if(env.__cheatOpen) env.__cheatOpen(); },60); return true; return true; }
+function clk13(t,d,st,S){ if(!(d.l==="close")) return false; lrnClose(); return true; return true; }
+function clk14(t,d,st,S){ if(!(d.l==="back")) return false; lrnBack(); return true; return true; }
 function clk15(t,d,st,S){ if(!(d.l==="map")) return false; V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); return true; return true; }
 function clk16(t,d,st,S){ if(!(d.l==="pop")) return false; popHide(); return true; return true; }
 function clk17(t,d,st,S){ if(!(d.l==="next")) return false; lrnNext(); return true; return true; }
 function clk18(t,d,st,S){ if(!(d.l==="skip")) return false; const p=LEARN.places[V.p]; ask(U("skipAsk"),U("skipOk"),() =>{ lrnFinish(p.id,true); V={view:"map",p:0,i:0,ok:false,s:{}}; paint(); }); return true; return true; }
 function clk19(t,d,st,S){ if(!(d.l==="replay")) return false; S.f=0; paint(false); return true; return true; }
 function clk20(t,d,st,S){ if(!(d.l==="sheet"&&st)) return false; toSheet(st); return true; return true; }
-function clk21(t,d,st,S){ if(!(d.l==="hero")) return false; close(); const hn=document.querySelector("#homeV [data-hnew]"); if(hn&&!document.getElementById("homeV").hidden) hn.click(); else if(env.__bldOpen) env.__bldOpen(); return true; return true; }
+function clk21(t,d,st,S){ if(!(d.l==="hero")) return false; lrnClose(); const hn=document.querySelector("#homeV [data-hnew]"); if(hn&&!document.getElementById("homeV").hidden) hn.click(); else if(env.__bldOpen) env.__bldOpen(); return true; return true; }
 function clk22(t,d,st,S){ if(!(d.lg!=null&&st)) return false; S.pick=+d.lg; paint(false); setOk(true); return true; return true; }
 function clk23(t,d,st,S){ if(!(d.lp!=null&&st)) return false; const o=st.opts[+d.lp]; S.res=S.res||{}; S.fb=o.fb; if(o.ok){ S.res[+d.lp]="good"; S.hint=0; if(typeof buzz==="function") buzz(12); paint(false); setOk(true); } else { S.res[+d.lp]="try"; S.hint=st.hint?1:0; paint(false); setOk(!!V.ok||Object.keys(S.res).some((k) =>{ return S.res[k]==="good"; })); } return true; return true; }
 function clk24(t,d,st,S){ if(!(d.l==="roll"||d.l==="reroll")) return false; if(S.busy) return true; S.busy=1; if(d.l==="reroll"){ S.stage=0; } paint(false); lrnRoll([20]).then((r) =>{ S.busy=0; S.die=r.v[0]; S.stage=1; paint(false); }); return true; return true; }
@@ -233,7 +233,7 @@ function clk35(t,d,st,S){ if(!(V.view==="quiz"&&d.l==="qnext")) return false; co
 const CLICKS=[clk01,clk02,clk03,clk04,clk05,clk06,clk07,clk08,clk09,clk10,clk11,clk12,clk13,clk14,clk15,clk16,clk17,clk18,clk19,clk20,clk21,clk22,clk23,clk24,clk25,clk26,clk27,clk28,clk29,clk30,clk31,clk32,clk33,clk34,clk35];
 function onClick(w,e){ const t=e.target.closest("button"); if(!t||t.disabled||!w.contains(t)) return; const d=t.dataset, st=V.view==="place"&&!V.fin?LEARN.places[V.p].steps[V.i]:null, S=V.s;
   for(let k=0;k<CLICKS.length;k++) if(CLICKS[k](t,d,st,S)) return; }
-function lrnOnKey(e){ if(e.key==="Escape"){ e.stopPropagation(); if(document.getElementById("lrnPop").classList.contains("on")) popHide(); else back(); return; }
+function lrnOnKey(e){ if(e.key==="Escape"){ e.stopPropagation(); if(document.getElementById("lrnPop").classList.contains("on")) popHide(); else lrnBack(); return; }
     const c=e.target.closest&&e.target.closest(".lrn-cell"); if(c&&/^Arrow/.test(e.key)){ e.preventDefault(); const x=+c.dataset.lx+(e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0), y=+c.dataset.ly+(e.key==="ArrowDown"?1:e.key==="ArrowUp"?-1:0); const n=document.querySelector('[data-lx="'+x+'"][data-ly="'+y+'"]'); if(n) n.focus(); } }
 function wire(w){
   w.addEventListener("click",(e) =>{ onClick(w,e); });
@@ -242,7 +242,7 @@ function wire(w){
   document.getElementById("lrnPop").addEventListener("keydown",(e) =>{ if(e.key==="Escape"){ e.stopPropagation(); popHide(); } });
 }
 /* the Back button of the phone: glossary card, then the sheet spotlight, then one step back in Learn (40-ui ovTop asks this first) */
-env.__learnBack=function(){ const p=document.getElementById("lrnPop"); if(p&&p.classList.contains("on")) return popHide; if(SPOT) return function(){ spotHide(); }; const w=document.getElementById("learn"); if(w&&!w.hidden) return back; return null; };
-env.__learnOpen=open;
+env.__learnBack=function(){ const p=document.getElementById("lrnPop"); if(p&&p.classList.contains("on")) return popHide; if(SPOT) return function(){ spotHide(); }; const w=document.getElementById("learn"); if(w&&!w.hidden) return lrnBack; return null; };
+env.__learnOpen=lrnOpen;
 env.__learnState=function(){ return {view:V.view,p:V.p,i:V.i,ok:V.ok,s:V.s,fin:V.fin,qi:V.qi,qd:V.qd,lrn:LRN}; };
-try{ if(location.hash==="#learn") setTimeout(() =>{ open(); },0); }catch(e){}
+try{ if(location.hash==="#learn") setTimeout(() =>{ lrnOpen(); },0); }catch(e){}

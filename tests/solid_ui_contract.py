@@ -86,10 +86,10 @@ with sync_playwright() as p:
     pg.goto(base); pg.wait_for_function("()=>!!window.__deferDone", timeout=180000); pg.wait_for_timeout(2500)
     pg.evaluate("()=>{var b=document.querySelector('[data-hview]'); if(b) b.click()}"); pg.wait_for_timeout(2500)
     o = pg.evaluate(PROBE)
-    exp = {'detail': ['spn', 'mi', 'lib', 'g', 'cr', 'xd', 'sp', 'spx', 'f', 'grp', 'w', 'it'], 'entry': ['bd', 'cond', 'combat', 'spman', 'search', 'cuq', 'cust'], 'ctxsrc': ['inventory-row', 'spell-row', 'feature-item', 'action-row'], 'panel': ['p-main', 'p-skills', 'p-actions', 'p-spells', 'p-inv', 'p-feat', 'p-desc', 'p-notes', 'p-ext'], 'overlay': ['context-menu', 'ask', 'training-ground', 'learn', 'builder', 'hp-quick-menu', 'backup-window', 'sheet', 'home'], 'searchgrp': ['spells', 'attacks', 'inventory', 'features', 'rules', 'other-spells']}
+    exp = {'detail': ['spn', 'mi', 'lib', 'g', 'cr', 'xd', 'sp', 'spx', 'f', 'grp', 'w', 'it'], 'entry': ['bd', 'cond', 'combat', 'spman', 'search', 'cuq', 'cust'], 'ctxsrc': ['inventory-row', 'spell-row', 'feature-item', 'action-row'], 'panel': ['p-main', 'p-skills', 'p-actions', 'p-spells', 'p-inv', 'p-feat', 'p-desc', 'p-notes', 'p-ext'], 'overlay': ['context-menu', 'ask', 'learn', 'builder', 'hp-quick-menu', 'backup-window', 'sheet', 'home'], 'searchgrp': ['spells', 'attacks', 'inventory', 'features', 'rules', 'other-spells']}
     for name, keys in exp.items():
         chk('%s: expected entries are registered' % name, [k for k in keys if k not in o['reg'][name]['keys']] == [], str(o['reg'][name]['keys']))
-    chk('palword: providers registered', len(o['reg']['palword']['keys']) >= 26, str(o['reg']['palword']['keys']))
+    chk('palword: providers registered', len(o['reg']['palword']['keys']) >= 25, str(o['reg']['palword']['keys']))
     for name, r in o['reg'].items():
         for it in r['items']:
             for f, t in it['fields'].items():
