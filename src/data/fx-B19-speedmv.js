@@ -4,7 +4,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.sub=GX.sub||{};GX.feat=GX.feat||{};GX.spe
 var S=function(k,l,n,id,label,mv){GX.sub[k]=(GX.sub[k]||[]).concat([{l:l,n:n+" (speed)",toggle:{id:id,label:label},mv:mv}])};
 var A=function(k,l,n,mv){GX.sub[k]=(GX.sub[k]||[]).concat([{l:l,n:n+" (speed)",mv:mv}])};
 var I=function(k,n,id,label,mv){GX.item[k]=(GX.item[k]||[]).concat([{n:n+" (speed)",toggle:{id:id,label:label},mv:mv}])};
-S("Mutagenist",10,"Advanced Mutation","b19-mutagen-climb","Mutation: you chose the climbing mutation",{climb:"speed"});
+S("Mutagenist",10,"Advanced Mutation","b19-mutagen-climb","Mutation: you chose the climbing mutation",{climb:"speed"});GX.sub.Mutagenist[GX.sub.Mutagenist.length-1].forCls=["Alchemist"];/* tsae Artificer Mutagenist has no Advanced Mutation */
 S("Mutagenist (2014)",10,"Advanced Mutation","b19-mutagen-climb","Mutation: you chose the climbing mutation",{climb:"speed"});
 S("Star-Spangled Banner",14,"Wings of Liberty","b19-liberty","Wings of Liberty active",{fly:30});
 S("Moonwalker",3,"Moonwalk","b19-moonwalk","Moonwalk: no Heavy armor, on your turn",{fly:"speed"});

@@ -15,7 +15,7 @@ SUB = {
   {"feature": "Gun Mastery", "n": "Burst maneuvers", "lvl": 3, "max": "pb", "reset": "long", "tag": "Reaction on a Gunpowder Burst"},
   {"feature": "Deck Fighter", "lvl": 7, "max": "pb", "reset": "long", "tag": "Succeed a failed Dexterity save"},
   {"feature": "Unrelenting Spirit", "lvl": 15, "max": 1, "reset": "short", "tag": "Bonus action, end a condition"}],
- "fx": [[3, "Black Powder and Sailcloth", {"tools": [[3, "Gunsmith's Tools"], [3, "Water vehicles"]]}]],
+ "fx": [],
  "acts": {"Gun Mastery": "reaction", "Unrelenting Spirit": "bonus"}},
 "Chaplain": {"spab": "",
  "f": {

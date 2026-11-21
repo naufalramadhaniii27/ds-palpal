@@ -4,13 +4,13 @@
 import os, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# (item in inventory, dwarf?, {edition: sorted extra dice "d|type" on the item's attack rows; None = the item is not in that edition})
+# (item in inventory, dwarf?, {edition: sorted extra dice "d|type" on the item's attack rows (xdice), "crit:d|type" for natural-20 riders (xcrit, atkDice crit:1; both DMGs say natural 20 / critical hit); None = the item is not in that edition})
 CASES = [
-    ("Sword of Life Stealing (Longsword)", 0, {"2024": ["15|Necrotic"], "2014": ["10|Necrotic"]}),
-    ("Vorpal Sword (Longsword)", 0, {"2024": ["30|Slashing"], "2014": ["6d8|Slashing"]}),
-    ("Wave", 0, {"2024": ["21|Necrotic"], "2014": ["half its hit point maximum|Necrotic"]}),
+    ("Sword of Life Stealing (Longsword)", 0, {"2024": ["crit:15|Necrotic"], "2014": ["crit:10|Necrotic"]}),
+    ("Vorpal Sword (Longsword)", 0, {"2024": ["crit:30|Slashing"], "2014": ["crit:6d8|Slashing"]}),
+    ("Wave", 0, {"2024": ["crit:21|Necrotic"], "2014": ["crit:half its hit point maximum|Necrotic"]}),
     ("Whelm", 1, {"2024": ["1d8|Force"], "2014": ["1d8|Bludgeoning"]}),
-    ("Axe of the Dwarvish Lords", 1, {"2024": ["1d8|Force", "20|Slashing"], "2014": ["14|Slashing", "1d8|on"]}),
+    ("Axe of the Dwarvish Lords", 1, {"2024": ["1d8|Force", "crit:20|Slashing"], "2014": ["1d8|on", "crit:14|Slashing"]}),
     ("Dwarven Thrower", 1, {"2024": ["1d8|Force"], "2014": ["1d8|on"]}),
     ("Executioner's Axe (Greataxe)", 0, {"2024": ["2d6|Slashing"], "2014": None}),
 ]
@@ -18,7 +18,7 @@ JS = """([rs,cases])=>cases.map(([item,dw])=>{try{const o=rs==='2014'?{sp:dw?'Mo
   const b=window.__bldFuzz(Object.assign({rs,cls:'Fighter',sub:'',lv:5,arr:[15,14,13,12,10,8],b2:0,b1:0},o)).b;b.src=Object.assign({},b.src);(WX.src||[]).forEach(x=>b.src[x.id]=true);
   b.inv=[{n:item,q:1,eq:true}];const t=window.__bldTestB();Object.assign(t,b);delete t.unset;const C=window.__bldSheetFor(t);
   const rows=C.attacks.filter(a=>a.n.indexOf(item.split(' (')[0])===0);if(!rows.length)return null;
-  const s={};rows.forEach(r=>(r.xdice||[]).forEach(x=>{s[x.d+'|'+String(x.t).split(' ')[0]]=1}));return Object.keys(s).sort()}catch(e){return 'CRASH '+e}})"""
+  const s={};rows.forEach(r=>{(r.xdice||[]).forEach(x=>{s[x.d+'|'+String(x.t).split(' ')[0]]=1});(r.xcrit||[]).forEach(x=>{s['crit:'+x.d+'|'+String(x.t).split(' ')[0]]=1})});return Object.keys(s).sort()}catch(e){return 'CRASH '+e}})"""
 bad = n = 0
 with sync_playwright() as p:
     br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(120000)

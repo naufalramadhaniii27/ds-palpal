@@ -7,12 +7,8 @@ P("Deathly Presence",{"n": "Deathly Presence (spells)", "spells": [[1, "Fear"]],
 P("Dread Authority",{"n": "Dread Authority (spells)", "spells": [[1, "Command"]], "spCls": "@sub:CHA"});
 P("Emerald Enclave Fledgling",{"n": "Emerald Enclave Fledgling (spells)", "spells": [[1, "Speak with Animals"]], "spCls": "@abpick", "pick": [{"k": "ab", "t": "multi", "n": 1, "title": "Spellcasting ability", "list": [["INT", ""], ["WIS", ""], ["CHA", ""]]}]});
 P("Enclave Magic",{"n": "Enclave Magic (spells)", "spells": [[1, "Beast Sense"]], "spCls": "@asi"});
-P("Familiar Friend",{"n": "Familiar Friend (spells)", "spells": [[1, "Find Familiar"]], "spCls": "@abpick", "pick": [{"k": "ab", "t": "multi", "n": 1, "title": "Spellcasting ability", "list": [["INT", ""], ["WIS", ""], ["CHA", ""]]}]});
 P("Harbinger of Doom",{"n": "Harbinger of Doom (spells)", "spells": [[1, "Bane"]], "spCls": "@sub:CHA"});
 P("Illithid Thrallmaker",{"n": "Illithid Thrallmaker (spells)", "spells": [[1, "Charm Person"]], "spCls": "@sub:INT"});
-P("Mark of Making",{"n": "Mark of Making (spells)", "spells": [[1, "Mending"]], "spCls": "@abpick", "pick": [{"k": "ab", "t": "multi", "n": 1, "title": "Spellcasting ability", "list": [["INT", ""], ["WIS", ""], ["CHA", ""]]}]});
-P("Mark of Shadow",{"n": "Mark of Shadow (spells)", "spells": [[1, "Minor Illusion"]], "spCls": "@abpick", "pick": [{"k": "ab", "t": "multi", "n": 1, "title": "Spellcasting ability", "list": [["INT", ""], ["WIS", ""], ["CHA", ""]]}]});
-P("Second Skin",{"n": "Second Skin (spells)", "spells": [[1, "Alter Self"]], "spCls": "@abpick", "pick": [{"k": "ab", "t": "multi", "n": 1, "title": "Spellcasting ability", "list": [["INT", ""], ["WIS", ""], ["CHA", ""]]}]});
 P("Shadow Weaver",{"n": "Shadow Weaver (spells)", "spells": [[1, "Darkness"]], "spCls": "@asi"});
 P("Shadowmoor Hexer",{"n": "Shadowmoor Hexer (spells)", "spells": [[1, "Hex"]], "spCls": "@abpick", "pick": [{"k": "ab", "t": "multi", "n": 1, "title": "Spellcasting ability", "list": [["INT", ""], ["WIS", ""], ["CHA", ""]]}]});
 P("Tadpole Host",{"n": "Tadpole Host (spells)", "spells": [[1, "Mind Sliver"]], "spCls": "@sub:INT"});

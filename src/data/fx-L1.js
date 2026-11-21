@@ -122,8 +122,7 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
   Object.keys(ELE).forEach(function(e){r.push({n:label+" ("+e+")",when:{key:key,val:e},res:[ELE[e]]})});return r}
  var ASK=[["Strength",""],["Dexterity",""],["Constitution",""],["Intelligence",""],["Wisdom",""],["Charisma",""]];
 
- /* Unarmed Strike with Dexterity (Aberrant Spawn, Beastperson, Cyberfiend: "use Dexterity instead of Strength") */
- ["Aberrant Spawn","Beastperson","Cyberfiend"].forEach(function(n){addF(n,[{n:"Dexterity Unarmed Strike",atkAb:{kind:"unarmed",ab:"DEX"}}])});
+ ["Aberrant Spawn","Beastperson","Cyberfiend"].forEach(function(n){addF(n,[{n:"Dexterity Unarmed Strike",atkAb:{kind:"unarmed",ab:"DEX"},fromBk:["tsdm"]}])});/* tsdm only: the tvss14 Aberrant Spawn tentacle uses Strength */
  addF("Adamantine Clan",[{n:"Adamantine Skin",acBase:[10,"full","CON"],cond:"noBody"}]);
  addF("Android",[{n:"Technical Expertise",pick:[{k:"sk",t:"multi",n:1,title:"Skill",list:[["Data",""],["Piloting",""],["Technology",""]]}]},
   {n:"Technical Expertise",when:{key:"sk",val:"Data"},skillProf:["Data"]},{n:"Technical Expertise",when:{key:"sk",val:"Piloting"},skillProf:["Piloting"]},{n:"Technical Expertise",when:{key:"sk",val:"Technology"},skillProf:["Technology"]}]);
@@ -233,7 +232,7 @@ GX.cls=GX.cls||{};GX.feat=GX.feat||{};GX.item=GX.item||{};
  addF("Rune Knowledge",[Object.assign({n:"Eiwaz",when:{key:"rk",val:"Eiwaz"}},{skillProf:["Arcana"]})]);
  addF("Rune Knowledge",[Object.assign({n:"Ingwaz",when:{key:"rk",val:"Ingwaz"}},{skillProf:["History"]})]);
  addF("Rune Knowledge",[Object.assign({n:"Jera",when:{key:"rk",val:"Jera"}},{skillProf:["Nature"]})]);
- addF("Rune Knowledge",[Object.assign({n:"Kaunen",when:{key:"rk",val:"Kaunen"}},{darkNone:30})]);
+ addF("Rune Knowledge",[Object.assign({n:"Kaunen",when:{key:"rk",val:"Kaunen"}},{darkNone:30,defs:[["Note","Kaunen rune: if you already have darkvision, gain proficiency in Wisdom (Perception) checks instead"]]})]);
  addF("Rune Knowledge",[Object.assign({n:"Laukaz",when:{key:"rk",val:"Laukaz"}},{langs:["Primordial"]})]);
  addF("Rune Knowledge",[Object.assign({n:"Naudiz",when:{key:"rk",val:"Naudiz"}},{lu:{n:"Naudiz: Spare the Dying",max:1,reset:"long",tag:"Once per day"}})]);
  addF("Rune Knowledge",[Object.assign({n:"Nyk\u00f6ping",when:{key:"rk",val:"Nyk\u00f6ping"}},{skillProf:["Survival"]})]);

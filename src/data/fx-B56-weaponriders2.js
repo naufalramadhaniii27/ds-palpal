@@ -8,6 +8,6 @@ R("Eldritch Staff","1d8","Lightning","for each charge spent on a melee hit (up t
 R("Lightbringer","1d6","Radiant","against Undead while the mace glows");
 R("Quiver of Energy","1d6","of the quiver's damage type","first hit each turn with its ammunition");
 R("Treant's Bane","2d6","of the weapon's type","against a plant creature");
-R("Battlebrew Maul","2d6","Acid","on a natural 20 to hit");
+GX.item["Battlebrew Maul"]=(GX.item["Battlebrew Maul"]||[]).concat([{n:"Battlebrew Maul (extra damage)",atkDice:[{when:"Battlebrew Maul",d:"2d6",t:"Acid",crit:1}]}]);
 GX.item["Wings"]=(GX.item["Wings"]||[]).concat([{n:"Wings (flight time)",lu:{n:"Wings: flight minutes",max:10,reset:"short",tag:"10 minutes total, regained on a short or long rest"}}]);
 })();

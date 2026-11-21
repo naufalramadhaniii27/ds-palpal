@@ -1,5 +1,5 @@
 {
- "why": "Sorcerer Wretched Bloodline Hulking 20: HP maximum rises by 1 and by 1 per Sorcerer level (20), so 21 more than the same build without the curse (122 without, 143 with).",
+ "why": "Sorcerer Wretched Bloodline Hulking 20: HP maximum rises by 1 at level 3 and by 1 per later Sorcerer level (+18), so 122 without, 140 with.",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -45,7 +45,7 @@
   "size": "Medium"
  },
  "expect": {
-  "hpmax": 143
+  "hpmax": 140
  },
  "expectC": [
   {

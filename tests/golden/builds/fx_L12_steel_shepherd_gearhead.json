@@ -18,7 +18,11 @@
    "WIS": 10,
    "CHA": 8
   },
-  "ch": {},
+  "ch": {
+   "gx-ab-sub-Steel Shepherd": [
+    "WIS"
+   ]
+  },
   "src": {
    "core": true,
    "tsdm": true

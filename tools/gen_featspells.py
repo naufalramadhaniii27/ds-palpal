@@ -7,6 +7,7 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 D = json.load(open(sys.argv[1]))
 FX = "".join(open(f, encoding="utf8").read() for f in glob.glob(os.path.join(ROOT, "src", "data", "fx-*.js")) if "fx-B26" not in f)
 SKIP = {"Arcane Overload"}  # the Crucible Storm Chaser background already gives Fire Bolt (tests/invariants.py dup-attack)
+SKIP |= {"Familiar Friend", "Mark of Making", "Mark of Shadow", "Second Skin"}  # D.dm / E.dmSp already grant these spells (the sheet showed them twice)
 AB = {"Intelligence": "INT", "Wisdom": "WIS", "Charisma": "CHA", "Int": "INT", "Wis": "WIS", "Cha": "CHA"}
 NAME = r"([A-Z][A-Za-z' ]+?)"
 rows = {}

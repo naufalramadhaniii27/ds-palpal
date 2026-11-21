@@ -13,6 +13,6 @@ S("Way of the Ascendant Dragon",[{"n": "Ascendant Aspect (sense)", "sense": [["B
 F("Aberrant Anatomy",{"n": "Aberrant Anatomy (sense)", "sense": [["Blindsight", 15, ""]]});
 F("Changeling Metamorphosis",{"n": "Changeling Metamorphosis (sense)", "darkTo": 60, "toggle": {"id": "b21-metamorph-dark", "label": "Metamorphosis: Darkvision chosen"}});
 F("Impaired Vision",{"n": "Impaired Vision (sense)", "sense": [["Blindsight", 10, ""]]});
-F("Keenness of the Stone Giant",{"n": "Keenness of the Stone Giant (sense)", "darkTo": 60});
+/* Keenness of the Stone Giant: no entry here; the feat row fx senses [Darkvision,60,"",60] already gives 60, or +60 on an existing Darkvision (a darkTo:60 here ran first and made that +60 fire on a Human: 120) */
 F("Shadow Pact",{"n": "Shadow Pact (sense)", "darkNone": 60, "darkHave": {"add": 30}});
 })();

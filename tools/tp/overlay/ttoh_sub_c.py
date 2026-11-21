@@ -71,7 +71,7 @@ SUB = {
   "Army of Shadow": "Channel Divinity: Shadow Grasp can affect a number of creatures equal to your Proficiency Bonus.",
  },
  "lu": [{"feature": "Fade to Black", "lvl": 6, "max": "pb", "reset": "long", "tag": "Bonus action, invisible 1 minute"}],
- "fx": [[1, "Cover of Night", {"skillProf": ["Stealth"], "darkTo": 60}]],
+ "fx": [],
  "acts": {"Fade to Black": "bonus"}},
 "Vermin Domain": {"spab": "WIS",
  "f": {

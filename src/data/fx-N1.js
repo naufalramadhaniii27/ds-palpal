@@ -52,10 +52,8 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  S("Path of the Muscle Wizard",{n:"Unarguable Wizardry",l:3,advOn:["Intimidation checks to convince others you are a wizard"]});
  S("Blood Domain",{n:"Divine Strike",l:8,atkDice:[{when:"weapon",d:"1d8",t:"Necrotic",note:"Divine Strike, once per turn"}]});
  S("Mime",{n:"Silent Routine",l:3,pick:[{k:"sk",t:"skills",n:1,title:"Skill (Stealth, Sleight of Hand)",from:["Stealth","Sleight of Hand"]}]});
- S("Knight Errant",{n:"Chivalrous Oath",l:3,pick:[{k:"sk",t:"skills",n:2,title:"Skill (Animal Handling, History, Insight, Persuasion)",from:["Animal Handling","History","Insight","Persuasion"]}]});
- /* ---- classes ---- */
- C("Ranger",{n:"Roving (Climb and Swim)",l:6,mv:{climb:"speed",swim:"speed"}});
- /* ---- subclasses ---- */
+  /* ---- classes ---- */
+  /* ---- subclasses ---- */
  S("Path of the Beast",{n:"Bestial Soul",l:6,pick:[{k:"bs",t:"multi",n:1,title:"Bestial Soul benefit (chosen after a rest)",list:[["Swimmer","Swimming speed equal to your walking speed, and you breathe underwater."],["Climber","Climbing speed equal to your walking speed."],["Jumper","Strength (Athletics) check added to jump distance, once per turn."]]}]});
  S("Path of the Beast",{n:"Bestial Soul: Swimmer",l:6,when:{key:"gx-bs-sub-Path of the Beast",val:"Swimmer"},mv:{swim:"speed"},def:["Note","Bestial Soul: you breathe underwater"]});
  S("Path of the Beast",{n:"Bestial Soul: Climber",l:6,when:{key:"gx-bs-sub-Path of the Beast",val:"Climber"},mv:{climb:"speed"}});

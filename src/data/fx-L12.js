@@ -62,6 +62,7 @@ add("Draconic Sorcery",["Acid","Cold","Fire","Lightning","Poison"].map(function(
   {l:6,n:"Infuse Elements (Air, Lightning)",when:{key:sk("air-sub-Elemental Essence"),val:"Lightning"},res:["Lightning"]},{l:6,n:"Infuse Elements (Air, Thunder)",when:{key:sk("air-sub-Elemental Essence"),val:"Thunder"},res:["Thunder"]}])})();
 add("Frost Sorcery",[{l:18,n:"Frozen Soul (Wall of Ice)",spCls:"@sub:CHA",spells:[[18,"Wall of Ice"]]}]);
 add("Haunted Sorcery",[{l:3,n:"Phantom Companion",spCls:"@sub:CHA",spells:[[3,"Find Familiar"]]},{l:3,n:"Sixth Sense",init:"CHA"}]);
+lux("Lunar Sorcery","Lunar Embodiment free spell",function(e){e.max=[0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]});/* Waxing and Waning (6) replaces it with one per phase */
 add("Lunar Sorcery",[{l:6,n:"Waxing and Waning",lu:{n:"Waxing and Waning: free spells",max:3,reset:"long",tag:"One 1st-level spell per lunar phase, current phase only"}},
  {l:14,n:"Lunar Empowerment (Crescent Moon)",when:{key:"p3opt",val:"Crescent Moon"},res:["Necrotic","Radiant"]}]);
 add("Nanite Magic",[{l:3,n:"Techno-Intuition",langs:["Machine Code"],spCls:"@sub:CHA",spells:[[3,"Technomancy"]],skillProf:["Data","Technology"],skillBonus:[["Data","CHA",1],["Technology","CHA",1]]}]);
@@ -69,7 +70,7 @@ add("Runechild",[{l:3,n:"Essence Runes",lu:{n:"Essence Runes",max:{f:"lvl+1"},re
 add("Shadow Bloodline",[{l:6,n:"Dark Illusions",advOn:["saves against Illusion magic"]}]);
 add("Storm Sorcery",[{l:18,n:"Wind Soul (Fly Speed)",mv:{fly:60}}]);
 add("Wretched Bloodline Sorcery",[
- {l:3,n:"Wretched Curse (Hulking)",when:{key:"wcurse",val:"Hulking"},hpFlat:1,hpLvl:1,carryBump:true},
+ {l:3,n:"Wretched Curse (Hulking)",when:{key:"wcurse",val:"Hulking"},hpFlat:-2,hpLvl:1,carryBump:true},/* +1 at Sorcerer 3, +1 per later level */
  {l:3,n:"Wretched Curse (Nocturnal)",when:{key:"wcurse",val:"Nocturnal"},darkTo:120,defs:[["Note","You see normally in Dim Light and Darkness, magical or not, within 120 ft"]]},
  {l:3,n:"Wretched Curse (Plaguebearer)",when:{key:"wcurse",val:"Plaguebearer"},res:["Necrotic"],condImm:["Poisoned"]}]);
 /* ---------- Summoner ---------- */
@@ -111,7 +112,7 @@ wpick("Diabolist",3,"Devil's Advocate",["Deception","Intimidation","Persuasion"]
 wpick("Verdant Protector",3,"Cultivator",["Nature","Stealth","Survival"]);
 add("Godsworn",[{l:3,n:"Divine Mandate",spCls:"@sub:WIS",pick:[{k:"c",t:"cantrip",n:2,cls:"Cleric",title:"Two Cleric cantrips"}],skillBonus:[["Religion","CON",1]]}]);
 add("Nightgaunt",[{l:3,n:"Grave Keeper",darkNone:60,darkHave:{add:60}}]);
-add("Steel Shepherd",[{l:3,n:"Gearhead",langs:["Machine Code"],spCls:"@sub:WIS",spells:[[3,"Technomancy"]],skillProf:["Technology"],skillBonus:[["Technology","CON",1]]}]);
+add("Steel Shepherd",[{l:3,n:"Gearhead",langs:["Machine Code"],pick:[{k:"ab",t:"multi",n:1,yc:1,title:"Machine Code: Technomancy spellcasting ability",list:[["INT",""],["WIS",""],["CHA",""]]}],skillProf:["Technology"],skillBonus:[["Technology","CON",1]]}].concat(["INT","WIS","CHA"].map(function(a){return {l:3,n:"Machine Code (Technomancy, "+a+")",when:{key:sk("ab-sub-Steel Shepherd"),val:a},spCls:"@sub:"+a,spells:[[3,"Technomancy"]]}})));
 add("Stoneheart Defender",[{l:6,n:"Roots of Rock",defs:[["Immunity","Prone condition (unless you choose to have it or you are Incapacitated)"],["Note","Immovable: you cannot be pushed, pulled, or teleported against your will"]]}]);
 add("Storm Sentinel",[{l:3,n:"Seafarer",mv:{swim:"speed"},pick:[{k:"st",t:"multi",n:1,title:"Storm Resistance",list:[["Lightning",""],["Thunder",""]]}]},
  {l:3,n:"Seafarer (Lightning)",when:{key:sk("st-sub-Storm Sentinel"),val:"Lightning"},res:["Lightning"]},{l:3,n:"Seafarer (Thunder)",when:{key:sk("st-sub-Storm Sentinel"),val:"Thunder"},res:["Thunder"]}]);

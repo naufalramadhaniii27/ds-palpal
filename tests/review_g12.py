@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Review g12 fixes in src/data/fx-L4.js, read on the computed sheet: edition-only item effects (ed) and spells that ITEM_SPELLS already gives.
+"""Review g12 fixes in src/data/fx-L4.js, read on the computed sheet: edition-only item effects (ed; Fin Symbiote and Finger Picks are book-gated by fromBk, see tests/book_gate_numbers.py) and spells that ITEM_SPELLS already gives.
 python3 tests/review_g12.py"""
 import os, sys
 from playwright.sync_api import sync_playwright
@@ -16,10 +16,7 @@ CASES = [
     ("2014", "Eyes of Minute Seeing", r'"n":"Darkvision","v":1,', False),
     ("2014", "Eyes of Minute Seeing", r'Advantage on Intelligence \(Investigation\) checks to examine', True),
     ("2024", "Fin Symbiote", r'"t":"Advantage on Constitution saving throws', True),
-    ("2014", "Fin Symbiote", r'"t":"Advantage on Constitution saving throws', False),
     ("2024", "Finger Picks", r'\["Thieves\' Tools","Finger Picks', True),
-    ("2014", "Finger Picks", r'\["Thieves\' Tools","Finger Picks', False),
-    ("2014", "Finger Picks", r'\+2 to ability checks with Thieves\' Tools', True),
     ("2024", "Hat of Disguise", r'"n":"Disguise Self","l":1,', 1),
     ("2024", "Flamefriend Lantern", r'"n":"Produce Flame","l":0,', 1),
 ]
@@ -28,8 +25,8 @@ JS = """(cases)=>{const all={};(WX.src||[]).forEach(x=>all[x.id]=true);
   const b=window.__bldFuzz(Object.assign({rs,cls:'Fighter',sub:'',lv:19,arr:[10,14,14,15,15,15],b2:0,b1:0},o)).b;b.src=Object.assign({},b.src,all);
   const t=window.__bldTestB();Object.assign(t,b);delete t.unset;t.inv=[{n:item,q:1,eq:true}];return t};
  const r=cases.map(([rs,item,rx])=>{try{return (JSON.stringify(window.__bldSheetFor(mk(rs,item),{})).match(new RegExp(rx,'g'))||[]).length}catch(e){return 'CRASH '+e}});
- /* Iron Fangs: the Bite bonus is only in the 2024-rules book (tghg); a Fighter has no Bite row, so read the entry */
- r.push(((GX.item||{})['Iron Fangs']||[]).filter(e=>e.atkBonus).map(e=>e.ed||'both').join());return r}"""
+ /* Iron Fangs: the Bite bonus is gated to the tghg book (fromBk), not by ed; a Fighter has no Bite row, so read the entry */
+ r.push(((GX.item||{})['Iron Fangs']||[]).filter(e=>e.atkBonus).map(e=>(e.fromBk||[]).join('+')||e.ed||'both').join());return r}"""
 bad = n = 0
 with sync_playwright() as p:
     br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(120000)
@@ -39,7 +36,7 @@ with sync_playwright() as p:
         pg.wait_for_timeout(100)
     pg.wait_for_function("window.__deferDone", timeout=120000)
     res = pg.evaluate(JS, [list(c[:3]) for c in CASES])
-    for c, got in zip(CASES + [("2024", "Iron Fangs", "atkBonus entry ed", "2024")], res):
+    for c, got in zip(CASES + [("2024", "Iron Fangs", "atkBonus entry fromBk", "tghg")], res):
         exp = c[3]
         ok = (got == exp) if isinstance(exp, (int, str)) and not isinstance(exp, bool) else (isinstance(got, int) and (got > 0) == exp)
         n += 1; bad += not ok
