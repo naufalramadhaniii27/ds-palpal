@@ -89,6 +89,7 @@ AREAS = {
         ("picks_numbers", [PY, "tests/picks_numbers.py"]),
         ("review_fix_b", [PY, "tests/review_fix_b.py"]),
         ("review_fix_d", [PY, "tests/review_fix_d.py"]),
+        ("review_g02", [PY, "tests/review_g02.py"]),
         ("fx_engine", [PY, "tests/fx_engine.py"]),
     ],
     "ui": [
