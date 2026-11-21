@@ -1,6 +1,6 @@
 /* Page environment of the sheet UI (SOLID stage 3, D). The sheet files read and publish page globals ONLY through `env`.
    `env.NAME` is the same property as `window.NAME`: the getter reads it at the moment of use, the setter writes it. The old window names stay,
-   so the builder, the fx packs, the Training Ground and the tests see exactly what they saw before. Browser APIs (addEventListener, matchMedia,
+   so the builder, the fx packs and the tests see exactly what they saw before. Browser APIs (addEventListener, matchMedia,
    innerWidth, scrollY, fetch, ...) are not shared state and are used directly. No imports on purpose (loads first). */
 export const env = {};
 function bind(names){ names.forEach((n) =>{ Object.defineProperty(env, n, { get(){ return window[n]; }, set(v){ window[n] = v; }, enumerable: true }); }); }
@@ -10,8 +10,8 @@ bind(["CRIMG", "DECKFIX", "FLUFF", "HBIDX", "HBN", "ITEMFIX", "LANGFIX", "QIMG",
 bind(["__ART", "__PPIDX", "__artIc", "__artSheet", "__artSub", "__artVig", "__miArtH", "__qimN"]);
 /* Builder bridge (the builder bundle publishes these when it loads) */
 bind(["__bldArmor", "__bldBack", "__bldCheck", "__bldChoiceList", "__bldDiff", "__bldDot", "__bldEquip", "__bldForSheet", "__bldFxToggle", "__bldGo", "__bldHas", "__bldHpMode", "__bldLevelUp", "__bldMine", "__bldNeed", "__bldNorm", "__bldOpen", "__bldOpenCount", "__bldPactInfo", "__bldSetPact", "__bldOpts", "__bldPendList", "__bldQuickFor", "__bldReload", "__bldRemove", "__bldRename", "__bldSetMw", "__bldSetQty", "__bldSheetBatch", "__bldSheetFor", "__bldSpInfo", "__bldSpSet", "__bldSync", "__bldToast", "__bldToggleEq", "__bldUnpack", "__bldUse"]);
-/* Mastery-of-interaction, Training Ground and Learn bridges */
-bind(["__MI", "__learnBack", "__learnOpen", "__miBd", "__miEcho", "__miInfo", "__miJournal", "__miLookH", "__miMusicH", "__miOdo", "__miPip", "__miPrefH", "__miRoll", "__miRollKey", "__tgBack", "__tgDuel", "__tgDuelPick", "__tgEst", "__tgOpen"]);
+/* Mastery-of-interaction and Learn bridges */
+bind(["__MI", "__learnBack", "__learnOpen", "__miBd", "__miEcho", "__miInfo", "__miJournal", "__miLookH", "__miMusicH", "__miOdo", "__miPip", "__miPrefH", "__miRoll", "__miRollKey"]);
 /* Vendor libraries loaded on demand */
 bind(["html2canvas", "jspdf", "PDFLib", "fontkit", "PDFX"]);
 /* Hooks the sheet publishes itself (old window names stay, tests and other code read them) */

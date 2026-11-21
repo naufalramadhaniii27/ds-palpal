@@ -1,4 +1,4 @@
-import {bindLive,lateGet,tgPcFor,tgPcNow,__set_navStack,openSheet,closeSheet,__set_CU0} from "./00a-reg-late-ports.js";import {ABN} from "./02-data-default-character.js";
+import {bindLive,lateGet,__set_navStack,openSheet,closeSheet,__set_CU0} from "./00a-reg-late-ports.js";import {ABN} from "./02-data-default-character.js";
 import {C,__set_C} from "./04-logic-storage.js";
 import {esc,sg,toast} from "./05-logic-helpers.js";
 import {B,D,__set_B,__set_D,derive} from "./06-logic-derivation.js";
@@ -86,75 +86,18 @@ function rbSearchStep1(opts, goals, box){
     RB.st.t=Date.now()-t0; RB.res=hits.length?hits.slice(0,6):near.slice(0,3); RB.goals=goals; RB.ok=!!hits.length; RB.opts=opts;
     box.innerHTML='<p class="bk-f">'+T.list.length+' builds tried in '+((Date.now()-t0)/1000).toFixed(1)+' s. '+(hits.length?hits.length+' reach every goal'+(hits.length>6?', the 6 with the fewest changes are shown':'')+'.':'None reaches every goal. The closest ones:')+'</p>'+RB.res.map(rbCard).join(""); })();
 }
-function rbCard(r,i){ const g=RB.goals; return '<div class="rb-c'+(RB.ok?'':' near')+'"><ul>'+(r.diff.length?r.diff.map((x) =>{ return '<li>'+esc(x)+'</li>'; }).join(""):'<li>Your build already does it</li>')+'</ul><p class="rb-v">'+g.map((q,j) =>{ const m=r.m[j]; return '<span class="'+(m.ok?'ok':'no')+'">'+esc(q.l)+' '+(m.v==null?'?':(q.k==="ac"||q.k==="hp"?m.v:sg(m.v)))+'</span>'; }).join("")+'</p>'+'<p class="rb-acts">'+(r.diff.length?'<button type="button" class="btn press" data-rbuse="'+i+'">Use this build</button>':'')+'<button type="button" class="btn press" data-rbduel="'+i+'">Test in fights</button></p><p class="bk-f rb-duel" aria-live="polite" hidden></p></div>'; }
-/* N22 build duel: 100 fights of this build and of the current one against the same group (src/tg/25-sim.js, window.__tgDuel).
-   The build is derived on a copy, nothing is saved. The current build is fought once per search and kept */
+function rbCard(r,i){ const g=RB.goals; return '<div class="rb-c'+(RB.ok?'':' near')+'"><ul>'+(r.diff.length?r.diff.map((x) =>{ return '<li>'+esc(x)+'</li>'; }).join(""):'<li>Your build already does it</li>')+'</ul><p class="rb-v">'+g.map((q,j) =>{ const m=r.m[j]; return '<span class="'+(m.ok?'ok':'no')+'">'+esc(q.l)+' '+(m.v==null?'?':(q.k==="ac"||q.k==="hp"?m.v:sg(m.v)))+'</span>'; }).join("")+'</p>'+'<p class="rb-acts">'+(r.diff.length?'<button type="button" class="btn press" data-rbuse="'+i+'">Use this build</button>':'')+'</p></div>'; }
 function rbFinal(r){ const nb=structuredClone(r.nb); if(r.o.alt){ nb.inv=(nb.inv||[]).map((x) =>{ const it=Object.assign({},x); if(it.eq&&((RB.opts&&RB.opts.armor[it.n])||it.n==="Shield")) it.eq=false; return it; }); nb.inv.push({n:r.o.alt.armor,q:1,eq:true}); if(r.o.alt.shield) nb.inv.push({n:"Shield",q:1,eq:true}); } return nb; }
 function rbPlural(n,k){ if(k===1) return "one "+n; let w=n.split(" "), l=w.pop(); l=/(s|x|ch|sh)$/.test(l)?l+"es":/[^aeiou]y$/.test(l)?l.slice(0,-1)+"ies":/f$/.test(l)?l.slice(0,-1)+"ves":l+"s"; w.push(l); return k+" "+w.join(" "); }
 /* M12: scheduler.postTask at user-visible priority when the browser has it, else a timer. scheduler.yield() was tried: its continuations ran five slices in one frame (100 ms) and the page did not paint between them */
 const rbYield=(f) =>{ if(env.scheduler&&typeof env.scheduler.postTask==="function") env.scheduler.postTask(f,{priority:"user-visible"}); else setTimeout(f,0); };
-let RB_DUEL_WAIT=false;
-function rbDuel(i,btn){
- const {r, out}=rbDuel2Step1(i, btn); if(!r||!out) return;
- rbDuel2Step2(out);
-  if(!env.__tgDuelPick){ if(env.__bldNeed&&!RB_DUEL_WAIT){ RB_DUEL_WAIT=true; const again=() =>{ RB_DUEL_WAIT=false; rbDuel(i,btn); }; Promise.resolve(env.__bldNeed()).then(again,again); out.textContent="Loading the fight simulator."; return; } if(!env.__tgDuelPick){ out.textContent="The fight simulator is still loading. Try again in a moment."; return; } }
-  let pc=null; try{ pc=tgPcFor(env.__bldSheetFor(rbFinal(r))); }catch(e){ pc=null; } if(!pc){ out.textContent="This build could not be prepared for a fight."; return; }
-  const {run, pct}=rbDuel2Step3(btn);
-  const line=function(a,base,e1){ const g=base.g, x=a?pct(a.rate):null, y=pct(base.r.rate), d=a?x-y:0;
-    return rbDuelPart1(a, x, y, d, pct, e1, g)+pc.level+'), '+(rbDuelPart2(base))+'. '+(a?'Quick estimate was '+pct(e1)+'%. ':'')+'Same 100 fights for both. Simple play: walk up, attack. Other class features are not used.</small>'; };
-  const {fin}=rbDuel2Step4(btn, run, out, line);
-  const go2=function(base){ const e1=env.__tgEst(pc,base.g); out.innerHTML=line(null,base,e1); env.__tgDuel(pc,base.g,(a) =>{ fin(a,base,e1); }); };
-  if(RB.base&&RB.base.run===run){ go2(RB.base); return; }
-  let cur=null; try{ cur=tgPcNow(); cur.por=""; }catch(e){ cur=null; } if(!cur){ fin(null); return; }
-  rbDuel2Step5(out); env.__tgDuelPick(cur,(g) =>{ if(!g){ fin(null); return; } out.textContent="Your current build: 0 of 100"; env.__tgDuel(cur,g,(b) => rbDuelFn1(fin, run, g, go2, b),(n,m) =>{ out.textContent="Your current build: "+n+" of "+m; }); },(n,m) =>{ out.textContent="Picking a fair group for your current build: "+n+" of "+m; }); }
-function rbDuelPart1(a, x, y, d, pct, e1, g){ return ((a?'Won <b>'+x+' of 100</b> fights. Your current build: <b>'+y+'</b>'+(d?' ('+(d>0?'+':'\u2212')+Math.abs(d)+')':', the same')+'.':'Quick estimate: <b>'+pct(e1)+'%</b>. Your current build: <b>'+y+' of 100</b>. Fighting\u2026')+
-      '<br><small>Against '+esc(rbPlural(g.c.n,g.k))+' ('+g.xp+' XP, '+g.band+' at level '); }
-function rbDuelPart2(base){ return (base.r.rate>=0.3&&base.r.rate<=0.7?'a group your current build beats about half the time':'the group closest to an even fight for your current build'); }
-function rbDuel2Step1(i, btn){
- const {r, out}=rbDuelStep1(i, btn);
-  return /** @type {any} */ ({r, out});
-}
-function rbDuel2Step2(out){
- rbDuelStep2(out);
-}
-function rbDuel2Step3(btn){
-  const {run, pct}=rbDuelStep3(btn);
-  return /** @type {any} */ ({run, pct});
-}
-function rbDuel2Step4(btn, run, out, line){
-  const {fin}=rbDuelStep4(btn, run, out, line);
-  return /** @type {any} */ ({fin});
-}
-function rbDuel2Step5(out){
-  rbDuelStep5(out);
-}
-function rbDuelFn1(fin, run, g, go2, b){ if(!b){ fin(null); return; } RB.base={run:run,g:g,r:b}; go2(RB.base); }
-function rbDuelStep1(i, btn){
-const r=RB.res&&RB.res[i], out=btn.closest(".rb-c").querySelector(".rb-duel");
-  return /** @type {any} */ ({r, out});
-}
-function rbDuelStep2(out){
-out.hidden=false;
-}
-function rbDuelStep3(btn){
-  btn.disabled=true; const run=RB.run, pct=function(x){ return Math.round(x*100); };
-  return /** @type {any} */ ({run, pct});
-}
-function rbDuelStep4(btn, run, out, line){
-  const fin=function(a,base,e1){ btn.disabled=false; if(run!==RB.run) return; if(!a||!base){ out.textContent="The creature list could not be loaded. Check the connection and try again."; return; } out.innerHTML=line(a,base,e1); };
-  return /** @type {any} */ ({fin});
-}
-function rbDuelStep5(out){
-  out.textContent="Picking a fair group for your current build";
-}
 function rbOpen(){ __set_navStack([]); const go=function(){ const sk=(C.skills||[]).map((s) =>{ return '<option>'+esc(s.n)+'</option>'; }).join(""), sv=RB_AB.map((k) =>{ return '<option value="'+k+'">'+esc(ABN[k])+'</option>'; }).join("");
     const f=function(k,l,ph){ return '<label class="rb-f"><span>'+l+' at least</span><input type="number" inputmode="numeric" data-rbg="'+k+'" placeholder="'+ph+'"></label>'; };
     openSheet("Find a build",'<p class="bk-f">Write what you want your '+esc(C.clsLabel||C.cls||"character")+' to reach at level '+D.level+'. The app tries every species, background and score layout of your rules set and shows the builds that get there.</p><div class="rb-g">'+f("ac","Armor Class",D.ac+2)+f("hp","Hit Points",D.hpmax+5)+f("init","Initiative",D.init+2)+f("atk","Best attack bonus","")+
       '<label class="rb-f"><span>Skill</span><select data-rbs="sk"><option value="">None</option>'+sk+'</select></label>'+f("sk","That skill","")+'<label class="rb-f"><span>Saving throw</span><select data-rbs="sv"><option value="">None</option>'+sv+'</select></label>'+f("sv","That save","")+
       '</div><p><button type="button" class="btn pri press" data-rbgo="1">Find builds</button></p><div class="rb-out"></div>',"rb"); };
   if(env.__bldSheetFor&&env.__bldOpts) go(); else { if(env.__bldNeed) try{ env.__bldNeed(); }catch(e){} let n=0; (function w(){ if(env.__bldSheetFor&&env.__bldOpts) go(); else if(++n<60) setTimeout(w,200); else toast("The builder did not load."); })(); } }
-document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-rbgo],[data-rbuse],[data-rbopen],[data-rbduel]"); if(!b) return; e.preventDefault();
-  if(b.hasAttribute("data-rbduel")){ rbDuel(+b.getAttribute("data-rbduel"),b); return; }
+document.addEventListener("click",(e) =>{ const b=e.target.closest&&e.target.closest("[data-rbgo],[data-rbuse],[data-rbopen]"); if(!b) return; e.preventDefault();
   if(b.hasAttribute("data-rbopen")){ rbOpen(); return; } if(b.hasAttribute("data-rbgo")){ rbSearch(); return; }
   const r=RB.res&&RB.res[+b.getAttribute("data-rbuse")]; if(!r) return; const nb=rbFinal(r);
   closeSheet(); env.__bldUse(nb,"Build from Find a build"); });

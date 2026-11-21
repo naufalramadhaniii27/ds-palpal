@@ -62,7 +62,7 @@ for _r in T:
                 if _s not in ("load",): _u.add(_s)
 _lazy = []
 for _n, _p in parts.items():
-    if _p["reg"] or _n in ("builder", "learn", "tg"): continue
+    if _p["reg"] or _n in ("builder", "learn"): continue
     _own = {g: o for o, q in parts.items() for g in q["globals"]}
     _ext = ["QREFS", "SAVE_NOTES", "ITEM_SPELLS", "SPELLS", "FEATS", "CLASSES", "SPECIES", "BACKGROUNDS", "DMGI", "AUTO", "SPELL_FULL", "SUB_FULL", "FLUFF", "QIMG", "HBIDX", "OPTS", "CREATURES"]
     _txt = _re.search(r'data-defer="%s"[^>]*>(.*?)</script>' % _n, _h, _re.S)

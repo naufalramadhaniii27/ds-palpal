@@ -81,10 +81,6 @@ AREAS = {
         ("item_numbers_more", [PY, "tests/item_numbers_more.py"]),
         ("fx_engine", [PY, "tests/fx_engine.py"]),
     ],
-    "tg": [
-        ("tg_engine", ["node", "tests/tg_engine.js", "50"]),
-        ("tg_numbers", [PY, "tests/tg_numbers.py"]),
-    ],
     "ui": [
         ("builder_cost", [PY, "tests/builder_cost.py"]),
         ("html_gate", [PY, "tools/html_gate.py"]),
@@ -104,12 +100,10 @@ PATHS = [
     ("src/builder/11", ["engine"]),
     ("src/builder/03-", ["engine", "items"]),
     ("src/builder/", ["engine"]),
-    ("src/tg/", ["tg"]),
     ("src/pdf/", ["pdf"]),
     ("src/css/", ["ui"]),
     ("src/html/", ["ui"]),
     ("src/fx/", ["ui"]),
-    ("src/app/52-tg-bridge", ["tg"]),
     ("src/app/", ["ui"]),
     ("src/data/", ["items"]),
     ("src/manifest.json", ["modules"]),

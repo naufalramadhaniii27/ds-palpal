@@ -64,8 +64,7 @@
     "css/41-martyr-actions.css",
     "css/L-builder.css",
     "css/L-dice.css",
-    "css/L-learn.css",
-    "css/L-tg.css"
+    "css/L-learn.css"
    ]
   },
   {
@@ -212,7 +211,6 @@
     "app/49-logic-status-and-odds.js",
     "app/50-logic-reverse-builder.js",
     "app/51-ui-table-help.js",
-    "app/52-tg-bridge.js",
     "app/53-logic-number-map.js",
     "app/54-dev-fps-probe.js",
     "app/99-ui-backup-reminder-handlers.js",
@@ -924,25 +922,6 @@
     "learn/47-ui-learn.js"
    ],
    "entry": "learn/47-ui-learn.js"
-  },
-  {
-   "t": "text",
-   "text": "\n"
-  },
-  {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"tg\">",
-   "close": "</script>",
-   "files": [
-    "tg/00-env.js",
-    "tg/00-bridge.js",
-    "tg/19-pc-sheet.js",
-    "tg/20-engine.js",
-    "tg/25-sim.js",
-    "tg/30-ui-tg.js",
-    "tg/31-ui-tg-field.js"
-   ],
-   "entry": "tg/31-ui-tg-field.js"
   },
   {
    "t": "block",

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """N46 type gate.  python3 tools/tsc_gate.py [--update] [--list]
-Runs tsc (tools/build/node_modules/typescript, version locked in tools/build/package.json) with jsconfig.json over the module folders (src/app, builder, learn, tg).
+Runs tsc (tools/build/node_modules/typescript, version locked in tools/build/package.json) with jsconfig.json over the module folders (src/app, builder, learn).
 Errors are counted per file and compared with tools/ts-baseline.json:
   a file listed with 0, or not listed, must stay at 0 (a new error fails the run)
   a file with a number may go down but not up (the ratchet; the number falls as files are cleaned, and --update writes the new numbers)
@@ -23,7 +23,7 @@ for ln in r.stdout.splitlines():
     counts[f] = counts.get(f, 0) + 1; lines.setdefault(f, []).append("%s(%d,%d) %s %s" % (f, row, col, code, msg[:110]))
 base_path = os.path.join(ROOT, "tools", "ts-baseline.json")
 base = json.load(open(base_path)) if os.path.exists(base_path) else {}
-allf = [os.path.join(d, x) for d in ("src/app", "src/builder", "src/learn", "src/tg") for x in sorted(os.listdir(d)) if x.endswith(".js")]
+allf = [os.path.join(d, x) for d in ("src/app", "src/builder", "src/learn") for x in sorted(os.listdir(d)) if x.endswith(".js")]
 if "--update" in sys.argv:
     base = {f: counts.get(f, 0) for f in allf if counts.get(f, 0)}; json.dump(base, open(base_path, "w"), indent=1); print("baseline written:", sum(counts.values()), "errors in", len(counts), "files")
 bad = [(f, counts.get(f, 0), base.get(f, 0)) for f in allf if counts.get(f, 0) > base.get(f, 0)]

@@ -1,5 +1,5 @@
 import {bindLive} from "./00a-reg-late-ports.js";/* Responsibility: overlay stack, long-press menu and the docked card. Split out of the former single file in SOLID stage 3 (S); runs in the same order as before.
-   Touches page globals only through env: __bldBack, __learnBack, __ovState, __tgBack. Shared names with other modules come from the imports below, late names through __R. */
+   Touches page globals only through env: __bldBack, __learnBack, __ovState. Shared names with other modules come from the imports below, late names through __R. */
 import {C,FROZEN} from "./04-logic-storage.js";
 import {$,eqOn,esc,num} from "./05-logic-helpers.js";
 import {lastFocus,sheet} from "./12-ui-bottom-sheet-modal.js";
@@ -24,7 +24,6 @@ env.addEventListener("beforeunload",() =>{ OV_UNLOAD=1; });
 /* Overlays in the order Back closes them, top first (SOLID stage 9, O). One entry per layer in OVERLAY: top() answers the function that closes the layer, or null when it is not open. The order of the add calls is the z-order. */
 OVERLAY.add("context-menu", {top:function(){ const c=document.getElementById("ctxm"); return c?function(){ c.remove(); }:null; }});
 OVERLAY.add("ask", {top:function(){ const a=document.querySelectorAll("body > .ask"); if(!a.length) return null; const x=a[a.length-1]; return function(){ const b=x.querySelector("[data-no]"); if(b) b.click(); else x.remove(); }; }});
-OVERLAY.add("training-ground", {top:function(){ if(env.__tgBack){ const tb=env.__tgBack(); if(tb) return tb; } return null; }});/* G7 Training Ground: field to setup, setup closes */
 OVERLAY.add("learn", {top:function(){ if(env.__learnBack){ const lb=env.__learnBack(); if(lb) return lb; } return null; }});/* T11 Learn: glossary card, sheet spotlight, then one step back */
 OVERLAY.add("builder", {top:function(){ const bl=document.getElementById("bld"); if(bl&&!bl.hidden){ const e=Array.prototype.slice.call(bl.children).filter((d) =>{ return d.classList.contains("exp")&&d.id!=="exp"&&d.querySelector("[data-no]"); }); if(e.length){ const y=e[e.length-1]; return function(){ y.querySelector("[data-no]").click(); }; } if(env.__bldBack) return function(){ env.__bldBack(); }; } return null; }});/* T11 G6 T5 */
 OVERLAY.add("hp-quick-menu", {top:function(){ const q=document.getElementById("hpQm"); return q?function(){ qmClose(); }:null; }});

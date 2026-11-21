@@ -15,7 +15,6 @@ SCREENS = {
  "settings": ("()=>document.getElementById('themeBtn').click()", "()=>{var c=document.getElementById('sheetClose');c&&c.click()}"),
  "library": ("()=>window.__app.libOpen()", "()=>{var c=document.querySelector('#lib [data-x=close],#lib [data-lib=close]');if(c)c.click();else document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))}"),
  "learn": ("()=>window.__learnOpen()", "()=>{var c=document.querySelector('#learn [data-l=close]');c&&c.click()}"),
- "training ground": ("()=>window.__tgOpen()", "()=>{history.back()}"),
  "builder": ("()=>window.__bldOpen()", "()=>{history.back()}"),
  "reverse builder": ("()=>window.__rbOpen()", "()=>{var c=document.getElementById('sheetClose');c&&c.click()}"),
 }

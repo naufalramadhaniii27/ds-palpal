@@ -2,7 +2,6 @@
  "perf_runs": 3,
  "test_timeout": 1500,
  "test_args": {
-  "tg_engine": "300",
   "a11y_scan": "$AXE_JS",
   "learn_a11y": "$AXE_JS"
  },
@@ -15,15 +14,6 @@
     {
      "id": "golden_rules",
      "test": "golden_rules",
-     "base": 0,
-     "target": 1,
-     "gate": true,
-     "bool": true,
-     "c0": 1.0
-    },
-    {
-     "id": "tg_engine",
-     "test": "tg_engine",
      "base": 0,
      "target": 1,
      "gate": true,

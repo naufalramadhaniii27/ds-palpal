@@ -48,8 +48,6 @@ jobs:
         run: |
           pip install playwright==$PLAYWRIGHT_VERSION brotli
           python -m playwright install --with-deps chromium
-      - name: Engine rules (node)
-        run: node tests/tg_engine.js 300
       - name: API sign-in guard (node)
         run: node tests/api_dev_guard.mjs
       - name: "Character audit (tools/audit_char.py: feature groups, book labels, edition text, empty and double features; selftest, then every class and subclass)"
@@ -168,7 +166,7 @@ jobs:
       - name: Browser tests
         run: |
           fail=0
-          for t in detail_img tg_ui tg_n2 g4_play rb_fast dice_lite builder_draft builder_4d6 learn_links number_map; do
+          for t in detail_img g4_play rb_fast dice_lite builder_draft builder_4d6 learn_links number_map; do
             echo "::group::$t"
             python3 tests/$t.py || { echo "::error::$t failed"; fail=1; }
             echo "::endgroup::"

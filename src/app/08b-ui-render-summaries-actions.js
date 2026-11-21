@@ -186,7 +186,7 @@ export function renderActions(){
   let {h}=_renderActionsStep3;
   ({h}=renderActionsStep4(show, h, bRows, AH, kinds, feats, rRows));
 }
-/* attacks per Attack action: the best of the features, never added up (Extra Attack and Thirsting Blade do not stack). The Training Ground reads it too */
+/* attacks per Attack action: the best of the features, never added up (Extra Attack and Thirsting Blade do not stack).*/
 const APA={"Extra Attack":2,"Two Extra Attacks":3,"Three Extra Attacks":4,"Extra Attack (2)":3,"Extra Attack (3)":4,"Thirsting Blade":2,"Devouring Blade":3};
 export function apaOf(feats){ let apa=1; (feats||featAll()).forEach((x) =>{ apa=Math.max(apa,APA[x.f.n]||1); }); return apa; }
 function renderActionsStep1(){
