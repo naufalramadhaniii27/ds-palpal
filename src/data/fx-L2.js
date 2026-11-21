@@ -18,7 +18,6 @@
 
  /* ---------- Old row fx that was wrong or only true on a trigger ---------- */
  W.FXO["Banner of the Krig Rune"]={fx:null};              /* row had +1 AC and +1 attack: those belong to the Gift of Battle area (a place), not to carrying the banner */
-/* row had AC +2: the text lists no AC bonus (the base shield gives +2) */
  W.FXO["Ring of Red Fury"]={fx:{swim:"walk"}};            /* row had paralyzed and restrained immunity always: only during Ruidium Rage (toggle below) */
  W.FXO["Nimbus Coronet"]={fx:null};                       /* row had Fly 60 always: only in cloud form */
  W.FXO["Shield of the Blazing Dreadnought"]={fx:null};    /* row had Fire immunity always: only while the shield is active */
@@ -30,29 +29,24 @@
  W.FXO["Amethyst Lodestone"]={fx:null};                   /* row had Fly always: 1 charge, 10 minutes */
  W.FXO["Ring of Air Elemental Command"]={fx:null};        /* row had Fly and Lightning resistance always: only after helping slay an air elemental */
  W.FXO["Ring of Earth Elemental Command"]={fx:null};      /* row had Acid resistance always: only after helping slay an earth elemental */
-/* Fire resistance is the base ring, Fire immunity needs the slain elemental (toggle below) */
- W.FXO["Armor of Zombie Flesh"]={fx:null};                /* row had Hide Armor plus 2 (Dex capped at 2): the text says AC 14 + Dexterity modifier (acBase below) */
+ W.FXO["Ring of Fire Elemental Command"]={fx:{res:["Fire"]}};  /* Fire resistance is the base ring, Fire immunity needs the slain elemental (toggle below) */
+ W.FXO["Armor of Zombie Flesh"]={fx:null};                /* row had Hide Armor plus 2 (Dex capped at 2): the text says AC 14 + Dexterity modifier (acBase below; the 2014 Grim Hollow row says 16 + Dexterity modifier) */
  /* Deck of Wonder and Deck of Many More Things: fx:null already in fx-D-item.js (random card results). Verified again in tests/golden/builds/fx_L2_*.json */
 
  /* ---------- Cantrips and spells cast from the item (always prepared while the item counts) ---------- */
- each(["Budding Blossom Rod","Flowering Blossom Rod","Somniferous Blossom Rod"],function(n){add(n,{n:n,spells:[[1,"Druidcraft"]]})});   /* Plant Growth (Overgrowth only) and the later rod spells are charged or once per dawn: text */
- each(["Chattering Staff of Skulls"],function(n){add(n,{n:n,spells:[[1,"Chill Touch"]]})});
- add("Diamond Staff",{n:"Diamond Staff",spells:[[1,"Detect Magic,Light,Tongues"]]});   /* the three charge cost 0 spells; the others cost charges */
- add("Bigby's Beneficent Bracelet",{n:"Bigby's Beneficent Bracelet",spells:[[1,"Mage Hand"]]});
- add("Lucent Destroyer",{n:"Lucent Destroyer",spells:[[1,"Dancing Lights"]],atkBonus:[{when:"Lucent Destroyer",note:"No ammunition and no Loading property."}]});
- add("Sanctum Amulet",{n:"Sanctum Amulet",spells:[[1,"Spare the Dying"]]});
- add("Stonky's ring",{n:"Stonky's ring",spells:[[1,"Telekinesis"]],defs:[["Note","Telekinesis from the ring targets only objects that are not worn or carried"]]});
+    /* Blossom Rods, Chattering Staff, Diamond Staff, Bigby's Bracelet, Sanctum Amulet, Lucent Destroyer, Stonky's ring, Amulet of the Inferno: their cantrips come from ITEM_SPELLS. Plant Growth (Overgrowth only) and the later rod spells are charged or once per dawn: text */
+    add("Lucent Destroyer",{n:"Lucent Destroyer",atkBonus:[{when:"Lucent Destroyer",note:"No ammunition and no Loading property."}]});
+  add("Stonky's ring",{n:"Stonky's ring",defs:[["Note","Telekinesis from the ring targets only objects that are not worn or carried"]]});
  add("Boon of the Fire Soul",{n:"Boon of the Fire Soul",spells:[[1,"Burning Hands"]],defs:[["Note","Burning Hands (Boon of the Fire Soul): save DC 15, at will, no spell slot, no components"]]});
  add("Boon of the Stormborn",{n:"Boon of the Stormborn",spells:[[1,"Thunderwave"]],defs:[["Note","Thunderwave (Boon of the Stormborn): save DC 15, at will, no spell slot, no components"]]});
  add("Abjurer's Gilder",{n:"Abjurer's Gilder",spells:[[1,"Shield"]],spCls:"Wizard"});   /* the text says: if it is in your spellbook. The sheet cannot read the spellbook, so Shield is always prepared for the Wizard */
- add("Amulet of the Inferno",{n:"Amulet of the Inferno",res:["Cold"],spells:[[1,"Fire Bolt,Produce Flame"]],defs:[["Note","You can breathe underwater"]]});
+ add("Amulet of the Inferno",{n:"Amulet of the Inferno",res:["Cold"],defs:[["Note","You can breathe underwater"]]});
  /* Boon of Spell Mastery: one 1st-level spell from the Sorcerer, Warlock or Wizard list, cast at its lowest level without a slot. One optional pick per list (pick only one) */
  each(["Sorcerer","Warlock","Wizard"],function(c){add("Boon of Spell Mastery",{n:"Spell Mastery ("+c+" list)",spCls:c,pick:[{k:"sm"+c.slice(0,3).toLowerCase(),t:"cantrip",cls:c,slv:1,n:1,opt:1,yc:1,title:"1st-level "+c+" spell (pick only one spell across the three lists)"}]})});
 
  /* ---------- Extra damage dice on a hit ---------- */
  function dice(item,d,t,note){add(item,{n:item,atkDice:[{when:item,d:d,t:t,note:note}]})}
  dice("Adze of Annam","3d12","Force");
-/* 2d6 when the rune is invoked: once per dawn, text */
  dice("Astral Sea Piercer","1d4","Force");
  dice("Bloodaxe","1d6","Necrotic");              /* not against Constructs or Undead: the note says so */
  add("Bloodaxe",{n:"Bloodaxe",atkBonus:[{when:"Bloodaxe",note:"The extra Necrotic damage does not apply to Constructs and Undead."}]});
@@ -81,7 +75,6 @@
  add("Dark Gift of Delban, the Star of Ice and Hate",{n:"Ring of Warmth",res:["Cold"]});
  add("Dark Gift of Drizlash, the Nine-Eyed Spider",{n:"Dark Gift of Drizlash",mv:{climb:"speed"}});
  add("Dark Gift of Great Taar Haak, the Five-Headed Destroyer",{n:"Dark Gift of Great Taar Haak",abSet:[["STR",25]]});   /* Belt of Fire Giant Strength: 25. The gift lasts 10 days: text */
-/* Mind Blank */
  add("Dark Gift of Seriach, the Hell Hound Whisperer",{n:"Dark Gift of Seriach",langs:["Infernal"]});
  add("Dark Gift of Yog the Invincible",{n:"Dark Gift of Yog",hpFlat:30});
  add("Dark Gift of Yrrga, the Eye of Shadows",{n:"Dark Gift of Yrrga",sense:[["Truesight",60,""]]});
@@ -109,8 +102,9 @@
  add("Belashyrra's Beholder Crown",{n:"Belashyrra's Beholder Crown",darkTo:120});
  add("Rogue's Mantle",{n:"Rogue's Mantle",darkNone:60,darkHave:{add:60}});
  add("Watchful Helm",{n:"Watchful Helm",advOn:["Wisdom (Perception) checks that rely on sight"]});
- add("Blackrazor",{n:"Blackrazor",sense:[["Blindsight",30,""]]});
- add("Axe of the Dwarvish Lords",{n:"Axe of the Dwarvish Lords",tools:["Smith's Tools","Brewer's Supplies","Mason's Tools"]});
+ add("Blackrazor",{n:"Blackrazor",ed:"2024",sense:[["Blindsight",30,""]]});
+ add("Axe of the Dwarvish Lords",{n:"Axe of the Dwarvish Lords",ed:"2024",tools:["Smith's Tools","Brewer's Supplies","Mason's Tools"]});
+ add("Axe of the Dwarvish Lords",{n:"Blessings of Moradin",ed:"2014",toggle:{id:"axe-dwarf",label:"Axe of the Dwarvish Lords: you are a dwarf"},tools:["Smith's Tools","Brewer's Supplies","Mason's Tools"]});
  add("Belt of Dwarvenkind",{n:"Belt of Dwarvenkind",langs:["Dwarvish"],res:["Poison"],advOn:["saving throws to avoid or end the Poisoned condition"],darkNone:60});/* non-dwarf benefits; a dwarf already has them, so they change nothing there */
  add("Accounting and Valuation of All Things",{n:"Accounting and Valuation of All Things",spAtk:3,spDc:3});
  add("Arcane Resonator",{n:"Arcane Resonator",attune:4});
@@ -119,7 +113,8 @@
  each(["Large","Medium","Small"],function(s){
   var e={Large:{acBase:[18,""]},Medium:{acBase:[15,"full"],acDexMax:2},Small:{acBase:[12,"full"]}}[s];
   e.n="Barrier Tattoo";e.cond="noBody";add("Barrier Tattoo ("+s+")",e)});
- add("Armor of Zombie Flesh",{n:"Armor of Zombie Flesh",acBase:[14,"full"],acOver:true});
+ add("Armor of Zombie Flesh",{n:"Armor of Zombie Flesh",ed:"2024",acBase:[14,"full"],acOver:true});
+ add("Armor of Zombie Flesh",{n:"Armor of Zombie Flesh",ed:"2014",acBase:[16,"full"],acOver:true});
  add("Serpent Scale Armor",{n:"Serpent Scale Armor",acBase:[14,"full"],acOver:true,defs:[["Note","Serpent Scale Armor does not impose Disadvantage on Dexterity (Stealth) checks"]]});
 
  /* ---------- Toggles: the effect is true only after a trigger ---------- */
@@ -128,5 +123,11 @@
  add("Crown of Whirling Comets",{n:"Star Flight",toggle:{id:"comets-flight",label:"Crown of Whirling Comets: Star Flight (10 minutes)"},mv:{fly:"speed"}});
  add("Amethyst Lodestone",{n:"Amethyst Lodestone",advOn:["Strength saving throws"]});
  add("Amethyst Lodestone",{n:"Flight",toggle:{id:"lodestone-flight",label:"Amethyst Lodestone: flight (10 minutes)"},mv:{fly:"speed"}});
- add("Warrior's Passkey",{n:"Sword Form",toggle:{id:"passkey-sword",label:"Warrior's Passkey: sword form"},defs:[["Note","Sword form: magic longsword, you are proficient, +1 to attack and damage rolls, a hit deals an extra 1d10 Force damage"]]});
+ add("Warrior's Passkey",{n:"Sword Form",toggle:{id:"passkey-sword",label:"Warrior's Passkey: sword form"},defs:[["Note","Sword form: magic longsword, you are proficient, +1 to attack and damage rolls, a hit deals 1d10 Force damage (instead of a longsword's)"]]});
+ /* Rings of Elemental Command (2014): the extra properties after helping slay that elemental */
+ function ring(e,id,x){add("Ring of "+e+" Elemental Command",Object.assign({n:e+" Elemental Slain",toggle:{id:id,label:"Ring of "+e+" Elemental Command: slew or helped slay "+(e==="Air"||e==="Earth"?"an ":"a ")+e.toLowerCase()+" elemental"}},x))}
+ ring("Air","air-elemental-slain",{res:["Lightning"],mv:{fly:"speed"},defs:[["Note","Ring of Air Elemental Command: you can hover"]]});
+ ring("Earth","earth-elemental-slain",{res:["Acid"]});
+ ring("Fire","fire-elemental-slain",{imm:["Fire"]});
+ ring("Water","water-elemental-slain",{mv:{swim:"speed"},defs:[["Note","Ring of Water Elemental Command: you can breathe underwater"]]});
 })();
