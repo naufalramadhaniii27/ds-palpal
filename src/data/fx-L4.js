@@ -15,23 +15,23 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  function cap(s){return s}
  /* Senses and plain advantage notes */
  add("Eye of Vecna",{n:"Truesight",sense:[["Truesight",240,""]]});
- add("Eyes of Minute Seeing",{n:"Eyes of Minute Seeing",sense:[["Darkvision",1,"within 1 foot only"]],advOn:["Intelligence (Investigation) checks to examine something within 1 foot"]});
+ add("Eyes of Minute Seeing",{n:"Eyes of Minute Seeing",ed:"2024",sense:[["Darkvision",1,"within 1 foot only"]]});/* Darkvision is only in the 2024 text */ add("Eyes of Minute Seeing",{n:"Eyes of Minute Seeing",advOn:["Intelligence (Investigation) checks to examine something within 1 foot"]});
  add("Eyes of the Dragonne",{n:"Eyes of the Dragonne",advOn:["sight-based Wisdom (Perception) checks"]});
  add("Eyes of the Eagle",{n:"Eyes of the Eagle",advOn:["Wisdom (Perception) checks that depend on sight"]});
  add("Fangs of Guile",{n:"Fangs of Guile",advOn:["Deception, Insight and Persuasion checks"]});
  add("Festerwood Vizard",{n:"Festerwood Vizard",sense:[["Blindsight",10,""]]});
- add("Fin Symbiote",{n:"Fin Symbiote",advOn:["Constitution saving throws"]});
+ add("Fin Symbiote",{n:"Fin Symbiote",ed:"2024",advOn:["Constitution saving throws"]});
  add("Ghallanda Cauldron",{n:"Ghallanda Cauldron",advOn:["ability checks with Cook's Utensils"]});
  add("Greater Silver Sword",{n:"Greater Silver Sword",advOn:["Intelligence, Wisdom and Charisma saving throws (while held)"]});
  add("Helm of Perfect Potential",{n:"Master of Guile",advOn:["Charisma (Deception) checks","Wisdom (Insight) checks"]});
- add("Helm of Telepathy",{n:"Helm of Telepathy",sense:[["Telepathy",30,""]]});
+ add("Helm of Telepathy",{n:"Helm of Telepathy",ed:"2024",sense:[["Telepathy",30,""]]});
  add("Kagonesti Forest Shroud",{n:"Kagonesti Forest Shroud",advOn:["Dexterity (Stealth) checks"]});
  add("Knave's Eye Patch",{n:"Knave's Eye Patch",advOn:["Wisdom (Perception) checks that rely on sight"],defs:[["Note","Immune to magic that reads your thoughts or tells whether you are lying. Creatures can talk to you telepathically only if you allow it."]]});
  add("Lost Crown of Besilmer",{n:"Lost Crown of Besilmer",advOn:["saving throws against effects that would charm you"]});
  add("Mantle of Spell Resistance",{n:"Mantle of Spell Resistance",advOn:["saving throws against spells"]});
  add("Mantle of the Pack Lord",{n:"Mantle of the Pack Lord",defs:[["Note","Enemies do not gain Advantage on attack rolls against you just because an ally of theirs is within 5 feet of you (Pack Tactics)."]]});
  add("Mindguard Crown",{n:"Mindguard Crown",advOn:["Intelligence, Wisdom and Charisma saving throws"]});
- add("Necklace of Adaptation",{n:"Necklace of Adaptation",advOn:["saving throws to resist or shake off the Poisoned condition"]});
+ add("Necklace of Adaptation",{n:"Necklace of Adaptation",ed:"2024",advOn:["saving throws to resist or shake off the Poisoned condition"]}); add("Necklace of Adaptation",{n:"Necklace of Adaptation",ed:"2014",advOn:["saving throws against harmful gases and vapors"]});
  ["Moongold Ammunition","Moongold Weapon"].forEach(function(n){add(n,{n:"Moongold",advOn:["saving throws against the Frightened condition","saving throws against Madness"]})});
  add("Ioun Stone, Awareness",{n:"Ioun Stone, Awareness",noSurprise:true});
  add("Ioun Stone, Supreme Intellect",{n:"Ioun Stone, Supreme Intellect",chkBonus:[["INT",1]]});
@@ -129,17 +129,15 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
  add("Kubazan",{n:"Kubazan",abSet:[["STR",23]]});
  ["Gallus Feather Robe","Luma Feather Robe"].forEach(function(n){add(n,{n:n,abPick:{k:"a",from:["INT","CHA"],set:22,title:"Ability that becomes 22"},lu:{n:n==="Gallus Feather Robe"?"Second target (single-ally spell)":"Reroll a successful save",max:3,reset:"dawn"}})});
 
- /* Spells and proficiencies */
+ /* Spells and proficiencies. Same-name rows of a 2024-rules and a 2014-rules book (tghg/tgh14p, tsdm/tdm14) are told apart by ed. Hat of Disguise and Flamefriend Lantern spells come from ITEM_SPELLS only. */
  add("Finger Gun Glove",{n:"Finger Gun Glove",spells:[[1,"Finger Guns"]]});
- add("Finger Picks",{n:"Finger Picks",toolPE:["Thieves' Tools"]});/* fx engine v5: proficiency, or Expertise when already proficient */
+ add("Finger Picks",{n:"Finger Picks",ed:"2024",toolPE:["Thieves' Tools"]}); add("Finger Picks",{n:"Finger Picks",ed:"2014",defs:[["Note","Finger Picks: +2 to ability checks with Thieves' Tools if you are proficient with them"]]});/* fx engine v5: proficiency, or Expertise when already proficient */
  add("Fireweaver Gloves",{n:"Fireweaver Gloves",spells:[[1,"Produce Flame"]],defs:[["Note","Produce Flame from the gloves: +5 to hit, 1-hour duration"]]});
- add("Flamefriend Lantern",{n:"Flamefriend Lantern",spells:[[1,"Produce Flame"]],spCls:"@sub:WIS"});
  add("Forgemaster's Might",{n:"Forgemaster's Might",spells:[[1,"Mending"]],lu:[{n:"Creation (Forgemaster's Might)",max:1,reset:"dawn"},{n:"Fabricate (Forgemaster's Might)",max:1,reset:"dawn"}]});
  add("Glove of the Grim Fandango",{n:"Glove of the Grim Fandango",tools:["Musical Instruments (all)"]});
  add("Hand of the Master",{n:"Hand of the Master",spells:[[1,"Mage Hand"]]});
  add("Harp of Valor",{n:"Harp of Valor",tools:["Harp"]});
  add("Hat Trick",{n:"Hat Trick",spells:[[1,"Prestidigitation"]],defs:[["Note","Hat Trick: Prestidigitation only for the sensory effect or minor creation (illusory image) options"]]});
- add("Hat of Disguise",{n:"Hat of Disguise",spells:[[1,"Disguise Self"]]});
  add("Liar's Lyre",{n:"Liar's Lyre",tools:["Lyre"]});
  add("Grip of Dendallen",{n:"Grip of Dendallen",unarmed:{die:"1d6",t:"Necrotic",force:1},lu:{n:"Grip spell (Blight, Contagion or Vampiric Touch)",max:3,reset:"dusk",tag:"One use per spell"},defs:[["Note","Disadvantage on Charisma checks (curse)"]]});
 
@@ -164,7 +162,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};DataEnv.slot.FXO=DataEnv
 
  /* Ironfang, Iron Fangs */
  add("Ironfang",{n:"Earth Mastery",langs:["Terran"],sense:[["Tremorsense",60,""]]});
- add("Iron Fangs",{n:"Iron Fangs",atkBonus:[{when:["Bite"],atk:2,dmg:2}]});
+ add("Iron Fangs",{n:"Iron Fangs",ed:"2024",atkBonus:[{when:["Bite"],atk:2,dmg:2}]});
  add("Ionbreaker, the Tempest's Reach",{n:"A Storm Is Coming",initDie:"1d10"});
  /* Graft unarmed strikes */
  add("Monstrous Bite",{n:"Monstrous Bite",unarmed:{die:"1d6",t:"Piercing",force:1},atkAb:{kind:"unarmed",ab:"DEX"}});
