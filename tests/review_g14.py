@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Review g14 fixes on the computed sheet (fx-L6, fx-L8).
-Vicious Weapon (2014 build): the 2d6 is natural-20 only, so it is a row note and no extra hit dice (2024: 2d6 every hit, golden fx_L6_bib_vicious_longsword). Overdrive Module: one use pool (tsdm row, Long Rest), not a row pool plus a GX pool.
+Vicious Weapon (2014 build): the 2d6 is natural-20 only, so it is an xcrit rider (atkDice crit:1) and no extra hit dice (2024: 2d6 every hit, golden fx_L6_bib_vicious_longsword). Overdrive Module: one use pool (tsdm row, Long Rest), not a row pool plus a GX pool.
 python3 tests/review_g14.py"""
 import os, sys
 from playwright.sync_api import sync_playwright
@@ -10,7 +10,7 @@ JS = """()=>{const all={};(WX.src||[]).forEach(x=>all[x.id]=true);
  const t=window.__bldTestB();Object.assign(t,b);delete t.unset;t.inv=[{n:'Overdrive Module',q:1,eq:true},{n:'Vicious Weapon (Longsword)',q:1,eq:true}];
  const C=window.__bldSheetFor(t,{});const vw=(C.attacks||[]).filter(a=>/Vicious/.test(a.n));
  const pools=[];JSON.stringify(C,(k,v)=>{if(v&&typeof v==='object'&&v.n==='Overdrive Module'&&v.max!=null)pools.push(v.reset);return v});
- return {vwRows:vw.length,vwDice:vw.some(a=>(a.xdice||[]).some(x=>x.d==='2d6')),vwNote:vw.some(a=>/2d6[^.]*d20 shows 20/.test(a.note||'')),pools:pools.join(',')}}"""
+ return {vwRows:vw.length,vwDice:vw.some(a=>(a.xdice||[]).some(x=>x.d==='2d6')),vwNote:vw.some(a=>(a.xcrit||[]).some(x=>x.d==='2d6')),pools:pools.join(',')}}"""
 EXP = {"vwRows": 1, "vwDice": False, "vwNote": True, "pools": "long"}
 with sync_playwright() as p:
     br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(120000)

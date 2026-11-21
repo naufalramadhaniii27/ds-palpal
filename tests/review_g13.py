@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sheet checks of the review g13 fixes in src/data/fx-L5.js (and the 2014 Scarab of Protection row).  python3 tests/review_g13.py"""
+"""Sheet checks of the review g13 fixes in src/data/fx-L5.js (and the 2014 Scarab of Protection row). Star Metal Ring, Straitjacket and Shoulder Cannon are book-gated (fromBk), not by ed: tests/book_gate_numbers.py has both books.  python3 tests/review_g13.py"""
 import os, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -13,12 +13,9 @@ CASES = [
     ("Robe of Eyes: no Truesight", "2014", "Robe of Eyes", None, "has", "Truesight", False),
     ("Robe of Eyes: Ethereal note", "2014", "Robe of Eyes", None, "has", "into the Ethereal Plane, out to 120", True),
     ("Robe of Eyes: Truesight", "2024", "Robe of Eyes", None, "has", "Truesight", True),
-    ("Star Metal Ring: no Force", "2014", "Star Metal Ring", None, "has", '"type":"Force"', False),
     ("Star Metal Ring: magical", "2014", "Star Metal Ring", None, "has", "Counts as magical", True),
     ("Star Metal Ring: Force", "2024", "Star Metal Ring", None, "has", '"type":"Force"', True),
-    ("Straitjacket: no AC", "2014", "Straitjacket", None, "ac", None, 0),
     ("Straitjacket: INT to AC", "2024", "Straitjacket", None, "ac", None, 2),
-    ("Shoulder Cannon: no dawn tracker", "2014", "Shoulder Cannon", None, "has", TRK, False),
     ("Shoulder Cannon: dawn tracker", "2024", "Shoulder Cannon", None, "has", TRK, True),
     ("Splitter joined: +3", "2024", "Splitter", None, "row", "Splitter", [3, 3]),
     ("Splitter split: +1", "2024", "Splitter", "splitter-split", "row", "Splitter", [1, 1]),

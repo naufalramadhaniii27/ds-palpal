@@ -116,12 +116,12 @@
  "expect": {},
  "expectC": [
   {
-   "path": "moves",
-   "in": "climb"
+   "path": "speeds.climb.v",
+   "eq": "walk"
   },
   {
-   "path": "moves",
-   "in": "swim"
+   "path": "speeds.swim.v",
+   "eq": "walk"
   }
  ]
 }

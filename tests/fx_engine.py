@@ -245,7 +245,8 @@ case('v4 carryBump doubles capacity, size stays', species({'n': 'T', 'carryBump'
 case('v4 darkNone gives 60 when none', species({'n': 'T', 'darkNone': 60, 'darkHave': {'to': 120}}), lambda C0, C1, D0, D1: ok(C1['darkvision'] == 60, C1['darkvision']), {'species': 'Human'})
 case('v4 darkHave to 120 when Darkvision exists', {'species': {'Human': [{'n': 'A', 'darkAdd': 60}, {'n': 'T', 'darkNone': 60, 'darkHave': {'to': 120}}]}}, lambda C0, C1, D0, D1: ok(C1['darkvision'] == 120, C1['darkvision']))
 case('v4 darkHave add 30 when Darkvision exists', {'species': {'Human': [{'n': 'A', 'darkAdd': 60}, {'n': 'T', 'darkNone': 60, 'darkHave': {'add': 30}}]}}, lambda C0, C1, D0, D1: ok(C1['darkvision'] == 90, C1['darkvision']))
-case('v4 darkAdd stacks, darkTo sets', {'species': {'Human': [{'n': 'A', 'darkAdd': 30}, {'n': 'B', 'darkAdd': 30}, {'n': 'C', 'darkTo': 40}]}}, lambda C0, C1, D0, D1: ok(C1['darkvision'] == 60, C1['darkvision']))
+# darkTo sets the base first (darkOrder, 12f), then each darkAdd stacks on it: 40+30+30, whatever the source order
+case('v4 darkAdd stacks, darkTo sets', {'species': {'Human': [{'n': 'A', 'darkAdd': 30}, {'n': 'B', 'darkAdd': 30}, {'n': 'C', 'darkTo': 40}]}}, lambda C0, C1, D0, D1: ok(C1['darkvision'] == 100, C1['darkvision']))
 # movement from Speed
 case('v4 mv fly speed2 (double Speed)', species({'n': 'T', 'mv': {'fly': 'speed2'}}), lambda C0, C1, D0, D1: ok(C1['moves'][0]['v'] == 2 * C1['speed'], json.dumps(C1.get('moves'))))
 # limited use rows from an entry

@@ -1,5 +1,5 @@
 {
- "why": "Knight Errant, Chivalrous Oath level 3: proficiency in one skill of Animal Handling, History, Insight, Persuasion. The test picks History.",
+ "why": "Knight Errant, Chivalrous Oath level 3: proficiency in two skills of Animal Handling, History, Insight, Persuasion. The test picks History.",
  "build": {
   "name": "Golden",
   "species": "Human",
@@ -19,7 +19,7 @@
    "CHA": 8
   },
   "ch": {
-   "gx-sk-sub-Knight Errant": [
+   "knighterrant_skills": [
     "History",
     "Insight"
    ]
