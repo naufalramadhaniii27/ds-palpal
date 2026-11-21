@@ -160,10 +160,10 @@ export function qbMI(){B.pk=B.pk||{};miFeats().forEach((m) =>{const v=B.pk[m.key
  /* T11 N6: a Cleric or Druid of high level can already know every level 1 spell of the list. Then Magic Initiate takes one of them again */
  if(!ss.length)ss=L.filter((x) =>{return x[1]===1}).map((x) =>{return x[0]}).slice(0,1);if(cs.length<2)L.filter((x) =>{return !x[1]&&cs.indexOf(x[0])<0}).forEach((x) =>{if(cs.length<2)cs.push(x[0])});
  B.pk[m.key]={c:cs,s:ss,ab:["INT","WIS","CHA"].indexOf(cast)>=0?cast:"WIS"}})}
-/* v32 p22: a Wizard spellbook filled with level 1 Wizard spells (the Magic Initiate picks first) */
-export function qbBook(){const need=bookNeed();if(!need)return;B.pk=B.pk||{};const bk=B.pk.book=B.pk.book||[];(QB_MI.Wizard.s.concat(SPELLS.filter((x) =>{return x[1]===1&&x[3].indexOf("Wizard")>=0}).map((x) =>{return x[0]}))).forEach((n) =>{if(bookOwn().length<need&&bookOwn().indexOf(n)<0)bk.push(n)});
- /* T11 N6: higher Wizard levels need more spells than there are level 1 Wizard spells, so the rest come from the levels the Wizard can cast, highest first */
- const mx=Math.min(9,Math.ceil(wizLv()/2));for(var lv=mx;lv>=2&&bookOwn().length<need;lv--)SPELLS.filter((x) =>{return x[1]===lv&&x[3].indexOf("Wizard")>=0}).forEach((x) =>{if(bookOwn().length<need&&bookOwn().indexOf(x[0])<0)bk.push(x[0])});
+/* v32 p22: a Wizard spellbook filled the way a Wizard grows it: 6 level 1 spells at level 1 (the Magic Initiate picks first), then 2 spells per Wizard level of the highest level it can cast (PHB 2014 p. 114, PHB 2024 p. 168). A level with no spell left falls back to the next lower level */
+export function qbBook(){const need=bookNeed();if(!need)return;B.pk=B.pk||{};const bk=B.pk.book=B.pk.book||[],wl=wizLv(),of=(lv) =>{return SPELLS.filter((x) =>{return x[1]===lv&&x[3].indexOf("Wizard")>=0}).map((x) =>{return x[0]})};
+ const add=(n,lv) =>{for(let l=lv;l>=1&&n>0;l--)(l===1?QB_MI.Wizard.s.concat(of(1)):of(l)).forEach((s) =>{if(n>0&&bookOwn().length<need&&bookOwn().indexOf(s)<0){bk.push(s);n--}})};
+ for(let L=1;L<=Math.max(1,wl)&&bookOwn().length<need;L++)add(L===1?6:2,Math.min(9,Math.ceil(L/2)));add(need-bookOwn().length,Math.min(9,Math.ceil(wl/2)));
  if(!bk.length)delete B.pk.book}
 export function quickBuild(cls,sp){const Q=QUICK[cls];if(!Q){toast("Choose a class first.");return}
  const go=function(){const keep={name:B.name,cid:B.cid,src:B.src,packs:B.packs,rs:B.rs};__set_B(NEWB());if(keep.rs==="2014")B.rs="2014";if(keep.name&&keep.name!=="New Hero")B.name=keep.name;if(keep.cid)B.cid=keep.cid;if(keep.src)B.src=keep.src;if(keep.packs)B.packs=keep.packs;applyPacks();
