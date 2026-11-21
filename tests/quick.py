@@ -90,6 +90,7 @@ AREAS = {
         ("review_r3c", [PY, "tests/review_r3c.py"]),
         ("review_r3d", [PY, "tests/review_r3d.py"]),
         ("book_gate_numbers", [PY, "tests/book_gate_numbers.py"]),
+        ("engine_fields_r3", [PY, "tests/engine_fields_r3.py"]),
         ("speedzero_numbers", [PY, "tests/speedzero_numbers.py"]),
         ("picks_numbers", [PY, "tests/picks_numbers.py"]),
         ("review_fix_b", [PY, "tests/review_fix_b.py"]),

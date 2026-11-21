@@ -7,7 +7,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};
 (function(){
  if(DataEnv.slot.__fxZ1)return;DataEnv.slot.__fxZ1=1;
  function I(n,e){e.n=e.n||n;(GX.item[n]=GX.item[n]||[]).push(e)}
- function R(n,d,t,ed){const e={n:n,atkDice:[{when:n,d:d,t:t}]};if(ed)e.ed=ed;I(n,e)}
+ function R(n,d,t,ed){const e={n:n,atkDice:[{when:n,d:d,t:t}]};if(/(shows|roll) a 20/.test(t))e.atkDice[0].crit=1;/* the d20-of-20 rows: crit only */if(ed)e.ed=ed;I(n,e)}
  /* ed: the DMG 2014 row (DM14.ov, 09c dm14Set) reads differently, so each edition gets its own note (review fix D) */
  R("Axe of the Dwarvish Lords","20","Slashing when the d20 shows a 20 (against a creature)","2024");
  R("Axe of the Dwarvish Lords","14","Slashing when you roll a 20 (Sword of Sharpness; roll another d20, on a 20 you lop off a limb)","2014");

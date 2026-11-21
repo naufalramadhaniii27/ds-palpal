@@ -122,7 +122,7 @@ P(GX.sub,"Madness Domain",[{"n": "Fragmented Mind (note)", "l": 6, "defs": [["Ad
 P(GX.sub,"Mage Brand",[{"n": "Desperate Ward (note)", "l": 10, "defs": [["Advantage", "Desperate Ward: While Bloodied, you have Advantage on saves against spells and other magical effects"]]}]);
 P(GX.sub,"Master of Fiends",[{"n": "Fiendish Presence (note)", "l": 3, "defs": [["Advantage", "Fiendish Presence: You can call on that presence for Advantage on one check with the chosen skill"]]}]);
 P(GX.sub,"Mime",[{"n": "Pantomime [Dance Style] (note)", "l": 3, "defs": [["Advantage", "Pantomime [Dance Style]: Advantage on the first melee attack roll you make on each of your turns"]]}]);
-P(GX.sub,"Mutagenist",[{"n": "Advanced Mutation (note)", "l": 10, "defs": [["Advantage", "Advanced Mutation: Advantage on checks and saves to avoid or end the Grappled and Restrained conditions"]]}]);
+P(GX.sub,"Mutagenist",[{"n": "Advanced Mutation (note)", "l": 10, "forCls": ["Alchemist"], "defs": [["Advantage", "Advanced Mutation: Advantage on checks and saves to avoid or end the Grappled and Restrained conditions"]]}]);
 P(GX.sub,"Occultist Guild",[{"n": "Arcane Interference (note)", "l": 3, "defs": [["Advantage", "Arcane Interference: Advantage on saving throws against spells cast by creature types in your Monster Grimoire"]]}]);
 P(GX.sub,"Path of the Fin (2014)",[{"n": "Blood Sense (note)", "l": 6, "defs": [["Advantage", "Blood Sense: Advantage on Intelligence (Investigation) and Wisdom (Perception) checks that involve smell"]]}]);
 P(GX.sub,"Phantom",[{"n": "Tokens of the Departed (note)", "l": 9, "defs": [["Advantage", "Tokens of the Departed: While you have at least one soul trinket, you have Advantage on Death Saving Throws and Constitution saving throws"]]}]);

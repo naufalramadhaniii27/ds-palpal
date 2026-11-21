@@ -1945,11 +1945,13 @@
  },
  "GX.sub|Mutagenist": {
   "files": [
-   "fx-B9-advnotes.js",
-   "fx-B19-speedmv.js"
+   "fx-B19-speedmv.js",
+   "fx-B9-advnotes.js"
   ],
-  "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
-  "shared": []
+  "reason": "Two features of the tvss Alchemist Mutagenist (Advanced Mutation note, climb switch); both carry forCls Alchemist so the tsae Artificer Mutagenist gets neither. Nothing counted twice.",
+  "shared": [
+   "forCls"
+  ]
  },
  "GX.sub|Nature Domain": {
   "files": [

@@ -57,8 +57,10 @@ registerSheetGroup({id:"species-darkvision",group:"senses",phase:"senses",order:
 registerSheetRule({id:"wild-heart-6-owl",group:"senses",about:"Barbarian Path of the Wild Heart 6: Aspect of the Wilds (Owl), Darkvision 60 ft more",phase:"senses",order:20,reads:["q.subAt","q.chOf","C.darkvision","C.darkSrc"],writes:["C.darkvision","C.darkSrc"],
  run:function(ctx){const C=ctx.C,Q=ctx.q;if(Q.subAt("Barbarian","Path of the Wild Heart")>=6&&Q.chOf("Barbarian","p6opt")==="Owl"){const dk=C.darkvision;C.darkvision=dk?dk+60:60;C.darkSrc=(C.darkSrc?C.darkSrc+", +60 ":"")+"Aspect of the Wilds (Owl)"}return ctx.patch()}});
 /* fx batch E and v4: darkAdd, darkTo, darkNone, darkHave */
+/* plain darkTo/darkNone entries run before darkAdd/darkHave, so a feat's +N or "if you already have it" does not depend on source order */
+function darkOrder(G){const set=function(e){return (e.darkTo||e.darkNone)&&!e.darkHave&&!e.darkAdd};return G.filter(set).concat(G.filter(function(e){return !set(e)}))}
 registerSheetGroup({id:"fx-darkvision",group:"senses",phase:"senses",order:30,reads:["i.G","i.ar","i.ESH","i.EA","q.fxOk","q.fxv","C.darkvision","C.darkSrc"],writes:["C.darkvision","C.darkSrc"],
- run:function(ctx){const C=ctx.C;runFxPhase("sheet","darkvision",ctx.i.G,fxCtx(ctx,{spd:function(){return 0},dark:function(){return {vision:C.darkvision,src:C.darkSrc}}}),function(p){if(p.dark){C.darkvision=p.dark.vision;C.darkSrc=p.dark.src}});return ctx.patch()}});
+ run:function(ctx){const C=ctx.C;runFxPhase("sheet","darkvision",darkOrder(ctx.i.G),fxCtx(ctx,{spd:function(){return 0},dark:function(){return {vision:C.darkvision,src:C.darkSrc}}}),function(p){if(p.dark){C.darkvision=p.dark.vision;C.darkSrc=p.dark.src}});return ctx.patch()}});
 /* ---------- Initiative ---------- */
 /* an Initiative bonus that is added once, whatever the number of class parts that name it. `re` finds the line of the bonus already on the sheet */
 function initOnce(C,re,row){if(!C.initBonus.some((x) =>{return re.test(x.s)}))C.initBonus.push(row)}
