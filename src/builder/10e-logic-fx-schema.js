@@ -20,6 +20,7 @@ export const FX_FIELDS={
  armor:"array",
  acArmAb:"string",
  speedMul:"number",
+ speedTo:"number",
  condImm:"array",
  defs:"array",
  speedAdd:"number|string",
