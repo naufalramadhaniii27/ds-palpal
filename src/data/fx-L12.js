@@ -10,7 +10,7 @@ DataEnv.slot.THIRD_SUBS=DataEnv.slot.THIRD_SUBS||{};
 function lux(owner,n,fn){if(typeof LU_X==="undefined")return;LU_X.forEach(function(e){if(e.src==="sub"&&e.owner===owner&&e.n===n)fn(e)})}
 function sk(k){return "gx-"+k}
 /* ---------- Necromancer ---------- */
-add("Reanimator",[{l:20,n:"Patchwork Golem (Gruesome Physicality, Damage Resistance)",abSet:[["STR",20],["DEX",20],["CON",20]],res:BPS}]);
+add("Reanimator",[{l:20,forCls:["Necromancer"],n:"Patchwork Golem (Gruesome Physicality, Damage Resistance)",abSet:[["STR",20],["DEX",20],["CON",20]],res:BPS}]);
 /* ---------- Paladin ---------- */
 add("Oath of Devotion",[{l:7,n:"Aura of Devotion",defs:[["Immunity","Charmed condition (you and your allies, while inside your Aura of Protection)"]]}]);
 add("Oath of the Annihilator",[{l:7,n:"Aura of Inevitability",defs:[["Immunity","Frightened condition (you and allies within 10 ft, 30 ft at level 18)"]]}]);

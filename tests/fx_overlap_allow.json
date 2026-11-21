@@ -71,8 +71,10 @@
    "fx-L1.js",
    "fx-Z4.js"
   ],
-  "reason": "Z4 adds other features of the same class than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
+  "reason": "Z4 adds other features of the same class than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it. ed is only the edition gate (2014 and 2024 lines of the class), not an effect.",
+  "shared": [
+   "ed"
+  ]
  },
  "GX.cls|Ranger": {
   "files": [
@@ -80,8 +82,10 @@
    "fx-N1.js",
    "fx-Z4.js"
   ],
-  "reason": "Z4 adds other features of the same class than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
+  "reason": "Z4 adds other features of the same class than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it. ed is only the edition gate (2014 and 2024 lines of the class), not an effect.",
+  "shared": [
+   "ed"
+  ]
  },
  "GX.cls|Rogue": {
   "files": [
