@@ -976,6 +976,14 @@
    "advOn"
   ]
  },
+ "GX.species|Marionette Geppettin": {
+  "files": [
+   "fx-B62-disease.js",
+   "fx-B9-advnotes.js"
+  ],
+  "reason": "B9 Innocuous is a Note (defs), B62 Construct Anatomy is disease immunity (def); different features, nothing is counted twice.",
+  "shared": []
+ },
  "GX.species|Naga": {
   "files": [
    "fx-B33-speciesmisc.js",
