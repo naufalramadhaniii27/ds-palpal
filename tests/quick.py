@@ -41,6 +41,7 @@ AREAS = {
         ("rest_numbers", [PY, "tests/rest_numbers.py"]),
         ("bladesong_numbers", [PY, "tests/bladesong_numbers.py"]),
         ("sub_gap_numbers", [PY, "tests/sub_gap_numbers.py"]),
+        ("situational_cls_numbers", [PY, "tests/situational_cls_numbers.py"]),
         ("weapon_items", [PY, "tests/weapon_items.py"]),
         ("armor_items", [PY, "tests/armor_items.py"]),
         ("golden_builds", [PY, "tests/golden_builds.py"]),
