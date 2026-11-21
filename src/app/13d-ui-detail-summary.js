@@ -1,7 +1,9 @@
 /* Detail card summary block (dcSum): one line, big number row, chips, bullets from the bold sub-headings. Used by spell, feat and feature cards.
    Rule: the summary never repeats itself. Chips only add what the number row and the line do not say; the detail text starts after the line when the line is its first sentence */
 import {esc} from "./05-logic-helpers.js";
-export function sumPlain(t){ return String(t||"").replace(/<[^>]*>/g,"").replace(/\{@\w+ ([^|}]*)[^}]*\}/g,"$1").replace(/\*+/g,"").replace(/\s+/g," ").trim(); }
+import {bindLive} from "./00a-reg-late-ports.js";
+bindLive("featLine",{get:function(){return featLine;}});
+export function sumPlain(t){ return String(t||"").replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,k,l) =>l||k).replace(/<[^>]*>/g,"").replace(/\{@\w+ ([^|}]*)[^}]*\}/g,"$1").replace(/\*+/g,"").replace(/\s+/g," ").trim(); }
 /* cut at a clause boundary (comma, semicolon, or a joining word) inside n chars, else at a word boundary. Never mid-word */
 function sumCut(s,n){ s=String(s||""); if(s.length<=n) return s; const c=s.slice(0,n+1), lo=n*.45; let k=-1;
   const re=/[,;:]\s| (?:or|and|but|after|when|if|until|while|unless|which|who|then) /g; let m; while((m=re.exec(c))) if(m.index>lo&&m.index<=n) k=m.index;
@@ -40,6 +42,9 @@ export function dmgH(d,t){ const ty=String(t||"").split("|"), cl="dt-"+String(ty
   return '<span class="'+cl+'">'+esc(d)+'</span>'+(ty[0]?'<small class="dsum-u '+cl+'">'+esc(ty.map((x) =>x.charAt(0).toUpperCase()+x.slice(1)).join(" or "))+'</small>':''); }
 /* dice in the line become the dice the number row shows for that damage type (Fire Bolt at level 5: 1d10 Fire -> 2d10 Fire) */
 export function sumDice(line,parts){ let s=String(line||""); (parts||[]).forEach((p) =>{ String(p[1]||"").split("|").forEach((t) =>{ if(t) s=s.replace(new RegExp("\\b\\d+d\\d+(\\s*(?:\\+\\s*\\d+\\s*)?"+t+")","gi"),p[0]+"$1"); }); }); return s; }
+export const DSUM_DH='<h3 class="info-h dsum-dh">Detail</h3>';
+/* the detail under a summary: folded behind "Full text" when the bullets above already show its sub-headed paragraphs; with no detail left, the Detail heading goes too */
+export function sumDetail(sumH,raw,html){ if(!html) return sumH.replace(DSUM_DH,""); return sumH+(sumPts(raw).pts.length>=2?'<details class="dsum-full"><summary>Full text</summary>'+html+'</details>':html); }
 /* nums: [[label, html, extra class]]; chips: [[text, class]]; pts: [[head, text]] */
 export function dcSum(line,nums,chips,pts){ nums=(nums||[]).filter((c) =>{ return c&&c[1]&&c[1]!=="—"; }); pts=pts||[];
   const ln=norm(line), seen={}; chips=(chips||[]).filter((c) =>{ const k=c&&norm(c[0]); if(!k||seen[k]||(ln&&ln.indexOf(k)>=0)) return false; seen[k]=1; return true; });/* a chip the line already says, or a duplicate, adds nothing */
@@ -48,7 +53,7 @@ export function dcSum(line,nums,chips,pts){ nums=(nums||[]).filter((c) =>{ retur
     (nums.length?'<dl class="dsum-n">'+nums.map((c) =>{ return '<div class="dsum-c'+(c[2]?' '+c[2]:'')+'"><dt>'+esc(c[0])+'</dt><dd data-xl-off>'+c[1]+'</dd></div>'; }).join("")+'</dl>':'')+
     (chips.length?'<ul class="dsum-ch" aria-label="Tags">'+chips.map((c) =>{ return '<li class="dsum-t'+(c[1]?' '+c[1]:'')+'">'+esc(c[0])+'</li>'; }).join("")+'</ul>':'')+
     (pts.length?'<ul class="dsum-p">'+pts.map((p) =>{ return '<li><b>'+esc(p[0])+':</b> '+esc(p[1])+'</li>'; }).join("")+'</ul>':'')+
-    '</section><h3 class="info-h dsum-dh">Detail</h3>'; }
+    '</section>'+DSUM_DH; }
 /* feats and features: the line (data summary or first sentence) and the bullets */
 export function featLine(full,d){ return d?sumCut(sumPlain(d),180):sumLine(full); }
 export function featSumH(full,d,chips,nums){ const p=sumPts(full); return dcSum(featLine(full,d),nums||[],(chips||[]).concat(p.asi.map((a) =>[a,"t-asi"])),p.pts); }

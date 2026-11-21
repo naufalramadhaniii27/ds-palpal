@@ -1,6 +1,6 @@
 /* Detail cards, part b: spell targets, info card renderers, close and sheet width (split from 13, SOLID stage 12) */
 import {ammoFor,ammoH,ammoPickH,bindLive,clsOfG,crBlock,crOf,ctH,dockOff,fch,featNums,featSpL,hpSpellNote,ico,itemRes,lateGet,libDetail,morphStop,moveCtl,occOf,ordL,packH,pgGuess,pinSpBtn,renderAll,resOf,scOf,shClosed,shDragEnd,spCastH,spFx,spFxBlock,spRowLv,spnHTML,spxBody,srcPg,svgI,tmpFeatH,tmpSpellH,tyIcon,undoMark,useH} from "./00a-reg-late-ports.js";import {ABK,ABN,HB_CONDS,STD_CONDS} from "./02-data-default-character.js";import {GLOSS,gName,x14} from "./03-data-glossary.js";import {C,S,saveC} from "./04-logic-storage.js";import {$,atkOn,eqOn,esc,fmtW,invAt,itemHtml,num,qtyCtl,rich,sg,toast} from "./05-logic-helpers.js";import {B,D,fill,richB,richP} from "./06-logic-derivation.js";import {aylH,aylSplit,spSumStep1} from "./08b-ui-render-summaries-actions.js";import {used} from "./08-ui-render-sheet-and-actions.js";import {hpDockBack} from "./09-ui-hit-points-playbar-death-saves.js";import {__set_SWP,__set_navStack,__set_sheetMode,lastFocus,sheet,sheetMode} from "./12-ui-bottom-sheet-modal.js";import {env} from "./00-env.js";import {DETAIL} from "./06a-logic-ui-registry.js";import {NUM_MAP,XL_SELF,__set_XL_SELF,dcFoot,dcHead,dcItem,dcStrip,fKind,fKindIco,kwChips,linkify,meta,miHTML,tileBd,tileH,tileS,wCell,xlink} from "./13-ui-detail-cards.js";
-import {dcSum,dmgH,durH,fSumH,featLine,spChips,sumDice,sumRest} from "./13d-ui-detail-summary.js";
+import {dcSum,dmgH,durH,fSumH,featLine,spChips,sumDetail,sumDice,sumRest} from "./13d-ui-detail-summary.js";
 import {martyrActH} from "./32e-logic-martyr-actions.js";
 bindLive("closeSheet",{get:function(){return closeSheet;}});bindLive("closeSheetIfOn",{get:function(){return closeSheetIfOn;}});
 bindLive("infoHTML",{get:function(){return infoHTML;}});
@@ -145,6 +145,9 @@ DETAIL.add("spx", {
   return {t:"Spells cast on you", h:spxBody()};
   }
 });
+/* a sheet feature's summary and its detail text (after the line, folded when bullets show it) */
+function fDet(f,fk,r0,sf,sd,cl0){ const raw=f.full?sf.t:sd.t, rest=sumRest(raw,featLine(raw,f.full?f.d:""));
+  return sumDetail(fSumH(f,fNums(fk,r0),fk==="Passive"?[["Passive","t-time"]]:[]),raw,rest?'<div class="dc-body">'+kwChips('<p class="info-d'+(f.full?' info-full':'')+'">'+fch(featNums((f.full?richP:richB)(fill(rest)),cl0))+'</p>')+'</div>':''); }
 /* a sheet feature's big values: the action it takes (Passive is a chip instead) and the uses left with the rest that restores them */
 function fNums(fk,r0){ const rs=r0&&{short:"Short Rest",short1:"1 per Short Rest",long:"Long Rest",none:"never back"}[r0.reset];
   return [fk!=="Passive"?["Time",esc(fk),fk.length>8?"sm":""]:null,r0?["Uses",esc((r0.max-used(r0.k,r0.max))+"/"+r0.max)+(rs?'<small class="dsum-u">'+esc(rs)+'</small>':''),""]:null]; }
@@ -154,7 +157,7 @@ DETAIL.add("f", {
     if(!f) return {t:"Feature", h:'<p class="info-d">This feature was removed.</p>'};
     const cl0=clsOfG(gr.g), sd=aylSplit(f.d,cl0), sf=aylSplit(f.full,cl0), ay=sf.a||sd.a;/* v35 p15 (RU129): full text, then the summary, then At your level */
     const fk=fKind(f), rl0=resOf(f.n), r0=rl0[0];
-    h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+fSumH(f,fNums(fk,r0),fk==="Passive"?[["Passive","t-time"]]:[])+'<div class="dc-body">'+kwChips(f.full?'<p class="info-d info-full">'+fch(featNums(richP(fill(sumRest(sf.t,featLine(sf.t,f.d)))),cl0))+'</p>':'<p class="info-d">'+fch(featNums(richB(fill(sumRest(sd.t,featLine(sd.t,"")))),cl0))+'</p>')+'</div>'+aylH(ay,cl0)+featSpL(gr,f);
+    h='<div class="dc dc-f">'+dcHead(ico(fKindIco(fk),"isch"),esc(gName(gr.g)))+fDet(f,fk,r0,sf,sd,cl0)+aylH(ay,cl0)+featSpL(gr,f);
     if(r0){ const lf0=r0.max-used(r0.k,r0.max); h+='<div class="dc-use"><div class="spcast"><button type="button" class="btn pri press'+(lf0?'':' off')+'" data-usef="'+esc(r0.k)+'|-1"'+(lf0?'':' disabled')+'>Use '+esc(f.n)+' <small>'+lf0+' left</small></button>'+(lf0<r0.max?'<button type="button" class="btn press" data-usef="'+esc(r0.k)+'|1">Give back one use <small>undo</small></button>':'')+srBtn(r0,lf0)+'</div>'+convBtns(r0)+(lf0?'':'<p class="muted spcn">No uses left. '+esc({short:"A Short or Long Rest restores them.",short1:"A Short Rest restores one use.",long:"A Long Rest restores them.",none:"They do not come back."}[r0.reset]||"")+'</p>')+'</div>'; }/* v36 p17 */
     h+=tmpFeatH(f);/* v21 RU55 */ h+=martyrActH(f);
     h+=dcFoot('<button type="button" class="lk" data-info="grp:'+ix[0]+'">See the whole list</button>',esc(srcPg(f.s,pgGuess(gr,f))))+'</div>';

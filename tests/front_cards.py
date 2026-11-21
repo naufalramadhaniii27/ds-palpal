@@ -1,0 +1,82 @@
+"""Front cards on the sheet tabs at 390x844 (Yudhi fixture, then a level 5 Wizard for Spells).
+Actions: at least 3 attack cards fit between the top of the list and the play bar; the first card starts in the top half;
+no column header row; each card's TO HIT, DAMAGE and RANGE cells share one row (same top and height) and do not overlap.
+Features: no book source line on the front, the one-liner is at most two lines, an action badge on every card,
+the use boxes tick on tap without opening the detail and keep the state after a re-render.
+Spells: every row has a Duration cell; a Concentration spell shows the CONC badge there.
+Detail leftover: feat bullets fold the sub-headed paragraphs behind Full text."""
+import json, os, sys
+from playwright.sync_api import sync_playwright
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+d = open(os.path.join(ROOT, "tests", "fixtures", "yudhi-v3.json"), encoding="utf-8").read()
+SEED = "(v=>{try{if(sessionStorage.getItem('s'))return;sessionStorage.setItem('s','1');localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',v)}catch(e){}})(" + json.dumps(d) + ")"
+R = []
+def check(n, ok, info=""): R.append(bool(ok)); print(("ok   " if ok else "FAIL ") + n + ("" if ok else "  " + str(info)[:300]))
+def tab(pg, t): pg.click("[data-go='%s']" % t); pg.wait_for_timeout(1200)
+DOCK = "()=>{const v=document.getElementById('vbar'); return v&&v.offsetParent?v.getBoundingClientRect().top:innerHeight}"
+ACT = r"""async ()=>{ const rows=[...document.querySelectorAll('#actBody .arow:not(.xd)')].filter(e=>e.offsetParent), dock=(%s)(), out={n:rows.length, bad:[]};
+  if(!rows.length) return out; out.first=rows[0].getBoundingClientRect().top/innerHeight;
+  out.head=[...document.querySelectorAll('#actBody .ahead')].filter(e=>e.offsetParent).length;
+  for(const r of rows){ const c=[...r.querySelectorAll(':scope>.abox,:scope>.arng')].map(e=>e.getBoundingClientRect()), an=r.querySelector(':scope>.an').getBoundingClientRect();
+    if(c.length!==3) out.bad.push('cells '+c.length);
+    else { if(Math.max(...c.map(x=>x.top))-Math.min(...c.map(x=>x.top))>1.5||Math.max(...c.map(x=>x.height))-Math.min(...c.map(x=>x.height))>1.5) out.bad.push('misaligned '+r.textContent.slice(0,20));
+      for(let i=0;i<3;i++){ if(c[i].top<an.bottom-1) out.bad.push('cell over name'); for(let j=i+1;j<3;j++) if(c[i].right>c[j].left+1) out.bad.push('cells overlap'); } }
+    const lab=[...r.querySelectorAll('[data-l]')].map(e=>getComputedStyle(e,'::before').content); if(!lab.some(x=>/To hit/i.test(x))) out.bad.push('no TO HIT label'); }
+  rows[0].scrollIntoView({block:'start'}); await new Promise(r=>setTimeout(r,250));
+  out.fit=rows.filter(r=>{ const b=r.getBoundingClientRect(); return b.top>=-1&&b.bottom<=dock+1; }).length; return out; }""" % DOCK
+with sync_playwright() as p:
+    b = p.chromium.launch(); ctx = b.new_context(viewport={"width": 390, "height": 844}); ctx.add_init_script(SEED); pg = ctx.new_page(); errs = []
+    pg.on("pageerror", lambda e: errs.append(str(e)))
+    pg.goto("file://" + os.path.join(ROOT, "index.html")); pg.wait_for_timeout(3000)
+    pg.click("[data-hview]"); pg.wait_for_selector("#dmgBtn", state="attached", timeout=30000); pg.wait_for_timeout(1500)
+    # Actions
+    tab(pg, "2"); o = pg.evaluate(ACT)
+    check("Actions has attack cards", o["n"] >= 3, o)
+    check("first attack card starts in the top half", o.get("first", 1) < 0.5, o)
+    check("no column header row", o.get("head") == 0, o)
+    check("TO HIT / DAMAGE / RANGE cells aligned in one row, no overlap, labelled", not o["bad"], o["bad"])
+    check("at least 3 attack cards per screen", o.get("fit", 0) >= 3, o)
+    dt = pg.evaluate("()=>[...document.querySelectorAll('#actBody .arow [data-bd^=\"ad-\"]>span')].map(e=>e.className)")
+    check("damage dice carry the damage-type colour class", dt and all(c.startswith("dt-") for c in dt), dt)
+    # Features
+    tab(pg, "5")
+    f = pg.evaluate(r"""()=>{ const it=[...document.querySelectorAll('#featBody .fitem')].filter(e=>e.offsetParent), lh=(e)=>parseFloat(getComputedStyle(e).lineHeight)||20;
+      return {n:it.length, src:it.filter(e=>/pg\.\s*\d|PHB-20\d\d/.test(e.innerText)).map(e=>e.innerText.slice(0,40)),
+        tall:it.map(e=>e.querySelector('.fline')).filter(l=>l&&l.getBoundingClientRect().height>2*lh(l)+2).map(l=>l.textContent.slice(0,30)),
+        nobadge:it.filter(e=>!e.querySelector('.fkb')).map(e=>e.innerText.slice(0,30))}; }""")
+    check("features listed", f["n"] >= 3, f)
+    check("no source line on the feature front", not f["src"], f["src"])
+    check("one-liner at most two lines", not f["tall"], f["tall"])
+    check("action badge on every feature card", not f["nobadge"], f["nobadge"])
+    bx = pg.evaluate("()=>{const b=document.querySelector('#featBody .fitem .bx'); if(!b) return null; b.scrollIntoView({block:'center'}); return {k:b.dataset.k,i:b.dataset.i,p:b.getAttribute('aria-pressed')}}")
+    check("a feature card has use boxes", bx, bx)
+    if bx:
+        sel = "#featBody .fitem .bx[data-k='%s'][data-i='%s']" % (bx["k"], bx["i"])
+        pg.click(sel); pg.wait_for_timeout(500)
+        now = pg.evaluate("s=>(document.querySelector(s)||{getAttribute:()=>null}).getAttribute('aria-pressed')", sel)
+        check("use box toggles on tap", now is not None and now != bx["p"], [bx, now])
+        check("tapping a use box does not open the detail", not pg.evaluate("()=>document.getElementById('sheet').classList.contains('on')"))
+        tab(pg, "0"); tab(pg, "5")
+        check("use box state kept after re-render", pg.evaluate("s=>(document.querySelector(s)||{getAttribute:()=>null}).getAttribute('aria-pressed')", sel) == now)
+        pg.click(sel); pg.wait_for_timeout(400)
+    # detail leftover: Sentinel bullets fold the paragraphs
+    pg.evaluate("""()=>{ const b=document.createElement('button'); b.setAttribute('data-info','lib:feat|Sentinel'); b.id='tb'; document.getElementById('dmgBtn').after(b); b.click(); }"""); pg.wait_for_timeout(900)
+    s = pg.evaluate("()=>({fold:!!document.querySelector('#sheetBody details.dsum-full'), open:!!document.querySelector('#sheetBody details.dsum-full[open]'), dh:[...document.querySelectorAll('#sheetBody .dsum-dh')].filter(h=>!h.nextElementSibling).length})")
+    check("Sentinel detail folds the paragraphs behind Full text", s["fold"] and not s["open"], s)
+    check("no Detail heading with nothing after it", s["dh"] == 0, s)
+    pg.evaluate("()=>{document.querySelector('#sheet [data-close]')?.click(); document.getElementById('tb')?.remove()}"); pg.wait_for_timeout(400)
+    # Spells: level 5 Wizard
+    pg.evaluate("()=>window.__bldNeed&&window.__bldNeed()")
+    pg.wait_for_function("()=>typeof window.__bldFuzz==='function'&&typeof window.__sheetApply==='function'", timeout=120000)
+    pg.evaluate("""()=>{const all={};(window.WX.src||[]).forEach(x=>all[x.id]=true);
+      const b=window.__bldFuzz({sp:'Human',bg:'Sage',rs:'2024',src:all,cls:'Wizard',lv:5,arr:[8,14,14,16,10,10],b2:0,b1:0}).b; window.__sheetApply(window.__bldSheetFor(b,{}),false)}"""); pg.wait_for_timeout(1500)
+    tab(pg, "3")
+    sp = pg.evaluate("""()=>{ const L=[...document.querySelectorAll('#spBody .sp-r[data-info^="sp:"]')], C=window.__sheetC?null:null;
+      return {n:L.length, nodur:L.filter(r=>!(r.querySelector('.sp-d')||{}).textContent).map(r=>r.textContent.slice(0,20)),
+        conc:L.filter(r=>r.querySelector('.sp-d .dsum-b')).length, cells:L.slice(0,3).map(r=>[...r.querySelectorAll('[data-l]')].map(e=>e.dataset.l).join(','))}; }""")
+    check("spell rows listed", sp["n"] >= 5, sp)
+    check("every spell row has a Duration cell", not sp["nodur"], sp["nodur"])
+    check("a Concentration spell row shows the CONC badge", sp["conc"] >= 1, sp)
+    check("spell row has Time, Duration, Range and Hit/DC labels", all(all(k in c for k in ("Time", "Duration", "Range")) for c in sp["cells"]), sp["cells"])
+    check("no page errors", not errs, errs); b.close()
+print("SCORE %d" % round(100 * sum(R) / len(R))); sys.exit(0 if all(R) else 1)
