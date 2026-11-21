@@ -116,14 +116,6 @@
   "reason": "fx batch B61 adds a different situational feature of the same entry (different feature name; nothing is counted twice).",
   "shared": []
  },
- "GX.feat|Aberrant Spawn": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-L1.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
-  "shared": []
- },
  "GX.feat|Beastperson": {
   "files": [
    "fx-B9-advnotes.js",
@@ -162,14 +154,6 @@
    "fx-M2.js"
   ],
   "reason": "fx-M2 adds the spell pick; fx-L1 has skillAb only.",
-  "shared": []
- },
- "GX.feat|Gathered Whispers": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-B17-featcantrips.js"
-  ],
-  "reason": "B9 holds an Advantage note, B17 the cantrip. No field is shared, nothing is counted twice.",
   "shared": []
  },
  "GX.feat|Green-Skin": {
@@ -225,14 +209,6 @@
   "reason": "fx batch B9 adds Advantage or Disadvantage notes for other sentences of the same entry; each note is counted once.",
   "shared": []
  },
- "GX.feat|Psionic-Awakened": {
-  "files": [
-   "fx-B48-widetalent.js",
-   "fx-L1.js"
-  ],
-  "reason": "B48 adds the spells a feat keeps prepared; fx-L1 holds its other mechanics",
-  "shared": []
- },
  "GX.feat|Seraph Transformation: Stage 1": {
   "files": [
    "fx-C-feat.js",
@@ -285,28 +261,12 @@
   "reason": "Different features of the same feat are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.feat|Technopath": {
-  "files": [
-   "fx-B48-widetalent.js",
-   "fx-L1.js"
-  ],
-  "reason": "B48 adds the spells a feat keeps prepared; fx-L1 holds its other mechanics",
-  "shared": []
- },
  "GX.feat|The Firm: Contractor": {
   "files": [
    "fx-C-feat.js",
    "fx-M1.js"
   ],
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.feat|Touch of Death": {
-  "files": [
-   "fx-B17-featcantrips.js",
-   "fx-L1.js"
-  ],
-  "reason": "L1 holds the Death Saving Throw flaw, B17 the cantrip. No field is shared, nothing is counted twice.",
   "shared": []
  },
  "GX.feat|Vampire Transformation: Stage 1": {
@@ -380,36 +340,12 @@
   "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
   "shared": []
  },
- "GX.item|Chattering Staff of Skulls": {
-  "files": [
-   "fx-B53-itemadv.js",
-   "fx-L2.js"
-  ],
-  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
-  "shared": []
- },
- "GX.item|Claws of the Umber Hulk": {
-  "files": [
-   "fx-B52-speed3.js",
-   "fx-M1.js"
-  ],
-  "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
-  "shared": []
- },
  "GX.item|Cloak of the Stygian Bat": {
   "files": [
    "fx-B19-speedmv.js",
    "fx-L3.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Corvum Feather Robe": {
-  "files": [
-   "fx-B14-itemsense.js",
-   "fx-L3.js"
-  ],
-  "reason": "fx-L3.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
   "shared": []
  },
  "GX.item|Couatl Herald's Mantle": {
@@ -459,14 +395,6 @@
    "fx-L4.js"
   ],
   "reason": "Different properties of the same item are defined in these files (B28 adds Poison Immunity and Initiative advantage; the other file has Truesight or the Icy Touch dice); nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Gallus Feather Robe": {
-  "files": [
-   "fx-B14-itemsense.js",
-   "fx-L4.js"
-  ],
-  "reason": "fx-L4.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
   "shared": []
  },
  "GX.item|Gamma Pendant": {
@@ -533,14 +461,6 @@
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
- "GX.item|Luma Feather Robe": {
-  "files": [
-   "fx-B14-itemsense.js",
-   "fx-L4.js"
-  ],
-  "reason": "fx-L4.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
-  "shared": []
- },
  "GX.item|Mythallar Cloak": {
   "files": [
    "fx-B12-itemriders.js",
@@ -555,14 +475,6 @@
    "fx-L8.js"
   ],
   "reason": "fx batch B10 adds an Advantage row for another sentence of the same item; each row is counted once.",
-  "shared": []
- },
- "GX.item|Ominous Staff of Skulls": {
-  "files": [
-   "fx-B53-itemadv.js",
-   "fx-L5.js"
-  ],
-  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
   "shared": []
  },
  "GX.item|Pigskin Armor": {
@@ -581,28 +493,12 @@
   "reason": "Different features of the same owner are defined in these files (B19 adds a speed that a feature gives while a state is on); nothing is counted twice.",
   "shared": []
  },
- "GX.item|Pulverizing Staff of Skulls": {
-  "files": [
-   "fx-B53-itemadv.js",
-   "fx-L5.js"
-  ],
-  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
-  "shared": []
- },
  "GX.item|Ranseur of Torture": {
   "files": [
    "fx-L5.js",
    "fx-M1.js"
   ],
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
-  "shared": []
- },
- "GX.item|Raptor Feather Robe": {
-  "files": [
-   "fx-B14-itemsense.js",
-   "fx-L5.js"
-  ],
-  "reason": "fx-L5.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
   "shared": []
  },
  "GX.item|Red Dragon Mask": {
@@ -653,14 +549,6 @@
   "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
- "GX.item|Strig Feather Robe": {
-  "files": [
-   "fx-B14-itemsense.js",
-   "fx-L5.js"
-  ],
-  "reason": "fx-L5.js sets the ability score; B14 adds the +1 to saving throws. No field is shared, nothing is counted twice.",
-  "shared": []
- },
  "GX.item|Sun Blade": {
   "files": [
    "fx-M1.js",
@@ -693,22 +581,6 @@
   "reason": "B52 adds speed traits; the other fx files of these names hold other traits of the same item or subclass",
   "shared": []
  },
- "GX.item|Wave": {
-  "files": [
-   "fx-B53-itemadv.js",
-   "fx-Z1.js"
-  ],
-  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
-  "shared": []
- },
- "GX.item|Weapon of Warning": {
-  "files": [
-   "fx-B53-itemadv.js",
-   "fx-L6.js"
-  ],
-  "reason": "B53 adds the Advantage lines; the other fx files of these items hold their other traits",
-  "shared": []
- },
  "GX.item|White Dragon Mask": {
   "files": [
    "fx-D-item.js",
@@ -731,14 +603,6 @@
    "fx-B56-weaponriders2.js"
   ],
   "reason": "Wings: B19 has the flight speed, B56 has the 10 minute counter (different fields)",
-  "shared": []
- },
- "GX.item|Wooden Chain of the Unbroken Circle": {
-  "files": [
-   "fx-L9.js",
-   "fx-M1.js"
-  ],
-  "reason": "fx-M1 adds a different effect field (dieReplace, reach, acCap, attackRow, chkBonusNp, saveProf, slotAdd and so on) to the same name; the older entry is note-only or has other fields, nothing is counted twice.",
   "shared": []
  },
  "GX.species|Ankylier": {
@@ -1096,14 +960,6 @@
   "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Adrenaline Junkie": {
-  "files": [
-   "fx-L10.js",
-   "fx-L12.js"
-  ],
-  "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
-  "shared": []
- },
  "GX.sub|Alchemist": {
   "files": [
    "fx-B36-subfree2.js",
@@ -1137,14 +993,6 @@
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Aristocratic": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-L12.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Beer Domain": {
@@ -1200,14 +1048,6 @@
   "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
- "GX.sub|Boreal Bloodline": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-B20-subimm.js"
-  ],
-  "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
-  "shared": []
- },
  "GX.sub|Bounty Hunter": {
   "files": [
    "fx-B9-advnotes.js",
@@ -1222,14 +1062,6 @@
    "fx-M2.js"
   ],
   "reason": "fx-M2 adds wmAdd for Mind Mastery; fx-L11 has other features.",
-  "shared": []
- },
- "GX.sub|Burden of Fame": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-L11.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Cartographer": {
@@ -1459,14 +1291,6 @@
   "reason": "B63 adds a lasting skill, tool, language or cantrip pick of another feature; the other file has different features (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Detective": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-L11.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
-  "shared": []
- },
  "GX.sub|Diabolist": {
   "files": [
    "fx-B9-advnotes.js",
@@ -1576,14 +1400,6 @@
   "reason": "Different features of the same owner are defined in these files (B27 adds the free spell of one feature; a spells field in another file names another spell); nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Forge Domain": {
-  "files": [
-   "fx-L10.js",
-   "fx-Z2.js"
-  ],
-  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
-  "shared": []
- },
  "GX.sub|Freerunner": {
   "files": [
    "fx-B9-advnotes.js",
@@ -1635,16 +1451,6 @@
   "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": [
    "defs"
-  ]
- },
- "GX.sub|Grave Domain (2014)": {
-  "files": [
-   "fx-B35-potent.js",
-   "fx-L10.js"
-  ],
-  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
-  "shared": [
-   "atkBonus"
   ]
  },
  "GX.sub|Great Old One Patron": {
@@ -1783,14 +1589,6 @@
    "atkDice"
   ]
  },
- "GX.sub|Knight Errant": {
-  "files": [
-   "fx-L12.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch N1 adds a different feature of the same entry (different feature name; nothing is counted twice).",
-  "shared": []
- },
  "GX.sub|Knowledge Domain": {
   "files": [
    "fx-B25-subprof.js",
@@ -1835,14 +1633,6 @@
   "shared": [
    "spells"
   ]
- },
- "GX.sub|Life Domain (2014)": {
-  "files": [
-   "fx-Z2.js",
-   "fx-Z4.js"
-  ],
-  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
  },
  "GX.sub|Lunar Sorcery": {
   "files": [
@@ -1889,14 +1679,6 @@
   "files": [
    "fx-B9-advnotes.js",
    "fx-L13.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
-  "shared": []
- },
- "GX.sub|Materializer": {
-  "files": [
-   "fx-B2-subclass.js",
-   "fx-B9-advnotes.js"
   ],
   "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
@@ -1952,14 +1734,6 @@
   "shared": [
    "forCls"
   ]
- },
- "GX.sub|Nature Domain": {
-  "files": [
-   "fx-Z2.js",
-   "fx-Z4.js"
-  ],
-  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
  },
  "GX.sub|Nightgaunt": {
   "files": [
@@ -2027,14 +1801,6 @@
   "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Oath of the Crown": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
-  "shared": []
- },
  "GX.sub|Oath of the Ebon Blade": {
   "files": [
    "fx-B24-subriders.js",
@@ -2043,16 +1809,6 @@
   ],
   "reason": "Different features of the same owner are defined in these files (B29 adds only the slot-refill field srLu to a pool that another file defines); nothing is counted twice.",
   "shared": []
- },
- "GX.sub|Oath of the Giving Grave": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-L12.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
-  "shared": [
-   "defs"
-  ]
  },
  "GX.sub|Oath of the Noble Genies": {
   "files": [
@@ -2098,14 +1854,6 @@
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|Order of Scribes": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-L13.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
   "shared": []
  },
  "GX.sub|Overlord": {
@@ -2156,14 +1904,6 @@
   "reason": "B63 adds a lasting skill, tool, language or cantrip pick of another feature; the other file has different features (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Path of the Muscle Wizard": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-N1.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
-  "shared": []
- },
  "GX.sub|Path of the Slasher": {
   "files": [
    "fx-B1-subclass.js",
@@ -2199,16 +1939,6 @@
   ],
   "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
   "shared": []
- },
- "GX.sub|Peace Domain": {
-  "files": [
-   "fx-B35-potent.js",
-   "fx-L10.js"
-  ],
-  "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
-  "shared": [
-   "atkBonus"
-  ]
  },
  "GX.sub|Pestilence Domain (2014)": {
   "files": [
@@ -2281,15 +2011,6 @@
   "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
   "shared": []
  },
- "GX.sub|Reanimator": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-B28-vecna.js",
-   "fx-L12.js"
-  ],
-  "reason": "Different features of the same owner are defined in these files (B28 adds the Artisan's Tools pick of one feature); nothing is counted twice.",
-  "shared": []
- },
  "GX.sub|Reaper": {
   "files": [
    "fx-B2-subclass.js",
@@ -2308,14 +2029,6 @@
   "reason": "B42 adds the Divine Strike rider rows; the other files hold other features of the same domain",
   "shared": []
  },
- "GX.sub|Runetagger": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-L12.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
-  "shared": []
- },
  "GX.sub|Rōnin": {
   "files": [
    "fx-B60-subgaps.js",
@@ -2331,16 +2044,6 @@
   ],
   "reason": "Different features of the same owner are defined in these files (B23 adds the Wisdom save proficiency of one feature); nothing is counted twice.",
   "shared": []
- },
- "GX.sub|School of Abjuration": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-Z4.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
-  "shared": [
-   "defs"
-  ]
  },
  "GX.sub|School of Evocation": {
   "files": [
@@ -2537,14 +2240,6 @@
   "reason": "Different features of the same owner are defined in these files (B19 and B20 add speeds and immunities a feature gives); nothing is counted twice.",
   "shared": []
  },
- "GX.sub|The Undying": {
-  "files": [
-   "fx-B9-advnotes.js",
-   "fx-L12.js"
-  ],
-  "reason": "fx batch B9 adds Advantage or Disadvantage rows for other sentences of the same entry; each row is counted once.",
-  "shared": []
- },
  "GX.sub|Toon Magic": {
   "files": [
    "fx-B36-subfree2.js",
@@ -2596,22 +2291,6 @@
   "reason": "Valda's Spire Travel Domain: B42 adds the Force Divine Strike rider rows, B49 the Godspeed switch, L10 the Well-Traveled picks; no field shared",
   "shared": []
  },
- "GX.sub|Trickery Domain (2014)": {
-  "files": [
-   "fx-Z2.js",
-   "fx-Z4.js"
-  ],
-  "reason": "Z4 adds other features of the same subclass than the earlier file (a different n, no field shared), so nothing is counted twice. fx-L12 Steel Will is the only line for that pick and Z4 does not repeat it.",
-  "shared": []
- },
- "GX.sub|Twilight Domain": {
-  "files": [
-   "fx-B21-staticsense.js",
-   "fx-Z2.js"
-  ],
-  "reason": "Different features of the same owner are defined in these files (B21 adds a sense a feature gives); nothing is counted twice.",
-  "shared": []
- },
  "GX.sub|Undead Patron": {
   "files": [
    "fx-B20-subimm.js",
@@ -2654,14 +2333,6 @@
    "fx-L10.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B24 adds the extra damage die of one feature); nothing is counted twice.",
-  "shared": []
- },
- "GX.sub|War Domain (2014)": {
-  "files": [
-   "fx-L10.js",
-   "fx-Z2.js"
-  ],
-  "reason": "Different features of the same entry are defined in the files (no field shared); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Warrior of Mystic Brews": {
