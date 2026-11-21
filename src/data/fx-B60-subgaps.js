@@ -36,8 +36,8 @@ S("Conspiracy Theorist",[{n:"Connect the Dots",l:10,pick:[{k:"dots",t:"multi",n:
 S("Medium",[{n:"Trinkets (Lucent Mirror)",l:3,toggle:T("b60-lucent-mirror","Lucent Mirror: Fly Speed 10 ft"),mv:{fly:10}}]);
 /* Drunken Technique: Speed +10 feet after Flurry of Blows */
 S("Way of the Drunken Master",[{n:"Drunken Technique (speed)",l:3,toggle:T("b60-drunken","Flurry of Blows this turn: Speed +10 ft"),speedAdd:10}]);
-/* Whispers of the Dead: one skill or tool proficiency you lack */
-["Phantom","Phantom (2014)"].forEach(function(s){S(s,[{n:"Whispers of the Dead",l:3,pick:[{k:"whisper",t:"skills",n:1,title:"Whispers of the Dead skill (or note a tool)"}]}])});
+/* Whispers of the Dead: one skill or tool proficiency you lack (both optional, pick one) */
+["Phantom","Phantom (2014)"].forEach(function(s){S(s,[{n:"Whispers of the Dead",l:3,pick:[{k:"whisper",t:"skills",n:1,opt:1,title:"Whispers of the Dead skill (or a tool below)"},{k:"wtool",t:"tool",n:1,opt:1,title:"Whispers of the Dead tool (instead of the skill)"}]}])});
 /* Wild Magic Surge 49-52: spectral shield, +2 AC for 1 minute */
 S("Wild Magic Sorcery",[{n:"Wild Magic Surge (49-52)",l:3,toggle:T("b60-surge-shield","Wild Magic Surge 49-52: +2 AC"),acAdd:2}]);
 /* Soul Broker: one boon for 10 minutes. Speed +15 ft, or proficiency and Expertise in one skill */

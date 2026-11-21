@@ -86,6 +86,7 @@ AREAS = {
         ("itemfeat_gap_numbers", [PY, "tests/itemfeat_gap_numbers.py"]),
         ("situational_misc_numbers", [PY, "tests/situational_misc_numbers.py"]),
         ("speedzero_numbers", [PY, "tests/speedzero_numbers.py"]),
+        ("picks_numbers", [PY, "tests/picks_numbers.py"]),
         ("fx_engine", [PY, "tests/fx_engine.py"]),
     ],
     "ui": [

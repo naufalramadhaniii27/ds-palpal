@@ -1,22 +1,20 @@
 {
  "entries": [
   {
-   "t": "file",
-   "file": "html/head.html"
+   "file": "html/head.html",
+   "t": "file"
   },
   {
-   "t": "block",
-   "open": "<script>",
    "close": "</script>",
    "files": [
     "boot/boot-env.js",
     "boot/trusted-types.js",
     "boot/store-gate.js"
-   ]
+   ],
+   "open": "<script>",
+   "t": "block"
   },
   {
-   "t": "block",
-   "open": "<style>",
    "close": "</style>",
    "files": [
     "css/00-fonts.css",
@@ -65,65 +63,66 @@
     "css/L-builder.css",
     "css/L-dice.css",
     "css/L-learn.css"
-   ]
+   ],
+   "open": "<style>",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script>",
    "close": "</script>",
    "files": [
     "boot/debug-overlay.js",
     "boot/err-report.js"
-   ]
+   ],
+   "open": "<script>",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script>",
    "close": "</script>",
    "files": [
     "boot/reload-helper.js"
-   ]
+   ],
+   "open": "<script>",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script>",
    "close": "</script>",
    "files": [
     "boot/arrive-flag.js"
-   ]
-  },
-  {
-   "t": "file",
-   "file": "html/sheet-body.html"
-  },
-  {
-   "t": "block",
+   ],
    "open": "<script>",
+   "t": "block"
+  },
+  {
+   "file": "html/sheet-body.html",
+   "t": "file"
+  },
+  {
    "close": "</script>",
    "files": [
     "boot/busy-splash.js"
-   ]
+   ],
+   "open": "<script>",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n<div class=\"ps-wrap\" id=\"psWrap\" aria-hidden=\"true\"><div class=\"ps\" id=\"ps\"></div></div>\n"
   },
   {
-   "t": "block",
-   "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
    "close": "\n}</script>",
+   "entry": "app/main.js",
    "files": [
     "fx/23-class-art-data.js",
     "app/00-reg.js",
@@ -216,18 +215,17 @@
     "app/99-ui-backup-reminder-handlers.js",
     "app/main.js"
    ],
+   "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
    "pre": [
     "fx/23-class-art-data.js"
    ],
-   "entry": "app/main.js"
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
    "close": "\n}</script>",
    "files": [
     "fx/00-fx-env.js",
@@ -261,7 +259,9 @@
     "fx/25a-dice3d-bridge.js",
     "fx/26-tab-notch.js",
     "fx/27-blend-sheet.js"
-   ]
+   ],
+   "open": "<script data-gate=\"1\">if(!window.__storeHold){document.currentScript&&document.currentScript.setAttribute(\"data-ran\",\"1\");\n",
+   "t": "block"
   },
   {
    "t": "text",
@@ -272,143 +272,141 @@
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script>",
    "close": "</script>",
    "files": [
     "boot/deferred-loader.js"
-   ]
+   ],
+   "open": "<script>",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n<div id=\"bld\" hidden>\n<div class=\"top\"><div class=\"brand\"><b><span class=\"bt0\"><span class=\"bt1\">Character </span>Builder</span></b><span>PHB 2024</span><button type=\"button\" class=\"lvhead\" data-lvup=\"1\"><span>Level Up</span></button><button type=\"button\" id=\"b-toSheet\" class=\"tosheet\">Apply to Sheet</button><button type=\"button\" id=\"b-close\" class=\"bclose\" aria-label=\"Close builder\" title=\"Close builder\"></button></div><nav class=\"steps\" id=\"steps\"></nav></div>\n<main><div class=\"bnm\" id=\"nameRow\"><label for=\"nmIn\">Character Name</label><input class=\"btx\" id=\"nmIn\" autocomplete=\"off\"></div><div id=\"body\"></div></main>\n<div class=\"foot\"><button type=\"button\" id=\"prev\"><span>Prev</span></button><button type=\"button\" id=\"next\"><span>Next</span></button></div>\n<div class=\"exp\" id=\"exp\" hidden><div class=\"expb\"><h3>Export to Character Sheet</h3><p class=\"fd\">Copy this text. In the character sheet, open Edit, scroll to Import build, paste, then Apply.</p><textarea id=\"expTxt\" readonly></textarea><div class=\"row\"><button type=\"button\" id=\"expClose\">Close</button><button type=\"button\" class=\"pri\" id=\"expCopy\">Copy</button></div></div></div>\n<div class=\"btoast\" id=\"btoast\" role=\"status\"></div>\n</div>\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"dice3d\">",
    "close": "</script>",
    "files": [
     "fx/25-dice3d-head.js",
     "fx/25-dice3d.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"dice3d\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"db1\">",
    "close": "</script>",
    "files": [
     "data/00-data-env.js",
     "data/db1-phb-skills-species-backgrounds-feats-weapons.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"db1\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"db2\">",
    "close": "</script>",
    "files": [
     "data/db2-phb-classes-a.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"db2\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"db3\">",
    "close": "</script>",
    "files": [
     "data/db3-phb-classes-b.js",
     "data/fx-B2-subclass.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"db3\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"cffull\">",
    "close": "</script>",
    "files": [
     "data/cffull-class-feature-text.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"cffull\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"subfull\">",
    "close": "</script>",
    "files": [
     "data/subfull-subclass-feature-text.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"subfull\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"spfull\">",
    "close": "</script>",
    "files": [
     "data/spfull-spell-text.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"spfull\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"spells\">",
    "close": "</script>",
    "files": [
     "data/spells-spell-list.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"spells\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"dmgi\">",
    "close": "</script>",
    "files": [
     "data/dmgi-magic-items-dmg2024.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"dmgi\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"itsp\">",
    "close": "</script>",
    "files": [
     "data/itsp-spells-from-items.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"itsp\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"db4\">",
    "close": "</script>",
    "files": [
     "data/db4/01-languages-auto-spells-grants-prices-gear.js",
@@ -419,207 +417,207 @@
     "data/db4/06-tools-proficiencies-packs-kits.js",
     "data/db4/07-actions.js",
     "data/db4/08-mpmm-species.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"db4\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"efa\">",
    "close": "</script>",
    "files": [
     "data/efa-eberron-forge-of-the-artificer.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"efa\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc1\">",
    "close": "</script>",
    "files": [
     "data/wotc01-sources-2025-feats-boons-spells.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc1\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc2\">",
    "close": "</script>",
    "files": [
     "data/wotc02-subclasses-2025.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc2\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc3\">",
    "close": "</script>",
    "files": [
     "data/wotc03-magic-items-2025.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc3\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc4\">",
    "close": "</script>",
    "files": [
     "data/wotc04-species-lorwyn-ravenloft.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc4\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc5\">",
    "close": "</script>",
    "files": [
     "data/wotc05-backgrounds-2025.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc5\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc6\">",
    "close": "</script>",
    "files": [
     "data/wotc06-gear-2024.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc6\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc7\">",
    "close": "</script>",
    "files": [
     "data/wotc07-feats-2014.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc7\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc8\">",
    "close": "</script>",
    "files": [
     "data/wotc08-backgrounds-2014.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc8\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc9\">",
    "close": "</script>",
    "files": [
     "data/wotc09-subclasses-2014.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc9\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc10\">",
    "close": "</script>",
    "files": [
     "data/wotc10-species-2014.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc10\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc11\">",
    "close": "</script>",
    "files": [
     "data/wotc11-magic-items-2014.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc11\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc12\">",
    "close": "</script>",
    "files": [
     "data/wotc12-spells-2014.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc12\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc13\">",
    "close": "</script>",
    "files": [
     "data/wotc13-creature-stat-blocks.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc13\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc14\">",
    "close": "</script>",
    "files": [
     "data/wotc14-gear-2014.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc14\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"wotc15\">",
    "close": "</script>",
    "files": [
     "data/wotc15-class-options-2014.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"wotc15\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"tp1\">",
    "close": "</script>",
    "files": [
     "data/tp01-tdcsr.js",
@@ -635,11 +633,11 @@
     "data/tp11-tsdd.js",
     "data/tp12-tsgs.js",
     "data/tp13-tsdm.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"tp1\">",
+   "t": "block"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"tp2\">",
    "close": "</script>",
    "files": [
     "data/tp14-tkdm.js",
@@ -658,15 +656,15 @@
     "data/tp27-tbf.js",
     "data/fx-C-feat.js",
     "data/fx-E-feat.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"tp2\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"q1\">",
    "close": "</script>",
    "files": [
     "data/q00-src.js",
@@ -709,39 +707,39 @@
     "data/q12-facility.js",
     "data/q23-gapfill.js",
     "data/q24-gapfill2.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"q1\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"q7s\">",
    "close": "</script>",
    "files": [
     "data/q07-lazy-stub.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"q7s\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"q7\" data-lazy=\"1\">",
    "close": "</script>",
    "files": [
     "data/q07-bestiary.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"q7\" data-lazy=\"1\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
    "close": "</script>",
    "files": [
     "data/hbpack-builtin-homebrew.js",
@@ -813,15 +811,15 @@
     "data/fx-L12.js",
     "data/fx-L13.js",
     "data/fx-S1-spell.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"fxd\">",
    "close": "</script>",
    "files": [
     "data/fx-D-item.js",
@@ -838,16 +836,17 @@
     "data/fx-Z2.js",
     "data/fx-Z3.js",
     "data/fx-Z4.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"fxd\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"builder\">",
    "close": "</script>",
+   "entry": "builder/main.js",
    "files": [
     "builder/00-reg.js",
     "builder/00-env.js",
@@ -907,16 +906,16 @@
     "builder/25-logic-hooks-for-the-sheet.js",
     "builder/main.js"
    ],
-   "entry": "builder/main.js"
+   "open": "<script type=\"text/x-defer\" data-defer=\"builder\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"learn\">",
    "close": "</script>",
+   "entry": "learn/47-ui-learn.js",
    "files": [
     "learn/00-env.js",
     "learn/00-bridge.js",
@@ -926,12 +925,12 @@
     "learn/46-logic-learn.js",
     "learn/47-ui-learn.js"
    ],
-   "entry": "learn/47-ui-learn.js"
+   "open": "<script type=\"text/x-defer\" data-defer=\"learn\">",
+   "t": "block"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"pdfx\">",
    "close": "</script>",
+   "entry": "pdf/main.js",
    "files": [
     "pdf/00-env.js",
     "pdf/01-data-style.js",
@@ -947,23 +946,100 @@
     "pdf/11-ui-render.js",
     "pdf/main.js"
    ],
-   "entry": "pdf/main.js"
+   "open": "<script type=\"text/x-defer\" data-defer=\"pdfx\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n"
   },
   {
-   "t": "block",
-   "open": "<script type=\"text/x-defer\" data-defer=\"rs14\">",
    "close": "</script>",
    "files": [
     "data/rs14-2014-wording.js"
-   ]
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"rs14\">",
+   "t": "block"
   },
   {
    "t": "text",
    "text": "\n</body>\n</html>\n"
+  },
+  {
+   "close": "</script>",
+   "files": [
+    "data/hbpack-builtin-homebrew.js",
+    "data/fx-A-class-species.js",
+    "data/fx-B1-subclass.js",
+    "data/fx-B7-subskills.js",
+    "data/fx-B8-subgrant.js",
+    "data/fx-B9-advnotes.js",
+    "data/fx-B10-items.js",
+    "data/fx-B11-riders.js",
+    "data/fx-B12-itemriders.js",
+    "data/fx-B13-itemres.js",
+    "data/fx-B14-itemsense.js",
+    "data/fx-B15-featac.js",
+    "data/fx-B16-speciesimm.js",
+    "data/fx-B17-featcantrips.js",
+    "data/fx-B18-subskills2.js",
+    "data/fx-B19-speedmv.js",
+    "data/fx-B20-subimm.js",
+    "data/fx-B21-staticsense.js",
+    "data/fx-B22-staticadv.js",
+    "data/fx-B23-savewis.js",
+    "data/fx-B24-subriders.js",
+    "data/fx-B25-subprof.js",
+    "data/fx-B26-featspells.js",
+    "data/fx-B27-subfreecast.js",
+    "data/fx-B28-vecna.js",
+    "data/fx-B29-srlu.js",
+    "data/fx-B30-itemdawn.js",
+    "data/fx-B31-subres.js",
+    "data/fx-B32-itemimm.js",
+    "data/fx-B33-speciesmisc.js",
+    "data/fx-B35-potent.js",
+    "data/fx-B36-subfree2.js",
+    "data/fx-B37-slotconv.js",
+    "data/fx-B38-telepathic.js",
+    "data/fx-B39-itemspeed.js",
+    "data/fx-B40-potionres.js",
+    "data/fx-B42-divinestrike.js",
+    "data/fx-B44-itempick.js",
+    "data/fx-B46-itemspells2.js",
+    "data/fx-B47-itemspeed2.js",
+    "data/fx-B48-widetalent.js",
+    "data/fx-B49-subspeed.js",
+    "data/fx-B50-darakhul.js",
+    "data/fx-B51-primers.js",
+    "data/fx-B52-speed3.js",
+    "data/fx-B53-itemadv.js",
+    "data/fx-B54-subcantrips.js",
+    "data/fx-B55-weaponriders.js",
+    "data/fx-B56-weaponriders2.js",
+    "data/fx-B57-subspeed.js",
+    "data/fx-B58-itemadv2.js",
+    "data/fx-B59-itemimm.js",
+    "data/fx-B60-subgaps.js",
+    "data/fx-B60-itemfeatgaps.js",
+    "data/fx-B61-situational-misc.js",
+    "data/fx-B61-situational-cls.js",
+    "data/fx-B63-picks.js",
+    "data/fx-F-sub.js",
+    "data/fx-G-engine.js",
+    "data/fx-H-audit.js",
+    "data/fx-L1.js",
+    "data/fx-L4.js",
+    "data/fx-L5.js",
+    "data/fx-L9.js",
+    "data/fx-L10.js",
+    "data/fx-L11.js",
+    "data/fx-L12.js",
+    "data/fx-L13.js",
+    "data/fx-S1-spell.js"
+   ],
+   "open": "<script type=\"text/x-defer\" data-defer=\"hbpack\">",
+   "t": "block"
   }
  ]
 }

@@ -1435,6 +1435,14 @@
   "reason": "Different features of the same sub are defined in the two files (no field shared); nothing is counted twice.",
   "shared": []
  },
+ "GX.sub|Destruction Domain": {
+  "files": [
+   "fx-B35-potent.js",
+   "fx-B63-picks.js"
+  ],
+  "reason": "B63 adds a lasting skill, tool, language or cantrip pick of another feature; the other file has different features (no field shared); nothing is counted twice.",
+  "shared": []
+ },
  "GX.sub|Detective": {
   "files": [
    "fx-B9-advnotes.js",
@@ -1498,6 +1506,14 @@
    "fx-B61-situational-cls.js"
   ],
   "reason": "fx batch B61 adds a different situational feature of the same entry (different feature name; nothing is counted twice).",
+  "shared": []
+ },
+ "GX.sub|Eldritch Domain (2014)": {
+  "files": [
+   "fx-B35-potent.js",
+   "fx-B63-picks.js"
+  ],
+  "reason": "B63 adds a lasting skill, tool, language or cantrip pick of another feature; the other file has different features (no field shared); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Elemental Essence": {
@@ -2112,6 +2128,14 @@
    "fx-B31-subres.js"
   ],
   "reason": "Different features of the same owner are defined in these files (B31, B33 and B35 each add the effect of one feature); nothing is counted twice.",
+  "shared": []
+ },
+ "GX.sub|Path of the Fractured (2014)": {
+  "files": [
+   "fx-B31-subres.js",
+   "fx-B63-picks.js"
+  ],
+  "reason": "B63 adds a lasting skill, tool, language or cantrip pick of another feature; the other file has different features (no field shared); nothing is counted twice.",
   "shared": []
  },
  "GX.sub|Path of the Muscle Wizard": {
