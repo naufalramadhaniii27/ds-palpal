@@ -2,6 +2,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};
 /* fx data batch B32 (hand written): resistances and immunities that a magic item gives the wearer, from the item text. */
 (function(){
 var P=function(k,e){GX.item[k]=(GX.item[k]||[]).concat([e])};
+DataEnv.slot.FXO=DataEnv.slot.FXO||{};DataEnv.slot.FXO["Book of Exalted Deeds"]={fx:null};/* the shared row fx gave Psychic and Charmed/Frightened to 2014 too; only the 2024 Celestial Calm has them */
 P("Book of Exalted Deeds",{n:"Book of Exalted Deeds (protection)",ed:"2024",res:["Psychic"],condImm:["Charmed","Frightened"]});
 P("Armor of Invulnerability",{n:"Armor of Invulnerability (immunity)",ed:"2024",toggle:{id:"b32-armor-of-invulnerability",label:"Invulnerable: active (10 minutes)"},imm:["Bludgeoning","Piercing","Slashing"]});
 P("Armor of Invulnerability",{n:"Armor of Invulnerability (2014)",ed:"2014",toggle:{id:"b32-armor-of-invulnerability",label:"Invulnerable: active (10 minutes)"},defs:[["Immunity","Nonmagical damage"]]});

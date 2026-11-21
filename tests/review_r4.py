@@ -4,7 +4,7 @@ python3 tests/review_r4.py"""
 import os, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# (label, rules, item, species, toggle id or None, regex on the sheet JSON, expected match). Fighter 19.
+# (label, rules, item, species, toggle id or None, regex on defenses/moves/speeds (not feature text), expected match). Fighter 19.
 CASES = [
     ("Exalted Deeds 2024 Psychic", "2024", "Book of Exalted Deeds", None, None, r"Resistance[^\]]{0,80}Psychic", True),
     ("Exalted Deeds 2014 no Psychic", "2014", "Book of Exalted Deeds", None, None, r"Resistance[^\]]{0,80}Psychic", False),
@@ -21,7 +21,7 @@ JS = """(cases)=>{const all={};(WX.src||[]).forEach(x=>all[x.id]=true);
   const b=window.__bldFuzz(Object.assign({rs,cls:'Fighter',sub:'',lv:19,arr:[10,14,14,15,15,15],b2:0,b1:0},o)).b;b.src=Object.assign({},b.src,all);
   const t=window.__bldTestB();Object.assign(t,b);delete t.unset;t.inv=item?[{n:item,q:1,eq:true,att:true}]:[];if(sp)t.species=sp;return t};
  return cases.map(([lab,rs,item,sp,tg,rx])=>{try{const Z=window.__bldSheetFor(mk(rs,item,sp),tg?{[tg]:true}:{});
-  return new RegExp(rx).test(JSON.stringify(Z))}catch(e){return 'CRASH '+e}})}"""
+  return new RegExp(rx).test(JSON.stringify([Z.defenses,Z.res,Z.imm,Z.moves,Z.speeds,Z.adv]))}catch(e){return 'CRASH '+e}})}"""
 bad = n = 0
 with sync_playwright() as p:
     br = p.chromium.launch(); pg = br.new_page(); pg.set_default_timeout(120000)
