@@ -102,7 +102,7 @@ function asiToClass(ctx,I,B,SRC){
 function fsToClass(ctx,I,B,SRC){
   const r14=B.rs==="2014", fsOut=r14?I.feats.filter((f) =>{ return f.fs; }):[];
   if(fsOut.length){ const cg=ctx.C.features.filter((g) =>{ return g.g===B.cls; })[0];
-    fsOut.forEach((f) =>{ const F=featDef(f.n)||{}, base=cg&&cg.items.filter((x) =>{ return x.n==="Fighting Style"; })[0];
+    fsOut.forEach((f) =>{ const F=featDef(f.n,f)||{}, base=cg&&cg.items.filter((x) =>{ return x.n==="Fighting Style"; })[0];
       const m=base&&new RegExp("\\*\\*"+f.n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\.\\*\\*\\s*([\\s\\S]*?)(?=\\s*\\*\\*[^*\\n]{1,60}?\\.\\*\\*|$)").exec(String((typeof cfFullText==="function"&&cfFullText(B.cls+"|Fighting Style"))||base.full||base.d||""));
       const txt=m?m[1].trim():(F.full||F.d||""), it={n:"Fighting Style: "+f.n,s:base?base.s:(f.s.indexOf(SRC)===0?f.s:SRC+", "+f.s),d:m?txt:(F.d||""),full:txt};
       if(base) cg.items.splice(cg.items.indexOf(base),1,it); else if(cg) cg.items.push(it); }); }
@@ -110,7 +110,7 @@ function fsToClass(ctx,I,B,SRC){
 registerSheetGroup({id:"feat-features",group:"features",phase:"features",order:110,reads:["i.B","i.feats","i.CH","i.SRC","i.a","i.TLv","q.calcNote"],writes:["C.features"],
  run:function(ctx){const I=ctx.i,B=I.B,SRC=I.SRC;
   const fsOut=fsToClass(ctx,I,B,SRC).concat(asiToClass(ctx,I,B,SRC));
-  ctx.C.features.push({g:"Feats",items:I.feats.filter((f) =>{ return fsOut.indexOf(f)<0; }).map((f) =>{const F=featDef(f.n)||{};let ex="";if(f.asi){const v=f.asi;if(F.asi2)ex=v.a1===v.a2?" "+v.a1+" +2.":" "+v.a1+" +1, "+v.a2+" +1.";else if(v.a1)ex=" "+v.a1+" +1.";if(F.dt&&v.dt)ex+=" Damage type: "+v.dt+"."}const fk2=f.key||f.s;I.CH.forEach((q) =>{const pv=B.ch[q.key];if(q.fk===fk2&&Array.isArray(pv)&&pv.length)ex+=" "+q.title.replace(/^.*?: /,"").replace(/^./,(ch) =>{return ch.toUpperCase()})+": "+pv.join(", ")+"."});/* v32 RL49 */
+  ctx.C.features.push({g:"Feats",items:I.feats.filter((f) =>{ return fsOut.indexOf(f)<0; }).map((f) =>{const F=featDef(f.n,f)||{};let ex="";if(f.asi){const v=f.asi;if(F.asi2)ex=v.a1===v.a2?" "+v.a1+" +2.":" "+v.a1+" +1, "+v.a2+" +1.";else if(v.a1)ex=" "+v.a1+" +1.";if(F.dt&&v.dt)ex+=" Damage type: "+v.dt+"."}const fk2=f.key||f.s;I.CH.forEach((q) =>{const pv=B.ch[q.key];if(q.fk===fk2&&Array.isArray(pv)&&pv.length)ex+=" "+q.title.replace(/^.*?: /,"").replace(/^./,(ch) =>{return ch.toUpperCase()})+": "+pv.join(", ")+"."});/* v32 RL49 */
    return {n:f.n,s:f.s.indexOf(SRC)===0?f.s:SRC+", "+f.s/* m4 (RL20): no "PHB-2024, PHB-2024" */,d:(F.d||"")+ex+ctx.q.calcNote(f.n,B.cls,I.TLv,I.a),full:F.full?F.full+(ex?" **Your choice.**"+ex:""):""}})});return ctx.patch()}});/* v19: the chosen increase and damage type also under the full text */
 registerSheetGroup({id:"background-features",group:"features",phase:"features",order:120,reads:["i.B","i.bg","i.SRC"],writes:["C.features"],
  run:function(ctx){const I=ctx.i,B=I.B,bg=I.bg,SRC=I.SRC;if(!bg)return null;

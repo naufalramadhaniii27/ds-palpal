@@ -31,7 +31,7 @@ registerSheetRule({id:"monk-martial-arts-state",group:"gear",about:"Monk: Martia
 registerSheetGroup({id:"ac-init",group:"armorClass",phase:"ac",order:5,reads:[],writes:["l.acm"],run:function(ctx){ctx.l.acm=[];return ctx.patch()}});/* v27 i2: AC methods of this build */
 /* worn armor: its base AC, Dexterity limit (Medium Armor Master) and the Stealth disadvantage */
 registerSheetGroup({id:"ac-worn-armor",group:"armorClass",phase:"ac",order:10,reads:["i.ar","i.EA","i.feats","i.a","i.SRC"],writes:["C.ac","C.skills"],
- run:function(ctx){const I=ctx.i,ar=I.ar,C=ctx.C;if(!ar)return null;let mam=null;I.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.med3&&ar.cat==="Medium")mam=F});/* v69: Medium Armor Master */let adx=ar.dex;if(mam&&adx==="max2"&&(mam.med3===1||I.a.sc.DEX>=mam.med3))adx="max3";
+ run:function(ctx){const I=ctx.i,ar=I.ar,C=ctx.C;if(!ar)return null;let mam=null;I.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.med3&&ar.cat==="Medium")mam=F});/* v69: Medium Armor Master */let adx=ar.dex;if(mam&&adx==="max2"&&(mam.med3===1||I.a.sc.DEX>=mam.med3))adx="max3";
   C.ac={base:ar.ac,baseSrc:I.EA+", "+ar.cat+" armor ("+I.SRC+")",dex:adx,bonus:[]};if(ar.dis&&!(mam&&mam.medStealth))C.skills.forEach((s) =>{if(s.n==="Stealth")s.dis=I.EA});return ctx.patch()}});
 /* no armor: the ways to set AC without armor, in the old rule order. B.acMode picks one, empty = the first */
 registerSheetGroup({id:"ac-unarmored",group:"armorClass",phase:"ac",order:20,reads:["i.ar","i.B","i.a","i.sp","i.custom","i.feats","i.SRC","l.uaM","l.acS","l.uaX"],writes:["C.ac","l.acm"],
@@ -40,7 +40,7 @@ registerSheetGroup({id:"ac-unarmored",group:"armorClass",phase:"ac",order:20,rea
   if(acS)acC.push({k:"acs",ac:{base:acS.s.base||10,baseSrc:acS.s.n+" ("+SRC+(acS.mc?", "+acS.cls+" "+acS.lv+", multiclass":"")+")",dex:"full",bonus:acS.s.ab?[{s:ABN[acS.s.ab]+" modifier ("+acS.s.n+")",v:mod(a.sc[acS.s.ab])}]:[]}});
   if(uaX)acC.push({k:"uax",ac:{base:10,baseSrc:uaX.u.n+" ("+SRC+", "+uaX.cls+" "+uaX.u.l+", multiclass)",dex:"full",bonus:[{s:ABN[uaX.u.ab]+" modifier ("+uaX.u.n+")",v:mod(a.sc[uaX.u.ab])}]}});
   if(sp&&sp.natAc&&!I.custom)acC.push({k:"nat",ac:{base:sp.natAc.base,baseSrc:"Natural Armor ("+B.species+", "+(sp.hb||SRC)+")",dex:"",bonus:sp.natAc.ab?[{s:ABN[sp.natAc.ab]+" modifier (Natural Armor)",v:mod(a.sc[sp.natAc.ab])}]:[]}});/* v36 p21 */
-  I.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.unarmoredAC)acC.push({k:"ft"+f.n,ac:{base:F.unarmoredAC,baseSrc:f.n+" ("+f.s+")",dex:"full",bonus:[]}})});/* v69 */
+  I.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.unarmoredAC)acC.push({k:"ft"+f.n,ac:{base:F.unarmoredAC,baseSrc:f.n+" ("+f.s+")",dex:"full",bonus:[]}})});/* v69 */
   acC.push({k:"none",ac:{base:10,baseSrc:"Unarmored",dex:"full",bonus:[]}});const dmA=mod(a.sc.DEX);
   l.acm=acC.map((x) =>{return {k:x.k,n:x.ac.baseSrc.replace(" ("+SRC+")","").replace("("+SRC+", ","("),v:x.ac.base+(x.ac.dex==="full"?dmA:0)+x.ac.bonus.reduce((t,b) =>{return t+b.v},0)}});
   const pkA=acC.filter((x) =>{return x.k===B.acMode})[0];C.ac=structuredClone((pkA||acC[0]).ac);if(pkA&&pkA!==acC[0])C.ac.baseSrc+=", chosen in the builder";return ctx.patch()}});
@@ -101,10 +101,10 @@ registerSheetGroup({id:"armor-magic-bonus",group:"armorClass",phase:"acbonus",or
  run:function(ctx){const I=ctx.i;if(!I.EAp)return null;const P=attP(ctx,I.EA,I.EAp);if(P)ctx.C.ac.bonus.push({s:I.EA+" (magic bonus)",v:P});else ctx.C.ac.baseSrc+=attNote(ctx,I.EA,I.EAp);return ctx.patch()}});
 /* v69: Dual Wielder, +1 AC with a melee weapon in each hand and no Shield */
 registerSheetGroup({id:"feat-dual-wielder-ac",group:"armorClass",phase:"acbonus",order:60,reads:["i.feats","i.ESH","l.EW","q.baseOf"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i,C=ctx.C,EW=ctx.l.EW;I.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.dwAC&&!I.ESH&&EW.filter((n) =>{const w=weaponDef(ctx.q.baseOf(n).b);return w&&w.k==="M"}).length>=2)C.ac.bonus.push({s:f.n+" (melee weapon in each hand)",v:1})});return ctx.patch()}});
+ run:function(ctx){const I=ctx.i,C=ctx.C,EW=ctx.l.EW;I.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.dwAC&&!I.ESH&&EW.filter((n) =>{const w=weaponDef(ctx.q.baseOf(n).b);return w&&w.k==="M"}).length>=2)C.ac.bonus.push({s:f.n+" (melee weapon in each hand)",v:1})});return ctx.patch()}});
 /* M17: FEATS.ac (with armor) */
 registerSheetGroup({id:"feat-ac",group:"armorClass",phase:"acbonus",order:70,reads:["i.feats","i.ar"],writes:["C.ac"],
- run:function(ctx){const I=ctx.i,C=ctx.C;I.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.ac&&I.ar)C.ac.bonus.push({s:(F.cat==="F"?"Fighting Style: ":"")+f.n+" ("+f.s+")",v:F.ac})});return ctx.patch()}});
+ run:function(ctx){const I=ctx.i,C=ctx.C;I.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.ac&&I.ar)C.ac.bonus.push({s:(F.cat==="F"?"Fighting Style: ":"")+f.n+" ("+f.s+")",v:F.ac})});return ctx.patch()}});
 registerSheetGroup({id:"species-ac-bonus",group:"armorClass",phase:"acbonus",order:80,reads:["i.sp","i.custom"],writes:["C.ac"],
  run:function(ctx){const sp=ctx.i.sp;if(sp&&sp.acBonus&&!ctx.i.custom)ctx.C.ac.bonus.push({s:sp.acBonus.s,v:sp.acBonus.v});return ctx.patch()}});
 /* third party: a flat Armor Class bonus a subclass gives from a level (acb:{l,v,s}) */

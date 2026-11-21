@@ -1,6 +1,6 @@
 import {bindLive,lateGet,spCmpB,spDmgB,spRngB} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {esc} from "./01-logic-core-helpers.js";
-import {bgX,spX} from "./03-logic-magic-item-effects.js";
+import {bgX,featBooks,spX} from "./03-logic-magic-item-effects.js";
 import {B} from "./04-logic-storage.js";
 import {CL,R14} from "./05-logic-choice-model-ruleset.js";
 import {fs14List,sdn,subLbl} from "./08-logic-2014-rules.js";
@@ -86,7 +86,8 @@ function duelCtl(v){const F=v&&FEATS[v];if(!F||!F.meleeDmg1h)return "";const m=B
  return '<label class="one">'+esc(v)+' bonus<select class="dd" data-b="duelMode">'+[["auto","Auto"],["on","Always on"],["off","Off"]].map((o) =>{return '<option value="'+o[0]+'"'+(m===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select></label>'+
   '<p class="fd">'+{auto:"Auto: "+n+" while a one-handed melee weapon is your only active weapon. A Shield is fine.",on:"Always on: "+n+" with every one-handed melee weapon, even when another weapon is active.",off:"Off: the sheet never adds this damage."}[m]+'</p>'}
 function cbFeatSel(c,fv){
-  return '<select class="dd" data-fk="'+c.key+'" data-fp="feat"><option value="">- Choose a Feat -</option>'+featOptsList(c).map((n) =>{const X=FEATS[n],why=fv.feat===n?"":preFail(n,c.lvl,c.key),red=redundant(n);return '<option value="'+esc(n)+'"'+(fv.feat===n?" selected":"")+(why?" disabled":"")+'>'+(why?"\u2716 ":red?"\u26a0 ":"")+esc(n)+(X.cat==="F"?" (Fighting Style)":X.cat==="E"?" (Epic Boon)":"")+(why?" \u2014 needs "+why:red?" \u2014 "+red:"")+'</option>'}).join("")+'</select>';
+  return '<select class="dd" data-fk="'+c.key+'" data-fp="feat"><option value="">- Choose a Feat -</option>'+featOptsList(c).map((n) =>{const X=FEATS[n],why=fv.feat===n?"":preFail(n,c.lvl,c.key),red=redundant(n),fb=featBooks(n),bs=fb.length>1?fb:[null],dflt=fb.length>1&&!(fv.bk&&fb.some((b) =>{return b.id===fv.bk}))?(fb.find((b) =>{return b.tag===X.hb})||fb[fb.length-1]).id:fv.bk;/* one option per book when enabled books share the name; a choice without bk shows the book FEATS holds */
+   return bs.map((b) =>{const sel=fv.feat===n&&(!b||b.id===dflt);return '<option value="'+esc(n)+'"'+(b?' data-bk="'+esc(b.id)+'"':'')+(sel?" selected":"")+(why?" disabled":"")+'>'+(why?"\u2716 ":red?"\u26a0 ":"")+esc(n)+(b?" ["+esc(b.tag)+"]":"")+(X.cat==="F"?" (Fighting Style)":X.cat==="E"?" (Epic Boon)":"")+(why?" \u2014 needs "+why:red?" \u2014 "+red:"")+'</option>'}).join("")}).join("")+'</select>';
 }
 function cbFeatInfo(c,fv,F){
  var h="";h+='<p class="fd">'+(F.pre?'<i>Prerequisite: '+esc(F.pre)+'.</i><br>':'')+rtp(F.full||F.d)+'</p>'+duelCtl(fv.feat);

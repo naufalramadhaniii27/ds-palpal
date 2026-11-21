@@ -30,7 +30,7 @@ registerSheetRule({id:"rogue-scout-9-mobility",group:"speed",about:"Rogue Scout 
  run:function(ctx){const q=ctx.p;if(q.sub==="Scout"&&q.cls==="Rogue"&&q.lv>=9)addSpeed(ctx.l,10,", +10 Superior Mobility");return ctx.patch()}});
 /* M17: FEATS.speed */
 registerSheetGroup({id:"feat-speed",group:"speed",phase:"speed",order:70,reads:["i.feats"],writes:["l.spd","l.spSrc"],
- run:function(ctx){const l=ctx.l;ctx.i.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.speed)addSpeed(l,F.speed,", +"+F.speed+" "+f.n)});return ctx.patch()}});
+ run:function(ctx){const l=ctx.l;ctx.i.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.speed)addSpeed(l,F.speed,", +"+F.speed+" "+f.n)});return ctx.patch()}});
 /* M11 (RL8): armor with a Strength score in the armor table cuts Speed by 10 ft when the wearer's Strength is lower (PHB 2024 p. 219) */
 registerSheetGroup({id:"armor-strength-cut",group:"speed",phase:"speed",order:80,reads:["i.ar","i.EA","i.a"],writes:["l.spd","l.spSrc"],
  run:function(ctx){const I=ctx.i,l=ctx.l,ar=I.ar;if(ar&&ar.str&&I.a.sc.STR<ar.str){l.spd=Math.max(0,l.spd-10);l.spSrc+=", −10 "+I.EA+" (needs Str "+ar.str+", yours is "+I.a.sc.STR+")"}return ctx.patch()}});
@@ -81,11 +81,11 @@ registerSheetRule({id:"watchers-7-sentinel",group:"initiative",about:"Oath of th
  run:function(ctx){const q=ctx.p,C=ctx.C;if(q.sub==="Oath of the Watchers"&&q.lv>=7)initOnce(C,/^Aura of the Sentinel/,{s:"Aura of the Sentinel (Oath of the Watchers 7): Proficiency Bonus",v:ctx.i.pb});return ctx.patch()}});/* v71 */
 /* M17: FEATS.init (a number or "pb"), FEATS.pas (passive bonuses), FEATS.grappler */
 registerSheetGroup({id:"feat-init",group:"initiative",phase:"init",order:80,reads:["i.feats","i.pb"],writes:["C.initBonus"],
- run:function(ctx){const pb=ctx.i.pb,C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.init==="pb")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:pb});else if(F&&typeof F.init==="number")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:F.init})});return ctx.patch()}});
+ run:function(ctx){const pb=ctx.i.pb,C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.init==="pb")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:pb});else if(F&&typeof F.init==="number")C.initBonus.push({s:f.n+" feat ("+f.s+")",v:F.init})});return ctx.patch()}});
 registerSheetGroup({id:"feat-passive-bonus",group:"passives",phase:"init",order:81,reads:["i.feats"],writes:["C.pasBon"],
- run:function(ctx){const C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.pas){C.pasBon=C.pasBon||[];Object.keys(F.pas).forEach((k) =>{C.pasBon.push({k:k,v:F.pas[k],s:f.n+" feat ("+f.s+")"})})}});return ctx.patch()}});/* v69 */
+ run:function(ctx){const C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.pas){C.pasBon=C.pasBon||[];Object.keys(F.pas).forEach((k) =>{C.pasBon.push({k:k,v:F.pas[k],s:f.n+" feat ("+f.s+")"})})}});return ctx.patch()}});/* v69 */
 registerSheetGroup({id:"feat-grappler",group:"grapple",phase:"init",order:82,reads:["i.feats"],writes:["C.grappler"],
- run:function(ctx){const C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.grappler)C.grappler=true});return ctx.patch()}});
+ run:function(ctx){const C=ctx.C;ctx.i.feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.grappler)C.grappler=true});return ctx.patch()}});
 /* v56: Harengon adds PB to Initiative */
 registerSheetRule({id:"harengon-hare-trigger",group:"initiative",about:"Harengon: Hare-Trigger, Proficiency Bonus to Initiative",phase:"init",order:90,reads:["i.pb","q.spX"],writes:["C.initBonus"],
  run:function(ctx){const sx=ctx.q.spX(),C=ctx.C;if(sx&&(sx.traits||[]).some((t) =>{return t[0]==="Hare-Trigger"}))initOnce(C,/^Hare-Trigger/,{s:"Hare-Trigger (Harengon): Proficiency Bonus",v:ctx.i.pb});return ctx.patch()}});

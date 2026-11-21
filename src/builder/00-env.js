@@ -28,7 +28,8 @@ export function expose(name,fn){window[name]=fn;return fn}
 export function classDef(n){return CLASSES[n]}
 export function speciesDef(n){return SPECIES[n]}
 export function bgDef(n){return BACKGROUNDS[n]}
-export function featDef(n){return FEATS[n]}
+/* f = an allFeats entry: a choice with bk (the book picked when two books share the name) reads that book's record (WX.src[].ft), else FEATS[n] */
+export function featDef(n,f){const k=f&&f.asi&&f.asi.bk,s=k&&((genv.WX&&genv.WX.src)||[]).find((q) =>{return q.id===k});return (s&&s.ft&&s.ft[n])||FEATS[n]}
 export function weaponDef(n){return WEAPONS[n]}
 export function armorDef(n){return ARMOR[n]}
 export function skillAb(n){return SKILLS[n]}

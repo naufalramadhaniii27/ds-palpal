@@ -3,7 +3,7 @@ import {activeFx,bgX,un} from "./03-logic-magic-item-effects.js";
 import {allFeats} from "./09-logic-feats-and-choices.js";
 import {clsParts,spLists} from "./11-logic-derivation.js";
 import {registerFxSource} from "./10a-logic-fx-registry.js";
-import {genv} from "./00-env.js";
+import {featDef,genv} from "./00-env.js";
 /* the book id of a feat: FEATS[n].hb holds the book tag (DM24), WX.src maps it to the id (tsdm) */
 function featBk(F){const t=F&&F.hb,s=t&&(genv.WX&&genv.WX.src||[]).find((q) =>{return q.tag===t});return s?s.id:(t||"")}
 /* Effect sources (SOLID stage 1). One source per place that holds effect entries. collect(ctx) returns descriptors
@@ -18,7 +18,7 @@ registerFxSource({id:"species",items:false,collect:function(ctx){const sp=un("sp
 registerFxSource({id:"background",items:false,collect:function(ctx){const bg=bgX();if(!bg)return [];
  return [{list:(bg.gx||[]).concat((ctx.G.bg&&ctx.G.bg[B.bg])||[]),kind:"bg",owner:B.bg,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+B.bg+" background)"}}]}});
 /* spCls "@asi": the ability the feat raised. "@abpick": the ability picked with pick k "ab" */
-registerFxSource({id:"feats",items:false,collect:function(ctx){const G=ctx.G,out=[];allFeats().forEach((f) =>{const F=FEATS[f.n],fok=f.key||f.s,fab=(f.asi&&f.asi.a1)||"CHA",fpa=(B.ch["gx-ab-feat-"+fok]||[])[0]||"INT";
+registerFxSource({id:"feats",items:false,collect:function(ctx){const G=ctx.G,out=[];allFeats().forEach((f) =>{const F=featDef(f.n,f),fok=f.key||f.s,fab=(f.asi&&f.asi.a1)||"CHA",fpa=(B.ch["gx-ab-feat-"+fok]||[])[0]||"INT";
  out.push({list:((F&&F.gx)||[]).concat((G.feat&&G.feat[f.n])||[]),kind:"feat",owner:f.n,lv:ctx.TL,pre:"",lblOf:(n) =>{return n+" ("+f.n+" feat)"},okey:f.key||f.s,bk:featBk(F),alias:{"@asi":"@sub:"+fab,"@abpick":"@sub:"+fpa}})});return out}});
 /* equipped (and attuned when needed) magic items: row gx and GX.item[name] */
 registerFxSource({id:"items",items:true,collect:function(ctx){const G=ctx.G;return activeFx().map((q) =>{

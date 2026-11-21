@@ -313,7 +313,7 @@ def feat_records(bk, data, M):
 
 REGFT = '''DataEnv.slot.DM_SP=DataEnv.slot.DM_SP||{};Object.keys(FDM).forEach(function(k){DataEnv.slot.DM_SP[k]=FDM[k]});
 Object.keys(FT).forEach(function(n){FEATS[n]=FT[n]});FTLU.forEach(function(e){LU_X.push(e)});Object.keys(FTA).forEach(function(k){ACTS[k]=FTA[k]});
-SRC.feats=Object.keys(FT);
+SRC.feats=Object.keys(FT);SRC.ft=FT;
 '''
 
 def item_records(bk, data, M):

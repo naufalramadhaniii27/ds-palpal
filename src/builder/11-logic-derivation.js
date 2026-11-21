@@ -6,7 +6,7 @@ import {allFeats,asiOf,dmXl,raceBonus,wxAb} from "./09-logic-feats-and-choices.j
 import {luMax} from "./10-logic-v17-additions.js";
 
 import {MCL,TL,baseOf,bindLate,spOptFx} from "./01b-logic-late-ports.js";
-import {genv,gx,sheetState,thirdSubs,inTS} from "./00-env.js";
+import {featDef,genv,gx,sheetState,thirdSubs,inTS} from "./00-env.js";
 import {abOfPick,chPick,fxSources,runFxPhase,foldFxPhase,fxCondRule,fxValueRule} from "./10a-logic-fx-registry.js";
 import "./10d-logic-fx-rules-cond-value.js";
 import "./10b-logic-fx-handlers-entry.js";
@@ -38,7 +38,7 @@ export function abilScores(){
  /*ORCH-BEGIN abil: the effect rules (feat abCut, item abil, abUp, abDown, abPick, abUpPick, setsc, abSet) are handlers in 10c-logic-fx-handlers-ability.js; this function only runs the phases in order */
  const actx={sc:sc,src:src,val:fxv,pick:(e,k) =>{return B.ch[gxKey(e,k)]}},apply=(p) =>{applyAbilityPatch(actx,p)};
  runFxPhase("ability","pre-asi",featRawFx(),actx,apply);/* fx batch E: abCut runs on the scores built so far (base, species, background), before later feat increases */
- allFeats().forEach((f) =>{const v=f.asi;if(!v)return;const F=FEATS[f.n];if(!F)return;
+ allFeats().forEach((f) =>{const v=f.asi;if(!v)return;const F=featDef(f.n,f);if(!F)return;
   asiOf(f,F).forEach((q) =>{src[q[0]].push({s:f.n+(F.asi2?"":" feat")+", "+f.s,v:q[1]})})});/* v19 RL46 (9): only abilities on the feat's list */
  abCap20(src);
  abTotal(sc,src);

@@ -72,7 +72,7 @@ registerSheetGroup({id:"late-fly-moves",group:"late",phase:"late",order:50,reads
  if(SFq.moves&&!custom&&sp){C.speeds=C.speeds||{};Object.keys(SFq.moves).forEach((k) =>{C.speeds[k]={v:SFq.moves[k],s:spName+" ("+(sp.hb||I.SRC)+")"+(SFq.movesNote&&k==="fly"?", "+SFq.movesNote:"")}})}/* v36 p21 */
   return ctx.patch()}});
 registerSheetGroup({id:"late-natural-feat",group:"late",phase:"late",order:60,reads:["i.feats", "C.attacks"],writes:["C.attacks"],
- run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {feats}=I; feats.forEach((f) =>{const F=featDef(f.n);if(F&&F.attacks)F.attacks.forEach((q) =>{C.attacks.push({n:q.n,sub:"Natural weapon",ab:q.ab||"STR",prof:true,die:q.die,dieSrc:q.n+" ("+f.n+")",type:q.type,range:"5 ft",m:"",note:""})})});/* v69 */
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {feats}=I; feats.forEach((f) =>{const F=featDef(f.n,f);if(F&&F.attacks)F.attacks.forEach((q) =>{C.attacks.push({n:q.n,sub:"Natural weapon",ab:q.ab||"STR",prof:true,die:q.die,dieSrc:q.n+" ("+f.n+")",type:q.type,range:"5 ft",m:"",note:""})})});/* v69 */
   return ctx.patch()}});
 registerSheetGroup({id:"late-natural-species",group:"late",phase:"late",order:70,reads:["i.sp", "i.custom", "i.spName", "i.SRC", "C.attacks"],writes:["C.attacks"],
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const {sp,custom,spName,SRC}=I; if(sp&&!custom&&sp.attacks)sp.attacks.forEach((q) =>{C.attacks.push({n:q.n,sub:"Natural weapon",ab:q.ab||"STR",prof:true,die:q.die,dieSrc:q.n+" ("+spName+", "+(sp.hb||I.SRC)+")",type:q.type,range:q.range||"5 ft",m:"",note:q.note||""})});/* v36 p21 */
@@ -208,7 +208,7 @@ function ctSubCard(cg,I,Q){const B=I.B,L=I.L;
     /* the full text the PDF prints under the short line (2014 names the choice: Primal Path, Sacred Oath, and so on) */
     full:"At level "+Q.subLv(B.cls)+" you commit to a "+(I.r14?Q.subLbl(B.cls):B.cls+" subclass")+", the path that shapes the rest of your "+B.cls+" training. It gives you features at the levels its description lists, starting now, and it stays with you as you gain levels. **Your choice.** "+Q.sdn(B.sub)+"."},Q.subLv(B.cls));}
 function ctAsiCards(cg,I,Q){const B=I.B;
-  Q.allFeats().forEach((f) =>{const m=new RegExp("\\("+B.cls+" (\\d+)\\)$").exec(f.s||"");if(!m)return;const F=featDef(f.n)||{},lv=+m[1],ep=F.cat==="E",v=f.asi||{},ex=v.a1?(F.asi2?(v.a1===v.a2?v.a1+" +2":v.a1+" +1, "+v.a2+" +1"):v.a1+" +1"):"";
+  Q.allFeats().forEach((f) =>{const m=new RegExp("\\("+B.cls+" (\\d+)\\)$").exec(f.s||"");if(!m)return;const F=featDef(f.n,f)||{},lv=+m[1],ep=F.cat==="E",v=f.asi||{},ex=v.a1?(F.asi2?(v.a1===v.a2?v.a1+" +2":v.a1+" +1, "+v.a2+" +1"):v.a1+" +1"):"";
    ctPut(cg,{n:ep?"Epic Boon":"Ability Score Improvement",s:I.SRC+", "+B.cls+" "+lv,d:ep?"You gain an Epic Boon feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+".":"You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. **Your choice.** "+f.n+(ex?" ("+ex+")":"")+"."},lv)});}
 function ctSpeciesCards(C,I){const B=I.B,custom=I.custom,sp=I.sp;
   const sg0=C.features.filter((g) =>{return /^Species: /.test(g.g)})[0];
