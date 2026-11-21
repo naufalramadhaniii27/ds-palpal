@@ -41,7 +41,7 @@
   "size": "Medium"
  },
  "expect": {
-  "C:defenses.0.t": "Note"
+  "C:defenses.0.t": "Immunity"
  },
  "expectC": {
   "defenses": {
