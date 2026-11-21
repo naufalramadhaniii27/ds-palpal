@@ -411,5 +411,4 @@ button.dc-cell{font:inherit;color:inherit;text-align:left;width:100%}
 .dsum-p li::before{content:"";position:absolute;left:2px;top:.55em;width:6px;height:6px;border-radius:2px;rotate:45deg;background:var(--pl-acc,#d6a24a)}
 .dsum-p b{font-weight:800}
 .dsum-dh{margin:4px 0 6px;font-size:calc(11px*var(--tz,1));letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.dc-strip.dc-s3{grid-template-columns:repeat(3,minmax(0,1fr))}
 :root[data-hc] .dsum-c dt,:root[data-hc] .dsum-dh{color:var(--ink)}

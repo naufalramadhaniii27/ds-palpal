@@ -51,5 +51,32 @@ with sync_playwright() as p:
         hits = pg.evaluate(OVER)
         check(nm + " title does not overlap tiles after scroll", not hits, hits)
         pg.evaluate("()=>{document.querySelector('#sheet [data-close]')?.click()}"); pg.wait_for_timeout(400)
+    # species trait card (library): line and bullets when the trait has sub-headings
+    sp = pg.evaluate("()=>{for(const [n,s] of Object.entries(window.SPECIES||{})) for(const t of (s.traits||[])) if(String(t[1]).length>60) return 'lib:feature|sp:'+n+'|'+t[0]; return ''}")
+    check("a species trait exists", sp, sp)
+    pg.evaluate(OPEN, sp); pg.wait_for_timeout(900); o = pg.evaluate(INFO)
+    check("species trait summary line present (" + sp + ")", len(o["line"]) > 10, o)
+    pg.evaluate("()=>{document.querySelector('#sheet [data-close]')?.click()}"); pg.wait_for_timeout(400)
+    # caster sheet: a level 5 Wizard from the builder fuzz hook, then sheet spell cards (sp:)
+    pg.evaluate("()=>window.__bldNeed&&window.__bldNeed()")
+    pg.wait_for_function("()=>typeof window.__bldFuzz==='function'&&typeof window.__sheetApply==='function'", timeout=120000)
+    sps = pg.evaluate("""()=>{const all={};(window.WX.src||[]).forEach(x=>all[x.id]=true);
+      const b=window.__bldFuzz({sp:'Human',bg:'Sage',rs:'2024',src:all,cls:'Wizard',lv:5,arr:[8,14,14,16,10,10],b2:0,b1:0}).b;
+      const C=window.__bldSheetFor(b,{}); window.__sheetApply(C,false); const L=C.spells||[], ix=(f)=>L.findIndex(f);
+      return {conc:ix(s=>s.conc), dmg:ix(s=>(window.SPELL_FX[s.n]||{}).dmg&&s.sv), names:L.map(s=>s.n)}; }""")
+    pg.wait_for_timeout(1500)
+    for nm, i in (("concentration", sps["conc"]), ("damage", sps["dmg"])):
+        if i < 0: check("Wizard sheet has a " + nm + " spell", False, sps["names"]); continue
+        pg.evaluate(OPEN, "sp:%d" % i); pg.wait_for_timeout(900); o = pg.evaluate(INFO)
+        pg.screenshot(path=os.environ["SHOT_DIR"] + "/after_sp_" + nm + ".png") if os.environ.get("SHOT_DIR") else None
+        check("sheet spell %s (%s) summary line" % (nm, sps["names"][i]), len(o["line"]) > 10, o)
+        check("sheet spell %s number row has Duration" % nm, "Duration" in o["nums"], o["nums"])
+        if nm == "concentration": check("sheet spell Concentration chip", "Concentration" in o["chips"], o["chips"])
+        else:
+            vals = pg.evaluate("()=>[...document.querySelectorAll('#sheetBody .dsum-c dd')].map(e=>e.textContent.trim())")
+            check("sheet spell shows the character's DC or to hit", any(v.startswith("DC ") or v.startswith("+") for v in vals), vals)
+            check("sheet spell damage chip", any(c[:1].isdigit() for c in o["chips"]), o["chips"])
+        hits = pg.evaluate(OVER); check("sheet spell %s title does not overlap tiles" % nm, not hits, hits)
+        pg.evaluate("()=>{document.querySelector('#sheet [data-close]')?.click()}"); pg.wait_for_timeout(400)
     check("no page errors", not errs, errs); b.close()
 print("SCORE %d" % round(100 * sum(R) / len(R))); sys.exit(0 if all(R) else 1)

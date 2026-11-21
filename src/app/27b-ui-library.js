@@ -230,7 +230,7 @@ function libDetailRawSub(c, k){ let h="", sub=""; let own=null, xs=libXs()[k]; O
 function libDetailRawFeature(c, k){ const m=/^(cls|sub|sp):([^|]+)\|(.+)$/.exec(k); if(!m) return null;
     if(m[1]==="cls"){ const cf=(CLASSES[m[2]].f||[]).filter((f) =>{ return f[1]===m[3]; })[0]; if(!cf) return null; return libDetailRawPart20(m, cf); }
     if(m[1]==="sub"){ let sf=null, oc=""; Object.keys(CLASSES).forEach((cn) =>{ const l=(CLASSES[cn].subs||{})[m[2]]; if(l){ oc=cn; l.forEach((f) =>{ if(f[1]===m[3]) sf=f; }); } }); if(!sf&&libXs()[m[2]]) libXs()[m[2]].arr.forEach((f) =>{ if(f[1]===m[3]) sf=f; }); if(!sf) return null; return libDetailRawPart21(m, sf); }
-    const tr=libDetailRawPart22(m); if(!tr) return null; return {t:m[3],sub:m[2]+" trait",h:meta(m[2]+" Trait","")+'<p class="info-d">'+richP(tr[1])+'</p><p class="bk-f"><button type="button" class="lk" data-lib-open="species|'+esc(m[2])+'">See the whole species</button></p>'}; 
+    const tr=libDetailRawPart22(m); if(!tr) return null; return {t:m[3],sub:m[2]+" trait",h:meta(m[2]+" Trait","")+libFeatSum(tr[1],"")+'<p class="bk-f"><button type="button" class="lk" data-lib-open="species|'+esc(m[2])+'">See the whole species</button></p>'}; 
 }
 function libDetailRawHomebrew(c, k){ const hp=k.indexOf("|"), hid=k.slice(0,hp), hn=k.slice(hp+1), hs=(env.HBIDX||[]).filter((q) =>{ return q.id===hid; })[0]; if(!hs) return null;
     const hh='<div class="info-k">'+tileH("Pack",esc(hs.name))+tileH("Source",esc((hs.tag||"")+" • "+libHbBy(hs)))+'</div><div id="libHb"><p class="info-d">Loading the entry.</p></div>';
