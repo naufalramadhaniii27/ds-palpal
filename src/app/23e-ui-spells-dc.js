@@ -2,7 +2,7 @@ import {bindLive,cuK,cuNm,cuNum,lateGet} from "./00a-reg-late-ports.js";/* Respo
    Touches page globals only through env: __artIc. Shared names with other modules come from the imports below, late names through __R. */
 import {C} from "./04-logic-storage.js";
 import {esc,num,sg} from "./05-logic-helpers.js";
-import {durH} from "./13d-ui-detail-summary.js";
+import {durH,qFold} from "./13d-ui-detail-summary.js";
 import {B,D,part} from "./06-logic-derivation.js";
 import {esArt} from "./08c-ui-render-inventory-features-notes.js";
 import {spEffH,spGrpLv,spRangeH,spRowLv} from "./22-ui-spell-data-and-slots.js";
@@ -36,8 +36,10 @@ export function scOf(x){ let r=scOf0(x), c=x&&cuK("s:"+x.n); if(c&&(cuNum(c.dc)!
 function scOf0(x){ let sc=scAdj(C.spellcasting||{}); if(x&&x.itc&&(x.itc.dc!=null||x.itc.atk!=null)){ sc=Object.assign({},sc); if(x.itc.dc!=null) sc.dc=x.itc.dc; if(x.itc.atk!=null) sc.atk=x.itc.atk; return sc; } if(x&&x.ab&&Array.isArray(sc.by)){ const b=sc.by.filter((q) =>{return q.ab===x.ab})[0]; if(b) return b; } return sc; }
 function spHeadBy(sc){ return sc.by.map((b) =>{ const sf="-"+b.ab; return '<p class="sp-src">'+esc(b.n)+'</p><div class="sp-head"><div><b>'+sg(b.mod)+'</b><span>Modifier ('+b.ab+')</span></div><div class="bd" data-bd="spatk'+sf+'" role="button" tabindex="0"><b>'+sg(b.atk)+'</b><span>Spell Attack</span></div><div class="bd" data-bd="spdc'+sf+'" role="button" tabindex="0"><b>'+b.dc+'</b><span>Save DC</span></div></div>'; }).join(""); }
 function spHead(sc){sc=scAdj(sc);let h=Array.isArray(sc.by)&&sc.by.length>1?spHeadBy(sc):'<div class="sp-head"><div><b>'+sg(sc.mod)+'</b><span>Modifier ('+sc.ab+')</span></div><div class="bd" data-bd="spatk" role="button" tabindex="0"><b>'+sg(sc.atk)+'</b><span>Spell Attack</span></div><div class="bd" data-bd="spdc" role="button" tabindex="0"><b>'+sc.dc+'</b><span>Save DC</span></div></div>';
- const sl=[];(sc.slots||[]).forEach((n,i) =>{sl.push(ordL(i+1).replace(" Level","")+" \u00d7"+n)});if(sc.pact)sl.push("Pact \u00d7"+sc.pact.n+" (level "+sc.pact.lvl+")");if(sl.length)h+='<p class="sp-slots">Slots: '+sl.join(", ")+'. Tick the boxes at each spell level, or in Limited Use on the Actions tab.</p>';
+ const sl=[];(sc.slots||[]).forEach((n,i) =>{sl.push(ordL(i+1).replace(" Level","")+" \u00d7"+n)});if(sc.pact)sl.push("Pact \u00d7"+sc.pact.n+" (level "+sc.pact.lvl+")");if(sl.length)h+='<p class="sp-slots" title="Tick the boxes at each spell level, or in Limited Use on the Actions tab.">Slots: '+sl.join(", ")+'</p>';
  return h}
+/* casting time in one short word: Action, Bonus, Reaction, 1 min, 10 min, 1 hr */
+function ctShort(ct){ const s=String(ct||"").split(/,/)[0].replace(/^1 /,""); return /^Bonus/i.test(s)?"Bonus":s.replace(/ minutes?$/i," min").replace(/ hours?$/i," hr"); }
 export function renderSpells(){
 const {el}=renderSpellsStep1();if(!el)return;
 const {L, sc, MB}=renderSpellsStep2();
@@ -51,7 +53,7 @@ const {L, sc, MB}=renderSpellsStep2();
 function renderSpellsFn1(l, UP, UPX, q, L, p){const x=p[0];return (spGrpLv(x)===l||(UP&&spUpOk(x)&&l>spGrpLv(x)&&l<=UPX))&&(spF==="all"||spF===String(l)||(spF==="conc"&&x.conc)||(spF==="rit"&&x.rit))&&(!q||(x.n+" "+x.ct+" "+x.sum+" "+x.src).toLowerCase().indexOf(q)>=0)&&!(x.use==="Prepared"&&L.some((y) =>{return y!==x&&y.n===x.n&&y.use==="Always prepared"}))/* v22 T1: sheets saved before v22 */}
 function renderSpellsFn2(l, p){const x=p[0],xs=scOf(x),hd=x.sv==="ATK"?sg(xs.atk):x.sv?x.sv+" "+xs.dc:"\u2014";
    const badge=/At will|Cantrip/i.test(x.use)||!x.l?'<span class="sp-b" data-qcast="'+p[1]+'" title="Cast '+esc(x.n)+'" aria-hidden="true">AT<br>WILL</span>':/1\/Long/.test(x.use)?'<span class="sp-b use" data-qcast="'+p[1]+'" title="Use '+esc(x.n)+'" aria-hidden="true">USE</span>':'<span class="sp-b cast" data-qcast="'+p[1]+'" title="Cast '+esc(x.n)+'" aria-hidden="true">CAST</span>';
-   return '<button type="button" class="sp-r" data-info="sp:'+p[1]+'"'+(x.sch?' data-sch="'+esc(x.sch)+'"':'')+'>'+badge+'<span class="sp-n"><b>'+(env.__artIc?env.__artIc("spell",x.n):"")+esc(cuNm("s:"+x.n,x.n))+(x.rit?' <i class="sp-c rit" title="Ritual">R</i>':'')+'</b><small>'+(x.sch?'<span class="sp-sc">'+esc(x.sch)+' \u2022 </span>':'')+'<span class="sp-u">'+esc(x.use)+' \u2022 </span><span class="sp-s">'+esc(x.src||"")+'</span>'+(l>spGrpLv(x)?'<span class="sp-w"> \u2022 with a '+ordL(l).replace(" Level","")+' slot</span>':'')+'</small></span><span class="sp-t" data-l="Time">'+esc(x.ct.replace("Bonus Action","1BA").replace("Reaction","1R").replace("Action","1A"))+'</span><span class="sp-d" data-l="Duration">'+durH(String(x.dur||"").replace(/^Up to /i,"").replace(/^Instantaneous$/,"Instant").replace(/ (minute|hour|round)s?$/,(m,u) =>" "+{minute:"min",hour:"hr",round:"rnd"}[u]),x.conc)+'</span><span class="sp-g" data-l="Range">'+spRangeH(x.r,x)+'</span><span class="sp-hd'+(hd==="\u2014"?" sp-no":"")+'" data-l="'+(x.sv==="ATK"?"To hit":"Save")+'">'/* v36 p13 */+esc(hd)+'</span><span class="sp-e" data-l="Effect">'+spEffH(x,l>spGrpLv(x)?l:spRowLv(x))+'</span></button><button type="button" class="spk" data-qcast="'+p[1]+'">'+(/1\/Long/.test(x.use)?"Use ":"Cast ")+esc(x.n)+'</button>'}
+   return '<button type="button" class="sp-r" data-info="sp:'+p[1]+'"'+(x.sch?' data-sch="'+esc(x.sch)+'"':'')+'>'+badge+'<span class="sp-n"><b>'+(env.__artIc?env.__artIc("spell",x.n):"")+esc(cuNm("s:"+x.n,x.n))+(x.rit?' <i class="sp-c rit" title="Ritual">R</i>':'')+'</b><small>'+(x.sch?'<span class="sp-sc">'+esc(x.sch)+' \u2022 </span>':'')+'<span class="sp-u">'+esc(x.use)+' \u2022 </span><span class="sp-s">'+esc(x.src||"")+'</span>'+(l>spGrpLv(x)?'<span class="sp-w"> \u2022 with a '+ordL(l).replace(" Level","")+' slot</span>':'')+'</small></span><span class="sp-t" data-l="Time">'+esc(ctShort(x.ct))+'</span><span class="sp-d" data-l="Duration">'+durH(String(x.dur||"").replace(/^Up to /i,"").replace(/^Instantaneous$/,"Instant").replace(/ (minute|hour|round)s?$/,(m,u) =>" "+{minute:"min",hour:"hr",round:"rnd"}[u]),x.conc)+'</span><span class="sp-g" data-l="Range">'+spRangeH(x.r,x)+'</span><span class="sp-hd'+(hd==="\u2014"?" sp-no":"")+'" data-l="'+(x.sv==="ATK"?"To hit":"Save")+'">'/* v36 p13 */+esc(hd)+'</span><span class="sp-e" data-l="Effect">'+spEffH(x,l>spGrpLv(x)?l:spRowLv(x))+'</span></button><button type="button" class="spk" data-qcast="'+p[1]+'">'+(/1\/Long/.test(x.use)?"Use ":"Cast ")+esc(x.n)+'</button>'}
 function renderSpellsStep1(){
 const el=document.getElementById("spBody");
   return /** @type {any} */ ({el});
@@ -59,14 +61,14 @@ const el=document.getElementById("spBody");
 function renderSpellsStep2(){
 const L=C.spells||[],sc=C.spellcasting;
  /* RU20: a caster with no spells chosen still sees Modifier, Spell Attack, Save DC and slots (C.spellcasting), then the note */
- const MB='<div class="spm-bar">'+(L.length?'<button type="button" class="btn press spm-open" data-spcards="1">Print Cards</button>':'')+'<button type="button" class="btn press spm-open" data-spman="1">'+ico("spellbook","ibt")+'Manage Spells</button></div>';/* v27 RU68 *//* v25 RU38 no. 3 */
+ const MB='<div class="spm-bar">'+(L.length?'<button type="button" class="btn press spm-open" data-spcards="1">Print</button>':'')+'<button type="button" class="btn press spm-open" data-spman="1">'+ico("spellbook","ibt")+'Manage</button></div>';/* v27 RU68 *//* v25 RU38 no. 3 */
   return /** @type {any} */ ({L, sc, MB});
 }
 function renderSpellsStep3(sc, MB, L){
  let h=(sc?spHead(sc):'')+MB;
- h+='<input class="sp-q" id="spQ" type="search" placeholder="Search Spell Names, Casting Times, Damage Types" value="'+esc(spQ)+'">';
+
  const lvs=[],UP=spUpOn(),UPX=spUpMax();L.forEach((x) =>{const g=spGrpLv(x);if(lvs.indexOf(g)<0)lvs.push(g);if(UP&&spUpOk(x))for(let u=g+1;u<=UPX;u++)if(lvs.indexOf(u)<0)lvs.push(u)});lvs.sort((a,b) =>{return a-b});/* v25 RU38 no. 6 */
- h+='<div class="ifil">'+[["all","All"]].concat(lvs.map((l) =>{return [String(l),l?ordL(l).replace(" Level","").toUpperCase():"-0-"]})).concat([["conc","Conc."],["rit","Ritual"]]).map((f) =>{return '<button type="button" class="ifb'+(spF===f[0]?' on':'')+'" data-spf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
+ h+='<div class="filrow">'+qFold("spQ","Search spells","Spell name, casting time, damage type",spQ,ico("ui-search","ibt"))+'<div class="ifil">'+[["all","All"]].concat(lvs.map((l) =>{return [String(l),l?ordL(l).replace(" Level","").toUpperCase():"-0-"]})).concat([["conc","Conc."],["rit","Ritual"]]).map((f) =>{return '<button type="button" class="ifb'+(spF===f[0]?' on':'')+'" data-spf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div></div>';
  const q=spQ.toLowerCase(),lv=lvs.slice();
   return /** @type {any} */ ({h, UP, UPX, q, lv});
 }

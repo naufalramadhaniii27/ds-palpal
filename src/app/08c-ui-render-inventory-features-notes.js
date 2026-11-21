@@ -1,5 +1,5 @@
 import {bindLive,clsOfG,coinStrip,coinsNow,ctCap,ctLoad,ctOf,cuNm,featLine,featSpL,ico,invKey,invWeight,itemW,jrnH,lateGet,noteSec,renderDesc,resBoxes,resOf,setOf} from "./00a-reg-late-ports.js";/* Responsibility: the Inventory, Features and Notes pages. Split out of the former single file 08 in SOLID stage 9 (S); runs in the same order as before. */
-import {NOTE_FIELDS,gName} from "./03-data-glossary.js";import {C} from "./04-logic-storage.js";import {$,attMaxC,eqOn,esc,fmtW,num} from "./05-logic-helpers.js";import {D,fill} from "./06-logic-derivation.js";import {env} from "./00-env.js";import {aylH,aylSplit,shortX,sumH,sumParse} from "./08b-ui-render-summaries-actions.js";bindLive("esArt",{get:function(){return esArt;}});bindLive("renderInv",{get:function(){return renderInv;}});
+import {NOTE_FIELDS,gName} from "./03-data-glossary.js";import {C} from "./04-logic-storage.js";import {$,attMaxC,eqOn,esc,fmtW,num} from "./05-logic-helpers.js";import {D,fill} from "./06-logic-derivation.js";import {env} from "./00-env.js";import {aylH,aylSplit,shortX,sumH,sumParse} from "./08b-ui-render-summaries-actions.js";import {qFold} from "./13d-ui-detail-summary.js";bindLive("esArt",{get:function(){return esArt;}});bindLive("renderInv",{get:function(){return renderInv;}});
 bindLive("renderNotes",{get:function(){return renderNotes;}});
 export var invF="all";
 export function renderInv(){
@@ -79,11 +79,11 @@ function renderFeatFn1(o, q, g,gi){ if(featCat(g.g)!==o[0]) return "";
 function renderFeatFn1Part1(f, g){ return (aylSplit(shortX(f.n,g.g)||f.d||f.full||"",clsOfG(g.g))); }
 /* a front feature card: name, one line (clamped to two), the key numbers, then the action badge and the use boxes, which tick without opening the card. Book page and full text live in the detail */
 function renderFeatFn1Part2(gi, fi, f, from, g, so, q, cs, chip, r, rl){ const cl=clsOfG(g.g), kind=(so&&so.p)||chip.replace(/^1 /,"")||"Passive";
-  return ('<div class="fitem"><h4><button type="button" class="tx" data-info="f:'+gi+'.'+fi+'">'+esc(f.n)+'</button></h4>'+from+'<p class="fline">'+esc(featLine("",fill(cs.t)))+'</p>'+(so&&so.k.length?sumH(Object.assign({},so,{rest:"",yc:"",o:[],m:[]}),cl):'')+aylH(cs.a,cl)+
-    '<div class="fsub"><span data-xl-off class="fkb fk-'+kind.split(" ")[0].toLowerCase()+'">'+esc(kind)+'</span>'+(r?resBoxes(rl):'')+'</div>'+featSpL(g,f)+'</div>'); }
+  return ('<div class="fitem"><h4><button type="button" class="tx" data-info="f:'+gi+'.'+fi+'">'+esc(f.n)+'</button></h4>'+from+'<p class="fline" data-xl-off>'+esc(featLine("",fill(cs.t)))+'</p>'+(so&&so.k.length?sumH(Object.assign({},so,{rest:"",yc:"",o:[],m:[]}),cl):'')+aylH(cs.a,cl)+
+    '<div class="fsub" data-xl-off><span class="fkb fk-'+kind.split(" ")[0].toLowerCase()+'">'+esc(kind)+'</span>'+(r?resBoxes(rl):'')+'</div>'+featSpL(g,f)+'</div>'); }
 function renderFeatStep1(){
   const q=featQ.toLowerCase(), groups=(C.features||[]);
-  const head='<div class="fsearch"><input id="featQ" type="search" placeholder="Search in Features" value="'+esc(featQ)+'"></div><div class="ifil">'+[["all","All"],["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]].map((f) =>{return '<button type="button" class="ifb'+(featF===f[0]?' on':'')+'" data-featf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div>';
+  const head='<div class="filrow">'+qFold("featQ","Search features","Search in Features",featQ,ico("ui-search","ibt"))+'<div class="ifil">'+[["all","All"],["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]].map((f) =>{return '<button type="button" class="ifb'+(featF===f[0]?' on':'')+'" data-featf="'+f[0]+'">'+f[1]+'</button>'}).join("")+'</div></div>';
   let order=[["class","Class Features"],["species","Species Traits"],["feats","Feats"],["bg","Background"]], h="";
   return /** @type {any} */ ({q, groups, head, order, h});
 }

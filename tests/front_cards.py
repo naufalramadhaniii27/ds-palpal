@@ -4,7 +4,10 @@ no column header row; each card's TO HIT, DAMAGE and RANGE cells share one row (
 Features: no book source line on the front, the one-liner is at most two lines, an action badge on every card,
 the use boxes tick on tap without opening the detail and keep the state after a re-render.
 Spells: every row has a Duration cell; a Concentration spell shows the CONC badge there.
-Detail leftover: feat bullets fold the sub-headed paragraphs behind Full text."""
+Detail leftover: feat bullets fold the sub-headed paragraphs behind Full text.
+Round 4: tab titles at most 40 px tall; the first card of Actions and Features in the top half and the first spell row in the top 40 percent;
+search folded behind an icon and Reorder as an icon in the filter row; casting times as short words (no 1A codes); no dash cells on spell rows;
+no links inside the feature one-liner or badge row; attack cells and spell cells stay aligned without overlap in the light and high-contrast skins."""
 import json, os, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -13,6 +16,13 @@ SEED = "(v=>{try{if(sessionStorage.getItem('s'))return;sessionStorage.setItem('s
 R = []
 def check(n, ok, info=""): R.append(bool(ok)); print(("ok   " if ok else "FAIL ") + n + ("" if ok else "  " + str(info)[:300]))
 def tab(pg, t): pg.click("[data-go='%s']" % t); pg.wait_for_timeout(1200)
+TITLE = "id=>{const t=document.querySelector('#'+id+' .ptitle'); return t?Math.round(t.getBoundingClientRect().height):0}"
+FIRST = "s=>{const e=[...document.querySelectorAll(s)].find(x=>x.offsetParent); return e?e.getBoundingClientRect().top/innerHeight:1}"
+SPROW = r"""()=>{ const L=[...document.querySelectorAll('#spBody .sp-r[data-info^="sp:"]')].filter(r=>r.offsetParent), bad=[];
+  for(const r of L){ const c=[...r.querySelectorAll(':scope>[data-l]')].filter(e=>e.offsetParent&&getComputedStyle(e).display!=='none');
+    for(const e of c){ const t=e.textContent.trim(); if(t==='—'||t==='-') bad.push('dash '+e.dataset.l); if(/^1(A|BA|R)$/.test(t)) bad.push('code '+t); }
+    const b=c.map(e=>e.getBoundingClientRect()); for(let i=0;i<b.length;i++) for(let j=i+1;j<b.length;j++){ const x=b[i],y=b[j]; if(x.left<y.right-1&&x.right>y.left+1&&x.top<y.bottom-1&&x.bottom>y.top+1) bad.push('overlap '+c[i].dataset.l+'/'+c[j].dataset.l); } }
+  return bad; }"""
 DOCK = "()=>{const v=document.getElementById('vbar'); return v&&v.offsetParent?v.getBoundingClientRect().top:innerHeight}"
 ACT = r"""async ()=>{ const rows=[...document.querySelectorAll('#actBody .arow:not(.xd)')].filter(e=>e.offsetParent), dock=(%s)(), out={n:rows.length, bad:[]};
   if(!rows.length) return out; out.first=rows[0].getBoundingClientRect().top/innerHeight;
@@ -36,10 +46,20 @@ with sync_playwright() as p:
     check("no column header row", o.get("head") == 0, o)
     check("TO HIT / DAMAGE / RANGE cells aligned in one row, no overlap, labelled", not o["bad"], o["bad"])
     check("at least 3 attack cards per screen", o.get("fit", 0) >= 3, o)
+    check("Actions tab title at most 40 px", 0 < pg.evaluate(TITLE, "p-actions") <= 40, pg.evaluate(TITLE, "p-actions"))
+    for skin, attr in (("light", ["data-theme", "light"]), ("high-contrast", ["data-hc", "1"])):
+        pg.evaluate("a=>document.documentElement.setAttribute(a[0],a[1])", attr); pg.wait_for_timeout(300); o2 = pg.evaluate(ACT)
+        check("attack cells aligned in the %s skin" % skin, not o2["bad"], o2["bad"]); pg.evaluate("a=>document.documentElement.removeAttribute(a[0])", attr)
     dt = pg.evaluate("()=>[...document.querySelectorAll('#actBody .arow [data-bd^=\"ad-\"]>span')].map(e=>e.className)")
     check("damage dice carry the damage-type colour class", dt and all(c.startswith("dt-") for c in dt), dt)
     # Features
     tab(pg, "5")
+    check("Features tab title at most 40 px", 0 < pg.evaluate(TITLE, "p-feat") <= 40, pg.evaluate(TITLE, "p-feat"))
+    check("first feature card in the top half", pg.evaluate(FIRST, "#featBody .fitem") < 0.5, pg.evaluate(FIRST, "#featBody .fitem"))
+    fr = pg.evaluate("()=>{const r=document.querySelector('#featBody .filrow'); return r?{q:!!r.querySelector('details.qd:not([open]) summary'), o:(r.querySelector('.ordb')||{}).offsetHeight||0}:null}")
+    check("feature search folded and Reorder an icon in the filter row", fr and fr["q"] and fr["o"] >= 44, fr)
+    lk = pg.evaluate("()=>document.querySelectorAll('#featBody .fitem :is(.fline,.fsub) :is(button.lk,a,.xl)').length")
+    check("no links in feature one-liners or badge rows", lk == 0, lk)
     f = pg.evaluate(r"""()=>{ const it=[...document.querySelectorAll('#featBody .fitem')].filter(e=>e.offsetParent), lh=(e)=>parseFloat(getComputedStyle(e).lineHeight)||20;
       return {n:it.length, src:it.filter(e=>/pg\.\s*\d|PHB-20\d\d/.test(e.innerText)).map(e=>e.innerText.slice(0,40)),
         tall:it.map(e=>e.querySelector('.fline')).filter(l=>l&&l.getBoundingClientRect().height>2*lh(l)+2).map(l=>l.textContent.slice(0,30)),
@@ -71,6 +91,12 @@ with sync_playwright() as p:
     pg.evaluate("""()=>{const all={};(window.WX.src||[]).forEach(x=>all[x.id]=true);
       const b=window.__bldFuzz({sp:'Human',bg:'Sage',rs:'2024',src:all,cls:'Wizard',lv:5,arr:[8,14,14,16,10,10],b2:0,b1:0}).b; window.__sheetApply(window.__bldSheetFor(b,{}),false)}"""); pg.wait_for_timeout(1500)
     tab(pg, "3")
+    check("first spell row in the top 40 percent", pg.evaluate(FIRST, '#spBody .sp-r[data-info^="sp:"]') < 0.4, pg.evaluate(FIRST, '#spBody .sp-r[data-info^="sp:"]'))
+    check("spell search folded behind an icon", pg.evaluate("()=>!!document.querySelector('#spBody details.qd:not([open]) summary')"))
+    bad = pg.evaluate(SPROW); check("spell rows: short casting words, no dash cells, no overlap", not bad, bad[:6])
+    for skin, attr in (("light", ["data-theme", "light"]), ("high-contrast", ["data-hc", "1"])):
+        pg.evaluate("a=>document.documentElement.setAttribute(a[0],a[1])", attr); pg.wait_for_timeout(300); bad = pg.evaluate(SPROW)
+        check("spell rows clean in the %s skin" % skin, not bad, bad[:6]); pg.evaluate("a=>document.documentElement.removeAttribute(a[0])", attr)
     sp = pg.evaluate("""()=>{ const L=[...document.querySelectorAll('#spBody .sp-r[data-info^="sp:"]')], C=window.__sheetC?null:null;
       return {n:L.length, nodur:L.filter(r=>!(r.querySelector('.sp-d')||{}).textContent).map(r=>r.textContent.slice(0,20)),
         conc:L.filter(r=>r.querySelector('.sp-d .dsum-b')).length, cells:L.slice(0,3).map(r=>[...r.querySelectorAll('[data-l]')].map(e=>e.dataset.l).join(','))}; }""")

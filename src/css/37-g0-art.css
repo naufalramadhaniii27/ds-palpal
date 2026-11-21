@@ -5,16 +5,14 @@ html[data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-light.avif")}
 html[data-theme="light"][data-paper="cool"]{--g0p:url("img/g0/paper-cool-dark.avif")}
 html[data-theme="light"][data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-dark.avif")}
 @media (prefers-color-scheme:light){html:not([data-theme="dark"]):not([data-theme="light"])[data-paper="cool"]{--g0p:url("img/g0/paper-cool-dark.avif")}html:not([data-theme="dark"]):not([data-theme="light"])[data-paper="neutral"]{--g0p:url("img/g0/paper-neutral-dark.avif")}}
+/* one size, position and repeat per layer (paper, sheen); the old corner-ornament lists sized the sheen as a 30 px block in the top right corner */
 html.g0-art:root[data-skin="ddb"] :is(#app .vitals,#app .card,#app .ihero){background-image:var(--g0p),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 120px);
-  background-size:30px auto,30px auto,30px auto,30px auto,256px 256px,100% 100%;
-  background-position:left 2px top 2px,right 2px top 2px,left 2px bottom 2px,right 2px bottom 2px,0 0,0 0;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat}
+  background-size:256px 256px,100% 100%;background-position:0 0,0 0;background-repeat:repeat,no-repeat}
 html.g0-art:root[data-skin="ddb"] #app .idcard{background-image:radial-gradient(120% 80% at 0% 0%,rgba(var(--pl-rgb),.16),transparent 55%),var(--g0p),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 120px);
-  background-size:34px auto,34px auto,34px auto,34px auto,100% 100%,256px 256px,100% 100%;
-  background-position:left 2px top 2px,right 2px top 2px,left 2px bottom 2px,right 2px bottom 2px,0 0,0 0,0 0;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,repeat,no-repeat}
+  background-size:100% 100%,256px 256px,100% 100%;background-position:0 0,0 0,0 0;background-repeat:no-repeat,repeat,no-repeat}
 /* detail sheet: the paper. The bottom edge stays clear because text scrolls under it */
 html.g0-art:root[data-skin="ddb"] #sheet{background-image:var(--g0p),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 160px);
-  background-size:34px auto,34px auto,256px 256px,100% 100%;
-  background-position:left 3px top 3px,right 3px top 3px,0 0,0 0;background-repeat:no-repeat,no-repeat,repeat,no-repeat}
+  background-size:256px 256px,100% 100%;background-position:0 0,0 0;background-repeat:repeat,no-repeat}
 /* section line: the wooden divider in four pieces (two end caps, the centre knot, a rod stretched to the full width), so it spans any card without distorting the knot */
 html.g0-art:root[data-skin="ddb"] :is(.idcard,.vitals,.card,.inner,.xcard,.nsec,.ihero)::before{height:14px;top:-7px;border-radius:0;opacity:1;background-image:url("img/g0/divider-wood-l.avif"),url("img/g0/divider-wood-r.avif"),url("img/g0/divider-wood-c.avif"),url("img/g0/divider-wood-rod.avif");background-size:auto 100%,auto 100%,auto 100%,100% 100%;background-position:left center,right center,center,center;background-repeat:no-repeat}
 /* section headings in a detail sheet: the wooden divider takes the place of the old gold rule under the heading, one line only */

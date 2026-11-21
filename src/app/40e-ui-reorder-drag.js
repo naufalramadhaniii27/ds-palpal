@@ -21,10 +21,12 @@ function ordApply(list){ const O=(S.order&&S.order[list])||[]; if(!O.length) ret
   ordRuns(list).forEach((run) =>{ if(run.length<2) return; const ks=run.map(o.key), ix=run.map((_,i) =>{ return i; }), par=run[0].parentNode, after=run[run.length-1].nextSibling;
     ix.sort((a,b) =>{ const ra=rank[ks[a]], rb=rank[ks[b]]; return (ra==null?1e6+a:ra)-(rb==null?1e6+b:rb); }); ix.forEach((i) =>{ par.insertBefore(run[i],after); }); }); }
 function ordOk(list){ if(list==="inv") return invF==="all"&&(C.inv||[]).length>1; return !featQ&&(C.features||[]).length>0; }
+/* Reorder off sits as a 44 px icon at the end of the filter row (wrapped into .filrow when the page has none) */
+function ordRow(fil){ let row=fil.parentNode; if(row.classList.contains("filrow")) return row; row=document.createElement("div"); row.className="filrow"; fil.parentNode.insertBefore(row,fil); row.appendChild(fil); return row; }
 function ordUI(list){ const o=ORDL[list], root=document.getElementById(o.body); if(!root) return; const ok=ordOk(list), on=ok&&!!ORD_ON[list];
   root.classList.toggle("ord-on",on); if(!ok) return;
-  const bar=document.createElement("div"); bar.className="ordbar"; bar.innerHTML='<span class="muted">'+(on?'Drag a handle, or focus it and use the arrow keys.':'')+'</span><button type="button" class="btn press ordb" data-ord="'+list+'" aria-pressed="'+on+'">'+ico(on?"ui-check":"ui-sort","ibt")+(on?'Done':'Reorder')+'</button>';
-  const fil=root.querySelector(".ifil"); if(fil) fil.parentNode.insertBefore(bar,fil.nextSibling); else root.insertBefore(bar,root.firstChild);
+  const bar=document.createElement("div"); bar.className="ordbar"; bar.innerHTML='<span class="muted">'+(on?'Drag a handle, or focus it and use the arrow keys.':'')+'</span><button type="button" class="btn press ordb" data-ord="'+list+'" aria-pressed="'+on+'"'+(on?'':' aria-label="Reorder" title="Reorder"')+'>'+ico(on?"ui-check":"ui-sort","ibt")+'<span class="ordt">'+(on?'Done':'Reorder')+'</span></button>';
+  const fil=root.querySelector(".ifil"); if(fil&&!on) ordRow(fil).appendChild(bar); else if(fil) (fil.closest(".filrow")||fil).after(bar); else root.insertBefore(bar,root.firstChild);
   if(!on) return; ordRuns(list).forEach((run) =>{ if(run.length<2) return; run.forEach((r,i) =>{ const h=document.createElement("button"); h.type="button"; h.className="dragh press"; h.setAttribute("data-ordl",list);
     h.setAttribute("aria-label","Move "+o.name(r)+", "+(i+1)+" of "+run.length+". Drag, or use the up and down arrow keys"); h.innerHTML=ico("ui-grip","dgi"); r.appendChild(h); r.classList.add("ordr"); }); }); }
 __set_renderInv((function(f){ return function(){ const r=f.apply(this,arguments); ordApply("inv"); ordUI("inv"); return r; }; })(renderInv));

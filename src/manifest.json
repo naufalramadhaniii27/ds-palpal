@@ -912,6 +912,7 @@
     "builder/25-logic-hooks-for-the-sheet.js",
     "builder/main.js"
    ],
+   "css": ["css/bld-builder.css"],
    "entry": "builder/main.js"
   },
   {

@@ -45,6 +45,9 @@ export function sumDice(line,parts){ let s=String(line||""); (parts||[]).forEach
 export const DSUM_DH='<h3 class="info-h dsum-dh">Detail</h3>';
 /* the detail under a summary: folded behind "Full text" when the bullets above already show its sub-headed paragraphs; with no detail left, the Detail heading goes too */
 export function sumDetail(sumH,raw,html){ if(!html) return sumH.replace(DSUM_DH,""); return sumH+(sumPts(raw).pts.length>=2?'<details class="dsum-full"><summary>Full text</summary>'+html+'</details>':html); }
+/* a search box folded behind a 44 px icon button; it stays open while it has text or focus */
+export function qFold(id,label,ph,val,icon){ const op=!!val||(typeof document!=="undefined"&&document.activeElement&&document.activeElement.id===id);
+  return '<details class="qd"'+(op?' open':'')+'><summary aria-label="'+esc(label)+'" title="'+esc(label)+'">'+icon+'</summary><input id="'+id+'" type="search" aria-label="'+esc(label)+'" placeholder="'+esc(ph)+'" value="'+esc(val)+'"></details>'; }
 /* nums: [[label, html, extra class]]; chips: [[text, class]]; pts: [[head, text]] */
 export function dcSum(line,nums,chips,pts){ nums=(nums||[]).filter((c) =>{ return c&&c[1]&&c[1]!=="—"; }); pts=pts||[];
   const ln=norm(line), seen={}; chips=(chips||[]).filter((c) =>{ const k=c&&norm(c[0]); if(!k||seen[k]||(ln&&ln.indexOf(k)>=0)) return false; seen[k]=1; return true; });/* a chip the line already says, or a duplicate, adds nothing */

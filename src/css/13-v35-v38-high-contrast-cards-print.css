@@ -187,7 +187,6 @@ label.ck{min-height:44px;display:inline-flex;align-items:center;gap:8px}
 .sum-p{float:right;display:inline-flex;margin-left:auto!important;order:5;align-items:center;gap:6px;margin:1px 0 0 8px;padding:4px 10px;border:1px solid var(--line-2);border-radius:999px;font-family:var(--f-nar);font-size:max(12px,calc(11px*var(--tz,1)));font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);line-height:1.2;white-space:nowrap}
 .sum-sp > .sum-p{float:none;margin:0 0 10px}
 .fitem h4:has(.sum-p),.aitem h4:has(.sum-p){display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
-.fitem h4:has(.sum-p) .fsrc{order:10;flex-basis:100%}
 .sum > :last-child,.sum-sp > :last-child,.aitem > :last-child,.fitem > :last-child{margin-bottom:0}
 .sum-i{width:1.1em;height:1.1em;flex:none;color:var(--muted)}
 .sum{margin:8px 0 2px}

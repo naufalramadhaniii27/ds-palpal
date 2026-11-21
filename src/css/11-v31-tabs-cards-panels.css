@@ -69,7 +69,6 @@
 :root[data-skin="ddb"] .aitem h4,:root[data-skin="ddb"] .fitem h4{display:flex;flex-wrap:nowrap;align-items:center;gap:4px 8px;margin:0 0 4px;font-size:var(--fs3);line-height:1.3}
 :root[data-skin="ddb"] .aitem h4 .tx,:root[data-skin="ddb"] .fitem h4 .tx{font-size:var(--fs3);font-weight:700;min-height:32px;display:inline-flex;align-items:center}
 :root[data-skin="ddb"] .fitem h4{flex-wrap:wrap}
-:root[data-skin="ddb"] .fitem h4 .fsrc{flex-basis:100%;padding-left:28px;margin-top:-6px}
 :root[data-skin="ddb"] .aitem h4>svg.ico,:root[data-skin="ddb"] .fitem h4>svg.ico{width:20px;height:20px;margin:0;color:var(--muted);flex:0 0 auto}
 :root[data-skin="ddb"] .aitem p,:root[data-skin="ddb"] .fitem p{font-size:var(--fs2);line-height:1.5;margin:4px 0}
 :root[data-skin="ddb"] .fsrc,:root[data-skin="ddb"] .ffrom,:root[data-skin="ddb"] .fres{font-size:var(--fs1)}
@@ -278,7 +277,6 @@ textarea.nsec-t::placeholder{color:var(--faint)}
  .ihead span{white-space:nowrap}
  .ihero .icoins{gap:2px}
  :root[data-skin="ddb"] .ihero .ibtn{grid-row:3;grid-column:1 / -1;justify-self:stretch;justify-content:center;white-space:nowrap}
- :root[data-skin="ddb"] .fitem h4 .fsrc{padding-left:0}
 }
 @container v31c (min-width:381px) and (max-width:599px){.lu{grid-template-columns:minmax(0,1fr)}}
 @container v31c (min-width:500px){

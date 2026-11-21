@@ -35,7 +35,6 @@
 /* U5: the i button sits in the bottom corner at every width, so it never covers the HEROIC INSP. label */
 .insp .ib{top:auto;bottom:5px}
 .ws .lk{font-weight:600}
-.atk .wn.tx{font-weight:600}
 .feat>button .chev{transform:rotate(-90deg)}
 .card .ch h2 .tx,.hp-h h2 .tx{font-weight:inherit}
 .cc{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px}
