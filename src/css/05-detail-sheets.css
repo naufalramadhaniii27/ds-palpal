@@ -22,7 +22,6 @@
 .info-l button span{font-family:var(--f-nar);font-weight:600;font-size:max(12px,calc(13px*var(--tz,1)));color:var(--faint);white-space:nowrap}
 .info-l button:hover{color:var(--stamp)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
-.chip.lkc{color:var(--stamp);border-color:color-mix(in srgb,var(--stamp) 45%,transparent)}
 .info-act{display:flex;gap:8px;margin-top:14px}
 .info-act .btn{padding:0 16px}
 .bk-about{margin:14px 2px 0;font-size:calc(14px*var(--tz,1))}

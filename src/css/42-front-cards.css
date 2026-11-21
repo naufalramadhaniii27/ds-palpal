@@ -21,11 +21,9 @@
 #app .arow .abox small[class^="dt-"]{color:color-mix(in srgb,currentColor 55%,var(--ink))}
 #app .arow .abox small :is(.dti,svg){display:none!important}
 #app .arow .abox .cu-pen{display:none}
-#app .ahead{display:none!important}
-/* damage dice in the type colour (the dt-* palette), physical types stay ink */
-#app .arow .abox.wide>.dt-fire{color:#ff7a33}#app .arow .abox.wide>.dt-cold{color:#4dabf7}#app .arow .abox.wide>.dt-lightning{color:#f2c94c}#app .arow .abox.wide>.dt-acid{color:#94d82d}
-#app .arow .abox.wide>.dt-poison{color:#51cf66}#app .arow .abox.wide>.dt-necrotic{color:#b2bab6}#app .arow .abox.wide>.dt-radiant{color:#fcc419}#app .arow .abox.wide>.dt-psychic{color:#f06595}
-#app .arow .abox.wide>.dt-force{color:#da77f2}#app .arow .abox.wide>.dt-thunder{color:#8ea2ff}
+/* damage dice in the type colour (physical types stay ink) */
+.dt-fire{--dc:#ff7a33}.dt-cold{--dc:#4dabf7}.dt-lightning{--dc:#f2c94c}.dt-acid{--dc:#94d82d}.dt-poison{--dc:#51cf66}.dt-necrotic{--dc:#b2bab6}.dt-radiant{--dc:#fcc419}.dt-psychic{--dc:#f06595}.dt-force{--dc:#da77f2}.dt-thunder{--dc:#8ea2ff}
+#app :is(.abox.wide>span,.speff)[class*="dt-"]{color:var(--dc,inherit)}
 /* situations: one slim row (title, group toggles, New turn); the open group drops below */
 #app .sit{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 8px}
 #app .sit>.fcat{flex:1 1 auto;margin:0;padding:0;font-size:calc(13px*var(--tz,1))}
@@ -66,8 +64,6 @@
   #app #spBody .sp-r>.sp-e:not(:has(.speff)){display:none!important}
 }
 @media (min-width:760px){ #app #spBody .sp-r>.sp-d{display:none} }
-#app #spBody .speff.dt-fire{color:#ff7a33}#app #spBody .speff.dt-cold{color:#4dabf7}#app #spBody .speff.dt-lightning{color:#f2c94c}#app #spBody .speff.dt-acid{color:#94d82d}#app #spBody .speff.dt-poison{color:#51cf66}
-#app #spBody .speff.dt-necrotic{color:#b2bab6}#app #spBody .speff.dt-radiant{color:#fcc419}#app #spBody .speff.dt-psychic{color:#f06595}#app #spBody .speff.dt-force{color:#da77f2}#app #spBody .speff.dt-thunder{color:#8ea2ff}
 /* --- Main: the identity card uses the width under the portrait instead of leaving it empty --- */
 @media (max-width:759px){
   #app .idcard .id-body{display:grid!important;grid-template-columns:104px minmax(0,1fr);column-gap:12px;row-gap:8px;align-items:start}

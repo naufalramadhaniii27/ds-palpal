@@ -47,7 +47,6 @@
 .btn.heal:hover{background:var(--good-soft)}
 .btn.dmg{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 55%,transparent)}
 .btn.dmg:hover{background:var(--bad-soft)}
-.tmprow{display:flex;justify-content:space-between;align-items:center;font-size:calc(14px*var(--tz,1));color:var(--muted)}
 .stepper{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;background:var(--panel)}
 .stepper button{width:34px;height:32px;font-size:calc(18px*var(--tz,1));font-weight:700;color:var(--muted)}
 .stepper button:hover{background:var(--panel-2);color:var(--ink)}
@@ -196,8 +195,7 @@
 .next{font-size:calc(14px*var(--tz,1));color:var(--faint);padding:10px 2px 0}
 
 /* inventory */
-.isum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:16px}
-.isum .tile{min-height:76px}
+
 .load{width:80%;height:5px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:6px}
 .load i{display:block;height:100%;background:var(--dinas)}
 .item{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 2px;border-bottom:1px solid var(--line);font-size:calc(14px*var(--tz,1))}

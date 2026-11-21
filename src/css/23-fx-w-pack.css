@@ -45,7 +45,7 @@ html:not([data-skin="ddb"]) .mi-sig{display:none}
 /* D Actions */
 :root[data-skin="ddb"] .arow{position:relative;overflow:hidden}
 :root[data-skin="ddb"] .arow .apc{border-radius:999px!important;background:rgba(255,255,255,.05)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-:root[data-skin="ddb"] .ahead{letter-spacing:.12em}
+
 /* E Spells: each school has its colour */
 .sp-r[data-sch]{--sch:#9fb4c8}
 .sp-r[data-sch="Abjuration"]{--sch:#4fa3ff}.sp-r[data-sch="Conjuration"]{--sch:#f2c14e}.sp-r[data-sch="Divination"]{--sch:#c9d6e2}.sp-r[data-sch="Enchantment"]{--sch:#ff6fb1}

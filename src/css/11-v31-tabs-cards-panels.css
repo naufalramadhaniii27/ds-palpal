@@ -271,7 +271,7 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 /* RU130: Actions, Features, and Inventory cards follow the width of their own box (container queries), not the screen */
 #actBody,#invBody,#featBody{container:v31c / inline-size}
 @container v31c (max-width:380px){
- .ahead,.arow{grid-template-columns:minmax(0,1fr) 60px 92px;gap:6px}
+ .arow{grid-template-columns:minmax(0,1fr) 60px 92px;gap:6px}
  .abox{font-size:calc(16px*var(--tz,1))}
  .lu{grid-template-columns:minmax(0,1fr)}
  .ihead,.irow,:root[data-skin="ddb"] .ihead,:root[data-skin="ddb"] .irow{grid-template-columns:44px minmax(0,1fr) 36px 64px}
@@ -289,7 +289,7 @@ textarea.nsec-t::placeholder{color:var(--faint)}
 }
 @container v31c (min-width:600px){
  .lu{grid-template-columns:repeat(2,minmax(0,1fr))}
- .ahead,.arow{grid-template-columns:minmax(0,1fr) 80px 132px}
+ .arow{grid-template-columns:minmax(0,1fr) 80px 132px}
 }
 @container v31c (min-width:860px){.lu{grid-template-columns:repeat(3,minmax(0,1fr))}}
 

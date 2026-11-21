@@ -53,7 +53,6 @@
  .vb-ac{flex:0 0 auto;position:relative;gap:4px;padding:0 8px}
  .vb-ac .vb-sh{width:20px;height:20px;color:var(--muted)}
  .vb-ac b{font-size:calc(20px*var(--tz,1))}
- .vb-k{font-family:var(--f-sans);font-weight:600;font-size:max(12px,calc(12px*var(--tz,1)));color:var(--muted)}
  .vb-cond{flex:1 1 auto;min-width:0;justify-content:flex-start;padding:0 8px;font-family:var(--f-sans);font-weight:600;font-size:max(12px,calc(13px*var(--tz,1)));color:var(--muted)}
  .vb-cond .vb-ci{display:flex}
  .vb-ct{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}

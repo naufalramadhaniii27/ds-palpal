@@ -31,7 +31,6 @@
 #bld .st i{position:absolute;top:8px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
 #bld .st i.r,#bld .tdot{background:#d6402b}#bld .st i.r{border-radius:1px;transform:rotate(45deg)}#bld .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}/* v19 V19-5 */
 #bld .tdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-left:6px;vertical-align:top}
-#bld .tosheet{position:relative}
 #bld .abad{position:absolute;top:-7px;right:-7px;min-width:20px;height:20px;line-height:20px;border-radius:10px;background:#d6402b;color:#fff;font-size:max(12px,calc(12px*var(--tz,1)));font-weight:700;text-align:center;padding:0 6px;box-shadow:0 0 0 2px #fff}
 #bld .lorebtn{display:block;margin:-4px 0 12px 32px;font-size:calc(14px*var(--tz,1));min-height:36px;padding:6px 0}#bld .lorex{justify-content:flex-end;margin:0 0 4px}/* v20 M4 */
 #bld .expb.lore{max-height:calc(100vh - 40px);overflow:auto}
@@ -259,5 +258,5 @@
 
 .bld-b{width:auto!important;padding:0 10px!important;font-weight:800;font-size:max(12px,calc(13px*var(--tz,1)));letter-spacing:.02em}
 #bld .srcrow{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}#bld .srcrow input{width:22px;height:22px;margin-top:2px;accent-color:#c83232;flex:0 0 auto}#bld .srcrow span{flex:1}#bld .srcrow b{display:block;font-size:calc(16px*var(--tz,1))}#bld .srcrow small{display:block;color:var(--muted);font-size:calc(14px*var(--tz,1));line-height:1.4}
-#bld{position:fixed;inset:0;z-index:60;overflow-y:auto;-webkit-overflow-scrolling:touch}#bld[hidden]{display:none}@media(max-width:480px){#bld .brand>span{display:none}#bld .brand b{font-size:calc(16px*var(--tz,1))}}#bld .bclose{color:#fff;font-size:calc(20px*var(--tz,1));width:36px;height:36px;margin-left:6px}#bld .lvhead{margin-left:auto;border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:700;font-size:max(12px,calc(13px*var(--tz,1)));padding:8px 10px;border-radius:4px;margin-right:6px}#bld .tosheet{background:#1b9af0;color:#fff;font-weight:700;font-size:max(12px,calc(13px*var(--tz,1)));padding:8px 12px;border-radius:4px}
+#bld{position:fixed;inset:0;z-index:60;overflow-y:auto;-webkit-overflow-scrolling:touch}#bld[hidden]{display:none}@media(max-width:480px){#bld .brand>span{display:none}#bld .brand b{font-size:calc(16px*var(--tz,1))}}#bld .lvhead{margin-left:auto;border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:700;font-size:max(12px,calc(13px*var(--tz,1)));padding:8px 10px;border-radius:4px;margin-right:6px}
 

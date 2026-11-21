@@ -64,18 +64,18 @@
 /* the ddb skin draws a gradient line under .sh-h; in the blended hero .sh-h covers the whole picture, so that line cut across the card above the meta row */
 :root[data-skin] #sheet.blend.on:not(.bl-compact) .sh-h{border-bottom:0;border-image:none}
 /* spells, feats and features: the art is a short banner so the summary is above the fold. The title moves with the text until it docks (--bl-y), so it never covers the tiles */
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) #sheetBody>.sh-wm{height:150px}
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]).bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){left:auto;right:60px;width:auto;height:96px;max-width:30%;object-fit:contain;translate:0 calc(-50% + var(--bl-py,0px)*.2)}
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]).bl-ico #sheetBody>.sh-wm .bl-glow{left:auto;right:-6%;width:46%}
+#sheet.blend.bl-short #sheetBody>.sh-wm{height:150px}
+#sheet.blend.bl-short.bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){left:auto;right:60px;width:auto;height:96px;max-width:30%;object-fit:contain;translate:0 calc(-50% + var(--bl-py,0px)*.2)}
+#sheet.blend.bl-short.bl-ico #sheetBody>.sh-wm .bl-glow{left:auto;right:-6%;width:46%}
 #sheet.blend:not(.bl-compact) .sh-h>:is(h2,.bl-meta,.bl-price){translate:0 var(--bl-y,0px)}
 /* short banner: the title runs the full width left of the close button, at most two lines, over a dark scrim; the icon sits behind it on the right */
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) .sh-h>h2{right:68px;font-size:calc(clamp(20px,6.4vw,26px)*var(--tz,1));font-weight:800;letter-spacing:.02em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) #sheetBody>.sh-wm::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,14,18,.72),rgba(10,14,18,.35) 55%,transparent 85%);pointer-events:none}
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]).bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){opacity:calc(var(--bl-op,1)*.85)}
+#sheet.blend.bl-short .sh-h>h2{right:68px;font-size:calc(clamp(20px,6.4vw,26px)*var(--tz,1));font-weight:800;letter-spacing:.02em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
+#sheet.blend.bl-short #sheetBody>.sh-wm::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,14,18,.72),rgba(10,14,18,.35) 55%,transparent 85%);pointer-events:none}
+#sheet.blend.bl-short.bl-ico #sheetBody>.sh-wm :is(img.art-ic,img.lib-im,img.art-sub){opacity:calc(var(--bl-op,1)*.85)}
 /* the pager is its own row under the banner: nothing on top of the art, the title or the close button. 44 px targets */
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) .swp{top:calc(var(--bl-hero,150px) + 2px);height:48px;display:flex;align-items:center;justify-content:center;gap:14px}
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) .swp-b{position:static;width:44px;height:44px;font-size:22px}
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]) .swp-d{position:static;translate:none}
-#sheet.blend:is([data-spec^="spn:"],[data-spec^="sp:"],[data-spec^="f:"],[data-spec^="lib:feat|"],[data-spec^="lib:feature|"],[data-spec^="lib:spell|"]):has(.swp) .bl-line{margin-bottom:54px}
+#sheet.blend.bl-short .swp{top:calc(var(--bl-hero,150px) + 2px);height:48px;display:flex;align-items:center;justify-content:center;gap:14px}
+#sheet.blend.bl-short .swp-b{position:static;width:44px;height:44px;font-size:22px}
+#sheet.blend.bl-short .swp-d{position:static;translate:none}
+#sheet.blend.bl-short:has(.swp) .bl-line{margin-bottom:54px}
 /* the card meta line moved under the title (bl-meta), so the in-card copy is not shown twice */
 #sheet.blend.bl-dch .dc>.dc-head{display:none}

@@ -40,8 +40,6 @@
 #bld .bcb svg{display:none}
 #bld .icard.open .schev svg{transform:rotate(180deg)}
 #bld .lvhead,#bld .tosheet{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;min-height:44px}
-#bld .bclose{display:inline-grid;place-items:center;width:44px;height:44px;flex:0 0 44px}
-#bld .bclose svg.bi{width:22px;height:22px}
 #bld .st{display:inline-flex;align-items:center;gap:8px;min-height:48px}
 #bld .st svg.bi{width:18px;height:18px}
 #bld .sprog{display:inline-flex;align-items:center;gap:4px;font-size:max(12px,calc(12px*var(--tz,1)));font-weight:700;letter-spacing:0;text-transform:none;line-height:1;padding:4px 6px;border-radius:999px;background:rgba(127,127,127,.18);color:inherit;font-variant-numeric:tabular-nums}
@@ -83,11 +81,7 @@
 :root[data-skin="ddb"] #bld .brand>span{color:var(--muted);font-size:max(12px,calc(13px*var(--tz,1)))}
 :root[data-skin="ddb"] #bld .lvhead{margin-left:auto;margin-right:0;background:transparent;border:1px solid var(--b-line2);color:var(--ink);border-radius:var(--r2,8px);padding:0 12px;font-weight:700;font-size:calc(14px*var(--tz,1))}
 :root[data-skin="ddb"] #bld .lvhead:hover{border-color:#8a959e;background:rgba(255,255,255,.05)}
-:root[data-skin="ddb"] #bld .tosheet{background:var(--b-act);border:1px solid var(--b-act);color:#fff;border-radius:var(--r2,8px);padding:0 14px;font-weight:700;font-size:calc(14px*var(--tz,1))}
-:root[data-skin="ddb"] #bld .tosheet:hover{background:var(--b-act-h);border-color:var(--b-act-h)}
 :root[data-skin="ddb"] #bld .abad{box-shadow:0 0 0 2px #12171a;background:#fff;color:#b8362c;border-radius:999px}
-:root[data-skin="ddb"] #bld .bclose{color:var(--muted);border-radius:var(--r2,8px);margin-left:0}
-:root[data-skin="ddb"] #bld .bclose:hover{color:#fff;background:rgba(255,255,255,.06)}
 /* steps: icon, name, progress; white bar under the open step like the sheet tabs */
 :root[data-skin="ddb"] #bld .steps{background:#12171a;border-top:1px solid var(--line);padding:0 4px}
 :root[data-skin="ddb"] #bld .st{font-family:var(--f);font-weight:600;font-size:calc(14px*var(--tz,1));letter-spacing:.03em;color:var(--muted);padding:10px 12px 10px;border-bottom:3px solid transparent}
@@ -284,7 +278,7 @@
 @media (max-width:420px){#bld .brand b .bt1,#bld .tosheet .bt2{display:none}#bld .brand{gap:6px}}
 @media (max-width:374px){#bld .brand b .bt0{display:none}#bld .lvhead{padding:0 10px}}
 @media (max-width:480px){:root[data-tsize="130"] #bld .brand b .bt0,:root[data-tsize="115"] #bld .brand b .bt0{display:none}}
-@media (max-width:374px){:root[data-tsize="130"] #bld .lvhead{padding:0 8px}:root[data-tsize="130"] #bld .tosheet{padding:0 10px}}
+@media (max-width:374px){:root[data-tsize="130"] #bld .lvhead{padding:0 8px}}
 
 /* v33 p06: builder audit (44 px targets, icons, contrast) */
 :root[data-skin="ddb"] #bld .srcrow input,:root[data-skin="ddb"] #bld .ck input,:root[data-skin="ddb"] #bld .hbck input,:root[data-skin="ddb"] #bld .hbab input[type=checkbox]{-webkit-appearance:none;appearance:none;width:44px;height:44px;flex:0 0 44px;margin:-10px -8px -10px -12px;border:0;border-radius:var(--r1,4px);background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3.5' y='3.5' width='17' height='17' rx='3' fill='none' stroke='%23a3adb5' stroke-width='1.8'/%3E%3C/svg%3E") center/24px 24px no-repeat;cursor:pointer;accent-color:auto}
