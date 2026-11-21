@@ -25,7 +25,7 @@ S("The Parasite",3,"Physical Specimen","b19-parasite-climb","Physical Specimen: 
 S("House of Darts",7,"Dagger Climb","b19-dagger-climb","Dagger Climb (10 minutes)",{climb:"speed"});
 S("Sky Magic",3,"Feathered Heels","b19-feathered-heels","Feathered Heels (until the end of your turn)",{fly:"speed"});
 GX.species["Dracthyr"]=(GX.species["Dracthyr"]||[]).concat([{n:"Draconic Flight (speed)",toggle:{id:"b19-draconic-flight",label:"Draconic Flight (10 minutes)"},mv:{fly:"speed"}}]);
-GX.feat["Greater Mark of Storm"]=(GX.feat["Greater Mark of Storm"]||[]).concat([{n:"Gust of Wind flight (speed)",toggle:{id:"b19-mark-storm",label:"Gust of Wind cast with Storm Magic: flying"},mv:{fly:60}}]);
+GX.feat["Greater Mark of Storm"]=(GX.feat["Greater Mark of Storm"]||[]).concat([{n:"Improved Storm (Gust of Wind flight)",toggle:{id:"b19-mark-storm",label:"Gust of Wind cast with Storm Magic: flying"},mv:{fly:60}}]);
 GX.feat["Vampiric Exultation"]=(GX.feat["Vampiric Exultation"]||[]).concat([{n:"Transformed (speed)",toggle:{id:"b19-vampiric",label:"Vampiric Exultation: transformed"},mv:{fly:30}}]);
 I("Winged Boots","Flight","b19-winged-boots","Winged Boots: flight (1 hour)",{fly:30});
 I("Potion of Aqueous Form","Aqueous Form","b19-aqueous","Potion of Aqueous Form: active",{swim:30});

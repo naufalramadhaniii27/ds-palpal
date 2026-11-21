@@ -217,7 +217,7 @@ def scan(d):
               "hp": f.get("hp") or f.get("hpFlat") or f.get("fx"), "save": f.get("saveFromAsi") or f.get("fx"),
               "speed": f.get("speed") or f.get("fx"), "init": f.get("init") or f.get("fx"),
               "skill": f.get("skills") or f.get("allSk") or f.get("skTools") or f.get("pick") or f.get("fx"),
-              "resist": f.get("res") or f.get("fx"), "uses": f.get("resK") or f.get("luckN") or f.get("res") or lu_names(d, fn),
+              "resist": f.get("res") or f.get("resK") or f.get("resBy") or f.get("fx"), "uses": f.get("resK") or f.get("luckN") or f.get("res") or lu_names(d, fn),
               "choice": f.get("pick") or f.get("asi") or f.get("wpPick") or f.get("needs") or f.get("fx"),
               "fstyle": f.get("fx") or f.get("rngHit") or f.get("meleeDmg1h") or f.get("thrownDmg") or f.get("ac") or f.get("attacks")}
         flag("feat", fn, fn, f.get("full") or f.get("d"), ev, kc, {"src": d["srcOf"]["feats"].get(fn, "")}, gxcov("feat", fn, fn, f.get("full") or f.get("d")))
