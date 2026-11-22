@@ -74,7 +74,7 @@ const FXS19A={};
     return '<div class="info-h">Music</div><div class="thg">'+B("off","Off")+B("tavern","Tavern")+B("dungeon","Dungeon")+B("forest","Forest")+B("battle","Battle")+'</div><p class="info-d">Made on the fly, nothing to download. The sky follows the music.</p>'; };
   /* heartbeat keeps going on a laptop while Hit Points stay at a quarter or less */
   const hbT=0; FXS19A.hpPct=function hpPct(){ const c=FXS19A.D.getElementById("hpCur"), m=FXS19A.D.getElementById("hpMax"); const a=c?parseInt((c.textContent||"").replace(/[^\d-]/g,""),10):NaN, b=m?parseInt((m.textContent||"").replace(/[^\d]/g,""),10):NaN; return a>=0&&b>0?a/b:null; };;
-  setInterval(() =>{ if(!FXS19A.lap()||FXS19A.D.hidden) return; const p=FXS19A.hpPct(); if(p!=null&&p>0&&p<=.25&&(FXS19A.ls("mi-snd")||"on")==="on") FXS19A.play("heart"); },2600);
+  setInterval(() =>{ if(!FXS19A.lap()||FXS19A.D.hidden) return; const p=FXS19A.hpPct(); if(p!=null&&p>0&&p<=.25&&(FXS19A.ls("mi-snd")||"off")==="on") FXS19A.play("heart"); },2600);
 
   /* G10 the sky answers: danger from Hit Points, colour from the music */
   FXS19A.SCN={off:null,tavern:[1,.62,.3],dungeon:[.35,.42,.75],forest:[.35,.8,.45],battle:[.95,.25,.2]};;

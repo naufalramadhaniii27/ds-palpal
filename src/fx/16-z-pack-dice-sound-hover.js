@@ -7,8 +7,8 @@ const FXS16A={};
   ;
   FXS16A.calm=function calm(){ return MI.rm()||MI.mode==="off"; };
 
-  /* X1 sound: made on the fly with Web Audio, nothing to download. On by default, Settings turns it off */
-  function snd(){ return (ls("mi-snd")||"on")==="on"&&MI.mode!=="off"; }
+  /* X1 sound: made on the fly with Web Audio, nothing to download. Off by default (brief stage 5), Settings turns it on */
+  function snd(){ return (ls("mi-snd")||"off")==="on"&&MI.mode!=="off"; }
   FXS16A.play=function play(k){ if(!snd()) return; try{ FXS16A.SND[k]&&FXS16A.SND[k](); }catch(e){} };
   FXS16A.parseDmg=function parseDmg(x){ let terms=[], re=/([+-]?)(\d*)d(\d+)|([+-]?)(\d+)/g, m; while((m=re.exec(x))){ if(m[3]) terms.push({s:m[1]==="-"?-1:1,n:+(m[2]||1),f:+m[3]}); else terms.push({s:m[4]==="-"?-1:1,k:+m[5]}); } return terms; }; FXS16A.rk=function rk(){ const J=FXENV.__miJournal; return J&&J.key?J.key().replace(/^mi-jr-/,"mi-rl-"):"mi-rl-"; };;
   FXS16A.hload=function hload(){ FXS16A.HK=FXS16A.rk(); try{ FXS16A.H=JSON.parse(ls(FXS16A.HK)||"[]")||[]; }catch(e){ FXS16A.H=[]; } };;
