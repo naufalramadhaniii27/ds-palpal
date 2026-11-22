@@ -308,3 +308,35 @@
 
 /* T1: Quick Build on phones. Class and Species stack, so "- Choose a class -" is not cut */
 @media (max-width:480px){#bld .qb .two{grid-template-columns:1fr}}
+/* game HUD pass: dark glass top bar in every theme, class accent (--bacc, rgb triple), live preview #bhud, step slide-in */
+#bld{--bacc:150,178,204}
+#bld[data-bcls="barbarian"]{--bacc:224,164,72}#bld[data-bcls="bard"]{--bacc:224,107,192}#bld[data-bcls="cleric"]{--bacc:226,178,60}#bld[data-bcls="druid"]{--bacc:76,184,106}#bld[data-bcls="monk"]{--bacc:63,184,176}#bld[data-bcls="paladin"]{--bacc:240,194,74}#bld[data-bcls="ranger"]{--bacc:106,168,79}#bld[data-bcls="rogue"]{--bacc:143,106,216}#bld[data-bcls="sorcerer"]{--bacc:242,95,138}#bld[data-bcls="warlock"]{--bacc:165,94,234}#bld[data-bcls="wizard"]{--bacc:76,142,240}#bld[data-bcls="artificer"]{--bacc:201,138,62}
+#bld .pickrow[data-setcls="Barbarian"]{--bacc:224,164,72}#bld .pickrow[data-setcls="Bard"]{--bacc:224,107,192}#bld .pickrow[data-setcls="Cleric"]{--bacc:226,178,60}#bld .pickrow[data-setcls="Druid"]{--bacc:76,184,106}#bld .pickrow[data-setcls="Fighter"]{--bacc:150,178,204}#bld .pickrow[data-setcls="Monk"]{--bacc:63,184,176}#bld .pickrow[data-setcls="Paladin"]{--bacc:240,194,74}#bld .pickrow[data-setcls="Ranger"]{--bacc:106,168,79}#bld .pickrow[data-setcls="Rogue"]{--bacc:143,106,216}#bld .pickrow[data-setcls="Sorcerer"]{--bacc:242,95,138}#bld .pickrow[data-setcls="Warlock"]{--bacc:165,94,234}#bld .pickrow[data-setcls="Wizard"]{--bacc:76,142,240}#bld .pickrow[data-setcls="Artificer"]{--bacc:201,138,62}
+#bld .top,:root[data-skin] #bld .top{background:rgba(10,13,16,.86);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid rgba(255,255,255,.08);color:#eef1f3}
+#bld .top .brand,:root[data-skin] #bld .top .brand,#bld .top .steps,:root[data-skin] #bld .top .steps{background:transparent!important;color:#eef1f3;box-shadow:none}
+#bld .top .lvhead,#bld .top .bclose{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#eef1f3;border-radius:12px}
+#bld .top .bclose{min-width:44px;min-height:44px}
+#bld .top .st,:root[data-skin] #bld .top .st{color:#a9b3bb;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+#bld .top .st.on,:root[data-skin] #bld .top .st.on{color:#fff;border-color:rgb(var(--bacc));text-shadow:0 0 12px rgba(var(--bacc),.55)}
+#bld .top .st.on svg.bi{color:rgb(var(--bacc))}
+#bhud{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center;margin:6px 12px 0;padding:6px 10px;border-radius:14px;background:rgba(10,13,16,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-left:3px solid rgb(var(--bacc));box-shadow:0 6px 18px rgba(0,0,0,.35);color:#eef1f3;position:relative;z-index:4}
+#bhud[hidden]{display:none}
+#bhud .bh-id{min-width:0}
+#bhud .bh-nm{display:block;font-size:calc(17px*var(--tz,1));font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bhud .bh-cl{display:block;font-size:calc(12px*var(--tz,1));color:#b9c2c9;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bhud .bh-st{display:flex;gap:8px}
+#bhud .bh-st span{display:flex;flex-direction:column;align-items:center;min-width:48px;padding:2px 6px;border-radius:10px;background:rgba(var(--bacc),.14)}
+#bhud .bh-st b{font-size:calc(22px*var(--tz,1));font-weight:900;line-height:1.05;font-variant-numeric:tabular-nums}
+#bhud i,#bhud small{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;color:#b9c2c9}
+#bhud .bh-ab{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:0;padding:0;list-style:none}
+#bhud .bh-ab li{display:flex;flex-direction:column;align-items:center;padding:1px 0;line-height:1.1;border-radius:8px;background:rgba(255,255,255,.05)}
+#bhud .bh-ab b{font-size:calc(17px*var(--tz,1));font-weight:900;line-height:1.1;font-variant-numeric:tabular-nums}
+#bld .pickrow.pcard,:root[data-skin] #bld .pickrow.pcard{border-radius:14px;border-left:3px solid rgb(var(--bacc));transition:box-shadow .35s ease,transform .35s ease}
+#bld .pickrow.pcard:hover,#bld .pickrow.pcard:focus-visible{box-shadow:0 0 0 2px rgba(var(--bacc),.7),0 0 22px rgba(var(--bacc),.45)}
+#bld .foot,:root[data-skin] #bld .foot{background:rgba(10,13,16,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.08)}
+#bld .foot button{min-height:48px;border-radius:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+#body.bswap>*{animation:bswap .42s cubic-bezier(.2,.8,.2,1) both}
+#body.bswap>*:nth-child(2){animation-delay:.04s}#body.bswap>*:nth-child(3){animation-delay:.08s}#body.bswap>*:nth-child(n+4){animation-delay:.12s}
+@keyframes bswap{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#body.bswap>*{animation:none}#bld .pickrow.pcard{transition:none}}
+html.mi-off #body.bswap>*{animation:none}
