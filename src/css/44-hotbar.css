@@ -1,0 +1,22 @@
+/* Brief stage 5: attack hotbar docked above the HP/AC bar (inside #vbar), quick-action button docked at its right end (fx/29-hotbar.js) */
+.xhot{position:absolute;left:0;right:62px;min-height:57px;box-sizing:border-box;bottom:100%;display:flex;gap:6px;padding:6px 8px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;background:var(--panel);border-top:1px solid var(--line)}
+html.xhot-on .vbar::after{content:"";position:absolute;right:0;bottom:100%;width:62px;height:57px;background:var(--panel);border-top:1px solid var(--line);box-sizing:border-box}
+.xhot::-webkit-scrollbar{display:none}
+.xhot[hidden]{display:none}
+.xhot-i{flex:0 0 auto;display:flex;align-items:center;gap:6px;min-height:44px;min-width:44px;max-width:150px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg,transparent);color:inherit;font:inherit;font-size:14px;cursor:pointer}
+.xhot-i .xhot-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xhot-i b{font-variant-numeric:tabular-nums}
+.xhot-i:active{transform:scale(.96)}
+.xhot-i:focus-visible,.qfab button:focus-visible{outline:3px solid var(--acc,#e2aa4c);outline-offset:2px}
+@media (max-width:759px){html.xhot-on #p-main,html.xhot-on #p-skills,html.xhot-on .detail>.panels>.panel{padding-bottom:156px}}
+.qfab{display:none;position:absolute;right:7px;bottom:calc(100% + 4px);z-index:1;flex-direction:column;align-items:flex-end;gap:8px}
+html.xhot-on .qfab{display:flex}
+.qfab-b{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,#6b4a2a,#3d2914);box-shadow:0 6px 16px rgba(0,0,0,.3);cursor:pointer}
+.qfab-b::before{content:"";width:20px;height:20px;background:linear-gradient(currentColor,currentColor) center/100% 2.6px no-repeat,linear-gradient(currentColor,currentColor) center/2.6px 100% no-repeat;transition:transform .2s}
+.qfab.on .qfab-b::before{transform:rotate(45deg)}
+.qfab-m{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.qfab-m[hidden]{display:none}
+.qfab-m button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:inherit;font:inherit;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,.2);cursor:pointer}
+html.qfab-on .mi-rhb{bottom:calc(var(--hb-b,160px) + 10px)}
+html.qfab-open .mi-rhb{opacity:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.qfab-b::before{transition:none}.xhot-i:active{transform:none}}
