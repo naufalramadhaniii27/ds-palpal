@@ -1,15 +1,15 @@
 import {attN,bDeco,bindLive,bldMine,toSheetApply,unList} from "./01b-logic-late-ports.js";import {genv} from "./00-env.js";
 import {copyText} from "../app/lib/clipboard.js";
-import {$,ABK,esc,toast} from "./01-logic-core-helpers.js";
+import {$,ABK,esc,mod,toast} from "./01-logic-core-helpers.js";
 import {DMAP,NEWB,attMax,un,unDone} from "./03-logic-magic-item-effects.js";
 import {B,__set_B,save} from "./04-logic-storage.js";
 import {R14,rsLoad,rsStash} from "./05-logic-choice-model-ruleset.js";
 import {choices} from "./09-logic-feats-and-choices.js";
 import {bookNeed,bookOf,bookOwn,isDone} from "./10-logic-v17-additions.js";
-import {casterParts,spLists,spToggle} from "./11-logic-derivation.js";
+import {abilScores,casterParts,spLists,spToggle} from "./11-logic-derivation.js";
 import {toSheet} from "./12-logic-export-to-sheet.js";
 import {applyPacks} from "./13-logic-sources-and-packs.js";
-import {TL,__set_dbCat,__set_dbQ,dbCat,dbQ,ensureInv,equippable,gpNow,itemCost,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
+import {TL,hpCalc,__set_dbCat,__set_dbQ,dbCat,dbQ,ensureInv,equippable,gpNow,itemCost,packOut,qOf,rebuildKit} from "./14-logic-multiclass-hp-shop.js";
 import {STEPS,STEP_ICO,__set_pickCls,__set_pickSp,__set_step,ask,bI,openCards,pickCls,pickSp,showLore,showRef,step} from "./17-ui-step-builder.js";
 import {SMAP,__set_clsTab,__set_spClsTab,__set_spLv,__set_spQ,choiceStep,clsTab,issueText,ruleIssues,spClsTab,spLv,spQ} from "./18-ui-spells.js";
 import {__set_lgOpen,__set_packTxt,__set_showTpl,lgOpen,packTxt,renderAbil,renderBg,renderClass,renderHome,renderSpecies,showTpl,srcAll} from "./19-ui-steps-sources-class-bg-species-abilities.js";
@@ -63,7 +63,24 @@ rdCamp();
  /* T11 G6 T12: one thin line under the steps fills with the share of choices made (an animated @property gradient) */
  rdProg(csP);
  rdBody();
- rdNav()}
+ rdNav();rdHud();
+ /* game-style step change: the new step slides in once (CSS skips it for reduced motion and Immersive Off) */
+ const bd=$("#body");if(bd&&step!==lastStep){bd.classList.remove("bswap");void bd.offsetWidth;bd.classList.add("bswap")}lastStep=step}
+let lastStep=null,hudT=0,hudK="";
+/* live character preview under the steps: name, class and level, HP, AC, the six scores. Filled after the tap is painted (one toSheet,
+   skipped when the build has not changed), so a pick stays fast */
+function rdHud(){let h=$("#bhud");const off=step==="home"||step==="rules";
+ if(!h){h=document.createElement("section");h.id="bhud";h.setAttribute("aria-label","Character preview");(($("#bprog")||$("#steps"))).insertAdjacentElement("afterend",h)}
+ h.hidden=off;if(off)return;clearTimeout(hudT);hudT=setTimeout(hudFill,h.firstChild?30:400)}/* first fill waits so opening the builder paints first */
+function hudFill(){const h=$("#bhud");if(!h||h.hidden)return;const k=JSON.stringify(B);if(k===hudK&&h.firstChild)return;hudK=k;
+ try{const a=abilScores().sc,hp=un("cls")?"–":hpCalc().max,C=toSheet(),ac=C.ac,dx=mod(a.DEX),
+   acv=ac?ac.base+(ac.dex==="full"?dx:ac.dex==="max2"?Math.min(2,dx):0)+(ac.bonus||[]).reduce((t,b) =>{return t+(+b.v||0)},0):"–";
+  const bl=document.getElementById("bld");if(bl)bl.setAttribute("data-bcls",String(B.cls||"").toLowerCase());
+  /* built with DOM nodes and textContent (html_gate: no new HTML strings) */
+  const el=(t,c,x) =>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e},stat=(c,v,l) =>{const sp=el("span",c);sp.append(el("b",null,v),el("i",null,l));return sp};
+  const id=el("div","bh-id"),st=el("div","bh-st"),ul=el("ul","bh-ab");id.append(el("b","bh-nm",B.name||"Unnamed hero"),el("span","bh-cl",un("cls")?"No class yet":B.cls+" · Level "+TL()));
+  st.append(stat("bh-hp",hp,"HP"),stat("bh-ac",acv,"AC"));ABK.forEach((x) =>{const m=mod(a[x]),li=el("li");li.append(el("i",null,x),el("b",null,a[x]),el("small",null,m<0?"−"+(-m):"+"+m));ul.append(li)});
+  h.replaceChildren(id,st,ul)}catch(e){hudK=""}}
 /* T11 G6 B5: how many choices are still open on this step, and a button that jumps to the next one (or to the next step with open
    choices when this one is done). The bar sits under the step title */
 function missBar(){const bd=$("#body");if(!bd||step==="rules"||step==="home")return;let n=bd.querySelectorAll(".acc.todo").length,o=STEPS.map((x) =>{return x[0]}),nx=null;
