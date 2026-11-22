@@ -63,6 +63,7 @@
     "css/40-dice-roller.css",
     "css/41-martyr-actions.css",
     "css/42-front-cards.css",
+    "css/43-immersive.css",
     "css/L-builder.css",
     "css/L-dice.css",
     "css/L-learn.css"
@@ -262,7 +263,8 @@
     "fx/24-class-art.js",
     "fx/25a-dice3d-bridge.js",
     "fx/26-tab-notch.js",
-    "fx/27-blend-sheet.js"
+    "fx/27-blend-sheet.js",
+    "fx/28-immersive.js"
    ]
   },
   {

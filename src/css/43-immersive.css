@@ -1,0 +1,22 @@
+/* Immersive brief, stage 3 gaps (fx/28-immersive.js). Off: html.mi-off. Reduced motion: no motion, tint and pulse stay as still states. */
+/* class art: soft dark gradient so the numbers stay readable, and a slow drift */
+.cls-art-l::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55) 70%)}
+html:not(.mi-off):not(.mi-lite) .cls-art-l.on{animation:immDrift 40s ease-in-out infinite alternate}
+@keyframes immDrift{to{transform:scale(1.06) translate3d(-1.5%,-1%,0)}}
+/* HP drop: red edge pulse, two beats in 0.8 s (under 3 flashes a second) */
+html.imm-hit body::after{content:"";position:fixed;inset:0;z-index:var(--z-fx,90);pointer-events:none;box-shadow:inset 0 0 60px 12px rgba(229,57,53,.7);animation:immHit .4s ease-out 2}
+@keyframes immHit{from{opacity:1}to{opacity:0}}
+/* active condition: slight tint over the screen */
+html.imm-cond body::before{content:"";position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(140,70,200,.16))}
+/* header slides away while scrolling down */
+#app>header.band{transition:margin-top .35s cubic-bezier(.2,.8,.2,1)}
+html.imm-hdn #app>header.band{margin-top:-66px}
+/* buttons sink and glow on press */
+html:not(.mi-off) .press:active{box-shadow:0 0 0 2px rgba(var(--pl-rgb,214,69,59),.45),0 0 18px rgba(var(--pl-rgb,214,69,59),.35)}
+/* spell slot crystals glow while ready */
+html:not(.mi-off) .spsl .bx:not([aria-pressed="true"])::before{filter:drop-shadow(0 0 5px rgba(167,123,255,.75))}
+html:not(.mi-off) .spsl .bx[aria-pressed="true"]::before{filter:grayscale(1);opacity:.55}
+/* portrait breathes */
+html:not(.mi-off):not(.mi-lite) #photo{animation:immBreath 6s ease-in-out infinite}
+@keyframes immBreath{50%{transform:scale(1.025)}}
+@media (prefers-reduced-motion:reduce){.cls-art-l.on,#photo,html.imm-hit body::after{animation:none!important}#app>header.band{transition:none}}
