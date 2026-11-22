@@ -34,7 +34,7 @@ function restHTML(kind){
       sel.forEach((v,i) =>{ if(v==null) return; const heal=v?hdHeal(v):0; tot+=heal; h+='<label class="hdv">Die '+(i+1)+' (1 to '+die+')<input type="number" min="1" max="'+die+'" data-hdv="'+r.k+'" data-hdi="'+i+'" value="'+(v||"")+'" placeholder="roll">'+(env.__miRoll&&env.__miRoll.roll?'<button type="button" class="btn press hd-roll" data-hdroll="'+r.k+'" data-hdi="'+i+'" data-die="'+die+'">Roll</button>':'')+'<span class="hdh">'+(v?'+'+heal+' '+hpWord(heal):'type the number rolled')+'</span></label>'; });
       h+='</div>'; });
     h+=shortExtraH();/* v21 */
-    h+='<p class="info-d"><b id="restTot">Healing: '+tot+' '+hpWord(tot)+'</b> (each die: the number rolled plus your Constitution modifier, at least 1'+(periOn()?', then doubled':'')+')</p>';
+    h+='<p class="info-d"><b id="restTot">Healing: '+tot+' '+hpWord(tot)+'</b> (each die: the number rolled plus your Constitution modifier, at least 1'+(periOn()?', then doubled':'')+(C.hdAdd?', plus '+C.hdAdd+' from '+esc(C.hdAddSrc||''):'')+')</p>';
     if(hp1) h+='<p class="caution">You need at least 1 Hit Point to take a Short Rest.</p>';
     return h+slideC("short","Slide to take Short Rest",hp1)+'</div>'; }
   ({h}=restHTML2Step2(h, hp1));

@@ -34,5 +34,7 @@ DataEnv.slot.GX=DataEnv.slot.GX||{};GX.item=GX.item||{};GX.sub=GX.sub||{};GX.spe
  C("Barbarian",{n:"Relentless Rage",l:11,lu:[{n:"Relentless Rage",max:4,reset:"short",tag:"Con save DC 10, +5 for each use since a rest (tick one per use)"}]});
  /* Divine Strike for the nine 2014 domains is the base fdmg row (06-data-2014-classes.js), not repeated here. */
  /* Blood Domain already had the 1d8 (fx-N1.js), the second die at 14 was missing */
+ /* hdAdd = extra Hit Points per Hit Point Die spent on a Short Rest */
+ SP("Pandaren",{n:"Inner Peace",hdAdd:1});
  S("Blood Domain",{n:"Divine Strike",l:14,atkDice:[{when:"weapon",d:"1d8",t:"Necrotic",note:"Improved Divine Strike (a second 1d8, 2d8 in all), once per turn"}]});
 })();

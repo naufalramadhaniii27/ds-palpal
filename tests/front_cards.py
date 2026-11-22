@@ -132,5 +132,14 @@ with sync_playwright() as p:
     check("every spell row has a Duration cell", not sp["nodur"], sp["nodur"])
     check("a Concentration spell row shows the CONC badge", sp["conc"] >= 1, sp)
     check("spell row has Time, Duration, Range and Hit/DC labels", all(all(k in c for k in ("Time", "Duration", "Range")) for c in sp["cells"]), sp["cells"])
+    # Round 7 (ddb dark, owner 2026-11-22): the class scene is not stuck behind the 6% brush mask, the tiled motif is a hint, identity chips are bordered glass in two equal columns
+    dc = b.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2, color_scheme="dark"); dc.add_init_script(SEED); dp = dc.new_page()
+    dp.goto("file://" + os.path.join(ROOT, "index.html")); dp.wait_for_timeout(3000); dp.click("[data-hview]"); dp.wait_for_selector("#dmgBtn", state="attached", timeout=30000); dp.wait_for_timeout(2500)
+    z = dp.evaluate("""()=>{ const a=document.getElementById('clsArt'), s=a&&getComputedStyle(a), m=document.querySelector('#app .idcard .mi-motif'), D=[...document.querySelectorAll('#idF dd')].filter(e=>e.offsetParent);
+      return {art:!document.documentElement.classList.contains('cls-art')||!!(s&&parseFloat(s.opacity)>.3&&!/^6%/.test(s.maskSize||s.webkitMaskSize||'')), mask:s&&s.maskSize, op:s&&s.opacity,
+        motif:m?parseFloat(getComputedStyle(m).opacity):0, chips:D.map(e=>parseFloat(getComputedStyle(e).borderTopWidth)), cols:new Set(D.map(e=>Math.round(e.getBoundingClientRect().width))).size}; }""")
+    check("ddb dark: class art layer visible (mask opened, opacity above .3)", z["art"], z)
+    check("ddb dark: tiled class motif at most .03 opacity", z["motif"] <= 0.03, z)
+    check("ddb dark: identity chips have a border, equal widths", z["chips"] and all(w >= 1 for w in z["chips"]) and z["cols"] == 1, z); dc.close()
     check("no page errors", not errs, errs); b.close()
 print("SCORE %d" % round(100 * sum(R) / len(R))); sys.exit(0 if all(R) else 1)

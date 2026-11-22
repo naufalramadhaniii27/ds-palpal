@@ -29,9 +29,9 @@ with sync_playwright() as p:
     check("theme follows prefers-color-scheme (light page brighter)", lum["light"][0] > lum["dark"][0] + 200 and lum["light"][1] == "light" and lum["dark"][1] == "dark", lum)
     # reduced motion
     c, pg = ctx(reduced_motion="reduce"); open_sheet(pg); a = pg.evaluate(ANIM)
-    check("reduced motion: no portrait breathing, no background drift", a["photo"] == "none" and a["art"] != "immDrift", a); c.close()
+    check("reduced motion: no portrait breathing, no background drift", a["photo"] == "none" and "immDrift" not in a["art"], a); c.close()
     c, pg = ctx(); open_sheet(pg)
-    a = pg.evaluate(ANIM); check("Immersive on: portrait breathes, class art drifts", a["photo"] == "immBreath" and a["art"] == "immDrift", a)
+    a = pg.evaluate(ANIM); check("Immersive on: portrait breathes, class art drifts", a["photo"] == "immBreath" and "immDrift" in a["art"], a)
     h = damage(pg, 3); check("HP drop adds the red edge pulse and a buzz", h["hit"] and h["vib"] >= 1, h)
     pg.wait_for_timeout(1000); check("edge pulse clears", not pg.evaluate("()=>document.documentElement.classList.contains('imm-hit')"))
     acc1 = pg.evaluate("()=>getComputedStyle(document.documentElement).getPropertyValue('--pl-rgb').trim()")
@@ -41,7 +41,7 @@ with sync_playwright() as p:
     pg.reload(); pg.wait_for_timeout(2500); pg.click("[data-hview]"); pg.wait_for_selector("#dmgBtn", state="attached", timeout=30000); pg.wait_for_timeout(1500)
     off = pg.evaluate("()=>({cls:document.documentElement.classList.contains('mi-off'), st:window.__store.getItem('mi-fx')})")
     check("Immersive Off persists over a reload", off["cls"] and off["st"] == "off", off)
-    a = pg.evaluate(ANIM); check("Immersive Off: no breathing, no drift", a["photo"] == "none" and a["art"] != "immDrift", a)
+    a = pg.evaluate(ANIM); check("Immersive Off: no breathing, no drift", a["photo"] == "none" and "immDrift" not in a["art"], a)
     pg.evaluate("()=>{window.__vib.length=0}"); h = damage(pg, 2); check("Immersive Off: no edge pulse on HP drop", not h["hit"], h)
     pg.evaluate("()=>{const x=document.createElement('button'); x.setAttribute('data-mifx','full'); document.body.appendChild(x); x.click(); x.remove()}")
     # Wizard: accent and slots
