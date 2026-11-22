@@ -115,8 +115,7 @@
 @media (max-width:759px){ #app #spBody>.sp-lv{margin:2px 0}#app #spBody>.filrow{margin-bottom:2px} }
 @media (max-width:759px){#app .ihead>span:nth-child(2){visibility:hidden}}/* weight sits under the item name on phones, so its column header would stand over the name */
 /* identity chips: same glass as the buttons, two equal columns so no ragged empty row */
-#app .idcard #idF{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
 #app .idcard #idF dd{min-width:0;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(rgba(255,255,255,.08),rgba(255,255,255,.02) 52%,rgba(0,0,0,.08)),rgba(30,36,41,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
-#app .idcard #idF dd .tx{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;line-height:44px;min-width:0}
+@media (max-width:759px){#app .idcard #idF{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}#app .idcard #idF dd .tx{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;line-height:44px;min-width:0}}/* phones only: on wide screens the grid moved the ability cards */
 :root[data-theme="light"] #app .idcard #idF dd{border-color:rgba(60,40,15,.22);background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.2));box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
 :root[data-hc] #app .idcard #idF dd{border:1px solid currentColor;background:var(--panel-2)}
