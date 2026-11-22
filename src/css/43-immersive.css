@@ -2,6 +2,13 @@
 /* class art: soft dark gradient so the numbers stay readable, and a slow drift */
 .cls-art-l::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55) 70%)}
 html:not(.mi-off):not(.mi-lite) .cls-art-l.on{animation:immDrift 40s ease-in-out infinite alternate}
+/* the phone scene opens through the g0 brush mask; drift must keep that wipe in the list, or the mask stays at 6% and the art is gone */
+@media (max-width:759px) and (prefers-reduced-motion:no-preference){html.g0-art:not(.mi-off):not(.mi-lite) .cls-art-l.on{animation:g0wipe .9s ease-out both,immDrift 40s ease-in-out .9s infinite alternate}}
+/* ddb dark with class art: cards turn to dark glass so the scene reads through, the tiled class motif fades to a hint */
+html.cls-art:root[data-skin="ddb"]:not([data-theme="light"]):not([data-hc]) :is(#app .idcard,#app .vitals,#app .card){background-color:rgba(17,21,25,.74)!important;-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+html.cls-art:root[data-skin="ddb"]:not([data-theme="light"]):not([data-hc]) :is(#app .idcard,#app .vitals,#app .card) :is(.card,.vitals){background-color:transparent!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+:root[data-skin="ddb"]:not([data-theme="light"]) .mi-motif{opacity:.018}
+html.cls-art:root[data-skin="ddb"]:not([data-theme="light"]):not([data-hc]) .cls-art-l.on{opacity:.6}
 @keyframes immDrift{to{transform:scale(1.06) translate3d(-1.5%,-1%,0)}}
 /* HP drop: red edge pulse, two beats in 0.8 s (under 3 flashes a second) */
 html.imm-hit body::after{content:"";position:fixed;inset:0;z-index:var(--z-fx,90);pointer-events:none;box-shadow:inset 0 0 60px 12px rgba(229,57,53,.7);animation:immHit .4s ease-out 2}

@@ -1,9 +1,11 @@
 /* Brief stage 5: attack hotbar docked above the HP/AC bar (inside #vbar), quick-action button docked at its right end (fx/29-hotbar.js) */
-.xhot{position:absolute;left:0;right:62px;min-height:57px;box-sizing:border-box;bottom:100%;display:flex;gap:6px;padding:6px 8px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;background:var(--panel);border-top:1px solid var(--line)}
-html.xhot-on .vbar::after{content:"";position:absolute;right:0;bottom:100%;width:62px;height:57px;background:var(--panel);border-top:1px solid var(--line);box-sizing:border-box}
+.xhot{position:absolute;left:0;right:62px;min-height:57px;box-sizing:border-box;bottom:100%;display:flex;gap:6px;padding:6px 8px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;background:var(--panel)}
+html.xhot-on .vbar::after{content:"";position:absolute;right:0;bottom:100%;width:62px;height:57px;background:var(--panel);box-sizing:border-box}
 .xhot::-webkit-scrollbar{display:none}
 .xhot[hidden]{display:none}
-.xhot-i{flex:0 0 auto;display:flex;align-items:center;gap:6px;min-height:44px;min-width:44px;max-width:150px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg,transparent);color:inherit;font:inherit;font-size:14px;cursor:pointer}
+.xhot-i{flex:0 0 auto;display:flex;align-items:center;gap:6px;min-height:44px;min-width:44px;max-width:150px;padding:0 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(20,25,29,.82);color:inherit;font:inherit;font-size:14px;cursor:pointer}
+:root[data-theme="light"] .xhot-i{border-color:var(--line);background:var(--panel)}
+:root[data-hc] .xhot-i{border-color:currentColor;background:var(--panel)}
 .xhot-i .xhot-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .xhot-i b{font-variant-numeric:tabular-nums}
 .xhot-i:active{transform:scale(.96)}
