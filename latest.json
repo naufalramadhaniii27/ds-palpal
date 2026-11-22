@@ -1,7 +1,7 @@
 {
- "commit": "bef91a2c7",
+ "commit": "37b3b289d",
  "branch": "main",
- "date": "2026-11-21 21:12",
+ "date": "2026-11-22 02:05",
  "mode": "quick",
  "sections": {
   "logic": {
@@ -501,7 +501,7 @@
     },
     {
      "id": "important",
-     "value": 867,
+     "value": 891,
      "base": 807,
      "target": 99,
      "credit": 0.0,
@@ -510,7 +510,7 @@
     },
     {
      "id": "lines_over_300",
-     "value": 1479,
+     "value": 1480,
      "base": 1099,
      "target": 0,
      "credit": 0.0,
@@ -573,7 +573,7 @@
     },
     {
      "id": "mutation_observer",
-     "value": 77,
+     "value": 80,
      "base": 76,
      "target": 0,
      "credit": 0.0,
@@ -742,5 +742,5 @@
   }
  },
  "average": 6.33,
- "secs": 46
+ "secs": 45
 }
