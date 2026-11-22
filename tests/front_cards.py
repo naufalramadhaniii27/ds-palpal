@@ -1,6 +1,6 @@
 """Front cards on the sheet tabs at 390x844 (Yudhi fixture, then a level 5 Wizard for Spells).
-Actions: at least 3 attack cards fit between the top of the list and the play bar; the first card starts in the top half;
-no column header row; each card's TO HIT, DAMAGE and RANGE cells share one row (same top and height) and do not overlap.
+Actions: at least 6 attack cards fit between the top of the list and the play bar; the first card starts in the top half;
+no column header row; each card (save cantrips too) is flat (no bordered or filled box inside), its TO HIT, DAMAGE and RANGE cells share one row and one text baseline (2 px), the range stays on one line, and nothing overlaps.
 Features: no book source line on the front, the one-liner is at most two lines, an action badge on every card,
 the use boxes tick on tap without opening the detail and keep the state after a re-render.
 Spells: every row has a Duration cell; a Concentration spell shows the CONC badge there.
@@ -27,14 +27,24 @@ SPROW = r"""()=>{ const L=[...document.querySelectorAll('#spBody .sp-r[data-info
     const b=c.map(e=>e.getBoundingClientRect()); for(let i=0;i<b.length;i++) for(let j=i+1;j<b.length;j++){ const x=b[i],y=b[j]; if(x.left<y.right-1&&x.right>y.left+1&&x.top<y.bottom-1&&x.bottom>y.top+1) bad.push('overlap '+c[i].dataset.l+'/'+c[j].dataset.l); } }
   return bad; }"""
 DOCK = "()=>{const v=document.getElementById('vbar'); return v&&v.offsetParent?v.getBoundingClientRect().top:innerHeight}"
-ACT = r"""async ()=>{ const rows=[...document.querySelectorAll('#actBody .arow:not(.xd)')].filter(e=>e.offsetParent), dock=(%s)(), out={n:rows.length, bad:[]};
+ACT = r"""async ()=>{ const rows=[...document.querySelectorAll('#actBody .arow')].filter(e=>e.offsetParent), dock=(%s)(), out={n:rows.filter(r=>!r.classList.contains('xd')).length, bad:[]};
   if(!rows.length) return out; out.first=rows[0].getBoundingClientRect().top/innerHeight;
   out.head=[...document.querySelectorAll('#actBody .ahead')].filter(e=>e.offsetParent).length;
-  for(const r of rows){ const c=[...r.querySelectorAll(':scope>.abox,:scope>.arng')].map(e=>e.getBoundingClientRect()), an=r.querySelector(':scope>.an').getBoundingClientRect();
-    if(c.length!==3) out.bad.push('cells '+c.length);
-    else { if(Math.max(...c.map(x=>x.top))-Math.min(...c.map(x=>x.top))>1.5||Math.max(...c.map(x=>x.height))-Math.min(...c.map(x=>x.height))>1.5) out.bad.push('misaligned '+r.textContent.slice(0,20));
-      for(let i=0;i<3;i++){ if(c[i].top<an.bottom-1) out.bad.push('cell over name'); for(let j=i+1;j<3;j++) if(c[i].right>c[j].left+1) out.bad.push('cells overlap'); } }
-    const lab=[...r.querySelectorAll('[data-l]')].map(e=>getComputedStyle(e,'::before').content); if(!lab.some(x=>/To hit/i.test(x))) out.bad.push('no TO HIT label'); }
+  // baseline of a text box = top + k*height, k measured once for the font with a zero-height inline-block probe
+  const ff=getComputedStyle(rows[0]).fontFamily, t=document.createElement('div'); t.style.cssText='position:absolute;top:0;left:0;font:800 40px '+ff+';line-height:1';
+  t.innerHTML='<span>8</span><i style="display:inline-block;width:0;height:0;vertical-align:baseline"></i>'; document.body.appendChild(t);
+  const tr=t.firstChild.getBoundingClientRect(), k=(t.lastChild.getBoundingClientRect().top-tr.top)/tr.height; t.remove();
+  const base=(e)=>{ const w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT); let n; while((n=w.nextNode())&&!n.data.trim()); if(!n) return null; const g=document.createRange(); const i=n.data.search(/\S/); g.setStart(n,i); g.setEnd(n,i+1); const b=g.getBoundingClientRect(); return b.top+k*b.height; };
+  for(const r of rows){ const els=[...r.querySelectorAll(':scope>.abox,:scope>.arng')], c=els.map(e=>e.getBoundingClientRect()), an=r.querySelector(':scope>.an').getBoundingClientRect();
+    if(c.length!==3) { out.bad.push('cells '+c.length+' '+r.textContent.slice(0,20)); continue; }
+    if(Math.max(...c.map(x=>x.top))-Math.min(...c.map(x=>x.top))>1.5) out.bad.push('misaligned '+r.textContent.slice(0,20));
+    const bl=els.map(base).filter(x=>x!=null); if(bl.length===3&&Math.max(...bl)-Math.min(...bl)>2) out.bad.push('baseline '+bl.map(Math.round)+' '+r.textContent.slice(0,20));
+    const rg=els[2]; if(rg.getClientRects().length&&rg.scrollWidth>rg.clientWidth+1||(()=>{const g=document.createRange(); g.selectNodeContents(rg); return [...g.getClientRects()].map(x=>Math.round(x.top)).filter((v,i,a)=>a.indexOf(v)===i).length>1;})()) out.bad.push('range not one line '+rg.textContent);
+    for(let i=0;i<3;i++){ if(c[i].top<an.bottom-1) out.bad.push('cell over name'); for(let j=i+1;j<3;j++) if(c[i].right>c[j].left+1) out.bad.push('cells overlap'); }
+    // flat card: nothing inside the row (chips and the Ready toggle aside) draws its own border or panel
+    for(const e of r.querySelectorAll('*')){ if(e.closest('.apc,.flag,.sit-ck')) continue; const s=getComputedStyle(e), bw=['Top','Right','Bottom','Left'].some(x=>parseFloat(s['border'+x+'Width'])>0&&s['border'+x+'Style']!=='none'&&!/rgba\(.*, 0\)|transparent/.test(s['border'+x+'Color']));
+      const bg=s.backgroundColor!=='rgba(0, 0, 0, 0)'&&s.backgroundColor!=='transparent'||s.backgroundImage!=='none'; if((bw||bg)&&e.getBoundingClientRect().width>40) { out.bad.push('nested box '+e.className+' in '+r.textContent.slice(0,16)); break; } }
+    const lab=els.map(e=>getComputedStyle(e,'::before').content); if(!/To hit|DC/i.test(lab[0])) out.bad.push('no TO HIT label'); }
   rows[0].scrollIntoView({block:'start'}); await new Promise(r=>setTimeout(r,250));
   out.fit=rows.filter(r=>{ const b=r.getBoundingClientRect(); return b.top>=-1&&b.bottom<=dock+1; }).length; return out; }""" % DOCK
 with sync_playwright() as p:
@@ -62,8 +72,8 @@ with sync_playwright() as p:
     check("Actions has attack cards", o["n"] >= 3, o)
     check("first attack card starts in the top half", o.get("first", 1) < 0.5, o)
     check("no column header row", o.get("head") == 0, o)
-    check("TO HIT / DAMAGE / RANGE cells aligned in one row, no overlap, labelled", not o["bad"], o["bad"])
-    check("at least 3 attack cards per screen", o.get("fit", 0) >= 3, o)
+    check("TO HIT / DAMAGE / RANGE: one row, one baseline (2 px), range on one line, labelled, no nested boxes", not o["bad"], o["bad"])
+    check("at least 6 attack cards per screen at 390x844", o.get("fit", 0) >= 6, o)
     check("Actions tab title at most 40 px", 0 < pg.evaluate(TITLE, "p-actions") <= 40, pg.evaluate(TITLE, "p-actions"))
     for skin, attr in (("light", ["data-theme", "light"]), ("high-contrast", ["data-hc", "1"])):
         pg.evaluate("a=>document.documentElement.setAttribute(a[0],a[1])", attr); pg.wait_for_timeout(300); o2 = pg.evaluate(ACT)

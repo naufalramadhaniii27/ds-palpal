@@ -1,24 +1,29 @@
 /* === Front cards (sheet tabs before a detail opens). Dense HUD: name row, then one row of big bold numbers with caps labels.
    Labels come from data-l (CSS content), so the cell text stays the number for tests, PDF and screen-reader names. === */
-/* --- Actions: attack card --- */
-#app .arow{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,1fr)!important;gap:5px!important;align-items:stretch;padding:8px 10px!important;margin:0 0 6px!important}
-#app .arow>.an{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:2px 6px;min-width:0}
+/* --- Actions: one flat glass card per attack. Row 1 icon, name, chips. Row 2 To hit | Damage | Range as big numbers on one baseline, no inner boxes --- */
+#app .arow{display:grid!important;grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr) minmax(0,1.25fr)!important;column-gap:10px!important;row-gap:0!important;align-items:start!important;padding:3px 12px 5px!important;margin:0 0 6px!important;border-radius:14px!important;border:1px solid color-mix(in srgb,var(--ink) 11%,transparent)!important;background:color-mix(in srgb,var(--ink) 4%,transparent)!important;background-image:none!important;box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 5%,transparent)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#app .arow::before,#app .arow::after{display:none!important}
+#app .arow>.an{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;min-width:0}
 #app .arow>.an .aki{margin:0!important}
-#app .arow>.an .tx{font-size:calc(16px*var(--tz,1));font-weight:800;min-height:44px;margin:-6px 0}
-#app .arow>.an .apc{padding:0 7px!important;font-size:calc(11.5px*var(--tz,1))!important;line-height:20px!important}
+#app .arow>.an .tx{font-size:calc(16px*var(--tz,1));font-weight:800;min-height:44px;margin:-12px 0 0;padding-top:12px;box-sizing:border-box;display:inline-flex;align-items:center}/* the 44 px tap area reaches up into the card padding, never down onto the numbers */
+#app .arow>.an .apr{display:inline-flex;flex-wrap:wrap;gap:4px;flex-basis:auto!important;margin:0!important}
+/* chips: one neutral style; the accent only for what the player acts on (Mastery, ammo, Pact) */
+#app .arow>.an .apc{padding:0 7px!important;font-size:calc(11px*var(--tz,1))!important;font-weight:600;line-height:20px!important;border:0!important;border-radius:999px!important;color:var(--muted)!important;background:color-mix(in srgb,var(--ink) 8%,transparent)!important;box-shadow:none!important}
+#app .arow>.an .apc:is(.ap-m,.ap-w){color:var(--ink)!important;background:color-mix(in srgb,var(--acc2,#ffd43b) 18%,transparent)!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc2,#ffd43b) 55%,transparent)!important}
 #app .arow>.an .apc .apr-i{display:none}
-#app .arow>.an .apr{flex-basis:auto!important;margin:0!important}
-#app .arow>.an .arng{display:none}
-#app .arow :is(.abox,.arng){position:relative;box-sizing:border-box;margin:0!important;align-self:stretch;width:auto!important;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:50px;padding:15px 9px 5px;border-radius:11px;font-size:calc(24px*var(--tz,1))!important;font-weight:800!important;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--ink)!important;text-decoration:none!important;text-align:left;background:color-mix(in srgb,var(--ink) 6%,transparent)!important;background-image:none!important;border:1px solid color-mix(in srgb,var(--ink) 14%,transparent)!important;box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 7%,transparent)!important}
-#app .arow :is(.abox,.arng)[data-l]::before{content:attr(data-l);position:absolute;left:10px;top:5px;font-size:calc(10px*var(--tz,1));font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1}
-#app .arow .arng{font-size:calc(15px*var(--tz,1))!important;line-height:1.15}
-#app .arow .abox small{display:flex!important;align-items:center;gap:3px;margin-top:1px;font-size:calc(11px*var(--tz,1))!important;font-weight:800!important;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
-#app .arow .abox small[class^="dt-"]{color:color-mix(in srgb,currentColor 55%,var(--ink))}
-#app .arow .abox small :is(.dti,svg){display:none!important}
+/* #app#app: outranks the ddb light button skin (1,7,0) so the cells stay flat */
+#app#app .arow>:is(.abox,.arng){position:relative;box-sizing:border-box;margin:0!important;width:auto!important;min-width:0;height:auto!important;min-height:44px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:11px 0 0!important;border:0!important;border-radius:6px!important;background:none!important;background-image:none!important;box-shadow:none!important;font-size:calc(24px*var(--tz,1))!important;font-weight:800!important;line-height:1!important;font-variant-numeric:tabular-nums;color:var(--ink)!important;text-decoration:none!important;text-align:left;white-space:nowrap}
+#app .arow>:is(.abox,.arng)[data-l]::before{content:attr(data-l);position:absolute;left:0;top:0;font-size:calc(9.5px*var(--tz,1));font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1;white-space:nowrap}
+/* range is smaller; the extra top padding puts its baseline on the big numbers' baseline (.865em = ascent below the line top at line-height 1) */
+#app#app .arow>.arng{font-size:calc(16px*var(--tz,1))!important;padding-top:calc(11px + 8px*var(--tz,1)*.865)!important}
+#app .arow .abox small{display:block!important;margin-top:1px;font-size:calc(10px*var(--tz,1))!important;font-weight:800!important;letter-spacing:.06em;text-transform:uppercase;line-height:1;color:var(--muted);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+#app .arow .abox small :is(.dti,svg),#app .arow .abox .speff .dti{display:none!important}
 #app .arow .abox .cu-pen{display:none}
-/* damage dice in the type colour (physical types stay ink) */
-.dt-fire{--dc:#ff7a33}.dt-cold{--dc:#4dabf7}.dt-lightning{--dc:#f2c94c}.dt-acid{--dc:#94d82d}.dt-poison{--dc:#51cf66}.dt-necrotic{--dc:#b2bab6}.dt-radiant{--dc:#fcc419}.dt-psychic{--dc:#f06595}.dt-force{--dc:#da77f2}.dt-thunder{--dc:#8ea2ff}
-#app :is(.abox.wide>span,.speff)[class*="dt-"]{color:var(--dc,inherit)}
+#app .arow .abox .speff{font-size:inherit;font-weight:inherit}
+#app .arow .sit-ck{min-height:28px;font-size:calc(13px*var(--tz,1))}
+/* damage dice and type word in the damage-type colour (physical colours as on the type icons) */
+.dt-fire{--dc:#ff7a33}.dt-cold{--dc:#4dabf7}.dt-lightning{--dc:#f2c94c}.dt-acid{--dc:#94d82d}.dt-poison{--dc:#51cf66}.dt-necrotic{--dc:#b2bab6}.dt-radiant{--dc:#fcc419}.dt-psychic{--dc:#f06595}.dt-force{--dc:#da77f2}.dt-thunder{--dc:#8ea2ff}.dt-bludgeoning{--dc:#d9a066}.dt-piercing{--dc:#6db3e8}.dt-slashing{--dc:#ec7a72}
+#app :is(.abox.wide>span,.speff)[class*="dt-"],#app .arow .abox small[class*="dt-"]{color:var(--dc,inherit)!important}
 /* situations: one slim row (title, group toggles, New turn); the open group drops below */
 #app .sit{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 8px}
 #app .sit>.fcat{flex:1 1 auto;margin:0;padding:0;font-size:calc(13px*var(--tz,1))}
@@ -101,7 +106,7 @@
   #app #spBody .sp-head span{font-size:calc(10px*var(--tz,1));letter-spacing:.08em;text-transform:uppercase;line-height:1.1}
   #app #spBody .sp-r>.sp-hd.sp-no{display:none!important}
 }
-:root[data-theme="light"] #app :is(.abox.wide>span,.speff)[class*="dt-"]{color:color-mix(in srgb,var(--dc,var(--ink)) 62%,#000)}
+:root[data-theme="light"] #app :is(.abox.wide>span,.speff,.arow .abox small)[class*="dt-"]{color:color-mix(in srgb,var(--dc,var(--ink)) 62%,#000)!important}
 /* --- Skills: a saving throw is one flat row (dot, name, big bonus), not a box in a box in a box --- */
 #app #saves .row{min-height:48px;align-items:center}
 #app #saves .row .nm{border:0;background:none;box-shadow:none;padding:0 4px;min-height:44px;height:auto;display:flex;align-items:center}
