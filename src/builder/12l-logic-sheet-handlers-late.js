@@ -123,6 +123,9 @@ registerSheetGroup({id:"fx-save-notes",group:"late",phase:"late",order:150,scope
  run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;const {ar,ESH,EA}=I;if(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA))return null;const pushSN=function(t,s){C.saveNotes=C.saveNotes||[];if(!C.saveNotes.some(function(y){return y.t===t&&y.s===s}))C.saveNotes.push({t:t,s:s})};   /* fx engine v4: saveNote [text] = a line under Saving Throws (death save bonus, "Advantage on saves against being Frightened"); advOn texts that mention saves are copied there too, next to the Defenses note */
    (e.saveNote||[]).forEach(function(t){pushSN(t,e.lbl)});(e.advOn||[]).forEach(function(t){if(/sav(e|ing)/i.test(t))pushSN("Advantage on "+t,e.lbl)});
   return ctx.patch()}});
+/* hdAdd: extra Hit Points per Hit Point Die spent (Pandaren Inner Peace); the Short Rest healing adds C.hdAdd per die */
+registerSheetGroup({id:"fx-hd-add",group:"late",phase:"late",order:155,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "C.hdAdd", "q.fxOk"],writes:["C.hdAdd", "C.hdAddSrc"],
+ run:function(ctx){const I=ctx.i,Q=ctx.q,C=ctx.C;const e=ctx.p;if(!e.hdAdd||(e.cond&&!Q.fxOk(e,I.ar,I.ESH,I.EA)))return null;C.hdAdd=(C.hdAdd||0)+e.hdAdd;C.hdAddSrc=(C.hdAddSrc?C.hdAddSrc+", ":"")+e.lbl;return ctx.patch()}});
 /* a class or subclass bonus to "spell" rows reaches only that class's cantrips (2014 Potent Spellcasting: Cleric cantrips) */
 function abClsOk(C,e,x,r){return x.when!=="spell"||(e.kind!=="cls"&&e.kind!=="sub")||(C.spells||[]).some(function(s){return s.n===r.n&&s.src===e.ocls})}
 registerSheetGroup({id:"fx-atk-bonus",group:"late",phase:"late",order:160,scope:"each",over:"i.G",loop:"late-fx",reads:["i.ar", "i.ESH", "i.EA", "q.fxv", "C.attacks", "C.spells", "q.baseOf", "q.fxOk"],writes:["C.attacks"],

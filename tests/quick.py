@@ -33,6 +33,7 @@ AREAS = {
         ("feat_numbers", [PY, "tests/feat_numbers.py"]),
         ("background_numbers", [PY, "tests/background_numbers.py"]),
         ("species_numbers", [PY, "tests/species_numbers.py"]),
+        ("hd_add", [PY, "tests/hd_add.py"]),
         ("core_numbers", [PY, "tests/core_numbers.py"]),
         ("multiclass_numbers", [PY, "tests/multiclass_numbers.py"]),
         ("levelup_numbers", [PY, "tests/levelup_numbers.py"]),

@@ -21,6 +21,7 @@ export const FX_FIELDS={
  acArmAb:"string",
  speedMul:"number",
  speedTo:"number",
+ hdAdd:"number",
  condImm:"array",
  defs:"array",
  speedAdd:"number|string",
