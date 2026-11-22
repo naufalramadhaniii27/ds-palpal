@@ -5,7 +5,8 @@ bindLive("applyLook",{get:function(){return applyLook;}});
 /* moved here from a later file: used while this file loads (a function declaration used to be hoisted across the closure) */
 export function uiGet(k){ try{ return JSON.parse(__store.getItem(k)||"null")||{}; }catch(e){ return {}; } }
 /* ================= THEME ================= */
-export function applyTheme(){ if(S.theme==="light"||S.theme==="dark") document.documentElement.setAttribute("data-theme",S.theme); else document.documentElement.removeAttribute("data-theme"); }
+export function applyTheme(){ if(S.theme==="light"||S.theme==="dark") document.documentElement.setAttribute("data-theme",S.theme); else document.documentElement.setAttribute("data-theme",currentDark()?"dark":"light"); }/* Auto follows the phone: the ddb skin only has a light look under an explicit data-theme */
+if(env.matchMedia) try{ env.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",() =>{ if(!S.theme) applyTheme(); }); }catch(e){}
 function currentDark(){ if(S.theme) return S.theme==="dark"; return env.matchMedia && env.matchMedia("(prefers-color-scheme: dark)").matches; }
 const SYMS={star:["Star",'<path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/>'],
  sword:["Sword",'<path d="M14.5 3.5H20v5.5L9 20l-5-5z"/><path d="m6 13 5 5"/><path d="m3 21 3-3"/>'],
