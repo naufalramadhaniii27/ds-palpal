@@ -6,6 +6,7 @@ species, class, background, subclass), Library search, builder steps. Fails on:
   a visible <img> that did not decode (naturalWidth 0)
   sheet tabs: no class scene layer on, or the layer is see-through (opacity under 0.05) or still masked to the 6% wipe start
   builder: no step scene; Library: no category icon on the results; Home: no inn scene
+Desktop 1560x900: the identity card pictures of a Human Fighter 6 Battle Master decode; a chip whose picture request fails shows no broken glyph.
 Also: dist index.html under 2097152 bytes.   python3 tests/images_present.py [local|dist|noimg]"""
 import functools, http.server, json, os, socket, subprocess, sys, tempfile, threading
 from playwright.sync_api import sync_playwright
@@ -83,6 +84,30 @@ def run(b, base, form, W, H, th):
     c.close()
 
 
+IDIMG = "()=>[...document.querySelectorAll('.idcard img')].filter(i=>i.offsetParent).map(i=>[i.getAttribute('src'),i.complete,i.naturalWidth])"
+
+
+def idcard(b, base, form, block=None):
+    """Desktop 1560x900, ddb dark: a Human Fighter 6 Battle Master, Soldier. Every visible <img> in the identity card decoded (naturalWidth > 0),
+    and Species, Class and Subclass carry a picture. With block (a URL part), that request fails: the chip then shows no broken-image glyph."""
+    c = b.new_context(viewport={"width": 1560, "height": 900}, service_workers="block", color_scheme="dark")
+    c.add_init_script("if(!sessionStorage.getItem('__s')){localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',%s);localStorage.setItem('yudhi-kelapa-sheet-v1',%s);sessionStorage.setItem('__s','1')}"
+                      % (json.dumps(Y), json.dumps(json.dumps({"skin": "ddb", "theme": "dark"}))))
+    if block: c.route("**/*" + block, lambda r: r.abort())
+    pg = c.new_page(); pg.goto(base + "index.html"); pg.wait_for_timeout(2500)
+    pg.click("[data-hview]"); pg.wait_for_selector("#dmgBtn", state="attached", timeout=60000); pg.wait_for_timeout(1000)
+    pg.evaluate("()=>window.__bldNeed&&window.__bldNeed()"); pg.wait_for_function("()=>typeof window.__bldFuzz==='function'&&typeof window.__sheetApply==='function'", timeout=120000)
+    pg.evaluate("""()=>{const all={};(window.WX.src||[]).forEach(x=>all[x.id]=true);const b=window.__bldFuzz({sp:'Human',bg:'Soldier',rs:'2024',src:all,cls:'Fighter',sub:'Battle Master',lv:6,arr:[16,14,14,10,10,8],b2:0,b1:0}).b;
+      window.__sheetApply(window.__bldSheetFor(b,{}),false)}"""); pg.wait_for_timeout(2000); pg.evaluate(SETTLE)
+    L = pg.evaluate(IDIMG); bad = [x[0] for x in L if not x[2]]
+    if block:
+        check("%s 1560x900: identity chip whose picture fails shows no broken image (%s)" % (form, block), not bad and not any(block in (x[0] or "") for x in L), L)
+    else:
+        dd = pg.evaluate("()=>[...document.querySelectorAll('#idF dd')].filter(d=>/Human|Fighter|Battle Master/.test(d.textContent)).map(d=>!!d.querySelector('img'))")
+        check("%s 1560x900: identity card pictures decode for a Human Fighter Battle Master" % form, L and not bad and len(dd) == 3 and all(dd), [bad, dd, L])
+    c.close()
+
+
 def main():
     forms = sys.argv[1:] or ["local", "dist"]
     with sync_playwright() as p:
@@ -98,6 +123,8 @@ def main():
             base = serve(d)
             for W, H, th in [(390, 844, "dark"), (390, 844, "light"), (1250, 850, "dark")]:
                 run(b, base, form, W, H, th)
+            idcard(b, base, form)
+            if form == "local": idcard(b, base, form, "img/emblem/fighter.avif")
         b.close()
     print("%d of %d checks pass" % (sum(R), len(R)))
     return 0 if all(R) else 1
