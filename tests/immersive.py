@@ -6,7 +6,8 @@ import json, os, sys
 from playwright.sync_api import sync_playwright
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = open(os.path.join(ROOT, "tests", "fixtures", "yudhi-v3.json"), encoding="utf-8").read()
-SEED = "(v=>{window.__vib=[];try{navigator.vibrate=p=>{window.__vib.push(p);return true}}catch(e){}try{if(sessionStorage.getItem('s'))return;sessionStorage.setItem('s','1');localStorage.clear();localStorage.setItem('yudhi-kelapa-build-v3',v)}catch(e){}})(" + json.dumps(d) + ")"
+# a file:// reload can start a new sessionStorage (new renderer), so a localStorage mark also stops a second seed
+SEED = "(v=>{window.__vib=[];try{navigator.vibrate=p=>{window.__vib.push(p);return true}}catch(e){}try{if(sessionStorage.getItem('s')||localStorage.getItem('__seed'))return;sessionStorage.setItem('s','1');localStorage.clear();localStorage.setItem('__seed','1');localStorage.setItem('yudhi-kelapa-build-v3',v)}catch(e){}})(" + json.dumps(d) + ")"
 R = []
 def check(n, ok, info=""): R.append(bool(ok)); print(("ok   " if ok else "FAIL ") + n + ("" if ok else "  " + str(info)[:300]))
 def open_sheet(pg):
