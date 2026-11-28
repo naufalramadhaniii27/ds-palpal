@@ -98,23 +98,27 @@ G.fastStart=function(){
     /* fast start: localStorage holds every key. IndexedDB is brought level with memory in the background */
     G.FAST=true; G.store.fast=true; G.MODE="idb"; const o=G.lsAll(); Object.keys(o).forEach((k) =>{ G.MEM.set(k,o[k]); }); G.bcOn(); G.start();
     G.openDB().then((d) =>{ return G.readAll(d).then((r) =>{ const idb=r.kv, put={}, del=[];
-        G.MEM.forEach((v,k) =>{ if(idb[k]!==v) put[k]=v; }); Object.keys(idb).forEach((k) =>{ if(!G.MEM.has(k)) del.push(k); });
-        G.Q.clear(); const m={}; if(G.MDIRTY){ m.lsFail=Object.keys(G.FAIL); G.MDIRTY=false; }
+        G.MEM.forEach((v,k) =>{ if(idb[k]!==v) put[k]=v; }); const gone={}; Object.keys(idb).forEach((k) =>{ if(!G.MEM.has(k)){ del.push(k); gone[k]=idb[k]; } });
+        G.Q.clear(); const m={}; G.trash(r.meta,m,gone); if(G.MDIRTY){ m.lsFail=Object.keys(G.FAIL); G.MDIRTY=false; }
         return (Object.keys(put).length||del.length||Object.keys(m).length?G.putAll(d,put,m,del):Promise.resolve()).then(() =>{ G.dbReady(d); }); }); })
       .catch((e) =>{ G.store.why=String(e&&e.message||e); G.MODE="ls"; G.Q.clear(); });/* no IndexedDB after all: localStorage only, as before */
 };
+/* a value that startup reconcile removes from IndexedDB (localStorage lost the key) is kept in meta "__reconcile-trash" for 30 days, so a lost localStorage write never destroys the only copy */
+G.trash=function(meta,m,gone){ const ks=Object.keys(gone); if(!ks.length) return; const now=Date.now(), o={}, old=(meta["__reconcile-trash"]||{});
+  Object.keys(old).forEach((k) =>{ if(old[k]&&now-old[k].t<2592e6) o[k]=old[k]; }); ks.forEach((k) =>{ o[k]={v:gone[k],t:now}; }); m["__reconcile-trash"]=o; };
 G.boot=function(){ if(!BootEnv.indexedDB){ G.useLS("none"); return false; } const mk=G.markGet();
   if(mk&&!mk.fail.length&&G.lsAll()&&localStorage.length>1) G.fastStart(); else G.slowStart();
   return true; };
 })();
 (function(){ const G=BootEnv.sg;
-G.slowPlan=function(r){ const idb=r.kv, meta=r.meta, ls=G.lsAll(), lsKeys=Object.keys(ls), fails={}, put={}, del=[], m={};
+G.slowPlan=function(r){ const idb=r.kv, meta=r.meta, ls=G.lsAll(), lsKeys=Object.keys(ls), fails={}, put={}, del=[], m={}, gone={};
         (meta.lsFail||[]).forEach((k) =>{ fails[k]=1; });
         if(!meta.migrated){ m.migrated=new Date().toISOString(); if(lsKeys.length) m["__legacy-backup"]={t:m.migrated,keys:ls}; }
         if(lsKeys.length){ const all={}; Object.keys(idb).concat(lsKeys).forEach((k) =>{ all[k]=1; });
           Object.keys(all).forEach((k) =>{ const a=ls.hasOwnProperty(k)?ls[k]:null, b=idb.hasOwnProperty(k)?idb[k]:null;
             if(fails[k]){ if(a===b) delete fails[k]; return; }
-            if(a!==b){ if(a==null){ del.push(k); delete idb[k]; } else { put[k]=a; idb[k]=a; } } }); }
+            if(a!==b){ if(a==null){ del.push(k); gone[k]=b; delete idb[k]; } else { put[k]=a; idb[k]=a; } } }); }
+        G.trash(meta,m,gone);
         const lf=Object.keys(fails).sort(), lf0=(meta.lsFail||[]).slice().sort(); if(lf.join("\n")!==lf0.join("\n")) m.lsFail=lf;
         const pk=Object.keys(put), need=pk.length||del.length||Object.keys(m).length;
         return {idb,fails,put,del,m,pk,need}; };

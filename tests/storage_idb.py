@@ -134,6 +134,12 @@ async def run(pw, base, vp, w, h):
     bad = [x for x in ("Yudhi", "Retron", "Pencak") if x in allv]
     check(vp + " 7 no sample names in storage", not bad, bad)
     await pg.screenshot(path=os.path.join(OUT, "%s-7-fresh.png" % vp))
+    # 8. localStorage lost a key while the page was closed: startup reconcile removes it from IndexedDB but keeps the value in meta
+    await pg.evaluate("()=>{__store.setItem('cs-ui-lost','v1');return __store.flush()}")
+    await pg.goto(base + "blank.html"); await pg.evaluate("()=>localStorage.removeItem('cs-ui-lost')")
+    await pg.goto(base + "index.html"); await ready(pg); await pg.wait_for_timeout(500); db = await pg.evaluate(IDB_ALL)
+    tr = ((db or {}).get("meta", {}).get("__reconcile-trash") or {}).get("cs-ui-lost") or {}
+    check(vp + " 8 value lost from localStorage kept in IndexedDB meta", tr.get("v") == "v1", tr)
     await ctx.close(); await b.close()
 
 
