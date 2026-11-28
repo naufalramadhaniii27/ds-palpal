@@ -6,7 +6,7 @@ function libHi(n,q){ const i=q?n.toLowerCase().indexOf(q):-1; return i<0?esc(n):
 const LIB_ICO={spell:"spell",gear:"item",item:"item",feat:"feat",feature:"feature",facility:"facility",rule:"rule",opt:"opt",optfeat:"optfeat",language:"language",vehicle:"vehicle",object:"object"};
 /* Codex icons by entry kind */
 const LIB_CATIC={sub:"subclass",bg:"background",opt:"option",homebrew:"homebrew"};
-function libCatIc(c){ const A=env.__ART, k=LIB_CATIC[c]||c; try{ if(!A||!A.icon||!A.icon.cat||A.icon.cat.indexOf(k)<0||localStorage.getItem("mi-clsart")==="off") return ""; }catch(er){ return ""; } return '<img class="art-ic" src="img/icon/cat/'+k+'.avif" alt="" loading="lazy" decoding="async">'; }
+function libCatIc(c){ const A=env.__ART, k=LIB_CATIC[c]||c; try{ if(!A||!A.icon||!A.icon.cat||A.icon.cat.indexOf(k)<0||__store.getItem("mi-clsart")==="off") return ""; }catch(er){ return ""; } return '<img class="art-ic" src="img/icon/cat/'+k+'.avif" alt="" loading="lazy" decoding="async">'; }
 function libRow(e,q,showCat){ const ct=libCat(e.c); return '<button type="button" class="lib-r" data-lib-open="'+esc(e.c+"|"+e.k)+'"><span class="lib-ri">'+((env.__artIc&&LIB_ICO[e.c]&&env.__artIc(LIB_ICO[e.c],e.n))||libCatIc(e.c)||ico(ct[2],"gs-ri")||"")+'</span><span class="lib-rt"><b>'+libHi(e.n,q)+'</b><small>'+esc(e.s)+(function(){ const b=libBook(e); return b&&String(e.s).toUpperCase().indexOf(b)<0?(e.s?' • ':'')+esc(b):''; })()+'</small></span>'+(showCat?'<span class="lib-rc">'+esc(ct[1].replace(/ and .*/,"").replace(/s$/,""))+'</span>':'')+'</button>'; }
 /* word -> entries. Resumable (INVP), no prototype (indexes "constructor") */
 let INVP=null;
