@@ -17,9 +17,11 @@ bindLive("wlMc",{get:function(){return wlMc;}});
 /* ---------- v17 ---------- */
 /* RU40: class level that unlocks a subclass feature (subclass of the main class or a multiclass) */
 function subClsOf(sub){let o=null;Object.keys(CLASSES).forEach((c) =>{if(CLASSES[c].subs&&CLASSES[c].subs[sub])o=c});return o}
+/* Trusted Types (CSP) block the Function constructor: + - * / and brackets only, NaN for anything else */
+function arith(s){let i=0;s=String(s).replace(/\s+/g,"");const P=()=>{let v=T();while(s[i]==="+"||s[i]==="-"){const o=s[i++],w=T();v=o==="+"?v+w:v-w}return v},T=()=>{let v=F();while(s[i]==="*"||s[i]==="/"){const o=s[i++],w=F();v=o==="*"?v*w:v/w}return v},F=()=>{if(s[i]==="-"){i++;return -F()}if(s[i]==="+"){i++;return F()}if(s[i]==="("){i++;const v=P();return s[i++]===")"?v:NaN}const m=/^\d+(\.\d+)?/.exec(s.slice(i));if(!m)return NaN;i+=m[0].length;return +m[0]};const v=P();return i===s.length?v:NaN}
 export function luMax(m,lv,a,pb){if(typeof m==="number")return m;if(Array.isArray(m))return +m[lv-1]||0;if(m==="pb")return pb;if(m==="pb2")return 2*pb;if(m==="lvl")return lv;if(m==="half")return Math.floor(lv/2);
  if(typeof m==="string"&&m.indexOf("mod:")===0)return Math.max(1,mod(a.sc[m.slice(4)]));
- if(m&&m.f){let f=String(m.f).replace(/mod:([A-Z]{3})/g,(_,k) =>{return "("+mod(a.sc[k])+")"}).replace(/lvl/g,lv).replace(/pb/g,pb),v=0;if(/^[0-9+*\-\/() ]+$/.test(f)){try{v=Function("return ("+f+")")()}catch(e){v=0}}return Math.max(m.min||0,Math.floor(v))}return 0}
+ if(m&&m.f){let f=String(m.f).replace(/mod:([A-Z]{3})/g,(_,k) =>{return "("+mod(a.sc[k])+")"}).replace(/lvl/g,lv).replace(/pb/g,pb),v=0;if(/^[0-9+*\-\/() ]+$/.test(f)){v=arith(f)||0}return Math.max(m.min||0,Math.floor(v))}return 0}
 /* RU40: one Limited Use row per LU_X entry the character has, plus magic item charges. f = the feature or item that grants it (boxes show under it too) */
 /* luRows() in parts (SOLID stage 13C): LU_OWNER finds the level of the owner of a table row, then one function per row source (table, fx entry, item) and one for Arcane Recovery */
 /* level that counts for a table row of a class: its own levels, plus the levels of a reskin class that keeps the feature of the parent (WXC inh and cfa) */
