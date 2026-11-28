@@ -124,6 +124,8 @@ AREAS = {
         ("detail_summary", [PY, "tests/detail_summary.py"]),
         ("images_present", [PY, "tests/images_present.py"]),
         ("audit_play", [PY, "tests/audit_play.py"]),
+        ("prod_parity", [PY, "tests/prod_parity.py"]),
+        ("storage_idb", [PY, "tests/storage_idb.py"]),
     ],
     "pdf": [
         ("pdfx_export", [PY, "tests/pdfx_export.py"]),
@@ -144,6 +146,7 @@ PATHS = [
     ("src/html/", ["ui"]),
     ("src/fx/", ["ui"]),
     ("src/app/", ["ui"]),
+    ("src/boot/", ["ui"]),
     ("src/data/", ["items"]),
     ("src/manifest.json", ["modules"]),
     ("tools/gen_", ["engine", "items"]),
