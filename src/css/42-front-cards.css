@@ -1,6 +1,7 @@
 /* === Front cards (sheet tabs before a detail opens). Dense HUD: name row, then one row of big bold numbers with caps labels.
    Labels come from data-l (CSS content), so the cell text stays the number for tests, PDF and screen-reader names. === */
-/* --- Actions: one flat glass card per attack. Row 1 icon, name, chips. Row 2 To hit | Damage | Range as big numbers on one baseline, no inner boxes --- */
+/* --- Actions. Wide screens: one flat glass card per attack (name row, then To hit | Damage | Range). Phones: the table (Range | Hit/DC | Damage header, name/chips/range left, hit and damage boxes right) --- */
+@media (min-width:760px){
 #app .arow{display:grid!important;grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr) minmax(0,1.25fr)!important;column-gap:10px!important;row-gap:0!important;align-items:start!important;padding:3px 12px 5px!important;margin:0 0 6px!important;border-radius:14px!important;border:1px solid color-mix(in srgb,var(--ink) 11%,transparent)!important;background:color-mix(in srgb,var(--ink) 4%,transparent)!important;background-image:none!important;box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 5%,transparent)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 #app .arow::before,#app .arow::after{display:none!important}
 #app .arow>.an{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;min-width:0}
@@ -21,6 +22,28 @@
 #app .arow .abox .cu-pen{display:none}
 #app .arow .abox .speff{font-size:inherit;font-weight:inherit}
 #app .arow .sit-ck{min-height:28px;font-size:calc(13px*var(--tz,1))}
+#app .arow>.arng .apr-i,#app .ahead{display:none}
+}
+@media (max-width:759px){
+  #app .ahead,#app .arow{display:grid;grid-template-columns:minmax(0,1fr) 58px 92px;column-gap:6px}
+  #app .ahead{padding:0 12px;margin:0 0 4px;font-size:calc(11px*var(--tz,1));font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  #app .ahead>span:not(:first-child){text-align:center}
+  #app .arow{grid-template-areas:"n h d" "r h d";align-items:center;row-gap:0;padding:2px 10px 8px!important}
+  #app .arow.sv{border-radius:14px}/* the ddb .sv pill radius is for save badges, not rows */
+  #app .arow>.abox{white-space:nowrap}
+  #app .arow>.abox:not(.wide):not(:has(.sit-ck)){font-size:calc(19px*var(--tz,1))}
+  #app .arow>.abox:not(.wide) small{font-size:calc(10.5px*var(--tz,1));font-weight:700}
+  #app .arow>.an{grid-area:n;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:2px 6px}
+  #app .arow>.an .aki{margin:0!important}
+  #app .arow>.an .tx{min-height:44px;display:inline-flex;align-items:center;overflow-wrap:anywhere;max-width:calc(100% - 24px)}
+  #app .arow>.an .apr{display:flex;flex-wrap:wrap;gap:4px;flex-basis:100%;margin:0 0 2px!important}
+  #app .arow>.an .apc{padding:0 7px!important;font-size:calc(11.5px*var(--tz,1))!important;line-height:20px!important}
+  #app .arow>.abox{grid-area:h;box-sizing:border-box;width:auto!important;min-width:0;min-height:44px;margin:0!important;padding:6px 2px!important;text-align:center;justify-self:stretch}
+  #app .arow>.abox.wide{grid-area:d;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  #app .arow>.abox small{white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  #app .arow>.arng{grid-area:r;font-size:calc(15px*var(--tz,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  #app .arow>.arng .apr-i{width:1.05em;height:1.05em;color:var(--muted)}
+}
 /* damage dice and type word in the damage-type colour (physical colours as on the type icons) */
 .dt-fire{--dc:#ff7a33}.dt-cold{--dc:#4dabf7}.dt-lightning{--dc:#f2c94c}.dt-acid{--dc:#94d82d}.dt-poison{--dc:#51cf66}.dt-necrotic{--dc:#b2bab6}.dt-radiant{--dc:#fcc419}.dt-psychic{--dc:#f06595}.dt-force{--dc:#da77f2}.dt-thunder{--dc:#8ea2ff}.dt-bludgeoning{--dc:#d9a066}.dt-piercing{--dc:#6db3e8}.dt-slashing{--dc:#ec7a72}
 #app :is(.abox.wide>span,.speff)[class*="dt-"],#app .arow .abox small[class*="dt-"]{color:var(--dc,inherit)!important}

@@ -1,6 +1,7 @@
 """Front cards on the sheet tabs at 390x844 (Yudhi fixture, then a level 5 Wizard for Spells).
-Actions: at least 6 attack cards fit between the top of the list and the play bar; the first card starts in the top half;
-no column header row; each card (save cantrips too) is flat (no bordered or filled box inside), its TO HIT, DAMAGE and RANGE cells share one row and one text baseline (2 px), the range stays on one line, and nothing overlaps.
+Actions (owner 2026-11-28, the table model): the first row starts in the top half;
+a RANGE | HIT/DC | DAMAGE header row; each row (save cantrips too) keeps name, chips and range in the left column and a hit box and a damage box
+(44 px tall) on the right; the range stays on one line, damage dice keep their type colour, no overflow at 390 and 360 wide.
 Features: no book source line on the front, the one-liner is at most two lines, an action badge on every card,
 the use boxes tick on tap without opening the detail and keep the state after a re-render.
 Spells: every row has a Duration cell; a Concentration spell shows the CONC badge there.
@@ -27,26 +28,21 @@ SPROW = r"""()=>{ const L=[...document.querySelectorAll('#spBody .sp-r[data-info
     const b=c.map(e=>e.getBoundingClientRect()); for(let i=0;i<b.length;i++) for(let j=i+1;j<b.length;j++){ const x=b[i],y=b[j]; if(x.left<y.right-1&&x.right>y.left+1&&x.top<y.bottom-1&&x.bottom>y.top+1) bad.push('overlap '+c[i].dataset.l+'/'+c[j].dataset.l); } }
   return bad; }"""
 DOCK = "()=>{const v=document.getElementById('vbar'); return v&&v.offsetParent?v.getBoundingClientRect().top:innerHeight}"
-ACT = r"""async ()=>{ const rows=[...document.querySelectorAll('#actBody .arow')].filter(e=>e.offsetParent), dock=(%s)(), out={n:rows.filter(r=>!r.classList.contains('xd')).length, bad:[]};
+ACT = r"""async ()=>{ const rows=[...document.querySelectorAll('#actBody .arow')].filter(e=>e.offsetParent), out={n:rows.filter(r=>!r.classList.contains('xd')).length, bad:[]};
   if(!rows.length) return out; out.first=rows[0].getBoundingClientRect().top/innerHeight;
-  out.head=[...document.querySelectorAll('#actBody .ahead')].filter(e=>e.offsetParent).length;
-  // baseline of a text box = top + k*height, k measured once for the font with a zero-height inline-block probe
-  const ff=getComputedStyle(rows[0]).fontFamily, t=document.createElement('div'); t.style.cssText='position:absolute;top:0;left:0;font:800 40px '+ff+';line-height:1';
-  t.innerHTML='<span>8</span><i style="display:inline-block;width:0;height:0;vertical-align:baseline"></i>'; document.body.appendChild(t);
-  const tr=t.firstChild.getBoundingClientRect(), k=(t.lastChild.getBoundingClientRect().top-tr.top)/tr.height; t.remove();
-  const base=(e)=>{ const w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT); let n; while((n=w.nextNode())&&!n.data.trim()); if(!n) return null; const g=document.createRange(); const i=n.data.search(/\S/); g.setStart(n,i); g.setEnd(n,i+1); const b=g.getBoundingClientRect(); return b.top+k*b.height; };
-  for(const r of rows){ const els=[...r.querySelectorAll(':scope>.abox,:scope>.arng')], c=els.map(e=>e.getBoundingClientRect()), an=r.querySelector(':scope>.an').getBoundingClientRect();
-    if(c.length!==3) { out.bad.push('cells '+c.length+' '+r.textContent.slice(0,20)); continue; }
-    if(Math.max(...c.map(x=>x.top))-Math.min(...c.map(x=>x.top))>1.5) out.bad.push('misaligned '+r.textContent.slice(0,20));
-    const bl=els.map(base).filter(x=>x!=null); if(bl.length===3&&Math.max(...bl)-Math.min(...bl)>2) out.bad.push('baseline '+bl.map(Math.round)+' '+r.textContent.slice(0,20));
-    const rg=els[2]; if(rg.getClientRects().length&&rg.scrollWidth>rg.clientWidth+1||(()=>{const g=document.createRange(); g.selectNodeContents(rg); return [...g.getClientRects()].map(x=>Math.round(x.top)).filter((v,i,a)=>a.indexOf(v)===i).length>1;})()) out.bad.push('range not one line '+rg.textContent);
-    for(let i=0;i<3;i++){ if(c[i].top<an.bottom-1) out.bad.push('cell over name'); for(let j=i+1;j<3;j++) if(c[i].right>c[j].left+1) out.bad.push('cells overlap'); }
-    // flat card: nothing inside the row (chips and the Ready toggle aside) draws its own border or panel
-    for(const e of r.querySelectorAll('*')){ if(e.closest('.apc,.flag,.sit-ck')) continue; const s=getComputedStyle(e), bw=['Top','Right','Bottom','Left'].some(x=>parseFloat(s['border'+x+'Width'])>0&&s['border'+x+'Style']!=='none'&&!/rgba\(.*, 0\)|transparent/.test(s['border'+x+'Color']));
-      const bg=s.backgroundColor!=='rgba(0, 0, 0, 0)'&&s.backgroundColor!=='transparent'||s.backgroundImage!=='none'; if((bw||bg)&&e.getBoundingClientRect().width>40) { out.bad.push('nested box '+e.className+' in '+r.textContent.slice(0,16)); break; } }
-    const lab=els.map(e=>getComputedStyle(e,'::before').content); if(!/To hit|DC/i.test(lab[0])) out.bad.push('no TO HIT label'); }
-  rows[0].scrollIntoView({block:'start'}); await new Promise(r=>setTimeout(r,250));
-  out.fit=rows.filter(r=>{ const b=r.getBoundingClientRect(); return b.top>=-1&&b.bottom<=dock+1; }).length; return out; }""" % DOCK
+  const H=[...document.querySelectorAll('#actBody .ahead')].filter(e=>e.offsetParent); out.head=H.map(e=>e.innerText.replace(/\s+/g,' ').trim().toUpperCase());
+  out.sw=document.documentElement.scrollWidth;
+  for(const r of rows){ const R=r.getBoundingClientRect(), an=r.querySelector(':scope>.an').getBoundingClientRect(), hit=r.querySelector(':scope>.abox:not(.wide)'), dmg=r.querySelector(':scope>.abox.wide'), rg=r.querySelector(':scope>.arng'), t=r.textContent.slice(0,20);
+    if(!hit||!dmg||!rg){ out.bad.push('cells '+t); continue; }
+    const h=hit.getBoundingClientRect(), d=dmg.getBoundingClientRect(), g=rg.getBoundingClientRect();
+    if(R.right>innerWidth+1||[h,d,g,an].some(x=>x.right>R.right+1)) out.bad.push('overflow '+t);
+    // boxes on the right: hit box then damage box, both right of the name column, each a drawn box at least 44 px tall
+    if(!(h.left>=an.right-1&&d.left>=h.right-1)) out.bad.push('boxes not right of name '+t);
+    for(const [e,b] of [[hit,h],[dmg,d]]){ const s=getComputedStyle(e); if(b.height<44||!(parseFloat(s.borderTopWidth)>0||s.backgroundImage!=='none')) out.bad.push('no box '+e.className+' '+t); }
+    if(g.left>an.left+1||g.top<an.top-1||g.right>h.left+1) out.bad.push('range not under name '+t);
+    const q=document.createRange(); q.selectNodeContents(rg); const T=[...q.getClientRects()].map(x=>x.top); if(Math.max(...T)-Math.min(...T)>parseFloat(getComputedStyle(rg).fontSize)*.8||rg.scrollWidth>rg.clientWidth+1) out.bad.push('range not one line '+rg.textContent);
+    const dc=dmg.querySelector('[class*="dt-"]'); if(dc&&!r.classList.contains('xd')&&!document.documentElement.hasAttribute('data-hc')&&getComputedStyle(dc).color===getComputedStyle(r).color) out.bad.push('no damage colour '+t); }
+  return out; }"""
 with sync_playwright() as p:
     b = p.chromium.launch(); ctx = b.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2); ctx.add_init_script(SEED); pg = ctx.new_page(); errs = []
     pg.on("pageerror", lambda e: errs.append(str(e)))
@@ -71,9 +67,10 @@ with sync_playwright() as p:
     tab(pg, "2"); o = pg.evaluate(ACT)
     check("Actions has attack cards", o["n"] >= 3, o)
     check("first attack card starts in the top half", o.get("first", 1) < 0.5, o)
-    check("no column header row", o.get("head") == 0, o)
-    check("TO HIT / DAMAGE / RANGE: one row, one baseline (2 px), range on one line, labelled, no nested boxes", not o["bad"], o["bad"])
-    check("at least 6 attack cards per screen at 390x844", o.get("fit", 0) >= 6, o)
+    check("column header RANGE / HIT/DC / DAMAGE shown", o.get("head") and all(o["head"][0].startswith("RANGE HIT/DC DAMAGE") for _ in [0]), o.get("head"))
+    check("rows: name/chips/range left, hit box and damage box right, range on one line, no overflow", not o["bad"] and o["sw"] <= 390, o["bad"])
+    pg.set_viewport_size({"width": 360, "height": 844}); pg.wait_for_timeout(500); o3 = pg.evaluate(ACT)
+    check("attack table fits at 360 wide", not o3["bad"] and o3["sw"] <= 360, [o3["bad"], o3["sw"]]); pg.set_viewport_size({"width": 390, "height": 844}); pg.wait_for_timeout(500)
     check("Actions tab title at most 40 px", 0 < pg.evaluate(TITLE, "p-actions") <= 40, pg.evaluate(TITLE, "p-actions"))
     for skin, attr in (("light", ["data-theme", "light"]), ("high-contrast", ["data-hc", "1"])):
         pg.evaluate("a=>document.documentElement.setAttribute(a[0],a[1])", attr); pg.wait_for_timeout(300); o2 = pg.evaluate(ACT)
