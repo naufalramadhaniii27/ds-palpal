@@ -15,10 +15,13 @@ END = """()=>{const p=[...document.querySelectorAll('#p-main,#p-skills,.detail>.
   const hb=document.querySelector('.xhot').getBoundingClientRect().top; let low=null;
   p.querySelectorAll('button,input,select,.abox').forEach(e=>{const r=e.getBoundingClientRect(); if(r.width&&r.height&&getComputedStyle(e).visibility!=='hidden'&&(!low||r.bottom>low.b)) low={b:r.bottom,n:(e.id||e.className)+' '+(e.textContent||'').trim().slice(0,20)}});
   return {id:p.id, hb:Math.round(hb), low:low&&Math.round(low.b), n:low&&low.n}}"""
+<<<<<<< HEAD
 # the page CSP requires Trusted Types, so Function() and eval() throw on the hosting form (formulas read 0 or NaN)
 import re, glob
 ev = [f for f in glob.glob(os.path.join(ROOT, "src", "**", "*.js"), recursive=True) if "/data/" not in f and re.search(r"(?<![\w.])(Function|eval)\(", open(f, encoding="utf-8").read())]
 check("no Function() or eval() in src (blocked by Trusted Types)", not ev, ev)
+=======
+>>>>>>> bba3d2b5f (Hotbar: pad the tabs by the measured hotbar height (--hb-b), so a taller strip (larger text) never covers the last controls; tests/audit_play.py in quick ui)
 with sync_playwright() as p:
     b = p.chromium.launch(); errs = []
     c = b.new_context(viewport={"width": 390, "height": 844}, has_touch=True, is_mobile=True, color_scheme="dark"); c.add_init_script(SEED); pg = c.new_page()
