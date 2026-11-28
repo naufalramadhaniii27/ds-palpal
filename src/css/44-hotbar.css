@@ -10,7 +10,7 @@ html.xhot-on .vbar::after{content:"";position:absolute;right:0;bottom:100%;width
 .xhot-i b{font-variant-numeric:tabular-nums}
 .xhot-i:active{transform:scale(.96)}
 .xhot-i:focus-visible,.qfab button:focus-visible{outline:3px solid var(--acc,#e2aa4c);outline-offset:2px}
-@media (max-width:759px){html.xhot-on #p-main,html.xhot-on #p-skills,html.xhot-on .detail>.panels>.panel{padding-bottom:156px}}
+@media (max-width:759px){html.xhot-on #p-main,html.xhot-on #p-skills,html.xhot-on .detail>.panels>.panel{padding-bottom:max(156px,calc(var(--hb-b,0px) + 12px))}}
 .qfab{display:none;position:absolute;right:7px;bottom:calc(100% + 4px);z-index:1;flex-direction:column;align-items:flex-end;gap:8px}
 html.xhot-on .qfab{display:flex}
 .qfab-b{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,#6b4a2a,#3d2914);box-shadow:0 6px 16px rgba(0,0,0,.3);cursor:pointer}

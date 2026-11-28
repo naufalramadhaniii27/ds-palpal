@@ -4,7 +4,9 @@ bindLive("crBlock",{get:function(){return crBlock;}});
 bindLive("crOf",{get:function(){return crOf;}});
 bindLive("renderExtras",{get:function(){return renderExtras;}});
 let crSel={}, crF="all", crQ="";
-function crEval(e){ e=String(e).replace(/floor\(([^()]*)\)/g,(m,x) =>{ return Math.floor(crEval(x)); }).replace(/(min|max)\(([^(),]*),([^()]*)\)/g,(m,f,a,b) =>{ return Math[f](crEval(a),crEval(b)); }); if(!/^[\d+\-*/().\s]+$/.test(e)) return NaN; try{ return Function('"use strict";return ('+e+')')(); }catch(er){ return NaN; } }
+/* Trusted Types (CSP) block the Function constructor: + - * / and brackets only, NaN for anything else */
+function arith(s){let i=0;s=String(s).replace(/\s+/g,"");const P=()=>{let v=T();while(s[i]==="+"||s[i]==="-"){const o=s[i++],w=T();v=o==="+"?v+w:v-w}return v},T=()=>{let v=F();while(s[i]==="*"||s[i]==="/"){const o=s[i++],w=F();v=o==="*"?v*w:v/w}return v},F=()=>{if(s[i]==="-"){i++;return -F()}if(s[i]==="+"){i++;return F()}if(s[i]==="("){i++;const v=P();return s[i++]===")"?v:NaN}const m=/^\d+(\.\d+)?/.exec(s.slice(i));if(!m)return NaN;i+=m[0].length;return +m[0]};const v=P();return i===s.length?v:NaN}
+function crEval(e){ e=String(e).replace(/floor\(([^()]*)\)/g,(m,x) =>{ return Math.floor(crEval(x)); }).replace(/(min|max)\(([^(),]*),([^()]*)\)/g,(m,f,a,b) =>{ return Math[f](crEval(a),crEval(b)); }); if(!/^[\d+\-*/().\s]+$/.test(e)) return NaN; return arith(e); }
 function crExpr(s,env){ s=String(s==null?"":s); const only=s.trim();
   if(/^ATK$/.test(only)) return sg(env.ATK);
   let t=s.replace(/(?<![A-Za-z])(SL|LV|PB|MOD|DC|ATK)/g,(m) =>{ return "("+env[m]+")"; }).replace(/\((-?\d+)\)/g,"$1");
